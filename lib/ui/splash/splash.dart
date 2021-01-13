@@ -21,14 +21,30 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
-      child: Center(child: AppIconWidget(image: Assets.appLogo)),
+      color: Colors.white,
+      // child: Center(child: AppIconWidget(image: Assets.appLogo)),
+      child: Stack(
+        children: <Widget>[
+          Image(
+            image: AssetImage(Assets.bgSplash),
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
+          Center(
+              child: AppIconWidget(
+            image: Assets.appLogo,
+            percent: 0.1,
+          ))
+        ],
+      ),
     );
   }
 
   startTimer() {
-    var _duration = Duration(milliseconds: 2000);
+    var _duration = Duration(milliseconds: 3000);
     return Timer(_duration, navigate);
   }
 
