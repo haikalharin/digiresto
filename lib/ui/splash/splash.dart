@@ -53,7 +53,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (preferences.getBool(Preferences.is_logged_in) ?? false) {
       Navigator.of(context).pushReplacementNamed(Routes.home);
-    } else {
+    //}else if (preferences.getBool(Preferences.show_onboarding) ?? false) {
+    }else if (preferences.getBool(Preferences.show_onboarding) == false) {
+      Navigator.of(context).pushReplacementNamed(Routes.onboarding_get_started);
+    }else {
       Navigator.of(context).pushReplacementNamed(Routes.login);
     }
   }

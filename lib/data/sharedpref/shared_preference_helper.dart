@@ -67,4 +67,17 @@ class SharedPreferenceHelper {
       return prefs.setString(Preferences.current_language, language);
     });
   }
+
+  // Onboarding:---------------------------------------------------
+  Future<String> get showOnboarding {
+    return _sharedPreference.then((prefs) {
+      return prefs.getString(Preferences.show_onboarding);
+    });
+  }
+
+  Future<void> setShowOnboarding(String onboarding) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setString(Preferences.show_onboarding, onboarding);
+    });
+  }
 }
