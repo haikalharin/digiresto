@@ -15,4 +15,6 @@ class AppColors {
     800: const Color(0xFFDB7424),
     900: const Color(0xFFD56217)
   };
+
+  static final Color yellow = Color(0xFFFEC801); // Selects a mid-range green.
 }

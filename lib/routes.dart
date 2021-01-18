@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'ui/home/home.dart';
 import 'ui/login/login.dart';
 import 'ui/splash/splash.dart';
+import 'ui/onboarding/onboarding.dart';
 
 class Routes {
   Routes._();
@@ -11,11 +12,13 @@ class Routes {
   static const String splash = '/splash';
   static const String login = '/login';
   static const String home = '/home';
+  static const String onboarding = '/onboarding';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
     login: (BuildContext context) => LoginScreen(),
     home: (BuildContext context) => HomeScreen(),
+    onboarding: (BuildContext context) => OnboardingScreen(),
   };
 }
 
