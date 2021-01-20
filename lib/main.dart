@@ -19,6 +19,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:inject/inject.dart';
 import 'package:provider/provider.dart';
+import 'package:boilerplate/stores/login/otp_store.dart';
 
 // global instance for app component
 AppComponent appComponent;
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
   final LanguageStore _languageStore =
       LanguageStore(appComponent.getRepository());
   final UserStore _userStore = UserStore(appComponent.getRepository());
-
+  final OtpStore _otpStore = OtpStore();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
         Provider<ThemeStore>(create: (_) => _themeStore),
         Provider<PostStore>(create: (_) => _postStore),
         Provider<LanguageStore>(create: (_) => _languageStore),
+        Provider<OtpStore>(create: (_) => _otpStore),
       ],
       child: Observer(
         name: 'global-observer',

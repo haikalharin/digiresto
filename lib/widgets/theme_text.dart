@@ -15,4 +15,11 @@ class ThemeText {
       fontSize: 16,
       fontWeight: FontWeight.w600,
   );
+
+  static final TextStyle headerTitle = TextStyle(
+      fontFamily: FontFamily.roboto,
+      color: Colors.white,
+      fontSize: 25,
+      fontWeight: FontWeight.w700);
+
 }

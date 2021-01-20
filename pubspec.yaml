@@ -57,14 +57,14 @@ dependencies:
   # This package provides internationalization and localization facilities, including message
   # translation, plurals and genders, date/number formatting and parsing, and bidirectional text.
   intl: ^0.16.1
-
   # Dependency injection
   inject:
     git:
       url: https://github.com/google/inject.dart.git
       path: package/inject
       ref: 7c3cbf6
-
+  url_launcher: ^5.7.10
+  otp_text_field: ^1.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -127,7 +127,7 @@ flutter:
       style: italic
     - asset: assets/fonts/Product-Sans-Bold.ttf
       weight: 700
-  
+
   - family: Poppins
     fonts:
     - asset: assets/fonts/poppins_regular.ttf

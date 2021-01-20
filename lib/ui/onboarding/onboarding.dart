@@ -95,7 +95,7 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                     ],
                   ),
                 ),
-                slideIndex != 0 ? Container(
+                slideIndex != 2 ? Container(
                   //margin: EdgeInsets.symmetric(vertical: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,24 +108,16 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                       ),
 
                       Container(
-
-                        padding: EdgeInsets.only(top: 10),
                         child: SizedBox(
-                          height: 40,
+                          height: 50,
                           width: 110,
                           child: RaisedButton(
                               onPressed: () {
-                                if (slideIndex==2) {
-                                  SharedPreferences.getInstance().then((prefs) {
-                                    prefs.setBool(Preferences.show_onboarding, false);
-                                  });
-                                  Navigator.of(context)
-                                      .pushReplacementNamed(Routes.login);
-                                }else{
+
                                   controller.animateToPage(slideIndex + 1,
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.linear);
-                                }
+
 
                               },
                               color: AppColors.yellow,
@@ -144,9 +136,11 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                   height: 50,
                   child: RaisedButton(
                       onPressed: () { setState(() {
-                        controller.animateToPage(slideIndex + 1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.linear);
+                        SharedPreferences.getInstance().then((prefs) {
+                          prefs.setBool(Preferences.show_onboarding, false);
+                        });
+                        Navigator.of(context)
+                            .pushReplacementNamed(Routes.input_phone);
                       });
                       },
                       color: AppColors.yellow,
@@ -188,6 +182,7 @@ class SlideTile extends StatelessWidget {
           Column(
             children: [
               Container(
+                padding: EdgeInsets.only(top: 20),
                 child: Text(title,
                     style: ThemeText.onboardingTitle,
                     textAlign: TextAlign.center),
@@ -218,17 +213,17 @@ List<SliderModel> getSlides(BuildContext context) {
   SliderModel sliderModel = new SliderModel();
 
   //1
-  sliderModel
-      .setDesc(AppLocalizations.of(context)
-      .translate('onboarding_get_started_desc'));
+  sliderModel.setDesc(AppLocalizations.of(context)
+      .translate('onboarding_favorite_desc'));
   sliderModel.setTitle(AppLocalizations.of(context)
-      .translate('onboarding_get_started_title'));
+      .translate('onboarding_favorite_title'));
   sliderModel.setImageAssetPath(Assets.bgOnbooarding1);
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
 
   //2
+
   sliderModel.setDesc(AppLocalizations.of(context)
       .translate('onboarding_address_desc'));
   sliderModel.setTitle(AppLocalizations.of(context)
@@ -236,13 +231,16 @@ List<SliderModel> getSlides(BuildContext context) {
   sliderModel.setImageAssetPath(Assets.bgOnbooarding2);
   slides.add(sliderModel);
 
+
+
   sliderModel = new SliderModel();
 
   //3
-  sliderModel.setDesc(AppLocalizations.of(context)
-      .translate('onboarding_favorite_desc'));
+  sliderModel
+      .setDesc(AppLocalizations.of(context)
+      .translate('onboarding_get_started_desc'));
   sliderModel.setTitle(AppLocalizations.of(context)
-      .translate('onboarding_favorite_title'));
+      .translate('onboarding_get_started_title'));
   sliderModel.setImageAssetPath(Assets.bgOnbooarding3);
   slides.add(sliderModel);
 
