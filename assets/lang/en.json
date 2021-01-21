@@ -35,5 +35,6 @@
   "login_verify_otp_desc2": "Harap masukkan kode terbaru untuk melanjutkan.",
   "login_verify_otp_resend": "Jika Anda tidak menerima kode, klik kirim ulang kode.",
   "login_btn_verify_otp_resend": "Kirim Ulang",
+  "login_enter_pin": "Masukkan 6 digit PIN",
   "login_end": "-------------------------------------------------------------------------------------"
 }

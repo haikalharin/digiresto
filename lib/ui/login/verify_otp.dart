@@ -144,8 +144,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                     print("verifikasi otp berhasil");
                                     print("is_member = "+res.isMember.toString());
                                   }
+
                             });
                             print("Completed: " + pin);
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                Routes.login_pin, (Route<dynamic> route) => false);
                           },
                         ),
                       ),
