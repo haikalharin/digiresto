@@ -68,15 +68,6 @@ mixin _$UserStore on _UserStore, Store {
     return _$loginAsyncAction.run(() => super.login(email, password));
   }
 
-  final _$activeSessionLoginAsyncAction =
-      AsyncAction('_UserStore.activeSessionLogin');
-
-  @override
-  Future<dynamic> activeSessionLogin(LoginPin user) {
-    return _$activeSessionLoginAsyncAction
-        .run(() => super.activeSessionLogin(user));
-  }
-
   @override
   String toString() {
     return '''

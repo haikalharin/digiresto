@@ -24,6 +24,7 @@
   "onboarding_btn_get_start": "Get Started",
   "onboarding_btn_next": "Next",
   "onboarding_end": "-------------------------------------------------------------------------------------",
+
   "login_start": "Below are list of strings for login",
   "login_input_phone_title": "Login",
   "login_input_phone_desc": "Pastikan nomor handphone anda valid untuk proses verifikasi",
@@ -36,5 +37,10 @@
   "login_verify_otp_resend": "Jika Anda tidak menerima kode, klik kirim ulang kode.",
   "login_btn_verify_otp_resend": "Kirim Ulang",
   "login_enter_pin": "Masukkan 6 digit PIN",
-  "login_end": "-------------------------------------------------------------------------------------"
+  "login_end": "-------------------------------------------------------------------------------------",
+
+  "credit_start": "Below are list of strings for credits",
+  "credit_title": "Digiresto Credit",
+  "credit_info": "My Credit",
+  "credit_end": "-------------------------------------------------------------------------------------"
 }
