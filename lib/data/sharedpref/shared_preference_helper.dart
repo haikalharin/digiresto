@@ -80,4 +80,11 @@ class SharedPreferenceHelper {
       return prefs.setString(Preferences.show_onboarding, onboarding);
     });
   }
+
+  Future<void> setAccessToken(String accessToken) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setString(Preferences.access_token, accessToken);
+    });
+  }
+
 }

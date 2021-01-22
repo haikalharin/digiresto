@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
+import 'package:boilerplate/models/login/login_pin_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -56,6 +60,8 @@ abstract class _UserStore with Store {
   @computed
   bool get isLoading => loginFuture.status == FutureStatus.pending;
 
+  @observable
+  LoginPin user;
   // actions:-------------------------------------------------------------------
   @action
   Future login(String email, String password) async {
@@ -78,6 +84,19 @@ abstract class _UserStore with Store {
     });
   }
 
+  activeSessionLogin (LoginPin user){
+        _repository.saveIsLoggedIn(true);
+        this.isLoggedIn = true;
+        this.success = true;
+        this.user = user;
+  }
+
+  logoutSessionLogin(){
+    _repository.saveIsLoggedIn(false);
+    this.isLoggedIn = false;
+    this.success = false;
+    this.user = null;
+  }
   logout() {
     this.isLoggedIn = false;
     _repository.saveIsLoggedIn(false);
