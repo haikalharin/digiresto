@@ -1,8 +1,10 @@
+import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/language/language_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home_navigation.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/widgets/progress_indicator_widget.dart';
@@ -23,12 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
   PostStore _postStore;
   ThemeStore _themeStore;
   LanguageStore _languageStore;
+  UserStore _userStore;
 
   @override
   void initState() {
     super.initState();
   }
 
+  void getBasicInformation(){
+    SharedPreferences.getInstance().then((prefs) {
+      _userStore.getProfile(prefs.getString(Preferences.access_token));
+      _userStore.getBalance(prefs.getString(Preferences.access_token));
+    });
+  }
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -37,11 +46,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _languageStore = Provider.of<LanguageStore>(context);
     _themeStore = Provider.of<ThemeStore>(context);
     _postStore = Provider.of<PostStore>(context);
+    _userStore = Provider.of<UserStore>(context);
 
-    // check to see if already called api
-    if (!_postStore.loading) {
-      _postStore.getPosts();
+    if (_userStore.profile==null){
+      getBasicInformation();
     }
+    if (_userStore.balance==null){
+      getBasicInformation();
+    }
+
   }
   @override
   Widget build(BuildContext context) {

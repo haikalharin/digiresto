@@ -24,7 +24,11 @@ class UserApi {
 
   static Future<UserProfile> profile(String token) async{
     String apiUrl = Endpoints.urlProfile;
-    var apiResult = await http.get(apiUrl);
+    var apiResult = await http.get(apiUrl, headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer "+token,
+    });
     var jsonObject = json.decode(apiResult.body);
     var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
     return UserProfile.createUserProfile(userData);

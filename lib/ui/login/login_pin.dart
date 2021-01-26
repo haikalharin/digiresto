@@ -98,7 +98,8 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
                                 SharedPreferences.getInstance().then((prefs) {
                                   prefs.setString(Preferences.access_token, res.token);
                                 });
-                                Navigator.of(context).pushReplacementNamed(Routes.home);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    Routes.home, (Route<dynamic> route) => false);
                               } else {
                                 print("login gagal");
                               }

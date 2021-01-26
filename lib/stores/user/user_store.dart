@@ -1,7 +1,11 @@
 import 'dart:math';
 
+import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
 import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/data/network/apis/user/user_api.dart';
+import 'package:boilerplate/models/user/user_balance_model.dart';
+import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -62,6 +66,8 @@ abstract class _UserStore with Store {
 
   @observable
   LoginPin user;
+  UserProfile profile;
+  UserBalance balance;
   // actions:-------------------------------------------------------------------
   @action
   Future login(String email, String password) async {
@@ -81,6 +87,24 @@ abstract class _UserStore with Store {
       this.isLoggedIn = false;
       this.success = false;
       throw e;
+    });
+  }
+
+  @action
+  Future getProfile(String token) async {
+    UserApi.profile(token).then((res) {
+      this.profile = res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future getBalance(String token) async {
+    UserApi.balance(token).then((res) {
+      this.balance = res;
+    }).catchError((err) {
+      print("error response: "+ err);
     });
   }
 

@@ -146,7 +146,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                   }
 
                             });
-                            print("Completed: " + pin);
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 Routes.login_pin, (Route<dynamic> route) => false);
                           },

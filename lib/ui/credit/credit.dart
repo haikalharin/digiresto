@@ -1,11 +1,13 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
+import 'package:provider/provider.dart';
 
 class CreditScreen extends StatefulWidget {
   @override
@@ -18,24 +20,32 @@ class _CreditScreenState extends State<CreditScreen> {
   @override
   void initState() {
     super.initState();
-    // initializing stores
-    balance = '0';
+  }
+
+  UserStore _userStore;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // initializing stores\
+    _userStore = Provider.of<UserStore>(context);
+    var tmpBalance = double.parse(_userStore.balance.balance).toString();
+    setState(() {
+      balance = tmpBalance;
+    });
     getBalance();
   }
 
   void getBalance(){
     SharedPreferences.getInstance().then((prefs) {
       UserApi.balance(prefs.getString(Preferences.access_token)).then((res) {
-
-        var tmpBalance =double.parse(res.balance);
+        var tmpBalance =double.parse(res.balance).toString();
         setState(() {
-          balance = tmpBalance.toString();
+          balance = tmpBalance;
         });
       }).catchError((err) {
         print("error response: "+ err);
       });
     });
-
   }
 
   Widget build(BuildContext context) {
