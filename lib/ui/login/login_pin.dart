@@ -10,6 +10,7 @@ import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
+import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
@@ -28,6 +29,9 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
   OtpWame otpWame;
   LoginPinApi loginPinApi;
 
+  var arr = new List(6);
+  int activeBox = 0;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -36,88 +40,128 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
     _userStore = Provider.of<UserStore>(context);
   }
 
+
+  void _handleClickNumber(int number){
+    setState(() {
+      if (activeBox<6 && arr[activeBox] == null){
+        arr[activeBox]=number;
+      }
+      if (activeBox<6) activeBox++;
+    }
+    );
+    if (activeBox==6) {
+      String pin = arr.join();
+      LoginPinApi.login(
+          _otpStore.otpHandphone, pin.toString())
+          .then((res) {
+        if (res.token != null) {
+          _userStore.activeSessionLogin(res);
+          SharedPreferences.getInstance().then((prefs) {
+            prefs.setString(Preferences.access_token, res.token);
+          });
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              Routes.home, (Route<dynamic> route) => false);
+        } else {
+          print("login gagal");
+        }
+      }).catchError((err) {
+        print("error response: "+ err);
+      });
+    };
+
+  }
+  void _handleClickBackspace(){
+    setState(() {
+      if (activeBox>0){
+
+        if (activeBox<=6){
+          activeBox--;
+          arr[activeBox]=null;
+        }else{
+          if (activeBox>1 || activeBox < 6)  activeBox = activeBox-1;
+        }
+      }
+    });
+  }
+
+  Widget InputPin(){
+    return Container(
+      padding: EdgeInsets.fromLTRB(5,10,5,5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          BoxInputPin(isActive: arr[0] !=null ? true : false),
+          BoxInputPin(isActive: arr[1] !=null ? true : false),
+          BoxInputPin(isActive: arr[2] !=null ? true : false),
+          BoxInputPin(isActive: arr[3] !=null ? true : false),
+          BoxInputPin(isActive: arr[4] !=null ? true : false),
+          BoxInputPin(isActive: arr[5] !=null ? true : false),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
       child: Stack(
-        children: <Widget>[
-          Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-            image: AssetImage(Assets.bgSplash),
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
-          ))),
-          Container(
-            padding: EdgeInsets.fromLTRB(10, 80, 10, 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                    child: AppIconWidget(
-                  image: Assets.appLogo,
-                  percent: 0.1,
-                )),
-                Container(
-                  padding: EdgeInsets.only(left: 15, top: 20, right: 15),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 50),
-                        child: Text(
-                            AppLocalizations.of(context)
-                                .translate('login_enter_pin'),
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            textAlign: TextAlign.center),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 60),
-                        child: OTPTextField(
-                          length: 6,
-                          width: double.infinity,
-                          fieldWidth: 50,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            height: 0.9,
-                          ),
-                          textFieldAlignment: MainAxisAlignment.spaceAround,
-                          fieldStyle: FieldStyle.underline,
-                          onCompleted: (pin) {
-                            LoginPinApi.login(
-                                    _otpStore.otpHandphone, pin.toString())
-                                .then((res) {
-                              if (res.token != null) {
-                                _userStore.activeSessionLogin(res);
-                                SharedPreferences.getInstance().then((prefs) {
-                                  prefs.setString(Preferences.access_token, res.token);
-                                });
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    Routes.home, (Route<dynamic> route) => false);
-                              } else {
-                                print("login gagal");
-                              }
-                            }).catchError((err) {
-                              print("error response: "+ err);
-                            });
-
-                            //print("check variabel = " + _userStore.user.name);
-                          },
+        children: [Stack(
+          children: <Widget>[
+            Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+              image: AssetImage(Assets.bgSplash),
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+            ))),
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 80, 10, 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                      child: AppIconWidget(
+                    image: Assets.appLogo,
+                    percent: 0.1,
+                  )),
+                  Container(
+                    padding: EdgeInsets.only(left: 15, top: 20, right: 15),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(top: 50),
+                          child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('login_enter_pin'),
+                              style: TextStyle(
+                                fontFamily: "roboto",
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center),
                         ),
-                      ),
-                    ],
+                        InputPin(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+          ],
+        ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Keyboard(
+                handleClickNumber:_handleClickNumber,
+                handleClickBackspace: _handleClickBackspace,
+              ),
+            ],
           ),
-        ],
+      ]
       ),
     );
   }
