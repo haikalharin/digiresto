@@ -6,14 +6,12 @@
   "login_btn_sign_in": "Sign In",
   "login_error_fill_fields": "Please fill in all fields",
   "login_end": "------------------------------------------------------------------------------------",
-
   "home_start": "Below are list of strings for home",
   "home_tv_posts": "Posts",
   "home_tv_error": "Error",
   "home_tv_no_post_found": "No posts found",
   "home_tv_choose_language": "Choose Language",
   "home_end": "-------------------------------------------------------------------------------------",
-
   "onboarding_start": "Below are list of strings for onboarding",
   "onboarding_get_started_title": "Pengiriman Cepat dan Aman",
   "onboarding_get_started_desc": "Makanan anda siap diantar ke alamat tujuan dengan berbagai kurir terpercaya.",
@@ -36,5 +34,9 @@
   "login_verify_otp_resend": "Jika Anda tidak menerima kode, klik kirim ulang kode.",
   "login_btn_verify_otp_resend": "Kirim Ulang",
   "login_enter_pin": "Masukkan 6 digit PIN",
-  "login_end": "-------------------------------------------------------------------------------------"
+  "login_end": "-------------------------------------------------------------------------------------",
+  "credit_start": "Below are list of strings for credits",
+  "credit_title": "Digiresto Credit",
+  "credit_info": "My Credit",
+  "credit_end": "-------------------------------------------------------------------------------------"
 }

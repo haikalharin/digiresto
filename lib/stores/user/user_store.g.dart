@@ -68,13 +68,18 @@ mixin _$UserStore on _UserStore, Store {
     return _$loginAsyncAction.run(() => super.login(email, password));
   }
 
-  final _$activeSessionLoginAsyncAction =
-      AsyncAction('_UserStore.activeSessionLogin');
+  final _$getProfileAsyncAction = AsyncAction('_UserStore.getProfile');
 
   @override
-  Future<dynamic> activeSessionLogin(LoginPin user) {
-    return _$activeSessionLoginAsyncAction
-        .run(() => super.activeSessionLogin(user));
+  Future<dynamic> getProfile(String token) {
+    return _$getProfileAsyncAction.run(() => super.getProfile(token));
+  }
+
+  final _$getBalanceAsyncAction = AsyncAction('_UserStore.getBalance');
+
+  @override
+  Future<dynamic> getBalance(String token) {
+    return _$getBalanceAsyncAction.run(() => super.getBalance(token));
   }
 
   @override
