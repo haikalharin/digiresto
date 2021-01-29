@@ -54,9 +54,9 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
         currentIndex: _selectedTabIndex,
         onTap: _onNavBarTapped,
         selectedItemColor: AppColors.red,
-        selectedFontSize: 16,
-        unselectedFontSize: 14,
-        iconSize:24,
+        selectedFontSize: 12,
+        unselectedFontSize: 10,
+        iconSize:20,
     );
     return Scaffold(
       body: Center(

@@ -56,7 +56,7 @@ class _OnboardingScreen extends State<OnboardingScreen> {
             alignment: Alignment.center,
           ))),
           Container(
-            padding: EdgeInsets.fromLTRB(20,70,20,20),
+            padding: EdgeInsets.fromLTRB(20,50,20,20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -67,8 +67,8 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                   percent: 0.1,
                 )),
                 Container(
-                  height: MediaQuery.of(context).size.height - 250,
-                  padding: EdgeInsets.only(top: 50),
+                  height: MediaQuery.of(context).size.height - 200,
+                  padding: EdgeInsets.only(top: 10),
                   child: PageView(
                     controller: controller,
                     onPageChanged: (index) {
@@ -109,8 +109,8 @@ class _OnboardingScreen extends State<OnboardingScreen> {
 
                       Container(
                         child: SizedBox(
-                          height: 50,
-                          width: 110,
+                          height: 49,
+                          width: 136,
                           child: RaisedButton(
                               onPressed: () {
 
@@ -124,7 +124,7 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                               child: Text(
                                   AppLocalizations.of(context)
                                       .translate('onboarding_btn_next'),
-                                  style: TextStyle(fontSize: 20)),
+                                  style: TextStyle(fontSize: 14)),
                               shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(10.0))),
                         ),
@@ -133,7 +133,7 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                   ),
                 ) : SizedBox(
                   width: double.infinity,
-                  height: 50,
+                  height: 49,
                   child: RaisedButton(
                       onPressed: () { setState(() {
                         SharedPreferences.getInstance().then((prefs) {
@@ -147,7 +147,7 @@ class _OnboardingScreen extends State<OnboardingScreen> {
                       child: Text(
                           AppLocalizations.of(context)
                               .translate('onboarding_btn_get_start'),
-                          style: TextStyle(fontSize: 20)),
+                          style: TextStyle(fontSize: 14)),
                       shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0))),
                 ),
@@ -175,7 +175,9 @@ class SlideTile extends StatelessWidget {
           Container(
             child: Image(
               image: AssetImage(imagePath),
-              fit: BoxFit.cover,
+              //fit: BoxFit.cover,
+              height: 274,
+              width: 294,
               alignment: Alignment.topCenter,
             ),
           ),
@@ -190,12 +192,7 @@ class SlideTile extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 20),
                 child: Text(desc,
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: ThemeText.onboardingDesciption,
                   textAlign: TextAlign.center,
                 ),
               ),
