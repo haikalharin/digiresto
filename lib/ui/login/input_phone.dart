@@ -58,7 +58,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                     alignment: Alignment.center,
                   ))),
           Container(
-            padding: EdgeInsets.all(40),
+            padding: EdgeInsets.all(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -88,7 +88,6 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                           fontFamily: "roboto",
                           color: Colors.white,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
                         ),
                         textAlign: TextAlign.start,
                       ),
@@ -127,7 +126,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                       ),
                       //fillColor: Colors.green
                     ),
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
@@ -144,7 +143,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                   padding: EdgeInsets.only(top: 20),
                   child: SizedBox(
                     width: double.infinity,
-                    height: 50,
+                    height: 53,
                     child: RaisedButton(
                         onPressed: () {
                             if (handphoneController.text.toString().length > 6) {
@@ -163,19 +162,19 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                         child: Text(
                             AppLocalizations.of(context)
                                 .translate('login_btn_verification'),
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                         shape: RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(10.0))),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(top: 10),
                   child: FlatButton(
                     onPressed: (){},
                     highlightColor: Colors.transparent,
                     child: Text(AppLocalizations.of(context)
                         .translate('login_btn_skip_continue'),
-                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: FontFamily.roboto, color: AppColors.yellow),
+                        style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, fontFamily: FontFamily.roboto, color: AppColors.yellow),
 
                     ),
                   ),

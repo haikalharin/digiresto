@@ -30,7 +30,7 @@ class BoxNumber extends StatelessWidget {
   @override
   Widget IconBox(BuildContext context) {
     return Container(
-      height: 70,
+      height: 60,
       width: MediaQuery.of(context).size.width / 3,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -56,7 +56,7 @@ class BoxNumber extends StatelessWidget {
   Widget NumerBox(BuildContext context) {
     return Container(
       //color: Colors.w,
-      height: 70,
+      height: 60,
       width: MediaQuery.of(context).size.width / 3,
       // margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -104,8 +104,8 @@ class BoxInputPin extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            height: 60,
-            width: 50,
+            height: 50,
+            width: 40,
             decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.rectangle,
@@ -223,10 +223,16 @@ class Keyboard extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width / 3,
-                height: 70,
+                height: 60,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.rectangle,
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: (){},
+                    child:Container(),
+                  ),
                 ),
               ),
               BoxNumber(

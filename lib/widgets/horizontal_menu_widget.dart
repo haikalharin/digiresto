@@ -15,19 +15,25 @@ class HorizontalMenu extends StatelessWidget {
     return InkWell(
         onTap: onClick,
       child: Container(
-        margin: EdgeInsets.only(top: 8,bottom: 8),
+        margin: EdgeInsets.only(top: 5,bottom: 5),
         padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: AppColors.greyStroke)
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               child: Row(
                 children: <Widget>[
-                  Icon(
-                    leftIcon,
-                    color: AppColors.red,
-                    size: 40.0,
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Icon(
+                      leftIcon,
+                      color: AppColors.red,
+                      size: 21.0,
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 10),
@@ -51,10 +57,13 @@ class HorizontalMenu extends StatelessWidget {
                   fontWeight: FontWeight.w500
               )),
             ) :
-            Icon(
-              rightIcon,
-              color: Colors.black,
-              size: 36.0,
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              child: Icon(
+                rightIcon,
+                color: Colors.black,
+                size: 24.0,
+              ),
             ),
           ],
         ),

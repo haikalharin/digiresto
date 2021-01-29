@@ -18,4 +18,6 @@ class AppColors {
 
   static final Color yellow = Color(0xFFFEC801); // Selects a mid-range green.
   static final Color red = Color(0xFFB31B22); // Selects a mid-range green.
+  static final Color greyStroke = Color(0xFFEDEDED);
+  static final Color greyFill = Color(0xFFFAFAFA);
 }

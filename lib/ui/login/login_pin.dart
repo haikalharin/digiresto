@@ -138,8 +138,7 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
                               style: TextStyle(
                                 fontFamily: "roboto",
                                 color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
                               ),
                               textAlign: TextAlign.center),
                         ),

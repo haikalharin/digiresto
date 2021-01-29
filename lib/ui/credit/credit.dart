@@ -54,7 +54,7 @@ class _CreditScreenState extends State<CreditScreen> {
       child: Stack(
         children: [
           Container(
-            height: 350,
+            height: 300,
             width: double.infinity,
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -63,12 +63,12 @@ class _CreditScreenState extends State<CreditScreen> {
                 ),
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30))),
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25))),
           ),
           Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.fromLTRB(10, 80, 10, 0),
+            padding: EdgeInsets.fromLTRB(10, 50, 10, 0),
             child: Column(
               children: <Widget>[
                 Container(
@@ -77,8 +77,8 @@ class _CreditScreenState extends State<CreditScreen> {
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center),
                 ),
@@ -101,7 +101,7 @@ class _CreditScreenState extends State<CreditScreen> {
                               style: TextStyle(
                                 fontFamily: "roboto",
                                 color: AppColors.red,
-                                fontSize: 20,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w800,
                               ),
                               textAlign: TextAlign.center),
@@ -117,7 +117,7 @@ class _CreditScreenState extends State<CreditScreen> {
                                     style: TextStyle(
                                       fontFamily: "roboto",
                                       color: AppColors.red,
-                                      fontSize: 20,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
@@ -130,7 +130,7 @@ class _CreditScreenState extends State<CreditScreen> {
                                     style: TextStyle(
                                       fontFamily: "roboto",
                                       color: AppColors.red,
-                                      fontSize: 34,
+                                      fontSize: 36,
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),

@@ -86,7 +86,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   Widget InputPin(){
     return Container(
-      padding: EdgeInsets.fromLTRB(5,10,5,5),
+      padding: EdgeInsets.fromLTRB(0,10,0,5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +118,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                         alignment: Alignment.center,
                       ))),
               Container(
-                padding: EdgeInsets.fromLTRB(10, 80, 10, 40),
+                padding: EdgeInsets.fromLTRB(10, 40, 10, 40),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -142,7 +142,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 15, top: 20, right: 15),
+                      padding: EdgeInsets.only(left: 15, top: 15, right: 15),
                       child: Column(
                         children: [
                           new RichText(
@@ -179,7 +179,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                   //textAlign: TextAlign.center
                                 ),
                                 TextSpan(
-                                  text: "\n\n\n" +
+                                  text: "\n\n" +
                                       AppLocalizations.of(context)
                                           .translate('login_verify_otp_resend'),
                                 ),
@@ -192,7 +192,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                             padding: EdgeInsets.only(top: 20),
                             child: SizedBox(
                               width: double.infinity,
-                              height: 50,
+                              height: 53,
                               child: RaisedButton(
                                   onPressed: () {
                                     OtpWame.connectToApi(
@@ -206,7 +206,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                       AppLocalizations.of(context)
                                           .translate('login_btn_verify_otp_resend'),
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w500)),
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

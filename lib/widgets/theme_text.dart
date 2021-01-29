@@ -6,20 +6,19 @@ class ThemeText {
   static final TextStyle onboardingTitle = TextStyle(
       fontFamily: FontFamily.roboto,
       color: Colors.white,
-      fontSize: 25,
-      fontWeight: FontWeight.w900);
+      fontSize: 22,
+      fontWeight: FontWeight.bold);
 
   static final TextStyle onboardingDesciption = TextStyle(
       fontFamily: FontFamily.roboto,
       color: Colors.white,
       fontSize: 16,
-      fontWeight: FontWeight.w600,
   );
 
   static final TextStyle headerTitle = TextStyle(
       fontFamily: FontFamily.roboto,
       color: Colors.white,
       fontSize: 25,
-      fontWeight: FontWeight.w700);
+      fontWeight: FontWeight.bold);
 
 }

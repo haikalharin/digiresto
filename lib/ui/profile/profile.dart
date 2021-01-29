@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Stack(
               children: [
                 Container(
-                  height: 200,
+                  height: 140,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Container(
                   alignment: Alignment.topCenter,
-                  padding: EdgeInsets.fromLTRB(10, 80, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10, 50, 10, 0),
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             style: TextStyle(
                               fontFamily: "roboto",
                               color: Colors.white,
-                              fontSize: 25,
+                              fontSize: 24,
                               fontWeight: FontWeight.w900,
                             ),
                             textAlign: TextAlign.center),
@@ -74,6 +74,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Container(
               alignment: Alignment.topLeft,
               padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
+              decoration: BoxDecoration(
+                  color: AppColors.greyFill,
+                  border: Border.all(color: AppColors.greyStroke)
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -82,27 +86,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(
                       fontFamily: "roboto",
                       color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(_userStore.profile.email,
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: 14,
                       )),
                   Text(_userStore.profile.mobilePhone,
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: 14,
                       )),
                 ],
               ),
             ),
             Container(
-              decoration: BoxDecoration(color: Colors.black12),
+              decoration: BoxDecoration(color: AppColors.greyFill),
               width: double.infinity,
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Column(
@@ -151,10 +155,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+              padding: EdgeInsets.only(top: 10, left: 50, right: 50),
+              decoration:  BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide( //                    <--- top side
+                    color: AppColors.greyStroke,
+                  ),
+                ),
+              ),
               child: SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 44,
                 child: RaisedButton(
                     onPressed: () {
                       _userStore.logoutSessionLogin();
@@ -167,8 +179,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: AppColors.red,
                     child: Text("Logout",
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w900,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                             color: Colors.white)),
                     shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0))),
