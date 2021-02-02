@@ -38,5 +38,9 @@
   "credit_start": "Below are list of strings for credits",
   "credit_title": "Digiresto Credit",
   "credit_info": "My Credit",
-  "credit_end": "-------------------------------------------------------------------------------------"
+  "credit_end": "-------------------------------------------------------------------------------------",
+  "register_start": "Below are list of strings for register",
+  "register_title": "Register",
+  "register_next": "LANJUT",
+  "cregister_end": "-------------------------------------------------------------------------------------"
 }

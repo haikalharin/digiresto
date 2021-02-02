@@ -60,13 +60,22 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }else{
             //go to register page
           }
+          SharedPreferences.getInstance().then((prefs) {
+            prefs.setBool(Preferences.phone_verified, true);
+          });
           print("verifikasi otp berhasil");
           print("is_member = "+res.isMember.toString());
+          if (res.isMember){
+            Navigator.of(context).pushNamedAndRemoveUntil(Routes.login_pin, (Route<dynamic> route) => false);
+          }else{
+            Navigator.of(context).pushReplacementNamed(Routes.register);
+          }
         }
-
       });
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.login_pin, (Route<dynamic> route) => false);
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString(Preferences.phone_number, _otpStore.otpHandphone);
+      });
+      Navigator.of(context).pushReplacementNamed(Routes.login_pin);
     };
 
   }
@@ -83,25 +92,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       }
     });
   }
-
-  Widget InputPin(){
-    return Container(
-      padding: EdgeInsets.fromLTRB(0,10,0,5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          BoxInputPin(isActive: arr[0] !=null ? true : false),
-          BoxInputPin(isActive: arr[1] !=null ? true : false),
-          BoxInputPin(isActive: arr[2] !=null ? true : false),
-          BoxInputPin(isActive: arr[3] !=null ? true : false),
-          BoxInputPin(isActive: arr[4] !=null ? true : false),
-          BoxInputPin(isActive: arr[5] !=null ? true : false),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -187,7 +177,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                             ),
                           ),
 
-                          InputPin(),
+                          InputPin(lengthPin: arr),
                           Container(
                             padding: EdgeInsets.only(top: 20),
                             child: SizedBox(

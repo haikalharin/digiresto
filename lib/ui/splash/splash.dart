@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }else if (preferences.getBool(Preferences.show_onboarding) ?? true) {
       Navigator.of(context).pushReplacementNamed(Routes.onboarding);
     }else {
-      Navigator.of(context).pushReplacementNamed(Routes.input_phone);
+      Navigator.of(context).pushReplacementNamed(Routes.register);
     }
   }
 }

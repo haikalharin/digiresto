@@ -253,3 +253,28 @@ class Keyboard extends StatelessWidget {
     );
   }
 }
+
+class InputPin extends StatelessWidget {
+  final lengthPin;
+
+  const InputPin({Key key, this.lengthPin})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+      return Container(
+        padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            BoxInputPin(isActive: lengthPin[0] != null ? true : false),
+            BoxInputPin(isActive: lengthPin[1] != null ? true : false),
+            BoxInputPin(isActive: lengthPin[2] != null ? true : false),
+            BoxInputPin(isActive: lengthPin[3] != null ? true : false),
+            BoxInputPin(isActive: lengthPin[4] != null ? true : false),
+            BoxInputPin(isActive: lengthPin[5] != null ? true : false),
+          ],
+        ),
+      );
+  }
+}
