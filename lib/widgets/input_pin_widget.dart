@@ -107,7 +107,7 @@ class BoxInputPin extends StatelessWidget {
             height: 50,
             width: 40,
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.greyStroke,
                 shape: BoxShape.rectangle,
                 borderRadius: new BorderRadius.circular(15.0)),
             alignment: Alignment.center,

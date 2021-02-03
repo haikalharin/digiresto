@@ -7,6 +7,7 @@ import 'package:boilerplate/models/login/otp_wame_model.dart';
 import 'package:boilerplate/models/login/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
+import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +49,16 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     }
     );
     if (activeBox==6) {
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString(Preferences.phone_number, _otpStore.otpHandphone);
+      });
       String pin = arr.join();
       OtpValidate.connectToApi(
           _otpStore.otpHandphone,pin.toString()).then((
           res) {
         if (res.isMember == null){
-          print("verifikasi otp gagal");
+          Ctoast.show(
+              "Otp verification failed");
         }else{
           if (res.isMember){
             //go to verify pin
@@ -72,10 +77,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }
         }
       });
-      SharedPreferences.getInstance().then((prefs) {
-        prefs.setString(Preferences.phone_number, _otpStore.otpHandphone);
-      });
-      Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+      //Navigator.of(context).pushReplacementNamed(Routes.register);
     };
 
   }

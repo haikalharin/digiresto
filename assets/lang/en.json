@@ -42,5 +42,10 @@
   "register_start": "Below are list of strings for register",
   "register_title": "Register",
   "register_next": "LANJUT",
+  "register_toc_title": "Dengan mengklik lanjutkan, Saya setuju dengan syarat dann ketentuan digiresto",
+  "register_info_profile": "Info Profile",
+  "register_create_pin": "Buat PIN Login",
+  "register_enter_pin": "Buat PIN Login",
+  "register_confirm_pin": "Masukkan Kembali Pin Login",
   "cregister_end": "-------------------------------------------------------------------------------------"
 }
