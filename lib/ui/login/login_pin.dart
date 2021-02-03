@@ -84,24 +84,6 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
     });
   }
 
-  Widget InputPin(){
-    return Container(
-      padding: EdgeInsets.fromLTRB(5,10,5,5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          BoxInputPin(isActive: arr[0] !=null ? true : false),
-          BoxInputPin(isActive: arr[1] !=null ? true : false),
-          BoxInputPin(isActive: arr[2] !=null ? true : false),
-          BoxInputPin(isActive: arr[3] !=null ? true : false),
-          BoxInputPin(isActive: arr[4] !=null ? true : false),
-          BoxInputPin(isActive: arr[5] !=null ? true : false),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -142,7 +124,7 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
                               ),
                               textAlign: TextAlign.center),
                         ),
-                        InputPin(),
+                        InputPin(lengthPin: arr),
                       ],
                     ),
                   ),

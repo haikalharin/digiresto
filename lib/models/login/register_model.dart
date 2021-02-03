@@ -19,11 +19,11 @@ class Register {
   static Future<Register> connectToApi(Map<String,dynamic> object) async{
     String apiUrl = Endpoints.urlRegister;
     var apiResult = await http.post(apiUrl, body: {
-      "pushid": object["pushid"],
+      "pushId": object["pushid"],
       "uid": object["uid"],
-      "credenntial": object["username"],
+      "credential": object["credential"],
       "name": object["name"],
-      "accountNumber": object["handPhone"],
+      "accountNumber": object["accountNumber"],
       "email": object["email"],
     });
     var jsonObject = json.decode(apiResult.body);

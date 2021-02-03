@@ -65,6 +65,8 @@ dependencies:
       ref: 7c3cbf6
   url_launcher: ^5.7.10
   otp_text_field: ^1.0.2
+  fluttertoast: ^7.1.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
