@@ -23,14 +23,15 @@ class BoxNumber extends StatelessWidget {
   final number;
   final icon;
   final onClick;
+  final height;
 
-  const BoxNumber({Key key, this.number, this.icon, this.onClick})
+  const BoxNumber({Key key, this.number, this.icon, this.onClick,this.height=60.0})
       : super(key: key);
 
   @override
   Widget IconBox(BuildContext context) {
     return Container(
-      height: 60,
+      height: height,
       width: MediaQuery.of(context).size.width / 3,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -56,7 +57,7 @@ class BoxNumber extends StatelessWidget {
   Widget NumerBox(BuildContext context) {
     return Container(
       //color: Colors.w,
-      height: 60,
+      height: height,
       width: MediaQuery.of(context).size.width / 3,
       // margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -143,8 +144,9 @@ class BoxInputPin extends StatelessWidget {
 class Keyboard extends StatelessWidget {
   final handleClickNumber;
   final handleClickBackspace;
+  final height;
 
-  const Keyboard({Key key, this.handleClickNumber, this.handleClickBackspace})
+  const Keyboard({Key key, this.handleClickNumber, this.handleClickBackspace,this.height=60.0})
       : super(key: key);
 
   @override
@@ -160,16 +162,19 @@ class Keyboard extends StatelessWidget {
             children: [
               BoxNumber(
                   number: 1,
+                  height: height,
                   onClick: () {
                     handleClickNumber(1);
                   }),
               BoxNumber(
                   number: 2,
+                  height: height,
                   onClick: () {
                     handleClickNumber(2);
                   }),
               BoxNumber(
                   number: 3,
+                  height: height,
                   onClick: () {
                     handleClickNumber(3);
                   }),
@@ -181,16 +186,19 @@ class Keyboard extends StatelessWidget {
             children: [
               BoxNumber(
                   number: 4,
+                  height: height,
                   onClick: () {
                     handleClickNumber(4);
                   }),
               BoxNumber(
                   number: 5,
+                  height: height,
                   onClick: () {
                     handleClickNumber(5);
                   }),
               BoxNumber(
                   number: 6,
+                  height: height,
                   onClick: () {
                     handleClickNumber(6);
                   }),
@@ -202,16 +210,19 @@ class Keyboard extends StatelessWidget {
             children: [
               BoxNumber(
                   number: 7,
+                  height: height,
                   onClick: () {
                     handleClickNumber(7);
                   }),
               BoxNumber(
                   number: 8,
+                  height: height,
                   onClick: () {
                     handleClickNumber(8);
                   }),
               BoxNumber(
                   number: 9,
+                  height: height,
                   onClick: () {
                     handleClickNumber(9);
                   }),
@@ -223,7 +234,7 @@ class Keyboard extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width / 3,
-                height: 60,
+                height: height,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.rectangle,
@@ -237,11 +248,13 @@ class Keyboard extends StatelessWidget {
               ),
               BoxNumber(
                   number: 0,
+                  height: height,
                   onClick: () {
                     handleClickNumber(0);
                   }),
               BoxNumber(
                 icon: Icons.backspace_outlined,
+                height: height,
                 onClick: () {
                   handleClickBackspace();
                 },

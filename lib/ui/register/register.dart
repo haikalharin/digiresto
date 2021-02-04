@@ -572,6 +572,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Keyboard(
+                                          height: 80.0,
                                           handleClickNumber: _handleClickNumber,
                                           handleClickBackspace: _handleClickBackspace,
                                         ),
@@ -685,6 +686,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Keyboard(
+                                          height: 80.0,
                                           handleClickNumber:
                                           _confirmHandleClickNumber,
                                           handleClickBackspace:
