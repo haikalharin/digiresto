@@ -2,8 +2,11 @@ import 'dart:math';
 
 import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
-import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
+import 'package:boilerplate/models/auth/otp_validate_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/register_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
@@ -19,7 +22,6 @@ class UserStore = _UserStore with _$UserStore;
 abstract class _UserStore with Store {
   // repository instance
   final Repository _repository;
-
   // store for handling form errors
   final FormErrorStore formErrorStore = FormErrorStore();
 
@@ -92,8 +94,9 @@ abstract class _UserStore with Store {
 
   @action
   Future getProfile(String token) async {
-    UserApi.profile(token).then((res) {
+    return await _repository.getProfile(token).then((res) {
       this.profile = res;
+      return res;
     }).catchError((err) {
       print("error response: "+ err);
     });
@@ -101,8 +104,9 @@ abstract class _UserStore with Store {
 
   @action
   Future getBalance(String token) async {
-    UserApi.balance(token).then((res) {
+    return await _repository.getBalance(token).then((res) {
       this.balance = res;
+      return res;
     }).catchError((err) {
       print("error response: "+ err);
     });
@@ -131,5 +135,51 @@ abstract class _UserStore with Store {
     for (final d in _disposers) {
       d();
     }
+  }
+
+  @action
+  Future<LoginPin>  loginUser(String handPhone,String pin) async {
+    return await _repository.loginUser(handPhone,pin).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<OtpWame> getOtp(String handPhone) async {
+    return await _repository.getOtp(handPhone).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<OtpValidate> validateOtp(String handPhone,String pin) async {
+    return await _repository.validateOtp(handPhone,pin).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<Register> register(Map<String,dynamic> object) async {
+    return await _repository.register(object).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @observable
+  String otpHandphone = null;
+  void setOtpHandphone(String handPhone){
+    otpHandphone = handPhone;
+  }
+
+  void removeOtpHandohone(){
+    otpHandphone = null;
   }
 }

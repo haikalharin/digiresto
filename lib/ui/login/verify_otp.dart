@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
-import 'package:boilerplate/models/login/otp_validate_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
@@ -27,17 +28,14 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  OtpStore _otpStore;
-  OtpWame otpWame;
-  OtpValidate otpValidate;
-
+  UserStore _userStore;
   var arr = new List(6);
   int activeBox = 0;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     // initializing stores
-    _otpStore = Provider.of<OtpStore>(context);
+    _userStore = Provider.of<UserStore>(context);
   }
 
   void _handleClickNumber(int number){
@@ -50,11 +48,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     );
     if (activeBox==6) {
       SharedPreferences.getInstance().then((prefs) {
-        prefs.setString(Preferences.phone_number, _otpStore.otpHandphone);
+        prefs.setString(Preferences.phone_number, _userStore.otpHandphone);
       });
       String pin = arr.join();
-      OtpValidate.connectToApi(
-          _otpStore.otpHandphone,pin.toString()).then((
+      _userStore.validateOtp(
+          _userStore.otpHandphone,pin.toString()).then((
           res) {
         if (res.isMember == null){
           Ctoast.show(
@@ -77,7 +75,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }
         }
       });
-      //Navigator.of(context).pushReplacementNamed(Routes.register);
+      Navigator.of(context).pushReplacementNamed(Routes.login_pin);
     };
 
   }
@@ -154,7 +152,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                       .translate('login_verify_otp_desc'),
                                 ),
                                 TextSpan(
-                                  text: " " + _otpStore.otpHandphone,
+                                  text: " " + _userStore.otpHandphone,
                                   style: TextStyle(
                                     fontFamily: "roboto",
                                     color: AppColors.yellow,
@@ -187,8 +185,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                               height: 53,
                               child: RaisedButton(
                                   onPressed: () {
-                                    OtpWame.connectToApi(
-                                        _otpStore.otpHandphone).then((
+                                    _userStore.getOtp(
+                                        _userStore.otpHandphone).then((
                                         res) {
                                       LaunchUrl.run(res.wame);
                                     });

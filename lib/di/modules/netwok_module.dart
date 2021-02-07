@@ -1,10 +1,13 @@
+import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/apis/posts/post_api.dart';
+import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/di/modules/preference_module.dart';
+import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:dio/dio.dart';
 import 'package:inject/inject.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,6 +81,17 @@ class NetworkModule extends PreferenceModule {
   @singleton
   PostApi providePostApi(DioClient dioClient, RestClient restClient) =>
       PostApi(dioClient, restClient);
+
+  @provide
+  @singleton
+  UserApi provideUserApi(DioClient dioClient, RestClient restClient) =>
+      UserApi(dioClient, restClient);
+
+  @provide
+  @singleton
+  AuthApi provideAuthApi(DioClient dioClient, RestClient restClient) =>
+      AuthApi(dioClient, restClient);
+
 // Api Providers End:---------------------------------------------------------
 
 }

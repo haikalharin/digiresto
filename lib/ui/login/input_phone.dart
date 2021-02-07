@@ -3,10 +3,12 @@ import 'dart:developer';
 
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
+import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,7 @@ import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/widgets/theme_text.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/services.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 
 
@@ -27,13 +29,12 @@ class InputPhoneScreen extends StatefulWidget {
 }
 
 class _InputPhoneScreenState extends State<InputPhoneScreen> {
-  OtpStore _otpStore;
-  OtpWame otpWame;
+  UserStore _userStore;
+
   final handphoneController = TextEditingController();
   @override
   void setState(fn) {
     // TODO: implement setState
-    otpWame=null;
     super.setState(fn);
   }
 
@@ -41,7 +42,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // initializing stores
-    _otpStore = Provider.of<OtpStore>(context);
+    _userStore = Provider.of<UserStore>(context);
   }
 
   @override
@@ -147,9 +148,9 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                     child: RaisedButton(
                         onPressed: () {
                             if (handphoneController.text.toString().length > 6) {
-                              _otpStore.setOtpHandphone(handphoneController.text
+                              _userStore.setOtpHandphone(handphoneController.text
                                   .toString());
-                              OtpWame.connectToApi(
+                              _userStore.getOtp(
                                   handphoneController.text.toString()).then((
                                   res) {
                                 LaunchUrl.run(res.wame);

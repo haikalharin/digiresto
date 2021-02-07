@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:boilerplate/data/local/constants/db_constants.dart';
 import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
+import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/apis/posts/post_api.dart';
+import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/utils/encryption/xxtea.dart';
@@ -78,6 +80,8 @@ class LocalModule extends NetworkModule {
     PostApi postApi,
     SharedPreferenceHelper preferenceHelper,
     PostDataSource postDataSource,
+    UserApi userApi,
+    AuthApi authApi,
   ) =>
-      Repository(postApi, preferenceHelper, postDataSource);
+      Repository(postApi, preferenceHelper, postDataSource, userApi,authApi);
 }
