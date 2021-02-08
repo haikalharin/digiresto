@@ -1,23 +1,5 @@
-import 'dart:async';
-
-import 'package:boilerplate/constants/assets.dart';
-import 'package:boilerplate/constants/font_family.dart';
-import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
-import 'package:boilerplate/models/login/otp_validate_model.dart';
-import 'package:boilerplate/routes.dart';
-import 'package:boilerplate/stores/login/otp_store.dart';
-import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:boilerplate/utils/locale/app_localization.dart';
-import 'package:boilerplate/widgets/theme_text.dart';
 import 'package:boilerplate/constants/colors.dart';
-import 'package:flutter/services.dart';
-import 'package:boilerplate/widgets/otp_field.dart';
-import 'package:otp_text_field/style.dart';
-import 'package:boilerplate/utils/launch_url/launch_url.dart';
 
 class BoxNumber extends StatelessWidget {
   final number;

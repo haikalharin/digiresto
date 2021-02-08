@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
-import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
@@ -28,4 +28,6 @@ class LoginPinApi {
     var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
     return LoginPin.createPin(userData);
   }
+
+
 }

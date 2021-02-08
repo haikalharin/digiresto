@@ -1,14 +1,21 @@
 import 'dart:async';
 
 import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
+import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
-import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/models/auth/login_pin_model.dart';
+import 'package:boilerplate/models/auth/otp_validate_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/register_model.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
+import 'package:boilerplate/models/user/user_balance_model.dart';
+import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
 import 'network/apis/posts/post_api.dart';
+import 'network/apis/user/user_api.dart';
 
 class Repository {
   // data source object
@@ -17,11 +24,15 @@ class Repository {
   // api objects
   final PostApi _postApi;
 
+  final UserApi _userApi;
+
+  final AuthApi _authApi;
+
   // shared pref object
   final SharedPreferenceHelper _sharedPrefsHelper;
 
   // constructor
-  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource);
+  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,this._userApi, this._authApi);
 
   // Post: ---------------------------------------------------------------------
   Future<PostList> getPosts() async {
@@ -91,5 +102,42 @@ class Repository {
       _sharedPrefsHelper.changeLanguage(value);
 
   Future<String> get currentLanguage => _sharedPrefsHelper.currentLanguage;
+  // Post: ---------------------------------------------------------------------
 
+  Future<UserBalance> getBalance(String token) async {
+    return await _userApi.getBalance(token).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<UserProfile> getProfile(String token) async {
+    return await _userApi.getProfile(token).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<LoginPin> loginUser(String handPhone,String pin) async {
+    return await _authApi.login(handPhone,pin).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<OtpWame> getOtp(String handPhone) async {
+    return await _authApi.getOtp(handPhone).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+
+  Future<OtpValidate> validateOtp(String handPhone,String otp) async {
+    return await _authApi.validateOtp(handPhone,otp).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<Register> register(Map<String,dynamic> object) async {
+    return await _authApi.register(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
 }

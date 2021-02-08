@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
-import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
@@ -24,10 +24,7 @@ class LoginPinScreen extends StatefulWidget {
 }
 
 class _LoginPinScreenState extends State<LoginPinScreen> {
-  OtpStore _otpStore;
   UserStore _userStore;
-  OtpWame otpWame;
-  LoginPinApi loginPinApi;
 
   var arr = new List(6);
   int activeBox = 0;
@@ -36,7 +33,6 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // initializing stores
-    _otpStore = Provider.of<OtpStore>(context);
     _userStore = Provider.of<UserStore>(context);
   }
 
@@ -51,8 +47,8 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
     );
     if (activeBox==6) {
       String pin = arr.join();
-      LoginPinApi.login(
-          _otpStore.otpHandphone, pin.toString())
+      _userStore.loginUser(
+          _userStore.otpHandphone, pin.toString())
           .then((res) {
         if (res.token != null) {
           _userStore.activeSessionLogin(res);

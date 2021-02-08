@@ -1,7 +1,9 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
+import 'package:boilerplate/data/network/apis/user/user_api.dart';
+import 'package:boilerplate/data/repository.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';

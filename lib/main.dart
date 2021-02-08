@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
   final PostStore _postStore = PostStore(appComponent.getRepository());
   final LanguageStore _languageStore =
       LanguageStore(appComponent.getRepository());
-  final UserStore _userStore = UserStore(appComponent.getRepository());
+  final UserStore _userStore = UserStore(appComponent.getRepository(),);
   final OtpStore _otpStore = OtpStore();
   @override
   Widget build(BuildContext context) {

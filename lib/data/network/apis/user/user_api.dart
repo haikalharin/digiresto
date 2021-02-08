@@ -5,6 +5,7 @@ import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
+import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
@@ -22,28 +23,37 @@ class UserApi {
   // injecting dio instance
   UserApi(this._dioClient, this._restClient);
 
-  static Future<UserProfile> profile(String token) async{
-    String apiUrl = Endpoints.urlProfile;
-    var apiResult = await http.get(apiUrl, headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer "+token,
-    });
-    var jsonObject = json.decode(apiResult.body);
-    var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
-    return UserProfile.createUserProfile(userData);
-  }
+  Future<UserProfile> getProfile(String token) async {
+    try {
+      String apiUrl = Endpoints.urlProfile;
 
-  static Future<UserBalance> balance(String token) async{
-    String apiUrl = Endpoints.urlBalance;
-      var apiResult = await http.get(apiUrl, headers: {
+      final apiResult = await _dioClient.get(apiUrl,options: Options(contentType: "application/json",headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "Authorization": "Bearer "+token,
-      });
-      var jsonObject = json.decode(apiResult.body);
-      var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
-      return UserBalance.createBalance(userData);
-
+      }));
+      var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      return UserProfile.createUserProfile(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
   }
+  Future<UserBalance> getBalance(String token) async {
+    try {
+      String apiUrl = Endpoints.urlBalance;
+
+      final apiResult = await _dioClient.get(apiUrl,options: Options(contentType: "application/json",headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer "+token,
+      }));
+      var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      return UserBalance.createBalance(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
 }

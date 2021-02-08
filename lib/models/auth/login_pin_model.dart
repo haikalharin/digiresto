@@ -25,15 +25,4 @@ class LoginPin {
       hiddenPushId: object['hidden_pushid'],
     );
   }
-
-  static Future<LoginPin> connectToApi(String handPhone,String pin) async{
-    String apiUrl = Endpoints.urlLogin;
-    var apiResult = await http.post(apiUrl, body: {
-      "username": handPhone,
-      "password": pin
-    });
-    var jsonObject = json.decode(apiResult.body);
-    var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
-    return LoginPin.createPin(userData);
-  }
 }

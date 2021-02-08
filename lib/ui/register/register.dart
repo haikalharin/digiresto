@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
-import 'package:boilerplate/models/login/otp_validate_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ import 'package:boilerplate/widgets/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
-import 'package:boilerplate/models/login/register_model.dart';
+import 'package:boilerplate/models/auth/register_model.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   OtpStore _otpStore;
+  UserStore _userStore;
   OtpWame otpWame;
   bool isSelectedToc = false;
   int _curr = 0;
@@ -48,6 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.didChangeDependencies();
     // initializing stores
     _otpStore = Provider.of<OtpStore>(context);
+    _userStore = Provider.of<UserStore>(context);
   }
 
   void changeTic(bool value) {
@@ -214,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       'pushid': '12313131',
                                       'uid': '-',
                                     };
-                                    Register.connectToApi(details).then((res) {
+                                    _userStore.register(details).then((res) {
                                       Ctoast.show(res.message);
                                       if (res.code.toString() == '00') {
                                         Navigator.of(context)
