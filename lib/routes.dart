@@ -1,4 +1,8 @@
 import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/ui/profile/about.dart';
+import 'package:boilerplate/ui/profile/history.dart';
+import 'package:boilerplate/ui/profile/privacy_policy.dart';
+import 'package:boilerplate/ui/profile/set_address.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/home/home.dart';
@@ -20,6 +24,10 @@ class Routes {
   static const String input_phone = '/inputphone';
   static const String verify_otp = '/verifyotp';
   static const String login_pin = '/login_pin';
+  static const String about = '/about';
+  static const String privacy_policy = '/privacy_policy';
+  static const String set_address = '/set_address';
+  static const String history = '/history';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -29,6 +37,10 @@ class Routes {
     input_phone: (BuildContext context) => InputPhoneScreen(),
     verify_otp: (BuildContext context) => VerifyOtpScreen(),
     login_pin: (BuildContext context) => LoginPinScreen(),
+    about: (BuildContext context) => AboutScreen(),
+    privacy_policy: (BuildContext context)=> PrivacyPolicy(),
+    history: (BuildContext context)=> HistoryScreen(),
+    set_address: (BuildContext context)=> SetAddressScreen(),
   };
 }
 
