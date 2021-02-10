@@ -209,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leftIcon: Icons.pin_drop_outlined,
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
-                        Navigator.of(context).pushNamed(Routes.set_address);
+                        Navigator.of(context).pushNamed(Routes.set_address_list);
                       }),
                   HorizontalMenu(
                       title: AppLocalizations.of(context)

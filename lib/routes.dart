@@ -2,7 +2,8 @@ import 'package:boilerplate/models/login/login_pin_model.dart';
 import 'package:boilerplate/ui/profile/about.dart';
 import 'package:boilerplate/ui/profile/history.dart';
 import 'package:boilerplate/ui/profile/privacy_policy.dart';
-import 'package:boilerplate/ui/profile/set_address.dart';
+import 'package:boilerplate/ui/profile/set_address/set_address.dart';
+import 'package:boilerplate/ui/profile/set_address/add_address.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/home/home.dart';
@@ -26,7 +27,8 @@ class Routes {
   static const String login_pin = '/login_pin';
   static const String about = '/about';
   static const String privacy_policy = '/privacy_policy';
-  static const String set_address = '/set_address';
+  static const String set_address_list = '/set_address';
+  static const String set_address_add = '/add_address';
   static const String history = '/history';
 
   static final routes = <String, WidgetBuilder>{
@@ -40,7 +42,8 @@ class Routes {
     about: (BuildContext context) => AboutScreen(),
     privacy_policy: (BuildContext context)=> PrivacyPolicy(),
     history: (BuildContext context)=> HistoryScreen(),
-    set_address: (BuildContext context)=> SetAddressScreen(),
+    set_address_list: (BuildContext context)=> SetAddressScreen(),
+    set_address_add: (BuildContext context)=> AddAddressScreen(),
   };
 }
 
