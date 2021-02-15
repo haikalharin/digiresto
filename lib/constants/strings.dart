@@ -3,4 +3,5 @@ class Strings {
 
   //General
   static const String appName = "Digiresto";
+  static const String wabaNo = "mobileapi";
 }

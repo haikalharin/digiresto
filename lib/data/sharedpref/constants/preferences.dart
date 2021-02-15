@@ -7,5 +7,6 @@ class Preferences {
   static const String current_language = "current_language";
   static const String show_onboarding = "showOnboarding";
   static const String access_token = "accessToken";
-  static const String handPhone = "handPhone";
+  static const String phone_number = "phoneNumber";
+  static const String phone_verified = "phoneVerified";
 }

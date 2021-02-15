@@ -6,6 +6,9 @@ import 'package:boilerplate/data/network/rest_client.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
+import 'package:boilerplate/models/user/user_add_address_model.dart';
+import 'package:boilerplate/models/user/user_remove_address_model.dart';
+import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
@@ -23,49 +26,141 @@ class UserApi {
   // injecting dio instance
   UserApi(this._dioClient, this._restClient);
 
-  static Future<UserProfile> profile(String token) async{
-    String apiUrl = Endpoints.urlProfile;
-    var apiResult = await http.get(apiUrl, headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer "+token,
-    });
-    var jsonObject = json.decode(apiResult.body);
-    var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
-    return UserProfile.createUserProfile(userData);
-  }
+  Future<UserProfile> getProfile(String token) async {
+    try {
+      String apiUrl = Endpoints.urlProfile;
 
-  static Future<UserBalance> balance(String token) async{
-    String apiUrl = Endpoints.urlBalance;
-      var apiResult = await http.get(apiUrl, headers: {
+      final apiResult = await _dioClient.get(apiUrl,options: Options(contentType: "application/json",headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "Authorization": "Bearer "+token,
-      });
-      var jsonObject = json.decode(apiResult.body);
-      var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
-      return UserBalance.createBalance(userData);
+      }));
+      var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      return UserProfile.createUserProfile(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
   }
 
-  static Future<List<UserAddress>> address(String token,String waId) async{
-    String apiUrl = Endpoints.urlGetAllAddress;
-    var apiResult = await http.post(apiUrl, headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "Bearer "+token,
-    }, body:{
+  Future<UserBalance> getBalance(String token) async {
+    try {
+      String apiUrl = Endpoints.urlBalance;
+
+      final apiResult = await _dioClient.get(apiUrl,options: Options(contentType: "application/json",headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer "+token,
+      }));
+      var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      return UserBalance.createBalance(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<List<UserAddress>> getAddress(String token,String waId) async{
+    try {
+      String apiUrl = Endpoints.urlGetAllAddress;
+      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer "+token,
+      }),data: {
       "query_string":{},
       "body":{
-        "wa_id": waId
+      "wa_id": waId
       }
-    });
+      });
 
-    var jsonObject = json.decode(apiResult.body);
-    var listUserData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
-    List<UserAddress> address= [];
-    for(int i = 0;i<listUserData.length;i++){
-      address.add(UserAddress.createAddress(listUserData[i]));
+      //print("data x"+apiResult['data'][0]["name"]);
+      List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      List<UserAddress> address= [];
+      for(int i = 0;i<listUserData.length;i++){
+        address.add(UserAddress.createAddress(listUserData[i]));
+      }
+      return address;
+    } catch (e) {
+      print(e.toString());
+      throw e;
     }
-    return address;
+
+  }
+
+  Future<UserAddAddress> addAddress(String token,Map<String,dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlAddAddress;
+      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer "+token,
+      }), data: {
+      "query_string":{},
+      "body":{
+      "wa_id": object["wa_id"].toString(),
+      "waba_no": object["waba_no"].toString(),
+      "name": object["name"].toString(),
+      "address": object["address"].toString(),
+      "latitude": object["latitude"].toString(),
+      "longitude": object["longitude"].toString(),
+      "is_default": object["is_default"],
+      }});
+      var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      return UserAddAddress.createAddAddress(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<UserRemoveAddress> removeAddress(String token,Map<String,dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlRemoveAddress;
+      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer "+token,
+      }), data: {
+      "query_string":{},
+      "body":{
+      "wa_id": object["wa_id"].toString(),
+      "waba_no": object["waba_no"].toString(),
+      "id": object["id"],
+      }});
+      var userData = (apiResult as Map<String,dynamic>)['response']; //mengambil data data didalam jsonObject
+      return UserRemoveAddress.createUserRemoveAddress(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<List<UserAddress>> setDefaultAddress(String token,Map<String,dynamic> object) async{
+    try {
+      String apiUrl = Endpoints.urlSetDefaultAddress;
+      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer "+token,
+      }),data: {
+        "query_string":{},
+        "body":{
+          "wa_id": object["wa_id"].toString(),
+          "waba_no": object["waba_no"].toString(),
+          "id": object["id"],
+        }
+      });
+
+      List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']['list_address']; //mengambil data data didalam jsonObject
+      List<UserAddress> address= [];
+      for(int i = 0;i<listUserData.length;i++){
+        address.add(UserAddress.createAddress(listUserData[i]));
+      }
+      return address;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
   }
 }

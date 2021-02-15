@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
-import 'package:boilerplate/models/login/otp_wame_model.dart';
-import 'package:boilerplate/models/login/otp_validate_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/login/otp_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -26,17 +28,14 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  OtpStore _otpStore;
-  OtpWame otpWame;
-  OtpValidate otpValidate;
-
+  UserStore _userStore;
   var arr = new List(6);
   int activeBox = 0;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     // initializing stores
-    _otpStore = Provider.of<OtpStore>(context);
+    _userStore = Provider.of<UserStore>(context);
   }
 
   void _handleClickNumber(int number){
@@ -48,25 +47,35 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     }
     );
     if (activeBox==6) {
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString(Preferences.phone_number, _userStore.otpHandphone);
+      });
       String pin = arr.join();
-      OtpValidate.connectToApi(
-          _otpStore.otpHandphone,pin.toString()).then((
+      _userStore.validateOtp(
+          _userStore.otpHandphone,pin.toString()).then((
           res) {
         if (res.isMember == null){
-          print("verifikasi otp gagal");
+          Ctoast.show(
+              "Otp verification failed");
         }else{
           if (res.isMember){
             //go to verify pin
           }else{
             //go to register page
           }
+          SharedPreferences.getInstance().then((prefs) {
+            prefs.setBool(Preferences.phone_verified, true);
+          });
           print("verifikasi otp berhasil");
           print("is_member = "+res.isMember.toString());
+          if (res.isMember){
+            Navigator.of(context).pushNamedAndRemoveUntil(Routes.login_pin, (Route<dynamic> route) => false);
+          }else{
+            Navigator.of(context).pushReplacementNamed(Routes.register);
+          }
         }
-
       });
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.login_pin, (Route<dynamic> route) => false);
+      Navigator.of(context).pushReplacementNamed(Routes.login_pin);
     };
 
   }
@@ -83,25 +92,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       }
     });
   }
-
-  Widget InputPin(){
-    return Container(
-      padding: EdgeInsets.fromLTRB(0,10,0,5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          BoxInputPin(isActive: arr[0] !=null ? true : false),
-          BoxInputPin(isActive: arr[1] !=null ? true : false),
-          BoxInputPin(isActive: arr[2] !=null ? true : false),
-          BoxInputPin(isActive: arr[3] !=null ? true : false),
-          BoxInputPin(isActive: arr[4] !=null ? true : false),
-          BoxInputPin(isActive: arr[5] !=null ? true : false),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -162,7 +152,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                       .translate('login_verify_otp_desc'),
                                 ),
                                 TextSpan(
-                                  text: " " + _otpStore.otpHandphone,
+                                  text: " " + _userStore.otpHandphone,
                                   style: TextStyle(
                                     fontFamily: "roboto",
                                     color: AppColors.yellow,
@@ -187,7 +177,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                             ),
                           ),
 
-                          InputPin(),
+                          InputPin(lengthPin: arr),
                           Container(
                             padding: EdgeInsets.only(top: 20),
                             child: SizedBox(
@@ -195,8 +185,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                               height: 53,
                               child: RaisedButton(
                                   onPressed: () {
-                                    OtpWame.connectToApi(
-                                        _otpStore.otpHandphone).then((
+                                    _userStore.getOtp(
+                                        _userStore.otpHandphone).then((
                                         res) {
                                       LaunchUrl.run(res.wame);
                                     });

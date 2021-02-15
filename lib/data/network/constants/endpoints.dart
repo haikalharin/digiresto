@@ -23,5 +23,6 @@ class Endpoints {
   static const String urlGetAllAddress = baseUrlDigiresto+"/forward?r=getalladdress";
   static const String urlRemoveAddress = baseUrlDigiresto+"/forward?r=removeaddress";
   static const String urlAddAddress = baseUrlDigiresto+"/forward?r=addaddress";
+  static const String urlSetDefaultAddress = baseUrlDigiresto+"/forward?r=setdefaultaddress";
   static const String urlGetGeocode = baseUrlDigiresto+"/forward?r=getgeocode";
 }

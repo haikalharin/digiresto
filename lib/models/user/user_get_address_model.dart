@@ -1,14 +1,14 @@
 class UserAddress {
-  String id;
+  int id;
   String name;
   String address;
   String latitude;
   String longitude;
   bool isDefault;
   String wabaNo;
-  String isDelete;
+  bool isDelete;
 
-  UserAddress({this.id,this.name,this.address,this.latitude,this.longitude,this.isDefault,this.wabaNo,this.isDelete});
+  UserAddress({this.id,this.name,this.address,this.latitude,this.longitude,this.wabaNo,this.isDelete,this.isDefault});
   factory UserAddress.createAddress(Map<String,dynamic> object){
     return UserAddress(
       id: object['id'],

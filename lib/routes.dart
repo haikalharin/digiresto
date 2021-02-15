@@ -1,4 +1,3 @@
-import 'package:boilerplate/models/login/login_pin_model.dart';
 import 'package:boilerplate/ui/profile/about.dart';
 import 'package:boilerplate/ui/profile/history.dart';
 import 'package:boilerplate/ui/profile/privacy_policy.dart';
@@ -13,6 +12,7 @@ import 'ui/onboarding/onboarding.dart';
 import 'ui/login/input_phone.dart';
 import 'ui/login/verify_otp.dart';
 import 'ui/login/login_pin.dart';
+import 'ui/register/register.dart';
 
 class Routes {
   Routes._();
@@ -30,6 +30,7 @@ class Routes {
   static const String set_address_list = '/set_address';
   static const String set_address_add = '/add_address';
   static const String history = '/history';
+  static const String register = '/register';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -39,6 +40,7 @@ class Routes {
     input_phone: (BuildContext context) => InputPhoneScreen(),
     verify_otp: (BuildContext context) => VerifyOtpScreen(),
     login_pin: (BuildContext context) => LoginPinScreen(),
+    register: (BuildContext context) => RegisterScreen(),
     about: (BuildContext context) => AboutScreen(),
     privacy_policy: (BuildContext context)=> PrivacyPolicy(),
     history: (BuildContext context)=> HistoryScreen(),

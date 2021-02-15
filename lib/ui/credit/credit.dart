@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
@@ -28,7 +26,7 @@ class _CreditScreenState extends State<CreditScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // initializing stores\
+    // initializing stores
     _userStore = Provider.of<UserStore>(context);
     // var tmpBalance = double.parse(_userStore.balance.balance).toString();
     String tmpBalance = formatBalance(_userStore.balance.balance);
@@ -45,13 +43,11 @@ class _CreditScreenState extends State<CreditScreen> {
   }
   void getBalance(){
     SharedPreferences.getInstance().then((prefs) {
-      UserApi.balance(prefs.getString(Preferences.access_token)).then((res) {
-        String tmpBalance = formatBalance(res.balance);
+      _userStore.getBalance(prefs.getString(Preferences.access_token)).then((res) {
+        var tmpBalance =double.parse(res.balance).toString();
         setState(() {
           balance = tmpBalance;
         });
-      }).catchError((err) {
-        print("error response: "+ err);
       });
     });
   }

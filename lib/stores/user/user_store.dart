@@ -2,11 +2,16 @@ import 'dart:math';
 
 import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
-import 'package:boilerplate/models/login/login_pin_model.dart';
+import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
+import 'package:boilerplate/models/auth/otp_validate_model.dart';
+import 'package:boilerplate/models/auth/otp_wame_model.dart';
+import 'package:boilerplate/models/auth/register_model.dart';
+import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
+import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -93,7 +98,7 @@ abstract class _UserStore with Store {
 
   @action
   Future getProfile(String token) async {
-    UserApi.profile(token).then((res) {
+    return await _repository.getProfile(token).then((res) {
       this.profile = res;
     }).catchError((err) {
       print("error response: "+ err);
@@ -102,7 +107,7 @@ abstract class _UserStore with Store {
 
   @action
   Future getBalance(String token) async {
-    UserApi.balance(token).then((res) {
+    return await _repository.getBalance(token).then((res) {
       this.balance = res;
     }).catchError((err) {
       print("error response: "+ err);
@@ -134,10 +139,87 @@ abstract class _UserStore with Store {
     }
   }
 
-  //address
   @action
-  Future<List<UserAddress>> getAddress(String token,String waId) async {
-    UserApi.address(token,waId).then((res) {
+  Future<LoginPin>  loginUser(String handPhone,String pin) async {
+    return await _repository.loginUser(handPhone,pin).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<OtpWame> getOtp(String handPhone) async {
+    return await _repository.getOtp(handPhone).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<OtpValidate> validateOtp(String handPhone,String pin) async {
+    return await _repository.validateOtp(handPhone,pin).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<Register> register(Map<String,dynamic> object) async {
+    return await _repository.register(object).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @observable
+  String otpHandphone = null;
+  void setOtpHandphone(String handPhone){
+    otpHandphone = handPhone;
+  }
+
+  void removeOtpHandohone(){
+    otpHandphone = null;
+  }
+
+  @observable
+  var listAddress;
+
+  @action
+  Future<List<UserAddress>>  getAddress(String token,String waId) async {
+    return await _repository.getAddress(token,waId).then((res) {
+      this.listAddress = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<List<UserAddress>>  setDefaultAddress(String token,Map<String,dynamic> object) async {
+    return await _repository.setDefaultAddress(token,object).then((res) {
+      this.listAddress = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<UserAddAddress> addAddress(String token, Map<String,dynamic> object) async {
+    return await _repository.addAddress(token,object).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<UserRemoveAddress> removeAddress(String token, Map<String,dynamic> object) async {
+    return await _repository.removeAddress(token,object).then((res) {
       return res;
     }).catchError((err) {
       print("error response: "+ err);
