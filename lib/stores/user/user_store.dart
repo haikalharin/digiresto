@@ -6,6 +6,7 @@ import 'package:boilerplate/models/login/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
+import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -131,5 +132,15 @@ abstract class _UserStore with Store {
     for (final d in _disposers) {
       d();
     }
+  }
+
+  //address
+  @action
+  Future<List<UserAddress>> getAddress(String token,String waId) async {
+    UserApi.address(token,waId).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
   }
 }

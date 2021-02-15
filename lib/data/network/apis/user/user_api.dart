@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
+import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'dart:convert';
@@ -44,6 +45,27 @@ class UserApi {
       var jsonObject = json.decode(apiResult.body);
       var userData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       return UserBalance.createBalance(userData);
+  }
 
+  static Future<List<UserAddress>> address(String token,String waId) async{
+    String apiUrl = Endpoints.urlGetAllAddress;
+    var apiResult = await http.post(apiUrl, headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer "+token,
+    }, body:{
+      "query_string":{},
+      "body":{
+        "wa_id": waId
+      }
+    });
+
+    var jsonObject = json.decode(apiResult.body);
+    var listUserData = (jsonObject as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+    List<UserAddress> address= [];
+    for(int i = 0;i<listUserData.length;i++){
+      address.add(UserAddress.createAddress(listUserData[i]));
+    }
+    return address;
   }
 }

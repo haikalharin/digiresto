@@ -152,6 +152,10 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                               OtpWame.connectToApi(
                                   handphoneController.text.toString()).then((
                                   res) {
+                                SharedPreferences.getInstance().then((prefs) {
+                                  prefs.setString(Preferences.handPhone, handphoneController.text
+                                      .toString());
+                                });
                                 LaunchUrl.run(res.wame);
                                 Navigator.of(context)
                                     .pushNamed(Routes.verify_otp);

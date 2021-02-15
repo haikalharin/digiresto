@@ -1,18 +1,52 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/data/network/apis/user/user_api.dart';
+import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
+import 'package:package_info/package_info.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-class SetAddressScreen extends StatelessWidget {
+class SetAddressScreen extends StatefulWidget {
 
+  @override
+  _SetAddressScreenState createState() => _SetAddressScreenState();
+}
+
+class _SetAddressScreenState extends State<SetAddressScreen> {
   goBack(BuildContext context){
-
     Navigator.pop(context);
-
   }
 
+  UserStore _userStore;
+  String appVersion = '';
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // initializing stores\
+    _userStore = Provider.of<UserStore>(context);
+  }
+
+  void getAddress(){
+      SharedPreferences.getInstance().then((prefs) {
+        UserApi.address(prefs.getString(Preferences.access_token),_userStore.profile.mobilePhone).then((res) {
+          print("my data address");
+          print(res);
+        }).catchError((err) {
+          print("error response: "+ err);
+        });
+      });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +98,8 @@ class SetAddressScreen extends StatelessWidget {
                       ),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.of(context).pushNamed(Routes.set_address_add);
+                          getAddress();
+                          //Navigator.of(context).pushNamed(Routes.set_address_add);
                         },
                         child: Container(
                           child: Row(

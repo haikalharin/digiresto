@@ -18,7 +18,7 @@ class CreditScreen extends StatefulWidget {
 
 class _CreditScreenState extends State<CreditScreen> {
 
-  String balance;
+  String balance = "0";
   @override
   void initState() {
     super.initState();
@@ -31,20 +31,24 @@ class _CreditScreenState extends State<CreditScreen> {
     // initializing stores\
     _userStore = Provider.of<UserStore>(context);
     // var tmpBalance = double.parse(_userStore.balance.balance).toString();
-    setState(() {
-      balance = "0";
-    });
+    String tmpBalance = formatBalance(_userStore.balance.balance);
+      setState(() {
+        balance = tmpBalance;
+      });
     getBalance();
   }
-
+  String formatBalance(String balance){
+    final formatter = new NumberFormat("#,###","ID");
+    var tmpBalance = double.parse(balance).toString();
+    var intBalance = int.parse(tmpBalance.substring(0, tmpBalance.length - 2));
+    return formatter.format(intBalance).toString();
+  }
   void getBalance(){
     SharedPreferences.getInstance().then((prefs) {
       UserApi.balance(prefs.getString(Preferences.access_token)).then((res) {
-        final formatter = new NumberFormat("#,###","ID");
-        var tmpBalance = double.parse(res.balance).toString();
-        var intBalance = int.parse(tmpBalance.substring(0, tmpBalance.length - 2));
+        String tmpBalance = formatBalance(res.balance);
         setState(() {
-          balance = formatter.format(intBalance).toString();
+          balance = tmpBalance;
         });
       }).catchError((err) {
         print("error response: "+ err);
