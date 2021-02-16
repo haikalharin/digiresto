@@ -6,7 +6,6 @@ import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
-import 'package:boilerplate/stores/login/otp_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';

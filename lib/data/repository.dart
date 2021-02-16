@@ -2,15 +2,20 @@ import 'dart:async';
 
 import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
+import 'package:boilerplate/data/network/apis/map/map_api.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
+import 'package:boilerplate/models/map/geocode.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
+import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
+import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
+import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
@@ -28,11 +33,13 @@ class Repository {
 
   final AuthApi _authApi;
 
+  final MapApi _mapApi;
+
   // shared pref object
   final SharedPreferenceHelper _sharedPrefsHelper;
 
   // constructor
-  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,this._userApi, this._authApi);
+  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,this._userApi, this._authApi,this._mapApi);
 
   // Post: ---------------------------------------------------------------------
   Future<PostList> getPosts() async {
@@ -137,6 +144,38 @@ class Repository {
 
   Future<Register> register(Map<String,dynamic> object) async {
     return await _authApi.register(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  // Profile Address: ---------------------------------------------------------------------
+  Future<List<UserAddress>> getAddress(String token,String waId) async {
+    return await _userApi.getAddress(token,waId).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<UserAddress>> setDefaultAddress(String token,Map<String,dynamic> object) async {
+    return await _userApi.setDefaultAddress(token,object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<UserAddAddress> addAddress(String token,Map<String,dynamic> object) async {
+    return await _userApi.addAddress(token,object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<UserRemoveAddress> removeAddress(String token,Map<String,dynamic> object) async {
+    return await _userApi.removeAddress(token,object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  // Map: ---------------------------------------------------------------------
+  Future<Geocode> geocode(String token,Map<String,dynamic> object) async {
+    return await _mapApi.geocode(token,object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

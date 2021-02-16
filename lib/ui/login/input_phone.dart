@@ -7,7 +7,6 @@ import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
-import 'package:boilerplate/stores/login/otp_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';

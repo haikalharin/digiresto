@@ -1,14 +1,16 @@
 import 'dart:math';
 
 import 'package:boilerplate/constants/strings.dart';
-import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
+import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
+import 'package:boilerplate/models/user/user_get_address_model.dart';
+import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -22,6 +24,7 @@ class UserStore = _UserStore with _$UserStore;
 abstract class _UserStore with Store {
   // repository instance
   final Repository _repository;
+
   // store for handling form errors
   final FormErrorStore formErrorStore = FormErrorStore();
 
@@ -96,7 +99,6 @@ abstract class _UserStore with Store {
   Future getProfile(String token) async {
     return await _repository.getProfile(token).then((res) {
       this.profile = res;
-      return res;
     }).catchError((err) {
       print("error response: "+ err);
     });
@@ -106,7 +108,6 @@ abstract class _UserStore with Store {
   Future getBalance(String token) async {
     return await _repository.getBalance(token).then((res) {
       this.balance = res;
-      return res;
     }).catchError((err) {
       print("error response: "+ err);
     });
@@ -181,5 +182,52 @@ abstract class _UserStore with Store {
 
   void removeOtpHandohone(){
     otpHandphone = null;
+  }
+
+  @observable
+  var listAddress;
+
+  @action
+  Future<List<UserAddress>>  getAddress(String token,String waId) async {
+    return await _repository.getAddress(token,waId).then((res) {
+      this.listAddress = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<List<UserAddress>>  setDefaultAddress(String token,Map<String,dynamic> object) async {
+    return await _repository.setDefaultAddress(token,object).then((res) {
+      this.listAddress = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<UserAddAddress> addAddress(String token, Map<String,dynamic> object) async {
+    return await _repository.addAddress(token,object).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @action
+  Future<UserRemoveAddress> removeAddress(String token, Map<String,dynamic> object) async {
+    return await _repository.removeAddress(token,object).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @observable
+  String activeHomeTab = null;
+  void setActivedHomeTab(String activeTab){
+    activeHomeTab = activeTab;
   }
 }
