@@ -6,6 +6,7 @@ import 'package:boilerplate/di/modules/netwok_module.dart';
 import 'package:boilerplate/di/modules/preference_module.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/language/language_store.dart';
+import 'package:boilerplate/stores/map/map_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
@@ -18,7 +19,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:inject/inject.dart';
 import 'package:provider/provider.dart';
-import 'package:boilerplate/stores/login/otp_store.dart';
 
 // global instance for app component
 AppComponent appComponent;
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
   final LanguageStore _languageStore =
       LanguageStore(appComponent.getRepository());
   final UserStore _userStore = UserStore(appComponent.getRepository(),);
-  final OtpStore _otpStore = OtpStore();
+  final MapStore _mapStore = MapStore(appComponent.getRepository(),);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         Provider<PostStore>(create: (_) => _postStore),
         Provider<LanguageStore>(create: (_) => _languageStore),
         Provider<UserStore>(create: (_) => _userStore),
-        Provider<OtpStore>(create: (_) => _otpStore),
+        Provider<MapStore>(create: (_) => _mapStore),
       ],
       child: Observer(
         name: 'global-observer',

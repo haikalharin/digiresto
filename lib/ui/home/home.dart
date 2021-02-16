@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_userStore.balance==null){
       getBasicInformation();
     }
-
+    //parameter route
   }
   @override
   Widget build(BuildContext context) {

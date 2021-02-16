@@ -1,10 +1,12 @@
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home.dart';
 import 'package:boilerplate/ui/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/ui/credit/credit.dart';
 import 'package:boilerplate/ui/home/home_content.dart';
 import 'package:boilerplate/ui/cart/cart.dart';
+import 'package:provider/provider.dart';
 
 class HomeNavigationScreen extends StatefulWidget {
   @override
@@ -18,6 +20,23 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     setState(() {
       _selectedTabIndex = index;
     });
+  }
+  UserStore _userStore;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+    print(_userStore.activeHomeTab);
+    if (_userStore.activeHomeTab=='profile'){
+      _onNavBarTapped(2);
+    }
+    //parameter route
   }
   @override
   Widget build(BuildContext context) {

@@ -197,7 +197,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   void removeAddress(int id){
     SharedPreferences.getInstance().then((prefs) {
       _userStore.removeAddress(prefs.getString(Preferences.access_token),{
-        "wa_id": _userStore.otpHandphone,
+        "wa_id": _userStore.profile.mobilePhone,
         "waba_no": Strings.wabaNo,
         "id": id
       }).then((res) {
@@ -243,7 +243,10 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                         new IconButton(
                           icon: new Icon(Icons.arrow_back_outlined,
                               color: Colors.black, size: 28.0),
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () {
+                          _userStore.setActivedHomeTab("profile");
+                            Navigator.of(context).pushReplacementNamed(Routes.home);
+                          }
                         ),
                         Text("All Address",
                             style: TextStyle(
@@ -265,6 +268,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                               (
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
+
                                 itemCount: listAddress.length,
                                 itemBuilder: (BuildContext ctxt, int index) {
                                   return _listAddress(listAddress[index]);

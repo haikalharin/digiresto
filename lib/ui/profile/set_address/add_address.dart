@@ -1,10 +1,19 @@
 import 'dart:async';
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
+import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/map/map_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/ctoast/ctoast.dart';
+import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:boilerplate/constants/strings.dart';
 class AddAddressScreen extends StatefulWidget {
   @override
   State<AddAddressScreen> createState() => AddAddressScreenState();
@@ -13,24 +22,30 @@ class AddAddressScreen extends StatefulWidget {
 class AddAddressScreenState extends State<AddAddressScreen> {
   GoogleMapController mapController;
   Completer<GoogleMapController> _controller = Completer();
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  final LatLng _center = const LatLng(-6.175483, 106.826852);
   LatLng _lastMapPosition;
-  Position _currentPosition;
+  MapStore _mapStore;
+  UserStore _userStore;
   ImageIcon marker =
       ImageIcon(AssetImage(Assets.iconMarker), size: 36, color: AppColors.red);
   ImageIcon markerMove = ImageIcon(AssetImage(Assets.iconMarkerMove),
       size: 36, color: AppColors.red);
   bool isMarkerMove = false;
   bool isMarkerClicked = false;
+  Geocode _geocode;
+
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  final LatLng _center = const LatLng(-6.175483, 106.826852);
+  final _nameController = TextEditingController();
+  final _addressController = TextEditingController();
+  bool isSelectedDefault = false;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
   void _onCameraMove(CameraPosition position) {
-    _lastMapPosition = position.target;
     setState(() {
+      _lastMapPosition = position.target;
       isMarkerMove = true;
       isMarkerClicked = false;
     });
@@ -46,24 +61,299 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   }
 
   void _onClickSetDestination() {
-    setState(() {
-      isMarkerClicked = true;
-    });
+    getGeocode();
   }
+
   _getCurrentLocation() {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
-       mapController.animateCamera(
-         CameraUpdate.newCameraPosition(
-           CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 15),
-         ),
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+              target: LatLng(position.latitude, position.longitude), zoom: 15),
+        ),
       );
     }).catchError((e) {
       print(e);
     });
   }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _mapStore = Provider.of<MapStore>(context);
+    _userStore = Provider.of<UserStore>(context);
+  }
+
+  void getGeocode() {
+    SharedPreferences.getInstance().then((prefs) {
+      _mapStore.getGeocode(prefs.getString(Preferences.access_token), {
+        "latitude": _lastMapPosition.latitude.toString(),
+        "longitude": _lastMapPosition.longitude.toString()
+      }).then((res) {
+        setState(() {
+          _geocode = res;
+          isMarkerClicked = true;
+        });
+        _addressController.text = _geocode.formattedAddress;
+      }).catchError((err) {
+        print("error response: " + err);
+      });
+    });
+  }
+
+  void addAddress() {
+    SharedPreferences.getInstance().then((prefs) {
+      _userStore.addAddress(prefs.getString(Preferences.access_token), {
+        "wa_id": _userStore.profile.mobilePhone,
+        "waba_no": Strings.wabaNo,
+        "name": _nameController.text.toString(),
+        "address": _addressController.text.toString(),
+        "latitude": _lastMapPosition.latitude.toString(),
+        "longitude":  _lastMapPosition.longitude.toString(),
+        "is_default": isSelectedDefault,
+      }).then((res) {
+        if (res.id!=null){
+          _userStore.setActivedHomeTab("profile");
+          Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
+        }
+      }).catchError((err) {
+        print("error response: " + err);
+      });
+    });
+  }
+
+  void changeTic(bool value) {
+    setState(() {
+      isSelectedDefault = value;
+    });
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(10),
+              title: Text(
+                "Detail Location",
+                textAlign: TextAlign.center,
+              ),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Container(
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: new InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "name",
+                          border: new OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 2,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                            borderSide:
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                            borderSide:
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          //fillColor: Colors.green
+                        ),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        // Only numbers can be entered
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your name address';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: TextFormField(
+                        maxLines: 4,
+                        controller: _addressController,
+                        decoration: new InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "address",
+                          border: new OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 2,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                            borderSide:
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                            borderSide:
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          //fillColor: Colors.green
+                        ),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        // Only numbers can be entered
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your address';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Row(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isSelectedDefault = !isSelectedDefault;
+                                  });
+                                },
+                                child: isSelectedDefault
+                                    ? Icon(
+                                        Icons.check_box_rounded,
+                                        color: Colors.green,
+                                        size: 30,
+                                      )
+                                    : Icon(
+                                        Icons.check_box_outline_blank,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
+                              ),
+                              SizedBox(width: 5),
+                              Container(
+                                constraints: BoxConstraints(
+                                    minWidth: 200, maxWidth: 300),
+                                child: Text("Default address",
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            height: 40,
+                            child: RaisedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              color: Colors.white,
+                              child: Text(
+                                  AppLocalizations.of(context)
+                                      .translate('profile_cancel'),
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.red)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 120,
+                            height: 40,
+                            child: RaisedButton(
+                              onPressed: () {
+                                if (_nameController.text.toString().length==0){
+                                  Ctoast.show("Required name");
+                                }else{
+                                  addAddress();
+                                }
+                              },
+                              color: AppColors.red,
+                              child: Text("Save",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              actions: <Widget>[],
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -155,22 +445,22 @@ class AddAddressScreenState extends State<AddAddressScreen> {
             ),
           ),
           Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child:
-                      new IconButton(
-                        icon: ImageIcon(AssetImage(Assets.iconGps), size: 36, color: AppColors.red),
-                        onPressed: () {
-                          _getCurrentLocation();
-                        },
-                      ),
-                   ),
-                    isMarkerClicked
-                        ? Container(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                alignment: Alignment.bottomRight,
+                child: new IconButton(
+                  icon: ImageIcon(AssetImage(Assets.iconGps),
+                      size: 36, color: AppColors.red),
+                  onPressed: () {
+                    _getCurrentLocation();
+                  },
+                ),
+              ),
+              isMarkerClicked
+                  ? Container(
                       alignment: Alignment.bottomCenter,
-                      height: 160,
+                      height: 180,
                       width: double.infinity,
                       color: Colors.white,
                       child: Column(
@@ -185,30 +475,40 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                                 color: Colors.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                              ),textAlign: TextAlign.start,
+                              ),
+                              textAlign: TextAlign.start,
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 20, right: 20,),
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 20,
+                            ),
                             alignment: Alignment.topLeft,
                             child: Text(
-                              "Jl. cenndrawasih 1 d 25 RW.013, Margahayu Bekasi Timur Bekasi Cit West Java",
+                              _geocode?.formattedAddress != null
+                                  ? _geocode?.formattedAddress.toString()
+                                  : "-",
                               style: TextStyle(
                                 fontFamily: "roboto",
                                 color: Colors.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
-                              ),textAlign: TextAlign.start,
+                              ),
+                              textAlign: TextAlign.start,
+                              maxLines: 3,
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: 10, left: 30, right: 30),
+                            padding:
+                                EdgeInsets.only(top: 10, left: 30, right: 30),
                             child: SizedBox(
                               width: double.infinity,
                               height: 44,
                               child: RaisedButton(
                                   onPressed: () {
                                     print("i use this location");
+                                    _showMyDialog(context);
                                   },
                                   color: AppColors.red,
                                   child: Text("Use This Location",
@@ -217,14 +517,16 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: new BorderRadius.circular(30.0))),
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0))),
                             ),
                           ),
                         ],
                       ),
-                    ) : Container(),
-                  ],
-                )
+                    )
+                  : Container(),
+            ],
+          )
         ]),
       ),
     );

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:boilerplate/constants/strings.dart';
-import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
@@ -224,5 +223,11 @@ abstract class _UserStore with Store {
     }).catchError((err) {
       print("error response: "+ err);
     });
+  }
+
+  @observable
+  String activeHomeTab = null;
+  void setActivedHomeTab(String activeTab){
+    activeHomeTab = activeTab;
   }
 }

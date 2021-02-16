@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
-import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
@@ -30,7 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   OtpWame otpWame;
 
-  LoginPinApi loginPinApi;
   String appVersion = '';
 
 @override

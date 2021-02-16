@@ -6,7 +6,6 @@ import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
-import 'package:boilerplate/stores/login/otp_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
@@ -29,7 +28,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  OtpStore _otpStore;
   UserStore _userStore;
   OtpWame otpWame;
   bool isSelectedToc = false;
@@ -49,7 +47,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // initializing stores
-    _otpStore = Provider.of<OtpStore>(context);
     _userStore = Provider.of<UserStore>(context);
   }
 
@@ -212,7 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     var details = {
                                       'credential': pin.toString(),
                                       'name': _usernameController.text.toString(),
-                                      'accountNumber': _otpStore.otpHandphone,
+                                      'accountNumber': _userStore.otpHandphone,
                                       'email': _emailController.text.toString(),
                                       'pushid': '12313131',
                                       'uid': '-',
