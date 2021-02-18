@@ -26,15 +26,11 @@ class UserApi {
   // injecting dio instance
   UserApi(this._dioClient, this._restClient);
 
-  Future<UserProfile> getProfile(String token) async {
+  Future<UserProfile> getProfile() async {
     try {
       String apiUrl = Endpoints.urlProfile;
 
-      final apiResult = await _dioClient.get(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }));
+      final apiResult = await _dioClient.get(apiUrl);
       var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       return UserProfile.createUserProfile(userData);
     } catch (e) {
@@ -43,15 +39,11 @@ class UserApi {
     }
   }
 
-  Future<UserBalance> getBalance(String token) async {
+  Future<UserBalance> getBalance() async {
     try {
       String apiUrl = Endpoints.urlBalance;
 
-      final apiResult = await _dioClient.get(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }));
+      final apiResult = await _dioClient.get(apiUrl);
       var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       return UserBalance.createBalance(userData);
     } catch (e) {
@@ -60,14 +52,10 @@ class UserApi {
     }
   }
 
-  Future<List<UserAddress>> getAddress(String token,String waId) async{
+  Future<List<UserAddress>> getAddress(String waId) async{
     try {
       String apiUrl = Endpoints.urlGetAllAddress;
-      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }),data: {
+      final apiResult = await _dioClient.post(apiUrl,data: {
       "query_string":{},
       "body":{
       "wa_id": waId
@@ -88,14 +76,10 @@ class UserApi {
 
   }
 
-  Future<UserAddAddress> addAddress(String token,Map<String,dynamic> object) async {
+  Future<UserAddAddress> addAddress(Map<String,dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlAddAddress;
-      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }), data: {
+      final apiResult = await _dioClient.post(apiUrl, data: {
       "query_string":{},
       "body":{
       "wa_id": object["wa_id"].toString(),
@@ -114,14 +98,10 @@ class UserApi {
     }
   }
 
-  Future<UserRemoveAddress> removeAddress(String token,Map<String,dynamic> object) async {
+  Future<UserRemoveAddress> removeAddress(Map<String,dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlRemoveAddress;
-      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }), data: {
+      final apiResult = await _dioClient.post(apiUrl, data: {
       "query_string":{},
       "body":{
       "wa_id": object["wa_id"].toString(),
@@ -136,14 +116,10 @@ class UserApi {
     }
   }
 
-  Future<List<UserAddress>> setDefaultAddress(String token,Map<String,dynamic> object) async{
+  Future<List<UserAddress>> setDefaultAddress(Map<String,dynamic> object) async{
     try {
       String apiUrl = Endpoints.urlSetDefaultAddress;
-      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }),data: {
+      final apiResult = await _dioClient.post(apiUrl,data: {
         "query_string":{},
         "body":{
           "wa_id": object["wa_id"].toString(),

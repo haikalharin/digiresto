@@ -37,8 +37,8 @@ abstract class _MapStore with Store {
 
   // actions:-------------------------------------------------------------------
   @action
-  Future<Geocode> getGeocode(String token,Map<String,dynamic> object) async {
-    final future = _repository.geocode(token, object);
+  Future<Geocode> getGeocode(Map<String,dynamic> object) async {
+    final future = _repository.geocode(object);
     fetchGeocodeFuture = ObservableFuture(future);
 
     return future.then((geocode) {

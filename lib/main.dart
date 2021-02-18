@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
         Provider<LanguageStore>(create: (_) => _languageStore),
         Provider<UserStore>(create: (_) => _userStore),
         Provider<MapStore>(create: (_) => _mapStore),
-      ],
+       ],
       child: Observer(
         name: 'global-observer',
         builder: (context) {

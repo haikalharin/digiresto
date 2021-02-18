@@ -33,6 +33,7 @@ abstract class _UserStore with Store {
 
   // bool to check if current user is logged in
   bool isLoggedIn = false;
+  String  authToken = "";
 
   // constructor:---------------------------------------------------------------
   _UserStore(Repository repository) : this._repository = repository {
@@ -44,6 +45,10 @@ abstract class _UserStore with Store {
     repository.isLoggedIn.then((value) {
       this.isLoggedIn = value ?? false;
     });
+
+    _repository.authToken.then((value) => {
+      this.authToken = value!= "" ? value : ""}
+    );
   }
 
   // disposers:-----------------------------------------------------------------
@@ -76,7 +81,6 @@ abstract class _UserStore with Store {
   // actions:-------------------------------------------------------------------
   @action
   Future login(String email, String password) async {
-
     final future = _repository.login(email, password);
     loginFuture = ObservableFuture(future);
     await future.then((value) async {
@@ -96,8 +100,32 @@ abstract class _UserStore with Store {
   }
 
   @action
-  Future getProfile(String token) async {
-    return await _repository.getProfile(token).then((res) {
+  Future saveAuthToken(String token) async {
+    return await _repository.saveAuthToken(token).then((res) {
+      this.authToken = token;
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  Future getAuthToken() async {
+    return await _repository.authToken.then((res) {
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  removeAuthToken (LoginPin user){
+    _repository.removeAuthToken();
+  }
+
+  @action
+  Future getProfile() async {
+    return await _repository.getProfile().then((res) {
       this.profile = res;
     }).catchError((err) {
       print("error response: "+ err);
@@ -105,8 +133,8 @@ abstract class _UserStore with Store {
   }
 
   @action
-  Future getBalance(String token) async {
-    return await _repository.getBalance(token).then((res) {
+  Future getBalance() async {
+    return await _repository.getBalance().then((res) {
       this.balance = res;
     }).catchError((err) {
       print("error response: "+ err);
@@ -122,6 +150,8 @@ abstract class _UserStore with Store {
 
   logoutSessionLogin(){
     _repository.saveIsLoggedIn(false);
+    _repository.removeAuthToken();
+    this.authToken = "";
     this.isLoggedIn = false;
     this.success = false;
     this.user = null;
@@ -188,8 +218,8 @@ abstract class _UserStore with Store {
   var listAddress;
 
   @action
-  Future<List<UserAddress>>  getAddress(String token,String waId) async {
-    return await _repository.getAddress(token,waId).then((res) {
+  Future<List<UserAddress>>  getAddress(String waId) async {
+    return await _repository.getAddress(waId).then((res) {
       this.listAddress = res;
       return res;
     }).catchError((err) {
@@ -198,8 +228,8 @@ abstract class _UserStore with Store {
   }
 
   @action
-  Future<List<UserAddress>>  setDefaultAddress(String token,Map<String,dynamic> object) async {
-    return await _repository.setDefaultAddress(token,object).then((res) {
+  Future<List<UserAddress>>  setDefaultAddress(Map<String,dynamic> object) async {
+    return await _repository.setDefaultAddress(object).then((res) {
       this.listAddress = res;
       return res;
     }).catchError((err) {
@@ -208,8 +238,8 @@ abstract class _UserStore with Store {
   }
 
   @action
-  Future<UserAddAddress> addAddress(String token, Map<String,dynamic> object) async {
-    return await _repository.addAddress(token,object).then((res) {
+  Future<UserAddAddress> addAddress(Map<String,dynamic> object) async {
+    return await _repository.addAddress(object).then((res) {
       return res;
     }).catchError((err) {
       print("error response: "+ err);
@@ -217,8 +247,8 @@ abstract class _UserStore with Store {
   }
 
   @action
-  Future<UserRemoveAddress> removeAddress(String token, Map<String,dynamic> object) async {
-    return await _repository.removeAddress(token,object).then((res) {
+  Future<UserRemoveAddress> removeAddress(Map<String,dynamic> object) async {
+    return await _repository.removeAddress(object).then((res) {
       return res;
     }).catchError((err) {
       print("error response: "+ err);

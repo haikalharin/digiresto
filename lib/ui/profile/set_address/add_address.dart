@@ -94,8 +94,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   }
 
   void getGeocode() {
-    SharedPreferences.getInstance().then((prefs) {
-      _mapStore.getGeocode(prefs.getString(Preferences.access_token), {
+      _mapStore.getGeocode({
         "latitude": _lastMapPosition.latitude.toString(),
         "longitude": _lastMapPosition.longitude.toString()
       }).then((res) {
@@ -107,12 +106,10 @@ class AddAddressScreenState extends State<AddAddressScreen> {
       }).catchError((err) {
         print("error response: " + err);
       });
-    });
   }
 
   void addAddress() {
-    SharedPreferences.getInstance().then((prefs) {
-      _userStore.addAddress(prefs.getString(Preferences.access_token), {
+      _userStore.addAddress({
         "wa_id": _userStore.profile.mobilePhone,
         "waba_no": Strings.wabaNo,
         "name": _nameController.text.toString(),
@@ -128,7 +125,6 @@ class AddAddressScreenState extends State<AddAddressScreen> {
       }).catchError((err) {
         print("error response: " + err);
       });
-    });
   }
 
   void changeTic(bool value) {
