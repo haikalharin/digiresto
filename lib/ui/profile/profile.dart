@@ -266,9 +266,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: RaisedButton(
                     onPressed: () {
                       _userStore.logoutSessionLogin();
-                      SharedPreferences.getInstance().then((prefs) {
-                        prefs.setString(Preferences.access_token, "");
-                      });
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           Routes.input_phone, (Route<dynamic> route) => false);
                     },

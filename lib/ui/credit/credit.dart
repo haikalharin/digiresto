@@ -42,14 +42,14 @@ class _CreditScreenState extends State<CreditScreen> {
     return formatter.format(intBalance).toString();
   }
   void getBalance(){
-    SharedPreferences.getInstance().then((prefs) {
-      _userStore.getBalance(prefs.getString(Preferences.access_token)).then((res) {
+      _userStore.getBalance().then((res) {
         var tmpBalance =double.parse(res.balance).toString();
         setState(() {
           balance = tmpBalance;
         });
+      }).catchError((err) {
+        print("error response: " + err);
       });
-    });
   }
 
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class _CreditScreenState extends State<CreditScreen> {
                 //     bottomRight: Radius.circular(25))
             ),
           ),
-          Container(
+         Container(
             alignment: Alignment.topCenter,
             padding: EdgeInsets.fromLTRB(10, 50, 10, 0),
             child: Column(

@@ -33,10 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getBasicInformation(){
-    SharedPreferences.getInstance().then((prefs) {
-      _userStore.getProfile(prefs.getString(Preferences.access_token));
-      _userStore.getBalance(prefs.getString(Preferences.access_token));
-    });
+      _userStore.getProfile();
+      _userStore.getBalance();
+
   }
   @override
   void didChangeDependencies() {

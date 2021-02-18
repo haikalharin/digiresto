@@ -23,14 +23,10 @@ class MapApi {
   // injecting dio instance
   MapApi(this._dioClient, this._restClient);
 
-  Future<Geocode> geocode(String token,Map<String,dynamic> object) async {
+  Future<Geocode> geocode(Map<String,dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetGeocode;
-      final apiResult = await _dioClient.post(apiUrl,options: Options(contentType: "application/json",headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer "+token,
-      }), data: {
+      final apiResult = await _dioClient.post(apiUrl, data: {
         "query_string":{
           "lat": object["latitude"].toString(),
           "lng": object["longitude"].toString(),},

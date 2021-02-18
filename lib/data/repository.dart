@@ -98,6 +98,14 @@ class Repository {
 
   Future<bool> get isLoggedIn => _sharedPrefsHelper.isLoggedIn;
 
+  //Auth Token
+  Future<void> saveAuthToken(String authToken) =>
+      _sharedPrefsHelper.saveAuthToken(authToken);
+
+  Future<void> removeAuthToken() =>
+      _sharedPrefsHelper.removeAuthToken();
+  Future<String> get authToken => _sharedPrefsHelper.authToken;
+
   // Theme: --------------------------------------------------------------------
   Future<void> changeBrightnessToDark(bool value) =>
       _sharedPrefsHelper.changeBrightnessToDark(value);
@@ -111,14 +119,14 @@ class Repository {
   Future<String> get currentLanguage => _sharedPrefsHelper.currentLanguage;
   // Post: ---------------------------------------------------------------------
 
-  Future<UserBalance> getBalance(String token) async {
-    return await _userApi.getBalance(token).then((value) {
+  Future<UserBalance> getBalance() async {
+    return await _userApi.getBalance().then((value) {
       return value;
     }).catchError((error) => throw error);
   }
 
-  Future<UserProfile> getProfile(String token) async {
-    return await _userApi.getProfile(token).then((value) {
+  Future<UserProfile> getProfile() async {
+    return await _userApi.getProfile().then((value) {
       return value;
     }).catchError((error) => throw error);
   }
@@ -149,33 +157,33 @@ class Repository {
   }
 
   // Profile Address: ---------------------------------------------------------------------
-  Future<List<UserAddress>> getAddress(String token,String waId) async {
-    return await _userApi.getAddress(token,waId).then((value) {
+  Future<List<UserAddress>> getAddress(String waId) async {
+    return await _userApi.getAddress(waId).then((value) {
       return value;
     }).catchError((error) => throw error);
   }
 
-  Future<List<UserAddress>> setDefaultAddress(String token,Map<String,dynamic> object) async {
-    return await _userApi.setDefaultAddress(token,object).then((value) {
+  Future<List<UserAddress>> setDefaultAddress(Map<String,dynamic> object) async {
+    return await _userApi.setDefaultAddress(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }
 
-  Future<UserAddAddress> addAddress(String token,Map<String,dynamic> object) async {
-    return await _userApi.addAddress(token,object).then((value) {
+  Future<UserAddAddress> addAddress(Map<String,dynamic> object) async {
+    return await _userApi.addAddress(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }
 
-  Future<UserRemoveAddress> removeAddress(String token,Map<String,dynamic> object) async {
-    return await _userApi.removeAddress(token,object).then((value) {
+  Future<UserRemoveAddress> removeAddress(Map<String,dynamic> object) async {
+    return await _userApi.removeAddress(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }
 
   // Map: ---------------------------------------------------------------------
-  Future<Geocode> geocode(String token,Map<String,dynamic> object) async {
-    return await _mapApi.geocode(token,object).then((value) {
+  Future<Geocode> geocode(Map<String,dynamic> object) async {
+    return await _mapApi.geocode(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

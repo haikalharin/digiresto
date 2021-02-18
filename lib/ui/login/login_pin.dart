@@ -51,9 +51,7 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
           .then((res) {
         if (res.token != null) {
           _userStore.activeSessionLogin(res);
-          SharedPreferences.getInstance().then((prefs) {
-            prefs.setString(Preferences.access_token, res.token);
-          });
+          _userStore.saveAuthToken(res.token);
           Navigator.of(context).pushNamedAndRemoveUntil(
               Routes.home, (Route<dynamic> route) => false);
         } else {

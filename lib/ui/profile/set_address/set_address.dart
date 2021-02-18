@@ -184,19 +184,16 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   }
 
   void getAddress(){
-      SharedPreferences.getInstance().then((prefs) {
-        _userStore.getAddress(prefs.getString(Preferences.access_token),_userStore.profile.mobilePhone).then((res) {
+        _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
           setState(() {
             listAddress=res;
           });
         }).catchError((err) {
           print("error response: "+ err);
         });
-      });
   }
   void removeAddress(int id){
-    SharedPreferences.getInstance().then((prefs) {
-      _userStore.removeAddress(prefs.getString(Preferences.access_token),{
+      _userStore.removeAddress({
         "wa_id": _userStore.profile.mobilePhone,
         "waba_no": Strings.wabaNo,
         "id": id
@@ -205,11 +202,9 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
       }).catchError((err) {
         print("error response: "+ err);
       });
-    });
   }
   void setDefaultAddress(int id){
-    SharedPreferences.getInstance().then((prefs) {
-      _userStore.setDefaultAddress(prefs.getString(Preferences.access_token),{
+      _userStore.setDefaultAddress({
         "wa_id": _userStore.otpHandphone,
         "waba_no": Strings.wabaNo,
         "id": id
@@ -220,7 +215,6 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
       }).catchError((err) {
         print("error response: "+ err);
       });
-    });
   }
   @override
   Widget build(BuildContext context) {
