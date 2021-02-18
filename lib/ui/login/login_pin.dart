@@ -8,6 +8,8 @@ import 'package:boilerplate/models/auth/login_pin_model.dart';
 //import 'package:boilerplate/data/network/apis/login/login_pin_api.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/ctoast/ctoast.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -46,19 +48,23 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
     );
     if (activeBox==6) {
       String pin = arr.join();
+      Loading.show();
       _userStore.loginUser(
-          _userStore.otpHandphone, pin.toString())
+          _userStore.authPhone, pin.toString())
           .then((res) {
+            Loading.dismiss();
         if (res.token != null) {
           _userStore.activeSessionLogin(res);
           _userStore.saveAuthToken(res.token);
           Navigator.of(context).pushNamedAndRemoveUntil(
               Routes.home, (Route<dynamic> route) => false);
-        } else {
-          print("login gagal");
+        }else{
+          throw("login failed");
         }
       }).catchError((err) {
-        print("error response: "+ err);
+        Ctoast.show("login Failed");
+        Loading.dismiss();
+        print("error response: "+ err.toString());
       });
     };
 

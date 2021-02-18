@@ -38,7 +38,9 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
-    getAddress();
+    setState(() {
+      listAddress = _userStore.listAddress;
+    });
   }
   Widget _btnNewAddress(){
     return Container(
@@ -205,7 +207,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   }
   void setDefaultAddress(int id){
       _userStore.setDefaultAddress({
-        "wa_id": _userStore.otpHandphone,
+        "wa_id": _userStore.authPhone,
         "waba_no": Strings.wabaNo,
         "id": id
       }).then((res) {

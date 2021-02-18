@@ -42,6 +42,23 @@ class SharedPreferenceHelper {
     });
   }
 
+  Future<String> get authPhone async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.phone_number);
+    });
+  }
+
+  Future<void> saveAuthPhone(String authPhone) async {
+    return _sharedPreference.then((preference) {
+      preference.setString(Preferences.phone_number, authPhone);
+    });
+  }
+
+  Future<void> removeAuthPhone() async {
+    return _sharedPreference.then((preference) {
+      preference.remove(Preferences.phone_number);
+    });
+  }
   // Theme:------------------------------------------------------
   Future<bool> get isDarkMode {
     return _sharedPreference.then((prefs) {
