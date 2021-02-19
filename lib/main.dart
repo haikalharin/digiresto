@@ -12,9 +12,11 @@ import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home.dart';
 import 'package:boilerplate/ui/splash/splash.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:inject/inject.dart';
@@ -37,6 +39,7 @@ void main() {
       PreferenceModule(),
     );
     runApp(appComponent.app);
+    Loading.configLoading();
   });
 }
 
@@ -51,6 +54,7 @@ class MyApp extends StatelessWidget {
       LanguageStore(appComponent.getRepository());
   final UserStore _userStore = UserStore(appComponent.getRepository(),);
   final MapStore _mapStore = MapStore(appComponent.getRepository(),);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -65,6 +69,7 @@ class MyApp extends StatelessWidget {
         name: 'global-observer',
         builder: (context) {
           return MaterialApp(
+            builder: EasyLoading.init(),
             debugShowCheckedModeBanner: false,
             title: Strings.appName,
             theme: _themeStore.darkMode ? themeDataDark : themeData,

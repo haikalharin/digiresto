@@ -6,10 +6,12 @@ import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home_navigation.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/widgets/progress_indicator_widget.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:material_dialog/material_dialog.dart';
 import 'package:provider/provider.dart';
@@ -26,15 +28,40 @@ class _HomeScreenState extends State<HomeScreen> {
   ThemeStore _themeStore;
   LanguageStore _languageStore;
   UserStore _userStore;
+  Loading _loading = new Loading();
 
   @override
   void initState() {
     super.initState();
   }
 
+  void loadingAdd(){
+    setState(() {
+      _loading.add();
+    });
+  }
+
+  void loadingDelete(){
+    setState(() {
+      _loading.delete();
+    });
+  }
   void getBasicInformation(){
-      _userStore.getProfile();
-      _userStore.getBalance();
+      loadingAdd();
+      _userStore.getProfile().then((value) {
+        loadingDelete();
+
+        loadingAdd();
+        _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
+          loadingDelete();
+        });
+      });
+
+      loadingAdd();
+      _userStore.getBalance().then((value) => {
+        loadingDelete()
+      });
+
 
   }
   @override
@@ -45,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _languageStore = Provider.of<LanguageStore>(context);
     _themeStore = Provider.of<ThemeStore>(context);
     _postStore = Provider.of<PostStore>(context);
-    _userStore = Provider.of<UserStore>(context);
+    _userStore = Provider.of<UserStore>(context,listen: true);
 
     if (_userStore.profile==null){
       getBasicInformation();
@@ -53,14 +80,17 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_userStore.balance==null){
       getBasicInformation();
     }
-    //parameter route
+
+
   }
   @override
   Widget build(BuildContext context) {
+    if (_loading.counter!=0){
+      Loading.show();
+    }else{
+      Loading.dismiss();
+    }
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Home screem'),
-      // ),
         body: HomeNavigationScreen()
     );
   }

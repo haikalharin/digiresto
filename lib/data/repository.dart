@@ -106,6 +106,14 @@ class Repository {
       _sharedPrefsHelper.removeAuthToken();
   Future<String> get authToken => _sharedPrefsHelper.authToken;
 
+  //auth phone
+  Future<void> saveAuthPhone(String authPhone) =>
+      _sharedPrefsHelper.saveAuthPhone(authPhone);
+
+  Future<void> removeAuthPhone() =>
+      _sharedPrefsHelper.removeAuthPhone();
+  Future<String> get authPhone => _sharedPrefsHelper.authPhone;
+
   // Theme: --------------------------------------------------------------------
   Future<void> changeBrightnessToDark(bool value) =>
       _sharedPrefsHelper.changeBrightnessToDark(value);

@@ -2,12 +2,11 @@ import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class CreditScreen extends StatefulWidget {
   @override
@@ -28,12 +27,11 @@ class _CreditScreenState extends State<CreditScreen> {
     super.didChangeDependencies();
     // initializing stores
     _userStore = Provider.of<UserStore>(context);
-    // var tmpBalance = double.parse(_userStore.balance.balance).toString();
+    //var tmpBalance = double.parse(_userStore.balance.balance).toString();
     String tmpBalance = formatBalance(_userStore.balance.balance);
       setState(() {
         balance = tmpBalance;
       });
-    getBalance();
   }
   String formatBalance(String balance){
     final formatter = new NumberFormat("#,###","ID");
@@ -41,14 +39,17 @@ class _CreditScreenState extends State<CreditScreen> {
     var intBalance = int.parse(tmpBalance.substring(0, tmpBalance.length - 2));
     return formatter.format(intBalance).toString();
   }
+
   void getBalance(){
+      Loading.show();
       _userStore.getBalance().then((res) {
-        var tmpBalance =double.parse(res.balance).toString();
+        var tmpBalance =formatBalance(res.balance);
         setState(() {
           balance = tmpBalance;
         });
+        Loading.dismiss();
       }).catchError((err) {
-        print("error response: " + err);
+        print("error response: " + err.toString());
       });
   }
 

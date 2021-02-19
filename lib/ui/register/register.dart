@@ -7,6 +7,7 @@ import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -209,19 +210,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     var details = {
                                       'credential': pin.toString(),
                                       'name': _usernameController.text.toString(),
-                                      'accountNumber': _userStore.otpHandphone,
+                                      'accountNumber': _userStore.authPhone,
                                       'email': _emailController.text.toString(),
                                       'pushid': '12313131',
                                       'uid': '-',
                                     };
+                                    Loading.show();
                                     _userStore.register(details).then((res) {
+                                      Loading.dismiss();
                                       Ctoast.show(res.message);
                                       if (res.code.toString() == '00') {
                                         Navigator.of(context)
                                             .pushNamedAndRemoveUntil(
                                             Routes.login_pin,
                                                 (Route<dynamic> route) => false);
+                                      }else{
+                                        throw("register failed");
                                       }
+                                    }).catchError((onError){
+                                      Loading.dismiss();
+                                      Ctoast.show("register failed");
+                                      print("error response: "+ onError.toString());
                                     });
                                   }
                                 }

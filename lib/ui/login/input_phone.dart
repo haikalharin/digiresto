@@ -9,8 +9,10 @@ import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
@@ -19,8 +21,6 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/services.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
-
-
 
 class InputPhoneScreen extends StatefulWidget {
   @override
@@ -31,6 +31,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
   UserStore _userStore;
 
   final handphoneController = TextEditingController();
+
   @override
   void setState(fn) {
     // TODO: implement setState
@@ -53,10 +54,10 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
           Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(Assets.bgSplash),
-                    fit: BoxFit.cover,
-                    alignment: Alignment.center,
-                  ))),
+            image: AssetImage(Assets.bgSplash),
+            fit: BoxFit.cover,
+            alignment: Alignment.center,
+          ))),
           Container(
             padding: EdgeInsets.all(20),
             child: Column(
@@ -95,42 +96,43 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(top:20),
+                  padding: EdgeInsets.only(top: 20),
                   child: TextFormField(
                     controller: handphoneController,
                     decoration: new InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText:
-                      AppLocalizations.of(context)
+                      hintText: AppLocalizations.of(context)
                           .translate('login_input_phone_hint'),
                       border: new OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2,)
-                      ),
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide(
+                            width: 2,
+                          )),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 1,color: Colors.white),
+                        borderSide: BorderSide(width: 1, color: Colors.white),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 1,color: Colors.white),
+                        borderSide: BorderSide(width: 1, color: Colors.white),
                       ),
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(width: 1,color: Colors.white)
-                      ),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.white)),
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(width: 1,color: Colors.white)
-                      ),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.white)),
                       //fillColor: Colors.green
                     ),
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
-                    ], // Only numbers can be entered
+                    ],
+                    // Only numbers can be entered
                     validator: (value) {
                       if (value.isEmpty) {
                         return 'Please enter your phone number';
@@ -146,23 +148,25 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                     height: 53,
                     child: RaisedButton(
                         onPressed: () {
-                            if (handphoneController.text.toString().length > 6) {
-                              _userStore.setOtpHandphone(handphoneController.text
-                                  .toString());
-                              _userStore.getOtp(
-                                  handphoneController.text.toString()).then((
-                                  res) {
-                                LaunchUrl.run(res.wame);
-                                Navigator.of(context)
-                                    .pushNamed(Routes.verify_otp);
-                              });
-                            }
-                          },
+                          if (handphoneController.text.toString().length > 6) {
+                            _userStore.saveAuthPhone(
+                                handphoneController.text.toString());
+                            Loading.show();
+                            _userStore.getOtp(handphoneController.text.toString())
+                                .then((res) {
+                              Loading.dismiss();
+                              LaunchUrl.run(res.wame);
+                              Navigator.of(context)
+                                  .pushNamed(Routes.verify_otp);
+                            });
+                          }
+                        },
                         color: AppColors.yellow,
                         child: Text(
                             AppLocalizations.of(context)
                                 .translate('login_btn_verification'),
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500)),
                         shape: RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(10.0))),
                   ),
@@ -170,16 +174,19 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                 Container(
                   padding: EdgeInsets.only(top: 10),
                   child: FlatButton(
-                    onPressed: (){},
+                    onPressed: () {},
                     highlightColor: Colors.transparent,
-                    child: Text(AppLocalizations.of(context)
-                        .translate('login_btn_skip_continue'),
-                        style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, fontFamily: FontFamily.roboto, color: AppColors.yellow),
-
+                    child: Text(
+                      AppLocalizations.of(context)
+                          .translate('login_btn_skip_continue'),
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: FontFamily.roboto,
+                          color: AppColors.yellow),
                     ),
                   ),
                 )
-
               ],
             ),
           ),

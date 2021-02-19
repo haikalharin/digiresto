@@ -49,6 +49,10 @@ abstract class _UserStore with Store {
     _repository.authToken.then((value) => {
       this.authToken = value!= "" ? value : ""}
     );
+
+    _repository.authPhone.then((value) => {
+      this.authPhone = value!= "" ? value : ""}
+    );
   }
 
   // disposers:-----------------------------------------------------------------
@@ -119,10 +123,36 @@ abstract class _UserStore with Store {
   }
 
   @action
-  removeAuthToken (LoginPin user){
+  removeAuthToken (){
     _repository.removeAuthToken();
   }
 
+  //auth phone
+  @observable
+  String authPhone = null;
+  @action
+  Future saveAuthPhone(String handPhone) async {
+    return await _repository.saveAuthPhone(handPhone).then((res) {
+      this.authToken = handPhone;
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  Future getAuthPhone() async {
+    return await _repository.authPhone.then((res) {
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  removeAuthPhone (){
+    _repository.removeAuthPhone();
+  }
   @action
   Future getProfile() async {
     return await _repository.getProfile().then((res) {
@@ -136,6 +166,7 @@ abstract class _UserStore with Store {
   Future getBalance() async {
     return await _repository.getBalance().then((res) {
       this.balance = res;
+      return res;
     }).catchError((err) {
       print("error response: "+ err);
     });
@@ -204,15 +235,15 @@ abstract class _UserStore with Store {
     });
   }
 
-  @observable
-  String otpHandphone = null;
-  void setOtpHandphone(String handPhone){
-    otpHandphone = handPhone;
-  }
-
-  void removeOtpHandohone(){
-    otpHandphone = null;
-  }
+  // @observable
+  // String otpHandphone = null;
+  // void setOtpHandphone(String handPhone){
+  //   otpHandphone = handPhone;
+  // }
+  //
+  // void removeOtpHandohone(){
+  //   otpHandphone = null;
+  // }
 
   @observable
   var listAddress;
@@ -260,4 +291,5 @@ abstract class _UserStore with Store {
   void setActivedHomeTab(String activeTab){
     activeHomeTab = activeTab;
   }
+
 }

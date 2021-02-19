@@ -8,6 +8,8 @@ import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/ctoast/ctoast.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
@@ -38,6 +40,9 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
+    setState(() {
+      listAddress = _userStore.listAddress;
+    });
     getAddress();
   }
   Widget _btnNewAddress(){
@@ -168,7 +173,6 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                       icon: new Icon(Icons.delete,
                           color: AppColors.red, size: 28.0),
                       onPressed: () {
-                      print("delete address");
                       removeAddress(data.id);
                       }
                     ),
@@ -184,35 +188,48 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   }
 
   void getAddress(){
+      Loading.show();
         _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
           setState(() {
             listAddress=res;
           });
+          Loading.dismiss();
         }).catchError((err) {
           print("error response: "+ err);
+          Ctoast.show("failed get all address");
+          Loading.dismiss();
         });
   }
   void removeAddress(int id){
+      Loading.show();
       _userStore.removeAddress({
         "wa_id": _userStore.profile.mobilePhone,
         "waba_no": Strings.wabaNo,
         "id": id
       }).then((res) {
+        Loading.dismiss();
         getAddress();
       }).catchError((err) {
+        Ctoast.show("failed remove address");
         print("error response: "+ err);
+        Loading.dismiss();
       });
   }
   void setDefaultAddress(int id){
+      Loading.show();
       _userStore.setDefaultAddress({
-        "wa_id": _userStore.otpHandphone,
+        "wa_id": _userStore.authPhone,
         "waba_no": Strings.wabaNo,
         "id": id
       }).then((res) {
+
         setState(() {
           listAddress=res;
         });
+        Loading.dismiss();
       }).catchError((err) {
+        Loading.dismiss();
+        Ctoast.show("failed set default address");
         print("error response: "+ err);
       });
   }

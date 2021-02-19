@@ -7,6 +7,7 @@ import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/map/map_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -94,6 +95,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   }
 
   void getGeocode() {
+      Loading.show();
       _mapStore.getGeocode({
         "latitude": _lastMapPosition.latitude.toString(),
         "longitude": _lastMapPosition.longitude.toString()
@@ -103,12 +105,16 @@ class AddAddressScreenState extends State<AddAddressScreen> {
           isMarkerClicked = true;
         });
         _addressController.text = _geocode.formattedAddress;
+        Loading.dismiss();
       }).catchError((err) {
+        Ctoast.show("failed get addrress");
+        Loading.dismiss();
         print("error response: " + err);
       });
   }
 
   void addAddress() {
+      Loading.show();
       _userStore.addAddress({
         "wa_id": _userStore.profile.mobilePhone,
         "waba_no": Strings.wabaNo,
@@ -120,9 +126,14 @@ class AddAddressScreenState extends State<AddAddressScreen> {
       }).then((res) {
         if (res.id!=null){
           _userStore.setActivedHomeTab("profile");
+          Loading.dismiss();
           Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
+        }else{
+          throw("failed add address");
         }
       }).catchError((err) {
+        Ctoast.show("failed add address");
+        Loading.dismiss();
         print("error response: " + err);
       });
   }
