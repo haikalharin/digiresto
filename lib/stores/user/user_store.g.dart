@@ -61,18 +61,18 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$otpHandphoneAtom = Atom(name: '_UserStore.otpHandphone');
+  final _$authPhoneAtom = Atom(name: '_UserStore.authPhone');
 
   @override
-  String get otpHandphone {
-    _$otpHandphoneAtom.reportRead();
-    return super.otpHandphone;
+  String get authPhone {
+    _$authPhoneAtom.reportRead();
+    return super.authPhone;
   }
 
   @override
-  set otpHandphone(String value) {
-    _$otpHandphoneAtom.reportWrite(value, super.otpHandphone, () {
-      super.otpHandphone = value;
+  set authPhone(String value) {
+    _$authPhoneAtom.reportWrite(value, super.authPhone, () {
+      super.authPhone = value;
     });
   }
 
@@ -125,6 +125,20 @@ mixin _$UserStore on _UserStore, Store {
   @override
   Future<dynamic> getAuthToken() {
     return _$getAuthTokenAsyncAction.run(() => super.getAuthToken());
+  }
+
+  final _$saveAuthPhoneAsyncAction = AsyncAction('_UserStore.saveAuthPhone');
+
+  @override
+  Future<dynamic> saveAuthPhone(String handPhone) {
+    return _$saveAuthPhoneAsyncAction.run(() => super.saveAuthPhone(handPhone));
+  }
+
+  final _$getAuthPhoneAsyncAction = AsyncAction('_UserStore.getAuthPhone');
+
+  @override
+  Future<dynamic> getAuthPhone() {
+    return _$getAuthPhoneAsyncAction.run(() => super.getAuthPhone());
   }
 
   final _$getProfileAsyncAction = AsyncAction('_UserStore.getProfile');
@@ -203,11 +217,22 @@ mixin _$UserStore on _UserStore, Store {
   final _$_UserStoreActionController = ActionController(name: '_UserStore');
 
   @override
-  dynamic removeAuthToken(LoginPin user) {
+  dynamic removeAuthToken() {
     final _$actionInfo = _$_UserStoreActionController.startAction(
         name: '_UserStore.removeAuthToken');
     try {
-      return super.removeAuthToken(user);
+      return super.removeAuthToken();
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removeAuthPhone() {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.removeAuthPhone');
+    try {
+      return super.removeAuthPhone();
     } finally {
       _$_UserStoreActionController.endAction(_$actionInfo);
     }
@@ -219,7 +244,7 @@ mixin _$UserStore on _UserStore, Store {
 success: ${success},
 loginFuture: ${loginFuture},
 user: ${user},
-otpHandphone: ${otpHandphone},
+authPhone: ${authPhone},
 listAddress: ${listAddress},
 activeHomeTab: ${activeHomeTab},
 isLoading: ${isLoading}
