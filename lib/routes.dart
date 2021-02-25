@@ -1,3 +1,6 @@
+import 'package:boilerplate/ui/home/home_all_address.dart';
+import 'package:boilerplate/ui/home/home_all_promo.dart';
+import 'package:boilerplate/ui/home/home_promo_url.dart';
 import 'package:boilerplate/ui/profile/about.dart';
 import 'package:boilerplate/ui/profile/history.dart';
 import 'package:boilerplate/ui/profile/privacy_policy.dart';
@@ -31,6 +34,9 @@ class Routes {
   static const String set_address_add = '/add_address';
   static const String history = '/history';
   static const String register = '/register';
+  static const String home_promo_url = '/home_promo_url';
+  static const String home_all_promo = '/home_all_promo';
+  static const String home_all_address = '/home_all_address';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -42,10 +48,13 @@ class Routes {
     login_pin: (BuildContext context) => LoginPinScreen(),
     register: (BuildContext context) => RegisterScreen(),
     about: (BuildContext context) => AboutScreen(),
-    privacy_policy: (BuildContext context)=> PrivacyPolicy(),
+    privacy_policy: (BuildContext context)=> PrivacyPolicyScreen(),
     history: (BuildContext context)=> HistoryScreen(),
     set_address_list: (BuildContext context)=> SetAddressScreen(),
     set_address_add: (BuildContext context)=> AddAddressScreen(),
+    home_promo_url: (BuildContext context)=> HomePromoUrlScreen(),
+    home_all_promo: (BuildContext context)=> HomeAllPromoScreen(),
+    home_all_address: (BuildContext context)=> HomeAllAddressScreen(),
   };
 }
 

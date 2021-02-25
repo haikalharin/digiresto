@@ -17,13 +17,16 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-class SetAddressScreen extends StatefulWidget {
+class HomeAllAddressScreen extends StatefulWidget {
 
   @override
-  _SetAddressScreenState createState() => _SetAddressScreenState();
+  _HomeAllAddressScreenState createState() => _HomeAllAddressScreenState();
 }
 
-class _SetAddressScreenState extends State<SetAddressScreen> {
+class _HomeAllAddressScreenState extends State<HomeAllAddressScreen> {
+  goBack(BuildContext context){
+    Navigator.pop(context);
+  }
 
   UserStore _userStore;
   String appVersion = '';
@@ -42,11 +45,12 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
         listAddress = _userStore.listAddress;
       });
     }
-    getAddress();
+
+    //getAddress();
   }
   Widget _btnNewAddress(){
     return Container(
-      margin: EdgeInsets.only(left: 10,right: 10),
+      margin: EdgeInsets.all(5),
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -72,7 +76,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                       color: AppColors.red, size: 28.0),
                 ),
               ),
-              Text("Add New",
+              Text("Tambah",
                   style: TextStyle(
                     fontFamily: "roboto",
                     color: AppColors.red,
@@ -90,7 +94,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   Widget _listAddress(UserAddress data){
     //return Text("13");
     return data.isDelete == false ? Container(
-      margin: EdgeInsets.only(left: 10,right: 10, top: 10, bottom: 10),
+      margin: EdgeInsets.all(5),
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -105,7 +109,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
       child: GestureDetector(
         onTap: (){
           print("set default");
-          setDefaultAddress(data.id);
+          setActiveAddress(data.address,data.latitude,data.longitude);
         },
         child: Container(
           child: Row(
@@ -120,7 +124,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 5,),
                       child: new IconButton(
-                        icon: ImageIcon(AssetImage(Assets.iconGps), size: 20, color: AppColors.red),
+                        icon: ImageIcon(AssetImage(Assets.iconMarker), size: 20, color: AppColors.red),
                       ),
                     ),
                     Column(
@@ -168,13 +172,6 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                           fontWeight: FontWeight.normal,
                         ),),
                     ),
-                    new IconButton(
-                      icon: new Icon(Icons.delete,
-                          color: AppColors.red, size: 28.0),
-                      onPressed: () {
-                      removeAddress(data.id);
-                      }
-                    ),
                   ],
                 ),
               ),
@@ -199,38 +196,11 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
           Loading.dismiss();
         });
   }
-  void removeAddress(int id){
-      Loading.show();
-      _userStore.removeAddress({
-        "wa_id": _userStore.profile.mobilePhone,
-        "waba_no": Strings.wabaNo,
-        "id": id
-      }).then((res) {
-        Loading.dismiss();
-        getAddress();
-      }).catchError((err) {
-        Ctoast.show("failed remove address");
-        print("error response: "+ err);
-        Loading.dismiss();
-      });
-  }
-  void setDefaultAddress(int id){
-      Loading.show();
-      _userStore.setDefaultAddress({
-        "wa_id": _userStore.authPhone,
-        "waba_no": Strings.wabaNo,
-        "id": id
-      }).then((res) {
 
-        setState(() {
-          listAddress=res;
-        });
-        Loading.dismiss();
-      }).catchError((err) {
-        Loading.dismiss();
-        Ctoast.show("failed set default address");
-        print("error response: "+ err);
-      });
+  void setActiveAddress(String address, String lat, String lng){
+    _userStore.setActiveAddress(address, lat, lng);
+    _userStore.setActivedHomeTab("home");
+    Navigator.of(context).pushReplacementNamed(Routes.home);
   }
   @override
   Widget build(BuildContext context) {
@@ -243,7 +213,6 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
             color: AppColors.red,
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -254,16 +223,8 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                           icon: new Icon(Icons.arrow_back_outlined,
                               color: Colors.black, size: 28.0),
                           onPressed: () {
-                            if (_userStore.activeHistoryScreen=='home.address'){
-                              Navigator.of(context).pushNamed(Routes.home_all_address);
-                            }else if (_userStore.activeHistoryScreen=='profile.address'){
-                              _userStore.setActivedHomeTab("profile");
-                              Navigator.of(context).pushNamed(Routes.home);
-                            }else{
-                              //Navigator.pop(context);
-                            }
-                          // _userStore.setActivedHomeTab("profile");
-                          //   Navigator.of(context).pushReplacementNamed(Routes.home);
+                          _userStore.setActivedHomeTab("home");
+                            Navigator.of(context).pushReplacementNamed(Routes.home);
                           }
                         ),
                         Text("All Address",
@@ -278,6 +239,40 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                       ],
                     ),
                     Container(
+                      height: 30,
+                      color: Colors.black12,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(left:10),
+                            child: Text("Alamat Tersimpan",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                                textAlign: TextAlign.center),
+                          ),
+                          GestureDetector(
+                              child: Container(
+                                padding: EdgeInsets.only(right:10),
+                                child: Text("Lihat semua",
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.red),
+                                ),
+                              ),
+                              onTap: () {
+                                  _userStore.setActiveHistoryScreen("home.address");
+                                  Navigator.of(context).pushNamed(Routes.set_address_list);
+                              })
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
                       height: MediaQuery. of(context). size. height-120,
                       child: SingleChildScrollView(
                         child: Column(
@@ -286,7 +281,6 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                               (
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
-
                                 itemCount: listAddress.length,
                                 itemBuilder: (BuildContext ctxt, int index) {
                                   return _listAddress(listAddress[index]);

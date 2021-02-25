@@ -7,6 +7,7 @@ import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
+import 'package:boilerplate/models/user/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
@@ -62,7 +63,6 @@ class UserApi {
       }
       });
 
-      //print("data x"+apiResult['data'][0]["name"]);
       List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       List<UserAddress> address= [];
       for(int i = 0;i<listUserData.length;i++){
@@ -73,7 +73,6 @@ class UserApi {
       print(e.toString());
       throw e;
     }
-
   }
 
   Future<UserAddAddress> addAddress(Map<String,dynamic> object) async {
@@ -134,6 +133,32 @@ class UserApi {
         address.add(UserAddress.createAddress(listUserData[i]));
       }
       return address;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+
+  Future<List<UserPromo>> getPromo(Map<String,dynamic> object) async{
+    try {
+      String apiUrl = Endpoints.urlGetPromo;
+      final apiResult = await _dioClient.post(apiUrl,data: {
+        "query_string":{
+          "location":object["location"],
+          "page":object["page"],
+          "filter":object["filter"],
+        },
+        "body":{
+        }
+      });
+
+      List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      List<UserPromo> promos= [];
+      for(int i = 0;i<listUserData.length;i++){
+        promos.add(UserPromo.createUserPromo(listUserData[i]));
+      }
+      return promos;
     } catch (e) {
       print(e.toString());
       throw e;

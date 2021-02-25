@@ -35,6 +35,8 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     print(_userStore.activeHomeTab);
     if (_userStore.activeHomeTab=='profile'){
       _onNavBarTapped(2);
+    }else if (_userStore.activeHomeTab=='home'){
+      _onNavBarTapped(0);
     }
     //parameter route
   }

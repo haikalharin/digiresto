@@ -4,16 +4,16 @@ import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-class PrivacyPolicyScreen extends StatelessWidget {
+class HomePromoUrlScreen extends StatelessWidget {
 
   goBack(BuildContext context){
-
     Navigator.pop(context);
-
   }
 
   @override
   Widget build(BuildContext context) {
+    final routes=ModalRoute.of(context).settings.arguments as Map<String,String>;
+    print(routes["url"]);
     return Scaffold(
       body: Column(
         children: [
@@ -30,10 +30,15 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container( width: 100,child: Text("")),
+
+                      new IconButton(
+                        icon: new Icon(Icons.arrow_back_outlined,
+                            color: Colors.white, size: 24.0),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
                     Container(
                       width: 100,
-                      child: Text("Digiresto",
+                      child: Text("Promo",
                           style: TextStyle(
                             fontFamily: "roboto",
                             color: Colors.white,
@@ -41,25 +46,15 @@ class PrivacyPolicyScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center),
-                    ),
-                    Container(
-                      width: 100,
-                      alignment: Alignment.centerRight,
-                      child: FlatButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        highlightColor: Colors.transparent,
-                        child: Text("CLOSE",
-                          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, fontFamily: 'roboto', color: Colors.white),
-                        ),
-                      ),
-                    )
+                    ) ,
+                    Container(width: 10,)
                   ],
                 ),
                 Container(
                   constraints: BoxConstraints(maxHeight: MediaQuery. of(context). size. height-68,),
                   child: WebView(
                     javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: 'https://digiresto.co.id/privacy-policy.html',
+                    initialUrl: routes['url'],
                   ),
                 ),
               ],

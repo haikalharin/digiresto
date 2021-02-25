@@ -125,9 +125,14 @@ class AddAddressScreenState extends State<AddAddressScreen> {
         "is_default": isSelectedDefault,
       }).then((res) {
         if (res.id!=null){
-          _userStore.setActivedHomeTab("profile");
           Loading.dismiss();
-          Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
+          if (_userStore.activeHistoryScreen=='home.address'){
+            Navigator.of(context).pushNamed(Routes.home_all_address);
+          }else if (_userStore.activeHistoryScreen=='profile.address'){
+            _userStore.setActivedHomeTab("profile");
+            Navigator.of(context).pushNamed(Routes.set_address_list);
+          }
+         // Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
         }else{
           throw("failed add address");
         }
