@@ -24,9 +24,6 @@ class SetAddressScreen extends StatefulWidget {
 }
 
 class _SetAddressScreenState extends State<SetAddressScreen> {
-  goBack(BuildContext context){
-    Navigator.pop(context);
-  }
 
   UserStore _userStore;
   String appVersion = '';
@@ -40,9 +37,11 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
-    setState(() {
-      listAddress = _userStore.listAddress;
-    });
+    if (_userStore.listAddress!=null) {
+      setState(() {
+        listAddress = _userStore.listAddress;
+      });
+    }
     getAddress();
   }
   Widget _btnNewAddress(){
@@ -255,8 +254,16 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                           icon: new Icon(Icons.arrow_back_outlined,
                               color: Colors.black, size: 28.0),
                           onPressed: () {
-                          _userStore.setActivedHomeTab("profile");
-                            Navigator.of(context).pushReplacementNamed(Routes.home);
+                            if (_userStore.activeHistoryScreen=='home.address'){
+                              Navigator.of(context).pushNamed(Routes.home_all_address);
+                            }else if (_userStore.activeHistoryScreen=='profile.address'){
+                              _userStore.setActivedHomeTab("profile");
+                              Navigator.of(context).pushNamed(Routes.home);
+                            }else{
+                              //Navigator.pop(context);
+                            }
+                          // _userStore.setActivedHomeTab("profile");
+                          //   Navigator.of(context).pushReplacementNamed(Routes.home);
                           }
                         ),
                         Text("All Address",

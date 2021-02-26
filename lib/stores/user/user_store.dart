@@ -10,6 +10,7 @@ import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
+import 'package:boilerplate/models/user/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
@@ -246,7 +247,7 @@ abstract class _UserStore with Store {
   // }
 
   @observable
-  var listAddress;
+  List<UserAddress> listAddress;
 
   @action
   Future<List<UserAddress>>  getAddress(String waId) async {
@@ -288,8 +289,39 @@ abstract class _UserStore with Store {
 
   @observable
   String activeHomeTab = null;
-  void setActivedHomeTab(String activeTab){
-    activeHomeTab = activeTab;
+  void setActivedHomeTab(String active){
+    activeHomeTab = active;
+  }
+
+  @observable
+  String activeHistoryScreen = null;
+  void setActiveHistoryScreen(String active){
+    activeHistoryScreen = active;
+  }
+
+
+  //home
+  @observable
+  List<UserPromo> listPromo;
+
+  @action
+  Future<List<UserPromo>>  getPromo(Map<String,dynamic> object) async {
+    return await _repository.getPromo(object).then((res) {
+      this.listPromo = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @observable
+  String activeAddress="";
+  String activeAddressLat="";
+  String activeAddresslng="";
+  void setActiveAddress(String address,String lat,String lng){
+    activeAddress = address;
+    activeAddressLat = lat;
+    activeAddresslng = lng;
   }
 
 }

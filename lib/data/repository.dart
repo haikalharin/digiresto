@@ -15,6 +15,7 @@ import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
+import 'package:boilerplate/models/user/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:sembast/sembast.dart';
 
@@ -195,4 +196,13 @@ class Repository {
       return value;
     }).catchError((error) => throw error);
   }
+
+
+  //home
+  Future<List<UserPromo>> getPromo(Map<String,dynamic> object) async {
+    return await _userApi.getPromo(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
 }

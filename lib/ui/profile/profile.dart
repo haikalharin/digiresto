@@ -209,6 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leftIcon: Icons.pin_drop_outlined,
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
+                        _userStore.setActiveHistoryScreen("profile.address");
                         Navigator.of(context).pushNamed(Routes.set_address_list);
                       }),
                   HorizontalMenu(

@@ -12,13 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:boilerplate/constants/strings.dart';
-class AddAddressScreen extends StatefulWidget {
+class HomeAddLocationScreen extends StatefulWidget {
   @override
-  State<AddAddressScreen> createState() => AddAddressScreenState();
+  State<HomeAddLocationScreen> createState() => HomeAddLocationScreenState();
 }
 
-class AddAddressScreenState extends State<AddAddressScreen> {
+class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   GoogleMapController mapController;
   LatLng _lastMapPosition;
   MapStore _mapStore;
@@ -33,9 +32,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   final LatLng _center = const LatLng(-6.175483, 106.826852);
-  final _nameController = TextEditingController();
   final _addressController = TextEditingController();
-  bool isSelectedDefault = false;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -111,39 +108,9 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   }
 
   void addAddress() {
-      Loading.show();
-      _userStore.addAddress({
-        "wa_id": _userStore.profile.mobilePhone,
-        "waba_no": Strings.wabaNo,
-        "name": _nameController.text.toString(),
-        "address": _addressController.text.toString(),
-        "latitude": _lastMapPosition.latitude.toString(),
-        "longitude":  _lastMapPosition.longitude.toString(),
-        "is_default": isSelectedDefault,
-      }).then((res) {
-        if (res.id!=null){
-          _userStore.getAddress(_userStore.profile.mobilePhone);
-          if (_userStore.activeHistoryScreen=='home.address'){
-            Navigator.of(context).pushNamed(Routes.home_all_address);
-          }else if (_userStore.activeHistoryScreen=='profile.address'){
-            _userStore.setActivedHomeTab("profile");
-            Navigator.of(context).pushNamed(Routes.set_address_list);
-          }
-         // Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
-        }else{
-          throw("failed add address");
-        }
-      }).catchError((err) {
-        Ctoast.show("failed add address");
-        Loading.dismiss();
-        print("error response: " + err);
-      });
-  }
-
-  void changeTic(bool value) {
-    setState(() {
-      isSelectedDefault = value;
-    });
+      _userStore.setActiveAddress(_addressController.text.toString(),_lastMapPosition.latitude.toString(),_lastMapPosition.longitude.toString());
+      _userStore.setActivedHomeTab("home");
+      Navigator.of(context).pushNamed(Routes.home);
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -162,50 +129,6 @@ class AddAddressScreenState extends State<AddAddressScreen> {
               content: SingleChildScrollView(
                 child: ListBody(
                   children: <Widget>[
-                    Container(
-                      child: TextFormField(
-                        controller: _nameController,
-                        decoration: new InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: "name",
-                          border: new OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: BorderSide(
-                                width: 2,
-                              )),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                            borderSide:
-                                BorderSide(width: 1, color: AppColors.red),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                            borderSide:
-                                BorderSide(width: 1, color: AppColors.red),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4)),
-                              borderSide:
-                                  BorderSide(width: 1, color: AppColors.red)),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4)),
-                              borderSide:
-                                  BorderSide(width: 1, color: AppColors.red)),
-                          //fillColor: Colors.green
-                        ),
-                        style: TextStyle(fontSize: 14.0, color: Colors.black),
-                        // Only numbers can be entered
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter your name address';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
                     Container(
                       padding: EdgeInsets.only(top: 10),
                       child: TextFormField(
@@ -252,48 +175,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                         },
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isSelectedDefault = !isSelectedDefault;
-                                  });
-                                },
-                                child: isSelectedDefault
-                                    ? Icon(
-                                        Icons.check_box_rounded,
-                                        color: Colors.green,
-                                        size: 30,
-                                      )
-                                    : Icon(
-                                        Icons.check_box_outline_blank,
-                                        color: Colors.black,
-                                        size: 30,
-                                      ),
-                              ),
-                              SizedBox(width: 5),
-                              Container(
-                                constraints: BoxConstraints(
-                                    minWidth: 200, maxWidth: 300),
-                                child: Text("Default address",
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+
                     Container(
                       padding: EdgeInsets.only(top: 10),
                       child: Row(
@@ -328,11 +210,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                             height: 40,
                             child: RaisedButton(
                               onPressed: () {
-                                if (_nameController.text.toString().length==0){
-                                  Ctoast.show("Required name");
-                                }else{
                                   addAddress();
-                                }
                               },
                               color: AppColors.red,
                               child: Text("Save",

@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _loading.delete();
     });
   }
+
   void getBasicInformation(){
       loadingAdd();
       _userStore.getProfile().then((value) {
@@ -53,6 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
         loadingAdd();
         _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
+          //if (_userStore.activeAddress!=null){
+            for(int i = 0; i< res.length; i++) {
+              if (res[i].isDefault) {
+                _userStore.setActiveAddress(res[i].address, res[i].latitude, res[i].longitude);
+              }
+            }
+          //}
           loadingDelete();
         });
       });
@@ -62,8 +70,18 @@ class _HomeScreenState extends State<HomeScreen> {
         loadingDelete()
       });
 
+      loadingAdd();
+      _userStore.getPromo({
+        "location": "-6.17494964,106.82605807",
+        "page": "1",
+        "filter": ""
+      }).then((value) => {
+        loadingDelete()
+      });
+
 
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -74,13 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
     _postStore = Provider.of<PostStore>(context);
     _userStore = Provider.of<UserStore>(context,listen: true);
 
-    if (_userStore.profile==null){
-      getBasicInformation();
-    }
-    if (_userStore.balance==null){
-      getBasicInformation();
-    }
-
+    // if (_userStore.profile==null){
+    //   getBasicInformation();
+    // }
+    // if (_userStore.balance==null){
+    //   getBasicInformation();
+    // }
+    if (_userStore.profile==null && _userStore.balance==null) getBasicInformation();
 
   }
   @override
