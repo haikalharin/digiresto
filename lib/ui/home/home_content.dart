@@ -167,18 +167,18 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
         margin: EdgeInsets.only(left:10,right:10,top:10),
         height: 35,
         decoration: BoxDecoration(
-            color: AppColors.greyStroke,
-            border: Border.all(
-              color: Colors.grey,
-              width: 1.5,
-
-            ),
+            color: Colors.black12,
+            // border: Border.all(
+            //   //color: Colors.black12,
+            //   width: 1.5,
+            //
+            // ),
           borderRadius: BorderRadius.circular(5.0),),
         child: Row(
           children: [
             Container(
                 padding: EdgeInsets.only(left:5, right:5),
-                child: Icon(Icons.search,color: Colors.grey)),
+                child: Icon(Icons.search,color: Colors.grey,size: 18,)),
             Text("Temukan makanan favorit anda",style: TextStyle(
               fontFamily: "roboto",
               fontSize: 12,
@@ -219,51 +219,52 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     // );
   }
   Widget _yourLocation() {
-    return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Column(
-        children: [
-          Container(
-            child: Row(
-              children: [
-                Text("Lokasi Kamu",style: TextStyle(
-                  fontFamily: "roboto",
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                )),
-                GestureDetector(
-                    child: new Icon(Icons.keyboard_arrow_down,
-                        color: AppColors.red, size: 28.0),
-                    onTap: () {
-                      Navigator.of(context).pushNamed(Routes.home_all_address);
-                    })
-              ],
-            ),
-          ),
-          GestureDetector(
-              child: Container(
-                child: Row(
-                  children: [
-                    ImageIcon(AssetImage(Assets.iconMarkerMove),
-                        size: 18, color: AppColors.red),
-                    Flexible(
-                      child: Text(_userStore.activeAddress,
-                      maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                      fontFamily: "roboto",
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      ),
-                           ),
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).pushNamed(Routes.home_all_address);
+      },
+      child: Container(
+        padding: EdgeInsets.only(left: 10, right: 10),
+        child: Row(
+          children: [
+            ImageIcon(AssetImage(Assets.iconMarkerMove),
+                size: 24, color: AppColors.red),
+            Container(
+              width: MediaQuery.of(context).size.width - 50,
+              padding: EdgeInsets.only(left: 10),
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Text("Lokasi Kamu",style: TextStyle(
+                          fontFamily: "roboto",
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                        )),
+                       new Icon(Icons.keyboard_arrow_down,
+                                color: AppColors.red, size: 28.0),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                      child: Text(_userStore.activeAddress,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                    ),
+                  ),
+                ],
               ),
-              onTap: () {
-                Navigator.of(context).pushNamed(Routes.home_all_address);
-              })
-        ],
+            ),
+
+          ],
+        ),
       ),
     );
   }

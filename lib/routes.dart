@@ -1,3 +1,4 @@
+import 'package:boilerplate/ui/home/add_location.dart';
 import 'package:boilerplate/ui/home/home_all_address.dart';
 import 'package:boilerplate/ui/home/home_all_promo.dart';
 import 'package:boilerplate/ui/home/home_promo_url.dart';
@@ -37,6 +38,7 @@ class Routes {
   static const String home_promo_url = '/home_promo_url';
   static const String home_all_promo = '/home_all_promo';
   static const String home_all_address = '/home_all_address';
+  static const String home_add_location = '/home_add_location';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -55,6 +57,7 @@ class Routes {
     home_promo_url: (BuildContext context)=> HomePromoUrlScreen(),
     home_all_promo: (BuildContext context)=> HomeAllPromoScreen(),
     home_all_address: (BuildContext context)=> HomeAllAddressScreen(),
+    home_add_location: (BuildContext context)=> HomeAddLocationScreen(),
   };
 }
 
