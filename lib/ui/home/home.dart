@@ -99,7 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
     //   getBasicInformation();
     // }
     if (_userStore.profile==null && _userStore.balance==null) getBasicInformation();
-
   }
   @override
   Widget build(BuildContext context) {

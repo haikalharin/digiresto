@@ -1,14 +1,4 @@
-import 'package:boilerplate/ui/home/add_location.dart';
-import 'package:boilerplate/ui/home/home_all_address.dart';
-import 'package:boilerplate/ui/home/home_all_promo.dart';
-import 'package:boilerplate/ui/home/home_promo_url.dart';
-import 'package:boilerplate/ui/profile/about.dart';
-import 'package:boilerplate/ui/profile/history.dart';
-import 'package:boilerplate/ui/profile/privacy_policy.dart';
-import 'package:boilerplate/ui/profile/set_address/set_address.dart';
-import 'package:boilerplate/ui/profile/set_address/add_address.dart';
 import 'package:flutter/material.dart';
-
 import 'ui/home/home.dart';
 import 'ui/login/login.dart';
 import 'ui/splash/splash.dart';
@@ -17,7 +7,17 @@ import 'ui/login/input_phone.dart';
 import 'ui/login/verify_otp.dart';
 import 'ui/login/login_pin.dart';
 import 'ui/register/register.dart';
-
+import 'package:boilerplate/ui/home/add_location.dart';
+import 'package:boilerplate/ui/home/home_all_address.dart';
+import 'package:boilerplate/ui/home/home_all_promo.dart';
+import 'package:boilerplate/ui/home/home_digidiscount.dart';
+import 'package:boilerplate/ui/home/home_nearby_outlet.dart';
+import 'package:boilerplate/ui/home/home_promo_url.dart';
+import 'package:boilerplate/ui/profile/about.dart';
+import 'package:boilerplate/ui/profile/history.dart';
+import 'package:boilerplate/ui/profile/privacy_policy.dart';
+import 'package:boilerplate/ui/profile/set_address/set_address.dart';
+import 'package:boilerplate/ui/profile/set_address/add_address.dart';
 class Routes {
   Routes._();
 
@@ -39,6 +39,8 @@ class Routes {
   static const String home_all_promo = '/home_all_promo';
   static const String home_all_address = '/home_all_address';
   static const String home_add_location = '/home_add_location';
+  static const String home_nearby_outlet = '/home_nearby_outlet';
+  static const String home_digidiscount = '/home_digidiscount';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -58,6 +60,8 @@ class Routes {
     home_all_promo: (BuildContext context)=> HomeAllPromoScreen(),
     home_all_address: (BuildContext context)=> HomeAllAddressScreen(),
     home_add_location: (BuildContext context)=> HomeAddLocationScreen(),
+    home_nearby_outlet: (BuildContext context)=> HomeNearbyOutletScreen(),
+    home_digidiscount: (BuildContext context)=> HomeDigidiscountScreen(),
   };
 }
 

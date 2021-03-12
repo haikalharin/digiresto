@@ -54,6 +54,8 @@ abstract class _UserStore with Store {
     _repository.authPhone.then((value) => {
       this.authPhone = value!= "" ? value : ""}
     );
+
+
   }
 
   // disposers:-----------------------------------------------------------------

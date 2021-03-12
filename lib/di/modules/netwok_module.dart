@@ -1,5 +1,6 @@
 import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/apis/map/map_api.dart';
+import 'package:boilerplate/data/network/apis/order/order_api.dart';
 import 'package:boilerplate/data/network/apis/posts/post_api.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
@@ -98,6 +99,10 @@ class NetworkModule extends PreferenceModule {
   MapApi provideMapApi(DioClient dioClient, RestClient restClient) =>
       MapApi(dioClient, restClient);
 
+  @provide
+  @singleton
+  OrderApi provideOrderApi(DioClient dioClient, RestClient restClient) =>
+      OrderApi(dioClient, restClient);
 // Api Providers End:---------------------------------------------------------
 
 }

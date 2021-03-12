@@ -6,11 +6,11 @@ class Endpoints {
 
   // receiveTimeout
   //static const int receiveTimeout = 5000;
-  static const int receiveTimeout = 20000;
+  static const int receiveTimeout = 30000;
 
   // connectTimeout
   //static const int connectionTimeout = 3000;
-  static const int connectionTimeout = 15000;
+  static const int connectionTimeout = 30000;
 
   // booking endpoints
   static const String getPosts = baseUrl + "/posts";
@@ -29,5 +29,8 @@ class Endpoints {
   static const String urlGetGeocode = baseUrlDigiresto+"/forward?r=getgeocode";
   //home
   static const String urlGetPromo = baseUrlDigiresto+"/forward?r=getpromo";
+  static const String urlGetHotPromo = baseUrlDigiresto+"/forward?r=gethotpromo";
+  static const String urlGetPromoOutlet = baseUrlDigiresto+"/forward?r=getpromooutlet";
+  static const String urlGetOutletByLocation = baseUrlDigiresto+"/forward?r=getoutletbylocation";
 
 }

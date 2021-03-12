@@ -1,6 +1,7 @@
 //
 import 'package:flutter/material.dart';
 
+
 /// Helper class for device related operations.
 ///
 class DeviceUtils {
