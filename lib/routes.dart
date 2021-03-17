@@ -1,3 +1,4 @@
+import 'package:boilerplate/ui/home/home_all_hot_promo.dart';
 import 'package:flutter/material.dart';
 import 'ui/home/home.dart';
 import 'ui/login/login.dart';
@@ -41,6 +42,7 @@ class Routes {
   static const String home_add_location = '/home_add_location';
   static const String home_nearby_outlet = '/home_nearby_outlet';
   static const String home_digidiscount = '/home_digidiscount';
+  static const String home_all_hot_promo = '/home_all_hot_promo';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -59,6 +61,7 @@ class Routes {
     home_promo_url: (BuildContext context)=> HomePromoUrlScreen(),
     home_all_promo: (BuildContext context)=> HomeAllPromoScreen(),
     home_all_address: (BuildContext context)=> HomeAllAddressScreen(),
+    home_all_hot_promo: (BuildContext context)=> HomeAllHotPromoScreen(),
     home_add_location: (BuildContext context)=> HomeAddLocationScreen(),
     home_nearby_outlet: (BuildContext context)=> HomeNearbyOutletScreen(),
     home_digidiscount: (BuildContext context)=> HomeDigidiscountScreen(),

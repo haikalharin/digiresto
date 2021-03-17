@@ -30,6 +30,7 @@ class Endpoints {
   //home
   static const String urlGetPromo = baseUrlDigiresto+"/forward?r=getpromo";
   static const String urlGetHotPromo = baseUrlDigiresto+"/forward?r=gethotpromo";
+  static const String urlGetStaticBanner= baseUrlDigiresto+"/forward?r=getstaticbanner";
   static const String urlGetPromoOutlet = baseUrlDigiresto+"/forward?r=getpromooutlet";
   static const String urlGetOutletByLocation = baseUrlDigiresto+"/forward?r=getoutletbylocation";
 

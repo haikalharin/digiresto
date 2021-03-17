@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
-import 'package:boilerplate/models/user/user_promo_model.dart';
+import 'package:boilerplate/models/order/static_banner_model.dart';
+import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/widgets/list/home_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -39,16 +41,15 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     // initializing stores
     _userStore = Provider.of<UserStore>(context, listen: true);
     _orderStore = Provider.of<OrderStore>(context, listen: true);
-    if (_userStore.listPromo == null) {
-      getPromo();
-    }
-    if (_orderStore.listHotPromo == null) {
-      getHotPromo();
-    }
-
+    // if (_userStore.listPromo == null) {
+    //   getPromo();
+    // }
+    // if (_orderStore.listHotPromo == null) {
+    //   getHotPromo();
+    // }
   }
 
-  Widget _promoList(UserPromo data) {
+  Widget _promoList(StaticBanner data) {
     return GestureDetector(
       onTap: () {
         if (data.promoUrl != null || data.promoUrl != "") {
@@ -80,31 +81,31 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     );
   }
 
-  void getPromo() {
-    _userStore.getPromo({
-      "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
-      "page": "1",
-      "filter": ""
-    }).then((res) {
-      // setState(() {
-      //   listPromo = res;
-      // });
-      print(res[0].promoName);
-    }).catchError((err) {
-      print("error response: " + err.toString());
-    });
-  }
-
-  void getHotPromo() {
-    _orderStore.getHotPromo({
-      "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
-      "page": "1",
-      "filter": ""
-    }).then((res) {
-    }).catchError((err) {
-      print("error response: " + err.toString());
-    });
-  }
+  // void getPromo() {
+  //   _userStore.getPromo({
+  //     "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
+  //     "page": "1",
+  //     "filter": ""
+  //   }).then((res) {
+  //     // setState(() {
+  //     //   listPromo = res;
+  //     // });
+  //     print(res[0].promoName);
+  //   }).catchError((err) {
+  //     print("error response: " + err.toString());
+  //   });
+  // }
+  //
+  // void getHotPromo() {
+  //   _orderStore.getHotPromo({
+  //     "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
+  //     "page": "1",
+  //     "filter": ""
+  //   }).then((res) {
+  //   }).catchError((err) {
+  //     print("error response: " + err.toString());
+  //   });
+  // }
 
   Widget _topBackground() {
     return Container(
@@ -126,7 +127,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     );
   }
 
-  Widget _promo() {
+  Widget _staticBanner() {
     return Column(
       children: [
         Container(
@@ -142,7 +143,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             },
             controller: _controller,
             children: [
-              for (int i = 0; i < _userStore.listPromo.length; i++) _promoList(_userStore.listPromo[i]) ,
+              for (int i = 0; i < _orderStore.listStaticBanner.length; i++) _promoList(_orderStore.listStaticBanner[i]) ,
             ],
           ),
         ),
@@ -155,7 +156,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 padding: EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
-                    for (int i = 0; i < _userStore.listPromo.length; i++)
+                    for (int i = 0; i < _orderStore.listStaticBanner.length; i++)
                       i == slideIndex
                           ? _buildPageIndicator(true)
                           : _buildPageIndicator(false),
@@ -175,8 +176,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   Widget _searchBox() {
     return GestureDetector(
       onTap: () {
-        getHotPromo();
-        //getPromo();
         print("open box");
       },
       child: Container(
@@ -380,7 +379,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                         color: Colors.black),
                   ),
                   onTap: () {
-                    Navigator.of(context).pushNamed(Routes.home_all_promo);
                   }),
             ),
             Container(
@@ -394,14 +392,14 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                         color: AppColors.red),
                   ),
                   onTap: () {
-                    Navigator.of(context).pushNamed(Routes.home_all_promo);
+                    Navigator.of(context).pushNamed(Routes.home_all_hot_promo);
                   }),
             )
           ]
         ),
           //Text(_orderStore.listHotPromo.length.toString()),
           _orderStore.listHotPromo != null ? ListHomeHotPromoWidget(
-            height:  170.0,
+            height:  180.0,
             data: _orderStore.listHotPromo,
             scrollDirection: Axis.horizontal,
           ) : Container()
@@ -453,6 +451,88 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
         )
     );
   }
+  Widget _singleAdvertisement(){
+    return Container(
+        height: 200,
+        child: Container(
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),topRight: Radius.circular(8.0)),
+                      child: Image(
+                        image: AssetImage(Assets.bgHomeMitra),
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                        height: 96,
+                        alignment: Alignment.center,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(top:5,left: 10),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Bergabubng menjadi Mitra",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(top:5,left: 10),
+                              width: MediaQuery. of(context). size. width/2,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Terima pembayaran nontunai dan melakukan pengiriman instant menjadi lebih mudah",
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                            width: 130,
+                            height: 45,
+                            child: RaisedButton(
+                                onPressed: () {
+                                  LaunchUrl.run("https://play.google.com/store/apps/details?id=id.damcorp.digimitra");
+                                },
+                                color: AppColors.redYoung,
+                                child: Text("Selengkapnya",
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.w500,color: Colors.white)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: new BorderRadius.circular(25.0))),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -469,9 +549,10 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             child: SingleChildScrollView(
               child: Column(
           children: [
-            _userStore.listPromo != null ? _promo() : Container(),
+            _orderStore.listStaticBanner != null ? _staticBanner() : Container(),
               _discount(),
               _hotPromo(),
+              _singleAdvertisement(),
               _historyOrder(),
           ],
         ),

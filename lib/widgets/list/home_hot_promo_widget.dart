@@ -14,6 +14,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        alignment: Alignment.topLeft,
         height: height,
         child: ListView.builder(
             scrollDirection: scrollDirection,
@@ -40,17 +41,38 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                         alignment: Alignment.center,
                       ),
                     ),
-                    Padding(
+                    Container(
                       padding: const EdgeInsets.only(top:5),
-                      child: Text(data[index].merchant["name"].toString(),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        data[index].merchant["name"].toString()+" - "+data[index].outlet["detail"]["name"].toString(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    data[index].promoCode != null ? Row(children: [
+                      ImageIcon(
+                        AssetImage(Assets.iconVoucher),
+                        color: AppColors.red, size: 20,),
+                      Container(
+                        padding: EdgeInsets.only(left: 5),
+                        child: Text(
+                          data[index].promoCode,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontFamily: "roboto",
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
                           ),
-                          textAlign: TextAlign.left),
-                    ),
+                        ),
+                      )
+                    ],) : Container(),
                   ],
                 ),
               );

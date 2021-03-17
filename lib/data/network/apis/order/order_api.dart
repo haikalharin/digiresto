@@ -7,6 +7,7 @@ import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'dart:math';
@@ -84,11 +85,34 @@ class OrderApi {
       for(int i = 0;i<listUserData.length;i++){
         print(listUserData[i]);
         promos.add(HotPromo.createHotPromo(listUserData[i]));
-        promos.add(HotPromo.createHotPromo(listUserData[i]));
-        promos.add(HotPromo.createHotPromo(listUserData[i]));
-        promos.add(HotPromo.createHotPromo(listUserData[i]));
       }
       return promos;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<List<StaticBanner>> getStaticBanner(Map<String,dynamic> object) async{
+    try {
+      String apiUrl = Endpoints.urlGetStaticBanner;
+      final apiResult = await _dioClient.post(apiUrl,data: {
+        "query_string":{
+          "location":object["location"],
+          "page":object["page"],
+          "filter":object["filter"],
+        },
+        "body":{
+        }
+      });
+
+      List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
+      List<StaticBanner> staticBanner= [];
+      for(int i = 0;i<listUserData.length;i++){
+        print(listUserData[i]);
+        staticBanner.add(StaticBanner.createStaticBanner(listUserData[i]));
+      }
+      return staticBanner;
     } catch (e) {
       print(e.toString());
       throw e;
