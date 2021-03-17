@@ -18,9 +18,9 @@ class AboutScreen extends StatefulWidget {
 class AboutWidget extends AnimatedWidget {
   AboutWidget({this.remoteConfig}) : super(listenable: remoteConfig);
   final RemoteConfig remoteConfig;
+
   @override
   Widget build(BuildContext context) {
-
     Map<String, dynamic> objectAbout = jsonDecode(remoteConfig.getString('about_app'));
     return Container(
       padding: EdgeInsets.only(left: 15, top: 15, right: 15),
@@ -52,7 +52,6 @@ class AboutWidget extends AnimatedWidget {
                 ),
                 textAlign: TextAlign.justify),
           )
-          //KeyboardNumber(onComplete: (data){ print("hit api verify"+data); },)
         ],
       ),
     );

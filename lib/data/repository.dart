@@ -3,20 +3,25 @@ import 'dart:async';
 import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/apis/map/map_api.dart';
+import 'package:boilerplate/data/network/apis/order/order_api.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
 import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/models/order/hot_promo_model.dart';
+import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
-import 'package:boilerplate/models/user/user_promo_model.dart';
+import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
+import 'package:boilerplate/models/order/outlet_list.dart';
+import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
@@ -36,11 +41,13 @@ class Repository {
 
   final MapApi _mapApi;
 
+  final OrderApi _orderApi;
+
   // shared pref object
   final SharedPreferenceHelper _sharedPrefsHelper;
 
   // constructor
-  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,this._userApi, this._authApi,this._mapApi);
+  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,this._userApi, this._authApi,this._mapApi,this._orderApi);
 
   // Post: ---------------------------------------------------------------------
   Future<PostList> getPosts() async {
@@ -201,6 +208,30 @@ class Repository {
   //home
   Future<List<UserPromo>> getPromo(Map<String,dynamic> object) async {
     return await _userApi.getPromo(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<OutletList>> getOutletByLocation(Map<String,dynamic> object) async {
+    return await _orderApi.getOutletByLocation(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<PromoOutlet>> getPromoOutlet(Map<String,dynamic> object) async {
+    return await _orderApi.getPromoOutlet(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<HotPromo>> getHotPromo(Map<String,dynamic> object) async {
+    return await _orderApi.getHotPromo(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<StaticBanner>> getStaticBanner(Map<String,dynamic> object) async {
+    return await _orderApi.getStaticBanner(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

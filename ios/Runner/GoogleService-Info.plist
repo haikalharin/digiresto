@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>xxx816269151511-9jbj94ss3jj1pp5lr3e9caf5au7isri1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.816269151511-9jbj94ss3jj1pp5lr3e9caf5au7isri1</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>816269151511-28729p2re34effd78uc87d8f4atb9o91.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBaU2K1nP3lu_ZPswOukC25WXzKSHjU2iQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>816269151511</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>id.damcorp.digiresto</string>
+	<key>PROJECT_ID</key>
+	<string>digiapp-fbdf3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>digiapp-fbdf3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:816269151511:ios:f0901a9919ca22b060fb52</string>
+	<key>DATABASE_URL</key>
+	<string>https://digiapp-fbdf3.firebaseio.com</string>
+</dict>
+</plist>

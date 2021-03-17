@@ -2,6 +2,7 @@ import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/language/language_store.dart';
+import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
@@ -28,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ThemeStore _themeStore;
   LanguageStore _languageStore;
   UserStore _userStore;
+  OrderStore _orderStore;
   Loading _loading = new Loading();
 
   @override
@@ -58,8 +60,27 @@ class _HomeScreenState extends State<HomeScreen> {
             for(int i = 0; i< res.length; i++) {
               if (res[i].isDefault) {
                 _userStore.setActiveAddress(res[i].address, res[i].latitude, res[i].longitude);
+                _orderStore.getStaticBanner({
+                  "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
+                  "page": "1",
+                  "filter": ""
+                });
+                _userStore.getPromo({
+                  "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
+                  "page": "1",
+                  "filter": ""
+                });
+                _orderStore.getHotPromo({
+                  "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
+                  "page": "1",
+                  "filter": ""
+                }).then((res) {
+                }).catchError((err) {
+                  print("error response: " + err.toString());
+                });
               }
             }
+
           //}
           loadingDelete();
         });
@@ -91,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _themeStore = Provider.of<ThemeStore>(context);
     _postStore = Provider.of<PostStore>(context);
     _userStore = Provider.of<UserStore>(context,listen: true);
+    _orderStore = Provider.of<OrderStore>(context,listen: true);
 
     // if (_userStore.profile==null){
     //   getBasicInformation();
@@ -99,7 +121,6 @@ class _HomeScreenState extends State<HomeScreen> {
     //   getBasicInformation();
     // }
     if (_userStore.profile==null && _userStore.balance==null) getBasicInformation();
-
   }
   @override
   Widget build(BuildContext context) {

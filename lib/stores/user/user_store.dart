@@ -10,7 +10,7 @@ import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
-import 'package:boilerplate/models/user/user_promo_model.dart';
+import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
@@ -54,6 +54,8 @@ abstract class _UserStore with Store {
     _repository.authPhone.then((value) => {
       this.authPhone = value!= "" ? value : ""}
     );
+
+
   }
 
   // disposers:-----------------------------------------------------------------

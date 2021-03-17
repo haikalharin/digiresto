@@ -10,10 +10,33 @@ class GetRemoteConfig{
     remoteConfig
         .setConfigSettings(RemoteConfigSettings(minimumFetchIntervalMillis: 1));
     remoteConfig.setDefaults(<String, dynamic>{
-      'welcome': '',
-      'about_app': '',
-      'customer_service': '',
+      'welcome': 'welcome data',
+      'about_app': 'about data',
+      'customer_service': 'cs data',
     });
+    remoteConfig.fetch(expiration: const Duration(seconds: 0));
+    remoteConfig.activateFetched();
     return remoteConfig;
   }
 }
+
+// new IconButton(
+// icon: new Icon(Icons.arrow_back_outlined,
+// color: Colors.black, size: 28.0),
+// //onPressed: () => Navigator.of(context).pop(),
+// onPressed:   () async {
+// try {
+// // Using default duration to force fetching from remote server.
+// await remoteConfig.fetch(expiration: const Duration(seconds: 0));
+// await remoteConfig.activateFetched();
+// print(remoteConfig.getString("welcome"));
+// } on FetchThrottledException catch (exception) {
+// // Fetch throttled.
+// print(exception);
+// } catch (exception) {
+// print(
+// 'Unable to fetch remote config. Cached or default values will be '
+// 'used');
+// }
+// }
+// ),

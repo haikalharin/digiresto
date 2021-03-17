@@ -120,6 +120,122 @@
                 "isProvider": false
               }
             ]
+          },
+          {
+            "name": "provideUserApi",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/network/apis/user/user_api.dart#UserApi",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": [
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/dio_client.dart#DioClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/rest_client.dart#RestClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              }
+            ]
+          },
+          {
+            "name": "provideAuthApi",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/network/apis/auth/auth_api.dart#AuthApi",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": [
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/dio_client.dart#DioClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/rest_client.dart#RestClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              }
+            ]
+          },
+          {
+            "name": "provideMapApi",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/network/apis/map/map_api.dart#MapApi",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": [
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/dio_client.dart#DioClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/rest_client.dart#RestClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              }
+            ]
+          },
+          {
+            "name": "provideOrderApi",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/network/apis/order/order_api.dart#OrderApi",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": [
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/dio_client.dart#DioClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/rest_client.dart#RestClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              }
+            ]
           }
         ]
       }

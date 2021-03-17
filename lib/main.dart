@@ -7,6 +7,7 @@ import 'package:boilerplate/di/modules/preference_module.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/language/language_store.dart';
 import 'package:boilerplate/stores/map/map_store.dart';
+import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
       LanguageStore(appComponent.getRepository());
   final UserStore _userStore = UserStore(appComponent.getRepository(),);
   final MapStore _mapStore = MapStore(appComponent.getRepository(),);
+  final OrderStore _orderStore = OrderStore(appComponent.getRepository(),);
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,7 @@ class MyApp extends StatelessWidget {
         Provider<LanguageStore>(create: (_) => _languageStore),
         Provider<UserStore>(create: (_) => _userStore),
         Provider<MapStore>(create: (_) => _mapStore),
+        Provider<OrderStore>(create: (_) => _orderStore),
        ],
       child: Observer(
         name: 'global-observer',
