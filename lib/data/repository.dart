@@ -10,6 +10,7 @@ import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
 import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/post/post.dart';
@@ -232,6 +233,12 @@ class Repository {
 
   Future<List<StaticBanner>> getStaticBanner(Map<String,dynamic> object) async {
     return await _orderApi.getStaticBanner(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<DetailOutlet> getDetailOutlet(Map<String,dynamic> object) async {
+    return await _orderApi.getDetailOutlet(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

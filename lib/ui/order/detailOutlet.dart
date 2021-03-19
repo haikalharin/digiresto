@@ -1,0 +1,265 @@
+import 'package:boilerplate/constants/assets.dart';
+import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/models/order/detail_outlet_model.dart';
+import 'package:boilerplate/stores/order/order_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/launch_url/launch_url.dart';
+import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
+import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:boilerplate/constants/font_family.dart';
+import 'package:provider/provider.dart';
+
+class DetailOutletScreen extends StatefulWidget {
+  @override
+  _DetailOutletScreenState createState() => _DetailOutletScreenState();
+}
+
+class _DetailOutletScreenState extends State<DetailOutletScreen> {
+  final searchController = TextEditingController();
+  UserStore _userStore;
+  OrderStore _orderStore;
+  DetailOutlet detailOutlet;
+
+  goBack(BuildContext context) {
+    Navigator.pop(context);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+    _orderStore = Provider.of<OrderStore>(context);
+    getDetailOutlet("x", 1);
+  }
+
+  void getDetailOutlet(String search, int pageParam) {
+    _orderStore.getDetailOutlet({
+      "outletName": "dgp-246",
+      "page": 1,
+      "limit": 0,
+      "produclds": [],
+      "filter": "",
+      "category": ""
+    }).then((res) {
+      setState(() {
+        detailOutlet = res;
+      });
+    }).catchError((err) {
+      print("error response: " + err.toString());
+    });
+  }
+
+  Widget _search() {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        primaryColor: Colors.grey,
+      ),
+      child: Container(
+        padding:
+            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+        child: TextField(
+            textInputAction: TextInputAction.search,
+            onSubmitted: (value) {},
+            controller: searchController,
+            readOnly: true,
+            style: TextStyle(
+              fontSize: 12.0,
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.greyInput,
+              contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              hintText: "Cari",
+              border: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColors.greyInput, width: 32.0),
+                  borderRadius: BorderRadius.circular(15)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColors.greyInput, width: 32.0),
+                  borderRadius: BorderRadius.circular(15)),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                borderSide: BorderSide(width: 1, color: Colors.white),
+              ),
+            )),
+      ),
+    );
+  }
+
+  Widget _header(DetailOutlet data) {
+    return Stack(children: [
+      Container(
+        height: 135,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Assets.bgHome),
+            fit: BoxFit.fill,
+          ),
+          shape: BoxShape.rectangle,
+        ),
+      ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                new IconButton(
+                  icon: new Icon(Icons.arrow_back_outlined,
+                      color: Colors.white, size: 24.0),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                Container(
+                  width: 200,
+                  child: Text(data.outlet["detail"]["name"],
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center),
+                ),
+                new IconButton(
+                  icon:
+                      new Icon(Icons.refresh, color: Colors.white, size: 24.0),
+                  onPressed: () => getDetailOutlet("", 1),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            child: Text(data.merchant["name"],
+                style: TextStyle(
+                  fontFamily: "roboto",
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+                textAlign: TextAlign.center),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10),
+            child: Text("Power by Digiresto",
+                style: TextStyle(
+                  fontFamily: "roboto",
+                  color: Colors.white70,
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+                textAlign: TextAlign.center),
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            GestureDetector(
+              onTap: () {
+                print(
+                    "launch call " + data.outlet["detail"]["phone"].toString());
+                LaunchUrl.call(data.outlet["detail"]["phone"].toString());
+              },
+              child: Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                margin: EdgeInsets.only(right: 10),
+                child:
+                    new Icon(Icons.call, color: AppColors.redYoung, size: 20.0),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                String phone = data.outlet["detail"]["phone"].toString();
+                String url = "https://api.whatsapp.com/send/?phone=" +
+                    phone +
+                    "&text=hi%20Digiresto";
+                LaunchUrl.run(url);
+              },
+              child: Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                margin: EdgeInsets.only(right: 10),
+                child: new Icon(Icons.message,
+                    color: AppColors.redYoung, size: 20.0),
+              ),
+            )
+          ])
+        ],
+      ),
+    ]);
+  }
+
+  Widget _category(DetailOutlet data, int selected) {
+    return ListFoodCategory(data: data.category, selected: selected);
+  }
+
+  Widget _product(DetailOutlet data) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+            left: 10,
+          ),
+          alignment: Alignment.topLeft,
+          child: Text(
+            "Semua",
+            style: TextStyle(
+              fontFamily: "roboto",
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ListProductOutletWidget(
+          data: data.product,
+          scrollDirection: Axis.vertical,
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 20,
+            color: AppColors.red,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 30,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  detailOutlet != null ? _header(detailOutlet) : Container(),
+                  detailOutlet != null ? _search() : Container(),
+                  detailOutlet != null
+                      ? _category(detailOutlet, 120)
+                      : Container(),
+                  detailOutlet != null ? _product(detailOutlet) : Container(),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

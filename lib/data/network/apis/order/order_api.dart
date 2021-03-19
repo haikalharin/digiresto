@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
+import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
@@ -113,6 +114,29 @@ class OrderApi {
         staticBanner.add(StaticBanner.createStaticBanner(listUserData[i]));
       }
       return staticBanner;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<DetailOutlet> getDetailOutlet(Map<String,dynamic> object) async{
+    try {
+      String apiUrl = Endpoints.urlGetProduct;
+      final apiResult = await _dioClient.post(apiUrl,data: {
+        "query_string":{
+          "outletName":object["outletName"],
+          "page": object["page"],
+          "limit": object["limit"],
+          "produclds": object["produclds"],
+          "filter":object["filter"],
+          "category":object["category"]
+        },
+        "body":{
+        }
+      });
+      var userData = (apiResult as Map<String,dynamic>)['data'];
+      return DetailOutlet.createDetailOutlet(userData);
     } catch (e) {
       print(e.toString());
       throw e;

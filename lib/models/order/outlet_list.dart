@@ -32,7 +32,6 @@ class OutletList {
   String merchantLogo;
   OutletList({this.id,this.name,this.outletId,this.cashierId,this.deviceId,this.assignId,this.quinos,this.moka,this.detail,this.roundingDigit,this.roundingType,this.orderMethod,this.isDelete,this.isNonSku,this.isLive,this.distance,this.merchantName,this.category,this.callbackUrl,this.merchantTags,this.outletName,this.merchantCategory,this.merchantKeywords,this.merchantLogo,this.createdDate,this.merchantId,this.isOwnerLoggedIn});
   factory OutletList.createOutletList(Map<String,dynamic> object){
-    print(object.toString());
     return OutletList(
         id : object['_id'],
         assignId : object['assignId'].toString(),

@@ -56,7 +56,6 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
       getHotPromo("",1);
     }
 
-    //getAddress();
   }
   void getHotPromo(String search,int pageParam) {
     _orderStore.getHotPromo({

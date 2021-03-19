@@ -2,6 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
+/*firebase - remote config configuration*/
 class GetRemoteConfig{
   static Future<RemoteConfig> setupRemoteConfig() async {
     await Firebase.initializeApp();
