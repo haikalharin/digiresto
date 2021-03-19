@@ -10,10 +10,11 @@ class ListNearbyOutletWidget extends StatelessWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
-  const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height})
+  final void Function(String,String,OutletList) runAction;
+  const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction})
       : super(key: key);
 
-  Widget _btnOrderMethod(BuildContext context,String orderMethod){
+  Widget _btnOrderMethod(BuildContext context,String orderMethod,OutletList param){
     String textOrderMethod;
     switch(orderMethod) {
       case "dineIn": {
@@ -50,8 +51,9 @@ class ListNearbyOutletWidget extends StatelessWidget {
           height: 50,
           child: RaisedButton(
             onPressed: () {
-      Navigator.of(context)
-          .pushNamed(Routes.order_detail_outlet);
+                runAction(param.name,orderMethod,param);
+                Navigator.of(context)
+                    .pushNamed(Routes.order_detail_outlet);
             },
             color: AppColors.red,
             child: Text(textOrderMethod,
@@ -103,7 +105,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),)),
-                for (int i = 0; i < param.orderMethod["defaultList"].length; i++) _btnOrderMethod(context,param.orderMethod["defaultList"][i]),
+                for (int i = 0; i < param.orderMethod["defaultList"].length; i++) _btnOrderMethod(context,param.orderMethod["defaultList"][i],param),
               ],
             ),
           ),

@@ -105,4 +105,15 @@ abstract class _OrderStore with Store {
       print("error response: "+ err);
     });
   }
+
+  @observable
+  String orderOutletName;
+  String orderSalesTypes;
+  OutletList orderOutlet;
+  void setOrderParameter(String outletName,String salesType,OutletList outlet){
+    this.orderOutletName = outletName;
+    this.orderSalesTypes = salesType;
+    this.orderOutlet=outlet;
+  }
+
 }

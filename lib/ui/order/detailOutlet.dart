@@ -5,6 +5,7 @@ import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,27 +22,37 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
-
+  //bool loadDataApi;
+  int page;
+  String category;
+  String searchName;
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
 
   @override
   void didChangeDependencies() {
+
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
-    getDetailOutlet("x", 1);
+    setState(() {
+      //loadDataApi=false;
+      page=1;
+      category="";
+      searchName="";
+    });
+    getDetailOutlet(_orderStore.orderOutletName, searchName, category,page);
   }
 
-  void getDetailOutlet(String search, int pageParam) {
+  void getDetailOutlet(String outletName,String filter,String category, int pageParam) {
     _orderStore.getDetailOutlet({
-      "outletName": "dgp-246",
-      "page": 1,
+      "outletName": outletName,
+      "page": pageParam,
       "limit": 0,
       "produclds": [],
-      "filter": "",
-      "category": ""
+      "filter": filter,
+      "category": category
     }).then((res) {
       setState(() {
         detailOutlet = res;
@@ -120,7 +131,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 Container(
                   width: 200,
-                  child: Text(data.outlet["detail"]["name"],
+                  child: Text(_orderStore.orderOutlet.detail["name"], //detailOutlet != null ? data.outlet["detail"]["name"] : ""
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.white,
@@ -132,13 +143,13 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 new IconButton(
                   icon:
                       new Icon(Icons.refresh, color: Colors.white, size: 24.0),
-                  onPressed: () => getDetailOutlet("", 1),
+                  onPressed: () => getDetailOutlet(_orderStore.orderOutletName, searchName,category,page),
                 ),
               ],
             ),
           ),
           Container(
-            child: Text(data.merchant["name"],
+            child: Text(_orderStore.orderOutlet.merchantName,
                 style: TextStyle(
                   fontFamily: "roboto",
                   color: Colors.white,
@@ -158,7 +169,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 textAlign: TextAlign.center),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+          detailOutlet != null ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             GestureDetector(
               onTap: () {
                 print(
@@ -197,7 +208,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                     color: AppColors.redYoung, size: 20.0),
               ),
             )
-          ])
+          ]) : Container()
         ],
       ),
     ]);
@@ -207,6 +218,13 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     return ListFoodCategory(data: data.category, selected: selected);
   }
 
+  Widget _promo(DetailOutlet data){
+    return DetailOutletHotPromoWidget(
+      height:  170.0,
+      data: data.productPromoList,
+      scrollDirection: Axis.horizontal,
+    );
+  }
   Widget _product(DetailOutlet data) {
     return Column(
       children: [
@@ -226,6 +244,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
           ),
         ),
         ListProductOutletWidget(
+          orderType: "DI",
           data: data.product,
           scrollDirection: Axis.vertical,
         ),
@@ -235,6 +254,14 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //final routes=ModalRoute.of(context).settings.arguments as Map<String,String>;
+    // if (loadDataApi==false){
+    //   getDetailOutlet(routes["outletName"], searchName, category,page);
+    //   setState(() {
+    //     loadDataApi=true;
+    //   });
+    // }
+    //_orderStore.setOrderParameter(routes["outletName"], routes["salesType"]);
     return Scaffold(
       body: Column(
         children: [
@@ -248,11 +275,12 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  detailOutlet != null ? _header(detailOutlet) : Container(),
+                  _header(detailOutlet),
                   detailOutlet != null ? _search() : Container(),
                   detailOutlet != null
                       ? _category(detailOutlet, 120)
                       : Container(),
+                  detailOutlet != null ? _promo(detailOutlet) : Container(),
                   detailOutlet != null ? _product(detailOutlet) : Container(),
                 ],
               ),
