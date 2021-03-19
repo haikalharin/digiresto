@@ -52,7 +52,12 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
     //     listOutlet = _userStore.listAddress;
     //   });
     // }
-    getOutletByLocation("",1);
+    if (_orderStore.listOutletByLocation==null){
+      getOutletByLocation("",1);
+    }else{
+      listOutlet=_orderStore.listOutletByLocation;
+    }
+
     //getAddress();
   }
 

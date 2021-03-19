@@ -52,7 +52,12 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
     //     listOutlet = _userStore.listAddress;
     //   });
     // }
-    getPromoOutlet("",1);
+    if (_orderStore.listPromoOutlet==null){
+      getPromoOutlet("",1);
+    }else{
+      listPromoOutlet=_orderStore.listPromoOutlet;
+    }
+
     //getAddress();
   }
 

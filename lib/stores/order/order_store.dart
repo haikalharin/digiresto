@@ -1,5 +1,6 @@
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
@@ -86,6 +87,19 @@ abstract class _OrderStore with Store {
   Future<List<StaticBanner>>  getStaticBanner(Map<String,dynamic> object) async {
     return await _repository.getStaticBanner(object).then((res) {
       this.listStaticBanner = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err);
+    });
+  }
+
+  @observable
+  DetailOutlet detailOutlet;
+
+  @action
+  Future<DetailOutlet>  getDetailOutlet(Map<String,dynamic> object) async {
+    return await _repository.getDetailOutlet(object).then((res) {
+      this.detailOutlet = res;
       return res;
     }).catchError((err) {
       print("error response: "+ err);
