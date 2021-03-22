@@ -11,7 +11,8 @@ import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:provider/provider.dart';
-
+import 'dart:core';
+import 'package:boilerplate/utils/loading/loading.dart';
 class DetailOutletScreen extends StatefulWidget {
   @override
   _DetailOutletScreenState createState() => _DetailOutletScreenState();
@@ -19,33 +20,64 @@ class DetailOutletScreen extends StatefulWidget {
 
 class _DetailOutletScreenState extends State<DetailOutletScreen> {
   final searchController = TextEditingController();
+  final ScrollController _scrollController = new ScrollController();
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
   //bool loadDataApi;
-  int page;
-  String category;
+  int page=1;
+  String filterCategory;
   String searchName;
+  String orderType;
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
 
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,page+1);
+      }
+    });
+  }
   @override
   void didChangeDependencies() {
 
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
+
     setState(() {
-      //loadDataApi=false;
-      page=1;
-      category="";
+      filterCategory=null;
       searchName="";
+      orderType=_orderStore.orderSalesTypes;
     });
-    getDetailOutlet(_orderStore.orderOutletName, searchName, category,page);
+
+
+    getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory,page);
   }
 
+  void searchActionText(String keyword){
+    setState(() {
+      page=1;
+      searchName=keyword;
+    });
+    getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
+  }
+  void searchActionCategory(String category){
+    setState(() {
+      page=1;
+      filterCategory=category;
+    });
+    getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
+  }
   void getDetailOutlet(String outletName,String filter,String category, int pageParam) {
+    Loading.show();
+
     _orderStore.getDetailOutlet({
       "outletName": outletName,
       "page": pageParam,
@@ -54,10 +86,20 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       "filter": filter,
       "category": category
     }).then((res) {
-      setState(() {
-        detailOutlet = res;
-      });
+      if (pageParam>page){
+        setState(() {
+          page+=1;
+          detailOutlet.product.addAll(res.product);
+        });
+      }else{
+        setState(() {
+          page=1;
+          detailOutlet = res;
+        });
+      }
+      Loading.dismiss();
     }).catchError((err) {
+      Loading.dismiss();
       print("error response: " + err.toString());
     });
   }
@@ -72,9 +114,11 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         child: TextField(
             textInputAction: TextInputAction.search,
-            onSubmitted: (value) {},
+            onSubmitted: (value) {
+              searchActionText(value.toString());
+            },
             controller: searchController,
-            readOnly: true,
+            readOnly: false,
             style: TextStyle(
               fontSize: 12.0,
             ),
@@ -143,7 +187,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 new IconButton(
                   icon:
                       new Icon(Icons.refresh, color: Colors.white, size: 24.0),
-                  onPressed: () => getDetailOutlet(_orderStore.orderOutletName, searchName,category,page),
+                  onPressed: () => getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1),
                 ),
               ],
             ),
@@ -214,18 +258,23 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     ]);
   }
 
-  Widget _category(DetailOutlet data, int selected) {
-    return ListFoodCategory(data: data.category, selected: selected);
+
+  Widget _category(DetailOutlet data, String selected) {
+    List<dynamic> paramCategory=[];
+    paramCategory.add({"id":0,"title":"SEMUA"});
+    paramCategory.addAll(data.category);
+    return ListFoodCategory(data: paramCategory, selected: selected, runAction: searchActionCategory);
   }
 
   Widget _promo(DetailOutlet data){
     return DetailOutletHotPromoWidget(
       height:  170.0,
-      data: data.productPromoList,
+      data: data.merchant["promo"],
       scrollDirection: Axis.horizontal,
     );
   }
   Widget _product(DetailOutlet data) {
+    print("reload data widget");
     return Column(
       children: [
         Container(
@@ -243,11 +292,11 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             ),
           ),
         ),
-        ListProductOutletWidget(
-          orderType: "DI",
-          data: data.product,
-          scrollDirection: Axis.vertical,
-        ),
+         ListProductOutletWidget(
+            orderType: orderType,
+            data: data.product,
+            scrollDirection: Axis.vertical,
+          ),
       ],
     );
   }
@@ -273,15 +322,17 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
           Container(
             height: MediaQuery.of(context).size.height - 30,
             child: SingleChildScrollView(
+              controller: _scrollController,
               child: Column(
                 children: [
                   _header(detailOutlet),
                   detailOutlet != null ? _search() : Container(),
                   detailOutlet != null
-                      ? _category(detailOutlet, 120)
+                      ? _category(detailOutlet, filterCategory)
                       : Container(),
                   detailOutlet != null ? _promo(detailOutlet) : Container(),
                   detailOutlet != null ? _product(detailOutlet) : Container(),
+
                 ],
               ),
             ),

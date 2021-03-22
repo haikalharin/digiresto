@@ -22,7 +22,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
+              return (data[index]["img"]==null) ? Container() : Container(
                 margin: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -49,7 +49,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(left:5,top:5),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        data[index]["promo"]["title"].toString().toString(),
+                        data[index]["title"].toString().toString(),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -59,7 +59,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    data[index]["promo"]["voucherCode"] != null ? Container(
+                    data[index]["voucherCode"] != null ? Container(
                       padding: const EdgeInsets.only(left:5,top:5),
                       child: Row(children: [
                         ImageIcon(
@@ -68,7 +68,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.only(left: 5),
                           child: Text(
-                            data[index]["promo"]["voucherCode"] ,
+                            data[index]["voucherCode"] ,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

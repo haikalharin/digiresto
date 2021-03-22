@@ -11,12 +11,11 @@ class ListProductOutletWidget extends StatelessWidget {
   final String orderType;
   final Axis scrollDirection;
   final height;
+
   const ListProductOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType})
       : super(key: key);
 
-  void getPrice(){
 
-  }
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -36,8 +35,6 @@ class ListProductOutletWidget extends StatelessWidget {
                 }
                 if (price==null){
                   price = data[index]["price"]!=null ? data[index]["price"] : data[index]["originalPrice"];
-
-
                 }
               }else{
                 if (data[index]["price"]!=null){
@@ -51,7 +48,7 @@ class ListProductOutletWidget extends StatelessWidget {
                     price = data[index]["originalPrice"];
                 }
               }
-              return data[index]["categoryCode"]!="HIDDEN" ? GestureDetector(
+              return data[index]["categoryCode"]=="HIDDEN" ? Container() : GestureDetector(
                 onTap: () => {},
                 child: Container(
                   margin: EdgeInsets.all(5),
@@ -134,7 +131,7 @@ class ListProductOutletWidget extends StatelessWidget {
                   ),
                   //child: Center(child: Text('Entry ${data[index].id.toString()}')),
                 ),
-              ) : null;
+              );
             }
     );
   }

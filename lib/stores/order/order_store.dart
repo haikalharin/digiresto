@@ -109,8 +109,23 @@ abstract class _OrderStore with Store {
   @observable
   String orderOutletName;
   String orderSalesTypes;
+  String orderSalesTypesCode;
   OutletList orderOutlet;
   void setOrderParameter(String outletName,String salesType,OutletList outlet){
+    //sales type mapping
+    if (salesType=="dineIn"){
+      this.orderSalesTypesCode="DI";
+    }else if(salesType=="takeAway"){
+      this.orderSalesTypesCode="TA";
+    }else if (orderSalesTypesCode=="GoFood"){
+      this.orderSalesTypesCode="GoF";
+    }else if (orderSalesTypesCode=="GrabFood"){
+      this.orderSalesTypesCode="GrF";
+    }else if (orderSalesTypesCode=="onlineDriver"){
+      this.orderSalesTypesCode="OD";
+    }else if (orderSalesTypesCode=="driveThru"){
+      this.orderSalesTypesCode="DT";
+    }
     this.orderOutletName = outletName;
     this.orderSalesTypes = salesType;
     this.orderOutlet=outlet;
