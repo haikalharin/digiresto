@@ -111,6 +111,9 @@ abstract class _OrderStore with Store {
   String orderSalesTypes;
   String orderSalesTypesCode;
   OutletList orderOutlet;
+  List<dynamic> orderProduct=[];
+
+  @action
   void setOrderParameter(String outletName,String salesType,OutletList outlet){
     //sales type mapping
     if (salesType=="dineIn"){
@@ -129,6 +132,17 @@ abstract class _OrderStore with Store {
     this.orderOutletName = outletName;
     this.orderSalesTypes = salesType;
     this.orderOutlet=outlet;
+  }
+  void setProduct(int productId,int qty,int price){
+    this.orderProduct.removeWhere((item) => item["id"] == productId);
+    if (qty>0) {
+      this.orderProduct.add(
+          {"id": productId, "qty": qty, "price": price, "total": qty * price});
+    }
+  }
+
+  void removeProduct(int productId){
+    this.orderProduct.removeWhere((item) => item["id"] == productId);
   }
 
 }

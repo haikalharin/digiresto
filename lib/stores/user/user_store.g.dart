@@ -79,13 +79,13 @@ mixin _$UserStore on _UserStore, Store {
   final _$listAddressAtom = Atom(name: '_UserStore.listAddress');
 
   @override
-  dynamic get listAddress {
+  List<UserAddress> get listAddress {
     _$listAddressAtom.reportRead();
     return super.listAddress;
   }
 
   @override
-  set listAddress(dynamic value) {
+  set listAddress(List<UserAddress> value) {
     _$listAddressAtom.reportWrite(value, super.listAddress, () {
       super.listAddress = value;
     });
@@ -103,6 +103,52 @@ mixin _$UserStore on _UserStore, Store {
   set activeHomeTab(String value) {
     _$activeHomeTabAtom.reportWrite(value, super.activeHomeTab, () {
       super.activeHomeTab = value;
+    });
+  }
+
+  final _$activeHistoryScreenAtom =
+      Atom(name: '_UserStore.activeHistoryScreen');
+
+  @override
+  String get activeHistoryScreen {
+    _$activeHistoryScreenAtom.reportRead();
+    return super.activeHistoryScreen;
+  }
+
+  @override
+  set activeHistoryScreen(String value) {
+    _$activeHistoryScreenAtom.reportWrite(value, super.activeHistoryScreen, () {
+      super.activeHistoryScreen = value;
+    });
+  }
+
+  final _$listPromoAtom = Atom(name: '_UserStore.listPromo');
+
+  @override
+  List<UserPromo> get listPromo {
+    _$listPromoAtom.reportRead();
+    return super.listPromo;
+  }
+
+  @override
+  set listPromo(List<UserPromo> value) {
+    _$listPromoAtom.reportWrite(value, super.listPromo, () {
+      super.listPromo = value;
+    });
+  }
+
+  final _$activeAddressAtom = Atom(name: '_UserStore.activeAddress');
+
+  @override
+  String get activeAddress {
+    _$activeAddressAtom.reportRead();
+    return super.activeAddress;
+  }
+
+  @override
+  set activeAddress(String value) {
+    _$activeAddressAtom.reportWrite(value, super.activeAddress, () {
+      super.activeAddress = value;
     });
   }
 
@@ -214,6 +260,13 @@ mixin _$UserStore on _UserStore, Store {
     return _$removeAddressAsyncAction.run(() => super.removeAddress(object));
   }
 
+  final _$getPromoAsyncAction = AsyncAction('_UserStore.getPromo');
+
+  @override
+  Future<List<UserPromo>> getPromo(Map<String, dynamic> object) {
+    return _$getPromoAsyncAction.run(() => super.getPromo(object));
+  }
+
   final _$_UserStoreActionController = ActionController(name: '_UserStore');
 
   @override
@@ -247,6 +300,9 @@ user: ${user},
 authPhone: ${authPhone},
 listAddress: ${listAddress},
 activeHomeTab: ${activeHomeTab},
+activeHistoryScreen: ${activeHistoryScreen},
+listPromo: ${listPromo},
+activeAddress: ${activeAddress},
 isLoading: ${isLoading}
     ''';
   }

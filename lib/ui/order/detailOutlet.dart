@@ -3,11 +3,14 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/ui/order/detailProductDialog.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:provider/provider.dart';
@@ -54,10 +57,8 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     setState(() {
       filterCategory=null;
       searchName="";
-      orderType=_orderStore.orderSalesTypes;
+      orderType=_orderStore.orderSalesTypesCode;
     });
-
-
     getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory,page);
   }
 
@@ -103,6 +104,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       print("error response: " + err.toString());
     });
   }
+
 
   Widget _search() {
     return Theme(
@@ -274,7 +276,6 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     );
   }
   Widget _product(DetailOutlet data) {
-    print("reload data widget");
     return Column(
       children: [
         Container(
@@ -295,22 +296,27 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
          ListProductOutletWidget(
             orderType: orderType,
             data: data.product,
+            runDetailAction: _showDetailProduct,
             scrollDirection: Axis.vertical,
           ),
       ],
     );
   }
 
+  _showDetailProduct(Map<String,dynamic> dataProduct,String orderType) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+          builder: (BuildContext context) {
+            return DetailProductDialog(dataProduct: dataProduct, orderType: orderType);
+          },
+        fullscreenDialog: true
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    //final routes=ModalRoute.of(context).settings.arguments as Map<String,String>;
-    // if (loadDataApi==false){
-    //   getDetailOutlet(routes["outletName"], searchName, category,page);
-    //   setState(() {
-    //     loadDataApi=true;
-    //   });
-    // }
-    //_orderStore.setOrderParameter(routes["outletName"], routes["salesType"]);
     return Scaffold(
       body: Column(
         children: [
@@ -342,3 +348,4 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     );
   }
 }
+

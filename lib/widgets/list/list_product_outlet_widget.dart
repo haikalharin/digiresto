@@ -11,8 +11,9 @@ class ListProductOutletWidget extends StatelessWidget {
   final String orderType;
   final Axis scrollDirection;
   final height;
+  final void Function(Map<String,dynamic>,String) runDetailAction;
 
-  const ListProductOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType})
+  const ListProductOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runDetailAction})
       : super(key: key);
 
 
@@ -49,7 +50,9 @@ class ListProductOutletWidget extends StatelessWidget {
                 }
               }
               return data[index]["categoryCode"]=="HIDDEN" ? Container() : GestureDetector(
-                onTap: () => {},
+                onTap: () => {
+                  runDetailAction(data[index],orderType)
+                },
                 child: Container(
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
