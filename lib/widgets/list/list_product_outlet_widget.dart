@@ -69,7 +69,7 @@ class ListProductOutletWidget extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           child: Image(
-                            image: (data[index]["img"]!="") ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
+                            image: (data[index]["img"]!=null) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
                             fit: BoxFit.fill,
                             height: 96,
                             width: 96,

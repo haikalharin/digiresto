@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/models/map/geocode.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
@@ -6,7 +8,6 @@ import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
-import 'package:boilerplate/utils/dio/dio_error_util.dart';
 import 'package:mobx/mobx.dart';
 
 part 'order_store.g.dart';
@@ -21,8 +22,47 @@ abstract class _OrderStore with Store {
   final ErrorStore errorStore = ErrorStore();
 
   // constructor:---------------------------------------------------------------
-  _OrderStore(Repository repository) : this._repository = repository;
+  //_OrderStore(Repository repository) : this._repository = repository;
+  _OrderStore(Repository repository) : this._repository = repository {
 
+    // setting up disposers
+    _setupDisposers();
+
+
+    _repository.orderOutletName.then((value) => {
+      this.orderOutletName = value!= "" ? value : ""}
+    );
+
+    _repository.orderSalesTypes.then((value) => {
+      this.orderSalesTypes = value!= "" ? value : ""}
+    );
+
+    _repository.orderSalesTypesCode.then((value) => {
+      this.orderSalesTypesCode = value!= "" ? value : ""}
+    );
+
+    _repository.orderOutletDetailName.then((value) => {
+      this.orderOutletDetailName = value!= "" ? value : ""}
+    );
+
+    _repository.orderMerchantName.then((value) => {
+      this.orderMerchantName = value!= "" ? value : ""}
+    );
+
+
+    _repository.orderProduct.then((value) => {
+      this.orderProduct = value!= null ? jsonDecode(value) : ""}
+    );
+  }
+
+  // disposers:-----------------------------------------------------------------
+  List<ReactionDisposer> _disposers;
+
+  void _setupDisposers() {
+    _disposers = [
+      reaction((_) => success, (_) => success = false, delay: 200),
+    ];
+  }
   // store variables:-----------------------------------------------------------
   static ObservableFuture<Geocode> emptyOutletByLocationResponse =
   ObservableFuture.value(null);
@@ -108,17 +148,19 @@ abstract class _OrderStore with Store {
 
   @observable
   String orderOutletName;
+  String orderOutletDetailName;
   String orderSalesTypes;
   String orderSalesTypesCode;
-  OutletList orderOutlet;
+  String orderMerchantName;
   List<dynamic> orderProduct=[];
 
   @action
-  void setOrderParameter(String outletName,String salesType,OutletList outlet){
+  void setOrderParameter(Map<String,dynamic> object){
+
     //sales type mapping
-    if (salesType=="dineIn"){
+    if (object["orderSalesTypes"]=="dineIn") {
       this.orderSalesTypesCode="DI";
-    }else if(salesType=="takeAway"){
+    }else if(object["orderSalesTypes"]=="takeAway"){
       this.orderSalesTypesCode="TA";
     }else if (orderSalesTypesCode=="GoFood"){
       this.orderSalesTypesCode="GoF";
@@ -129,18 +171,41 @@ abstract class _OrderStore with Store {
     }else if (orderSalesTypesCode=="driveThru"){
       this.orderSalesTypesCode="DT";
     }
-    this.orderOutletName = outletName;
-    this.orderSalesTypes = salesType;
-    this.orderOutlet=outlet;
+    _repository.saveOrderOutletName({
+        "orderOutletName": object["orderOutletName"],
+        "orderSalesTypes": object["orderSalesTypes"],
+        "orderSalesTypesCode":this.orderSalesTypesCode,
+        "orderMerchantName": object["orderMerchantName"],
+        "orderOutletDetailName": object["orderOutletDetailName"],
+    }).then((res) {
+      this.orderOutletName = object["orderOutletName"];
+      this.orderSalesTypes = object["orderSalesTypes"];
+      this.orderMerchantName= object["orderMerchantName"];
+      this.orderOutletDetailName=object["orderOutletDetailName"];
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+
+
+    if (object["orderOutletName"]!=this.orderOutletName){
+      this.orderProduct=[];
+    }
+
+    //save to local storage
+
   }
-  void setProduct(int productId,int qty,int price){
+
+  @action
+  void setProduct(int productId,int qty,int price,Map<String,dynamic> detailProduct){
     this.orderProduct.removeWhere((item) => item["id"] == productId);
     if (qty>0) {
       this.orderProduct.add(
-          {"id": productId, "qty": qty, "price": price, "total": qty * price});
+          {"id": productId, "qty": qty, "price": price, "total": qty * price,"detail":detailProduct});
     }
+    _repository.saveOrderProduct(jsonEncode(this.orderProduct));
   }
 
+  @action
   void removeProduct(int productId){
     this.orderProduct.removeWhere((item) => item["id"] == productId);
   }

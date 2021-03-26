@@ -10,7 +10,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
-  final void Function(String,String,OutletList) runAction;
+  final void Function(Map<String, dynamic>) runAction;
   const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction})
       : super(key: key);
 
@@ -51,7 +51,12 @@ class ListNearbyOutletWidget extends StatelessWidget {
           height: 50,
           child: RaisedButton(
             onPressed: () {
-                runAction(param.name,orderMethod,param);
+                runAction({
+                    "orderOutletName":param.name,
+                    "orderSalesTypes":orderMethod,
+                    "orderMerchantName":param.merchantName,
+                    "orderOutletDetailName":param.detail["name"],
+                  });
                 Navigator.of(context)
                     .pushNamed(Routes.order_detail_outlet);
             },

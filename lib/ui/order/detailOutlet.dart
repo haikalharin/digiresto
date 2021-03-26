@@ -32,6 +32,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   String filterCategory;
   String searchName;
   String orderType;
+
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
@@ -47,6 +48,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       }
     });
   }
+
   @override
   void didChangeDependencies() {
 
@@ -69,6 +71,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     });
     getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
   }
+
   void searchActionCategory(String category){
     setState(() {
       page=1;
@@ -76,6 +79,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     });
     getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
   }
+
   void getDetailOutlet(String outletName,String filter,String category, int pageParam) {
     Loading.show();
 
@@ -177,7 +181,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 Container(
                   width: 200,
-                  child: Text(_orderStore.orderOutlet.detail["name"], //detailOutlet != null ? data.outlet["detail"]["name"] : ""
+                  child: Text(_orderStore.orderOutletDetailName, //detailOutlet != null ? data.outlet["detail"]["name"] : ""
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.white,
@@ -195,7 +199,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             ),
           ),
           Container(
-            child: Text(_orderStore.orderOutlet.merchantName,
+            child: Text(_orderStore.orderMerchantName,
                 style: TextStyle(
                   fontFamily: "roboto",
                   color: Colors.white,

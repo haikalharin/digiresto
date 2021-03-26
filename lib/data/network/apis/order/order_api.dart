@@ -84,7 +84,6 @@ class OrderApi {
       List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       List<HotPromo> promos= [];
       for(int i = 0;i<listUserData.length;i++){
-        print(listUserData[i]);
         promos.add(HotPromo.createHotPromo(listUserData[i]));
       }
       return promos;

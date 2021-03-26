@@ -243,4 +243,17 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
+  //order local storage
+  Future<void> saveOrderOutletName(Map<String,dynamic> object) =>
+      _sharedPrefsHelper.saveOrderOutletName(object);
+
+  Future<void> saveOrderProduct(String product) =>
+      _sharedPrefsHelper.saveOrderProduct(product);
+
+  Future<String> get orderOutletName => _sharedPrefsHelper.orderOutletName;
+  Future<String> get orderSalesTypes => _sharedPrefsHelper.orderSalesTypes;
+  Future<String> get orderSalesTypesCode => _sharedPrefsHelper.orderSalesTypesCode;
+  Future<String> get orderOutletDetailName => _sharedPrefsHelper.orderOutletDetailName;
+  Future<String> get orderMerchantName => _sharedPrefsHelper.orderMerchantName;
+  Future<String> get orderProduct => _sharedPrefsHelper.orderProduct;
 }

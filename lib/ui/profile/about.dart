@@ -1,14 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
-import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/remote_config/remote_config.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
 
 class AboutScreen extends StatefulWidget {
   @override

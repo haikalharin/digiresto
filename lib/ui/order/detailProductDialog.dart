@@ -95,7 +95,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
-                          image: (widget.dataProduct["img"] != "")
+                          image: (widget.dataProduct["img"] != null)
                               ? NetworkImage(widget.dataProduct["img"])
                               : RandomImages.getImage(),
                           fit: BoxFit.fill,
@@ -261,9 +261,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         width: MediaQuery. of(context). size. width-190,
                         child: RaisedButton(
                           onPressed: () {
-                            print(totalqty);
-                            _orderStore.setProduct(widget.dataProduct["id"],totalqty,price);
-                            print(_orderStore.orderProduct);
+                            _orderStore.setProduct(widget.dataProduct["id"],totalqty,price,widget.dataProduct);
                           },
                           color: AppColors.red,
                           child: Text("Tambah ke keranjang",
