@@ -14,7 +14,7 @@ class DetailProductDialog extends StatefulWidget {
       {Key key,
       @required this.dataProduct,
       @required this.orderType,
-      this.qtyProduct = 0})
+      this.qtyProduct = 1})
       : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class DetailProductDialog extends StatefulWidget {
 }
 
 class _DetailProductDialogState extends State<DetailProductDialog> {
-  int totalqty = 0;
+  int totalqty = 1;
   OrderStore _orderStore;
   @override
   void didChangeDependencies() {

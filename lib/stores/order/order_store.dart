@@ -203,6 +203,7 @@ abstract class _OrderStore with Store {
           {"id": productId, "qty": qty, "price": price, "total": qty * price,"detail":detailProduct});
     }
     _repository.saveOrderProduct(jsonEncode(this.orderProduct));
+    this.orderProduct.sort((a, b) => a["id"].compareTo(b["id"]));
   }
 
   @action

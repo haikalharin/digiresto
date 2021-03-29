@@ -12,8 +12,9 @@ class ListProductCartWidget extends StatelessWidget {
   final Axis scrollDirection;
   final height;
   final void Function(Map<String,dynamic>,String) runEditAction;
+  final void Function(int,int,int,Map<String,dynamic>) addOrRemove;
 
-  const ListProductCartWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runEditAction})
+  const ListProductCartWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runEditAction,this.addOrRemove})
       : super(key: key);
 
 
@@ -152,6 +153,7 @@ class ListProductCartWidget extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
+                                      addOrRemove(data[index]["detail"]["id"],data[index]["qty"]-1,price,data[index]["detail"]);
                                       //minus();
                                     },
                                     child: CircleAvatar(
@@ -174,6 +176,7 @@ class ListProductCartWidget extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: () {
+                                      addOrRemove(data[index]["detail"]["id"],data[index]["qty"]+1,price,data[index]["detail"]);
                                       //plus();
                                     },
                                     child: CircleAvatar(

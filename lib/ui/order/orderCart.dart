@@ -25,11 +25,14 @@ class OrderCartScreen extends StatefulWidget {
 }
 
 class _OrderCartScreenState extends State<OrderCartScreen> {
-  final searchController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
+  final notesController = TextEditingController();
+  final placeInfoController = TextEditingController();
+  final voucherCodeController = TextEditingController();
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
+  int reloadCounter = 0;
 
   goBack(BuildContext context) {
     Navigator.pop(context);
@@ -41,17 +44,25 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
   }
-  void _editCart(Map<String, dynamic> x, String y){
 
+  void _editCart(Map<String, dynamic> x, String y) {}
+
+  void _plusProduct(
+      int productId, int qty, int price, Map<String, dynamic> detailProduct) {
+    setState(() {
+      reloadCounter++;
+    });
+    _orderStore.setProduct(productId, qty, price, detailProduct);
   }
+
   Widget _order() {
     return Container(
       color: Colors.white,
       width: double.infinity,
-      padding: EdgeInsets.only(top: 10, left: 15, right: 15),
+      padding: EdgeInsets.only(top: 10, left: 10, right: 5),
       margin: EdgeInsets.only(top: 10),
       child: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -81,13 +92,16 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               ),
             ),
           ),
-
-            ListProductCartWidget(
+          Container(
+            width: double.infinity,
+            child: ListProductCartWidget(
+              addOrRemove: _plusProduct,
               orderType: _orderStore.orderSalesTypesCode,
               data: _orderStore.orderProduct,
               runEditAction: _editCart,
               scrollDirection: Axis.vertical,
             ),
+          ),
         ],
       ),
     );
@@ -108,7 +122,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(left: 10, top: 10),
+                padding: EdgeInsets.only(top: 10),
                 child: Column(
                   children: [
                     Text("Mau pesan yang lain ? ",
@@ -119,7 +133,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           fontWeight: FontWeight.bold,
                         )),
                     Container(
-                      padding: EdgeInsets.only(left: 10, top: 5,bottom: 10),
+                      padding: EdgeInsets.only(left: 10, top: 5, bottom: 10),
                       child: Text("Tambahkan pesanan lainnya ",
                           style: TextStyle(
                             fontFamily: "roboto",
@@ -136,11 +150,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                 height: 35,
                 child: RaisedButton(
                   onPressed: () {
-                    // print(_orderStore.orderOutletDetailName);
-                    // print(_orderStore.orderMerchantName);
-                    // print(_orderStore.orderSalesTypesCode);
-                    // print(_orderStore.orderSalesTypes);
-                    // print(_orderStore.orderProduct);
+                    Navigator.of(context).pushNamed(Routes.order_detail_outlet);
                   },
                   color: Colors.white,
                   child: Text("Tambah",
@@ -149,7 +159,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           fontWeight: FontWeight.bold,
                           color: AppColors.red)),
                   shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0),
+                    borderRadius: new BorderRadius.circular(5.0),
                     side: BorderSide(
                       width: 1,
                       color: AppColors.red,
@@ -193,12 +203,12 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                 new IconButton(
                   icon: new Icon(Icons.arrow_back_outlined,
                       color: Colors.white, size: 24.0),
-                  onPressed: (){
+                  onPressed: () {
                     //if (_userStore.activeHistoryScreen=='profile.address'){
-                      _userStore.setActivedHomeTab("home");
-                      Navigator.of(context).pushNamed(Routes.home);
+                    _userStore.setActivedHomeTab("home");
+                    Navigator.of(context).pushNamed(Routes.home);
                     //}
-                    },
+                  },
                 ),
                 Container(
                   child: Text("Detail Order",
@@ -222,6 +232,221 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     ]);
   }
 
+  Widget _notes() {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Info Makan di Tempat",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        //color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Container(
+                    padding: const EdgeInsets.only(top: 5, bottom: 10),
+                    child: TextField(
+                        textInputAction: TextInputAction.search,
+                        onSubmitted: (value) {},
+                        controller: notesController,
+                        readOnly: false,
+                        onTap: () {
+                          print("open popup");
+                        },
+                        style: TextStyle(
+                          fontSize: 14.0,
+                        ),
+                        decoration: InputDecoration(
+                          isDense: true,
+                          filled: true,
+                          fillColor: AppColors.greyFill,
+                          contentPadding: EdgeInsets.only(top:12,bottom: 12, left: 10, right: 10),
+                          hintText: "",
+                          border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 32.0),
+                              borderRadius: BorderRadius.circular(5)),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderSide: BorderSide(width: 1, color: Colors.black),
+                          ),
+                        )),
+                  ),
+
+                  Row(
+                    children: [
+                      Text("Catatan",
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            //color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Container(
+                        padding: EdgeInsets.only(left: 5),
+                        child: Text("opsional",
+                            style: TextStyle(
+                              fontFamily: "roboto",
+                              color: Colors.black87 ,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(top: 5, bottom: 10),
+                    child: TextField(
+                        textInputAction: TextInputAction.search,
+                        onSubmitted: (value) {},
+                        controller: placeInfoController,
+                        readOnly: false,
+                        onTap: () {
+                          print("open popup");
+                        },
+                        style: TextStyle(
+                          fontSize: 12.0,
+                        ),
+                        decoration: InputDecoration(
+                          isDense: true,
+                          filled: true,
+                          fillColor: AppColors.greyFill,
+                          contentPadding: EdgeInsets.only(top:12,bottom: 12, left: 10, right: 10),
+                          hintText: "Contoh, tidak pakai bawang",
+                          border: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.black, width: 32.0),
+                              borderRadius: BorderRadius.circular(5)),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderSide: BorderSide(width: 1, color: Colors.black),
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _useVoucherCode() {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Kode Voucher",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery. of(context). size. width/1.5,
+                        padding: const EdgeInsets.only(top: 15, bottom: 10),
+                        child: TextField(
+                            textInputAction: TextInputAction.search,
+                            onSubmitted: (value) {},
+                            controller: voucherCodeController,
+                            readOnly: false,
+                            onTap: () {
+                              print("open popup");
+                            },
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              filled: true,
+                              fillColor: AppColors.greyFill,
+                              contentPadding: EdgeInsets.only(top:12,bottom: 12, left: 10, right: 10),
+                              hintText: "Masukkan Kode Voucher",
+                              border: OutlineInputBorder(
+                                  borderSide:
+                                  BorderSide(color: Colors.black, width: 32.0),
+                                  borderRadius: BorderRadius.circular(5)),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                borderSide: BorderSide(width: 1, color: Colors.black),
+                              ),
+                            )),
+                      ),
+                      Container(
+                        alignment: Alignment.topCenter,
+                        padding: const EdgeInsets.only(top:5),
+                        //width: MediaQuery. of(context). size. width-200,
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          height: 50,
+                          child: RaisedButton(
+                            onPressed: () {
+
+                            },
+                            color: AppColors.red,
+                            child: Text("Gunakan",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.redYoung,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -241,6 +466,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   _header(),
                   _order(),
                   _addNew(),
+                  _notes(),
+                  _useVoucherCode()
                 ],
               ),
             ),
