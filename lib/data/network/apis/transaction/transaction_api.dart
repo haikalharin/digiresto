@@ -1,0 +1,43 @@
+import 'dart:async';
+
+import 'package:boilerplate/data/network/constants/endpoints.dart';
+import 'package:boilerplate/data/network/dio_client.dart';
+import 'package:boilerplate/data/network/rest_client.dart';
+
+import 'package:boilerplate/models/transaction/transaction_history.dart';
+
+import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'dart:math';
+import 'package:http/http.dart' as http;
+
+class TransactionApi {
+  // dio instance
+  final DioClient _dioClient;
+
+  // rest-client instance
+  final RestClient _restClient;
+
+  // injecting dio instance
+  TransactionApi(this._dioClient, this._restClient);
+
+  Future<List<TransactionHistory>> getTransactionHistory() async {
+    try {
+      String apiUrl = Endpoints.urlGetTransactionHistory;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {"outletName": ""},
+        "body": {}
+      });
+
+      var transactionHistory = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam jsonObject
+      List<TransactionHistory> listTransactionHistory = [];
+      for (int i = 0; i < transactionHistory.length; i++) {
+        listTransactionHistory.add(TransactionHistory.createTransactionHistory(transactionHistory[i]));
+      }
+      return listTransactionHistory;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+}

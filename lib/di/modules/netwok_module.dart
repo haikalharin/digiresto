@@ -3,6 +3,7 @@ import 'package:boilerplate/data/network/apis/map/map_api.dart';
 import 'package:boilerplate/data/network/apis/order/order_api.dart';
 import 'package:boilerplate/data/network/apis/posts/post_api.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
+import 'package:boilerplate/data/network/apis/transaction/transaction_api.dart';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
@@ -103,6 +104,11 @@ class NetworkModule extends PreferenceModule {
   @singleton
   OrderApi provideOrderApi(DioClient dioClient, RestClient restClient) =>
       OrderApi(dioClient, restClient);
+
+  @provide
+  @singleton
+  TransactionApi provideTransactionApi(DioClient dioClient, RestClient restClient) =>
+      TransactionApi(dioClient, restClient);
 // Api Providers End:---------------------------------------------------------
 
 }

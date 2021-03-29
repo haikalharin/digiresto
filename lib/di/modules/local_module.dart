@@ -6,6 +6,7 @@ import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/apis/map/map_api.dart';
 import 'package:boilerplate/data/network/apis/order/order_api.dart';
 import 'package:boilerplate/data/network/apis/posts/post_api.dart';
+import 'package:boilerplate/data/network/apis/transaction/transaction_api.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
@@ -86,6 +87,7 @@ class LocalModule extends NetworkModule {
     AuthApi authApi,
     MapApi mapApi,
     OrderApi orderApi,
+    TransactionApi transactionApi,
   ) =>
-      Repository(postApi, preferenceHelper, postDataSource, userApi,authApi,mapApi,orderApi);
+      Repository(postApi, preferenceHelper, postDataSource, userApi,authApi,mapApi,orderApi,transactionApi);
 }

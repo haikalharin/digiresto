@@ -4,7 +4,10 @@ import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/network/apis/auth/auth_api.dart';
 import 'package:boilerplate/data/network/apis/map/map_api.dart';
 import 'package:boilerplate/data/network/apis/order/order_api.dart';
+import 'package:boilerplate/data/network/apis/transaction/transaction_api.dart';
+
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
+
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
@@ -23,6 +26,8 @@ import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
+import 'package:boilerplate/models/transaction/transaction_history.dart';
+
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
@@ -44,11 +49,14 @@ class Repository {
 
   final OrderApi _orderApi;
 
+  final TransactionApi _transactionApi;
+
   // shared pref object
   final SharedPreferenceHelper _sharedPrefsHelper;
 
   // constructor
-  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,this._userApi, this._authApi,this._mapApi,this._orderApi);
+  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource, this._userApi, this._authApi, this._mapApi,
+      this._orderApi, this._transactionApi);
 
   // Post: ---------------------------------------------------------------------
   Future<PostList> getPosts() async {
@@ -243,4 +251,9 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
+  Future<List<TransactionHistory>> getTransactionHistory() async {
+    return await _transactionApi.getTransactionHistory().then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
 }

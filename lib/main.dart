@@ -11,6 +11,8 @@ import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/stores/transaction/transaction_store.dart';
+
 import 'package:boilerplate/ui/home/home.dart';
 import 'package:boilerplate/ui/splash/splash.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
@@ -56,6 +58,7 @@ class MyApp extends StatelessWidget {
   final UserStore _userStore = UserStore(appComponent.getRepository(),);
   final MapStore _mapStore = MapStore(appComponent.getRepository(),);
   final OrderStore _orderStore = OrderStore(appComponent.getRepository(),);
+  final TransactionStore _transactionStore = TransactionStore(appComponent.getRepository(),);
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +70,7 @@ class MyApp extends StatelessWidget {
         Provider<UserStore>(create: (_) => _userStore),
         Provider<MapStore>(create: (_) => _mapStore),
         Provider<OrderStore>(create: (_) => _orderStore),
+        Provider<TransactionStore>(create: (_) => _transactionStore),
        ],
       child: Observer(
         name: 'global-observer',
