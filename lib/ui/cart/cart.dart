@@ -25,8 +25,6 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("123"),
-    );
+    return Container();
   }
 }

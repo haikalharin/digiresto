@@ -15,6 +15,8 @@ import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'dart:core';
 import 'package:boilerplate/utils/loading/loading.dart';
@@ -23,16 +25,45 @@ class OrderCartScreen extends StatefulWidget {
   @override
   _OrderCartScreenState createState() => _OrderCartScreenState();
 }
-
+class KeyValueModel {
+  String key;
+  String value;
+  KeyValueModel({this.key, this.value});
+}
 class _OrderCartScreenState extends State<OrderCartScreen> {
   final ScrollController _scrollController = new ScrollController();
   final notesController = TextEditingController();
   final placeInfoController = TextEditingController();
   final voucherCodeController = TextEditingController();
+  final paxController = TextEditingController();
+  final selectedDateController = TextEditingController();
+  bool useSchedule;
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
   int reloadCounter = 0;
+  DateTime selectedDate;
+
+  List<KeyValueModel> _dataSmoking = [
+    KeyValueModel(key: "1", value: "Smoking"),
+    KeyValueModel(key: "2", value: "Non Smoking"),
+  ];
+  List<KeyValueModel> _dataClock = [
+    KeyValueModel(key: "13:00", value: "13:00"),
+    KeyValueModel(key: "14:00", value: "14:00"),
+    KeyValueModel(key: "15:00", value: "15:00"),
+    KeyValueModel(key: "16:00", value: "16:00"),
+    KeyValueModel(key: "17:00", value: "17:00"),
+    KeyValueModel(key: "18:00", value: "18:00"),
+    KeyValueModel(key: "19:00", value: "19:00"),
+    KeyValueModel(key: "20:00", value: "20:00"),
+    KeyValueModel(key: "21:00", value: "21:00"),
+    KeyValueModel(key: "22:00", value: "22:00"),
+    KeyValueModel(key: "23:00", value: "23:00"),
+    KeyValueModel(key: "24:00", value: "24:00"),
+  ];
+  String _selectedValueClock;
+  String _selectedValueSmoking;
 
   goBack(BuildContext context) {
     Navigator.pop(context);
@@ -43,8 +74,19 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
+    initDialogPlace();
   }
 
+  void initDialogPlace(){
+    setState(() {
+      useSchedule=false;
+      paxController.text = "1";
+      selectedDate = DateTime.now();
+      _selectedValueClock = "13:00";
+      _selectedValueSmoking = "1";
+      selectedDateController.text = new DateFormat("yyyy/MM/dd").format(DateTime.now());
+    });
+  }
   void _editCart(Map<String, dynamic> x, String y) {}
 
   void _plusProduct(
@@ -232,6 +274,39 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     ]);
   }
 
+  String getValueSmoking(String key){
+    for (int i=0; i <= _dataSmoking.length; i++ ){
+      if (_dataSmoking[i].key==key){
+        return _dataSmoking[i].value;
+      }
+    }
+  }
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2030),
+      builder: (BuildContext context, Widget child) {
+        return Theme(
+            isMaterialAppTheme: true,
+            child: child,
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light().copyWith(
+                primary: AppColors.red
+              ),
+            primaryColor: AppColors.red,
+        ));
+      },
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        selectedDateController.text=new DateFormat("yyyy/MM/dd").format(picked);
+      });
+  }
+
+
   Widget _notes() {
     return Theme(
       data: Theme.of(context).copyWith(
@@ -259,10 +334,10 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     child: TextField(
                         textInputAction: TextInputAction.search,
                         onSubmitted: (value) {},
-                        controller: notesController,
-                        readOnly: false,
+                        controller: placeInfoController,
+                        readOnly: true,
                         onTap: () {
-                          print("open popup");
+                          _dialogPlace(context);
                         },
                         style: TextStyle(
                           fontSize: 14.0,
@@ -310,10 +385,9 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     child: TextField(
                         textInputAction: TextInputAction.search,
                         onSubmitted: (value) {},
-                        controller: placeInfoController,
+                        controller: notesController,
                         readOnly: false,
                         onTap: () {
-                          print("open popup");
                         },
                         style: TextStyle(
                           fontSize: 12.0,
@@ -347,6 +421,280 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
         ),
       ),
     );
+  }
+
+  _dialogPlace(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => new AlertDialog(
+          content: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                 height: useSchedule ? 350 : 270,
+                 width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      alignment: Alignment.topCenter,
+                      child:  Text("Info Makan di Tempat",
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            //color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Gunakan Jadwal",
+                            style: TextStyle(
+                              fontFamily: "roboto",
+                              //color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        Switch(
+                          value: useSchedule,
+                          onChanged: (value) {
+                            setState(() {
+                              useSchedule = value;
+                            });
+                          },
+                          activeTrackColor: Colors.redAccent,
+                          activeColor: AppColors.redYoung,
+                        )
+                      ],
+                    ),
+                    useSchedule ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Text("Jadwal",
+                              style: TextStyle(
+                                fontFamily: "roboto",
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Container(
+                                padding: const EdgeInsets.only(top: 5, bottom: 10),
+                                child: TextField(
+                                    textInputAction: TextInputAction.search,
+                                    onSubmitted: (value) {},
+                                    controller: selectedDateController,
+                                    readOnly: true,
+                                    onTap: () {
+                                      _selectDate(context);
+                                    },
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      filled: true,
+                                      fillColor: AppColors.greyFill,
+                                      contentPadding: EdgeInsets.only(top:12,bottom: 12, left: 10, right: 10),
+                                      hintText: "Contoh, tidak pakai bawang",
+                                      border: OutlineInputBorder(
+                                          borderSide:
+                                          BorderSide(color: Colors.black, width: 32.0),
+                                          borderRadius: BorderRadius.circular(5)),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                                        borderSide: BorderSide(width: 1, color: Colors.black),
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            Flexible(
+                              child: Container(
+                                width: 80,
+                                child: DropdownButtonFormField<String>(
+                                  decoration: InputDecoration(
+                                      isDense: true,
+                                      filled: true,
+                                      fillColor: AppColors.greyFill,
+                                      contentPadding: EdgeInsets.only(top:8,bottom: 8, left: 5, right: 5),
+                                      border: OutlineInputBorder(
+                                        borderSide:
+                                        BorderSide(color: Colors.black),
+                                      )),
+                                  value: _selectedValueClock,
+                                  items: _dataClock
+                                      .map((data) => DropdownMenuItem<String>(
+                                    child: Text(data.value),
+                                    value: data.key,
+                                  ))
+                                      .toList(),
+                                  onChanged: (String value) {
+                                    setState((){
+                                      _selectedValueClock = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ) : Container(),
+                    Container(
+                      child: Text("Pax",
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 5, bottom: 10),
+                      child: TextField(
+                          textInputAction: TextInputAction.search,
+                          onSubmitted: (value) {},
+                          controller: paxController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.digitsOnly
+                          ], // Only numbers can be entered,
+                          readOnly: false,
+                          onTap: () {
+                          },
+                          style: TextStyle(
+                            fontSize: 12.0,
+                          ),
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: AppColors.greyFill,
+                            contentPadding: EdgeInsets.only(top:12,bottom: 12, left: 10, right: 10),
+                            hintText: "",
+                            border: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.black, width: 32.0),
+                                borderRadius: BorderRadius.circular(5)),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderSide: BorderSide(width: 1, color: Colors.black),
+                            ),
+                          )),
+                    ),
+                    Container(
+                      child: Text("Smoking / Non Smoking",
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top:5),
+                      child: DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: AppColors.greyFill,
+                            contentPadding: EdgeInsets.only(top:8,bottom: 8, left: 10, right: 10),
+                            border: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.black),
+                            )),
+                        value: _selectedValueSmoking,
+                        items: _dataSmoking
+                            .map((data) => DropdownMenuItem<String>(
+                          child: Text(data.value),
+                          value: data.key,
+                        ))
+                            .toList(),
+                        onChanged: (String value) {
+                          setState((){
+                            _selectedValueSmoking = value;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top:15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.all(5),
+                              height: 50,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width - 260,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  placeInfoController.text = "";
+                                  initDialogPlace();
+                                  Navigator.of(context).pop();
+                                },
+                                color: Colors.white,
+                                child: Text("Batal",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.redYoung)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(5.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
+                            ),
+                         Container(
+                              padding: EdgeInsets.all(5),
+                              height: 50,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width - 260,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  String txt;
+                                  if (useSchedule){
+                                    txt = selectedDateController.text.toString()+" "+_selectedValueClock+" "+paxController.text.toString()+" pax, "+getValueSmoking(_selectedValueSmoking);
+                                  }else{
+                                    txt = "Now, "+paxController.text.toString()+" pax, "+getValueSmoking(_selectedValueSmoking);
+                                  }
+                                  placeInfoController.text = txt;
+                                  Navigator.of(context).pop();
+                                },
+                                color: AppColors.red,
+                                child: Text("Ok",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(5.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }
+          ),
+
+        ));
   }
 
   Widget _useVoucherCode() {
@@ -383,7 +731,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             controller: voucherCodeController,
                             readOnly: false,
                             onTap: () {
-                              print("open popup");
+
                             },
                             style: TextStyle(
                               fontSize: 14.0,
