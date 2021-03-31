@@ -9,4 +9,12 @@ class Preferences {
   static const String access_token = "accessToken";
   static const String phone_number = "phoneNumber";
   static const String phone_verified = "phoneVerified";
+
+  //order reference
+  static const String orderOutletName = "orderOutletName";
+  static const String orderSalesTypes = "orderSalesTypes";
+  static const String orderSalesTypesCode = "orderSalesTypesCode";
+  static const String orderMerchantName = "orderMerchantName";
+  static const String orderOutletDetailName = "orderOutletDetailName";
+  static const String orderProduct = "orderProduct";
 }

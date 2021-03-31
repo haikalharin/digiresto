@@ -3,14 +3,19 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/ui/order/detailProductDialog.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:provider/provider.dart';
-
+import 'dart:core';
+import 'package:boilerplate/utils/loading/loading.dart';
 class DetailOutletScreen extends StatefulWidget {
   @override
   _DetailOutletScreenState createState() => _DetailOutletScreenState();
@@ -18,38 +23,92 @@ class DetailOutletScreen extends StatefulWidget {
 
 class _DetailOutletScreenState extends State<DetailOutletScreen> {
   final searchController = TextEditingController();
+  final ScrollController _scrollController = new ScrollController();
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
+  //bool loadDataApi;
+  int page=1;
+  String filterCategory;
+  String searchName;
+  String orderType;
 
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
 
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,page+1);
+      }
+    });
+  }
+
   @override
   void didChangeDependencies() {
+
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
-    getDetailOutlet("x", 1);
+
+    setState(() {
+      filterCategory=null;
+      searchName="";
+      orderType=_orderStore.orderSalesTypesCode;
+    });
+    getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory,page);
   }
 
-  void getDetailOutlet(String search, int pageParam) {
+  void searchActionText(String keyword){
+    setState(() {
+      page=1;
+      searchName=keyword;
+    });
+    getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
+  }
+
+  void searchActionCategory(String category){
+    setState(() {
+      page=1;
+      filterCategory=category;
+    });
+    getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
+  }
+
+  void getDetailOutlet(String outletName,String filter,String category, int pageParam) {
+    Loading.show();
+
     _orderStore.getDetailOutlet({
-      "outletName": "dgp-246",
-      "page": 1,
+      "outletName": outletName,
+      "page": pageParam,
       "limit": 0,
       "produclds": [],
-      "filter": "",
-      "category": ""
+      "filter": filter,
+      "category": category
     }).then((res) {
-      setState(() {
-        detailOutlet = res;
-      });
+      if (pageParam>page){
+        setState(() {
+          page+=1;
+          detailOutlet.product.addAll(res.product);
+        });
+      }else{
+        setState(() {
+          page=1;
+          detailOutlet = res;
+        });
+      }
+      Loading.dismiss();
     }).catchError((err) {
+      Loading.dismiss();
       print("error response: " + err.toString());
     });
   }
+
 
   Widget _search() {
     return Theme(
@@ -61,9 +120,11 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         child: TextField(
             textInputAction: TextInputAction.search,
-            onSubmitted: (value) {},
+            onSubmitted: (value) {
+              searchActionText(value.toString());
+            },
             controller: searchController,
-            readOnly: true,
+            readOnly: false,
             style: TextStyle(
               fontSize: 12.0,
             ),
@@ -120,7 +181,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 Container(
                   width: 200,
-                  child: Text(data.outlet["detail"]["name"],
+                  child: Text(_orderStore.orderOutletDetailName, //detailOutlet != null ? data.outlet["detail"]["name"] : ""
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.white,
@@ -132,13 +193,13 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 new IconButton(
                   icon:
                       new Icon(Icons.refresh, color: Colors.white, size: 24.0),
-                  onPressed: () => getDetailOutlet("", 1),
+                  onPressed: () => getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1),
                 ),
               ],
             ),
           ),
           Container(
-            child: Text(data.merchant["name"],
+            child: Text(_orderStore.orderMerchantName,
                 style: TextStyle(
                   fontFamily: "roboto",
                   color: Colors.white,
@@ -158,7 +219,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 textAlign: TextAlign.center),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+          detailOutlet != null ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             GestureDetector(
               onTap: () {
                 print(
@@ -197,16 +258,27 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                     color: AppColors.redYoung, size: 20.0),
               ),
             )
-          ])
+          ]) : Container()
         ],
       ),
     ]);
   }
 
-  Widget _category(DetailOutlet data, int selected) {
-    return ListFoodCategory(data: data.category, selected: selected);
+
+  Widget _category(DetailOutlet data, String selected) {
+    List<dynamic> paramCategory=[];
+    paramCategory.add({"id":0,"title":"SEMUA"});
+    paramCategory.addAll(data.category);
+    return ListFoodCategory(data: paramCategory, selected: selected, runAction: searchActionCategory);
   }
 
+  Widget _promo(DetailOutlet data){
+    return DetailOutletHotPromoWidget(
+      height:  170.0,
+      data: data.merchant["promo"],
+      scrollDirection: Axis.horizontal,
+    );
+  }
   Widget _product(DetailOutlet data) {
     return Column(
       children: [
@@ -225,11 +297,25 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             ),
           ),
         ),
-        ListProductOutletWidget(
-          data: data.product,
-          scrollDirection: Axis.vertical,
-        ),
+         ListProductOutletWidget(
+            orderType: orderType,
+            data: data.product,
+            runDetailAction: _showDetailProduct,
+            scrollDirection: Axis.vertical,
+          ),
       ],
+    );
+  }
+
+  _showDetailProduct(Map<String,dynamic> dataProduct,String orderType) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+          builder: (BuildContext context) {
+            return DetailProductDialog(dataProduct: dataProduct, orderType: orderType);
+          },
+        fullscreenDialog: true
+      ),
     );
   }
 
@@ -246,14 +332,17 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
           Container(
             height: MediaQuery.of(context).size.height - 30,
             child: SingleChildScrollView(
+              controller: _scrollController,
               child: Column(
                 children: [
-                  detailOutlet != null ? _header(detailOutlet) : Container(),
+                  _header(detailOutlet),
                   detailOutlet != null ? _search() : Container(),
                   detailOutlet != null
-                      ? _category(detailOutlet, 120)
+                      ? _category(detailOutlet, filterCategory)
                       : Container(),
+                  detailOutlet != null ? _promo(detailOutlet) : Container(),
                   detailOutlet != null ? _product(detailOutlet) : Container(),
+
                 ],
               ),
             ),
@@ -263,3 +352,4 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     );
   }
 }
+

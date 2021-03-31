@@ -553,7 +553,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               _discount(),
               _hotPromo(),
               _singleAdvertisement(),
-              _historyOrder(),
+              //_historyOrder(),
           ],
         ),
             )),

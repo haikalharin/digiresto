@@ -165,6 +165,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
             ),
             _search(),
             ListNearbyOutletWidget(
+              runAction: _orderStore.setOrderParameter,
               height: MediaQuery. of(context). size. height-160,
               data: listOutlet,
               scrollDirection: Axis.vertical,

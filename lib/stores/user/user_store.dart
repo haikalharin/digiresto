@@ -136,7 +136,7 @@ abstract class _UserStore with Store {
   @action
   Future saveAuthPhone(String handPhone) async {
     return await _repository.saveAuthPhone(handPhone).then((res) {
-      this.authToken = handPhone;
+      this.authPhone = handPhone;
       return res;
     }).catchError((err) {
       print("error: "+ err);
