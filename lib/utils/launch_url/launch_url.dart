@@ -10,7 +10,7 @@ class LaunchUrl{
   }
 
   static Future call(phone) async {
-    String url = "tel://0811131944";
+    String url = "tel:+$phone";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

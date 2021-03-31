@@ -1,4 +1,6 @@
 import 'package:boilerplate/models/outlet/outlet.dart';
+import 'package:boilerplate/models/transaction/transaction_history_item.dart';
+import 'package:boilerplate/models/transaction/transaction_history_taxes_and_services.dart';
 
 class TransactionHistory {
   String outletId;
@@ -17,7 +19,7 @@ class TransactionHistory {
   int discountAmount;
   int discountPercentage;
   int subtotal;
-  List<dynamic> items;
+  List<TransactionHistoryItem> items;
   int totalItemAmount;
   int totalItemCost;
   int totalItemDiscount;
@@ -31,7 +33,7 @@ class TransactionHistory {
   String receiptCode;
   int roundAmount;
   String status;
-  List<dynamic> taxesAndServices;
+  List<TransactionHistoryTaxesAndServices> taxesAndServices;
   List<dynamic> promos;
   int totalDiscount;
   int receiptTotalDiscount;
@@ -112,7 +114,7 @@ class TransactionHistory {
       discountAmount: object['discountAmount'],
       discountPercentage: object['discountPercentage'],
       subtotal: object['subtotal'],
-      items: object['items'],
+      items: List<TransactionHistoryItem>.from(object['items'].map((data) => TransactionHistoryItem.create(data))),
       totalItemAmount: object['totalItemAmount'],
       totalItemCost: object['totalItemCost'],
       totalItemDiscount: object['totalItemDiscount'],
@@ -126,7 +128,7 @@ class TransactionHistory {
       receiptCode: object['receiptCode'],
       roundAmount: object['roundAmount'],
       status: object['status'],
-      taxesAndServices: object['taxesAndServices'],
+      taxesAndServices: List<TransactionHistoryTaxesAndServices>.from(object['taxesAndServices'].map((data) => TransactionHistoryTaxesAndServices.create(data))),
       promos: object['promos'],
       totalDiscount: object['totalDiscount'],
       receiptTotalDiscount: object['receiptTotalDiscount'],

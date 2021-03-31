@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/transaction/transaction_history.dart';
+import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/utils/formatting/rupiah.dart';
@@ -29,10 +30,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
     });
   }
 
-  goBack(BuildContext context) {
-    Navigator.pop(context);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -48,7 +45,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   Widget _buildTransactionHistoryItem(BuildContext context, int index) {
-    final transaction = transactionHistory[index];
+    final TransactionHistory transaction = transactionHistory[index];
 
     final df = new DateFormat('dd MMM yyyy, hh:mm:ss');
     final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
@@ -57,7 +54,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       margin: EdgeInsets.only(bottom: 10),
       child: GestureDetector(
         onTap: () {
-          print('Transaction ${transaction.receiptCode} clicked');
+          Navigator.of(context).pushNamed(Routes.history_detail, arguments: transaction);
         },
         child: Container(
           decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
