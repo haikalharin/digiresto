@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+//import 'package:boilerplate/models/key_value_model.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
@@ -25,12 +26,19 @@ class OrderCartScreen extends StatefulWidget {
   @override
   _OrderCartScreenState createState() => _OrderCartScreenState();
 }
+
 class KeyValueModel {
   String key;
   String value;
   KeyValueModel({this.key, this.value});
 }
+
+
 class _OrderCartScreenState extends State<OrderCartScreen> {
+  UserStore _userStore;
+  OrderStore _orderStore;
+  DetailOutlet detailOutlet;
+
   final ScrollController _scrollController = new ScrollController();
   final notesController = TextEditingController();
   final placeInfoController = TextEditingController();
@@ -38,16 +46,15 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
   bool useSchedule;
-  UserStore _userStore;
-  OrderStore _orderStore;
-  DetailOutlet detailOutlet;
   int reloadCounter = 0;
   DateTime selectedDate;
+  bool notesSubmited=true;
 
   List<KeyValueModel> _dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
     KeyValueModel(key: "2", value: "Non Smoking"),
   ];
+
   List<KeyValueModel> _dataClock = [
     KeyValueModel(key: "13:00", value: "13:00"),
     KeyValueModel(key: "14:00", value: "14:00"),
@@ -385,10 +392,13 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     child: TextField(
                         textInputAction: TextInputAction.search,
                         onSubmitted: (value) {},
+                        onChanged: (text) {
+                          setState(() {
+                            notesSubmited=false;
+                          });
+                        },
                         controller: notesController,
                         readOnly: false,
-                        onTap: () {
-                        },
                         style: TextStyle(
                           fontSize: 12.0,
                         ),
@@ -408,6 +418,40 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           ),
                         )),
                   ),
+                  notesSubmited==false ? Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        alignment: Alignment.topCenter,
+                        padding: const EdgeInsets.only(top:5),
+                        //width: MediaQuery. of(context). size. width-200,
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          height: 55,
+                          child: RaisedButton(
+                            onPressed: () {
+                              setState(() {
+                                notesSubmited=true;
+                              });
+                            },
+                            color: AppColors.red,
+                            child: Text("Simpan",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.redYoung,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ) : Container()
                 ],
               ),
             ),

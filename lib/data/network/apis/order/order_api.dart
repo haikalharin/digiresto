@@ -141,4 +141,42 @@ class OrderApi {
       throw e;
     }
   }
+
+  Future<DetailOutlet> createCartSession(Map<String,dynamic> object) async{
+    try {
+      String apiUrl = Endpoints.urlCreateCartSession;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string":{},
+        "body":{
+          "customerCarColor": "",
+          "customerCarNumber": "",
+          "customerCarType": "",
+          "customerName": "Nurul Hidayat",
+          "customerNote": "",
+          "customerPax": "1",
+          "customerPhone": "081113194441",
+          "customerSmoking": false,
+          "customerTableNumber": "",
+          "eta": "now",
+          "items": [
+            {
+              "modifiers": [],
+              "note": "",
+              "productId": "746",
+              "qty": 5
+            }
+          ],
+          "outletName": "dgp-248",
+          "paymentType": "",
+          "promos": [],
+          "salesType": "dineIn"
+        }
+      });
+      var userData = (apiResult as Map<String,dynamic>)['data'];
+      return DetailOutlet.createDetailOutlet(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
 }
