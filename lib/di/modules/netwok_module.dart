@@ -34,12 +34,6 @@ class NetworkModule extends PreferenceModule {
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
       ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
-      ..interceptors.add(LogInterceptor(
-        request: true,
-        responseBody: true,
-        requestBody: true,
-        requestHeader: true,
-      ))
       ..interceptors.add(
         InterceptorsWrapper(
           onRequest: (Options options) async {
@@ -56,7 +50,13 @@ class NetworkModule extends PreferenceModule {
             }
           },
         ),
-      );
+      )
+      ..interceptors.add(LogInterceptor(
+        request: true,
+        responseBody: true,
+        requestBody: true,
+        requestHeader: true,
+      ));
 
     return dio;
   }
