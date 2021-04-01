@@ -97,4 +97,59 @@ class SharedPreferenceHelper {
       return prefs.setString(Preferences.show_onboarding, onboarding);
     });
   }
+
+  //order:---------------------------------------------------
+  Future<String> get orderOutletName async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.orderOutletName);
+    });
+  }
+
+  Future<void> saveOrderOutletName(Map<String,dynamic> object) async {
+    return _sharedPreference.then((preference) {
+      preference.setString(Preferences.orderOutletName, object["orderOutletName"]);
+      preference.setString(Preferences.orderSalesTypes, object["orderSalesTypes"]);
+      preference.setString(Preferences.orderSalesTypesCode, object["orderSalesTypesCode"]);
+      preference.setString(Preferences.orderMerchantName, object["orderMerchantName"]);
+      preference.setString(Preferences.orderOutletDetailName, object["orderOutletDetailName"]);
+    });
+  }
+
+  Future<String> get orderSalesTypes async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.orderSalesTypes);
+    });
+  }
+
+
+  Future<String> get orderSalesTypesCode async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.orderSalesTypesCode);
+    });
+  }
+
+
+  Future<String> get orderMerchantName async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.orderMerchantName);
+    });
+  }
+
+  Future<String> get orderOutletDetailName async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.orderOutletDetailName);
+    });
+  }
+
+  Future<String> get orderProduct async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.orderProduct);
+    });
+  }
+
+  Future<void> saveOrderProduct(String orderProduct) async {
+    return _sharedPreference.then((preference) {
+      preference.setString(Preferences.orderProduct, orderProduct);
+    });
+  }
 }

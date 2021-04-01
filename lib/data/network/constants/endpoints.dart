@@ -37,7 +37,9 @@ class Endpoints {
   static const String urlGetOutletByLocation = baseUrlDigiresto + "/forward?r=getoutletbylocation";
 
   //order
-  static const String urlGetProduct = baseUrlDigiresto + "/forward?r=getproduct";
+  static const String urlGetProduct = baseUrlDigiresto+"/forward?r=getproduct";
+  static const String urlCreateCartSession = baseUrlDigiresto+"/forward?r=createcartsession";
+  static const String urlUpdateCartSession = baseUrlDigiresto+"/forward?r=updatecartsession";
 
   // transaction
   static const String urlGetTransactionHistory = baseUrlDigiresto + "/forward?r=transactionhistory";

@@ -84,7 +84,6 @@ class OrderApi {
       List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       List<HotPromo> promos= [];
       for(int i = 0;i<listUserData.length;i++){
-        print(listUserData[i]);
         promos.add(HotPromo.createHotPromo(listUserData[i]));
       }
       return promos;
@@ -133,6 +132,44 @@ class OrderApi {
           "category":object["category"]
         },
         "body":{
+        }
+      });
+      var userData = (apiResult as Map<String,dynamic>)['data'];
+      return DetailOutlet.createDetailOutlet(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<DetailOutlet> createCartSession(Map<String,dynamic> object) async{
+    try {
+      String apiUrl = Endpoints.urlCreateCartSession;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string":{},
+        "body":{
+          "customerCarColor": "",
+          "customerCarNumber": "",
+          "customerCarType": "",
+          "customerName": "Nurul Hidayat",
+          "customerNote": "",
+          "customerPax": "1",
+          "customerPhone": "081113194441",
+          "customerSmoking": false,
+          "customerTableNumber": "",
+          "eta": "now",
+          "items": [
+            {
+              "modifiers": [],
+              "note": "",
+              "productId": "746",
+              "qty": 5
+            }
+          ],
+          "outletName": "dgp-248",
+          "paymentType": "",
+          "promos": [],
+          "salesType": "dineIn"
         }
       });
       var userData = (apiResult as Map<String,dynamic>)['data'];

@@ -8,10 +8,14 @@ import 'package:flutter/rendering.dart';
 
 class ListProductOutletWidget extends StatelessWidget {
   final List<dynamic> data;
+  final String orderType;
   final Axis scrollDirection;
   final height;
-  const ListProductOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height})
+  final void Function(Map<String,dynamic>,String) runDetailAction;
+
+  const ListProductOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runDetailAction})
       : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +26,33 @@ class ListProductOutletWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => {},
+              int price;
+              int beforePrice;
+              if (data[index]["isUseSalesType"]==true){
+                for (int i = 0; i < data[index]["salesTypes"].length; i++){
+                  if (data[index]["salesTypes"][i]["code"]==orderType){
+                    price = data[index]["salesTypes"][i]["price"];
+                  }
+                }
+                if (price==null){
+                  price = data[index]["price"]!=null ? data[index]["price"] : data[index]["originalPrice"];
+                }
+              }else{
+                if (data[index]["price"]!=null){
+                    if (data[index]["price"]<data[index]["originalPrice"]){
+                      price = data[index]["price"];
+                      beforePrice = data[index]["originalPrice"];
+                    }else{
+                      price = data[index]["price"];
+                    }
+                }else{
+                    price = data[index]["originalPrice"];
+                }
+              }
+              return data[index]["categoryCode"]=="HIDDEN" ? Container() : GestureDetector(
+                onTap: () => {
+                  runDetailAction(data[index],orderType)
+                },
                 child: Container(
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
@@ -40,8 +69,9 @@ class ListProductOutletWidget extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           child: Image(
-                            image: (data[index]["img"]!="") ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
+                            image: (data[index]["img"]!=null) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
                             fit: BoxFit.fill,
+                            height: 96,
                             width: 96,
                             alignment: Alignment.center,
                           ),
@@ -63,21 +93,42 @@ class ListProductOutletWidget extends StatelessWidget {
                             ),
                             textAlign: TextAlign.left),
                       ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: const EdgeInsets.only(top:5),
-                        //width: 10,
-                        child: Text("Rp."+data[index]["originalPrice"].toString(),
-                            softWrap: false,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.left),
+                      Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.only(top:5),
+                            //width: 10,
+                            child: Text("Rp."+price.toString(),
+                                softWrap: false,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.left),
+                          ),
+                          beforePrice!=null ? Container(
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.only(top:5),
+                            //width: 10,
+                            child: Text("Rp."+beforePrice.toString(),
+                                softWrap: false,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.black38,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.lineThrough
+                                ),
+                                textAlign: TextAlign.left),
+                          ) : Container(),
+                        ],
                       ),
                     ],
                   ),
