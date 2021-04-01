@@ -2,6 +2,7 @@ import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
@@ -104,7 +105,7 @@ class ListProductCartWidget extends StatelessWidget {
                                     alignment: Alignment.topLeft,
                                     padding: const EdgeInsets.only(top:5),
                                     //width: 10,
-                                    child: Text("Rp."+data[index]["total"].toString(),
+                                    child: Text("Rp."+Utils.formatRupiah(data[index]["total"].toString()),
                                         softWrap: false,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,

@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
@@ -148,7 +149,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                           alignment: Alignment.topLeft,
                           padding: const EdgeInsets.only(top: 5),
                           //width: 10,
-                          child: Text("Rp." + price.toString(),
+                          child: Text("Rp." + Utils.formatRupiah(price.toString()),
                               softWrap: false,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -165,7 +166,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.only(top: 5),
                                 //width: 10,
-                                child: Text("Rp." + beforePrice.toString(),
+                                child: Text("Rp." + Utils.formatRupiah(beforePrice.toString()),
                                     softWrap: false,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -198,7 +199,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.all(5),
                         //width: 10,
-                        child: Text("Rp." + price.toString(),
+                        child: Text("Rp." + Utils.formatRupiah(price.toString()),
                             softWrap: false,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -262,6 +263,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         child: RaisedButton(
                           onPressed: () {
                             _orderStore.setProduct(widget.dataProduct["id"],totalqty,price,widget.dataProduct);
+                            Navigator.of(context).pop();
                           },
                           color: AppColors.red,
                           child: Text("Tambah ke keranjang",

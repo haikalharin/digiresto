@@ -3,6 +3,7 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -28,22 +29,17 @@ class _CreditScreenState extends State<CreditScreen> {
     // initializing stores
     _userStore = Provider.of<UserStore>(context);
     //var tmpBalance = double.parse(_userStore.balance.balance).toString();
-    String tmpBalance = formatBalance(_userStore.balance.balance);
+    String tmpBalance = Utils.formatRupiah(_userStore.balance.balance);
       setState(() {
         balance = tmpBalance;
       });
   }
-  String formatBalance(String balance){
-    final formatter = new NumberFormat("#,###","ID");
-    var tmpBalance = double.parse(balance).toString();
-    var intBalance = int.parse(tmpBalance.substring(0, tmpBalance.length - 2));
-    return formatter.format(intBalance).toString();
-  }
+
 
   void getBalance(){
       Loading.show();
       _userStore.getBalance().then((res) {
-        var tmpBalance =formatBalance(res.balance);
+        var tmpBalance =Utils.formatRupiah(res.balance);
         setState(() {
           balance = tmpBalance;
         });

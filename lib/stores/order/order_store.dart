@@ -153,6 +153,7 @@ abstract class _OrderStore with Store {
   String orderSalesTypesCode;
   String orderMerchantName;
   List<dynamic> orderProduct=[];
+  int orderPriceTotal;
 
   @action
   void setOrderParameter(Map<String,dynamic> object){
@@ -195,6 +196,12 @@ abstract class _OrderStore with Store {
 
   }
 
+  void calculatePrice(){
+    this.orderPriceTotal = 0;
+    for (int i = 0; this.orderProduct.length > i; i++){
+      orderPriceTotal+=this.orderProduct[i]["total"];
+    }
+  }
   @action
   void setProduct(int productId,int qty,int price,Map<String,dynamic> detailProduct){
     this.orderProduct.removeWhere((item) => item["id"] == productId);
@@ -204,6 +211,7 @@ abstract class _OrderStore with Store {
     }
     _repository.saveOrderProduct(jsonEncode(this.orderProduct));
     this.orderProduct.sort((a, b) => a["id"].compareTo(b["id"]));
+    calculatePrice();
   }
 
   @action
