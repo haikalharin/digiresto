@@ -210,6 +210,35 @@
             ]
           },
           {
+            "name": "provideTransactionApi",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/network/apis/transaction/transaction_api.dart#TransactionApi",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": [
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/dio_client.dart#DioClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/rest_client.dart#RestClient",
+                  "qualifier": null
+                },
+                "isProvider": false
+              }
+            ]
+          },
+          {
             "name": "provideSharedPreferences",
             "kind": "method",
             "injectedType": {
@@ -323,6 +352,13 @@
               {
                 "lookupKey": {
                   "root": "asset:boilerplate/lib/data/network/apis/order/order_api.dart#OrderApi",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/network/apis/transaction/transaction_api.dart#TransactionApi",
                   "qualifier": null
                 },
                 "isProvider": false
