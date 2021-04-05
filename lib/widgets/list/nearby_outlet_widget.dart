@@ -6,14 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
 
-class ListNearbyOutletWidget extends StatelessWidget {
+class ListNearbyOutletWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
   final void Function(Map<String, dynamic>) runAction;
-  const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction})
+  final void Function() loadMoreAction;
+  const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction,this.loadMoreAction})
       : super(key: key);
 
+  @override
+  _ListNearbyOutletWidgetState createState() => _ListNearbyOutletWidgetState();
+}
+
+class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
+  final ScrollController _scrollController = new ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+          widget.loadMoreAction();
+        /*getDetailOutlet(
+            _orderStore.orderOutletName, searchName, filterCategory, page + 1);*/
+      }
+    });
+  }
   Widget _btnOrderMethod(BuildContext context,String orderMethod,OutletList param){
     String textOrderMethod;
     switch(orderMethod) {
@@ -51,7 +70,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
           height: 50,
           child: RaisedButton(
             onPressed: () {
-                runAction({
+                widget.runAction({
                     "orderOutletName":param.name,
                     "orderSalesTypes":orderMethod,
                     "orderMerchantName":param.merchantName,
@@ -76,6 +95,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
           ),
     );
   }
+
   Future<void> _showMyDialog(BuildContext context, OutletList param) async {
     return showDialog<void>(
       context: context,
@@ -123,15 +143,16 @@ class ListNearbyOutletWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: height,
+        height: widget.height,
         child: ListView.builder(
-            scrollDirection: scrollDirection,
+            controller: _scrollController,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
             padding: const EdgeInsets.all(8),
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                onTap: () => {_showMyDialog(context, data[index])},
+                onTap: () => {_showMyDialog(context, widget.data[index])},
                 child: Container(
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
@@ -148,7 +169,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           child: Image(
-                            image: (data[index].merchantLogo!=null) ? NetworkImage(data[index].merchantLogo) : RandomImages.getImage(),
+                            image: (widget.data[index].merchantLogo!=null) ? NetworkImage(widget.data[index].merchantLogo) : RandomImages.getImage(),
                             fit: BoxFit.fill,
                             width: 96,
                             alignment: Alignment.center,
@@ -162,7 +183,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.only(top:5),
                             width: MediaQuery. of(context). size. width-160,
-                            child: Text(data[index].outletName.toString(),
+                            child: Text(widget.data[index].outletName.toString(),
                                 softWrap: false,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -175,7 +196,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top:5),
-                            child: Text(data[index].merchantName.toString(),
+                            child: Text(widget.data[index].merchantName.toString(),
                                 style: TextStyle(
                                   fontFamily: "roboto",
                                   color: Colors.black,
@@ -186,7 +207,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top:5),
-                            child: Text(data[index].distance["text"],
+                            child: Text(widget.data[index].distance["text"],
                                 style: TextStyle(
                                   fontFamily: "roboto",
                                   color: Colors.black,
@@ -195,7 +216,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
                                 ),
                                 textAlign: TextAlign.left),
                           ),
-                          !data[index].isOwnerLoggedIn ? Padding(
+                          !widget.data[index].isOwnerLoggedIn ? Padding(
                             padding: const EdgeInsets.only(top:5),
                             child: Text("Closed",
                                 style: TextStyle(

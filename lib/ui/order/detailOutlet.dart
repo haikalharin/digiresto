@@ -36,7 +36,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   String filterCategory;
   String searchName;
   String orderType;
-
+  bool detailOutletLoading=false;
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
@@ -55,7 +55,6 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
 
   refresh() {
-    print("im refresh");
     setState(() {
       //all the reload processes
     });
@@ -94,8 +93,9 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
   void getDetailOutlet(String outletName, String filter, String category,
       int pageParam) {
-    Loading.show();
-
+    setState(() {
+      detailOutletLoading=true;
+    });
     _orderStore.getDetailOutlet({
       "outletName": outletName,
       "page": pageParam,
@@ -115,9 +115,9 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
           detailOutlet = res;
         });
       }
-      Loading.dismiss();
+      detailOutletLoading=false;
     }).catchError((err) {
-      Loading.dismiss();
+      detailOutletLoading=false;
       print("error response: " + err.toString());
     });
   }
@@ -293,7 +293,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
   Widget _promo(DetailOutlet data) {
     return DetailOutletHotPromoWidget(
-      height: 170.0,
+      height: 190.0,
       data: data.merchant["promo"],
       scrollDirection: Axis.horizontal,
     );
@@ -323,6 +323,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
           runDetailAction: _showDetailProduct,
           scrollDirection: Axis.vertical,
         ),
+        Loading.smallLoading(detailOutletLoading),
       ],
     );
   }
@@ -442,7 +443,6 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                         : Container(),
                     detailOutlet != null ? _promo(detailOutlet) : Container(),
                     detailOutlet != null ? _product(detailOutlet) : Container(),
-
                   ],
                 ),
               ),

@@ -113,7 +113,9 @@ abstract class _OrderStore with Store {
   @action
   Future<List<HotPromo>>  getHotPromo(Map<String,dynamic> object) async {
     return await _repository.getHotPromo(object).then((res) {
-      this.listHotPromo = res;
+      if (object["page"].toString()=="1") {
+        this.listHotPromo = res;
+      }
       return res;
     }).catchError((err) {
       print("error response: "+ err);

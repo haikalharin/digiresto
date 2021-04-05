@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _postStore = Provider.of<PostStore>(context);
     _userStore = Provider.of<UserStore>(context,listen: true);
     _orderStore = Provider.of<OrderStore>(context,listen: true);
-
+    //_userStore.logoutSessionLogin();
     // if (_userStore.profile==null){
     //   getBasicInformation();
     // }
@@ -121,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //   getBasicInformation();
     // }
     if (_userStore.profile==null && _userStore.balance==null) getBasicInformation();
+
   }
   @override
   Widget build(BuildContext context) {

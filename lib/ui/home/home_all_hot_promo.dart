@@ -48,24 +48,37 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
-    if (_orderStore.listHotPromo != null) {
-      setState(() {
-        listAllPromo = _orderStore.listHotPromo;
-      });
-    }else{
-      getHotPromo("",1);
-    }
+    // if (_orderStore.listHotPromo != null) {
+    //   setState(() {
+    //     listAllPromo = _orderStore.listHotPromo;
+    //   });
+    // }else{
+      getHotPromo(searchController.text.toString(),1);
+    //}
 
   }
+
+  void loadMoreOutletByLocation(){
+    getHotPromo(searchController.text.toString(),page+1);
+  }
+
   void getHotPromo(String search,int pageParam) {
     _orderStore.getHotPromo({
       "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
       "page": pageParam.toString(),
       "filter": search.toString()
     }).then((res) {
-      setState(() {
-        listAllPromo = res;
-      });
+      if (pageParam > page) {
+        setState(() {
+          page += 1;
+          listAllPromo.addAll(res);
+        });
+      } else {
+        setState(() {
+          page = 1;
+          listAllPromo = res;
+        });
+      }
     }).catchError((err) {
       print("error response: " + err.toString());
     });
@@ -86,7 +99,6 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
             controller: searchController,
             readOnly: false,
             onTap: (){
-              print("open popup");
             },
             style: TextStyle(
               fontSize: 14.0,
@@ -156,6 +168,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
             ),
             _search(),
             ListAllPromoWidget(
+              loadMoreAction: loadMoreOutletByLocation,
               height: MediaQuery. of(context). size. height-160,
               data: listAllPromo,
               scrollDirection: Axis.vertical,

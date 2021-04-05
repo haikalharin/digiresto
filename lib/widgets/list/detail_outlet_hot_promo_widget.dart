@@ -67,6 +67,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                           color: AppColors.red, size: 20,),
                         Container(
                           padding: EdgeInsets.only(left: 5),
+                          width: 110,
                           child: Text(
                             data[index]["voucherCode"] ,
                             maxLines: 1,
