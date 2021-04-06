@@ -35,7 +35,6 @@ class ListFoodCategory extends StatelessWidget {
               }
               return GestureDetector(
                 onTap: (){
-                  print("am click"+ data[index]["title"]);
                   if (data[index]["id"]==0){
                     runAction(null);
                   }else{

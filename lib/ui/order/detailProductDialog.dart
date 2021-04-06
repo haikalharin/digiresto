@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/list/list_product_variant_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:provider/provider.dart';
+
+
 class DetailProductDialog extends StatefulWidget {
   final dataProduct;
   final orderType;
@@ -32,6 +37,12 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     setState(() {
       totalqty = widget.qtyProduct;
     });
+    print(widget.dataProduct);
+    Timer.run(() {
+    if (widget.dataProduct["variants"].length > 0){
+        _showMaterialDialog();
+    }
+    });
   }
 
   void plus() {
@@ -46,6 +57,54 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
         totalqty--;
       });
     }
+  }
+
+  _showMaterialDialog() {
+    double height = (widget.dataProduct["variants"].length == 1) ?  MediaQuery. of(context). size. height - 300 :  MediaQuery. of(context). size. height - 220;
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => new AlertDialog(
+          title:  Center( child: Text("PILIHAN VARIAN MENU", style: TextStyle(
+            fontFamily: "roboto",
+            color: AppColors.red,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),)),
+          content: Container(
+            height:  height,
+            child: Column(
+              children: [
+                ListProductVariant(
+                    data: widget.dataProduct["variants"]
+                ),
+                Container(
+                  height: 50,
+                  width: MediaQuery. of(context). size. width-190,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    },
+                    color: Colors.white,
+                    child: Text("Kembali",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.red)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0),
+                      side: BorderSide(
+                        width: 1,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 
   @override
@@ -96,7 +155,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
-                          image: (widget.dataProduct["img"] != null)
+                          image: (widget.dataProduct["img"].length > 1)
                               ? NetworkImage(widget.dataProduct["img"])
                               : RandomImages.getImage(),
                           fit: BoxFit.fill,

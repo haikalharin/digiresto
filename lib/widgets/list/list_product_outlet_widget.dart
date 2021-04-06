@@ -50,7 +50,7 @@ class ListProductOutletWidget extends StatelessWidget {
                     price = data[index]["originalPrice"];
                 }
               }
-              return data[index]["categoryCode"]=="HIDDEN" ? Container() : GestureDetector(
+              return data[index]["category"]=="HIDDEN" ? Container() : GestureDetector(
                 onTap: () => {
                   runDetailAction(data[index],orderType)
                 },
@@ -73,7 +73,7 @@ class ListProductOutletWidget extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular(8.0)),
                               child: Image(
-                                image: (data[index]["img"]!=null) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
+                                image: (data[index]["img"].length > 1) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
                                 fit: BoxFit.fill,
                                 height: 96,
                                 width: 96,
@@ -100,7 +100,7 @@ class ListProductOutletWidget extends StatelessWidget {
                         ],
                       ),
 
-                      Column(
+                    (data[index]["variants"].length == 0) ? Column(
                         children: [
                           Container(
                             alignment: Alignment.topLeft,
@@ -136,7 +136,7 @@ class ListProductOutletWidget extends StatelessWidget {
                                 textAlign: TextAlign.left),
                           ) : Container(),
                         ],
-                      ),
+                      ) : Column(),
                     ],
                   ),
                   //child: Center(child: Text('Entry ${data[index].id.toString()}')),
