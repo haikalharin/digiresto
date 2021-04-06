@@ -90,7 +90,7 @@ abstract class _OrderStore with Store {
       this.listOutletByLocation = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print("error response: "+ err.toString());
     });
   }
 
@@ -103,7 +103,7 @@ abstract class _OrderStore with Store {
       this.listPromoOutlet = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print("error response: "+ err.toString());
     });
   }
 
@@ -116,7 +116,7 @@ abstract class _OrderStore with Store {
       this.listHotPromo = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print("error response: "+ err.toString());
     });
   }
 
@@ -129,7 +129,7 @@ abstract class _OrderStore with Store {
       this.listStaticBanner = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print("error response: "+ err.toString());
     });
   }
 
@@ -142,7 +142,7 @@ abstract class _OrderStore with Store {
       this.detailOutlet = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print("error response: "+ err.toString());
     });
   }
 

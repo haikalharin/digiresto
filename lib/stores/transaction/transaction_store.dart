@@ -34,7 +34,7 @@ abstract class _TransactionStore with Store {
       this.listTransactionHistory = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print("error response: "+ err.toString());
     });
   }
 }

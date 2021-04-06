@@ -194,7 +194,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
           });
           Loading.dismiss();
         }).catchError((err) {
-          print("error response: "+ err);
+          print("error response: "+ err.toString());
           Ctoast.show("failed get all address");
           Loading.dismiss();
         });
@@ -210,7 +210,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
         getAddress();
       }).catchError((err) {
         Ctoast.show("failed remove address");
-        print("error response: "+ err);
+        print("error response: "+ err.toString());
         Loading.dismiss();
       });
   }
@@ -229,7 +229,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
       }).catchError((err) {
         Loading.dismiss();
         Ctoast.show("failed set default address");
-        print("error response: "+ err);
+        print("error response: "+ err.toString());
       });
   }
   @override
