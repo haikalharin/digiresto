@@ -5,14 +5,15 @@ import 'package:intl/intl.dart';
 class Utils{
 
   static String formatRupiah(String balance){
-    if (balance.length > 1) {
+    if (balance == "0" || balance == null || balance=="" || balance=="null") {
+      return "0";
+    }else{
       final formatter = new NumberFormat("#,###", "ID");
       var tmpBalance = double.parse(balance).toString();
       var intBalance = int.parse(
           tmpBalance.substring(0, tmpBalance.length - 2));
       return formatter.format(intBalance).toString();
-    }else{
-      return balance;
+     ;
     }
   }
 

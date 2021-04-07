@@ -70,7 +70,8 @@ class ListProductCartWidget extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           child: Image(
-                            image: (data[index]["detail"]["img"]!=null) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
+                            //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
+                            image: RandomImages.getImageUrl(data[index]["img"]),
                             fit: BoxFit.fill,
                             height: 64,
                             width: 64,

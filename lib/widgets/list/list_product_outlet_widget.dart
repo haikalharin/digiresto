@@ -29,6 +29,12 @@ class ListProductOutletWidget extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               int price;
               int beforePrice;
+              bool randomImg=true;
+              if (data[index]["img"]==null){
+                randomImg=true;
+              }else if (data[index]["img"].length > 1) {
+                randomImg=false;
+              }
               if (data[index]["isUseSalesType"]==true){
                 for (int i = 0; i < data[index]["salesTypes"].length; i++){
                   if (data[index]["salesTypes"][i]["code"]==orderType){
@@ -73,7 +79,8 @@ class ListProductOutletWidget extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular(8.0)),
                               child: Image(
-                                image: (data[index]["img"].length > 1) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
+                                //image: (!randomImg) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
+                                image: RandomImages.getImageUrl(data[index]["img"]),
                                 fit: BoxFit.fill,
                                 height: 96,
                                 width: 96,

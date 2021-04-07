@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 class ListProductVariant extends StatelessWidget {
   final List<dynamic> data;
   final Axis scrollDirection;
-  final void Function(String) runAction;
+  final void Function(dynamic) runAction;
   const   ListProductVariant({Key key, this.data,this.scrollDirection= Axis.vertical,this.runAction})
       : super(key: key);
 
@@ -26,6 +26,7 @@ class ListProductVariant extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: (){
+                  runAction(data[index]);
                 },
                 child: Container(
                   padding:  EdgeInsets.only(left: 5,right: 5,bottom: 5),
