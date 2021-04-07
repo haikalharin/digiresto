@@ -158,9 +158,9 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
                 ),
               ),
             ),
-            _search(),
+            //_search(),
             ListDigidiscountWidget(
-              height:  MediaQuery. of(context). size. height-160,
+              height:  MediaQuery. of(context). size. height-100,
               data: listPromoOutlet,
               scrollDirection: Axis.vertical,
             ),

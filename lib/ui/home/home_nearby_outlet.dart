@@ -27,9 +27,6 @@ class HomeNearbyOutletScreen extends StatefulWidget {
 }
 
 class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
-  goBack(BuildContext context) {
-    Navigator.pop(context);
-  }
   final searchController = TextEditingController();
   UserStore _userStore;
   OrderStore _orderStore;
@@ -37,28 +34,21 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
   int page = 1;
 
   @override
-  void setState(fn) {
-    // TODO: implement setState
-    super.setState(fn);
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
-    // if (_orderStore.getOutletByLocation(object) != null) {
-    //   setState(() {
-    //     listOutlet = _userStore.listAddress;
-    //   });
+    getOutletByLocation(searchController.text,1);
+    // if (_orderStore.listOutletByLocation==null){
+    //   getOutletByLocation(searchController.text,1);
+    // }else{
+    //   listOutlet=_orderStore.listOutletByLocation;
     // }
-    if (_orderStore.listOutletByLocation==null){
-      getOutletByLocation("",1);
-    }else{
-      listOutlet=_orderStore.listOutletByLocation;
-    }
 
-    //getAddress();
+  }
+
+  void loadMoreOutletByLocation(){
+    getOutletByLocation(searchController.text,page+1);
   }
 
   void getOutletByLocation(String search,int pageParam) {
@@ -69,9 +59,17 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
       "filter": search,
     }).then((res) {
       print("sukses get outlet");
-      setState(() {
-        listOutlet = res;
-      });
+      if (pageParam > page) {
+        setState(() {
+          page += 1;
+          listOutlet.addAll(res);
+        });
+      } else {
+        setState(() {
+          page = 1;
+          listOutlet = res;
+        });
+      }
       //Loading.dismiss();
     }).catchError((err) {
       print("error response: " + err.toString());
@@ -93,7 +91,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                getOutletByLocation(searchController.text,1);
              },
             controller: searchController,
-            readOnly: false,
+            //readOnly: false,
             onTap: (){
               print("open popup");
             },
@@ -112,14 +110,12 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.greyInput, width: 32.0),
                     borderRadius: BorderRadius.circular(10)),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(width: 1, color: Colors.white),
-              ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(width: 1, color: Colors.white),
+                ),
             )
-
         ),
-
       ),
     );
   }
@@ -139,7 +135,6 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                     icon: new Icon(Icons.arrow_back_outlined,
                         color: Colors.black, size: 28.0),
                     onPressed: () {
-                      //getOutletByLocation();
                       Navigator.pop(context);
                     }),
                 Text("Terdekat",
@@ -165,6 +160,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
             ),
             _search(),
             ListNearbyOutletWidget(
+              loadMoreAction: loadMoreOutletByLocation,
               runAction: _orderStore.setOrderParameter,
               height: MediaQuery. of(context). size. height-160,
               data: listOutlet,
