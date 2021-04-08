@@ -39,96 +39,133 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
             controller: _scrollController,
             scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
-            padding: const EdgeInsets.all(8),
+            //padding: const EdgeInsets.all(8),
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  //color: Colors.amber[100],
-                  borderRadius: BorderRadius.circular(7.0),
-                ),
-                height: 96,
-                width: 96,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
+              return GestureDetector(
+                onTap: (){
+                  if (widget.data[index].outlet["isOwnerLoggedIn"]){
+                    print("do action");
+                  }
+                },
+                child: Column(
+                  children: [
                     Container(
-                      padding: EdgeInsets.only(right: 5, left: 5),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        child: Image(
-                          image: (widget.data[index].promoIcon!=null) ? NetworkImage(widget.data[index].promoIcon) : RandomImages.getImage(),
-                          fit: BoxFit.fill,
-                          width: 96,
-                          alignment: Alignment.center,
-                        ),
+                      margin: EdgeInsets.all(5),
+                      padding: const EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                        //color: Colors.amber[100],
+                        borderRadius: BorderRadius.circular(7.0),
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.only(top:5),
-                          width: MediaQuery. of(context). size. width-160,
-                          child: Text(widget.data[index].outlet["detail"]["name"].toString(),
-                              softWrap: false,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                      height: 96,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Stack(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(right: 5),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                  child: Image(
+                                    image: (widget.data[index].promoIcon!=null) ? NetworkImage(widget.data[index].promoIcon) : RandomImages.getImage(),
+                                    fit: BoxFit.fill,
+                                    width: 96,
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
                               ),
-                              textAlign: TextAlign.left),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:5),
-                          child: Text(widget.data[index].merchant["name"].toString(),
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
+                              !widget.data[index].outlet["isOwnerLoggedIn"] ? ClipRRect(
+                                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                child: Container(
+                                  width: 96,
+                                  color: Colors.black54,
+                                  child: Center(
+                                      child: Text("Tutup",
+                                          style: TextStyle(
+                                            fontFamily: "roboto",
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          textAlign: TextAlign.left)
+                                  ),
+                                ),
+                              ) : Container(),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: const EdgeInsets.only(top:5),
+                                width: MediaQuery. of(context). size. width-160,
+                                child: Text(widget.data[index].outlet["detail"]["name"].toString(),
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.left),
                               ),
-                              textAlign: TextAlign.left),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:5),
-                          child: Text(widget.data[index].distance["text"],
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
+                              Padding(
+                                padding: const EdgeInsets.only(top:5),
+                                child: Text(widget.data[index].merchant["name"].toString(),
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.left),
                               ),
-                              textAlign: TextAlign.left),
-                        ),
-                        widget.data[index].promoCode != null ? Row(children: [
-                          ImageIcon(
-                            AssetImage(Assets.iconVoucher),
-                            color: AppColors.red, size: 20,),
-                          Container(
-                            padding: EdgeInsets.only(left: 5),
-                            child: Text(
-                              widget.data[index].promoCode,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                              Padding(
+                                padding: const EdgeInsets.only(top:5),
+                                child: Text(widget.data[index].distance["text"],
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.left),
                               ),
-                            ),
-                          )
-                        ],) : Container(),
+                              widget.data[index].promoCode != null ? Row(children: [
+                                ImageIcon(
+                                  AssetImage(Assets.iconVoucher),
+                                  color: AppColors.red, size: 20,),
+                                Container(
+                                  padding: EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    widget.data[index].promoCode,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              ],) : Container(),
 
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
+                      //child: Center(child: Text('Entry ${data[index].id.toString()}')),
                     ),
+                    Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: AppColors.greyStroke
+                    )
                   ],
                 ),
-                //child: Center(child: Text('Entry ${data[index].id.toString()}')),
               );
             }
         )

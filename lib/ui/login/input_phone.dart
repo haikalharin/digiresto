@@ -171,22 +171,6 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                             borderRadius: new BorderRadius.circular(10.0))),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  child: FlatButton(
-                    onPressed: () {},
-                    highlightColor: Colors.transparent,
-                    child: Text(
-                      AppLocalizations.of(context)
-                          .translate('login_btn_skip_continue'),
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: FontFamily.roboto,
-                          color: AppColors.yellow),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
