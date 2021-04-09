@@ -4,6 +4,7 @@ import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,9 @@ class _CreditScreenState extends State<CreditScreen> {
         });
         Loading.dismiss();
       }).catchError((err) {
+        Loading.dismiss();
+        ErrorPopupWidget.show(context,AppLocalizations.of(context)
+            .translate('connection_error'), getBalance);
         print("error response: " + err.toString());
       });
   }

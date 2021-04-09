@@ -43,13 +43,14 @@ class UserApi {
   Future<UserBalance> getBalance() async {
     try {
       String apiUrl = Endpoints.urlBalance;
-
       final apiResult = await _dioClient.get(apiUrl);
       var userData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       return UserBalance.createBalance(userData);
     } catch (e) {
+      print("xxxxx");
       print(e.toString());
-      throw e;
+      print("xxxxx");
+      return throw e;
     }
   }
 
