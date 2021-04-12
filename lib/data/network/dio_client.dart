@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import 'exceptions/network_exceptions.dart';
+
 class DioClient {
   // dio instance
   final Dio _dio;
@@ -14,6 +16,7 @@ class DioClient {
         Options options,
         CancelToken cancelToken,
         ProgressCallback onReceiveProgress,
+
       }) async {
     try {
       final Response response = await _dio.get(
@@ -24,8 +27,7 @@ class DioClient {
         onReceiveProgress: onReceiveProgress,
       );
       return response.data;
-    } catch (e) {
-      print(e.toString());
+    }  on DioError catch (e) {
       throw e;
     }
   }
