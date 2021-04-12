@@ -158,11 +158,11 @@ abstract class _UserStore with Store {
   }
   @action
   Future getProfile() async {
-    return await _repository.getProfile().then((res) {
-      this.profile = res;
-    }).catchError((err) {
-      print("error response: "+ err);
-    });
+      return await _repository.getProfile().then((res) {
+        this.profile = res;
+      }).catchError((err) {
+        throw err;
+      });
   }
 
   @action
