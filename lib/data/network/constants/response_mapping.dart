@@ -39,12 +39,16 @@ class ResponseMapping {
       if (paramHttpCode=="" || paramHttpCode==null || paramHttpCode=="null"  ){
         return KeyValueModel(key: "1", value: dioError.message);
       }else {
-        for (int j = 0; j <= HttpMapping.length; j++) {
-          if (HttpMapping[j].key == paramHttpCode) {
-            return HttpMapping[j];
+        try {
+          for (int j = 0; j <= HttpMapping.length; j++) {
+            if (HttpMapping[j].key == paramHttpCode) {
+              return HttpMapping[j];
+            }
           }
+          return KeyValueModel(key: "0", value: dioError.message);
+        } catch (e){
+          return KeyValueModel(key: "0", value: dioError.message);
         }
-        return KeyValueModel(key: "0", value: dioError.message);
       }
     }
   }

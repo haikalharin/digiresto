@@ -30,10 +30,13 @@ class _CreditScreenState extends State<CreditScreen> {
     // initializing stores
     _userStore = Provider.of<UserStore>(context);
     //var tmpBalance = double.parse(_userStore.balance.balance).toString();
-    String tmpBalance = Utils.formatRupiah(_userStore.balance.balance);
+    String tmpBalance="0";
+    if (_userStore.balance != null ) {
+      tmpBalance = Utils.formatRupiah(_userStore.balance.balance);
       setState(() {
         balance = tmpBalance;
       });
+    }
   }
 
 
@@ -47,9 +50,8 @@ class _CreditScreenState extends State<CreditScreen> {
         Loading.dismiss();
       }).catchError((err) {
         Loading.dismiss();
-        ErrorPopupWidget.show(context,AppLocalizations.of(context)
-            .translate('connection_error'), getBalance);
         print("error response: " + err.toString());
+        ErrorPopupWidget.showDioError(context,err, getBalance);
       });
   }
 

@@ -90,7 +90,8 @@ abstract class _OrderStore with Store {
       this.listOutletByLocation = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print(err);
+      return throw err;
     });
   }
 
@@ -103,7 +104,8 @@ abstract class _OrderStore with Store {
       this.listPromoOutlet = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print(err);
+      return throw err;
     });
   }
 
@@ -118,7 +120,8 @@ abstract class _OrderStore with Store {
       }
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print(err);
+      return throw err;
     });
   }
 
@@ -131,7 +134,8 @@ abstract class _OrderStore with Store {
       this.listStaticBanner = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print(err);
+      return throw err;
     });
   }
 
@@ -144,7 +148,8 @@ abstract class _OrderStore with Store {
       this.detailOutlet = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      print(err);
+      return throw err;
     });
   }
 
@@ -186,7 +191,8 @@ abstract class _OrderStore with Store {
       this.orderMerchantName= object["orderMerchantName"];
       this.orderOutletDetailName=object["orderOutletDetailName"];
     }).catchError((err) {
-      print("error: "+ err);
+      print(err);
+      return throw err;
     });
 
 

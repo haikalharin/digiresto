@@ -109,7 +109,6 @@ class OrderApi {
       List<dynamic> listUserData = (apiResult as Map<String,dynamic>)['data']; //mengambil data data didalam jsonObject
       List<StaticBanner> staticBanner= [];
       for(int i = 0;i<listUserData.length;i++){
-        print(listUserData[i]);
         staticBanner.add(StaticBanner.createStaticBanner(listUserData[i]));
       }
       return staticBanner;

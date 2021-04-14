@@ -9,6 +9,7 @@ import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
@@ -118,7 +119,8 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       detailOutletLoading=false;
     }).catchError((err) {
       detailOutletLoading=false;
-      print("error response: " + err.toString());
+      print(err.toString());
+      ErrorPopupWidget.showDioError(context,err,null);
     });
   }
 
