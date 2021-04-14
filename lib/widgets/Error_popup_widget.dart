@@ -102,8 +102,11 @@ class ErrorPopupWidget  {
                              Routes.login_pin, (Route<dynamic> route) => false);
                        }else if (runAction!=null){
                          runAction();
+                         Navigator.of(context).pop();
+                       }else{
+                         Navigator.of(context).pop();
                        }
-                       //Navigator.of(context).pop();
+                       //
                      },
                      color: AppColors.redYoung,
                      child: Text("Ok",

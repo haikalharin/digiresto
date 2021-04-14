@@ -12,9 +12,11 @@ import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/list_all_promo_outlet_widget.dart';
 import 'package:boilerplate/widgets/list/nearby_outlet_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:package_info/package_info.dart';
@@ -80,7 +82,8 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
         });
       }
     }).catchError((err) {
-      print("error response: " + err.toString());
+      print(err.toString());
+      ErrorPopupWidget.showDioError(context,err,null);
     });
   }
 

@@ -12,6 +12,7 @@ import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/nearby_outlet_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -72,10 +73,12 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
       }
       //Loading.dismiss();
     }).catchError((err) {
-      print("error response: " + err.toString());
-      Ctoast.show("failed get outlet by location");
-      //Loading.dismiss();
-    });
+      print(err.toString());
+      ErrorPopupWidget.showDioError(context,err,null);
+      });
+    //   Ctoast.show("failed get outlet by location");
+    //   //Loading.dismiss();
+    // });
   }
 
   Widget _search(){
@@ -159,13 +162,13 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
               ),
             ),
             _search(),
-            ListNearbyOutletWidget(
+            (listOutlet.length > 1 )  ? ListNearbyOutletWidget(
               loadMoreAction: loadMoreOutletByLocation,
               runAction: _orderStore.setOrderParameter,
               height: MediaQuery. of(context). size. height-160,
               data: listOutlet,
               scrollDirection: Axis.vertical,
-            ),
+            ): Container(),
           ],
         ),
       ),

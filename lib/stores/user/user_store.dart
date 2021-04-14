@@ -171,7 +171,7 @@ abstract class _UserStore with Store {
       this.balance = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -207,7 +207,7 @@ abstract class _UserStore with Store {
     return await _repository.loginUser(handPhone,pin).then((res) {
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -216,7 +216,7 @@ abstract class _UserStore with Store {
     return await _repository.getOtp(handPhone).then((res) {
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -225,7 +225,7 @@ abstract class _UserStore with Store {
     return await _repository.validateOtp(handPhone,pin).then((res) {
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -234,7 +234,7 @@ abstract class _UserStore with Store {
     return await _repository.register(object).then((res) {
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -257,7 +257,7 @@ abstract class _UserStore with Store {
       this.listAddress = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -267,7 +267,7 @@ abstract class _UserStore with Store {
       this.listAddress = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -276,7 +276,7 @@ abstract class _UserStore with Store {
     return await _repository.addAddress(object).then((res) {
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -285,7 +285,7 @@ abstract class _UserStore with Store {
     return await _repository.removeAddress(object).then((res) {
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 
@@ -312,7 +312,7 @@ abstract class _UserStore with Store {
       this.listPromo = res;
       return res;
     }).catchError((err) {
-      print("error response: "+ err);
+      throw err;
     });
   }
 

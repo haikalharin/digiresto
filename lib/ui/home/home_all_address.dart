@@ -11,6 +11,7 @@ import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:package_info/package_info.dart';
@@ -271,9 +272,9 @@ class _HomeAllAddressScreenState extends State<HomeAllAddressScreen> {
       });
       Loading.dismiss();
     }).catchError((err) {
-      print("error response: " + err);
-      Ctoast.show("failed get all address");
       Loading.dismiss();
+      print(err);
+      ErrorPopupWidget.showDioError(context,err, null);
     });
   }
 
