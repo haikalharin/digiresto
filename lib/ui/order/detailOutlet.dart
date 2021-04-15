@@ -1,12 +1,15 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
+import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/order/detailProductDialog.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_outlet_widget.dart';
@@ -16,6 +19,7 @@ import 'package:boilerplate/constants/font_family.dart';
 import 'package:provider/provider.dart';
 import 'dart:core';
 import 'package:boilerplate/utils/loading/loading.dart';
+
 class DetailOutletScreen extends StatefulWidget {
   @override
   _DetailOutletScreenState createState() => _DetailOutletScreenState();
@@ -27,16 +31,16 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
+
   //bool loadDataApi;
-  int page=1;
+  int page = 1;
   String filterCategory;
   String searchName;
   String orderType;
-
+  bool detailOutletLoading=false;
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
-
 
   @override
   void initState() {
@@ -44,45 +48,55 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,page+1);
+        getDetailOutlet(
+            _orderStore.orderOutletName, searchName, filterCategory, page + 1);
       }
+    });
+  }
+
+
+  refresh() {
+    setState(() {
+      //all the reload processes
     });
   }
 
   @override
   void didChangeDependencies() {
-
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
 
     setState(() {
-      filterCategory=null;
-      searchName="";
-      orderType=_orderStore.orderSalesTypesCode;
+      filterCategory = null;
+      searchName = "";
+      orderType = _orderStore.orderSalesTypesCode;
     });
-    getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory,page);
+    getDetailOutlet(
+        _orderStore.orderOutletName, searchName, filterCategory, page);
   }
 
-  void searchActionText(String keyword){
+  void searchActionText(String keyword) {
     setState(() {
-      page=1;
-      searchName=keyword;
+      page = 1;
+      searchName = keyword;
     });
-    getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
+    getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
   }
 
-  void searchActionCategory(String category){
+  void searchActionCategory(String category) {
     setState(() {
-      page=1;
-      filterCategory=category;
+      page = 1;
+      filterCategory = category;
     });
-    getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1);
+    getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
   }
 
-  void getDetailOutlet(String outletName,String filter,String category, int pageParam) {
-    Loading.show();
-
+  void getDetailOutlet(String outletName, String filter, String category,
+      int pageParam) {
+    setState(() {
+      detailOutletLoading=true;
+    });
     _orderStore.getDetailOutlet({
       "outletName": outletName,
       "page": pageParam,
@@ -91,21 +105,22 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       "filter": filter,
       "category": category
     }).then((res) {
-      if (pageParam>page){
+      if (pageParam > page) {
         setState(() {
-          page+=1;
+          page += 1;
           detailOutlet.product.addAll(res.product);
         });
-      }else{
+      } else {
         setState(() {
-          page=1;
+          page = 1;
           detailOutlet = res;
         });
       }
-      Loading.dismiss();
+      detailOutletLoading=false;
     }).catchError((err) {
-      Loading.dismiss();
-      print("error response: " + err.toString());
+      detailOutletLoading=false;
+      print(err.toString());
+      ErrorPopupWidget.showDioError(context,err,null);
     });
   }
 
@@ -117,7 +132,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       ),
       child: Container(
         padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+        const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
@@ -139,11 +154,11 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
               hintText: "Cari",
               border: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: AppColors.greyInput, width: 32.0),
+                  BorderSide(color: AppColors.greyInput, width: 32.0),
                   borderRadius: BorderRadius.circular(15)),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: AppColors.greyInput, width: 32.0),
+                  BorderSide(color: AppColors.greyInput, width: 32.0),
                   borderRadius: BorderRadius.circular(15)),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -181,7 +196,8 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 Container(
                   width: 200,
-                  child: Text(_orderStore.orderOutletDetailName, //detailOutlet != null ? data.outlet["detail"]["name"] : ""
+                  child: Text(_orderStore.orderOutletDetailName,
+                      //detailOutlet != null ? data.outlet["detail"]["name"] : ""
                       style: TextStyle(
                         fontFamily: "roboto",
                         color: Colors.white,
@@ -192,8 +208,10 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 new IconButton(
                   icon:
-                      new Icon(Icons.refresh, color: Colors.white, size: 24.0),
-                  onPressed: () => getDetailOutlet(_orderStore.orderOutletName, searchName,filterCategory,1),
+                  new Icon(Icons.refresh, color: Colors.white, size: 24.0),
+                  onPressed: () =>
+                      getDetailOutlet(_orderStore.orderOutletName, searchName,
+                          filterCategory, 1),
                 ),
               ],
             ),
@@ -219,7 +237,8 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 textAlign: TextAlign.center),
           ),
-          detailOutlet != null ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+          detailOutlet != null ? Row(
+              mainAxisAlignment: MainAxisAlignment.end, children: [
             GestureDetector(
               onTap: () {
                 print(
@@ -235,7 +254,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 margin: EdgeInsets.only(right: 10),
                 child:
-                    new Icon(Icons.call, color: AppColors.redYoung, size: 20.0),
+                new Icon(Icons.call, color: AppColors.redYoung, size: 20.0),
               ),
             ),
             GestureDetector(
@@ -266,19 +285,22 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
 
   Widget _category(DetailOutlet data, String selected) {
-    List<dynamic> paramCategory=[];
-    paramCategory.add({"id":0,"title":"SEMUA"});
+    List<dynamic> paramCategory = [];
+    paramCategory.add({"id": 0, "title": "SEMUA"});
     paramCategory.addAll(data.category);
-    return ListFoodCategory(data: paramCategory, selected: selected, runAction: searchActionCategory);
+    return ListFoodCategory(data: paramCategory,
+        selected: selected,
+        runAction: searchActionCategory);
   }
 
-  Widget _promo(DetailOutlet data){
+  Widget _promo(DetailOutlet data) {
     return DetailOutletHotPromoWidget(
-      height:  170.0,
+      height: 190.0,
       data: data.merchant["promo"],
       scrollDirection: Axis.horizontal,
     );
   }
+
   Widget _product(DetailOutlet data) {
     return Column(
       children: [
@@ -297,59 +319,139 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
             ),
           ),
         ),
-         ListProductOutletWidget(
-            orderType: orderType,
-            data: data.product,
-            runDetailAction: _showDetailProduct,
-            scrollDirection: Axis.vertical,
-          ),
+        ListProductOutletWidget(
+          orderType: orderType,
+          data: data.product,
+          runDetailAction: _showDetailProduct,
+          scrollDirection: Axis.vertical,
+        ),
+        Loading.smallLoading(detailOutletLoading),
       ],
     );
   }
 
-  _showDetailProduct(Map<String,dynamic> dataProduct,String orderType) {
+  _showDetailProduct(Map<String, dynamic> dataProduct, String orderType) {
+    //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
     Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            return DetailProductDialog(dataProduct: dataProduct, orderType: orderType);
+        context,
+        MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return DetailProductDialog(
+                  dataProduct: dataProduct, orderType: orderType);
+            },
+            fullscreenDialog: true
+        )
+    ).then((value) {
+      setState(() {});
+    });
+  }
+        @override
+        Widget build(BuildContext context)
+    {
+      return Scaffold(
+        floatingActionButton: _orderStore.orderProduct.length > 0 ? GestureDetector(
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(
+                Routes.order_cart);
           },
-        fullscreenDialog: true
-      ),
-    );
-  }
+          child: Container(
+            height: 70,
+            color: Colors.white,
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.only(bottom: 10),
+            child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.red,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                height: 50,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width - 50,
+                child: Container(
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            _orderStore.orderProduct.length.toString() +
+                                " items",
+                            style: TextStyle(
+                              fontFamily: "roboto",
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(5),
+                            height: 30,
+                            width: 1.5,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            "Lihat Keranjang",
+                            style: TextStyle(
+                              fontFamily: "roboto",
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 20,
-            color: AppColors.red,
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height - 30,
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  _header(detailOutlet),
-                  detailOutlet != null ? _search() : Container(),
-                  detailOutlet != null
-                      ? _category(detailOutlet, filterCategory)
-                      : Container(),
-                  detailOutlet != null ? _promo(detailOutlet) : Container(),
-                  detailOutlet != null ? _product(detailOutlet) : Container(),
-
-                ],
-              ),
+                      Text(
+                        "Rp. " + Utils.formatRupiah(_orderStore.orderPriceTotal.toString()),
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
             ),
-          )
-        ],
-      ),
-    );
+          ),
+        ) : Container(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+        body: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 20,
+              color: AppColors.red,
+            ),
+            Container(
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height - 30,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                child: Column(
+                  children: [
+                    _header(detailOutlet),
+                    detailOutlet != null ? _search() : Container(),
+                    detailOutlet != null
+                        ? _category(detailOutlet, filterCategory)
+                        : Container(),
+                    detailOutlet != null ? _promo(detailOutlet) : Container(),
+                    detailOutlet != null ? _product(detailOutlet) : Container(),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
   }
-}
 

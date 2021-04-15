@@ -6,14 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
 
-class ListNearbyOutletWidget extends StatelessWidget {
+class ListNearbyOutletWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
   final void Function(Map<String, dynamic>) runAction;
-  const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction})
+  final void Function() loadMoreAction;
+  const ListNearbyOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction,this.loadMoreAction})
       : super(key: key);
 
+  @override
+  _ListNearbyOutletWidgetState createState() => _ListNearbyOutletWidgetState();
+}
+
+class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
+  final ScrollController _scrollController = new ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+          widget.loadMoreAction();
+        /*getDetailOutlet(
+            _orderStore.orderOutletName, searchName, filterCategory, page + 1);*/
+      }
+    });
+  }
   Widget _btnOrderMethod(BuildContext context,String orderMethod,OutletList param){
     String textOrderMethod;
     switch(orderMethod) {
@@ -51,7 +70,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
           height: 50,
           child: RaisedButton(
             onPressed: () {
-                runAction({
+                widget.runAction({
                     "orderOutletName":param.name,
                     "orderSalesTypes":orderMethod,
                     "orderMerchantName":param.merchantName,
@@ -76,6 +95,7 @@ class ListNearbyOutletWidget extends StatelessWidget {
           ),
     );
   }
+
   Future<void> _showMyDialog(BuildContext context, OutletList param) async {
     return showDialog<void>(
       context: context,
@@ -123,94 +143,128 @@ class ListNearbyOutletWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: height,
+        height: widget.height,
         child: ListView.builder(
-            scrollDirection: scrollDirection,
+            controller: _scrollController,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
-            padding: const EdgeInsets.all(8),
-            itemCount: data.length,
+            //padding: const EdgeInsets.all(8),
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                onTap: () => {_showMyDialog(context, data[index])},
-                child: Container(
-                  margin: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    //color: Colors.amber[100],
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  height: 96,
-                  width: 96,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(right: 5, left: 5),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          child: Image(
-                            image: (data[index].merchantLogo!=null) ? NetworkImage(data[index].merchantLogo) : RandomImages.getImage(),
-                            fit: BoxFit.fill,
-                            width: 96,
-                            alignment: Alignment.center,
-                          ),
-                        ),
+                onTap: () => {
+                  if (widget.data[index].isOwnerLoggedIn){
+                    _showMyDialog(context, widget.data[index])
+                  }
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      padding: const EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                        //color: Colors.amber[100],
+                        borderRadius: BorderRadius.circular(7.0),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      height: 96,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.only(top:5),
-                            width: MediaQuery. of(context). size. width-160,
-                            child: Text(data[index].outletName.toString(),
-                                softWrap: false,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.left),
+                          Stack(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(right: 5),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                  child: Image(
+                                    image: (widget.data[index].merchantLogo!=null) ? NetworkImage(widget.data[index].merchantLogo) : RandomImages.getImage(),
+                                    fit: BoxFit.fill,
+                                    width: 96,
+                                    alignment: Alignment.center,
+                                  ),
+                                )),
+                              !widget.data[index].isOwnerLoggedIn ? ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                    child: Container(
+                                      width: 96,
+                                      color: Colors.black54,
+                                      child: Center(
+                                        child: Text("Tutup",
+                                            style: TextStyle(
+                                              fontFamily: "roboto",
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                            textAlign: TextAlign.left)
+                                      ),
+                                    ),
+                                  ) : Container(),
+                              ]
+                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: const EdgeInsets.only(top:5),
+                                width: MediaQuery. of(context). size. width-160,
+                                child: Text(widget.data[index].outletName.toString(),
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:5),
+                                child: Text(widget.data[index].merchantName.toString(),
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:5),
+                                child: Text(widget.data[index].distance["text"],
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
+                              // !widget.data[index].isOwnerLoggedIn ? Padding(
+                              //   padding: const EdgeInsets.only(top:5),
+                              //   child: Text("Closed",
+                              //       style: TextStyle(
+                              //         fontFamily: "roboto",
+                              //         color: AppColors.red,
+                              //         fontSize: 12,
+                              //         fontWeight: FontWeight.w700,
+                              //       ),
+                              //       textAlign: TextAlign.left),
+                              // ) : Container()
+                            ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:5),
-                            child: Text(data[index].merchantName.toString(),
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                textAlign: TextAlign.left),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:5),
-                            child: Text(data[index].distance["text"],
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                textAlign: TextAlign.left),
-                          ),
-                          !data[index].isOwnerLoggedIn ? Padding(
-                            padding: const EdgeInsets.only(top:5),
-                            child: Text("Closed",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: AppColors.red,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                textAlign: TextAlign.left),
-                          ) : Container()
                         ],
                       ),
-                    ],
-                  ),
-                  //child: Center(child: Text('Entry ${data[index].id.toString()}')),
+                      //child: Center(child: Text('Entry ${data[index].id.toString()}')),
+                    ),
+                    Container(
+                      height: 1,
+                      width: double.infinity,
+                      color: AppColors.greyStroke
+                    )
+                  ],
                 ),
               );
             }

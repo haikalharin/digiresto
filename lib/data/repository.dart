@@ -257,7 +257,7 @@ class Repository {
       return value;
     }).catchError((error) => throw error);
   }
-  
+
   //order local storage
   Future<void> saveOrderOutletName(Map<String,dynamic> object) =>
       _sharedPrefsHelper.saveOrderOutletName(object);

@@ -1,3 +1,4 @@
+import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 /*loading library*/
@@ -42,5 +43,19 @@ class Loading {
 
   static void toast(String message){
     EasyLoading.showToast(message.toString());
+  }
+
+  static Widget smallLoading(bool show){
+    return show ? Container(
+      height: 40,
+      child: SizedBox(
+        width: 25,
+        height: 25,
+        child: CircularProgressIndicator(
+          strokeWidth: 3,
+          valueColor: new AlwaysStoppedAnimation<Color>(AppColors.redYoung),
+        ),
+      ),
+    ) : Container();
   }
 }

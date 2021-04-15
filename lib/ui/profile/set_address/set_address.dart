@@ -11,6 +11,7 @@ import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:package_info/package_info.dart';
@@ -194,9 +195,9 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
           });
           Loading.dismiss();
         }).catchError((err) {
-          print("error response: "+ err.toString());
-          Ctoast.show("failed get all address");
           Loading.dismiss();
+          print("error response: "+ err.toString());
+          ErrorPopupWidget.showDioError(context,err, null);
         });
   }
   void removeAddress(int id){
@@ -209,9 +210,9 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
         Loading.dismiss();
         getAddress();
       }).catchError((err) {
-        Ctoast.show("failed remove address");
-        print("error response: "+ err.toString());
         Loading.dismiss();
+        print("error response: "+ err.toString());
+        ErrorPopupWidget.showDioError(context,err, null);
       });
   }
   void setDefaultAddress(int id){
@@ -221,15 +222,14 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
         "waba_no": Strings.wabaNo,
         "id": id
       }).then((res) {
-
         setState(() {
           listAddress=res;
         });
         Loading.dismiss();
       }).catchError((err) {
         Loading.dismiss();
-        Ctoast.show("failed set default address");
         print("error response: "+ err.toString());
+        ErrorPopupWidget.showDioError(context,err, null);
       });
   }
   @override

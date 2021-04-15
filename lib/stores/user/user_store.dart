@@ -162,6 +162,7 @@ abstract class _UserStore with Store {
       this.profile = res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+        throw err;
     });
   }
 
@@ -172,6 +173,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -208,6 +210,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -217,6 +220,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -226,6 +230,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -235,6 +240,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -258,6 +264,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -268,6 +275,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -277,6 +285,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -286,6 +295,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 
@@ -313,6 +323,7 @@ abstract class _UserStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 

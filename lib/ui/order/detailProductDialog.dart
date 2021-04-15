@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/list/list_product_variant_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:provider/provider.dart';
+
+
 class DetailProductDialog extends StatefulWidget {
   final dataProduct;
   final orderType;
@@ -24,12 +30,19 @@ class DetailProductDialog extends StatefulWidget {
 class _DetailProductDialogState extends State<DetailProductDialog> {
   int totalqty = 1;
   OrderStore _orderStore;
+  dynamic dataProductState;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _orderStore = Provider.of<OrderStore>(context);
     setState(() {
+      dataProductState = widget.dataProduct;
       totalqty = widget.qtyProduct;
+    });
+    Timer.run(() {
+    if (dataProductState["variants"].length > 0){
+        _showMaterialDialog();
+    }
     });
   }
 
@@ -46,32 +59,87 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       });
     }
   }
+  _chooseVariants(dynamic data){
+    print("choose variant"+data.toString());
+    setState(() {
+      dataProductState = data;
+    });
+    Navigator.of(context).pop();
+  }
+  _showMaterialDialog() {
+    double height = (dataProductState["variants"].length == 1) ?  MediaQuery. of(context). size. height - 300 :  MediaQuery. of(context). size. height - 220;
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => new AlertDialog(
+          title:  Center( child: Text("PILIHAN VARIAN MENU", style: TextStyle(
+            fontFamily: "roboto",
+            color: AppColors.red,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),)),
+          content: Container(
+            height:  height,
+            child: Column(
+              children: [
+                ListProductVariant(
+                  runAction: _chooseVariants,
+                    data: dataProductState["variants"]
+                ),
+                Container(
+                  height: 50,
+                  width: MediaQuery. of(context). size. width-190,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    },
+                    color: Colors.white,
+                    child: Text("Kembali",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.red)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0),
+                      side: BorderSide(
+                        width: 1,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
     int price;
     int beforePrice;
-    if (widget.dataProduct["isUseSalesType"] == true) {
-      for (int i = 0; i < widget.dataProduct["salesTypes"].length; i++) {
-        if (widget.dataProduct["salesTypes"][i]["code"] == widget.orderType) {
-          price = widget.dataProduct["salesTypes"][i]["price"];
+    if (dataProductState["isUseSalesType"] == true) {
+      for (int i = 0; i < dataProductState["salesTypes"].length; i++) {
+        if (dataProductState["salesTypes"][i]["code"] == widget.orderType) {
+          price = dataProductState["salesTypes"][i]["price"];
         }
       }
       if (price == null) {
-        price = widget.dataProduct != null
-            ? widget.dataProduct["price"]
-            : widget.dataProduct["originalPrice"];
+        price = dataProductState != null
+            ? dataProductState["price"]
+            : dataProductState["originalPrice"];
       }
     } else {
-      if (widget.dataProduct["price"] != null) {
-        if (widget.dataProduct["price"] < widget.dataProduct["originalPrice"]) {
-          price = widget.dataProduct["price"];
-          beforePrice = widget.dataProduct["originalPrice"];
+      if (dataProductState["price"] != null) {
+        if (dataProductState["price"] < dataProductState["originalPrice"]) {
+          price = dataProductState["price"];
+          beforePrice = dataProductState["originalPrice"];
         } else {
-          price = widget.dataProduct["price"];
+          price = dataProductState["price"];
         }
       } else {
-        price = widget.dataProduct["originalPrice"];
+        price = dataProductState["originalPrice"];
       }
     }
 
@@ -95,8 +163,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
-                          image: (widget.dataProduct["img"] != null)
-                              ? NetworkImage(widget.dataProduct["img"])
+                          image: (dataProductState["img"].length > 1)
+                              ? NetworkImage(dataProductState["img"])
                               : RandomImages.getImage(),
                           fit: BoxFit.fill,
                           width: double.infinity,
@@ -130,7 +198,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       alignment: Alignment.topLeft,
                       color: Colors.white,
                       padding: const EdgeInsets.only(top: 5),
-                      child: Text(widget.dataProduct["name"],
+                      child: Text(dataProductState["name"],
                           softWrap: false,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -148,7 +216,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                           alignment: Alignment.topLeft,
                           padding: const EdgeInsets.only(top: 5),
                           //width: 10,
-                          child: Text("Rp." + price.toString(),
+                          child: Text("Rp." + Utils.formatRupiah(price.toString()),
                               softWrap: false,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -165,7 +233,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.only(top: 5),
                                 //width: 10,
-                                child: Text("Rp." + beforePrice.toString(),
+                                child: Text("Rp." + Utils.formatRupiah(beforePrice.toString()),
                                     softWrap: false,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -198,7 +266,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.all(5),
                         //width: 10,
-                        child: Text("Rp." + price.toString(),
+                        child: Text("Rp." + Utils.formatRupiah(price.toString()),
                             softWrap: false,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -261,7 +329,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         width: MediaQuery. of(context). size. width-190,
                         child: RaisedButton(
                           onPressed: () {
-                            _orderStore.setProduct(widget.dataProduct["id"],totalqty,price,widget.dataProduct);
+                            _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
+                            Navigator.of(context).pop();
                           },
                           color: AppColors.red,
                           child: Text("Tambah ke keranjang",

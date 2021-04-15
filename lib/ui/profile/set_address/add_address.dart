@@ -8,6 +8,7 @@ import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -104,9 +105,9 @@ class AddAddressScreenState extends State<AddAddressScreen> {
         _addressController.text = _geocode.formattedAddress;
         Loading.dismiss();
       }).catchError((err) {
-        Ctoast.show("failed get addrress");
         Loading.dismiss();
-        print("error response: " + err);
+        print(err);
+        ErrorPopupWidget.showDioError(context,err, null);
       });
   }
 
@@ -134,9 +135,9 @@ class AddAddressScreenState extends State<AddAddressScreen> {
           throw("failed add address");
         }
       }).catchError((err) {
-        Ctoast.show("failed add address");
         Loading.dismiss();
-        print("error response: " + err);
+        print(err);
+        ErrorPopupWidget.showDioError(context,err, null);
       });
   }
 

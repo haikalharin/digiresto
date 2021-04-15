@@ -9,4 +9,16 @@ class RandomImages{
     int randomNumber = random.nextInt(9);
     return AssetImage(Assets.food+randomNumber.toString()+".png");
   }
+
+  static dynamic getImageUrl(String img){
+    if (img==null || img==""){
+      return getImage();
+    }else{
+      if (img.contains('http') || img.contains('https')){
+        return NetworkImage(img);
+      }else{
+        return NetworkImage("http://"+img);
+      }
+    }
+  }
 }

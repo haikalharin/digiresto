@@ -57,5 +57,6 @@
   "register_create_pin": "Buat PIN Login",
   "register_enter_pin": "Buat PIN Login",
   "register_confirm_pin": "Masukkan Kembali Pin Login",
-  "register_end": "-------------------------------------------------------------------------------------"
+  "register_end": "-------------------------------------------------------------------------------------",
+  "connection_error": "Gagal mengambil data, silahkan coba beberapa saat lagi"
 }
