@@ -22,7 +22,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
-              return (data[index]["img"]==null) ? Container() : Container(
+              return Container(
                 margin: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -38,7 +38,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                     ClipRRect(
                       borderRadius:   BorderRadius.only(topLeft: Radius.circular(8.0),topRight: Radius.circular(8.0)),
                       child: Image(
-                        image: (data[index]["img"]!=null) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
+                        image: RandomImages.getImageUrl(data[index]["img"]),
                         fit: BoxFit.fill,
                         width: 150,
                         height: 96,
