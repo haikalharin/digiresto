@@ -2,6 +2,7 @@ import 'package:boilerplate/ui/cart/cart.dart';
 import 'package:boilerplate/ui/home/home_all_hot_promo.dart';
 import 'package:boilerplate/ui/order/detailOutlet.dart';
 import 'package:boilerplate/ui/order/orderCart.dart';
+import 'package:boilerplate/ui/order/selectPaymentMethod.dart';
 import 'package:flutter/material.dart';
 import 'ui/home/home.dart';
 import 'ui/login/login.dart';
@@ -50,6 +51,7 @@ class Routes {
   static const String home_all_hot_promo = '/home_all_hot_promo';
   static const String order_detail_outlet = '/order_detail_outlet';
   static const String order_cart = '/order_cart';
+  static const String select_payment_method = '/select_payment_method';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -75,5 +77,6 @@ class Routes {
     home_digidiscount: (BuildContext context)=> HomeDigidiscountScreen(),
     order_detail_outlet: (BuildContext context)=> DetailOutletScreen(),
     order_cart: (BuildContext context)=> OrderCartScreen(),
+    select_payment_method: (BuildContext context)=> SelectPaymentMethodScreen(),
   };
 }

@@ -1,10 +1,12 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 class ListNearbyOutletWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
@@ -21,6 +23,8 @@ class ListNearbyOutletWidget extends StatefulWidget {
 
 class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
   final ScrollController _scrollController = new ScrollController();
+  UserStore _userStore;
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +37,14 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
       }
     });
   }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _userStore = Provider.of<UserStore>(context);
+  }
+
   Widget _btnOrderMethod(BuildContext context,String orderMethod,OutletList param){
     String textOrderMethod;
     switch(orderMethod) {
@@ -75,6 +87,7 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                     "orderSalesTypes":orderMethod,
                     "orderMerchantName":param.merchantName,
                     "orderOutletDetailName":param.detail["name"],
+                    "userProfile":_userStore.profile
                   });
                 Navigator.of(context)
                     .pushNamed(Routes.order_detail_outlet);

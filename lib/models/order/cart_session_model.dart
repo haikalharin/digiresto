@@ -1,89 +1,96 @@
 import 'package:boilerplate/models/response_model.dart';
+import 'package:boilerplate/models/transaction/transaction_history_taxes_and_services.dart';
 
 class CartSession {
   String sessionId;
   Response response;
-  String customerCarColor;
-  String customerCarNumber;
-  String customerCarType;
-  String customerEmail;
-  String customerName;
-  String customerNote;
-  String customerPax;
-  String customerPhone;
-  bool customerSmoking;
-  String customerTableNumber;
-  int deliveryAmount;
-  int discountAmount;
-  int discountPercentage;
-  String eta;
-  int finalAmount;
-  bool isUseVoucher;
-  List<dynamic> items;
-  int itemTotalAmount;
-  int itemWeight;
-  int outletId;
   String outletName;
-  List<dynamic> paymentList;
-  List<dynamic> promos;
-  int receiptTotalDiscount;
+  int outletId;
+  String customerName;
+  String customerEmail;
+  String customerPhone;
   String recipientName;
   String recipientPhone;
-  int roundAmount;
-  String salesType;
-  int subtotal;
-  List<dynamic> taxesAndServices;
+  String customerTableNumber;
+  bool customerSmoking;
+  int customerPax;
+  String customerNote;
+  String customerCarType;
+  String customerCarColor;
+  String customerCarNumber;
+  String eta;
+  String paymentType;
   int totalChange;
+  int discountAmount;
+  int discountPercentage;
+  int finalAmount;
+  int receiptTotalDiscount;
+  int roundAmount;
+  int subtotal;
   int totalDiscount;
   int totalItemAmount;
   int totalItemCost;
   int totalItemDiscount;
-  int totalPayment;
   int totalService;
   int totalTax;
   int voucherAmount;
+  int deliveryAmount;
+  int totalPayment;
+  String salesType;
+  List<dynamic> items;
+  int itemWeight;
+  bool isUseVoucher;
+  List<dynamic> promos;
+  List<dynamic> paymentList;
+  List<TransactionHistoryTaxesAndServices> taxesAndServices;
+  int itemTotalAmount;
 
   CartSession(
-      {this.response,this.sessionId,
-      this.customerCarColor,
-      this.customerCarNumber,
-      this.customerCarType,
-      this.customerEmail,
-      this.customerName,
-      this.customerNote,
-      this.customerPax,
-      this.customerPhone,
-      this.customerSmoking,
-      this.customerTableNumber,
-      this.deliveryAmount,
-      this.discountAmount,
-      this.discountPercentage,
-      this.eta,
-      this.finalAmount,
-      this.isUseVoucher,
-      this.items,
-      this.itemTotalAmount,
-      this.itemWeight,
-      this.outletId,
-      this.outletName,
-      this.paymentList,
-      this.promos,
-      this.receiptTotalDiscount,
-      this.recipientName,
-      this.recipientPhone,
-      this.roundAmount,
-      this.salesType,
-      this.subtotal,
-      this.taxesAndServices,
-      this.totalChange,
-      this.totalDiscount,
-      this.totalItemAmount,
-      this.totalItemCost,
-      this.totalItemDiscount,
-      this.totalPayment,
-      this.totalService,
-      this.totalTax,
-      this.voucherAmount});
+      {
+        this.sessionId,
+        this.response,
+        this.outletName,
+        this.outletId,
+        this.customerName,
+        this.customerEmail,
+        this.customerPhone,
+        this.recipientName,
+        this.recipientPhone,
+        this.customerTableNumber,
+        this.customerSmoking,
+        this.customerPax,
+        this.customerNote,
+        this.customerCarType,
+        this.customerCarColor,
+        this.customerCarNumber,
+        this.eta,
+        this.paymentType,
+        this.totalChange,
+        this.discountAmount,
+        this.discountPercentage,
+        this.finalAmount,
+        this.receiptTotalDiscount,
+        this.roundAmount,
+        this.subtotal,
+        this.totalDiscount,
+        this.totalItemAmount,
+        this.totalItemCost,
+        this.totalItemDiscount,
+        this.totalService,
+        this.totalTax,
+        this.voucherAmount,
+        this.deliveryAmount,
+        this.totalPayment,
+        this.salesType,
+        this.items,
+        this.itemWeight,
+        this.isUseVoucher,
+        this.promos,
+        this.paymentList,
+        this.taxesAndServices,
+        this.itemTotalAmount,
+      }
+  );
 
   factory CartSession.createResponse(Map<String, dynamic> object){
       return CartSession(response : Response.createResponse(object));
@@ -91,45 +98,48 @@ class CartSession {
 
   factory CartSession.createCartSession(Map<String, dynamic> object) {
     return CartSession(
-      customerCarColor: object['customerCarColor'],
-      customerCarNumber: object['customerCarNumber'],
-      customerCarType: object['customerCarType'],
-      customerEmail: object['customerEmail'],
-      customerName: object['customerName'],
-      customerNote: object['customerNote'],
-      customerPax: object['customerPax'],
-      customerPhone: object['customerPhone'],
-      customerSmoking: object['customerSmoking'],
-      customerTableNumber: object['customerTableNumber'],
-      deliveryAmount: object['deliveryAmount'],
-      discountAmount: object['discountAmount'],
-      discountPercentage: object['discountPercentage'],
-      eta: object['eta'],
-      finalAmount: object['finalAmount'],
-      isUseVoucher: object['isUseVoucher'],
-      items: object['items'],
-      itemTotalAmount: object['itemTotalAmount'],
-      itemWeight: object['itemWeight'],
-      outletId: object['outletId'],
-      outletName: object['outletName'],
-      paymentList: object['paymentList'],
-      promos: object['promos'],
-      receiptTotalDiscount: object['receiptTotalDiscount'],
-      recipientName: object['recipientName'],
-      recipientPhone: object['recipientPhone'],
-      roundAmount: object['roundAmount'],
-      salesType: object['salesType'],
-      subtotal: object['subtotal'],
-      taxesAndServices: object['taxesAndServices'],
-      totalChange: object['totalChange'],
-      totalDiscount: object['totalDiscount'],
-      totalItemAmount: object['totalItemAmount'],
-      totalItemCost: object['totalItemCost'],
-      totalItemDiscount: object['totalItemDiscount'],
-      totalPayment: object['totalPayment'],
-      totalService: object['totalService'],
-      totalTax: object['totalTax'],
-      voucherAmount: object['voucherAmount'],
+        outletName: object['outletName'],
+        outletId: object['outletId'],
+        customerName: object['customerName'],
+        customerEmail: object['customerEmail'],
+        customerPhone: object['customerPhone'],
+        recipientName: object['recipientName'],
+        recipientPhone: object['recipientPhone'],
+        customerTableNumber: object['customerTableNumber'],
+        customerSmoking: object['customerSmoking'],
+        customerPax: object['customerPax'],
+        customerNote: object['customerNote'],
+        customerCarType: object['customerCarType'],
+        customerCarColor: object['customerCarColor'],
+        customerCarNumber: object['customerCarNumber'],
+        eta: object['eta'],
+        paymentType: object['paymentType'],
+        totalChange: object['totalChange'],
+        discountAmount: object['discountAmount'],
+        discountPercentage: object['discountPercentage'],
+        finalAmount: object['finalAmount'],
+        receiptTotalDiscount: object['receiptTotalDiscount'],
+        roundAmount: object['roundAmount'],
+        subtotal: object['subtotal'],
+        totalDiscount: object['totalDiscount'],
+        totalItemAmount: object['totalItemAmount'],
+        totalItemCost: object['totalItemCost'],
+        totalItemDiscount: object['totalItemDiscount'],
+        totalService: object['totalService'],
+        totalTax: object['totalTax'],
+        voucherAmount: object['voucherAmount'],
+        deliveryAmount: object['deliveryAmount'],
+        totalPayment: object['totalPayment'],
+        salesType: object['salesType'],
+        items: object['items'],
+        itemWeight: object['itemWeight'],
+        isUseVoucher: object['isUseVoucher'],
+        promos: object['promos'],
+        paymentList: object['paymentList'],
+        taxesAndServices: List<TransactionHistoryTaxesAndServices>.from(
+          object['taxesAndServices'].map((item) => TransactionHistoryTaxesAndServices.create(item))
+        ),
+        itemTotalAmount: object['itemTotalAmount'],
     );
   }
 }

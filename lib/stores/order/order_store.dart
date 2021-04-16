@@ -5,8 +5,12 @@ import 'package:boilerplate/models/map/geocode.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
+import 'package:boilerplate/models/order/payment_method.dart';
+import 'package:boilerplate/models/order/cart_session_model.dart';
+import 'package:boilerplate/models/order/checkout_response.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
+import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -53,6 +57,8 @@ abstract class _OrderStore with Store {
     _repository.orderProduct.then((value) => {
       this.orderProduct = value!= null ? jsonDecode(value) : ""}
     );
+
+    this.calculatePrice();
   }
 
   // disposers:-----------------------------------------------------------------
@@ -154,31 +160,39 @@ abstract class _OrderStore with Store {
   }
 
   @observable
+  String sessionId;
   String orderOutletName;
   String orderOutletDetailName;
   String orderSalesTypes;
   String orderSalesTypesCode;
   String orderMerchantName;
+  UserProfile userProfile;
   List<dynamic> orderProduct=[];
   int orderPriceTotal;
+  List<PaymentMethod> paymentMethod = [];
+  String orderPaymentType;
+  String orderPaymentTypeText;
+  Map<String, dynamic> delivery;
+  
+  CartSession countedTransaction;
 
   @action
   void setOrderParameter(Map<String,dynamic> object){
+    print('DEBUG >> $object');
 
-    //sales type mapping
-    if (object["orderSalesTypes"]=="dineIn") {
-      this.orderSalesTypesCode="DI";
-    }else if(object["orderSalesTypes"]=="takeAway"){
-      this.orderSalesTypesCode="TA";
-    }else if (orderSalesTypesCode=="GoFood"){
-      this.orderSalesTypesCode="GoF";
-    }else if (orderSalesTypesCode=="GrabFood"){
-      this.orderSalesTypesCode="GrF";
-    }else if (orderSalesTypesCode=="onlineDriver"){
-      this.orderSalesTypesCode="OD";
-    }else if (orderSalesTypesCode=="driveThru"){
-      this.orderSalesTypesCode="DT";
+    this.userProfile = object['userProfile'];
+
+    final Map salesTypeCodeMapping = {
+      'onlineDriver': 'GoF',
+      'dineIn': 'DI',
+      'takeAway': 'TA',
+      'driveThru': 'TA',
+    };
+
+    if (salesTypeCodeMapping.containsKey(object["orderSalesTypes"])) {
+      this.orderSalesTypesCode = salesTypeCodeMapping[object["orderSalesTypes"]];
     }
+
     _repository.saveOrderOutletName({
         "orderOutletName": object["orderOutletName"],
         "orderSalesTypes": object["orderSalesTypes"],
@@ -201,7 +215,18 @@ abstract class _OrderStore with Store {
     }
 
     //save to local storage
+    
+    this.createCartSession();
+    print('DEBUG >> transactionData ${this.transactionData}');
+  }
 
+  @action
+  void setPaymentMethod(PaymentMethod method) {
+    this.orderPaymentType = method.id;
+    this.orderPaymentTypeText = method.title;
+    print('DEBUG >> payment id ${method.id}');
+    print('DEBUG >> transactionData ${this.transactionData}');
+    this.updateCartSession();
   }
 
   void calculatePrice(){
@@ -220,11 +245,98 @@ abstract class _OrderStore with Store {
     _repository.saveOrderProduct(jsonEncode(this.orderProduct));
     this.orderProduct.sort((a, b) => a["id"].compareTo(b["id"]));
     calculatePrice();
+
+    this.updateCartSession();
+    print('DEBUG >> transactionData ${this.transactionData}');
   }
 
   @action
   void removeProduct(int productId){
     this.orderProduct.removeWhere((item) => item["id"] == productId);
+    this.updateCartSession();
   }
 
+  @action
+  Future<List<PaymentMethod>> getPaymentMethod() async {
+    return await _repository.getPaymentMethod({
+      'outlet': this.detailOutlet.outlet['name'],
+      'salesType': this.orderSalesTypes,
+    }).then((value) {
+      this.paymentMethod = value;
+      return value;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+    });
+  }
+
+  @action
+  Future<CartSession> createCartSession() async {
+    return await _repository.createCartSession(this.transactionData).then((value) {
+      this.countedTransaction = value['transactionData'];
+      this.sessionId = value['sessionId'];
+      print('DEBUG >> sessionId on createCartSession ${this.sessionId}');
+      print('DEBUG >> countedTransaction on createCartSession ${this.countedTransaction}');
+      return value['transactionData'];
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+    });
+  }
+
+  @action
+  Future<CartSession> updateCartSession() async {
+    return await _repository.updateCartSession(this.transactionData, this.sessionId).then((value) {
+      this.countedTransaction = value['transactionData'];
+      this.sessionId = value['sessionId'];
+      print('DEBUG >> sessionId on createCartSession ${this.sessionId}');
+      print('DEBUG >> countedTransaction on createCartSession ${this.countedTransaction}');
+      return value['transactionData'];
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+    });
+  }
+
+  @action
+  Future<CheckoutResponse> checkout() async {
+    return await _repository.checkout(this.sessionId).then((value) {
+      print('DEBUG >> checkoutrespons on checkout ${value}');
+      return value;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+    });
+  }
+
+  // store getters:-------------------------------------------------------------
+  @computed
+  List<dynamic> get transactionItems {
+    return List<dynamic>.from(this.orderProduct.map((item) {
+      return {
+        'productId': item['id'],
+        'modifiers': [],
+        'note': '',
+        'qty': item['qty'],
+      };
+    }));
+  }
+  
+  @computed
+  Map<String, dynamic> get transactionData {
+    return {
+      'outletName': this.orderOutletName,
+      'customerName': this.userProfile.name,
+      'customerPhone': this.userProfile.mobilePhone,
+      'customerCarColor': '',
+      'customerCarNumber': '',
+      'customerCarType': '',
+      'customerSmoking': false,
+      'customerNote': '',
+      'customerPax': 1,
+      'eta': 'now',
+      'salesType': this.orderSalesTypes,
+      'salesTypeCode': this.orderSalesTypesCode,
+      'items': this.transactionItems,
+      'paymentType': this.orderPaymentType,
+      'promos': [],
+      'delivery': this.delivery,
+    };
+  }
 }
