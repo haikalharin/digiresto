@@ -173,7 +173,8 @@ abstract class _OrderStore with Store {
   String orderPaymentType;
   String orderPaymentTypeText;
   Map<String, dynamic> delivery;
-  
+  Map<String, dynamic> transactionData;
+
   CartSession countedTransaction;
 
   @action
@@ -215,7 +216,7 @@ abstract class _OrderStore with Store {
     }
 
     //save to local storage
-    
+
     this.createCartSession();
     print('DEBUG >> transactionData ${this.transactionData}');
   }
@@ -224,6 +225,7 @@ abstract class _OrderStore with Store {
   void setPaymentMethod(PaymentMethod method) {
     this.orderPaymentType = method.id;
     this.orderPaymentTypeText = method.title;
+    updateTransactionData();
     print('DEBUG >> payment id ${method.id}');
     print('DEBUG >> transactionData ${this.transactionData}');
     this.updateCartSession();
@@ -317,10 +319,10 @@ abstract class _OrderStore with Store {
       };
     }));
   }
-  
-  @computed
-  Map<String, dynamic> get transactionData {
-    return {
+
+  @action
+  Map<String, dynamic> updateTransactionData() {
+    this.transactionData = {
       'outletName': this.orderOutletName,
       'customerName': this.userProfile.name,
       'customerPhone': this.userProfile.mobilePhone,
