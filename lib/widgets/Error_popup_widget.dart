@@ -96,7 +96,7 @@ class ErrorPopupWidget  {
                    width: double.infinity,
                    child: RaisedButton(
                      onPressed: () {
-                       if(respError.key=="21"){
+                       if(respError.key=="21" || respError.key=="401"){
                          _userStore.logoutSessionLogin();
                          Navigator.of(context).pushNamedAndRemoveUntil(
                              Routes.login_pin, (Route<dynamic> route) => false);
