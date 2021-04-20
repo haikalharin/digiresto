@@ -8,7 +8,7 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
 
 class ListNearbyOutletWidget extends StatefulWidget {
-  final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
+  final List<dynamic> data;
   final Axis scrollDirection;
   final height;
   final void Function(Map<String, dynamic>) runAction;
@@ -154,8 +154,8 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
               return GestureDetector(
                 onTap: () => {
                   if (widget.data[index].isOwnerLoggedIn){
-                  // _oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
-                  //   _showMyDialog(context, widget.data[index])
+                    // _oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
+                    //   _showMyDialog(context, widget.data[index])
                     _orderMethodPopup.showMyDialog(context,{
                       "name":widget.data[index].outletId,
                       "merchantName": widget.data[index].merchantName.toString(),
@@ -177,24 +177,24 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Stack(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(right: 5),
-                                child: ClipRRect(
+                              children: [
+                                Container(
+                                    padding: EdgeInsets.only(right: 5),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                      child: Image(
+                                        image: (widget.data[index].merchantLogo!=null) ? NetworkImage(widget.data[index].merchantLogo) : RandomImages.getImage(),
+                                        fit: BoxFit.fill,
+                                        width: 96,
+                                        alignment: Alignment.center,
+                                      ),
+                                    )),
+                                !widget.data[index].isOwnerLoggedIn ? ClipRRect(
                                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                  child: Image(
-                                    image: (widget.data[index].merchantLogo!=null) ? NetworkImage(widget.data[index].merchantLogo) : RandomImages.getImage(),
-                                    fit: BoxFit.fill,
+                                  child: Container(
                                     width: 96,
-                                    alignment: Alignment.center,
-                                  ),
-                                )),
-                              !widget.data[index].isOwnerLoggedIn ? ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                    child: Container(
-                                      width: 96,
-                                      color: Colors.black54,
-                                      child: Center(
+                                    color: Colors.black54,
+                                    child: Center(
                                         child: Text("Tutup",
                                             style: TextStyle(
                                               fontFamily: "roboto",
@@ -203,11 +203,11 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                                               fontWeight: FontWeight.w700,
                                             ),
                                             textAlign: TextAlign.left)
-                                      ),
                                     ),
-                                  ) : Container(),
+                                  ),
+                                ) : Container(),
                               ]
-                            ),
+                          ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,9 +255,9 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                       //child: Center(child: Text('Entry ${data[index].id.toString()}')),
                     ),
                     Container(
-                      height: 1,
-                      width: double.infinity,
-                      color: AppColors.greyStroke
+                        height: 1,
+                        width: double.infinity,
+                        color: AppColors.greyStroke
                     )
                   ],
                 ),

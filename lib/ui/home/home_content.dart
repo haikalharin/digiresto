@@ -10,6 +10,7 @@ import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/widgets/list/home_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
+import 'package:boilerplate/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -106,14 +107,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   //     print("error response: " + err.toString());
   //   });
   // }
-
-  Widget _topBackground() {
-    return Container(
-      width: double.infinity,
-      height: 30,
-      color: AppColors.red,
-    );
-  }
 
   Widget _buildPageIndicator(bool isCurrentPage) {
     return Container(
@@ -320,7 +313,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ),
                 margin: EdgeInsets.only(left: 10, right: 5),
                 height: 100,
-                width: MediaQuery.of(context).size.width - 210,
+                width: MediaQuery.of(context).size.width/2-20,
                 decoration: BoxDecoration(
                   color: AppColors.cream,
                   borderRadius: BorderRadius.circular(7.0),
@@ -348,7 +341,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 ),
                 margin: EdgeInsets.only(left: 5, right: 10),
                 height: 100,
-                width: MediaQuery.of(context).size.width - 210,
+                width: MediaQuery.of(context).size.width/2-20,
                 decoration: BoxDecoration(
                   color: AppColors.cream,
                   borderRadius: BorderRadius.circular(7.0),
@@ -540,13 +533,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       children: [
         Column(
           children: <Widget>[
-            _topBackground(),
+            TopBackgound(backgroundColor: AppColors.red),
             _yourLocation(),
             _searchBox(),
           ],
         ),
         Container(
-            height: MediaQuery.of(context).size.height - 190,
+            height: MediaQuery.of(context).size.height / 1.4,
             child: SingleChildScrollView(
               child: Column(
           children: [

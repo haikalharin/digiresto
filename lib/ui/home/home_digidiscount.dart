@@ -127,7 +127,7 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.only(top:10),
+        padding: EdgeInsets.only(top:25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -165,7 +165,7 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
             //_search(),
             ListDigidiscountWidget(
               runAction: _orderStore.setOrderParameter,
-              height:  MediaQuery. of(context). size. height-100,
+              height: MediaQuery.of(context).size.height / 1.3,
               data: listPromoOutlet,
               scrollDirection: Axis.vertical,
             ),
