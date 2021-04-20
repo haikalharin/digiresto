@@ -15,6 +15,7 @@ import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/nearby_outlet_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:package_info/package_info.dart';
@@ -40,12 +41,6 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
     getOutletByLocation(searchController.text,1);
-    // if (_orderStore.listOutletByLocation==null){
-    //   getOutletByLocation(searchController.text,1);
-    // }else{
-    //   listOutlet=_orderStore.listOutletByLocation;
-    // }
-
   }
 
   void loadMoreOutletByLocation(){

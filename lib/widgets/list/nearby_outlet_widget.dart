@@ -29,8 +29,6 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
           widget.loadMoreAction();
-        /*getDetailOutlet(
-            _orderStore.orderOutletName, searchName, filterCategory, page + 1);*/
       }
     });
   }
@@ -143,20 +141,27 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+    OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         height: widget.height,
         child: ListView.builder(
             controller: _scrollController,
             scrollDirection: widget.scrollDirection,
-            shrinkWrap: true, // new line
-            //padding: const EdgeInsets.all(8),
+            shrinkWrap: true,
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () => {
                   if (widget.data[index].isOwnerLoggedIn){
-                  //_oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
-                    _showMyDialog(context, widget.data[index])
+                  // _oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
+                  //   _showMyDialog(context, widget.data[index])
+                    _orderMethodPopup.showMyDialog(context,{
+                      "name":widget.data[index].outletId,
+                      "merchantName": widget.data[index].merchantName.toString(),
+                      "orderMethod": widget.data[index].orderMethod["defaultList"],
+                      "detailName":widget.data[index].outletName,
+                    },widget.runAction)
                   }
                 },
                 child: Column(
@@ -165,7 +170,6 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                       margin: EdgeInsets.all(5),
                       padding: const EdgeInsets.only(left: 8),
                       decoration: BoxDecoration(
-                        //color: Colors.amber[100],
                         borderRadius: BorderRadius.circular(7.0),
                       ),
                       height: 96,
@@ -244,17 +248,6 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                                     ),
                                     textAlign: TextAlign.left),
                               ),
-                              // !widget.data[index].isOwnerLoggedIn ? Padding(
-                              //   padding: const EdgeInsets.only(top:5),
-                              //   child: Text("Closed",
-                              //       style: TextStyle(
-                              //         fontFamily: "roboto",
-                              //         color: AppColors.red,
-                              //         fontSize: 12,
-                              //         fontWeight: FontWeight.w700,
-                              //       ),
-                              //       textAlign: TextAlign.left),
-                              // ) : Container()
                             ],
                           ),
                         ],
