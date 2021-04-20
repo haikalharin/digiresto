@@ -158,7 +158,6 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                               List<String>  encodedUrl = res.wame.split("?text=");
                               // url
                               String url = encodedUrl[0]+"?text="+Uri.encodeComponent(encodedUrl[1]);
-                              print(url);
                               LaunchUrl.run(url);
                               Navigator.of(context)
                                   .pushNamed(Routes.verify_otp);

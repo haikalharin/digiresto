@@ -140,7 +140,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                     onPressed: () {
                       Navigator.pop(context);
                     }),
-                Text("Terdekat",
+                Text("Search",
                     style: TextStyle(
                       fontFamily: "roboto",
                       color: Colors.black,

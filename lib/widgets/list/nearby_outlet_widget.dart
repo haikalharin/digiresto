@@ -2,6 +2,7 @@ import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
@@ -154,6 +155,7 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
               return GestureDetector(
                 onTap: () => {
                   if (widget.data[index].isOwnerLoggedIn){
+                  //_oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
                     _showMyDialog(context, widget.data[index])
                   }
                 },

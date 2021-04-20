@@ -176,7 +176,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   Widget _searchBox() {
     return GestureDetector(
       onTap: () {
-        print("open box");
+        Navigator.of(context).pushNamed(Routes.home_nearby_outlet);
       },
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10,bottom: 10),
@@ -399,6 +399,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
         ),
           //Text(_orderStore.listHotPromo.length.toString()),
           _orderStore.listHotPromo != null ? ListHomeHotPromoWidget(
+            runAction: _orderStore.setOrderParameter,
             height:  180.0,
             data: _orderStore.listHotPromo,
             scrollDirection: Axis.horizontal,

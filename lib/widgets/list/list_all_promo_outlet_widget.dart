@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
@@ -9,7 +10,8 @@ class ListAllPromoWidget extends StatefulWidget {
   final Axis scrollDirection;
   final height;
   final void Function() loadMoreAction;
-  const ListAllPromoWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.loadMoreAction})
+  final void Function(Map<String, dynamic>) runAction;
+  const ListAllPromoWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.loadMoreAction,this.runAction})
       : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         height: widget.height,
         child: ListView.builder(
@@ -45,7 +48,12 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
               return GestureDetector(
                 onTap: (){
                   if (widget.data[index].outlet["isOwnerLoggedIn"]){
-                    print("do action");
+                    _orderMethodPopup.showMyDialog(context,{
+                      "name": widget.data[index].outletId,
+                      "merchantName": widget.data[index].merchant["name"].toString(),
+                      "orderMethod": widget.data[index].outlet["orderMethod"]["defaultList"],
+                      "detailName": widget.data[index].outlet["detail"]["name"],
+                    },widget.runAction);
                   }
                 },
                 child: Column(

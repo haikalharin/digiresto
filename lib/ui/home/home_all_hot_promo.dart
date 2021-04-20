@@ -171,6 +171,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
             ),
             _search(),
             ListAllPromoWidget(
+              runAction: _orderStore.setOrderParameter,
               loadMoreAction: loadMoreOutletByLocation,
               height: MediaQuery. of(context). size. height-160,
               data: listAllPromo,
