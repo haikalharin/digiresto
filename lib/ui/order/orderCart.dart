@@ -25,6 +25,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'dart:core';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+
 
 class OrderCartScreen extends StatefulWidget {
   @override
@@ -43,6 +45,19 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
+  Loading _loading = new Loading();
+
+  void loadingAdd() {
+    setState(() {
+      _loading.add();
+    });
+  }
+
+  void loadingDelete() {
+    setState(() {
+      _loading.delete();
+    });
+  }
 
   final ScrollController _scrollController = new ScrollController();
   final notesController = TextEditingController();
@@ -497,24 +512,67 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Metode Pembayaran",
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        //color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                    )),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.select_payment_method);
-                    },
-                    color: Colors.white,
-                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(
-                      width: 1,
-                      color: AppColors.red,
-                    ),),
-                    child: Text('Pilih', style: TextStyle(color:AppColors.red, fontWeight: FontWeight.bold,))
-                  )
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Metode Pembayaran",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          //color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                      )),
+                      if (_orderStore.orderPaymentTypeText != null)
+                        Text(_orderStore.orderPaymentTypeText,
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            //color: Colors.white,
+                            fontSize: 14,
+                        )), 
+                    ],
+                  ),
+                  if (_orderStore.orderPaymentTypeText != null)
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.select_payment_method);
+                      },
+                      color: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Ubah',
+                        style: TextStyle(
+                          color:AppColors.red,
+                          fontWeight: FontWeight.bold,
+                        )
+                      )
+                    )
+                  else 
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.select_payment_method);
+                      },
+                      color: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Pilih',
+                        style: TextStyle(
+                          color:AppColors.red,
+                          fontWeight: FontWeight.bold,
+                        )
+                      )
+                    )
                 ],
               ),
             ),
@@ -995,8 +1053,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   _addNew(),
                   _notes(),
                   _useVoucherCode(),
-                  _paymentMethod(),
-                  _detailPayment(),
+                  Observer(builder: (context) => _paymentMethod()),
+                  Observer(builder: (context) => _detailPayment()),
                 ],
               ),
             ),

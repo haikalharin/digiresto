@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/models/map/geocode.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
@@ -159,23 +160,22 @@ abstract class _OrderStore with Store {
     });
   }
 
-  @observable
-  String sessionId;
-  String orderOutletName;
-  String orderOutletDetailName;
-  String orderSalesTypes;
-  String orderSalesTypesCode;
-  String orderMerchantName;
-  UserProfile userProfile;
-  List<dynamic> orderProduct=[];
-  int orderPriceTotal;
-  List<PaymentMethod> paymentMethod = [];
-  String orderPaymentType;
-  String orderPaymentTypeText;
-  Map<String, dynamic> delivery;
-  Map<String, dynamic> transactionData;
+  @observable String sessionId;
+  @observable String orderOutletName;
+  @observable String orderOutletDetailName;
+  @observable String orderSalesTypes;
+  @observable String orderSalesTypesCode;
+  @observable String orderMerchantName;
+  @observable UserProfile userProfile;
+  @observable List<dynamic> orderProduct=[];
+  @observable int orderPriceTotal;
+  @observable List<PaymentMethod> paymentMethod = [];
+  @observable String orderPaymentType;
+  @observable String orderPaymentTypeText;
+  @observable Map<String, dynamic> delivery;
+  @observable Map<String, dynamic> transactionData;
 
-  CartSession countedTransaction;
+  @observable CartSession countedTransaction;
 
   @action
   void setOrderParameter(Map<String,dynamic> object){
@@ -224,7 +224,7 @@ abstract class _OrderStore with Store {
   @action
   void setPaymentMethod(PaymentMethod method) {
     this.orderPaymentType = method.id;
-    this.orderPaymentTypeText = method.title;
+    this.orderPaymentTypeText = method.title.replaceAll('%1\$s', Strings.appName);
     updateTransactionData();
     print('DEBUG >> payment id ${method.id}');
     print('DEBUG >> transactionData ${this.transactionData}');
@@ -273,6 +273,8 @@ abstract class _OrderStore with Store {
 
   @action
   Future<CartSession> createCartSession() async {
+    this.updateTransactionData();
+
     return await _repository.createCartSession(this.transactionData).then((value) {
       this.countedTransaction = value['transactionData'];
       this.sessionId = value['sessionId'];
@@ -286,6 +288,8 @@ abstract class _OrderStore with Store {
 
   @action
   Future<CartSession> updateCartSession() async {
+    this.updateTransactionData();
+
     return await _repository.updateCartSession(this.transactionData, this.sessionId).then((value) {
       this.countedTransaction = value['transactionData'];
       this.sessionId = value['sessionId'];
