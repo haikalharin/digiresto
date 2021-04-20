@@ -134,7 +134,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.only(top:10),
+        padding: EdgeInsets.only(top:25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -171,8 +171,9 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
             ),
             _search(),
             ListAllPromoWidget(
+              runAction: _orderStore.setOrderParameter,
               loadMoreAction: loadMoreOutletByLocation,
-              height: MediaQuery. of(context). size. height-160,
+              height: MediaQuery.of(context).size.height / 1.3,
               data: listAllPromo,
               scrollDirection: Axis.vertical,
             ),

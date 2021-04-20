@@ -15,6 +15,8 @@ import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/nearby_outlet_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
+import 'package:boilerplate/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:package_info/package_info.dart';
@@ -40,12 +42,6 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
     getOutletByLocation(searchController.text,1);
-    // if (_orderStore.listOutletByLocation==null){
-    //   getOutletByLocation(searchController.text,1);
-    // }else{
-    //   listOutlet=_orderStore.listOutletByLocation;
-    // }
-
   }
 
   void loadMoreOutletByLocation(){
@@ -127,7 +123,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.only(top:10),
+        padding: EdgeInsets.only(top:25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -140,7 +136,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                     onPressed: () {
                       Navigator.pop(context);
                     }),
-                Text("Terdekat",
+                Text("Search",
                     style: TextStyle(
                       fontFamily: "roboto",
                       color: Colors.black,
@@ -148,7 +144,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center),
-                Container()
+                Container(width: 30,)
               ],
             ),
             Container(
@@ -165,7 +161,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
             (listOutlet.length > 1 )  ? ListNearbyOutletWidget(
               loadMoreAction: loadMoreOutletByLocation,
               runAction: _orderStore.setOrderParameter,
-              height: MediaQuery. of(context). size. height-160,
+              height: MediaQuery.of(context).size.height / 1.3,
               data: listOutlet,
               scrollDirection: Axis.vertical,
             ): Container(),

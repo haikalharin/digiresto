@@ -326,7 +326,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       Container(
                         padding: EdgeInsets.all(5),
                         height: 50,
-                        width: MediaQuery. of(context). size. width-190,
+                        width: MediaQuery.of(context).size.width/2-20,
                         child: RaisedButton(
                           onPressed: () {
                             _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
@@ -350,7 +350,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       Container(
                         padding: EdgeInsets.all(5),
                         height: 50,
-                        width: MediaQuery. of(context). size. width-190,
+                        width: MediaQuery.of(context).size.width/2-20,
                         child: RaisedButton(
                           onPressed: () {},
                           color: Colors.white,
