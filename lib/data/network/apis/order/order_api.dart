@@ -3,9 +3,12 @@ import 'dart:async';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
+import 'package:boilerplate/models/order/cart_session_model.dart';
+import 'package:boilerplate/models/order/checkout_response.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
+import 'package:boilerplate/models/order/payment_method.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/map/geocode.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
@@ -141,38 +144,71 @@ class OrderApi {
     }
   }
 
-  Future<DetailOutlet> createCartSession(Map<String,dynamic> object) async{
+  Future<Map<String, dynamic>> createCartSession(Map<String,dynamic> object) async{
     try {
       String apiUrl = Endpoints.urlCreateCartSession;
       final apiResult = await _dioClient.post(apiUrl, data: {
-        "query_string":{},
-        "body":{
-          "customerCarColor": "",
-          "customerCarNumber": "",
-          "customerCarType": "",
-          "customerName": "Nurul Hidayat",
-          "customerNote": "",
-          "customerPax": "1",
-          "customerPhone": "081113194441",
-          "customerSmoking": false,
-          "customerTableNumber": "",
-          "eta": "now",
-          "items": [
-            {
-              "modifiers": [],
-              "note": "",
-              "productId": "746",
-              "qty": 5
-            }
-          ],
-          "outletName": "dgp-248",
-          "paymentType": "",
-          "promos": [],
-          "salesType": "dineIn"
-        }
+        "query_string": {},
+        "body": object
       });
-      var userData = (apiResult as Map<String,dynamic>)['data'];
-      return DetailOutlet.createDetailOutlet(userData);
+      var data = (apiResult as Map<String,dynamic>)['data'];
+      return {
+        "transactionData": CartSession.createCartSession(data['transactionData']),
+        "sessionId": data['sessionId']
+      };
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+  Future<Map<String, dynamic>> updateCartSession(Map<String,dynamic> object, String sessionId) async{
+    try {
+      String apiUrl = Endpoints.urlUpdateCartSession;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {
+          "sessionId": sessionId,
+        },
+        "body": object
+      });
+      var data = (apiResult as Map<String,dynamic>)['data'];
+      return {
+        "transactionData": CartSession.createCartSession(data['transactionData']),
+        "sessionId": data['sessionId']
+      };
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+  Future<CheckoutResponse> checkout(String sessionId) async{
+    try {
+      String apiUrl = Endpoints.urlCheckoutCartSession;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {
+          "sessionId": sessionId,
+        },
+        "body": {}
+      });
+      var data = (apiResult as Map<String,dynamic>)['data'];
+      return CheckoutResponse.create(data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<List<PaymentMethod>> getPaymentMethod(Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlGetPaymentMethod;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {
+          "outletName": object['outlet'],
+          "salesType": object['salesType']
+        },
+        "body": {},
+      });
+      var methods = (apiResult as Map<String, dynamic>)['data'];
+      return List<PaymentMethod>.from(methods.map((data) => PaymentMethod.create(data)));
     } catch (e) {
       print(e.toString());
       throw e;

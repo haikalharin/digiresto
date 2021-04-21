@@ -196,7 +196,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
           Loading.dismiss();
         }).catchError((err) {
           Loading.dismiss();
-          print(err);
+          print("error response: "+ err.toString());
           ErrorPopupWidget.showDioError(context,err, null);
         });
   }
@@ -211,7 +211,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
         getAddress();
       }).catchError((err) {
         Loading.dismiss();
-        print(err);
+        print("error response: "+ err.toString());
         ErrorPopupWidget.showDioError(context,err, null);
       });
   }
@@ -228,7 +228,7 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
         Loading.dismiss();
       }).catchError((err) {
         Loading.dismiss();
-        print(err);
+        print("error response: "+ err.toString());
         ErrorPopupWidget.showDioError(context,err, null);
       });
   }

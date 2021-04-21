@@ -1,7 +1,10 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/data/repository.dart';
 //import 'package:boilerplate/models/key_value_model.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
+import 'package:boilerplate/models/order/payment_method.dart';
+import 'package:boilerplate/models/transaction/transaction_history_taxes_and_services.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
@@ -9,6 +12,7 @@ import 'package:boilerplate/ui/order/detailProductDialog.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/utils/utils.dart';
 import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_cart_widget.dart';
@@ -21,6 +25,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'dart:core';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+
 
 class OrderCartScreen extends StatefulWidget {
   @override
@@ -35,9 +41,23 @@ class KeyValueModel {
 
 
 class _OrderCartScreenState extends State<OrderCartScreen> {
+  Repository _repository;
   UserStore _userStore;
   OrderStore _orderStore;
   DetailOutlet detailOutlet;
+  Loading _loading = new Loading();
+
+  void loadingAdd() {
+    setState(() {
+      _loading.add();
+    });
+  }
+
+  void loadingDelete() {
+    setState(() {
+      _loading.delete();
+    });
+  }
 
   final ScrollController _scrollController = new ScrollController();
   final notesController = TextEditingController();
@@ -72,6 +92,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   String _selectedValueClock;
   String _selectedValueSmoking;
 
+  List<PaymentMethod> _paymentMethods;
+
   goBack(BuildContext context) {
     Navigator.pop(context);
   }
@@ -82,6 +104,14 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
     initDialogPlace();
+
+    print('DEBUG >> transactionData on cart_store ${_orderStore.transactionData}');
+
+    _orderStore.getPaymentMethod().then((value) {
+      setState(() {
+        _paymentMethods = value;
+      });
+    });
   }
 
   void initDialogPlace(){
@@ -452,6 +482,174 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       ),
                     ],
                   ) : Container()
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _paymentMethod() {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Metode Pembayaran",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          //color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                      )),
+                      if (_orderStore.orderPaymentTypeText != null)
+                        Text(_orderStore.orderPaymentTypeText,
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            //color: Colors.white,
+                            fontSize: 14,
+                        )), 
+                    ],
+                  ),
+                  if (_orderStore.orderPaymentTypeText != null)
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.select_payment_method);
+                      },
+                      color: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Ubah',
+                        style: TextStyle(
+                          color:AppColors.red,
+                          fontWeight: FontWeight.bold,
+                        )
+                      )
+                    )
+                  else 
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.select_payment_method);
+                      },
+                      color: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Pilih',
+                        style: TextStyle(
+                          color:AppColors.red,
+                          fontWeight: FontWeight.bold,
+                        )
+                      )
+                    )
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _detailPayment() {
+    final transaction = _orderStore.countedTransaction;
+    return Theme(
+      data: Theme.of(context).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Detail Payment",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        //color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Subtotal'),
+                      Text("Rp."+Utils.formatRupiah(transaction.subtotal.toString()))
+                    ],
+                  ),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: transaction.taxesAndServices.length,
+                    itemBuilder: (context, index) => _buildTaxAndServiceList(transaction.taxesAndServices[index]),
+                    separatorBuilder: (context, index) => SizedBox(height: 5),
+                  ),
+                  Divider(
+                    color: Colors.black,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Total'),
+                      Text("Rp."+Utils.formatRupiah(transaction.totalPayment.toString()))
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  FlatButton(
+                    minWidth: double.infinity,
+                    onPressed: () async {
+                      print('DEBUG >> do checkout');
+                      var checkoutResponse = await _orderStore.checkout();
+
+                      if (checkoutResponse.payment.isCredit) {
+                        await _orderStore.getTransaction();
+                        Navigator.of(context).pushReplacementNamed(Routes.payment_receipt);
+                      }
+                    },
+                    color: AppColors.red,
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                    child: Text('Order', style: TextStyle(color:Colors.white),)
+                  )
                 ],
               ),
             ),
@@ -859,13 +1057,25 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   _order(),
                   _addNew(),
                   _notes(),
-                  _useVoucherCode()
+                  _useVoucherCode(),
+                  Observer(builder: (context) => _paymentMethod()),
+                  Observer(builder: (context) => _detailPayment()),
                 ],
               ),
             ),
           )
         ],
       ),
+    );
+  }
+
+  Widget _buildTaxAndServiceList(TransactionHistoryTaxesAndServices item) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(item.name),
+        Text('Rp.'+Utils.formatRupiah(item.amount.toString())),
+      ],
     );
   }
 }

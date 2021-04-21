@@ -1,9 +1,4 @@
-import 'package:boilerplate/models/response_model.dart';
-import 'package:boilerplate/models/transaction/transaction_history_taxes_and_services.dart';
-
-class CartSession {
-  String sessionId;
-  Response response;
+class TransactionMobile {
   String outletName;
   int outletId;
   String customerName;
@@ -19,7 +14,6 @@ class CartSession {
   String customerCarColor;
   String customerCarNumber;
   String eta;
-  String paymentType;
   int totalChange;
   int discountAmount;
   int discountPercentage;
@@ -42,62 +36,23 @@ class CartSession {
   bool isUseVoucher;
   List<dynamic> promos;
   List<dynamic> paymentList;
-  List<TransactionHistoryTaxesAndServices> taxesAndServices;
+  List<dynamic> taxesAndServices;
   int itemTotalAmount;
+  String note;
+  String deviceTimestamp;
+  String receiptCode;
+  List<dynamic> payments;
+  Map<String, dynamic> outlet;
+  String orderId;
+  String status;
+  Map<String, dynamic> deliveryDetail;
+  Map<String, dynamic> rating;
+  
 
-  CartSession(
-      {
-        this.sessionId,
-        this.response,
-        this.outletName,
-        this.outletId,
-        this.customerName,
-        this.customerEmail,
-        this.customerPhone,
-        this.recipientName,
-        this.recipientPhone,
-        this.customerTableNumber,
-        this.customerSmoking,
-        this.customerPax,
-        this.customerNote,
-        this.customerCarType,
-        this.customerCarColor,
-        this.customerCarNumber,
-        this.eta,
-        this.paymentType,
-        this.totalChange,
-        this.discountAmount,
-        this.discountPercentage,
-        this.finalAmount,
-        this.receiptTotalDiscount,
-        this.roundAmount,
-        this.subtotal,
-        this.totalDiscount,
-        this.totalItemAmount,
-        this.totalItemCost,
-        this.totalItemDiscount,
-        this.totalService,
-        this.totalTax,
-        this.voucherAmount,
-        this.deliveryAmount,
-        this.totalPayment,
-        this.salesType,
-        this.items,
-        this.itemWeight,
-        this.isUseVoucher,
-        this.promos,
-        this.paymentList,
-        this.taxesAndServices,
-        this.itemTotalAmount,
-      }
-  );
+  TransactionMobile({ this.outletName, this.outletId, this.customerName, this.customerEmail, this.customerPhone, this.recipientName, this.recipientPhone, this.customerTableNumber, this.customerSmoking, this.customerPax, this.customerNote, this.customerCarType, this.customerCarColor, this.customerCarNumber, this.eta, this.totalChange, this.discountAmount, this.discountPercentage, this.finalAmount, this.receiptTotalDiscount, this.roundAmount, this.subtotal, this.totalDiscount, this.totalItemAmount, this.totalItemCost, this.totalItemDiscount, this.totalService, this.totalTax, this.voucherAmount, this.deliveryAmount, this.totalPayment, this.salesType, this.items, this.itemWeight, this.isUseVoucher, this.promos, this.paymentList, this.taxesAndServices, this.itemTotalAmount, this.note, this.deviceTimestamp, this.receiptCode, this.payments, this.outlet, this.orderId, this.status, this.deliveryDetail, this.rating, });
 
-  factory CartSession.createResponse(Map<String, dynamic> object){
-      return CartSession(response : Response.createResponse(object));
-  }
-
-  factory CartSession.createCartSession(Map<String, dynamic> object) {
-    return CartSession(
+  factory TransactionMobile.create(Map<String,dynamic> object){
+    return TransactionMobile(
         outletName: object['outletName'],
         outletId: object['outletId'],
         customerName: object['customerName'],
@@ -113,7 +68,6 @@ class CartSession {
         customerCarColor: object['customerCarColor'],
         customerCarNumber: object['customerCarNumber'],
         eta: object['eta'],
-        paymentType: object['paymentType'],
         totalChange: object['totalChange'],
         discountAmount: object['discountAmount'],
         discountPercentage: object['discountPercentage'],
@@ -136,10 +90,17 @@ class CartSession {
         isUseVoucher: object['isUseVoucher'],
         promos: object['promos'],
         paymentList: object['paymentList'],
-        taxesAndServices: List<TransactionHistoryTaxesAndServices>.from(
-          object['taxesAndServices'].map((item) => TransactionHistoryTaxesAndServices.create(item))
-        ),
+        taxesAndServices: object['taxesAndServices'],
         itemTotalAmount: object['itemTotalAmount'],
+        note: object['note'],
+        deviceTimestamp: object['deviceTimestamp'],
+        receiptCode: object['receiptCode'],
+        payments: object['payments'],
+        outlet: object['outlet'],
+        orderId: object['orderId'],
+        status: object['status'],
+        deliveryDetail: object['deliveryDetail'],
+        rating: object['rating'],
     );
   }
 }

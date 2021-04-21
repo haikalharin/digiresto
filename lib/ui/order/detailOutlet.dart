@@ -454,4 +454,3 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       );
     }
   }
-

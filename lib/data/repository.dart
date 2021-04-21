@@ -13,9 +13,13 @@ import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
 import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/models/order/cart_session_model.dart';
+import 'package:boilerplate/models/order/checkout_response.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
+import 'package:boilerplate/models/order/payment_method.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
+import 'package:boilerplate/models/order/transaction_mobile.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
@@ -258,6 +262,36 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
+  Future<TransactionMobile> getTransaction(String receiptCode) async {
+    return await _transactionApi.getTransaction(receiptCode).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<PaymentMethod>> getPaymentMethod(Map<String, dynamic> object) async {
+    return await _orderApi.getPaymentMethod(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<Map<String, dynamic>> createCartSession(Map<String, dynamic> object) async {
+    return await _orderApi.createCartSession(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<Map<String, dynamic>> updateCartSession(Map<String, dynamic> object, String sessionId) async {
+    return await _orderApi.updateCartSession(object, sessionId).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+  
+  Future<CheckoutResponse> checkout(String sessionId) async {
+    return await _orderApi.checkout(sessionId).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+  
   //order local storage
   Future<void> saveOrderOutletName(Map<String,dynamic> object) =>
       _sharedPrefsHelper.saveOrderOutletName(object);

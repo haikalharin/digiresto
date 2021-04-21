@@ -158,11 +158,12 @@ abstract class _UserStore with Store {
   }
   @action
   Future getProfile() async {
-      return await _repository.getProfile().then((res) {
-        this.profile = res;
-      }).catchError((err) {
+    return await _repository.getProfile().then((res) {
+      this.profile = res;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
         throw err;
-      });
+    });
   }
 
   @action
@@ -171,6 +172,7 @@ abstract class _UserStore with Store {
       this.balance = res;
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -207,6 +209,7 @@ abstract class _UserStore with Store {
     return await _repository.loginUser(handPhone,pin).then((res) {
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -216,6 +219,7 @@ abstract class _UserStore with Store {
     return await _repository.getOtp(handPhone).then((res) {
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -225,6 +229,7 @@ abstract class _UserStore with Store {
     return await _repository.validateOtp(handPhone,pin).then((res) {
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -234,6 +239,7 @@ abstract class _UserStore with Store {
     return await _repository.register(object).then((res) {
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -257,6 +263,7 @@ abstract class _UserStore with Store {
       this.listAddress = res;
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -267,6 +274,7 @@ abstract class _UserStore with Store {
       this.listAddress = res;
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -276,6 +284,7 @@ abstract class _UserStore with Store {
     return await _repository.addAddress(object).then((res) {
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -285,6 +294,7 @@ abstract class _UserStore with Store {
     return await _repository.removeAddress(object).then((res) {
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
@@ -312,6 +322,7 @@ abstract class _UserStore with Store {
       this.listPromo = res;
       return res;
     }).catchError((err) {
+      print("error response: "+ err.toString());
       throw err;
     });
   }
