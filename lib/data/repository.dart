@@ -19,6 +19,7 @@ import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/payment_method.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
+import 'package:boilerplate/models/order/transaction_mobile.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
@@ -257,6 +258,12 @@ class Repository {
 
   Future<List<TransactionHistory>> getTransactionHistory() async {
     return await _transactionApi.getTransactionHistory().then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<TransactionMobile> getTransaction(String receiptCode) async {
+    return await _transactionApi.getTransaction(receiptCode).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

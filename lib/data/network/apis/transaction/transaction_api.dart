@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
+import 'package:boilerplate/models/order/transaction_mobile.dart';
 
 import 'package:boilerplate/models/transaction/transaction_history.dart';
 
@@ -35,6 +36,22 @@ class TransactionApi {
         listTransactionHistory.add(TransactionHistory.createTransactionHistory(transactionHistory[i]));
       }
       return listTransactionHistory;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<TransactionMobile> getTransaction(String receiptCode) async {
+    try {
+      String apiUrl = Endpoints.urlGetTransaction;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {"receiptCode": receiptCode},
+        "body": {}
+      });
+
+      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam 
+      return TransactionMobile.create(data);
     } catch (e) {
       print(e.toString());
       throw e;

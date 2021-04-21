@@ -637,9 +637,14 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   SizedBox(height: 20,),
                   FlatButton(
                     minWidth: double.infinity,
-                    onPressed: () {
+                    onPressed: () async {
                       print('DEBUG >> do checkout');
-                      _orderStore.checkout();
+                      var checkoutResponse = await _orderStore.checkout();
+
+                      if (checkoutResponse.payment.isCredit) {
+                        await _orderStore.getTransaction();
+                        Navigator.of(context).pushReplacementNamed(Routes.payment_receipt);
+                      }
                     },
                     color: AppColors.red,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),

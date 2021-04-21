@@ -182,7 +182,7 @@ class OrderApi {
   }
   Future<CheckoutResponse> checkout(String sessionId) async{
     try {
-      String apiUrl = Endpoints.urlUpdateCartSession;
+      String apiUrl = Endpoints.urlCheckoutCartSession;
       final apiResult = await _dioClient.post(apiUrl, data: {
         "query_string": {
           "sessionId": sessionId,

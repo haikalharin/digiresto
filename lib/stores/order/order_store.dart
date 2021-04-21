@@ -11,6 +11,7 @@ import 'package:boilerplate/models/order/cart_session_model.dart';
 import 'package:boilerplate/models/order/checkout_response.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
+import 'package:boilerplate/models/order/transaction_mobile.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
@@ -177,8 +178,36 @@ abstract class _OrderStore with Store {
 
   @observable CartSession countedTransaction;
 
+  @observable String receiptCode;
+
+  @observable TransactionMobile transactionAfterPayment;
+
+  @action
+  void clearCart() {
+    this.sessionId = null;
+    this.orderOutletName = null;
+    this.orderOutletDetailName = null;
+    this.orderSalesTypes = null;
+    this.orderSalesTypesCode = null;
+    this.orderMerchantName = null;
+    this.orderProduct = [];
+    this.orderPriceTotal = null;
+    this.paymentMethod = [];
+    this.orderPaymentType = null;
+    this.orderPaymentTypeText = null;
+    this.delivery = null;
+    this.transactionData = null;
+
+    this.countedTransaction = null;
+
+    this.receiptCode = null;
+
+    this.transactionAfterPayment = null;
+  }
+
   @action
   void setOrderParameter(Map<String,dynamic> object){
+    this.clearCart();
     print('DEBUG >> $object');
 
     this.userProfile = object['userProfile'];
@@ -288,6 +317,10 @@ abstract class _OrderStore with Store {
 
   @action
   Future<CartSession> updateCartSession() async {
+    if (this.sessionId == null) {
+      return await this.createCartSession();
+    }
+
     this.updateTransactionData();
 
     return await _repository.updateCartSession(this.transactionData, this.sessionId).then((value) {
@@ -305,27 +338,26 @@ abstract class _OrderStore with Store {
   Future<CheckoutResponse> checkout() async {
     return await _repository.checkout(this.sessionId).then((value) {
       print('DEBUG >> checkoutrespons on checkout ${value}');
+      this.receiptCode = value.receiptCode;
       return value;
     }).catchError((err) {
       print("error response: "+ err.toString());
     });
   }
 
-  // store getters:-------------------------------------------------------------
-  @computed
-  List<dynamic> get transactionItems {
-    return List<dynamic>.from(this.orderProduct.map((item) {
-      return {
-        'productId': item['id'],
-        'modifiers': [],
-        'note': '',
-        'qty': item['qty'],
-      };
-    }));
+  @action
+  Future<TransactionMobile> getTransaction() async {
+    return await _repository.getTransaction(this.receiptCode).then((value) {
+      print('DEBUG >> checkoutrespons on checkout ${value}');
+      this.transactionAfterPayment = value;
+      return value;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+    });
   }
 
   @action
-  Map<String, dynamic> updateTransactionData() {
+  void updateTransactionData() {
     this.transactionData = {
       'outletName': this.orderOutletName,
       'customerName': this.userProfile.name,
@@ -339,10 +371,18 @@ abstract class _OrderStore with Store {
       'eta': 'now',
       'salesType': this.orderSalesTypes,
       'salesTypeCode': this.orderSalesTypesCode,
-      'items': this.transactionItems,
+      'items': List<dynamic>.from(this.orderProduct.map((item) {
+        return {
+          'productId': item['id'],
+          'modifiers': [],
+          'note': '',
+          'qty': item['qty'],
+        };
+      })),
       'paymentType': this.orderPaymentType,
       'promos': [],
       'delivery': this.delivery,
     };
+    print('DEBUG >> transactionData afterBuild ${this.transactionData}');
   }
 }
