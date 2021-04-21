@@ -1,7 +1,9 @@
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OrderMethodPopup{
   Future<void> showMyDialog(BuildContext context, Map<String,dynamic> param, void Function(Map<String, dynamic>) runAction) async {
@@ -54,6 +56,7 @@ class OrderMethodWidget extends StatelessWidget {
   final String orderMethod;
   final Map<String,dynamic> param;
   final void Function(Map<String, dynamic>) runAction;
+
   const OrderMethodWidget({
     Key key,
     this.orderMethod,
@@ -63,6 +66,8 @@ class OrderMethodWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserStore _userStore;
+    _userStore = Provider.of<UserStore>(context);
     String textOrderMethod;
     switch(orderMethod) {
       case "dineIn": {
@@ -104,6 +109,7 @@ class OrderMethodWidget extends StatelessWidget {
             "orderSalesTypes":orderMethod,
             "orderMerchantName":param["merchantName"],
             "orderOutletDetailName":param["detailName"],
+            "userProfile": _userStore.profile
           });
           Navigator.of(context)
               .pushNamed(Routes.order_detail_outlet);

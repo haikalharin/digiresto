@@ -75,7 +75,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         Ctoast.show("Otp verification failed");
         //Ctoast.show("skip verification phone");
         //Navigator.of(context).pushReplacementNamed(Routes.register);
-       //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+        //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
       });
 
 

@@ -29,7 +29,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                 onTap: () => {
                   if (data[index].isOwnerLoggedIn){
                     _orderMethodPopup.showMyDialog(context,{
-                      "name":data[index].outletId,
+                      "name":data[index].name,
                       "merchantName": data[index].merchantName.toString(),
                       "orderMethod": data[index].orderMethod["defaultList"],
                       "detailName":data[index].outletName,
