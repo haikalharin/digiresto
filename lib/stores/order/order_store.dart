@@ -234,6 +234,7 @@ abstract class _OrderStore with Store {
       this.orderSalesTypes = object["orderSalesTypes"];
       this.orderMerchantName= object["orderMerchantName"];
       this.orderOutletDetailName=object["orderOutletDetailName"];
+      this.createCartSession();
     }).catchError((err) {
       print(err);
       return throw err;
@@ -246,7 +247,7 @@ abstract class _OrderStore with Store {
 
     //save to local storage
 
-    this.createCartSession();
+
     print('DEBUG >> transactionData ${this.transactionData}');
   }
 

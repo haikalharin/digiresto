@@ -49,7 +49,7 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
                 onTap: (){
                   if (widget.data[index].outlet["isOwnerLoggedIn"]){
                     _orderMethodPopup.showMyDialog(context,{
-                      "name": widget.data[index].outletId,
+                      "name": widget.data[index].outlet["name"],
                       "merchantName": widget.data[index].merchant["name"].toString(),
                       "orderMethod": widget.data[index].outlet["orderMethod"]["defaultList"],
                       "detailName": widget.data[index].outlet["detail"]["name"],

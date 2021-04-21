@@ -173,7 +173,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
             ListAllPromoWidget(
               runAction: _orderStore.setOrderParameter,
               loadMoreAction: loadMoreOutletByLocation,
-              height: MediaQuery.of(context).size.height / 1.3,
+              height: MediaQuery.of(context).size.height / 1.4,
               data: listAllPromo,
               scrollDirection: Axis.vertical,
             ),

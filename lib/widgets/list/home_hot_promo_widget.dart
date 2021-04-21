@@ -30,7 +30,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                 onTap: (){
                   if (data[index].outlet["isOwnerLoggedIn"]){
                     _orderMethodPopup.showMyDialog(context,{
-                      "name": data[index].outletId,
+                      "name": data[index].outlet["name"],
                       "merchantName": data[index].merchant["name"].toString(),
                       "orderMethod": data[index].outlet["orderMethod"]["defaultList"],
                       "detailName": data[index].outlet["detail"]["name"],

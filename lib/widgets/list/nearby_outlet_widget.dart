@@ -169,11 +169,13 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                   if (widget.data[index].isOwnerLoggedIn){
                     // _oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
                     //   _showMyDialog(context, widget.data[index])
+                    //print(widget.data[index].name);
                     _orderMethodPopup.showMyDialog(context,{
-                      "name":widget.data[index].outletId,
+                      "name":widget.data[index].name,
                       "merchantName": widget.data[index].merchantName.toString(),
                       "orderMethod": widget.data[index].orderMethod["defaultList"],
-                      "detailName":widget.data[index].outletName,
+                      "detailName": widget.data[index].outletName,
+                      "userProfile": _userStore.profile
                     },widget.runAction)
                   }
                 },

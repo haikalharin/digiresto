@@ -165,7 +165,7 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
             //_search(),
             ListDigidiscountWidget(
               runAction: _orderStore.setOrderParameter,
-              height: MediaQuery.of(context).size.height / 1.3,
+              height: MediaQuery.of(context).size.height / 1.2,
               data: listPromoOutlet,
               scrollDirection: Axis.vertical,
             ),
