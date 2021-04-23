@@ -36,6 +36,9 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final df = new DateFormat('dd MMM yyyy, hh:mm:ss');
+    final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -115,7 +118,9 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                       SizedBox(height: 5),
                       Text('Waktu:'),
                       SizedBox(height: 5),
-                      Text('19 Apr 2021, 03:42:19'),
+                      Text(
+                        df.format(isoParser.parse(_transaction.deviceTimestamp))
+                      ),
                       SizedBox(height: 5),
                       Divider(height: 1, color: Colors.black),
                       SizedBox(height: 5),

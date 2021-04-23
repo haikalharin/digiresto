@@ -644,6 +644,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       if (checkoutResponse.payment.isCredit) {
                         await _orderStore.getTransaction();
                         Navigator.of(context).pushReplacementNamed(Routes.payment_receipt);
+                      } else if (checkoutResponse.payment.isWebView) {
+                        Navigator.of(context).pushReplacementNamed(Routes.payment_web_view);
                       }
                     },
                     color: AppColors.red,

@@ -9,6 +9,7 @@ import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/payment_method.dart';
 import 'package:boilerplate/models/order/cart_session_model.dart';
 import 'package:boilerplate/models/order/checkout_response.dart';
+import 'package:boilerplate/models/order/checkout_response_payment.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/order/transaction_mobile.dart';
@@ -180,6 +181,7 @@ abstract class _OrderStore with Store {
 
   @observable String receiptCode;
 
+  @observable CheckoutResponsePayment paymentData;
   @observable TransactionMobile transactionAfterPayment;
 
   @action
@@ -339,6 +341,7 @@ abstract class _OrderStore with Store {
     return await _repository.checkout(this.sessionId).then((value) {
       print('DEBUG >> checkoutrespons on checkout ${value}');
       this.receiptCode = value.receiptCode;
+      this.paymentData = value.payment;
       return value;
     }).catchError((err) {
       print("error response: "+ err.toString());
