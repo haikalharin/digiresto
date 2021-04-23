@@ -646,6 +646,9 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                         Navigator.of(context).pushReplacementNamed(Routes.payment_receipt);
                       } else if (checkoutResponse.payment.isWebView) {
                         Navigator.of(context).pushReplacementNamed(Routes.payment_web_view);
+                      } else if (checkoutResponse.payment.isDeeplink) {
+                        // TODO : Need test on real device to simulate open payment app
+                        LaunchUrl.run(checkoutResponse.payment.deeplink);
                       }
                     },
                     color: AppColors.red,
