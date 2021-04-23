@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
@@ -8,26 +9,31 @@ class ListDigidiscountWidget extends StatelessWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
+  final void Function(Map<String, dynamic>) runAction;
 
   const ListDigidiscountWidget(
-      {Key key, this.data, this.scrollDirection = Axis.vertical, this.height})
+      {Key key, this.data, this.scrollDirection = Axis.vertical, this.height,this.runAction})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         height: height,
         child: ListView.builder(
             scrollDirection: scrollDirection,
             shrinkWrap: true,
-            // new line
-            //padding: const EdgeInsets.only(top: 10),
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () => {
                   if (data[index].isOwnerLoggedIn){
-                    print("do action")
+                    _orderMethodPopup.showMyDialog(context,{
+                      "name":data[index].name,
+                      "merchantName": data[index].merchantName.toString(),
+                      "orderMethod": data[index].orderMethod["defaultList"],
+                      "detailName":data[index].outletName,
+                    },runAction)
                   }
                 },
                 child: Container(

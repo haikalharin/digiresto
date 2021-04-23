@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
@@ -8,11 +9,14 @@ class ListHomeHotPromoWidget extends StatelessWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
-  const ListHomeHotPromoWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height})
+  final void Function(Map<String, dynamic>) runAction;
+  const ListHomeHotPromoWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         alignment: Alignment.topLeft,
         height: height,
@@ -25,7 +29,12 @@ class ListHomeHotPromoWidget extends StatelessWidget {
               return GestureDetector(
                 onTap: (){
                   if (data[index].outlet["isOwnerLoggedIn"]){
-                    print("do action");
+                    _orderMethodPopup.showMyDialog(context,{
+                      "name": data[index].outlet["name"],
+                      "merchantName": data[index].merchant["name"].toString(),
+                      "orderMethod": data[index].outlet["orderMethod"]["defaultList"],
+                      "detailName": data[index].outlet["detail"]["name"],
+                    },runAction);
                   }
                 },
                 child: Container(

@@ -12,7 +12,9 @@ class Loading {
   }
 
   void delete(){
-    counter--;
+    if (this.counter>=0){
+      counter--;
+    }
   }
 
   static void configLoading() {

@@ -94,12 +94,13 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
         "latitude": _lastMapPosition.latitude.toString(),
         "longitude": _lastMapPosition.longitude.toString()
       }).then((res) {
+        Loading.dismiss();
         setState(() {
           _geocode = res;
           isMarkerClicked = true;
         });
         _addressController.text = _geocode.formattedAddress;
-        Loading.dismiss();
+
       }).catchError((err) {
         Ctoast.show("failed get addrress");
         Loading.dismiss();

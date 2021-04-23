@@ -4,6 +4,7 @@ import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
+import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/constants/strings.dart';
@@ -15,6 +16,7 @@ import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/digidiscount_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
+import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:package_info/package_info.dart';
@@ -125,7 +127,7 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.only(top:10),
+        padding: EdgeInsets.only(top:25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -162,7 +164,8 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
             ),
             //_search(),
             ListDigidiscountWidget(
-              height:  MediaQuery. of(context). size. height-100,
+              runAction: _orderStore.setOrderParameter,
+              height: MediaQuery.of(context).size.height / 1.2,
               data: listPromoOutlet,
               scrollDirection: Axis.vertical,
             ),

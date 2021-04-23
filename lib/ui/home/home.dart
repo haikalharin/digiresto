@@ -97,8 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
           }
         }
-
       }).catchError((err) {
+        loadingDelete();
         print("error response: " + err.toString());
       });
     }).catchError((err) {
