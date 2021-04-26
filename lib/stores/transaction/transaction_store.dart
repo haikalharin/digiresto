@@ -35,6 +35,7 @@ abstract class _TransactionStore with Store {
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());
+      throw err;
     });
   }
 }

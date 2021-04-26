@@ -2,7 +2,11 @@
 import 'dart:async';
 
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/order/order_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -10,17 +14,41 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  OrderStore _orderStore;
+  UserStore _userStore;
   @override
   void initState() {
     super.initState();
+  }
 
-    // it will navigate to login page as soon as this state is built
-    Timer.run(() {
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(
-          Routes.order_cart,
-              (Route<dynamic> route) => false);
-    });
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _orderStore = Provider.of<OrderStore>(context);
+    _userStore = Provider.of<UserStore>(context);
+
+    // it will navigate to
+    if (_orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName==""){
+       Timer.run(() {
+         ErrorPopupWidget.show(context, "Keranjang", "Keranjang pesananmu kosong, silahkan pilih menu", () {
+           _userStore.setActivedHomeTab("home");
+           Navigator.of(context)
+               .pushNamedAndRemoveUntil(
+               Routes.home,
+                   (Route<dynamic> route) => false);
+          // Navigator.of(context).pop();
+         });
+       });
+    }else{
+      Timer.run(() {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(
+            Routes.order_cart,
+                (Route<dynamic> route) => false);
+      });
+    }
+
   }
 
   @override

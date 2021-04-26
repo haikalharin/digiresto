@@ -6,6 +6,7 @@ import 'package:boilerplate/stores/language/language_store.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
+import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home_navigation.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
@@ -32,6 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
   LanguageStore _languageStore;
   UserStore _userStore;
   OrderStore _orderStore;
+  TransactionStore _transactionStore;
+
   Loading _loading = new Loading();
   @override
   void initState() {
@@ -52,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void getBasicInformation() {
     loadingAdd();
-    _userStore.getProfile().then((value) {
+    _userStore.getProfile().then((value) async {
       loadingDelete();
       loadingAdd();
       _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
@@ -101,6 +104,18 @@ class _HomeScreenState extends State<HomeScreen> {
         loadingDelete();
         print("error response: " + err.toString());
       });
+
+      loadingAdd();
+      await _transactionStore.getTransactionHistory().then((res) {
+        print("transaction history : ");
+        print(res);
+        loadingDelete();
+      }).catchError((err) {
+        loadingDelete();
+        print("error response: " + err.toString());
+        ErrorPopupWidget.showDioError(context,err,null);
+      });
+
     }).catchError((err) {
       loadingDelete();
       ErrorPopupWidget.showDioError(context,err,null);
@@ -129,6 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _postStore = Provider.of<PostStore>(context);
     _userStore = Provider.of<UserStore>(context, listen: true);
     _orderStore = Provider.of<OrderStore>(context, listen: true);
+    _transactionStore = Provider.of<TransactionStore>(context, listen: true);
     //_userStore.logoutSessionLogin();
     // if (_userStore.profile==null){
     //   getBasicInformation();

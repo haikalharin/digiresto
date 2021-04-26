@@ -10,6 +10,7 @@ import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -62,8 +63,9 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
           throw("login failed");
         }
       }).catchError((err) {
-        Ctoast.show("login Failed");
+        //Ctoast.show("login Failed");
         Loading.dismiss();
+        ErrorPopupWidget.showDioError(context,err,null);
         print("error response: "+ err.toString());
       });
     };
