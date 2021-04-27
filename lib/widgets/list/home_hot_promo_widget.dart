@@ -40,8 +40,12 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(7.0),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(7.0),
+                      border: Border.all(
+                        color: AppColors.greyStroke, //                   <--- border color
+                        width: 1.5,
+                      ), boxShadow: [BoxShadow(blurRadius: 1,color: AppColors.greyStroke,offset: Offset(1,3))]// make rounded corner of b
                   ),
                   width: 130,
                   child: Column(
@@ -54,7 +58,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                             child: Image(
                               image: (data[index].promoIcon!=null) ? NetworkImage(data[index].promoIcon) : RandomImages.getImage(),
                               fit: BoxFit.fill,
-                              width: 130,
+                              width: double.infinity,
                               height: 96,
                               alignment: Alignment.center,
                             ),
@@ -63,7 +67,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                             borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                                 topRight: Radius.circular(8.0)),
                             child: Container(
-                              width: 130,
+                              width: double.infinity,
                               height: 96,
                               color: Colors.black54,
                               child: Center(
@@ -81,11 +85,11 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                         ],
                       ),
                       Container(
-                        padding: const EdgeInsets.only(top:5),
+                        padding: const EdgeInsets.all(5),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           data[index].merchant["name"].toString()+" - "+data[index].outlet["detail"]["name"].toString(),
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontFamily: "roboto",
@@ -94,24 +98,27 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      data[index].promoCode != null ? Row(children: [
-                        ImageIcon(
-                          AssetImage(Assets.iconVoucher),
-                          color: AppColors.red, size: 20,),
-                        Container(
-                          padding: EdgeInsets.only(left: 5),
-                          child: Text(
-                            data[index].promoCode,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                      data[index].promoCode != null ? Container(
+                        padding: const EdgeInsets.only(left:5,right: 5),
+                        child: Row(children: [
+                          ImageIcon(
+                            AssetImage(Assets.iconVoucher),
+                            color: AppColors.red, size: 20,),
+                          Container(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Text(
+                              data[index].promoCode,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontFamily: "roboto",
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )
-                      ],) : Container(),
+                          )
+                        ],),
+                      ) : Container(),
                     ],
                   ),
                 ),
