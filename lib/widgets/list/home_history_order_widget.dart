@@ -43,10 +43,13 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.all(5),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(7.0),
+                    border: Border.all(
+                      color: AppColors.greyStroke, //                   <--- border color
+                      width: 1.5,
+                    ), boxShadow: [BoxShadow(blurRadius: 1,color: AppColors.greyStroke,offset: Offset(1,3))]// make rounded corner of b
                 ),
-                width: 130,
                 child: Column(
                   children: <Widget>[
                     Stack(
@@ -57,8 +60,8 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                           child: Image(
                             image:  RandomImages.getImageUrl(data[index].items[0].img),
                             fit: BoxFit.fill,
-                            width: 130,
-                            height: 96,
+                            width: double.infinity,
+                            height: 110,
                             alignment: Alignment.center,
                           ),
                         ),
@@ -66,8 +69,8 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                               topRight: Radius.circular(8.0)),
                           child: Container(
-                            width: 130,
-                            height: 96,
+                            width: double.infinity,
+                            height: 110,
                             color: Colors.black54,
                             child: Center(
                                 child: Text("Tutup",
@@ -84,7 +87,7 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      padding: const EdgeInsets.only(top:5),
+                      padding: const EdgeInsets.all(5),
                       alignment: Alignment.centerLeft,
                       child: Text(data[index].outlet.merchantName.toString() + " - "+data[index].outlet.detail.name.toString(),
                         maxLines: 2,

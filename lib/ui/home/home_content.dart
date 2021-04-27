@@ -342,8 +342,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       ),
     );
   }
-  final List<String> entries = <String>['A', 'B', 'C','D', 'E', 'F'];
-  final List<int> colorCodes = <int>[800, 700, 600,500, 400, 300];
   Widget _hotPromo(){
     return Container(
       padding: EdgeInsets.only(top: 10),
@@ -433,7 +431,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             ),
             _transactionStore.listTransactionHistory != null ? ListHomeHistoryOrderWidget(
               runAction: _orderStore.setOrderParameter,
-              height:  160.0,
+              height:  170.0,
               data: _transactionStore.listTransactionHistory,
               scrollDirection: Axis.horizontal,
             ) : Container()
