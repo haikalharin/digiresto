@@ -58,5 +58,16 @@
   "register_enter_pin": "Buat PIN Login",
   "register_confirm_pin": "Masukkan Kembali Pin Login",
   "register_end": "-------------------------------------------------------------------------------------",
-  "connection_error": "Gagal mengambil data, silahkan coba beberapa saat lagi"
+  "connection_error": "Gagal mengambil data, silahkan coba beberapa saat lagi",
+
+  "nota_title_default": "Success!",
+  "nota_pending_payment": "Pending Payment",
+  "nota_waiting_desc": "Your Order is being processed.",
+  "nota_process_desc": "Your order has been received by outlet.",
+  "nota_reject_desc": "Your order has been rejected by outlet.",
+  "nota_cancel_desc": "Your order has been cancelled by outlet.",
+  "nota_ready_desc": "Your order is ready to deliver.",
+  "nota_done_desc": "Your order is completed.",
+  "nota_auto_done_desc": "Your order has been completed by the system.",
+  "nota_failed": "Payment failed"
 }

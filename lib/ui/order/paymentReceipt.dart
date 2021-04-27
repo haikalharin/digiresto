@@ -1,11 +1,9 @@
 import 'package:boilerplate/constants/colors.dart';
-import 'package:boilerplate/constants/strings.dart';
-import 'package:boilerplate/data/network/apis/transaction/transaction_api.dart';
-import 'package:boilerplate/models/order/payment_method.dart';
 import 'package:boilerplate/models/order/transaction_mobile.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/utils/formatting/rupiah.dart';
+import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +16,8 @@ class PaymentReceiptScreen extends StatefulWidget {
 class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
   OrderStore _orderStore;
   TransactionMobile _transaction;
+  String _receiptStatusTitle;
+  String _receiptStatusDesc;
 
   @override
   void didChangeDependencies() {
@@ -25,6 +25,30 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
     _orderStore = Provider.of<OrderStore>(context);
 
     _transaction = _orderStore.transactionAfterPayment;
+
+    String receiptStatus = _transaction.status;
+    _receiptStatusTitle = AppLocalizations.of(context).translate('nota_title_default') ?? '';
+    _receiptStatusDesc = '';
+
+    // initial = pending payment
+    // waiting = udah di bayar, tunggu response toko
+    // process = pesanan di terima toko
+    // reject = pesanan ditolak toko
+    // ready = pesanan udah siap di antar (khusus delivery)
+    // done = pesanan selesai
+    // auto_done = pesanan selesai otomatis by system
+    // failed = pembayaran gagal
+    switch (receiptStatus) {
+      case 'initial': _receiptStatusTitle = AppLocalizations.of(context).translate('nota_pending_payment'); break;
+      case 'waiting': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_waiting_desc'); break;
+      case 'process': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_process_desc'); break;
+      case 'reject': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_reject_desc'); break;
+      case 'cancelled': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_cancel_desc'); break;
+      case 'ready': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_ready_desc'); break;
+      case 'done': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_done_desc'); break;
+      case 'auto_done': _receiptStatusDesc = AppLocalizations.of(context).translate('nota_auto_done_desc'); break;
+      case 'failed': _receiptStatusTitle = AppLocalizations.of(context).translate('nota_failed'); break;
+    }
   } 
 
   Widget _lr(Widget left, Widget right) {
@@ -70,19 +94,21 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
             padding: EdgeInsets.all(40),
             child: Column(
               children: [
-                Text('Selamat!',
+                Text(_receiptStatusTitle,
                   style: TextStyle(
                     color: AppColors.red,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
+                if (_receiptStatusDesc.isNotEmpty)
                 SizedBox(height: 5),
-                Text('Pesanan anda sedang diproses',
-                  style: TextStyle(
-                    fontSize: 16,
+                if (_receiptStatusDesc.isNotEmpty)
+                  Text(_receiptStatusDesc,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
                 SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(

@@ -21,5 +21,16 @@
   "onboarding_favorite_desc": "Berbagai jenis makanan yang siap dipesan dengan mudah dan cepat",
   "onboarding_btn_get_start": "Get Started",
   "onboarding_btn_next": "Next",
-  "onboarding_end": "-------------------------------------------------------------------------------------"
+  "onboarding_end": "-------------------------------------------------------------------------------------",
+
+  "nota_title_default": "Selamat!",
+  "nota_pending_payment": "Pembayaran Pending",
+  "nota_waiting_desc": "Pesanan anda sedang diproses.",
+  "nota_process_desc": "Pesanan Anda telah diterima oleh toko.",
+  "nota_reject_desc": "Pesanan Anda ditolak oleh toko.",
+  "nota_cancel_desc": "Pesanan Anda dibatalkan oleh toko.",
+  "nota_ready_desc": "Pesanan Anda sudah siap untuk diantar.",
+  "nota_done_desc": "Pesanan Anda sudah selesai.",
+  "nota_auto_done_desc": "Pesanan Anda sudah diselesaikan oleh sistem.",
+  "nota_failed": "Pembayaran Gagal"
 }

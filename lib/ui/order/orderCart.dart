@@ -618,12 +618,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       Text("Rp."+Utils.formatRupiah(transaction.subtotal.toString()))
                     ],
                   ),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: transaction.taxesAndServices.length,
-                    itemBuilder: (context, index) => _buildTaxAndServiceList(transaction.taxesAndServices[index]),
-                    separatorBuilder: (context, index) => SizedBox(height: 5),
-                  ),
+                  for (var i = 0; i < transaction.taxesAndServices.length; i++) 
+                    _buildTaxAndServiceList(transaction.taxesAndServices[i]),
                   Divider(
                     color: Colors.black,
                   ),
@@ -643,9 +639,16 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
 
                       if (checkoutResponse.payment.isCredit) {
                         await _orderStore.getTransaction();
-                        Navigator.of(context).pushReplacementNamed(Routes.payment_receipt);
+                        Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
                       } else if (checkoutResponse.payment.isWebView) {
-                        Navigator.of(context).pushReplacementNamed(Routes.payment_web_view);
+                        Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_web_view, (_) => false);
+                      } else if (checkoutResponse.payment.isDeeplink) {
+                        // TODO : Need test on real device to simulate open payment app
+                        LaunchUrl.run(checkoutResponse.payment.deeplink);
+                      } else {
+                        if (checkoutResponse.payment.paymentCode.isNotEmpty) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_va, (_) => false);
+                        }
                       }
                     },
                     color: AppColors.red,
@@ -1072,11 +1075,16 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   }
 
   Widget _buildTaxAndServiceList(TransactionHistoryTaxesAndServices item) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Text(item.name),
-        Text('Rp.'+Utils.formatRupiah(item.amount.toString())),
+        SizedBox(height: 5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(item.name),
+            Text('Rp.'+Utils.formatRupiah(item.amount.toString())),
+          ],
+        ),
       ],
     );
   }

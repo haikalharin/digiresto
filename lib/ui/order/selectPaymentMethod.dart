@@ -31,17 +31,11 @@ class SelectPaymentMethodScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          color: Colors.grey[200],
-          child: ListView.separated(
-          shrinkWrap: true,
-          itemCount: _orderStore.paymentMethod.length,
-          itemBuilder: (context, index) => _buildItemList(context, _orderStore.paymentMethod[index]),
-          separatorBuilder: (context, index) => SizedBox(height: 5),
-        ),
-        ),
+      body: ListView.separated(
+        shrinkWrap: true,
+        itemCount: _orderStore.paymentMethod.length,
+        itemBuilder: (context, index) => _buildItemList(context, _orderStore.paymentMethod[index]),
+        separatorBuilder: (context, index) => SizedBox(height: 5),
       ),
     );
   }
