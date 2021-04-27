@@ -3,6 +3,7 @@ import 'package:boilerplate/ui/home/home_all_hot_promo.dart';
 import 'package:boilerplate/ui/order/detailOutlet.dart';
 import 'package:boilerplate/ui/order/orderCart.dart';
 import 'package:boilerplate/ui/order/paymentReceipt.dart';
+import 'package:boilerplate/ui/order/paymentVA.dart';
 import 'package:boilerplate/ui/order/paymentWebView.dart';
 import 'package:boilerplate/ui/order/selectPaymentMethod.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class Routes {
   static const String select_payment_method = '/select_payment_method';
   static const String payment_receipt = '/payment_receipt';
   static const String payment_web_view = '/payment_web_view';
+  static const String payment_va = '/payment_va';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -84,5 +86,6 @@ class Routes {
     select_payment_method: (BuildContext context)=> SelectPaymentMethodScreen(),
     payment_receipt: (BuildContext context)=> PaymentReceiptScreen(),
     payment_web_view: (BuildContext context)=> PaymentWebView(),
+    payment_va: (BuildContext context)=> PaymentVA(),
   };
 }

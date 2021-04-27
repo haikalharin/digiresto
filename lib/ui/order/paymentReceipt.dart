@@ -101,12 +101,14 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                     fontSize: 18,
                   ),
                 ),
+                if (_receiptStatusDesc.isNotEmpty)
                 SizedBox(height: 5),
-                Text(_receiptStatusDesc,
-                  style: TextStyle(
-                    fontSize: 16,
+                if (_receiptStatusDesc.isNotEmpty)
+                  Text(_receiptStatusDesc,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
                 SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(

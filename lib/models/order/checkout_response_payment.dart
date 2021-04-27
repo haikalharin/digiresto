@@ -4,6 +4,7 @@ class CheckoutResponsePayment {
   bool isWebView;
   String url;
   String deeplink;
+  Map<String, dynamic> paymentCode;
   
   CheckoutResponsePayment({
     this.isCredit,
@@ -11,6 +12,7 @@ class CheckoutResponsePayment {
     this.isWebView,
     this.url,
     this.deeplink,
+    this.paymentCode,
   });
   factory CheckoutResponsePayment.create(Map<String,dynamic> object){
     return CheckoutResponsePayment(
@@ -19,6 +21,7 @@ class CheckoutResponsePayment {
         isWebView: object['isWebView'],
         url: object['isWebView'] ? object['url'] : '',
         deeplink: object['isDeeplink'] ? object['deeplink'] : '',
+        paymentCode: object['paymentCode'] ?? null,
     );
   }
 }
