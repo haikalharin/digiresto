@@ -4,16 +4,17 @@ import 'package:boilerplate/models/key_value_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ErrorPopupWidget  {
-   static  show(BuildContext context,String message,void Function() runAction) {
+   static  show(BuildContext context,String title,String message,void Function() runAction) {
     return showDialog(
         barrierDismissible: false,
         context: context,
         builder: (_) => new AlertDialog(
-          title:  Center( child: Text("Digiresto", style: TextStyle(
+          title:  Center( child: Text(title, style: TextStyle(
             fontFamily: "roboto",
             //color: AppColors.red,
             fontSize: 16,
@@ -33,6 +34,7 @@ class ErrorPopupWidget  {
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 Container(
                   height: 40,
@@ -40,7 +42,6 @@ class ErrorPopupWidget  {
                   child: RaisedButton(
                     onPressed: () {
                       runAction();
-                      Navigator.of(context).pop();
                     },
                     color: AppColors.redYoung,
                     child: Text("Ok",

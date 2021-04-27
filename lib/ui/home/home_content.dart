@@ -4,10 +4,14 @@ import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/order/user_promo_model.dart';
+import 'package:boilerplate/models/transaction/transaction_history.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
+import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/widgets/list/home_history_order_widget.dart';
 import 'package:boilerplate/widgets/list/home_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
 import 'package:boilerplate/widgets/top_background_widget.dart';
@@ -27,7 +31,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
 
   UserStore _userStore;
   OrderStore _orderStore;
- // var listPromo = [];
+  TransactionStore _transactionStore;
 
   @override
   void setState(fn) {
@@ -42,12 +46,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     // initializing stores
     _userStore = Provider.of<UserStore>(context, listen: true);
     _orderStore = Provider.of<OrderStore>(context, listen: true);
-    // if (_userStore.listPromo == null) {
-    //   getPromo();
-    // }
-    // if (_orderStore.listHotPromo == null) {
-    //   getHotPromo();
-    // }
+    _transactionStore = Provider.of<TransactionStore>(context, listen: true);
   }
 
   Widget _promoList(StaticBanner data) {
@@ -62,14 +61,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       },
       child: Container(
         padding: EdgeInsets.only(right: 5, left: 5),
-        // child: Column(
-        //   children: <Widget>[
-        //     Text("123"),
-        //     Text("123"),
-        //     Text("123"),
-        //     Text("123"),
-        //   ],
-        // ),
         child: data.promoBanner!=null ? Image(
           image: data.promoBanner.substring(1, 4) == 'data:'
               ? MemoryImage(Base64Decoder().convert(data.promoBanner))
@@ -351,8 +342,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       ),
     );
   }
-  final List<String> entries = <String>['A', 'B', 'C','D', 'E', 'F'];
-  final List<int> colorCodes = <int>[800, 700, 600,500, 400, 300];
   Widget _hotPromo(){
     return Container(
       padding: EdgeInsets.only(top: 10),
@@ -428,19 +417,25 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                     padding: EdgeInsets.only(right: 10),
                     child: GestureDetector(
                         child: Text(
-                          "See all",
+                          "",
                           style: TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                               color: AppColors.red),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushNamed(Routes.home_all_promo);
+
                         }),
                   )
                 ]
             ),
-            ListItem(entries: entries,colorCodes: colorCodes),
+            _transactionStore.listTransactionHistory != null ? ListHomeHistoryOrderWidget(
+              runAction: _orderStore.setOrderParameter,
+              height:  170.0,
+              data: _transactionStore.listTransactionHistory,
+              scrollDirection: Axis.horizontal,
+            ) : Container()
+            //ListItem(entries: entries,colorCodes: colorCodes),
           ],
         )
     );
@@ -546,8 +541,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             _orderStore.listStaticBanner != null ? _staticBanner() : Container(),
               _discount(),
               _hotPromo(),
+              _historyOrder(),
               _singleAdvertisement(),
-              //_historyOrder(),
           ],
         ),
             )),

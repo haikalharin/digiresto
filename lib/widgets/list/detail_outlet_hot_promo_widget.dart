@@ -50,7 +50,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         data[index]["title"].toString().toString(),
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontFamily: "roboto",

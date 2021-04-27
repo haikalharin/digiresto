@@ -10,6 +10,7 @@ import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -161,6 +162,9 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                               LaunchUrl.run(url);
                               Navigator.of(context)
                                   .pushNamed(Routes.verify_otp);
+                            }).catchError((err) {
+                              Loading.dismiss();
+                              ErrorPopupWidget.showDioError(context,err,null);
                             });
                           }
                         },

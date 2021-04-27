@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
   final ThemeStore _themeStore = ThemeStore(appComponent.getRepository());
   final PostStore _postStore = PostStore(appComponent.getRepository());
   final LanguageStore _languageStore =
-      LanguageStore(appComponent.getRepository());
+  LanguageStore(appComponent.getRepository());
   final UserStore _userStore = UserStore(appComponent.getRepository(),);
   final MapStore _mapStore = MapStore(appComponent.getRepository(),);
   final OrderStore _orderStore = OrderStore(appComponent.getRepository(),);
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
         Provider<MapStore>(create: (_) => _mapStore),
         Provider<OrderStore>(create: (_) => _orderStore),
         Provider<TransactionStore>(create: (_) => _transactionStore),
-       ],
+      ],
       child: Observer(
         name: 'global-observer',
         builder: (context) {

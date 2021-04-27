@@ -295,7 +295,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
   Widget _promo(DetailOutlet data) {
     return DetailOutletHotPromoWidget(
-      height: 190.0,
+      height: 175.0,
       data: data.merchant["promo"],
       scrollDirection: Axis.horizontal,
     );

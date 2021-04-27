@@ -25,11 +25,12 @@ class ResponseMapping {
   static List<KeyValueModel> DataResponseMapping = [
     KeyValueModel(key: "21", value: "Invalid token"),
     KeyValueModel(key: "401", value: "You has been login from another device"),
+    KeyValueModel(key: "999", value: "PIN/Password tidak valid"),
   ];
   static KeyValueModel getMessage(DioError dioError){
     String paramHttpCode = dioError.response?.statusCode.toString();
 
-    if (paramHttpCode=="200" || paramHttpCode=="401"){
+    if (paramHttpCode=="200" || paramHttpCode=="401" || paramHttpCode=="500"){
       String paramDataResponseCode= dioError.response.data["response"]["code"].toString();
       for (int i=0; i <= DataResponseMapping.length; i++ ){
         if (DataResponseMapping[i].key==paramDataResponseCode){
