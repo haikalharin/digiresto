@@ -248,6 +248,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         .translate('profile_app_version'),
                     rightTitle: appVersion,
                   ),
+                  HorizontalMenu(
+                      title: "bergabung",
+                      leftIcon: Icons.pin_drop_outlined,
+                      rightIcon: Icons.arrow_forward_outlined,
+                      onClick: () {
+                        _userStore.setActiveHistoryScreen("profile.address");
+                        Navigator.of(context).pushNamed(Routes.set_address_list);
+                      }),
                 ],
               ),
             ),

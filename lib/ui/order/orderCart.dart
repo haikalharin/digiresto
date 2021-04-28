@@ -528,7 +528,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             fontFamily: "roboto",
                             //color: Colors.white,
                             fontSize: 14,
-                        )), 
+                        )),
                     ],
                   ),
                   if (_orderStore.orderPaymentTypeText != null)
@@ -552,7 +552,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                         )
                       )
                     )
-                  else 
+                  else
                     FlatButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed(Routes.select_payment_method);

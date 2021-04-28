@@ -20,7 +20,7 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
     OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         alignment: Alignment.topLeft,
-        height: height*2,
+        height: height,
         child: GridView.count(
           // crossAxisCount is the number of columns
          // shrinkWrap: true, // new line
@@ -61,7 +61,7 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                             image:  RandomImages.getImageUrl(data[index].items[0].img),
                             fit: BoxFit.fill,
                             width: double.infinity,
-                            height: 110,
+                            height: 100,
                             alignment: Alignment.center,
                           ),
                         ),
@@ -70,7 +70,7 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                               topRight: Radius.circular(8.0)),
                           child: Container(
                             width: double.infinity,
-                            height: 110,
+                            height: 100,
                             color: Colors.black54,
                             child: Center(
                                 child: Text("Tutup",

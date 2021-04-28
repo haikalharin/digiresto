@@ -382,7 +382,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
           //Text(_orderStore.listHotPromo.length.toString()),
           _orderStore.listHotPromo != null ? ListHomeHotPromoWidget(
             runAction: _orderStore.setOrderParameter,
-            height:  180.0,
+            height:  200.0,
             data: _orderStore.listHotPromo,
             scrollDirection: Axis.horizontal,
           ) : Container()
@@ -431,7 +431,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             ),
             _transactionStore.listTransactionHistory != null ? ListHomeHistoryOrderWidget(
               runAction: _orderStore.setOrderParameter,
-              height:  170.0,
+              height:  320.0,
               data: _transactionStore.listTransactionHistory,
               scrollDirection: Axis.horizontal,
             ) : Container()
