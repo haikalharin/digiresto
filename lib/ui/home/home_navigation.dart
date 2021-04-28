@@ -1,3 +1,4 @@
+import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home.dart';
@@ -34,7 +35,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     _userStore = Provider.of<UserStore>(context);
     print(_userStore.activeHomeTab);
     if (_userStore.activeHomeTab=='profile'){
-      _onNavBarTapped(2);
+      _onNavBarTapped(3);
     }else if (_userStore.activeHomeTab=='home'){
       _onNavBarTapped(0);
     }
@@ -45,27 +46,32 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     final _listPage = <Widget>[
       HomeContentScreen(),
       CartScreen(),
-      ProfileScreen(),
       CreditScreen(),
+      ProfileScreen(),
     ];
 
     final _bottomNavBarItems = <BottomNavigationBarItem>[
 
       BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: new Image.asset(Assets.iconMenuHome,width: 24,height: 24,),
+          activeIcon: new Image.asset(Assets.iconMenuHomeActive,width: 24,height: 24),
           label: 'Home'
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
+          icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
+          activeIcon: new Image.asset(Assets.iconMenuCartActive,width: 24,height: 24),
           label: 'Cart'
       ),
+
       BottomNavigationBarItem(
-          icon: Icon(Icons.person ),
-          label: 'Profile'
+          icon: new Image.asset(Assets.iconMenuCredit,width: 24,height: 24,),
+          activeIcon: new Image.asset(Assets.iconMenuCreditActive,width: 24,height: 24),
+          label: 'Credit'
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.account_balance_wallet),
-          label: 'Credit'
+          icon: new Image.asset(Assets.iconMenuProfile,width: 24,height: 24,),
+          activeIcon: new Image.asset(Assets.iconMenuProfileActive,width: 24,height: 24),
+          label: 'Profile'
       ),
     ];
 
@@ -76,7 +82,8 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
         onTap: _onNavBarTapped,
         selectedItemColor: AppColors.red,
         selectedFontSize: 12,
-        unselectedFontSize: 10,
+        unselectedFontSize: 12,
+        unselectedItemColor: Colors.black,
         iconSize:20,
     );
     return Scaffold(

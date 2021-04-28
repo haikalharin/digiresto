@@ -47,7 +47,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                         width: 1.5,
                       ), boxShadow: [BoxShadow(blurRadius: 1,color: AppColors.greyStroke,offset: Offset(1,3))]// make rounded corner of b
                   ),
-                  width: 130,
+                  width: 142,
                   child: Column(
                     children: <Widget>[
                       Stack(
@@ -59,7 +59,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                               image: (data[index].promoIcon!=null) ? NetworkImage(data[index].promoIcon) : RandomImages.getImage(),
                               fit: BoxFit.fill,
                               width: double.infinity,
-                              height: 96,
+                              height: 120,
                               alignment: Alignment.center,
                             ),
                           ),
@@ -68,7 +68,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                                 topRight: Radius.circular(8.0)),
                             child: Container(
                               width: double.infinity,
-                              height: 96,
+                              height: 120,
                               color: Colors.black54,
                               child: Center(
                                   child: Text("Tutup",

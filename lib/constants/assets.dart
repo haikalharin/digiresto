@@ -23,7 +23,14 @@ class Assets {
   static const String iconHomeDiscount =  "assets/images/home_discount.png";
   static const String iconHomeDiscountPercent =  "assets/icons/ic_discount_percent.png";
   static const String iconVoucher =  "assets/icons/ic_voucher.png";
-
+  static const String iconMenuHomeActive =  "assets/icons/ic_menu_home_active.png";
+  static const String iconMenuHome =  "assets/icons/ic_menu_home.png";
+  static const String iconMenuCreditActive =  "assets/icons/ic_menu_credit_active.png";
+  static const String iconMenuCredit =  "assets/icons/ic_menu_credit.png";
+  static const String iconMenuProfileActive =  "assets/icons/ic_menu_profile_active.png";
+  static const String iconMenuProfile =  "assets/icons/ic_menu_profile.png";
+  static const String iconMenuCartActive =  "assets/icons/ic_menu_cart_active.png";
+  static const String iconMenuCart =  "assets/icons/ic_menu_cart.png";
 
 
 }

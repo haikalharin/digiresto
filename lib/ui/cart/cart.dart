@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
+import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _CartScreenState extends State<CartScreen> {
     _userStore = Provider.of<UserStore>(context);
 
     // it will navigate to
-    if (_orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName==""){
+    if (_orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName=="" || _orderStore.transactionData==null ){
        Timer.run(() {
          ErrorPopupWidget.show(context, "Keranjang", "Keranjang pesananmu kosong, silahkan pilih menu", () {
            _userStore.setActivedHomeTab("home");
