@@ -6,6 +6,7 @@ import 'package:boilerplate/ui/order/paymentReceipt.dart';
 import 'package:boilerplate/ui/order/paymentVA.dart';
 import 'package:boilerplate/ui/order/paymentWebView.dart';
 import 'package:boilerplate/ui/order/selectPaymentMethod.dart';
+import 'package:boilerplate/ui/profile/update_profile.dart';
 import 'package:flutter/material.dart';
 import 'ui/home/home.dart';
 import 'ui/login/login.dart';
@@ -58,6 +59,7 @@ class Routes {
   static const String payment_receipt = '/payment_receipt';
   static const String payment_web_view = '/payment_web_view';
   static const String payment_va = '/payment_va';
+  static const String update_profile = '/update_profile';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -87,5 +89,6 @@ class Routes {
     payment_receipt: (BuildContext context)=> PaymentReceiptScreen(),
     payment_web_view: (BuildContext context)=> PaymentWebView(),
     payment_va: (BuildContext context)=> PaymentVA(),
+    update_profile: (BuildContext context)=> UpdateProfileScreen(),
   };
 }

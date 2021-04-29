@@ -29,11 +29,7 @@ class HorizontalMenu extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.only(left: 10),
-                    child: Icon(
-                      leftIcon,
-                      color: AppColors.red,
-                      size: 21.0,
-                    ),
+                    child: leftIcon
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 10),

@@ -164,14 +164,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    _userStore.profile.name,
-                    style: TextStyle(
-                      fontFamily: "roboto",
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        _userStore.profile.name,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Container(
+                        height: 35,
+                        padding: EdgeInsets.only(right: 15),
+                        child: RaisedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamed(Routes.update_profile);
+                            },
+                            color: AppColors.redYoung,
+                            child: Text("Ubah",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.redYoung,
+                              ),
+                            ),
+                          ),
+                      )
+                    ],
                   ),
                   Text(_userStore.profile.email,
                       style: TextStyle(
@@ -195,9 +222,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: <Widget>[
                   HorizontalMenu(
+                    title: "Ubah PIN",
+                    leftIcon: Icon(
+                      Icons.security_outlined,
+                      color: AppColors.red,
+                      size: 21.0,
+                    ),
+                    rightIcon: Icons.arrow_forward_outlined,
+                    onClick: () {
+                      Navigator.of(context).pushNamed(Routes.history);
+                    },
+                  ),
+                  HorizontalMenu(
+                    title: "Pilih Bahasa",
+                    leftIcon: Icon(
+                      Icons.language,
+                      color: AppColors.red,
+                      size: 21.0,
+                    ),
+                    rightIcon: Icons.arrow_forward_outlined,
+                    onClick: () {
+                      Navigator.of(context).pushNamed(Routes.history);
+                    },
+                  ),
+                  HorizontalMenu(
                     title: AppLocalizations.of(context)
                   .translate('profile_history'),
-                    leftIcon: Icons.history,
+                    leftIcon: new Image.asset(Assets.iconHistory,width: 21,height: 21,),
                     rightIcon: Icons.arrow_forward_outlined,
                     onClick: () {
                       Navigator.of(context).pushNamed(Routes.history);
@@ -206,7 +257,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   HorizontalMenu(
                       title: AppLocalizations.of(context)
                           .translate('profile_address'),
-                      leftIcon: Icons.pin_drop_outlined,
+                      leftIcon: Icon(
+                        Icons.pin_drop_outlined,
+                        color: AppColors.red,
+                        size: 21.0,
+                      ),
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
                         _userStore.setActiveHistoryScreen("profile.address");
@@ -215,7 +270,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   HorizontalMenu(
                       title: AppLocalizations.of(context)
                           .translate('profile_customer_service'),
-                      leftIcon: Icons.contact_support_outlined,
+                      leftIcon: Icon(
+                        Icons.contact_support_outlined,
+                        color: AppColors.red,
+                        size: 21.0,
+                      ),
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
                         _showMyDialog(context);
@@ -223,7 +282,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   HorizontalMenu(
                       title: AppLocalizations.of(context)
                           .translate('profile_about_digiresto'),
-                      leftIcon: Icons.info_outline,
+                      leftIcon: Icon(
+                        Icons.info_outline,
+                        color: AppColors.red,
+                        size: 21.0,
+                      ),
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
                         Navigator.of(context).pushNamed(Routes.about);
@@ -231,10 +294,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   HorizontalMenu(
                       title: AppLocalizations.of(context)
                           .translate('profile_privacy_policy'),
-                      leftIcon: Icons.privacy_tip_outlined,
+                      leftIcon: new Image.asset(Assets.iconPrivacy,width: 21,height: 21,),
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
                         Navigator.of(context).pushNamed(Routes.privacy_policy);
+                      }),
+                  HorizontalMenu(
+                      title: "Bergabung bersama digiresto",
+                      leftIcon: Icon(
+                        Icons.store,
+                        color: AppColors.red,
+                        size: 21.0,
+                      ),
+                      rightIcon: Icons.arrow_forward_outlined,
+                      onClick: () {
+                        LaunchUrl.run("https://play.google.com/store/apps/details?id=id.damcorp.digimitra");
                       }),
                   HorizontalMenu(
                     onClick: (){
@@ -248,14 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         .translate('profile_app_version'),
                     rightTitle: appVersion,
                   ),
-                  HorizontalMenu(
-                      title: "bergabung",
-                      leftIcon: Icons.pin_drop_outlined,
-                      rightIcon: Icons.arrow_forward_outlined,
-                      onClick: () {
-                        _userStore.setActiveHistoryScreen("profile.address");
-                        Navigator.of(context).pushNamed(Routes.set_address_list);
-                      }),
+
                 ],
               ),
             ),

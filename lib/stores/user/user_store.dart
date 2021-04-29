@@ -6,6 +6,7 @@ import 'package:boilerplate/data/network/apis/user/user_api.dart';
 import 'package:boilerplate/models/auth/otp_validate_model.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
+import 'package:boilerplate/models/response_model.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_profile_model.dart';
@@ -337,4 +338,13 @@ abstract class _UserStore with Store {
     activeAddresslng = lng;
   }
 
+  @action
+  Future<Response> updateProfile(Map<String,dynamic> object) async {
+    return await _repository.updateProfile(object).then((res) {
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+      throw err;
+    });
+  }
 }
