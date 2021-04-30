@@ -11,6 +11,7 @@ class Assets {
   static const String bgOnbooarding3 = "assets/images/image_onboarding_3.png";
   static const String bgHome = "assets/images/background_header_home.png";
   static const String bgHomeMitra = "assets/images/home_mitra.png";
+  static const String bgUpdateProfile = "assets/images/bg_update_profile.png";
 
   // custome food images not found
   static const String food = "assets/images/";
@@ -31,6 +32,8 @@ class Assets {
   static const String iconMenuProfile =  "assets/icons/ic_menu_profile.png";
   static const String iconMenuCartActive =  "assets/icons/ic_menu_cart_active.png";
   static const String iconMenuCart =  "assets/icons/ic_menu_cart.png";
+  static const String iconHistory =  "assets/icons/ic_history.png";
+  static const String iconPrivacy =  "assets/icons/ic_privacy.png";
 
 
 }

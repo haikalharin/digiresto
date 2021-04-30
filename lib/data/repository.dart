@@ -22,6 +22,7 @@ import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/order/transaction_mobile.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
+import 'package:boilerplate/models/response_model.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_get_address_model.dart';
@@ -210,6 +211,12 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
+  Future<Response> updateProfile(Map<String,dynamic> object) async {
+    return await _userApi.updateProfile(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
   // Map: ---------------------------------------------------------------------
   Future<Geocode> geocode(Map<String,dynamic> object) async {
     return await _mapApi.geocode(object).then((value) {
@@ -285,13 +292,13 @@ class Repository {
       return value;
     }).catchError((error) => throw error);
   }
-  
+
   Future<CheckoutResponse> checkout(String sessionId) async {
     return await _orderApi.checkout(sessionId).then((value) {
       return value;
     }).catchError((error) => throw error);
   }
-  
+
   //order local storage
   Future<void> saveOrderOutletName(Map<String,dynamic> object) =>
       _sharedPrefsHelper.saveOrderOutletName(object);

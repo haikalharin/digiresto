@@ -9,6 +9,8 @@ import 'package:boilerplate/models/user/user_balance_model.dart';
 import 'package:boilerplate/models/user/user_add_address_model.dart';
 import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
+import 'package:boilerplate/models/response_model.dart' as responseModel;
+
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'dart:math';
@@ -159,6 +161,21 @@ class UserApi {
     } catch (e) {
       print(e.toString());
       throw e;
+    }
+  }
+
+  Future<responseModel.Response> updateProfile(Map<String,dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlUpdateProfile;
+      final apiResult = await _dioClient.post(apiUrl,data: {
+      "name":object["name"],
+      "email":object["email"],
+      });
+      var userData = (apiResult as Map<String,dynamic>)["response"];
+      return responseModel.Response.createResponse(userData);
+    } catch (e) {
+      print(e.toString());
+      return throw e;
     }
   }
 }
