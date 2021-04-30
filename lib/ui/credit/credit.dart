@@ -36,6 +36,8 @@ class _CreditScreenState extends State<CreditScreen> {
       setState(() {
         balance = tmpBalance;
       });
+    }else{
+      getBalance();
     }
   }
 

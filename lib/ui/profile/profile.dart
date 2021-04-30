@@ -221,30 +221,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Column(
                 children: <Widget>[
-                  HorizontalMenu(
-                    title: "Ubah PIN",
-                    leftIcon: Icon(
-                      Icons.security_outlined,
-                      color: AppColors.red,
-                      size: 21.0,
-                    ),
-                    rightIcon: Icons.arrow_forward_outlined,
-                    onClick: () {
-                      Navigator.of(context).pushNamed(Routes.history);
-                    },
-                  ),
-                  HorizontalMenu(
-                    title: "Pilih Bahasa",
-                    leftIcon: Icon(
-                      Icons.language,
-                      color: AppColors.red,
-                      size: 21.0,
-                    ),
-                    rightIcon: Icons.arrow_forward_outlined,
-                    onClick: () {
-                      Navigator.of(context).pushNamed(Routes.history);
-                    },
-                  ),
+                  // HorizontalMenu(
+                  //   title: "Ubah PIN",
+                  //   leftIcon: Icon(
+                  //     Icons.security_outlined,
+                  //     color: AppColors.red,
+                  //     size: 21.0,
+                  //   ),
+                  //   rightIcon: Icons.arrow_forward_outlined,
+                  //   onClick: () {
+                  //     Navigator.of(context).pushNamed(Routes.history);
+                  //   },
+                  // ),
+                  // HorizontalMenu(
+                  //   title: "Pilih Bahasa",
+                  //   leftIcon: Icon(
+                  //     Icons.language,
+                  //     color: AppColors.red,
+                  //     size: 21.0,
+                  //   ),
+                  //   rightIcon: Icons.arrow_forward_outlined,
+                  //   onClick: () {
+                  //     Navigator.of(context).pushNamed(Routes.history);
+                  //   },
+                  // ),
                   HorizontalMenu(
                     title: AppLocalizations.of(context)
                   .translate('profile_history'),
