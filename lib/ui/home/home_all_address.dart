@@ -175,7 +175,6 @@ class _HomeAllAddressScreenState extends State<HomeAllAddressScreen> {
   }
 
   Widget _listAddress(UserAddress data) {
-    //return Text("13");
     return data.isDelete == false
         ? Container(
             margin: EdgeInsets.all(5),
@@ -281,6 +280,7 @@ class _HomeAllAddressScreenState extends State<HomeAllAddressScreen> {
   void setActiveAddress(String address, String lat, String lng) {
     _userStore.setActiveAddress(address, lat, lng);
     _userStore.setActivedHomeTab("home");
+    _userStore.setProfile(null);
     Navigator.of(context).pushReplacementNamed(Routes.home);
   }
 
@@ -367,26 +367,42 @@ class _HomeAllAddressScreenState extends State<HomeAllAddressScreen> {
                     ],
                   ),
                 ),
+
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
-                  height: MediaQuery.of(context).size.height - 200,
-                  child: SingleChildScrollView(
-                      child: Column(
-                    children: [
-                      listAddress.length > 0
-                          ? new ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: listAddress.length,
-                              itemBuilder: (BuildContext ctxt, int index) {
-                                return _listAddress(listAddress[index]);
-                              },
-                            )
-                          : Container(),
-                      _btnNewAddress(),
-                    ],
-                  )),
-                )
+                  height: MediaQuery.of(context).size.height - 190,
+                  // child: SingleChildScrollView(
+                  //     child: Column(
+                  //   children: [
+                  //     listAddress.length > 0
+                  //         ? new ListView.builder(
+                  //             scrollDirection: Axis.vertical,
+                  //             shrinkWrap: true,
+                  //             itemCount: listAddress.length,
+                  //             itemBuilder: (BuildContext ctxt, int index) {
+                  //               return _listAddress(listAddress[index]);
+                  //             },
+                  //           )
+                  //         : Container(),
+                  //     _btnNewAddress(),
+                  //   ],
+                  // )
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true, // new line
+                      padding: const EdgeInsets.all(8),
+                      itemCount: listAddress.length+1,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index+1==listAddress.length+1){
+                          return _btnNewAddress();
+                        }else{
+                          return _listAddress(listAddress[index]);
+                        }
+
+                      }
+                  ),
+                  ),
+
               ],
             ),
           ),

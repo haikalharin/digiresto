@@ -9,6 +9,7 @@ import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:flutter/material.dart';
@@ -54,9 +55,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       _userStore.validateOtp(
           _userStore.authPhone, pin.toString()).then((res) {
           Loading.dismiss();
-          // SharedPreferences.getInstance().then((prefs) {
-          //   prefs.setBool(Preferences.phone_verified, true);
-          // });
           if (res.isMember!=null) {
             print("verifikasi otp berhasil");
             print("is_member = " + res.isMember.toString());
@@ -67,19 +65,28 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               Navigator.of(context).pushReplacementNamed(Routes.register);
             }
           }else{
+            _handleClearPinBox();
             throw("error verify otp");
           }
+          _handleClearPinBox();
       }).catchError((err) {
         Loading.dismiss();
         print("error response: "+ err.toString());
-        Ctoast.show("Otp verification failed");
+        _handleClearPinBox();
+        ErrorPopupWidget.showDioError(context,err,null);
+        //Ctoast.show("Otp verification failed");
         //Ctoast.show("skip verification phone");
         //Navigator.of(context).pushReplacementNamed(Routes.register);
-        //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+        Navigator.of(context).pushReplacementNamed(Routes.login_pin);
       });
-
-
     };
+  }
+
+  void _handleClearPinBox(){
+    setState(() {
+      activeBox=0;
+      arr =  new List(6);
+    });
   }
 
   void _handleClickBackspace() {
@@ -190,9 +197,18 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                                 height: 53,
                                 child: RaisedButton(
                                     onPressed: () {
-                                      _userStore.getOtp(
-                                          _userStore.authPhone).then((res) {
-                                        LaunchUrl.run(res.wame);
+                                      _userStore.getOtp(_userStore.authPhone)
+                                          .then((res) {
+                                        Loading.dismiss();
+                                        List<String>  encodedUrl = res.wame.split("?text=");
+                                        // url
+                                        String url = encodedUrl[0]+"?text="+Uri.encodeComponent(encodedUrl[1]);
+                                        LaunchUrl.run(url);
+                                        Navigator.of(context)
+                                            .pushNamed(Routes.verify_otp);
+                                      }).catchError((err) {
+                                        Loading.dismiss();
+                                        ErrorPopupWidget.showDioError(context,err,null);
                                       });
                                     },
                                     color: AppColors.yellow,

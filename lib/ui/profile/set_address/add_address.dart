@@ -130,10 +130,11 @@ class AddAddressScreenState extends State<AddAddressScreen> {
             _userStore.setActivedHomeTab("profile");
             Navigator.of(context).pushNamed(Routes.set_address_list);
           }
-         // Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
+         Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
         }else{
           throw("failed add address");
         }
+        Loading.dismiss();
       }).catchError((err) {
         Loading.dismiss();
         print(err);

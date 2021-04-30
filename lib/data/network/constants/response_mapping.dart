@@ -31,12 +31,19 @@ class ResponseMapping {
     String paramHttpCode = dioError.response?.statusCode.toString();
 
     if (paramHttpCode=="200" || paramHttpCode=="401" || paramHttpCode=="500"){
-      String paramDataResponseCode= dioError.response.data["response"]["code"].toString();
-      for (int i=0; i <= DataResponseMapping.length; i++ ){
-        if (DataResponseMapping[i].key==paramDataResponseCode){
-          return DataResponseMapping[i];
+      try{
+        String paramDataResponseCode= dioError.response.data["response"]["code"].toString();
+        print("error code >> "+paramDataResponseCode);
+        print("error http code >> "+paramHttpCode);
+        for (int i=0; i <= DataResponseMapping.length; i++ ){
+          if (DataResponseMapping[i].key.toString()==paramDataResponseCode){
+            return DataResponseMapping[i];
+          }
         }
+      }catch(e){
+        return KeyValueModel(key: dioError.response.data["response"]["code"], value: dioError.response.data["response"]["message"]);
       }
+
     }else{
       if (paramHttpCode=="" || paramHttpCode==null || paramHttpCode=="null"  ){
         return KeyValueModel(key: "1", value: dioError.message);
