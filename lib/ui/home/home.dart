@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   TransactionStore _transactionStore;
 
   Loading _loading = new Loading();
+
   @override
   void initState() {
     super.initState();
@@ -53,51 +54,87 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void getDataAfterPosition() {
+    loadingAdd();
+    _orderStore.getStaticBanner({
+      "location":
+          _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
+      "page": "1",
+      "filter": ""
+    }).catchError((err) {
+      print("error response: " + err.toString());
+    });
+
+    _userStore.getPromo({
+      "location":
+          _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
+      "page": "1",
+      "filter": ""
+    }).catchError((err) {
+      print("error response: " + err.toString());
+    });
+
+    _orderStore
+        .getHotPromo({
+          "location":
+              _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
+          "page": "1",
+          "filter": ""
+        })
+        .then((res) {})
+        .catchError((err) {
+          print("error response: " + err.toString());
+        });
+    loadingDelete();
+  }
+
+  void goToAddLocation() {
+    _userStore.setActiveHistoryScreen("home.address");
+    Navigator.of(context).pushNamed(Routes.home_all_address);
+  }
+
   void getBasicInformation() {
     loadingAdd();
     _userStore.getProfile().then((value) async {
       loadingDelete();
       loadingAdd();
       _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
-        for (int i = 0; i < res.length; i++) {
-          if (res[i].isDefault) {
-            print("default address found");
-            _userStore.setActiveAddress(
-                res[i].address, res[i].latitude, res[i].longitude);
-            _orderStore.getStaticBanner({
-              "location": _userStore.activeAddressLat +
-                  "," +
-                  _userStore.activeAddresslng,
-              "page": "1",
-              "filter": ""
-            }).catchError((err) {
-              print("error response: " + err.toString());
+        if (_userStore.activeAddress != "") {
+          print(">>> _userStore.activeAddresslng is not null");
+          getDataAfterPosition();
+          loadingDelete();
+        } else {
+          if (res.length == 0) {
+            print(">>> address api  null");
+            ErrorPopupWidget.show(context, "Digiresto", "Please Add Address",
+                () {
+              {
+                Navigator.pop(context);
+                goToAddLocation();
+              }
             });
-            _userStore.getPromo({
-              "location": _userStore.activeAddressLat +
-                  "," +
-                  _userStore.activeAddresslng,
-              "page": "1",
-              "filter": ""
-            }).catchError((err) {
-              print("error response: " + err.toString());
-            });
+            loadingDelete();
+          }else {
+            print(">>> address api  is not null");
+            bool defaultAddress = false;
+            for (int i = 0; i < res.length; i++) {
+              if (res[i].isDefault) {
+                defaultAddress = true;
+                print(">>> default address found");
+                _userStore.setActiveAddress(
+                    res[i].address, res[i].latitude, res[i].longitude);
+                getDataAfterPosition();
+              }
+            }
 
-            _orderStore
-                .getHotPromo({
-                  "location": _userStore.activeAddressLat +
-                      "," +
-                      _userStore.activeAddresslng,
-                  "page": "1",
-                  "filter": ""
-                })
-                .then((res) {
-                  loadingDelete();
-                })
-                .catchError((err) {
-                  loadingDelete();
-                  print("error response: " + err.toString());
-                });
+            if (defaultAddress == false) {
+              ErrorPopupWidget.show(
+                  context, "Digiresto", "Please set your default Address", () {
+                Navigator.pop(context);
+                goToAddLocation();
+              });
+            }
+            loadingDelete();
           }
         }
       }).catchError((err) {
@@ -113,12 +150,12 @@ class _HomeScreenState extends State<HomeScreen> {
       }).catchError((err) {
         loadingDelete();
         print("error response: " + err.toString());
-        ErrorPopupWidget.showDioError(context,err,null);
+        ErrorPopupWidget.showDioError(context, err, null);
       });
 
     }).catchError((err) {
       loadingDelete();
-      ErrorPopupWidget.showDioError(context,err,null);
+      ErrorPopupWidget.showDioError(context, err, null);
     });
 
     // loadingAdd();

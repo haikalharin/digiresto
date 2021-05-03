@@ -227,6 +227,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   Widget _yourLocation() {
     return GestureDetector(
       onTap: () {
+        _userStore.setActiveHistoryScreen("home.address");
         Navigator.of(context).pushNamed(Routes.home_all_address);
       },
       child: Container(
@@ -257,7 +258,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      _userStore.activeAddress,
+                      _userStore.activeAddress.toString(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

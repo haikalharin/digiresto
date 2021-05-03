@@ -57,6 +57,19 @@ abstract class _UserStore with Store {
     );
 
 
+    _repository.defaultAddress.then((value) => {
+      this.activeAddress = (value== "" || value==null) ? "" :value}
+    );
+
+    _repository.defaultAddressLat.then((value) => {
+      this.activeAddressLat = value!= "" ? value : ""}
+    );
+
+
+    _repository.defaultAddressLng.then((value) => {
+      this.activeAddresslng = value!= "" ? value : ""}
+    );
+
   }
 
   // disposers:-----------------------------------------------------------------
@@ -87,6 +100,11 @@ abstract class _UserStore with Store {
   UserProfile profile;
   UserBalance balance;
   // actions:-------------------------------------------------------------------
+  @action
+  Future setProfile(UserProfile profile) async{
+    this.profile=profile;
+  }
+
   @action
   Future login(String email, String password) async {
     final future = _repository.login(email, password);
@@ -329,13 +347,16 @@ abstract class _UserStore with Store {
   }
 
   @observable
-  String activeAddress="";
-  String activeAddressLat="";
-  String activeAddresslng="";
+  String activeAddress;
+  String activeAddressLat;
+  String activeAddresslng;
   void setActiveAddress(String address,String lat,String lng){
-    activeAddress = address;
-    activeAddressLat = lat;
-    activeAddresslng = lng;
+    this.activeAddress = address;
+    this.activeAddressLat = lat;
+    this.activeAddresslng = lng;
+    _repository.saveDefaultAddress(address);
+    _repository.saveDefaultAddressLat(lat);
+    _repository.saveDefaultAddressLng(lng);
   }
 
   @action

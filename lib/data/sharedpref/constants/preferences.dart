@@ -9,6 +9,9 @@ class Preferences {
   static const String access_token = "accessToken";
   static const String phone_number = "phoneNumber";
   static const String phone_verified = "phoneVerified";
+  static const String default_address = "default_address";
+  static const String default_address_lat = "default_address_lat";
+  static const String default_address_lng = "default_address_lng";
 
   //order reference
   static const String orderOutletName = "orderOutletName";

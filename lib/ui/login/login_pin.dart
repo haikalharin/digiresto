@@ -62,15 +62,23 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
         }else{
           throw("login failed");
         }
+        _handleClearPinBox();
       }).catchError((err) {
-        //Ctoast.show("login Failed");
         Loading.dismiss();
         ErrorPopupWidget.showDioError(context,err,null);
+        _handleClearPinBox();
         print("error response: "+ err.toString());
       });
     };
 
   }
+  void _handleClearPinBox(){
+    setState(() {
+      activeBox=0;
+      arr =  new List(6);
+    });
+  }
+
   void _handleClickBackspace(){
     setState(() {
       if (activeBox>0){

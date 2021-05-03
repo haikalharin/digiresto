@@ -136,6 +136,30 @@ class Repository {
       _sharedPrefsHelper.removeAuthPhone();
   Future<String> get authPhone => _sharedPrefsHelper.authPhone;
 
+  //default address
+  Future<void> saveDefaultAddress(String defaultAddress) =>
+      _sharedPrefsHelper.saveDefaultAddress(defaultAddress);
+
+  Future<void> removeDefaultAddress() =>
+      _sharedPrefsHelper.removeDefaultAddress();
+  Future<String> get defaultAddress => _sharedPrefsHelper.defaultAddress;
+
+
+  Future<void> saveDefaultAddressLat(String defaultAddressLat) =>
+      _sharedPrefsHelper.saveDefaultAddressLat(defaultAddressLat);
+
+  Future<void> removeDefaultAddressLat() =>
+      _sharedPrefsHelper.removeDefaultAddressLat();
+  Future<String> get defaultAddressLat => _sharedPrefsHelper.defaultAddressLat;
+
+
+  Future<void> saveDefaultAddressLng(String defaultAddressLng) =>
+      _sharedPrefsHelper.saveDefaultAddressLng(defaultAddressLng);
+
+  Future<void> removeDefaultAddressLng() =>
+      _sharedPrefsHelper.removeDefaultAddressLng();
+  Future<String> get defaultAddressLng => _sharedPrefsHelper.defaultAddressLng;
+
   // Theme: --------------------------------------------------------------------
   Future<void> changeBrightnessToDark(bool value) =>
       _sharedPrefsHelper.changeBrightnessToDark(value);

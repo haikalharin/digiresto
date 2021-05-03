@@ -279,26 +279,20 @@ class _SetAddressScreenState extends State<SetAddressScreen> {
                     ),
                     Container(
                       height: MediaQuery. of(context). size. height-120,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            listAddress.length >0  ? new ListView.builder
+                      child: listAddress.length >0  ? new ListView.builder
                               (
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
-
-                                itemCount: listAddress.length,
-                                itemBuilder: (BuildContext ctxt, int index) {
-                                  return _listAddress(listAddress[index]);
-                                },
-                            ) : Container(
-
+                                itemCount: listAddress.length+1,
+                                itemBuilder: (BuildContext context, int index) {
+                                  if (index+1==listAddress.length+1){
+                                    return _btnNewAddress();
+                                  }else{
+                                    return _listAddress(listAddress[index]);
+                                  }
+                                }
+                            ) : Container()
                             ),
-                            _btnNewAddress(),
-                          ],
-                        )
-                      ),
-                    )
               ],
             ),
           ),

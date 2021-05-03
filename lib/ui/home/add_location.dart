@@ -109,8 +109,10 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   }
 
   void addAddress() {
+
       _userStore.setActiveAddress(_addressController.text.toString(),_lastMapPosition.latitude.toString(),_lastMapPosition.longitude.toString());
       _userStore.setActivedHomeTab("home");
+      _userStore.setProfile(null);
       Navigator.of(context).pushNamed(Routes.home);
   }
 

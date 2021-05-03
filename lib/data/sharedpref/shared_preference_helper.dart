@@ -59,6 +59,63 @@ class SharedPreferenceHelper {
       preference.remove(Preferences.phone_number);
     });
   }
+
+  //default address
+  Future<String> get defaultAddress async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.default_address);
+    });
+  }
+
+  Future<void> saveDefaultAddress(String defaultAddress) async {
+    return _sharedPreference.then((preference) {
+      preference.setString(Preferences.default_address, defaultAddress);
+    });
+  }
+
+  Future<void> removeDefaultAddress() async {
+    return _sharedPreference.then((preference) {
+      preference.remove(Preferences.default_address);
+    });
+  }
+
+  Future<String> get defaultAddressLat async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.default_address_lat);
+    });
+  }
+
+  Future<void> saveDefaultAddressLat(String defaultAddressLat) async {
+    return _sharedPreference.then((preference) {
+      preference.setString(Preferences.default_address_lat, defaultAddressLat);
+    });
+  }
+
+  Future<void> removeDefaultAddressLat() async {
+    return _sharedPreference.then((preference) {
+      preference.remove(Preferences.default_address_lat);
+    });
+  }
+
+
+  Future<String> get defaultAddressLng async {
+    return _sharedPreference.then((preference) {
+      return preference.getString(Preferences.default_address_lng);
+    });
+  }
+
+  Future<void> saveDefaultAddressLng(String defaultAddressLng) async {
+    return _sharedPreference.then((preference) {
+      preference.setString(Preferences.default_address_lng, defaultAddressLng);
+    });
+  }
+
+  Future<void> removeDefaultAddressLng() async {
+    return _sharedPreference.then((preference) {
+      preference.remove(Preferences.default_address_lng);
+    });
+  }
+
   // Theme:------------------------------------------------------
   Future<bool> get isDarkMode {
     return _sharedPreference.then((prefs) {
