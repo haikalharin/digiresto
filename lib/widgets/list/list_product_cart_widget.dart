@@ -14,10 +14,9 @@ class ListProductCartWidget extends StatelessWidget {
   final height;
   final void Function(Map<String,dynamic>,String) runEditAction;
   final void Function(int,int,int,Map<String,dynamic>) addOrRemove;
-
-  const ListProductCartWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runEditAction,this.addOrRemove})
+  final void Function(Map<String,dynamic>,String) runDetailAction;
+  const ListProductCartWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runEditAction,this.addOrRemove,this.runDetailAction})
       : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +132,9 @@ class ListProductCartWidget extends StatelessWidget {
                                   height: 40,
                                   child: RaisedButton(
                                     onPressed: () {
-
+                                      print(data[index]);
+                                      print(orderType);
+                                      runDetailAction(data[index],orderType);
                                     },
                                     color: AppColors.red,
                                     child: Text("Ubah",

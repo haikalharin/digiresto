@@ -16,11 +16,13 @@ class DetailProductDialog extends StatefulWidget {
   final dataProduct;
   final orderType;
   final qtyProduct;
+  final mode;
   @override
   DetailProductDialog(
       {Key key,
       @required this.dataProduct,
       @required this.orderType,
+        this.mode="new",
       this.qtyProduct = 1})
       : super(key: key);
 
@@ -319,7 +321,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     ],
                   ),
                 ),
-                Container(
+                (widget.mode == "new") ? Container(
                   padding: EdgeInsets.only(bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -373,6 +375,32 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         ),
                       ),
                     ],
+                  ),
+                ) : Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    height: 50,
+                    width: double.infinity,
+                    child: RaisedButton(
+                      onPressed: () {
+                        _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
+                        Navigator.of(context).pop();
+                      },
+                      color: AppColors.red,
+                      child: Text("Perbaharui Keranjang",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(25.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                    ),
                   ),
                 )
               ],
