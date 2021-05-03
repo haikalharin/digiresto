@@ -58,6 +58,7 @@ class ListProductOutletWidget extends StatelessWidget {
               }
               return data[index]["category"]=="HIDDEN" ? Container() : GestureDetector(
                 onTap: () => {
+                  print(data[index]),
                   runDetailAction(data[index],orderType)
                 },
                 child: Container(
@@ -79,7 +80,6 @@ class ListProductOutletWidget extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular(8.0)),
                               child: Image(
-                                //image: (!randomImg) ? NetworkImage(data[index]["img"]) : RandomImages.getImage(),
                                 image: RandomImages.getImageUrl(data[index]["img"]),
                                 fit: BoxFit.fill,
                                 height: 96,

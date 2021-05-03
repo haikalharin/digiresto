@@ -198,7 +198,7 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                       child: Image(
-                                        image: (widget.data[index].merchantLogo!=null) ? NetworkImage(widget.data[index].merchantLogo) : RandomImages.getImage(),
+                                        image: RandomImages.getImageUrl(widget.data[index].merchantLogo),
                                         fit: BoxFit.fill,
                                         width: 96,
                                         alignment: Alignment.center,

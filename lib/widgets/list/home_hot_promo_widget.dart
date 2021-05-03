@@ -56,7 +56,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                             borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                                 topRight: Radius.circular(8.0)),
                             child: Image(
-                              image: (data[index].promoIcon!=null) ? NetworkImage(data[index].promoIcon) : RandomImages.getImage(),
+                              image: RandomImages.getImageUrl(data[index].promoIcon),
                               fit: BoxFit.fill,
                               width: double.infinity,
                               height: 120,
