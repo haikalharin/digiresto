@@ -76,7 +76,7 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                   child: Image(
-                                    image: (widget.data[index].promoIcon!=null) ? NetworkImage(widget.data[index].promoIcon) : RandomImages.getImage(),
+                                    image: RandomImages.getImageUrl(widget.data[index].promoIcon),
                                     fit: BoxFit.fill,
                                     width: 96,
                                     alignment: Alignment.center,

@@ -58,9 +58,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                                       ClipRRect(
                                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                         child: Image(
-                                          image: (data[index].merchantLogo != null)
-                                              ? NetworkImage(data[index].merchantLogo)
-                                              : RandomImages.getImage(),
+                                          image: RandomImages.getImageUrl(data[index].merchantLogo),
                                           fit: BoxFit.fill,
                                           width: 96,
                                           height: 96,

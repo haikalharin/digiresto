@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
 import 'package:boilerplate/widgets/list/list_product_variant_widget.dart';
@@ -163,9 +164,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
-                          image: (dataProductState["img"].length > 1)
-                              ? NetworkImage(dataProductState["img"])
-                              : RandomImages.getImage(),
+                          image: RandomImages.getImageUrl(dataProductState["img"]),
                           fit: BoxFit.fill,
                           width: double.infinity,
                           alignment: Alignment.center,
@@ -352,7 +351,9 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         height: 50,
                         width: MediaQuery.of(context).size.width/2-5,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                          },
                           color: Colors.white,
                           child: Text("Beli Sekarang",
                               style: TextStyle(
