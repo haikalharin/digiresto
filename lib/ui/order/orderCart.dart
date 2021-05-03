@@ -13,6 +13,7 @@ import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/list_food_category_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_cart_widget.dart';
@@ -134,6 +135,24 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     _orderStore.setProduct(productId, qty, price, detailProduct);
   }
 
+  _showDetailProduct(Map<String, dynamic> dataProduct, String orderType) {
+    //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
+    Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return DetailProductDialog(
+                  dataProduct: dataProduct["detail"], orderType: orderType, mode: "edit",qtyProduct: dataProduct["qty"]);
+            },
+            fullscreenDialog: true
+        )
+    ).then((value) {
+      setState(() {
+        reloadCounter++;
+      });
+    });
+  }
+
   Widget _order() {
     return Container(
       color: Colors.white,
@@ -177,6 +196,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               addOrRemove: _plusProduct,
               orderType: _orderStore.orderSalesTypesCode,
               data: _orderStore.orderProduct,
+              runDetailAction: _showDetailProduct,
               runEditAction: _editCart,
               scrollDirection: Axis.vertical,
             ),
@@ -618,7 +638,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       Text("Rp."+Utils.formatRupiah(transaction.subtotal.toString()))
                     ],
                   ),
-                  for (var i = 0; i < transaction.taxesAndServices.length; i++) 
+                  for (var i = 0; i < transaction.taxesAndServices.length; i++)
                     _buildTaxAndServiceList(transaction.taxesAndServices[i]),
                   Divider(
                     color: Colors.black,
@@ -634,22 +654,41 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   FlatButton(
                     minWidth: double.infinity,
                     onPressed: () async {
-                      print('DEBUG >> do checkout');
-                      var checkoutResponse = await _orderStore.checkout();
-
-                      if (checkoutResponse.payment.isCredit) {
-                        await _orderStore.getTransaction();
-                        Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
-                      } else if (checkoutResponse.payment.isWebView) {
-                        Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_web_view, (_) => false);
-                      } else if (checkoutResponse.payment.isDeeplink) {
-                        // TODO : Need test on real device to simulate open payment app
-                        LaunchUrl.run(checkoutResponse.payment.deeplink);
-                      } else {
-                        if (checkoutResponse.payment.paymentCode.isNotEmpty) {
-                          Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_va, (_) => false);
+                      //validation
+                      if (_orderStore.orderPaymentType==null){
+                        ErrorPopupWidget.show(context, "Digiresto", "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini", () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed(Routes.select_payment_method);
+                        });
+                      }else if (placeInfoController.text=="" && _orderStore.orderSalesTypesCode=="DI"){
+                        ErrorPopupWidget.show(context, "Digiresto", "Info Makan di Tempat tidak boleh kosong", () {
+                          Navigator.of(context).pop();
+                          _dialogPlace(context);
+                        });
+                      } else{
+                        Loading.show();
+                        print('DEBUG >> do checkout');
+                        var checkoutResponse = await _orderStore.checkout();
+                        if (checkoutResponse.payment.isCredit) {
+                          await _orderStore.getTransaction();
+                          Loading.dismiss();
+                          Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
+                        } else if (checkoutResponse.payment.isWebView) {
+                          Loading.dismiss();
+                          Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_web_view, (_) => false);
+                        } else if (checkoutResponse.payment.isDeeplink) {
+                          // TODO : Need test on real device to simulate open payment app
+                          Loading.dismiss();
+                          LaunchUrl.run(checkoutResponse.payment.deeplink);
+                        } else {
+                          if (checkoutResponse.payment.paymentCode.isNotEmpty) {
+                            Loading.dismiss();
+                            Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_va, (_) => false);
+                          }
                         }
                       }
+
+
                     },
                     color: AppColors.red,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),

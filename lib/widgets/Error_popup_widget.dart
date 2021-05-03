@@ -21,13 +21,13 @@ class ErrorPopupWidget  {
             fontWeight: FontWeight.bold,
           ),)),
           content: Container(
-            height:  100,
+            height:  120,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   message.toString(),
-                  maxLines: 3,
+                  maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontFamily: "roboto",
@@ -78,13 +78,13 @@ class ErrorPopupWidget  {
              fontWeight: FontWeight.bold,
            ),)),
            content: Container(
-             height:  100,
+             height:  120,
              child: Column(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
                  Text(
                    respError.desciption=="" ? respError.value : respError.desciption.toString(),
-                   maxLines: 3,
+                   maxLines: 4,
                    overflow: TextOverflow.ellipsis,
                    style: TextStyle(
                      fontFamily: "roboto",
