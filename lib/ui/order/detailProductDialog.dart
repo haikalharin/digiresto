@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
 import 'package:boilerplate/widgets/list/list_product_variant_widget.dart';
@@ -352,7 +353,10 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         height: 50,
                         width: MediaQuery.of(context).size.width/2-5,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
+                            Navigator.of(context).popAndPushNamed(Routes.order_cart);
+                          },
                           color: Colors.white,
                           child: Text("Beli Sekarang",
                               style: TextStyle(
