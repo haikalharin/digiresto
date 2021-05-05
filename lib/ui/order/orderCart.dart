@@ -666,26 +666,28 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           _dialogPlace(context);
                         });
                       } else{
-                        Loading.show();
-                        print('DEBUG >> do checkout');
-                        var checkoutResponse = await _orderStore.checkout();
-                        if (checkoutResponse.payment.isCredit) {
-                          await _orderStore.getTransaction();
-                          Loading.dismiss();
-                          Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
-                        } else if (checkoutResponse.payment.isWebView) {
-                          Loading.dismiss();
-                          Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_web_view, (_) => false);
-                        } else if (checkoutResponse.payment.isDeeplink) {
-                          // TODO : Need test on real device to simulate open payment app
-                          Loading.dismiss();
-                          LaunchUrl.run(checkoutResponse.payment.deeplink);
-                        } else {
-                          if (checkoutResponse.payment.paymentCode.isNotEmpty) {
+                        ErrorPopupWidget.confirmation(context, "Digiresto", "Apakah Anda yakin dengan orderan ini?", () async {
+                          Loading.show();
+                          print('DEBUG >> do checkout');
+                          var checkoutResponse = await _orderStore.checkout();
+                          if (checkoutResponse.payment.isCredit) {
+                            await _orderStore.getTransaction();
                             Loading.dismiss();
-                            Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_va, (_) => false);
+                            Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
+                          } else if (checkoutResponse.payment.isWebView) {
+                            Loading.dismiss();
+                            Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_web_view, (_) => false);
+                          } else if (checkoutResponse.payment.isDeeplink) {
+                            //Need test on real device to simulate open payment app
+                            Loading.dismiss();
+                            LaunchUrl.run(checkoutResponse.payment.deeplink);
+                          } else {
+                            if (checkoutResponse.payment.paymentCode.isNotEmpty) {
+                              Loading.dismiss();
+                              Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_va, (_) => false);
+                            }
                           }
-                        }
+                        });
                       }
 
 

@@ -34,6 +34,7 @@ class Assets {
   static const String iconMenuCart =  "assets/icons/ic_menu_cart.png";
   static const String iconHistory =  "assets/icons/ic_history.png";
   static const String iconPrivacy =  "assets/icons/ic_privacy.png";
+  static const String iconDeliveryNotification =  "assets/icons/ic_delivery_notification.png";
 
 
 }

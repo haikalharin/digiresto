@@ -13,6 +13,7 @@ import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/list/home_history_order_widget.dart';
 import 'package:boilerplate/widgets/list/home_hot_promo_widget.dart';
+import 'package:boilerplate/widgets/list/home_track_order_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
 import 'package:boilerplate/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
@@ -411,8 +412,54 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                               color: Colors.black),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushNamed(Routes.home_all_promo);
                         }),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                        child: Text(
+                          "",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.red),
+                        ),
+                        onTap: () {
+                        }),
+                  )
+                ]
+            ),
+            _transactionStore.listTransactionHistory != null ? ListHomeHistoryOrderWidget(
+              runAction: _orderStore.setOrderParameter,
+              height:  320.0,
+              data: _transactionStore.listTransactionHistory,
+              scrollDirection: Axis.horizontal,
+            ) : Container()
+            //ListItem(entries: entries,colorCodes: colorCodes),
+          ],
+        )
+    );
+  }
+
+  Widget _trackOrder(){
+    return _transactionStore.listTransactionHistory != null ? Container(
+        padding: EdgeInsets.only(top: 10),
+        child: Column(
+          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: GestureDetector(
+                        child: Text(
+                          "Lacak orderan anda",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.only(right: 10),
@@ -430,17 +477,19 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                   )
                 ]
             ),
-            _transactionStore.listTransactionHistory != null ? ListHomeHistoryOrderWidget(
+            Container(height: 5,),
+            HomeTrackOrderWidget(
               runAction: _orderStore.setOrderParameter,
-              height:  320.0,
+              height:  90.0,
               data: _transactionStore.listTransactionHistory,
               scrollDirection: Axis.horizontal,
-            ) : Container()
+            )
             //ListItem(entries: entries,colorCodes: colorCodes),
           ],
         )
-    );
+    ) : Container();
   }
+
   Widget _singleAdvertisement(){
     return Container(
         height: 200,
@@ -539,7 +588,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             child: SingleChildScrollView(
               child: Column(
           children: [
-            _orderStore.listStaticBanner != null ? _staticBanner() : Container(),
+              _orderStore.listStaticBanner != null ? _staticBanner() : Container(),
+              _trackOrder(),
               _discount(),
               _hotPromo(),
               _historyOrder(),

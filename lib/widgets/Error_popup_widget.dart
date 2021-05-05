@@ -9,6 +9,89 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ErrorPopupWidget  {
+  static  confirmation(BuildContext context,String title,String message,void Function() runAction) {
+    return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => new AlertDialog(
+          title:  Center( child: Text(title, style: TextStyle(
+            fontFamily: "roboto",
+            //color: AppColors.red,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),)),
+          content: Container(
+            height:  120,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  message.toString(),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: "roboto",
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width/3-10,
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          color: Colors.white,
+                          child: Text("Batal",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.redYoung)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.redYoung,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width/3-10,
+                        child: RaisedButton(
+                          onPressed: () {
+                            runAction();
+                          },
+                          color: AppColors.redYoung,
+                          child: Text("Ok",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.redYoung,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
    static  show(BuildContext context,String title,String message,void Function() runAction) {
     return showDialog(
         barrierDismissible: false,
