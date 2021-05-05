@@ -22,6 +22,7 @@ import 'package:otp_text_field/style.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
 import 'package:boilerplate/models/auth/register_model.dart';
+import 'package:flutter/services.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -119,6 +120,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
+  void _handleClearPinBox(){
+    setState(() {
+      confirmActiveBox=0;
+      confirmArr =  new List(6);
+    });
+  }
+
   void gotoNextPage() {
     controller.animateToPage(_curr + 1,
         duration: Duration(milliseconds: 10), curve: Curves.linear);
@@ -191,6 +199,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     Ctoast.show(
                                         "required accept term and condition");
                                   } else {
+                                    FocusManager.instance.primaryFocus.unfocus();
                                     gotoNextPage();
                                   }
                                 } else if (_curr == 1) {
@@ -204,6 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 } else if (_curr == 2) {
                                   //page 3 logic
                                   if (confirmPin.toString() != pin.toString()) {
+                                    _handleClearPinBox();
                                     Ctoast.show(
                                         "the confirmation pin must be the same as the pin");
                                   } else {
