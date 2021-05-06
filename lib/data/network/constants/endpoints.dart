@@ -42,6 +42,7 @@ class Endpoints {
   static const String urlUpdateCartSession = baseUrlDigiresto+"/forward?r=updatecartsession";
   static const String urlGetPaymentMethod = baseUrlDigiresto+"/forward?r=getpaymentmethods";
   static const String urlCheckoutCartSession = baseUrlDigiresto+"/forward?r=checkoutv2";
+  static const String urlDeliveryInquiry = baseUrlDigiresto+"/forward?r=deliveryinquiryv2";
 
   // transaction
   static const String urlGetTransactionHistory = baseUrlDigiresto + "/forward?r=transactionhistory";

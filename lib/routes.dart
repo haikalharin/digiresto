@@ -5,6 +5,7 @@ import 'package:boilerplate/ui/order/orderCart.dart';
 import 'package:boilerplate/ui/order/paymentReceipt.dart';
 import 'package:boilerplate/ui/order/paymentVA.dart';
 import 'package:boilerplate/ui/order/paymentWebView.dart';
+import 'package:boilerplate/ui/order/selectDeliveryMethod.dart';
 import 'package:boilerplate/ui/order/selectPaymentMethod.dart';
 import 'package:boilerplate/ui/profile/update_profile.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class Routes {
   static const String order_detail_outlet = '/order_detail_outlet';
   static const String order_cart = '/order_cart';
   static const String select_payment_method = '/select_payment_method';
+  static const String select_delivery_method = '/select_delivery_method';
   static const String payment_receipt = '/payment_receipt';
   static const String payment_web_view = '/payment_web_view';
   static const String payment_va = '/payment_va';
@@ -86,6 +88,7 @@ class Routes {
     order_detail_outlet: (BuildContext context)=> DetailOutletScreen(),
     order_cart: (BuildContext context)=> OrderCartScreen(),
     select_payment_method: (BuildContext context)=> SelectPaymentMethodScreen(),
+    select_delivery_method: (BuildContext context)=> SelectDeliveryMethodScreen(),
     payment_receipt: (BuildContext context)=> PaymentReceiptScreen(),
     payment_web_view: (BuildContext context)=> PaymentWebView(),
     payment_va: (BuildContext context)=> PaymentVA(),
