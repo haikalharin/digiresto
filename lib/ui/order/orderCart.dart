@@ -113,6 +113,11 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
         _paymentMethods = value;
       });
     });
+    if (_orderStore.orderSalesTypes == 'onlineDriver') {
+      _orderStore.deliveryInquiry({
+        "location": [_userStore.activeAddressLat, _userStore.activeAddresslng]
+      });
+    }
   }
 
   void initDialogPlace(){
@@ -379,6 +384,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (_orderStore.orderSalesTypes == 'dineIn')
                   Text("Info Makan di Tempat",
                       style: TextStyle(
                         fontFamily: "roboto",
@@ -386,6 +392,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       )),
+                  if (_orderStore.orderSalesTypes == 'dineIn')
                   Container(
                     padding: const EdgeInsets.only(top: 5, bottom: 10),
                     child: TextField(
@@ -607,6 +614,99 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
       ),
     );
   }
+  
+  Widget _deliveryMethod() {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Pesan Antar",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          //color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                      )),
+                      if (_orderStore.selectedDeliveryMethod != null)
+                        Text(_orderStore.selectedDeliveryMethod['name'],
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            //color: Colors.white,
+                            fontSize: 14,
+                        )),
+                    ],
+                  ),
+                  if (_orderStore.selectedDeliveryMethod != null)
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.select_delivery_method);
+                      },
+                      color: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Ubah',
+                        style: TextStyle(
+                          color:AppColors.red,
+                          fontWeight: FontWeight.bold,
+                        )
+                      )
+                    )
+                  else
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.select_delivery_method);
+                      },
+                      color: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                      child: Text(
+                        'Pilih',
+                        style: TextStyle(
+                          color:AppColors.red,
+                          fontWeight: FontWeight.bold,
+                        )
+                      )
+                    )
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+  
   Widget _detailPayment() {
     final transaction = _orderStore.countedTransaction;
     return Theme(
@@ -640,6 +740,15 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   ),
                   for (var i = 0; i < transaction.taxesAndServices.length; i++)
                     _buildTaxAndServiceList(transaction.taxesAndServices[i]),
+                  if (_orderStore.orderSalesTypes == 'onlineDriver' && _orderStore.selectedDeliveryMethod != null)
+                  SizedBox(height: 5,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Delivery - ${_orderStore.selectedDeliveryMethod['name']}'),
+                      Text("Rp."+Utils.formatRupiah(transaction.deliveryAmount.toString()))
+                    ],
+                  ),
                   Divider(
                     color: Colors.black,
                   ),
@@ -1105,6 +1214,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   _notes(),
                   _useVoucherCode(),
                   Observer(builder: (context) => _paymentMethod()),
+                  if (_orderStore.orderSalesTypes == 'onlineDriver')
+                    Observer(builder: (context) => _deliveryMethod()),
                   Observer(builder: (context) => _detailPayment()),
                 ],
               ),
