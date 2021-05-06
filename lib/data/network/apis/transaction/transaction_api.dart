@@ -50,7 +50,39 @@ class TransactionApi {
         "body": {}
       });
 
-      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam 
+      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam
+      return TransactionMobile.create(data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<TransactionMobile> cancelTransaction(String receiptCode) async {
+    try {
+      String apiUrl = Endpoints.urlCancelTransaction;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {"receiptCode": receiptCode},
+        "body": {}
+      });
+
+      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam
+      return TransactionMobile.create(data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<TransactionMobile> acceptTransaction(String receiptCode) async {
+    try {
+      String apiUrl = Endpoints.urlAcceptTransaction;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {"receiptCode": receiptCode},
+        "body": {}
+      });
+
+      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam
       return TransactionMobile.create(data);
     } catch (e) {
       print(e.toString());

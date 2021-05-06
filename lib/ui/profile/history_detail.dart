@@ -4,19 +4,90 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/models/transaction/transaction_history.dart';
 import 'package:boilerplate/models/transaction/transaction_history_item.dart';
 import 'package:boilerplate/models/transaction/transaction_history_taxes_and_services.dart';
+import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/order/order_store.dart';
+import 'package:boilerplate/stores/transaction/transaction_store.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/formatting/rupiah.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
+import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
+import 'package:boilerplate/utils/random/random_images.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class HistoryDetailScreen extends StatelessWidget {
+class HistoryDetailScreen extends StatefulWidget {
+  @override
+  _HistoryDetailScreenState createState() => _HistoryDetailScreenState();
+}
+
+class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
+  TransactionStore _transactionStore;
+  UserStore _userStore;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // initializing stores
+    _transactionStore = Provider.of<TransactionStore>(context);
+    _userStore = Provider.of<UserStore>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final TransactionHistory transaction = ModalRoute.of(context).settings.arguments;
 
     final df = new DateFormat('dd MMM yyyy, hh:mm:ss');
     final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
+
+    Widget _cancelBtn(BuildContext context){
+      return Container(
+        width: MediaQuery.of(context).size.width-50,
+        height: 40,
+        child: RaisedButton(
+          onPressed: () {
+            ErrorPopupWidget.confirmation(context,"Batalkan Transaksi","Apakah anda yakin ingin membatalkan transaksi?",(){
+              Navigator.pop(context);
+              Loading.show();
+              _transactionStore.cancelTransaction(transaction.receiptCode).then((value) async {
+                    _transactionStore.deleteTransactionHistory();
+                    await _transactionStore.getTransactionHistory();
+                    Loading.dismiss();
+                    ErrorPopupWidget.show(context, "Digiresto", "Pesanan anda telah dibatalkan", () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+
+                      // _userStore.setActivedHomeTab("home");
+                      // Navigator.of(context).pushNamed(Routes.home);
+                    });
+              }).catchError((err)=>{
+                Navigator.pop(context),
+                Loading.dismiss(),
+                print("error cancel transaction"),
+                print(err),
+                ErrorPopupWidget.showDioError(context, err, () { })
+              });
+
+            });
+          },
+          color: AppColors.redYoung,
+          child: Text("Batal",
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(15.0),
+            side: BorderSide(
+              width: 1,
+              color: AppColors.redYoung,
+            ),
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -237,12 +308,22 @@ class HistoryDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  transaction.status=="waiting" ? _cancelBtn(context) : Container(),
+                ],
+              ),
+              SizedBox(height: double.maxFinite),
             ],
           ),
         ),
       ),
     );
   }
+
+
 
   Widget _buildItemList(TransactionHistoryItem item) {
     return Row(
@@ -251,7 +332,12 @@ class HistoryDetailScreen extends StatelessWidget {
         Container(
           width: 50,
           height: 50,
-          child: Image.network(item.img),
+          child:  Image(
+            image: RandomImages.getImageUrl(item.img), //Image.network(item.img),]),
+            fit: BoxFit.fill,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
         ),
         SizedBox(width: 10),
         Expanded(

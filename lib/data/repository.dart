@@ -323,6 +323,18 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
+  Future<TransactionMobile> cancelTransaction(String receiptCode) async {
+    return await _transactionApi.cancelTransaction(receiptCode).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<TransactionMobile> acceptTransaction(String receiptCode) async {
+    return await _transactionApi.acceptTransaction(receiptCode).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
   //order local storage
   Future<void> saveOrderOutletName(Map<String,dynamic> object) =>
       _sharedPrefsHelper.saveOrderOutletName(object);

@@ -479,7 +479,9 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             ),
             Container(height: 5,),
             HomeTrackOrderWidget(
-              runAction: _orderStore.setOrderParameter,
+              runAction: (TransactionHistory trx){
+                Navigator.of(context).pushNamed(Routes.history_detail, arguments: trx).then((value) => setState(() => {}));
+              },
               height:  90.0,
               data: _transactionStore.listTransactionHistory,
               scrollDirection: Axis.horizontal,
