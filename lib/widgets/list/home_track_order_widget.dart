@@ -11,7 +11,7 @@ class HomeTrackOrderWidget extends StatelessWidget {
   final List<TransactionHistory> data;
   final Axis scrollDirection;
   final height;
-  final void Function(Map<String, dynamic>) runAction;
+  final void Function(TransactionHistory) runAction;
   const HomeTrackOrderWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height,this.runAction})
       : super(key: key);
 
@@ -30,7 +30,8 @@ class HomeTrackOrderWidget extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: (){
-                Navigator.of(context).pushNamed(Routes.history_detail, arguments: data[index]);
+                runAction(data[index]);
+                //Navigator.of(context).pushNamed(Routes.history_detail, arguments: data[index]).then((value) => setState(() => {}));
               },
               child: Container(
                 margin: EdgeInsets.all(5),

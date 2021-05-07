@@ -54,7 +54,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
       margin: EdgeInsets.only(bottom: 10),
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.history_detail, arguments: transaction);
+          Navigator.of(context).pushNamed(Routes.history_detail, arguments: transaction).then((value) => {
+            if (_transactionStore.listTransactionHistory.isEmpty){
+              getTransactionHistory()
+            }
+          });
         },
         child: Container(
           decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [

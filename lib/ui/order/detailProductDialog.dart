@@ -166,9 +166,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
-                          image: (dataProductState["img"].length > 1)
-                              ? NetworkImage(dataProductState["img"])
-                              : RandomImages.getImage(),
+                          image: RandomImages.getImageUrl(dataProductState["img"]),
                           fit: BoxFit.fill,
                           width: double.infinity,
                           alignment: Alignment.center,

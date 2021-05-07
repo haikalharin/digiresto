@@ -394,6 +394,7 @@ abstract class _OrderStore with Store {
       this.paymentData = value.payment;
       return value;
     }).catchError((err) {
+      return throw err;
       print("error response: "+ err.toString());
     });
   }

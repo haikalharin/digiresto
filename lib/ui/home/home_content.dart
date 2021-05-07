@@ -345,7 +345,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     );
   }
   Widget _hotPromo(){
-    return Container(
+    return  _orderStore.listHotPromo != null ? Container(
       padding: EdgeInsets.only(top: 10),
       child: Column(
         children: [
@@ -382,15 +382,15 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
           ]
         ),
           //Text(_orderStore.listHotPromo.length.toString()),
-          _orderStore.listHotPromo != null ? ListHomeHotPromoWidget(
+          ListHomeHotPromoWidget(
             runAction: _orderStore.setOrderParameter,
             height:  200.0,
             data: _orderStore.listHotPromo,
             scrollDirection: Axis.horizontal,
-          ) : Container()
+          )
           ],
       )
-    );
+    )  : Container();
   }
 
   Widget _historyOrder(){
@@ -479,7 +479,9 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
             ),
             Container(height: 5,),
             HomeTrackOrderWidget(
-              runAction: _orderStore.setOrderParameter,
+              runAction: (TransactionHistory trx){
+                Navigator.of(context).pushNamed(Routes.history_detail, arguments: trx).then((value) => setState(() => {}));
+              },
               height:  90.0,
               data: _transactionStore.listTransactionHistory,
               scrollDirection: Axis.horizontal,

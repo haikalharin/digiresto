@@ -7,6 +7,7 @@ import 'package:boilerplate/models/order/payment_method.dart';
 import 'package:boilerplate/models/transaction/transaction_history_taxes_and_services.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
+import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/order/detailProductDialog.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
@@ -45,6 +46,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   Repository _repository;
   UserStore _userStore;
   OrderStore _orderStore;
+  TransactionStore _transactionStore;
   DetailOutlet detailOutlet;
   Loading _loading = new Loading();
 
@@ -104,6 +106,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
     _orderStore = Provider.of<OrderStore>(context);
+    _transactionStore = Provider.of<TransactionStore>(context);
     initDialogPlace();
 
     print('DEBUG >> transactionData on cart_store ${_orderStore.transactionData}');
@@ -614,7 +617,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
       ),
     );
   }
-  
+
   Widget _deliveryMethod() {
     return Theme(
       data: Theme.of(context).copyWith(
@@ -706,7 +709,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
       ),
     );
   }
-  
+
   Widget _detailPayment() {
     final transaction = _orderStore.countedTransaction;
     return Theme(
@@ -776,11 +779,13 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                         });
                       } else{
                         ErrorPopupWidget.confirmation(context, "Digiresto", "Apakah Anda yakin dengan orderan ini?", () async {
+                          Navigator.of(context).pop();
                           Loading.show();
                           print('DEBUG >> do checkout');
                           var checkoutResponse = await _orderStore.checkout();
                           if (checkoutResponse.payment.isCredit) {
                             await _orderStore.getTransaction();
+                            await _transactionStore.getTransactionHistory();
                             Loading.dismiss();
                             Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
                           } else if (checkoutResponse.payment.isWebView) {
@@ -791,8 +796,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             Loading.dismiss();
                             LaunchUrl.run(checkoutResponse.payment.deeplink);
                           } else {
+                            Loading.dismiss();
                             if (checkoutResponse.payment.paymentCode.isNotEmpty) {
-                              Loading.dismiss();
                               Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_va, (_) => false);
                             }
                           }

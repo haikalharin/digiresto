@@ -4,6 +4,7 @@ import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
 import 'package:boilerplate/models/order/transaction_mobile.dart';
+import 'package:boilerplate/models/response_model.dart' as ResponseStatus;
 
 import 'package:boilerplate/models/transaction/transaction_history.dart';
 
@@ -50,8 +51,40 @@ class TransactionApi {
         "body": {}
       });
 
-      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam 
+      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam
       return TransactionMobile.create(data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<TransactionMobile> cancelTransaction(String receiptCode) async {
+    try {
+      String apiUrl = Endpoints.urlCancelTransaction;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {"receiptCode": receiptCode},
+        "body": {}
+      });
+
+      var data = (apiResult as Map<String, dynamic>)['data']; //mengambil data data didalam
+      return TransactionMobile.create(data);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<ResponseStatus.Response> acceptTransaction(String receiptCode) async {
+    try {
+      String apiUrl = Endpoints.urlAcceptTransaction;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {"receiptCode": receiptCode},
+        "body": {}
+      });
+
+      var data = (apiResult as Map<String, dynamic>)['response']; //mengambil data data didalam
+      return ResponseStatus.Response.createResponse(data);
     } catch (e) {
       print(e.toString());
       throw e;

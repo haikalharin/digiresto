@@ -47,4 +47,6 @@ class Endpoints {
   // transaction
   static const String urlGetTransactionHistory = baseUrlDigiresto + "/forward?r=transactionhistory";
   static const String urlGetTransaction = baseUrlDigiresto + "/forward?r=transactionmobile";
+  static const String urlCancelTransaction = baseUrlDigiresto + "/forward?r=canceltransaction";
+  static const String urlAcceptTransaction = baseUrlDigiresto + "/forward?r=donetransaction";
 }
