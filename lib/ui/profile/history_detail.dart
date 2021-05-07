@@ -58,7 +58,6 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
                     ErrorPopupWidget.show(context, "Digiresto", "Pesanan anda telah dibatalkan", () {
                       Navigator.pop(context);
                       Navigator.pop(context);
-
                       // _userStore.setActivedHomeTab("home");
                       // Navigator.of(context).pushNamed(Routes.home);
                     });
@@ -74,6 +73,52 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
           },
           color: AppColors.redYoung,
           child: Text("Batal",
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(15.0),
+            side: BorderSide(
+              width: 1,
+              color: AppColors.redYoung,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget _acceptBtn(BuildContext context){
+      return Container(
+        width: MediaQuery.of(context).size.width-50,
+        height: 40,
+        child: RaisedButton(
+          onPressed: () {
+            ErrorPopupWidget.confirmation(context,"Pesanan Selesai","Apakah anda ingin menyelesaikan transaksi ?",(){
+              Navigator.pop(context);
+              Loading.show();
+                _transactionStore.acceptTransaction(transaction.receiptCode).then((value) async {
+                _transactionStore.deleteTransactionHistory();
+                await _transactionStore.getTransactionHistory();
+                Loading.dismiss();
+                ErrorPopupWidget.show(context, "Digiresto", "Pesanan sudah selesai", () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  // _userStore.setActivedHomeTab("home");
+                  // Navigator.of(context).pushNamed(Routes.home);
+                });
+              }).catchError((err)=>{
+                Navigator.pop(context),
+                Loading.dismiss(),
+                print("error accept transaction"),
+                print(err),
+                ErrorPopupWidget.showDioError(context, err, () { })
+              });
+
+            });
+          },
+          color: AppColors.redYoung,
+          child: Text("Selesai",
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -313,6 +358,7 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   transaction.status=="waiting" ? _cancelBtn(context) : Container(),
+                  transaction.status=="process" || transaction.status=="ready" ? _acceptBtn(context) : Container(),
                 ],
               ),
               SizedBox(height: double.maxFinite),

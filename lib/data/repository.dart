@@ -336,7 +336,7 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
-  Future<TransactionMobile> acceptTransaction(String receiptCode) async {
+  Future<Response> acceptTransaction(String receiptCode) async {
     return await _transactionApi.acceptTransaction(receiptCode).then((value) {
       return value;
     }).catchError((error) => throw error);

@@ -617,7 +617,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
       ),
     );
   }
-  
+
   Widget _deliveryMethod() {
     return Theme(
       data: Theme.of(context).copyWith(
@@ -709,7 +709,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
       ),
     );
   }
-  
+
   Widget _detailPayment() {
     final transaction = _orderStore.countedTransaction;
     return Theme(

@@ -6,6 +6,7 @@ import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/models/order/promo_outlet_model.dart';
 import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/order/transaction_mobile.dart';
+import 'package:boilerplate/models/response_model.dart';
 import 'package:boilerplate/models/transaction/transaction_history.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
 import 'package:boilerplate/stores/transaction/transaction_store.dart';
@@ -56,12 +57,12 @@ abstract class _TransactionStore with Store {
     });
   }
 
-  @observable TransactionMobile transactionAccept;
+  @observable Response transactionAccept;
   @action
-  Future<TransactionMobile> acceptTransaction(String receiptCode) async {
+  Future<Response> acceptTransaction(String receiptCode) async {
     return await _repository.acceptTransaction(receiptCode).then((value) {
       print('DEBUG >> accept order response ${value}');
-      this.transactionCancel = value;
+      this.transactionAccept = value;
       return value;
     }).catchError((err) {
       print("error response: "+ err.toString());
