@@ -158,7 +158,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
               ),
             ),
             _search(),
-            (listOutlet.length > 1 )  ? ListNearbyOutletWidget(
+            (listOutlet.length > 0 )  ? ListNearbyOutletWidget(
               loadMoreAction: loadMoreOutletByLocation,
               runAction: _orderStore.setOrderParameter,
               height: MediaQuery.of(context).size.height / 1.4,

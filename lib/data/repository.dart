@@ -15,6 +15,7 @@ import 'package:boilerplate/models/auth/register_model.dart';
 import 'package:boilerplate/models/map/geocode.dart';
 import 'package:boilerplate/models/order/cart_session_model.dart';
 import 'package:boilerplate/models/order/checkout_response.dart';
+import 'package:boilerplate/models/order/delivery_method_model.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/payment_method.dart';
@@ -301,6 +302,12 @@ class Repository {
 
   Future<List<PaymentMethod>> getPaymentMethod(Map<String, dynamic> object) async {
     return await _orderApi.getPaymentMethod(object).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<List<DeliveryMethod>> deliveryInquiry(Map<String, dynamic> object) async {
+    return await _orderApi.deliveryInquiry(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

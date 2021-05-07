@@ -191,6 +191,18 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                         separatorBuilder: (context, index) => SizedBox(height: 5),
                       ),
                       SizedBox(height: 5),
+                      if (_transaction.salesType == 'DELIVERY')
+                        _lr(
+                          Text('Delivery'),
+                          Text(Rupiah.format(_transaction.deliveryAmount.toString()),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      if (_transaction.salesType == 'DELIVERY')
+                        SizedBox(height: 5),
+                      SizedBox(height: 5),
                       if (_transaction.roundAmount != 0)
                         _lr(
                           Text('Rounding'),

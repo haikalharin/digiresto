@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/data/repository.dart';
 import 'package:boilerplate/models/map/geocode.dart';
+import 'package:boilerplate/models/order/delivery_method_model.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
@@ -184,6 +185,10 @@ abstract class _OrderStore with Store {
   @observable CheckoutResponsePayment paymentData;
   @observable TransactionMobile transactionAfterPayment;
 
+  @observable List<DeliveryMethod> listDeliveryMethod;
+  @observable Map<String, dynamic> selectedDeliveryMethod;
+  @observable String selectedDeliveryMethodParamString;
+
   @action
   void clearCart() {
     this.sessionId = null;
@@ -263,6 +268,35 @@ abstract class _OrderStore with Store {
     this.updateCartSession();
   }
 
+  @action
+  void setDeliveryMethod(Map<String, dynamic> object) {
+    final method = object['method'];
+    String param = object['param'];
+    final user = object['user'];
+
+    // #delivery#price -> d replace pake shipmentMethods.price
+    // #delivery#name -> d replace pake shipmentMethods.name
+    // #delivery#origin" -> d replace pake shipmentMethods.origin
+    // #delivery#destination -> d replace pake shipmentMethods.description
+    // #customer#address -> d replace pake address tujuan/customer address/alamat pengiriman
+    // #customer#latitude -> d replace pake customer latitude
+    // #customer#longitude -> d replace pake customer longitide
+
+    if (param.contains('"#delivery#price"')) param = param.replaceAll('"#delivery#price"', method['price'].toString());
+    if (param.contains('#delivery#name')) param = param.replaceAll('#delivery#name', method['name']);
+    if (param.contains('#delivery#origin')) param = param.replaceAll('#delivery#origin', method['origin']);
+    if (param.contains('#delivery#destination')) param = param.replaceAll('#delivery#destination', method['description']);
+    if (param.contains('#customer#address')) param = param.replaceAll('#customer#address', user['address']);
+    if (param.contains('#customer#latitude')) param = param.replaceAll('#customer#latitude', user['addressLat'].toString());
+    if (param.contains('#customer#longitude')) param = param.replaceAll('#customer#longitude', user['addressLng'].toString());
+
+    print('DEBUG >> delivery param replacement $param');
+    this.selectedDeliveryMethod = method;
+    this.selectedDeliveryMethodParamString = param;
+    updateTransactionData();
+    this.updateCartSession();
+  }
+
   void calculatePrice(){
     this.orderPriceTotal = 0;
     for (int i = 0; this.orderProduct.length > i; i++){
@@ -297,6 +331,21 @@ abstract class _OrderStore with Store {
       'salesType': this.orderSalesTypes,
     }).then((value) {
       this.paymentMethod = value;
+      return value;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+    });
+  }
+
+  @action
+  Future<List<DeliveryMethod>> deliveryInquiry(Map<String, dynamic> object) async {
+    return await _repository.deliveryInquiry({
+      'location': object['location'],
+      'outlet': this.orderOutletName,
+      'weight': this.countedTransaction.itemWeight,
+    }).then((value) {
+      this.listDeliveryMethod = value;
+      print('DEBUG >> ${jsonEncode(value)}');
       return value;
     }).catchError((err) {
       print("error response: "+ err.toString());
@@ -386,7 +435,7 @@ abstract class _OrderStore with Store {
       })),
       'paymentType': this.orderPaymentType,
       'promos': [],
-      'delivery': this.delivery,
+      'delivery': this.orderSalesTypes == 'onlineDriver' ? jsonDecode(this.selectedDeliveryMethodParamString) : null,
     };
     print('DEBUG >> transactionData afterBuild ${this.transactionData}');
   }

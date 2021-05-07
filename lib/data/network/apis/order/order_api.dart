@@ -5,6 +5,7 @@ import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
 import 'package:boilerplate/models/order/cart_session_model.dart';
 import 'package:boilerplate/models/order/checkout_response.dart';
+import 'package:boilerplate/models/order/delivery_method_model.dart';
 import 'package:boilerplate/models/order/detail_outlet_model.dart';
 import 'package:boilerplate/models/order/hot_promo_model.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
@@ -209,6 +210,28 @@ class OrderApi {
       });
       var methods = (apiResult as Map<String, dynamic>)['data'];
       return List<PaymentMethod>.from(methods.map((data) => PaymentMethod.create(data)));
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
+  Future<List<DeliveryMethod>> deliveryInquiry(Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlDeliveryInquiry;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {
+          "outletName": object['outlet'],
+        },
+        "body": {
+          "customer": {
+            "location": object['location'],
+            "weight": object['weight'],
+          }
+        },
+      });
+      var methods = (apiResult as Map<String, dynamic>)['data'];
+      return List<DeliveryMethod>.from(methods.map((data) => DeliveryMethod.create(data)));
     } catch (e) {
       print(e.toString());
       throw e;
