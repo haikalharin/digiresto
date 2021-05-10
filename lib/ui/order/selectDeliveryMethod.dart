@@ -11,12 +11,12 @@ import 'package:provider/provider.dart';
 class SelectDeliveryMethodScreen extends StatelessWidget {
   OrderStore _orderStore;
   UserStore _userStore;
-  
+
   @override
   Widget build(BuildContext context) {
     _orderStore = Provider.of<OrderStore>(context);
     _userStore = Provider.of<UserStore>(context);
-    
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -79,6 +79,7 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
   }
 
   Widget _buildItemList(context, Map<String, dynamic> item, DeliveryMethod provider) {
+    String description = item['description']!=null  ? item['description'].toString()+" - " : "";
     return Container(
       color: Colors.white,
       padding: EdgeInsets.all(20),
@@ -99,7 +100,7 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Text(
-                item['description'] + ' - ' + (item['price'] > 0 ? Rupiah.format(item['price'].toString()) : 'Free'),
+                  description + (item['price'] > 0 ? Rupiah.format(item['price'].toString()) : 'Free'),
                 style: TextStyle(
                   color:Colors.black,
                 )

@@ -439,7 +439,7 @@ abstract class _OrderStore with Store {
       })),
       'paymentType': this.orderPaymentType,
       'promos': [],
-      'delivery': this.selectedDeliveryMethodParamString != null ? jsonDecode(this.selectedDeliveryMethodParamString) : {},
+      'delivery': this.selectedDeliveryMethodParamString != null ? jsonDecode(this.selectedDeliveryMethodParamString) : null,
     };
     print('DEBUG >> transactionData afterBuild ${this.transactionData}');
   }
