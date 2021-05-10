@@ -745,6 +745,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     _buildTaxAndServiceList(transaction.taxesAndServices[i]),
                   if (_orderStore.orderSalesTypes == 'onlineDriver' && _orderStore.selectedDeliveryMethod != null)
                   SizedBox(height: 5,),
+                  if (_orderStore.orderSalesTypes == 'onlineDriver' && _orderStore.selectedDeliveryMethod != null)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

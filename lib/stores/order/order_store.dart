@@ -210,6 +210,10 @@ abstract class _OrderStore with Store {
     this.receiptCode = null;
 
     this.transactionAfterPayment = null;
+
+    this.listDeliveryMethod = null;
+    this.selectedDeliveryMethod = null;
+    this.selectedDeliveryMethodParamString = null;
   }
 
   @action
@@ -435,7 +439,7 @@ abstract class _OrderStore with Store {
       })),
       'paymentType': this.orderPaymentType,
       'promos': [],
-      'delivery': this.orderSalesTypes == 'onlineDriver' ? jsonDecode(this.selectedDeliveryMethodParamString) : null,
+      'delivery': this.selectedDeliveryMethodParamString != null ? jsonDecode(this.selectedDeliveryMethodParamString) : {},
     };
     print('DEBUG >> transactionData afterBuild ${this.transactionData}');
   }
