@@ -153,6 +153,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ErrorPopupWidget.showDioError(context, err, null);
       });
 
+      loadingAdd();
+      await _transactionStore.getOngoingTransaction().then((res) {
+        print("ongoing transaction : ");
+        print(res);
+        loadingDelete();
+      }).catchError((err) {
+        loadingDelete();
+        print("error response: " + err.toString());
+        ErrorPopupWidget.showDioError(context, err, null);
+      });
+
     }).catchError((err) {
       loadingDelete();
       ErrorPopupWidget.showDioError(context, err, null);

@@ -74,31 +74,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     );
   }
 
-  // void getPromo() {
-  //   _userStore.getPromo({
-  //     "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
-  //     "page": "1",
-  //     "filter": ""
-  //   }).then((res) {
-  //     // setState(() {
-  //     //   listPromo = res;
-  //     // });
-  //     print(res[0].promoName);
-  //   }).catchError((err) {
-  //     print("error response: " + err.toString());
-  //   });
-  // }
-  //
-  // void getHotPromo() {
-  //   _orderStore.getHotPromo({
-  //     "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
-  //     "page": "1",
-  //     "filter": ""
-  //   }).then((res) {
-  //   }).catchError((err) {
-  //     print("error response: " + err.toString());
-  //   });
-  // }
 
   Widget _buildPageIndicator(bool isCurrentPage) {
     return Container(
@@ -194,35 +169,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
         ),
       ),
     );
-    // return Theme(
-    //   data: Theme.of(context).copyWith(
-    //     primaryColor: Colors.black12,
-    //   ),
-    //   child: Padding(
-    //     padding: const EdgeInsets.only(left:10,right:10,top:10),
-    //     child: TextField(
-    //         readOnly: true,
-    //         onTap: (){
-    //           print("open popup");
-    //         },
-    //         style: TextStyle(
-    //           fontSize: 16.0,
-    //           color: Colors.blueAccent,
-    //         ),
-    //         decoration: InputDecoration(
-    //             filled: true,
-    //             fillColor: AppColors.greyStroke,
-    //             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-    //             prefixIcon: Icon(Icons.search),
-    //             hintText: "Temukan makanan favorit anda",
-    //             border: OutlineInputBorder(
-    //                 borderSide: BorderSide(color: Colors.black12, width: 32.0),
-    //                 borderRadius: BorderRadius.circular(5.0)),
-    //             focusedBorder: OutlineInputBorder(
-    //                 borderSide: BorderSide(color: Colors.black12, width: 32.0),
-    //                 borderRadius: BorderRadius.circular(5.0)))),
-    //   ),
-    // );
   }
 
   Widget _yourLocation() {
@@ -308,7 +254,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 height: 100,
                 width: MediaQuery.of(context).size.width/2-20,
                 decoration: BoxDecoration(
-                  color: AppColors.cream,
+                  //color: Colors.white,
                   borderRadius: BorderRadius.circular(7.0),
                 )),
           ),
@@ -336,7 +282,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 height: 100,
                 width: MediaQuery.of(context).size.width/2-20,
                 decoration: BoxDecoration(
-                  color: AppColors.cream,
+                  //color: AppColors.cream,
+                  //color: Colors.white,
                   borderRadius: BorderRadius.circular(7.0),
                 )),
           ),
@@ -394,7 +341,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   }
 
   Widget _historyOrder(){
-    return Container(
+    return _transactionStore.listTransactionHistory != null ? Container(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
@@ -429,20 +376,20 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                   )
                 ]
             ),
-            _transactionStore.listTransactionHistory != null ? ListHomeHistoryOrderWidget(
+            ListHomeHistoryOrderWidget(
               runAction: _orderStore.setOrderParameter,
               height:  320.0,
               data: _transactionStore.listTransactionHistory,
               scrollDirection: Axis.horizontal,
-            ) : Container()
+            )
             //ListItem(entries: entries,colorCodes: colorCodes),
           ],
         )
-    );
+    ) : Container();
   }
 
   Widget _trackOrder(){
-    return _transactionStore.listTransactionHistory != null ? Container(
+    return _transactionStore.listOngoingTransaction != null ? Container(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
@@ -483,7 +430,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                 Navigator.of(context).pushNamed(Routes.history_detail, arguments: trx).then((value) => setState(() => {}));
               },
               height:  90.0,
-              data: _transactionStore.listTransactionHistory,
+              data: _transactionStore.listOngoingTransaction,
               scrollDirection: Axis.horizontal,
             )
             //ListItem(entries: entries,colorCodes: colorCodes),

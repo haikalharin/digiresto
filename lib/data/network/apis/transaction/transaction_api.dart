@@ -90,4 +90,24 @@ class TransactionApi {
       throw e;
     }
   }
+
+  Future<List<TransactionHistory>> getOngoingTransaction() async {
+    try {
+      String apiUrl = Endpoints.urlOngoingTransaction;
+      final apiResult = await _dioClient.post(apiUrl, data: {
+        "query_string": {},
+        "body": {}
+      });
+
+      var ongoingTransaction = (apiResult as Map<String, dynamic>)['data'];
+      List<TransactionHistory> listTransactionHistory = [];
+      for (int i = 0; i < ongoingTransaction.length; i++) {
+        listTransactionHistory.add(TransactionHistory.createTransactionHistory(ongoingTransaction[i]));
+      }
+      return listTransactionHistory;
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
 }

@@ -294,6 +294,13 @@ class Repository {
     }).catchError((error) => throw error);
   }
 
+
+  Future<List<TransactionHistory>> getOngoingTransaction() async {
+    return await _transactionApi.getOngoingTransaction().then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
   Future<TransactionMobile> getTransaction(String receiptCode) async {
     return await _transactionApi.getTransaction(receiptCode).then((value) {
       return value;

@@ -49,4 +49,5 @@ class Endpoints {
   static const String urlGetTransaction = baseUrlDigiresto + "/forward?r=transactionmobile";
   static const String urlCancelTransaction = baseUrlDigiresto + "/forward?r=canceltransaction";
   static const String urlAcceptTransaction = baseUrlDigiresto + "/forward?r=donetransaction";
+  static const String urlOngoingTransaction = baseUrlDigiresto + "/forward?r=ongoingtransaction";
 }
