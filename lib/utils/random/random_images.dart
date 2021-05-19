@@ -21,4 +21,21 @@ class RandomImages{
       }
     }
   }
+
+  static dynamic getImageUrlDefault(String img, String defaultImg){
+    if (img==null || img==""){
+      if (defaultImg==null || defaultImg==""){
+        return getImage();
+      }else{
+        return AssetImage(Assets.food+defaultImg.toString()+".png");
+      }
+
+    }else{
+      if (img.contains('http') || img.contains('https')){
+        return NetworkImage(img);
+      }else{
+        return NetworkImage("http://"+img);
+      }
+    }
+  }
 }

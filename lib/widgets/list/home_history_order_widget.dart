@@ -1,12 +1,14 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/transaction/transaction_history.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class ListHomeHistoryOrderWidget extends StatelessWidget {
+class ListHomeHistoryOrderWidget extends StatefulWidget {
   final List<TransactionHistory> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
@@ -15,29 +17,42 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ListHomeHistoryOrderWidgetState createState() => _ListHomeHistoryOrderWidgetState();
+}
+
+class _ListHomeHistoryOrderWidgetState extends State<ListHomeHistoryOrderWidget> {
+  UserStore _userStore;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         alignment: Alignment.topLeft,
-        height: height,
+        height: widget.height,
         child: GridView.count(
           // crossAxisCount is the number of columns
          // shrinkWrap: true, // new line
           padding: const EdgeInsets.all(8),
           crossAxisCount: 2,
-          scrollDirection: scrollDirection,
+          scrollDirection: widget.scrollDirection,
           // This creates two columns with two items in each column
-          children: List.generate(data.length, (index) {
+          children: List.generate(widget.data.length, (index) {
+            _userStore.setRandomCacheImage(widget.data[index].items[0].img,widget.data[index].orderId.toString());
+            String defaultImage = _userStore.getRandomCacheImage(widget.data[index].orderId.toString());
             return GestureDetector(
               onTap: (){
-                if (data[index].outlet.isOwnerLoggedIn){
+                if (widget.data[index].outlet.isOwnerLoggedIn){
                   _orderMethodPopup.showMyDialog(context,{
-                    "name": data[index].outlet.name,
-                    "merchantName": data[index].outlet.merchantName.toString(),
-                    "orderMethod": data[index].outlet.orderMethod.defaultList,
-                    "detailName": data[index].outlet.detail.name,
-                  },runAction);
+                    "name": widget.data[index].outlet.name,
+                    "merchantName": widget.data[index].outlet.merchantName.toString(),
+                    "orderMethod": widget.data[index].outlet.orderMethod.defaultList,
+                    "detailName": widget.data[index].outlet.detail.name,
+                  },widget.runAction);
                 }
               },
               child: Container(
@@ -58,14 +73,14 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                               topRight: Radius.circular(8.0)),
                           child: Image(
-                            image:  RandomImages.getImageUrl(data[index].items[0].img),
+                            image:  RandomImages.getImageUrlDefault(widget.data[index].items[0].img,defaultImage),
                             fit: BoxFit.fill,
                             width: double.infinity,
                             height: 100,
                             alignment: Alignment.center,
                           ),
                         ),
-                        !data[index].outlet.isOwnerLoggedIn ? ClipRRect(
+                        !widget.data[index].outlet.isOwnerLoggedIn ? ClipRRect(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                               topRight: Radius.circular(8.0)),
                           child: Container(
@@ -89,7 +104,7 @@ class ListHomeHistoryOrderWidget extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(5),
                       alignment: Alignment.centerLeft,
-                      child: Text(data[index].outlet.merchantName.toString() + " - "+data[index].outlet.detail.name.toString(),
+                      child: Text(widget.data[index].outlet.merchantName.toString() + " - "+widget.data[index].outlet.detail.name.toString(),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

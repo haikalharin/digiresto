@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
@@ -14,6 +15,7 @@ import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../data/repository.dart';
@@ -367,5 +369,24 @@ abstract class _UserStore with Store {
       print("error response: "+ err.toString());
       throw err;
     });
+  }
+
+  @observable
+  Map<String,dynamic> randomCacheImage = {};
+  void setRandomCacheImage(String img,String uniqueId){
+    if (img=="" || img==null){
+      if (this.randomCacheImage.containsKey(uniqueId)==false) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(9);
+        this.randomCacheImage.addAll({uniqueId: randomNumber.toString()});
+      }
+    }
+  }
+
+  String getRandomCacheImage(String uniqueId){
+    if (this.randomCacheImage.containsKey(uniqueId.toString())){
+      return this.randomCacheImage[uniqueId];
+    }
+    return "";
   }
 }

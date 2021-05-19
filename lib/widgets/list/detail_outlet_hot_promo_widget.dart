@@ -1,10 +1,12 @@
 import 'package:boilerplate/constants/assets.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class DetailOutletHotPromoWidget extends StatelessWidget {
+class DetailOutletHotPromoWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
@@ -12,16 +14,37 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  _DetailOutletHotPromoWidgetState createState() => _DetailOutletHotPromoWidgetState();
+}
+
+class _DetailOutletHotPromoWidgetState extends State<DetailOutletHotPromoWidget> {
+  UserStore _userStore;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.topLeft,
-        height: height,
+        height: widget.height,
         child: ListView.builder(
-            scrollDirection: scrollDirection,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
             padding: const EdgeInsets.all(8),
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
+
+              _userStore.setRandomCacheImage(widget.data[index]["img"],widget.data[index]["id"].toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index]["id"].toString());
               return Container(
                 margin: EdgeInsets.all(5),
                 decoration: BoxDecoration(
@@ -38,7 +61,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                     ClipRRect(
                       borderRadius:   BorderRadius.only(topLeft: Radius.circular(8.0),topRight: Radius.circular(8.0)),
                       child: Image(
-                        image: RandomImages.getImageUrl(data[index]["img"]),
+                        image: RandomImages.getImageUrlDefault(widget.data[index]["img"],defaultImage),
                         fit: BoxFit.fill,
                         width: 150,
                         height: 96,
@@ -49,7 +72,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(left:5,top:5),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        data[index]["title"].toString().toString(),
+                        widget.data[index]["title"].toString().toString(),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -59,7 +82,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    data[index]["voucherCode"] != null ? Container(
+                    widget.data[index]["voucherCode"] != null ? Container(
                       padding: const EdgeInsets.only(left:5,top:5),
                       child: Row(children: [
                         ImageIcon(
@@ -69,7 +92,7 @@ class DetailOutletHotPromoWidget extends StatelessWidget {
                           padding: EdgeInsets.only(left: 5),
                           width: 110,
                           child: Text(
-                            data[index]["voucherCode"] ,
+                            widget.data[index]["voucherCode"] ,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

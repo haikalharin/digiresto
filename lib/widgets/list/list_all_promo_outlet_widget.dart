@@ -1,9 +1,11 @@
 import 'package:boilerplate/constants/assets.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 class ListAllPromoWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
@@ -20,6 +22,13 @@ class ListAllPromoWidget extends StatefulWidget {
 
 class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
   final ScrollController _scrollController = new ScrollController();
+  UserStore _userStore;
+
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -45,6 +54,8 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
             //padding: const EdgeInsets.all(8),
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
+              _userStore.setRandomCacheImage(widget.data[index].promoIcon,widget.data[index].outletId.toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
                 onTap: (){
                   if (widget.data[index].outlet["isOwnerLoggedIn"]){
@@ -76,7 +87,7 @@ class _ListAllPromoWidgetState extends State<ListAllPromoWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                   child: Image(
-                                    image: RandomImages.getImageUrl(widget.data[index].promoIcon),
+                                    image: RandomImages.getImageUrlDefault(widget.data[index].promoIcon,defaultImage),
                                     fit: BoxFit.fill,
                                     width: 96,
                                     alignment: Alignment.center,

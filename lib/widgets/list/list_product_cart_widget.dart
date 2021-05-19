@@ -1,13 +1,15 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class ListProductCartWidget extends StatelessWidget {
+class ListProductCartWidget extends StatefulWidget {
   final List<dynamic> data;
   final String orderType;
   final Axis scrollDirection;
@@ -19,38 +21,59 @@ class ListProductCartWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ListProductCartWidgetState createState() => _ListProductCartWidgetState();
+}
+
+class _ListProductCartWidgetState extends State<ListProductCartWidget> {
+  UserStore _userStore;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: scrollDirection,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
             padding: const EdgeInsets.all(8),
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
               int price;
               int beforePrice;
-              if (data[index]["detail"]["isUseSalesType"]==true){
-                for (int i = 0; i < data[index]["detail"]["salesTypes"].length; i++){
-                  if (data[index]["detail"]["salesTypes"][i]["code"]==orderType){
-                    price = data[index]["detail"]["salesTypes"][i]["price"];
+              if (widget.data[index]["detail"]["isUseSalesType"]==true){
+                for (int i = 0; i < widget.data[index]["detail"]["salesTypes"].length; i++){
+                  if (widget.data[index]["detail"]["salesTypes"][i]["code"]==widget.orderType){
+                    price = widget.data[index]["detail"]["salesTypes"][i]["price"];
                   }
                 }
                 if (price==null){
-                  price = data[index]["detail"]["price"]!=null ? data[index]["detail"]["price"] : data[index]["detail"]["originalPrice"];
+                  price = widget.data[index]["detail"]["price"]!=null ? widget.data[index]["detail"]["price"] : widget.data[index]["detail"]["originalPrice"];
                 }
               }else{
-                if (data[index]["detail"]["price"]!=null){
-                    if (data[index]["detail"]["price"]<data[index]["detail"]["originalPrice"]){
-                      price = data[index]["detail"]["price"];
-                      beforePrice = data[index]["detail"]["originalPrice"];
+                if (widget.data[index]["detail"]["price"]!=null){
+                    if (widget.data[index]["detail"]["price"]<widget.data[index]["detail"]["originalPrice"]){
+                      price = widget.data[index]["detail"]["price"];
+                      beforePrice = widget.data[index]["detail"]["originalPrice"];
                     }else{
-                      price = data[index]["detail"]["price"];
+                      price = widget.data[index]["detail"]["price"];
                     }
                 }else{
-                    price = data[index]["detail"]["originalPrice"];
+                    price = widget.data[index]["detail"]["originalPrice"];
                 }
               }
-              return data[index]["detail"]["categoryCode"]=="HIDDEN" ? Container() : GestureDetector(
+
+              _userStore.setRandomCacheImage(widget.data[index]["img"],widget.data[index]["id"].toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index]["id"].toString());
+
+              return widget.data[index]["detail"]["categoryCode"]=="HIDDEN" ? Container() : GestureDetector(
                 onTap: () => {
                   //runEditAction(data[index],orderType)
                 },
@@ -70,7 +93,7 @@ class ListProductCartWidget extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           child: Image(
                             //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
-                            image: RandomImages.getImageUrl(data[index]["img"]),
+                            image: RandomImages.getImageUrlDefault(widget.data[index]["img"],defaultImage),
                             fit: BoxFit.fill,
                             height: 64,
                             width: 64,
@@ -87,7 +110,7 @@ class ListProductCartWidget extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.only(top:5),
                                 width: MediaQuery. of(context). size. width-200,
-                                child: Text(data[index]["detail"]["name"],
+                                child: Text(widget.data[index]["detail"]["name"],
                                     softWrap: false,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
@@ -105,7 +128,7 @@ class ListProductCartWidget extends StatelessWidget {
                                     alignment: Alignment.topLeft,
                                     padding: const EdgeInsets.only(top:5),
                                     //width: 10,
-                                    child: Text("Rp."+Utils.formatRupiah(data[index]["total"].toString()),
+                                    child: Text("Rp."+Utils.formatRupiah(widget.data[index]["total"].toString()),
                                         softWrap: false,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
@@ -132,9 +155,9 @@ class ListProductCartWidget extends StatelessWidget {
                                   height: 40,
                                   child: RaisedButton(
                                     onPressed: () {
-                                      print(data[index]);
-                                      print(orderType);
-                                      runDetailAction(data[index],orderType);
+                                      print(widget.data[index]);
+                                      print(widget.orderType);
+                                      widget.runDetailAction(widget.data[index],widget.orderType);
                                     },
                                     color: AppColors.red,
                                     child: Text("Ubah",
@@ -156,7 +179,7 @@ class ListProductCartWidget extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      addOrRemove(data[index]["detail"]["id"],data[index]["qty"]-1,price,data[index]["detail"]);
+                                      widget.addOrRemove(widget.data[index]["detail"]["id"],widget.data[index]["qty"]-1,price,widget.data[index]["detail"]);
                                       //minus();
                                     },
                                     child: CircleAvatar(
@@ -168,7 +191,7 @@ class ListProductCartWidget extends StatelessWidget {
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(left: 5, right: 5),
-                                    child: Text( data[index]["qty"].toString(),
+                                    child: Text( widget.data[index]["qty"].toString(),
                                         style: TextStyle(
                                           fontFamily: "roboto",
                                           color: Colors.black,
@@ -179,7 +202,7 @@ class ListProductCartWidget extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      addOrRemove(data[index]["detail"]["id"],data[index]["qty"]+1,price,data[index]["detail"]);
+                                      widget.addOrRemove(widget.data[index]["detail"]["id"],widget.data[index]["qty"]+1,price,widget.data[index]["detail"]);
                                       //plus();
                                     },
                                     child: CircleAvatar(
