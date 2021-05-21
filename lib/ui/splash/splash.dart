@@ -54,6 +54,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushReplacementNamed(Routes.home);
     }else if (preferences.getBool(Preferences.show_onboarding) ?? true) {
       Navigator.of(context).pushReplacementNamed(Routes.onboarding);
+    } else if (preferences.getBool(Preferences.phone_verified) ?? false) {
+      Navigator.of(context).pushReplacementNamed(Routes.login_pin);
     }else {
       Navigator.of(context).pushReplacementNamed(Routes.input_phone);
     }

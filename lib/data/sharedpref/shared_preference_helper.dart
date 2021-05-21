@@ -60,6 +60,24 @@ class SharedPreferenceHelper {
     });
   }
 
+  //auth phone verified
+  Future<bool> get authPhoneVerified async {
+    return _sharedPreference.then((preference) {
+      return preference.getBool(Preferences.phone_verified);
+    });
+  }
+
+  Future<void> saveAuthPhoneVerified(bool authPhoneVerified) async {
+    return _sharedPreference.then((preference) {
+      preference.setBool(Preferences.phone_verified, authPhoneVerified);
+    });
+  }
+
+  Future<void> removeAuthPhoneVerified() async {
+    return _sharedPreference.then((preference) {
+      preference.remove(Preferences.phone_verified);
+    });
+  }
   //default address
   Future<String> get defaultAddress async {
     return _sharedPreference.then((preference) {

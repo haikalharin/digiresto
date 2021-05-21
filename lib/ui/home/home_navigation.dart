@@ -1,5 +1,6 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home.dart';
 import 'package:boilerplate/ui/profile/profile.dart';
@@ -17,12 +18,14 @@ class HomeNavigationScreen extends StatefulWidget {
 class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   int _selectedTabIndex = 0;
 
-  void _onNavBarTapped(int index){
+  void _onNavBarTapped(int index) {
     setState(() {
       _selectedTabIndex = index;
     });
   }
+
   UserStore _userStore;
+  OrderStore _orderStore;
 
   @override
   void initState() {
@@ -33,14 +36,49 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _userStore = Provider.of<UserStore>(context);
+    _orderStore = Provider.of<OrderStore>(context);
     print(_userStore.activeHomeTab);
-    if (_userStore.activeHomeTab=='profile'){
+    if (_userStore.activeHomeTab == 'profile') {
       _onNavBarTapped(3);
-    }else if (_userStore.activeHomeTab=='home'){
+    } else if (_userStore.activeHomeTab == 'home') {
       _onNavBarTapped(0);
     }
     //parameter route
   }
+
+  Widget cartBadge(){
+    return new Stack(children: <Widget>[
+      new Image.asset(
+        Assets.iconMenuCart,
+        width: 24,
+        height: 24,
+      ),
+      _orderStore.orderProduct.length == 0
+          ? new Positioned(
+        // draw a red marble
+        top: 0.0,
+        right: 0.0,
+        child: Container(),
+      )
+          : new Positioned(
+        // draw a red marble
+        bottom: 0,
+        right: 0,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle, color: AppColors.redYoung),
+          // alignment: Alignment.topCenter,
+          child: Text(_orderStore.orderProduct.length == 0
+              ? "0"
+              : _orderStore.orderProduct.length.toString(), style: TextStyle(
+              color: Colors.white
+          ),),
+        ),
+      )
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     final _listPage = <Widget>[
@@ -51,40 +89,50 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     ];
 
     final _bottomNavBarItems = <BottomNavigationBarItem>[
-
       BottomNavigationBarItem(
-          icon: new Image.asset(Assets.iconMenuHome,width: 24,height: 24,),
-          activeIcon: new Image.asset(Assets.iconMenuHomeActive,width: 24,height: 24),
-          label: 'Home'
-      ),
+          icon: new Image.asset(
+            Assets.iconMenuHome,
+            width: 24,
+            height: 24,
+          ),
+          activeIcon:
+              new Image.asset(Assets.iconMenuHomeActive, width: 24, height: 24),
+          label: 'Home'),
       BottomNavigationBarItem(
-          icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
-          activeIcon: new Image.asset(Assets.iconMenuCartActive,width: 24,height: 24),
-          label: 'Cart'
-      ),
-
+          //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
+          icon: cartBadge(),
+          activeIcon: cartBadge(),
+          label: 'Cart'),
       BottomNavigationBarItem(
-          icon: new Image.asset(Assets.iconMenuCredit,width: 24,height: 24,),
-          activeIcon: new Image.asset(Assets.iconMenuCreditActive,width: 24,height: 24),
-          label: 'Credit'
-      ),
+          icon: new Image.asset(
+            Assets.iconMenuCredit,
+            width: 24,
+            height: 24,
+          ),
+          activeIcon: new Image.asset(Assets.iconMenuCreditActive,
+              width: 24, height: 24),
+          label: 'Credit'),
       BottomNavigationBarItem(
-          icon: new Image.asset(Assets.iconMenuProfile,width: 24,height: 24,),
-          activeIcon: new Image.asset(Assets.iconMenuProfileActive,width: 24,height: 24),
-          label: 'Profile'
-      ),
+          icon: new Image.asset(
+            Assets.iconMenuProfile,
+            width: 24,
+            height: 24,
+          ),
+          activeIcon: new Image.asset(Assets.iconMenuProfileActive,
+              width: 24, height: 24),
+          label: 'Profile'),
     ];
 
     final _buttomNavBar = BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: _bottomNavBarItems,
-        currentIndex: _selectedTabIndex,
-        onTap: _onNavBarTapped,
-        selectedItemColor: AppColors.red,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        unselectedItemColor: Colors.black,
-        iconSize:20,
+      type: BottomNavigationBarType.fixed,
+      items: _bottomNavBarItems,
+      currentIndex: _selectedTabIndex,
+      onTap: _onNavBarTapped,
+      selectedItemColor: AppColors.red,
+      selectedFontSize: 12,
+      unselectedFontSize: 12,
+      unselectedItemColor: Colors.black,
+      iconSize: 20,
     );
     return Scaffold(
       body: Center(

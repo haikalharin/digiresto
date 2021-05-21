@@ -343,7 +343,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       _userStore.logoutSessionLogin();
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          Routes.input_phone, (Route<dynamic> route) => false);
+                          Routes.login_pin, (Route<dynamic> route) => false);
                     },
                     color: AppColors.red,
                     child: Text(AppLocalizations.of(context)

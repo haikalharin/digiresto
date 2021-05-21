@@ -137,6 +137,14 @@ class Repository {
       _sharedPrefsHelper.removeAuthPhone();
   Future<String> get authPhone => _sharedPrefsHelper.authPhone;
 
+  //auth phone verified
+  Future<void> saveAuthPhoneVerified(bool authPhoneVerified) =>
+      _sharedPrefsHelper.saveAuthPhoneVerified(authPhoneVerified);
+
+  Future<void> removeAuthPhoneVerified() =>
+      _sharedPrefsHelper.removeAuthPhoneVerified();
+  Future<bool> get authPhoneVerified => _sharedPrefsHelper.authPhoneVerified;
+
   //default address
   Future<void> saveDefaultAddress(String defaultAddress) =>
       _sharedPrefsHelper.saveDefaultAddress(defaultAddress);

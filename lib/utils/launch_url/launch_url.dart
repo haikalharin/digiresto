@@ -10,7 +10,10 @@ class LaunchUrl{
   }
 
   static Future call(phone) async {
-    String url = "tel:+$phone";
+    String tmp = "###"+phone.toString();
+    String idFormatTmp = tmp.replaceAll("###08", "###628");
+    String idFormat = idFormatTmp.replaceAll("###", "");
+    String url = "tel:+$idFormat";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

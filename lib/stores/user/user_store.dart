@@ -54,10 +54,14 @@ abstract class _UserStore with Store {
       this.authToken = value!= "" ? value : ""}
     );
 
+
     _repository.authPhone.then((value) => {
       this.authPhone = value!= "" ? value : ""}
     );
 
+    _repository.authPhoneVerified.then((value) => {
+      this.authPhoneVerified = value!= "" ? value : false}
+    );
 
     _repository.defaultAddress.then((value) => {
       this.activeAddress = (value== "" || value==null) ? "" :value}
@@ -177,6 +181,34 @@ abstract class _UserStore with Store {
   removeAuthPhone (){
     _repository.removeAuthPhone();
   }
+  //auth phone veerified
+  @observable
+  bool authPhoneVerified;
+
+  @action
+  Future saveAuthPhoneVerified(bool isVerified) async {
+    return await _repository.saveAuthPhoneVerified(isVerified).then((res) {
+      this.authPhoneVerified = isVerified;
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  Future getAuthPhoneVerified() async {
+    return await _repository.authPhoneVerified.then((res) {
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  removeAuthPhoneVerified (){
+    _repository.removeAuthPhoneVerified();
+  }
+
   @action
   Future getProfile() async {
     return await _repository.getProfile().then((res) {
@@ -264,16 +296,6 @@ abstract class _UserStore with Store {
       throw err;
     });
   }
-
-  // @observable
-  // String otpHandphone = null;
-  // void setOtpHandphone(String handPhone){
-  //   otpHandphone = handPhone;
-  // }
-  //
-  // void removeOtpHandohone(){
-  //   otpHandphone = null;
-  // }
 
   @observable
   List<UserAddress> listAddress;
