@@ -11,10 +11,12 @@ import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/home_history_order_widget.dart';
 import 'package:boilerplate/widgets/list/home_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/home_track_order_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
+import 'package:boilerplate/widgets/progress_indicator_widget.dart';
 import 'package:boilerplate/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +35,173 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   UserStore _userStore;
   OrderStore _orderStore;
   TransactionStore _transactionStore;
+  bool _loadingHistory;
+  bool _loadingHotPromo;
+  bool _loadingPromo;
+  bool _loadingTraceOrder;
+  bool _loadingListAddress;
+  @override
+  void initState() {
+    super.initState();
+    _loadingHistory = false;
+    _loadingHotPromo = false;
+    _loadingPromo=false;
+    _loadingTraceOrder=false;
+    _loadingListAddress=false;
+  }
+
+  void getDataAfterPosition() {
+    _orderStore.getStaticBanner({
+      "location":
+      _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
+      "page": "1",
+      "filter": ""
+    }).catchError((err) {
+      print("error response: " + err.toString());
+    });
+
+    /*
+    setState(() {
+
+      _loadingPromo=true;
+    });
+    _userStore.getPromo({
+      "location":
+      _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
+      "page": "1",
+      "filter": ""
+    }).then((value) => {
+      setState(() {
+      _loadingPromo=false;
+      })
+    }).catchError((err) {
+      setState(() {
+        _loadingPromo=false;
+      });
+      print("error response: " + err.toString());
+    });
+
+    setState(() {
+      _loadingHotPromo=true;
+    });
+    _orderStore
+        .getHotPromo({
+      "location":
+      _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
+      "page": "1",
+      "filter": ""
+    })
+        .then((res) {
+      setState(() {
+        _loadingHotPromo=false;
+      });
+    })
+        .catchError((err) {
+      setState(() {
+        _loadingHotPromo=false;
+      });
+      print("error response: " + err.toString());
+    });
+    */
+  }
+
+  void goToAddLocation() {
+    _userStore.setActiveHistoryScreen("home.address");
+    Navigator.of(context).pushNamed(Routes.home_all_address);
+  }
+
+  void getBasicInformation() {
+
+    _userStore.getProfile().then((value) async {
+      setState(() {
+        _loadingTraceOrder=true;
+      });
+      await _transactionStore.getOngoingTransaction().then((res) {
+        print("ongoing transaction : ");
+        print(res);
+        setState(() {
+          _loadingTraceOrder=false;
+        });
+      }).catchError((err) {
+        print("error response: " + err.toString());
+        ErrorPopupWidget.showDioError(context, err, null);
+        setState(() {
+          _loadingTraceOrder=false;
+        });
+      });
+
+      setState(() {
+        _loadingListAddress=true;
+      });
+      _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
+        setState(() {
+          _loadingListAddress=false;
+        });
+        if (_userStore.activeAddress != "") {
+          print(">>> _userStore.activeAddresslng is not null");
+          getDataAfterPosition();
+        } else {
+          if (res.length == 0) {
+            print(">>> address api  null");
+            ErrorPopupWidget.show(context, "Digiresto", "Please Add Address",
+                    () {
+                  {
+                    Navigator.pop(context);
+                    goToAddLocation();
+                  }
+                });
+          }else {
+            print(">>> address api  is not null");
+            bool defaultAddress = false;
+            for (int i = 0; i < res.length; i++) {
+              if (res[i].isDefault) {
+                defaultAddress = true;
+                print(">>> default address found");
+                _userStore.setActiveAddress(
+                    res[i].address, res[i].latitude, res[i].longitude);
+                getDataAfterPosition();
+              }
+            }
+
+            if (defaultAddress == false) {
+              ErrorPopupWidget.show(
+                  context, "Digiresto", "Please set your default Address", () {
+                Navigator.pop(context);
+                goToAddLocation();
+              });
+            }
+          }
+        }
+      }).catchError((err) {
+        setState(() {
+          _loadingListAddress=false;
+        });
+        print("error response: " + err.toString());
+      });
+
+      /*
+      setState(() {
+        _loadingHistory=true;
+      });
+      await _transactionStore.getTransactionHistory().then((res) {
+        print("transaction history : ");
+        print(res);
+        setState(() {
+          _loadingHistory=false;
+        });
+      }).catchError((err) {
+        setState(() {
+          _loadingHistory=false;
+        });
+        print("error response: " + err.toString());
+        ErrorPopupWidget.showDioError(context, err, null);
+      });
+      */
+    }).catchError((err) {
+      ErrorPopupWidget.showDioError(context, err, null);
+    });
+
+  }
 
   @override
   void setState(fn) {
@@ -48,6 +217,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     _userStore = Provider.of<UserStore>(context, listen: true);
     _orderStore = Provider.of<OrderStore>(context, listen: true);
     _transactionStore = Provider.of<TransactionStore>(context, listen: true);
+    if (_userStore.profile == null && _userStore.balance == null)
+      getBasicInformation();
   }
 
   Widget _promoList(StaticBanner data) {
@@ -199,6 +370,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                             )),
                         new Icon(Icons.keyboard_arrow_down,
                             color: AppColors.red, size: 28.0),
+                        _loadingListAddress==true ? CustomProgressIndicatorWidget(size:15) : Container(),
                       ],
                     ),
                   ),
@@ -292,26 +464,33 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     );
   }
   Widget _hotPromo(){
-    return  _orderStore.listHotPromo != null ? Container(
+    return  _orderStore.listHotPromo != null || _loadingHotPromo==true ? Container(
       padding: EdgeInsets.only(top: 10),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              child: GestureDetector(
-                  child: Text(
-                    "Hot promo",
-                    style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  onTap: () {
-                  }),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 10),
+                  child: GestureDetector(
+                      child: Text(
+                        "Hot promo",
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      onTap: () {
+                      }),
+                ),
+                _loadingHotPromo==true ? CustomProgressIndicatorWidget(size:20) : Container(),
+              ],
             ),
+
             Container(
               padding: EdgeInsets.only(right: 10),
               child: GestureDetector(
@@ -329,7 +508,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
           ]
         ),
           //Text(_orderStore.listHotPromo.length.toString()),
-          ListHomeHotPromoWidget(
+          _loadingHotPromo==true ? Container() : ListHomeHotPromoWidget(
             runAction: _orderStore.setOrderParameter,
             height:  200.0,
             data: _orderStore.listHotPromo,
@@ -341,18 +520,18 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   }
 
   Widget _historyOrder(){
-    return _transactionStore.listTransactionHistory != null ? Container(
+    return _transactionStore.listTransactionHistory != null || _loadingHistory==true ? Container(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.only(left: 10),
                     child: GestureDetector(
                         child: Text(
-                          "Pesan Lagi",
+                          "Pesan Lagi ",
                           style: TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
@@ -361,22 +540,10 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                         onTap: () {
                         }),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: GestureDetector(
-                        child: Text(
-                          "",
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.red),
-                        ),
-                        onTap: () {
-                        }),
-                  )
+                  _loadingHistory ? CustomProgressIndicatorWidget(size: 20,) : Container()
                 ]
             ),
-            ListHomeHistoryOrderWidget(
+            _loadingHistory==true ? Container() : ListHomeHistoryOrderWidget(
               runAction: _orderStore.setOrderParameter,
               height:  320.0,
               data: _transactionStore.listTransactionHistory,
@@ -389,12 +556,12 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   }
 
   Widget _trackOrder(){
-    return _transactionStore.listOngoingTransaction != null ? Container(
+    return _transactionStore.listOngoingTransaction != null || _loadingTraceOrder == true ? Container(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.only(left: 10),
@@ -408,24 +575,11 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                         ),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: GestureDetector(
-                        child: Text(
-                          "",
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.red),
-                        ),
-                        onTap: () {
-
-                        }),
-                  )
+                  _loadingTraceOrder==true ? CustomProgressIndicatorWidget(size:20) : Container(),
                 ]
             ),
             Container(height: 5,),
-            HomeTrackOrderWidget(
+            _loadingTraceOrder==true ? Container() : HomeTrackOrderWidget(
               runAction: (TransactionHistory trx){
                 Navigator.of(context).pushNamed(Routes.history_detail, arguments: trx).then((value) => setState(() => {}));
               },
@@ -540,8 +694,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               _orderStore.listStaticBanner != null ? _staticBanner() : Container(),
               _trackOrder(),
               _discount(),
-              _hotPromo(),
-              _historyOrder(),
+              //_hotPromo(),
+              //_historyOrder(),
               _singleAdvertisement(),
           ],
         ),
