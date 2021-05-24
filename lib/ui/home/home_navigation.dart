@@ -53,7 +53,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
         width: 24,
         height: 24,
       ),
-      _orderStore.orderProduct.length == 0
+      _orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName=="" || _orderStore.transactionData==null
           ? new Positioned(
         // draw a red marble
         top: 0.0,
@@ -69,7 +69,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
           decoration: BoxDecoration(
               shape: BoxShape.circle, color: AppColors.redYoung),
           // alignment: Alignment.topCenter,
-          child: Text(_orderStore.orderProduct.length == 0
+          child: Text(_orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName=="" || _orderStore.transactionData==null
               ? "0"
               : _orderStore.orderProduct.length.toString(), style: TextStyle(
               color: Colors.white

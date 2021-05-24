@@ -795,7 +795,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             print("error response cheeckout 2:");
                           }else if (checkoutResponse.payment.isCredit) {
                             await _orderStore.getTransaction();
-                            await _transactionStore.getTransactionHistory();
+                            await _transactionStore.getOngoingTransaction();
                             Loading.dismiss();
                             Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
                           } else if (checkoutResponse.payment.isWebView) {
