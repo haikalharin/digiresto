@@ -783,10 +783,19 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           Navigator.of(context).pop();
                           Loading.show();
                           print('DEBUG >> do checkout');
-                          var checkoutResponse = await _orderStore.checkout();
-                          if (checkoutResponse.payment.isCredit) {
+                          var checkoutResponse = await _orderStore.checkout()
+                              .catchError((err){
+                            print("error response cheeckout 1:");
+                            print(err);
+                            Loading.dismiss();
+                            ErrorPopupWidget.show(context, "Digiresto", "Transaksi gagal",(){Navigator.of(context).pop();});
+                          });
+                          if (checkoutResponse.receiptCode==""){
+                            Loading.dismiss();
+                            print("error response cheeckout 2:");
+                          }else if (checkoutResponse.payment.isCredit) {
                             await _orderStore.getTransaction();
-                            await _transactionStore.getTransactionHistory();
+                            await _transactionStore.getOngoingTransaction();
                             Loading.dismiss();
                             Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
                           } else if (checkoutResponse.payment.isWebView) {

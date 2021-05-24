@@ -1,11 +1,13 @@
 import 'package:boilerplate/constants/assets.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class ListDigidiscountWidget extends StatelessWidget {
+class ListDigidiscountWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
@@ -16,24 +18,38 @@ class ListDigidiscountWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ListDigidiscountWidgetState createState() => _ListDigidiscountWidgetState();
+}
+
+class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
+  UserStore _userStore;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
-        height: height,
+        height: widget.height,
         child: ListView.builder(
-            scrollDirection: scrollDirection,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true,
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
+
+              _userStore.setRandomCacheImage(widget.data[index].merchantLogo,widget.data[index].outletId.toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
                 onTap: () => {
-                  if (data[index].isOwnerLoggedIn){
+                  if (widget.data[index].isOwnerLoggedIn){
                     _orderMethodPopup.showMyDialog(context,{
-                      "name":data[index].name,
-                      "merchantName": data[index].merchantName.toString(),
-                      "orderMethod": data[index].orderMethod["defaultList"],
-                      "detailName":data[index].outletName,
-                    },runAction)
+                      "name":widget.data[index].name,
+                      "merchantName": widget.data[index].merchantName.toString(),
+                      "orderMethod": widget.data[index].orderMethod["defaultList"],
+                      "detailName":widget.data[index].outletName,
+                    },widget.runAction)
                   }
                 },
                 child: Container(
@@ -58,7 +74,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                                       ClipRRect(
                                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                         child: Image(
-                                          image: RandomImages.getImageUrl(data[index].merchantLogo),
+                                          image: RandomImages.getImageUrlDefault(widget.data[index].merchantLogo,defaultImage),
                                           fit: BoxFit.fill,
                                           width: 96,
                                           height: 96,
@@ -87,7 +103,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                                         ),
                                       )
                                     ])),
-                                (!data[index].isOwnerLoggedIn) ? ClipRRect(
+                                (!widget.data[index].isOwnerLoggedIn) ? ClipRRect(
                                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                   child: Container(
                                     width: 96,
@@ -114,7 +130,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.only(top: 5),
                                   width: MediaQuery.of(context).size.width - 160,
-                                  child: Text(data[index].outletName.toString(),
+                                  child: Text(widget.data[index].outletName.toString(),
                                       softWrap: false,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -127,7 +143,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
-                                  child: Text(data[index].merchantName.toString(),
+                                  child: Text(widget.data[index].merchantName.toString(),
                                       style: TextStyle(
                                         fontFamily: "roboto",
                                         color: Colors.black,
@@ -154,7 +170,7 @@ class ListDigidiscountWidget extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
-                                  child: Text(data[index].distance["text"],
+                                  child: Text(widget.data[index].distance["text"],
                                       style: TextStyle(
                                         fontFamily: "roboto",
                                         color: Colors.black,

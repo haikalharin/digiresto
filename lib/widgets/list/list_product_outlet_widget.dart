@@ -1,13 +1,15 @@
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/models/order/outlet_list.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class ListProductOutletWidget extends StatelessWidget {
+class ListProductOutletWidget extends StatefulWidget {
   final List<dynamic> data;
   final String orderType;
   final Axis scrollDirection;
@@ -17,49 +19,69 @@ class ListProductOutletWidget extends StatelessWidget {
   const ListProductOutletWidget({Key key, this.data,this.scrollDirection= Axis.vertical,this.height, this.orderType,this.runDetailAction})
       : super(key: key);
 
+  @override
+  _ListProductOutletWidgetState createState() => _ListProductOutletWidgetState();
+}
 
+class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
+
+  UserStore _userStore;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: scrollDirection,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
             padding: const EdgeInsets.all(8),
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
               int price;
               int beforePrice;
               bool randomImg=true;
-              if (data[index]["img"]==null){
+              if (widget.data[index]["img"]==null){
                 randomImg=true;
-              }else if (data[index]["img"].length > 1) {
+              }else if (widget.data[index]["img"].length > 1) {
                 randomImg=false;
               }
-              if (data[index]["isUseSalesType"]==true){
-                for (int i = 0; i < data[index]["salesTypes"].length; i++){
-                  if (data[index]["salesTypes"][i]["code"]==orderType){
-                    price = data[index]["salesTypes"][i]["price"];
+              if (widget.data[index]["isUseSalesType"]==true){
+                for (int i = 0; i < widget.data[index]["salesTypes"].length; i++){
+                  if (widget.data[index]["salesTypes"][i]["code"]==widget.orderType){
+                    price = widget.data[index]["salesTypes"][i]["price"];
                   }
                 }
                 if (price==null){
-                  price = data[index]["price"]!=null ? data[index]["price"] : data[index]["originalPrice"];
+                  price = widget.data[index]["price"]!=null ? widget.data[index]["price"] : widget.data[index]["originalPrice"];
                 }
               }else{
-                if (data[index]["price"]!=null){
-                    if (data[index]["price"]<data[index]["originalPrice"]){
-                      price = data[index]["price"];
-                      beforePrice = data[index]["originalPrice"];
+                if (widget.data[index]["price"]!=null){
+                    if (widget.data[index]["price"]<widget.data[index]["originalPrice"]){
+                      price = widget.data[index]["price"];
+                      beforePrice = widget.data[index]["originalPrice"];
                     }else{
-                      price = data[index]["price"];
+                      price = widget.data[index]["price"];
                     }
                 }else{
-                    price = data[index]["originalPrice"];
+                    price = widget.data[index]["originalPrice"];
                 }
               }
-              return data[index]["category"]=="HIDDEN" ? Container() : GestureDetector(
+
+              _userStore.setRandomCacheImage(widget.data[index]["img"],widget.data[index]["id"].toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index]["id"].toString());
+              return widget.data[index]["category"]=="HIDDEN" ? Container() : GestureDetector(
                 onTap: () => {
-                  print(data[index]),
-                  runDetailAction(data[index],orderType)
+                  print(widget.data[index]),
+                  widget.runDetailAction(widget.data[index],widget.orderType)
                 },
                 child: Container(
                   margin: EdgeInsets.all(5),
@@ -80,7 +102,7 @@ class ListProductOutletWidget extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular(8.0)),
                               child: Image(
-                                image: RandomImages.getImageUrl(data[index]["img"]),
+                                image: RandomImages.getImageUrlDefault(widget.data[index]["img"],defaultImage),
                                 fit: BoxFit.fill,
                                 height: 96,
                                 width: 96,
@@ -92,7 +114,7 @@ class ListProductOutletWidget extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             padding: const EdgeInsets.only(top:5),
                             width: MediaQuery. of(context). size. width-210,
-                            child: Text(data[index]["name"],
+                            child: Text(widget.data[index]["name"],
                                 softWrap: false,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
@@ -107,7 +129,7 @@ class ListProductOutletWidget extends StatelessWidget {
                         ],
                       ),
 
-                    (data[index]["variants"].length == 0) ? Column(
+                    (widget.data[index]["variants"].length == 0) ? Column(
                         children: [
                           Container(
                             alignment: Alignment.topLeft,

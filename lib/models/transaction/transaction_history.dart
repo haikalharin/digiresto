@@ -98,7 +98,7 @@ class TransactionHistory {
   });
   factory TransactionHistory.createTransactionHistory(Map<String, dynamic> object) {
     return TransactionHistory(
-      outletId: object['outletId'],
+      outletId: object['outletId'].toString(),
       outletName: object['outletName'],
       deviceTimestamp: object['deviceTimestamp'],
       customerName: object['customerName'],

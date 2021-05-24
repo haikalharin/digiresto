@@ -32,12 +32,27 @@ abstract class _TransactionStore with Store {
 
   @action deleteTransactionHistory(){
     listTransactionHistory = [];
+    listOngoingTransaction = [];
   }
 
   @action
   Future<List<TransactionHistory>>  getTransactionHistory() async {
     return await _repository.getTransactionHistory().then((res) {
       this.listTransactionHistory = res;
+      return res;
+    }).catchError((err) {
+      print("error response: "+ err.toString());
+      throw err;
+    });
+  }
+
+  @observable
+  List<TransactionHistory> listOngoingTransaction;
+
+  @action
+  Future<List<TransactionHistory>>  getOngoingTransaction() async {
+    return await _repository.getOngoingTransaction().then((res) {
+      this.listOngoingTransaction = res;
       return res;
     }).catchError((err) {
       print("error response: "+ err.toString());

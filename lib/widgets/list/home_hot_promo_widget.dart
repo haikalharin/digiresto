@@ -1,11 +1,13 @@
 import 'package:boilerplate/constants/assets.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class ListHomeHotPromoWidget extends StatelessWidget {
+class ListHomeHotPromoWidget extends StatefulWidget {
   final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
@@ -14,27 +16,40 @@ class ListHomeHotPromoWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ListHomeHotPromoWidgetState createState() => _ListHomeHotPromoWidgetState();
+}
+
+class _ListHomeHotPromoWidgetState extends State<ListHomeHotPromoWidget> {
+  UserStore _userStore;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         alignment: Alignment.topLeft,
-        height: height,
+        height: widget.height,
         child: ListView.builder(
-            scrollDirection: scrollDirection,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
             padding: const EdgeInsets.all(8),
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
+              _userStore.setRandomCacheImage(widget.data[index].promoIcon,widget.data[index].outletId.toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
                 onTap: (){
-                  if (data[index].outlet["isOwnerLoggedIn"]){
+                  if (widget.data[index].outlet["isOwnerLoggedIn"]){
                     _orderMethodPopup.showMyDialog(context,{
-                      "name": data[index].outlet["name"],
-                      "merchantName": data[index].merchant["name"].toString(),
-                      "orderMethod": data[index].outlet["orderMethod"]["defaultList"],
-                      "detailName": data[index].outlet["detail"]["name"],
-                    },runAction);
+                      "name": widget.data[index].outlet["name"],
+                      "merchantName": widget.data[index].merchant["name"].toString(),
+                      "orderMethod": widget.data[index].outlet["orderMethod"]["defaultList"],
+                      "detailName": widget.data[index].outlet["detail"]["name"],
+                    },widget.runAction);
                   }
                 },
                 child: Container(
@@ -56,14 +71,14 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                             borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                                 topRight: Radius.circular(8.0)),
                             child: Image(
-                              image: RandomImages.getImageUrl(data[index].promoIcon),
+                              image: RandomImages.getImageUrlDefault(widget.data[index].promoIcon,defaultImage),
                               fit: BoxFit.fill,
                               width: double.infinity,
                               height: 120,
                               alignment: Alignment.center,
                             ),
                           ),
-                          !data[index].outlet["isOwnerLoggedIn"] ? ClipRRect(
+                          !widget.data[index].outlet["isOwnerLoggedIn"] ? ClipRRect(
                             borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
                                 topRight: Radius.circular(8.0)),
                             child: Container(
@@ -88,7 +103,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(5),
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          data[index].merchant["name"].toString()+" - "+data[index].outlet["detail"]["name"].toString(),
+                          widget.data[index].merchant["name"].toString()+" - "+widget.data[index].outlet["detail"]["name"].toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -98,7 +113,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      data[index].promoCode != null ? Container(
+                      widget.data[index].promoCode != null ? Container(
                         padding: const EdgeInsets.only(left:5,right: 5),
                         child: Row(children: [
                           ImageIcon(
@@ -107,7 +122,7 @@ class ListHomeHotPromoWidget extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.only(left: 5),
                             child: Text(
-                              data[index].promoCode,
+                              widget.data[index].promoCode,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
 import 'package:boilerplate/widgets/list/list_product_variant_widget.dart';
@@ -33,11 +34,13 @@ class DetailProductDialog extends StatefulWidget {
 class _DetailProductDialogState extends State<DetailProductDialog> {
   int totalqty = 1;
   OrderStore _orderStore;
+  UserStore _userStore;
   dynamic dataProductState;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _orderStore = Provider.of<OrderStore>(context);
+    _userStore = Provider.of<UserStore>(context);
     setState(() {
       dataProductState = widget.dataProduct;
       totalqty = widget.qtyProduct;
@@ -146,6 +149,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       }
     }
 
+    _userStore.setRandomCacheImage(dataProductState["img"],dataProductState["id"].toString());
+    String defaultImage = _userStore.getRandomCacheImage(dataProductState["id"].toString());
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,7 +171,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
-                          image: RandomImages.getImageUrl(dataProductState["img"]),
+                          image: RandomImages.getImageUrlDefault(dataProductState["img"],defaultImage),
                           fit: BoxFit.fill,
                           width: double.infinity,
                           alignment: Alignment.center,

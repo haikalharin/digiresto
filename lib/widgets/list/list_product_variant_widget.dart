@@ -1,10 +1,12 @@
+import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class ListProductVariant extends StatelessWidget {
+class ListProductVariant extends StatefulWidget {
   final List<dynamic> data;
   final Axis scrollDirection;
   final void Function(dynamic) runAction;
@@ -12,21 +14,34 @@ class ListProductVariant extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ListProductVariantState createState() => _ListProductVariantState();
+}
+
+class _ListProductVariantState extends State<ListProductVariant> {
+  UserStore _userStore;
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userStore = Provider.of<UserStore>(context);
+  }
+  @override
   Widget build(BuildContext context) {
-    double height = (data.length == 1) ?  MediaQuery. of(context). size. height - 350 :  MediaQuery. of(context). size. height - 280;
+    double height = (widget.data.length == 1) ?  MediaQuery. of(context). size. height - 350 :  MediaQuery. of(context). size. height - 280;
 
     return Container(
          height: height,
          width: MediaQuery. of(context). size. width - 100,
         child: ListView.builder(
-            scrollDirection: scrollDirection,
+            scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
             padding: const EdgeInsets.all(5),
-            itemCount: data.length,
+            itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
+
+              _userStore.setRandomCacheImage(widget.data[index]["img"],widget.data[index]["id"].toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index]["id"].toString());
               return GestureDetector(
                 onTap: (){
-                  runAction(data[index]);
+                  widget.runAction(widget.data[index]);
                 },
                 child: Container(
                   padding:  EdgeInsets.only(left: 5,right: 5,bottom: 5),
@@ -50,7 +65,7 @@ class ListProductVariant extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(2.0)),
                           child: Image(
-                            image: RandomImages.getImageUrl(data[index]["img"]),
+                            image: RandomImages.getImageUrlDefault(widget.data[index]["img"],defaultImage),
                             fit: BoxFit.fill,
                             width: 150,
                             alignment: Alignment.center,
@@ -61,7 +76,7 @@ class ListProductVariant extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(top:5),
                         width: MediaQuery. of(context). size. width-100,
-                        child: Text(data[index]["name"],
+                        child: Text(widget.data[index]["name"],
                             softWrap: false,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -76,7 +91,7 @@ class ListProductVariant extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(top:5),
-                        child: Text("Rp. "+Utils.formatRupiah(data[index]["price"].toString()),
+                        child: Text("Rp. "+Utils.formatRupiah(widget.data[index]["price"].toString()),
                             softWrap: false,
                             maxLines: 3,
                             style: TextStyle(

@@ -1,34 +1,22 @@
+import 'package:boilerplate/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomProgressIndicatorWidget extends StatelessWidget {
   const CustomProgressIndicatorWidget({
     Key key,
+    this.size=25
   }) : super(key: key);
-
+  final double size;
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.center,
       child: Container(
-        height: 100,
-        constraints: BoxConstraints.expand(),
-        child: FittedBox(
-          fit: BoxFit.none,
-          child: SizedBox(
-            height: 100,
-            width: 100,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: CircularProgressIndicator(),
-              ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-            ),
-          ),
-        ),
-        decoration: BoxDecoration(
-            color: Color.fromARGB(100, 105, 105, 105)),
+        margin: EdgeInsets.all(2),
+        child: CircularProgressIndicator( strokeWidth: 3.0,
+          valueColor : AlwaysStoppedAnimation(AppColors.redYoung),),
+        height: size,
+        width: size,
       ),
     );
   }

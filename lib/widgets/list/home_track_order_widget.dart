@@ -28,6 +28,8 @@ class HomeTrackOrderWidget extends StatelessWidget {
         //padding: const EdgeInsets.all(8),
         itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
+            List<dynamic> status = data[index].deliveryDetail.containsKey("status") ? data[index].deliveryDetail["status"] : [];
+            String textStatus = status.length>0 ? status[0]["state"] : "Menunggu";
             return GestureDetector(
               onTap: (){
                 runAction(data[index]);
@@ -69,7 +71,7 @@ class HomeTrackOrderWidget extends StatelessWidget {
                                 //padding: const EdgeInsets.all(5),
                                 alignment: Alignment.centerLeft,
                                 //transaction.status
-                                child: Text(data[index].status.toString(),
+                                child: Text(textStatus,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(

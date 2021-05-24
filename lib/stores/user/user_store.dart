@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/strings.dart';
 import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/data/network/apis/user/user_api.dart';
@@ -14,6 +15,7 @@ import 'package:boilerplate/models/user/user_get_address_model.dart';
 import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/user/user_remove_address_model.dart';
 import 'package:boilerplate/stores/error/error_store.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../data/repository.dart';
@@ -52,10 +54,14 @@ abstract class _UserStore with Store {
       this.authToken = value!= "" ? value : ""}
     );
 
+
     _repository.authPhone.then((value) => {
       this.authPhone = value!= "" ? value : ""}
     );
 
+    _repository.authPhoneVerified.then((value) => {
+      this.authPhoneVerified = value!= "" ? value : false}
+    );
 
     _repository.defaultAddress.then((value) => {
       this.activeAddress = (value== "" || value==null) ? "" :value}
@@ -175,6 +181,34 @@ abstract class _UserStore with Store {
   removeAuthPhone (){
     _repository.removeAuthPhone();
   }
+  //auth phone veerified
+  @observable
+  bool authPhoneVerified;
+
+  @action
+  Future saveAuthPhoneVerified(bool isVerified) async {
+    return await _repository.saveAuthPhoneVerified(isVerified).then((res) {
+      this.authPhoneVerified = isVerified;
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  Future getAuthPhoneVerified() async {
+    return await _repository.authPhoneVerified.then((res) {
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  removeAuthPhoneVerified (){
+    _repository.removeAuthPhoneVerified();
+  }
+
   @action
   Future getProfile() async {
     return await _repository.getProfile().then((res) {
@@ -262,16 +296,6 @@ abstract class _UserStore with Store {
       throw err;
     });
   }
-
-  // @observable
-  // String otpHandphone = null;
-  // void setOtpHandphone(String handPhone){
-  //   otpHandphone = handPhone;
-  // }
-  //
-  // void removeOtpHandohone(){
-  //   otpHandphone = null;
-  // }
 
   @observable
   List<UserAddress> listAddress;
@@ -367,5 +391,24 @@ abstract class _UserStore with Store {
       print("error response: "+ err.toString());
       throw err;
     });
+  }
+
+  @observable
+  Map<String,dynamic> randomCacheImage = {};
+  void setRandomCacheImage(String img,String uniqueId){
+    if (img=="" || img==null){
+      if (this.randomCacheImage.containsKey(uniqueId)==false) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(9);
+        this.randomCacheImage.addAll({uniqueId: randomNumber.toString()});
+      }
+    }
+  }
+
+  String getRandomCacheImage(String uniqueId){
+    if (this.randomCacheImage.containsKey(uniqueId.toString())){
+      return this.randomCacheImage[uniqueId];
+    }
+    return "";
   }
 }

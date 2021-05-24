@@ -164,6 +164,8 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
             shrinkWrap: true,
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
+              _userStore.setRandomCacheImage(widget.data[index].merchantLogo,widget.data[index].outletId.toString());
+              String defaultImage = _userStore.getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
                 onTap: () => {
                   if (widget.data[index].isOwnerLoggedIn){
@@ -198,7 +200,7 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                       child: Image(
-                                        image: RandomImages.getImageUrl(widget.data[index].merchantLogo),
+                                        image: RandomImages.getImageUrlDefault(widget.data[index].merchantLogo,defaultImage),
                                         fit: BoxFit.fill,
                                         width: 96,
                                         alignment: Alignment.center,
