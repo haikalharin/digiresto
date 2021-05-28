@@ -52,8 +52,8 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
               Navigator.pop(context);
               Loading.show();
               _transactionStore.cancelTransaction(transaction.receiptCode).then((value) async {
-                    _transactionStore.deleteTransactionHistory();
-                    await _transactionStore.getTransactionHistory();
+                    //_transactionStore.deleteTransactionHistory();
+                    await _transactionStore.getOngoingTransaction();
                     Loading.dismiss();
                     ErrorPopupWidget.show(context, "Digiresto", "Pesanan anda telah dibatalkan", () {
                       Navigator.pop(context);
@@ -62,7 +62,7 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
                       // Navigator.of(context).pushNamed(Routes.home);
                     });
               }).catchError((err)=>{
-                Navigator.pop(context),
+                //Navigator.pop(context),
                 Loading.dismiss(),
                 print("error cancel transaction"),
                 print(err),
@@ -99,7 +99,7 @@ class _HistoryDetailScreenState extends State<HistoryDetailScreen> {
               Loading.show();
                 _transactionStore.acceptTransaction(transaction.receiptCode).then((value) async {
                 _transactionStore.deleteTransactionHistory();
-                await _transactionStore.getTransactionHistory();
+                await _transactionStore.getOngoingTransaction();
                 Loading.dismiss();
                 ErrorPopupWidget.show(context, "Digiresto", "Pesanan sudah selesai", () {
                   Navigator.pop(context);

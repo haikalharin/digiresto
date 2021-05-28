@@ -16,6 +16,7 @@ class Endpoints {
   static const String getPosts = baseUrl + "/posts";
 
   static const String baseUrlDigiresto = "https://dev-mobileapi.digiresto.co.id";
+//  static const String baseUrlDigiresto = "https://mobileapi.digiresto.co.id";
 
   static const String urlGetOtp = baseUrlDigiresto + "/auth/register/token?phoneNumber=";
   static const String urlValidateOtp = baseUrlDigiresto + "/auth/register/validateOtp";
