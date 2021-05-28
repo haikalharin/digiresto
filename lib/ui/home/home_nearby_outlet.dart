@@ -49,7 +49,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
   }
 
   void getOutletByLocation(String search,int pageParam) {
-    //Loading.show();
+    Loading.show();
     _orderStore.getOutletByLocation({
       "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
       "page": pageParam,
@@ -67,13 +67,14 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
           listOutlet = res;
         });
       }
-      //Loading.dismiss();
+      Loading.dismiss();
     }).catchError((err) {
+      Loading.dismiss();
       print(err.toString());
       ErrorPopupWidget.showDioError(context,err,null);
       });
     //   Ctoast.show("failed get outlet by location");
-    //   //Loading.dismiss();
+
     // });
   }
 

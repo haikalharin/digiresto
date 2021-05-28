@@ -47,7 +47,7 @@ abstract class _TransactionStore with Store {
   }
 
   @observable
-  List<TransactionHistory> listOngoingTransaction;
+  List<TransactionHistory> listOngoingTransaction = [];
 
   @action
   Future<List<TransactionHistory>>  getOngoingTransaction() async {

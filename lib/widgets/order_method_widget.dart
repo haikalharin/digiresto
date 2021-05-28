@@ -13,6 +13,8 @@ class OrderMethodPopup{
       builder: (BuildContext context) {
         return AlertDialog(
           //title: Text(param.detail["name"]),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[

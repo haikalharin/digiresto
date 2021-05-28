@@ -116,6 +116,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       setState(() {
         _loadingTraceOrder=true;
       });
+
       await _transactionStore.getOngoingTransaction().then((res) {
         print("ongoing transaction : ");
         print(res);
@@ -556,7 +557,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   }
 
   Widget _trackOrder(){
-    return _transactionStore.listOngoingTransaction != null || _loadingTraceOrder == true ? Container(
+    return _transactionStore.listOngoingTransaction.isNotEmpty || _loadingTraceOrder == true ? Container(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [

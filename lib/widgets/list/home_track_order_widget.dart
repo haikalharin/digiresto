@@ -20,6 +20,8 @@ class HomeTrackOrderWidget extends StatelessWidget {
     final ScrollController _scrollController = new ScrollController();
     OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
+        padding: EdgeInsets.only(left: 5, right: 5),
+        alignment: Alignment.centerLeft,
         height: height,
         child: ListView.builder(
         controller: _scrollController,

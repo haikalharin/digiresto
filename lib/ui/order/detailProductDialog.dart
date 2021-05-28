@@ -164,15 +164,16 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                 color: AppColors.red,
               ),
               Container(
-                height: 200,
+                height: MediaQuery. of(context). size. width,
                 child: Stack(
                   children: [
                     Container(
+                      alignment: Alignment.center,
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
                           image: RandomImages.getImageUrlDefault(dataProductState["img"],defaultImage),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                           width: double.infinity,
                           alignment: Alignment.center,
                         ),
@@ -339,7 +340,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             Navigator.of(context).pop();
                           },
                           color: AppColors.red,
-                          child: Text("Tambah ke keranjang",
+                          child: Text("+keranjang",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -363,7 +364,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             Navigator.of(context).popAndPushNamed(Routes.order_cart);
                           },
                           color: Colors.white,
-                          child: Text("Beli Sekarang",
+                          child: Text("Beli sekarang",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,

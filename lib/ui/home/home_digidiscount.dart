@@ -65,15 +65,18 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
   }
 
   void getPromoOutlet(String search,int pageParam) {
+    Loading.show();
     _orderStore.getPromoOutlet({
       "location": _userStore.activeAddressLat+","+_userStore.activeAddresslng,
       "page": pageParam.toString(),
       "filter": search
     }).then((res) {
+      Loading.dismiss();
       setState(() {
         listPromoOutlet = res;
       });
     }).catchError((err) {
+      Loading.dismiss();
       print(err.toString());
       ErrorPopupWidget.showDioError(context,err,null);
     });

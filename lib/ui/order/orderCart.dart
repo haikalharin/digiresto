@@ -112,10 +112,14 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     print('DEBUG >> transactionData on cart_store ${_orderStore.transactionData}');
 
     _orderStore.getPaymentMethod().then((value) {
+      print(value.toList().toString());
       setState(() {
         _paymentMethods = value;
       });
     });
+
+    _userStore.getBalance().then((value) => {});
+
     if (_orderStore.orderSalesTypes == 'onlineDriver') {
       _orderStore.deliveryInquiry({
         "location": [_userStore.activeAddressLat, _userStore.activeAddresslng]
@@ -785,7 +789,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           print('DEBUG >> do checkout');
                           var checkoutResponse = await _orderStore.checkout()
                               .catchError((err){
-                            print("error response cheeckout 1:");
+                            print("error response checkout 1:");
                             print(err);
                             Loading.dismiss();
                             ErrorPopupWidget.show(context, "Digiresto", "Transaksi gagal",(){Navigator.of(context).pop();});
@@ -795,7 +799,12 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             print("error response cheeckout 2:");
                           }else if (checkoutResponse.payment.isCredit) {
                             await _orderStore.getTransaction();
-                            await _transactionStore.getOngoingTransaction();
+                            await _transactionStore.getOngoingTransaction().then((res) {
+                              print("success get data ongoing transaction : ");
+                            }).catchError((err) {
+                              print("error response: " + err.toString());
+                              ErrorPopupWidget.showDioError(context, err, null);
+                            });
                             Loading.dismiss();
                             Navigator.of(context).pushNamedAndRemoveUntil(Routes.payment_receipt, (_) => false);
                           } else if (checkoutResponse.payment.isWebView) {

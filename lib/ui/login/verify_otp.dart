@@ -56,6 +56,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           _userStore.authPhone, pin.toString()).then((res) {
           Loading.dismiss();
           if (res.isMember!=null) {
+            _userStore.saveAuthPhoneVerified(true);
             print("verifikasi otp berhasil");
             print("is_member = " + res.isMember.toString());
             if (res.isMember) {
@@ -76,9 +77,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         ErrorPopupWidget.showDioError(context,err,null);
         //Ctoast.show("Otp verification failed");
         //Ctoast.show("skip verification phone");
-         //Navigator.of(context).pushReplacementNamed(Routes.register);
-        _userStore.saveAuthPhoneVerified(true);
-        Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+        //Navigator.of(context).pushReplacementNamed(Routes.register);
+        //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
       });
     };
   }
