@@ -44,7 +44,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
       isMarkerMove = true;
       isMarkerClicked = false;
     });
-    //print(_lastMapPosition);
   }
 
   void _onCameraMoveEnd() {
@@ -60,10 +59,13 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   }
 
   _getCurrentLocation() {
+    Loading.show();
+    print("get current location deefault gps");
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
+      Loading.dismiss();
       mapController.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
@@ -71,6 +73,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
         ),
       );
     }).catchError((e) {
+      Loading.dismiss();
       print(e);
     });
   }
@@ -86,6 +89,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
     super.didChangeDependencies();
     _mapStore = Provider.of<MapStore>(context);
     _userStore = Provider.of<UserStore>(context);
+    _getCurrentLocation();
   }
 
   void getGeocode() {
@@ -109,7 +113,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   }
 
   void addAddress() {
-
       _userStore.setActiveAddress(_addressController.text.toString(),_lastMapPosition.latitude.toString(),_lastMapPosition.longitude.toString());
       _userStore.setActivedHomeTab("home");
       _userStore.setProfile(null);

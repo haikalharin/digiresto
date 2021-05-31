@@ -59,7 +59,7 @@ abstract class _OrderStore with Store {
 
 
     _repository.orderProduct.then((value) => {
-      this.orderProduct = value!= null ? jsonDecode(value) : ""}
+      this.orderProduct = value!= null ? jsonDecode(value) : []}
     );
 
     this.calculatePrice();

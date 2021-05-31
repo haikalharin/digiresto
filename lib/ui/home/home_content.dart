@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:boilerplate/constants/assets.dart';
@@ -6,9 +7,11 @@ import 'package:boilerplate/models/order/static_banner_model.dart';
 import 'package:boilerplate/models/order/user_promo_model.dart';
 import 'package:boilerplate/models/transaction/transaction_history.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/map/map_store.dart';
 import 'package:boilerplate/stores/order/order_store.dart';
 import 'package:boilerplate/stores/transaction/transaction_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
@@ -19,8 +22,9 @@ import 'package:boilerplate/widgets/list_item_widget.dart';
 import 'package:boilerplate/widgets/progress_indicator_widget.dart';
 import 'package:boilerplate/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-
+import 'package:geolocator/geolocator.dart';
 class HomeContentScreen extends StatefulWidget {
   @override
   _HomeContentScreenState createState() => _HomeContentScreenState();
@@ -31,10 +35,12 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     initialPage: 0,
   );
   int slideIndex = 0;
-
+  Position _currentPosition;
   UserStore _userStore;
   OrderStore _orderStore;
+  MapStore _mapStore;
   TransactionStore _transactionStore;
+
   bool _loadingHistory;
   bool _loadingHotPromo;
   bool _loadingPromo;
@@ -110,6 +116,63 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     Navigator.of(context).pushNamed(Routes.home_all_address);
   }
 
+
+  _getCurrentLocation() async {
+
+      setState(() {
+        _loadingListAddress=true;
+      });
+      print("get current location");
+      Geolocator()
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.best,locationPermissionLevel: GeolocationPermission.locationWhenInUse)
+          .then((Position position) {
+        print("lat: "+position.latitude.toString());
+        print("lng:"+position.longitude.toString());
+        setState(() {
+          _currentPosition = position;
+        });
+        getGeocode();
+        setState(() {
+          _loadingListAddress=false;
+        });
+      }).catchError((e) {
+        setState(() {
+          _loadingListAddress=false;
+        });
+        ErrorPopupWidget.show(context, "Digiresto", "Lokasi saat tidak dapat terdeteksi,tentukan lokasi manual",
+                () {
+              {
+                Navigator.pop(context);
+                Navigator.of(context).pushNamed(Routes.home_add_location);
+              }
+            });
+        print(e);
+      });
+
+  }
+
+  void getGeocode() {
+    setState(() {
+      _loadingListAddress=true;
+    });
+    print("get address name");
+    _mapStore.getGeocode({
+      "latitude": _currentPosition.latitude.toString(),
+      "longitude": _currentPosition.longitude.toString()
+    }).then((res) {
+      _userStore.setActiveAddress(res.formattedAddress.toString(),_currentPosition.latitude.toString(),_currentPosition.longitude.toString());
+      print(res.formattedAddress.toString());
+      setState(() {
+        _loadingListAddress=false;
+      });
+    }).catchError((err) {
+      setState(() {
+        _loadingListAddress=false;
+      });
+      ErrorPopupWidget.showDioError(context, err, null);
+      print("error response: " + err);
+    });
+  }
   void getBasicInformation() {
 
     _userStore.getProfile().then((value) async {
@@ -134,23 +197,19 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       setState(() {
         _loadingListAddress=true;
       });
-      _userStore.getAddress(_userStore.profile.mobilePhone).then((res) {
+      _userStore.getAddress(_userStore.profile.mobilePhone).then((res) async {
         setState(() {
           _loadingListAddress=false;
         });
         if (_userStore.activeAddress != "") {
+        //if (_userStore.activeAddress == "x") {
           print(">>> _userStore.activeAddresslng is not null");
           getDataAfterPosition();
         } else {
           if (res.length == 0) {
+            //get current location
             print(">>> address api  null");
-            ErrorPopupWidget.show(context, "Digiresto", "Please Add Address",
-                    () {
-                  {
-                    Navigator.pop(context);
-                    goToAddLocation();
-                  }
-                });
+            _getCurrentLocation();
           }else {
             print(">>> address api  is not null");
             bool defaultAddress = false;
@@ -217,6 +276,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     // initializing stores
     _userStore = Provider.of<UserStore>(context, listen: true);
     _orderStore = Provider.of<OrderStore>(context, listen: true);
+    _mapStore = Provider.of<MapStore>(context, listen: true);
     _transactionStore = Provider.of<TransactionStore>(context, listen: true);
     if (_userStore.profile == null && _userStore.balance == null)
       getBasicInformation();
