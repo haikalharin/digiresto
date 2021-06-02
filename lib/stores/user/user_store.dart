@@ -244,6 +244,13 @@ abstract class _UserStore with Store {
     this.isLoggedIn = false;
     this.success = false;
     this.user = null;
+    _repository.removeDefaultAddressLat();
+    _repository.removeDefaultAddress();
+    _repository.removeDefaultAddressLng();
+    this.activeAddress="";
+    this.activeAddressLat="";
+    this.activeAddresslng="";
+    this.profile=null;
   }
   logout() {
     this.isLoggedIn = false;
