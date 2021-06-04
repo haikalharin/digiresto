@@ -243,17 +243,17 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                                     ),
                                     textAlign: TextAlign.left),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:5),
-                                child: Text(widget.data[index].merchantName.toString(),
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.left),
-                              ),
+                             // Padding(
+                             //    padding: const EdgeInsets.only(top:5),
+                             //    child: Text(widget.data[index].merchantName.toString(),
+                             //        style: TextStyle(
+                             //          fontFamily: "roboto",
+                             //          color: Colors.black,
+                             //          fontSize: 12,
+                             //          fontWeight: FontWeight.normal,
+                             //        ),
+                             //        textAlign: TextAlign.left),
+                             //  ),
                               Padding(
                                 padding: const EdgeInsets.only(top:5),
                                 child: Text(widget.data[index].distance["text"],

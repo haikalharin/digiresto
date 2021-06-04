@@ -3,6 +3,7 @@ import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/constants/font_family.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 class HomePromoUrlScreen extends StatelessWidget {
 
@@ -13,7 +14,6 @@ class HomePromoUrlScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routes=ModalRoute.of(context).settings.arguments as Map<String,String>;
-    print(routes["url"]);
     return Scaffold(
       body: Column(
         children: [
@@ -52,10 +52,12 @@ class HomePromoUrlScreen extends StatelessWidget {
                 ),
                 Container(
                   constraints: BoxConstraints(maxHeight: MediaQuery. of(context). size. height-68,),
-                  child: WebView(
-                    javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: routes['url'],
-                  ),
+                  child: WebviewScaffold(
+                    url: routes['url'].startsWith('http') ? routes['url'] : "http://"+routes['url'],
+                    withJavascript: true,
+                    withZoom: true,
+                    //ignoreSSLErrors: true,
+                  )
                 ),
               ],
             ),

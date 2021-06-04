@@ -26,14 +26,14 @@ class OrderMethodPopup{
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),)),
-                Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5),
-                    child: Text(param["merchantName"],textAlign: TextAlign.justify,style: TextStyle(
-                      fontFamily: "roboto",
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),)),
+               // Container(
+               //      alignment: Alignment.center,
+               //      padding: EdgeInsets.all(5),
+               //      child: Text(param["merchantName"].toString(),textAlign: TextAlign.justify,style: TextStyle(
+               //        fontFamily: "roboto",
+               //        fontSize: 14,
+               //        fontWeight: FontWeight.bold,
+               //      ),)),
                 Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(5),

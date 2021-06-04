@@ -308,7 +308,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       rightIcon: Icons.arrow_forward_outlined,
                       onClick: () {
-                        LaunchUrl.run("https://play.google.com/store/apps/details?id=id.damcorp.digimitra");
+                        LaunchUrl.run("https://www.digiresto.co.id/");
                       }),
                   HorizontalMenu(
                     onClick: (){
@@ -369,6 +369,8 @@ class CustomverServiceWidget extends AnimatedWidget {
   final RemoteConfig remoteConfig;
   @override
   Widget build(BuildContext context) {
+    print("remote config customer_service >>");
+    print(remoteConfig.getString('customer_service'));
     Map<String, dynamic> objectCustomerService = jsonDecode(remoteConfig.getString('customer_service'));
     return GestureDetector(
       onTap: (){

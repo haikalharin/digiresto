@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:boilerplate/constants/assets.dart';
+import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/models/auth/otp_wame_model.dart';
@@ -9,10 +11,13 @@ import 'package:boilerplate/models/auth/login_pin_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/ctoast/ctoast.dart';
+import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
+import 'package:boilerplate/utils/remote_config/remote_config.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
@@ -93,6 +98,67 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
     });
   }
 
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context)
+              .translate('profile_customer_service'),textAlign: TextAlign.center,),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                    padding: EdgeInsets.all(5),
+                    child: Text(AppLocalizations.of(context)
+                        .translate('profile_customer_service_desc'),textAlign: TextAlign.justify,style: TextStyle(
+                      fontFamily: "roboto",
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),)),
+                FutureBuilder(
+                  future: GetRemoteConfig.setupRemoteConfig(),
+                  builder: (BuildContext context, AsyncSnapshot<RemoteConfig> snapshot) {
+                    return snapshot.hasData
+                        ? CustomerServiceWidget(remoteConfig: snapshot.data)
+                        : Container();
+                  },
+                ),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            SizedBox(
+              width: MediaQuery. of(context). size. width-100,
+              height: 40,
+              child: RaisedButton(
+                onPressed: () {Navigator.of(context).pop();},
+                color: Colors.white,
+                child: Text(AppLocalizations.of(context)
+                    .translate('profile_cancel'),
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.red)),
+                shape: RoundedRectangleBorder(
+
+                  borderRadius: new BorderRadius.circular(10.0),
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.red,
+                  ),
+                ),
+
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -108,10 +174,25 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
               alignment: Alignment.center,
             ))),
             Container(
-              padding: EdgeInsets.fromLTRB(10, 80, 10, 40),
+                padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Container(
+                    alignment: Alignment.topRight,
+                    padding: EdgeInsets.only(top: 20),
+                    child: IconButton(
+                        icon: Icon(Icons.help_outline),
+                        color: Colors.white,
+                        iconSize: 24,
+                        onPressed: () => {
+                          print("open help"),
+                          _showMyDialog(context),
+                        }),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 60, 10, 0),
+                  ),
                   Container(
                       child: AppIconWidget(
                     image: Assets.appLogo,
@@ -153,6 +234,48 @@ class _LoginPinScreenState extends State<LoginPinScreen> {
           ),
       ]
       ),
+    );
+  }
+}
+
+
+
+class CustomerServiceWidget extends AnimatedWidget {
+  CustomerServiceWidget({this.remoteConfig}) : super(listenable: remoteConfig);
+  final RemoteConfig remoteConfig;
+  @override
+  Widget build(BuildContext context) {
+
+    print("remote config customer_service >>");
+    print(remoteConfig.getString('customer_service'));
+    Map<String, dynamic> objectCustomerService = jsonDecode(remoteConfig.getString('customer_service'));
+    return GestureDetector(
+      onTap: (){
+        for ( var dt in objectCustomerService["data"]){
+          if (dt["type"]=="whatsapp"){
+            LaunchUrl.run(dt["value"]);
+          }
+        }
+      },
+      child: Container(padding: EdgeInsets.only(top:10),child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: 50,
+            child: new IconButton(
+              icon: new Icon(Icons.face_outlined,
+                  color: AppColors.red, size: 28.0),
+            ),
+          ),
+          Text("WhatsApp",style: TextStyle(
+            fontFamily: "roboto",
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+          ),
+            textAlign: TextAlign.center,),
+          Container(width: 50),
+        ],
+      ),),
     );
   }
 }

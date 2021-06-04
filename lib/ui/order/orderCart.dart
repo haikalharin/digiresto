@@ -188,20 +188,20 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              _orderStore.orderMerchantName,
-              //_orderStore.orderOutlet.merchantName,
-              //detailOutlet != null ? data.outlet["detail"]["name"] : ""
-              style: TextStyle(
-                fontFamily: "roboto",
-                //color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+          // Container(
+          //   padding: EdgeInsets.only(top: 10),
+          //   child: Text(
+          //     _orderStore.orderMerchantName.toString(),
+          //     //_orderStore.orderOutlet.merchantName,
+          //     //detailOutlet != null ? data.outlet["detail"]["name"] : ""
+          //     style: TextStyle(
+          //       fontFamily: "roboto",
+          //       //color: Colors.white,
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // ),
           Container(
             width: double.infinity,
             child: ListProductCartWidget(

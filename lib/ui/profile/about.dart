@@ -16,6 +16,8 @@ class AboutWidget extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("remote config about app >>");
+    print(remoteConfig.getString('about_app'));
     Map<String, dynamic> objectAbout = jsonDecode(remoteConfig.getString('about_app'));
     return Container(
       padding: EdgeInsets.only(left: 15, top: 15, right: 15),

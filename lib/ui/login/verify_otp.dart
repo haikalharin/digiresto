@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
@@ -12,6 +13,7 @@ import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:boilerplate/widgets/input_pin_widget.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,7 +80,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         //Ctoast.show("Otp verification failed");
         //Ctoast.show("skip verification phone");
         //Navigator.of(context).pushReplacementNamed(Routes.register);
-        //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+        Navigator.of(context).pushReplacementNamed(Routes.login_pin);
       });
     };
   }

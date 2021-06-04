@@ -216,16 +216,16 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
               ],
             ),
           ),
-          Container(
-            child: Text(_orderStore.orderMerchantName,
-                style: TextStyle(
-                  fontFamily: "roboto",
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                ),
-                textAlign: TextAlign.center),
-          ),
+    // Container(
+    //         child: Text(_orderStore.orderMerchantName.toString(),
+    //             style: TextStyle(
+    //               fontFamily: "roboto",
+    //               color: Colors.white,
+    //               fontSize: 16,
+    //               fontWeight: FontWeight.normal,
+    //             ),
+    //             textAlign: TextAlign.center),
+    //       ),
           Container(
             padding: EdgeInsets.only(top: 10),
             child: Text("Power by Digiresto",
