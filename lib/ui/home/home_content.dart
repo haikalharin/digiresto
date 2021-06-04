@@ -15,14 +15,17 @@ import 'package:boilerplate/utils/ctoast/ctoast.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
+import 'package:boilerplate/widgets/detail_image_widget.dart';
 import 'package:boilerplate/widgets/list/home_history_order_widget.dart';
 import 'package:boilerplate/widgets/list/home_hot_promo_widget.dart';
 import 'package:boilerplate/widgets/list/home_track_order_widget.dart';
 import 'package:boilerplate/widgets/list_item_widget.dart';
 import 'package:boilerplate/widgets/progress_indicator_widget.dart';
 import 'package:boilerplate/widgets/top_background_widget.dart';
+import 'package:boilerplate/widgets/transparent_route.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:provider/provider.dart';
 import 'package:geolocator/geolocator.dart';
 class HomeContentScreen extends StatefulWidget {
@@ -62,6 +65,9 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
       "page": "1",
       "filter": ""
+    }).then((value){
+      setState(() {
+      });
     }).catchError((err) {
       print("error response: " + err.toString());
     });
@@ -118,7 +124,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
 
 
   _getCurrentLocation() async {
-
       setState(() {
         _loadingListAddress=true;
       });
@@ -135,6 +140,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
         setState(() {
           _loadingListAddress=false;
         });
+        getDataAfterPosition();
       }).catchError((e) {
         setState(() {
           _loadingListAddress=false;
@@ -285,22 +291,26 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   Widget _promoList(StaticBanner data) {
     return GestureDetector(
       onTap: () {
-        if (data.promoUrl != null || data.promoUrl != "") {
+        if (data.promoUrl == null || data.promoUrl == "") {
+          _showDetailImage(data.promoBanner);
+        } else {
+          print("goto home promo url "+data.promoUrl.toString());
           Navigator.of(context).pushNamed(Routes.home_promo_url,
               arguments: {"url": data.promoUrl, "title": data.promoName});
-        } else {
-          print("other action");
         }
       },
       child: Container(
         padding: EdgeInsets.only(right: 5, left: 5),
-        child: data.promoBanner!=null ? Image(
-          image: data.promoBanner.substring(1, 4) == 'data:'
-              ? MemoryImage(Base64Decoder().convert(data.promoBanner))
-              : NetworkImage(data.promoBanner),
-          fit: BoxFit.fill,
-          height: 150,
-          alignment: Alignment.topCenter,
+        child: data.promoBanner!=null ? ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Image(
+            image: data.promoBanner.substring(1, 4) == 'data:'
+                ? MemoryImage(Base64Decoder().convert(data.promoBanner))
+                : NetworkImage(data.promoBanner),
+            fit: BoxFit.fill,
+            height: 150,
+            alignment: Alignment.topCenter,
+          ),
         ) : Container()
       )
     );
@@ -324,7 +334,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       children: [
         Container(
           padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
-          height: 150,
+          height: MediaQuery. of(context). size. height/3-20,
           width: double.infinity,
           child: PageView(
             scrollDirection: Axis.horizontal,
@@ -685,7 +695,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                               padding: const EdgeInsets.only(top:5,left: 10),
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Bergabubng menjadi Mitra",
+                                "Bergabung menjadi Mitra",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -715,11 +725,11 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
                         Container(
                           padding: EdgeInsets.only(top: 20),
                           child: SizedBox(
-                            width: 130,
+                            width: MediaQuery. of(context). size. width/2-40,
                             height: 45,
                             child: RaisedButton(
                                 onPressed: () {
-                                  LaunchUrl.run("https://play.google.com/store/apps/details?id=id.damcorp.digimitra");
+                                  LaunchUrl.run("https://www.digiresto.co.id/");
                                 },
                                 color: AppColors.redYoung,
                                 child: Text("Selengkapnya",
@@ -736,6 +746,13 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               )
     );
   }
+
+  _showDetailImage(String imageUrl) {
+    Navigator.of(context).push(
+        TransparentRoute(builder: (BuildContext context) => DetailImageDialog( dataImage: imageUrl))
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
