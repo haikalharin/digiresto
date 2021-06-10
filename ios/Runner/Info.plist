@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Digiresto Dev</string>
+	<string>Digiresto</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -33,6 +33,13 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Needed to access location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -54,12 +61,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        <key>NSAllowsArbitraryLoadsInWebContent</key>
-        <true/>
-    </dict>
+	<key>NSContactsUsageDescription</key>
+	<string>Allow contact use</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Needed to access calender</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Needed to access apple music</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Needed to access motion usage</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Needed to access speech recognition</string>
 </dict>
 </plist>
