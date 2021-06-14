@@ -40,10 +40,20 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Needed to access apple music</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Needed to access calender</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Allow contact use</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Needed to access location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Needed to access location</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Needed to access motion usage</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Needed to access speech recognition</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -61,15 +71,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSContactsUsageDescription</key>
-	<string>Allow contact use</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Needed to access calender</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Needed to access apple music</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Needed to access motion usage</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Needed to access speech recognition</string>
 </dict>
 </plist>
