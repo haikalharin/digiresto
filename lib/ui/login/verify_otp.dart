@@ -53,10 +53,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     if (activeBox == 6) {
       _userStore.saveAuthPhone(_userStore.authPhone);
       String pin = arr.join();
-      //bypass user review
-      if (_userStore.authPhone=="089933"){
-        Navigator.of(context).pushReplacementNamed(Routes.login_pin);
-      }else {
         Loading.show();
         _userStore.validateOtp(
             _userStore.authPhone, pin.toString()).then((res) {
@@ -86,7 +82,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           //Navigator.of(context).pushReplacementNamed(Routes.register);
           //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
         });
-      }
     };
   }
 
