@@ -149,7 +149,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                     height: 53,
                     child: RaisedButton(
                         onPressed: () {
-                          if (handphoneController.text.toString().length > 6) {
+                          if (handphoneController.text.toString().length >= 6) {
                             _userStore.saveAuthPhone(
                                 handphoneController.text.toString());
                             Loading.show();

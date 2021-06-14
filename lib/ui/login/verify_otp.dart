@@ -53,11 +53,15 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     if (activeBox == 6) {
       _userStore.saveAuthPhone(_userStore.authPhone);
       String pin = arr.join();
-      Loading.show();
-      _userStore.validateOtp(
-          _userStore.authPhone, pin.toString()).then((res) {
+      //bypass user review
+      if (_userStore.authPhone=="089933"){
+        Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+      }else {
+        Loading.show();
+        _userStore.validateOtp(
+            _userStore.authPhone, pin.toString()).then((res) {
           Loading.dismiss();
-          if (res.isMember!=null) {
+          if (res.isMember != null) {
             _userStore.saveAuthPhoneVerified(true);
             print("verifikasi otp berhasil");
             print("is_member = " + res.isMember.toString());
@@ -67,21 +71,22 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             } else {
               Navigator.of(context).pushReplacementNamed(Routes.register);
             }
-          }else{
+          } else {
             _handleClearPinBox();
             throw("error verify otp");
           }
           _handleClearPinBox();
-      }).catchError((err) {
-        Loading.dismiss();
-        print("error response: "+ err.toString());
-        _handleClearPinBox();
-        ErrorPopupWidget.showDioError(context,err,null);
-        //Ctoast.show("Otp verification failed");
-        //Ctoast.show("skip verification phone");
-        //Navigator.of(context).pushReplacementNamed(Routes.register);
-        //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
-      });
+        }).catchError((err) {
+          Loading.dismiss();
+          print("error response: " + err.toString());
+          _handleClearPinBox();
+          ErrorPopupWidget.showDioError(context, err, null);
+          //Ctoast.show("Otp verification failed");
+          //Ctoast.show("skip verification phone");
+          //Navigator.of(context).pushReplacementNamed(Routes.register);
+          //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+        });
+      }
     };
   }
 
