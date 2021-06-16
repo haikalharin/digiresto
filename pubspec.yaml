@@ -78,7 +78,6 @@ dependencies:
   permission_handler: 5.1.0+2
   pinch_zoom: ^0.0.4
   flutter_webview_plugin: ^0.3.11
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

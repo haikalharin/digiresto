@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
@@ -31,7 +34,17 @@ class _CreditScreenState extends State<CreditScreen> {
     _userStore = Provider.of<UserStore>(context);
     //var tmpBalance = double.parse(_userStore.balance.balance).toString();
     String tmpBalance="0";
-    if (_userStore.balance != null ) {
+    if (_userStore.skipAndContinue??false){
+      Timer.run(() {
+        ErrorPopupWidget.showLoginRequired(context,(){
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(Routes.home);
+        },(){
+          _userStore.removeSkipAndContinue();
+          Navigator.of(context).pushNamed(Routes.input_phone);
+        });
+      });
+    }else if (_userStore.balance != null ) {
       tmpBalance = Utils.formatRupiah(_userStore.balance.balance);
       setState(() {
         balance = tmpBalance;

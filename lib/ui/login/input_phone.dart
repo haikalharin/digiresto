@@ -178,6 +178,25 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                             borderRadius: new BorderRadius.circular(10.0))),
                   ),
                 ),
+                GestureDetector(
+                  onTap: (){
+                      _userStore.setSkipAndContinue(true);
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          Routes.home, (Route<dynamic> route) => false);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: Text("Skip and continue",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          color: Colors.white70,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center),
+                  ),
+                )
+
               ],
             ),
           ),

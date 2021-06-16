@@ -12,6 +12,7 @@ class Preferences {
   static const String default_address = "default_address";
   static const String default_address_lat = "default_address_lat";
   static const String default_address_lng = "default_address_lng";
+  static const String skin_and_continue = "skipAndContinue";
 
   //order reference
   static const String orderOutletName = "orderOutletName";

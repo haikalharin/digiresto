@@ -145,6 +145,14 @@ class Repository {
       _sharedPrefsHelper.removeAuthPhoneVerified();
   Future<bool> get authPhoneVerified => _sharedPrefsHelper.authPhoneVerified;
 
+  //skip and continue
+  Future<void> setSkipAndContinue(bool skipAndContinue) =>
+      _sharedPrefsHelper.setSkipAndContinue(skipAndContinue);
+
+  Future<void> removeSkipAndContinue() =>
+      _sharedPrefsHelper.removeSkipAndContinue();
+  Future<bool> get skipAndContinue => _sharedPrefsHelper.skipAndContinue;
+
   //default address
   Future<void> saveDefaultAddress(String defaultAddress) =>
       _sharedPrefsHelper.saveDefaultAddress(defaultAddress);

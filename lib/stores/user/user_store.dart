@@ -63,6 +63,10 @@ abstract class _UserStore with Store {
       this.authPhoneVerified = value!= "" ? value : false}
     );
 
+    _repository.skipAndContinue.then((value) => {
+      this.skipAndContinue = value!= "" ? value : false}
+    );
+
     _repository.defaultAddress.then((value) => {
       this.activeAddress = (value== "" || value==null) ? "" :value}
     );
@@ -208,6 +212,35 @@ abstract class _UserStore with Store {
   removeAuthPhoneVerified (){
     _repository.removeAuthPhoneVerified();
   }
+
+  //skin and continue
+  @observable
+  bool skipAndContinue;
+
+  @action
+  Future setSkipAndContinue(bool param) async {
+    return await _repository.setSkipAndContinue(param).then((res) {
+      this.skipAndContinue = param;
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  Future getSkipAndContinue() async {
+    return await _repository.skipAndContinue.then((res) {
+      return res;
+    }).catchError((err) {
+      print("error: "+ err);
+    });
+  }
+
+  @action
+  removeSkipAndContinue (){
+    _repository.removeSkipAndContinue();
+  }
+
 
   @action
   Future getProfile() async {

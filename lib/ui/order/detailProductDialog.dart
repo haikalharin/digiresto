@@ -5,6 +5,7 @@ import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/random/random_images.dart';
 import 'package:boilerplate/utils/utils.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/list/list_product_variant_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -336,8 +337,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         width: MediaQuery.of(context).size.width/2-5,
                         child: RaisedButton(
                           onPressed: () {
-                            _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
-                            Navigator.of(context).pop();
+                                    if (_userStore.skipAndContinue??false){
+                                  ErrorPopupWidget.showLoginRequired(context,(){
+                                    Navigator.of(context).pop();
+                                  },(){
+                                    _userStore.removeSkipAndContinue();
+                                    Navigator.of(context).pushNamed(Routes.input_phone);
+                                  });
+                                }else {
+                                      _orderStore.setProduct(
+                                          dataProductState["id"], totalqty, price, dataProductState);
+                                      Navigator.of(context).pop();
+                                    }
                           },
                           color: AppColors.red,
                           child: Text("+keranjang",
@@ -360,8 +371,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         width: MediaQuery.of(context).size.width/2-5,
                         child: RaisedButton(
                           onPressed: () {
-                            _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
-                            Navigator.of(context).popAndPushNamed(Routes.order_cart);
+                            if (_userStore.skipAndContinue??false){
+                                ErrorPopupWidget.showLoginRequired(context,(){
+                                  Navigator.of(context).pop();
+                                },(){
+                                  _userStore.removeSkipAndContinue();
+                                  Navigator.of(context).pushNamed(Routes.input_phone);
+                                });
+                            }else{
+                              _orderStore.setProduct(dataProductState["id"],totalqty,price,dataProductState);
+                              Navigator.of(context).popAndPushNamed(Routes.order_cart);
+                            }
+
                           },
                           color: Colors.white,
                           child: Text("Beli sekarang",
