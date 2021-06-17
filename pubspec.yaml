@@ -7,7 +7,7 @@ description: A flutter Digiresto created using MobX and Provider.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
-version: 1.0.7+1
+version: 1.0.8+1
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -78,6 +78,7 @@ dependencies:
   permission_handler: 5.1.0+2
   pinch_zoom: ^0.0.4
   flutter_webview_plugin: ^0.3.11
+  device_info: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

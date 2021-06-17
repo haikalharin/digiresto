@@ -342,6 +342,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                     Navigator.of(context).pop();
                                   },(){
                                     _userStore.removeSkipAndContinue();
+                                    _userStore.removeAuthToken();
                                     Navigator.of(context).pushNamed(Routes.input_phone);
                                   });
                                 }else {
@@ -376,6 +377,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                   Navigator.of(context).pop();
                                 },(){
                                   _userStore.removeSkipAndContinue();
+                                  _userStore.removeAuthToken();
                                   Navigator.of(context).pushNamed(Routes.input_phone);
                                 });
                             }else{

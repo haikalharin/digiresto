@@ -37,6 +37,7 @@ class _CartScreenState extends State<CartScreen> {
           Navigator.of(context).pushNamed(Routes.home);
         },(){
           _userStore.removeSkipAndContinue();
+          _userStore.removeAuthToken();
           Navigator.of(context).pushNamed(Routes.input_phone);
         });
       });

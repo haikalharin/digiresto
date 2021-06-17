@@ -41,16 +41,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // initializing stores\
+    // initializing stores
     _userStore = Provider.of<UserStore>(context);
     print(_userStore.skipAndContinue);
     if (_userStore.skipAndContinue??false){
       Timer.run(() {
-        ErrorPopupWidget.showLoginRequired(context,(){
+        ErrorPopupWidget.showLoginRequired(context, () {
           Navigator.of(context).pop();
           Navigator.of(context).pushNamed(Routes.home);
-        },(){
+        }, () {
           _userStore.removeSkipAndContinue();
+          _userStore.removeAuthToken();
           Navigator.of(context).pushNamed(Routes.input_phone);
         });
       });
@@ -62,7 +63,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           appVersion = packageInfo.version;
           // String buildNumber = packageInfo.buildNumber;
         });
-
       });
     }
 

@@ -64,7 +64,7 @@ abstract class _UserStore with Store {
     );
 
     _repository.skipAndContinue.then((value) => {
-      this.skipAndContinue = value!= "" ? value : false}
+      this.skipAndContinue = value ?? false}
     );
 
     _repository.defaultAddress.then((value) => {
@@ -131,6 +131,21 @@ abstract class _UserStore with Store {
       print(e);
       this.isLoggedIn = false;
       this.success = false;
+      throw e;
+    });
+  }
+
+  @action
+  Future<LoginPin> loginNonUser(String clientId) async {
+    return await _repository.nonUserLogin(clientId).then((res) {
+      if (res.token!=null) {
+        return res;
+      } else {
+        return null;
+        print('failed to login');
+      }
+    }).catchError((e) {
+      print(e);
       throw e;
     });
   }

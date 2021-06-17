@@ -37,6 +37,23 @@ class AuthApi {
     }
   }
 
+  Future<LoginPin> nonUserLogin(String clientId) async {
+    try {
+      String apiUrl = Endpoints.urlLogin;
+      Codec<String, String> stringToBase64 = utf8.fuse(base64);
+      final apiResult = await _dioClient.post(apiUrl,data: {
+        "grant_type": "client_credentials",
+        "client_id": clientId,
+        "client_secret": stringToBase64.encode(clientId+Endpoints.nonUserClientSecret.toString())
+      });
+      var userData = (apiResult as Map<String,dynamic>)['data'];
+      return LoginPin.createPin(userData);
+    } catch (e) {
+      print(e.toString());
+      throw e;
+    }
+  }
+
   Future<OtpWame> getOtp(String handPhone) async {
     try {
       String apiUrl = Endpoints.urlGetOtp+handPhone;
