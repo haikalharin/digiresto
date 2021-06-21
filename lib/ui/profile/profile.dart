@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:boilerplate/constants/assets.dart';
@@ -10,6 +11,7 @@ import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:boilerplate/utils/remote_config/remote_config.dart';
+import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/horizontal_menu_widget.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
@@ -39,17 +41,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // initializing stores\
+    // initializing stores
     _userStore = Provider.of<UserStore>(context);
-    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      setState(() {
-        // String appName = packageInfo.appName;
-        // String packageName = packageInfo.packageName;
-        appVersion = packageInfo.version;
-        // String buildNumber = packageInfo.buildNumber;
+    print(_userStore.skipAndContinue);
+    if (_userStore.skipAndContinue??false){
+      Timer.run(() {
+        ErrorPopupWidget.showLoginRequired(context, () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(Routes.home);
+        }, () {
+          _userStore.removeSkipAndContinue();
+          _userStore.removeAuthToken();
+          Navigator.of(context).pushNamed(Routes.input_phone);
+        });
       });
+    }else{
+      PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+        setState(() {
+          // String appName = packageInfo.appName;
+          // String packageName = packageInfo.packageName;
+          appVersion = packageInfo.version;
+          // String buildNumber = packageInfo.buildNumber;
+        });
+      });
+    }
 
-    });
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -116,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return _userStore.skipAndContinue??false ? Container() : Container(
       alignment: Alignment.topCenter,
       child: SingleChildScrollView(
         child: Column(
@@ -342,6 +358,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: RaisedButton(
                     onPressed: () {
                       _userStore.logoutSessionLogin();
+                      //_userStore.saveAuthPhoneVerified(false);
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           Routes.login_pin, (Route<dynamic> route) => false);
                     },

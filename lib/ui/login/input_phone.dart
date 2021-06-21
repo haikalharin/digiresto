@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/constants/font_family.dart';
@@ -12,6 +13,7 @@ import 'package:boilerplate/utils/launch_url/launch_url.dart';
 import 'package:boilerplate/utils/loading/loading.dart';
 import 'package:boilerplate/widgets/Error_popup_widget.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -30,15 +32,41 @@ class InputPhoneScreen extends StatefulWidget {
 
 class _InputPhoneScreenState extends State<InputPhoneScreen> {
   UserStore _userStore;
-
   final handphoneController = TextEditingController();
-
+  String identifier;
   @override
   void setState(fn) {
     // TODO: implement setState
     super.setState(fn);
   }
 
+  Future<void> loginNonUser() async{
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+        if (Platform.isIOS) {
+       deviceInfoPlugin.iosInfo.then((data){
+          setState(() {
+            identifier = data.identifierForVendor;
+          });//UUID for iOS
+          _userStore.loginNonUser(identifier).then((value){
+            if (value.token==null || value.token ==null ){
+              ErrorPopupWidget.show(context, "Digiresto", "Sedang menyiapkan data, silahkan coba lagi", () { Navigator.of(context).pop(); });
+            }else{
+              _userStore.saveAuthToken(value.token);
+              _userStore.setSkipAndContinue(true);
+              print(value.token);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  Routes.home, (Route<dynamic> route) => false);
+            }
+          });
+        });
+
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
+
+  }
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -178,6 +206,23 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                             borderRadius: new BorderRadius.circular(10.0))),
                   ),
                 ),
+                GestureDetector(
+                  onTap: (){
+                    loginNonUser();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: Text("Skip and continue",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          color: Colors.white70,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center),
+                  ),
+                )
+
               ],
             ),
           ),

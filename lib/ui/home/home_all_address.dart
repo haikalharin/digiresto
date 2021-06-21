@@ -332,76 +332,80 @@ class _HomeAllAddressScreenState extends State<HomeAllAddressScreen> {
                   height: 10,
                 ),
                 _locationActive(),
-                Container(
-                  height: 30,
-                  color: Colors.black12,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text("Alamat Tersimpan",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            textAlign: TextAlign.center),
-                      ),
-                      GestureDetector(
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10),
-                            child: Text(
-                              "Lihat semua",
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.red),
-                            ),
+                _userStore.skipAndContinue??false ? Container() : Column(
+                  children: [
+                    Container(
+                      height: 30,
+                      color: Colors.black12,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text("Alamat Tersimpan",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                                textAlign: TextAlign.center),
                           ),
-                          onTap: () {
-                            _userStore.setActiveHistoryScreen("home.address");
-                            Navigator.of(context)
-                                .pushNamed(Routes.set_address_list);
-                          })
-                    ],
-                  ),
-                ),
+                          GestureDetector(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                child: Text(
+                                  "Lihat semua",
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.red),
+                                ),
+                              ),
+                              onTap: () {
+                                _userStore.setActiveHistoryScreen("home.address");
+                                Navigator.of(context)
+                                    .pushNamed(Routes.set_address_list);
+                              })
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
+                      height: MediaQuery.of(context).size.height - 190,
+                      // child: SingleChildScrollView(
+                      //     child: Column(
+                      //   children: [
+                      //     listAddress.length > 0
+                      //         ? new ListView.builder(
+                      //             scrollDirection: Axis.vertical,
+                      //             shrinkWrap: true,
+                      //             itemCount: listAddress.length,
+                      //             itemBuilder: (BuildContext ctxt, int index) {
+                      //               return _listAddress(listAddress[index]);
+                      //             },
+                      //           )
+                      //         : Container(),
+                      //     _btnNewAddress(),
+                      //   ],
+                      // )
+                      child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true, // new line
+                          padding: const EdgeInsets.all(8),
+                          itemCount: listAddress.length+1,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (index+1==listAddress.length+1){
+                              return _btnNewAddress();
+                            }else{
+                              return _listAddress(listAddress[index]);
+                            }
 
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
-                  height: MediaQuery.of(context).size.height - 190,
-                  // child: SingleChildScrollView(
-                  //     child: Column(
-                  //   children: [
-                  //     listAddress.length > 0
-                  //         ? new ListView.builder(
-                  //             scrollDirection: Axis.vertical,
-                  //             shrinkWrap: true,
-                  //             itemCount: listAddress.length,
-                  //             itemBuilder: (BuildContext ctxt, int index) {
-                  //               return _listAddress(listAddress[index]);
-                  //             },
-                  //           )
-                  //         : Container(),
-                  //     _btnNewAddress(),
-                  //   ],
-                  // )
-                  child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true, // new line
-                      padding: const EdgeInsets.all(8),
-                      itemCount: listAddress.length+1,
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index+1==listAddress.length+1){
-                          return _btnNewAddress();
-                        }else{
-                          return _listAddress(listAddress[index]);
-                        }
+                          }
+                      ),
+                    ),
+                  ],
+                )
 
-                      }
-                  ),
-                  ),
 
               ],
             ),

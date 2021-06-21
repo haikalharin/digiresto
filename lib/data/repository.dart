@@ -145,6 +145,14 @@ class Repository {
       _sharedPrefsHelper.removeAuthPhoneVerified();
   Future<bool> get authPhoneVerified => _sharedPrefsHelper.authPhoneVerified;
 
+  //skip and continue
+  Future<void> setSkipAndContinue(bool skipAndContinue) =>
+      _sharedPrefsHelper.setSkipAndContinue(skipAndContinue);
+
+  Future<void> removeSkipAndContinue() =>
+      _sharedPrefsHelper.removeSkipAndContinue();
+  Future<bool> get skipAndContinue => _sharedPrefsHelper.skipAndContinue;
+
   //default address
   Future<void> saveDefaultAddress(String defaultAddress) =>
       _sharedPrefsHelper.saveDefaultAddress(defaultAddress);
@@ -196,6 +204,12 @@ class Repository {
 
   Future<LoginPin> loginUser(String handPhone,String pin) async {
     return await _authApi.login(handPhone,pin).then((value) {
+      return value;
+    }).catchError((error) => throw error);
+  }
+
+  Future<LoginPin> nonUserLogin(String clientId) async {
+    return await _authApi.nonUserLogin(clientId).then((value) {
       return value;
     }).catchError((error) => throw error);
   }

@@ -14,7 +14,7 @@ class Endpoints {
 
   // booking endpoints
   static const String getPosts = baseUrl + "/posts";
-
+  static const String nonUserClientSecret = ":d1g1M0b1l3!#";
   //static const String baseUrlDigiresto = "https://dev-mobileapi.digiresto.co.id";
   static const String baseUrlDigiresto = "https://mobileapi.digiresto.co.id";
 

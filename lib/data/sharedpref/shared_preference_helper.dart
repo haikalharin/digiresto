@@ -173,6 +173,24 @@ class SharedPreferenceHelper {
     });
   }
 
+  // skipAndContinue:---------------------------------------------------
+  Future<bool> get skipAndContinue {
+    return _sharedPreference.then((prefs) {
+      return prefs.getBool(Preferences.skin_and_continue);
+    });
+  }
+
+  Future<void> setSkipAndContinue(bool skipAndContinue) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setBool(Preferences.skin_and_continue, skipAndContinue);
+    });
+  }
+
+  Future<void> removeSkipAndContinue() async {
+    return _sharedPreference.then((preference) {
+      preference.remove(Preferences.skin_and_continue);
+    });
+  }
   //order:---------------------------------------------------
   Future<String> get orderOutletName async {
     return _sharedPreference.then((preference) {

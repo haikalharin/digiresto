@@ -212,4 +212,83 @@ class ErrorPopupWidget  {
            ),
          ));
    }
+  static   showLoginRequired(BuildContext context,void Function() cancelAction,void Function() runAction) {
+    return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => new AlertDialog(
+          title:  Center( child: Text("Digiresto", style: TextStyle(
+            fontFamily: "roboto",
+            //color: AppColors.red,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),)),
+          content: Container(
+            height:  120,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Kamu harus login terlebih dahulu untuk dapat mengakses fitur ini",
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: "roboto",
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width/3-10,
+                        child: RaisedButton(
+                          onPressed: cancelAction,
+                          color: Colors.white,
+                          child: Text("Batal",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.redYoung)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.redYoung,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width/3-10,
+                        child: RaisedButton(
+                          onPressed: runAction,
+                          color: AppColors.redYoung,
+                          child: Text("Login",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.redYoung,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
 }

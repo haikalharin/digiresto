@@ -37,6 +37,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
   PageController _controller = PageController(
     initialPage: 0,
   );
+
   int slideIndex = 0;
   Position _currentPosition;
   UserStore _userStore;
@@ -58,8 +59,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     _loadingTraceOrder=false;
     _loadingListAddress=false;
   }
-
   void getDataAfterPosition() {
+
     _orderStore.getStaticBanner({
       "location":
       _userStore.activeAddressLat + "," + _userStore.activeAddresslng,
@@ -179,6 +180,17 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       print("error response: " + err);
     });
   }
+  void getBasicInformationSkipAndContinue() {
+        if (_userStore.activeAddress != "") {
+          print(">>> _userStore.activeAddresslng is not null");
+          getDataAfterPosition();
+        } else {
+            //get current location
+            print(">>> address api  null");
+            _getCurrentLocation();
+        }
+  }
+
   void getBasicInformation() {
 
     _userStore.getProfile().then((value) async {
@@ -284,8 +296,12 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     _orderStore = Provider.of<OrderStore>(context, listen: true);
     _mapStore = Provider.of<MapStore>(context, listen: true);
     _transactionStore = Provider.of<TransactionStore>(context, listen: true);
-    if (_userStore.profile == null && _userStore.balance == null)
+    if (_userStore.skipAndContinue??false){
+      getBasicInformationSkipAndContinue();
+    } else if (_userStore.profile == null && _userStore.balance == null) {
       getBasicInformation();
+    }
+
   }
 
   Widget _promoList(StaticBanner data) {

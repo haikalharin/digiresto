@@ -30,7 +30,18 @@ class _CartScreenState extends State<CartScreen> {
     _userStore = Provider.of<UserStore>(context);
 
     // it will navigate to
-    if (_orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName=="" || _orderStore.transactionData==null ){
+    if (_userStore.skipAndContinue??false){
+      Timer.run(() {
+        ErrorPopupWidget.showLoginRequired(context,(){
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(Routes.home);
+        },(){
+          _userStore.removeSkipAndContinue();
+          _userStore.removeAuthToken();
+          Navigator.of(context).pushNamed(Routes.input_phone);
+        });
+      });
+    }else if (_orderStore.orderProduct.isEmpty || _orderStore.orderMerchantName=="" || _orderStore.transactionData==null ){
        Timer.run(() {
          ErrorPopupWidget.show(context, "Keranjang", "Keranjang pesananmu kosong, silahkan pilih menu", () {
            _userStore.setActivedHomeTab("home");
