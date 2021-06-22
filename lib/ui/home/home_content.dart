@@ -146,7 +146,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
         setState(() {
           _loadingListAddress=false;
         });
-        ErrorPopupWidget.show(context, "Digiresto", "Lokasi saat tidak dapat terdeteksi,tentukan lokasi manual",
+        ErrorPopupWidget.show(context, "Digiresto", "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
                 () {
               {
                 Navigator.pop(context);

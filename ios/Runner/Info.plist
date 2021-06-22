@@ -47,9 +47,9 @@
 	<key>NSContactsUsageDescription</key>
 	<string>Allow contact use</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Needed to access location</string>
+	<string>Turning on location services allows us to show you nearest restaurant</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Needed to access location</string>
+	<string>Turning on location services allows us to show you nearest restaurant</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Needed to access motion usage</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
