@@ -294,8 +294,6 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   }
 
   Widget _promo(DetailOutlet data) {
-    print("data promo >>>");
-    print(data.merchant["promo"]);
     return data.merchant["promo"].length == 0 ? Container() : DetailOutletHotPromoWidget(
       height: 175.0,
       data: data.merchant["promo"],
