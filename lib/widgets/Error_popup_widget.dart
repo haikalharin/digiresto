@@ -1,11 +1,16 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/data/network/constants/response_mapping.dart';
 import 'package:boilerplate/models/key_value_model.dart';
 import 'package:boilerplate/routes.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
+import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class ErrorPopupWidget  {
@@ -181,9 +186,37 @@ class ErrorPopupWidget  {
                    child: RaisedButton(
                      onPressed: () {
                        if(respError.key=="21" || respError.key=="401"){
-                         _userStore.logoutSessionLogin();
-                         Navigator.of(context).pushNamedAndRemoveUntil(
-                             Routes.login_pin, (Route<dynamic> route) => false);
+                         if (_userStore.skipAndContinue??false){
+                           print("skip n continue invalid token");
+                           final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+                           try {
+                             if (Platform.isIOS) {
+                               deviceInfoPlugin.iosInfo.then((data){
+                                 _userStore.loginNonUser(data.identifierForVendor).then((value){
+                                   if (value.token==null || value.token ==null ){
+                                     ErrorPopupWidget.show(context, "Digiresto", "Sedang menyiapkan data, silahkan coba lagi", () { Navigator.of(context).pop(); });
+                                   }else{
+                                     Timer.run(() {
+                                       _userStore.saveAuthToken(value.token);
+                                       _userStore.setSkipAndContinue(true);
+                                       _userStore.removeAuthPhoneVerified();
+                                       Navigator.of(context).pushNamedAndRemoveUntil(
+                                           Routes.home, (Route<dynamic> route) => false);
+                                     });
+
+                                   }
+                                 });
+                               });
+
+                             }
+                           } on PlatformException {
+                             print('Failed to get platform version');
+                           }
+                         }else{
+                           _userStore.logoutSessionLogin();
+                           Navigator.of(context).pushNamedAndRemoveUntil(
+                               Routes.login_pin, (Route<dynamic> route) => false);
+                         }
                        }else if (runAction!=null){
                          runAction();
                          Navigator.of(context).pop();

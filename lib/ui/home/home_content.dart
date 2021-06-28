@@ -71,6 +71,7 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       });
     }).catchError((err) {
       print("error response: " + err.toString());
+      ErrorPopupWidget.showDioError(context, err, null);
     });
 
     /*

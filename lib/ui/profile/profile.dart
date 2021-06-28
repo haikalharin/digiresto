@@ -43,7 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.didChangeDependencies();
     // initializing stores
     _userStore = Provider.of<UserStore>(context);
-    print(_userStore.skipAndContinue);
     if (_userStore.skipAndContinue??false){
       Timer.run(() {
         ErrorPopupWidget.showLoginRequired(context, () {
@@ -357,6 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 44,
                 child: RaisedButton(
                     onPressed: () {
+                      //print(_userStore.authPhoneVerified);
                       _userStore.logoutSessionLogin();
                       //_userStore.saveAuthPhoneVerified(false);
                       Navigator.of(context).pushNamedAndRemoveUntil(

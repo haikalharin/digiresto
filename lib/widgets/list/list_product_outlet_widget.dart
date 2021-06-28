@@ -80,7 +80,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
               String defaultImage = _userStore.getRandomCacheImage(widget.data[index]["id"].toString());
               return widget.data[index]["category"]=="HIDDEN" ? Container() : GestureDetector(
                 onTap: () => {
-                  print(widget.data[index]),
+                  //print(widget.data[index]),
                   widget.runDetailAction(widget.data[index],widget.orderType)
                 },
                 child: Container(
