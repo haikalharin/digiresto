@@ -54,6 +54,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       _userStore.saveAuthPhone(_userStore.authPhone);
       String pin = arr.join();
       if (_userStore.authPhone=="08098888000" &&  pin.toString()=="112233"){
+        _userStore.saveAuthPhoneVerified(true);
         Navigator.of(context).pushReplacementNamed(Routes.login_pin);
       }else {
         Loading.show();
@@ -83,7 +84,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           //Ctoast.show("Otp verification failed");
           //Ctoast.show("skip verification phone");
           //Navigator.of(context).pushReplacementNamed(Routes.register);
-          //Navigator.of(context).pushReplacementNamed(Routes.login_pin);
+          // _userStore.saveAuthPhoneVerified(true);
+          // Navigator.of(context).pushReplacementNamed(Routes.login_pin);
         });
       }
     };

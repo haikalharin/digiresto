@@ -67,7 +67,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     }
   }
   _chooseVariants(dynamic data){
-    print("choose variant"+data.toString());
+    //print("choose variant"+data.toString());
     setState(() {
       dataProductState = data;
     });
@@ -205,11 +205,12 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     Container(
                       alignment: Alignment.topLeft,
                       color: Colors.white,
+                      width:  MediaQuery. of(context). size. width/2+50,
                       padding: const EdgeInsets.only(top: 5),
                       child: Text(dataProductState["name"],
-                          softWrap: false,
+                          softWrap: true,
                           maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
+                          //overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontFamily: "roboto",
                             color: Colors.black,

@@ -52,11 +52,15 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
             if (value.token==null || value.token ==null ){
               ErrorPopupWidget.show(context, "Digiresto", "Sedang menyiapkan data, silahkan coba lagi", () { Navigator.of(context).pop(); });
             }else{
-              _userStore.saveAuthToken(value.token);
-              _userStore.setSkipAndContinue(true);
-              print(value.token);
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  Routes.home, (Route<dynamic> route) => false);
+              Timer.run(() {
+                _userStore.saveAuthToken(value.token);
+                _userStore.setSkipAndContinue(true);
+                _userStore.removeAuthPhoneVerified();
+                print(value.token);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    Routes.home, (Route<dynamic> route) => false);
+              });
+
             }
           });
         });
@@ -180,6 +184,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                           if (handphoneController.text.toString().length >= 6) {
                             _userStore.saveAuthPhone(
                                 handphoneController.text.toString());
+                            _userStore.setSkipAndContinue(false);
                             Loading.show();
                             _userStore.getOtp(handphoneController.text.toString())
                                 .then((res) {

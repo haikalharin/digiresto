@@ -60,7 +60,7 @@ abstract class _UserStore with Store {
     );
 
     _repository.authPhoneVerified.then((value) => {
-      this.authPhoneVerified = value!= "" ? value : false}
+      this.authPhoneVerified = value ?? false}
     );
 
     _repository.skipAndContinue.then((value) => {
