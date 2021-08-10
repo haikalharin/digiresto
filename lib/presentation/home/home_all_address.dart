@@ -2,8 +2,8 @@ import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
-import 'package:digiresto/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +30,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.of(Get.context!).pushNamed(Routes.set_address_add);
+          Get.toNamed(Routers.setAddressAdd);
         },
         child: Container(
           child: Row(
@@ -72,7 +72,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
       child: GestureDetector(
         onTap: () {
           print("set default");
-          Navigator.of(Get.context!).pushReplacementNamed(Routes.home);
+          Get.offNamed(Routers.home);
         },
         child: Container(
           child: Row(
@@ -247,7 +247,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
     // _userStore?.setActiveAddress(address, lat, lng);
     // _userStore?.setActivedHomeTab("home");
     // _userStore?.setProfile(null);
-    Navigator.of(Get.context!).pushReplacementNamed(Routes.home);
+    Get.offNamed(Routers.home);
   }
 
   @override
@@ -268,8 +268,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                             color: Colors.black, size: 28.0),
                         onPressed: () {
                           // _userStore?.setActivedHomeTab("home");
-                          Navigator.of(context)
-                              .pushReplacementNamed(Routes.home);
+                          Get.offNamed(Routers.home);
                         }),
                     Text("All Address",
                         style: TextStyle(
@@ -283,8 +282,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                         icon: new Icon(Icons.map,
                             color: AppColors.red, size: 28.0),
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushNamed(Routes.home_add_location);
+                          Get.toNamed(Routers.homeAddLocation);
                         }),
                   ],
                 ),
@@ -329,8 +327,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                                     onTap: () {
                                       // _userStore?.setActiveHistoryScreen(
                                       //     "home.address");
-                                      Navigator.of(context)
-                                          .pushNamed(Routes.set_address_list);
+                                      Get.toNamed(Routers.setAddressList);
                                     })
                               ],
                             ),

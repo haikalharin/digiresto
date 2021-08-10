@@ -20,6 +20,30 @@ class Routers {
   static const String homeAddLocation = '/home_add_location';
   static const String homeNearbyOutlet = '/home_nearby_outlet';
   static const String homeDigiDiscount = '/home_digidiscount';
+  static const String onboarding = '/onboarding';
+  static const String inputPhone = '/inputphone';
+  static const String verifyOtp = '/verifyotp';
+  static const String loginPin = '/login_pin';
+  static const String about = '/about';
+  static const String privacyPolicy = '/privacy_policy';
+  static const String setAddressList = '/set_address';
+  static const String setAddressAdd = '/add_address';
+  static const String history = '/history';
+  static const String historyDetail = '/history_detail';
+  static const String register = '/register';
+  static const String orderDetailOutlet = '/order_detail_outlet';
+  static const String orderCart = '/order_cart';
+  static const String selectPaymentMethod = '/select_payment_method';
+  static const String selectDeliveryMethod = '/select_delivery_method';
+  static const String paymentReceipt = '/payment_receipt';
+  static const String paymentWebView = '/payment_web_view';
+  static const String paymentVa = '/payment_va';
+  static const String updateProfile = '/update_profile';
+  static const String topupCredit = '/topup_credit';
+  static const String topupCreditNominal = '/topup_credit_nominal';
+  static const String paymentTopupCreditBT = '/payment_topup_credit_bt';
+  static const String paymentTopupCreditVA = '/payment_topup_credit_va';
+  static const String historyCredit = '/history_credit';
 
   final List<GetPage> routers = [
     GetPage(
