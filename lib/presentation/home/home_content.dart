@@ -76,24 +76,9 @@ class HomeContentScreen extends GetView<HomeContentController> {
               print(fail.message);
             },
             addressListSuccess: (data) {
-              controller.setListAddress([
-                UserAddress(
-                    isDefault: true,
-                    name: "Rumah",
-                    address: "Bandung",
-                    longitude: "",
-                    latitude: "",
-                    isDelete: false),
-                UserAddress(
-                    isDefault: false,
-                    name: "Rumah",
-                    address: "Jakarta",
-                    longitude: "",
-                    latitude: "",
-                    isDelete: false)
-              ]);
               if (data.list.length > 0) {
                 controller.setActiveAddress(data.list[0].address!);
+                controller.setListAddress(data.list);
               }
             },
             orElse: () {});

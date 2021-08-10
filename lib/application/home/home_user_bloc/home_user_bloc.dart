@@ -30,7 +30,7 @@ class HomeUserBloc extends Bloc<HomeUserEvent, HomeUserState> {
         (list) => HomeUserState.bannerLoadSuccess(list),
       );
     }, getListAddress: (_GetListAddress value) async* {
-      final listAddress = await _userRepository.getAddress("");
+      final listAddress = await _userRepository.getAddress("085782031633");
       yield listAddress.fold(
         (error) => HomeUserState.addressListFailed(error.toString()),
         (list) => HomeUserState.addressListSuccess(list),

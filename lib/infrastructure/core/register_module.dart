@@ -29,7 +29,7 @@ class RegisterModule {
     // options.
     _dio.options = options;
     var _token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3ODIwMzE2MzMiLCJpYXQiOjE2Mjg1NzI4MDcsImV4cCI6MTYyOTE3NzYwN30.IinPbzc5GsYAp6Mb9D6ZP5DM85TRfERO1GSNbCT6BcY";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3ODIwMzE2MzMiLCJpYXQiOjE2Mjg1NzM0MDMsImV4cCI6MTYyOTE3ODIwM30.0Ed-bfARHUoLkAdqx837g8scOQ6KNEKQO9yzJyfKSMA";
 
     _dio.options.headers['content-Type'] = 'application/json';
     _dio.options.headers["authorization"] = "token $_token";
