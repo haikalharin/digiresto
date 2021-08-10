@@ -5,9 +5,10 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/locale/app_localization.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
-import 'package:digiresto/routes.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeAddLocationScreen extends StatefulWidget {
@@ -117,7 +118,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
     //     _lastMapPosition!.longitude.toString());
     // _userStore!.setActivedHomeTab("home");
     // _userStore!.setProfile(null);
-    Navigator.of(context).pushNamed(Routes.home);
+    Get.toNamed(Routers.home);
   }
 
   Future<void> _showMyDialog(BuildContext context) async {

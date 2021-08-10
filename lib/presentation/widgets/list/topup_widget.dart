@@ -1,8 +1,9 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/entity/user/topup_list_model.dart';
-import 'package:digiresto/routes.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 
 class TopupWidget extends StatelessWidget {
   final TopupList data;
@@ -27,11 +28,10 @@ class TopupWidget extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed(Routes.topupCreditNominal,
-                      arguments: {
-                        "topupList": data,
-                        "subCategory": data.subCategory![index]
-                      });
+                  Get.toNamed(Routers.topupCreditNominal, arguments: {
+                    "topupList": data,
+                    "subCategory": data.subCategory![index]
+                  });
                 },
                 child: Container(
                   padding: EdgeInsets.all(12),

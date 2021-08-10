@@ -13,7 +13,6 @@ import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
 import 'package:digiresto/presentation/widgets/progress_indicator_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:digiresto/presentation/widgets/transparent_route.dart';
-import 'package:digiresto/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -124,7 +123,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
             _showDetailImage(data.promoBanner ?? "");
           } else {
             print("goto home promo url " + data.promoUrl.toString());
-            Navigator.of(Get.context!).pushNamed(Routes.home_promo_url,
+            Get.toNamed(Routers.homePromoUrl,
                 arguments: {"url": data.promoUrl, "title": data.promoName});
           }
         },
@@ -211,7 +210,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
   Widget _searchBox() {
     return GestureDetector(
       onTap: () {
-        Navigator.of(Get.context!).pushNamed(Routes.home_nearby_outlet);
+        Get.toNamed(Routers.homeNearbyOutlet);
       },
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
@@ -314,7 +313,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(Get.context!).pushNamed(Routes.home_nearby_outlet);
+              Get.toNamed(Routers.homeNearbyOutlet);
             },
             child: Container(
                 child: Column(
@@ -343,7 +342,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(Get.context!).pushNamed(Routes.home_digidiscount);
+              Get.toNamed(Routers.homeDigiDiscount);
             },
             child: Container(
                 child: Column(
@@ -384,7 +383,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(Get.context!).pushNamed(Routes.home_digidiscount);
+              Get.toNamed(Routers.homeDigiDiscount);
             },
             child: Container(
                 child: Column(
@@ -413,7 +412,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(Get.context!).pushNamed(Routes.home_digidiscount);
+              Get.toNamed(Routers.homeDigiDiscount);
             },
             child: Container(
                 child: Column(
@@ -488,8 +487,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                                       color: AppColors.red),
                                 ),
                                 onTap: () {
-                                  Navigator.of(Get.context!)
-                                      .pushNamed(Routes.home_all_hot_promo);
+                                  Get.toNamed(Routers.homeAllHotPromo);
                                 }),
                           )
                         ]),
@@ -712,7 +710,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
 
   void goToAddLocation() {
     //  _userStore?.setActiveHistoryScreen("home.address");
-    Navigator.of(Get.context!).pushNamed(Routes.home_all_address);
+    Get.toNamed(Routers.homeAllAddress);
   }
 
   _getCurrentLocation() async {
@@ -738,7 +736,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           () {
         {
           Navigator.pop(Get.context!);
-          Navigator.of(Get.context!).pushNamed(Routes.home_add_location);
+          Get.toNamed(Routers.homeAddLocation);
         }
       });
       print(e);
