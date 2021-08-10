@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
-mixin CommonUtils {
+class CommonUtils {
   static const String defaultCountryCallingCode = '+62';
 
   static final RegExp _emailRegExp = RegExp(
@@ -19,12 +19,18 @@ mixin CommonUtils {
   static final RegExp _phoneRegExp = RegExp(r'^(?:[+0])?[0-9]{8,15}$');
 
   static String? dateFormat(String pattern, DateTime? date) {
-    final DateFormat format = DateFormat(
+    DateFormat format = DateFormat(
       pattern,
     );
     String? sDate;
     if (date != null) sDate = format.format(date);
-    return sDate;
+    return sDate ?? null;
+  }
+
+  static List<String> gender(int gender) {
+    return gender == 1
+        ? ['Male', 'Cowok', 'Pria', 'Laki-laki']
+        : ['Female', 'Cewek', 'Wanita', 'Perempuan'];
   }
 
   static Either<bool, bool> containsValue(
@@ -40,8 +46,8 @@ mixin CommonUtils {
   }
 
   static String currencyFormat(double amount) {
-    final NumberFormat format = NumberFormat("#,##0.00", "id_ID");
-    return 'Rp. ${format.format(amount)}';
+    NumberFormat format = NumberFormat("#,##0.00", "id_ID");
+    return 'Rp. ' + format.format(amount);
   }
 
   static bool validateEmail(String value) {
@@ -74,24 +80,37 @@ mixin CommonUtils {
   }
 
   static String getUUID() {
-    const uuid = Uuid();
+    var uuid = Uuid();
     return uuid.v1();
+  }
+
+  static String delegateTypeString(int type) {
+    switch (type) {
+      case 0:
+        return 'Delegate Approval';
+      case 1:
+        return 'Delegate Request';
+      case 2:
+        return 'Delegate Approval and Request';
+      default:
+        return 'None';
+    }
   }
 
   static DateTime firstDateOfWeek(DateTime current) {
     switch (current.weekday) {
       case DateTime.tuesday:
-        return current.subtract(const Duration(days: 1));
+        return current.subtract(Duration(days: 1));
       case DateTime.wednesday:
-        return current.subtract(const Duration(days: 2));
+        return current.subtract(Duration(days: 2));
       case DateTime.thursday:
-        return current.subtract(const Duration(days: 3));
+        return current.subtract(Duration(days: 3));
       case DateTime.friday:
-        return current.subtract(const Duration(days: 4));
+        return current.subtract(Duration(days: 4));
       case DateTime.saturday:
-        return current.subtract(const Duration(days: 5));
+        return current.subtract(Duration(days: 5));
       case DateTime.sunday:
-        return current.subtract(const Duration(days: 6));
+        return current.subtract(Duration(days: 6));
       default:
         return current;
     }
@@ -100,31 +119,42 @@ mixin CommonUtils {
   static DateTime lastDateOfWeek(DateTime current) {
     switch (current.weekday) {
       case DateTime.saturday:
-        return current.add(const Duration(days: 1));
+        return current.add(Duration(days: 1));
       case DateTime.friday:
-        return current.add(const Duration(days: 2));
+        return current.add(Duration(days: 2));
       case DateTime.thursday:
-        return current.add(const Duration(days: 3));
+        return current.add(Duration(days: 3));
       case DateTime.wednesday:
-        return current.add(const Duration(days: 4));
+        return current.add(Duration(days: 4));
       case DateTime.tuesday:
-        return current.add(const Duration(days: 5));
+        return current.add(Duration(days: 5));
       case DateTime.monday:
-        return current.add(const Duration(days: 6));
+        return current.add(Duration(days: 6));
+      default:
+        return current;
+    }
+  }
+
+  static DateTime lastDateForLeaveOrPermit(DateTime current) {
+    switch (current.weekday) {
+      case DateTime.saturday:
+        return current.add(Duration(days: 2));
+      case DateTime.sunday:
+        return current.add(Duration(days: 2));
       default:
         return current;
     }
   }
 
   static Future<bool> checkInternetConnection(Connectivity connectivity) async {
-    final result = await connectivity.checkConnectivity();
+    var result = await connectivity.checkConnectivity();
     return result != ConnectivityResult.none;
   }
 
   static String getRandomString(int length) {
     const _chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    final Random _rnd = Random();
+    Random _rnd = Random();
     return String.fromCharCodes(Iterable.generate(
         length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
   }

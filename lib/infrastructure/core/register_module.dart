@@ -3,27 +3,21 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
-import 'package:digiresto/infrastructure/core/logger_interceptor.dart';
 
-@module
-abstract class RegisterModule {
+import 'logger_interceptor.dart';
+
+@injectable
+class RegisterModule {
   @Named('baseUrl')
-  String get baseUrl => 'https://dev-mobileapi.digimitra.id';
-
+  String get baseUrl => 'https://jsonplaceholder.typicode.com';
   @lazySingleton
   Dio dio(@Named('baseUrl') String baseUrl) {
-    final _dio = Dio();
-    final options = BaseOptions(
-      connectTimeout: 120000,
-      receiveTimeout: 60000,
-      sendTimeout: 60000,
-      headers: null,
-      baseUrl: baseUrl,
-    );
+    Dio _dio = Dio();
+    BaseOptions options = BaseOptions(
+        connectTimeout: 120000, receiveTimeout: 60000, sendTimeout: 60000);
+
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
       client.badCertificateCallback =
@@ -34,16 +28,19 @@ abstract class RegisterModule {
     };
     // options.
     _dio.options = options;
+    var _token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3ODIwMzE2MzMiLCJpYXQiOjE2Mjg1NzM0MDMsImV4cCI6MTYyOTE3ODIwM30.0Ed-bfARHUoLkAdqx837g8scOQ6KNEKQO9yzJyfKSMA";
+
+    _dio.options.headers['content-Type'] = 'application/json';
+    _dio.options.headers["authorization"] = "token $_token";
+
     // if (kDebugMode) {
-    _dio.interceptors.add(
-      LoggerInterceptor(
+    _dio.interceptors.add(LoggerInterceptor(
         requestBody: true,
         request: true,
         requestHeader: true,
         responseBody: true,
-        responseHeader: true,
-      ),
-    );
+        responseHeader: true));
 
     return _dio;
   }
@@ -52,11 +49,5 @@ abstract class RegisterModule {
   Connectivity get connectivity => Connectivity();
 
   @lazySingleton
-  Logger get logger => Logger();
-
-  @lazySingleton
   HiveInterface get hive => Hive;
-
-  @lazySingleton
-  GeolocatorPlatform get geolocator => GeolocatorPlatform.instance;
 }

@@ -1,15 +1,13 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:logger/logger.dart';
 
 class ListUtil<T> {
   late IList<T> items;
-  Logger logger = Logger();
   ListUtil() {
     items = <T>[].lock;
   }
   List<T> addOrReplaceItem(T item, {bool isReplace = false}) {
-    final List<T> addNewItems = items.unlock;
-    if (items.isEmpty) {
+    List<T> addNewItems = items.unlock;
+    if (items.length == 0) {
       addNewItems.add(item);
     } else {
       if (isReplace && items.length > 1) {
@@ -21,8 +19,8 @@ class ListUtil<T> {
   }
 
   IList<T> addOrRenewList(List<T> datas, {int currentPage = 1}) {
-    final List<T> addNewItems = items.unlock;
-    logger.d('addOrRenewList ${items.length}');
+    List<T> addNewItems = items.unlock;
+    print('addOrRenewList ${items.length}');
     if (currentPage == 1) {
       addNewItems.clear();
     }
