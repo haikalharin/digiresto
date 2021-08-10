@@ -104,7 +104,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                   Container(
                     child: Text(
                       "Lokasi sekarang",
-                      style: modiferTempStyle,
+                      style: Styles.modiferTempStyle,
                     ),
                   ),
                   Container(
