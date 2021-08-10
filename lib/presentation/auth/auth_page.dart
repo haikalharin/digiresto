@@ -2,7 +2,9 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -62,7 +64,7 @@ class AuthPage extends StatelessWidget {
                 height: 20,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () => Get.toNamed(Routers.validateOtp),
                 label: 'Lanjut Verifikasi',
               ),
             ],

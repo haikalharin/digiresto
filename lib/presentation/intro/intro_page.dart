@@ -4,6 +4,7 @@ import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/intro/intro_widget.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/route_manager.dart';
@@ -107,7 +108,7 @@ class _IntroPageState extends State<IntroPage> {
               padding: EdgeInsets.all(30),
               child: _currentPage == _intros.length - 1
                   ? CustomButton(
-                      onPressed: () => Get.to(AuthPage()),
+                      onPressed: () => Get.toNamed(Routers.auth),
                       label: 'Mulai Sekarang',
                     )
                   : Row(
