@@ -35,4 +35,6 @@ class Styles {
 
   static TextStyle hintStyle = GoogleFonts.poppins(
       color: AppColors.greyColor1, fontSize: 16, fontWeight: FontWeight.w400);
+  static TextStyle modiferTempStyle = GoogleFonts.poppins(
+      color: AppColors.redYoung, fontSize: 14, fontWeight: FontWeight.w600);
 }
