@@ -1,113 +1,67 @@
-name: boilerplate
-description: A flutter Digiresto created using MobX and Provider.
+name: digiresto
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
-# Read more about versioning at semver.org.
-version: 1.0.8+1
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  bloc: ^7.0.0
+  cached_network_image: ^3.1.0
+  connectivity_plus: ^1.0.6
+  crypto: ^3.0.1
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.0-nullsafety.2
+  dio: ^4.0.0
+  fast_immutable_collections: ^5.1.2
   flutter:
     sdk: flutter
+  flutter_bloc: ^7.1.0
+  flutter_secure_storage: ^4.2.1
+  flutter_svg: ^0.22.0
+  freezed_annotation: any
+  geolocator: ^7.4.0
+  get: ^4.3.4
+  get_it: ^7.2.0
+  google_fonts: ^2.1.0
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  injectable: ^1.4.1
+  intl: ^0.17.0
+  json_annotation: any
+  rxdart: ^0.27.1
+  smooth_page_indicator: ^0.3.0-nullsafety.0
+  uuid: ^3.0.4
 
-  flutter_localizations:
-    sdk: flutter
-  flutter_cupertino_localizations: ^1.0.1
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
-
-  # The following adds the shared pref as a dependency in your application
-  shared_preferences: ^0.5.10
-
-  # A composable, Future-based library for making HTTP requests.
-  http: ^0.12.2
-
-  # Flogs, a powerful logging framework
-  f_logs: ^1.2.2
-
-  # MobX is a library for reactively managing the state of your applications. Use the power of
-  # observables, actions, and reactions to supercharge your Dart and Flutter apps.
-  mobx: ^1.2.1+2
-  flutter_mobx: ^1.1.0+2
-
-  # An helper to easily exposes a value using InheritedWidget without having to write one.
-  provider: ^4.3.2+1
-
-  # String validation and sanitization for Dart. Dart 2-compatible version of validator
-  validators: ^2.0.1
-
-  # A powerful Http client for Dart
-  dio: 3.0.10
-
-  # A flexible widget for user notification. Customize your text, button, duration, animations
-  # and much more. For Android devs, it is made to replace Snackbars and Toasts.
-  flushbar: ^1.10.4
-
-  # Material Dialog
-  material_dialog: ^0.0.9
-
-  # This package provides internationalization and localization facilities, including message
-  # translation, plurals and genders, date/number formatting and parsing, and bidirectional text.
-  intl: ^0.16.1
-  # Dependency injection
-  inject:
-    git:
-      url: https://github.com/google/inject.dart.git
-      path: package/inject
-      ref: 7c3cbf6
-  url_launcher: ^5.7.10
-  otp_text_field: ^1.0.2
-  webview_flutter: ^1.0.7
-  firebase_remote_config: ^0.6.0
-  firebase_core: ^0.7.0
-  firebase_auth: ^0.20.0+1
-  cloud_firestore:  ^0.16.0
-  package_info: ^0.4.3+4
-  google_maps_flutter: ^1.2.0
-  geolocator: ^5.3.0
-  fluttertoast: ^7.1.6
-  flutter_easyloading: ^2.2.2
-  permission_handler: 5.1.0+2
-  pinch_zoom: ^0.0.4
-  flutter_webview_plugin: ^0.3.11
-  device_info: ^1.0.0
 dev_dependencies:
+  bloc_test: ^8.1.0
+  build_runner: any
   flutter_test:
     sdk: flutter
+  freezed: any
+  injectable_generator: any
+  json_serializable: any
+  lint: ^1.5.3
+  logger: ^1.0.0
+  mocktail: ^0.1.4
 
-  # The following adds the launcher icon support to your application.
-  # run below mentioned commands to generate launcher icons
-  # flutter packages get
-  # flutter packages pub run flutter_launcher_icons:main
-  flutter_launcher_icons: ^0.7.5
-  mobx_codegen: ^1.1.0+1
-  json_serializable: ^3.4.1
-  build_runner: ^1.10.2
-  source_gen: 0.9.6
-  analyzer: ^0.39.12
-  inject_generator:
-    git:
-      url: https://github.com/google/inject.dart.git
-      path: package/inject_generator
-      ref: 7c3cbf6
-
-flutter_icons:
-  image_path: "assets/icons/ic_launcher.png"
-  android: true
-  ios: true
-
-
-# For information on the generic Dart art of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
-
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
 
@@ -115,39 +69,32 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
-    - assets/icons/
-    - assets/lang/
-
+    - assets/logo_digiresto.png
+    - assets/intro_1.svg
+    - assets/intro_2.svg
+    - assets/intro_3.svg
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
-
+  # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.io/assets-and-images/#from-packages
-
+  # https://flutter.dev/assets-and-images/#from-packages
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: ProductSans
-      fonts:
-        - asset: assets/fonts/Product-Sans-Regular.ttf
-        - asset: assets/fonts/Product-Sans-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Product-Sans-Bold.ttf
-          weight: 700
-
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppins_regular.ttf
-        - asset: assets/fonts/poppins_italic.ttf
-        - asset: assets/fonts/poppins_bold.ttf
-        - asset: assets/fonts/poppins_semibold.ttf
-
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.io/custom-fonts/#from-packages
+  # see https://flutter.dev/custom-fonts/#from-packages
