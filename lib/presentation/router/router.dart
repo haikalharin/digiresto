@@ -1,5 +1,4 @@
 import 'package:digiresto/presentation/auth/auth_page.dart';
-import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:digiresto/presentation/home/add_location.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_address.dart';
@@ -15,7 +14,6 @@ class Routers {
   static const String landing = '/';
   static const String intro = '/intro';
   static const String auth = '/auth';
-  static const String validateOtp = '/validateotp';
   static const String home = '/home';
   static const String homePromoUrl = '/home_promo_url';
   static const String homeAllPromo = '/home_all_promo';
@@ -33,10 +31,6 @@ class Routers {
     GetPage(
       name: Routers.auth,
       page: () => AuthPage(),
-    ),
-    GetPage(
-      name: Routers.validateOtp,
-      page: () => ValidateOtpPage(),
     ),
     GetPage(
       name: Routers.home,

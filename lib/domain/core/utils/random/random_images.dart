@@ -12,7 +12,7 @@ class RandomImages {
     return AssetImage(Assets.food + randomNumber.toString() + ".png");
   }
 
-  static dynamic getImageUrl(String img) {
+  static dynamic getImageUrl(String? img) {
     if (img == null || img == "") {
       return getImage();
     } else {
@@ -24,7 +24,7 @@ class RandomImages {
     }
   }
 
-  static dynamic getImageUrlDefault(String img, String defaultImg) {
+  static dynamic getImageUrlDefault(String? img, String? defaultImg) {
     if (img == null || img == "") {
       if (defaultImg == null || defaultImg == "") {
         return getImage();

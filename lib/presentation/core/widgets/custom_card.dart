@@ -9,8 +9,8 @@ class CustomCard extends StatelessWidget {
 
   const CustomCard({
     Key? key,
-    this.padding = const EdgeInsets.all(defaulCardPadding),
-    this.margin = const EdgeInsets.symmetric(horizontal: defaultMargin),
+    this.padding = const EdgeInsets.all(Dimens.defaulCardPadding),
+    this.margin = const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
     this.child = const SizedBox(
       width: double.infinity,
     ),
@@ -29,7 +29,7 @@ class CustomCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: shadowColor.withOpacity(0.05),
+            color: AppColors.shadowColor.withOpacity(0.05),
             spreadRadius: 4,
             blurRadius: 12,
             offset: const Offset(0, 4),

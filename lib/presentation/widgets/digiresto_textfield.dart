@@ -29,20 +29,18 @@ class DigirestoTextFieldWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          title != null
-              ? Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontFamily: "roboto",
-                      color: Colors.black54,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                )
-              : Container(),
+          Container(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontFamily: "roboto",
+                color: Colors.black54,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
           Container(
             padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
             child: TextField(

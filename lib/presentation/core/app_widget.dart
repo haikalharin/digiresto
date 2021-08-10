@@ -1,3 +1,4 @@
+import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class AppWidget extends StatelessWidget {
       enableLog: false,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: mainMaterialColor,
+        primarySwatch: AppColors.mainMaterialColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       getPages: Routers().routers,

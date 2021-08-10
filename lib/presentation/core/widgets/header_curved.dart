@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class HeaderCurvedContainer extends CustomPainter {
   final double height;
   final Color color;
-  HeaderCurvedContainer({this.height = 120, this.color = mainColor});
+  HeaderCurvedContainer({this.height = 120, this.color = AppColors.mainColor});
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()..color = color;
@@ -26,7 +26,7 @@ class HeaderCurvedWidget extends StatelessWidget {
   const HeaderCurvedWidget({
     Key? key,
     this.height = 120,
-    this.color = mainColor,
+    this.color = AppColors.mainColor,
   }) : super(key: key);
 
   @override

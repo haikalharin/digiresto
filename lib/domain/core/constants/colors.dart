@@ -26,10 +26,38 @@ class AppColors {
   static final Color backgroundPink = Color(0xFFFFE2E4);
   static final Color borderPink = Color(0xFFFFA5AA);
 
-
   static const Map<int, Color> grey = const <int, Color>{
     25: const Color(0xFFFAFAFA),
     50: const Color(0xFFF3F3F3),
     100: const Color(0xFF7A7A7A),
   };
+
+  static const Color mainColor = Color(0xFFD12B34);
+  static const Color mainColor2 = Color(0xFF970B14);
+  static const Color backgroundColor = Color(0xFFB01A21);
+  static const Color greyColor = Color(0xFFC9C9C9);
+  static const Color greyColor1 = Color(0xFF575454);
+  static const Color greyColor2 = Color(0xFFC4C4C4);
+  static const Color shadowColor = Color(0xFF000000);
+  static const Color badgeContentColor = Color(0xFFD10000);
+  static const Color activeDotColor = Color(0xFFFFC800);
+  static const Color dotColor = Colors.white;
+  static const Color dividerColor = Color(0xFFEEEEEE);
+  static const Color inputFillColor = Color(0xFFF7F5F7);
+  static const Color yellowButtonColor = Color(0xFFFFC800);
+
+  static Map<int, Color> mainColorSwatch = {
+    50: mainColor.withOpacity(.1),
+    100: mainColor.withOpacity(.2),
+    200: mainColor.withOpacity(.3),
+    300: mainColor.withOpacity(.4),
+    400: mainColor.withOpacity(.5),
+    500: mainColor.withOpacity(.6),
+    600: mainColor.withOpacity(.7),
+    700: mainColor.withOpacity(.8),
+    800: mainColor.withOpacity(.9),
+    900: mainColor.withOpacity(1),
+  };
+  static MaterialColor mainMaterialColor =
+      MaterialColor(mainColor.value, mainColorSwatch);
 }

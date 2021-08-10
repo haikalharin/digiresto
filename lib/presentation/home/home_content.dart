@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
@@ -128,7 +129,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           }
         },
         child: Container(
-            padding: EdgeInsets.only(right: 5, left: 5),
+            padding: EdgeInsets.only(right: 20, left: 20),
             child: data.promoBanner != null
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
@@ -162,7 +163,9 @@ class HomeContentScreen extends GetView<HomeContentController> {
     return Obx(() => Column(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
+              padding: EdgeInsets.only(
+                bottom: 10,
+              ),
               height: MediaQuery.of(Get.context!).size.height / 3 - 20,
               width: double.infinity,
               child: PageView(
@@ -595,88 +598,96 @@ class HomeContentScreen extends GetView<HomeContentController> {
 
   Widget _singleAdvertisement() {
     return Container(
-        height: 200,
-        child: Container(
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(7.0),
+      margin: EdgeInsets.all(Dimens.defaultMargin),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(7.0),
+      ),
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+            child: Image(
+              image: AssetImage(Assets.bgHomeMitra),
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: 96,
+              alignment: Alignment.center,
+            ),
           ),
-          child: Column(
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    topRight: Radius.circular(8.0)),
-                child: Image(
-                  image: AssetImage(Assets.bgHomeMitra),
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  height: 96,
-                  alignment: Alignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 5, left: 10),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Bergabung menjadi Mitra",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 5, left: 10),
+                      width: MediaQuery.of(Get.context!).size.width / 2,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Terima pembayaran nontunai dan melakukan pengiriman instant menjadi lebih mudah",
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 5, left: 10),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Bergabung menjadi Mitra",
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 5, left: 10),
-                        width: MediaQuery.of(Get.context!).size.width / 2,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Terima pembayaran nontunai dan melakukan pengiriman instant menjadi lebih mudah",
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                    ],
+              Expanded(
+                flex: 2,
+                child: Container(
+                  padding: EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    width: MediaQuery.of(Get.context!).size.width / 2 - 40,
+                    height: 45,
+                    child: RaisedButton(
+                        onPressed: () {
+                          LaunchUrl.run("https://www.digiresto.co.id/");
+                        },
+                        color: AppColors.redYoung,
+                        child: Text("Selengkapnya",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(25.0))),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                      width: MediaQuery.of(Get.context!).size.width / 2 - 40,
-                      height: 45,
-                      child: RaisedButton(
-                          onPressed: () {
-                            LaunchUrl.run("https://www.digiresto.co.id/");
-                          },
-                          color: AppColors.redYoung,
-                          child: Text("Selengkapnya",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white)),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(25.0))),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
-        ));
+          SizedBox(
+            height: 50,
+          ),
+        ],
+      ),
+    );
   }
 
   _showDetailImage(String imageUrl) {

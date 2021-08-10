@@ -1,16 +1,21 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class AuthScafold extends StatelessWidget {
   final String title;
   final Widget child;
   final Widget? suffixWidget;
+  final double? headerCurvedHeight;
+  final void Function()? onNext;
   const AuthScafold({
     Key? key,
     required this.child,
     this.suffixWidget,
     this.title = '',
+    this.headerCurvedHeight,
+    this.onNext,
   }) : super(key: key);
 
   @override
@@ -19,12 +24,12 @@ class AuthScafold extends StatelessWidget {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceTopBar = MediaQuery.of(context).padding.top;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
           HeaderCurvedWidget(
-            height: deviceHeight * 0.4,
-            color: mainColor.withOpacity(0.7),
+            height: headerCurvedHeight ?? deviceHeight * 0.4,
+            color: AppColors.mainColor.withOpacity(0.7),
           ),
           Column(
             children: [
@@ -32,7 +37,7 @@ class AuthScafold extends StatelessWidget {
                 height: deviceTopBar,
               ),
               Padding(
-                padding: EdgeInsets.all(defaultMargin),
+                padding: EdgeInsets.all(Dimens.defaultMargin),
                 child: Stack(
                   children: [
                     Row(
@@ -41,8 +46,8 @@ class AuthScafold extends StatelessWidget {
                         SizedBox(
                           width: deviceWidth * 0.4,
                           child: Text(
-                            'Daftar',
-                            style: titleStyle,
+                            title,
+                            style: Styles.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -52,6 +57,7 @@ class AuthScafold extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
+                          onTap: () => Get.back(),
                           child: Icon(
                             Icons.arrow_back_rounded,
                             color: Colors.white,
@@ -60,7 +66,7 @@ class AuthScafold extends StatelessWidget {
                         ),
                         suffixWidget ??
                             InkWell(
-                              onTap: () {},
+                              onTap: onNext,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 10,
@@ -68,7 +74,7 @@ class AuthScafold extends StatelessWidget {
                                 ),
                                 child: Text(
                                   'LANJUT',
-                                  style: loginDescStyle,
+                                  style: Styles.loginDescStyle,
                                 ),
                               ),
                             ),

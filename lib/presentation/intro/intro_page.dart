@@ -1,6 +1,5 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/intro/intro.dart';
-import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/intro/intro_widget.dart';
@@ -54,12 +53,12 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
           HeaderCurvedWidget(
             height: MediaQuery.of(context).size.height * 0.55,
-            color: mainColor.withOpacity(0.7),
+            color: AppColors.mainColor.withOpacity(0.7),
           ),
           Column(
             children: [
@@ -84,7 +83,7 @@ class _IntroPageState extends State<IntroPage> {
               height: MediaQuery.of(context).size.width * 0.65,
               width: MediaQuery.of(context).size.width * 0.7,
               decoration: BoxDecoration(
-                color: mainColor2.withOpacity(0.5),
+                color: AppColors.mainColor2.withOpacity(0.5),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(
                     MediaQuery.of(context).size.width * 0.7,
@@ -119,8 +118,8 @@ class _IntroPageState extends State<IntroPage> {
                             controller: _controller,
                             count: _intros.length,
                             effect: WormEffect(
-                              activeDotColor: activeDotColor,
-                              dotColor: dotColor,
+                              activeDotColor: AppColors.activeDotColor,
+                              dotColor: AppColors.dotColor,
                               dotHeight: 8,
                               dotWidth: 8,
                             ),
