@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -75,59 +76,53 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
           Get.offNamed(Routers.home);
         },
         child: Container(
+          //height: 70,
+          padding: EdgeInsets.only(top: 16, bottom: 16),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                height: 70,
-                padding: EdgeInsets.only(top: 6, bottom: 6),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 5,
-                      ),
-                      child: new IconButton(
-                        onPressed: () {},
-                        icon: ImageIcon(AssetImage(Assets.iconGps),
-                            size: 20, color: AppColors.red),
-                      ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 5,
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Text(
-                            "Gunakan lokasi sekarang",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: AppColors.red,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 5),
-                          width: MediaQuery.of(Get.context!).size.width - 80,
-                          child: Text(
-                            "",
-                            // _userStore?.activeAddress ?? "",
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                    child: new IconButton(
+                      onPressed: () {},
+                      icon: ImageIcon(AssetImage(Assets.iconGps),
+                          size: 20, color: AppColors.red),
                     ),
-                  ],
-                ),
+                  ),
+                  Text("")
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                      "Lokasi sekarang",
+                      style: modiferTempStyle,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 5),
+                    width: MediaQuery.of(Get.context!).size.width - 80,
+                    child: Text(
+                      "adfas",
+                      // _userStore?.activeAddress ?? "",
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      softWrap: true,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
