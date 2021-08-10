@@ -1,8 +1,7 @@
-// import 'package:logger/debugPrintt';
-import 'dart:math' as math;
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+// import 'package:logger/debugPrintt';
+import 'dart:math' as math;
 
 class LoggerInterceptor extends Interceptor {
   // Print request [Options]

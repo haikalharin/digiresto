@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import './utils/common_util.dart';
+
 import './failures.dart';
+import 'utils/common_util.dart';
 
 class ValueValidators {
   static Either<ValueFailure<String>, String> validateMaxStringLength(
@@ -94,11 +95,10 @@ class ValueValidators {
 
   static Either<ValueFailure<String>, String> validateDate(
       DateTime input, String pattern) {
-    final String? sDate = CommonUtils.dateFormat(pattern, input);
-    if (sDate == null) {
+    String? sDate = CommonUtils.dateFormat(pattern, input);
+    if (sDate == null)
       return left(
           ValueFailure.invalidDateTime(failedValue: input, pattern: pattern));
-    }
     return right(sDate);
   }
 
@@ -107,26 +107,26 @@ class ValueValidators {
     if (workingShiftName != null && sTimeOn != null && sTimeOff != null) {
       return right('$workingShiftName ($sTimeOn - $sTimeOff)');
     }
-    return left(const ValueFailure.empty(failedValue: '_ (__:__)'));
+    return left(ValueFailure.empty(failedValue: '_ (__:__)'));
   }
 
   static Either<ValueFailure<String>, String> validateLeaveDuration(
       int duration, int durationDayOff, bool includeDayOff) {
     if (duration > 0) {
       if (includeDayOff) {
-        final int sumDuration = duration + durationDayOff;
+        int sumDuration = duration + durationDayOff;
         return right('$sumDuration');
       } else {
         return right('$duration');
       }
     }
-    return left(const ValueFailure.empty(failedValue: 'duration 0'));
+    return left(ValueFailure.empty(failedValue: 'duration 0'));
   }
 
   static Either<ValueFailure<double>, double> validateDuration(
       double duration) {
     if (duration <= 0) {
-      return left(const ValueFailure.emptyObject());
+      return left(ValueFailure.emptyObject());
     }
     return right(duration);
   }
@@ -134,7 +134,7 @@ class ValueValidators {
   static Either<ValueFailure<double>, double> validateBreak(
       double overtimeBreak) {
     if (overtimeBreak < 0) {
-      return left(const ValueFailure.emptyObject());
+      return left(ValueFailure.emptyObject());
     }
     return right(overtimeBreak);
   }
@@ -144,11 +144,10 @@ class ValueValidators {
     String? firstValue,
     int length = 6,
   }) {
-    if (firstValue != null && value != firstValue) {
+    if (firstValue != null && value != firstValue)
       return left(ValueFailure.confirmationNotMatch(failedValue: value));
-    } else if (value.length != length) {
+    else if (value.length != length)
       return left(ValueFailure.lengthTooShort(failedValue: value, min: length));
-    }
     return right(value);
   }
 }

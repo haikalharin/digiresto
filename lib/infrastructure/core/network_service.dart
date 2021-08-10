@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/dio.dart';
-import 'package:logger/logger.dart';
-import 'package:injectable/injectable.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 @LazySingleton(as: INetworkService)
 class NetworkService implements INetworkService {
@@ -61,7 +61,7 @@ class NetworkService implements INetworkService {
           case DioErrorType.connectTimeout:
             throw TimeOutException();
           case DioErrorType.other:
-            throw NetworkException(e.response!.data);
+            throw NetworkException(message: e.response!.data);
           default:
             throw ServerException();
         }
@@ -113,7 +113,7 @@ class NetworkService implements INetworkService {
           case DioErrorType.connectTimeout:
             throw TimeOutException();
           case DioErrorType.other:
-            throw NetworkException(e.response!.data);
+            throw NetworkException(message: e.response!.data);
           default:
             throw ServerException();
         }
@@ -165,7 +165,7 @@ class NetworkService implements INetworkService {
           case DioErrorType.connectTimeout:
             throw TimeOutException();
           case DioErrorType.other:
-            throw NetworkException(e.response!.data);
+            throw NetworkException(message: e.response!.data);
           default:
             throw ServerException();
         }
@@ -211,7 +211,7 @@ class NetworkService implements INetworkService {
           case DioErrorType.connectTimeout:
             throw TimeOutException();
           case DioErrorType.other:
-            throw NetworkException(e.response!.data);
+            throw NetworkException(message: e.response!.data);
           default:
             throw ServerException();
         }
