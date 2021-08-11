@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
@@ -97,13 +98,14 @@ class HomeContentScreen extends GetView<HomeContentController> {
               child: Column(
                 children: [
                   _staticBanner(),
+                  //_buildPageIndicator(true),
                   // _orderStore!.listStaticBanner != null
                   //     ? _staticBanner()
                   //     : Container(),
                   _trackOrder(),
                   _groupFoodRow1(),
                   _groupFoodRow2(),
-                  // _hotPromo(),
+                  //_hotPromo(),
                   //_historyOrder(),
                   _singleAdvertisement(),
                 ],
@@ -177,25 +179,35 @@ class HomeContentScreen extends GetView<HomeContentController> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 5),
+              padding: EdgeInsets.only(left: 10, top: 5, right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(left: 10),
+                children: [
+                  Row(
+                    children: [
+                      for (int i = 0;
+                          i < controller.listStaticBanner.length;
+                          i++)
+                        i == controller.slideIndex.value
+                            ? _buildPageIndicator(true)
+                            : _buildPageIndicator(false),
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {},
                     child: Row(
                       children: [
-                        // for (int i = 0;
-                        //     i < _orderStore!.listStaticBanner!.length;
-                        //     i++)
-                        //   i == slideIndex
-                        //       ? _buildPageIndicator(true)
-                        //       : _buildPageIndicator(false),
+                        Text(
+                          "Lihat semua promo",
+                          style: AppFont.textRed14Bold,
+                        ),
+                        SizedBox(width: 9),
+                        Image(
+                          image: new AssetImage(AppAssets.iconForwardRed),
+                          height: 12,
+                        ),
                       ],
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
                   )
                 ],
               ),
@@ -253,7 +265,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
         padding: EdgeInsets.only(left: 10, right: 10),
         child: Row(
           children: [
-            ImageIcon(AssetImage(Assets.iconMarkerMove),
+            ImageIcon(AssetImage(AppAssets.iconMarkerMove),
                 size: 24, color: AppColors.red),
             Container(
               width: MediaQuery.of(Get.context!).size.width - 50,
@@ -317,7 +329,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: new AssetImage(Assets.iconHomeNearby),
+                      image: new AssetImage(AppAssets.iconHomeNearby),
                       height: 60,
                     ),
                     Text(
@@ -346,7 +358,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: new AssetImage(Assets.iconHomeDiscount),
+                      image: new AssetImage(AppAssets.iconHomeDiscount),
                       height: 60,
                     ),
                     Text(
@@ -387,7 +399,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: new AssetImage(Assets.iconFrozenFood),
+                      image: new AssetImage(AppAssets.iconFrozenFood),
                       height: 60,
                     ),
                     Text(
@@ -416,7 +428,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: new AssetImage(Assets.iconIndPastiBisa),
+                      image: new AssetImage(AppAssets.iconIndPastiBisa),
                       height: 60,
                     ),
                     Text(
@@ -607,7 +619,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                     topLeft: Radius.circular(8.0),
                     topRight: Radius.circular(8.0)),
                 child: Image(
-                  image: AssetImage(Assets.bgHomeMitra),
+                  image: AssetImage(AppAssets.bgHomeMitra),
                   fit: BoxFit.fill,
                   width: double.infinity,
                   height: 96,

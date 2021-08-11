@@ -49,7 +49,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   Widget cartBadge() {
     return new Stack(children: <Widget>[
       new Image.asset(
-        Assets.iconMenuCart,
+        AppAssets.iconMenuCart,
         width: 24,
         height: 24,
       ),
@@ -105,12 +105,12 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     final _bottomNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
           icon: new Image.asset(
-            Assets.iconMenuHome,
+            AppAssets.iconMenuHome,
             width: 24,
             height: 24,
           ),
-          activeIcon:
-              new Image.asset(Assets.iconMenuHomeActive, width: 24, height: 24),
+          activeIcon: new Image.asset(AppAssets.iconMenuHomeActive,
+              width: 24, height: 24),
           label: 'Home'),
       BottomNavigationBarItem(
           //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
@@ -119,20 +119,20 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
           label: 'Cart'),
       BottomNavigationBarItem(
           icon: new Image.asset(
-            Assets.iconMenuCredit,
+            AppAssets.iconMenuCredit,
             width: 24,
             height: 24,
           ),
-          activeIcon: new Image.asset(Assets.iconMenuCreditActive,
+          activeIcon: new Image.asset(AppAssets.iconMenuCreditActive,
               width: 24, height: 24),
           label: 'Credit'),
       BottomNavigationBarItem(
           icon: new Image.asset(
-            Assets.iconMenuProfile,
+            AppAssets.iconMenuProfile,
             width: 24,
             height: 24,
           ),
-          activeIcon: new Image.asset(Assets.iconMenuProfileActive,
+          activeIcon: new Image.asset(AppAssets.iconMenuProfileActive,
               width: 24, height: 24),
           label: 'Profile'),
     ];

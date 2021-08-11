@@ -72,7 +72,7 @@ class HomeTrackOrderWidget extends StatelessWidget {
                         child: IconButton(
                           padding: EdgeInsets.zero,
                           icon: new Image.asset(
-                            Assets.iconDeliveryNotification,
+                            AppAssets.iconDeliveryNotification,
                             width: 44,
                             height: 44,
                           ),

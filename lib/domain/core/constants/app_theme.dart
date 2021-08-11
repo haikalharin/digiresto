@@ -23,11 +23,11 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
-import 'font_family.dart';
+import 'font.dart';
 
 final ThemeData theme = ThemeData();
 final ThemeData themeDataLight = new ThemeData(
-  fontFamily: FontFamily.productSans,
+  fontFamily: AppFont.productSans,
   brightness: Brightness.light,
   primarySwatch: MaterialColor(AppColors.orange[500]!.value, AppColors.orange),
   primaryColor: AppColors.orange[500],
@@ -37,7 +37,7 @@ final ThemeData themeDataLight = new ThemeData(
 );
 
 final ThemeData themeDataDark = ThemeData(
-  fontFamily: FontFamily.productSans,
+  fontFamily: AppFont.productSans,
   brightness: Brightness.dark,
   primaryColor: AppColors.orange[500],
   primaryColorBrightness: Brightness.dark,

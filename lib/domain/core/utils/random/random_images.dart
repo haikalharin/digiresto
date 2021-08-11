@@ -9,7 +9,7 @@ class RandomImages {
   static AssetImage getImage() {
     Random random = new Random();
     int randomNumber = random.nextInt(9);
-    return AssetImage(Assets.food + randomNumber.toString() + ".png");
+    return AssetImage(AppAssets.food + randomNumber.toString() + ".png");
   }
 
   static dynamic getImageUrl(String img) {
@@ -29,7 +29,7 @@ class RandomImages {
       if (defaultImg == null || defaultImg == "") {
         return getImage();
       } else {
-        return AssetImage(Assets.food + defaultImg.toString() + ".png");
+        return AssetImage(AppAssets.food + defaultImg.toString() + ".png");
       }
     } else {
       if (img.contains('http') || img.contains('https')) {

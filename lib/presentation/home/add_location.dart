@@ -21,9 +21,9 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   LatLng? _lastMapPosition;
   // MapStore? _mapStore;
   // UserStore? _userStore;
-  ImageIcon marker =
-      ImageIcon(AssetImage(Assets.iconMarker), size: 36, color: AppColors.red);
-  ImageIcon markerMove = ImageIcon(AssetImage(Assets.iconMarkerMove),
+  ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
+      size: 36, color: AppColors.red);
+  ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
       size: 36, color: AppColors.red);
   bool isMarkerMove = false;
   bool isMarkerClicked = false;
@@ -264,7 +264,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
-                  child: ImageIcon(AssetImage(Assets.iconGps),
+                  child: ImageIcon(AssetImage(AppAssets.iconGps),
                       size: 20, color: AppColors.red),
                 ),
                 Text(
@@ -344,7 +344,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
               Container(
                 alignment: Alignment.bottomRight,
                 child: new IconButton(
-                  icon: ImageIcon(AssetImage(Assets.iconGps),
+                  icon: ImageIcon(AssetImage(AppAssets.iconGps),
                       size: 36, color: AppColors.red),
                   onPressed: () {
                     _getCurrentLocation();

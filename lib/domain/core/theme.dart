@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'constants/colors.dart';
-
 const Color mainColor = Color(0xFFD12B34);
 const Color mainColor2 = Color(0xFF970B14);
 const Color backgroundColor = Color(0xFFB01A21);
@@ -66,6 +64,3 @@ TextStyle inputStyle = GoogleFonts.poppins(
 
 TextStyle hintStyle = GoogleFonts.poppins(
     color: greyColor1, fontSize: 16, fontWeight: FontWeight.w400);
-
-TextStyle modiferTempStyle = GoogleFonts.poppins(
-    color: AppColors.redYoung, fontSize: 14, fontWeight: FontWeight.w600);
