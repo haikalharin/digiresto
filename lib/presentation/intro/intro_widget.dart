@@ -25,7 +25,7 @@ class IntroWidget extends StatelessWidget {
               children: [
                 Text(
                   intro.title,
-                  style: introTitleStyle,
+                  style: Styles.introTitleStyle,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -33,7 +33,7 @@ class IntroWidget extends StatelessWidget {
                 ),
                 Text(
                   intro.description,
-                  style: introDescStyle,
+                  style: Styles.introDescStyle,
                   textAlign: TextAlign.center,
                 ),
               ],

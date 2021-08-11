@@ -23,7 +23,7 @@ class CustomCheckBox extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: value ? mainColor : greyColor,
+                color: value ? AppColors.mainColor : AppColors.greyColor,
               ),
               borderRadius: BorderRadius.circular(2),
             ),
@@ -44,7 +44,7 @@ class CustomCheckBox extends StatelessWidget {
           ),
           Text(
             label,
-            style: checkBoxLabelStyle,
+            style: Styles.checkBoxLabelStyle,
           ),
         ],
       ),

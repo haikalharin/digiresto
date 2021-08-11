@@ -21,7 +21,7 @@ class CustomScafold extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: mainColor,
+        statusBarColor: AppColors.mainColor,
       ),
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -31,9 +31,9 @@ class CustomScafold extends StatelessWidget {
               height: MediaQuery.of(context).padding.top,
             ),
             Container(
-              color: mainColor,
+              color: AppColors.mainColor,
               padding: const EdgeInsets.all(
-                defaultMargin,
+                Dimens.defaultMargin,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +53,7 @@ class CustomScafold extends StatelessWidget {
                   Expanded(
                     child: Text(
                       title,
-                      style: titleStyle,
+                      style: Styles.titleStyle,
                     ),
                   ),
                   suffixWidget,

@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       autovalidateMode: autovalidateMode,
       controller: controller,
-      style: inputStyle,
+      style: Styles.inputStyle,
       decoration: InputDecoration(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
         ),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          borderSide: BorderSide(color: inputFillColor, width: 0.7),
+          borderSide: BorderSide(color: AppColors.inputFillColor, width: 0.7),
         ),
         errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -39,11 +39,11 @@ class CustomTextField extends StatelessWidget {
         ),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          borderSide: BorderSide(color: inputFillColor, width: 0.7),
+          borderSide: BorderSide(color: AppColors.inputFillColor, width: 0.7),
         ),
         hintText: hintText,
-        hintStyle: hintStyle,
-        fillColor: inputFillColor,
+        hintStyle: Styles.hintStyle,
+        fillColor: AppColors.inputFillColor,
         filled: true,
       ),
       keyboardType: keyboardType,

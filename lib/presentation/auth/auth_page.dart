@@ -1,21 +1,30 @@
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
 
   @override
+  _AuthPageState createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  final _phoneController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
           HeaderCurvedWidget(
             height: 210,
-            color: mainColor.withOpacity(0.7),
+            color: AppColors.mainColor.withOpacity(0.7),
           ),
           Column(
             children: [
@@ -42,19 +51,20 @@ class AuthPage extends StatelessWidget {
             children: [
               Text(
                 'Masuk',
-                style: loginTitleStyle,
+                style: Styles.loginTitleStyle,
               ),
               SizedBox(
                 height: 8,
               ),
               Text(
                 'Pastikan nomor handphone Anda valid untuk proses verifikasi,',
-                style: loginDescStyle,
+                style: Styles.loginDescStyle,
               ),
               SizedBox(
                 height: 35,
               ),
               CustomTextField(
+                controller: _phoneController,
                 hintText: 'Nomor Handphone',
                 keyboardType: TextInputType.phone,
               ),
@@ -62,7 +72,11 @@ class AuthPage extends StatelessWidget {
                 height: 20,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () => Get.to(
+                  ValidateOtpPage(
+                    phoneNumber: _phoneController.text,
+                  ),
+                ),
                 label: 'Lanjut Verifikasi',
               ),
             ],

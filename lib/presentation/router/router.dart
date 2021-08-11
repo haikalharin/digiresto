@@ -1,3 +1,4 @@
+import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/add_location.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_address.dart';
@@ -12,6 +13,7 @@ import 'package:get/route_manager.dart';
 class Routers {
   static const String landing = '/';
   static const String intro = '/intro';
+  static const String auth = '/auth';
   static const String home = '/home';
   static const String homePromoUrl = '/home_promo_url';
   static const String homeAllPromo = '/home_all_promo';
@@ -49,6 +51,10 @@ class Routers {
     GetPage(
       name: Routers.intro,
       page: () => IntroPage(),
+    ),
+    GetPage(
+      name: Routers.auth,
+      page: () => AuthPage(),
     ),
     GetPage(
       name: Routers.home,

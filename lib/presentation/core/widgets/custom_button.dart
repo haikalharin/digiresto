@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
     Key? key,
     this.onPressed,
     required this.label,
-    this.color = yellowButtonColor,
+    this.color = AppColors.yellowButtonColor,
     this.fontColor = Colors.black,
     this.borderColor = Colors.transparent,
     this.gradient,
@@ -36,7 +36,7 @@ class CustomButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: gradient,
-        color: onPressed == null ? greyColor2 : color,
+        color: onPressed == null ? AppColors.greyColor2 : color,
         borderRadius: borderRadius,
         border: Border.all(
           color: borderColor,
@@ -56,7 +56,7 @@ class CustomButton extends StatelessWidget {
         child: child ??
             Text(
               label,
-              style: buttonLabelStyle.copyWith(color: fontColor),
+              style: Styles.buttonLabelStyle.copyWith(color: fontColor),
             ),
       ),
     );

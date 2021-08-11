@@ -7,7 +7,7 @@ class CustomCarousel extends StatelessWidget {
     required this.count,
     required this.builder,
     required this.aspectRatio,
-    this.spacing = defaultMargin * 2,
+    this.spacing = Dimens.defaultMargin * 2,
     this.onChange,
     this.controller,
   }) : super(key: key);
