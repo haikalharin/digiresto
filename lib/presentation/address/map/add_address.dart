@@ -1,37 +1,38 @@
 import 'dart:async';
 
 import 'package:digiresto/domain/core/constants/assets.dart';
-import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/core/utils/locale/app_localization.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
-import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomeAddLocationScreen extends StatefulWidget {
+class AddAddressScreen extends StatefulWidget {
   @override
-  State<HomeAddLocationScreen> createState() => HomeAddLocationScreenState();
+  State<AddAddressScreen> createState() => AddAddressScreenState();
 }
 
-class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
-  GoogleMapController? mapController;
-  LatLng? _lastMapPosition;
-  // MapStore? _mapStore;
-  // UserStore? _userStore;
+class AddAddressScreenState extends State<AddAddressScreen> {
+  final profileCancel = 'Cancel';
+  late GoogleMapController mapController;
+  late LatLng _lastMapPosition;
+  // MapStore _mapStore;
+  // UserStore _userStore;
   ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
       size: 36, color: AppColors.red);
   ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
       size: 36, color: AppColors.red);
   bool isMarkerMove = false;
   bool isMarkerClicked = false;
-  Geocode? _geocode;
+  late Geocode _geocode;
 
-  //final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  final Geolocator geolocator = Geolocator();
   final LatLng _center = const LatLng(-6.175483, 106.826852);
+  final _nameController = TextEditingController();
   final _addressController = TextEditingController();
+  bool isSelectedDefault = false;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -43,6 +44,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
       isMarkerMove = true;
       isMarkerClicked = false;
     });
+    //print(_lastMapPosition);
   }
 
   void _onCameraMoveEnd() {
@@ -58,22 +60,17 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   }
 
   _getCurrentLocation() {
-    Loading.show();
-    print("get current location deefault gps");
-    //final Geolocator geolocator = Geolocator()..forceAndroidLocationManager = true;
     Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.best,
             forceAndroidLocationManager: true)
         .then((Position position) {
-      Loading.dismiss();
-      mapController!.animateCamera(
+      mapController.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
               target: LatLng(position.latitude, position.longitude), zoom: 15),
         ),
       );
     }).catchError((e) {
-      Loading.dismiss();
       print(e);
     });
   }
@@ -89,36 +86,63 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
     super.didChangeDependencies();
     // _mapStore = Provider.of<MapStore>(context);
     // _userStore = Provider.of<UserStore>(context);
-    _getCurrentLocation();
   }
 
   void getGeocode() {
     Loading.show();
-    // _mapStore!.getGeocode({
-    //   "latitude": _lastMapPosition!.latitude.toString(),
-    //   "longitude": _lastMapPosition!.longitude.toString()
+    // _mapStore.getGeocode({
+    //   "latitude": _lastMapPosition.latitude.toString(),
+    //   "longitude": _lastMapPosition.longitude.toString()
     // }).then((res) {
-    //   Loading.dismiss();
     //   setState(() {
     //     _geocode = res;
     //     isMarkerClicked = true;
     //   });
-    //   _addressController.text = _geocode!.formattedAddress!;
-    // }).catchError((err) {
-    //   Ctoast.show("failed get addrress");
+    //   _addressController.text = _geocode.formattedAddress;
     //   Loading.dismiss();
-    //   print("error response: " + err);
+    // }).catchError((err) {
+    //   Loading.dismiss();
+    //   print(err);
+    //   ErrorPopupWidget.showDioError(context, err, null);
     // });
   }
 
   void addAddress() {
-    // _userStore!.setActiveAddress(
-    //     _addressController.text.toString(),
-    //     _lastMapPosition!.latitude.toString(),
-    //     _lastMapPosition!.longitude.toString());
-    // _userStore!.setActivedHomeTab("home");
-    // _userStore!.setProfile(null);
-    Get.toNamed(Routers.home);
+    Loading.show();
+
+    // _userStore.addAddress({
+    //   "wa_id": _userStore.profile.mobilePhone,
+    //   "waba_no": Strings.wabaNo,
+    //   "name": _nameController.text.toString(),
+    //   "address": _addressController.text.toString(),
+    //   "latitude": _lastMapPosition.latitude.toString(),
+    //   "longitude": _lastMapPosition.longitude.toString(),
+    //   "is_default": isSelectedDefault,
+    // }).then((res) {
+    //   if (res.id != null) {
+    //     _userStore.getAddress(_userStore.profile.mobilePhone);
+    //     if (_userStore.activeHistoryScreen == 'home.address') {
+    //       Navigator.of(context).pushNamed(Routes.home_all_address);
+    //     } else if (_userStore.activeHistoryScreen == 'profile.address') {
+    //       _userStore.setActivedHomeTab("profile");
+    //       Navigator.of(context).pushNamed(Routes.set_address_list);
+    //     }
+    //     Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
+    //   } else {
+    //     throw ("failed add address");
+    //   }
+    //   Loading.dismiss();
+    // }).catchError((err) {
+    //   Loading.dismiss();
+    //   print(err);
+    //   ErrorPopupWidget.showDioError(context, err, null);
+    // });
+  }
+
+  void changeTic(bool value) {
+    setState(() {
+      isSelectedDefault = value;
+    });
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -137,6 +161,50 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
               content: SingleChildScrollView(
                 child: ListBody(
                   children: <Widget>[
+                    Container(
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: new InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "name",
+                          border: new OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 2,
+                              )),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                            borderSide:
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                            borderSide:
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          //fillColor: Colors.green
+                        ),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        // Only numbers can be entered
+                        validator: (value) {
+                          // if (value.isEmpty) {
+                          //   return 'Please enter your name address';
+                          // }
+                          return null;
+                        },
+                      ),
+                    ),
                     Container(
                       padding: EdgeInsets.only(top: 10),
                       child: TextFormField(
@@ -176,11 +244,53 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                         style: TextStyle(fontSize: 14.0, color: Colors.black),
                         // Only numbers can be entered
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your address';
-                          }
+                          // if (value.isEmpty) {
+                          //   return 'Please enter your address';
+                          // }
                           return null;
                         },
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Row(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isSelectedDefault = !isSelectedDefault;
+                                  });
+                                },
+                                child: isSelectedDefault
+                                    ? Icon(
+                                        Icons.check_box_rounded,
+                                        color: Colors.green,
+                                        size: 30,
+                                      )
+                                    : Icon(
+                                        Icons.check_box_outline_blank,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
+                              ),
+                              SizedBox(width: 5),
+                              Container(
+                                constraints: BoxConstraints(
+                                    minWidth: 200, maxWidth: 300),
+                                child: Text("Default address",
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                     Container(
@@ -196,9 +306,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                                 Navigator.of(context).pop();
                               },
                               color: Colors.white,
-                              child: Text(
-                                  AppLocalizations.of(context)!
-                                      .translate('profile_cancel'),
+                              child: Text(profileCancel,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -217,7 +325,12 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                             height: 40,
                             child: RaisedButton(
                               onPressed: () {
-                                addAddress();
+                                if (_nameController.text.toString().length ==
+                                    0) {
+                                  Ctoast.show("Required name");
+                                } else {
+                                  addAddress();
+                                }
                               },
                               color: AppColors.red,
                               child: Text("Save",
@@ -380,9 +493,10 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                             ),
                             alignment: Alignment.topLeft,
                             child: Text(
-                              _geocode?.formattedAddress != null
-                                  ? _geocode!.formattedAddress.toString()
-                                  : "-",
+                              "",
+                              // _geocode?.formattedAddress != null
+                              //     ? _geocode?.formattedAddress.toString()
+                              //     : "-",
                               style: TextStyle(
                                 fontFamily: "roboto",
                                 color: Colors.black,

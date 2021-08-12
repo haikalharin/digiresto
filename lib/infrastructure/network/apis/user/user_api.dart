@@ -29,28 +29,27 @@ class UserApi {
   // injecting dio instance
   UserApi(this._dioClient, this._restClient);
 
-  Future<UserProfile> getProfile() async {
+  Future<Either<Exception, UserProfile>> getProfile() async {
     try {
       String apiUrl = Endpoints.urlProfile;
       final apiResult = await _dioClient.get(apiUrl);
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      return UserProfile.createUserProfile(userData);
+      return right(UserProfile.createUserProfile(userData));
     } catch (e) {
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<UserBalance> getBalance() async {
+  Future<Either<Exception, UserBalance>> getBalance() async {
     try {
       String apiUrl = Endpoints.urlBalance;
       final apiResult = await _dioClient.get(apiUrl);
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      return UserBalance.createBalance(userData);
+      return right(UserBalance.createBalance(userData));
     } catch (e) {
-      print(e.toString());
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
@@ -74,7 +73,8 @@ class UserApi {
     }
   }
 
-  Future<UserAddAddress> addAddress(Map<String, dynamic> object) async {
+  Future<Either<Exception, UserAddAddress>> addAddress(
+      Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlAddAddress;
       final apiResult = await _dioClient.post(apiUrl, data: {
@@ -91,14 +91,14 @@ class UserApi {
       });
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      return UserAddAddress.createAddAddress(userData);
+      return right(UserAddAddress.createAddAddress(userData));
     } catch (e) {
-      print(e.toString());
-      throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<UserRemoveAddress> removeAddress(Map<String, dynamic> object) async {
+  Future<Either<Exception, UserRemoveAddress>> removeAddress(
+      Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlRemoveAddress;
       final apiResult = await _dioClient.post(apiUrl, data: {
@@ -111,14 +111,13 @@ class UserApi {
       });
       var userData = (apiResult as Map<String, dynamic>)[
           'response']; //mengambil data data didalam jsonObject
-      return UserRemoveAddress.createUserRemoveAddress(userData);
+      return right(UserRemoveAddress.createUserRemoveAddress(userData));
     } catch (e) {
-      print(e.toString());
-      throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<List<UserAddress>> setDefaultAddress(
+  Future<Either<Exception, List<UserAddress>>> setDefaultAddress(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlSetDefaultAddress;
@@ -137,14 +136,14 @@ class UserApi {
       for (int i = 0; i < listUserData.length; i++) {
         address.add(UserAddress.createAddress(listUserData[i]));
       }
-      return address;
+      return right(address);
     } catch (e) {
-      print(e.toString());
-      throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<List<UserPromo>> getPromo(Map<String, dynamic> object) async {
+  Future<Either<Exception, List<UserPromo>>> getPromo(
+      Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetPromo;
       final apiResult = await _dioClient.post(apiUrl, data: {
@@ -162,14 +161,13 @@ class UserApi {
       for (int i = 0; i < listUserData.length; i++) {
         promos.add(UserPromo.createUserPromo(listUserData[i]));
       }
-      return promos;
+      return right(promos);
     } catch (e) {
-      print(e.toString());
-      throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<responseModel.Response> updateProfile(
+  Future<Either<Exception, responseModel.Response>> updateProfile(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlUpdateProfile;
@@ -178,14 +176,13 @@ class UserApi {
         "email": object["email"],
       });
       var userData = (apiResult as Map<String, dynamic>)["response"];
-      return responseModel.Response.createResponse(userData);
+      return right(responseModel.Response.createResponse(userData));
     } catch (e) {
-      print(e.toString());
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<List<TopupList>> getTopupLists() async {
+  Future<Either<Exception, List<TopupList>>> getTopupLists() async {
     try {
       String apiUrl = Endpoints.urlTopupList;
       final apiResult = await _dioClient.get(apiUrl);
@@ -195,14 +192,14 @@ class UserApi {
       for (int i = 0; i < userData.length; i++) {
         topupList.add(TopupList.fromJson(userData[i]));
       }
-      return topupList;
+      return right(topupList);
     } catch (e) {
-      print(e.toString());
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<Topup> topup(Map<String, dynamic> object, String paymentType) async {
+  Future<Either<Exception, Topup>> topup(
+      Map<String, dynamic> object, String paymentType) async {
     try {
       String apiUrl = Endpoints.urlTopup;
       final apiResult = await _dioClient.post(apiUrl, data: {
@@ -211,14 +208,13 @@ class UserApi {
       });
 
       var userData = (apiResult as Map<String, dynamic>)["data"];
-      return Topup.fromJson(userData);
+      return right(Topup.fromJson(userData));
     } catch (e) {
-      print(e.toString());
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<responseModel.Response> cancelBilling(
+  Future<Either<Exception, responseModel.Response>> cancelBilling(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlCancelBilling;
@@ -228,14 +224,13 @@ class UserApi {
       });
 
       var userData = (apiResult as Map<String, dynamic>)["response"];
-      return responseModel.Response.createResponse(userData);
+      return right(responseModel.Response.createResponse(userData));
     } catch (e) {
-      print(e.toString());
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<CreditHistory> getCreditHistory(int page) async {
+  Future<Either<Exception, CreditHistory>> getCreditHistory(int page) async {
     try {
       String apiUrl = Endpoints.urlCreditHistory +
           "?onPage=" +
@@ -243,13 +238,13 @@ class UserApi {
           "&pageSize=10";
       final apiResult = await _dioClient.get(apiUrl);
       var userData = (apiResult as Map<String, dynamic>)['data'];
-      return CreditHistory.fromJson(userData);
+      return right(CreditHistory.fromJson(userData));
     } catch (e) {
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 
-  Future<List<TopupPending>> getPendingPopup() async {
+  Future<Either<Exception, List<TopupPending>>> getPendingPopup() async {
     try {
       String apiUrl = Endpoints.urlTopupPending;
       final apiResult = await _dioClient.post(apiUrl, data: {
@@ -261,9 +256,9 @@ class UserApi {
       for (int i = 0; i < userData.length; i++) {
         topupPending.add(TopupPending.fromJson(userData[i]));
       }
-      return topupPending;
+      return right(topupPending);
     } catch (e) {
-      return throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 }

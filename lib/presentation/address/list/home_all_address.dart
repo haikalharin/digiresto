@@ -8,7 +8,7 @@ import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'home_content.dart';
+import '../../home/home_content.dart';
 
 class HomeAllAddressScreen extends GetView<HomeContentController> {
   goBack(BuildContext context) {

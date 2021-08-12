@@ -62,9 +62,8 @@ class HomeContentScreen extends GetView<HomeContentController> {
         ),
         tag: "home");
     Get.put(HomeContentController());
-
+    context.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
     context.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
-    context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         controller.setLoadingHistory(true);
@@ -77,9 +76,19 @@ class HomeContentScreen extends GetView<HomeContentController> {
             },
             addressListSuccess: (data) {
               if (data.list.length > 0) {
-                controller.setActiveAddress(data.list[0].address!);
+                controller.setActiveAddress(data.list
+                    .firstWhere((element) => element.isDefault == true)
+                    .address!);
                 controller.setListAddress(data.list);
               }
+            },
+            getActiveAddressFail: (fail) {
+              print("error");
+              print(fail);
+              context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            },
+            getActiveAddressSuccess: (data) {
+              controller.setActiveAddress(data.response.address!);
             },
             orElse: () {});
       },

@@ -1,7 +1,8 @@
+import 'package:digiresto/presentation/address/list/home_all_address.dart';
+import 'package:digiresto/presentation/address/map/add_address.dart';
+import 'package:digiresto/presentation/address/map/add_location.dart';
 import 'package:digiresto/presentation/auth/auth_page.dart';
-import 'package:digiresto/presentation/home/add_location.dart';
 import 'package:digiresto/presentation/home/home.dart';
-import 'package:digiresto/presentation/home/home_all_address.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
 import 'package:digiresto/presentation/home/home_all_promo.dart';
 import 'package:digiresto/presentation/home/home_digidiscount.dart';
@@ -88,5 +89,6 @@ class Routers {
       name: Routers.homeDigiDiscount,
       page: () => HomeDigidiscountScreen(),
     ),
+    GetPage(name: Routers.setAddressAdd, page: () => AddAddressScreen())
   ];
 }

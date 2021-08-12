@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/infrastructure/network/dio_client.dart';
 import 'package:digiresto/infrastructure/network/rest_client.dart';
@@ -17,7 +19,8 @@ class MapApi {
   // injecting dio instance
   MapApi(this._dioClient, this._restClient);
 
-  Future<Geocode> geocode(Map<String, dynamic> object) async {
+  Future<Either<Exception, Geocode>> geocode(
+      Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetGeocode;
       final apiResult = await _dioClient.post(apiUrl, data: {
@@ -29,10 +32,9 @@ class MapApi {
       });
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      return Geocode.createGeocode(userData);
+      return right(Geocode.createGeocode(userData));
     } catch (e) {
-      print(e.toString());
-      throw e;
+      return left(NetworkException(message: e.toString()));
     }
   }
 }
