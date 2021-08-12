@@ -32,6 +32,8 @@ class MapApi {
       });
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
+      userData["latitude"] = object["latitude"].toString();
+      userData["longitude"] = object["longitude"].toString();
       return right(Geocode.createGeocode(userData));
     } catch (e) {
       return left(NetworkException(message: e.toString()));

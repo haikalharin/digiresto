@@ -69,8 +69,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i25.UserApi(get<_i19.DioClient>(), get<_i16.RestClient>()));
   gh.factory<_i26.UserRepository>(
       () => _i26.UserRepository(get<_i25.UserApi>(), get<_i18.UserLocal>()));
-  gh.factory<_i27.AddressListBloc>(
-      () => _i27.AddressListBloc(get<_i26.UserRepository>()));
+  gh.factory<_i27.AddressListBloc>(() => _i27.AddressListBloc(
+      get<_i26.UserRepository>(), get<_i21.MapRepository>()));
   gh.factory<_i28.AddressMapBloc>(() => _i28.AddressMapBloc(
       get<_i26.UserRepository>(), get<_i21.MapRepository>()));
   gh.factory<_i29.AuthApi>(

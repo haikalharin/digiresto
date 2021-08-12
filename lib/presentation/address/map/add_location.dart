@@ -128,9 +128,12 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding:
+              EdgeInsets.only(top: 10, bottom: 10, right: 18, left: 18),
           title: Text("Detail Location",
               textAlign: TextAlign.center, style: AppFont.textBlack17Bold),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(14.0))),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[

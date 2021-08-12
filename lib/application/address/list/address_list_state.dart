@@ -13,7 +13,17 @@ abstract class AddressListState with _$AddressListState {
       _SaveAddressFail;
 
   const factory AddressListState.removeAddressSuccess(
-      UserRemoveAddress response) = _GetGeoCodeSuccess;
+      UserRemoveAddress response) = _UserRemoveAddress;
   const factory AddressListState.removeAddressFail(String message) =
+      _RemoveAddressFail;
+
+  const factory AddressListState.getGeoCodeSuccess(Geocode response) =
+      _GetGeoCodeSuccess;
+  const factory AddressListState.getGeoCodeFail(String message) =
       _GetGeoCodeFail;
+
+  const factory AddressListState.setActiveAddressSuccess(UserAddress response) =
+      _SetActiveAddressSuccess;
+  const factory AddressListState.setActiveAddressFail(String message) =
+      _SetActiveAddressFail;
 }

@@ -1,18 +1,183 @@
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
+import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../home/home_content.dart';
 
 class HomeAllAddressScreen extends GetView<HomeContentController> {
   goBack(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          TopBackgound(backgroundColor: AppColors.red),
+          Container(
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    new IconButton(
+                        icon: new Icon(Icons.arrow_back_outlined,
+                            color: Colors.black, size: 28.0),
+                        onPressed: () {
+                          // _userStore?.setActivedHomeTab("home");
+                          Get.offNamed(Routers.home);
+                        }),
+                    Text("Pilih Alamat",
+                        style: AppFont.textBlack15Bold,
+                        textAlign: TextAlign.center),
+                    new IconButton(
+                        icon: ImageIcon(
+                          AssetImage(AppAssets.iconMapRed),
+                          color: AppColors.redYoung,
+                        ),
+                        onPressed: () {
+                          Get.toNamed(Routers.homeAddLocation);
+                        }),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: AppColors.greyFill,
+            width: double.infinity,
+            height: 12,
+          ),
+          _AllAddressViewBody()
+        ],
+      ),
+    );
+  }
+}
+
+class _AllAddressViewBody extends GetView<HomeContentController> {
+  @override
+  Widget build(BuildContext context) {
+    getAddress();
+    return BlocConsumer<AddressListBloc, AddressListState>(
+        listener: (context, state) {
+      state.maybeMap(
+          getGeoCodeSuccess: (value) {
+            var response = value.response;
+            controller.setCurrentLocation(UserAddress(
+                address: response.formattedAddress,
+                latitude: response.latitude,
+                longitude: response.longitute));
+          },
+          setActiveAddressSuccess: (_) {
+            Get.offNamed(Routers.home);
+          },
+          orElse: () {});
+    }, builder: (context, state) {
+      return Expanded(
+        child: Column(
+          children: [
+            _locationActive(),
+            Container(
+              color: AppColors.greyFill,
+              width: double.infinity,
+              height: 12,
+            ),
+            // _userStore?.skipAndContinue ?? false
+            false
+                ? Container()
+                : Expanded(
+                    child: Container(
+                      color: AppColors.white,
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 20, top: 16, right: 20),
+                        child: Column(
+                          children: [
+                            Container(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Text("Alamat Tersimpan",
+                                        style: AppFont.textBlack15Bold,
+                                        textAlign: TextAlign.center),
+                                  ),
+                                  // GestureDetector(
+                                  //     child: Container(
+                                  //       padding: EdgeInsets.only(right: 10),
+                                  //       child: Text(
+                                  //         "Lihat semua",
+                                  //         style: TextStyle(
+                                  //             fontSize: 12.0,
+                                  //             fontWeight: FontWeight.bold,
+                                  //             color: AppColors.red),
+                                  //       ),
+                                  //     ),
+                                  //     onTap: () {
+                                  //       // _userStore?.setActiveHistoryScreen(
+                                  //       //     "home.address");
+                                  //       Get.toNamed(Routers.setAddressList);
+                                  //     })
+                                ],
+                              ),
+                            ),
+                            Container(
+                              //padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
+                              //height: MediaQuery.of(context).size.height - 210,
+                              // child: SingleChildScrollView(
+                              //     child: Column(
+                              //   children: [
+                              //     controller.listAddress.length > 0
+                              //         ? new ListView.builder(
+                              //             scrollDirection: Axis.vertical,
+                              //             shrinkWrap: true,
+                              //             itemCount: controller.listAddress.length,
+                              //             itemBuilder: (BuildContext ctxt, int index) {
+                              //               return _listAddress(controller.listAddress[index]);
+                              //             },
+                              //           )
+                              //         : Container(),
+                              //     _btnNewAddress(),
+                              //   ],
+                              // )
+                              child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true, // new line
+                                  padding: const EdgeInsets.all(8),
+                                  itemCount: controller.listAddress.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return _listAddress(
+                                        controller.listAddress[index]);
+                                  }),
+                            ),
+                            _btnNewAddress()
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+          ],
+        ),
+      );
+    });
   }
 
   Widget _btnNewAddress() {
@@ -53,18 +218,18 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.7),
-            blurRadius: 3,
-            //offset: Offset(3,3), // changes position of shadow
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.grey.withOpacity(0.7),
+        //     blurRadius: 3,
+        //     //offset: Offset(3,3), // changes position of shadow
+        //   ),
+        // ],
       ),
       child: GestureDetector(
         onTap: () {
           print("set default");
-          Get.offNamed(Routers.home);
+          setActiveAddress(controller.currentLocation.value);
         },
         child: Container(
           //height: 70,
@@ -102,16 +267,18 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 5),
-                    width: MediaQuery.of(Get.context!).size.width - 80,
-                    child: Text(
-                      "adfas",
-                      // _userStore?.activeAddress ?? "",
-                      maxLines: 2,
-                      style: AppFont.textBlack12Regular,
-                      softWrap: true,
-                    ),
-                  ),
+                      padding: EdgeInsets.only(top: 5),
+                      width: MediaQuery.of(Get.context!).size.width - 80,
+                      child: Obx(() {
+                        return Text(
+                          controller.currentLocation.value.address == null
+                              ? controller.activeAddress.value
+                              : controller.currentLocation.value.address!,
+                          maxLines: 2,
+                          style: AppFont.textBlack12Regular,
+                          softWrap: true,
+                        );
+                      })),
                 ],
               ),
             ],
@@ -140,10 +307,10 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
         child: GestureDetector(
           onTap: () {
             print("set default");
-            setActiveAddress(data.address!, data.latitude!, data.longitude!);
+            setActiveAddress(data);
           },
           child: Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 8),
+            padding: const EdgeInsets.only(top: 4, bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,11 +360,14 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                                 )
                               : Container(),
                           Spacer(),
-                          GestureDetector(
-                              onTap: () {
-                                print("tap");
-                              },
-                              child: Icon(Icons.more_horiz))
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: GestureDetector(
+                                onTap: () {
+                                  print("tap");
+                                },
+                                child: Icon(Icons.more_horiz)),
+                          )
                         ],
                       ),
                     ),
@@ -226,8 +396,22 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
     }
   }
 
-  void getAddress() {
+  void setActiveAddress(UserAddress userAddress) {
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.setActiveAddress(
+        UserAddress(
+            address: userAddress.address.toString(),
+            latitude: userAddress.latitude.toString(),
+            longitude: userAddress.longitude.toString())));
+  }
+
+  void getAddress() async {
     Loading.show();
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(
+        GetGeoCodeParam(
+            latitude: position.latitude.toString(),
+            longitude: position.longitude.toString())));
     // _userStore?.getAddress(_userStore!.profile!.mobilePhone!).then((res) {
     //   setState(() {
     //     listAddress = res;
@@ -238,141 +422,5 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
     //   print(err);
     //   ErrorPopupWidget.showDioError(context, err, null);
     // });
-  }
-
-  void setActiveAddress(String address, String lat, String lng) {
-    controller.setActiveAddress(address);
-    // _userStore?.setActiveAddress(address, lat, lng);
-    // _userStore?.setActivedHomeTab("home");
-    // _userStore?.setProfile(null);
-    Get.offNamed(Routers.home);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          TopBackgound(backgroundColor: AppColors.red),
-          Container(
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    new IconButton(
-                        icon: new Icon(Icons.arrow_back_outlined,
-                            color: Colors.black, size: 28.0),
-                        onPressed: () {
-                          // _userStore?.setActivedHomeTab("home");
-                          Get.offNamed(Routers.home);
-                        }),
-                    Text("Pilih Alamat",
-                        style: AppFont.textBlack15Bold,
-                        textAlign: TextAlign.center),
-                    new IconButton(
-                        icon: ImageIcon(
-                          AssetImage(AppAssets.iconMapRed),
-                          color: AppColors.redYoung,
-                        ),
-                        onPressed: () {
-                          Get.toNamed(Routers.homeAddLocation);
-                        }),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            color: AppColors.greyFill,
-            width: double.infinity,
-            height: 12,
-          ),
-          _locationActive(),
-          Container(
-            color: AppColors.greyFill,
-            width: double.infinity,
-            height: 12,
-          ),
-          // _userStore?.skipAndContinue ?? false
-          false
-              ? Container()
-              : Expanded(
-                  child: Container(
-                    color: AppColors.white,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, top: 16, right: 20),
-                      child: Column(
-                        children: [
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Text("Alamat Tersimpan",
-                                      style: AppFont.textBlack15Bold,
-                                      textAlign: TextAlign.center),
-                                ),
-                                // GestureDetector(
-                                //     child: Container(
-                                //       padding: EdgeInsets.only(right: 10),
-                                //       child: Text(
-                                //         "Lihat semua",
-                                //         style: TextStyle(
-                                //             fontSize: 12.0,
-                                //             fontWeight: FontWeight.bold,
-                                //             color: AppColors.red),
-                                //       ),
-                                //     ),
-                                //     onTap: () {
-                                //       // _userStore?.setActiveHistoryScreen(
-                                //       //     "home.address");
-                                //       Get.toNamed(Routers.setAddressList);
-                                //     })
-                              ],
-                            ),
-                          ),
-                          Container(
-                            //padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
-                            //height: MediaQuery.of(context).size.height - 210,
-                            // child: SingleChildScrollView(
-                            //     child: Column(
-                            //   children: [
-                            //     controller.listAddress.length > 0
-                            //         ? new ListView.builder(
-                            //             scrollDirection: Axis.vertical,
-                            //             shrinkWrap: true,
-                            //             itemCount: controller.listAddress.length,
-                            //             itemBuilder: (BuildContext ctxt, int index) {
-                            //               return _listAddress(controller.listAddress[index]);
-                            //             },
-                            //           )
-                            //         : Container(),
-                            //     _btnNewAddress(),
-                            //   ],
-                            // )
-                            child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true, // new line
-                                padding: const EdgeInsets.all(8),
-                                itemCount: controller.listAddress.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return _listAddress(
-                                      controller.listAddress[index]);
-                                }),
-                          ),
-                          _btnNewAddress()
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-        ],
-      ),
-    );
   }
 }
