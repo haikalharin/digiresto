@@ -5,7 +5,6 @@ import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
 import 'package:digiresto/domain/entity/response_model.dart' as ResponseStatus;
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:digiresto/infrastructure/network/dio_client.dart';
-import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -13,11 +12,10 @@ class TransactionApi {
   // dio instance
   final DioClient _dioClient;
 
-  // rest-client instance
-  final RestClient _restClient;
-
   // injecting dio instance
-  TransactionApi(this._dioClient, this._restClient);
+  TransactionApi(
+    this._dioClient,
+  );
 
   Future<List<TransactionHistory>> getTransactionHistory() async {
     try {

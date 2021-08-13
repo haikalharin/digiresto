@@ -15,7 +15,6 @@ import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/entity/user/user_profile_model.dart';
 import 'package:digiresto/domain/entity/user/user_remove_address_model.dart';
 import 'package:digiresto/infrastructure/network/dio_client.dart';
-import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -23,11 +22,9 @@ class UserApi {
   // dio instance
   final DioClient _dioClient;
 
-  // rest-client instance
-  final RestClient _restClient;
-
-  // injecting dio instance
-  UserApi(this._dioClient, this._restClient);
+  UserApi(
+    this._dioClient,
+  );
 
   Future<Either<Exception, UserProfile>> getProfile() async {
     try {

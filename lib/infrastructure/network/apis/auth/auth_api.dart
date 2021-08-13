@@ -10,18 +10,14 @@ import 'package:digiresto/infrastructure/network/dio_client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../dio_client.dart';
-import '../../rest_client.dart';
 
 @injectable
 class AuthApi {
   // dio instance
   final DioClient _dioClient;
 
-  // rest-client instance
-  final RestClient _restClient;
-
   // injecting dio instance
-  AuthApi(this._dioClient, this._restClient);
+  AuthApi(this._dioClient);
 
   Future<LoginPin> login(String handPhone, String pin) async {
     try {

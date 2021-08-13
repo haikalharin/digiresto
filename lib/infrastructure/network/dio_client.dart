@@ -1,14 +1,13 @@
-import 'package:digiresto/infrastructure/core/register_module.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class DioClient {
   // dio instance
-  RegisterModule registerModule;
-  DioClient({
-    required this.registerModule,
-  });
+  Dio _dioClient;
+  DioClient(
+    this._dioClient,
+  );
 
   // injecting dio instance
   // DioClient() {
@@ -25,7 +24,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      var dio = registerModule.dio(uri);
+      var dio = _dioClient;
       final Response response = await dio.get(
         uri,
         queryParameters: queryParameters,
@@ -50,7 +49,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      var dio = registerModule.dio(uri);
+      var dio = _dioClient;
       final Response response = await dio.post(
         uri,
         data: data,
@@ -60,7 +59,7 @@ class DioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      print(dio.options.headers);
+
       return response.data;
     } catch (e) {
       print(e);

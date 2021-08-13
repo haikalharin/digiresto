@@ -1,7 +1,7 @@
 part of 'address_list_bloc.dart';
 
 @freezed
-abstract class AddressListState with _$AddressListState {
+class AddressListState with _$AddressListState {
   const factory AddressListState.initial() = _Initial;
   const factory AddressListState.loadInProgress() = _LoadInProgress;
   const factory AddressListState.loadSuccess() = _LoadSuccess;
@@ -13,7 +13,17 @@ abstract class AddressListState with _$AddressListState {
       _SaveAddressFail;
 
   const factory AddressListState.removeAddressSuccess(
-      UserRemoveAddress response) = _GetGeoCodeSuccess;
+      UserRemoveAddress response) = _UserRemoveAddress;
   const factory AddressListState.removeAddressFail(String message) =
+      _RemoveAddressFail;
+
+  const factory AddressListState.getGeoCodeSuccess(Geocode response) =
+      _GetGeoCodeSuccess;
+  const factory AddressListState.getGeoCodeFail(String message) =
       _GetGeoCodeFail;
+
+  const factory AddressListState.setActiveAddressSuccess(UserAddress response) =
+      _SetActiveAddressSuccess;
+  const factory AddressListState.setActiveAddressFail(String message) =
+      _SetActiveAddressFail;
 }
