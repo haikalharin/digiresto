@@ -1,0 +1,1435 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+
+part of 'register_bloc.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$RegisterEventTearOff {
+  const _$RegisterEventTearOff();
+
+  _Started started() {
+    return const _Started();
+  }
+
+  _NameChanged nameChanged(String nameStr) {
+    return _NameChanged(
+      nameStr,
+    );
+  }
+
+  _EmailChanged emailChanged(String emailStr) {
+    return _EmailChanged(
+      emailStr,
+    );
+  }
+
+  _PinChanged pinChanged(String pinStr) {
+    return _PinChanged(
+      pinStr,
+    );
+  }
+
+  _RetypePinChanged retypePinChanged(String retypePinStr) {
+    return _RetypePinChanged(
+      retypePinStr,
+    );
+  }
+
+  _OnNext onNext(
+      PageController pageController,
+      StreamController<ErrorAnimationType> pinErrorController,
+      StreamController<ErrorAnimationType> retypePinErrorController) {
+    return _OnNext(
+      pageController,
+      pinErrorController,
+      retypePinErrorController,
+    );
+  }
+
+  _ToggleAgree toggleAgree() {
+    return const _ToggleAgree();
+  }
+}
+
+/// @nodoc
+const $RegisterEvent = _$RegisterEventTearOff();
+
+/// @nodoc
+mixin _$RegisterEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterEventCopyWith<$Res> {
+  factory $RegisterEventCopyWith(
+          RegisterEvent value, $Res Function(RegisterEvent) then) =
+      _$RegisterEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RegisterEventCopyWithImpl<$Res>
+    implements $RegisterEventCopyWith<$Res> {
+  _$RegisterEventCopyWithImpl(this._value, this._then);
+
+  final RegisterEvent _value;
+  // ignore: unused_field
+  final $Res Function(RegisterEvent) _then;
+}
+
+/// @nodoc
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StartedCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
+
+  @override
+  _Started get _value => super._value as _Started;
+}
+
+/// @nodoc
+
+class _$_Started implements _Started {
+  const _$_Started();
+
+  @override
+  String toString() {
+    return 'RegisterEvent.started()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Started);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Started implements RegisterEvent {
+  const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$NameChangedCopyWith<$Res> {
+  factory _$NameChangedCopyWith(
+          _NameChanged value, $Res Function(_NameChanged) then) =
+      __$NameChangedCopyWithImpl<$Res>;
+  $Res call({String nameStr});
+}
+
+/// @nodoc
+class __$NameChangedCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$NameChangedCopyWith<$Res> {
+  __$NameChangedCopyWithImpl(
+      _NameChanged _value, $Res Function(_NameChanged) _then)
+      : super(_value, (v) => _then(v as _NameChanged));
+
+  @override
+  _NameChanged get _value => super._value as _NameChanged;
+
+  @override
+  $Res call({
+    Object? nameStr = freezed,
+  }) {
+    return _then(_NameChanged(
+      nameStr == freezed
+          ? _value.nameStr
+          : nameStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NameChanged implements _NameChanged {
+  const _$_NameChanged(this.nameStr);
+
+  @override
+  final String nameStr;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.nameChanged(nameStr: $nameStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _NameChanged &&
+            (identical(other.nameStr, nameStr) ||
+                const DeepCollectionEquality().equals(other.nameStr, nameStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nameStr);
+
+  @JsonKey(ignore: true)
+  @override
+  _$NameChangedCopyWith<_NameChanged> get copyWith =>
+      __$NameChangedCopyWithImpl<_NameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return nameChanged(nameStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (nameChanged != null) {
+      return nameChanged(nameStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return nameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (nameChanged != null) {
+      return nameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NameChanged implements RegisterEvent {
+  const factory _NameChanged(String nameStr) = _$_NameChanged;
+
+  String get nameStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$NameChangedCopyWith<_NameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$EmailChangedCopyWith<$Res> {
+  factory _$EmailChangedCopyWith(
+          _EmailChanged value, $Res Function(_EmailChanged) then) =
+      __$EmailChangedCopyWithImpl<$Res>;
+  $Res call({String emailStr});
+}
+
+/// @nodoc
+class __$EmailChangedCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$EmailChangedCopyWith<$Res> {
+  __$EmailChangedCopyWithImpl(
+      _EmailChanged _value, $Res Function(_EmailChanged) _then)
+      : super(_value, (v) => _then(v as _EmailChanged));
+
+  @override
+  _EmailChanged get _value => super._value as _EmailChanged;
+
+  @override
+  $Res call({
+    Object? emailStr = freezed,
+  }) {
+    return _then(_EmailChanged(
+      emailStr == freezed
+          ? _value.emailStr
+          : emailStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_EmailChanged implements _EmailChanged {
+  const _$_EmailChanged(this.emailStr);
+
+  @override
+  final String emailStr;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.emailChanged(emailStr: $emailStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _EmailChanged &&
+            (identical(other.emailStr, emailStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailStr, emailStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(emailStr);
+
+  @JsonKey(ignore: true)
+  @override
+  _$EmailChangedCopyWith<_EmailChanged> get copyWith =>
+      __$EmailChangedCopyWithImpl<_EmailChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return emailChanged(emailStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (emailChanged != null) {
+      return emailChanged(emailStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return emailChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (emailChanged != null) {
+      return emailChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmailChanged implements RegisterEvent {
+  const factory _EmailChanged(String emailStr) = _$_EmailChanged;
+
+  String get emailStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$EmailChangedCopyWith<_EmailChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$PinChangedCopyWith<$Res> {
+  factory _$PinChangedCopyWith(
+          _PinChanged value, $Res Function(_PinChanged) then) =
+      __$PinChangedCopyWithImpl<$Res>;
+  $Res call({String pinStr});
+}
+
+/// @nodoc
+class __$PinChangedCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$PinChangedCopyWith<$Res> {
+  __$PinChangedCopyWithImpl(
+      _PinChanged _value, $Res Function(_PinChanged) _then)
+      : super(_value, (v) => _then(v as _PinChanged));
+
+  @override
+  _PinChanged get _value => super._value as _PinChanged;
+
+  @override
+  $Res call({
+    Object? pinStr = freezed,
+  }) {
+    return _then(_PinChanged(
+      pinStr == freezed
+          ? _value.pinStr
+          : pinStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PinChanged implements _PinChanged {
+  const _$_PinChanged(this.pinStr);
+
+  @override
+  final String pinStr;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.pinChanged(pinStr: $pinStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _PinChanged &&
+            (identical(other.pinStr, pinStr) ||
+                const DeepCollectionEquality().equals(other.pinStr, pinStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(pinStr);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PinChangedCopyWith<_PinChanged> get copyWith =>
+      __$PinChangedCopyWithImpl<_PinChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return pinChanged(pinStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (pinChanged != null) {
+      return pinChanged(pinStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return pinChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (pinChanged != null) {
+      return pinChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PinChanged implements RegisterEvent {
+  const factory _PinChanged(String pinStr) = _$_PinChanged;
+
+  String get pinStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$PinChangedCopyWith<_PinChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$RetypePinChangedCopyWith<$Res> {
+  factory _$RetypePinChangedCopyWith(
+          _RetypePinChanged value, $Res Function(_RetypePinChanged) then) =
+      __$RetypePinChangedCopyWithImpl<$Res>;
+  $Res call({String retypePinStr});
+}
+
+/// @nodoc
+class __$RetypePinChangedCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$RetypePinChangedCopyWith<$Res> {
+  __$RetypePinChangedCopyWithImpl(
+      _RetypePinChanged _value, $Res Function(_RetypePinChanged) _then)
+      : super(_value, (v) => _then(v as _RetypePinChanged));
+
+  @override
+  _RetypePinChanged get _value => super._value as _RetypePinChanged;
+
+  @override
+  $Res call({
+    Object? retypePinStr = freezed,
+  }) {
+    return _then(_RetypePinChanged(
+      retypePinStr == freezed
+          ? _value.retypePinStr
+          : retypePinStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RetypePinChanged implements _RetypePinChanged {
+  const _$_RetypePinChanged(this.retypePinStr);
+
+  @override
+  final String retypePinStr;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.retypePinChanged(retypePinStr: $retypePinStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _RetypePinChanged &&
+            (identical(other.retypePinStr, retypePinStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.retypePinStr, retypePinStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(retypePinStr);
+
+  @JsonKey(ignore: true)
+  @override
+  _$RetypePinChangedCopyWith<_RetypePinChanged> get copyWith =>
+      __$RetypePinChangedCopyWithImpl<_RetypePinChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return retypePinChanged(retypePinStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (retypePinChanged != null) {
+      return retypePinChanged(retypePinStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return retypePinChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (retypePinChanged != null) {
+      return retypePinChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RetypePinChanged implements RegisterEvent {
+  const factory _RetypePinChanged(String retypePinStr) = _$_RetypePinChanged;
+
+  String get retypePinStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$RetypePinChangedCopyWith<_RetypePinChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$OnNextCopyWith<$Res> {
+  factory _$OnNextCopyWith(_OnNext value, $Res Function(_OnNext) then) =
+      __$OnNextCopyWithImpl<$Res>;
+  $Res call(
+      {PageController pageController,
+      StreamController<ErrorAnimationType> pinErrorController,
+      StreamController<ErrorAnimationType> retypePinErrorController});
+}
+
+/// @nodoc
+class __$OnNextCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$OnNextCopyWith<$Res> {
+  __$OnNextCopyWithImpl(_OnNext _value, $Res Function(_OnNext) _then)
+      : super(_value, (v) => _then(v as _OnNext));
+
+  @override
+  _OnNext get _value => super._value as _OnNext;
+
+  @override
+  $Res call({
+    Object? pageController = freezed,
+    Object? pinErrorController = freezed,
+    Object? retypePinErrorController = freezed,
+  }) {
+    return _then(_OnNext(
+      pageController == freezed
+          ? _value.pageController
+          : pageController // ignore: cast_nullable_to_non_nullable
+              as PageController,
+      pinErrorController == freezed
+          ? _value.pinErrorController
+          : pinErrorController // ignore: cast_nullable_to_non_nullable
+              as StreamController<ErrorAnimationType>,
+      retypePinErrorController == freezed
+          ? _value.retypePinErrorController
+          : retypePinErrorController // ignore: cast_nullable_to_non_nullable
+              as StreamController<ErrorAnimationType>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnNext implements _OnNext {
+  const _$_OnNext(this.pageController, this.pinErrorController,
+      this.retypePinErrorController);
+
+  @override
+  final PageController pageController;
+  @override
+  final StreamController<ErrorAnimationType> pinErrorController;
+  @override
+  final StreamController<ErrorAnimationType> retypePinErrorController;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.onNext(pageController: $pageController, pinErrorController: $pinErrorController, retypePinErrorController: $retypePinErrorController)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnNext &&
+            (identical(other.pageController, pageController) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageController, pageController)) &&
+            (identical(other.pinErrorController, pinErrorController) ||
+                const DeepCollectionEquality()
+                    .equals(other.pinErrorController, pinErrorController)) &&
+            (identical(
+                    other.retypePinErrorController, retypePinErrorController) ||
+                const DeepCollectionEquality().equals(
+                    other.retypePinErrorController, retypePinErrorController)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(pageController) ^
+      const DeepCollectionEquality().hash(pinErrorController) ^
+      const DeepCollectionEquality().hash(retypePinErrorController);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnNextCopyWith<_OnNext> get copyWith =>
+      __$OnNextCopyWithImpl<_OnNext>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return onNext(pageController, pinErrorController, retypePinErrorController);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext(
+          pageController, pinErrorController, retypePinErrorController);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return onNext(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnNext implements RegisterEvent {
+  const factory _OnNext(
+          PageController pageController,
+          StreamController<ErrorAnimationType> pinErrorController,
+          StreamController<ErrorAnimationType> retypePinErrorController) =
+      _$_OnNext;
+
+  PageController get pageController => throw _privateConstructorUsedError;
+  StreamController<ErrorAnimationType> get pinErrorController =>
+      throw _privateConstructorUsedError;
+  StreamController<ErrorAnimationType> get retypePinErrorController =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$OnNextCopyWith<_OnNext> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ToggleAgreeCopyWith<$Res> {
+  factory _$ToggleAgreeCopyWith(
+          _ToggleAgree value, $Res Function(_ToggleAgree) then) =
+      __$ToggleAgreeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ToggleAgreeCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$ToggleAgreeCopyWith<$Res> {
+  __$ToggleAgreeCopyWithImpl(
+      _ToggleAgree _value, $Res Function(_ToggleAgree) _then)
+      : super(_value, (v) => _then(v as _ToggleAgree));
+
+  @override
+  _ToggleAgree get _value => super._value as _ToggleAgree;
+}
+
+/// @nodoc
+
+class _$_ToggleAgree implements _ToggleAgree {
+  const _$_ToggleAgree();
+
+  @override
+  String toString() {
+    return 'RegisterEvent.toggleAgree()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _ToggleAgree);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)
+        onNext,
+    required TResult Function() toggleAgree,
+  }) {
+    return toggleAgree();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(
+            PageController pageController,
+            StreamController<ErrorAnimationType> pinErrorController,
+            StreamController<ErrorAnimationType> retypePinErrorController)?
+        onNext,
+    TResult Function()? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (toggleAgree != null) {
+      return toggleAgree();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+  }) {
+    return toggleAgree(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    required TResult orElse(),
+  }) {
+    if (toggleAgree != null) {
+      return toggleAgree(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleAgree implements RegisterEvent {
+  const factory _ToggleAgree() = _$_ToggleAgree;
+}
+
+/// @nodoc
+class _$RegisterStateTearOff {
+  const _$RegisterStateTearOff();
+
+  _RegisterState call(
+      {required FullName fullName,
+      required EmailAddress email,
+      required Pin pin,
+      required Pin retypePin,
+      required bool showErrorMessages,
+      required bool isSubmitting,
+      required bool agreeTerms,
+      required Option<Either<AuthFailure, RegisterStatus>>
+          registerFailureOrSuccessOption}) {
+    return _RegisterState(
+      fullName: fullName,
+      email: email,
+      pin: pin,
+      retypePin: retypePin,
+      showErrorMessages: showErrorMessages,
+      isSubmitting: isSubmitting,
+      agreeTerms: agreeTerms,
+      registerFailureOrSuccessOption: registerFailureOrSuccessOption,
+    );
+  }
+}
+
+/// @nodoc
+const $RegisterState = _$RegisterStateTearOff();
+
+/// @nodoc
+mixin _$RegisterState {
+  FullName get fullName => throw _privateConstructorUsedError;
+  EmailAddress get email => throw _privateConstructorUsedError;
+  Pin get pin => throw _privateConstructorUsedError;
+  Pin get retypePin => throw _privateConstructorUsedError;
+  bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get agreeTerms => throw _privateConstructorUsedError;
+  Option<Either<AuthFailure, RegisterStatus>>
+      get registerFailureOrSuccessOption => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RegisterStateCopyWith<RegisterState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterStateCopyWith<$Res> {
+  factory $RegisterStateCopyWith(
+          RegisterState value, $Res Function(RegisterState) then) =
+      _$RegisterStateCopyWithImpl<$Res>;
+  $Res call(
+      {FullName fullName,
+      EmailAddress email,
+      Pin pin,
+      Pin retypePin,
+      bool showErrorMessages,
+      bool isSubmitting,
+      bool agreeTerms,
+      Option<Either<AuthFailure, RegisterStatus>>
+          registerFailureOrSuccessOption});
+}
+
+/// @nodoc
+class _$RegisterStateCopyWithImpl<$Res>
+    implements $RegisterStateCopyWith<$Res> {
+  _$RegisterStateCopyWithImpl(this._value, this._then);
+
+  final RegisterState _value;
+  // ignore: unused_field
+  final $Res Function(RegisterState) _then;
+
+  @override
+  $Res call({
+    Object? fullName = freezed,
+    Object? email = freezed,
+    Object? pin = freezed,
+    Object? retypePin = freezed,
+    Object? showErrorMessages = freezed,
+    Object? isSubmitting = freezed,
+    Object? agreeTerms = freezed,
+    Object? registerFailureOrSuccessOption = freezed,
+  }) {
+    return _then(_value.copyWith(
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as FullName,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailAddress,
+      pin: pin == freezed
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as Pin,
+      retypePin: retypePin == freezed
+          ? _value.retypePin
+          : retypePin // ignore: cast_nullable_to_non_nullable
+              as Pin,
+      showErrorMessages: showErrorMessages == freezed
+          ? _value.showErrorMessages
+          : showErrorMessages // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      agreeTerms: agreeTerms == freezed
+          ? _value.agreeTerms
+          : agreeTerms // ignore: cast_nullable_to_non_nullable
+              as bool,
+      registerFailureOrSuccessOption: registerFailureOrSuccessOption == freezed
+          ? _value.registerFailureOrSuccessOption
+          : registerFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, RegisterStatus>>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$RegisterStateCopyWith<$Res>
+    implements $RegisterStateCopyWith<$Res> {
+  factory _$RegisterStateCopyWith(
+          _RegisterState value, $Res Function(_RegisterState) then) =
+      __$RegisterStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {FullName fullName,
+      EmailAddress email,
+      Pin pin,
+      Pin retypePin,
+      bool showErrorMessages,
+      bool isSubmitting,
+      bool agreeTerms,
+      Option<Either<AuthFailure, RegisterStatus>>
+          registerFailureOrSuccessOption});
+}
+
+/// @nodoc
+class __$RegisterStateCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res>
+    implements _$RegisterStateCopyWith<$Res> {
+  __$RegisterStateCopyWithImpl(
+      _RegisterState _value, $Res Function(_RegisterState) _then)
+      : super(_value, (v) => _then(v as _RegisterState));
+
+  @override
+  _RegisterState get _value => super._value as _RegisterState;
+
+  @override
+  $Res call({
+    Object? fullName = freezed,
+    Object? email = freezed,
+    Object? pin = freezed,
+    Object? retypePin = freezed,
+    Object? showErrorMessages = freezed,
+    Object? isSubmitting = freezed,
+    Object? agreeTerms = freezed,
+    Object? registerFailureOrSuccessOption = freezed,
+  }) {
+    return _then(_RegisterState(
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as FullName,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailAddress,
+      pin: pin == freezed
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as Pin,
+      retypePin: retypePin == freezed
+          ? _value.retypePin
+          : retypePin // ignore: cast_nullable_to_non_nullable
+              as Pin,
+      showErrorMessages: showErrorMessages == freezed
+          ? _value.showErrorMessages
+          : showErrorMessages // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      agreeTerms: agreeTerms == freezed
+          ? _value.agreeTerms
+          : agreeTerms // ignore: cast_nullable_to_non_nullable
+              as bool,
+      registerFailureOrSuccessOption: registerFailureOrSuccessOption == freezed
+          ? _value.registerFailureOrSuccessOption
+          : registerFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, RegisterStatus>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RegisterState implements _RegisterState {
+  const _$_RegisterState(
+      {required this.fullName,
+      required this.email,
+      required this.pin,
+      required this.retypePin,
+      required this.showErrorMessages,
+      required this.isSubmitting,
+      required this.agreeTerms,
+      required this.registerFailureOrSuccessOption});
+
+  @override
+  final FullName fullName;
+  @override
+  final EmailAddress email;
+  @override
+  final Pin pin;
+  @override
+  final Pin retypePin;
+  @override
+  final bool showErrorMessages;
+  @override
+  final bool isSubmitting;
+  @override
+  final bool agreeTerms;
+  @override
+  final Option<Either<AuthFailure, RegisterStatus>>
+      registerFailureOrSuccessOption;
+
+  @override
+  String toString() {
+    return 'RegisterState(fullName: $fullName, email: $email, pin: $pin, retypePin: $retypePin, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, agreeTerms: $agreeTerms, registerFailureOrSuccessOption: $registerFailureOrSuccessOption)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _RegisterState &&
+            (identical(other.fullName, fullName) ||
+                const DeepCollectionEquality()
+                    .equals(other.fullName, fullName)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.pin, pin) ||
+                const DeepCollectionEquality().equals(other.pin, pin)) &&
+            (identical(other.retypePin, retypePin) ||
+                const DeepCollectionEquality()
+                    .equals(other.retypePin, retypePin)) &&
+            (identical(other.showErrorMessages, showErrorMessages) ||
+                const DeepCollectionEquality()
+                    .equals(other.showErrorMessages, showErrorMessages)) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSubmitting, isSubmitting)) &&
+            (identical(other.agreeTerms, agreeTerms) ||
+                const DeepCollectionEquality()
+                    .equals(other.agreeTerms, agreeTerms)) &&
+            (identical(other.registerFailureOrSuccessOption,
+                    registerFailureOrSuccessOption) ||
+                const DeepCollectionEquality().equals(
+                    other.registerFailureOrSuccessOption,
+                    registerFailureOrSuccessOption)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(fullName) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(pin) ^
+      const DeepCollectionEquality().hash(retypePin) ^
+      const DeepCollectionEquality().hash(showErrorMessages) ^
+      const DeepCollectionEquality().hash(isSubmitting) ^
+      const DeepCollectionEquality().hash(agreeTerms) ^
+      const DeepCollectionEquality().hash(registerFailureOrSuccessOption);
+
+  @JsonKey(ignore: true)
+  @override
+  _$RegisterStateCopyWith<_RegisterState> get copyWith =>
+      __$RegisterStateCopyWithImpl<_RegisterState>(this, _$identity);
+}
+
+abstract class _RegisterState implements RegisterState {
+  const factory _RegisterState(
+      {required FullName fullName,
+      required EmailAddress email,
+      required Pin pin,
+      required Pin retypePin,
+      required bool showErrorMessages,
+      required bool isSubmitting,
+      required bool agreeTerms,
+      required Option<Either<AuthFailure, RegisterStatus>>
+          registerFailureOrSuccessOption}) = _$_RegisterState;
+
+  @override
+  FullName get fullName => throw _privateConstructorUsedError;
+  @override
+  EmailAddress get email => throw _privateConstructorUsedError;
+  @override
+  Pin get pin => throw _privateConstructorUsedError;
+  @override
+  Pin get retypePin => throw _privateConstructorUsedError;
+  @override
+  bool get showErrorMessages => throw _privateConstructorUsedError;
+  @override
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  @override
+  bool get agreeTerms => throw _privateConstructorUsedError;
+  @override
+  Option<Either<AuthFailure, RegisterStatus>>
+      get registerFailureOrSuccessOption => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$RegisterStateCopyWith<_RegisterState> get copyWith =>
+      throw _privateConstructorUsedError;
+}

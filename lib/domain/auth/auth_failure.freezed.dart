@@ -20,12 +20,22 @@ class _$AuthFailureTearOff {
     return const CancelledByUser();
   }
 
+  NoInternet noInternet() {
+    return const NoInternet();
+  }
+
   ServerError serverError() {
     return const ServerError();
   }
 
   InvalidPin invalidPin() {
     return const InvalidPin();
+  }
+
+  InvalidOtp invalidOtp(String? message) {
+    return InvalidOtp(
+      message,
+    );
   }
 }
 
@@ -37,30 +47,38 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() invalidPin,
+    required TResult Function(String? message) invalidOtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? invalidPin,
+    TResult Function(String? message)? invalidOtp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
     required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
     TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,8 +141,10 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() invalidPin,
+    required TResult Function(String? message) invalidOtp,
   }) {
     return cancelledByUser();
   }
@@ -133,8 +153,10 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? invalidPin,
+    TResult Function(String? message)? invalidOtp,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -147,8 +169,10 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
     required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
   }) {
     return cancelledByUser(this);
   }
@@ -157,8 +181,10 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
     TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -170,6 +196,102 @@ class _$CancelledByUser implements CancelledByUser {
 
 abstract class CancelledByUser implements AuthFailure {
   const factory CancelledByUser() = _$CancelledByUser;
+}
+
+/// @nodoc
+abstract class $NoInternetCopyWith<$Res> {
+  factory $NoInternetCopyWith(
+          NoInternet value, $Res Function(NoInternet) then) =
+      _$NoInternetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NoInternetCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements $NoInternetCopyWith<$Res> {
+  _$NoInternetCopyWithImpl(NoInternet _value, $Res Function(NoInternet) _then)
+      : super(_value, (v) => _then(v as NoInternet));
+
+  @override
+  NoInternet get _value => super._value as NoInternet;
+}
+
+/// @nodoc
+
+class _$NoInternet implements NoInternet {
+  const _$NoInternet();
+
+  @override
+  String toString() {
+    return 'AuthFailure.noInternet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is NoInternet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
+    required TResult Function() serverError,
+    required TResult Function() invalidPin,
+    required TResult Function(String? message) invalidOtp,
+  }) {
+    return noInternet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    required TResult orElse(),
+  }) {
+    if (noInternet != null) {
+      return noInternet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
+  }) {
+    return noInternet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    required TResult orElse(),
+  }) {
+    if (noInternet != null) {
+      return noInternet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoInternet implements AuthFailure {
+  const factory NoInternet() = _$NoInternet;
 }
 
 /// @nodoc
@@ -212,8 +334,10 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() invalidPin,
+    required TResult Function(String? message) invalidOtp,
   }) {
     return serverError();
   }
@@ -222,8 +346,10 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? invalidPin,
+    TResult Function(String? message)? invalidOtp,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -236,8 +362,10 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
     required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
   }) {
     return serverError(this);
   }
@@ -246,8 +374,10 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
     TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -300,8 +430,10 @@ class _$InvalidPin implements InvalidPin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() invalidPin,
+    required TResult Function(String? message) invalidOtp,
   }) {
     return invalidPin();
   }
@@ -310,8 +442,10 @@ class _$InvalidPin implements InvalidPin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? invalidPin,
+    TResult Function(String? message)? invalidOtp,
     required TResult orElse(),
   }) {
     if (invalidPin != null) {
@@ -324,8 +458,10 @@ class _$InvalidPin implements InvalidPin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
     required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
   }) {
     return invalidPin(this);
   }
@@ -334,8 +470,10 @@ class _$InvalidPin implements InvalidPin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
     TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
     required TResult orElse(),
   }) {
     if (invalidPin != null) {
@@ -347,4 +485,130 @@ class _$InvalidPin implements InvalidPin {
 
 abstract class InvalidPin implements AuthFailure {
   const factory InvalidPin() = _$InvalidPin;
+}
+
+/// @nodoc
+abstract class $InvalidOtpCopyWith<$Res> {
+  factory $InvalidOtpCopyWith(
+          InvalidOtp value, $Res Function(InvalidOtp) then) =
+      _$InvalidOtpCopyWithImpl<$Res>;
+  $Res call({String? message});
+}
+
+/// @nodoc
+class _$InvalidOtpCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements $InvalidOtpCopyWith<$Res> {
+  _$InvalidOtpCopyWithImpl(InvalidOtp _value, $Res Function(InvalidOtp) _then)
+      : super(_value, (v) => _then(v as InvalidOtp));
+
+  @override
+  InvalidOtp get _value => super._value as InvalidOtp;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(InvalidOtp(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidOtp implements InvalidOtp {
+  const _$InvalidOtp(this.message);
+
+  @override
+  final String? message;
+
+  @override
+  String toString() {
+    return 'AuthFailure.invalidOtp(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidOtp &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidOtpCopyWith<InvalidOtp> get copyWith =>
+      _$InvalidOtpCopyWithImpl<InvalidOtp>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
+    required TResult Function() serverError,
+    required TResult Function() invalidPin,
+    required TResult Function(String? message) invalidOtp,
+  }) {
+    return invalidOtp(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    required TResult orElse(),
+  }) {
+    if (invalidOtp != null) {
+      return invalidOtp(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
+  }) {
+    return invalidOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    required TResult orElse(),
+  }) {
+    if (invalidOtp != null) {
+      return invalidOtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidOtp implements AuthFailure {
+  const factory InvalidOtp(String? message) = _$InvalidOtp;
+
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InvalidOtpCopyWith<InvalidOtp> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -19,20 +19,20 @@ class CustomCheckBox extends StatelessWidget {
     return Container(
       padding: padding,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            margin: EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
-              border: Border.all(
-                color: value ? AppColors.mainColor : AppColors.greyColor,
-              ),
-              borderRadius: BorderRadius.circular(2),
+              color: value ? AppColors.yellow : Colors.white,
+              borderRadius: BorderRadius.circular(3),
             ),
             width: 24,
             height: 24,
             child: Theme(
               data: ThemeData(unselectedWidgetColor: Colors.white),
               child: Checkbox(
-                checkColor: Colors.black,
+                checkColor: AppColors.mainColor,
                 activeColor: Colors.transparent,
                 value: value,
                 onChanged: onChanged,
@@ -40,11 +40,12 @@ class CustomCheckBox extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 12,
+            width: 15,
           ),
           Text(
             label,
-            style: Styles.checkBoxLabelStyle,
+            style: Styles.checkBoxLabelStyle.copyWith(height: 2),
+            textAlign: TextAlign.left,
           ),
         ],
       ),

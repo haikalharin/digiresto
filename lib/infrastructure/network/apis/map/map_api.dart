@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/infrastructure/network/dio_client.dart';
-import 'package:digiresto/infrastructure/network/rest_client.dart';
+// import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -12,10 +12,13 @@ class MapApi {
   final DioClient _dioClient;
 
   // rest-client instance
-  final RestClient _restClient;
+  // final RestClient _restClient;
 
   // injecting dio instance
-  MapApi(this._dioClient, this._restClient);
+  MapApi(
+    this._dioClient,
+    // this._restClient,
+  );
 
   Future<Geocode> geocode(Map<String, dynamic> object) async {
     try {

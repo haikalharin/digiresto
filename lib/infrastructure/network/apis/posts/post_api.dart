@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/entity/post/post_list.dart';
 import 'package:digiresto/infrastructure/network/dio_client.dart';
-import 'package:digiresto/infrastructure/network/rest_client.dart';
+// import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -12,10 +12,13 @@ class PostApi {
   final DioClient _dioClient;
 
   // rest-client instance
-  final RestClient _restClient;
+  // final RestClient _restClient;
 
   // injecting dio instance
-  PostApi(this._dioClient, this._restClient);
+  PostApi(
+    this._dioClient,
+    // this._restClient,
+  );
 
   /// Returns list of post in response
   Future<PostList> getPosts() async {

@@ -4,7 +4,7 @@ class StackWithProgress extends StatelessWidget {
   const StackWithProgress(
       {Key? key,
       required List<Widget> children,
-      double opacity = 7.0,
+      double opacity = 0.7,
       bool isLoading = false,
       AlignmentGeometry alignment = Alignment.center,
       StackFit fit = StackFit.loose,
