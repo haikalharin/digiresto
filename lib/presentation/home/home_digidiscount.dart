@@ -2,6 +2,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeDigidiscountScreen extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class HomeDigidiscountScreen extends StatefulWidget {
 
 class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
   goBack(BuildContext context) {
-    Navigator.pop(context);
+    Get.back();
   }
 
   final searchController = TextEditingController();
@@ -118,7 +119,7 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
                         color: Colors.black, size: 28.0),
                     onPressed: () {
                       //getOutletByLocation();
-                      Navigator.pop(context);
+                      Get.back();
                     }),
                 Text("DigiDiskon",
                     style: TextStyle(

@@ -4,9 +4,8 @@ import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:digiresto/simple_bloc_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logger/logger.dart';
+import 'package:injectable/injectable.dart';
 
 import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'domain/entity/user/user_get_address_model.dart';
@@ -16,9 +15,9 @@ export 'package:digiresto/presentation/core/app_widget.dart';
 
 void main() async {
   await InitiateHive.initial();
-  configureInjection('dev');
-  Get.put(SimpleBlocObserver(Logger()));
-  Bloc.observer = Get.find<SimpleBlocObserver>();
+  configureInjection(Environment.dev);
+  //Get.put(SimpleBlocObserver(Logger()));
+  Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(InitiateProvider());
 }
 

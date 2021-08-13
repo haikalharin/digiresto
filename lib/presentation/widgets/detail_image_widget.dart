@@ -1,6 +1,8 @@
+import 'dart:core';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:core';
+import 'package:get/get.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
 class DetailImageDialog extends StatelessWidget {
@@ -29,7 +31,7 @@ class DetailImageDialog extends StatelessWidget {
                 icon: Icon(Icons.close),
                 color: Colors.white,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                 },
               ),
             ),

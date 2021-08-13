@@ -11,6 +11,8 @@ class AppFont {
 
   static TextStyle textBlack12Regular = GoogleFonts.poppins(
       color: AppColors.black, fontSize: 14, fontWeight: FontWeight.w400);
+  static TextStyle textBlack13Regular = GoogleFonts.poppins(
+      color: AppColors.black, fontSize: 13, fontWeight: FontWeight.w400);
   static TextStyle textRed10Regular = GoogleFonts.poppins(
       color: AppColors.redYoung, fontSize: 10, fontWeight: FontWeight.w400);
   static TextStyle textBlack12Medium = GoogleFonts.poppins(
