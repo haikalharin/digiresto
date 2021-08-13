@@ -26,6 +26,9 @@ class AppColors {
   static final Color backgroundPink = Color(0xFFFFE2E4);
   static final Color borderPink = Color(0xFFFFA5AA);
 
+  static final Color black = Color(0xFF000000);
+  static final Color white = Color(0xFFFFFFFF);
+
   static const Map<int, Color> grey = const <int, Color>{
     25: const Color(0xFFFAFAFA),
     50: const Color(0xFFF3F3F3),

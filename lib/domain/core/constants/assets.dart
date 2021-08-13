@@ -1,5 +1,5 @@
-class Assets {
-  Assets._();
+class AppAssets {
+  AppAssets._();
 
   // splash screen assets
   static const String appLogo = "assets/icons/ic_digiresto.png";
@@ -52,4 +52,6 @@ class Assets {
   static const String iconCashback = "assets/icons/ic_cashback.png";
   static const String IconProfileWallet = "assets/icons/ic_profile_wallet.png";
   static const String iconProfileFood = "assets/icons/ic_profile_food.png";
+  static const String iconForwardRed = "assets/icons/ic_forward_red.png";
+  static const String iconMapRed = "assets/icons/ic_map_1.png";
 }

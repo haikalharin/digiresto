@@ -32,7 +32,7 @@ abstract class RegisterModule {
     // options.
     _dio.options = options;
     var _token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3ODIwMzE2MzMiLCJpYXQiOjE2Mjg1NzM0MDMsImV4cCI6MTYyOTE3ODIwM30.0Ed-bfARHUoLkAdqx837g8scOQ6KNEKQO9yzJyfKSMA";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3NzkwODg0MzEiLCJpYXQiOjE2Mjg2NDczODgsImV4cCI6MTYyOTI1MjE4OH0.QHEH2mf32TKa1-lC7HIvzV43lU7YiGK-1sbf6QAgjI8";
 
     _dio.options.headers['content-Type'] = 'application/json';
     _dio.options.headers["authorization"] = "token $_token";

@@ -102,7 +102,7 @@ class _DetailOutletHotPromoWidgetState
                             child: Row(
                               children: [
                                 ImageIcon(
-                                  AssetImage(Assets.iconVoucher),
+                                  AssetImage(AppAssets.iconVoucher),
                                   color: AppColors.red,
                                   size: 20,
                                 ),

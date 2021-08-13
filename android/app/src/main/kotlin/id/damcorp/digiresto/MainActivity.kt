@@ -1,4 +1,4 @@
-package com.example.digiresto
+package id.damcorp.digiresto
 
 import io.flutter.embedding.android.FlutterActivity
 

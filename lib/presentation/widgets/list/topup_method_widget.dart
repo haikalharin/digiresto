@@ -34,7 +34,7 @@ class TopupMethodWidget extends StatelessWidget {
                         HorizontalMenuWhite(
                             title: data[index].title,
                             leftIcon: new Image.asset(
-                              Assets.iconVirtualAccount,
+                              AppAssets.iconVirtualAccount,
                               width: 30,
                               height: 30,
                             ),

@@ -1,6 +1,6 @@
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
-import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -17,39 +17,30 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
 
   Widget _btnNewAddress() {
     return Container(
-      margin: EdgeInsets.all(5),
+      height: 49,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.7),
-            blurRadius: 3,
-            //offset: Offset(3,3), // changes position of shadow
+          border: Border.all(color: AppColors.redYoung, width: 2.0),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10)
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.7),
+          //     blurRadius: 3,
+          //     //offset: Offset(3,3), // changes position of shadow
+          //   ),
+          // ],
           ),
-        ],
-      ),
       child: GestureDetector(
         onTap: () {
           Get.toNamed(Routers.setAddressAdd);
         },
         child: Container(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 5,
-                ),
-                child: Icon(Icons.add, color: AppColors.red, size: 28.0),
-              ),
-              Text("Tambah",
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    color: AppColors.red,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  textAlign: TextAlign.center),
+              Text("+ Tambah Alamat Tersimpan",
+                  style: AppFont.textRed14Bold, textAlign: TextAlign.center),
             ],
           ),
         ),
@@ -90,8 +81,8 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                     ),
                     child: new IconButton(
                       onPressed: () {},
-                      icon: ImageIcon(AssetImage(Assets.iconGps),
-                          size: 20, color: AppColors.red),
+                      icon: ImageIcon(AssetImage(AppAssets.iconGps),
+                          size: 25, color: AppColors.red),
                     ),
                   ),
                   Text("")
@@ -101,10 +92,13 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    child: Text(
-                      "Lokasi sekarang",
-                      style: Styles.modiferTempStyle,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Container(
+                      child: Text(
+                        "Lokasi sekarang",
+                        style: AppFont.textRed14SemiBold,
+                      ),
                     ),
                   ),
                   Container(
@@ -114,11 +108,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                       "adfas",
                       // _userStore?.activeAddress ?? "",
                       maxLines: 2,
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: AppFont.textBlack12Regular,
                       softWrap: true,
                     ),
                   ),
@@ -132,95 +122,108 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
   }
 
   Widget _listAddress(UserAddress data) {
-    return data.isDelete == false
-        ? Container(
-            margin: EdgeInsets.all(5),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.7),
-                  blurRadius: 3,
-                  //offset: Offset(3,3), // changes position of shadow
-                ),
-              ],
+    if (data.isDelete == false) {
+      return Container(
+        margin: EdgeInsets.all(5),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.7),
+              blurRadius: 3,
+              //offset: Offset(3,3), // changes position of shadow
             ),
-            child: GestureDetector(
-              onTap: () {
-                print("set default");
-                setActiveAddress(
-                    data.address!, data.latitude!, data.longitude!);
-              },
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 5,
-                      ),
-                      child: new IconButton(
-                        onPressed: () {},
-                        icon: ImageIcon(AssetImage(Assets.iconMarker),
-                            size: 20, color: AppColors.red),
+          ],
+        ),
+        child: GestureDetector(
+          onTap: () {
+            print("set default");
+            setActiveAddress(data.address!, data.latitude!, data.longitude!);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                  ),
+                  child: new IconButton(
+                    onPressed: () {},
+                    icon: ImageIcon(AssetImage(AppAssets.iconMarkerMove),
+                        size: 20, color: AppColors.red),
+                  ),
+                ),
+                Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container(
+                      width: MediaQuery.of(Get.context!).size.width * (2 / 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        //crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Text(
+                              data.name!,
+                              style: AppFont.textBlack13SemiBold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          data.isDefault!
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                      color:
+                                          AppColors.redYoung.withOpacity(0.14)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16.0, right: 16.0),
+                                    child: Text(
+                                      "Utama",
+                                      style: AppFont.textRed10Regular,
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          Spacer(),
+                          GestureDetector(
+                              onTap: () {
+                                print("tap");
+                              },
+                              child: Icon(Icons.more_horiz))
+                        ],
                       ),
                     ),
-                    Column(children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 5),
-                        width: MediaQuery.of(Get.context!).size.width - 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Text(
-                                data.name!,
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: AppColors.red,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                data.isDefault! ? "Default" : "",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                textAlign: TextAlign.end,
-                              ),
-                            ),
-                          ],
-                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5, bottom: 5),
+                    child: Container(
+                      width: MediaQuery.of(Get.context!).size.width * (2 / 3),
+                      child: Text(
+                        data.address!,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppFont.textBlack12Medium,
+                        softWrap: true,
+                        maxLines: 3,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(top: 5, bottom: 5),
-                        width: MediaQuery.of(Get.context!).size.width - 100,
-                        child: Text(
-                          data.address!,
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          softWrap: true,
-                          maxLines: 3,
-                        ),
-                      )
-                    ]),
-                  ],
-                ),
-              ),
+                    ),
+                  )
+                ]),
+              ],
             ),
-          )
-        : Container();
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   void getAddress() {
@@ -252,6 +255,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
         children: [
           TopBackgound(backgroundColor: AppColors.red),
           Container(
+            color: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -265,81 +269,86 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                           // _userStore?.setActivedHomeTab("home");
                           Get.offNamed(Routers.home);
                         }),
-                    Text("All Address",
-                        style: TextStyle(
-                          fontFamily: "roboto",
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    Text("Pilih Alamat",
+                        style: AppFont.textBlack15Bold,
                         textAlign: TextAlign.center),
                     new IconButton(
-                        icon: new Icon(Icons.map,
-                            color: AppColors.red, size: 28.0),
+                        icon: ImageIcon(
+                          AssetImage(AppAssets.iconMapRed),
+                          color: AppColors.redYoung,
+                        ),
                         onPressed: () {
                           Get.toNamed(Routers.homeAddLocation);
                         }),
                   ],
                 ),
-                Container(
-                  color: Colors.black12,
-                  width: double.infinity,
-                  height: 10,
-                ),
-                _locationActive(),
-                // _userStore?.skipAndContinue ?? false
-                false
-                    ? Container()
-                    : Column(
+              ],
+            ),
+          ),
+          Container(
+            color: AppColors.greyFill,
+            width: double.infinity,
+            height: 12,
+          ),
+          _locationActive(),
+          Container(
+            color: AppColors.greyFill,
+            width: double.infinity,
+            height: 12,
+          ),
+          // _userStore?.skipAndContinue ?? false
+          false
+              ? Container()
+              : Expanded(
+                  child: Container(
+                    color: AppColors.white,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, top: 16, right: 20),
+                      child: Column(
                         children: [
                           Container(
-                            height: 30,
-                            color: Colors.black12,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Container(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text("Alamat Tersimpan",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                      style: AppFont.textBlack15Bold,
                                       textAlign: TextAlign.center),
                                 ),
-                                GestureDetector(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 10),
-                                      child: Text(
-                                        "Lihat semua",
-                                        style: TextStyle(
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.red),
-                                      ),
-                                    ),
-                                    onTap: () {
-                                      // _userStore?.setActiveHistoryScreen(
-                                      //     "home.address");
-                                      Get.toNamed(Routers.setAddressList);
-                                    })
+                                // GestureDetector(
+                                //     child: Container(
+                                //       padding: EdgeInsets.only(right: 10),
+                                //       child: Text(
+                                //         "Lihat semua",
+                                //         style: TextStyle(
+                                //             fontSize: 12.0,
+                                //             fontWeight: FontWeight.bold,
+                                //             color: AppColors.red),
+                                //       ),
+                                //     ),
+                                //     onTap: () {
+                                //       // _userStore?.setActiveHistoryScreen(
+                                //       //     "home.address");
+                                //       Get.toNamed(Routers.setAddressList);
+                                //     })
                               ],
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
-                            height: MediaQuery.of(context).size.height - 210,
+                            //padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
+                            //height: MediaQuery.of(context).size.height - 210,
                             // child: SingleChildScrollView(
                             //     child: Column(
                             //   children: [
-                            //     listAddress.length > 0
+                            //     controller.listAddress.length > 0
                             //         ? new ListView.builder(
                             //             scrollDirection: Axis.vertical,
                             //             shrinkWrap: true,
-                            //             itemCount: listAddress.length,
+                            //             itemCount: controller.listAddress.length,
                             //             itemBuilder: (BuildContext ctxt, int index) {
-                            //               return _listAddress(listAddress[index]);
+                            //               return _listAddress(controller.listAddress[index]);
                             //             },
                             //           )
                             //         : Container(),
@@ -350,22 +359,18 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true, // new line
                                 padding: const EdgeInsets.all(8),
-                                itemCount: controller.listAddress.length + 1,
+                                itemCount: controller.listAddress.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  if (index + 1 ==
-                                      controller.listAddress.length + 1) {
-                                    return _btnNewAddress();
-                                  } else {
-                                    return _listAddress(
-                                        controller.listAddress[index]);
-                                  }
+                                  return _listAddress(
+                                      controller.listAddress[index]);
                                 }),
                           ),
+                          _btnNewAddress()
                         ],
-                      )
-              ],
-            ),
-          ),
+                      ),
+                    ),
+                  ),
+                )
         ],
       ),
     );

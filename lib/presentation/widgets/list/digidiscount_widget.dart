@@ -177,7 +177,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                                   children: <Widget>[
                                     ImageIcon(
                                         AssetImage(
-                                            Assets.iconHomeDiscountPercent),
+                                            AppAssets.iconHomeDiscountPercent),
                                         color: AppColors.red),
                                     Text("FREE ONGKIR",
                                         style: TextStyle(
