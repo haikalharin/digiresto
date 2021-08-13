@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeAllPromoScreen extends StatelessWidget {
   goBack(BuildContext context) {
@@ -24,7 +25,7 @@ class HomeAllPromoScreen extends StatelessWidget {
                     new IconButton(
                       icon: new Icon(Icons.arrow_back_outlined,
                           color: Colors.black, size: 24.0),
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => Get.back(),
                     ),
                     Container(
                       width: 100,

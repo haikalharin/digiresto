@@ -753,7 +753,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
           () {
         {
-          Navigator.pop(Get.context!);
+          Get.back();
           Get.toNamed(Routers.homeAddLocation);
         }
       });

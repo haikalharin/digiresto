@@ -1,11 +1,12 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePromoUrlScreen extends StatelessWidget {
   goBack(BuildContext context) {
-    Navigator.pop(context);
+    Get.back();
   }
 
   @override
@@ -30,7 +31,7 @@ class HomePromoUrlScreen extends StatelessWidget {
                       new IconButton(
                         icon: new Icon(Icons.arrow_back_outlined,
                             color: Colors.white, size: 24.0),
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () => Get.back(),
                       ),
                       Container(
                         width: 100,

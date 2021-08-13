@@ -189,7 +189,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                         height: 40,
                         child: RaisedButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            Get.back();
                           },
                           color: Colors.white,
                           child: Text(profileCancel,
@@ -249,7 +249,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
             leading: new IconButton(
               icon: new Icon(Icons.arrow_back_outlined,
                   color: Colors.black, size: 28.0),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,

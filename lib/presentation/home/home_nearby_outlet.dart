@@ -2,6 +2,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeNearbyOutletScreen extends StatefulWidget {
   @override
@@ -113,7 +114,7 @@ class _HomeNearbyOutletScreenState extends State<HomeNearbyOutletScreen> {
                     icon: new Icon(Icons.arrow_back_outlined,
                         color: Colors.black, size: 28.0),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Get.back();
                     }),
                 Text("Search",
                     style: TextStyle(

@@ -1,7 +1,7 @@
 part of 'address_list_bloc.dart';
 
 @freezed
-abstract class AddressListState with _$AddressListState {
+class AddressListState with _$AddressListState {
   const factory AddressListState.initial() = _Initial;
   const factory AddressListState.loadInProgress() = _LoadInProgress;
   const factory AddressListState.loadSuccess() = _LoadSuccess;

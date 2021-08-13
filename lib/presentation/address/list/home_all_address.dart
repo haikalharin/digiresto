@@ -17,7 +17,7 @@ import '../../home/home_content.dart';
 
 class HomeAllAddressScreen extends GetView<HomeContentController> {
   goBack(BuildContext context) {
-    Navigator.pop(context);
+    Get.back();
   }
 
   @override

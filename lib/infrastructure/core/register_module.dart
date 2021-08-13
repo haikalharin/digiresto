@@ -1,17 +1,25 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 import 'logger_interceptor.dart';
 
-@injectable
-class RegisterModule {
+@module
+abstract class RegisterModule {
+  @Environment(Environment.dev)
   @Named('baseUrl')
-  String get baseUrl => 'https://jsonplaceholder.typicode.com';
+  String get baseUrlDev => Endpoints.baseUrlDigiresto;
+
+  @Environment(Environment.prod)
+  @Named('baseUrl')
+  String get baseUrl => Endpoints.baseUrlDigirestoProd;
+
   @lazySingleton
   Dio dio(@Named('baseUrl') String baseUrl) {
     Dio _dio = Dio();
@@ -50,4 +58,7 @@ class RegisterModule {
 
   @lazySingleton
   HiveInterface get hive => Hive;
+
+  @lazySingleton
+  Logger get logger => Logger();
 }

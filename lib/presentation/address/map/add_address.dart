@@ -302,7 +302,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                           height: 40,
                           child: RaisedButton(
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              Get.back();
                             },
                             color: Colors.white,
                             child: Text(profileCancel,
