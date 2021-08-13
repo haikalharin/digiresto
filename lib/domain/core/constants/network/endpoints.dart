@@ -38,7 +38,8 @@ class Endpoints {
       baseUrlDigiresto + "/forward?r=addaddress";
   static const String urlSetDefaultAddress =
       baseUrlDigiresto + "/forward?r=setdefaultaddress";
-  static const String urlGetGeocode = "/forward?r=getgeocode";
+  static const String urlGetGeocode =
+      baseUrlDigiresto + "/forward?r=getgeocode";
   static const String urlUpdateProfile =
       baseUrlDigiresto + "/user/updateProfile";
   static const String urlTopupList = baseUrlDigiresto + "/user/topup/list";
