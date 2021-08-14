@@ -5,7 +5,7 @@ class AddressListState with _$AddressListState {
   const factory AddressListState.initial() = _Initial;
   const factory AddressListState.loadInProgress() = _LoadInProgress;
   const factory AddressListState.loadSuccess() = _LoadSuccess;
-  const factory AddressListState.loadFailure() = _LoadFailure;
+  const factory AddressListState.loadFailure(String message) = _LoadFailure;
 
   const factory AddressListState.setDefaultSuccess(List<UserAddress> response) =
       _SaveAddressSuccess;
@@ -14,8 +14,6 @@ class AddressListState with _$AddressListState {
 
   const factory AddressListState.removeAddressSuccess(
       UserRemoveAddress response) = _UserRemoveAddress;
-  const factory AddressListState.removeAddressFail(String message) =
-      _RemoveAddressFail;
 
   const factory AddressListState.getGeoCodeSuccess(Geocode response) =
       _GetGeoCodeSuccess;
@@ -26,4 +24,7 @@ class AddressListState with _$AddressListState {
       _SetActiveAddressSuccess;
   const factory AddressListState.setActiveAddressFail(String message) =
       _SetActiveAddressFail;
+
+  const factory AddressListState.addAddressSuccess(UserAddAddress response) =
+      _AddAddressSuccess;
 }

@@ -27,8 +27,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   final profileCancel = 'Cancel';
   GoogleMapController? mapController;
   LatLng? _lastMapPosition;
-  // MapStore? _mapStore;
-  // UserStore? _userStore;
   ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
       size: 36, color: AppColors.red);
   ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
@@ -37,7 +35,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   bool isMarkerClicked = false;
   Geocode? _geocode;
 
-  //final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   final LatLng _center = const LatLng(-6.175483, 106.826852);
   final _addressController = TextEditingController();
 
@@ -57,8 +54,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
     setState(() {
       isMarkerMove = false;
     });
-    // print("camera idle");
-    // print(_lastMapPosition);
   }
 
   void _onClickSetDestination() {
@@ -68,7 +63,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   _getCurrentLocation() {
     Loading.show();
     print("get current location deefault gps");
-    //final Geolocator geolocator = Geolocator()..forceAndroidLocationManager = true;
     Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.best,
             forceAndroidLocationManager: true)
@@ -95,8 +89,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // _mapStore = Provider.of<MapStore>(context);
-    // _userStore = Provider.of<UserStore>(context);
     _getCurrentLocation();
   }
 
@@ -114,12 +106,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
             address: _addressController.text.toString(),
             latitude: _lastMapPosition!.latitude.toString(),
             longitude: _lastMapPosition!.longitude.toString())));
-    // _userStore!.setActiveAddress(
-    //     _addressController.text.toString(),
-    //     _lastMapPosition!.latitude.toString(),
-    //     _lastMapPosition!.longitude.toString());
-    // _userStore!.setActivedHomeTab("home");
-    // _userStore!.setProfile(null);
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -251,24 +237,19 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                   color: Colors.black, size: 28.0),
               onPressed: () => Get.back(),
             ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: ImageIcon(AssetImage(AppAssets.iconGps),
-                      size: 20, color: AppColors.red),
-                ),
-                Text(
-                  'Select location',
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+            title: Container(
+              transform: Matrix4.translationValues(-24, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: ImageIcon(AssetImage(AppAssets.iconGps),
+                        size: 20, color: AppColors.red),
                   ),
-                ),
-              ],
+                  Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
+                ],
+              ),
             )),
         body: BlocConsumer<AddressMapBloc, AddressMapState>(
           listener: (context, state) {
@@ -357,12 +338,32 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                 children: [
                   Container(
                     alignment: Alignment.bottomRight,
-                    child: new IconButton(
-                      icon: ImageIcon(AssetImage(AppAssets.iconGps),
-                          size: 36, color: AppColors.red),
-                      onPressed: () {
-                        _getCurrentLocation();
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.7),
+                                blurRadius: 10,
+                                spreadRadius: 4)
+                          ],
+                        ),
+                        child: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: AppColors.red,
+                          child: new IconButton(
+                            color: AppColors.red,
+                            icon: ImageIcon(AssetImage(AppAssets.iconGps),
+                                size: 24, color: AppColors.white),
+                            onPressed: () {
+                              _getCurrentLocation();
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   isMarkerClicked

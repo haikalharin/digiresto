@@ -1,11 +1,15 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
+import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
+import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
+import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/app_divider.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,130 +90,193 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
           setActiveAddressSuccess: (_) {
             Get.offNamed(Routers.home);
           },
+          setDefaultSuccess: (value) {
+            controller.setListAddress(value.response);
+            Get.back(closeOverlays: true);
+          },
+          removeAddressSuccess: (value) {
+            context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            Get.back(closeOverlays: true);
+          },
+          addAddressSuccess: (value) {
+            context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            Get.back(closeOverlays: true);
+            Get.back();
+          },
           orElse: () {});
     }, builder: (context, state) {
-      return Expanded(
-        child: Column(
-          children: [
-            _locationActive(),
-            Container(
-              color: AppColors.greyFill,
-              width: double.infinity,
-              height: 12,
-            ),
-            // _userStore?.skipAndContinue ?? false
-            false
-                ? Container()
-                : Expanded(
-                    child: Container(
-                      color: AppColors.white,
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 20, top: 16, right: 20),
-                        child: Column(
-                          children: [
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Text("Alamat Tersimpan",
-                                        style: AppFont.textBlack15Bold,
-                                        textAlign: TextAlign.center),
-                                  ),
-                                  // GestureDetector(
-                                  //     child: Container(
-                                  //       padding: EdgeInsets.only(right: 10),
-                                  //       child: Text(
-                                  //         "Lihat semua",
-                                  //         style: TextStyle(
-                                  //             fontSize: 12.0,
-                                  //             fontWeight: FontWeight.bold,
-                                  //             color: AppColors.red),
-                                  //       ),
-                                  //     ),
-                                  //     onTap: () {
-                                  //       // _userStore?.setActiveHistoryScreen(
-                                  //       //     "home.address");
-                                  //       Get.toNamed(Routers.setAddressList);
-                                  //     })
-                                ],
+      return Obx(() {
+        return Expanded(
+          child: Column(
+            children: [
+              _locationActive(),
+              Container(
+                color: AppColors.greyFill,
+                width: double.infinity,
+                height: 12,
+              ),
+              // _userStore?.skipAndContinue ?? false
+              false
+                  ? Container()
+                  : Expanded(
+                      child: Container(
+                        color: AppColors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 16, right: 20),
+                          child: Column(
+                            children: [
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text("Alamat Tersimpan",
+                                          style: AppFont.textBlack15Bold,
+                                          textAlign: TextAlign.center),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              //padding: EdgeInsets.fromLTRB(10, 0, 10, 40),
-                              //height: MediaQuery.of(context).size.height - 210,
-                              // child: SingleChildScrollView(
-                              //     child: Column(
-                              //   children: [
-                              //     controller.listAddress.length > 0
-                              //         ? new ListView.builder(
-                              //             scrollDirection: Axis.vertical,
-                              //             shrinkWrap: true,
-                              //             itemCount: controller.listAddress.length,
-                              //             itemBuilder: (BuildContext ctxt, int index) {
-                              //               return _listAddress(controller.listAddress[index]);
-                              //             },
-                              //           )
-                              //         : Container(),
-                              //     _btnNewAddress(),
-                              //   ],
-                              // )
-                              child: ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true, // new line
-                                  padding: const EdgeInsets.all(8),
-                                  itemCount: controller.listAddress.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return _listAddress(
-                                        controller.listAddress[index]);
-                                  }),
-                            ),
-                            _btnNewAddress()
-                          ],
+                              Expanded(
+                                child: ListView.builder(
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true, // new line
+                                    padding: const EdgeInsets.all(8),
+                                    itemCount:
+                                        controller.listAddress.length + 1,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      if (index ==
+                                          controller.listAddress.length) {
+                                        return _btnNewAddress();
+                                      } else {
+                                        return _listAddress(
+                                            controller.listAddress[index]);
+                                      }
+                                    }),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
-          ],
-        ),
-      );
+                    )
+            ],
+          ),
+        );
+      });
     });
   }
 
-  Widget _btnNewAddress() {
-    return Container(
-      height: 49,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          border: Border.all(color: AppColors.redYoung, width: 2.0),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10)
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.grey.withOpacity(0.7),
-          //     blurRadius: 3,
-          //     //offset: Offset(3,3), // changes position of shadow
-          //   ),
-          // ],
-          ),
-      child: GestureDetector(
-        onTap: () {
-          Get.toNamed(Routers.setAddressAdd);
-        },
-        child: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("+ Tambah Alamat Tersimpan",
-                  style: AppFont.textRed14Bold, textAlign: TextAlign.center),
+  Future<void> _showDialogAddress(UserAddress userAddress) async {
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+        ),
+        backgroundColor: Colors.white,
+        context: Get.context!,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              SizedBox(
+                height: 8,
+              ),
+              ListTile(
+                leading: GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: ImageIcon(
+                    AssetImage(AppAssets.iconBackBlack),
+                    color: Colors.black,
+                  ),
+                ),
+                title: Container(
+                  //make title to center
+                  transform: Matrix4.translationValues(-24, 0, 0),
+                  child: Center(
+                    child: new Text(
+                      'Pilihan Alamat',
+                      style: AppFont.textBlack17Bold,
+                    ),
+                  ),
+                ),
+                enabled: false,
+              ),
+              AppDivider.normal,
+              ListTile(
+                title: new Text('Jadikan alamat utama',
+                    style: AppFont.textBlack14Regular),
+                onTap: () {
+                  Get.context!.read<AddressListBloc>().add(
+                      AddressListEvent.setDefault(UserSetDefaultAddressParam(
+                          wa_id: userAddress.wabaNo!,
+                          waba_no: userAddress.wabaNo!,
+                          id: userAddress.id!)));
+                },
+              ),
+              AppDivider.normal,
+              ListTile(
+                title:
+                    new Text('Ubah Alamat', style: AppFont.textBlack14Regular),
+                onTap: () {},
+              ),
+              AppDivider.normal,
+              ListTile(
+                title:
+                    new Text('Hapus Alamat', style: AppFont.textBlack14Regular),
+                onTap: () {
+                  Get.context!.read<AddressListBloc>().add(
+                      AddressListEvent.removeAddress(UserRemoveAddressParam(
+                          id: userAddress.id!,
+                          wa_id: userAddress.wabaNo!,
+                          waba_no: userAddress.wabaNo!)));
+                },
+              ),
+              SizedBox(
+                height: 16,
+              )
             ],
+          );
+        });
+  }
+
+  Widget _btnNewAddress() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 16,
+        ),
+        Container(
+          height: 49,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              border: Border.all(color: AppColors.redYoung, width: 2.0),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10)),
+          child: GestureDetector(
+            onTap: () {
+              Get.toNamed(Routers.setAddressAdd);
+            },
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("+ Tambah Alamat Tersimpan",
+                      style: AppFont.textRed14Bold,
+                      textAlign: TextAlign.center),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+        SizedBox(
+          height: 20,
+        ),
+      ],
     );
   }
 
@@ -218,13 +285,6 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.grey.withOpacity(0.7),
-        //     blurRadius: 3,
-        //     //offset: Offset(3,3), // changes position of shadow
-        //   ),
-        // ],
       ),
       child: GestureDetector(
         onTap: () {
@@ -364,7 +424,7 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: GestureDetector(
                                 onTap: () {
-                                  print("tap");
+                                  _showDialogAddress(data);
                                 },
                                 child: Icon(Icons.more_horiz)),
                           )
@@ -412,15 +472,5 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
         GetGeoCodeParam(
             latitude: position.latitude.toString(),
             longitude: position.longitude.toString())));
-    // _userStore?.getAddress(_userStore!.profile!.mobilePhone!).then((res) {
-    //   setState(() {
-    //     listAddress = res;
-    //   });
-    //   Loading.dismiss();
-    // }).catchError((err) {
-    //   Loading.dismiss();
-    //   print(err);
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
   }
 }

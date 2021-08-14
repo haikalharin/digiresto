@@ -29,7 +29,6 @@ class Routers {
   static const String loginPin = '/login_pin';
   static const String about = '/about';
   static const String privacyPolicy = '/privacy_policy';
-  static const String setAddressList = '/set_address';
   static const String setAddressAdd = '/add_address';
   static const String history = '/history';
   static const String historyDetail = '/history_detail';
@@ -89,6 +88,6 @@ class Routers {
       name: Routers.homeDigiDiscount,
       page: () => HomeDigidiscountScreen(),
     ),
-    GetPage(name: Routers.setAddressAdd, page: () => AddAddressScreen())
+    GetPage(name: Routers.setAddressAdd, page: () => AddAddressScreen()),
   ];
 }

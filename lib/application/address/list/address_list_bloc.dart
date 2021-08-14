@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
+import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
+import 'package:digiresto/domain/entity/user/user_add_address_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/entity/user/user_remove_address_model.dart';
 import 'package:digiresto/infrastructure/network/apis/map/map_repository.dart';
@@ -26,17 +28,22 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
 
   @override
   Stream<AddressListState> mapEventToState(AddressListEvent gEvent) async* {
+    String waNoId = "085782031633";
     yield* gEvent.map(setDefault: (request) async* {
+      request.request.wa_id = waNoId;
+      request.request.waba_no = waNoId;
       final setDefault =
           await _userRepository.setDefaultAddress(request.request.toMap());
       yield setDefault.fold(
           (error) => AddressListState.setDefaultFail(error.toString()),
           (data) => AddressListState.setDefaultSuccess(data));
     }, removeAddress: (request) async* {
+      request.request.wa_id = waNoId;
+      request.request.waba_no = waNoId;
       final removeAddress =
           await _userRepository.removeAddress(request.request.toMap());
       yield removeAddress.fold(
-          (error) => AddressListState.removeAddressFail(error.toString()),
+          (error) => AddressListState.loadFailure(error.toString()),
           (data) => AddressListState.removeAddressSuccess(data));
     }, getGeoCode: (request) async* {
       final getGeoCode = await _mapRepository.geocode(request.request.toMap());
@@ -49,6 +56,14 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
       yield setActiveAddress.fold(
           (error) => AddressListState.setActiveAddressFail(error.toString()),
           (data) => AddressListState.setActiveAddressSuccess(data));
+    }, addAddress: (request) async* {
+      request.request.wa_id = waNoId;
+      request.request.waba_no = waNoId;
+      final addAddress =
+          await _userRepository.addAddress(request.request.toMap());
+      yield addAddress.fold(
+          (error) => AddressListState.loadFailure(error.toString()),
+          (data) => AddressListState.addAddressSuccess(data));
     });
   }
 }
