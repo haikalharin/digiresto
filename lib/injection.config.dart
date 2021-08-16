@@ -5,7 +5,7 @@
 // **************************************************************************
 
 import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
-import 'package:dio/dio.dart' as _i12;
+import 'package:dio/dio.dart' as _i11;
 import 'package:geolocator/geolocator.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:hive_flutter/hive_flutter.dart' as _i5;
@@ -60,15 +60,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i6.ILocationService>(
       () => _i7.LocationService(get<_i4.GeolocatorPlatform>()));
   gh.lazySingleton<_i8.Logger>(() => registerModule.logger);
-  gh.factory<_i9.RestClient>(() => _i9.RestClient());
-  gh.factory<_i10.SimpleBlocObserver>(
-      () => _i10.SimpleBlocObserver(get<_i8.Logger>()));
+  gh.factory<_i9.SimpleBlocObserver>(
+      () => _i9.SimpleBlocObserver(get<_i8.Logger>()));
   gh.factory<String>(() => registerModule.baseUrlDev,
       instanceName: 'baseUrl', registerFor: {_dev});
   gh.factory<String>(() => registerModule.baseUrl,
       instanceName: 'baseUrl', registerFor: {_prod});
-  gh.factory<_i11.UserLocal>(() => _i11.UserLocal());
-  gh.lazySingleton<_i12.Dio>(
+  gh.factory<_i10.UserLocal>(() => _i10.UserLocal());
+  gh.lazySingleton<_i11.Dio>(
       () => registerModule.dio(get<String>(instanceName: 'baseUrl')));
   gh.factory<_i13.DioClient>(
       () => _i13.DioClient(get<_i12.Dio>(), get<_i8.Logger>()));
@@ -98,7 +97,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i30.INetworkService>(() => _i31.NetworkService(
       get<_i12.Dio>(),
       get<_i8.Logger>(),
-      get<_i14.IStorage>(),
+      get<_i13.IStorage>(),
       get<_i3.Connectivity>()));
   gh.lazySingleton<_i32.IAuthFacade>(() => _i33.ApiAuthFacade(
       get<_i30.INetworkService>(), get<_i8.Logger>(), get<_i14.IStorage>()));

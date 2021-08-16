@@ -54,4 +54,7 @@ class AppAssets {
   static const String iconProfileFood = "assets/icons/ic_profile_food.png";
   static const String iconForwardRed = "assets/icons/ic_forward_red.png";
   static const String iconMapRed = "assets/icons/ic_map_1.png";
+  static const String iconBackBlack = "assets/icons/ic_back_black.png";
+  static const String iconLocationCircleRed =
+      "assets/icons/ic_location_circle_red.png";
 }

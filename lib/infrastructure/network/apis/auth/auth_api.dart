@@ -17,13 +17,9 @@ class AuthApi {
   // dio instance
   final DioClient _dioClient;
 
-  // rest-client instance
-  // final RestClient _restClient;
-
   // injecting dio instance
   AuthApi(
     this._dioClient,
-    // this._restClient,
   );
 
   Future<LoginPin> login(String handPhone, String pin) async {

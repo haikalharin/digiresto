@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -7,7 +8,7 @@ import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
-import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,8 +26,6 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   final profileCancel = 'Cancel';
   late GoogleMapController mapController;
   late LatLng _lastMapPosition;
-  // MapStore _mapStore;
-  // UserStore _userStore;
   ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
       size: 36, color: AppColors.red);
   ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
@@ -39,7 +38,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   final LatLng _center = const LatLng(-6.175483, 106.826852);
   final _nameController = TextEditingController();
   final _addressController = TextEditingController();
-  bool isSelectedDefault = false;
+  RxBool isDefault = false.obs;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -58,8 +57,6 @@ class AddAddressScreenState extends State<AddAddressScreen> {
     setState(() {
       isMarkerMove = false;
     });
-    // print("camera idle");
-    // print(_lastMapPosition);
   }
 
   void _onClickSetDestination() {
@@ -91,8 +88,6 @@ class AddAddressScreenState extends State<AddAddressScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // _mapStore = Provider.of<MapStore>(context);
-    // _userStore = Provider.of<UserStore>(context);
   }
 
   void getGeocode() {
@@ -105,44 +100,15 @@ class AddAddressScreenState extends State<AddAddressScreen> {
 
   void addAddress() {
     Loading.show();
-    Get.context!.read<AddressMapBloc>().add(AddressMapEvent.setActiveAddress(
-        UserAddress(
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.addAddress(
+        UserAddAddressParam(
+            wa_id: "",
+            waba_no: "",
+            name: _nameController.text.toString(),
             address: _addressController.text.toString(),
             latitude: _lastMapPosition.latitude.toString(),
-            longitude: _lastMapPosition.longitude.toString())));
-    // _userStore.addAddress({
-    //   "wa_id": _userStore.profile.mobilePhone,
-    //   "waba_no": Strings.wabaNo,
-    //   "name": _nameController.text.toString(),
-    //   "address": _addressController.text.toString(),
-    //   "latitude": _lastMapPosition.latitude.toString(),
-    //   "longitude": _lastMapPosition.longitude.toString(),
-    //   "is_default": isSelectedDefault,
-    // }).then((res) {
-    //   if (res.id != null) {
-    //     _userStore.getAddress(_userStore.profile.mobilePhone);
-    //     if (_userStore.activeHistoryScreen == 'home.address') {
-    //       Navigator.of(context).pushNamed(Routes.home_all_address);
-    //     } else if (_userStore.activeHistoryScreen == 'profile.address') {
-    //       _userStore.setActivedHomeTab("profile");
-    //       Navigator.of(context).pushNamed(Routes.set_address_list);
-    //     }
-    //     Navigator.of(context).pushReplacementNamed(Routes.set_address_list);
-    //   } else {
-    //     throw ("failed add address");
-    //   }
-    //   Loading.dismiss();
-    // }).catchError((err) {
-    //   Loading.dismiss();
-    //   print(err);
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
-  }
-
-  void changeTic(bool value) {
-    setState(() {
-      isSelectedDefault = value;
-    });
+            longitude: _lastMapPosition.longitude.toString(),
+            is_default: isDefault.value)));
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -150,210 +116,211 @@ class AddAddressScreenState extends State<AddAddressScreen> {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return AlertDialog(
-          contentPadding:
-              EdgeInsets.only(top: 10, bottom: 10, left: 18, right: 18),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(14.0))),
-          title: Text(
-            "Detail Location",
-            style: AppFont.textBlack15Bold,
-            textAlign: TextAlign.center,
-          ),
-          content: SingleChildScrollView(
-            child: Container(
-              child: ListBody(
-                children: <Widget>[
-                  Container(
-                    child: TextFormField(
-                      controller: _nameController,
-                      decoration: new InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: "Nama Lokasi",
-                        border: new OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              width: 2,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide:
-                              BorderSide(width: 1, color: AppColors.red),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide:
-                              BorderSide(width: 1, color: AppColors.red),
-                        ),
-                        errorBorder: OutlineInputBorder(
+        return Obx(() {
+          return AlertDialog(
+            contentPadding:
+                EdgeInsets.only(top: 10, bottom: 10, left: 18, right: 18),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(14.0))),
+            title: Text(
+              "Detail Location",
+              style: AppFont.textBlack15Bold,
+              textAlign: TextAlign.center,
+            ),
+            content: SingleChildScrollView(
+              child: Container(
+                child: ListBody(
+                  children: <Widget>[
+                    Container(
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: new InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "Nama Lokasi",
+                          border: new OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 2,
+                              )),
+                          focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4)),
                             borderSide:
-                                BorderSide(width: 1, color: AppColors.red)),
-                        focusedErrorBorder: OutlineInputBorder(
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4)),
                             borderSide:
-                                BorderSide(width: 1, color: AppColors.red)),
-                        //fillColor: Colors.green
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          //fillColor: Colors.green
+                        ),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        // Only numbers can be entered
+                        validator: (value) {
+                          // if (value.isEmpty) {
+                          //   return 'Please enter your name address';
+                          // }
+                          return null;
+                        },
                       ),
-                      style: TextStyle(fontSize: 14.0, color: Colors.black),
-                      // Only numbers can be entered
-                      validator: (value) {
-                        // if (value.isEmpty) {
-                        //   return 'Please enter your name address';
-                        // }
-                        return null;
-                      },
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: TextFormField(
-                      maxLines: 4,
-                      controller: _addressController,
-                      decoration: new InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: "address",
-                        border: new OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              width: 2,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide:
-                              BorderSide(width: 1, color: AppColors.red),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide:
-                              BorderSide(width: 1, color: AppColors.red),
-                        ),
-                        errorBorder: OutlineInputBorder(
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: TextFormField(
+                        maxLines: 4,
+                        controller: _addressController,
+                        decoration: new InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "address",
+                          border: new OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                width: 2,
+                              )),
+                          focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4)),
                             borderSide:
-                                BorderSide(width: 1, color: AppColors.red)),
-                        focusedErrorBorder: OutlineInputBorder(
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4)),
                             borderSide:
-                                BorderSide(width: 1, color: AppColors.red)),
-                        //fillColor: Colors.green
+                                BorderSide(width: 1, color: AppColors.red),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              borderSide:
+                                  BorderSide(width: 1, color: AppColors.red)),
+                          //fillColor: Colors.green
+                        ),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        // Only numbers can be entered
+                        validator: (value) {
+                          // if (value.isEmpty) {
+                          //   return 'Please enter your address';
+                          // }
+                          return null;
+                        },
                       ),
-                      style: TextStyle(fontSize: 14.0, color: Colors.black),
-                      // Only numbers can be entered
-                      validator: (value) {
-                        // if (value.isEmpty) {
-                        //   return 'Please enter your address';
-                        // }
-                        return null;
-                      },
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isSelectedDefault = !isSelectedDefault;
-                                });
+                    Container(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Row(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  var intial = isDefault.value;
+                                  isDefault.value = !intial;
+                                },
+                                child: isDefault.value
+                                    ? Icon(
+                                        Icons.check_box_rounded,
+                                        color: Colors.green,
+                                        size: 30,
+                                      )
+                                    : Icon(
+                                        Icons.check_box_outline_blank,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
+                              ),
+                              SizedBox(width: 5),
+                              Container(
+                                constraints: BoxConstraints(
+                                    minWidth: 200, maxWidth: 300),
+                                child: Text("Jadikan alamat utama",
+                                    style: AppFont.textBlack12Regular),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            height: 40,
+                            child: RaisedButton(
+                              onPressed: () {
+                                Get.back();
                               },
-                              child: isSelectedDefault
-                                  ? Icon(
-                                      Icons.check_box_rounded,
-                                      color: Colors.green,
-                                      size: 30,
-                                    )
-                                  : Icon(
-                                      Icons.check_box_outline_blank,
-                                      color: Colors.black,
-                                      size: 30,
-                                    ),
-                            ),
-                            SizedBox(width: 5),
-                            Container(
-                              constraints:
-                                  BoxConstraints(minWidth: 200, maxWidth: 300),
-                              child: Text("Default address",
+                              color: Colors.white,
+                              child: Text(profileCancel,
                                   style: TextStyle(
-                                    fontFamily: "roboto",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 120,
-                          height: 40,
-                          child: RaisedButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            color: Colors.white,
-                            child: Text(profileCancel,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.red)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.red)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 120,
-                          height: 40,
-                          child: RaisedButton(
-                            onPressed: () {
-                              if (_nameController.text.toString().length == 0) {
-                                Ctoast.show("Required name");
-                              } else {
-                                addAddress();
-                              }
-                            },
-                            color: AppColors.red,
-                            child: Text("Save",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
+                          SizedBox(
+                            width: 120,
+                            height: 40,
+                            child: RaisedButton(
+                              onPressed: () {
+                                if (_nameController.text.toString().length ==
+                                    0) {
+                                  Ctoast.show("Required name");
+                                } else {
+                                  addAddress();
+                                }
+                              },
+                              color: AppColors.red,
+                              child: Text("Save",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          actions: <Widget>[],
-        );
+            actions: <Widget>[],
+          );
+        });
       },
     );
   }
@@ -369,24 +336,19 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                   color: Colors.black, size: 28.0),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: ImageIcon(AssetImage(AppAssets.iconGps),
-                      size: 20, color: AppColors.red),
-                ),
-                Text(
-                  'Select location',
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+            title: Container(
+              transform: Matrix4.translationValues(-24, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: ImageIcon(AssetImage(AppAssets.iconGps),
+                        size: 20, color: AppColors.red),
                   ),
-                ),
-              ],
+                  Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
+                ],
+              ),
             )),
         body: BlocConsumer<AddressMapBloc, AddressMapState>(
           listener: (context, state) {
@@ -475,12 +437,32 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                 children: [
                   Container(
                     alignment: Alignment.bottomRight,
-                    child: new IconButton(
-                      icon: ImageIcon(AssetImage(AppAssets.iconGps),
-                          size: 36, color: AppColors.red),
-                      onPressed: () {
-                        _getCurrentLocation();
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.7),
+                                blurRadius: 10,
+                                spreadRadius: 4)
+                          ],
+                        ),
+                        child: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: AppColors.red,
+                          child: new IconButton(
+                            color: AppColors.red,
+                            icon: ImageIcon(AssetImage(AppAssets.iconGps),
+                                size: 24, color: AppColors.white),
+                            onPressed: () {
+                              _getCurrentLocation();
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   isMarkerClicked

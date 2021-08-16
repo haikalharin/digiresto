@@ -16,7 +16,6 @@ export 'package:digiresto/presentation/core/app_widget.dart';
 void main() async {
   await InitiateHive.initial();
   configureInjection(Environment.dev);
-  //Get.put(SimpleBlocObserver(Logger()));
   Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(InitiateProvider());
 }

@@ -10,4 +10,6 @@ class AddressListEvent with _$AddressListEvent {
       _SetActiveAddress;
   const factory AddressListEvent.removeAddress(UserRemoveAddressParam request) =
       _RemoveAddress;
+  const factory AddressListEvent.addAddress(UserAddAddressParam request) =
+      _AddAddress;
 }
