@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
@@ -7,6 +8,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
@@ -17,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class HomeContentController extends GetxController {
   RxBool loadingHistory = false.obs;
@@ -65,6 +68,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
     Get.put(HomeContentController());
     context.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
     context.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
+    showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         controller.setLoadingHistory(true);
@@ -171,6 +175,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
   Widget _staticBanner() {
     PageController _controller = Get.find<PageController>(tag: "home");
     return Obx(() => Column(
+          key: GuideKeys.banner,
           children: [
             Container(
               padding: EdgeInsets.only(
@@ -231,6 +236,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
 
   Widget _searchBox() {
     return GestureDetector(
+      key: GuideKeys.search,
       onTap: () {
         Get.toNamed(Routers.homeNearbyOutlet);
       },
@@ -269,6 +275,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
 
   Widget _yourLocation() {
     return GestureDetector(
+      key: GuideKeys.location,
       onTap: () {
         Get.toNamed(Routers.homeAllAddress);
         //  _userStore?.setActiveHistoryScreen("home.address");
@@ -334,6 +341,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
+            key: GuideKeys.terdekat,
             onTap: () {
               Get.toNamed(Routers.homeNearbyOutlet);
             },
@@ -363,6 +371,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                 )),
           ),
           GestureDetector(
+            key: GuideKeys.digidiscount,
             onTap: () {
               Get.toNamed(Routers.homeDigiDiscount);
             },
@@ -404,6 +413,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
+            key: GuideKeys.frozenfood,
             onTap: () {
               Get.toNamed(Routers.homeDigiDiscount);
             },
@@ -433,6 +443,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
                 )),
           ),
           GestureDetector(
+            key: GuideKeys.indonesiapastibisa,
             onTap: () {
               Get.toNamed(Routers.homeDigiDiscount);
             },
@@ -867,5 +878,30 @@ class HomeContentScreen extends GetView<HomeContentController> {
     // }).catchError((err) {
     //   ErrorPopupWidget.showDioError(context, err, null);
     // });
+  }
+
+  void showTutorial(BuildContext context) {
+    final _appBloc = BlocProvider.of<AppBloc>(context);
+    _appBloc.state.guideShown.fold(
+      () => null,
+      (guideShown) => guideShown
+          ? null
+          : {
+              TutorialCoachMark(
+                context,
+                targets: GuideKeys.targetFocus,
+                hideSkip: true,
+                paddingFocus: 5,
+                onFinish: () => _appBloc.add(AppEvent.skipGuide()),
+                onClickTarget: (target) {},
+                onSkip: () => _appBloc.add(AppEvent.skipGuide()),
+              )..show()
+            },
+    );
+
+    // tutorial.skip();
+    // tutorial.finish();
+    // tutorial.next(); // call next target programmatically
+    // tutorial.previous(); // call previous target programmatically
   }
 }

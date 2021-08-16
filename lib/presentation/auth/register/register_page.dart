@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/auth/register/register_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/auth/widgets/draw_circle.dart';
@@ -43,7 +41,6 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   late final _registerBloc = BlocProvider.of<RegisterBloc>(context);
-  late final _authBloc = BlocProvider.of<AuthBloc>(context);
   PageController _pageController = PageController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
