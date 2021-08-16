@@ -132,6 +132,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
                       ),
                       enableActiveFill: true,
                       keyboardType: TextInputType.number,
+                      obscureText: true,
                       pinTheme: PinTheme(
                         borderWidth: 0,
                         shape: PinCodeFieldShape.box,
