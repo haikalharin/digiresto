@@ -100,14 +100,34 @@ class ApiAuthFacade implements IAuthFacade {
     String apiUrl = Endpoints.urlLogin;
     String _phoneNumber = phoneNumber.getOrCrash();
     String _pin = pin.getOrCrash();
-    final apiResult = await _networkService.postHttp(
-      path: apiUrl,
-      content: {
-        "username": _phoneNumber,
-        "password": pin,
-      },
-    );
-    throw UnimplementedError();
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "username": _phoneNumber,
+          "password": _pin,
+        },
+      );
+      final data = (apiResult as Map<String, dynamic>)['data'];
+      final userData = Map<String, dynamic>.from(data);
+      logger.d(userData);
+      final _user = UserAuth.fromJson(userData);
+      await _storage.openBox(StorageConstants.user);
+      await _storage.putData(json: _user.toJson());
+      await _storage.close();
+      return right(_user);
+    } on ServerException catch (e) {
+      logger.d(e.code);
+      if (e.code == '999') {
+        return left(AuthFailure.invalidPin(e.message));
+      }
+      return left(AuthFailure.serverError());
+    } on NoInternetException catch (_) {
+      return left(AuthFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(AuthFailure.unknownError());
+    }
   }
 
   @override
@@ -117,8 +137,13 @@ class ApiAuthFacade implements IAuthFacade {
     if (_userInStorage.isNotEmpty) {
       final _userAuth = UserAuth.fromJson(_userInStorage);
       final _userProfile = await getProfile(_userAuth.token);
+      logger.d(_userProfile);
       return _userProfile.fold(
-          (l) => left(l), (profile) => right(optionOf(_userAuth)));
+        (l) => left(l),
+        (profile) => right(
+          optionOf(_userAuth),
+        ),
+      );
     }
     await _storage.close();
     return right(none());
@@ -133,19 +158,22 @@ class ApiAuthFacade implements IAuthFacade {
   @override
   Future<Either<AuthFailure, UserProfile>> getProfile(String token) async {
     try {
-      final apiResult = _networkService.getHttp(
+      final apiResult = await _networkService.getHttp(
         path: Endpoints.urlProfile,
         header: {"Authorization": "Bearer $token"},
       );
+      logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'];
       final userData = Map<String, dynamic>.from(data);
+      logger.d(data);
       return right(UserProfile.fromJson(userData));
     } on ServerException catch (e) {
       return left(AuthFailure.invalidToken(e.message));
     } on NoInternetException catch (_) {
       return left(AuthFailure.noInternet());
-    } catch (e) {
-      return left(AuthFailure.serverError());
+    } catch (e, stactrace) {
+      logger.d('coba ' + stactrace.toString());
+      return left(AuthFailure.unknownError());
     }
   }
 }
