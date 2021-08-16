@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/i_storage.dart';
+import 'package:digiresto/infrastructure/core/storage.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,7 +16,7 @@ import 'logger_interceptor.dart';
 abstract class RegisterModule {
   @Environment(Environment.dev)
   @Named('baseUrl')
-  String get baseUrlDev => Endpoints.baseUrlDigiresto;
+  String get baseUrlDev => Endpoints.devUrl;
 
   @Environment(Environment.prod)
   @Named('baseUrl')
@@ -35,12 +37,23 @@ abstract class RegisterModule {
       return client;
     };
     // options.
-    _dio.options = options;
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        Storage _storage = Storage(hive);
+        _storage.openBox(StorageConstants.base);
+
+        String? _authKey = await _storage.getString(key: 'authKey');
+        if (_authKey != null) {
+          options.headers = {"Authorization": "token $_authKey"};
+        }
+      },
+    ));
+
     var _token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3NzkwODg0MzEiLCJpYXQiOjE2Mjg2NDczODgsImV4cCI6MTYyOTI1MjE4OH0.QHEH2mf32TKa1-lC7HIvzV43lU7YiGK-1sbf6QAgjI8";
 
-    _dio.options.headers['content-Type'] = 'application/json';
-    _dio.options.headers["authorization"] = "token $_token";
+    options.headers['content-Type'] = 'application/json';
+    options.headers["authorization"] = "token $_token";
 
     // if (kDebugMode) {
     _dio.interceptors.add(LoggerInterceptor(
@@ -50,6 +63,7 @@ abstract class RegisterModule {
         responseBody: true,
         responseHeader: true));
 
+    _dio.options = options;
     return _dio;
   }
 
