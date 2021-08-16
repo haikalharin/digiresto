@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeAllHotPromoScreen extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class HomeAllHotPromoScreen extends StatefulWidget {
 
 class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
   goBack(BuildContext context) {
-    Navigator.pop(context);
+    Get.back();
   }
 
   final searchController = TextEditingController();
@@ -124,7 +125,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
                         color: Colors.black, size: 28.0),
                     onPressed: () {
                       //getOutletByLocation();
-                      Navigator.pop(context);
+                      Get.back();
                     }),
                 Text("Hot Promo",
                     style: TextStyle(

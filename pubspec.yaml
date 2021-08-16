@@ -63,6 +63,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: any
+  hive_generator: ^1.1.0
   injectable_generator: any
   json_serializable: any
   lint: ^1.5.3

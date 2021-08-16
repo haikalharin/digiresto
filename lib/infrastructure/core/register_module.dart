@@ -13,8 +13,14 @@ import 'logger_interceptor.dart';
 
 @module
 abstract class RegisterModule {
+  @Environment(Environment.dev)
   @Named('baseUrl')
-  String get baseUrl => Endpoints.baseUrl;
+  String get baseUrlDev => Endpoints.baseUrlDigiresto;
+
+  @Environment(Environment.prod)
+  @Named('baseUrl')
+  String get baseUrl => Endpoints.baseUrlDigirestoProd;
+
   @lazySingleton
   Dio dio(@Named('baseUrl') String baseUrl) {
     Dio _dio = Dio();

@@ -39,7 +39,7 @@ class HomeContentController extends GetxController {
           speedAccuracy: 0)
       .obs;
   RxList<StaticBanner> listStaticBanner = (List<StaticBanner>.empty()).obs;
-
+  Rx<UserAddress> currentLocation = UserAddress().obs;
   setLoadingHistory(bool value) => loadingHistory.value = value;
   setLoadingHotPromo(bool value) => loadingHotPromo.value = value;
   setLoadingPromo(bool value) => loadingPromo.value = value;
@@ -51,6 +51,7 @@ class HomeContentController extends GetxController {
   setListAddress(List<UserAddress> value) => listAddress.value = value;
   setCurrentPosition(Position value) => currentPosition.value = value;
   setStaticBanner(List<StaticBanner> value) => listStaticBanner.value = value;
+  setCurrentLocation(UserAddress value) => currentLocation.value = value;
 }
 
 class HomeContentScreen extends GetView<HomeContentController> {
@@ -62,9 +63,8 @@ class HomeContentScreen extends GetView<HomeContentController> {
         ),
         tag: "home");
     Get.put(HomeContentController());
-
+    context.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
     context.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
-    context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         controller.setLoadingHistory(true);
@@ -77,9 +77,19 @@ class HomeContentScreen extends GetView<HomeContentController> {
             },
             addressListSuccess: (data) {
               if (data.list.length > 0) {
-                controller.setActiveAddress(data.list[0].address!);
+                controller.setActiveAddress(data.list
+                    .firstWhere((element) => element.isDefault == true)
+                    .address!);
                 controller.setListAddress(data.list);
               }
+            },
+            getActiveAddressFail: (fail) {
+              print("error");
+              print(fail);
+              context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            },
+            getActiveAddressSuccess: (data) {
+              controller.setActiveAddress(data.response.address!);
             },
             orElse: () {});
       },
@@ -195,22 +205,23 @@ class HomeContentScreen extends GetView<HomeContentController> {
                             : _buildPageIndicator(false),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          "Lihat semua promo",
-                          style: AppFont.textRed14Bold,
-                        ),
-                        SizedBox(width: 9),
-                        Image(
-                          image: new AssetImage(AppAssets.iconForwardRed),
-                          height: 12,
-                        ),
-                      ],
-                    ),
-                  )
+                  //hidden see all promo request by user
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         "Lihat semua promo",
+                  //         style: AppFont.textRed14Bold,
+                  //       ),
+                  //       SizedBox(width: 9),
+                  //       Image(
+                  //         image: new AssetImage(AppAssets.iconForwardRed),
+                  //         height: 12,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                 ],
               ),
             )
@@ -742,7 +753,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
           () {
         {
-          Navigator.pop(Get.context!);
+          Get.back();
           Get.toNamed(Routers.homeAddLocation);
         }
       });

@@ -27,30 +27,31 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEvent event,
   ) async* {
     yield* event.map(
-      phoneNumberChanged: (_event) async* {
-        yield state.copyWith(
-          phoneNumber: PhoneNumber(_event.phoneNumberStr),
-          loginFailureOrSuccessOption: none(),
+        phoneNumberChanged: (_event) async* {
+          yield state.copyWith(
+            phoneNumber: PhoneNumber(_event.phoneNumberStr),
+            loginFailureOrSuccessOption: none(),
+          );
+        },
+        pinChanged: (_event) async* {
+          yield state.copyWith(
+            pin: Pin(_event.pinStr),
+            loginFailureOrSuccessOption: none(),
+          );
+        },
+        verifOtpPressed: (_event) async* {
+          yield* _performActionOnAuthFacadeVerifOtp();
+        },
+        otpVerified: (_event) async* {
+          yield state.copyWith(
+            onInvalidPin: optionOf(_event.onInvalidPin),
+          );
+        },
+        pinSubmitted: (_e) async* {}
+        // loginPressed: (_event) async* {
+        //   yield* _performActionOnAuthFacadeLoginPin();
+        // },
         );
-      },
-      pinChanged: (_event) async* {
-        yield state.copyWith(
-          pin: Pin(_event.pinStr),
-          loginFailureOrSuccessOption: none(),
-        );
-      },
-      verifOtpPressed: (_event) async* {
-        yield* _performActionOnAuthFacadeVerifOtp();
-      },
-      otpVerified: (_event) async* {
-        yield state.copyWith(
-          onInvalidPin: optionOf(_event.onInvalidPin),
-        );
-      },
-      loginPressed: (_event) async* {
-        yield* _performActionOnAuthFacadeLoginPin();
-      },
-    );
   }
 
   Stream<LoginState> _performActionOnAuthFacadeVerifOtp() async* {

@@ -4,6 +4,7 @@ import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ErrorPopupWidget {
   static confirmation(BuildContext context, String title, String message,
@@ -243,9 +244,9 @@ class ErrorPopupWidget {
                             // }
                           } else if (runAction != null) {
                             runAction();
-                            Navigator.of(context).pop();
+                            Get.back();
                           } else {
-                            Navigator.of(context).pop();
+                            Get.back();
                           }
                           //
                         },
