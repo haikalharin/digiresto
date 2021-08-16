@@ -1,17 +1,22 @@
 import 'dart:typed_data';
 
-import 'package:digiresto/domain/core/i_storage.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 @LazySingleton(as: IStorage)
 class Storage implements IStorage {
   late Box box;
   final HiveInterface hive;
+  final Logger logger;
 
-  Storage(this.hive);
+  Storage(
+    this.hive,
+    this.logger,
+  );
 
   Future openBox(
     StorageConstants boxName,
@@ -31,11 +36,11 @@ class Storage implements IStorage {
 
   Future<void> putData({required Map<String, dynamic> json}) async {
     try {
-      print('check box is open ${box.isOpen}');
+      logger.d('check box is open ${box.isOpen}');
       await box.putAll(json);
       return;
     } catch (e) {
-      print(e.toString());
+      logger.d(e.toString());
     }
   }
 
@@ -49,7 +54,7 @@ class Storage implements IStorage {
         await box.add(e);
       });
     } catch (e) {
-      print(e);
+      logger.d(e);
     }
 
     return;
@@ -96,9 +101,9 @@ class Storage implements IStorage {
     return value;
   }
 
-  Future<Map<String, dynamic>?> getData() async {
+  Future<Map<String, dynamic>> getData() async {
     Map<String, dynamic>? value = Map<String, dynamic>.from(box.toMap());
-    print(value);
+    logger.d(value);
     return value;
   }
 
@@ -108,7 +113,7 @@ class Storage implements IStorage {
 
   Future<List?> getListData() async {
     final value = box.toMap();
-    print(value);
+    logger.d(value);
     List datas = [];
     value.forEach((key, value) {
       datas.add(value);

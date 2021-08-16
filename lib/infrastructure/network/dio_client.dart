@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 @injectable
 class DioClient {
   // dio instance
-  Dio _dioClient;
-  DioClient(
-    this._dioClient,
-  );
+  Dio _dio;
+  Logger logger;
+  DioClient(this._dio, this.logger);
 
   // injecting dio instance
   // DioClient() {
@@ -24,8 +24,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      var dio = _dioClient;
-      final Response response = await dio.get(
+      final Response response = await _dio.get(
         uri,
         queryParameters: queryParameters,
         options: options,
@@ -49,8 +48,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      var dio = _dioClient;
-      final Response response = await dio.post(
+      final Response response = await _dio.post(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -59,10 +57,10 @@ class DioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-
+      logger.d(_dio.options.headers);
       return response.data;
     } catch (e) {
-      print(e);
+      logger.d(e);
       throw e;
     }
   }

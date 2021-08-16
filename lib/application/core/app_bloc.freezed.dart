@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'auth_bloc.dart';
+part of 'app_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,8 +13,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$AuthEventTearOff {
-  const _$AuthEventTearOff();
+class _$AppEventTearOff {
+  const _$AppEventTearOff();
 
   _Started started() {
     return const _Started();
@@ -22,10 +22,10 @@ class _$AuthEventTearOff {
 }
 
 /// @nodoc
-const $AuthEvent = _$AuthEventTearOff();
+const $AppEvent = _$AppEventTearOff();
 
 /// @nodoc
-mixin _$AuthEvent {
+mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -51,18 +51,18 @@ mixin _$AuthEvent {
 }
 
 /// @nodoc
-abstract class $AuthEventCopyWith<$Res> {
-  factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
-      _$AuthEventCopyWithImpl<$Res>;
+abstract class $AppEventCopyWith<$Res> {
+  factory $AppEventCopyWith(AppEvent value, $Res Function(AppEvent) then) =
+      _$AppEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
-  _$AuthEventCopyWithImpl(this._value, this._then);
+class _$AppEventCopyWithImpl<$Res> implements $AppEventCopyWith<$Res> {
+  _$AppEventCopyWithImpl(this._value, this._then);
 
-  final AuthEvent _value;
+  final AppEvent _value;
   // ignore: unused_field
-  final $Res Function(AuthEvent) _then;
+  final $Res Function(AppEvent) _then;
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ abstract class _$StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+class __$StartedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
     implements _$StartedCopyWith<$Res> {
   __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
       : super(_value, (v) => _then(v as _Started));
@@ -88,7 +88,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'AuthEvent.started()';
+    return 'AppEvent.started()';
   }
 
   @override
@@ -140,13 +140,13 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements AuthEvent {
+abstract class _Started implements AppEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-class _$AuthStateTearOff {
-  const _$AuthStateTearOff();
+class _$AppStateTearOff {
+  const _$AppStateTearOff();
 
   _Initial initial() {
     return const _Initial();
@@ -154,10 +154,10 @@ class _$AuthStateTearOff {
 }
 
 /// @nodoc
-const $AuthState = _$AuthStateTearOff();
+const $AppState = _$AppStateTearOff();
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$AppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -183,18 +183,18 @@ mixin _$AuthState {
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res>;
+abstract class $AppStateCopyWith<$Res> {
+  factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
+      _$AppStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
+  _$AppStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _value;
+  final AppState _value;
   // ignore: unused_field
-  final $Res Function(AuthState) _then;
+  final $Res Function(AppState) _then;
 }
 
 /// @nodoc
@@ -204,7 +204,7 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -220,7 +220,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'AppState.initial()';
   }
 
   @override
@@ -272,6 +272,6 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AuthState {
+abstract class _Initial implements AppState {
   const factory _Initial() = _$_Initial;
 }

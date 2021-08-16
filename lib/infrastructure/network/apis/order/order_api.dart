@@ -13,6 +13,7 @@ import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/infrastructure/network/dio_client.dart';
+// import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
