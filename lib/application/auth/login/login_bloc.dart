@@ -47,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           onInvalidPin: optionOf(_event.onInvalidPin),
         );
       },
-      loginPressed: (_event) async* {
+      pinSubmitted: (_event) async* {
         yield* _performActionOnAuthFacadeLoginPin();
       },
     );
@@ -98,15 +98,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> _performActionOnAuthFacadeLoginPin() async* {
     Either<AuthFailure, UserAuth>? failureOrSuccess;
 
-    final isPhoneNumberValid = state.phoneNumber.isValid();
     final isPinValid = state.pin.isValid();
-    if (isPhoneNumberValid && isPinValid) {
+    if (isPinValid) {
       yield state.copyWith(
         isSubmitting: true,
         loginFailureOrSuccessOption: none(),
       );
-
-      await Future.delayed(const Duration(seconds: 2));
 
       failureOrSuccess = await _authFacade.loginPin(
         phoneNumber: state.phoneNumber,

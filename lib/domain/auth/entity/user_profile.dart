@@ -17,11 +17,6 @@ abstract class UserProfile with _$UserProfile {
     required String username,
     required String email,
     required String mobilePhone,
-    required String hiddenUid,
-    required String hiddenSecretword,
-    required String hiddenPushid,
-    required String hiddenDevicepairingflag,
-    required String tanggalLahir,
   }) = _UserProfile;
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>

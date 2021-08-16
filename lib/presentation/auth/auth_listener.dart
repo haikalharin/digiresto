@@ -27,26 +27,29 @@ class AuthListener extends StatelessWidget {
             authenticated: (_) => HomeScreen(),
             unauthenticated: (_) => LoginPage(),
             authFailure: (failure) {
-              return Stack(
-                children: [
-                  Center(
-                    child: failure.e.maybeMap(
-                      noInternet: (_) => Text('No internet connection'),
-                      orElse: () => CircularProgressIndicator(),
+              return Material(
+                color: Colors.white,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: failure.e.maybeMap(
+                        noInternet: (_) => Text('No internet connection'),
+                        orElse: () => CircularProgressIndicator(),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 20,
-                    right: 0,
-                    left: 0,
-                    child: CustomButton(
-                      margin: EdgeInsets.all(Dimens.defaultMargin),
-                      onPressed: () =>
-                          _authBloc.add(AuthEvent.authCheckRequested()),
-                      label: 'Retry',
+                    Positioned(
+                      bottom: 20,
+                      right: 0,
+                      left: 0,
+                      child: CustomButton(
+                        margin: EdgeInsets.all(Dimens.defaultMargin),
+                        onPressed: () =>
+                            _authBloc.add(AuthEvent.authCheckRequested()),
+                        label: 'Retry',
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           );

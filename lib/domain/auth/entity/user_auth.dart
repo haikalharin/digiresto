@@ -20,11 +20,6 @@ abstract class UserAuth with _$UserAuth {
     required String username,
     required String email,
     required String mobilePhone,
-    required String hiddenUid,
-    required String hiddenSecretword,
-    required String hiddenPushid,
-    required String hiddenDevicepairingflag,
-    required String tanggalLahir,
   }) = _UserAuth;
 
   factory UserAuth.fromJson(Map<String, dynamic> json) =>

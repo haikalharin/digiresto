@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
 import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
@@ -64,11 +65,16 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
         state.validateFailureOrSuccess.fold(
           () => null,
           (success) => success.fold(
-            (l) => null,
-            (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
-            // (isMember) => isMember
-            //     ? Get.to(LoginPinPage(widget.phoneNumber))
-            //     : Get.to(RegisterPage(widget.phoneNumber)),
+            (l) => Get.defaultDialog(
+                title: 'Error',
+                middleText: l.maybeMap(
+                  orElse: () => 'unknown',
+                  invalidOtp: (_) => 'Invalid Otp',
+                )),
+            // (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
+            (isMember) => isMember
+                ? Get.to(LoginPinPage(widget.phoneNumber))
+                : Get.to(RegisterPage(widget.phoneNumber)),
           ),
         );
       },
