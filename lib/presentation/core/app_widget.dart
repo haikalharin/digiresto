@@ -18,7 +18,7 @@ class AppWidget extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       getPages: Routers().routers,
-      initialRoute: Routers.home,
+      initialRoute: Routers.intro,
     );
   }
 }

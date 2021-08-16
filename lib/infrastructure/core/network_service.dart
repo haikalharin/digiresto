@@ -115,7 +115,10 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException();
+            throw ServerException(
+              code: e.response?.data['response']['code'],
+              message: e.response?.data['response']['message'],
+            );
         }
       }
     } else {
@@ -138,7 +141,7 @@ class NetworkService implements INetworkService {
       try {
         await baseStorage.openBox(StorageConstants.base);
         final Map<String, dynamic> headers = {
-          'content-type': ContentType.json.mimeType,
+          'content-type': contentType ?? ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
         };
         if (header != null) {
@@ -167,7 +170,10 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException();
+            throw ServerException(
+              code: e.response?.data['response']['code'],
+              message: e.response?.data['response']['message'],
+            );
         }
       }
     } else {
@@ -213,7 +219,10 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException();
+            throw ServerException(
+              code: e.response?.data['response']['code'],
+              message: e.response?.data['response']['message'],
+            );
         }
       }
     } else {

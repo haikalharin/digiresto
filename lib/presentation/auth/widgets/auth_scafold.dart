@@ -9,6 +9,7 @@ class AuthScafold extends StatelessWidget {
   final Widget? suffixWidget;
   final double? headerCurvedHeight;
   final void Function()? onNext;
+  final void Function()? onBackTap;
   const AuthScafold({
     Key? key,
     required this.child,
@@ -16,6 +17,7 @@ class AuthScafold extends StatelessWidget {
     this.title = '',
     this.headerCurvedHeight,
     this.onNext,
+    this.onBackTap,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,22 @@ class AuthScafold extends StatelessWidget {
           HeaderCurvedWidget(
             height: headerCurvedHeight ?? deviceHeight * 0.4,
             color: AppColors.mainColor.withOpacity(0.7),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.width * 0.65,
+              width: MediaQuery.of(context).size.width * 0.7,
+              decoration: BoxDecoration(
+                color: AppColors.mainColor2.withOpacity(0.5),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(
+                    MediaQuery.of(context).size.width * 0.7,
+                  ),
+                ),
+              ),
+            ),
           ),
           Column(
             children: [
@@ -57,7 +75,7 @@ class AuthScafold extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          onTap: () => Get.back(),
+                          onTap: onBackTap ?? () => Get.back(),
                           child: Icon(
                             Icons.arrow_back_rounded,
                             color: Colors.white,

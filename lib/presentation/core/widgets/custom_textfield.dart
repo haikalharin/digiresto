@@ -35,12 +35,13 @@ class CustomTextField extends StatelessWidget {
         ),
         errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          borderSide: BorderSide(color: Colors.red, width: 0.7),
+          borderSide: BorderSide(color: Colors.black, width: 0.7),
         ),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
           borderSide: BorderSide(color: AppColors.inputFillColor, width: 0.7),
         ),
+        errorStyle: Styles.hintStyle.copyWith(color: AppColors.yellow),
         hintText: hintText,
         hintStyle: Styles.hintStyle,
         fillColor: AppColors.inputFillColor,

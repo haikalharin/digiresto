@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -61,4 +62,7 @@ abstract class RegisterModule {
 
   @lazySingleton
   Logger get logger => Logger();
+
+  @lazySingleton
+  GeolocatorPlatform get goelocatorPlatform => GeolocatorPlatform.instance;
 }
