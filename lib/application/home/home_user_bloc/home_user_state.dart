@@ -17,4 +17,9 @@ class HomeUserState with _$HomeUserState {
 
   const factory HomeUserState.addressListFailed(String message) =
       _AddressLoadFailed;
+
+  const factory HomeUserState.getActiveAddressSuccess(UserAddress response) =
+      _GetActiveAddressSuccess;
+  const factory HomeUserState.getActiveAddressFail(String message) =
+      _GetActiveAddressFail;
 }

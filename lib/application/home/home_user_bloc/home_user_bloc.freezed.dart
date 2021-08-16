@@ -23,6 +23,10 @@ class _$HomeUserEventTearOff {
   _GetListAddress getListAddress() {
     return const _GetListAddress();
   }
+
+  _GetActiveAddress getActiveAddress() {
+    return const _GetActiveAddress();
+  }
 }
 
 /// @nodoc
@@ -34,12 +38,14 @@ mixin _$HomeUserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
+    required TResult Function() getActiveAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,12 +53,14 @@ mixin _$HomeUserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +125,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
   TResult when<TResult extends Object?>({
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return getStaticBanner();
   }
@@ -126,6 +135,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (getStaticBanner != null) {
@@ -139,6 +149,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return getStaticBanner(this);
   }
@@ -148,6 +159,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (getStaticBanner != null) {
@@ -203,6 +215,7 @@ class _$_GetListAddress implements _GetListAddress {
   TResult when<TResult extends Object?>({
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return getListAddress();
   }
@@ -212,6 +225,7 @@ class _$_GetListAddress implements _GetListAddress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (getListAddress != null) {
@@ -225,6 +239,7 @@ class _$_GetListAddress implements _GetListAddress {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return getListAddress(this);
   }
@@ -234,6 +249,7 @@ class _$_GetListAddress implements _GetListAddress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (getListAddress != null) {
@@ -245,6 +261,96 @@ class _$_GetListAddress implements _GetListAddress {
 
 abstract class _GetListAddress implements HomeUserEvent {
   const factory _GetListAddress() = _$_GetListAddress;
+}
+
+/// @nodoc
+abstract class _$GetActiveAddressCopyWith<$Res> {
+  factory _$GetActiveAddressCopyWith(
+          _GetActiveAddress value, $Res Function(_GetActiveAddress) then) =
+      __$GetActiveAddressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetActiveAddressCopyWithImpl<$Res>
+    extends _$HomeUserEventCopyWithImpl<$Res>
+    implements _$GetActiveAddressCopyWith<$Res> {
+  __$GetActiveAddressCopyWithImpl(
+      _GetActiveAddress _value, $Res Function(_GetActiveAddress) _then)
+      : super(_value, (v) => _then(v as _GetActiveAddress));
+
+  @override
+  _GetActiveAddress get _value => super._value as _GetActiveAddress;
+}
+
+/// @nodoc
+
+class _$_GetActiveAddress implements _GetActiveAddress {
+  const _$_GetActiveAddress();
+
+  @override
+  String toString() {
+    return 'HomeUserEvent.getActiveAddress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetActiveAddress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getStaticBanner,
+    required TResult Function() getListAddress,
+    required TResult Function() getActiveAddress,
+  }) {
+    return getActiveAddress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getStaticBanner,
+    TResult Function()? getListAddress,
+    TResult Function()? getActiveAddress,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddress != null) {
+      return getActiveAddress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetStaticBanner value) getStaticBanner,
+    required TResult Function(_GetListAddress value) getListAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
+  }) {
+    return getActiveAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetStaticBanner value)? getStaticBanner,
+    TResult Function(_GetListAddress value)? getListAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddress != null) {
+      return getActiveAddress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetActiveAddress implements HomeUserEvent {
+  const factory _GetActiveAddress() = _$_GetActiveAddress;
 }
 
 /// @nodoc
@@ -290,6 +396,18 @@ class _$HomeUserStateTearOff {
       message,
     );
   }
+
+  _GetActiveAddressSuccess getActiveAddressSuccess(UserAddress response) {
+    return _GetActiveAddressSuccess(
+      response,
+    );
+  }
+
+  _GetActiveAddressFail getActiveAddressFail(String message) {
+    return _GetActiveAddressFail(
+      message,
+    );
+  }
 }
 
 /// @nodoc
@@ -307,6 +425,8 @@ mixin _$HomeUserState {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -319,6 +439,8 @@ mixin _$HomeUserState {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -332,6 +454,9 @@ mixin _$HomeUserState {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -344,6 +469,8 @@ mixin _$HomeUserState {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -411,6 +538,8 @@ class _$_Initial implements _Initial {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return initial();
   }
@@ -426,6 +555,8 @@ class _$_Initial implements _Initial {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -445,6 +576,9 @@ class _$_Initial implements _Initial {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return initial(this);
   }
@@ -460,6 +594,8 @@ class _$_Initial implements _Initial {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -521,6 +657,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return loadInProgress();
   }
@@ -536,6 +674,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -555,6 +695,9 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return loadInProgress(this);
   }
@@ -570,6 +713,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -630,6 +775,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return loadSuccess();
   }
@@ -645,6 +792,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -664,6 +813,9 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return loadSuccess(this);
   }
@@ -679,6 +831,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -739,6 +893,8 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return loadFailure();
   }
@@ -754,6 +910,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -773,6 +931,9 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return loadFailure(this);
   }
@@ -788,6 +949,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -874,6 +1037,8 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return bannerLoadSuccess(list);
   }
@@ -889,6 +1054,8 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (bannerLoadSuccess != null) {
@@ -908,6 +1075,9 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return bannerLoadSuccess(this);
   }
@@ -923,6 +1093,8 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (bannerLoadSuccess != null) {
@@ -1015,6 +1187,8 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return bannerLoadFailed(message);
   }
@@ -1030,6 +1204,8 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (bannerLoadFailed != null) {
@@ -1049,6 +1225,9 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return bannerLoadFailed(this);
   }
@@ -1064,6 +1243,8 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (bannerLoadFailed != null) {
@@ -1155,6 +1336,8 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return addressListSuccess(list);
   }
@@ -1170,6 +1353,8 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (addressListSuccess != null) {
@@ -1189,6 +1374,9 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return addressListSuccess(this);
   }
@@ -1204,6 +1392,8 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (addressListSuccess != null) {
@@ -1296,6 +1486,8 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     required TResult Function(String message) bannerLoadFailed,
     required TResult Function(List<UserAddress> list) addressListSuccess,
     required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
   }) {
     return addressListFailed(message);
   }
@@ -1311,6 +1503,8 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     TResult Function(String message)? bannerLoadFailed,
     TResult Function(List<UserAddress> list)? addressListSuccess,
     TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (addressListFailed != null) {
@@ -1330,6 +1524,9 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
     required TResult Function(_AddressLoadSuccess value) addressListSuccess,
     required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
   }) {
     return addressListFailed(this);
   }
@@ -1345,6 +1542,8 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
     TResult Function(_AddressLoadSuccess value)? addressListSuccess,
     TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
     required TResult orElse(),
   }) {
     if (addressListFailed != null) {
@@ -1360,5 +1559,308 @@ abstract class _AddressLoadFailed implements HomeUserState {
   String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$AddressLoadFailedCopyWith<_AddressLoadFailed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetActiveAddressSuccessCopyWith<$Res> {
+  factory _$GetActiveAddressSuccessCopyWith(_GetActiveAddressSuccess value,
+          $Res Function(_GetActiveAddressSuccess) then) =
+      __$GetActiveAddressSuccessCopyWithImpl<$Res>;
+  $Res call({UserAddress response});
+}
+
+/// @nodoc
+class __$GetActiveAddressSuccessCopyWithImpl<$Res>
+    extends _$HomeUserStateCopyWithImpl<$Res>
+    implements _$GetActiveAddressSuccessCopyWith<$Res> {
+  __$GetActiveAddressSuccessCopyWithImpl(_GetActiveAddressSuccess _value,
+      $Res Function(_GetActiveAddressSuccess) _then)
+      : super(_value, (v) => _then(v as _GetActiveAddressSuccess));
+
+  @override
+  _GetActiveAddressSuccess get _value =>
+      super._value as _GetActiveAddressSuccess;
+
+  @override
+  $Res call({
+    Object? response = freezed,
+  }) {
+    return _then(_GetActiveAddressSuccess(
+      response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as UserAddress,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
+  const _$_GetActiveAddressSuccess(this.response);
+
+  @override
+  final UserAddress response;
+
+  @override
+  String toString() {
+    return 'HomeUserState.getActiveAddressSuccess(response: $response)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetActiveAddressSuccess &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetActiveAddressSuccessCopyWith<_GetActiveAddressSuccess> get copyWith =>
+      __$GetActiveAddressSuccessCopyWithImpl<_GetActiveAddressSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function() loadFailure,
+    required TResult Function(List<StaticBanner> list) bannerLoadSuccess,
+    required TResult Function(String message) bannerLoadFailed,
+    required TResult Function(List<UserAddress> list) addressListSuccess,
+    required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
+  }) {
+    return getActiveAddressSuccess(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
+    TResult Function(String message)? bannerLoadFailed,
+    TResult Function(List<UserAddress> list)? addressListSuccess,
+    TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddressSuccess != null) {
+      return getActiveAddressSuccess(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_BannerLoadSuccess value) bannerLoadSuccess,
+    required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
+    required TResult Function(_AddressLoadSuccess value) addressListSuccess,
+    required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+  }) {
+    return getActiveAddressSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
+    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
+    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
+    TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddressSuccess != null) {
+      return getActiveAddressSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetActiveAddressSuccess implements HomeUserState {
+  const factory _GetActiveAddressSuccess(UserAddress response) =
+      _$_GetActiveAddressSuccess;
+
+  UserAddress get response => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetActiveAddressSuccessCopyWith<_GetActiveAddressSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetActiveAddressFailCopyWith<$Res> {
+  factory _$GetActiveAddressFailCopyWith(_GetActiveAddressFail value,
+          $Res Function(_GetActiveAddressFail) then) =
+      __$GetActiveAddressFailCopyWithImpl<$Res>;
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$GetActiveAddressFailCopyWithImpl<$Res>
+    extends _$HomeUserStateCopyWithImpl<$Res>
+    implements _$GetActiveAddressFailCopyWith<$Res> {
+  __$GetActiveAddressFailCopyWithImpl(
+      _GetActiveAddressFail _value, $Res Function(_GetActiveAddressFail) _then)
+      : super(_value, (v) => _then(v as _GetActiveAddressFail));
+
+  @override
+  _GetActiveAddressFail get _value => super._value as _GetActiveAddressFail;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_GetActiveAddressFail(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetActiveAddressFail implements _GetActiveAddressFail {
+  const _$_GetActiveAddressFail(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'HomeUserState.getActiveAddressFail(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetActiveAddressFail &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetActiveAddressFailCopyWith<_GetActiveAddressFail> get copyWith =>
+      __$GetActiveAddressFailCopyWithImpl<_GetActiveAddressFail>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function() loadFailure,
+    required TResult Function(List<StaticBanner> list) bannerLoadSuccess,
+    required TResult Function(String message) bannerLoadFailed,
+    required TResult Function(List<UserAddress> list) addressListSuccess,
+    required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
+  }) {
+    return getActiveAddressFail(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
+    TResult Function(String message)? bannerLoadFailed,
+    TResult Function(List<UserAddress> list)? addressListSuccess,
+    TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddressFail != null) {
+      return getActiveAddressFail(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_BannerLoadSuccess value) bannerLoadSuccess,
+    required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
+    required TResult Function(_AddressLoadSuccess value) addressListSuccess,
+    required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+  }) {
+    return getActiveAddressFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
+    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
+    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
+    TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddressFail != null) {
+      return getActiveAddressFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetActiveAddressFail implements HomeUserState {
+  const factory _GetActiveAddressFail(String message) = _$_GetActiveAddressFail;
+
+  String get message => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetActiveAddressFailCopyWith<_GetActiveAddressFail> get copyWith =>
       throw _privateConstructorUsedError;
 }

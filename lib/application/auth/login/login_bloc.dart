@@ -47,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           onInvalidPin: optionOf(_event.onInvalidPin),
         );
       },
-      pinSubmitted: (_event) async* {
+      pinSubmitted: (_e) async* {
         yield* _performActionOnAuthFacadeLoginPin();
       },
     );

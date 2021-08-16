@@ -17,7 +17,7 @@ class HomeUserBloc extends Bloc<HomeUserEvent, HomeUserState> {
   HomeUserBloc(
     this._userRepository,
     this._orderRepository,
-  ) : super(HomeUserState.initial());
+  ) : super(_Initial());
 
   @override
   Stream<HomeUserState> mapEventToState(HomeUserEvent gEvent) async* {
@@ -35,6 +35,11 @@ class HomeUserBloc extends Bloc<HomeUserEvent, HomeUserState> {
         (error) => HomeUserState.addressListFailed(error.toString()),
         (list) => HomeUserState.addressListSuccess(list),
       );
+    }, getActiveAddress: (value) async* {
+      final setActiveAddress = await _userRepository.getActiveAddress();
+      yield setActiveAddress.fold(
+          (error) => HomeUserState.getActiveAddressFail(error.toString()),
+          (data) => HomeUserState.getActiveAddressSuccess(data));
     });
   }
 }

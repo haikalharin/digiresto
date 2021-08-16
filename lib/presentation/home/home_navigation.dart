@@ -1,9 +1,6 @@
-import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
-import 'package:digiresto/injection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'home_content.dart';
@@ -90,10 +87,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   Widget build(BuildContext context) {
     Get.put(HomeContentController());
     final _listPage = <Widget>[
-      BlocProvider<HomeUserBloc>(
-        create: (context) => getIt<HomeUserBloc>(),
-        child: HomeContentScreen(),
-      ),
+      HomeContentScreen(),
       Container(),
       Container(),
       Container(),
