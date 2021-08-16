@@ -90,6 +90,9 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
           setActiveAddressSuccess: (_) {
             Get.offNamed(Routers.home);
           },
+          setDefaultFail: (content) {
+            print(content);
+          },
           setDefaultSuccess: (value) {
             controller.setListAddress(value.response);
             Get.back(closeOverlays: true);

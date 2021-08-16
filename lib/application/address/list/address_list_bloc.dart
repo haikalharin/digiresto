@@ -28,18 +28,13 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
 
   @override
   Stream<AddressListState> mapEventToState(AddressListEvent gEvent) async* {
-    String waNoId = "085782031633";
     yield* gEvent.map(setDefault: (request) async* {
-      request.request.wa_id = waNoId;
-      request.request.waba_no = waNoId;
       final setDefault =
           await _userRepository.setDefaultAddress(request.request.toMap());
       yield setDefault.fold(
           (error) => AddressListState.setDefaultFail(error.toString()),
           (data) => AddressListState.setDefaultSuccess(data));
     }, removeAddress: (request) async* {
-      request.request.wa_id = waNoId;
-      request.request.waba_no = waNoId;
       final removeAddress =
           await _userRepository.removeAddress(request.request.toMap());
       yield removeAddress.fold(
@@ -57,8 +52,6 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
           (error) => AddressListState.setActiveAddressFail(error.toString()),
           (data) => AddressListState.setActiveAddressSuccess(data));
     }, addAddress: (request) async* {
-      request.request.wa_id = waNoId;
-      request.request.waba_no = waNoId;
       final addAddress =
           await _userRepository.addAddress(request.request.toMap());
       yield addAddress.fold(

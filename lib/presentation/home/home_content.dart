@@ -77,9 +77,17 @@ class HomeContentScreen extends GetView<HomeContentController> {
             },
             addressListSuccess: (data) {
               if (data.list.length > 0) {
-                controller.setActiveAddress(data.list
-                    .firstWhere((element) => element.isDefault == true)
-                    .address!);
+                data.list.forEach((element) {
+                  if (element.isDefault!) {
+                    controller.setActiveAddress(element.address!);
+                  }
+                });
+                final isThereDefault =
+                    data.list.every((element) => element.isDefault!);
+                if (!isThereDefault) {
+                  controller.setActiveAddress(data.list[0].address!);
+                  controller.setListAddress(data.list);
+                }
                 controller.setListAddress(data.list);
               }
             },

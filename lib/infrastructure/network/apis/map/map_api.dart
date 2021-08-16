@@ -3,26 +3,21 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
+import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
-import 'package:digiresto/infrastructure/network/dio_client.dart';
-// import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@Injectable()
 class MapApi {
-  // dio instance
-  final DioClient _dioClient;
+  final INetworkService _networkService;
 
-  // injecting dio instance
-  MapApi(
-    this._dioClient,
-  );
+  MapApi(this._networkService);
 
   Future<Either<Exception, Geocode>> geocode(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetGeocode;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "lat": object["latitude"].toString(),
           "lng": object["longitude"].toString(),

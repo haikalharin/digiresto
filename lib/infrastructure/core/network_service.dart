@@ -31,7 +31,7 @@ class NetworkService implements INetworkService {
       bool useAuth = true}) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
-      await baseStorage.openBox(StorageConstants.base);
+      await baseStorage.openBox(StorageConstants.user);
 
       try {
         logger.d('get Http : $path');
@@ -40,7 +40,7 @@ class NetworkService implements INetworkService {
           'accept': ContentType.json.mimeType
         };
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'jwt');
+          final String? security = await baseStorage.getString(key: 'token');
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
@@ -86,7 +86,7 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.base);
+        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'content-type': ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -97,7 +97,7 @@ class NetworkService implements INetworkService {
         if (useAuth) {
           final Map<String, dynamic> security = await baseStorage.getData();
           if (security.isNotEmpty) {
-            headers.addAll({'Authorization': 'Bearer ${security["jwt"]}'});
+            headers.addAll({'Authorization': 'Bearer ${security["token"]}'});
           }
         }
 
@@ -142,7 +142,7 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.base);
+        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'content-type': contentType ?? ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -152,7 +152,7 @@ class NetworkService implements INetworkService {
         }
 
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'jwt');
+          final String? security = await baseStorage.getString(key: 'token');
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
@@ -194,12 +194,12 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.base);
+        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'Accept': ContentType.binary.mimeType,
         };
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'jwt');
+          final String? security = await baseStorage.getString(key: 'token');
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
