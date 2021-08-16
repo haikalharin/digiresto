@@ -63,7 +63,10 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException();
+            throw ServerException(
+              code: e.response?.data['response']['code'],
+              message: e.response?.data['response']['message'],
+            );
         }
       }
     } else {

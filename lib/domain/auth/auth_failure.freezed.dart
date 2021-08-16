@@ -28,6 +28,10 @@ class _$AuthFailureTearOff {
     return const ServerError();
   }
 
+  UnknownError unknownError() {
+    return const UnknownError();
+  }
+
   InvalidPin invalidPin(String? message) {
     return InvalidPin(
       message,
@@ -57,6 +61,7 @@ mixin _$AuthFailure {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -67,6 +72,7 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -78,6 +84,7 @@ mixin _$AuthFailure {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -88,6 +95,7 @@ mixin _$AuthFailure {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,
@@ -155,6 +163,7 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -168,6 +177,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -185,6 +195,7 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -198,6 +209,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,
@@ -255,6 +267,7 @@ class _$NoInternet implements NoInternet {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -268,6 +281,7 @@ class _$NoInternet implements NoInternet {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -285,6 +299,7 @@ class _$NoInternet implements NoInternet {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -298,6 +313,7 @@ class _$NoInternet implements NoInternet {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,
@@ -356,6 +372,7 @@ class _$ServerError implements ServerError {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -369,6 +386,7 @@ class _$ServerError implements ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -386,6 +404,7 @@ class _$ServerError implements ServerError {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -399,6 +418,7 @@ class _$ServerError implements ServerError {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,
@@ -413,6 +433,111 @@ class _$ServerError implements ServerError {
 
 abstract class ServerError implements AuthFailure {
   const factory ServerError() = _$ServerError;
+}
+
+/// @nodoc
+abstract class $UnknownErrorCopyWith<$Res> {
+  factory $UnknownErrorCopyWith(
+          UnknownError value, $Res Function(UnknownError) then) =
+      _$UnknownErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UnknownErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements $UnknownErrorCopyWith<$Res> {
+  _$UnknownErrorCopyWithImpl(
+      UnknownError _value, $Res Function(UnknownError) _then)
+      : super(_value, (v) => _then(v as UnknownError));
+
+  @override
+  UnknownError get _value => super._value as UnknownError;
+}
+
+/// @nodoc
+
+class _$UnknownError implements UnknownError {
+  const _$UnknownError();
+
+  @override
+  String toString() {
+    return 'AuthFailure.unknownError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UnknownError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() noInternet,
+    required TResult Function() serverError,
+    required TResult Function() unknownError,
+    required TResult Function(String? message) invalidPin,
+    required TResult Function(String? message) invalidOtp,
+    required TResult Function(String? message) invalidToken,
+  }) {
+    return unknownError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+    required TResult orElse(),
+  }) {
+    if (unknownError != null) {
+      return unknownError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternet value) noInternet,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
+    required TResult Function(InvalidPin value) invalidPin,
+    required TResult Function(InvalidOtp value) invalidOtp,
+    required TResult Function(InvalidToken value) invalidToken,
+  }) {
+    return unknownError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+    required TResult orElse(),
+  }) {
+    if (unknownError != null) {
+      return unknownError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnknownError implements AuthFailure {
+  const factory UnknownError() = _$UnknownError;
 }
 
 /// @nodoc
@@ -481,6 +606,7 @@ class _$InvalidPin implements InvalidPin {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -494,6 +620,7 @@ class _$InvalidPin implements InvalidPin {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -511,6 +638,7 @@ class _$InvalidPin implements InvalidPin {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -524,6 +652,7 @@ class _$InvalidPin implements InvalidPin {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,
@@ -611,6 +740,7 @@ class _$InvalidOtp implements InvalidOtp {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -624,6 +754,7 @@ class _$InvalidOtp implements InvalidOtp {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -641,6 +772,7 @@ class _$InvalidOtp implements InvalidOtp {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -654,6 +786,7 @@ class _$InvalidOtp implements InvalidOtp {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,
@@ -742,6 +875,7 @@ class _$InvalidToken implements InvalidToken {
     required TResult Function() cancelledByUser,
     required TResult Function() noInternet,
     required TResult Function() serverError,
+    required TResult Function() unknownError,
     required TResult Function(String? message) invalidPin,
     required TResult Function(String? message) invalidOtp,
     required TResult Function(String? message) invalidToken,
@@ -755,6 +889,7 @@ class _$InvalidToken implements InvalidToken {
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
     TResult Function()? serverError,
+    TResult Function()? unknownError,
     TResult Function(String? message)? invalidPin,
     TResult Function(String? message)? invalidOtp,
     TResult Function(String? message)? invalidToken,
@@ -772,6 +907,7 @@ class _$InvalidToken implements InvalidToken {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnknownError value) unknownError,
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
@@ -785,6 +921,7 @@ class _$InvalidToken implements InvalidToken {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(NoInternet value)? noInternet,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
     TResult Function(InvalidPin value)? invalidPin,
     TResult Function(InvalidOtp value)? invalidOtp,
     TResult Function(InvalidToken value)? invalidToken,

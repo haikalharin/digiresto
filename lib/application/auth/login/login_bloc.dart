@@ -27,31 +27,30 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEvent event,
   ) async* {
     yield* event.map(
-        phoneNumberChanged: (_event) async* {
-          yield state.copyWith(
-            phoneNumber: PhoneNumber(_event.phoneNumberStr),
-            loginFailureOrSuccessOption: none(),
-          );
-        },
-        pinChanged: (_event) async* {
-          yield state.copyWith(
-            pin: Pin(_event.pinStr),
-            loginFailureOrSuccessOption: none(),
-          );
-        },
-        verifOtpPressed: (_event) async* {
-          yield* _performActionOnAuthFacadeVerifOtp();
-        },
-        otpVerified: (_event) async* {
-          yield state.copyWith(
-            onInvalidPin: optionOf(_event.onInvalidPin),
-          );
-        },
-        pinSubmitted: (_e) async* {}
-        // loginPressed: (_event) async* {
-        //   yield* _performActionOnAuthFacadeLoginPin();
-        // },
+      phoneNumberChanged: (_event) async* {
+        yield state.copyWith(
+          phoneNumber: PhoneNumber(_event.phoneNumberStr),
+          loginFailureOrSuccessOption: none(),
         );
+      },
+      pinChanged: (_event) async* {
+        yield state.copyWith(
+          pin: Pin(_event.pinStr),
+          loginFailureOrSuccessOption: none(),
+        );
+      },
+      verifOtpPressed: (_event) async* {
+        yield* _performActionOnAuthFacadeVerifOtp();
+      },
+      otpVerified: (_event) async* {
+        yield state.copyWith(
+          onInvalidPin: optionOf(_event.onInvalidPin),
+        );
+      },
+      pinSubmitted: (_e) async* {
+        yield* _performActionOnAuthFacadeLoginPin();
+      },
+    );
   }
 
   Stream<LoginState> _performActionOnAuthFacadeVerifOtp() async* {
@@ -99,15 +98,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> _performActionOnAuthFacadeLoginPin() async* {
     Either<AuthFailure, UserAuth>? failureOrSuccess;
 
-    final isPhoneNumberValid = state.phoneNumber.isValid();
     final isPinValid = state.pin.isValid();
-    if (isPhoneNumberValid && isPinValid) {
+    if (isPinValid) {
       yield state.copyWith(
         isSubmitting: true,
         loginFailureOrSuccessOption: none(),
       );
-
-      await Future.delayed(const Duration(seconds: 2));
 
       failureOrSuccess = await _authFacade.loginPin(
         phoneNumber: state.phoneNumber,

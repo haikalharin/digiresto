@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:digiresto/application/auth/login/login_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class LoginPinPage extends StatelessWidget {
@@ -18,7 +20,8 @@ class LoginPinPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: BlocProvider<LoginBloc>(
-        create: (context) => getIt<LoginBloc>(),
+        create: (context) =>
+            getIt<LoginBloc>()..add(LoginEvent.phoneNumberChanged(phoneNumber)),
         child: LoginPinForm(phoneNumber),
       ),
     );
@@ -58,8 +61,16 @@ class _LoginPinFormState extends State<LoginPinForm> {
         state.loginFailureOrSuccessOption.fold(
           () => null,
           (success) => success.fold(
-            (l) => null,
-            (user) => null,
+            (failure) => Get.defaultDialog(
+              title: 'Invalid',
+              middleText: failure.maybeMap(
+                orElse: () => 'Error',
+                invalidPin: (e) => e.message ?? 'Invalid Pin',
+              ),
+            ),
+            (user) {
+              Get.offAll(AuthListener());
+            },
           ),
         );
       },
@@ -121,6 +132,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
                       ),
                       enableActiveFill: true,
                       keyboardType: TextInputType.number,
+                      obscureText: true,
                       pinTheme: PinTheme(
                         borderWidth: 0,
                         shape: PinCodeFieldShape.box,
