@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
+import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
+import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:uuid/uuid.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
@@ -16,7 +18,8 @@ part 'register_bloc.freezed.dart';
 
 @injectable
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  RegisterBloc() : super(RegisterState.initial());
+  IAuthFacade _authFacade;
+  RegisterBloc(this._authFacade) : super(RegisterState.initial());
 
   @override
   Stream<RegisterState> mapEventToState(
@@ -46,7 +49,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       },
       retypePinChanged: (_event) async* {
         yield state.copyWith(
-          pin: Pin(_event.retypePinStr, firstValue: state.pin.getOrNull()),
+          retypePin:
+              Pin(_event.retypePinStr, firstValue: state.pin.getOrNull()),
         );
       },
       onNext: (_event) async* {
@@ -54,6 +58,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           isSubmitting: true,
           registerFailureOrSuccessOption: none(),
         );
+        Either<AuthFailure, RegisterStatus>? failureOrSuccess;
         final isNameValid = state.fullName.isValid();
         final isEmailValid = state.email.isValid();
         final isPinValid = state.pin.isValid();
@@ -75,13 +80,23 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
                 curve: Curves.easeInOut,
               );
             } else {
-              _event.pinErrorController.add(ErrorAnimationType.shake);
+              _event.onPinError();
             }
             break;
           case 2:
             if (isRetypePinValid) {
+              final registerInput = RegisterInput(
+                credential: state.pin.getOrCrash(),
+                name: state.fullName.getOrCrash(),
+                accountNumber: _event.phoneNumber,
+                email: state.email.getOrCrash(),
+                pushId: Uuid().v1(),
+                uid: Uuid().v4(),
+              );
+              failureOrSuccess =
+                  await _authFacade.register(registerInput: registerInput);
             } else {
-              _event.retypePinErrorController.add(ErrorAnimationType.shake);
+              _event.onRetypePinError();
             }
             break;
           default:
@@ -90,6 +105,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         yield state.copyWith(
           showErrorMessages: true,
           isSubmitting: false,
+          registerFailureOrSuccessOption: optionOf(failureOrSuccess),
         );
       },
     );

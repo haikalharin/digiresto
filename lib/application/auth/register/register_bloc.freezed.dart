@@ -45,13 +45,15 @@ class _$RegisterEventTearOff {
   }
 
   _OnNext onNext(
-      PageController pageController,
-      StreamController<ErrorAnimationType> pinErrorController,
-      StreamController<ErrorAnimationType> retypePinErrorController) {
+      {required String phoneNumber,
+      required PageController pageController,
+      required Function onPinError,
+      required Function onRetypePinError}) {
     return _OnNext(
-      pageController,
-      pinErrorController,
-      retypePinErrorController,
+      phoneNumber: phoneNumber,
+      pageController: pageController,
+      onPinError: onPinError,
+      onRetypePinError: onRetypePinError,
     );
   }
 
@@ -72,10 +74,8 @@ mixin _$RegisterEvent {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) =>
@@ -87,10 +87,8 @@ mixin _$RegisterEvent {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
@@ -180,10 +178,8 @@ class _$_Started implements _Started {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
@@ -198,10 +194,8 @@ class _$_Started implements _Started {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
@@ -318,10 +312,8 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
@@ -336,10 +328,8 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
@@ -463,10 +453,8 @@ class _$_EmailChanged implements _EmailChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
@@ -481,10 +469,8 @@ class _$_EmailChanged implements _EmailChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
@@ -606,10 +592,8 @@ class _$_PinChanged implements _PinChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
@@ -624,10 +608,8 @@ class _$_PinChanged implements _PinChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
@@ -751,10 +733,8 @@ class _$_RetypePinChanged implements _RetypePinChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
@@ -769,10 +749,8 @@ class _$_RetypePinChanged implements _RetypePinChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
@@ -830,9 +808,10 @@ abstract class _$OnNextCopyWith<$Res> {
   factory _$OnNextCopyWith(_OnNext value, $Res Function(_OnNext) then) =
       __$OnNextCopyWithImpl<$Res>;
   $Res call(
-      {PageController pageController,
-      StreamController<ErrorAnimationType> pinErrorController,
-      StreamController<ErrorAnimationType> retypePinErrorController});
+      {String phoneNumber,
+      PageController pageController,
+      Function onPinError,
+      Function onRetypePinError});
 }
 
 /// @nodoc
@@ -846,23 +825,28 @@ class __$OnNextCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? phoneNumber = freezed,
     Object? pageController = freezed,
-    Object? pinErrorController = freezed,
-    Object? retypePinErrorController = freezed,
+    Object? onPinError = freezed,
+    Object? onRetypePinError = freezed,
   }) {
     return _then(_OnNext(
-      pageController == freezed
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      pageController: pageController == freezed
           ? _value.pageController
           : pageController // ignore: cast_nullable_to_non_nullable
               as PageController,
-      pinErrorController == freezed
-          ? _value.pinErrorController
-          : pinErrorController // ignore: cast_nullable_to_non_nullable
-              as StreamController<ErrorAnimationType>,
-      retypePinErrorController == freezed
-          ? _value.retypePinErrorController
-          : retypePinErrorController // ignore: cast_nullable_to_non_nullable
-              as StreamController<ErrorAnimationType>,
+      onPinError: onPinError == freezed
+          ? _value.onPinError
+          : onPinError // ignore: cast_nullable_to_non_nullable
+              as Function,
+      onRetypePinError: onRetypePinError == freezed
+          ? _value.onRetypePinError
+          : onRetypePinError // ignore: cast_nullable_to_non_nullable
+              as Function,
     ));
   }
 }
@@ -870,43 +854,51 @@ class __$OnNextCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OnNext implements _OnNext {
-  const _$_OnNext(this.pageController, this.pinErrorController,
-      this.retypePinErrorController);
+  const _$_OnNext(
+      {required this.phoneNumber,
+      required this.pageController,
+      required this.onPinError,
+      required this.onRetypePinError});
 
+  @override
+  final String phoneNumber;
   @override
   final PageController pageController;
   @override
-  final StreamController<ErrorAnimationType> pinErrorController;
+  final Function onPinError;
   @override
-  final StreamController<ErrorAnimationType> retypePinErrorController;
+  final Function onRetypePinError;
 
   @override
   String toString() {
-    return 'RegisterEvent.onNext(pageController: $pageController, pinErrorController: $pinErrorController, retypePinErrorController: $retypePinErrorController)';
+    return 'RegisterEvent.onNext(phoneNumber: $phoneNumber, pageController: $pageController, onPinError: $onPinError, onRetypePinError: $onRetypePinError)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _OnNext &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
             (identical(other.pageController, pageController) ||
                 const DeepCollectionEquality()
                     .equals(other.pageController, pageController)) &&
-            (identical(other.pinErrorController, pinErrorController) ||
+            (identical(other.onPinError, onPinError) ||
                 const DeepCollectionEquality()
-                    .equals(other.pinErrorController, pinErrorController)) &&
-            (identical(
-                    other.retypePinErrorController, retypePinErrorController) ||
-                const DeepCollectionEquality().equals(
-                    other.retypePinErrorController, retypePinErrorController)));
+                    .equals(other.onPinError, onPinError)) &&
+            (identical(other.onRetypePinError, onRetypePinError) ||
+                const DeepCollectionEquality()
+                    .equals(other.onRetypePinError, onRetypePinError)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(pageController) ^
-      const DeepCollectionEquality().hash(pinErrorController) ^
-      const DeepCollectionEquality().hash(retypePinErrorController);
+      const DeepCollectionEquality().hash(onPinError) ^
+      const DeepCollectionEquality().hash(onRetypePinError);
 
   @JsonKey(ignore: true)
   @override
@@ -921,14 +913,12 @@ class _$_OnNext implements _OnNext {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
-    return onNext(pageController, pinErrorController, retypePinErrorController);
+    return onNext(phoneNumber, pageController, onPinError, onRetypePinError);
   }
 
   @override
@@ -939,17 +929,14 @@ class _$_OnNext implements _OnNext {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),
   }) {
     if (onNext != null) {
-      return onNext(
-          pageController, pinErrorController, retypePinErrorController);
+      return onNext(phoneNumber, pageController, onPinError, onRetypePinError);
     }
     return orElse();
   }
@@ -989,16 +976,15 @@ class _$_OnNext implements _OnNext {
 
 abstract class _OnNext implements RegisterEvent {
   const factory _OnNext(
-          PageController pageController,
-          StreamController<ErrorAnimationType> pinErrorController,
-          StreamController<ErrorAnimationType> retypePinErrorController) =
-      _$_OnNext;
+      {required String phoneNumber,
+      required PageController pageController,
+      required Function onPinError,
+      required Function onRetypePinError}) = _$_OnNext;
 
+  String get phoneNumber => throw _privateConstructorUsedError;
   PageController get pageController => throw _privateConstructorUsedError;
-  StreamController<ErrorAnimationType> get pinErrorController =>
-      throw _privateConstructorUsedError;
-  StreamController<ErrorAnimationType> get retypePinErrorController =>
-      throw _privateConstructorUsedError;
+  Function get onPinError => throw _privateConstructorUsedError;
+  Function get onRetypePinError => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$OnNextCopyWith<_OnNext> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1047,10 +1033,8 @@ class _$_ToggleAgree implements _ToggleAgree {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function(String retypePinStr) retypePinChanged,
-    required TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
   }) {
@@ -1065,10 +1049,8 @@ class _$_ToggleAgree implements _ToggleAgree {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function(String retypePinStr)? retypePinChanged,
-    TResult Function(
-            PageController pageController,
-            StreamController<ErrorAnimationType> pinErrorController,
-            StreamController<ErrorAnimationType> retypePinErrorController)?
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
     required TResult orElse(),

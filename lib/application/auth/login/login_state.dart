@@ -7,8 +7,9 @@ class LoginState with _$LoginState {
     required Pin pin,
     required bool showErrorMessages,
     required bool isSubmitting,
-    required Option<Either<AuthFailure, LoginPin>> authFailureOrSuccessOption,
+    required Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption,
     required Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
+    required Option<Function> onInvalidPin,
   }) = _LoginState;
 
   factory LoginState.initial() => LoginState(
@@ -16,7 +17,8 @@ class LoginState with _$LoginState {
         pin: Pin(''),
         showErrorMessages: false,
         isSubmitting: false,
-        authFailureOrSuccessOption: none(),
+        loginFailureOrSuccessOption: none(),
         otpFailureOrSuccessOption: none(),
+        onInvalidPin: none(),
       );
 }

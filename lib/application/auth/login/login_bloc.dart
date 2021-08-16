@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:digiresto/domain/auth/entity/login_pin.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/route_manager.dart';
@@ -30,17 +30,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       phoneNumberChanged: (_event) async* {
         yield state.copyWith(
           phoneNumber: PhoneNumber(_event.phoneNumberStr),
-          authFailureOrSuccessOption: none(),
+          loginFailureOrSuccessOption: none(),
         );
       },
       pinChanged: (_event) async* {
         yield state.copyWith(
           pin: Pin(_event.pinStr),
-          authFailureOrSuccessOption: none(),
+          loginFailureOrSuccessOption: none(),
         );
       },
       verifOtpPressed: (_event) async* {
         yield* _performActionOnAuthFacadeVerifOtp();
+      },
+      otpVerified: (_event) async* {
+        yield state.copyWith(
+          onInvalidPin: optionOf(_event.onInvalidPin),
+        );
       },
       loginPressed: (_event) async* {
         yield* _performActionOnAuthFacadeLoginPin();
@@ -56,7 +61,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (isPhoneNumberValid) {
       yield state.copyWith(
         isSubmitting: true,
-        authFailureOrSuccessOption: none(),
+        loginFailureOrSuccessOption: none(),
       );
 
       failureOrSuccess = await _authFacade.getOtp(
@@ -91,14 +96,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Stream<LoginState> _performActionOnAuthFacadeLoginPin() async* {
-    Either<AuthFailure, LoginPin>? failureOrSuccess;
+    Either<AuthFailure, UserAuth>? failureOrSuccess;
 
     final isPhoneNumberValid = state.phoneNumber.isValid();
     final isPinValid = state.pin.isValid();
     if (isPhoneNumberValid && isPinValid) {
       yield state.copyWith(
         isSubmitting: true,
-        authFailureOrSuccessOption: none(),
+        loginFailureOrSuccessOption: none(),
       );
 
       await Future.delayed(const Duration(seconds: 2));
@@ -112,7 +117,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     yield state.copyWith(
       isSubmitting: false,
       showErrorMessages: true,
-      authFailureOrSuccessOption: optionOf(failureOrSuccess),
+      loginFailureOrSuccessOption: optionOf(failureOrSuccess),
     );
   }
 }

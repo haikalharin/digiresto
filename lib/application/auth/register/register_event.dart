@@ -11,10 +11,11 @@ class RegisterEvent with _$RegisterEvent {
   const factory RegisterEvent.retypePinChanged(
     String retypePinStr,
   ) = _RetypePinChanged;
-  const factory RegisterEvent.onNext(
-    PageController pageController,
-    StreamController<ErrorAnimationType> pinErrorController,
-    StreamController<ErrorAnimationType> retypePinErrorController,
-  ) = _OnNext;
+  const factory RegisterEvent.onNext({
+    required String phoneNumber,
+    required PageController pageController,
+    required Function onPinError,
+    required Function onRetypePinError,
+  }) = _OnNext;
   const factory RegisterEvent.toggleAgree() = _ToggleAgree;
 }

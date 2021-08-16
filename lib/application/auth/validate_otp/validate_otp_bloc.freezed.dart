@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ValidateOtpEventTearOff {
   const _$ValidateOtpEventTearOff();
 
-  _Started started(StreamController<ErrorAnimationType> errorAnimation) {
+  _Started started(Function onInvalidOtp) {
     return _Started(
-      errorAnimation,
+      onInvalidOtp,
     );
   }
 
@@ -43,9 +43,7 @@ const $ValidateOtpEvent = _$ValidateOtpEventTearOff();
 mixin _$ValidateOtpEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            StreamController<ErrorAnimationType> errorAnimation)
-        started,
+    required TResult Function(Function onInvalidOtp) started,
     required TResult Function(String phoneNumberStr, String otpStr)
         inputSubmitting,
     required TResult Function(String phoneNumberStr) resendOtp,
@@ -53,8 +51,7 @@ mixin _$ValidateOtpEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StreamController<ErrorAnimationType> errorAnimation)?
-        started,
+    TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
     TResult Function(String phoneNumberStr)? resendOtp,
     required TResult orElse(),
@@ -98,7 +95,7 @@ class _$ValidateOtpEventCopyWithImpl<$Res>
 abstract class _$StartedCopyWith<$Res> {
   factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
       __$StartedCopyWithImpl<$Res>;
-  $Res call({StreamController<ErrorAnimationType> errorAnimation});
+  $Res call({Function onInvalidOtp});
 }
 
 /// @nodoc
@@ -112,13 +109,13 @@ class __$StartedCopyWithImpl<$Res> extends _$ValidateOtpEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? errorAnimation = freezed,
+    Object? onInvalidOtp = freezed,
   }) {
     return _then(_Started(
-      errorAnimation == freezed
-          ? _value.errorAnimation
-          : errorAnimation // ignore: cast_nullable_to_non_nullable
-              as StreamController<ErrorAnimationType>,
+      onInvalidOtp == freezed
+          ? _value.onInvalidOtp
+          : onInvalidOtp // ignore: cast_nullable_to_non_nullable
+              as Function,
     ));
   }
 }
@@ -126,29 +123,28 @@ class __$StartedCopyWithImpl<$Res> extends _$ValidateOtpEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Started implements _Started {
-  const _$_Started(this.errorAnimation);
+  const _$_Started(this.onInvalidOtp);
 
   @override
-  final StreamController<ErrorAnimationType> errorAnimation;
+  final Function onInvalidOtp;
 
   @override
   String toString() {
-    return 'ValidateOtpEvent.started(errorAnimation: $errorAnimation)';
+    return 'ValidateOtpEvent.started(onInvalidOtp: $onInvalidOtp)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Started &&
-            (identical(other.errorAnimation, errorAnimation) ||
+            (identical(other.onInvalidOtp, onInvalidOtp) ||
                 const DeepCollectionEquality()
-                    .equals(other.errorAnimation, errorAnimation)));
+                    .equals(other.onInvalidOtp, onInvalidOtp)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(errorAnimation);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(onInvalidOtp);
 
   @JsonKey(ignore: true)
   @override
@@ -158,27 +154,24 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            StreamController<ErrorAnimationType> errorAnimation)
-        started,
+    required TResult Function(Function onInvalidOtp) started,
     required TResult Function(String phoneNumberStr, String otpStr)
         inputSubmitting,
     required TResult Function(String phoneNumberStr) resendOtp,
   }) {
-    return started(errorAnimation);
+    return started(onInvalidOtp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StreamController<ErrorAnimationType> errorAnimation)?
-        started,
+    TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
     TResult Function(String phoneNumberStr)? resendOtp,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(errorAnimation);
+      return started(onInvalidOtp);
     }
     return orElse();
   }
@@ -209,11 +202,9 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements ValidateOtpEvent {
-  const factory _Started(StreamController<ErrorAnimationType> errorAnimation) =
-      _$_Started;
+  const factory _Started(Function onInvalidOtp) = _$_Started;
 
-  StreamController<ErrorAnimationType> get errorAnimation =>
-      throw _privateConstructorUsedError;
+  Function get onInvalidOtp => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$StartedCopyWith<_Started> get copyWith =>
       throw _privateConstructorUsedError;
@@ -296,9 +287,7 @@ class _$_InputSubmitting implements _InputSubmitting {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            StreamController<ErrorAnimationType> errorAnimation)
-        started,
+    required TResult Function(Function onInvalidOtp) started,
     required TResult Function(String phoneNumberStr, String otpStr)
         inputSubmitting,
     required TResult Function(String phoneNumberStr) resendOtp,
@@ -309,8 +298,7 @@ class _$_InputSubmitting implements _InputSubmitting {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StreamController<ErrorAnimationType> errorAnimation)?
-        started,
+    TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
     TResult Function(String phoneNumberStr)? resendOtp,
     required TResult orElse(),
@@ -423,9 +411,7 @@ class _$_ResendOtp implements _ResendOtp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            StreamController<ErrorAnimationType> errorAnimation)
-        started,
+    required TResult Function(Function onInvalidOtp) started,
     required TResult Function(String phoneNumberStr, String otpStr)
         inputSubmitting,
     required TResult Function(String phoneNumberStr) resendOtp,
@@ -436,8 +422,7 @@ class _$_ResendOtp implements _ResendOtp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StreamController<ErrorAnimationType> errorAnimation)?
-        started,
+    TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
     TResult Function(String phoneNumberStr)? resendOtp,
     required TResult orElse(),
@@ -491,13 +476,13 @@ class _$ValidateOtpStateTearOff {
       required bool showErrorMessages,
       required bool isSubmitting,
       required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
-      required Option<StreamController<ErrorAnimationType>> errorOption}) {
+      required Option<Function> onInvalidOtpOption}) {
     return _ValidateOtpState(
       otp: otp,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       validateFailureOrSuccess: validateFailureOrSuccess,
-      errorOption: errorOption,
+      onInvalidOtpOption: onInvalidOtpOption,
     );
   }
 }
@@ -512,8 +497,7 @@ mixin _$ValidateOtpState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, bool>> get validateFailureOrSuccess =>
       throw _privateConstructorUsedError;
-  Option<StreamController<ErrorAnimationType>> get errorOption =>
-      throw _privateConstructorUsedError;
+  Option<Function> get onInvalidOtpOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ValidateOtpStateCopyWith<ValidateOtpState> get copyWith =>
@@ -530,7 +514,7 @@ abstract class $ValidateOtpStateCopyWith<$Res> {
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
-      Option<StreamController<ErrorAnimationType>> errorOption});
+      Option<Function> onInvalidOtpOption});
 }
 
 /// @nodoc
@@ -548,7 +532,7 @@ class _$ValidateOtpStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? validateFailureOrSuccess = freezed,
-    Object? errorOption = freezed,
+    Object? onInvalidOtpOption = freezed,
   }) {
     return _then(_value.copyWith(
       otp: otp == freezed
@@ -567,10 +551,10 @@ class _$ValidateOtpStateCopyWithImpl<$Res>
           ? _value.validateFailureOrSuccess
           : validateFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, bool>>,
-      errorOption: errorOption == freezed
-          ? _value.errorOption
-          : errorOption // ignore: cast_nullable_to_non_nullable
-              as Option<StreamController<ErrorAnimationType>>,
+      onInvalidOtpOption: onInvalidOtpOption == freezed
+          ? _value.onInvalidOtpOption
+          : onInvalidOtpOption // ignore: cast_nullable_to_non_nullable
+              as Option<Function>,
     ));
   }
 }
@@ -587,7 +571,7 @@ abstract class _$ValidateOtpStateCopyWith<$Res>
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
-      Option<StreamController<ErrorAnimationType>> errorOption});
+      Option<Function> onInvalidOtpOption});
 }
 
 /// @nodoc
@@ -607,7 +591,7 @@ class __$ValidateOtpStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? validateFailureOrSuccess = freezed,
-    Object? errorOption = freezed,
+    Object? onInvalidOtpOption = freezed,
   }) {
     return _then(_ValidateOtpState(
       otp: otp == freezed
@@ -626,10 +610,10 @@ class __$ValidateOtpStateCopyWithImpl<$Res>
           ? _value.validateFailureOrSuccess
           : validateFailureOrSuccess // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, bool>>,
-      errorOption: errorOption == freezed
-          ? _value.errorOption
-          : errorOption // ignore: cast_nullable_to_non_nullable
-              as Option<StreamController<ErrorAnimationType>>,
+      onInvalidOtpOption: onInvalidOtpOption == freezed
+          ? _value.onInvalidOtpOption
+          : onInvalidOtpOption // ignore: cast_nullable_to_non_nullable
+              as Option<Function>,
     ));
   }
 }
@@ -642,7 +626,7 @@ class _$_ValidateOtpState implements _ValidateOtpState {
       required this.showErrorMessages,
       required this.isSubmitting,
       required this.validateFailureOrSuccess,
-      required this.errorOption});
+      required this.onInvalidOtpOption});
 
   @override
   final Otp otp;
@@ -653,11 +637,11 @@ class _$_ValidateOtpState implements _ValidateOtpState {
   @override
   final Option<Either<AuthFailure, bool>> validateFailureOrSuccess;
   @override
-  final Option<StreamController<ErrorAnimationType>> errorOption;
+  final Option<Function> onInvalidOtpOption;
 
   @override
   String toString() {
-    return 'ValidateOtpState(otp: $otp, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, validateFailureOrSuccess: $validateFailureOrSuccess, errorOption: $errorOption)';
+    return 'ValidateOtpState(otp: $otp, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, validateFailureOrSuccess: $validateFailureOrSuccess, onInvalidOtpOption: $onInvalidOtpOption)';
   }
 
   @override
@@ -677,9 +661,9 @@ class _$_ValidateOtpState implements _ValidateOtpState {
                 const DeepCollectionEquality().equals(
                     other.validateFailureOrSuccess,
                     validateFailureOrSuccess)) &&
-            (identical(other.errorOption, errorOption) ||
+            (identical(other.onInvalidOtpOption, onInvalidOtpOption) ||
                 const DeepCollectionEquality()
-                    .equals(other.errorOption, errorOption)));
+                    .equals(other.onInvalidOtpOption, onInvalidOtpOption)));
   }
 
   @override
@@ -689,7 +673,7 @@ class _$_ValidateOtpState implements _ValidateOtpState {
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(validateFailureOrSuccess) ^
-      const DeepCollectionEquality().hash(errorOption);
+      const DeepCollectionEquality().hash(onInvalidOtpOption);
 
   @JsonKey(ignore: true)
   @override
@@ -699,12 +683,11 @@ class _$_ValidateOtpState implements _ValidateOtpState {
 
 abstract class _ValidateOtpState implements ValidateOtpState {
   const factory _ValidateOtpState(
-          {required Otp otp,
-          required bool showErrorMessages,
-          required bool isSubmitting,
-          required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
-          required Option<StreamController<ErrorAnimationType>> errorOption}) =
-      _$_ValidateOtpState;
+      {required Otp otp,
+      required bool showErrorMessages,
+      required bool isSubmitting,
+      required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
+      required Option<Function> onInvalidOtpOption}) = _$_ValidateOtpState;
 
   @override
   Otp get otp => throw _privateConstructorUsedError;
@@ -716,8 +699,7 @@ abstract class _ValidateOtpState implements ValidateOtpState {
   Option<Either<AuthFailure, bool>> get validateFailureOrSuccess =>
       throw _privateConstructorUsedError;
   @override
-  Option<StreamController<ErrorAnimationType>> get errorOption =>
-      throw _privateConstructorUsedError;
+  Option<Function> get onInvalidOtpOption => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ValidateOtpStateCopyWith<_ValidateOtpState> get copyWith =>

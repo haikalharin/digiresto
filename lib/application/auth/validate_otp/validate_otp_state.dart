@@ -7,7 +7,7 @@ class ValidateOtpState with _$ValidateOtpState {
     required bool showErrorMessages,
     required bool isSubmitting,
     required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
-    required Option<StreamController<ErrorAnimationType>> errorOption,
+    required Option<Function> onInvalidOtpOption,
   }) = _ValidateOtpState;
 
   factory ValidateOtpState.initial() => ValidateOtpState(
@@ -15,6 +15,6 @@ class ValidateOtpState with _$ValidateOtpState {
         showErrorMessages: false,
         isSubmitting: false,
         validateFailureOrSuccess: none(),
-        errorOption: none(),
+        onInvalidOtpOption: none(),
       );
 }

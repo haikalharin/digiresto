@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
-import 'package:digiresto/presentation/core/stack_with_progress.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,14 +54,21 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ValidateOtpBloc, ValidateOtpState>(
-      bloc: _validateBloc..add(ValidateOtpEvent.started(errorController)),
+      bloc: _validateBloc
+        ..add(
+          ValidateOtpEvent.started(
+            () => errorController.add(ErrorAnimationType.shake),
+          ),
+        ),
       listener: (context, state) {
         state.validateFailureOrSuccess.fold(
           () => null,
           (success) => success.fold(
             (l) => null,
-            (isMember) =>
-                isMember ? Get.to(LoginPinPage()) : Get.to(RegisterPage()),
+            (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
+            // (isMember) => isMember
+            //     ? Get.to(LoginPinPage(widget.phoneNumber))
+            //     : Get.to(RegisterPage(widget.phoneNumber)),
           ),
         );
       },

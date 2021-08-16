@@ -1,18 +1,29 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
+
 part 'user_profile.freezed.dart';
 part 'user_profile.g.dart';
 
+UserProfile userProfileFromJson(String str) =>
+    UserProfile.fromJson(json.decode(str));
+
+String userProfileToJson(UserProfile data) => json.encode(data.toJson());
+
 @freezed
-class UserProfile with _$UserProfile {
-  @JsonSerializable(explicitToJson: true)
+abstract class UserProfile with _$UserProfile {
   const factory UserProfile({
     required int id,
     required String name,
     required String username,
     required String email,
     required String mobilePhone,
-    @JsonKey(name: 'hidden_pushid') required String hiddenPushId,
+    required String hiddenUid,
+    required String hiddenSecretword,
+    required String hiddenPushid,
+    required String hiddenDevicepairingflag,
+    required String tanggalLahir,
   }) = _UserProfile;
+
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
       _$UserProfileFromJson(json);
 }

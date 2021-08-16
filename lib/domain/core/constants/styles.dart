@@ -41,4 +41,10 @@ class Styles {
 
   static TextStyle pinTitleStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700);
+
+  static TextStyle loginPinDescStyle = GoogleFonts.poppins(
+      color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold);
+
+  static TextStyle whiteFontStyle = GoogleFonts.poppins(
+      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 }

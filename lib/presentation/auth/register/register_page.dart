@@ -1,12 +1,18 @@
 import 'dart:async';
 
+import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/auth/register/register_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/auth_listener.dart';
+import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/auth/widgets/draw_circle.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_checkbox.dart';
+import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -15,19 +21,21 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'register_pin_widget.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  final String phoneNumber;
+  const RegisterPage(this.phoneNumber, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RegisterBloc>(
       create: (context) => getIt<RegisterBloc>(),
-      child: const RegisterForm(),
+      child: RegisterForm(phoneNumber),
     );
   }
 }
 
 class RegisterForm extends StatefulWidget {
-  const RegisterForm({Key? key}) : super(key: key);
+  final String phoneNumber;
+  const RegisterForm(this.phoneNumber, {Key? key}) : super(key: key);
 
   @override
   _RegisterFormState createState() => _RegisterFormState();
@@ -35,11 +43,14 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   late final _registerBloc = BlocProvider.of<RegisterBloc>(context);
+  late final _authBloc = BlocProvider.of<AuthBloc>(context);
   PageController _pageController = PageController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  late final _pinErrorController = StreamController<ErrorAnimationType>();
-  late final _retypePinErrorController = StreamController<ErrorAnimationType>();
+  late final _pinErrorController =
+      StreamController<ErrorAnimationType>.broadcast();
+  late final _retypePinErrorController =
+      StreamController<ErrorAnimationType>.broadcast();
 
   int _page = 0;
 
@@ -98,174 +109,254 @@ class _RegisterFormState extends State<RegisterForm> {
     return WillPopScope(
       onWillPop: backHandler,
       child: BlocConsumer<RegisterBloc, RegisterState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.registerFailureOrSuccessOption.fold(
+            () => null,
+            (register) => register.fold(
+              (failure) => Get.dialog(
+                CustomDialog(
+                  backgroundColor: Colors.white,
+                  content: Column(
+                    children: [
+                      Text(
+                        'Error',
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        failure.maybeMap(
+                          orElse: () => 'Unknown Error',
+                          noInternet: (_) => 'No Internet',
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              (status) => Get.dialog(
+                CustomDialog(
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          'assets/logo_digiresto.png',
+                          width: 155,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 35,
+                      ),
+                      Text(
+                        'Selamat',
+                        style: Styles.titleStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        """Account DigiApp Anda sudah aktif.
+Selamat menikmati kemudahan
+memesan makan dengan Digiresto.""",
+                        style: Styles.whiteFontStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 35,
+                      ),
+                      CustomButton(
+                        onPressed: () => Get.offAll(
+                          LoginPinPage(widget.phoneNumber),
+                        ),
+                        label: 'Ok',
+                      ),
+                    ],
+                  ),
+                ),
+                barrierDismissible: false,
+              ),
+            ),
+          );
+        },
         builder: (context, state) {
           return AuthScafold(
             onBackTap: backHandler,
             title: 'Daftar',
             onNext: () => _registerBloc.add(
               RegisterEvent.onNext(
-                _pageController,
-                _pinErrorController,
-                _retypePinErrorController,
+                phoneNumber: widget.phoneNumber,
+                pageController: _pageController,
+                onPinError: () =>
+                    _pinErrorController.add(ErrorAnimationType.shake),
+                onRetypePinError: () =>
+                    _retypePinErrorController.add(ErrorAnimationType.shake),
               ),
             ),
-            child: Column(
+            child: StackWithProgress(
+              isLoading: state.isSubmitting,
               children: [
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: Dimens.defaultMargin,
-                    vertical: 30,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Column(
+                  children: [
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: Dimens.defaultMargin,
+                        vertical: 30,
+                      ),
+                      child: Column(
                         children: [
-                          Text(
-                            'Info Profil',
-                            style: Styles.loginDescStyle.copyWith(
-                              color: AppColors.mainColor,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'Info Profil',
+                                style: Styles.loginDescStyle.copyWith(
+                                  color: AppColors.mainColor,
+                                ),
+                              ),
+                              Text(
+                                'Buat Pin Login',
+                                style: Styles.loginDescStyle.copyWith(
+                                  color: _page > 0
+                                      ? AppColors.mainColor
+                                      : AppColors.greyColor2,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      right: 8,
+                                    ),
+                                    child: DrawCircle(),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 3,
+                                  color: _page > 0
+                                      ? AppColors.mainColor
+                                      : AppColors.greyColor2,
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 8,
+                                  ),
+                                  child: DrawCircle(
+                                    color: _page > 0
+                                        ? AppColors.mainColor
+                                        : AppColors.greyColor2,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 15,
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: PageView(
+                        controller: _pageController,
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          //page 1
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40,
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 40,
+                                ),
+                                CustomTextField(
+                                  autovalidateMode: state.showErrorMessages
+                                      ? AutovalidateMode.always
+                                      : AutovalidateMode.disabled,
+                                  validator: (_) => state.fullName.value.fold(
+                                    (failure) => failure.maybeMap(
+                                      orElse: () => '',
+                                      lengthTooShort: (_) => 'Invalid Name',
+                                    ),
+                                    (_) => null,
+                                  ),
+                                  controller: _nameController,
+                                  hintText: 'Nama Pengguna',
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                CustomTextField(
+                                  autovalidateMode: state.showErrorMessages
+                                      ? AutovalidateMode.always
+                                      : AutovalidateMode.disabled,
+                                  validator: (_) => state.email.value.fold(
+                                    (failure) => failure.maybeMap(
+                                      orElse: () => '',
+                                      invalidEmail: (_) => 'Invalid Email',
+                                    ),
+                                    (_) => null,
+                                  ),
+                                  controller: _emailController,
+                                  hintText: 'Email',
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                CustomCheckBox(
+                                  value: state.agreeTerms,
+                                  onChanged: (value) => _registerBloc
+                                      .add(RegisterEvent.toggleAgree()),
+                                  label:
+                                      'Dengan mengklik lanjutkan, Saya setuju\ndengan syarat dan ketentuan Digiresto.',
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            'Buat Pin Login',
-                            style: Styles.loginDescStyle.copyWith(
-                              color: _page > 0
-                                  ? AppColors.mainColor
-                                  : AppColors.greyColor2,
-                            ),
+                          //page 2
+                          RegisterPinWidget(
+                            errorController: _pinErrorController,
+                            onChanged: _onPinChange,
+                            title: 'Masukan PIN Login',
+                          ),
+                          //page 3
+                          RegisterPinWidget(
+                            errorController: _retypePinErrorController,
+                            onChanged: _onRetypePinChange,
+                            title: 'Masukan Kembali PIN Login',
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  right: 8,
-                                ),
-                                child: DrawCircle(),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              width: double.infinity,
-                              height: 3,
-                              color: _page > 0
-                                  ? AppColors.mainColor
-                                  : AppColors.greyColor2,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                left: 8,
-                              ),
-                              child: DrawCircle(
-                                color: _page > 0
-                                    ? AppColors.mainColor
-                                    : AppColors.greyColor2,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: PageView(
-                    controller: _pageController,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      //page 1
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 40,
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 40,
-                            ),
-                            CustomTextField(
-                              autovalidateMode: state.showErrorMessages
-                                  ? AutovalidateMode.always
-                                  : AutovalidateMode.disabled,
-                              validator: (_) => state.fullName.value.fold(
-                                (failure) => failure.maybeMap(
-                                  orElse: () => '',
-                                  lengthTooShort: (_) => 'Invalid Name',
-                                ),
-                                (_) => null,
-                              ),
-                              controller: _nameController,
-                              hintText: 'Nama Pengguna',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            CustomTextField(
-                              autovalidateMode: state.showErrorMessages
-                                  ? AutovalidateMode.always
-                                  : AutovalidateMode.disabled,
-                              validator: (_) => state.email.value.fold(
-                                (failure) => failure.maybeMap(
-                                  orElse: () => '',
-                                  invalidEmail: (_) => 'Invalid Email',
-                                ),
-                                (_) => null,
-                              ),
-                              controller: _emailController,
-                              hintText: 'Email',
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            CustomCheckBox(
-                              value: state.agreeTerms,
-                              onChanged: (value) => _registerBloc
-                                  .add(RegisterEvent.toggleAgree()),
-                              label:
-                                  'Dengan mengklik lanjutkan, Saya setuju\ndengan syarat dan ketentuan Digiresto.',
-                            ),
-                          ],
-                        ),
-                      ),
-                      //page 2
-                      RegisterPinWidget(
-                        errorController: _pinErrorController,
-                        onChanged: _onPinChange,
-                        title: 'Masukan PIN Login',
-                      ),
-                      //page 3
-                      RegisterPinWidget(
-                        errorController: _retypePinErrorController,
-                        onChanged: _onRetypePinChange,
-                        title: 'Masukan Kembali PIN Login',
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

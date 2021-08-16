@@ -16,6 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
+  _OnInvalidPin otpVerified(Function onInvalidPin) {
+    return _OnInvalidPin(
+      onInvalidPin,
+    );
+  }
+
   _PhoneNumberChanged phoneNumberChanged(String phoneNumberStr) {
     return _PhoneNumberChanged(
       phoneNumberStr,
@@ -32,8 +38,8 @@ class _$LoginEventTearOff {
     return const _VerifOtpPressed();
   }
 
-  _LoginPressed loginPressed() {
-    return const _LoginPressed();
+  _PinSubmitted pinSubmitted() {
+    return const _PinSubmitted();
   }
 }
 
@@ -44,35 +50,39 @@ const $LoginEvent = _$LoginEventTearOff();
 mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
-    required TResult Function() loginPressed,
+    required TResult Function() pinSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
-    TResult Function()? loginPressed,
+    TResult Function()? pinSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
-    required TResult Function(_LoginPressed value) loginPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
-    TResult Function(_LoginPressed value)? loginPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -92,6 +102,134 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   final LoginEvent _value;
   // ignore: unused_field
   final $Res Function(LoginEvent) _then;
+}
+
+/// @nodoc
+abstract class _$OnInvalidPinCopyWith<$Res> {
+  factory _$OnInvalidPinCopyWith(
+          _OnInvalidPin value, $Res Function(_OnInvalidPin) then) =
+      __$OnInvalidPinCopyWithImpl<$Res>;
+  $Res call({Function onInvalidPin});
+}
+
+/// @nodoc
+class __$OnInvalidPinCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$OnInvalidPinCopyWith<$Res> {
+  __$OnInvalidPinCopyWithImpl(
+      _OnInvalidPin _value, $Res Function(_OnInvalidPin) _then)
+      : super(_value, (v) => _then(v as _OnInvalidPin));
+
+  @override
+  _OnInvalidPin get _value => super._value as _OnInvalidPin;
+
+  @override
+  $Res call({
+    Object? onInvalidPin = freezed,
+  }) {
+    return _then(_OnInvalidPin(
+      onInvalidPin == freezed
+          ? _value.onInvalidPin
+          : onInvalidPin // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnInvalidPin implements _OnInvalidPin {
+  const _$_OnInvalidPin(this.onInvalidPin);
+
+  @override
+  final Function onInvalidPin;
+
+  @override
+  String toString() {
+    return 'LoginEvent.otpVerified(onInvalidPin: $onInvalidPin)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnInvalidPin &&
+            (identical(other.onInvalidPin, onInvalidPin) ||
+                const DeepCollectionEquality()
+                    .equals(other.onInvalidPin, onInvalidPin)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(onInvalidPin);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnInvalidPinCopyWith<_OnInvalidPin> get copyWith =>
+      __$OnInvalidPinCopyWithImpl<_OnInvalidPin>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Function onInvalidPin) otpVerified,
+    required TResult Function(String phoneNumberStr) phoneNumberChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function() verifOtpPressed,
+    required TResult Function() pinSubmitted,
+  }) {
+    return otpVerified(onInvalidPin);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    required TResult orElse(),
+  }) {
+    if (otpVerified != null) {
+      return otpVerified(onInvalidPin);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnInvalidPin value) otpVerified,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_VerifOtpPressed value) verifOtpPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
+  }) {
+    return otpVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    required TResult orElse(),
+  }) {
+    if (otpVerified != null) {
+      return otpVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnInvalidPin implements LoginEvent {
+  const factory _OnInvalidPin(Function onInvalidPin) = _$_OnInvalidPin;
+
+  Function get onInvalidPin => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$OnInvalidPinCopyWith<_OnInvalidPin> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -161,10 +299,11 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
-    required TResult Function() loginPressed,
+    required TResult Function() pinSubmitted,
   }) {
     return phoneNumberChanged(phoneNumberStr);
   }
@@ -172,10 +311,11 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
-    TResult Function()? loginPressed,
+    TResult Function()? pinSubmitted,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -187,10 +327,11 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
-    required TResult Function(_LoginPressed value) loginPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
   }) {
     return phoneNumberChanged(this);
   }
@@ -198,10 +339,11 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
-    TResult Function(_LoginPressed value)? loginPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -285,10 +427,11 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
-    required TResult Function() loginPressed,
+    required TResult Function() pinSubmitted,
   }) {
     return pinChanged(pinStr);
   }
@@ -296,10 +439,11 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
-    TResult Function()? loginPressed,
+    TResult Function()? pinSubmitted,
     required TResult orElse(),
   }) {
     if (pinChanged != null) {
@@ -311,10 +455,11 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
-    required TResult Function(_LoginPressed value) loginPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
   }) {
     return pinChanged(this);
   }
@@ -322,10 +467,11 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
-    TResult Function(_LoginPressed value)? loginPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
     required TResult orElse(),
   }) {
     if (pinChanged != null) {
@@ -384,10 +530,11 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
-    required TResult Function() loginPressed,
+    required TResult Function() pinSubmitted,
   }) {
     return verifOtpPressed();
   }
@@ -395,10 +542,11 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
-    TResult Function()? loginPressed,
+    TResult Function()? pinSubmitted,
     required TResult orElse(),
   }) {
     if (verifOtpPressed != null) {
@@ -410,10 +558,11 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
-    required TResult Function(_LoginPressed value) loginPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
   }) {
     return verifOtpPressed(this);
   }
@@ -421,10 +570,11 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
-    TResult Function(_LoginPressed value)? loginPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
     required TResult orElse(),
   }) {
     if (verifOtpPressed != null) {
@@ -439,36 +589,36 @@ abstract class _VerifOtpPressed implements LoginEvent {
 }
 
 /// @nodoc
-abstract class _$LoginPressedCopyWith<$Res> {
-  factory _$LoginPressedCopyWith(
-          _LoginPressed value, $Res Function(_LoginPressed) then) =
-      __$LoginPressedCopyWithImpl<$Res>;
+abstract class _$PinSubmittedCopyWith<$Res> {
+  factory _$PinSubmittedCopyWith(
+          _PinSubmitted value, $Res Function(_PinSubmitted) then) =
+      __$PinSubmittedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoginPressedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
-    implements _$LoginPressedCopyWith<$Res> {
-  __$LoginPressedCopyWithImpl(
-      _LoginPressed _value, $Res Function(_LoginPressed) _then)
-      : super(_value, (v) => _then(v as _LoginPressed));
+class __$PinSubmittedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$PinSubmittedCopyWith<$Res> {
+  __$PinSubmittedCopyWithImpl(
+      _PinSubmitted _value, $Res Function(_PinSubmitted) _then)
+      : super(_value, (v) => _then(v as _PinSubmitted));
 
   @override
-  _LoginPressed get _value => super._value as _LoginPressed;
+  _PinSubmitted get _value => super._value as _PinSubmitted;
 }
 
 /// @nodoc
 
-class _$_LoginPressed implements _LoginPressed {
-  const _$_LoginPressed();
+class _$_PinSubmitted implements _PinSubmitted {
+  const _$_PinSubmitted();
 
   @override
   String toString() {
-    return 'LoginEvent.loginPressed()';
+    return 'LoginEvent.pinSubmitted()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LoginPressed);
+    return identical(this, other) || (other is _PinSubmitted);
   }
 
   @override
@@ -477,25 +627,27 @@ class _$_LoginPressed implements _LoginPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
-    required TResult Function() loginPressed,
+    required TResult Function() pinSubmitted,
   }) {
-    return loginPressed();
+    return pinSubmitted();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
-    TResult Function()? loginPressed,
+    TResult Function()? pinSubmitted,
     required TResult orElse(),
   }) {
-    if (loginPressed != null) {
-      return loginPressed();
+    if (pinSubmitted != null) {
+      return pinSubmitted();
     }
     return orElse();
   }
@@ -503,32 +655,34 @@ class _$_LoginPressed implements _LoginPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
-    required TResult Function(_LoginPressed value) loginPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
   }) {
-    return loginPressed(this);
+    return pinSubmitted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
-    TResult Function(_LoginPressed value)? loginPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
     required TResult orElse(),
   }) {
-    if (loginPressed != null) {
-      return loginPressed(this);
+    if (pinSubmitted != null) {
+      return pinSubmitted(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoginPressed implements LoginEvent {
-  const factory _LoginPressed() = _$_LoginPressed;
+abstract class _PinSubmitted implements LoginEvent {
+  const factory _PinSubmitted() = _$_PinSubmitted;
 }
 
 /// @nodoc
@@ -540,15 +694,18 @@ class _$LoginStateTearOff {
       required Pin pin,
       required bool showErrorMessages,
       required bool isSubmitting,
-      required Option<Either<AuthFailure, LoginPin>> authFailureOrSuccessOption,
-      required Option<Either<AuthFailure, String>> otpFailureOrSuccessOption}) {
+      required Option<Either<AuthFailure, UserAuth>>
+          loginFailureOrSuccessOption,
+      required Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
+      required Option<Function> onInvalidPin}) {
     return _LoginState(
       phoneNumber: phoneNumber,
       pin: pin,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
-      authFailureOrSuccessOption: authFailureOrSuccessOption,
+      loginFailureOrSuccessOption: loginFailureOrSuccessOption,
       otpFailureOrSuccessOption: otpFailureOrSuccessOption,
+      onInvalidPin: onInvalidPin,
     );
   }
 }
@@ -562,10 +719,11 @@ mixin _$LoginState {
   Pin get pin => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
-  Option<Either<AuthFailure, LoginPin>> get authFailureOrSuccessOption =>
+  Option<Either<AuthFailure, UserAuth>> get loginFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
   Option<Either<AuthFailure, String>> get otpFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  Option<Function> get onInvalidPin => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -582,8 +740,9 @@ abstract class $LoginStateCopyWith<$Res> {
       Pin pin,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<AuthFailure, LoginPin>> authFailureOrSuccessOption,
-      Option<Either<AuthFailure, String>> otpFailureOrSuccessOption});
+      Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption,
+      Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
+      Option<Function> onInvalidPin});
 }
 
 /// @nodoc
@@ -600,8 +759,9 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
     Object? pin = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? loginFailureOrSuccessOption = freezed,
     Object? otpFailureOrSuccessOption = freezed,
+    Object? onInvalidPin = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: phoneNumber == freezed
@@ -620,14 +780,18 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, LoginPin>>,
+      loginFailureOrSuccessOption: loginFailureOrSuccessOption == freezed
+          ? _value.loginFailureOrSuccessOption
+          : loginFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, UserAuth>>,
       otpFailureOrSuccessOption: otpFailureOrSuccessOption == freezed
           ? _value.otpFailureOrSuccessOption
           : otpFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, String>>,
+      onInvalidPin: onInvalidPin == freezed
+          ? _value.onInvalidPin
+          : onInvalidPin // ignore: cast_nullable_to_non_nullable
+              as Option<Function>,
     ));
   }
 }
@@ -643,8 +807,9 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       Pin pin,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<AuthFailure, LoginPin>> authFailureOrSuccessOption,
-      Option<Either<AuthFailure, String>> otpFailureOrSuccessOption});
+      Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption,
+      Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
+      Option<Function> onInvalidPin});
 }
 
 /// @nodoc
@@ -663,8 +828,9 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object? pin = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? loginFailureOrSuccessOption = freezed,
     Object? otpFailureOrSuccessOption = freezed,
+    Object? onInvalidPin = freezed,
   }) {
     return _then(_LoginState(
       phoneNumber: phoneNumber == freezed
@@ -683,14 +849,18 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, LoginPin>>,
+      loginFailureOrSuccessOption: loginFailureOrSuccessOption == freezed
+          ? _value.loginFailureOrSuccessOption
+          : loginFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, UserAuth>>,
       otpFailureOrSuccessOption: otpFailureOrSuccessOption == freezed
           ? _value.otpFailureOrSuccessOption
           : otpFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, String>>,
+      onInvalidPin: onInvalidPin == freezed
+          ? _value.onInvalidPin
+          : onInvalidPin // ignore: cast_nullable_to_non_nullable
+              as Option<Function>,
     ));
   }
 }
@@ -703,8 +873,9 @@ class _$_LoginState implements _LoginState {
       required this.pin,
       required this.showErrorMessages,
       required this.isSubmitting,
-      required this.authFailureOrSuccessOption,
-      required this.otpFailureOrSuccessOption});
+      required this.loginFailureOrSuccessOption,
+      required this.otpFailureOrSuccessOption,
+      required this.onInvalidPin});
 
   @override
   final PhoneNumber phoneNumber;
@@ -715,13 +886,15 @@ class _$_LoginState implements _LoginState {
   @override
   final bool isSubmitting;
   @override
-  final Option<Either<AuthFailure, LoginPin>> authFailureOrSuccessOption;
+  final Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption;
   @override
   final Option<Either<AuthFailure, String>> otpFailureOrSuccessOption;
+  @override
+  final Option<Function> onInvalidPin;
 
   @override
   String toString() {
-    return 'LoginState(phoneNumber: $phoneNumber, pin: $pin, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption, otpFailureOrSuccessOption: $otpFailureOrSuccessOption)';
+    return 'LoginState(phoneNumber: $phoneNumber, pin: $pin, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, loginFailureOrSuccessOption: $loginFailureOrSuccessOption, otpFailureOrSuccessOption: $otpFailureOrSuccessOption, onInvalidPin: $onInvalidPin)';
   }
 
   @override
@@ -739,16 +912,19 @@ class _$_LoginState implements _LoginState {
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
-            (identical(other.authFailureOrSuccessOption,
-                    authFailureOrSuccessOption) ||
+            (identical(other.loginFailureOrSuccessOption,
+                    loginFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
-                    other.authFailureOrSuccessOption,
-                    authFailureOrSuccessOption)) &&
+                    other.loginFailureOrSuccessOption,
+                    loginFailureOrSuccessOption)) &&
             (identical(other.otpFailureOrSuccessOption,
                     otpFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
                     other.otpFailureOrSuccessOption,
-                    otpFailureOrSuccessOption)));
+                    otpFailureOrSuccessOption)) &&
+            (identical(other.onInvalidPin, onInvalidPin) ||
+                const DeepCollectionEquality()
+                    .equals(other.onInvalidPin, onInvalidPin)));
   }
 
   @override
@@ -758,8 +934,9 @@ class _$_LoginState implements _LoginState {
       const DeepCollectionEquality().hash(pin) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption) ^
-      const DeepCollectionEquality().hash(otpFailureOrSuccessOption);
+      const DeepCollectionEquality().hash(loginFailureOrSuccessOption) ^
+      const DeepCollectionEquality().hash(otpFailureOrSuccessOption) ^
+      const DeepCollectionEquality().hash(onInvalidPin);
 
   @JsonKey(ignore: true)
   @override
@@ -773,9 +950,10 @@ abstract class _LoginState implements LoginState {
       required Pin pin,
       required bool showErrorMessages,
       required bool isSubmitting,
-      required Option<Either<AuthFailure, LoginPin>> authFailureOrSuccessOption,
-      required Option<Either<AuthFailure, String>>
-          otpFailureOrSuccessOption}) = _$_LoginState;
+      required Option<Either<AuthFailure, UserAuth>>
+          loginFailureOrSuccessOption,
+      required Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
+      required Option<Function> onInvalidPin}) = _$_LoginState;
 
   @override
   PhoneNumber get phoneNumber => throw _privateConstructorUsedError;
@@ -786,11 +964,13 @@ abstract class _LoginState implements LoginState {
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
-  Option<Either<AuthFailure, LoginPin>> get authFailureOrSuccessOption =>
+  Option<Either<AuthFailure, UserAuth>> get loginFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
   @override
   Option<Either<AuthFailure, String>> get otpFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  @override
+  Option<Function> get onInvalidPin => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LoginStateCopyWith<_LoginState> get copyWith =>

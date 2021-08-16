@@ -5,11 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'validate_otp_event.dart';
@@ -27,11 +24,7 @@ class ValidateOtpBloc extends Bloc<ValidateOtpEvent, ValidateOtpState> {
     ValidateOtpEvent event,
   ) async* {
     yield* event.map(
-      started: (_event) async* {
-        yield state.copyWith(
-          errorOption: optionOf(_event.errorAnimation),
-        );
-      },
+      started: (_event) async* {},
       resendOtp: (_event) async* {
         yield state.copyWith(
           isSubmitting: true,
@@ -75,11 +68,9 @@ class ValidateOtpBloc extends Bloc<ValidateOtpEvent, ValidateOtpState> {
           (failure) => failure.maybeMap(
             orElse: () => null,
             invalidOtp: (e) {
-              state.errorOption.fold(
+              state.onInvalidOtpOption.fold(
                 () => null,
-                (errorAnimation) => errorAnimation.add(
-                  ErrorAnimationType.shake,
-                ),
+                (onInvalidOtp) => onInvalidOtp(),
               );
             },
           ),
