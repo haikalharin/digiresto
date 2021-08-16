@@ -19,6 +19,14 @@ class _$AppEventTearOff {
   _Started started() {
     return const _Started();
   }
+
+  _SkipIntro skipIntro() {
+    return const _SkipIntro();
+  }
+
+  _SkipGuide skipGuide() {
+    return const _SkipGuide();
+  }
 }
 
 /// @nodoc
@@ -29,22 +37,30 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() skipIntro,
+    required TResult Function() skipGuide,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? skipIntro,
+    TResult Function()? skipGuide,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_SkipIntro value) skipIntro,
+    required TResult Function(_SkipGuide value) skipGuide,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_SkipIntro value)? skipIntro,
+    TResult Function(_SkipGuide value)? skipGuide,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,6 +119,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() skipIntro,
+    required TResult Function() skipGuide,
   }) {
     return started();
   }
@@ -111,6 +129,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? skipIntro,
+    TResult Function()? skipGuide,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -123,6 +143,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_SkipIntro value) skipIntro,
+    required TResult Function(_SkipGuide value) skipGuide,
   }) {
     return started(this);
   }
@@ -131,6 +153,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_SkipIntro value)? skipIntro,
+    TResult Function(_SkipGuide value)? skipGuide,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -145,11 +169,191 @@ abstract class _Started implements AppEvent {
 }
 
 /// @nodoc
+abstract class _$SkipIntroCopyWith<$Res> {
+  factory _$SkipIntroCopyWith(
+          _SkipIntro value, $Res Function(_SkipIntro) then) =
+      __$SkipIntroCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SkipIntroCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$SkipIntroCopyWith<$Res> {
+  __$SkipIntroCopyWithImpl(_SkipIntro _value, $Res Function(_SkipIntro) _then)
+      : super(_value, (v) => _then(v as _SkipIntro));
+
+  @override
+  _SkipIntro get _value => super._value as _SkipIntro;
+}
+
+/// @nodoc
+
+class _$_SkipIntro implements _SkipIntro {
+  const _$_SkipIntro();
+
+  @override
+  String toString() {
+    return 'AppEvent.skipIntro()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SkipIntro);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() skipIntro,
+    required TResult Function() skipGuide,
+  }) {
+    return skipIntro();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? skipIntro,
+    TResult Function()? skipGuide,
+    required TResult orElse(),
+  }) {
+    if (skipIntro != null) {
+      return skipIntro();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SkipIntro value) skipIntro,
+    required TResult Function(_SkipGuide value) skipGuide,
+  }) {
+    return skipIntro(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SkipIntro value)? skipIntro,
+    TResult Function(_SkipGuide value)? skipGuide,
+    required TResult orElse(),
+  }) {
+    if (skipIntro != null) {
+      return skipIntro(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SkipIntro implements AppEvent {
+  const factory _SkipIntro() = _$_SkipIntro;
+}
+
+/// @nodoc
+abstract class _$SkipGuideCopyWith<$Res> {
+  factory _$SkipGuideCopyWith(
+          _SkipGuide value, $Res Function(_SkipGuide) then) =
+      __$SkipGuideCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SkipGuideCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$SkipGuideCopyWith<$Res> {
+  __$SkipGuideCopyWithImpl(_SkipGuide _value, $Res Function(_SkipGuide) _then)
+      : super(_value, (v) => _then(v as _SkipGuide));
+
+  @override
+  _SkipGuide get _value => super._value as _SkipGuide;
+}
+
+/// @nodoc
+
+class _$_SkipGuide implements _SkipGuide {
+  const _$_SkipGuide();
+
+  @override
+  String toString() {
+    return 'AppEvent.skipGuide()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SkipGuide);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() skipIntro,
+    required TResult Function() skipGuide,
+  }) {
+    return skipGuide();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? skipIntro,
+    TResult Function()? skipGuide,
+    required TResult orElse(),
+  }) {
+    if (skipGuide != null) {
+      return skipGuide();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SkipIntro value) skipIntro,
+    required TResult Function(_SkipGuide value) skipGuide,
+  }) {
+    return skipGuide(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SkipIntro value)? skipIntro,
+    TResult Function(_SkipGuide value)? skipGuide,
+    required TResult orElse(),
+  }) {
+    if (skipGuide != null) {
+      return skipGuide(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SkipGuide implements AppEvent {
+  const factory _SkipGuide() = _$_SkipGuide;
+}
+
+/// @nodoc
 class _$AppStateTearOff {
   const _$AppStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _AppState call(
+      {required Option<bool> preInstalled, required Option<bool> guideShown}) {
+    return _AppState(
+      preInstalled: preInstalled,
+      guideShown: guideShown,
+    );
   }
 }
 
@@ -158,27 +362,11 @@ const $AppState = _$AppStateTearOff();
 
 /// @nodoc
 mixin _$AppState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  Option<bool> get preInstalled => throw _privateConstructorUsedError;
+  Option<bool> get guideShown => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AppStateCopyWith<AppState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -186,6 +374,7 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
+  $Res call({Option<bool> preInstalled, Option<bool> guideShown});
 }
 
 /// @nodoc
@@ -195,83 +384,110 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   final AppState _value;
   // ignore: unused_field
   final $Res Function(AppState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object? preInstalled = freezed,
+    Object? guideShown = freezed,
+  }) {
+    return _then(_value.copyWith(
+      preInstalled: preInstalled == freezed
+          ? _value.preInstalled
+          : preInstalled // ignore: cast_nullable_to_non_nullable
+              as Option<bool>,
+      guideShown: guideShown == freezed
+          ? _value.guideShown
+          : guideShown // ignore: cast_nullable_to_non_nullable
+              as Option<bool>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
+  factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
+      __$AppStateCopyWithImpl<$Res>;
+  @override
+  $Res call({Option<bool> preInstalled, Option<bool> guideShown});
+}
+
+/// @nodoc
+class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements _$AppStateCopyWith<$Res> {
+  __$AppStateCopyWithImpl(_AppState _value, $Res Function(_AppState) _then)
+      : super(_value, (v) => _then(v as _AppState));
+
+  @override
+  _AppState get _value => super._value as _AppState;
+
+  @override
+  $Res call({
+    Object? preInstalled = freezed,
+    Object? guideShown = freezed,
+  }) {
+    return _then(_AppState(
+      preInstalled: preInstalled == freezed
+          ? _value.preInstalled
+          : preInstalled // ignore: cast_nullable_to_non_nullable
+              as Option<bool>,
+      guideShown: guideShown == freezed
+          ? _value.guideShown
+          : guideShown // ignore: cast_nullable_to_non_nullable
+              as Option<bool>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_AppState implements _AppState {
+  const _$_AppState({required this.preInstalled, required this.guideShown});
+
+  @override
+  final Option<bool> preInstalled;
+  @override
+  final Option<bool> guideShown;
 
   @override
   String toString() {
-    return 'AppState.initial()';
+    return 'AppState(preInstalled: $preInstalled, guideShown: $guideShown)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other is _AppState &&
+            (identical(other.preInstalled, preInstalled) ||
+                const DeepCollectionEquality()
+                    .equals(other.preInstalled, preInstalled)) &&
+            (identical(other.guideShown, guideShown) ||
+                const DeepCollectionEquality()
+                    .equals(other.guideShown, guideShown)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(preInstalled) ^
+      const DeepCollectionEquality().hash(guideShown);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$AppStateCopyWith<_AppState> get copyWith =>
+      __$AppStateCopyWithImpl<_AppState>(this, _$identity);
 }
 
-abstract class _Initial implements AppState {
-  const factory _Initial() = _$_Initial;
+abstract class _AppState implements AppState {
+  const factory _AppState(
+      {required Option<bool> preInstalled,
+      required Option<bool> guideShown}) = _$_AppState;
+
+  @override
+  Option<bool> get preInstalled => throw _privateConstructorUsedError;
+  @override
+  Option<bool> get guideShown => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$AppStateCopyWith<_AppState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
