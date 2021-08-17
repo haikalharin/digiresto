@@ -4,13 +4,13 @@ import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class GuideKeys {
   GuideKeys._();
-  static GlobalKey location = GlobalKey();
-  static GlobalKey search = GlobalKey();
-  static GlobalKey banner = GlobalKey();
-  static GlobalKey terdekat = GlobalKey();
-  static GlobalKey digidiscount = GlobalKey();
-  static GlobalKey frozenfood = GlobalKey();
-  static GlobalKey indonesiapastibisa = GlobalKey();
+  static final GlobalKey location = GlobalKey();
+  static final GlobalKey search = GlobalKey();
+  static final GlobalKey banner = GlobalKey();
+  static final GlobalKey terdekat = GlobalKey();
+  static final GlobalKey digidiscount = GlobalKey();
+  static final GlobalKey frozenfood = GlobalKey();
+  static final GlobalKey indonesiapastibisa = GlobalKey();
 
   static List<TargetFocus> targetFocus = [
     TargetFocus(

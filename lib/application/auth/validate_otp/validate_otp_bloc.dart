@@ -42,11 +42,10 @@ class ValidateOtpBloc extends Bloc<ValidateOtpEvent, ValidateOtpState> {
           // url
           String encode =
               encodedUrl[0] + "?text=" + Uri.encodeComponent(encodedUrl[1]);
-          if (await canLaunch(encode)) {
-            launch(
-              encode,
-            );
-          }
+
+          launch(
+            encode,
+          );
         }
         yield state.copyWith(
           isSubmitting: false,

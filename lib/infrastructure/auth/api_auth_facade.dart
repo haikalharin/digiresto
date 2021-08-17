@@ -114,7 +114,10 @@ class ApiAuthFacade implements IAuthFacade {
       final _user = UserAuth.fromJson(userData);
       await _storage.openBox(StorageConstants.user);
       await _storage.putData(json: _user.toJson());
+      final _userInStorage = await _storage.getData();
+      logger.d('user in storage :' + _userInStorage.toString());
       await _storage.close();
+
       return right(_user);
     } on ServerException catch (e) {
       logger.d(e.code);
@@ -133,20 +136,23 @@ class ApiAuthFacade implements IAuthFacade {
   @override
   Future<Either<AuthFailure, Option<UserAuth>>> getSignedInUser() async {
     await _storage.openBox(StorageConstants.user);
+    Either<AuthFailure, Option<UserAuth>> failureOrSuccess = right(none());
     final _userInStorage = await _storage.getData();
     if (_userInStorage.isNotEmpty) {
       final _userAuth = UserAuth.fromJson(_userInStorage);
+      logger.d('user auth from storage :' + _userAuth.toString());
       final _userProfile = await getProfile(_userAuth.token);
       logger.d(_userProfile);
-      return _userProfile.fold(
+      failureOrSuccess = _userProfile.fold(
         (l) => left(l),
         (profile) => right(
           optionOf(_userAuth),
         ),
       );
+      await _storage.close();
     }
     await _storage.close();
-    return right(none());
+    return failureOrSuccess;
   }
 
   @override
@@ -160,7 +166,7 @@ class ApiAuthFacade implements IAuthFacade {
     try {
       final apiResult = await _networkService.getHttp(
         path: Endpoints.urlProfile,
-        header: {"Authorization": "Bearer $token"},
+        useAuth: true,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'];

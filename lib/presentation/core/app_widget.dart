@@ -12,23 +12,16 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<AppBloc>(
-          create: (context) => getIt<AppBloc>()..add(AppEvent.started()),
-        )
-      ],
-      child: GetMaterialApp(
-        title: 'Digiresto',
-        enableLog: false,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: AppColors.mainMaterialColor,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        getPages: Routers().routers,
-        initialRoute: Routers.splash,
+    return GetMaterialApp(
+      title: 'Digiresto',
+      enableLog: false,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: AppColors.mainMaterialColor,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      getPages: Routers().routers,
+      initialRoute: Routers.splash,
     );
   }
 }

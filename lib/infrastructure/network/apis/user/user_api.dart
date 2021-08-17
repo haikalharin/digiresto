@@ -271,6 +271,7 @@ class UserApi {
     await _storage.openBox(StorageConstants.user);
     final _userInStorage = await _storage.getData();
     final _userAuth = UserAuth.fromJson(_userInStorage);
+    await _storage.close();
     return _userAuth;
   }
 }
