@@ -88,7 +88,8 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
                 latitude: response.latitude,
                 longitude: response.longitute));
           },
-          setActiveAddressSuccess: (_) {
+          setActiveAddressSuccess: (content) {
+            controller.setActiveAddress(content.response.address!);
             Get.back();
           },
           setDefaultFail: (content) {

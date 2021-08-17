@@ -585,19 +585,21 @@ class _YourLocation extends GetView<HomeContentController> {
                       ],
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      controller.activeAddress.value,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                  Obx(() {
+                    return Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        controller.activeAddress.value,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  })
                 ],
               ),
             ),
