@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -40,7 +41,9 @@ class NetworkService implements INetworkService {
           'accept': ContentType.json.mimeType
         };
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'token');
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
@@ -95,9 +98,11 @@ class NetworkService implements INetworkService {
           headers.addAll(header);
         }
         if (useAuth) {
-          final Map<String, dynamic> security = await baseStorage.getData();
-          if (security.isNotEmpty) {
-            headers.addAll({'Authorization': 'Bearer ${security["token"]}'});
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
+          if (security != null) {
+            headers.addAll({'Authorization': 'Bearer $security'});
           }
         }
 
@@ -152,7 +157,9 @@ class NetworkService implements INetworkService {
         }
 
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'token');
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
@@ -199,7 +206,9 @@ class NetworkService implements INetworkService {
           'Accept': ContentType.binary.mimeType,
         };
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'token');
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }

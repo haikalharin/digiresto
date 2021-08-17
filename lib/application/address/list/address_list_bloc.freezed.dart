@@ -371,6 +371,8 @@ abstract class _$SetActiveAddressCopyWith<$Res> {
           _SetActiveAddress value, $Res Function(_SetActiveAddress) then) =
       __$SetActiveAddressCopyWithImpl<$Res>;
   $Res call({UserAddress model});
+
+  $UserAddressCopyWith<$Res> get model;
 }
 
 /// @nodoc
@@ -394,6 +396,13 @@ class __$SetActiveAddressCopyWithImpl<$Res>
           : model // ignore: cast_nullable_to_non_nullable
               as UserAddress,
     ));
+  }
+
+  @override
+  $UserAddressCopyWith<$Res> get model {
+    return $UserAddressCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value));
+    });
   }
 }
 
@@ -2243,6 +2252,8 @@ abstract class _$SetActiveAddressSuccessCopyWith<$Res> {
           $Res Function(_SetActiveAddressSuccess) then) =
       __$SetActiveAddressSuccessCopyWithImpl<$Res>;
   $Res call({UserAddress response});
+
+  $UserAddressCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -2267,6 +2278,13 @@ class __$SetActiveAddressSuccessCopyWithImpl<$Res>
           : response // ignore: cast_nullable_to_non_nullable
               as UserAddress,
     ));
+  }
+
+  @override
+  $UserAddressCopyWith<$Res> get response {
+    return $UserAddressCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 

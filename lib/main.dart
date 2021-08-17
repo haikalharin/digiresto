@@ -8,7 +8,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import 'application/home/home_user_bloc/home_user_bloc.dart';
-import 'domain/entity/user/user_get_address_model.dart';
 import 'injection.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
@@ -37,8 +36,7 @@ class InitiateProvider extends StatelessWidget {
 
 class InitiateHive {
   static initial() async {
-    Hive
-      ..initFlutter()
-      ..registerAdapter(UserAddressAdapter());
+    Hive..initFlutter();
+    //..registerAdapter(UserAddressAdapter());
   }
 }

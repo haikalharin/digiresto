@@ -21,15 +21,15 @@ class _$UserAuthTearOff {
   const _$UserAuthTearOff();
 
   _UserAuth call(
-      {required String token,
-      required String renewtoken,
-      required String grantType,
-      required String handphone,
-      required int id,
-      required String name,
-      required String username,
-      required String email,
-      required String mobilePhone}) {
+      {required String? token,
+      required String? renewtoken,
+      required String? grantType,
+      required String? handphone,
+      required int? id,
+      required String? name,
+      required String? username,
+      required String? email,
+      required String? mobilePhone}) {
     return _UserAuth(
       token: token,
       renewtoken: renewtoken,
@@ -53,15 +53,15 @@ const $UserAuth = _$UserAuthTearOff();
 
 /// @nodoc
 mixin _$UserAuth {
-  String get token => throw _privateConstructorUsedError;
-  String get renewtoken => throw _privateConstructorUsedError;
-  String get grantType => throw _privateConstructorUsedError;
-  String get handphone => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get mobilePhone => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  String? get renewtoken => throw _privateConstructorUsedError;
+  String? get grantType => throw _privateConstructorUsedError;
+  String? get handphone => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get mobilePhone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,15 +74,15 @@ abstract class $UserAuthCopyWith<$Res> {
   factory $UserAuthCopyWith(UserAuth value, $Res Function(UserAuth) then) =
       _$UserAuthCopyWithImpl<$Res>;
   $Res call(
-      {String token,
-      String renewtoken,
-      String grantType,
-      String handphone,
-      int id,
-      String name,
-      String username,
-      String email,
-      String mobilePhone});
+      {String? token,
+      String? renewtoken,
+      String? grantType,
+      String? handphone,
+      int? id,
+      String? name,
+      String? username,
+      String? email,
+      String? mobilePhone});
 }
 
 /// @nodoc
@@ -109,39 +109,39 @@ class _$UserAuthCopyWithImpl<$Res> implements $UserAuthCopyWith<$Res> {
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       renewtoken: renewtoken == freezed
           ? _value.renewtoken
           : renewtoken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       grantType: grantType == freezed
           ? _value.grantType
           : grantType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       handphone: handphone == freezed
           ? _value.handphone
           : handphone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mobilePhone: mobilePhone == freezed
           ? _value.mobilePhone
           : mobilePhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -152,15 +152,15 @@ abstract class _$UserAuthCopyWith<$Res> implements $UserAuthCopyWith<$Res> {
       __$UserAuthCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String token,
-      String renewtoken,
-      String grantType,
-      String handphone,
-      int id,
-      String name,
-      String username,
-      String email,
-      String mobilePhone});
+      {String? token,
+      String? renewtoken,
+      String? grantType,
+      String? handphone,
+      int? id,
+      String? name,
+      String? username,
+      String? email,
+      String? mobilePhone});
 }
 
 /// @nodoc
@@ -188,39 +188,39 @@ class __$UserAuthCopyWithImpl<$Res> extends _$UserAuthCopyWithImpl<$Res>
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       renewtoken: renewtoken == freezed
           ? _value.renewtoken
           : renewtoken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       grantType: grantType == freezed
           ? _value.grantType
           : grantType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       handphone: handphone == freezed
           ? _value.handphone
           : handphone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mobilePhone: mobilePhone == freezed
           ? _value.mobilePhone
           : mobilePhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -243,23 +243,23 @@ class _$_UserAuth implements _UserAuth {
       _$_$_UserAuthFromJson(json);
 
   @override
-  final String token;
+  final String? token;
   @override
-  final String renewtoken;
+  final String? renewtoken;
   @override
-  final String grantType;
+  final String? grantType;
   @override
-  final String handphone;
+  final String? handphone;
   @override
-  final int id;
+  final int? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String username;
+  final String? username;
   @override
-  final String email;
+  final String? email;
   @override
-  final String mobilePhone;
+  final String? mobilePhone;
 
   @override
   String toString() {
@@ -321,36 +321,36 @@ class _$_UserAuth implements _UserAuth {
 
 abstract class _UserAuth implements UserAuth {
   const factory _UserAuth(
-      {required String token,
-      required String renewtoken,
-      required String grantType,
-      required String handphone,
-      required int id,
-      required String name,
-      required String username,
-      required String email,
-      required String mobilePhone}) = _$_UserAuth;
+      {required String? token,
+      required String? renewtoken,
+      required String? grantType,
+      required String? handphone,
+      required int? id,
+      required String? name,
+      required String? username,
+      required String? email,
+      required String? mobilePhone}) = _$_UserAuth;
 
   factory _UserAuth.fromJson(Map<String, dynamic> json) = _$_UserAuth.fromJson;
 
   @override
-  String get token => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
   @override
-  String get renewtoken => throw _privateConstructorUsedError;
+  String? get renewtoken => throw _privateConstructorUsedError;
   @override
-  String get grantType => throw _privateConstructorUsedError;
+  String? get grantType => throw _privateConstructorUsedError;
   @override
-  String get handphone => throw _privateConstructorUsedError;
+  String? get handphone => throw _privateConstructorUsedError;
   @override
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String get username => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   @override
-  String get mobilePhone => throw _privateConstructorUsedError;
+  String? get mobilePhone => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserAuthCopyWith<_UserAuth> get copyWith =>
