@@ -125,8 +125,8 @@ class HomeContentScreen extends GetView<HomeContentController> {
                 children: [
                   _StaticBanner(),
                   _trackOrder(),
-                  _groupFoodRow1(),
-                  _groupFoodRow2(),
+                  _GroupFoodRow1(),
+                  _GroupFoodRow2(),
                   _singleAdvertisement(),
                 ],
               ),
@@ -134,150 +134,6 @@ class HomeContentScreen extends GetView<HomeContentController> {
           ],
         );
       },
-    );
-  }
-
-  Widget _groupFoodRow1() {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            key: GuideKeys.terdekat,
-            onTap: () {
-              Get.toNamed(Routers.homeNearbyOutlet);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconHomeNearby),
-                      height: 60,
-                    ),
-                    Text(
-                      "Terdekat",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 10, right: 5),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-          GestureDetector(
-            key: GuideKeys.digidiscount,
-            onTap: () {
-              Get.toNamed(Routers.homeDigiDiscount);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconHomeDiscount),
-                      height: 60,
-                    ),
-                    Text(
-                      "DigiDiscount",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 5, right: 10),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: AppColors.cream,
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _groupFoodRow2() {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            key: GuideKeys.frozenfood,
-            onTap: () {
-              Get.toNamed(Routers.homeDigiDiscount);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconFrozenFood),
-                      height: 60,
-                    ),
-                    Text(
-                      "Frozen Food",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 10, right: 5),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-          GestureDetector(
-            key: GuideKeys.indonesiapastibisa,
-            onTap: () {
-              Get.toNamed(Routers.homeDigiDiscount);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconIndPastiBisa),
-                      height: 60,
-                    ),
-                    Text(
-                      "Indonesia Pasti Bisa",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 5, right: 10),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: AppColors.cream,
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-        ],
-      ),
     );
   }
 
@@ -757,6 +613,156 @@ class _SearchBox extends StatelessWidget {
                 )),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _GroupFoodRow1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            key: GuideKeys.terdekat,
+            onTap: () {
+              Get.toNamed(Routers.homeNearbyOutlet);
+            },
+            child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: new AssetImage(AppAssets.iconHomeNearby),
+                      height: 60,
+                    ),
+                    Text(
+                      "Terdekat",
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.red),
+                    )
+                  ],
+                ),
+                margin: EdgeInsets.only(left: 10, right: 5),
+                height: 100,
+                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+                decoration: BoxDecoration(
+                  //color: Colors.white,
+                  borderRadius: BorderRadius.circular(7.0),
+                )),
+          ),
+          GestureDetector(
+            key: GuideKeys.digidiscount,
+            onTap: () {
+              Get.toNamed(Routers.homeDigiDiscount);
+            },
+            child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: new AssetImage(AppAssets.iconHomeDiscount),
+                      height: 60,
+                    ),
+                    Text(
+                      "DigiDiscount",
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.red),
+                    )
+                  ],
+                ),
+                margin: EdgeInsets.only(left: 5, right: 10),
+                height: 100,
+                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+                decoration: BoxDecoration(
+                  //color: AppColors.cream,
+                  //color: Colors.white,
+                  borderRadius: BorderRadius.circular(7.0),
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _GroupFoodRow2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            key: GuideKeys.frozenfood,
+            onTap: () {
+              Get.toNamed(Routers.homeDigiDiscount);
+            },
+            child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: new AssetImage(AppAssets.iconFrozenFood),
+                      height: 60,
+                    ),
+                    Text(
+                      "Frozen Food",
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.red),
+                    )
+                  ],
+                ),
+                margin: EdgeInsets.only(left: 10, right: 5),
+                height: 100,
+                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+                decoration: BoxDecoration(
+                  //color: Colors.white,
+                  borderRadius: BorderRadius.circular(7.0),
+                )),
+          ),
+          GestureDetector(
+            key: GuideKeys.indonesiapastibisa,
+            onTap: () {
+              Get.toNamed(Routers.homeDigiDiscount);
+            },
+            child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: new AssetImage(AppAssets.iconIndPastiBisa),
+                      height: 60,
+                    ),
+                    Text(
+                      "Indonesia Pasti Bisa",
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.red),
+                    )
+                  ],
+                ),
+                margin: EdgeInsets.only(left: 5, right: 10),
+                height: 100,
+                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+                decoration: BoxDecoration(
+                  //color: AppColors.cream,
+                  //color: Colors.white,
+                  borderRadius: BorderRadius.circular(7.0),
+                )),
+          ),
+        ],
       ),
     );
   }
