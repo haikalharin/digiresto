@@ -68,7 +68,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
     Get.put(HomeContentController());
     context.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
     context.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
-    //showTutorial(context);
+    showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         controller.setLoadingHistory(true);
@@ -114,18 +114,52 @@ class HomeContentScreen extends GetView<HomeContentController> {
               Column(
                 children: <Widget>[
                   TopBackgound(backgroundColor: AppColors.red),
-                  _YourLocation(),
-                  _SearchBox(),
+                  _YourLocation(key: GuideKeys.location),
+                  _SearchBox(key: GuideKeys.search),
                 ],
               ),
               Expanded(
                   child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    _StaticBanner(),
+                    _StaticBanner(key: GuideKeys.banner),
                     _trackOrder(),
-                    _GroupFoodRow1(),
-                    _GroupFoodRow2(),
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _FoodRowItem(
+                            key: GuideKeys.terdekat,
+                            imageAsset: AppAssets.iconHomeNearby,
+                            label: "Terdekat",
+                          ),
+                          _FoodRowItem(
+                            key: GuideKeys.digidiscount,
+                            imageAsset: AppAssets.iconHomeDiscount,
+                            label: "DigiDiscount",
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _FoodRowItem(
+                            key: GuideKeys.frozenfood,
+                            imageAsset: AppAssets.iconFrozenFood,
+                            label: "Frozen Food",
+                          ),
+                          _FoodRowItem(
+                            key: GuideKeys.indonesiapastibisa,
+                            imageAsset: AppAssets.iconIndPastiBisa,
+                            label: "Indonesia Pasti Bisa",
+                          ),
+                        ],
+                      ),
+                    ),
                     _singleAdvertisement(),
                   ],
                 ),
@@ -406,6 +440,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
 }
 
 class _StaticBanner extends GetView<HomeContentController> {
+  _StaticBanner({Key? key}) : super(key: key);
   _showDetailImage(String imageUrl) {
     Navigator.of(Get.context!).push(TransparentRoute(
         builder: (BuildContext context) =>
@@ -457,7 +492,6 @@ class _StaticBanner extends GetView<HomeContentController> {
   Widget build(BuildContext context) {
     PageController _controller = Get.find<PageController>(tag: "home");
     return Column(
-      //key: GuideKeys.banner,
       children: [
         Container(
           padding: EdgeInsets.only(
@@ -516,10 +550,10 @@ class _StaticBanner extends GetView<HomeContentController> {
 }
 
 class _YourLocation extends GetView<HomeContentController> {
+  _YourLocation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //key: GuideKeys.location,
       onTap: () {
         Get.toNamed(Routers.homeAllAddress);
       },
@@ -575,10 +609,10 @@ class _YourLocation extends GetView<HomeContentController> {
 }
 
 class _SearchBox extends StatelessWidget {
+  _SearchBox({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //key: GuideKeys.search,
       onTap: () {
         Get.toNamed(Routers.homeNearbyOutlet);
       },
@@ -611,152 +645,45 @@ class _SearchBox extends StatelessWidget {
   }
 }
 
-class _GroupFoodRow1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            //key: GuideKeys.terdekat,
-            onTap: () {
-              Get.toNamed(Routers.homeNearbyOutlet);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconHomeNearby),
-                      height: 60,
-                    ),
-                    Text(
-                      "Terdekat",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 10, right: 5),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-          GestureDetector(
-            //key: GuideKeys.digidiscount,
-            onTap: () {
-              Get.toNamed(Routers.homeDigiDiscount);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconHomeDiscount),
-                      height: 60,
-                    ),
-                    Text(
-                      "DigiDiscount",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 5, right: 10),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: AppColors.cream,
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-        ],
-      ),
-    );
-  }
-}
+class _FoodRowItem extends StatelessWidget {
+  final String imageAsset;
+  final String label;
+  const _FoodRowItem({
+    Key? key,
+    required this.imageAsset,
+    required this.label,
+  }) : super(key: key);
 
-class _GroupFoodRow2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            //key: GuideKeys.frozenfood,
-            onTap: () {
-              Get.toNamed(Routers.homeDigiDiscount);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconFrozenFood),
-                      height: 60,
-                    ),
-                    Text(
-                      "Frozen Food",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 10, right: 5),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routers.homeNearbyOutlet);
+      },
+      child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image(
+                image: new AssetImage(imageAsset),
+                height: 60,
+              ),
+              Text(
+                label,
+                style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.red),
+              )
+            ],
           ),
-          GestureDetector(
-            //key: GuideKeys.indonesiapastibisa,
-            onTap: () {
-              Get.toNamed(Routers.homeDigiDiscount);
-            },
-            child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: new AssetImage(AppAssets.iconIndPastiBisa),
-                      height: 60,
-                    ),
-                    Text(
-                      "Indonesia Pasti Bisa",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red),
-                    )
-                  ],
-                ),
-                margin: EdgeInsets.only(left: 5, right: 10),
-                height: 100,
-                width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-                decoration: BoxDecoration(
-                  //color: AppColors.cream,
-                  //color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.0),
-                )),
-          ),
-        ],
-      ),
+          margin: EdgeInsets.only(left: 10, right: 5),
+          height: 100,
+          width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+          decoration: BoxDecoration(
+            //color: Colors.white,
+            borderRadius: BorderRadius.circular(7.0),
+          )),
     );
   }
 }

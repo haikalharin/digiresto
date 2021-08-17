@@ -43,7 +43,8 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                             color: Colors.black, size: 28.0),
                         onPressed: () {
                           // _userStore?.setActivedHomeTab("home");
-                          Get.offNamed(Routers.home);
+                          // Get.offNamed(Routers.home);
+                          Get.back();
                         }),
                     Text("Pilih Alamat",
                         style: AppFont.textBlack15Bold,
@@ -88,7 +89,7 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
                 longitude: response.longitute));
           },
           setActiveAddressSuccess: (_) {
-            Get.offNamed(Routers.home);
+            Get.back();
           },
           setDefaultFail: (content) {
             print(content);
