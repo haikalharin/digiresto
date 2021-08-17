@@ -68,7 +68,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
     Get.put(HomeContentController());
     context.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
     context.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
-    showTutorial(context);
+    //showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         controller.setLoadingHistory(true);
@@ -81,27 +81,25 @@ class HomeContentScreen extends GetView<HomeContentController> {
             },
             addressListSuccess: (data) {
               if (data.list.length > 0) {
-                data.list.forEach((element) {
-                  if (element.isDefault!) {
-                    controller.setActiveAddress(element.address!);
+                if (controller.activeAddress.value == "") {
+                  data.list.forEach((element) {
+                    if (element.isDefault!) {
+                      controller.setActiveAddress(element.address!);
+                    }
+                  });
+                  if (!(data.list.every((element) => element.isDefault!))) {
+                    controller.setActiveAddress(data.list[0].address!);
                   }
-                });
-                final isThereDefault =
-                    data.list.every((element) => element.isDefault!);
-                if (!isThereDefault) {
-                  controller.setActiveAddress(data.list[0].address!);
-                  controller.setListAddress(data.list);
                 }
-                controller.setListAddress(data.list);
               }
+              controller.setListAddress(data.list);
             },
             getActiveAddressFail: (fail) {
-              print("error");
-              print(fail);
               context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
             },
             getActiveAddressSuccess: (data) {
               controller.setActiveAddress(data.response.address!);
+              context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
             },
             addressListFailed: (e) {
               print("error");
@@ -110,29 +108,31 @@ class HomeContentScreen extends GetView<HomeContentController> {
             orElse: () {});
       },
       builder: (context, state) {
-        return Column(
-          children: [
-            Column(
-              children: <Widget>[
-                TopBackgound(backgroundColor: AppColors.red),
-                _YourLocation(),
-                _SearchBox(),
-              ],
-            ),
-            Expanded(
-                child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _StaticBanner(),
-                  _trackOrder(),
-                  _GroupFoodRow1(),
-                  _GroupFoodRow2(),
-                  _singleAdvertisement(),
+        return Obx(() {
+          return Column(
+            children: [
+              Column(
+                children: <Widget>[
+                  TopBackgound(backgroundColor: AppColors.red),
+                  _YourLocation(),
+                  _SearchBox(),
                 ],
               ),
-            )),
-          ],
-        );
+              Expanded(
+                  child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _StaticBanner(),
+                    _trackOrder(),
+                    _GroupFoodRow1(),
+                    _GroupFoodRow2(),
+                    _singleAdvertisement(),
+                  ],
+                ),
+              )),
+            ],
+          );
+        });
       },
     );
   }
@@ -456,64 +456,62 @@ class _StaticBanner extends GetView<HomeContentController> {
   @override
   Widget build(BuildContext context) {
     PageController _controller = Get.find<PageController>(tag: "home");
-    return Obx(() => Column(
-          key: GuideKeys.banner,
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                bottom: 10,
-              ),
-              height: MediaQuery.of(Get.context!).size.height / 3 - 20,
-              width: double.infinity,
-              child: PageView(
-                scrollDirection: Axis.horizontal,
-                onPageChanged: (index) {
-                  Get.find<HomeContentController>().setSlideIndex(index);
-                },
-                controller: _controller,
+    return Column(
+      //key: GuideKeys.banner,
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+            bottom: 10,
+          ),
+          height: MediaQuery.of(Get.context!).size.height / 3 - 20,
+          width: double.infinity,
+          child: PageView(
+            scrollDirection: Axis.horizontal,
+            onPageChanged: (index) {
+              Get.find<HomeContentController>().setSlideIndex(index);
+            },
+            controller: _controller,
+            children: [
+              for (int i = 0; i < controller.listStaticBanner.length; i++)
+                _promoList(controller.listStaticBanner[i]),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 10, top: 5, right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
                   for (int i = 0; i < controller.listStaticBanner.length; i++)
-                    _promoList(controller.listStaticBanner[i]),
+                    i == controller.slideIndex.value
+                        ? _buildPageIndicator(true)
+                        : _buildPageIndicator(false),
                 ],
               ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10, top: 5, right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      for (int i = 0;
-                          i < controller.listStaticBanner.length;
-                          i++)
-                        i == controller.slideIndex.value
-                            ? _buildPageIndicator(true)
-                            : _buildPageIndicator(false),
-                    ],
-                  ),
-                  //hidden see all promo request by user
-                  // GestureDetector(
-                  //   onTap: () {},
-                  //   child: Row(
-                  //     children: [
-                  //       Text(
-                  //         "Lihat semua promo",
-                  //         style: AppFont.textRed14Bold,
-                  //       ),
-                  //       SizedBox(width: 9),
-                  //       Image(
-                  //         image: new AssetImage(AppAssets.iconForwardRed),
-                  //         height: 12,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // )
-                ],
-              ),
-            )
-          ],
-        ));
+              //hidden see all promo request by user
+              // GestureDetector(
+              //   onTap: () {},
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         "Lihat semua promo",
+              //         style: AppFont.textRed14Bold,
+              //       ),
+              //       SizedBox(width: 9),
+              //       Image(
+              //         image: new AssetImage(AppAssets.iconForwardRed),
+              //         height: 12,
+              //       ),
+              //     ],
+              //   ),
+              // )
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
 
@@ -521,11 +519,9 @@ class _YourLocation extends GetView<HomeContentController> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      key: GuideKeys.location,
+      //key: GuideKeys.location,
       onTap: () {
         Get.toNamed(Routers.homeAllAddress);
-        //  _userStore?.setActiveHistoryScreen("home.address");
-        //Navigator.of(Get.context!).pushNamed(Routes.home_all_address);
       },
       child: Container(
         padding: EdgeInsets.only(left: 10, right: 10),
@@ -549,10 +545,7 @@ class _YourLocation extends GetView<HomeContentController> {
                             )),
                         new Icon(Icons.keyboard_arrow_down,
                             color: AppColors.red, size: 28.0),
-                        Get.find<HomeContentController>()
-                                    .loadingListAddress
-                                    .value ==
-                                true
+                        controller.loadingListAddress.value == true
                             ? CustomProgressIndicatorWidget(size: 15)
                             : Container(),
                       ],
@@ -585,7 +578,7 @@ class _SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      key: GuideKeys.search,
+      //key: GuideKeys.search,
       onTap: () {
         Get.toNamed(Routers.homeNearbyOutlet);
       },
@@ -627,7 +620,7 @@ class _GroupFoodRow1 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            key: GuideKeys.terdekat,
+            //key: GuideKeys.terdekat,
             onTap: () {
               Get.toNamed(Routers.homeNearbyOutlet);
             },
@@ -657,7 +650,7 @@ class _GroupFoodRow1 extends StatelessWidget {
                 )),
           ),
           GestureDetector(
-            key: GuideKeys.digidiscount,
+            //key: GuideKeys.digidiscount,
             onTap: () {
               Get.toNamed(Routers.homeDigiDiscount);
             },
@@ -702,7 +695,7 @@ class _GroupFoodRow2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            key: GuideKeys.frozenfood,
+            //key: GuideKeys.frozenfood,
             onTap: () {
               Get.toNamed(Routers.homeDigiDiscount);
             },
@@ -732,7 +725,7 @@ class _GroupFoodRow2 extends StatelessWidget {
                 )),
           ),
           GestureDetector(
-            key: GuideKeys.indonesiapastibisa,
+            //key: GuideKeys.indonesiapastibisa,
             onTap: () {
               Get.toNamed(Routers.homeDigiDiscount);
             },
