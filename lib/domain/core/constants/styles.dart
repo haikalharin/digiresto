@@ -19,7 +19,7 @@ class Styles {
       color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600);
 
   static TextStyle checkBoxLabelStyle = GoogleFonts.poppins(
-      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
   static TextStyle buttonLabelStyle = GoogleFonts.poppins(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
@@ -35,6 +35,25 @@ class Styles {
 
   static TextStyle hintStyle = GoogleFonts.poppins(
       color: AppColors.greyColor1, fontSize: 16, fontWeight: FontWeight.w400);
+
   static TextStyle modiferTempStyle = GoogleFonts.poppins(
       color: AppColors.redYoung, fontSize: 14, fontWeight: FontWeight.w600);
+
+  static TextStyle pinTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700);
+
+  static TextStyle loginPinDescStyle = GoogleFonts.poppins(
+      color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold);
+
+  static TextStyle whiteFontStyle = GoogleFonts.poppins(
+      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle guideTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w600);
+
+  static TextStyle guideDescStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle guideSkipStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w700);
 }

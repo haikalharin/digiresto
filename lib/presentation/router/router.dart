@@ -1,7 +1,9 @@
+// import 'package:digiresto/presentation/home/add_location.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
 import 'package:digiresto/presentation/address/map/add_location.dart';
-import 'package:digiresto/presentation/auth/auth_page.dart';
+import 'package:digiresto/presentation/auth/auth_listener.dart';
+// import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
 import 'package:digiresto/presentation/home/home_all_promo.dart';
@@ -9,10 +11,11 @@ import 'package:digiresto/presentation/home/home_digidiscount.dart';
 import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
 import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
+import 'package:digiresto/presentation/splash/splash_page.dart';
 import 'package:get/route_manager.dart';
 
 class Routers {
-  static const String landing = '/';
+  static const String splash = '/';
   static const String intro = '/intro';
   static const String auth = '/auth';
   static const String home = '/home';
@@ -49,12 +52,16 @@ class Routers {
 
   final List<GetPage> routers = [
     GetPage(
+      name: Routers.splash,
+      page: () => SplashPage(),
+    ),
+    GetPage(
       name: Routers.intro,
       page: () => IntroPage(),
     ),
     GetPage(
       name: Routers.auth,
-      page: () => AuthPage(),
+      page: () => AuthListener(),
     ),
     GetPage(
       name: Routers.home,

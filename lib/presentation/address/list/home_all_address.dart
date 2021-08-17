@@ -43,7 +43,8 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
                             color: Colors.black, size: 28.0),
                         onPressed: () {
                           // _userStore?.setActivedHomeTab("home");
-                          Get.offNamed(Routers.home);
+                          // Get.offNamed(Routers.home);
+                          Get.back();
                         }),
                     Text("Pilih Alamat",
                         style: AppFont.textBlack15Bold,
@@ -87,8 +88,12 @@ class _AllAddressViewBody extends GetView<HomeContentController> {
                 latitude: response.latitude,
                 longitude: response.longitute));
           },
-          setActiveAddressSuccess: (_) {
-            Get.offNamed(Routers.home);
+          setActiveAddressSuccess: (content) {
+            controller.setActiveAddress(content.response.address!);
+            Get.back();
+          },
+          setDefaultFail: (content) {
+            print(content);
           },
           setDefaultSuccess: (value) {
             controller.setListAddress(value.response);

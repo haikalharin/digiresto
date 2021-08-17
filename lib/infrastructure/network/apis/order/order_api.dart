@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
+import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/cart_session_model.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
@@ -12,24 +14,22 @@ import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
-import 'package:digiresto/infrastructure/network/dio_client.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@Injectable()
 class OrderApi {
-  // dio instance
-  final DioClient _dioClient;
-
-  // injecting dio instance
+  final INetworkService _networkService;
+  final IStorage _storage;
   OrderApi(
-    this._dioClient,
+    this._networkService,
+    this._storage,
   );
 
   Future<List<OutletList>> getOutletByLocation(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetOutletByLocation;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "location": object["location"].toString(),
           "page": object["page"],
@@ -54,7 +54,7 @@ class OrderApi {
   Future<List<PromoOutlet>> getPromoOutlet(Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetPromoOutlet;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "location": object["location"].toString(),
           "page": object["page"],
@@ -79,7 +79,7 @@ class OrderApi {
   Future<List<HotPromo>> getHotPromo(Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetHotPromo;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "location": object["location"],
           "page": object["page"],
@@ -105,7 +105,7 @@ class OrderApi {
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetStaticBanner;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "location": object["location"],
           "page": object["page"],
@@ -129,7 +129,7 @@ class OrderApi {
   Future<DetailOutlet> getDetailOutlet(Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetProduct;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "outletName": object["outletName"],
           "page": object["page"],
@@ -152,8 +152,8 @@ class OrderApi {
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlCreateCartSession;
-      final apiResult = await _dioClient
-          .post(apiUrl, data: {"query_string": {}, "body": object});
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: {"query_string": {}, "body": object});
       var data = (apiResult as Map<String, dynamic>)['data'];
       return {
         "transactionData":
@@ -170,7 +170,7 @@ class OrderApi {
       Map<String, dynamic> object, String sessionId) async {
     try {
       String apiUrl = Endpoints.urlUpdateCartSession;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "sessionId": sessionId,
         },
@@ -191,7 +191,7 @@ class OrderApi {
   Future<CheckoutResponse> checkout(String sessionId) async {
     try {
       String apiUrl = Endpoints.urlCheckoutCartSession;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "sessionId": sessionId,
         },
@@ -209,7 +209,7 @@ class OrderApi {
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetPaymentMethod;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "outletName": object['outlet'],
           "salesType": object['salesType']
@@ -229,7 +229,7 @@ class OrderApi {
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlDeliveryInquiry;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {
           "outletName": object['outlet'],
         },

@@ -19,7 +19,7 @@ class AppWidget extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       getPages: Routers().routers,
-      initialRoute: Routers.home,
+      initialRoute: Routers.splash,
       localizationsDelegates: [
         // A class which loads the translations from JSON files
         AppLocalizations.delegate,
