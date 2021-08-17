@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
@@ -139,9 +139,12 @@ class ApiAuthFacade implements IAuthFacade {
     Either<AuthFailure, Option<UserAuth>> failureOrSuccess = right(none());
     final _userInStorage = await _storage.getData();
     if (_userInStorage.isNotEmpty) {
+      final _user = UserAuth.fromJson(_userInStorage);
+      await _storage.openBox(StorageConstants.user);
+      await _storage.putData(json: _user.toJson());
+      await _storage.close();
       final _userAuth = UserAuth.fromJson(_userInStorage);
-      logger.d('user auth from storage :' + _userAuth.toString());
-      final _userProfile = await getProfile(_userAuth.token);
+      final _userProfile = await getProfile(_userAuth.token!);
       logger.d(_userProfile);
       failureOrSuccess = _userProfile.fold(
         (l) => left(l),

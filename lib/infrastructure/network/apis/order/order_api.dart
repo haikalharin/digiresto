@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/cart_session_model.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
@@ -17,10 +18,11 @@ import 'package:injectable/injectable.dart';
 
 @Injectable()
 class OrderApi {
-  INetworkService _networkService;
-
+  final INetworkService _networkService;
+  final IStorage _storage;
   OrderApi(
     this._networkService,
+    this._storage,
   );
 
   Future<List<OutletList>> getOutletByLocation(

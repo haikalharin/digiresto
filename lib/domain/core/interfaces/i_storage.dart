@@ -1,4 +1,12 @@
-enum StorageConstants { base, articles, user, security, cache, aimUser }
+enum StorageConstants {
+  base,
+  articles,
+  user,
+  security,
+  cache,
+  aimUser,
+  address
+}
 
 abstract class IStorage {
   Future openBox(
