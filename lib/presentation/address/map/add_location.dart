@@ -10,7 +10,6 @@ import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
-import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -268,7 +267,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                   _addressController.text = _geocode!.formattedAddress!;
                 },
                 setActiveAddressSuccess: (_) {
-                  Get.offNamed(Routers.home);
+                  Get.until((route) => route.isFirst);
                 },
                 orElse: () {});
           },
@@ -453,7 +452,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                           ],
                         ),
                         width: MediaQuery.of(Get.context!).size.width * 0.8,
-                        child: AutoCompleteAddress.defaultWidget(
+                        child: AutoCompleteAddress().defaultWidget(
                             onSuccess: (place) {
                           mapController!.animateCamera(
                             CameraUpdate.newCameraPosition(

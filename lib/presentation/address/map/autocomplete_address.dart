@@ -7,10 +7,12 @@ import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_webservice/places.dart';
 
 class AutoCompleteAddress {
-  static TextEditingController textEditingController = TextEditingController();
-
-  static Widget defaultWidget({Function(PlaceDetails)? onSuccess}) {
-    return PlacesAutocompleteField(
+  TextEditingController? textEditingController;
+  AutoCompleteAddress() {
+    this.textEditingController = TextEditingController();
+  }
+  Widget defaultWidget({Function(PlaceDetails)? onSuccess}) {
+    return new PlacesAutocompleteField(
       controller: textEditingController,
       hint: '',
       leading: Icon(
@@ -24,7 +26,7 @@ class AutoCompleteAddress {
         color: AppColors.greyField,
       ),
       trailingOnTap: () {
-        textEditingController.text = "";
+        textEditingController!.text = "";
       },
       types: [],
       radius: 1000000,
@@ -53,7 +55,7 @@ class AutoCompleteAddress {
     );
   }
 
-  static Future<PlaceDetails> displayPrediction(Prediction p) async {
+  Future<PlaceDetails> displayPrediction(Prediction p) async {
     // get detail (lat/lng)
     GoogleMapsPlaces _places = GoogleMapsPlaces(
       apiKey: Strings.mGoogleApiKey,
