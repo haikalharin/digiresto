@@ -2,15 +2,15 @@ import 'dart:core';
 
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
+import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
-import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
-import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
+import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 import 'detailProductDialog.dart';
 
@@ -29,7 +29,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   // UserStore _userStore;
   // OrderStore _orderStore;
   //TransactionStore _transactionStore;
-  DetailOutlet detailOutlet;
+  DetailOutlet? detailOutlet;
   Loading _loading = new Loading();
 
   void loadingAdd() {
@@ -50,9 +50,9 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   final voucherCodeController = TextEditingController();
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
-  bool useSchedule;
+  bool? useSchedule;
   int reloadCounter = 0;
-  DateTime selectedDate;
+  DateTime? selectedDate;
   bool notesSubmited = true;
 
   List<KeyValueModel> _dataSmoking = [
@@ -74,8 +74,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     KeyValueModel(key: "23:00", value: "23:00"),
     KeyValueModel(key: "24:00", value: "24:00"),
   ];
-  String _selectedValueClock;
-  String _selectedValueSmoking;
+  String? _selectedValueClock;
+  String? _selectedValueSmoking;
 
   //List<PaymentMethod> _paymentMethods;
 
@@ -91,23 +91,23 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     // _transactionStore = Provider.of<TransactionStore>(context);
     initDialogPlace();
 
-    print(
-        'DEBUG >> transactionData on cart_store ${_orderStore.transactionData}');
+    // print(
+    //     'DEBUG >> transactionData on cart_store ${_orderStore.transactionData}');
 
-    _orderStore.getPaymentMethod().then((value) {
-      print(value.toList().toString());
-      // setState(() {
-      //   _paymentMethods = value;
-      // });
-    });
+    // _orderStore.getPaymentMethod().then((value) {
+    //   print(value.toList().toString());
+    //   // setState(() {
+    //   //   _paymentMethods = value;
+    //   // });
+    // });
 
-    _userStore.getBalance().then((value) => {});
+    // _userStore.getBalance().then((value) => {});
 
-    if (_orderStore.orderSalesTypes == 'onlineDriver') {
-      _orderStore.deliveryInquiry({
-        "location": [_userStore.activeAddressLat, _userStore.activeAddresslng]
-      });
-    }
+    // if (_orderStore.orderSalesTypes == 'onlineDriver') {
+    //   _orderStore.deliveryInquiry({
+    //     "location": [_userStore.activeAddressLat, _userStore.activeAddresslng]
+    //   });
+    // }
   }
 
   void initDialogPlace() {
@@ -129,7 +129,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     setState(() {
       reloadCounter++;
     });
-    _orderStore.setProduct(productId, qty, price, detailProduct);
+    //_orderStore.setProduct(productId, qty, price, detailProduct);
   }
 
   _showDetailProduct(Map<String, dynamic> dataProduct, String orderType) {
@@ -164,7 +164,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
         children: <Widget>[
           Container(
             child: Text(
-              _orderStore.orderOutletDetailName,
+              "_orderStore.orderOutletDetailName",
               //_orderStore.orderOutlet.detail["name"],
               //detailOutlet != null ? data.outlet["detail"]["name"] : ""
               style: TextStyle(
@@ -189,17 +189,19 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
           //     ),
           //   ),
           // ),
-          Container(
-            width: double.infinity,
-            child: ListProductCartWidget(
-              addOrRemove: _plusProduct,
-              orderType: _orderStore.orderSalesTypesCode,
-              data: _orderStore.orderProduct,
-              runDetailAction: _showDetailProduct,
-              runEditAction: _editCart,
-              scrollDirection: Axis.vertical,
-            ),
-          ),
+
+          //#######
+          // Container(
+          //   width: double.infinity,
+          //   child: ListProductCartWidget(
+          //     addOrRemove: _plusProduct,
+          //     orderType: _orderStore.orderSalesTypesCode,
+          //     data: _orderStore.orderProduct,
+          //     runDetailAction: _showDetailProduct,
+          //     runEditAction: _editCart,
+          //     scrollDirection: Axis.vertical,
+          //   ),
+          // ),
         ],
       ),
     );
@@ -248,7 +250,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                 height: 35,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(Routes.order_detail_outlet);
+                    Navigator.of(context).pushNamed(Routers.orderDetailOutlet);
                   },
                   color: Colors.white,
                   child: Text("Tambah",
@@ -284,7 +286,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(Assets.bgHome),
+            image: AssetImage(AppAssets.bgHome),
             fit: BoxFit.fill,
           ),
           shape: BoxShape.rectangle,
@@ -303,8 +305,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       color: Colors.white, size: 24.0),
                   onPressed: () {
                     //if (_userStore.activeHistoryScreen=='profile.address'){
-                    _userStore.setActivedHomeTab("home");
-                    Navigator.of(context).pushNamed(Routes.home);
+                    //_userStore.setActivedHomeTab("home");
+                    Navigator.of(context).pushNamed(Routers.home);
                     //}
                   },
                 ),
@@ -340,15 +342,15 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   }
 
   _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate, // Refer step 1
+      initialDate: selectedDate!, // Refer step 1
       firstDate: DateTime(2000),
       lastDate: DateTime(2030),
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return Theme(
-            isMaterialAppTheme: true,
-            child: child,
+            //isMaterialAppTheme: true,
+            child: child!,
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light().copyWith(primary: AppColors.red),
               primaryColor: AppColors.red,
@@ -378,47 +380,47 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (_orderStore.orderSalesTypes == 'dineIn')
-                    Text("Info Makan di Tempat",
+                  //if (_orderStore.orderSalesTypes == 'dineIn')
+
+                  Text("Info Makan di Tempat",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        //color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  //if (_orderStore.orderSalesTypes == 'dineIn')
+                  Container(
+                    padding: const EdgeInsets.only(top: 5, bottom: 10),
+                    child: TextField(
+                        textInputAction: TextInputAction.search,
+                        onSubmitted: (value) {},
+                        controller: placeInfoController,
+                        readOnly: true,
+                        onTap: () {
+                          _dialogPlace(context);
+                        },
                         style: TextStyle(
-                          fontFamily: "roboto",
-                          //color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  if (_orderStore.orderSalesTypes == 'dineIn')
-                    Container(
-                      padding: const EdgeInsets.only(top: 5, bottom: 10),
-                      child: TextField(
-                          textInputAction: TextInputAction.search,
-                          onSubmitted: (value) {},
-                          controller: placeInfoController,
-                          readOnly: true,
-                          onTap: () {
-                            _dialogPlace(context);
-                          },
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                          decoration: InputDecoration(
-                            isDense: true,
-                            filled: true,
-                            fillColor: AppColors.greyFill,
-                            contentPadding: EdgeInsets.only(
-                                top: 12, bottom: 12, left: 10, right: 10),
-                            hintText: "",
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.black, width: 32.0),
-                                borderRadius: BorderRadius.circular(5)),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
+                          fontSize: 14.0,
+                        ),
+                        decoration: InputDecoration(
+                          isDense: true,
+                          filled: true,
+                          fillColor: AppColors.greyFill,
+                          contentPadding: EdgeInsets.only(
+                              top: 12, bottom: 12, left: 10, right: 10),
+                          hintText: "",
+                          border: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(width: 1, color: Colors.black),
-                            ),
-                          )),
-                    ),
+                                  BorderSide(color: Colors.black, width: 32.0),
+                              borderRadius: BorderRadius.circular(5)),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.black),
+                          ),
+                        )),
+                  ),
                   Row(
                     children: [
                       Text("Catatan",
@@ -550,8 +552,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           )),
-                      if (_orderStore.orderPaymentTypeText != null)
-                        Text(_orderStore.orderPaymentTypeText,
+                      if ("_orderStore.orderPaymentTypeText" != null)
+                        Text("_orderStore.orderPaymentTypeText",
                             style: TextStyle(
                               fontFamily: "roboto",
                               //color: Colors.white,
@@ -559,11 +561,11 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             )),
                     ],
                   ),
-                  if (_orderStore.orderPaymentTypeText != null)
+                  if ("_orderStore.orderPaymentTypeText" != null)
                     FlatButton(
                         onPressed: () {
                           Navigator.of(context)
-                              .pushNamed(Routes.select_payment_method);
+                              .pushNamed(Routers.selectPaymentMethod);
                         },
                         color: Colors.white,
                         shape: new RoundedRectangleBorder(
@@ -582,7 +584,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     FlatButton(
                         onPressed: () {
                           Navigator.of(context)
-                              .pushNamed(Routes.select_payment_method);
+                              .pushNamed(Routers.selectPaymentMethod);
                         },
                         color: Colors.white,
                         shape: new RoundedRectangleBorder(
@@ -637,8 +639,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           )),
-                      if (_orderStore.selectedDeliveryMethod != null)
-                        Text(_orderStore.selectedDeliveryMethod['name'],
+                      if ("_orderStore.selectedDeliveryMethod" != null)
+                        Text("_orderStore.selectedDeliveryMethod['name']",
                             style: TextStyle(
                               fontFamily: "roboto",
                               //color: Colors.white,
@@ -646,11 +648,11 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                             )),
                     ],
                   ),
-                  if (_orderStore.selectedDeliveryMethod != null)
+                  if ("_orderStore.selectedDeliveryMethod" != null)
                     FlatButton(
                         onPressed: () {
                           Navigator.of(context)
-                              .pushNamed(Routes.select_delivery_method);
+                              .pushNamed(Routers.selectDeliveryMethod);
                         },
                         color: Colors.white,
                         shape: new RoundedRectangleBorder(
@@ -669,7 +671,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     FlatButton(
                         onPressed: () {
                           Navigator.of(context)
-                              .pushNamed(Routes.select_delivery_method);
+                              .pushNamed(Routers.selectDeliveryMethod);
                         },
                         color: Colors.white,
                         shape: new RoundedRectangleBorder(
@@ -699,7 +701,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   }
 
   Widget _detailPayment() {
-    final transaction = _orderStore.countedTransaction;
+    //final transaction = _orderStore.countedTransaction;
     return Theme(
       data: Theme.of(context).copyWith(
         primaryColor: Colors.black,
@@ -729,28 +731,28 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     children: [
                       Text('Subtotal'),
                       Text("Rp." +
-                          Utils.formatRupiah(transaction.subtotal.toString()))
+                          Utils.formatRupiah("transaction.subtotal.toString()"))
                     ],
                   ),
-                  for (var i = 0; i < transaction.taxesAndServices.length; i++)
-                    _buildTaxAndServiceList(transaction.taxesAndServices[i]),
-                  if (_orderStore.orderSalesTypes == 'onlineDriver' &&
-                      _orderStore.selectedDeliveryMethod != null)
-                    SizedBox(
-                      height: 5,
-                    ),
-                  if (_orderStore.orderSalesTypes == 'onlineDriver' &&
-                      _orderStore.selectedDeliveryMethod != null)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                            'Delivery - ${_orderStore.selectedDeliveryMethod['name']}'),
-                        Text("Rp." +
-                            Utils.formatRupiah(
-                                transaction.deliveryAmount.toString()))
-                      ],
-                    ),
+                  // for (var i = 0; i < transaction.taxesAndServices.length; i++)
+                  //   _buildTaxAndServiceList(transaction.taxesAndServices[i]),
+                  // if (_orderStore.orderSalesTypes == 'onlineDriver' &&
+                  //     _orderStore.selectedDeliveryMethod != null)
+                  //   SizedBox(
+                  //     height: 5,
+                  //   ),
+                  // if (_orderStore.orderSalesTypes == 'onlineDriver' &&
+                  //     _orderStore.selectedDeliveryMethod != null)
+                  //   Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Text(
+                  //           'Delivery - ${_orderStore.selectedDeliveryMethod['name']}'),
+                  //       Text("Rp." +
+                  //           Utils.formatRupiah(
+                  //               transaction.deliveryAmount.toString()))
+                  //     ],
+                  //   ),
                   Divider(
                     color: Colors.black,
                   ),
@@ -760,7 +762,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       Text('Total'),
                       Text("Rp." +
                           Utils.formatRupiah(
-                              transaction.totalPayment.toString()))
+                              "transaction.totalPayment.toString()"))
                     ],
                   ),
                   SizedBox(
@@ -770,74 +772,75 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                       minWidth: double.infinity,
                       onPressed: () async {
                         //validation
-                        if (_orderStore.orderPaymentType == null) {
-                          ErrorPopupWidget.show(context, "Digiresto",
-                              "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
-                              () {
-                            Navigator.of(context).pop();
-                            Navigator.of(context)
-                                .pushNamed(Routes.select_payment_method);
-                          });
-                        } else if (placeInfoController.text == "" &&
-                            _orderStore.orderSalesTypesCode == "DI") {
-                          ErrorPopupWidget.show(context, "Digiresto",
-                              "Info Makan di Tempat tidak boleh kosong", () {
-                            Navigator.of(context).pop();
-                            _dialogPlace(context);
-                          });
-                        } else {
-                          ErrorPopupWidget.confirmation(context, "Digiresto",
-                              "Apakah Anda yakin dengan orderan ini?",
-                              () async {
-                            Navigator.of(context).pop();
-                            Loading.show();
-                            print('DEBUG >> do checkout');
-                            var checkoutResponse =
-                                await _orderStore.checkout().catchError((err) {
-                              print("error response checkout 1:");
-                              print(err);
-                              Loading.dismiss();
-                              ErrorPopupWidget.show(
-                                  context, "Digiresto", "Transaksi gagal", () {
-                                Navigator.of(context).pop();
-                              });
-                            });
-                            if (checkoutResponse.receiptCode == "") {
-                              Loading.dismiss();
-                              print("error response cheeckout 2:");
-                            } else if (checkoutResponse.payment.isCredit) {
-                              await _orderStore.getTransaction();
-                              await _transactionStore
-                                  .getOngoingTransaction()
-                                  .then((res) {
-                                print(
-                                    "success get data ongoing transaction : ");
-                              }).catchError((err) {
-                                print("error response: " + err.toString());
-                                ErrorPopupWidget.showDioError(
-                                    context, err, null);
-                              });
-                              Loading.dismiss();
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  Routes.payment_receipt, (_) => false);
-                            } else if (checkoutResponse.payment.isWebView) {
-                              Loading.dismiss();
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  Routes.payment_web_view, (_) => false);
-                            } else if (checkoutResponse.payment.isDeeplink) {
-                              //Need test on real device to simulate open payment app
-                              Loading.dismiss();
-                              LaunchUrl.run(checkoutResponse.payment.deeplink);
-                            } else {
-                              Loading.dismiss();
-                              if (checkoutResponse
-                                  .payment.paymentCode.isNotEmpty) {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    Routes.payment_va, (_) => false);
-                              }
-                            }
-                          });
-                        }
+                        // if (_orderStore.orderPaymentType == null) {
+                        //   ErrorPopupWidget.show(context, "Digiresto",
+                        //       "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
+                        //       () {
+                        //     Navigator.of(context).pop();
+                        //     Navigator.of(context)
+                        //         .pushNamed(Routers.selectPaymentMethod);
+                        //   });
+                        // } else if (placeInfoController.text == "" &&
+                        //     _orderStore.orderSalesTypesCode == "DI") {
+                        //   ErrorPopupWidget.show(context, "Digiresto",
+                        //       "Info Makan di Tempat tidak boleh kosong", () {
+                        //     Navigator.of(context).pop();
+                        //     _dialogPlace(context);
+                        //   });
+                        // } else {
+                        //   ErrorPopupWidget.confirmation(context, "Digiresto",
+                        //       "Apakah Anda yakin dengan orderan ini?",
+                        //       () async {
+                        //     Navigator.of(context).pop();
+                        //     Loading.show();
+                        //     print('DEBUG >> do checkout');
+                        //     var checkoutResponse =
+                        //         await _orderStore.checkout().catchError((err) {
+                        //       print("error response checkout 1:");
+                        //       print(err);
+                        //       Loading.dismiss();
+                        //       ErrorPopupWidget.show(
+                        //           context, "Digiresto", "Transaksi gagal", () {
+                        //         Navigator.of(context).pop();
+                        //       });
+                        //     });
+                        //     if (checkoutResponse.receiptCode == "") {
+                        //       Loading.dismiss();
+                        //       print("error response cheeckout 2:");
+                        //     } else if (checkoutResponse.payment.isCredit) {
+                        //       await _orderStore.getTransaction();
+                        //       await _transactionStore
+                        //           .getOngoingTransaction()
+                        //           .then((res) {
+                        //         print(
+                        //             "success get data ongoing transaction : ");
+                        //       }).catchError((err) {
+                        //         print("error response: " + err.toString());
+                        //         ErrorPopupWidget.showDioError(
+                        //             context, err, null);
+                        //       });
+                        //       Loading.dismiss();
+                        //       Navigator.of(context).pushNamedAndRemoveUntil(
+                        //           Routes.payment_receipt, (_) => false);
+                        //     } else if (checkoutResponse.payment.isWebView) {
+                        //       Loading.dismiss();
+                        //       Navigator.of(context).pushNamedAndRemoveUntil(
+                        //           Routes.payment_web_view, (_) => false);
+                        //     } else if (checkoutResponse.payment.isDeeplink) {
+                        //       //Need test on real device to simulate open payment app
+                        //       Loading.dismiss();
+                        //       LaunchUrl.run(checkoutResponse.payment.deeplink);
+                        //     } else {
+                        //       Loading.dismiss();
+                        //       if (checkoutResponse
+                        //           .payment.paymentCode.isNotEmpty) {
+                        //         Navigator.of(context).pushNamedAndRemoveUntil(
+                        //             Routers.paymentVa, (_) => false);
+                        //       }
+                        //     }
+                        //   }
+                        //   );
+                        // }
                       },
                       color: AppColors.red,
                       shape: new RoundedRectangleBorder(
@@ -867,7 +870,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               content: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                  height: useSchedule ? 350 : 270,
+                  height: useSchedule! ? 350 : 270,
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -893,7 +896,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Switch(
-                            value: useSchedule,
+                            value: useSchedule!,
                             onChanged: (value) {
                               setState(() {
                                 useSchedule = value;
@@ -904,7 +907,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           )
                         ],
                       ),
-                      useSchedule
+                      useSchedule!
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -988,7 +991,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                                                     value: data.key,
                                                   ))
                                               .toList(),
-                                          onChanged: (String value) {
+                                          onChanged: (String? value) {
                                             setState(() {
                                               _selectedValueClock = value;
                                             });
@@ -1070,7 +1073,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                                     value: data.key,
                                   ))
                               .toList(),
-                          onChanged: (String value) {
+                          onChanged: (String? value) {
                             setState(() {
                               _selectedValueSmoking = value;
                             });
@@ -1113,22 +1116,22 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                               width: MediaQuery.of(context).size.width - 260,
                               child: RaisedButton(
                                 onPressed: () {
-                                  String txt;
-                                  if (useSchedule) {
-                                    txt = selectedDateController.text
-                                            .toString() +
-                                        " " +
-                                        _selectedValueClock +
-                                        " " +
-                                        paxController.text.toString() +
-                                        " pax, " +
-                                        getValueSmoking(_selectedValueSmoking);
-                                  } else {
-                                    txt = "Now, " +
-                                        paxController.text.toString() +
-                                        " pax, " +
-                                        getValueSmoking(_selectedValueSmoking);
-                                  }
+                                  String txt = "";
+                                  // if (useSchedule) {
+                                  //   txt = selectedDateController.text
+                                  //           .toString() +
+                                  //       " " +
+                                  //       _selectedValueClock +
+                                  //       " " +
+                                  //       paxController.text.toString() +
+                                  //       " pax, " +
+                                  //       getValueSmoking(_selectedValueSmoking);
+                                  // } else {
+                                  //   txt = "Now, " +
+                                  //       paxController.text.toString() +
+                                  //       " pax, " +
+                                  //       getValueSmoking(_selectedValueSmoking);
+                                  // }
                                   placeInfoController.text = txt;
                                   Navigator.of(context).pop();
                                 },
@@ -1272,10 +1275,10 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   _addNew(),
                   _notes(),
                   _useVoucherCode(),
-                  Observer(builder: (context) => _paymentMethod()),
-                  if (_orderStore.orderSalesTypes == 'onlineDriver')
-                    Observer(builder: (context) => _deliveryMethod()),
-                  Observer(builder: (context) => _detailPayment()),
+                  // Observer(builder: (context) => _paymentMethod()),
+                  // if (_orderStore.orderSalesTypes == 'onlineDriver')
+                  //   Observer(builder: (context) => _deliveryMethod()),
+                  // Observer(builder: (context) => _detailPayment()),
                 ],
               ),
             ),
@@ -1292,7 +1295,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(item.name),
+            Text("item.name"),
             Text('Rp.' + Utils.formatRupiah(item.amount.toString())),
           ],
         ),

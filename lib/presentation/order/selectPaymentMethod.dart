@@ -1,14 +1,17 @@
+import 'package:digiresto/domain/core/constants/strings.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SelectPaymentMethodScreen extends StatelessWidget {
-  OrderStore _orderStore;
-  UserStore _userStore;
+  // OrderStore _orderStore;
+  // UserStore _userStore;
 
   @override
   Widget build(BuildContext context) {
-    _orderStore = Provider.of<OrderStore>(context);
-    _userStore = Provider.of<UserStore>(context);
+    // _orderStore = Provider.of<OrderStore>(context);
+    // _userStore = Provider.of<UserStore>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -31,17 +34,18 @@ class SelectPaymentMethodScreen extends StatelessWidget {
       ),
       body: ListView.separated(
         shrinkWrap: true,
-        itemCount: _orderStore.paymentMethod.length,
+        itemCount: 6,
+        //itemCount: _orderStore.paymentMethod.length,
         itemBuilder: (context, index) =>
-            _buildItemList(context, _orderStore.paymentMethod[index]),
+            _buildItemList(context, PaymentMethod()),
         separatorBuilder: (context, index) => SizedBox(height: 5),
       ),
     );
   }
 
   Widget _showCredits() {
-    if (_userStore.balance != null) {
-      String tmpBalance = Utils.formatRupiah(_userStore.balance.balance);
+    if ("_userStore.balance" != null) {
+      String tmpBalance = Utils.formatRupiah("_userStore.balance.balance");
       return Text("Rp. " + tmpBalance,
           style: TextStyle(
               color: Colors.black,
@@ -57,7 +61,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
   }
 
   Widget _buildItemList(context, PaymentMethod item) {
-    String title = item.title.replaceAll('%1\$s', Strings.appName);
+    String title = item.title!.replaceAll('%1\$s', Strings.appName);
     return Container(
       color: Colors.white,
       padding: EdgeInsets.all(20),
@@ -80,7 +84,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
           ),
           FlatButton(
               onPressed: () {
-                _orderStore.setPaymentMethod(item);
+                //_orderStore.setPaymentMethod(item);
                 Navigator.of(context).pop();
               },
               color: Colors.white,

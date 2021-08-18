@@ -1,30 +1,31 @@
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
 import 'package:digiresto/domain/core/utils/locale/app_localization.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
-class PaymentReceiptScreen extends StatefulWidget {
-  @override
-  _PaymentReceiptScreenState createState() => _PaymentReceiptScreenState();
-}
+import 'order_view_controller.dart';
 
-class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
+class PaymentReceiptScreen extends GetView<OrderViewController> {
   //OrderStore _orderStore;
-  TransactionMobile _transaction;
-  String _receiptStatusTitle;
-  String _receiptStatusDesc;
+  TransactionMobile? _transaction;
+  String? _receiptStatusTitle;
+  String? _receiptStatusDesc;
 
   @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
-    _orderStore = Provider.of<OrderStore>(context);
+    //super.didChangeDependencies();
+    // _orderStore = Provider.of<OrderStore>(context);
 
-    _transaction = _orderStore.transactionAfterPayment;
+    // _transaction = _orderStore.transactionAfterPayment;
 
-    String receiptStatus = _transaction.status;
+    // String receiptStatus = _transaction.status;
     _receiptStatusTitle =
-        AppLocalizations.of(context)!.translate('nota_title_default') ?? '';
+        AppLocalizations.of(Get.context!)!.translate('nota_title_default') ??
+            '';
     _receiptStatusDesc = '';
 
     // initial = pending payment
@@ -35,42 +36,43 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
     // done = pesanan selesai
     // auto_done = pesanan selesai otomatis by system
     // failed = pembayaran gagal
-    switch (receiptStatus) {
+    //switch (receiptStatus) {
+    switch ('initial') {
       case 'initial':
-        _receiptStatusTitle =
-            AppLocalizations.of(context).translate('nota_pending_payment');
+        _receiptStatusTitle = AppLocalizations.of(Get.context!)!
+            .translate('nota_pending_payment');
         break;
       case 'waiting':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_waiting_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_waiting_desc');
         break;
       case 'process':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_process_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_process_desc');
         break;
       case 'reject':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_reject_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_reject_desc');
         break;
       case 'cancelled':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_cancel_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_cancel_desc');
         break;
       case 'ready':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_ready_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_ready_desc');
         break;
       case 'done':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_done_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_done_desc');
         break;
       case 'auto_done':
         _receiptStatusDesc =
-            AppLocalizations.of(context).translate('nota_auto_done_desc');
+            AppLocalizations.of(Get.context!)!.translate('nota_auto_done_desc');
         break;
       case 'failed':
         _receiptStatusTitle =
-            AppLocalizations.of(context).translate('nota_failed');
+            AppLocalizations.of(Get.context!)!.translate('nota_failed');
         break;
     }
   }
@@ -95,8 +97,8 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () {
-            _orderStore.clearCart();
-            Navigator.of(context).pushReplacementNamed(Routes.home);
+            //_orderStore.clearCart();
+            Navigator.of(context).pushReplacementNamed(Routers.home);
           },
         ),
         title: Text(
@@ -119,17 +121,17 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
               child: Column(
                 children: [
                   Text(
-                    _receiptStatusTitle,
+                    _receiptStatusTitle!,
                     style: TextStyle(
                       color: AppColors.red,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
-                  if (_receiptStatusDesc.isNotEmpty) SizedBox(height: 5),
-                  if (_receiptStatusDesc.isNotEmpty)
+                  if (_receiptStatusDesc!.isNotEmpty) SizedBox(height: 5),
+                  if (_receiptStatusDesc!.isNotEmpty)
                     Text(
-                      _receiptStatusDesc,
+                      _receiptStatusDesc!,
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -150,7 +152,7 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                     child: Column(
                       children: [
                         Text(
-                          _transaction.outlet['detail']['name'],
+                          "_transaction.outlet['detail']['name']",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -160,7 +162,7 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                         Text('Kode Struk:'),
                         SizedBox(height: 5),
                         Text(
-                          _transaction.receiptCode,
+                          _transaction!.receiptCode!,
                           style: TextStyle(
                             color: AppColors.red,
                             fontWeight: FontWeight.bold,
@@ -171,18 +173,18 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                         Text('Waktu:'),
                         SizedBox(height: 5),
                         Text(df.format(
-                            isoParser.parse(_transaction.deviceTimestamp))),
+                            isoParser.parse(_transaction!.deviceTimestamp!))),
                         SizedBox(height: 5),
                         Divider(height: 1, color: Colors.black),
                         SizedBox(height: 5),
                         ListView.separated(
                           shrinkWrap: true,
-                          itemCount: _transaction.items.length,
+                          itemCount: _transaction!.items!.length,
                           itemBuilder: (context, index) => _lr(
                             Text(
-                                '${_transaction.items[index]['title']} ${_transaction.items[index]['qty']}x'),
+                                '${_transaction!.items![index]['title']} ${_transaction!.items![index]['qty']}x'),
                             Text(
-                              Rupiah.format(_transaction.items[index]
+                              Rupiah.format(_transaction!.items![index]
                                       ['subtotal']
                                   .toString()),
                               style: TextStyle(
@@ -199,7 +201,7 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                         _lr(
                           Text('Subtotal'),
                           Text(
-                            Rupiah.format(_transaction.subtotal.toString()),
+                            Rupiah.format(_transaction!.subtotal.toString()),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -208,12 +210,13 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                         SizedBox(height: 5),
                         ListView.separated(
                           shrinkWrap: true,
-                          itemCount: _transaction.taxesAndServices.length,
+                          itemCount: _transaction!.taxesAndServices!.length,
                           itemBuilder: (context, index) => _lr(
-                            Text(_transaction.taxesAndServices[index]['name']),
                             Text(
-                              Rupiah.format(_transaction.taxesAndServices[index]
-                                      ['amount']
+                                _transaction!.taxesAndServices![index]['name']),
+                            Text(
+                              Rupiah.format(_transaction!
+                                  .taxesAndServices![index]['amount']
                                   .toString()),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -224,32 +227,32 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                               SizedBox(height: 5),
                         ),
                         SizedBox(height: 5),
-                        if (_transaction.salesType == 'DELIVERY')
+                        if (_transaction!.salesType == 'DELIVERY')
                           _lr(
                             Text('Delivery'),
                             Text(
                               Rupiah.format(
-                                  _transaction.deliveryAmount.toString()),
+                                  _transaction!.deliveryAmount.toString()),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        if (_transaction.salesType == 'DELIVERY')
+                        if (_transaction!.salesType == 'DELIVERY')
                           SizedBox(height: 5),
                         SizedBox(height: 5),
-                        if (_transaction.roundAmount != 0)
+                        if (_transaction!.roundAmount != 0)
                           _lr(
                             Text('Rounding'),
                             Text(
                               Rupiah.format(
-                                  _transaction.roundAmount.toString()),
+                                  _transaction!.roundAmount.toString()),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        if (_transaction.roundAmount != 0) SizedBox(height: 5),
+                        if (_transaction!.roundAmount != 0) SizedBox(height: 5),
                         Divider(height: 1, color: Colors.black),
                         SizedBox(height: 5),
                         _lr(
@@ -260,7 +263,7 @@ class _PaymentReceiptScreenState extends State<PaymentReceiptScreen> {
                             ),
                           ),
                           Text(
-                            Rupiah.format(_transaction.finalAmount.toString()),
+                            Rupiah.format(_transaction!.finalAmount.toString()),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),

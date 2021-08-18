@@ -1,6 +1,7 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
+import 'package:digiresto/application/order/order_bloc.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:digiresto/simple_bloc_delegate.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class InitiateProvider extends StatelessWidget {
           create: (context) => getIt<AddressListBloc>()),
       BlocProvider<AddressMapBloc>(
           create: (context) => getIt<AddressMapBloc>()),
+      BlocProvider<OrderBloc>(create: (context) => getIt<OrderBloc>()),
       BlocProvider<AppBloc>(
         create: (context) => getIt<AppBloc>()..add(AppEvent.started()),
       )

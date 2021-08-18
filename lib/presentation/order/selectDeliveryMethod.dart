@@ -1,14 +1,16 @@
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SelectDeliveryMethodScreen extends StatelessWidget {
-  OrderStore _orderStore;
-  UserStore _userStore;
+  // OrderStore _orderStore;
+  // UserStore _userStore;
 
   @override
   Widget build(BuildContext context) {
-    _orderStore = Provider.of<OrderStore>(context);
-    _userStore = Provider.of<UserStore>(context);
+    // _orderStore = Provider.of<OrderStore>(context);
+    // _userStore = Provider.of<UserStore>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -29,13 +31,13 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: ListView.separated(
-        shrinkWrap: true,
-        itemCount: _orderStore.listDeliveryMethod.length,
-        itemBuilder: (context, index) =>
-            _buildProviderList(context, _orderStore.listDeliveryMethod[index]),
-        separatorBuilder: (context, index) => SizedBox(height: 5),
-      ),
+      // body: ListView.separated(
+      //   shrinkWrap: true,
+      //   itemCount: _orderStore.listDeliveryMethod.length,
+      //   itemBuilder: (context, index) =>
+      //       _buildProviderList(context, _orderStore.listDeliveryMethod[index]),
+      //   separatorBuilder: (context, index) => SizedBox(height: 5),
+      // ),
     );
   }
 
@@ -43,15 +45,15 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          _buildProviderTitle(context, provider.name),
+          _buildProviderTitle(context, "provider.name"),
           SizedBox(height: 5),
-          ListView.separated(
-            shrinkWrap: true,
-            itemCount: provider.shipmentMethods.length,
-            itemBuilder: (context, index) => _buildItemList(
-                context, provider.shipmentMethods[index], provider),
-            separatorBuilder: (context, index) => SizedBox(height: 5),
-          ),
+          // ListView.separated(
+          //   shrinkWrap: true,
+          //   itemCount: provider.shipmentMethods.length,
+          //   itemBuilder: (context, index) => _buildItemList(
+          //       context, provider.shipmentMethods[index], provider),
+          //   separatorBuilder: (context, index) => SizedBox(height: 5),
+          // ),
         ],
       ),
     );
@@ -105,15 +107,15 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
           ),
           FlatButton(
               onPressed: () {
-                _orderStore.setDeliveryMethod({
-                  'method': item,
-                  'param': provider.paramString,
-                  'user': {
-                    'address': _userStore.activeAddress,
-                    'addressLat': _userStore.activeAddressLat,
-                    'addressLng': _userStore.activeAddresslng,
-                  }
-                });
+                // _orderStore.setDeliveryMethod({
+                //   'method': item,
+                //   'param': provider.paramString,
+                //   'user': {
+                //     'address': _userStore.activeAddress,
+                //     'addressLat': _userStore.activeAddressLat,
+                //     'addressLng': _userStore.activeAddresslng,
+                //   }
+                // });
                 Navigator.of(context).pop();
               },
               color: Colors.white,

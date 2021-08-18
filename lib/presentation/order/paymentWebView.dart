@@ -1,5 +1,6 @@
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentWebView extends StatefulWidget {
@@ -8,14 +9,14 @@ class PaymentWebView extends StatefulWidget {
 }
 
 class _PaymentWebViewState extends State<PaymentWebView> {
-  WebViewController _controller;
+  WebViewController? _controller;
   String _title = "Payment";
-  OrderStore _orderStore;
+  //OrderStore _orderStore;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _orderStore = Provider.of<OrderStore>(context);
+    //_orderStore = Provider.of<OrderStore>(context);
   }
 
   Widget build(BuildContext context) {
@@ -27,8 +28,8 @@ class _PaymentWebViewState extends State<PaymentWebView> {
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () async {
-            await _orderStore.getTransaction();
-            Navigator.of(context).pushReplacementNamed(Routes.payment_receipt);
+            //await _orderStore.getTransaction();
+            Navigator.of(context).pushReplacementNamed(Routers.paymentReceipt);
           },
         ),
         title: Text(
@@ -44,16 +45,16 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       body: Container(
         child: WebView(
           javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: _orderStore.paymentData.url,
+          initialUrl: "_orderStore.paymentData.url",
           onWebViewCreated: (WebViewController wvcontroller) {
             _controller = wvcontroller;
           },
           onPageFinished: (String param) async {
-            final pageTitle = await _controller.getTitle();
-            print('DEBUG >> title $pageTitle');
-            setState(() {
-              _title = pageTitle;
-            });
+            // final pageTitle = await _controller.getTitle();
+            // print('DEBUG >> title $pageTitle');
+            // setState(() {
+            //   _title = pageTitle;
+            // });
           },
         ),
       ),

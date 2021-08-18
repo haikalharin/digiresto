@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:digiresto/domain/entity/order/cart_session_model.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list.dart';
+import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
+import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
@@ -16,23 +19,25 @@ class OrderRepository {
   final OrderApi _orderApi;
 
   OrderRepository(this._orderApi);
-  Future<List<OutletList>> getOutletByLocation(
+  Future<Either<Exception, List<OutletList>>> getOutletByLocation(
       Map<String, dynamic> object) async {
     return await _orderApi.getOutletByLocation(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
-  Future<List<PromoOutlet>> getPromoOutlet(Map<String, dynamic> object) async {
+  Future<Either<Exception, List<PromoOutlet>>> getPromoOutlet(
+      Map<String, dynamic> object) async {
     return await _orderApi.getPromoOutlet(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
-  Future<List<HotPromo>> getHotPromo(Map<String, dynamic> object) async {
+  Future<Either<Exception, List<HotPromo>>> getHotPromo(
+      GetHotPromoParam object) async {
     return await _orderApi.getHotPromo(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
   Future<Either<Exception, List<StaticBanner>>> getStaticBanner(
@@ -42,43 +47,44 @@ class OrderRepository {
     });
   }
 
-  Future<DetailOutlet> getDetailOutlet(Map<String, dynamic> object) async {
+  Future<Either<Exception, DetailOutlet>> getDetailOutlet(
+      Map<String, dynamic> object) async {
     return await _orderApi.getDetailOutlet(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
-  Future<List<PaymentMethod>> getPaymentMethod(
+  Future<Either<Exception, List<PaymentMethod>>> getPaymentMethod(
       Map<String, dynamic> object) async {
     return await _orderApi.getPaymentMethod(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
-  Future<List<DeliveryMethod>> deliveryInquiry(
+  Future<Either<Exception, List<DeliveryMethod>>> deliveryInquiry(
       Map<String, dynamic> object) async {
     return await _orderApi.deliveryInquiry(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
-  Future<Map<String, dynamic>> createCartSession(
+  Future<Either<Exception, CartSessionResponse>> createCartSession(
       Map<String, dynamic> object) async {
     return await _orderApi.createCartSession(object).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 
-  Future<Map<String, dynamic>> updateCartSession(
-      Map<String, dynamic> object, String sessionId) async {
-    return await _orderApi.updateCartSession(object, sessionId).then((value) {
+  Future<Either<Exception, CartSessionResponse>> updateCartSession(
+      UpdateCartSessionParam object) async {
+    return await _orderApi.updateCartSession(object).then((value) {
       return value;
     }).catchError((error) => throw error);
   }
 
-  Future<CheckoutResponse> checkout(String sessionId) async {
+  Future<Either<Exception, CheckoutResponse>> checkout(String sessionId) async {
     return await _orderApi.checkout(sessionId).then((value) {
       return value;
-    }).catchError((error) => throw error);
+    });
   }
 }

@@ -3,11 +3,11 @@ import 'dart:core';
 
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
+import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class DetailProductDialog extends StatefulWidget {
   final dataProduct;
@@ -127,7 +127,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   @override
   Widget build(BuildContext context) {
     int? price;
-    int beforePrice;
+    int? beforePrice;
     if (dataProductState["isUseSalesType"] == true) {
       for (int i = 0; i < dataProductState["salesTypes"].length; i++) {
         if (dataProductState["salesTypes"][i]["code"] == widget.orderType) {
@@ -345,24 +345,24 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               width: MediaQuery.of(context).size.width / 2 - 5,
                               child: RaisedButton(
                                 onPressed: () {
-                                  if (_userStore.skipAndContinue ?? false) {
-                                    ErrorPopupWidget.showLoginRequired(context,
-                                        () {
-                                      Navigator.of(context).pop();
-                                    }, () {
-                                      _userStore.removeSkipAndContinue();
-                                      _userStore.removeAuthToken();
-                                      Navigator.of(context)
-                                          .pushNamed(Routes.input_phone);
-                                    });
-                                  } else {
-                                    _orderStore.setProduct(
-                                        dataProductState["id"],
-                                        totalqty,
-                                        price,
-                                        dataProductState);
-                                    Navigator.of(context).pop();
-                                  }
+                                  // if (_userStore.skipAndContinue ?? false) {
+                                  //   ErrorPopupWidget.showLoginRequired(context,
+                                  //       () {
+                                  //     Navigator.of(context).pop();
+                                  //   }, () {
+                                  //     _userStore.removeSkipAndContinue();
+                                  //     _userStore.removeAuthToken();
+                                  //     Navigator.of(context)
+                                  //         .pushNamed(Routes.input_phone);
+                                  //   });
+                                  // } else {
+                                  //   // _orderStore.setProduct(
+                                  //   //     dataProductState["id"],
+                                  //   //     totalqty,
+                                  //   //     price,
+                                  //   //     dataProductState);
+                                  //   Navigator.of(context).pop();
+                                  // }
                                 },
                                 color: AppColors.red,
                                 child: Text("+keranjang",
@@ -385,25 +385,25 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               width: MediaQuery.of(context).size.width / 2 - 5,
                               child: RaisedButton(
                                 onPressed: () {
-                                  if (_userStore.skipAndContinue ?? false) {
-                                    ErrorPopupWidget.showLoginRequired(context,
-                                        () {
-                                      Navigator.of(context).pop();
-                                    }, () {
-                                      _userStore.removeSkipAndContinue();
-                                      _userStore.removeAuthToken();
-                                      Navigator.of(context)
-                                          .pushNamed(Routes.input_phone);
-                                    });
-                                  } else {
-                                    _orderStore.setProduct(
-                                        dataProductState["id"],
-                                        totalqty,
-                                        price,
-                                        dataProductState);
-                                    Navigator.of(context)
-                                        .popAndPushNamed(Routes.order_cart);
-                                  }
+                                  // if (_userStore.skipAndContinue ?? false) {
+                                  //   ErrorPopupWidget.showLoginRequired(context,
+                                  //       () {
+                                  //     Navigator.of(context).pop();
+                                  //   }, () {
+                                  //     _userStore.removeSkipAndContinue();
+                                  //     _userStore.removeAuthToken();
+                                  //     Navigator.of(context)
+                                  //         .pushNamed(Routes.input_phone);
+                                  //   });
+                                  // } else {
+                                  //   _orderStore.setProduct(
+                                  //       dataProductState["id"],
+                                  //       totalqty,
+                                  //       price,
+                                  //       dataProductState);
+                                  //   Navigator.of(context)
+                                  //       .popAndPushNamed(Routes.order_cart);
+                                  // }
                                 },
                                 color: Colors.white,
                                 child: Text("Beli sekarang",
@@ -431,8 +431,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                           width: double.infinity,
                           child: RaisedButton(
                             onPressed: () {
-                              _orderStore.setProduct(dataProductState["id"],
-                                  totalqty, price, dataProductState);
+                              // _orderStore.setProduct(dataProductState["id"],
+                              //     totalqty, price, dataProductState);
                               Navigator.of(context).pop();
                             },
                             color: AppColors.red,
