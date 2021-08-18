@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -31,7 +32,7 @@ class NetworkService implements INetworkService {
       bool useAuth = true}) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
-      await baseStorage.openBox(StorageConstants.base);
+      await baseStorage.openBox(StorageConstants.user);
 
       try {
         logger.d('get Http : $path');
@@ -40,7 +41,9 @@ class NetworkService implements INetworkService {
           'accept': ContentType.json.mimeType
         };
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'jwt');
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
@@ -86,7 +89,7 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.base);
+        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'content-type': ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -95,9 +98,11 @@ class NetworkService implements INetworkService {
           headers.addAll(header);
         }
         if (useAuth) {
-          final Map<String, dynamic> security = await baseStorage.getData();
-          if (security.isNotEmpty) {
-            headers.addAll({'Authorization': 'Bearer ${security["jwt"]}'});
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
+          if (security != null) {
+            headers.addAll({'Authorization': 'Bearer $security'});
           }
         }
 
@@ -142,7 +147,7 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.base);
+        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'content-type': contentType ?? ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -152,7 +157,9 @@ class NetworkService implements INetworkService {
         }
 
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'jwt');
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
@@ -194,12 +201,14 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.base);
+        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'Accept': ContentType.binary.mimeType,
         };
         if (useAuth) {
-          final String? security = await baseStorage.getString(key: 'jwt');
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }

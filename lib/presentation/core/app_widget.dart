@@ -1,7 +1,10 @@
+import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class AppWidget extends StatelessWidget {
@@ -18,7 +21,7 @@ class AppWidget extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       getPages: Routers().routers,
-      initialRoute: Routers.intro,
+      initialRoute: Routers.splash,
     );
   }
 }

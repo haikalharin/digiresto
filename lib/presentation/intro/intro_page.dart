@@ -1,3 +1,4 @@
+import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/intro/intro.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
@@ -5,6 +6,7 @@ import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/intro/intro_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/route_manager.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -17,6 +19,7 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
+  late final _appBloc = BlocProvider.of<AppBloc>(context);
   late final _controller = new PageController();
   final _intros = <Intro>[
     Intro(
@@ -107,7 +110,10 @@ class _IntroPageState extends State<IntroPage> {
               padding: EdgeInsets.all(30),
               child: _currentPage == _intros.length - 1
                   ? CustomButton(
-                      onPressed: () => Get.toNamed(Routers.auth),
+                      onPressed: () {
+                        _appBloc.add(AppEvent.skipIntro());
+                        Get.offAllNamed(Routers.auth);
+                      },
                       label: 'Mulai Sekarang',
                     )
                   : Row(

@@ -13,14 +13,8 @@ class TransactionApi {
   // dio instance
   final DioClient _dioClient;
 
-  // rest-client instance
-  // final RestClient _restClient;
-
   // injecting dio instance
-  TransactionApi(
-    this._dioClient,
-    // this._restClient,
-  );
+  TransactionApi(this._dioClient);
 
   Future<List<TransactionHistory>> getTransactionHistory() async {
     try {

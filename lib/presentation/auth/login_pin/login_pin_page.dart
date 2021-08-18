@@ -6,6 +6,7 @@ import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -69,7 +70,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
               ),
             ),
             (user) {
-              Get.offAll(AuthListener());
+              Get.offAllNamed(Routers.auth);
             },
           ),
         );

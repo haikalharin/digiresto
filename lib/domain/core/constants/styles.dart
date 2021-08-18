@@ -47,4 +47,13 @@ class Styles {
 
   static TextStyle whiteFontStyle = GoogleFonts.poppins(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle guideTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w600);
+
+  static TextStyle guideDescStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle guideSkipStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w700);
 }
