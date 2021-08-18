@@ -9,6 +9,7 @@ import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -435,7 +436,35 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                         )
                       : Container(),
                 ],
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.7),
+                                blurRadius: 10,
+                                spreadRadius: 4)
+                          ],
+                        ),
+                        width: MediaQuery.of(Get.context!).size.width * 0.8,
+                        child: AutoCompleteAddress.defaultWidget(
+                            onSuccess: (place) {
+                          mapController!.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                              CameraPosition(
+                                  target: LatLng(place.geometry!.location.lat,
+                                      place.geometry!.location.lng),
+                                  zoom: 15),
+                            ),
+                          );
+                        }))),
+              ),
             ]);
           },
         ),

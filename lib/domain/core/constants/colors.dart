@@ -23,6 +23,7 @@ class AppColors {
   static final Color greyDivider = Color(0xFFEAEAEA);
   static final Color greyFill = Color(0xFFFAFAFA);
   static final Color greyInput = Color(0xFFF3F3F3);
+  static final Color greyField = Color(0xFF7A7A7A);
   static final Color cream = Color(0xFFFFECC7);
   static final Color backgroundPink = Color(0xFFFFE2E4);
   static final Color borderPink = Color(0xFFFFA5AA);

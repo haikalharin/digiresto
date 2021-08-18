@@ -10,7 +10,9 @@ class AppFont {
       color: AppColors.redYoung, fontSize: 14, fontWeight: FontWeight.w600);
 
   static TextStyle textBlack12Regular = GoogleFonts.poppins(
-      color: AppColors.black, fontSize: 14, fontWeight: FontWeight.w400);
+      color: AppColors.black, fontSize: 12, fontWeight: FontWeight.w400);
+  static TextStyle textGreyField12Regular = GoogleFonts.poppins(
+      color: AppColors.greyField, fontSize: 12, fontWeight: FontWeight.w400);
   static TextStyle textBlack13Regular = GoogleFonts.poppins(
       color: AppColors.black, fontSize: 13, fontWeight: FontWeight.w400);
   static TextStyle textBlack14Regular = GoogleFonts.poppins(

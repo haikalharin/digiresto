@@ -17,6 +17,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
+import 'autocomplete_address.dart';
+
 class AddAddressScreen extends StatefulWidget {
   @override
   State<AddAddressScreen> createState() => AddAddressScreenState();
@@ -525,7 +527,35 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                         )
                       : Container(),
                 ],
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.7),
+                                blurRadius: 10,
+                                spreadRadius: 4)
+                          ],
+                        ),
+                        width: MediaQuery.of(Get.context!).size.width * 0.8,
+                        child: AutoCompleteAddress.defaultWidget(
+                            onSuccess: (place) {
+                          mapController.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                              CameraPosition(
+                                  target: LatLng(place.geometry!.location.lat,
+                                      place.geometry!.location.lng),
+                                  zoom: 15),
+                            ),
+                          );
+                        }))),
+              ),
             ]);
           },
         ),
