@@ -88,6 +88,11 @@ flutter:
     - assets/intro_1.svg
     - assets/intro_2.svg
     - assets/intro_3.svg
+    - assets/header_credit.svg
+    - assets/credit_history.svg
+    - assets/credit_transfer.svg
+    - assets/credit_virtual_acc.svg
+    - assets/credit_waiting_payment.svg
 
   fonts:
     - family: ProductSans

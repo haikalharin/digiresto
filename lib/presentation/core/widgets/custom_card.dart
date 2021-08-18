@@ -6,15 +6,21 @@ class CustomCard extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final Widget child;
   final Color color;
+  final Color shadowColor;
+  final double spreadRadius;
+  final double blurRadius;
+  final Offset offset;
 
   const CustomCard({
     Key? key,
     this.padding = const EdgeInsets.all(Dimens.defaulCardPadding),
     this.margin = const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
-    this.child = const SizedBox(
-      width: double.infinity,
-    ),
+    this.child = const SizedBox(width: double.infinity),
     this.color = Colors.white,
+    this.shadowColor = AppColors.shadowColor,
+    this.spreadRadius = 8,
+    this.blurRadius = 15,
+    this.offset = const Offset(0, 4),
   }) : super(key: key);
 
   @override
@@ -29,10 +35,10 @@ class CustomCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadowColor.withOpacity(0.05),
-            spreadRadius: 4,
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+            color: shadowColor.withOpacity(0.2),
+            spreadRadius: spreadRadius,
+            blurRadius: blurRadius,
+            offset: offset,
           ),
         ],
       ),

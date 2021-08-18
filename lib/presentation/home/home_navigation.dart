@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/presentation/credit/credit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -89,7 +90,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     final _listPage = <Widget>[
       HomeContentScreen(),
       Container(),
-      Container(),
+      CreditPage(),
       Container(),
       // CartScreen(),
       // CreditScreen(),
