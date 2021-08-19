@@ -4,10 +4,12 @@ import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -132,13 +134,12 @@ class HomeContentScreen extends GetView<HomeContentController> {
                           _FoodRowItem(
                             key: GuideKeys.terdekat,
                             imageAsset: AppAssets.iconHomeNearby,
-                            label: "Terdekat",
+                            label: Strings.titleNearby,
                           ),
                           _FoodRowItem(
-                            key: GuideKeys.digidiscount,
-                            imageAsset: AppAssets.iconHomeDiscount,
-                            label: "DigiDiscount",
-                          ),
+                              key: GuideKeys.digidiscount,
+                              imageAsset: AppAssets.iconHomeDiscount,
+                              label: Strings.titleDigidiscount),
                         ],
                       ),
                     ),
@@ -150,12 +151,12 @@ class HomeContentScreen extends GetView<HomeContentController> {
                           _FoodRowItem(
                             key: GuideKeys.frozenfood,
                             imageAsset: AppAssets.iconFrozenFood,
-                            label: "Frozen Food",
+                            label: Strings.titleFrozenFood,
                           ),
                           _FoodRowItem(
                             key: GuideKeys.indonesiapastibisa,
                             imageAsset: AppAssets.iconIndPastiBisa,
-                            label: "Indonesia Pasti Bisa",
+                            label: Strings.titleIndonesiaPastiBisa,
                           ),
                         ],
                       ),
@@ -647,7 +648,7 @@ class _SearchBox extends StatelessWidget {
   }
 }
 
-class _FoodRowItem extends StatelessWidget {
+class _FoodRowItem extends GetView<HomeContentController> {
   final String imageAsset;
   final String label;
   const _FoodRowItem({
@@ -660,7 +661,13 @@ class _FoodRowItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routers.homeNearbyOutlet);
+        if (label == Strings.titleDigidiscount) {
+          Get.toNamed(Routers.homeDigiDiscount,
+              arguments: HomeOrderViewArgument(title: label));
+        } else {
+          Get.toNamed(Routers.homeNearbyOutlet,
+              arguments: HomeOrderViewArgument(title: label));
+        }
       },
       child: Container(
           child: Column(

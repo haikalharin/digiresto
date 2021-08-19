@@ -33,8 +33,9 @@ abstract class GetPromoOutletBodyParam with _$GetPromoOutletBodyParam {
 @freezed
 abstract class GetPromoOutletQueryParam with _$GetPromoOutletQueryParam {
   const factory GetPromoOutletQueryParam({
-    required String outletId,
-    required String merchantId,
+    required String location,
+    required int page,
+    required String filter,
   }) = _GetPromoOutletQueryParam;
 
   factory GetPromoOutletQueryParam.fromJson(Map<String, dynamic> json) =>

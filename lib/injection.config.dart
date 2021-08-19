@@ -108,7 +108,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i33.IAuthFacade>(() => _i34.ApiAuthFacade(
       get<_i22.INetworkService>(), get<_i10.Logger>(), get<_i14.IStorage>()));
   gh.factory<_i35.LoginBloc>(() => _i35.LoginBloc(get<_i33.IAuthFacade>()));
-  gh.factory<_i36.OrderBloc>(() => _i36.OrderBloc(get<_i27.OrderRepository>()));
+  gh.factory<_i36.OrderBloc>(() =>
+      _i36.OrderBloc(get<_i27.OrderRepository>(), get<_i29.UserRepository>()));
   gh.factory<_i37.RegisterBloc>(
       () => _i37.RegisterBloc(get<_i33.IAuthFacade>()));
   gh.factory<_i38.ValidateOtpBloc>(

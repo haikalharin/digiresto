@@ -321,10 +321,11 @@ class _$GetPromoOutletQueryParamTearOff {
   const _$GetPromoOutletQueryParamTearOff();
 
   _GetPromoOutletQueryParam call(
-      {required String outletId, required String merchantId}) {
+      {required String location, required int page, required String filter}) {
     return _GetPromoOutletQueryParam(
-      outletId: outletId,
-      merchantId: merchantId,
+      location: location,
+      page: page,
+      filter: filter,
     );
   }
 
@@ -338,8 +339,9 @@ const $GetPromoOutletQueryParam = _$GetPromoOutletQueryParamTearOff();
 
 /// @nodoc
 mixin _$GetPromoOutletQueryParam {
-  String get outletId => throw _privateConstructorUsedError;
-  String get merchantId => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  String get filter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -352,7 +354,7 @@ abstract class $GetPromoOutletQueryParamCopyWith<$Res> {
   factory $GetPromoOutletQueryParamCopyWith(GetPromoOutletQueryParam value,
           $Res Function(GetPromoOutletQueryParam) then) =
       _$GetPromoOutletQueryParamCopyWithImpl<$Res>;
-  $Res call({String outletId, String merchantId});
+  $Res call({String location, int page, String filter});
 }
 
 /// @nodoc
@@ -366,17 +368,22 @@ class _$GetPromoOutletQueryParamCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? outletId = freezed,
-    Object? merchantId = freezed,
+    Object? location = freezed,
+    Object? page = freezed,
+    Object? filter = freezed,
   }) {
     return _then(_value.copyWith(
-      outletId: outletId == freezed
-          ? _value.outletId
-          : outletId // ignore: cast_nullable_to_non_nullable
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
-      merchantId: merchantId == freezed
-          ? _value.merchantId
-          : merchantId // ignore: cast_nullable_to_non_nullable
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -389,7 +396,7 @@ abstract class _$GetPromoOutletQueryParamCopyWith<$Res>
           $Res Function(_GetPromoOutletQueryParam) then) =
       __$GetPromoOutletQueryParamCopyWithImpl<$Res>;
   @override
-  $Res call({String outletId, String merchantId});
+  $Res call({String location, int page, String filter});
 }
 
 /// @nodoc
@@ -406,17 +413,22 @@ class __$GetPromoOutletQueryParamCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? outletId = freezed,
-    Object? merchantId = freezed,
+    Object? location = freezed,
+    Object? page = freezed,
+    Object? filter = freezed,
   }) {
     return _then(_GetPromoOutletQueryParam(
-      outletId: outletId == freezed
-          ? _value.outletId
-          : outletId // ignore: cast_nullable_to_non_nullable
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
-      merchantId: merchantId == freezed
-          ? _value.merchantId
-          : merchantId // ignore: cast_nullable_to_non_nullable
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -426,38 +438,42 @@ class __$GetPromoOutletQueryParamCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GetPromoOutletQueryParam implements _GetPromoOutletQueryParam {
   const _$_GetPromoOutletQueryParam(
-      {required this.outletId, required this.merchantId});
+      {required this.location, required this.page, required this.filter});
 
   factory _$_GetPromoOutletQueryParam.fromJson(Map<String, dynamic> json) =>
       _$_$_GetPromoOutletQueryParamFromJson(json);
 
   @override
-  final String outletId;
+  final String location;
   @override
-  final String merchantId;
+  final int page;
+  @override
+  final String filter;
 
   @override
   String toString() {
-    return 'GetPromoOutletQueryParam(outletId: $outletId, merchantId: $merchantId)';
+    return 'GetPromoOutletQueryParam(location: $location, page: $page, filter: $filter)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _GetPromoOutletQueryParam &&
-            (identical(other.outletId, outletId) ||
+            (identical(other.location, location) ||
                 const DeepCollectionEquality()
-                    .equals(other.outletId, outletId)) &&
-            (identical(other.merchantId, merchantId) ||
-                const DeepCollectionEquality()
-                    .equals(other.merchantId, merchantId)));
+                    .equals(other.location, location)) &&
+            (identical(other.page, page) ||
+                const DeepCollectionEquality().equals(other.page, page)) &&
+            (identical(other.filter, filter) ||
+                const DeepCollectionEquality().equals(other.filter, filter)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(outletId) ^
-      const DeepCollectionEquality().hash(merchantId);
+      const DeepCollectionEquality().hash(location) ^
+      const DeepCollectionEquality().hash(page) ^
+      const DeepCollectionEquality().hash(filter);
 
   @JsonKey(ignore: true)
   @override
@@ -473,16 +489,19 @@ class _$_GetPromoOutletQueryParam implements _GetPromoOutletQueryParam {
 
 abstract class _GetPromoOutletQueryParam implements GetPromoOutletQueryParam {
   const factory _GetPromoOutletQueryParam(
-      {required String outletId,
-      required String merchantId}) = _$_GetPromoOutletQueryParam;
+      {required String location,
+      required int page,
+      required String filter}) = _$_GetPromoOutletQueryParam;
 
   factory _GetPromoOutletQueryParam.fromJson(Map<String, dynamic> json) =
       _$_GetPromoOutletQueryParam.fromJson;
 
   @override
-  String get outletId => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
   @override
-  String get merchantId => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  @override
+  String get filter => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GetPromoOutletQueryParamCopyWith<_GetPromoOutletQueryParam> get copyWith =>

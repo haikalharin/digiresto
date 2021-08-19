@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/presentation/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -94,20 +95,18 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                         children: <Widget>[
                           Stack(children: [
                             Container(
-                              padding: EdgeInsets.only(right: 5),
-                              // child: ClipRRect(
-                              //   borderRadius:
-                              //       BorderRadius.all(Radius.circular(8.0)),
-                              //   child: Image(
-                              //     image: RandomImages.getImageUrlDefault(
-                              //         widget.data[index].merchantLogo,
-                              //         defaultImage),
-                              //     fit: BoxFit.fill,
-                              //     width: 96,
-                              //     alignment: Alignment.center,
-                              //   ),
-                              // )
-                            ),
+                                padding: EdgeInsets.only(right: 5),
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                  child: Image(
+                                    image: RandomImages.getImageUrlDefault(
+                                        widget.data[index].merchantLogo, ""),
+                                    fit: BoxFit.fill,
+                                    width: 96,
+                                    alignment: Alignment.center,
+                                  ),
+                                )),
                             !widget.data[index].isOwnerLoggedIn
                                 ? ClipRRect(
                                     borderRadius:
@@ -147,17 +146,18 @@ class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
                                     ),
                                     textAlign: TextAlign.left),
                               ),
-                              // Padding(
-                              //    padding: const EdgeInsets.only(top:5),
-                              //    child: Text(widget.data[index].merchantName.toString(),
-                              //        style: TextStyle(
-                              //          fontFamily: "roboto",
-                              //          color: Colors.black,
-                              //          fontSize: 12,
-                              //          fontWeight: FontWeight.normal,
-                              //        ),
-                              //        textAlign: TextAlign.left),
-                              //  ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Text(
+                                    widget.data[index].merchantName.toString(),
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5),
                                 child: Text(widget.data[index].distance["text"],

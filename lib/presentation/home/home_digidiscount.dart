@@ -1,45 +1,35 @@
+import 'package:digiresto/application/order/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/presentation/widgets/top_background_widget.dart';
+import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
+import 'package:digiresto/domain/order/home_order_view_argument.dart';
+import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class HomeDigidiscountScreen extends StatefulWidget {
-  @override
-  _HomeDigidiscountScreenState createState() => _HomeDigidiscountScreenState();
+class HomeDigidiscountScreenController extends GetxController {
+  RxList<PromoOutlet> listPromoOutlet = List<PromoOutlet>.empty().obs;
+  var page = 1.obs;
 }
 
-class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
+class HomeDigidiscountScreen extends GetView<HomeDigidiscountScreenController> {
   goBack(BuildContext context) {
     Get.back();
   }
 
   final searchController = TextEditingController();
-  // UserStore? _userStore;
-  // OrderStore? _orderStore;
-  var listPromoOutlet = [];
-  int page = 1;
-
-  @override
-  void setState(fn) {
-    super.setState(fn);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // _userStore = Provider.of<UserStore>(context);
-    // _orderStore = Provider.of<OrderStore>(context);
-
-    // if (_orderStore?.listPromoOutlet == null) {
-    //   getPromoOutlet("", 1);
-    // } else {
-    //   listPromoOutlet = _orderStore!.listPromoOutlet!;
-    // }
-  }
 
   void getPromoOutlet(String search, int pageParam) {
     Loading.show();
+    Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
+        GetPromoOutletParam(
+            body: GetPromoOutletBodyParam(),
+            queryString: GetPromoOutletQueryParam(
+                filter: '', location: '', page: controller.page.value))));
     // _orderStore?.getPromoOutlet({
     //   "location":
     //       _userStore!.activeAddressLat! + "," + _userStore!.activeAddresslng!,
@@ -59,7 +49,7 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
 
   Widget _search() {
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.grey,
       ),
       child: Container(
@@ -103,55 +93,73 @@ class _HomeDigidiscountScreenState extends State<HomeDigidiscountScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeDigidiscountScreenController());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
+        GetPromoOutletParam(
+            body: GetPromoOutletBodyParam(),
+            queryString: GetPromoOutletQueryParam(
+                filter: '', location: '', page: controller.page.value))));
+    HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        //padding: EdgeInsets.only(top:25),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            TopBackgound(backgroundColor: Colors.red),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            icon: new Icon(Icons.arrow_back_outlined,
+                color: Colors.black, size: 28.0),
+            onPressed: () {
+              //getOutletByLocation();
+              Get.back();
+            }),
+        title: Text(
+          args.title,
+          style: AppFont.textBlack15Bold,
+          textAlign: TextAlign.center,
+        ),
+      ),
+      body: BlocConsumer<OrderBloc, OrderState>(
+        listener: (context, state) {
+          state.maybeMap(
+              getPromoOutletSuccess: (r) {
+                controller.listPromoOutlet.value = r.response;
+              },
+              loadFailure: (e) {
+                print(e.message);
+              },
+              orElse: () {});
+        },
+        builder: (context, state) {
+          return Container(
+            color: Colors.white,
+            //padding: EdgeInsets.only(top:25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                new IconButton(
-                    icon: new Icon(Icons.arrow_back_outlined,
-                        color: Colors.black, size: 28.0),
-                    onPressed: () {
-                      //getOutletByLocation();
-                      Get.back();
-                    }),
-                Text("DigiDiskon",
-                    style: TextStyle(
-                      fontFamily: "roboto",
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                Container(
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: AppColors.grey[50],
+                    borderRadius: BorderRadius.circular(0),
+                    border: Border.all(
+                      color: Colors.black12,
+                      width: 0.5,
                     ),
-                    textAlign: TextAlign.center),
-                Container()
+                  ),
+                ),
+                //_search(),
+                Expanded(
+                  child: ListDigidiscountWidget(
+                    runAction: (param) {
+                      "_orderStore!.setOrderParameter";
+                    },
+                    height: MediaQuery.of(context).size.height / 1.2,
+                    data: controller.listPromoOutlet,
+                    scrollDirection: Axis.vertical,
+                  ),
+                ),
               ],
             ),
-            Container(
-              height: 10,
-              decoration: BoxDecoration(
-                color: AppColors.grey[50],
-                borderRadius: BorderRadius.circular(0),
-                border: Border.all(
-                  color: Colors.black12,
-                  width: 0.5,
-                ),
-              ),
-            ),
-            //_search(),
-            // ListDigidiscountWidget(
-            //   runAction: _orderStore!.setOrderParameter,
-            //   height: MediaQuery.of(context).size.height / 1.2,
-            //   data: listPromoOutlet,
-            //   scrollDirection: Axis.vertical,
-            // ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
