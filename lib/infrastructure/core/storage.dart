@@ -18,7 +18,7 @@ class Storage implements IStorage {
     this.logger,
   );
 
-  Future openBox(
+  Future<void> openBox(
     StorageConstants boxName,
   ) async {
     List<int>? hiveKey = await hiveKeys;
@@ -70,7 +70,7 @@ class Storage implements IStorage {
     return;
   }
 
-  Future<String?> getString({required String key}) async {
+  String? getString({required String key}) {
     String? value = box.get(key);
     return value;
   }

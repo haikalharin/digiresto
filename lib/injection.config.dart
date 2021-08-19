@@ -4,118 +4,126 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
-import 'package:dio/dio.dart' as _i10;
-import 'package:geolocator/geolocator.dart' as _i4;
+import 'package:alice/alice.dart' as _i3;
+import 'package:connectivity_plus/connectivity_plus.dart' as _i5;
+import 'package:dio/dio.dart' as _i18;
+import 'package:geolocator/geolocator.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
-import 'package:hive_flutter/hive_flutter.dart' as _i5;
+import 'package:hive_flutter/hive_flutter.dart' as _i8;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:logger/logger.dart' as _i8;
+import 'package:logger/logger.dart' as _i11;
 
-import 'application/address/list/address_list_bloc.dart' as _i28;
-import 'application/address/map/address_map_bloc.dart' as _i29;
-import 'application/auth/auth_bloc.dart' as _i38;
-import 'application/auth/login/login_bloc.dart' as _i35;
-import 'application/auth/register/register_bloc.dart' as _i36;
-import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i37;
-import 'application/core/app_bloc.dart' as _i17;
-import 'application/credit/credit_bloc.dart' as _i39;
-import 'application/home/home_user_bloc/home_user_bloc.dart' as _i30;
-import 'domain/auth/i_auth_facade.dart' as _i31;
-import 'domain/core/interfaces/i_location_service.dart' as _i6;
+import 'application/address/list/address_list_bloc.dart' as _i30;
+import 'application/address/map/address_map_bloc.dart' as _i31;
+import 'application/auth/auth_bloc.dart' as _i42;
+import 'application/auth/login/login_bloc.dart' as _i39;
+import 'application/auth/register/register_bloc.dart' as _i40;
+import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i41;
+import 'application/core/app_bloc.dart' as _i16;
+import 'application/credit/credit_bloc.dart' as _i43;
+import 'application/home/home_user_bloc/home_user_bloc.dart' as _i34;
+import 'domain/auth/i_auth_facade.dart' as _i35;
+import 'domain/core/constants/network/env.dart' as _i6;
+import 'domain/core/interfaces/i_location_service.dart' as _i9;
 import 'domain/core/interfaces/i_network_service.dart' as _i20;
-import 'domain/core/interfaces/i_storage.dart' as _i12;
-import 'domain/credit/i_credit_repository.dart' as _i33;
-import 'infrastructure/auth/api_auth_facade.dart' as _i32;
-import 'infrastructure/core/location_service.dart' as _i7;
+import 'domain/core/interfaces/i_storage.dart' as _i13;
+import 'domain/credit/i_credit_repository.dart' as _i37;
+import 'infrastructure/auth/api_auth_facade.dart' as _i36;
+import 'infrastructure/core/auth_interceptor.dart' as _i17;
+import 'infrastructure/core/location_service.dart' as _i10;
 import 'infrastructure/core/network_service.dart' as _i21;
-import 'infrastructure/core/register_module.dart' as _i40;
-import 'infrastructure/core/storage.dart' as _i13;
-import 'infrastructure/credit/credit_repository.dart' as _i34;
-import 'infrastructure/network/apis/auth/auth_api.dart' as _i18;
-import 'infrastructure/network/apis/auth/auth_repository.dart' as _i19;
+import 'infrastructure/core/register_module.dart' as _i44;
+import 'infrastructure/core/storage.dart' as _i14;
+import 'infrastructure/credit/credit_repository.dart' as _i38;
+import 'infrastructure/network/apis/auth/auth_api.dart' as _i32;
+import 'infrastructure/network/apis/auth/auth_repository.dart' as _i33;
 import 'infrastructure/network/apis/map/map_api.dart' as _i22;
 import 'infrastructure/network/apis/map/map_repository.dart' as _i23;
 import 'infrastructure/network/apis/order/order_api.dart' as _i24;
 import 'infrastructure/network/apis/order/order_repository.dart' as _i25;
-import 'infrastructure/network/apis/posts/post_api.dart' as _i14;
-import 'infrastructure/network/apis/transaction/transaction_api.dart' as _i15;
-import 'infrastructure/network/apis/user/user_api.dart' as _i26;
-import 'infrastructure/network/apis/user/user_local.dart' as _i16;
-import 'infrastructure/network/apis/user/user_repository.dart' as _i27;
-import 'infrastructure/network/dio_client.dart' as _i11;
-import 'simple_bloc_delegate.dart' as _i9;
+import 'infrastructure/network/apis/posts/post_api.dart' as _i26;
+import 'infrastructure/network/apis/transaction/transaction_api.dart' as _i27;
+import 'infrastructure/network/apis/user/user_api.dart' as _i28;
+import 'infrastructure/network/apis/user/user_local.dart' as _i15;
+import 'infrastructure/network/apis/user/user_repository.dart' as _i29;
+import 'infrastructure/network/dio_client.dart' as _i19;
+import 'presentation/core/app_widget.dart' as _i4;
+import 'simple_bloc_delegate.dart' as _i12;
 
-const String _prod = 'prod';
 const String _dev = 'dev';
+const String _prod = 'prod';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-_i1.GetIt $initGetIt(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
+Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
+    {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
-  gh.lazySingleton<_i3.Connectivity>(() => registerModule.connectivity);
-  gh.lazySingleton<_i4.GeolocatorPlatform>(
+  gh.lazySingleton<_i3.Alice>(() => registerModule.alice, registerFor: {_dev});
+  gh.factory<_i4.AppWidget>(() => _i4.AppWidget(alice: get<_i3.Alice>()));
+  gh.lazySingleton<_i5.Connectivity>(() => registerModule.connectivity);
+  gh.factory<_i6.Env>(() => _i6.EnvDev(), registerFor: {_dev});
+  gh.factory<_i6.Env>(() => _i6.EnvProd(), registerFor: {_prod});
+  gh.lazySingleton<_i7.GeolocatorPlatform>(
       () => registerModule.goelocatorPlatform);
-  gh.lazySingleton<_i5.HiveInterface>(() => registerModule.hive);
-  gh.lazySingleton<_i6.ILocationService>(
-      () => _i7.LocationService(get<_i4.GeolocatorPlatform>()));
-  gh.lazySingleton<_i8.Logger>(() => registerModule.logger);
-  gh.factory<_i9.SimpleBlocObserver>(
-      () => _i9.SimpleBlocObserver(get<_i8.Logger>()));
-  gh.factory<String>(() => registerModule.baseUrl,
-      instanceName: 'baseUrl', registerFor: {_prod});
-  gh.factory<String>(() => registerModule.baseUrlDev,
-      instanceName: 'baseUrl', registerFor: {_dev});
-  gh.lazySingleton<_i10.Dio>(
-      () => registerModule.dio(get<String>(instanceName: 'baseUrl')));
-  gh.factory<_i11.DioClient>(
-      () => _i11.DioClient(get<_i10.Dio>(), get<_i8.Logger>()));
-  gh.lazySingleton<_i12.IStorage>(
-      () => _i13.Storage(get<_i5.HiveInterface>(), get<_i8.Logger>()));
-  gh.factory<_i14.PostApi>(() => _i14.PostApi(get<_i11.DioClient>()));
-  gh.factory<_i15.TransactionApi>(
-      () => _i15.TransactionApi(get<_i11.DioClient>()));
-  gh.factory<_i16.UserLocal>(() => _i16.UserLocal(get<_i12.IStorage>()));
-  gh.factory<_i17.AppBloc>(() => _i17.AppBloc(get<_i12.IStorage>()));
-  gh.factory<_i18.AuthApi>(() => _i18.AuthApi(get<_i11.DioClient>()));
-  gh.factory<_i19.AuthRepository>(
-      () => _i19.AuthRepository(get<_i18.AuthApi>()));
+  gh.lazySingleton<_i8.HiveInterface>(() => registerModule.hive);
+  gh.lazySingleton<_i9.ILocationService>(
+      () => _i10.LocationService(get<_i7.GeolocatorPlatform>()));
+  gh.lazySingleton<_i11.Logger>(() => registerModule.logger);
+  gh.factory<_i12.SimpleBlocObserver>(
+      () => _i12.SimpleBlocObserver(get<_i11.Logger>()));
+  gh.lazySingleton<_i13.IStorage>(
+      () => _i14.Storage(get<_i8.HiveInterface>(), get<_i11.Logger>()));
+  gh.factory<_i15.UserLocal>(() => _i15.UserLocal(get<_i13.IStorage>()));
+  gh.factory<_i16.AppBloc>(() => _i16.AppBloc(get<_i13.IStorage>()));
+  gh.factory<_i17.AuthInterceptor>(
+      () => _i17.AuthInterceptor(get<_i13.IStorage>()));
+  await gh.lazySingletonAsync<_i18.Dio>(
+      () => registerModule.dio(get<_i3.Alice>(), get<_i13.IStorage>()),
+      preResolve: true);
+  gh.factory<_i19.DioClient>(() =>
+      _i19.DioClient(get<_i18.Dio>(), get<_i11.Logger>(), get<_i6.Env>()));
   gh.lazySingleton<_i20.INetworkService>(() => _i21.NetworkService(
-      get<_i10.Dio>(),
-      get<_i8.Logger>(),
-      get<_i12.IStorage>(),
-      get<_i3.Connectivity>()));
+      get<_i18.Dio>(),
+      get<_i11.Logger>(),
+      get<_i13.IStorage>(),
+      get<_i5.Connectivity>(),
+      get<_i6.Env>()));
   gh.factory<_i22.MapApi>(() => _i22.MapApi(get<_i20.INetworkService>()));
   gh.factory<_i23.MapRepository>(() => _i23.MapRepository(get<_i22.MapApi>()));
   gh.factory<_i24.OrderApi>(
-      () => _i24.OrderApi(get<_i20.INetworkService>(), get<_i12.IStorage>()));
+      () => _i24.OrderApi(get<_i20.INetworkService>(), get<_i13.IStorage>()));
   gh.factory<_i25.OrderRepository>(
       () => _i25.OrderRepository(get<_i24.OrderApi>()));
-  gh.factory<_i26.UserApi>(
-      () => _i26.UserApi(get<_i20.INetworkService>(), get<_i12.IStorage>()));
-  gh.factory<_i27.UserRepository>(
-      () => _i27.UserRepository(get<_i26.UserApi>(), get<_i16.UserLocal>()));
-  gh.factory<_i28.AddressListBloc>(() => _i28.AddressListBloc(
-      get<_i27.UserRepository>(), get<_i23.MapRepository>()));
-  gh.factory<_i29.AddressMapBloc>(() => _i29.AddressMapBloc(
-      get<_i27.UserRepository>(), get<_i23.MapRepository>()));
-  gh.factory<_i30.HomeUserBloc>(() => _i30.HomeUserBloc(
-      get<_i27.UserRepository>(), get<_i25.OrderRepository>()));
-  gh.lazySingleton<_i31.IAuthFacade>(() => _i32.ApiAuthFacade(
-      get<_i20.INetworkService>(), get<_i8.Logger>(), get<_i12.IStorage>()));
-  gh.lazySingleton<_i33.ICreditRepository>(() =>
-      _i34.CreditRepository(get<_i20.INetworkService>(), get<_i8.Logger>()));
-  gh.factory<_i35.LoginBloc>(() => _i35.LoginBloc(get<_i31.IAuthFacade>()));
-  gh.factory<_i36.RegisterBloc>(
-      () => _i36.RegisterBloc(get<_i31.IAuthFacade>()));
-  gh.factory<_i37.ValidateOtpBloc>(
-      () => _i37.ValidateOtpBloc(get<_i31.IAuthFacade>()));
-  gh.factory<_i38.AuthBloc>(() => _i38.AuthBloc(get<_i31.IAuthFacade>()));
-  gh.factory<_i39.CreditBloc>(
-      () => _i39.CreditBloc(get<_i33.ICreditRepository>()));
+  gh.factory<_i26.PostApi>(() => _i26.PostApi(get<_i19.DioClient>()));
+  gh.factory<_i27.TransactionApi>(
+      () => _i27.TransactionApi(get<_i19.DioClient>()));
+  gh.factory<_i28.UserApi>(
+      () => _i28.UserApi(get<_i20.INetworkService>(), get<_i13.IStorage>()));
+  gh.factory<_i29.UserRepository>(
+      () => _i29.UserRepository(get<_i28.UserApi>(), get<_i15.UserLocal>()));
+  gh.factory<_i30.AddressListBloc>(() => _i30.AddressListBloc(
+      get<_i29.UserRepository>(), get<_i23.MapRepository>()));
+  gh.factory<_i31.AddressMapBloc>(() => _i31.AddressMapBloc(
+      get<_i29.UserRepository>(), get<_i23.MapRepository>()));
+  gh.factory<_i32.AuthApi>(() => _i32.AuthApi(get<_i19.DioClient>()));
+  gh.factory<_i33.AuthRepository>(
+      () => _i33.AuthRepository(get<_i32.AuthApi>()));
+  gh.factory<_i34.HomeUserBloc>(() => _i34.HomeUserBloc(
+      get<_i29.UserRepository>(), get<_i25.OrderRepository>()));
+  gh.lazySingleton<_i35.IAuthFacade>(() => _i36.ApiAuthFacade(
+      get<_i20.INetworkService>(), get<_i11.Logger>(), get<_i13.IStorage>()));
+  gh.lazySingleton<_i37.ICreditRepository>(() =>
+      _i38.CreditRepository(get<_i20.INetworkService>(), get<_i11.Logger>()));
+  gh.factory<_i39.LoginBloc>(() => _i39.LoginBloc(get<_i35.IAuthFacade>()));
+  gh.factory<_i40.RegisterBloc>(
+      () => _i40.RegisterBloc(get<_i35.IAuthFacade>()));
+  gh.factory<_i41.ValidateOtpBloc>(
+      () => _i41.ValidateOtpBloc(get<_i35.IAuthFacade>(), get<_i11.Logger>()));
+  gh.factory<_i42.AuthBloc>(() => _i42.AuthBloc(get<_i35.IAuthFacade>()));
+  gh.factory<_i43.CreditBloc>(
+      () => _i43.CreditBloc(get<_i37.ICreditRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i40.RegisterModule {}
+class _$RegisterModule extends _i44.RegisterModule {}

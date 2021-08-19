@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:digiresto/application/auth/login/login_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
@@ -10,7 +11,6 @@ class SimpleBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-
     logger.d('$event');
   }
 

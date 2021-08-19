@@ -12,7 +12,7 @@ class AuthListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<AuthBloc>(
       create: (context) =>
           getIt<AuthBloc>()..add(AuthEvent.authCheckRequested()),
       child: BlocBuilder<AuthBloc, AuthState>(

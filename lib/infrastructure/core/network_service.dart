@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
+import 'package:digiresto/domain/core/constants/network/env.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -15,13 +16,10 @@ class NetworkService implements INetworkService {
   final Logger logger;
   final Connectivity _connectivity;
   final IStorage baseStorage;
+  final Env _env;
 
   NetworkService(
-    this._dio,
-    this.logger,
-    this.baseStorage,
-    this._connectivity,
-  );
+      this._dio, this.logger, this.baseStorage, this._connectivity, this._env);
 
   @override
   Future<dynamic> getHttp(
@@ -29,34 +27,41 @@ class NetworkService implements INetworkService {
       String? parameter,
       Map<String, dynamic>? queryParameter,
       Map<String, dynamic>? header,
-      bool useAuth = true}) async {
+      bool useAuth = false}) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
-      await baseStorage.openBox(StorageConstants.user);
+      // await baseStorage.openBox(StorageConstants.user);
 
       try {
         logger.d('get Http : $path');
-        final Map<String, dynamic> headers = {
+
+        final Map<String, dynamic> headers = _dio.options.headers;
+        headers.addAll({
           'content-type': ContentType.json.mimeType,
           'accept': ContentType.json.mimeType
-        };
-        if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
-          final _userAuth = UserAuth.fromJson(_userInStorage);
-          final String? security = _userAuth.token;
-          if (security != null) {
-            headers.addAll({'Authorization': 'Bearer $security'});
-          }
-        }
+        });
+        // if (useAuth) {
+        //   final _userInStorage = await baseStorage.getData();
+        //   final _userAuth = UserAuth.fromJson(_userInStorage);
+        //   final String? security = _userAuth.token;
+        //   if (security != null) {
+        //     headers.addAll({'Authorization': 'Bearer $security'});
+        //   }
+        // }
 
-        if (header != null) {
-          headers.addAll(header);
-        }
+        // if (header != null) {
+        //   headers.addAll(header);
+        // }
+
         _dio.options.headers = headers;
+        logger.d(_dio.options.headers);
 
-        await baseStorage.close();
+        // await baseStorage.close();
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
 
-        final Response response = await _dio.get('$path${parameter ?? ""}',
+        final Response response = await _dio.get(
+            '$baseUrl$path${parameter ?? ""}',
             queryParameters: queryParameter);
         return response.data;
       } on DioError catch (e) {
@@ -71,6 +76,9 @@ class NetworkService implements INetworkService {
               message: e.response?.data['response']['message'],
             );
         }
+      } catch (e) {
+        print(e.toString());
+        throw e;
       }
     } else {
       throw NoInternetException();
@@ -106,12 +114,11 @@ class NetworkService implements INetworkService {
           }
         }
 
-        _dio.options.headers = headers;
-        await baseStorage.close();
-        logger.d('post param $parameter');
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
 
         final Response response = await _dio.post(
-          '$path${parameter ?? ""}',
+          '$baseUrl$path${parameter ?? ""}',
           queryParameters: queryParameter,
           data: content,
         );

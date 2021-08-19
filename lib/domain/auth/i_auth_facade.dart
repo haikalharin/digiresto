@@ -24,4 +24,5 @@ abstract class IAuthFacade {
     required RegisterInput registerInput,
   });
   Future<Either<AuthFailure, Unit>> signOut();
+  Future<void> changeUrl({required String url});
 }

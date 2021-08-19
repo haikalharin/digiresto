@@ -1,3 +1,5 @@
+import 'package:digiresto/domain/core/constants/network/env.dart';
+import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -5,25 +7,28 @@ import 'package:logger/logger.dart';
 @injectable
 class DioClient {
   // dio instance
-  Dio _dio;
-  Logger logger;
-  DioClient(this._dio, this.logger);
+  final Dio _dio;
+  final Logger logger;
+  // @Named('baseUrl')
+  final Env _baseUrl;
 
-  // injecting dio instance
-  // DioClient() {
-  //   this._dio = Dio();
-
-  // }
+  DioClient(
+    this._dio,
+    this.logger,
+    this._baseUrl,
+  );
 
   // Get:-----------------------------------------------------------------------
   Future<dynamic> get(
-    String uri, {
+    String path, {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
+      String baseUrl = await _baseUrl.getBaseUrl;
+      String uri = '$baseUrl$path';
       final Response response = await _dio.get(
         uri,
         queryParameters: queryParameters,
@@ -39,7 +44,7 @@ class DioClient {
 
   // Post:----------------------------------------------------------------------
   Future<dynamic> post(
-    String uri, {
+    String path, {
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
@@ -48,6 +53,8 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
+      String baseUrl = await _baseUrl.getBaseUrl;
+      String uri = '$baseUrl$path';
       final Response response = await _dio.post(
         uri,
         data: data,

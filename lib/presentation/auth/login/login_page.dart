@@ -1,11 +1,15 @@
 import 'package:digiresto/application/auth/login/login_bloc.dart';
+import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/login/widgets/dev_mode_dialog.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -18,37 +22,30 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: BlocProvider<LoginBloc>(
-        create: (context) => getIt<LoginBloc>(),
+        create: (context) => getIt<LoginBloc>()..add(LoginEvent.started()),
         child: const LoginForm(),
       ),
     );
   }
 }
 
-class LoginForm extends StatefulWidget {
+class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
-  final _phoneNumberController = TextEditingController();
-  late final LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
-  @override
-  void initState() {
-    super.initState();
-    _phoneNumberController.addListener(_onPhoneNumberChanged);
-  }
-
-  @override
-  void dispose() {
-    _phoneNumberController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
+    final I10n i10n = I10n.of(context);
+
+    String _baseUrl = Endpoints.baseUrlDigiresto;
+    String _selectedUrl = _baseUrl;
+
+    void _onFormSubmitted() {
+      _loginBloc.add(
+        const LoginEvent.verifOtpPressed(),
+      );
+    }
+
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
         state.otpFailureOrSuccessOption.fold(
@@ -57,6 +54,47 @@ class _LoginFormState extends State<LoginForm> {
             ValidateOtpPage(
               phoneNumber: state.phoneNumber.getOrCrash(),
             ),
+          ),
+        );
+        print(state.isShowDialogShake);
+        if (state.isShowDialogShake) {
+          if (Get.isDialogOpen == null || Get.isDialogOpen == false) {
+            Get.defaultDialog(
+              title: i10n.login_dev_mode,
+              content: DevModeDialog(
+                baseUrl: _selectedUrl,
+                onRadioChange: (val) {
+                  _baseUrl = val;
+                },
+              ),
+              cancel: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    side: BorderSide(color: AppColors.mainColor),
+                  ),
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: AppColors.mainColor),
+                  )),
+              confirm: ElevatedButton(
+                  onPressed: () {
+                    _selectedUrl = _baseUrl;
+                    _loginBloc.add(LoginEvent.onChangeUrl(url: _baseUrl));
+                    Get.back();
+                  },
+                  child: Text('Save')),
+            );
+          }
+        }
+        state.otpFailureOrSuccessOption.fold(
+          () => null,
+          (either) => either.fold(
+            (l) => null,
+            (r) => Get.toNamed(Routers.verifyOtp,
+                arguments: state.phoneNumber.getOrCrash()),
           ),
         );
       },
@@ -111,7 +149,9 @@ class _LoginFormState extends State<LoginForm> {
                       autovalidateMode: state.showErrorMessages
                           ? AutovalidateMode.always
                           : AutovalidateMode.disabled,
-                      controller: _phoneNumberController,
+                      onChange: (value) => _loginBloc.add(
+                        LoginEvent.phoneNumberChanged(value),
+                      ),
                       validator: (_) => state.phoneNumber.value.fold(
                         (failure) => failure.maybeMap(
                           orElse: () => '',
@@ -136,18 +176,6 @@ class _LoginFormState extends State<LoginForm> {
           ],
         );
       },
-    );
-  }
-
-  void _onPhoneNumberChanged() {
-    _loginBloc.add(
-      LoginEvent.phoneNumberChanged(_phoneNumberController.text),
-    );
-  }
-
-  void _onFormSubmitted() {
-    _loginBloc.add(
-      const LoginEvent.verifOtpPressed(),
     );
   }
 }

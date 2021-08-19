@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+
 class Endpoints {
   Endpoints._();
 
@@ -20,70 +22,55 @@ class Endpoints {
   static const String baseUrlDigirestoProd =
       "https://mobileapi.digiresto.co.id";
 
-  static const String urlGetOtp =
-      baseUrlDigiresto + "/auth/register/token?phoneNumber=";
-  static const String urlValidateOtp =
-      baseUrlDigiresto + "/auth/register/validateOtp";
-  static const String urlLogin = baseUrlDigiresto + "/auth/login";
-  static const String urlLogout = baseUrlDigiresto + "/auth/logout";
-  static const String urlRegister = baseUrlDigiresto + "/auth/register";
-  static const String urlBalance = baseUrlDigiresto + "/user/balance";
-  static const String urlCreditHistory =
-      baseUrlDigiresto + "/user/account/history";
-  static const String urlProfile = baseUrlDigiresto + "/user";
-  static const String urlGetAllAddress =
-      baseUrlDigiresto + "/forward?r=getalladdress";
-  static const String urlRemoveAddress =
-      baseUrlDigiresto + "/forward?r=removeaddress";
-  static const String urlAddAddress =
-      baseUrlDigiresto + "/forward?r=addaddress";
-  static const String urlSetDefaultAddress =
-      baseUrlDigiresto + "/forward?r=setdefaultaddress";
-  static const String urlGetGeocode =
-      baseUrlDigiresto + "/forward?r=getgeocode";
-  static const String urlUpdateProfile =
-      baseUrlDigiresto + "/user/updateProfile";
-  static const String urlTopupList = baseUrlDigiresto + "/user/topup/list";
-  static const String urlTopup = baseUrlDigiresto + "/forward?r=topup";
-  static const String urlTopupPending =
-      baseUrlDigiresto + "/forward?r=topuppending";
-  static const String urlCancelBilling =
-      baseUrlDigiresto + "/forward?r=cancelbilling";
+  static const String urlGetOtp = "/auth/register/token?phoneNumber=";
+  static const String urlValidateOtp = "/auth/register/validateOtp";
+  static const String urlLogin = "/auth/login";
+  static const String urlLogout = "/auth/logout";
+  static const String urlRegister = "/auth/register";
+  static const String urlBalance = "/user/balance";
+  static const String urlCreditHistory = "/user/account/history";
+  static const String urlProfile = "/user";
+  static const String urlGetAllAddress = "/forward?r=getalladdress";
+  static const String urlRemoveAddress = "/forward?r=removeaddress";
+  static const String urlAddAddress = "/forward?r=addaddress";
+  static const String urlSetDefaultAddress = "/forward?r=setdefaultaddress";
+  static const String urlGetGeocode = "/forward?r=getgeocode";
+  static const String urlUpdateProfile = "/user/updateProfile";
+  static const String urlTopupList = "/user/topup/list";
+  static const String urlTopup = "/forward?r=topup";
+  static const String urlTopupPending = "/forward?r=topuppending";
+  static const String urlCancelBilling = "/forward?r=cancelbilling";
 
   //home
-  static const String urlGetPromo = baseUrlDigiresto + "/forward?r=getpromo";
-  static const String urlGetHotPromo =
-      baseUrlDigiresto + "/forward?r=gethotpromo";
-  static const String urlGetStaticBanner =
-      baseUrlDigiresto + "/forward?r=getstaticbanner";
-  static const String urlGetPromoOutlet =
-      baseUrlDigiresto + "/forward?r=getpromooutlet";
-  static const String urlGetOutletByLocation =
-      baseUrlDigiresto + "/forward?r=getoutletbylocation";
+  static const String urlGetPromo = "/forward?r=getpromo";
+  static const String urlGetHotPromo = "/forward?r=gethotpromo";
+  static const String urlGetStaticBanner = "/forward?r=getstaticbanner";
+  static const String urlGetPromoOutlet = "/forward?r=getpromooutlet";
+  static const String urlGetOutletByLocation = "/forward?r=getoutletbylocation";
 
   //order
-  static const String urlGetProduct =
-      baseUrlDigiresto + "/forward?r=getproduct";
-  static const String urlCreateCartSession =
-      baseUrlDigiresto + "/forward?r=createcartsession";
-  static const String urlUpdateCartSession =
-      baseUrlDigiresto + "/forward?r=updatecartsession";
-  static const String urlGetPaymentMethod =
-      baseUrlDigiresto + "/forward?r=getpaymentmethods";
-  static const String urlCheckoutCartSession =
-      baseUrlDigiresto + "/forward?r=checkoutv2";
-  static const String urlDeliveryInquiry =
-      baseUrlDigiresto + "/forward?r=deliveryinquiryv2";
+  static const String urlGetProduct = "/forward?r=getproduct";
+  static const String urlCreateCartSession = "/forward?r=createcartsession";
+  static const String urlUpdateCartSession = "/forward?r=updatecartsession";
+  static const String urlGetPaymentMethod = "/forward?r=getpaymentmethods";
+  static const String urlCheckoutCartSession = "/forward?r=checkoutv2";
+  static const String urlDeliveryInquiry = "/forward?r=deliveryinquiryv2";
 
   // transaction
   static const String urlGetTransactionHistory =
-      baseUrlDigiresto + "/forward?r=transactionhistory";
-  static const String urlGetTransaction =
-      baseUrlDigiresto + "/forward?r=transactionmobile";
-  static const String urlCancelTransaction =
-      baseUrlDigiresto + "/forward?r=canceltransaction";
-  static const String urlAcceptTransaction =
-      baseUrlDigiresto + "/forward?r=donetransaction";
-  static const String urlOngoingTransaction =
-      baseUrlDigiresto + "/forward?r=ongoingtransaction";
+      "/forward?r=transactionhistory";
+  static const String urlGetTransaction = "/forward?r=transactionmobile";
+  static const String urlCancelTransaction = "/forward?r=canceltransaction";
+  static const String urlAcceptTransaction = "/forward?r=donetransaction";
+  static const String urlOngoingTransaction = "/forward?r=ongoingtransaction";
+
+  static String get devUrl {
+    Box box = Hive.box('settings');
+    String? devUrl = box.get('devUrl');
+    if (devUrl == null) {
+      return Endpoints.baseUrlDigiresto;
+    } else {
+      return devUrl;
+    }
+  }
 }

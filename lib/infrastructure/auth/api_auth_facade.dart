@@ -193,4 +193,10 @@ class ApiAuthFacade implements IAuthFacade {
       return left(AuthFailure.unknownError());
     }
   }
+
+  @override
+  Future<void> changeUrl({required String url}) async {
+    await _storage.openBox(StorageConstants.base);
+    await _storage.putString(key: 'devUrl', value: url);
+  }
 }
