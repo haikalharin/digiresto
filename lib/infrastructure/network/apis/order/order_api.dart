@@ -10,6 +10,7 @@ import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
@@ -48,6 +49,38 @@ class OrderApi {
       List<OutletList> listUserData = [];
       for (int i = 0; i < userData.length; i++) {
         listUserData.add(OutletList.createOutletList(userData[i]));
+      }
+      return right(listUserData);
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, List<OutletCategoryDataResponse>>>
+      getOutletByCategory(Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlGetOutletByCategory;
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, content: object
+              // {
+              //   "query_string": {
+              //     "location": object["location"].toString(),
+              //     "page": object["page"],
+              //     "filter": object["filter"].toString(),
+              //     "body": {}
+              //   }
+              // }
+              );
+
+      var userData = (apiResult as Map<String, dynamic>)[
+          'data']; //mengambil data data didalam jsonObject
+      List<OutletCategoryDataResponse> listUserData = [];
+      for (int i = 0; i < userData.length; i++) {
+        listUserData.add(OutletCategoryDataResponse.fromJson(userData[i]));
       }
       return right(listUserData);
     } on ServerException catch (e) {

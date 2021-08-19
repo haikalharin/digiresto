@@ -2,24 +2,35 @@ import 'package:digiresto/application/order/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/outlet_list.dart';
-import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_by_category_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
-import 'package:digiresto/presentation/widgets/list/category_outlet_widget.dart';
+import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class BodyNearbyWidgetController extends GetxController {
-  RxList<OutletList> listOutlet = List<OutletList>.empty().obs;
+class BodyCategoryWidgetController extends GetxController {
+  RxList<OutletCategoryDataResponse> listOutlet =
+      List<OutletCategoryDataResponse>.empty().obs;
   var page = 1.obs;
+  var category = "".obs;
+  setCategoryByTitle(String title) {
+    var titleLowered = title.toLowerCase();
+    if (titleLowered == "frozen food") {
+      category.value = "frozen";
+    } else if (titleLowered == "indonesia pasti bisa") {
+      category.value = "indonesia bisa";
+    }
+  }
 }
 
-class HomeNearbyOutletScreen extends StatelessWidget {
+class HomeCategoryOutletScreen extends GetView<BodyCategoryWidgetController> {
   @override
   Widget build(BuildContext context) {
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
-    Get.put(BodyNearbyWidgetController());
+    Get.put(BodyCategoryWidgetController());
+    controller.setCategoryByTitle(args.title);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -37,26 +48,29 @@ class HomeNearbyOutletScreen extends StatelessWidget {
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [Expanded(child: _BodyNearbyWidget(args: args))],
+          children: [Expanded(child: _BodyCategoryWidget(args: args))],
         ),
       ),
     );
   }
 }
 
-class _BodyNearbyWidget extends GetView<BodyNearbyWidgetController> {
+class _BodyCategoryWidget extends GetView<BodyCategoryWidgetController> {
   final HomeOrderViewArgument args;
-  _BodyNearbyWidget({required this.args});
+  _BodyCategoryWidget({required this.args});
 
   final searchController = TextEditingController();
 
   void getOutletByLocation(String search, int pageParam) {
     Loading.show();
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
-        GetOutletByLocationParam(
-            queryString: GetOutletByLocationQueryParam(
-                filter: search, location: "", page: controller.page.value),
-            body: GetOutletByLocationBodyParam())));
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByCategory(
+        GetOutletByCategoryParam(
+            queryString: GetOutletByCategoryQueryParam(
+                category: controller.category.value,
+                location: "",
+                page: controller.page.value,
+                filter: search),
+            body: GetOutletByCategoryBodyParam())));
     // _orderStore?.getOutletByLocation({
     //   "location":
     //       _userStore!.activeAddressLat! + "," + _userStore!.activeAddresslng!,
@@ -131,15 +145,18 @@ class _BodyNearbyWidget extends GetView<BodyNearbyWidgetController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
-        GetOutletByLocationParam(
-            queryString: GetOutletByLocationQueryParam(
-                filter: "", location: "", page: controller.page.value),
-            body: GetOutletByLocationBodyParam())));
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByCategory(
+        GetOutletByCategoryParam(
+            queryString: GetOutletByCategoryQueryParam(
+                category: controller.category.value,
+                location: "",
+                page: controller.page.value,
+                filter: ""),
+            body: GetOutletByCategoryBodyParam())));
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         state.maybeMap(
-            getOutletByLocationSuccess: (r) {
+            getOutletByCategorySuccess: (r) {
               controller.listOutlet.value = r.response;
             },
             loadFailure: (e) {
@@ -164,7 +181,7 @@ class _BodyNearbyWidget extends GetView<BodyNearbyWidgetController> {
             _search(),
             Obx(() {
               return (controller.listOutlet.length > 0)
-                  ? ListNearbyOutletWidget(
+                  ? ListCategoryOutletWidget(
                       loadMoreAction: loadMoreOutletByLocation,
                       runAction: (param) {
                         "_orderStore!.setOrderParameter";

@@ -1,7 +1,4 @@
 // To parse this JSON data, do
-//
-//     final empty = emptyFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';

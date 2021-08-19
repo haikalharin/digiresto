@@ -59,6 +59,8 @@ class Endpoints {
       baseUrlDigiresto + "/forward?r=getpromooutlet";
   static const String urlGetOutletByLocation =
       baseUrlDigiresto + "/forward?r=getoutletbylocation";
+  static const String urlGetOutletByCategory =
+      baseUrlDigiresto + "/forward?r=getoutletbycategory";
 
   //order
   static const String urlGetProduct =

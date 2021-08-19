@@ -4,12 +4,14 @@ import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/param/checkout_cart_param.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_by_category_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
@@ -48,6 +50,18 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       yield getOutletByLocation.fold(
         (error) => OrderState.loadFailure(error),
         (list) => OrderState.getOutletByLocationSuccess(list),
+      );
+    }, getOutletByCategory: (request) async* {
+      final address = await _userRepository.getActiveAddress();
+      final activeAddr = address.getOrElse(() => UserAddress());
+      final queryString = request.request.queryString.copyWith(
+          location: "${activeAddr.latitude}, ${activeAddr.longitude}");
+
+      final getOutletByCategory = await _orderRepository.getOutletByCategory(
+          request.request.copyWith(queryString: queryString).toJson());
+      yield getOutletByCategory.fold(
+        (error) => OrderState.loadFailure(error),
+        (list) => OrderState.getOutletByCategorySuccess(list),
       );
     }, getPromoOutlet: (request) async* {
       final address = await _userRepository.getActiveAddress();

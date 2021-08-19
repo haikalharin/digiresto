@@ -5,6 +5,9 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getOutletByLocation(
       GetOutletByLocationParam request) = _GetOutletByLocation;
 
+  const factory OrderEvent.getOutletByCategory(
+      GetOutletByCategoryParam request) = _GetOutletByCategory;
+
   const factory OrderEvent.getPromoOutlet(GetPromoOutletParam request) =
       _GetPromoOutlet;
 

@@ -4,6 +4,7 @@ import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
@@ -22,6 +23,13 @@ class OrderRepository {
   Future<Either<Exception, List<OutletList>>> getOutletByLocation(
       Map<String, dynamic> object) async {
     return await _orderApi.getOutletByLocation(object).then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, List<OutletCategoryDataResponse>>>
+      getOutletByCategory(Map<String, dynamic> object) async {
+    return await _orderApi.getOutletByCategory(object).then((value) {
       return value;
     });
   }

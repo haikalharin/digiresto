@@ -4,13 +4,13 @@ import 'package:digiresto/presentation/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class ListCategoryOutletWidget extends StatefulWidget {
+class ListNearbyOutletWidget extends StatefulWidget {
   final List<dynamic> data;
   final Axis scrollDirection;
   final height;
   final void Function(Map<String, dynamic>) runAction;
   final void Function() loadMoreAction;
-  const ListCategoryOutletWidget(
+  const ListNearbyOutletWidget(
       {Key? key,
       required this.data,
       this.scrollDirection = Axis.vertical,
@@ -23,7 +23,7 @@ class ListCategoryOutletWidget extends StatefulWidget {
   _ListNearbyOutletWidgetState createState() => _ListNearbyOutletWidgetState();
 }
 
-class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
+class _ListNearbyOutletWidgetState extends State<ListNearbyOutletWidget> {
   final ScrollController _scrollController = new ScrollController();
 //  UserStore? _userStore;
 

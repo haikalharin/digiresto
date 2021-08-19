@@ -10,6 +10,9 @@ class OrderState with _$OrderState {
   const factory OrderState.getOutletByLocationSuccess(
       List<OutletList> response) = _GetOutletByLocationSucess;
 
+  const factory OrderState.getOutletByCategorySuccess(
+      List<OutletCategoryDataResponse> response) = _GetOutletByCategorySucess;
+
   const factory OrderState.getPromoOutletSuccess(List<PromoOutlet> response) =
       _GetPromoOutletSuccess;
 
