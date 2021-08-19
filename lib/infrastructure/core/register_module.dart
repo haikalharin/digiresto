@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
-import 'package:digiresto/domain/core/i_storage.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/infrastructure/core/auth_interceptor.dart';
 import 'package:digiresto/infrastructure/core/storage.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -14,56 +17,50 @@ import 'logger_interceptor.dart';
 
 @module
 abstract class RegisterModule {
-  @Environment(Environment.dev)
-  @Named('baseUrl')
-  String get baseUrlDev => Endpoints.devUrl;
+  // @Environment(Environment.dev)
+  // @Named('baseUrl')
+  // String get devUrl => Endpoints.devUrl;
 
-  @Environment(Environment.prod)
-  @Named('baseUrl')
-  String get baseUrl => Endpoints.baseUrlDigirestoProd;
+  // @preResolve
+  // await Hive.initFlutter();
 
+  @preResolve
   @lazySingleton
-  Dio dio(@Named('baseUrl') String baseUrl) {
+  Future<Dio> get dio async {
     Dio _dio = Dio();
-    BaseOptions options = BaseOptions(
-        connectTimeout: 120000, receiveTimeout: 60000, sendTimeout: 60000);
+    BaseOptions baseOptions = BaseOptions(
+      connectTimeout: 120000,
+      receiveTimeout: 60000,
+      sendTimeout: 60000,
+    );
+    _dio.options = baseOptions;
 
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) {
-        return baseUrl.contains(host);
+        return true;
       };
       return client;
     };
     // options.
-    _dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        Storage _storage = Storage(hive);
-        _storage.openBox(StorageConstants.base);
+    Storage _storage = Storage(Hive, Logger());
+    await _storage.openBox(StorageConstants.base);
 
-        String? _authKey = await _storage.getString(key: 'authKey');
-        if (_authKey != null) {
-          options.headers = {"Authorization": "token $_authKey"};
-        }
-      },
-    ));
+    String? _authKey = _storage.getString(key: 'authKey');
 
-    var _token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJncmFudFR5cGUiOiJhdXRob3JpemF0aW9uX2NvZGUiLCJoYW5kcGhvbmUiOiIwODU3NzkwODg0MzEiLCJpYXQiOjE2Mjg2NDczODgsImV4cCI6MTYyOTI1MjE4OH0.QHEH2mf32TKa1-lC7HIvzV43lU7YiGK-1sbf6QAgjI8";
+    _dio.interceptors.add(AuthInterceptor(token: _authKey));
+    await _storage.close();
 
-    options.headers['content-Type'] = 'application/json';
-    options.headers["authorization"] = "token $_token";
+    if (kDebugMode) {
+      _dio.interceptors.add(LoggerInterceptor(
+          requestBody: true,
+          request: true,
+          requestHeader: true,
+          responseBody: true,
+          responseHeader: true));
+    }
 
-    // if (kDebugMode) {
-    _dio.interceptors.add(LoggerInterceptor(
-        requestBody: true,
-        request: true,
-        requestHeader: true,
-        responseBody: true,
-        responseHeader: true));
-
-    _dio.options = options;
     return _dio;
   }
 
@@ -75,4 +72,7 @@ abstract class RegisterModule {
 
   @lazySingleton
   Logger get logger => Logger();
+
+  @lazySingleton
+  GeolocatorPlatform get goelocatorPlatform => GeolocatorPlatform.instance;
 }

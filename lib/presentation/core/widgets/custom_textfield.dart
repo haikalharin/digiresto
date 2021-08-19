@@ -7,19 +7,22 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String hintText;
   final TextInputType? keyboardType;
-  const CustomTextField({
-    Key? key,
-    this.controller,
-    this.autovalidateMode,
-    this.validator,
-    this.hintText = '',
-    this.keyboardType,
-  }) : super(key: key);
+  final Function(String)? onChange;
+  const CustomTextField(
+      {Key? key,
+      this.controller,
+      this.autovalidateMode,
+      this.validator,
+      this.hintText = '',
+      this.keyboardType,
+      this.onChange})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autovalidateMode: autovalidateMode,
+      onChanged: onChange,
       controller: controller,
       style: Styles.inputStyle,
       decoration: InputDecoration(
@@ -35,12 +38,13 @@ class CustomTextField extends StatelessWidget {
         ),
         errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          borderSide: BorderSide(color: Colors.red, width: 0.7),
+          borderSide: BorderSide(color: Colors.black, width: 0.7),
         ),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
           borderSide: BorderSide(color: AppColors.inputFillColor, width: 0.7),
         ),
+        errorStyle: Styles.hintStyle.copyWith(color: AppColors.yellow),
         hintText: hintText,
         hintStyle: Styles.hintStyle,
         fillColor: AppColors.inputFillColor,

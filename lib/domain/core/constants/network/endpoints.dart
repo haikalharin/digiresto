@@ -1,5 +1,3 @@
-import 'package:digiresto/domain/core/i_storage.dart';
-import 'package:digiresto/infrastructure/core/storage.dart';
 import 'package:hive/hive.dart';
 
 class Endpoints {

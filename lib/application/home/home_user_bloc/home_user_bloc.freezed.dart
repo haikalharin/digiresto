@@ -1568,6 +1568,8 @@ abstract class _$GetActiveAddressSuccessCopyWith<$Res> {
           $Res Function(_GetActiveAddressSuccess) then) =
       __$GetActiveAddressSuccessCopyWithImpl<$Res>;
   $Res call({UserAddress response});
+
+  $UserAddressCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -1592,6 +1594,13 @@ class __$GetActiveAddressSuccessCopyWithImpl<$Res>
           : response // ignore: cast_nullable_to_non_nullable
               as UserAddress,
     ));
+  }
+
+  @override
+  $UserAddressCopyWith<$Res> get response {
+    return $UserAddressCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 

@@ -20,5 +20,67 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'id';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "home_end": MessageLookupByLibrary.simpleMessage(
+            "-------------------------------------------------------------------------------------"),
+        "home_start": MessageLookupByLibrary.simpleMessage(
+            "Below are list of strings for home"),
+        "home_tv_choose_language":
+            MessageLookupByLibrary.simpleMessage("Choose Language"),
+        "home_tv_error": MessageLookupByLibrary.simpleMessage("Error"),
+        "home_tv_no_post_found":
+            MessageLookupByLibrary.simpleMessage("No posts found"),
+        "home_tv_posts": MessageLookupByLibrary.simpleMessage("Posts"),
+        "login_btn_forgot_password":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "login_btn_sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "login_dev_mode": MessageLookupByLibrary.simpleMessage("Dev Mode"),
+        "login_end": MessageLookupByLibrary.simpleMessage(
+            "------------------------------------------------------------------------------------"),
+        "login_error_fill_fields":
+            MessageLookupByLibrary.simpleMessage("Please fill in all fields"),
+        "login_et_user_email":
+            MessageLookupByLibrary.simpleMessage("Enter user email"),
+        "login_et_user_password":
+            MessageLookupByLibrary.simpleMessage("Enter password"),
+        "login_start": MessageLookupByLibrary.simpleMessage(
+            "Below are list of strings for login"),
+        "nota_auto_done_desc": MessageLookupByLibrary.simpleMessage(
+            "Pesanan Anda sudah diselesaikan oleh sistem."),
+        "nota_cancel_desc": MessageLookupByLibrary.simpleMessage(
+            "Pesanan Anda dibatalkan oleh toko."),
+        "nota_done_desc":
+            MessageLookupByLibrary.simpleMessage("Pesanan Anda sudah selesai."),
+        "nota_failed": MessageLookupByLibrary.simpleMessage("Pembayaran Gagal"),
+        "nota_pending_payment":
+            MessageLookupByLibrary.simpleMessage("Pembayaran Pending"),
+        "nota_process_desc": MessageLookupByLibrary.simpleMessage(
+            "Pesanan Anda telah diterima oleh toko."),
+        "nota_ready_desc": MessageLookupByLibrary.simpleMessage(
+            "Pesanan Anda sudah siap untuk diantar."),
+        "nota_reject_desc": MessageLookupByLibrary.simpleMessage(
+            "Pesanan Anda ditolak oleh toko."),
+        "nota_title_default": MessageLookupByLibrary.simpleMessage("Selamat!"),
+        "nota_waiting_desc": MessageLookupByLibrary.simpleMessage(
+            "Pesanan anda sedang diproses."),
+        "onboarding_address_desc": MessageLookupByLibrary.simpleMessage(
+            "Masukkan alamat anda untuk mempermudah kurir dalam pengiriman"),
+        "onboarding_address_title":
+            MessageLookupByLibrary.simpleMessage("Masukkan Alamat Tujuan"),
+        "onboarding_btn_get_start":
+            MessageLookupByLibrary.simpleMessage("Get Started"),
+        "onboarding_btn_next": MessageLookupByLibrary.simpleMessage("Next"),
+        "onboarding_end": MessageLookupByLibrary.simpleMessage(
+            "-------------------------------------------------------------------------------------"),
+        "onboarding_favorite_desc": MessageLookupByLibrary.simpleMessage(
+            "Berbagai jenis makanan yang siap dipesan dengan mudah dan cepat"),
+        "onboarding_favorite_title": MessageLookupByLibrary.simpleMessage(
+            "Temukan Makanan Favorite Anda"),
+        "onboarding_get_started_desc": MessageLookupByLibrary.simpleMessage(
+            "Makanan anda siap diantar ke alamat tujuan dengan berbagai kurir terpercaya."),
+        "onboarding_get_started_title":
+            MessageLookupByLibrary.simpleMessage("Pengiriman Cepat dan Aman"),
+        "onboarding_start": MessageLookupByLibrary.simpleMessage(
+            "Below are list of strings for onboarding")
+      };
 }

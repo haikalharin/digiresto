@@ -1,35 +1,21 @@
-import 'package:hive/hive.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'user_get_address_model.freezed.dart';
 part 'user_get_address_model.g.dart';
 
-@HiveType(typeId: 0)
-class UserAddress extends HiveObject {
-  @HiveField(0)
-  int? id;
-  @HiveField(1)
-  String? name;
-  @HiveField(2)
-  String? address;
-  @HiveField(3)
-  String? latitude;
-  @HiveField(4)
-  String? longitude;
-  @HiveField(5)
-  bool? isDefault;
-  @HiveField(6)
-  String? wabaNo;
-  @HiveField(7)
-  bool? isDelete;
+@freezed
+class UserAddress with _$UserAddress {
+  const factory UserAddress({
+    int? id,
+    String? name,
+    String? address,
+    String? latitude,
+    String? longitude,
+    bool? isDefault,
+    String? wabaNo,
+    bool? isDelete,
+  }) = _UserAddress;
 
-  UserAddress(
-      {this.id,
-      this.name,
-      this.address,
-      this.latitude,
-      this.longitude,
-      this.wabaNo,
-      this.isDelete,
-      this.isDefault});
   factory UserAddress.createAddress(Map<String, dynamic> object) {
     return UserAddress(
       id: object['id'],
@@ -42,4 +28,6 @@ class UserAddress extends HiveObject {
       isDelete: object['is_delete'],
     );
   }
+  factory UserAddress.fromJson(Map<String, dynamic> json) =>
+      _$UserAddressFromJson(json);
 }
