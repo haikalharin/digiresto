@@ -67,8 +67,6 @@ class HomeContentScreen extends GetView<HomeContentController> {
         ),
         tag: "home");
     Get.put(HomeContentController());
-    context.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
-    context.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
     showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {

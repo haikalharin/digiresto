@@ -24,8 +24,7 @@ class PaymentReceiptScreen extends GetView<OrderViewController> {
 
     // String receiptStatus = _transaction.status;
     _receiptStatusTitle =
-        AppLocalizations.of(Get.context!)!.translate('nota_title_default') ??
-            '';
+        AppLocalizations.of(Get.context!)!.translate('nota_title_default');
     _receiptStatusDesc = '';
 
     // initial = pending payment

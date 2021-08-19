@@ -26,9 +26,6 @@ class InitiateProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider<HomeUserBloc>(
-        create: (context) => getIt<HomeUserBloc>(),
-      ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),
       BlocProvider<AddressMapBloc>(
