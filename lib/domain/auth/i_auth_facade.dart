@@ -23,5 +23,5 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, RegisterStatus>> register({
     required RegisterInput registerInput,
   });
-  Future<Either<AuthFailure, bool>> signOut();
+  Future<Either<AuthFailure, Unit>> signOut();
 }

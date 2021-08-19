@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
-import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/route_manager.dart';
 import 'package:injectable/injectable.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
@@ -57,7 +55,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Either<AuthFailure, String>? failureOrSuccess;
 
     final isPhoneNumberValid = state.phoneNumber.isValid();
-    final _phoneNumber = state.phoneNumber.getOrNull();
     if (isPhoneNumberValid) {
       yield state.copyWith(
         isSubmitting: true,
@@ -82,9 +79,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             encode,
           );
         }
-      }
-      if (_phoneNumber != null) {
-        Get.to(ValidateOtpPage(phoneNumber: _phoneNumber));
       }
     }
 

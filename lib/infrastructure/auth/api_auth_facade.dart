@@ -159,9 +159,17 @@ class ApiAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, bool>> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    try {
+      await _networkService.getHttp(
+        path: Endpoints.urlLogout,
+        useAuth: true,
+      );
+    } catch (e) {}
+    await _storage.openBox(StorageConstants.user);
+    await _storage.deleteData();
+    await _storage.close();
+    return right(unit);
   }
 
   @override

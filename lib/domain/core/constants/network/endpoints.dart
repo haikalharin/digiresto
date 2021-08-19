@@ -25,6 +25,7 @@ class Endpoints {
   static const String urlValidateOtp =
       baseUrlDigiresto + "/auth/register/validateOtp";
   static const String urlLogin = baseUrlDigiresto + "/auth/login";
+  static const String urlLogout = baseUrlDigiresto + "/auth/logout";
   static const String urlRegister = baseUrlDigiresto + "/auth/register";
   static const String urlBalance = baseUrlDigiresto + "/user/balance";
   static const String urlCreditHistory =

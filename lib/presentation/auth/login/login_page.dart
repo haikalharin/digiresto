@@ -1,12 +1,14 @@
 import 'package:digiresto/application/auth/login/login_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/route_manager.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -48,7 +50,16 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        state.otpFailureOrSuccessOption.fold(
+          () => null,
+          (link) => Get.to(
+            ValidateOtpPage(
+              phoneNumber: state.phoneNumber.getOrCrash(),
+            ),
+          ),
+        );
+      },
       builder: (context, state) {
         return StackWithProgress(
           isLoading: state.isSubmitting,
