@@ -6,6 +6,7 @@ import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/infrastructure/core/auth_interceptor.dart';
 import 'package:digiresto/infrastructure/core/storage.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/main.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -67,14 +68,8 @@ abstract class RegisterModule {
     };
     // options.
     // Storage _storage = Storage(Hive, Logger());
-    await _storage.openBox(StorageConstants.user);
 
-    final _userInStorage = await _storage.getData();
-    final _userAuth = UserAuth.fromJson(_userInStorage);
-    final String? security = _userAuth.token;
-
-    _dio.interceptors.add(AuthInterceptor(token: security));
-    await _storage.close();
+    _dio.interceptors.add(AuthInterceptor(_storage));
 
     if (kDebugMode) {
       _dio.interceptors.add(LoggerInterceptor(

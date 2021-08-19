@@ -1,15 +1,26 @@
-import 'package:dio/dio.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+
+@injectable
 class AuthInterceptor extends Interceptor {
-  final String? token;
-  AuthInterceptor({this.token});
+  // final String? token;
+  final IStorage _storage;
+  AuthInterceptor(this._storage);
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    await _storage.openBox(StorageConstants.user);
+    final _userInStorage = await _storage.getData();
+    final _userAuth = UserAuth.fromJson(_userInStorage);
+    final String? security = _userAuth.token;
     Map<String, dynamic> headers = options.headers;
 
-    if (token != null) {
-      headers.addAll({"Authorization": "Bearer $token"});
+    if (security != null) {
+      headers.addAll({"Authorization": "Bearer $security"});
     }
     // else {
     //   var _token =
@@ -18,6 +29,7 @@ class AuthInterceptor extends Interceptor {
     //   headers.addAll({"Authorization": "Bearer $_token"});
     // }
     options.headers = headers;
+    await _storage.close();
 
     super.onRequest(options, handler);
   }
