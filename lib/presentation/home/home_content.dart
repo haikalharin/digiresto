@@ -618,7 +618,8 @@ class _SearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routers.homeNearbyOutlet);
+        Get.toNamed(Routers.homeNearbyOutlet,
+            arguments: HomeOrderViewArgument(title: Strings.titleNearby));
       },
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
