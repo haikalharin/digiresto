@@ -15,7 +15,6 @@ import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
 import 'package:digiresto/presentation/widgets/progress_indicator_widget.dart';
-import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:digiresto/presentation/widgets/transparent_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,61 +110,65 @@ class HomeContentScreen extends GetView<HomeContentController> {
       },
       builder: (context, state) {
         return Obx(() {
-          return Column(
-            children: [
-              Column(
-                children: <Widget>[
-                  TopBackgound(backgroundColor: AppColors.red),
-                  _YourLocation(key: GuideKeys.location),
-                  _SearchBox(key: GuideKeys.search),
+          return Scaffold(
+            body: SafeArea(
+              child: Column(
+                children: [
+                  Column(
+                    children: <Widget>[
+                      //TopBackgound(backgroundColor: AppColors.red),
+                      _YourLocation(key: GuideKeys.location),
+                      _SearchBox(key: GuideKeys.search),
+                    ],
+                  ),
+                  Expanded(
+                      child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _StaticBanner(key: GuideKeys.banner),
+                        _trackOrder(),
+                        Container(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _FoodRowItem(
+                                key: GuideKeys.terdekat,
+                                imageAsset: AppAssets.iconHomeNearby,
+                                label: Strings.titleNearby,
+                              ),
+                              _FoodRowItem(
+                                  key: GuideKeys.digidiscount,
+                                  imageAsset: AppAssets.iconHomeDiscount,
+                                  label: Strings.titleDigidiscount),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _FoodRowItem(
+                                key: GuideKeys.frozenfood,
+                                imageAsset: AppAssets.iconFrozenFood,
+                                label: Strings.titleFrozenFood,
+                              ),
+                              _FoodRowItem(
+                                key: GuideKeys.indonesiapastibisa,
+                                imageAsset: AppAssets.iconIndPastiBisa,
+                                label: Strings.titleIndonesiaPastiBisa,
+                              ),
+                            ],
+                          ),
+                        ),
+                        _singleAdvertisement(),
+                      ],
+                    ),
+                  )),
                 ],
               ),
-              Expanded(
-                  child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    _StaticBanner(key: GuideKeys.banner),
-                    _trackOrder(),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          _FoodRowItem(
-                            key: GuideKeys.terdekat,
-                            imageAsset: AppAssets.iconHomeNearby,
-                            label: Strings.titleNearby,
-                          ),
-                          _FoodRowItem(
-                              key: GuideKeys.digidiscount,
-                              imageAsset: AppAssets.iconHomeDiscount,
-                              label: Strings.titleDigidiscount),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          _FoodRowItem(
-                            key: GuideKeys.frozenfood,
-                            imageAsset: AppAssets.iconFrozenFood,
-                            label: Strings.titleFrozenFood,
-                          ),
-                          _FoodRowItem(
-                            key: GuideKeys.indonesiapastibisa,
-                            imageAsset: AppAssets.iconIndPastiBisa,
-                            label: Strings.titleIndonesiaPastiBisa,
-                          ),
-                        ],
-                      ),
-                    ),
-                    _singleAdvertisement(),
-                  ],
-                ),
-              )),
-            ],
+            ),
           );
         });
       },

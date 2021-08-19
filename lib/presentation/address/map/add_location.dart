@@ -228,77 +228,96 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.white,
-            leading: new IconButton(
-              icon: new Icon(Icons.arrow_back_outlined,
-                  color: Colors.black, size: 28.0),
-              onPressed: () => Get.back(),
-            ),
-            title: Container(
-              transform: Matrix4.translationValues(-24, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: ImageIcon(AssetImage(AppAssets.iconGps),
-                        size: 20, color: AppColors.red),
-                  ),
-                  Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
-                ],
-              ),
-            )),
-        body: BlocConsumer<AddressMapBloc, AddressMapState>(
-          listener: (context, state) {
-            state.maybeMap(
-                getGeoCodeFail: (value) {
-                  Ctoast.show("failed get addrress");
-                  Loading.dismiss();
-                },
-                getGeoCodeSuccess: (response) {
-                  Loading.dismiss();
-                  setState(() {
-                    _geocode = response.response;
-                    isMarkerClicked = true;
-                  });
-                  _addressController.text = _geocode!.formattedAddress!;
-                },
-                setActiveAddressSuccess: (_) {
-                  Get.until((route) => route.isFirst);
-                },
-                orElse: () {});
-          },
-          builder: (context, state) {
-            return Stack(children: [
-              GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: _center,
-                  zoom: 15.0,
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back_outlined,
+                color: Colors.black, size: 28.0),
+            onPressed: () => Get.back(),
+          ),
+          title: Container(
+            transform: Matrix4.translationValues(-24, 0, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: ImageIcon(AssetImage(AppAssets.iconGps),
+                      size: 20, color: AppColors.red),
                 ),
-                onCameraMove: _onCameraMove,
-                onCameraIdle: _onCameraMoveEnd,
-                myLocationButtonEnabled: false,
-                myLocationEnabled: true,
+                Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
+              ],
+            ),
+          )),
+      body: BlocConsumer<AddressMapBloc, AddressMapState>(
+        listener: (context, state) {
+          state.maybeMap(
+              getGeoCodeFail: (value) {
+                Ctoast.show("failed get addrress");
+                Loading.dismiss();
+              },
+              getGeoCodeSuccess: (response) {
+                Loading.dismiss();
+                setState(() {
+                  _geocode = response.response;
+                  isMarkerClicked = true;
+                });
+                _addressController.text = _geocode!.formattedAddress!;
+              },
+              setActiveAddressSuccess: (_) {
+                Get.until((route) => route.isFirst);
+              },
+              orElse: () {});
+        },
+        builder: (context, state) {
+          return Stack(children: [
+            GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 15.0,
               ),
-              Center(
-                child: Container(
-                  padding: EdgeInsets.only(bottom: 50),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      isMarkerMove || isMarkerClicked == true
-                          ? Container(
+              onCameraMove: _onCameraMove,
+              onCameraIdle: _onCameraMoveEnd,
+              myLocationButtonEnabled: false,
+              myLocationEnabled: true,
+            ),
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(bottom: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    isMarkerMove || isMarkerClicked == true
+                        ? Container(
+                            padding: EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.transparent,
+                                border:
+                                    Border.all(color: AppColors.greyStroke)),
+                            child: Text("",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                                textAlign: TextAlign.center),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              _onClickSetDestination();
+                            },
+                            child: Container(
                               padding: EdgeInsets.all(7),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Colors.transparent,
+                                  color: AppColors.red,
                                   border:
                                       Border.all(color: AppColors.greyStroke)),
-                              child: Text("",
+                              child: Text("Click To Set Destination",
                                   style: TextStyle(
                                     fontFamily: "roboto",
                                     color: Colors.white,
@@ -306,167 +325,146 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                                     fontWeight: FontWeight.normal,
                                   ),
                                   textAlign: TextAlign.center),
-                            )
-                          : GestureDetector(
-                              onTap: () {
-                                _onClickSetDestination();
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(7),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColors.red,
-                                    border: Border.all(
-                                        color: AppColors.greyStroke)),
-                                child: Text("Click To Set Destination",
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.center),
-                              ),
                             ),
-                      isMarkerMove ? markerMove : marker,
-                    ],
-                  ),
+                          ),
+                    isMarkerMove ? markerMove : marker,
+                  ],
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.7),
-                                blurRadius: 10,
-                                spreadRadius: 4)
-                          ],
-                        ),
-                        child: CircleAvatar(
-                          radius: 24,
-                          backgroundColor: AppColors.red,
-                          child: new IconButton(
-                            color: AppColors.red,
-                            icon: ImageIcon(AssetImage(AppAssets.iconGps),
-                                size: 24, color: AppColors.white),
-                            onPressed: () {
-                              _getCurrentLocation();
-                            },
-                          ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              blurRadius: 10,
+                              spreadRadius: 4)
+                        ],
+                      ),
+                      child: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: AppColors.red,
+                        child: new IconButton(
+                          color: AppColors.red,
+                          icon: ImageIcon(AssetImage(AppAssets.iconGps),
+                              size: 24, color: AppColors.white),
+                          onPressed: () {
+                            _getCurrentLocation();
+                          },
                         ),
                       ),
                     ),
                   ),
-                  isMarkerClicked
-                      ? Container(
-                          alignment: Alignment.bottomCenter,
-                          height: 180,
-                          width: double.infinity,
-                          color: Colors.white,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(20),
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  "Set Destination Location",
-                                  style: TextStyle(
-                                    fontFamily: "roboto",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.start,
+                ),
+                isMarkerClicked
+                    ? Container(
+                        alignment: Alignment.bottomCenter,
+                        height: 180,
+                        width: double.infinity,
+                        color: Colors.white,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(20),
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Set Destination Location",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                 ),
+                                textAlign: TextAlign.start,
                               ),
-                              Container(
-                                padding: EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  _geocode?.formattedAddress != null
-                                      ? _geocode!.formattedAddress.toString()
-                                      : "-",
-                                  style: TextStyle(
-                                    fontFamily: "roboto",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: 3,
-                                ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                left: 20,
+                                right: 20,
                               ),
-                              Container(
-                                padding: EdgeInsets.only(
-                                    top: 10, left: 30, right: 30),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: 44,
-                                  child: RaisedButton(
-                                      onPressed: () {
-                                        print("i use this location");
-                                        _showMyDialog(Get.context!);
-                                      },
-                                      color: AppColors.red,
-                                      child: Text("Use This Location",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(30.0))),
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                _geocode?.formattedAddress != null
+                                    ? _geocode!.formattedAddress.toString()
+                                    : "-",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
                                 ),
+                                textAlign: TextAlign.start,
+                                maxLines: 3,
                               ),
-                            ],
-                          ),
-                        )
-                      : Container(),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.7),
-                                blurRadius: 10,
-                                spreadRadius: 4)
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(top: 10, left: 30, right: 30),
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 44,
+                                child: RaisedButton(
+                                    onPressed: () {
+                                      print("i use this location");
+                                      _showMyDialog(Get.context!);
+                                    },
+                                    color: AppColors.red,
+                                    child: Text("Use This Location",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(30.0))),
+                              ),
+                            ),
                           ],
                         ),
-                        width: MediaQuery.of(Get.context!).size.width * 0.8,
-                        child: AutoCompleteAddress().defaultWidget(
-                            onSuccess: (place) {
-                          mapController!.animateCamera(
-                            CameraUpdate.newCameraPosition(
-                              CameraPosition(
-                                  target: LatLng(place.geometry!.location.lat,
-                                      place.geometry!.location.lng),
-                                  zoom: 15),
-                            ),
-                          );
-                        }))),
-              ),
-            ]);
-          },
-        ),
+                      )
+                    : Container(),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              blurRadius: 10,
+                              spreadRadius: 4)
+                        ],
+                      ),
+                      width: MediaQuery.of(Get.context!).size.width * 0.8,
+                      child: AutoCompleteAddress().defaultWidget(
+                          onSuccess: (place) {
+                        mapController!.animateCamera(
+                          CameraUpdate.newCameraPosition(
+                            CameraPosition(
+                                target: LatLng(place.geometry!.location.lat,
+                                    place.geometry!.location.lng),
+                                zoom: 15),
+                          ),
+                        );
+                      }))),
+            ),
+          ]);
+        },
       ),
     );
   }

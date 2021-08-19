@@ -10,7 +10,6 @@ import 'package:digiresto/domain/entity/user/param/user_set_default_address_para
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
-import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,41 +26,33 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            icon: new Icon(Icons.arrow_back_outlined,
+                color: Colors.black, size: 28.0),
+            onPressed: () {
+              //getOutletByLocation();
+              Get.back();
+            }),
+        title: Text(
+          "Pilih Alamat",
+          style: AppFont.textBlack15Bold,
+          textAlign: TextAlign.center,
+        ),
+        actions: [
+          IconButton(
+              icon: ImageIcon(
+                AssetImage(AppAssets.iconMapRed),
+                color: AppColors.redYoung,
+              ),
+              onPressed: () {
+                Get.toNamed(Routers.homeAddLocation);
+              })
+        ],
+      ),
       body: Column(
         children: [
-          TopBackgound(backgroundColor: AppColors.red),
-          Container(
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    new IconButton(
-                        icon: new Icon(Icons.arrow_back_outlined,
-                            color: Colors.black, size: 28.0),
-                        onPressed: () {
-                          // _userStore?.setActivedHomeTab("home");
-                          // Get.offNamed(Routers.home);
-                          Get.back();
-                        }),
-                    Text("Pilih Alamat",
-                        style: AppFont.textBlack15Bold,
-                        textAlign: TextAlign.center),
-                    new IconButton(
-                        icon: ImageIcon(
-                          AssetImage(AppAssets.iconMapRed),
-                          color: AppColors.redYoung,
-                        ),
-                        onPressed: () {
-                          Get.toNamed(Routers.homeAddLocation);
-                        }),
-                  ],
-                ),
-              ],
-            ),
-          ),
           Container(
             color: AppColors.greyFill,
             width: double.infinity,
