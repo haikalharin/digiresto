@@ -10,12 +10,10 @@ import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
-import 'package:injectable/injectable.dart';
-import 'package:shake/shake.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -88,11 +86,8 @@ class LoginForm extends StatelessWidget {
           () => null,
           (either) => either.fold(
             (l) => null,
-            (r) => Get.to(
-              ValidateOtpPage(
-                phoneNumber: state.phoneNumber.getOrCrash(),
-              ),
-            ),
+            (r) => Get.toNamed(Routers.verifyOtp,
+                arguments: state.phoneNumber.getOrCrash()),
           ),
         );
       },
@@ -147,7 +142,6 @@ class LoginForm extends StatelessWidget {
                       autovalidateMode: state.showErrorMessages
                           ? AutovalidateMode.always
                           : AutovalidateMode.disabled,
-                      // controller: _phoneNumberController,
                       onChange: (value) => _loginBloc.add(
                         LoginEvent.phoneNumberChanged(value),
                       ),

@@ -114,12 +114,11 @@ class NetworkService implements INetworkService {
           }
         }
 
-        _dio.options.headers = headers;
-        await baseStorage.close();
-        logger.d('post param $parameter');
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
 
         final Response response = await _dio.post(
-          '$path${parameter ?? ""}',
+          '$baseUrl$path${parameter ?? ""}',
           queryParameters: queryParameter,
           data: content,
         );

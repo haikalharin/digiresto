@@ -8,6 +8,7 @@ import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:logger/logger.dart';
 
 part 'validate_otp_event.dart';
 part 'validate_otp_state.dart';
@@ -16,8 +17,10 @@ part 'validate_otp_bloc.freezed.dart';
 @injectable
 class ValidateOtpBloc extends Bloc<ValidateOtpEvent, ValidateOtpState> {
   final IAuthFacade _authFacade;
+  final Logger _logger;
 
-  ValidateOtpBloc(this._authFacade) : super(ValidateOtpState.initial());
+  ValidateOtpBloc(this._authFacade, this._logger)
+      : super(ValidateOtpState.initial());
 
   @override
   Stream<ValidateOtpState> mapEventToState(
@@ -58,6 +61,9 @@ class ValidateOtpBloc extends Bloc<ValidateOtpEvent, ValidateOtpState> {
           isSubmitting: true,
           validateFailureOrSuccess: none(),
         );
+        _logger.d(
+            'Event inputSubmitting ${_event.otpStr} ${_event.phoneNumberStr}');
+
         final isMember = await _authFacade.validateOtp(
           phoneNumber: PhoneNumber(_event.phoneNumberStr),
           otp: Otp(_event.otpStr),

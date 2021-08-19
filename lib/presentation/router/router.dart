@@ -3,6 +3,7 @@ import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
 import 'package:digiresto/presentation/address/map/add_location.dart';
 import 'package:digiresto/presentation/auth/auth_listener.dart';
+import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 // import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
@@ -68,6 +69,11 @@ class Routers {
       name: Routers.home,
       page: () => HomeScreen(),
     ),
+    GetPage(
+        name: Routers.verifyOtp,
+        page: () => ValidateOtpPage(
+              phoneNumber: Get.arguments as String,
+            )),
     GetPage(
       name: Routers.homePromoUrl,
       page: () => HomePromoUrlScreen(),
