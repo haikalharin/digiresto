@@ -8,6 +8,8 @@ import 'package:injectable/injectable.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
+import 'package:digiresto/main.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:shake/shake.dart';
 import 'package:url_launcher/url_launcher.dart';

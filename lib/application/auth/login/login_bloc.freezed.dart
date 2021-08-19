@@ -148,12 +148,18 @@ class __$StartedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started implements _Started {
+class _$_Started with DiagnosticableTreeMixin implements _Started {
   const _$_Started();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.started()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.started'));
   }
 
   @override
@@ -270,15 +276,23 @@ class __$OnInvalidPinCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnInvalidPin implements _OnInvalidPin {
+class _$_OnInvalidPin with DiagnosticableTreeMixin implements _OnInvalidPin {
   const _$_OnInvalidPin(this.onInvalidPin);
 
   @override
   final Function onInvalidPin;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.otpVerified(onInvalidPin: $onInvalidPin)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.otpVerified'))
+      ..add(DiagnosticsProperty('onInvalidPin', onInvalidPin));
   }
 
   @override
@@ -411,15 +425,25 @@ class __$PhoneNumberChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PhoneNumberChanged implements _PhoneNumberChanged {
+class _$_PhoneNumberChanged
+    with DiagnosticableTreeMixin
+    implements _PhoneNumberChanged {
   const _$_PhoneNumberChanged(this.phoneNumberStr);
 
   @override
   final String phoneNumberStr;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.phoneNumberChanged(phoneNumberStr: $phoneNumberStr)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.phoneNumberChanged'))
+      ..add(DiagnosticsProperty('phoneNumberStr', phoneNumberStr));
   }
 
   @override
@@ -553,15 +577,23 @@ class __$PinChangedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PinChanged implements _PinChanged {
+class _$_PinChanged with DiagnosticableTreeMixin implements _PinChanged {
   const _$_PinChanged(this.pinStr);
 
   @override
   final String pinStr;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.pinChanged(pinStr: $pinStr)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.pinChanged'))
+      ..add(DiagnosticsProperty('pinStr', pinStr));
   }
 
   @override
@@ -680,12 +712,20 @@ class __$VerifOtpPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_VerifOtpPressed implements _VerifOtpPressed {
+class _$_VerifOtpPressed
+    with DiagnosticableTreeMixin
+    implements _VerifOtpPressed {
   const _$_VerifOtpPressed();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.verifOtpPressed()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.verifOtpPressed'));
   }
 
   @override
@@ -789,12 +829,18 @@ class __$PinSubmittedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PinSubmitted implements _PinSubmitted {
+class _$_PinSubmitted with DiagnosticableTreeMixin implements _PinSubmitted {
   const _$_PinSubmitted();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.pinSubmitted()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.pinSubmitted'));
   }
 
   @override
@@ -896,12 +942,18 @@ class __$OnShakeCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnShake implements _OnShake {
+class _$_OnShake with DiagnosticableTreeMixin implements _OnShake {
   const _$_OnShake();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.onShake()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.onShake'));
   }
 
   @override
@@ -1018,15 +1070,23 @@ class __$OnChangeUrlCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnChangeUrl implements _OnChangeUrl {
+class _$_OnChangeUrl with DiagnosticableTreeMixin implements _OnChangeUrl {
   const _$_OnChangeUrl({required this.url});
 
   @override
   final String url;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.onChangeUrl(url: $url)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.onChangeUrl'))
+      ..add(DiagnosticsProperty('url', url));
   }
 
   @override
@@ -1321,7 +1381,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginState implements _LoginState {
+class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   const _$_LoginState(
       {required this.phoneNumber,
       required this.pin,
@@ -1350,8 +1410,25 @@ class _$_LoginState implements _LoginState {
   final Option<Function> onInvalidPin;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginState(phoneNumber: $phoneNumber, pin: $pin, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, isShowDialogShake: $isShowDialogShake, loginFailureOrSuccessOption: $loginFailureOrSuccessOption, otpFailureOrSuccessOption: $otpFailureOrSuccessOption, onInvalidPin: $onInvalidPin)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
+      ..add(DiagnosticsProperty('pin', pin))
+      ..add(DiagnosticsProperty('showErrorMessages', showErrorMessages))
+      ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
+      ..add(DiagnosticsProperty('isShowDialogShake', isShowDialogShake))
+      ..add(DiagnosticsProperty(
+          'loginFailureOrSuccessOption', loginFailureOrSuccessOption))
+      ..add(DiagnosticsProperty(
+          'otpFailureOrSuccessOption', otpFailureOrSuccessOption))
+      ..add(DiagnosticsProperty('onInvalidPin', onInvalidPin));
   }
 
   @override
