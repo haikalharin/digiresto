@@ -5,12 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_auth.freezed.dart';
 part 'user_auth.g.dart';
 
-UserAuth userAuthFromJson(String str) => UserAuth.fromJson(json.decode(str));
-
-String userAuthToJson(UserAuth data) => json.encode(data.toJson());
-
 @freezed
-abstract class UserAuth with _$UserAuth {
+class UserAuth with _$UserAuth {
   const factory UserAuth({
     required String? token,
     required String? renewtoken,

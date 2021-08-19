@@ -3,7 +3,6 @@ import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/order/order_bloc.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
-import 'package:digiresto/simple_bloc_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,10 +13,12 @@ import 'injection.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
 
-void main() async {
-  await InitiateHive.initial();
-  configureInjection(Environment.dev);
-  Bloc.observer = getIt<SimpleBlocObserver>();
+//TODO: Importance Jgn lupa ganti environment ini ketika di publish ke store
+const env = Environment.dev;
+Future<void> main() async {
+  await Hive.initFlutter();
+  await configureInjection(env);
+  // Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(InitiateProvider());
 }
 
@@ -36,13 +37,12 @@ class InitiateProvider extends StatelessWidget {
       BlocProvider<AppBloc>(
         create: (context) => getIt<AppBloc>()..add(AppEvent.started()),
       )
-    ], child: AppWidget());
+    ], child: getIt<AppWidget>());
   }
 }
 
 class InitiateHive {
   static initial() async {
-    Hive..initFlutter();
     //..registerAdapter(UserAddressAdapter());
   }
 }

@@ -18,7 +18,7 @@ abstract class IStorage {
   Future<void> putListData({required List dataList});
   Future<void> putString({required String key, required String value});
   Future<void> putBool({required String key, required bool value});
-  Future<String?> getString({required String key});
+  String? getString({required String key});
   Future<DateTime?> getDate({required String key});
   Future<int?> getInt({required String key});
   Future<bool> getBool({required String key});

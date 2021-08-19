@@ -16,6 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
+  _Started started() {
+    return const _Started();
+  }
+
   _OnInvalidPin otpVerified(Function onInvalidPin) {
     return _OnInvalidPin(
       onInvalidPin,
@@ -41,6 +45,16 @@ class _$LoginEventTearOff {
   _PinSubmitted pinSubmitted() {
     return const _PinSubmitted();
   }
+
+  _OnShake onShake() {
+    return const _OnShake();
+  }
+
+  _OnChangeUrl onChangeUrl({required String url}) {
+    return _OnChangeUrl(
+      url: url,
+    );
+  }
 }
 
 /// @nodoc
@@ -50,39 +64,51 @@ const $LoginEvent = _$LoginEventTearOff();
 mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
     required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
     TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
     required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
     TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,6 +128,119 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   final LoginEvent _value;
   // ignore: unused_field
   final $Res Function(LoginEvent) _then;
+}
+
+/// @nodoc
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StartedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
+
+  @override
+  _Started get _value => super._value as _Started;
+}
+
+/// @nodoc
+
+class _$_Started with DiagnosticableTreeMixin implements _Started {
+  const _$_Started();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.started()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.started'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Started);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Function onInvalidPin) otpVerified,
+    required TResult Function(String phoneNumberStr) phoneNumberChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function() verifOtpPressed,
+    required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_OnInvalidPin value) otpVerified,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_VerifOtpPressed value) verifOtpPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Started implements LoginEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
@@ -137,15 +276,23 @@ class __$OnInvalidPinCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnInvalidPin implements _OnInvalidPin {
+class _$_OnInvalidPin with DiagnosticableTreeMixin implements _OnInvalidPin {
   const _$_OnInvalidPin(this.onInvalidPin);
 
   @override
   final Function onInvalidPin;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.otpVerified(onInvalidPin: $onInvalidPin)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.otpVerified'))
+      ..add(DiagnosticsProperty('onInvalidPin', onInvalidPin));
   }
 
   @override
@@ -169,11 +316,14 @@ class _$_OnInvalidPin implements _OnInvalidPin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
     required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
   }) {
     return otpVerified(onInvalidPin);
   }
@@ -181,11 +331,14 @@ class _$_OnInvalidPin implements _OnInvalidPin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
     TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (otpVerified != null) {
@@ -197,11 +350,14 @@ class _$_OnInvalidPin implements _OnInvalidPin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
     required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return otpVerified(this);
   }
@@ -209,11 +365,14 @@ class _$_OnInvalidPin implements _OnInvalidPin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
     TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (otpVerified != null) {
@@ -266,15 +425,25 @@ class __$PhoneNumberChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PhoneNumberChanged implements _PhoneNumberChanged {
+class _$_PhoneNumberChanged
+    with DiagnosticableTreeMixin
+    implements _PhoneNumberChanged {
   const _$_PhoneNumberChanged(this.phoneNumberStr);
 
   @override
   final String phoneNumberStr;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.phoneNumberChanged(phoneNumberStr: $phoneNumberStr)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.phoneNumberChanged'))
+      ..add(DiagnosticsProperty('phoneNumberStr', phoneNumberStr));
   }
 
   @override
@@ -299,11 +468,14 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
     required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
   }) {
     return phoneNumberChanged(phoneNumberStr);
   }
@@ -311,11 +483,14 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
     TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -327,11 +502,14 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
     required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return phoneNumberChanged(this);
   }
@@ -339,11 +517,14 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
     TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -396,15 +577,23 @@ class __$PinChangedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PinChanged implements _PinChanged {
+class _$_PinChanged with DiagnosticableTreeMixin implements _PinChanged {
   const _$_PinChanged(this.pinStr);
 
   @override
   final String pinStr;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.pinChanged(pinStr: $pinStr)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.pinChanged'))
+      ..add(DiagnosticsProperty('pinStr', pinStr));
   }
 
   @override
@@ -427,11 +616,14 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
     required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
   }) {
     return pinChanged(pinStr);
   }
@@ -439,11 +631,14 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
     TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (pinChanged != null) {
@@ -455,11 +650,14 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
     required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return pinChanged(this);
   }
@@ -467,11 +665,14 @@ class _$_PinChanged implements _PinChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
     TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (pinChanged != null) {
@@ -511,12 +712,20 @@ class __$VerifOtpPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_VerifOtpPressed implements _VerifOtpPressed {
+class _$_VerifOtpPressed
+    with DiagnosticableTreeMixin
+    implements _VerifOtpPressed {
   const _$_VerifOtpPressed();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.verifOtpPressed()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.verifOtpPressed'));
   }
 
   @override
@@ -530,11 +739,14 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
     required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
   }) {
     return verifOtpPressed();
   }
@@ -542,11 +754,14 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
     TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (verifOtpPressed != null) {
@@ -558,11 +773,14 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
     required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return verifOtpPressed(this);
   }
@@ -570,11 +788,14 @@ class _$_VerifOtpPressed implements _VerifOtpPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
     TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (verifOtpPressed != null) {
@@ -608,12 +829,18 @@ class __$PinSubmittedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PinSubmitted implements _PinSubmitted {
+class _$_PinSubmitted with DiagnosticableTreeMixin implements _PinSubmitted {
   const _$_PinSubmitted();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.pinSubmitted()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.pinSubmitted'));
   }
 
   @override
@@ -627,11 +854,14 @@ class _$_PinSubmitted implements _PinSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(Function onInvalidPin) otpVerified,
     required TResult Function(String phoneNumberStr) phoneNumberChanged,
     required TResult Function(String pinStr) pinChanged,
     required TResult Function() verifOtpPressed,
     required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
   }) {
     return pinSubmitted();
   }
@@ -639,11 +869,14 @@ class _$_PinSubmitted implements _PinSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
     TResult Function(String phoneNumberStr)? phoneNumberChanged,
     TResult Function(String pinStr)? pinChanged,
     TResult Function()? verifOtpPressed,
     TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (pinSubmitted != null) {
@@ -655,11 +888,14 @@ class _$_PinSubmitted implements _PinSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_OnInvalidPin value) otpVerified,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PinChanged value) pinChanged,
     required TResult Function(_VerifOtpPressed value) verifOtpPressed,
     required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return pinSubmitted(this);
   }
@@ -667,11 +903,14 @@ class _$_PinSubmitted implements _PinSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_OnInvalidPin value)? otpVerified,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PinChanged value)? pinChanged,
     TResult Function(_VerifOtpPressed value)? verifOtpPressed,
     TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
     required TResult orElse(),
   }) {
     if (pinSubmitted != null) {
@@ -686,6 +925,266 @@ abstract class _PinSubmitted implements LoginEvent {
 }
 
 /// @nodoc
+abstract class _$OnShakeCopyWith<$Res> {
+  factory _$OnShakeCopyWith(_OnShake value, $Res Function(_OnShake) then) =
+      __$OnShakeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$OnShakeCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$OnShakeCopyWith<$Res> {
+  __$OnShakeCopyWithImpl(_OnShake _value, $Res Function(_OnShake) _then)
+      : super(_value, (v) => _then(v as _OnShake));
+
+  @override
+  _OnShake get _value => super._value as _OnShake;
+}
+
+/// @nodoc
+
+class _$_OnShake with DiagnosticableTreeMixin implements _OnShake {
+  const _$_OnShake();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.onShake()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.onShake'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _OnShake);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Function onInvalidPin) otpVerified,
+    required TResult Function(String phoneNumberStr) phoneNumberChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function() verifOtpPressed,
+    required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
+  }) {
+    return onShake();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+    required TResult orElse(),
+  }) {
+    if (onShake != null) {
+      return onShake();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_OnInvalidPin value) otpVerified,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_VerifOtpPressed value) verifOtpPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
+  }) {
+    return onShake(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+    required TResult orElse(),
+  }) {
+    if (onShake != null) {
+      return onShake(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnShake implements LoginEvent {
+  const factory _OnShake() = _$_OnShake;
+}
+
+/// @nodoc
+abstract class _$OnChangeUrlCopyWith<$Res> {
+  factory _$OnChangeUrlCopyWith(
+          _OnChangeUrl value, $Res Function(_OnChangeUrl) then) =
+      __$OnChangeUrlCopyWithImpl<$Res>;
+  $Res call({String url});
+}
+
+/// @nodoc
+class __$OnChangeUrlCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$OnChangeUrlCopyWith<$Res> {
+  __$OnChangeUrlCopyWithImpl(
+      _OnChangeUrl _value, $Res Function(_OnChangeUrl) _then)
+      : super(_value, (v) => _then(v as _OnChangeUrl));
+
+  @override
+  _OnChangeUrl get _value => super._value as _OnChangeUrl;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+  }) {
+    return _then(_OnChangeUrl(
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnChangeUrl with DiagnosticableTreeMixin implements _OnChangeUrl {
+  const _$_OnChangeUrl({required this.url});
+
+  @override
+  final String url;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.onChangeUrl(url: $url)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.onChangeUrl'))
+      ..add(DiagnosticsProperty('url', url));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnChangeUrl &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(url);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnChangeUrlCopyWith<_OnChangeUrl> get copyWith =>
+      __$OnChangeUrlCopyWithImpl<_OnChangeUrl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Function onInvalidPin) otpVerified,
+    required TResult Function(String phoneNumberStr) phoneNumberChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function() verifOtpPressed,
+    required TResult Function() pinSubmitted,
+    required TResult Function() onShake,
+    required TResult Function(String url) onChangeUrl,
+  }) {
+    return onChangeUrl(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+    required TResult orElse(),
+  }) {
+    if (onChangeUrl != null) {
+      return onChangeUrl(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_OnInvalidPin value) otpVerified,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_VerifOtpPressed value) verifOtpPressed,
+    required TResult Function(_PinSubmitted value) pinSubmitted,
+    required TResult Function(_OnShake value) onShake,
+    required TResult Function(_OnChangeUrl value) onChangeUrl,
+  }) {
+    return onChangeUrl(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+    required TResult orElse(),
+  }) {
+    if (onChangeUrl != null) {
+      return onChangeUrl(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnChangeUrl implements LoginEvent {
+  const factory _OnChangeUrl({required String url}) = _$_OnChangeUrl;
+
+  String get url => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$OnChangeUrlCopyWith<_OnChangeUrl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
@@ -694,6 +1193,7 @@ class _$LoginStateTearOff {
       required Pin pin,
       required bool showErrorMessages,
       required bool isSubmitting,
+      required bool isShowDialogShake,
       required Option<Either<AuthFailure, UserAuth>>
           loginFailureOrSuccessOption,
       required Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
@@ -703,6 +1203,7 @@ class _$LoginStateTearOff {
       pin: pin,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
+      isShowDialogShake: isShowDialogShake,
       loginFailureOrSuccessOption: loginFailureOrSuccessOption,
       otpFailureOrSuccessOption: otpFailureOrSuccessOption,
       onInvalidPin: onInvalidPin,
@@ -719,6 +1220,7 @@ mixin _$LoginState {
   Pin get pin => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isShowDialogShake => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, UserAuth>> get loginFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
   Option<Either<AuthFailure, String>> get otpFailureOrSuccessOption =>
@@ -740,6 +1242,7 @@ abstract class $LoginStateCopyWith<$Res> {
       Pin pin,
       bool showErrorMessages,
       bool isSubmitting,
+      bool isShowDialogShake,
       Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption,
       Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
       Option<Function> onInvalidPin});
@@ -759,6 +1262,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
     Object? pin = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
+    Object? isShowDialogShake = freezed,
     Object? loginFailureOrSuccessOption = freezed,
     Object? otpFailureOrSuccessOption = freezed,
     Object? onInvalidPin = freezed,
@@ -779,6 +1283,10 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isShowDialogShake: isShowDialogShake == freezed
+          ? _value.isShowDialogShake
+          : isShowDialogShake // ignore: cast_nullable_to_non_nullable
               as bool,
       loginFailureOrSuccessOption: loginFailureOrSuccessOption == freezed
           ? _value.loginFailureOrSuccessOption
@@ -807,6 +1315,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       Pin pin,
       bool showErrorMessages,
       bool isSubmitting,
+      bool isShowDialogShake,
       Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption,
       Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
       Option<Function> onInvalidPin});
@@ -828,6 +1337,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object? pin = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
+    Object? isShowDialogShake = freezed,
     Object? loginFailureOrSuccessOption = freezed,
     Object? otpFailureOrSuccessOption = freezed,
     Object? onInvalidPin = freezed,
@@ -849,6 +1359,10 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      isShowDialogShake: isShowDialogShake == freezed
+          ? _value.isShowDialogShake
+          : isShowDialogShake // ignore: cast_nullable_to_non_nullable
+              as bool,
       loginFailureOrSuccessOption: loginFailureOrSuccessOption == freezed
           ? _value.loginFailureOrSuccessOption
           : loginFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
@@ -867,12 +1381,13 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginState implements _LoginState {
+class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   const _$_LoginState(
       {required this.phoneNumber,
       required this.pin,
       required this.showErrorMessages,
       required this.isSubmitting,
+      required this.isShowDialogShake,
       required this.loginFailureOrSuccessOption,
       required this.otpFailureOrSuccessOption,
       required this.onInvalidPin});
@@ -886,6 +1401,8 @@ class _$_LoginState implements _LoginState {
   @override
   final bool isSubmitting;
   @override
+  final bool isShowDialogShake;
+  @override
   final Option<Either<AuthFailure, UserAuth>> loginFailureOrSuccessOption;
   @override
   final Option<Either<AuthFailure, String>> otpFailureOrSuccessOption;
@@ -893,8 +1410,25 @@ class _$_LoginState implements _LoginState {
   final Option<Function> onInvalidPin;
 
   @override
-  String toString() {
-    return 'LoginState(phoneNumber: $phoneNumber, pin: $pin, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, loginFailureOrSuccessOption: $loginFailureOrSuccessOption, otpFailureOrSuccessOption: $otpFailureOrSuccessOption, onInvalidPin: $onInvalidPin)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginState(phoneNumber: $phoneNumber, pin: $pin, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, isShowDialogShake: $isShowDialogShake, loginFailureOrSuccessOption: $loginFailureOrSuccessOption, otpFailureOrSuccessOption: $otpFailureOrSuccessOption, onInvalidPin: $onInvalidPin)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
+      ..add(DiagnosticsProperty('pin', pin))
+      ..add(DiagnosticsProperty('showErrorMessages', showErrorMessages))
+      ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
+      ..add(DiagnosticsProperty('isShowDialogShake', isShowDialogShake))
+      ..add(DiagnosticsProperty(
+          'loginFailureOrSuccessOption', loginFailureOrSuccessOption))
+      ..add(DiagnosticsProperty(
+          'otpFailureOrSuccessOption', otpFailureOrSuccessOption))
+      ..add(DiagnosticsProperty('onInvalidPin', onInvalidPin));
   }
 
   @override
@@ -912,6 +1446,9 @@ class _$_LoginState implements _LoginState {
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
+            (identical(other.isShowDialogShake, isShowDialogShake) ||
+                const DeepCollectionEquality()
+                    .equals(other.isShowDialogShake, isShowDialogShake)) &&
             (identical(other.loginFailureOrSuccessOption,
                     loginFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
@@ -934,6 +1471,7 @@ class _$_LoginState implements _LoginState {
       const DeepCollectionEquality().hash(pin) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
+      const DeepCollectionEquality().hash(isShowDialogShake) ^
       const DeepCollectionEquality().hash(loginFailureOrSuccessOption) ^
       const DeepCollectionEquality().hash(otpFailureOrSuccessOption) ^
       const DeepCollectionEquality().hash(onInvalidPin);
@@ -950,6 +1488,7 @@ abstract class _LoginState implements LoginState {
       required Pin pin,
       required bool showErrorMessages,
       required bool isSubmitting,
+      required bool isShowDialogShake,
       required Option<Either<AuthFailure, UserAuth>>
           loginFailureOrSuccessOption,
       required Option<Either<AuthFailure, String>> otpFailureOrSuccessOption,
@@ -963,6 +1502,8 @@ abstract class _LoginState implements LoginState {
   bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
+  @override
+  bool get isShowDialogShake => throw _privateConstructorUsedError;
   @override
   Option<Either<AuthFailure, UserAuth>> get loginFailureOrSuccessOption =>
       throw _privateConstructorUsedError;

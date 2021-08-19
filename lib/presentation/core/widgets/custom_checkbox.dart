@@ -42,10 +42,12 @@ class CustomCheckBox extends StatelessWidget {
           const SizedBox(
             width: 15,
           ),
-          Text(
-            label,
-            style: Styles.checkBoxLabelStyle.copyWith(height: 2),
-            textAlign: TextAlign.left,
+          Expanded(
+            child: Text(
+              label,
+              style: Styles.checkBoxLabelStyle.copyWith(height: 2),
+              textAlign: TextAlign.left,
+            ),
           ),
         ],
       ),

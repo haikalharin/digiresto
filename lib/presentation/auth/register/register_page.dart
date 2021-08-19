@@ -333,7 +333,7 @@ memesan makan dengan Digiresto.""",
                                   onChanged: (value) => _registerBloc
                                       .add(RegisterEvent.toggleAgree()),
                                   label:
-                                      'Dengan mengklik lanjutkan, Saya setuju\ndengan syarat dan ketentuan Digiresto.',
+                                      'Dengan mengklik lanjutkan, Saya setuju dengan syarat dan ketentuan Digiresto.',
                                 ),
                               ],
                             ),

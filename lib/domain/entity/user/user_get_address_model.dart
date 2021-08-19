@@ -4,7 +4,7 @@ part 'user_get_address_model.freezed.dart';
 part 'user_get_address_model.g.dart';
 
 @freezed
-abstract class UserAddress with _$UserAddress {
+class UserAddress with _$UserAddress {
   const factory UserAddress({
     int? id,
     String? name,

@@ -20,5 +20,29 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'da';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "home_end": MessageLookupByLibrary.simpleMessage(
+            "-------------------------------------------------------------------------------------"),
+        "home_start": MessageLookupByLibrary.simpleMessage(
+            "Below are list of strings for home"),
+        "home_tv_choose_language":
+            MessageLookupByLibrary.simpleMessage("Vælg sprog"),
+        "home_tv_error": MessageLookupByLibrary.simpleMessage("Fejl"),
+        "home_tv_no_post_found":
+            MessageLookupByLibrary.simpleMessage("Ingen indlæg fundet"),
+        "home_tv_posts": MessageLookupByLibrary.simpleMessage("Indlæg"),
+        "login_btn_forgot_password":
+            MessageLookupByLibrary.simpleMessage("Glemt adgangskode?"),
+        "login_btn_sign_in": MessageLookupByLibrary.simpleMessage("Log ind"),
+        "login_end": MessageLookupByLibrary.simpleMessage(
+            "------------------------------------------------------------------------------------"),
+        "login_error_fill_fields": MessageLookupByLibrary.simpleMessage(
+            "Udfyld venligst alle felterne"),
+        "login_et_user_email":
+            MessageLookupByLibrary.simpleMessage("Brugernavn"),
+        "login_et_user_password":
+            MessageLookupByLibrary.simpleMessage("Adgangskode"),
+        "login_start": MessageLookupByLibrary.simpleMessage(
+            "Below are list of strings for login da ")
+      };
 }
