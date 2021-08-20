@@ -61,9 +61,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
               context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
             },
             getActiveAddressSuccess: (data) {
-              if (data.response.address != null) {
-                controller.setActiveAddress(data.response.address!);
-              }
+              controller.setActiveAddress(data.response.address!);
               context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
             },
             addressListFailed: (e) {
