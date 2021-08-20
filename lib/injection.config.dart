@@ -22,7 +22,7 @@ import 'application/auth/register/register_bloc.dart' as _i41;
 import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i42;
 import 'application/core/app_bloc.dart' as _i18;
 import 'application/home/home_user_bloc/home_user_bloc.dart' as _i36;
-import 'application/order/order_bloc.dart' as _i40;
+import 'application/order/bloc/order_bloc.dart' as _i40;
 import 'domain/auth/i_auth_facade.dart' as _i37;
 import 'domain/core/constants/network/env.dart' as _i8;
 import 'domain/core/interfaces/i_location_service.dart' as _i11;

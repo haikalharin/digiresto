@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'order_view_controller.dart';
+import '../../application/order/order_view_controller.dart';
 
 class PaymentReceiptScreen extends GetView<OrderViewController> {
   //OrderStore _orderStore;

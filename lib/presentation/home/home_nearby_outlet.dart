@@ -1,8 +1,8 @@
-import 'package:digiresto/application/order/order_bloc.dart';
+import 'package:digiresto/application/home/home_nearby_oulet_view_controller.dart';
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/widgets/list/category_outlet_widget.dart';
@@ -10,16 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class BodyNearbyWidgetController extends GetxController {
-  RxList<OutletList> listOutlet = List<OutletList>.empty().obs;
-  var page = 1.obs;
-}
-
 class HomeNearbyOutletScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
-    Get.put(BodyNearbyWidgetController());
+    Get.put(HomeNearbyOutletViewController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -44,7 +39,7 @@ class HomeNearbyOutletScreen extends StatelessWidget {
   }
 }
 
-class _BodyNearbyWidget extends GetView<BodyNearbyWidgetController> {
+class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
   final HomeOrderViewArgument args;
   _BodyNearbyWidget({required this.args});
 

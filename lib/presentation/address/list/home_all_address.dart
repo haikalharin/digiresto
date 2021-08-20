@@ -1,4 +1,5 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
+import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
@@ -16,9 +17,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import '../../home/home_content.dart';
-
-class HomeAllAddressScreen extends GetView<HomeContentController> {
+class HomeAllAddressScreen extends GetView<HomeContentViewController> {
   goBack(BuildContext context) {
     Get.back();
   }
@@ -65,7 +64,7 @@ class HomeAllAddressScreen extends GetView<HomeContentController> {
   }
 }
 
-class _AllAddressViewBody extends GetView<HomeContentController> {
+class _AllAddressViewBody extends GetView<HomeContentViewController> {
   @override
   Widget build(BuildContext context) {
     getAddress();

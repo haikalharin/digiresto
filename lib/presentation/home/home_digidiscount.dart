@@ -1,9 +1,9 @@
-import 'package:digiresto/application/order/order_bloc.dart';
+import 'package:digiresto/application/home/home_digidiscount_oulet_view_controller.dart';
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
-import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class HomeDigidiscountScreenController extends GetxController {
-  RxList<PromoOutlet> listPromoOutlet = List<PromoOutlet>.empty().obs;
-  var page = 1.obs;
-}
-
-class HomeDigidiscountScreen extends GetView<HomeDigidiscountScreenController> {
+class HomeDigidiscountScreen
+    extends GetView<HomeDigidiscountOutletViewController> {
   goBack(BuildContext context) {
     Get.back();
   }
@@ -93,7 +89,7 @@ class HomeDigidiscountScreen extends GetView<HomeDigidiscountScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeDigidiscountScreenController());
+    Get.put(HomeDigidiscountOutletViewController());
     Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
         GetPromoOutletParam(
             body: GetPromoOutletBodyParam(),

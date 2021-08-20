@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:digiresto/application/core/app_bloc.dart';
+import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
@@ -8,7 +9,6 @@ import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
-import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -22,43 +22,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
-class HomeContentController extends GetxController {
-  RxBool loadingHistory = false.obs;
-  RxBool loadingHotPromo = false.obs;
-  RxBool loadingPromo = false.obs;
-  RxBool loadingTraceOrder = false.obs;
-  RxBool loadingListAddress = false.obs;
-  RxList<UserAddress> listAddress = List<UserAddress>.empty().obs;
-  RxString activeAddress = "".obs;
-  RxInt initialPage = 0.obs;
-  RxInt slideIndex = 0.obs;
-  Rx<Position> currentPosition = Position(
-          longitude: 0,
-          latitude: 0,
-          timestamp: DateTime.now(),
-          accuracy: 0,
-          altitude: 0,
-          heading: 0,
-          speed: 0,
-          speedAccuracy: 0)
-      .obs;
-  RxList<StaticBanner> listStaticBanner = (List<StaticBanner>.empty()).obs;
-  Rx<UserAddress> currentLocation = UserAddress().obs;
-  setLoadingHistory(bool value) => loadingHistory.value = value;
-  setLoadingHotPromo(bool value) => loadingHotPromo.value = value;
-  setLoadingPromo(bool value) => loadingPromo.value = value;
-  setLoadingTraceOrder(bool value) => loadingTraceOrder.value = value;
-  setInitialPage(int value) => initialPage.value = value;
-  setSlideIndex(int value) => slideIndex.value = value;
-  setLoadingListAddress(bool value) => loadingListAddress.value = value;
-  setActiveAddress(String value) => activeAddress.value = value;
-  setListAddress(List<UserAddress> value) => listAddress.value = value;
-  setCurrentPosition(Position value) => currentPosition.value = value;
-  setStaticBanner(List<StaticBanner> value) => listStaticBanner.value = value;
-  setCurrentLocation(UserAddress value) => currentLocation.value = value;
-}
-
-class HomeContentScreen extends GetView<HomeContentController> {
+class HomeContentScreen extends GetView<HomeContentViewController> {
   @override
   Widget build(BuildContext context) {
     Get.put(
@@ -66,7 +30,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
           initialPage: 0,
         ),
         tag: "home");
-    Get.put(HomeContentController());
+    Get.put(HomeContentViewController());
     showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
@@ -174,7 +138,8 @@ class HomeContentScreen extends GetView<HomeContentController> {
   }
 
   Widget _hotPromo() {
-    var _loadingHotPromo = Get.find<HomeContentController>().loadingHotPromo;
+    var _loadingHotPromo =
+        Get.find<HomeContentViewController>().loadingHotPromo;
     return //_orderStore?.listHotPromo != null || _loSadingHotPromo == true
         true
             ? Container(
@@ -225,7 +190,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
   }
 
   Widget _historyOrder() {
-    var _loadingHistory = Get.find<HomeContentController>().loadingHistory;
+    var _loadingHistory = Get.find<HomeContentViewController>().loadingHistory;
     return //_transactionStore?.listTransactionHistory != null ||
         _loadingHistory.value == true
             ? Container(
@@ -260,7 +225,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
 
   Widget _trackOrder() {
     var _loadingTraceOrder =
-        Get.find<HomeContentController>().loadingTraceOrder;
+        Get.find<HomeContentViewController>().loadingTraceOrder;
     // return _transactionStore!.listOngoingTransaction!.isNotEmpty ||
     return _loadingTraceOrder.value == true
         ? Container(
@@ -389,7 +354,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
   }
 
   _getCurrentLocation() async {
-    Get.find<HomeContentController>().setLoadingListAddress(true);
+    Get.find<HomeContentViewController>().setLoadingListAddress(true);
     print("get current location");
     await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best,
@@ -398,11 +363,11 @@ class HomeContentScreen extends GetView<HomeContentController> {
       print("lat: " + position.latitude.toString());
       print("lng:" + position.longitude.toString());
 
-      Get.find<HomeContentController>().setCurrentPosition(position);
+      Get.find<HomeContentViewController>().setCurrentPosition(position);
 
-      Get.find<HomeContentController>().setLoadingListAddress(false);
+      Get.find<HomeContentViewController>().setLoadingListAddress(false);
     }).catchError((e) {
-      Get.find<HomeContentController>().setLoadingListAddress(false);
+      Get.find<HomeContentViewController>().setLoadingListAddress(false);
       ErrorPopupWidget.show(Get.context!, "Digiresto",
           "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
           () {
@@ -441,7 +406,7 @@ class HomeContentScreen extends GetView<HomeContentController> {
   }
 }
 
-class _StaticBanner extends GetView<HomeContentController> {
+class _StaticBanner extends GetView<HomeContentViewController> {
   _StaticBanner({Key? key}) : super(key: key);
   _showDetailImage(String imageUrl) {
     Navigator.of(Get.context!).push(TransparentRoute(
@@ -504,7 +469,7 @@ class _StaticBanner extends GetView<HomeContentController> {
           child: PageView(
             scrollDirection: Axis.horizontal,
             onPageChanged: (index) {
-              Get.find<HomeContentController>().setSlideIndex(index);
+              Get.find<HomeContentViewController>().setSlideIndex(index);
             },
             controller: _controller,
             children: [
@@ -551,7 +516,7 @@ class _StaticBanner extends GetView<HomeContentController> {
   }
 }
 
-class _YourLocation extends GetView<HomeContentController> {
+class _YourLocation extends GetView<HomeContentViewController> {
   _YourLocation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -650,7 +615,7 @@ class _SearchBox extends StatelessWidget {
   }
 }
 
-class _FoodRowItem extends GetView<HomeContentController> {
+class _FoodRowItem extends GetView<HomeContentViewController> {
   final String imageAsset;
   final String label;
   const _FoodRowItem({

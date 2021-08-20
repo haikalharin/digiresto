@@ -1,8 +1,8 @@
-import 'package:digiresto/application/order/order_bloc.dart';
+import 'package:digiresto/application/home/home_category_oulet_view_controller.dart';
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_by_category_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
@@ -10,26 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class BodyCategoryWidgetController extends GetxController {
-  RxList<OutletCategoryDataResponse> listOutlet =
-      List<OutletCategoryDataResponse>.empty().obs;
-  var page = 1.obs;
-  var category = "".obs;
-  setCategoryByTitle(String title) {
-    var titleLowered = title.toLowerCase();
-    if (titleLowered == "frozen food") {
-      category.value = "frozen";
-    } else if (titleLowered == "indonesia pasti bisa") {
-      category.value = "indonesia bisa";
-    }
-  }
-}
-
-class HomeCategoryOutletScreen extends GetView<BodyCategoryWidgetController> {
+class HomeCategoryOutletScreen
+    extends GetView<HomeCategoryOutletViewController> {
   @override
   Widget build(BuildContext context) {
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
-    Get.put(BodyCategoryWidgetController());
+    Get.put(HomeCategoryOutletViewController());
     controller.setCategoryByTitle(args.title);
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +41,7 @@ class HomeCategoryOutletScreen extends GetView<BodyCategoryWidgetController> {
   }
 }
 
-class _BodyCategoryWidget extends GetView<BodyCategoryWidgetController> {
+class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
   final HomeOrderViewArgument args;
   _BodyCategoryWidget({required this.args});
 
