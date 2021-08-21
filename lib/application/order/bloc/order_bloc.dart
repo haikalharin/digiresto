@@ -5,7 +5,6 @@ import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
-import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/param/checkout_cart_param.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
@@ -49,7 +48,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           request.request.copyWith(queryString: queryString).toJson());
       yield getOutletByLocation.fold(
         (error) => OrderState.loadFailure(error),
-        (list) => OrderState.getOutletByLocationSuccess(list),
+        (list) => OrderState.getOutletByLocationSuccess(list.data),
       );
     }, getOutletByCategory: (request) async* {
       final address = await _userRepository.getActiveAddress();
@@ -61,7 +60,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           request.request.copyWith(queryString: queryString).toJson());
       yield getOutletByCategory.fold(
         (error) => OrderState.loadFailure(error),
-        (list) => OrderState.getOutletByCategorySuccess(list),
+        (list) => OrderState.getOutletByCategorySuccess(list.data),
       );
     }, getPromoOutlet: (request) async* {
       final address = await _userRepository.getActiveAddress();
@@ -86,7 +85,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           await _orderRepository.getDetailOutlet(request.request.toJson());
       yield getDetailOutlet.fold(
         (error) => OrderState.loadFailure(error),
-        (list) => OrderState.getDetailOutletSuccess(list),
+        (list) => OrderState.getDetailOutletSuccess(list.data),
       );
     }, getPaymentMethod: (request) async* {
       final getPaymentMethod =

@@ -1762,7 +1762,7 @@ class _$OrderStateTearOff {
   }
 
   _GetOutletByLocationSucess getOutletByLocationSuccess(
-      List<OutletList> response) {
+      List<OutletCategoryDataResponse> response) {
     return _GetOutletByLocationSucess(
       response,
     );
@@ -1787,7 +1787,8 @@ class _$OrderStateTearOff {
     );
   }
 
-  _GetDetailOutletSuccess getDetailOutletSuccess(DetailOutlet response) {
+  _GetDetailOutletSuccess getDetailOutletSuccess(
+      DetailOutletDataResponse response) {
     return _GetDetailOutletSuccess(
       response,
     );
@@ -1839,13 +1840,14 @@ mixin _$OrderState {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -1863,12 +1865,13 @@ mixin _$OrderState {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -1983,13 +1986,14 @@ class _$_Initial implements _Initial {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -2010,12 +2014,13 @@ class _$_Initial implements _Initial {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -2133,13 +2138,14 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -2160,12 +2166,13 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -2283,13 +2290,14 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -2310,12 +2318,13 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -2458,13 +2467,14 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -2485,12 +2495,13 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -2575,7 +2586,7 @@ abstract class _$GetOutletByLocationSucessCopyWith<$Res> {
   factory _$GetOutletByLocationSucessCopyWith(_GetOutletByLocationSucess value,
           $Res Function(_GetOutletByLocationSucess) then) =
       __$GetOutletByLocationSucessCopyWithImpl<$Res>;
-  $Res call({List<OutletList> response});
+  $Res call({List<OutletCategoryDataResponse> response});
 }
 
 /// @nodoc
@@ -2598,7 +2609,7 @@ class __$GetOutletByLocationSucessCopyWithImpl<$Res>
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as List<OutletList>,
+              as List<OutletCategoryDataResponse>,
     ));
   }
 }
@@ -2609,7 +2620,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
   const _$_GetOutletByLocationSucess(this.response);
 
   @override
-  final List<OutletList> response;
+  final List<OutletCategoryDataResponse> response;
 
   @override
   String toString() {
@@ -2643,13 +2654,14 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -2670,12 +2682,13 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -2747,10 +2760,11 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
 }
 
 abstract class _GetOutletByLocationSucess implements OrderState {
-  const factory _GetOutletByLocationSucess(List<OutletList> response) =
-      _$_GetOutletByLocationSucess;
+  const factory _GetOutletByLocationSucess(
+      List<OutletCategoryDataResponse> response) = _$_GetOutletByLocationSucess;
 
-  List<OutletList> get response => throw _privateConstructorUsedError;
+  List<OutletCategoryDataResponse> get response =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetOutletByLocationSucessCopyWith<_GetOutletByLocationSucess>
       get copyWith => throw _privateConstructorUsedError;
@@ -2829,13 +2843,14 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -2856,12 +2871,13 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -3014,13 +3030,14 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -3041,12 +3058,13 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -3197,13 +3215,14 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -3224,12 +3243,13 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -3315,7 +3335,9 @@ abstract class _$GetDetailOutletSuccessCopyWith<$Res> {
   factory _$GetDetailOutletSuccessCopyWith(_GetDetailOutletSuccess value,
           $Res Function(_GetDetailOutletSuccess) then) =
       __$GetDetailOutletSuccessCopyWithImpl<$Res>;
-  $Res call({DetailOutlet response});
+  $Res call({DetailOutletDataResponse response});
+
+  $DetailOutletDataResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -3337,8 +3359,15 @@ class __$GetDetailOutletSuccessCopyWithImpl<$Res>
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as DetailOutlet,
+              as DetailOutletDataResponse,
     ));
+  }
+
+  @override
+  $DetailOutletDataResponseCopyWith<$Res> get response {
+    return $DetailOutletDataResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
@@ -3348,7 +3377,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
   const _$_GetDetailOutletSuccess(this.response);
 
   @override
-  final DetailOutlet response;
+  final DetailOutletDataResponse response;
 
   @override
   String toString() {
@@ -3381,13 +3410,14 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -3408,12 +3438,13 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -3485,10 +3516,10 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
 }
 
 abstract class _GetDetailOutletSuccess implements OrderState {
-  const factory _GetDetailOutletSuccess(DetailOutlet response) =
+  const factory _GetDetailOutletSuccess(DetailOutletDataResponse response) =
       _$_GetDetailOutletSuccess;
 
-  DetailOutlet get response => throw _privateConstructorUsedError;
+  DetailOutletDataResponse get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetDetailOutletSuccessCopyWith<_GetDetailOutletSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3566,13 +3597,14 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -3593,12 +3625,13 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -3750,13 +3783,14 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -3777,12 +3811,13 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -3935,13 +3970,14 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -3962,12 +3998,13 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -4120,13 +4157,14 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -4147,12 +4185,13 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
@@ -4304,13 +4343,14 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
     required TResult Function(Exception message) loadFailure,
-    required TResult Function(List<OutletList> response)
+    required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
-    required TResult Function(DetailOutlet response) getDetailOutletSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
     required TResult Function(List<PaymentMethod> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
@@ -4331,12 +4371,13 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
     TResult Function(Exception message)? loadFailure,
-    TResult Function(List<OutletList> response)? getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
-    TResult Function(DetailOutlet response)? getDetailOutletSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,

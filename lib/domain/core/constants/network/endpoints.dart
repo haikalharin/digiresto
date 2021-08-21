@@ -45,11 +45,16 @@ class Endpoints {
   static const String urlGetHotPromo = "/forward?r=gethotpromo";
   static const String urlGetStaticBanner = "/forward?r=getstaticbanner";
   static const String urlGetPromoOutlet = "/forward?r=getpromooutlet";
-  static const String urlGetOutletByLocation = "/forward?r=getoutletbylocation";
-  static const String urlGetOutletByCategory = "/forward?r=getoutletbycategory";
+  static const String urlGetOutletByLocation =
+      "/forward?r=v2/getoutletbylocation";
+  static const String urlGetOutletByCategory =
+      "/forward?r=v2/getoutletbycategory";
 
   //order
-  static const String urlGetProduct = "/forward?r=getproduct";
+  static const String urlGetDetailOutlet = "/forward?r=v2/getdetailoutlet";
+  static const String urlGetOutletProductCategory =
+      "/forward?r=v2/getproductcategory";
+  static const String urlGetProduct = "/forward?r=v2/getproduct";
   static const String urlCreateCartSession = "/forward?r=createcartsession";
   static const String urlUpdateCartSession = "/forward?r=updatecartsession";
   static const String urlGetPaymentMethod = "/forward?r=getpaymentmethods";

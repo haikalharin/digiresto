@@ -5,7 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
-import 'package:digiresto/presentation/widgets/list/category_outlet_widget.dart';
+import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -159,7 +159,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
             _search(),
             Obx(() {
               return (controller.listOutlet.length > 0)
-                  ? ListNearbyOutletWidget(
+                  ? ListCategoryOutletWidget(
                       loadMoreAction: loadMoreOutletByLocation,
                       runAction: (param) {
                         "_orderStore!.setOrderParameter";

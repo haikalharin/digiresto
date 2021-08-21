@@ -1,9 +1,10 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/entity/order/param/outlet_product_category_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListFoodCategory extends StatelessWidget {
-  final List<dynamic> data;
+  final List<OutletProductDataResponse> data;
   final Axis scrollDirection;
   final String selected;
   final void Function(String?) runAction;
@@ -27,23 +28,22 @@ class ListFoodCategory extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               Color selectedTextColor;
               Color selectedContaineerColor;
-              if (selected == null && data[index]["id"] == 0) {
+              if (selected == null && data[index].id == 0) {
                 selectedTextColor = Colors.white;
                 selectedContaineerColor = AppColors.redYoung;
               } else {
-                selectedTextColor = selected == data[index]["title"]
-                    ? Colors.white
-                    : Colors.black;
-                selectedContaineerColor = selected == data[index]["title"]
+                selectedTextColor =
+                    selected == data[index].name ? Colors.white : Colors.black;
+                selectedContaineerColor = selected == data[index].name
                     ? AppColors.redYoung
                     : AppColors.greyStroke;
               }
               return GestureDetector(
                 onTap: () {
-                  if (data[index]["id"] == 0) {
+                  if (data[index].id == 0) {
                     runAction(null);
                   } else {
-                    runAction(data[index]["title"]);
+                    runAction(data[index].name);
                   }
                 },
                 child: Container(
@@ -56,7 +56,7 @@ class ListFoodCategory extends StatelessWidget {
                   ),
                   child: Center(
                       child: Text(
-                    '${data[index]["title"]}',
+                    '${data[index].name}',
                     style: TextStyle(color: selectedTextColor),
                   )),
                 ),

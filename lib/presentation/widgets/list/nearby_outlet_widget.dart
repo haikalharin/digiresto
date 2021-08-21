@@ -1,14 +1,15 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/presentation/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListCategoryOutletWidget extends StatefulWidget {
-  final List<dynamic> data;
+  final List<OutletCategoryDataResponse> data;
   final Axis scrollDirection;
   final height;
-  final void Function(Map<String, dynamic>) runAction;
+  final void Function(OutletCategoryDataResponse data) runAction;
   final void Function() loadMoreAction;
   const ListCategoryOutletWidget(
       {Key? key,
@@ -62,23 +63,24 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
               //     .getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
                 onTap: () => {
-                  if (widget.data[index].isOwnerLoggedIn)
+                  if (widget.data[index].isOpen)
                     {
                       // _oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
                       //   _showMyDialog(context, widget.data[index])
                       //print(widget.data[index].name);
-                      _orderMethodPopup.showMyDialog(
-                          context,
-                          {
-                            "name": widget.data[index].name,
-                            "merchantName":
-                                widget.data[index].merchantName.toString(),
-                            "orderMethod":
-                                widget.data[index].orderMethod["defaultList"],
-                            "detailName": widget.data[index].outletName,
-                            // "userProfile": _userStore!.profile
-                          },
-                          widget.runAction)
+                      // _orderMethodPopup.showMyDialog(
+                      //     context,
+                      //     {
+                      //       "name": widget.data[index].name,
+                      //       "merchantName":
+                      //           widget.data[index].merchantName.toString(),
+                      //       "orderMethod":
+                      //           widget.data[index].orderMethod["defaultList"],
+                      //       "detailName": widget.data[index].outletName,
+                      //       // "userProfile": _userStore!.profile
+                      //     },
+                      //     widget.runAction)
+                      widget.runAction(widget.data[index])
                     }
                 },
                 child: Column(
@@ -107,7 +109,7 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                                     alignment: Alignment.center,
                                   ),
                                 )),
-                            !widget.data[index].isOwnerLoggedIn
+                            !widget.data[index].isOpen
                                 ? ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
@@ -134,8 +136,7 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                               Container(
                                 padding: const EdgeInsets.only(top: 5),
                                 width: MediaQuery.of(context).size.width - 160,
-                                child: Text(
-                                    widget.data[index].outletName.toString(),
+                                child: Text(widget.data[index].name.toString(),
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -160,14 +161,15 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5),
-                                child: Text(widget.data[index].distance["text"],
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.left),
+                                child:
+                                    Text(widget.data[index].distance.distance,
+                                        style: TextStyle(
+                                          fontFamily: "roboto",
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        textAlign: TextAlign.left),
                               ),
                             ],
                           ),

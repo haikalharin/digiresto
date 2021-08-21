@@ -5,7 +5,6 @@ import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
-import 'package:digiresto/domain/entity/order/outlet_list.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
@@ -20,15 +19,15 @@ class OrderRepository {
   final OrderApi _orderApi;
 
   OrderRepository(this._orderApi);
-  Future<Either<Exception, List<OutletList>>> getOutletByLocation(
+  Future<Either<Exception, OutletCategoryResponse>> getOutletByLocation(
       Map<String, dynamic> object) async {
     return await _orderApi.getOutletByLocation(object).then((value) {
       return value;
     });
   }
 
-  Future<Either<Exception, List<OutletCategoryDataResponse>>>
-      getOutletByCategory(Map<String, dynamic> object) async {
+  Future<Either<Exception, OutletCategoryResponse>> getOutletByCategory(
+      Map<String, dynamic> object) async {
     return await _orderApi.getOutletByCategory(object).then((value) {
       return value;
     });
@@ -55,7 +54,7 @@ class OrderRepository {
     });
   }
 
-  Future<Either<Exception, DetailOutlet>> getDetailOutlet(
+  Future<Either<Exception, DetailOutletResponse>> getDetailOutlet(
       Map<String, dynamic> object) async {
     return await _orderApi.getDetailOutlet(object).then((value) {
       return value;

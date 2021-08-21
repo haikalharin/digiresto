@@ -1,17 +1,22 @@
 import 'dart:core';
 
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/outlet_product_category_response.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_food_category_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_outlet_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'detailProductDialog.dart';
@@ -22,10 +27,11 @@ class DetailOutletScreen extends StatefulWidget {
 }
 
 class _DetailOutletScreenState extends State<DetailOutletScreen> {
+  OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
   final searchController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
   //OrderStore _orderStore;
-  DetailOutlet? detailOutlet;
+  DetailOutletDataResponse? detailOutlet;
 
   //bool loadDataApi;
   int page = 1;
@@ -88,6 +94,10 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
   void getDetailOutlet(
       String outletName, String filter, String category, int pageParam) {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
+        GetDetailOutletParam(
+            body: GetDetailOutletBodyParam(),
+            queryString: GetDetailOutletQueryParam(outletId: args.outletId))));
     // setState(() {
     //   detailOutletLoading = true;
     // });
@@ -162,7 +172,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     );
   }
 
-  Widget _header(DetailOutlet data) {
+  Widget _header(DetailOutletDataResponse data) {
     return Stack(children: [
       Container(
         height: 135,
@@ -235,10 +245,8 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
               ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   GestureDetector(
                     onTap: () {
-                      print("launch call " +
-                          data.outlet!["detail"]["phone"].toString());
-                      LaunchUrl.call(
-                          data.outlet!["detail"]["phone"].toString());
+                      print("launch call " + data.ownerPhone.toString());
+                      LaunchUrl.call(data.ownerPhone.toString());
                     },
                     child: Container(
                       height: 30,
@@ -254,7 +262,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      String phone = data.outlet!["detail"]["phone"].toString();
+                      String phone = data.ownerPhone.toString();
                       String url = "https://api.whatsapp.com/send/?phone=" +
                           phone +
                           "&text=hi%20Digiresto";
@@ -279,26 +287,27 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     ]);
   }
 
-  Widget _category(DetailOutlet data, String selected) {
-    List<dynamic> paramCategory = [];
-    paramCategory.add({"id": 0, "title": "SEMUA"});
-    paramCategory.addAll(data.category!);
+  Widget _category(List<OutletProductDataResponse> data, String selected) {
+    List<OutletProductDataResponse> paramCategory = [];
+    paramCategory.add(OutletProductDataResponse(
+        code: '0', id: 0, name: 'SEMUA', order: null));
+    paramCategory.addAll(data);
     return ListFoodCategory(
         data: paramCategory,
         selected: selected,
         runAction: searchActionCategory);
   }
 
-  Widget _promo(DetailOutlet data) {
-    return data.merchant!["promo"].length == 0
-        ? Container()
-        : DetailOutletHotPromoWidget(
-            height: 175.0,
-            data: data.merchant!["promo"],
-            scrollDirection: Axis.horizontal);
-  }
+  // Widget _promo(DetailOutletDataResponse data) {
+  //   return data.merchant!["promo"].length == 0
+  //       ? Container()
+  //       : DetailOutletHotPromoWidget(
+  //           height: 175.0,
+  //           data: data.merchant!["promo"],
+  //           scrollDirection: Axis.horizontal);
+  // }
 
-  Widget _product(DetailOutlet data) {
+  Widget _product(List<OutletListProductDataResponse> data) {
     return Column(
       children: [
         Container(
@@ -318,8 +327,10 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
         ),
         ListProductOutletWidget(
           orderType: orderType!,
-          data: data.product!,
-          runDetailAction: _showDetailProduct,
+          data: data,
+          runDetailAction: (_showDetailProduct, orderType) {
+            "_showDetailProduct";
+          },
           scrollDirection: Axis.vertical,
         ),
         Loading.smallLoading(detailOutletLoading),
@@ -417,22 +428,31 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
       body: Column(
         children: [
           TopBackgound(backgroundColor: AppColors.red),
-          Container(
-            height: MediaQuery.of(context).size.height - 30,
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  _header(detailOutlet!),
-                  detailOutlet != null ? _search() : Container(),
-                  detailOutlet != null
-                      ? _category(detailOutlet!, filterCategory!)
-                      : Container(),
-                  detailOutlet != null ? _promo(detailOutlet!) : Container(),
-                  detailOutlet != null ? _product(detailOutlet!) : Container(),
-                ],
-              ),
-            ),
+          BlocConsumer<OrderBloc, OrderState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Container(
+                height: MediaQuery.of(context).size.height - 30,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    children: [
+                      _header(detailOutlet!),
+                      detailOutlet != null ? _search() : Container(),
+                      // detailOutlet != null
+                      //     ? _category(detailOutlet!, filterCategory!)
+                      //     : Container(),
+                      // detailOutlet != null
+                      //     ? _promo(detailOutlet!)
+                      //     : Container(),
+                      // detailOutlet != null
+                      //     ? _product(detailOutlet!)
+                      //     : Container(),
+                    ],
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),

@@ -8,5 +8,6 @@ class OrderViewController extends GetxController {
   var orderSalesTypes = "".obs;
   Rx<DeliveryMethod> selectedDeliveryMethod = DeliveryMethod(name: "").obs;
   Rx<TransactionMobile> transaction = TransactionMobile().obs;
-  Rx<DetailOutlet> detailOutlet = DetailOutlet().obs;
+  Rx<DetailOutletDataResponse> detailOutlet =
+      DetailOutletDataResponse.fromJson({" ": " "}).obs;
 }

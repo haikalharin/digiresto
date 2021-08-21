@@ -1,7 +1,8 @@
-import 'package:digiresto/domain/entity/order/outlet_list.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:get/get.dart';
 
 class HomeNearbyOutletViewController extends GetxController {
-  RxList<OutletList> listOutlet = List<OutletList>.empty().obs;
+  RxList<OutletCategoryDataResponse> listOutlet =
+      List<OutletCategoryDataResponse>.empty().obs;
   var page = 1.obs;
 }

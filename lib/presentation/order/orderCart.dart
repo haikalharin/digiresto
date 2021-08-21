@@ -29,7 +29,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   // UserStore _userStore;
   // OrderStore _orderStore;
   //TransactionStore _transactionStore;
-  DetailOutlet? detailOutlet;
+  DetailOutletDataResponse? detailOutlet;
   Loading _loading = new Loading();
 
   void loadingAdd() {

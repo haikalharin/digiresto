@@ -8,7 +8,7 @@ class OrderState with _$OrderState {
   const factory OrderState.loadFailure(Exception message) = _LoadFailure;
 
   const factory OrderState.getOutletByLocationSuccess(
-      List<OutletList> response) = _GetOutletByLocationSucess;
+      List<OutletCategoryDataResponse> response) = _GetOutletByLocationSucess;
 
   const factory OrderState.getOutletByCategorySuccess(
       List<OutletCategoryDataResponse> response) = _GetOutletByCategorySucess;
@@ -19,8 +19,8 @@ class OrderState with _$OrderState {
   const factory OrderState.getHotPromoSuccess(List<HotPromo> response) =
       _GetHotPromoSuccess;
 
-  const factory OrderState.getDetailOutletSuccess(DetailOutlet response) =
-      _GetDetailOutletSuccess;
+  const factory OrderState.getDetailOutletSuccess(
+      DetailOutletDataResponse response) = _GetDetailOutletSuccess;
 
   const factory OrderState.getPaymentMethodSuccess(
       List<PaymentMethod> response) = _GetPaymentMethodSuccess;

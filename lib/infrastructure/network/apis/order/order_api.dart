@@ -11,8 +11,9 @@ import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
-import 'package:digiresto/domain/entity/order/outlet_list.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
+import 'package:digiresto/domain/entity/order/param/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
@@ -28,7 +29,7 @@ class OrderApi {
     this._storage,
   );
 
-  Future<Either<Exception, List<OutletList>>> getOutletByLocation(
+  Future<Either<Exception, OutletCategoryResponse>> getOutletByLocation(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetOutletByLocation;
@@ -43,14 +44,7 @@ class OrderApi {
               //   }
               // }
               );
-
-      var userData = (apiResult as Map<String, dynamic>)[
-          'data']; //mengambil data data didalam jsonObject
-      List<OutletList> listUserData = [];
-      for (int i = 0; i < userData.length; i++) {
-        listUserData.add(OutletList.createOutletList(userData[i]));
-      }
-      return right(listUserData);
+      return right(OutletCategoryResponse.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -60,8 +54,8 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, List<OutletCategoryDataResponse>>>
-      getOutletByCategory(Map<String, dynamic> object) async {
+  Future<Either<Exception, OutletCategoryResponse>> getOutletByCategory(
+      Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetOutletByCategory;
       final apiResult =
@@ -75,19 +69,14 @@ class OrderApi {
               //   }
               // }
               );
-
-      var userData = (apiResult as Map<String, dynamic>)[
-          'data']; //mengambil data data didalam jsonObject
-      List<OutletCategoryDataResponse> listUserData = [];
-      for (int i = 0; i < userData.length; i++) {
-        listUserData.add(OutletCategoryDataResponse.fromJson(userData[i]));
-      }
-      return right(listUserData);
+      return right(OutletCategoryResponse.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
     } catch (e, stactrace) {
+      print(e.toString());
+      print(stactrace.toString());
       return left(NetworkException(message: stactrace));
     }
   }
@@ -188,7 +177,63 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, DetailOutlet>> getDetailOutlet(
+  Future<Either<Exception, DetailOutletResponse>> getDetailOutlet(
+      Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlGetDetailOutlet;
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, content: object
+              // {
+              //   "query_string": {
+              //     "outletName": object["outletName"],
+              //     "page": object["page"],
+              //     "limit": object["limit"],
+              //     "produclds": object["produclds"],
+              //     "filter": object["filter"],
+              //     "category": object["category"]
+              //   },
+              //   "body": {}
+              // }
+              );
+      return right(DetailOutletResponse.fromJson(apiResult));
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, OutletProductCategoryResponse>>
+      getOutletProductCategory(Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlGetOutletProductCategory;
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, content: object
+              // {
+              //   "query_string": {
+              //     "outletName": object["outletName"],
+              //     "page": object["page"],
+              //     "limit": object["limit"],
+              //     "produclds": object["produclds"],
+              //     "filter": object["filter"],
+              //     "category": object["category"]
+              //   },
+              //   "body": {}
+              // }
+              );
+      return right(OutletProductCategoryResponse.fromJson(apiResult));
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, OutletListProductResponse>> getOutletListProduct(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetProduct;
@@ -206,8 +251,7 @@ class OrderApi {
               //   "body": {}
               // }
               );
-      var userData = (apiResult as Map<String, dynamic>)['data'];
-      return right(DetailOutlet.createDetailOutlet(userData));
+      return right(OutletListProductResponse.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {

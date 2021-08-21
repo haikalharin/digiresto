@@ -250,51 +250,33 @@ class _$OutletCategoryDataResponseTearOff {
   const _$OutletCategoryDataResponseTearOff();
 
   _OutletCategoryDataResponse call(
-      {required String id,
+      {required String endpointName,
+      required String id,
       required String name,
-      required String outletId,
-      required bool isNonSku,
-      required Detail detail,
-      required dynamic roundingDigit,
-      required dynamic roundingType,
-      required bool isLive,
-      required OrderMethod orderMethod,
+      required String city,
+      required List<String> salesTypes,
+      required bool isOpen,
+      required String? logo,
+      required int countOutlet,
       required String merchantId,
-      required Distance distance,
-      required bool isOwnerLoggedIn,
       required String merchantName,
-      required Category category,
+      required String? merchantLogo,
       required String callbackUrl,
-      required List<String> merchantTags,
-      required String outletName,
-      required String merchantCategory,
-      required List<String> merchantKeywords,
-      required int searchWeight,
-      required SearchWeightDetail searchWeightDetail,
-      required String merchantLogo}) {
+      required OutletCategoryDataDistanceResponse distance}) {
     return _OutletCategoryDataResponse(
+      endpointName: endpointName,
       id: id,
       name: name,
-      outletId: outletId,
-      isNonSku: isNonSku,
-      detail: detail,
-      roundingDigit: roundingDigit,
-      roundingType: roundingType,
-      isLive: isLive,
-      orderMethod: orderMethod,
+      city: city,
+      salesTypes: salesTypes,
+      isOpen: isOpen,
+      logo: logo,
+      countOutlet: countOutlet,
       merchantId: merchantId,
-      distance: distance,
-      isOwnerLoggedIn: isOwnerLoggedIn,
       merchantName: merchantName,
-      category: category,
-      callbackUrl: callbackUrl,
-      merchantTags: merchantTags,
-      outletName: outletName,
-      merchantCategory: merchantCategory,
-      merchantKeywords: merchantKeywords,
-      searchWeight: searchWeight,
-      searchWeightDetail: searchWeightDetail,
       merchantLogo: merchantLogo,
+      callbackUrl: callbackUrl,
+      distance: distance,
     );
   }
 
@@ -308,29 +290,20 @@ const $OutletCategoryDataResponse = _$OutletCategoryDataResponseTearOff();
 
 /// @nodoc
 mixin _$OutletCategoryDataResponse {
+  String get endpointName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get outletId => throw _privateConstructorUsedError;
-  bool get isNonSku => throw _privateConstructorUsedError;
-  Detail get detail => throw _privateConstructorUsedError;
-  dynamic get roundingDigit => throw _privateConstructorUsedError;
-  dynamic get roundingType => throw _privateConstructorUsedError;
-  bool get isLive => throw _privateConstructorUsedError;
-  OrderMethod get orderMethod => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
+  List<String> get salesTypes => throw _privateConstructorUsedError;
+  bool get isOpen => throw _privateConstructorUsedError;
+  String? get logo => throw _privateConstructorUsedError;
+  int get countOutlet => throw _privateConstructorUsedError;
   String get merchantId => throw _privateConstructorUsedError;
-  Distance get distance => throw _privateConstructorUsedError;
-  bool get isOwnerLoggedIn => throw _privateConstructorUsedError;
   String get merchantName => throw _privateConstructorUsedError;
-  Category get category => throw _privateConstructorUsedError;
+  String? get merchantLogo => throw _privateConstructorUsedError;
   String get callbackUrl => throw _privateConstructorUsedError;
-  List<String> get merchantTags => throw _privateConstructorUsedError;
-  String get outletName => throw _privateConstructorUsedError;
-  String get merchantCategory => throw _privateConstructorUsedError;
-  List<String> get merchantKeywords => throw _privateConstructorUsedError;
-  int get searchWeight => throw _privateConstructorUsedError;
-  SearchWeightDetail get searchWeightDetail =>
+  OutletCategoryDataDistanceResponse get distance =>
       throw _privateConstructorUsedError;
-  String get merchantLogo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -344,32 +317,21 @@ abstract class $OutletCategoryDataResponseCopyWith<$Res> {
           $Res Function(OutletCategoryDataResponse) then) =
       _$OutletCategoryDataResponseCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {String endpointName,
+      String id,
       String name,
-      String outletId,
-      bool isNonSku,
-      Detail detail,
-      dynamic roundingDigit,
-      dynamic roundingType,
-      bool isLive,
-      OrderMethod orderMethod,
+      String city,
+      List<String> salesTypes,
+      bool isOpen,
+      String? logo,
+      int countOutlet,
       String merchantId,
-      Distance distance,
-      bool isOwnerLoggedIn,
       String merchantName,
-      Category category,
+      String? merchantLogo,
       String callbackUrl,
-      List<String> merchantTags,
-      String outletName,
-      String merchantCategory,
-      List<String> merchantKeywords,
-      int searchWeight,
-      SearchWeightDetail searchWeightDetail,
-      String merchantLogo});
+      OutletCategoryDataDistanceResponse distance});
 
-  $DetailCopyWith<$Res> get detail;
-  $OrderMethodCopyWith<$Res> get orderMethod;
-  $DistanceCopyWith<$Res> get distance;
+  $OutletCategoryDataDistanceResponseCopyWith<$Res> get distance;
 }
 
 /// @nodoc
@@ -383,30 +345,25 @@ class _$OutletCategoryDataResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? endpointName = freezed,
     Object? id = freezed,
     Object? name = freezed,
-    Object? outletId = freezed,
-    Object? isNonSku = freezed,
-    Object? detail = freezed,
-    Object? roundingDigit = freezed,
-    Object? roundingType = freezed,
-    Object? isLive = freezed,
-    Object? orderMethod = freezed,
+    Object? city = freezed,
+    Object? salesTypes = freezed,
+    Object? isOpen = freezed,
+    Object? logo = freezed,
+    Object? countOutlet = freezed,
     Object? merchantId = freezed,
-    Object? distance = freezed,
-    Object? isOwnerLoggedIn = freezed,
     Object? merchantName = freezed,
-    Object? category = freezed,
-    Object? callbackUrl = freezed,
-    Object? merchantTags = freezed,
-    Object? outletName = freezed,
-    Object? merchantCategory = freezed,
-    Object? merchantKeywords = freezed,
-    Object? searchWeight = freezed,
-    Object? searchWeightDetail = freezed,
     Object? merchantLogo = freezed,
+    Object? callbackUrl = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
+      endpointName: endpointName == freezed
+          ? _value.endpointName
+          : endpointName // ignore: cast_nullable_to_non_nullable
+              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -415,106 +372,53 @@ class _$OutletCategoryDataResponseCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      outletId: outletId == freezed
-          ? _value.outletId
-          : outletId // ignore: cast_nullable_to_non_nullable
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String,
-      isNonSku: isNonSku == freezed
-          ? _value.isNonSku
-          : isNonSku // ignore: cast_nullable_to_non_nullable
+      salesTypes: salesTypes == freezed
+          ? _value.salesTypes
+          : salesTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      isOpen: isOpen == freezed
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
               as bool,
-      detail: detail == freezed
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as Detail,
-      roundingDigit: roundingDigit == freezed
-          ? _value.roundingDigit
-          : roundingDigit // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      roundingType: roundingType == freezed
-          ? _value.roundingType
-          : roundingType // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isLive: isLive == freezed
-          ? _value.isLive
-          : isLive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      orderMethod: orderMethod == freezed
-          ? _value.orderMethod
-          : orderMethod // ignore: cast_nullable_to_non_nullable
-              as OrderMethod,
+      logo: logo == freezed
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      countOutlet: countOutlet == freezed
+          ? _value.countOutlet
+          : countOutlet // ignore: cast_nullable_to_non_nullable
+              as int,
       merchantId: merchantId == freezed
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String,
-      distance: distance == freezed
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as Distance,
-      isOwnerLoggedIn: isOwnerLoggedIn == freezed
-          ? _value.isOwnerLoggedIn
-          : isOwnerLoggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
       merchantName: merchantName == freezed
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
               as String,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
+      merchantLogo: merchantLogo == freezed
+          ? _value.merchantLogo
+          : merchantLogo // ignore: cast_nullable_to_non_nullable
+              as String?,
       callbackUrl: callbackUrl == freezed
           ? _value.callbackUrl
           : callbackUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      merchantTags: merchantTags == freezed
-          ? _value.merchantTags
-          : merchantTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      outletName: outletName == freezed
-          ? _value.outletName
-          : outletName // ignore: cast_nullable_to_non_nullable
-              as String,
-      merchantCategory: merchantCategory == freezed
-          ? _value.merchantCategory
-          : merchantCategory // ignore: cast_nullable_to_non_nullable
-              as String,
-      merchantKeywords: merchantKeywords == freezed
-          ? _value.merchantKeywords
-          : merchantKeywords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      searchWeight: searchWeight == freezed
-          ? _value.searchWeight
-          : searchWeight // ignore: cast_nullable_to_non_nullable
-              as int,
-      searchWeightDetail: searchWeightDetail == freezed
-          ? _value.searchWeightDetail
-          : searchWeightDetail // ignore: cast_nullable_to_non_nullable
-              as SearchWeightDetail,
-      merchantLogo: merchantLogo == freezed
-          ? _value.merchantLogo
-          : merchantLogo // ignore: cast_nullable_to_non_nullable
-              as String,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as OutletCategoryDataDistanceResponse,
     ));
   }
 
   @override
-  $DetailCopyWith<$Res> get detail {
-    return $DetailCopyWith<$Res>(_value.detail, (value) {
-      return _then(_value.copyWith(detail: value));
-    });
-  }
-
-  @override
-  $OrderMethodCopyWith<$Res> get orderMethod {
-    return $OrderMethodCopyWith<$Res>(_value.orderMethod, (value) {
-      return _then(_value.copyWith(orderMethod: value));
-    });
-  }
-
-  @override
-  $DistanceCopyWith<$Res> get distance {
-    return $DistanceCopyWith<$Res>(_value.distance, (value) {
+  $OutletCategoryDataDistanceResponseCopyWith<$Res> get distance {
+    return $OutletCategoryDataDistanceResponseCopyWith<$Res>(_value.distance,
+        (value) {
       return _then(_value.copyWith(distance: value));
     });
   }
@@ -529,35 +433,22 @@ abstract class _$OutletCategoryDataResponseCopyWith<$Res>
       __$OutletCategoryDataResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {String endpointName,
+      String id,
       String name,
-      String outletId,
-      bool isNonSku,
-      Detail detail,
-      dynamic roundingDigit,
-      dynamic roundingType,
-      bool isLive,
-      OrderMethod orderMethod,
+      String city,
+      List<String> salesTypes,
+      bool isOpen,
+      String? logo,
+      int countOutlet,
       String merchantId,
-      Distance distance,
-      bool isOwnerLoggedIn,
       String merchantName,
-      Category category,
+      String? merchantLogo,
       String callbackUrl,
-      List<String> merchantTags,
-      String outletName,
-      String merchantCategory,
-      List<String> merchantKeywords,
-      int searchWeight,
-      SearchWeightDetail searchWeightDetail,
-      String merchantLogo});
+      OutletCategoryDataDistanceResponse distance});
 
   @override
-  $DetailCopyWith<$Res> get detail;
-  @override
-  $OrderMethodCopyWith<$Res> get orderMethod;
-  @override
-  $DistanceCopyWith<$Res> get distance;
+  $OutletCategoryDataDistanceResponseCopyWith<$Res> get distance;
 }
 
 /// @nodoc
@@ -574,30 +465,25 @@ class __$OutletCategoryDataResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? endpointName = freezed,
     Object? id = freezed,
     Object? name = freezed,
-    Object? outletId = freezed,
-    Object? isNonSku = freezed,
-    Object? detail = freezed,
-    Object? roundingDigit = freezed,
-    Object? roundingType = freezed,
-    Object? isLive = freezed,
-    Object? orderMethod = freezed,
+    Object? city = freezed,
+    Object? salesTypes = freezed,
+    Object? isOpen = freezed,
+    Object? logo = freezed,
+    Object? countOutlet = freezed,
     Object? merchantId = freezed,
-    Object? distance = freezed,
-    Object? isOwnerLoggedIn = freezed,
     Object? merchantName = freezed,
-    Object? category = freezed,
-    Object? callbackUrl = freezed,
-    Object? merchantTags = freezed,
-    Object? outletName = freezed,
-    Object? merchantCategory = freezed,
-    Object? merchantKeywords = freezed,
-    Object? searchWeight = freezed,
-    Object? searchWeightDetail = freezed,
     Object? merchantLogo = freezed,
+    Object? callbackUrl = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_OutletCategoryDataResponse(
+      endpointName: endpointName == freezed
+          ? _value.endpointName
+          : endpointName // ignore: cast_nullable_to_non_nullable
+              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -606,86 +492,46 @@ class __$OutletCategoryDataResponseCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      outletId: outletId == freezed
-          ? _value.outletId
-          : outletId // ignore: cast_nullable_to_non_nullable
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String,
-      isNonSku: isNonSku == freezed
-          ? _value.isNonSku
-          : isNonSku // ignore: cast_nullable_to_non_nullable
+      salesTypes: salesTypes == freezed
+          ? _value.salesTypes
+          : salesTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      isOpen: isOpen == freezed
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
               as bool,
-      detail: detail == freezed
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as Detail,
-      roundingDigit: roundingDigit == freezed
-          ? _value.roundingDigit
-          : roundingDigit // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      roundingType: roundingType == freezed
-          ? _value.roundingType
-          : roundingType // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isLive: isLive == freezed
-          ? _value.isLive
-          : isLive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      orderMethod: orderMethod == freezed
-          ? _value.orderMethod
-          : orderMethod // ignore: cast_nullable_to_non_nullable
-              as OrderMethod,
+      logo: logo == freezed
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      countOutlet: countOutlet == freezed
+          ? _value.countOutlet
+          : countOutlet // ignore: cast_nullable_to_non_nullable
+              as int,
       merchantId: merchantId == freezed
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String,
-      distance: distance == freezed
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as Distance,
-      isOwnerLoggedIn: isOwnerLoggedIn == freezed
-          ? _value.isOwnerLoggedIn
-          : isOwnerLoggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
       merchantName: merchantName == freezed
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
               as String,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
+      merchantLogo: merchantLogo == freezed
+          ? _value.merchantLogo
+          : merchantLogo // ignore: cast_nullable_to_non_nullable
+              as String?,
       callbackUrl: callbackUrl == freezed
           ? _value.callbackUrl
           : callbackUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      merchantTags: merchantTags == freezed
-          ? _value.merchantTags
-          : merchantTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      outletName: outletName == freezed
-          ? _value.outletName
-          : outletName // ignore: cast_nullable_to_non_nullable
-              as String,
-      merchantCategory: merchantCategory == freezed
-          ? _value.merchantCategory
-          : merchantCategory // ignore: cast_nullable_to_non_nullable
-              as String,
-      merchantKeywords: merchantKeywords == freezed
-          ? _value.merchantKeywords
-          : merchantKeywords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      searchWeight: searchWeight == freezed
-          ? _value.searchWeight
-          : searchWeight // ignore: cast_nullable_to_non_nullable
-              as int,
-      searchWeightDetail: searchWeightDetail == freezed
-          ? _value.searchWeightDetail
-          : searchWeightDetail // ignore: cast_nullable_to_non_nullable
-              as SearchWeightDetail,
-      merchantLogo: merchantLogo == freezed
-          ? _value.merchantLogo
-          : merchantLogo // ignore: cast_nullable_to_non_nullable
-              as String,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as OutletCategoryDataDistanceResponse,
     ));
   }
 }
@@ -694,175 +540,111 @@ class __$OutletCategoryDataResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_OutletCategoryDataResponse implements _OutletCategoryDataResponse {
   const _$_OutletCategoryDataResponse(
-      {required this.id,
+      {required this.endpointName,
+      required this.id,
       required this.name,
-      required this.outletId,
-      required this.isNonSku,
-      required this.detail,
-      required this.roundingDigit,
-      required this.roundingType,
-      required this.isLive,
-      required this.orderMethod,
+      required this.city,
+      required this.salesTypes,
+      required this.isOpen,
+      required this.logo,
+      required this.countOutlet,
       required this.merchantId,
-      required this.distance,
-      required this.isOwnerLoggedIn,
       required this.merchantName,
-      required this.category,
+      required this.merchantLogo,
       required this.callbackUrl,
-      required this.merchantTags,
-      required this.outletName,
-      required this.merchantCategory,
-      required this.merchantKeywords,
-      required this.searchWeight,
-      required this.searchWeightDetail,
-      required this.merchantLogo});
+      required this.distance});
 
   factory _$_OutletCategoryDataResponse.fromJson(Map<String, dynamic> json) =>
       _$_$_OutletCategoryDataResponseFromJson(json);
 
   @override
+  final String endpointName;
+  @override
   final String id;
   @override
   final String name;
   @override
-  final String outletId;
+  final String city;
   @override
-  final bool isNonSku;
+  final List<String> salesTypes;
   @override
-  final Detail detail;
+  final bool isOpen;
   @override
-  final dynamic roundingDigit;
+  final String? logo;
   @override
-  final dynamic roundingType;
-  @override
-  final bool isLive;
-  @override
-  final OrderMethod orderMethod;
+  final int countOutlet;
   @override
   final String merchantId;
   @override
-  final Distance distance;
-  @override
-  final bool isOwnerLoggedIn;
-  @override
   final String merchantName;
   @override
-  final Category category;
+  final String? merchantLogo;
   @override
   final String callbackUrl;
   @override
-  final List<String> merchantTags;
-  @override
-  final String outletName;
-  @override
-  final String merchantCategory;
-  @override
-  final List<String> merchantKeywords;
-  @override
-  final int searchWeight;
-  @override
-  final SearchWeightDetail searchWeightDetail;
-  @override
-  final String merchantLogo;
+  final OutletCategoryDataDistanceResponse distance;
 
   @override
   String toString() {
-    return 'OutletCategoryDataResponse(id: $id, name: $name, outletId: $outletId, isNonSku: $isNonSku, detail: $detail, roundingDigit: $roundingDigit, roundingType: $roundingType, isLive: $isLive, orderMethod: $orderMethod, merchantId: $merchantId, distance: $distance, isOwnerLoggedIn: $isOwnerLoggedIn, merchantName: $merchantName, category: $category, callbackUrl: $callbackUrl, merchantTags: $merchantTags, outletName: $outletName, merchantCategory: $merchantCategory, merchantKeywords: $merchantKeywords, searchWeight: $searchWeight, searchWeightDetail: $searchWeightDetail, merchantLogo: $merchantLogo)';
+    return 'OutletCategoryDataResponse(endpointName: $endpointName, id: $id, name: $name, city: $city, salesTypes: $salesTypes, isOpen: $isOpen, logo: $logo, countOutlet: $countOutlet, merchantId: $merchantId, merchantName: $merchantName, merchantLogo: $merchantLogo, callbackUrl: $callbackUrl, distance: $distance)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _OutletCategoryDataResponse &&
+            (identical(other.endpointName, endpointName) ||
+                const DeepCollectionEquality()
+                    .equals(other.endpointName, endpointName)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.outletId, outletId) ||
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.salesTypes, salesTypes) ||
                 const DeepCollectionEquality()
-                    .equals(other.outletId, outletId)) &&
-            (identical(other.isNonSku, isNonSku) ||
+                    .equals(other.salesTypes, salesTypes)) &&
+            (identical(other.isOpen, isOpen) ||
+                const DeepCollectionEquality().equals(other.isOpen, isOpen)) &&
+            (identical(other.logo, logo) ||
+                const DeepCollectionEquality().equals(other.logo, logo)) &&
+            (identical(other.countOutlet, countOutlet) ||
                 const DeepCollectionEquality()
-                    .equals(other.isNonSku, isNonSku)) &&
-            (identical(other.detail, detail) ||
-                const DeepCollectionEquality().equals(other.detail, detail)) &&
-            (identical(other.roundingDigit, roundingDigit) ||
-                const DeepCollectionEquality()
-                    .equals(other.roundingDigit, roundingDigit)) &&
-            (identical(other.roundingType, roundingType) ||
-                const DeepCollectionEquality()
-                    .equals(other.roundingType, roundingType)) &&
-            (identical(other.isLive, isLive) ||
-                const DeepCollectionEquality().equals(other.isLive, isLive)) &&
-            (identical(other.orderMethod, orderMethod) ||
-                const DeepCollectionEquality()
-                    .equals(other.orderMethod, orderMethod)) &&
+                    .equals(other.countOutlet, countOutlet)) &&
             (identical(other.merchantId, merchantId) ||
                 const DeepCollectionEquality()
                     .equals(other.merchantId, merchantId)) &&
-            (identical(other.distance, distance) ||
-                const DeepCollectionEquality()
-                    .equals(other.distance, distance)) &&
-            (identical(other.isOwnerLoggedIn, isOwnerLoggedIn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isOwnerLoggedIn, isOwnerLoggedIn)) &&
             (identical(other.merchantName, merchantName) ||
                 const DeepCollectionEquality()
                     .equals(other.merchantName, merchantName)) &&
-            (identical(other.category, category) ||
+            (identical(other.merchantLogo, merchantLogo) ||
                 const DeepCollectionEquality()
-                    .equals(other.category, category)) &&
+                    .equals(other.merchantLogo, merchantLogo)) &&
             (identical(other.callbackUrl, callbackUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.callbackUrl, callbackUrl)) &&
-            (identical(other.merchantTags, merchantTags) ||
+            (identical(other.distance, distance) ||
                 const DeepCollectionEquality()
-                    .equals(other.merchantTags, merchantTags)) &&
-            (identical(other.outletName, outletName) ||
-                const DeepCollectionEquality()
-                    .equals(other.outletName, outletName)) &&
-            (identical(other.merchantCategory, merchantCategory) ||
-                const DeepCollectionEquality()
-                    .equals(other.merchantCategory, merchantCategory)) &&
-            (identical(other.merchantKeywords, merchantKeywords) ||
-                const DeepCollectionEquality()
-                    .equals(other.merchantKeywords, merchantKeywords)) &&
-            (identical(other.searchWeight, searchWeight) ||
-                const DeepCollectionEquality()
-                    .equals(other.searchWeight, searchWeight)) &&
-            (identical(other.searchWeightDetail, searchWeightDetail) ||
-                const DeepCollectionEquality()
-                    .equals(other.searchWeightDetail, searchWeightDetail)) &&
-            (identical(other.merchantLogo, merchantLogo) ||
-                const DeepCollectionEquality()
-                    .equals(other.merchantLogo, merchantLogo)));
+                    .equals(other.distance, distance)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(endpointName) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(outletId) ^
-      const DeepCollectionEquality().hash(isNonSku) ^
-      const DeepCollectionEquality().hash(detail) ^
-      const DeepCollectionEquality().hash(roundingDigit) ^
-      const DeepCollectionEquality().hash(roundingType) ^
-      const DeepCollectionEquality().hash(isLive) ^
-      const DeepCollectionEquality().hash(orderMethod) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(salesTypes) ^
+      const DeepCollectionEquality().hash(isOpen) ^
+      const DeepCollectionEquality().hash(logo) ^
+      const DeepCollectionEquality().hash(countOutlet) ^
       const DeepCollectionEquality().hash(merchantId) ^
-      const DeepCollectionEquality().hash(distance) ^
-      const DeepCollectionEquality().hash(isOwnerLoggedIn) ^
       const DeepCollectionEquality().hash(merchantName) ^
-      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(merchantLogo) ^
       const DeepCollectionEquality().hash(callbackUrl) ^
-      const DeepCollectionEquality().hash(merchantTags) ^
-      const DeepCollectionEquality().hash(outletName) ^
-      const DeepCollectionEquality().hash(merchantCategory) ^
-      const DeepCollectionEquality().hash(merchantKeywords) ^
-      const DeepCollectionEquality().hash(searchWeight) ^
-      const DeepCollectionEquality().hash(searchWeightDetail) ^
-      const DeepCollectionEquality().hash(merchantLogo);
+      const DeepCollectionEquality().hash(distance);
 
   @JsonKey(ignore: true)
   @override
@@ -879,859 +661,269 @@ class _$_OutletCategoryDataResponse implements _OutletCategoryDataResponse {
 abstract class _OutletCategoryDataResponse
     implements OutletCategoryDataResponse {
   const factory _OutletCategoryDataResponse(
-      {required String id,
-      required String name,
-      required String outletId,
-      required bool isNonSku,
-      required Detail detail,
-      required dynamic roundingDigit,
-      required dynamic roundingType,
-      required bool isLive,
-      required OrderMethod orderMethod,
-      required String merchantId,
-      required Distance distance,
-      required bool isOwnerLoggedIn,
-      required String merchantName,
-      required Category category,
-      required String callbackUrl,
-      required List<String> merchantTags,
-      required String outletName,
-      required String merchantCategory,
-      required List<String> merchantKeywords,
-      required int searchWeight,
-      required SearchWeightDetail searchWeightDetail,
-      required String merchantLogo}) = _$_OutletCategoryDataResponse;
+          {required String endpointName,
+          required String id,
+          required String name,
+          required String city,
+          required List<String> salesTypes,
+          required bool isOpen,
+          required String? logo,
+          required int countOutlet,
+          required String merchantId,
+          required String merchantName,
+          required String? merchantLogo,
+          required String callbackUrl,
+          required OutletCategoryDataDistanceResponse distance}) =
+      _$_OutletCategoryDataResponse;
 
   factory _OutletCategoryDataResponse.fromJson(Map<String, dynamic> json) =
       _$_OutletCategoryDataResponse.fromJson;
 
   @override
+  String get endpointName => throw _privateConstructorUsedError;
+  @override
   String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  String get outletId => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
   @override
-  bool get isNonSku => throw _privateConstructorUsedError;
+  List<String> get salesTypes => throw _privateConstructorUsedError;
   @override
-  Detail get detail => throw _privateConstructorUsedError;
+  bool get isOpen => throw _privateConstructorUsedError;
   @override
-  dynamic get roundingDigit => throw _privateConstructorUsedError;
+  String? get logo => throw _privateConstructorUsedError;
   @override
-  dynamic get roundingType => throw _privateConstructorUsedError;
-  @override
-  bool get isLive => throw _privateConstructorUsedError;
-  @override
-  OrderMethod get orderMethod => throw _privateConstructorUsedError;
+  int get countOutlet => throw _privateConstructorUsedError;
   @override
   String get merchantId => throw _privateConstructorUsedError;
   @override
-  Distance get distance => throw _privateConstructorUsedError;
-  @override
-  bool get isOwnerLoggedIn => throw _privateConstructorUsedError;
-  @override
   String get merchantName => throw _privateConstructorUsedError;
   @override
-  Category get category => throw _privateConstructorUsedError;
+  String? get merchantLogo => throw _privateConstructorUsedError;
   @override
   String get callbackUrl => throw _privateConstructorUsedError;
   @override
-  List<String> get merchantTags => throw _privateConstructorUsedError;
-  @override
-  String get outletName => throw _privateConstructorUsedError;
-  @override
-  String get merchantCategory => throw _privateConstructorUsedError;
-  @override
-  List<String> get merchantKeywords => throw _privateConstructorUsedError;
-  @override
-  int get searchWeight => throw _privateConstructorUsedError;
-  @override
-  SearchWeightDetail get searchWeightDetail =>
+  OutletCategoryDataDistanceResponse get distance =>
       throw _privateConstructorUsedError;
-  @override
-  String get merchantLogo => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OutletCategoryDataResponseCopyWith<_OutletCategoryDataResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-Detail _$DetailFromJson(Map<String, dynamic> json) {
-  return _Detail.fromJson(json);
+OutletCategoryDataDistanceResponse _$OutletCategoryDataDistanceResponseFromJson(
+    Map<String, dynamic> json) {
+  return _OutletCategoryDataDistanceResponse.fromJson(json);
 }
 
 /// @nodoc
-class _$DetailTearOff {
-  const _$DetailTearOff();
+class _$OutletCategoryDataDistanceResponseTearOff {
+  const _$OutletCategoryDataDistanceResponseTearOff();
 
-  _Detail call(
-      {required String name,
-      required String address,
-      required List<dynamic> taxesAndServices,
-      required List<dynamic> location,
-      required String phone,
-      required String kurirPrice,
-      required DeliveryType deliveryType,
-      required String maxRadius,
-      required String driverPhone,
-      required List<dynamic> area,
-      required List<String> deliveryProvider,
-      required List<dynamic> deliveryLocation,
-      required String city}) {
-    return _Detail(
-      name: name,
-      address: address,
-      taxesAndServices: taxesAndServices,
-      location: location,
-      phone: phone,
-      kurirPrice: kurirPrice,
-      deliveryType: deliveryType,
-      maxRadius: maxRadius,
-      driverPhone: driverPhone,
-      area: area,
-      deliveryProvider: deliveryProvider,
-      deliveryLocation: deliveryLocation,
-      city: city,
+  _OutletCategoryDataDistanceResponse call(
+      {required double realRadius,
+      required double distanceValue,
+      required String distance}) {
+    return _OutletCategoryDataDistanceResponse(
+      realRadius: realRadius,
+      distanceValue: distanceValue,
+      distance: distance,
     );
   }
 
-  Detail fromJson(Map<String, Object> json) {
-    return Detail.fromJson(json);
+  OutletCategoryDataDistanceResponse fromJson(Map<String, Object> json) {
+    return OutletCategoryDataDistanceResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Detail = _$DetailTearOff();
+const $OutletCategoryDataDistanceResponse =
+    _$OutletCategoryDataDistanceResponseTearOff();
 
 /// @nodoc
-mixin _$Detail {
-  String get name => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
-  List<dynamic> get location => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get kurirPrice => throw _privateConstructorUsedError;
-  DeliveryType get deliveryType => throw _privateConstructorUsedError;
-  String get maxRadius => throw _privateConstructorUsedError;
-  String get driverPhone => throw _privateConstructorUsedError;
-  List<dynamic> get area => throw _privateConstructorUsedError;
-  List<String> get deliveryProvider => throw _privateConstructorUsedError;
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
+mixin _$OutletCategoryDataDistanceResponse {
+  double get realRadius => throw _privateConstructorUsedError;
+  double get distanceValue => throw _privateConstructorUsedError;
+  String get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DetailCopyWith<Detail> get copyWith => throw _privateConstructorUsedError;
+  $OutletCategoryDataDistanceResponseCopyWith<
+          OutletCategoryDataDistanceResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DetailCopyWith<$Res> {
-  factory $DetailCopyWith(Detail value, $Res Function(Detail) then) =
-      _$DetailCopyWithImpl<$Res>;
-  $Res call(
-      {String name,
-      String address,
-      List<dynamic> taxesAndServices,
-      List<dynamic> location,
-      String phone,
-      String kurirPrice,
-      DeliveryType deliveryType,
-      String maxRadius,
-      String driverPhone,
-      List<dynamic> area,
-      List<String> deliveryProvider,
-      List<dynamic> deliveryLocation,
-      String city});
+abstract class $OutletCategoryDataDistanceResponseCopyWith<$Res> {
+  factory $OutletCategoryDataDistanceResponseCopyWith(
+          OutletCategoryDataDistanceResponse value,
+          $Res Function(OutletCategoryDataDistanceResponse) then) =
+      _$OutletCategoryDataDistanceResponseCopyWithImpl<$Res>;
+  $Res call({double realRadius, double distanceValue, String distance});
 }
 
 /// @nodoc
-class _$DetailCopyWithImpl<$Res> implements $DetailCopyWith<$Res> {
-  _$DetailCopyWithImpl(this._value, this._then);
+class _$OutletCategoryDataDistanceResponseCopyWithImpl<$Res>
+    implements $OutletCategoryDataDistanceResponseCopyWith<$Res> {
+  _$OutletCategoryDataDistanceResponseCopyWithImpl(this._value, this._then);
 
-  final Detail _value;
+  final OutletCategoryDataDistanceResponse _value;
   // ignore: unused_field
-  final $Res Function(Detail) _then;
+  final $Res Function(OutletCategoryDataDistanceResponse) _then;
 
   @override
   $Res call({
-    Object? name = freezed,
-    Object? address = freezed,
-    Object? taxesAndServices = freezed,
-    Object? location = freezed,
-    Object? phone = freezed,
-    Object? kurirPrice = freezed,
-    Object? deliveryType = freezed,
-    Object? maxRadius = freezed,
-    Object? driverPhone = freezed,
-    Object? area = freezed,
-    Object? deliveryProvider = freezed,
-    Object? deliveryLocation = freezed,
-    Object? city = freezed,
+    Object? realRadius = freezed,
+    Object? distanceValue = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      taxesAndServices: taxesAndServices == freezed
-          ? _value.taxesAndServices
-          : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      kurirPrice: kurirPrice == freezed
-          ? _value.kurirPrice
-          : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
-      deliveryType: deliveryType == freezed
-          ? _value.deliveryType
-          : deliveryType // ignore: cast_nullable_to_non_nullable
-              as DeliveryType,
-      maxRadius: maxRadius == freezed
-          ? _value.maxRadius
-          : maxRadius // ignore: cast_nullable_to_non_nullable
-              as String,
-      driverPhone: driverPhone == freezed
-          ? _value.driverPhone
-          : driverPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      area: area == freezed
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      deliveryProvider: deliveryProvider == freezed
-          ? _value.deliveryProvider
-          : deliveryProvider // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      deliveryLocation: deliveryLocation == freezed
-          ? _value.deliveryLocation
-          : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$DetailCopyWith<$Res> implements $DetailCopyWith<$Res> {
-  factory _$DetailCopyWith(_Detail value, $Res Function(_Detail) then) =
-      __$DetailCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String name,
-      String address,
-      List<dynamic> taxesAndServices,
-      List<dynamic> location,
-      String phone,
-      String kurirPrice,
-      DeliveryType deliveryType,
-      String maxRadius,
-      String driverPhone,
-      List<dynamic> area,
-      List<String> deliveryProvider,
-      List<dynamic> deliveryLocation,
-      String city});
-}
-
-/// @nodoc
-class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
-    implements _$DetailCopyWith<$Res> {
-  __$DetailCopyWithImpl(_Detail _value, $Res Function(_Detail) _then)
-      : super(_value, (v) => _then(v as _Detail));
-
-  @override
-  _Detail get _value => super._value as _Detail;
-
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? address = freezed,
-    Object? taxesAndServices = freezed,
-    Object? location = freezed,
-    Object? phone = freezed,
-    Object? kurirPrice = freezed,
-    Object? deliveryType = freezed,
-    Object? maxRadius = freezed,
-    Object? driverPhone = freezed,
-    Object? area = freezed,
-    Object? deliveryProvider = freezed,
-    Object? deliveryLocation = freezed,
-    Object? city = freezed,
-  }) {
-    return _then(_Detail(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      taxesAndServices: taxesAndServices == freezed
-          ? _value.taxesAndServices
-          : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      kurirPrice: kurirPrice == freezed
-          ? _value.kurirPrice
-          : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
-      deliveryType: deliveryType == freezed
-          ? _value.deliveryType
-          : deliveryType // ignore: cast_nullable_to_non_nullable
-              as DeliveryType,
-      maxRadius: maxRadius == freezed
-          ? _value.maxRadius
-          : maxRadius // ignore: cast_nullable_to_non_nullable
-              as String,
-      driverPhone: driverPhone == freezed
-          ? _value.driverPhone
-          : driverPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      area: area == freezed
-          ? _value.area
-          : area // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      deliveryProvider: deliveryProvider == freezed
-          ? _value.deliveryProvider
-          : deliveryProvider // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      deliveryLocation: deliveryLocation == freezed
-          ? _value.deliveryLocation
-          : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Detail implements _Detail {
-  const _$_Detail(
-      {required this.name,
-      required this.address,
-      required this.taxesAndServices,
-      required this.location,
-      required this.phone,
-      required this.kurirPrice,
-      required this.deliveryType,
-      required this.maxRadius,
-      required this.driverPhone,
-      required this.area,
-      required this.deliveryProvider,
-      required this.deliveryLocation,
-      required this.city});
-
-  factory _$_Detail.fromJson(Map<String, dynamic> json) =>
-      _$_$_DetailFromJson(json);
-
-  @override
-  final String name;
-  @override
-  final String address;
-  @override
-  final List<dynamic> taxesAndServices;
-  @override
-  final List<dynamic> location;
-  @override
-  final String phone;
-  @override
-  final String kurirPrice;
-  @override
-  final DeliveryType deliveryType;
-  @override
-  final String maxRadius;
-  @override
-  final String driverPhone;
-  @override
-  final List<dynamic> area;
-  @override
-  final List<String> deliveryProvider;
-  @override
-  final List<dynamic> deliveryLocation;
-  @override
-  final String city;
-
-  @override
-  String toString() {
-    return 'Detail(name: $name, address: $address, taxesAndServices: $taxesAndServices, location: $location, phone: $phone, kurirPrice: $kurirPrice, deliveryType: $deliveryType, maxRadius: $maxRadius, driverPhone: $driverPhone, area: $area, deliveryProvider: $deliveryProvider, deliveryLocation: $deliveryLocation, city: $city)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _Detail &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.taxesAndServices, taxesAndServices) ||
-                const DeepCollectionEquality()
-                    .equals(other.taxesAndServices, taxesAndServices)) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.kurirPrice, kurirPrice) ||
-                const DeepCollectionEquality()
-                    .equals(other.kurirPrice, kurirPrice)) &&
-            (identical(other.deliveryType, deliveryType) ||
-                const DeepCollectionEquality()
-                    .equals(other.deliveryType, deliveryType)) &&
-            (identical(other.maxRadius, maxRadius) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxRadius, maxRadius)) &&
-            (identical(other.driverPhone, driverPhone) ||
-                const DeepCollectionEquality()
-                    .equals(other.driverPhone, driverPhone)) &&
-            (identical(other.area, area) ||
-                const DeepCollectionEquality().equals(other.area, area)) &&
-            (identical(other.deliveryProvider, deliveryProvider) ||
-                const DeepCollectionEquality()
-                    .equals(other.deliveryProvider, deliveryProvider)) &&
-            (identical(other.deliveryLocation, deliveryLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.deliveryLocation, deliveryLocation)) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(taxesAndServices) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(kurirPrice) ^
-      const DeepCollectionEquality().hash(deliveryType) ^
-      const DeepCollectionEquality().hash(maxRadius) ^
-      const DeepCollectionEquality().hash(driverPhone) ^
-      const DeepCollectionEquality().hash(area) ^
-      const DeepCollectionEquality().hash(deliveryProvider) ^
-      const DeepCollectionEquality().hash(deliveryLocation) ^
-      const DeepCollectionEquality().hash(city);
-
-  @JsonKey(ignore: true)
-  @override
-  _$DetailCopyWith<_Detail> get copyWith =>
-      __$DetailCopyWithImpl<_Detail>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_DetailToJson(this);
-  }
-}
-
-abstract class _Detail implements Detail {
-  const factory _Detail(
-      {required String name,
-      required String address,
-      required List<dynamic> taxesAndServices,
-      required List<dynamic> location,
-      required String phone,
-      required String kurirPrice,
-      required DeliveryType deliveryType,
-      required String maxRadius,
-      required String driverPhone,
-      required List<dynamic> area,
-      required List<String> deliveryProvider,
-      required List<dynamic> deliveryLocation,
-      required String city}) = _$_Detail;
-
-  factory _Detail.fromJson(Map<String, dynamic> json) = _$_Detail.fromJson;
-
-  @override
-  String get name => throw _privateConstructorUsedError;
-  @override
-  String get address => throw _privateConstructorUsedError;
-  @override
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
-  @override
-  List<dynamic> get location => throw _privateConstructorUsedError;
-  @override
-  String get phone => throw _privateConstructorUsedError;
-  @override
-  String get kurirPrice => throw _privateConstructorUsedError;
-  @override
-  DeliveryType get deliveryType => throw _privateConstructorUsedError;
-  @override
-  String get maxRadius => throw _privateConstructorUsedError;
-  @override
-  String get driverPhone => throw _privateConstructorUsedError;
-  @override
-  List<dynamic> get area => throw _privateConstructorUsedError;
-  @override
-  List<String> get deliveryProvider => throw _privateConstructorUsedError;
-  @override
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
-  @override
-  String get city => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$DetailCopyWith<_Detail> get copyWith => throw _privateConstructorUsedError;
-}
-
-Distance _$DistanceFromJson(Map<String, dynamic> json) {
-  return _Distance.fromJson(json);
-}
-
-/// @nodoc
-class _$DistanceTearOff {
-  const _$DistanceTearOff();
-
-  _Distance call({required String text, required double value}) {
-    return _Distance(
-      text: text,
-      value: value,
-    );
-  }
-
-  Distance fromJson(Map<String, Object> json) {
-    return Distance.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Distance = _$DistanceTearOff();
-
-/// @nodoc
-mixin _$Distance {
-  String get text => throw _privateConstructorUsedError;
-  double get value => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DistanceCopyWith<Distance> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DistanceCopyWith<$Res> {
-  factory $DistanceCopyWith(Distance value, $Res Function(Distance) then) =
-      _$DistanceCopyWithImpl<$Res>;
-  $Res call({String text, double value});
-}
-
-/// @nodoc
-class _$DistanceCopyWithImpl<$Res> implements $DistanceCopyWith<$Res> {
-  _$DistanceCopyWithImpl(this._value, this._then);
-
-  final Distance _value;
-  // ignore: unused_field
-  final $Res Function(Distance) _then;
-
-  @override
-  $Res call({
-    Object? text = freezed,
-    Object? value = freezed,
-  }) {
-    return _then(_value.copyWith(
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      realRadius: realRadius == freezed
+          ? _value.realRadius
+          : realRadius // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$DistanceCopyWith<$Res> implements $DistanceCopyWith<$Res> {
-  factory _$DistanceCopyWith(_Distance value, $Res Function(_Distance) then) =
-      __$DistanceCopyWithImpl<$Res>;
-  @override
-  $Res call({String text, double value});
-}
-
-/// @nodoc
-class __$DistanceCopyWithImpl<$Res> extends _$DistanceCopyWithImpl<$Res>
-    implements _$DistanceCopyWith<$Res> {
-  __$DistanceCopyWithImpl(_Distance _value, $Res Function(_Distance) _then)
-      : super(_value, (v) => _then(v as _Distance));
-
-  @override
-  _Distance get _value => super._value as _Distance;
-
-  @override
-  $Res call({
-    Object? text = freezed,
-    Object? value = freezed,
-  }) {
-    return _then(_Distance(
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      distanceValue: distanceValue == freezed
+          ? _value.distanceValue
+          : distanceValue // ignore: cast_nullable_to_non_nullable
               as double,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$OutletCategoryDataDistanceResponseCopyWith<$Res>
+    implements $OutletCategoryDataDistanceResponseCopyWith<$Res> {
+  factory _$OutletCategoryDataDistanceResponseCopyWith(
+          _OutletCategoryDataDistanceResponse value,
+          $Res Function(_OutletCategoryDataDistanceResponse) then) =
+      __$OutletCategoryDataDistanceResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({double realRadius, double distanceValue, String distance});
+}
+
+/// @nodoc
+class __$OutletCategoryDataDistanceResponseCopyWithImpl<$Res>
+    extends _$OutletCategoryDataDistanceResponseCopyWithImpl<$Res>
+    implements _$OutletCategoryDataDistanceResponseCopyWith<$Res> {
+  __$OutletCategoryDataDistanceResponseCopyWithImpl(
+      _OutletCategoryDataDistanceResponse _value,
+      $Res Function(_OutletCategoryDataDistanceResponse) _then)
+      : super(_value, (v) => _then(v as _OutletCategoryDataDistanceResponse));
+
+  @override
+  _OutletCategoryDataDistanceResponse get _value =>
+      super._value as _OutletCategoryDataDistanceResponse;
+
+  @override
+  $Res call({
+    Object? realRadius = freezed,
+    Object? distanceValue = freezed,
+    Object? distance = freezed,
+  }) {
+    return _then(_OutletCategoryDataDistanceResponse(
+      realRadius: realRadius == freezed
+          ? _value.realRadius
+          : realRadius // ignore: cast_nullable_to_non_nullable
+              as double,
+      distanceValue: distanceValue == freezed
+          ? _value.distanceValue
+          : distanceValue // ignore: cast_nullable_to_non_nullable
+              as double,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Distance implements _Distance {
-  const _$_Distance({required this.text, required this.value});
+class _$_OutletCategoryDataDistanceResponse
+    implements _OutletCategoryDataDistanceResponse {
+  const _$_OutletCategoryDataDistanceResponse(
+      {required this.realRadius,
+      required this.distanceValue,
+      required this.distance});
 
-  factory _$_Distance.fromJson(Map<String, dynamic> json) =>
-      _$_$_DistanceFromJson(json);
+  factory _$_OutletCategoryDataDistanceResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$_$_OutletCategoryDataDistanceResponseFromJson(json);
 
   @override
-  final String text;
+  final double realRadius;
   @override
-  final double value;
+  final double distanceValue;
+  @override
+  final String distance;
 
   @override
   String toString() {
-    return 'Distance(text: $text, value: $value)';
+    return 'OutletCategoryDataDistanceResponse(realRadius: $realRadius, distanceValue: $distanceValue, distance: $distance)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Distance &&
-            (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other is _OutletCategoryDataDistanceResponse &&
+            (identical(other.realRadius, realRadius) ||
+                const DeepCollectionEquality()
+                    .equals(other.realRadius, realRadius)) &&
+            (identical(other.distanceValue, distanceValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.distanceValue, distanceValue)) &&
+            (identical(other.distance, distance) ||
+                const DeepCollectionEquality()
+                    .equals(other.distance, distance)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(text) ^
-      const DeepCollectionEquality().hash(value);
+      const DeepCollectionEquality().hash(realRadius) ^
+      const DeepCollectionEquality().hash(distanceValue) ^
+      const DeepCollectionEquality().hash(distance);
 
   @JsonKey(ignore: true)
   @override
-  _$DistanceCopyWith<_Distance> get copyWith =>
-      __$DistanceCopyWithImpl<_Distance>(this, _$identity);
+  _$OutletCategoryDataDistanceResponseCopyWith<
+          _OutletCategoryDataDistanceResponse>
+      get copyWith => __$OutletCategoryDataDistanceResponseCopyWithImpl<
+          _OutletCategoryDataDistanceResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DistanceToJson(this);
+    return _$_$_OutletCategoryDataDistanceResponseToJson(this);
   }
 }
 
-abstract class _Distance implements Distance {
-  const factory _Distance({required String text, required double value}) =
-      _$_Distance;
+abstract class _OutletCategoryDataDistanceResponse
+    implements OutletCategoryDataDistanceResponse {
+  const factory _OutletCategoryDataDistanceResponse(
+      {required double realRadius,
+      required double distanceValue,
+      required String distance}) = _$_OutletCategoryDataDistanceResponse;
 
-  factory _Distance.fromJson(Map<String, dynamic> json) = _$_Distance.fromJson;
+  factory _OutletCategoryDataDistanceResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_OutletCategoryDataDistanceResponse.fromJson;
 
   @override
-  String get text => throw _privateConstructorUsedError;
+  double get realRadius => throw _privateConstructorUsedError;
   @override
-  double get value => throw _privateConstructorUsedError;
+  double get distanceValue => throw _privateConstructorUsedError;
+  @override
+  String get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DistanceCopyWith<_Distance> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-OrderMethod _$OrderMethodFromJson(Map<String, dynamic> json) {
-  return _OrderMethod.fromJson(json);
-}
-
-/// @nodoc
-class _$OrderMethodTearOff {
-  const _$OrderMethodTearOff();
-
-  _OrderMethod call(
-      {required bool forceSelect, required List<DefaultList> defaultList}) {
-    return _OrderMethod(
-      forceSelect: forceSelect,
-      defaultList: defaultList,
-    );
-  }
-
-  OrderMethod fromJson(Map<String, Object> json) {
-    return OrderMethod.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OrderMethod = _$OrderMethodTearOff();
-
-/// @nodoc
-mixin _$OrderMethod {
-  bool get forceSelect => throw _privateConstructorUsedError;
-  List<DefaultList> get defaultList => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $OrderMethodCopyWith<OrderMethod> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $OrderMethodCopyWith<$Res> {
-  factory $OrderMethodCopyWith(
-          OrderMethod value, $Res Function(OrderMethod) then) =
-      _$OrderMethodCopyWithImpl<$Res>;
-  $Res call({bool forceSelect, List<DefaultList> defaultList});
-}
-
-/// @nodoc
-class _$OrderMethodCopyWithImpl<$Res> implements $OrderMethodCopyWith<$Res> {
-  _$OrderMethodCopyWithImpl(this._value, this._then);
-
-  final OrderMethod _value;
-  // ignore: unused_field
-  final $Res Function(OrderMethod) _then;
-
-  @override
-  $Res call({
-    Object? forceSelect = freezed,
-    Object? defaultList = freezed,
-  }) {
-    return _then(_value.copyWith(
-      forceSelect: forceSelect == freezed
-          ? _value.forceSelect
-          : forceSelect // ignore: cast_nullable_to_non_nullable
-              as bool,
-      defaultList: defaultList == freezed
-          ? _value.defaultList
-          : defaultList // ignore: cast_nullable_to_non_nullable
-              as List<DefaultList>,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$OrderMethodCopyWith<$Res>
-    implements $OrderMethodCopyWith<$Res> {
-  factory _$OrderMethodCopyWith(
-          _OrderMethod value, $Res Function(_OrderMethod) then) =
-      __$OrderMethodCopyWithImpl<$Res>;
-  @override
-  $Res call({bool forceSelect, List<DefaultList> defaultList});
-}
-
-/// @nodoc
-class __$OrderMethodCopyWithImpl<$Res> extends _$OrderMethodCopyWithImpl<$Res>
-    implements _$OrderMethodCopyWith<$Res> {
-  __$OrderMethodCopyWithImpl(
-      _OrderMethod _value, $Res Function(_OrderMethod) _then)
-      : super(_value, (v) => _then(v as _OrderMethod));
-
-  @override
-  _OrderMethod get _value => super._value as _OrderMethod;
-
-  @override
-  $Res call({
-    Object? forceSelect = freezed,
-    Object? defaultList = freezed,
-  }) {
-    return _then(_OrderMethod(
-      forceSelect: forceSelect == freezed
-          ? _value.forceSelect
-          : forceSelect // ignore: cast_nullable_to_non_nullable
-              as bool,
-      defaultList: defaultList == freezed
-          ? _value.defaultList
-          : defaultList // ignore: cast_nullable_to_non_nullable
-              as List<DefaultList>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_OrderMethod implements _OrderMethod {
-  const _$_OrderMethod({required this.forceSelect, required this.defaultList});
-
-  factory _$_OrderMethod.fromJson(Map<String, dynamic> json) =>
-      _$_$_OrderMethodFromJson(json);
-
-  @override
-  final bool forceSelect;
-  @override
-  final List<DefaultList> defaultList;
-
-  @override
-  String toString() {
-    return 'OrderMethod(forceSelect: $forceSelect, defaultList: $defaultList)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _OrderMethod &&
-            (identical(other.forceSelect, forceSelect) ||
-                const DeepCollectionEquality()
-                    .equals(other.forceSelect, forceSelect)) &&
-            (identical(other.defaultList, defaultList) ||
-                const DeepCollectionEquality()
-                    .equals(other.defaultList, defaultList)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(forceSelect) ^
-      const DeepCollectionEquality().hash(defaultList);
-
-  @JsonKey(ignore: true)
-  @override
-  _$OrderMethodCopyWith<_OrderMethod> get copyWith =>
-      __$OrderMethodCopyWithImpl<_OrderMethod>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_OrderMethodToJson(this);
-  }
-}
-
-abstract class _OrderMethod implements OrderMethod {
-  const factory _OrderMethod(
-      {required bool forceSelect,
-      required List<DefaultList> defaultList}) = _$_OrderMethod;
-
-  factory _OrderMethod.fromJson(Map<String, dynamic> json) =
-      _$_OrderMethod.fromJson;
-
-  @override
-  bool get forceSelect => throw _privateConstructorUsedError;
-  @override
-  List<DefaultList> get defaultList => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$OrderMethodCopyWith<_OrderMethod> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$OutletCategoryDataDistanceResponseCopyWith<
+          _OutletCategoryDataDistanceResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 OutletCategoryMetaResponse _$OutletCategoryMetaResponseFromJson(

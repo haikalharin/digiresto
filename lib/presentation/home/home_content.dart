@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
@@ -47,10 +48,16 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                 if (controller.activeAddress.value == "") {
                   data.list.forEach((element) {
                     if (element.isDefault!) {
+                      Get.context!
+                          .read<AddressListBloc>()
+                          .add(AddressListEvent.setActiveAddress(element));
                       controller.setActiveAddress(element.address!);
                     }
                   });
                   if (!(data.list.every((element) => element.isDefault!))) {
+                    Get.context!
+                        .read<AddressListBloc>()
+                        .add(AddressListEvent.setActiveAddress(data.list[0]));
                     controller.setActiveAddress(data.list[0].address!);
                   }
                 }
@@ -630,6 +637,10 @@ class _FoodRowItem extends GetView<HomeContentViewController> {
       onTap: () {
         if (label == Strings.titleDigidiscount) {
           Get.toNamed(Routers.homeDigiDiscount,
+              arguments: HomeOrderViewArgument(title: label));
+        } else if (label == Strings.titleFrozenFood ||
+            label == Strings.titleIndonesiaPastiBisa) {
+          Get.toNamed(Routers.homeOutletCategory,
               arguments: HomeOrderViewArgument(title: label));
         } else {
           Get.toNamed(Routers.homeNearbyOutlet,
