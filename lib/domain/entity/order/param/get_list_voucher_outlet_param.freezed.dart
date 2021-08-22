@@ -288,7 +288,8 @@ class __$GetListVoucherOutletBodyParamCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_GetListVoucherOutletBodyParam
     implements _GetListVoucherOutletBodyParam {
   const _$_GetListVoucherOutletBodyParam();

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'outlet_product_category_response.freezed.dart';
-part 'outlet_product_category_response.g.dart';
+part 'param/outlet_product_category_response.freezed.dart';
+part 'param/outlet_product_category_response.g.dart';
 
 OutletProductCategoryResponse emptyFromJson(String str) =>
     OutletProductCategoryResponse.fromJson(json.decode(str));

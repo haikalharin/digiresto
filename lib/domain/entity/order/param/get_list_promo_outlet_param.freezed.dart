@@ -153,7 +153,8 @@ class __$GetListPromoOutletParamCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_GetListPromoOutletParam implements _GetListPromoOutletParam {
   const _$_GetListPromoOutletParam(
       {required this.queryString, required this.body});

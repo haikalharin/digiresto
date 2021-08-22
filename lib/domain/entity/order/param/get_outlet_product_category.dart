@@ -1,0 +1,44 @@
+import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'get_outlet_product_category.freezed.dart';
+part 'get_outlet_product_category.g.dart';
+
+GetOutletProductCategoryParam emptyFromJson(String str) =>
+    GetOutletProductCategoryParam.fromJson(json.decode(str));
+
+String emptyToJson(GetOutletProductCategoryParam data) =>
+    json.encode(data.toJson());
+
+@freezed
+abstract class GetOutletProductCategoryParam
+    with _$GetOutletProductCategoryParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory GetOutletProductCategoryParam({
+    required GetOutletProductCategoryQueryParam queryString,
+    required Body body,
+  }) = _GetOutletProductCategoryParam;
+
+  factory GetOutletProductCategoryParam.fromJson(Map<String, dynamic> json) =>
+      _$GetOutletProductCategoryParamFromJson(json);
+}
+
+@freezed
+abstract class Body with _$Body {
+  const factory Body() = _Body;
+
+  factory Body.fromJson(Map<String, dynamic> json) => _$BodyFromJson(json);
+}
+
+@freezed
+abstract class GetOutletProductCategoryQueryParam
+    with _$GetOutletProductCategoryQueryParam {
+  const factory GetOutletProductCategoryQueryParam({
+    required String outletId,
+  }) = _GetOutletProductCategoryQueryParam;
+
+  factory GetOutletProductCategoryQueryParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetOutletProductCategoryQueryParamFromJson(json);
+}

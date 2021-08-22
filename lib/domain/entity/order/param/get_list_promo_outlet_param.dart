@@ -12,6 +12,7 @@ String emptyToJson(GetListPromoOutletParam data) => json.encode(data.toJson());
 
 @freezed
 abstract class GetListPromoOutletParam with _$GetListPromoOutletParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetListPromoOutletParam({
     required GetListPromoOutletQueryParam queryString,
     required GetListPromoOutletBodyParam body,

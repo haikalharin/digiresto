@@ -25,6 +25,7 @@ abstract class GetListVoucherOutletParam with _$GetListVoucherOutletParam {
 @freezed
 abstract class GetListVoucherOutletBodyParam
     with _$GetListVoucherOutletBodyParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetListVoucherOutletBodyParam() =
       _GetListVoucherOutletBodyParam;
 

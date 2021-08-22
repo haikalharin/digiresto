@@ -16,6 +16,7 @@ String emptyToJson(GetOutletProductParam data) => json.encode(data.toJson());
 
 @freezed
 abstract class GetOutletProductParam with _$GetOutletProductParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletProductParam({
     required GetOutletProductQueryParam queryString,
     required GetOutletProductBodyParam body,

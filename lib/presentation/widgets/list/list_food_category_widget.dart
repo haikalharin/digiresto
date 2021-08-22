@@ -1,5 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
-import 'package:digiresto/domain/entity/order/param/outlet_product_category_response.dart';
+import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 

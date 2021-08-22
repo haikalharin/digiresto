@@ -150,7 +150,8 @@ class __$GetOutletProductParamCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_GetOutletProductParam implements _GetOutletProductParam {
   const _$_GetOutletProductParam(
       {required this.queryString, required this.body});
