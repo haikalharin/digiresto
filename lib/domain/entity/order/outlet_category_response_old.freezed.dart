@@ -22,9 +22,9 @@ class _$OutletCategoryResponseOldTearOff {
   const _$OutletCategoryResponseOldTearOff();
 
   _OutletCategoryResponseOld call(
-      {required OutletCategoryResponses response,
+      {required StatusResponse response,
       required List<OutletCategoryDataResponse> data,
-      required OutletCategoryMetaResponse meta}) {
+      required MetaResponse meta}) {
     return _OutletCategoryResponseOld(
       response: response,
       data: data,
@@ -42,10 +42,10 @@ const $OutletCategoryResponseOld = _$OutletCategoryResponseOldTearOff();
 
 /// @nodoc
 mixin _$OutletCategoryResponseOld {
-  OutletCategoryResponses get response => throw _privateConstructorUsedError;
+  StatusResponse get response => throw _privateConstructorUsedError;
   List<OutletCategoryDataResponse> get data =>
       throw _privateConstructorUsedError;
-  OutletCategoryMetaResponse get meta => throw _privateConstructorUsedError;
+  MetaResponse get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,12 +59,12 @@ abstract class $OutletCategoryResponseOldCopyWith<$Res> {
           $Res Function(OutletCategoryResponseOld) then) =
       _$OutletCategoryResponseOldCopyWithImpl<$Res>;
   $Res call(
-      {OutletCategoryResponses response,
+      {StatusResponse response,
       List<OutletCategoryDataResponse> data,
-      OutletCategoryMetaResponse meta});
+      MetaResponse meta});
 
-  $OutletCategoryResponsesCopyWith<$Res> get response;
-  $OutletCategoryMetaResponseCopyWith<$Res> get meta;
+  $StatusResponseCopyWith<$Res> get response;
+  $MetaResponseCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ class _$OutletCategoryResponseOldCopyWithImpl<$Res>
       response: response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as OutletCategoryResponses,
+              as StatusResponse,
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -94,20 +94,20 @@ class _$OutletCategoryResponseOldCopyWithImpl<$Res>
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
-              as OutletCategoryMetaResponse,
+              as MetaResponse,
     ));
   }
 
   @override
-  $OutletCategoryResponsesCopyWith<$Res> get response {
-    return $OutletCategoryResponsesCopyWith<$Res>(_value.response, (value) {
+  $StatusResponseCopyWith<$Res> get response {
+    return $StatusResponseCopyWith<$Res>(_value.response, (value) {
       return _then(_value.copyWith(response: value));
     });
   }
 
   @override
-  $OutletCategoryMetaResponseCopyWith<$Res> get meta {
-    return $OutletCategoryMetaResponseCopyWith<$Res>(_value.meta, (value) {
+  $MetaResponseCopyWith<$Res> get meta {
+    return $MetaResponseCopyWith<$Res>(_value.meta, (value) {
       return _then(_value.copyWith(meta: value));
     });
   }
@@ -121,14 +121,14 @@ abstract class _$OutletCategoryResponseOldCopyWith<$Res>
       __$OutletCategoryResponseOldCopyWithImpl<$Res>;
   @override
   $Res call(
-      {OutletCategoryResponses response,
+      {StatusResponse response,
       List<OutletCategoryDataResponse> data,
-      OutletCategoryMetaResponse meta});
+      MetaResponse meta});
 
   @override
-  $OutletCategoryResponsesCopyWith<$Res> get response;
+  $StatusResponseCopyWith<$Res> get response;
   @override
-  $OutletCategoryMetaResponseCopyWith<$Res> get meta;
+  $MetaResponseCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -153,7 +153,7 @@ class __$OutletCategoryResponseOldCopyWithImpl<$Res>
       response: response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as OutletCategoryResponses,
+              as StatusResponse,
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ class __$OutletCategoryResponseOldCopyWithImpl<$Res>
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
-              as OutletCategoryMetaResponse,
+              as MetaResponse,
     ));
   }
 }
@@ -176,11 +176,11 @@ class _$_OutletCategoryResponseOld implements _OutletCategoryResponseOld {
       _$_$_OutletCategoryResponseOldFromJson(json);
 
   @override
-  final OutletCategoryResponses response;
+  final StatusResponse response;
   @override
   final List<OutletCategoryDataResponse> data;
   @override
-  final OutletCategoryMetaResponse meta;
+  final MetaResponse meta;
 
   @override
   String toString() {
@@ -222,20 +222,20 @@ class _$_OutletCategoryResponseOld implements _OutletCategoryResponseOld {
 
 abstract class _OutletCategoryResponseOld implements OutletCategoryResponseOld {
   const factory _OutletCategoryResponseOld(
-      {required OutletCategoryResponses response,
+      {required StatusResponse response,
       required List<OutletCategoryDataResponse> data,
-      required OutletCategoryMetaResponse meta}) = _$_OutletCategoryResponseOld;
+      required MetaResponse meta}) = _$_OutletCategoryResponseOld;
 
   factory _OutletCategoryResponseOld.fromJson(Map<String, dynamic> json) =
       _$_OutletCategoryResponseOld.fromJson;
 
   @override
-  OutletCategoryResponses get response => throw _privateConstructorUsedError;
+  StatusResponse get response => throw _privateConstructorUsedError;
   @override
   List<OutletCategoryDataResponse> get data =>
       throw _privateConstructorUsedError;
   @override
-  OutletCategoryMetaResponse get meta => throw _privateConstructorUsedError;
+  MetaResponse get meta => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OutletCategoryResponseOldCopyWith<_OutletCategoryResponseOld>
@@ -1731,356 +1731,5 @@ abstract class _OrderMethod implements OrderMethod {
   @override
   @JsonKey(ignore: true)
   _$OrderMethodCopyWith<_OrderMethod> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-OutletCategoryMetaResponse _$OutletCategoryMetaResponseFromJson(
-    Map<String, dynamic> json) {
-  return _OutletCategoryMetaResponse.fromJson(json);
-}
-
-/// @nodoc
-class _$OutletCategoryMetaResponseTearOff {
-  const _$OutletCategoryMetaResponseTearOff();
-
-  _OutletCategoryMetaResponse call({required String version}) {
-    return _OutletCategoryMetaResponse(
-      version: version,
-    );
-  }
-
-  OutletCategoryMetaResponse fromJson(Map<String, Object> json) {
-    return OutletCategoryMetaResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OutletCategoryMetaResponse = _$OutletCategoryMetaResponseTearOff();
-
-/// @nodoc
-mixin _$OutletCategoryMetaResponse {
-  String get version => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $OutletCategoryMetaResponseCopyWith<OutletCategoryMetaResponse>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $OutletCategoryMetaResponseCopyWith<$Res> {
-  factory $OutletCategoryMetaResponseCopyWith(OutletCategoryMetaResponse value,
-          $Res Function(OutletCategoryMetaResponse) then) =
-      _$OutletCategoryMetaResponseCopyWithImpl<$Res>;
-  $Res call({String version});
-}
-
-/// @nodoc
-class _$OutletCategoryMetaResponseCopyWithImpl<$Res>
-    implements $OutletCategoryMetaResponseCopyWith<$Res> {
-  _$OutletCategoryMetaResponseCopyWithImpl(this._value, this._then);
-
-  final OutletCategoryMetaResponse _value;
-  // ignore: unused_field
-  final $Res Function(OutletCategoryMetaResponse) _then;
-
-  @override
-  $Res call({
-    Object? version = freezed,
-  }) {
-    return _then(_value.copyWith(
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$OutletCategoryMetaResponseCopyWith<$Res>
-    implements $OutletCategoryMetaResponseCopyWith<$Res> {
-  factory _$OutletCategoryMetaResponseCopyWith(
-          _OutletCategoryMetaResponse value,
-          $Res Function(_OutletCategoryMetaResponse) then) =
-      __$OutletCategoryMetaResponseCopyWithImpl<$Res>;
-  @override
-  $Res call({String version});
-}
-
-/// @nodoc
-class __$OutletCategoryMetaResponseCopyWithImpl<$Res>
-    extends _$OutletCategoryMetaResponseCopyWithImpl<$Res>
-    implements _$OutletCategoryMetaResponseCopyWith<$Res> {
-  __$OutletCategoryMetaResponseCopyWithImpl(_OutletCategoryMetaResponse _value,
-      $Res Function(_OutletCategoryMetaResponse) _then)
-      : super(_value, (v) => _then(v as _OutletCategoryMetaResponse));
-
-  @override
-  _OutletCategoryMetaResponse get _value =>
-      super._value as _OutletCategoryMetaResponse;
-
-  @override
-  $Res call({
-    Object? version = freezed,
-  }) {
-    return _then(_OutletCategoryMetaResponse(
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_OutletCategoryMetaResponse implements _OutletCategoryMetaResponse {
-  const _$_OutletCategoryMetaResponse({required this.version});
-
-  factory _$_OutletCategoryMetaResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletCategoryMetaResponseFromJson(json);
-
-  @override
-  final String version;
-
-  @override
-  String toString() {
-    return 'OutletCategoryMetaResponse(version: $version)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _OutletCategoryMetaResponse &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(other.version, version)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(version);
-
-  @JsonKey(ignore: true)
-  @override
-  _$OutletCategoryMetaResponseCopyWith<_OutletCategoryMetaResponse>
-      get copyWith => __$OutletCategoryMetaResponseCopyWithImpl<
-          _OutletCategoryMetaResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_OutletCategoryMetaResponseToJson(this);
-  }
-}
-
-abstract class _OutletCategoryMetaResponse
-    implements OutletCategoryMetaResponse {
-  const factory _OutletCategoryMetaResponse({required String version}) =
-      _$_OutletCategoryMetaResponse;
-
-  factory _OutletCategoryMetaResponse.fromJson(Map<String, dynamic> json) =
-      _$_OutletCategoryMetaResponse.fromJson;
-
-  @override
-  String get version => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$OutletCategoryMetaResponseCopyWith<_OutletCategoryMetaResponse>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-OutletCategoryResponses _$OutletCategoryResponsesFromJson(
-    Map<String, dynamic> json) {
-  return _OutletCategoryResponses.fromJson(json);
-}
-
-/// @nodoc
-class _$OutletCategoryResponsesTearOff {
-  const _$OutletCategoryResponsesTearOff();
-
-  _OutletCategoryResponses call(
-      {required String code, required String status, required String message}) {
-    return _OutletCategoryResponses(
-      code: code,
-      status: status,
-      message: message,
-    );
-  }
-
-  OutletCategoryResponses fromJson(Map<String, Object> json) {
-    return OutletCategoryResponses.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OutletCategoryResponses = _$OutletCategoryResponsesTearOff();
-
-/// @nodoc
-mixin _$OutletCategoryResponses {
-  String get code => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $OutletCategoryResponsesCopyWith<OutletCategoryResponses> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $OutletCategoryResponsesCopyWith<$Res> {
-  factory $OutletCategoryResponsesCopyWith(OutletCategoryResponses value,
-          $Res Function(OutletCategoryResponses) then) =
-      _$OutletCategoryResponsesCopyWithImpl<$Res>;
-  $Res call({String code, String status, String message});
-}
-
-/// @nodoc
-class _$OutletCategoryResponsesCopyWithImpl<$Res>
-    implements $OutletCategoryResponsesCopyWith<$Res> {
-  _$OutletCategoryResponsesCopyWithImpl(this._value, this._then);
-
-  final OutletCategoryResponses _value;
-  // ignore: unused_field
-  final $Res Function(OutletCategoryResponses) _then;
-
-  @override
-  $Res call({
-    Object? code = freezed,
-    Object? status = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$OutletCategoryResponsesCopyWith<$Res>
-    implements $OutletCategoryResponsesCopyWith<$Res> {
-  factory _$OutletCategoryResponsesCopyWith(_OutletCategoryResponses value,
-          $Res Function(_OutletCategoryResponses) then) =
-      __$OutletCategoryResponsesCopyWithImpl<$Res>;
-  @override
-  $Res call({String code, String status, String message});
-}
-
-/// @nodoc
-class __$OutletCategoryResponsesCopyWithImpl<$Res>
-    extends _$OutletCategoryResponsesCopyWithImpl<$Res>
-    implements _$OutletCategoryResponsesCopyWith<$Res> {
-  __$OutletCategoryResponsesCopyWithImpl(_OutletCategoryResponses _value,
-      $Res Function(_OutletCategoryResponses) _then)
-      : super(_value, (v) => _then(v as _OutletCategoryResponses));
-
-  @override
-  _OutletCategoryResponses get _value =>
-      super._value as _OutletCategoryResponses;
-
-  @override
-  $Res call({
-    Object? code = freezed,
-    Object? status = freezed,
-    Object? message = freezed,
-  }) {
-    return _then(_OutletCategoryResponses(
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_OutletCategoryResponses implements _OutletCategoryResponses {
-  const _$_OutletCategoryResponses(
-      {required this.code, required this.status, required this.message});
-
-  factory _$_OutletCategoryResponses.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletCategoryResponsesFromJson(json);
-
-  @override
-  final String code;
-  @override
-  final String status;
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'OutletCategoryResponses(code: $code, status: $status, message: $message)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _OutletCategoryResponses &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(message);
-
-  @JsonKey(ignore: true)
-  @override
-  _$OutletCategoryResponsesCopyWith<_OutletCategoryResponses> get copyWith =>
-      __$OutletCategoryResponsesCopyWithImpl<_OutletCategoryResponses>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_OutletCategoryResponsesToJson(this);
-  }
-}
-
-abstract class _OutletCategoryResponses implements OutletCategoryResponses {
-  const factory _OutletCategoryResponses(
-      {required String code,
-      required String status,
-      required String message}) = _$_OutletCategoryResponses;
-
-  factory _OutletCategoryResponses.fromJson(Map<String, dynamic> json) =
-      _$_OutletCategoryResponses.fromJson;
-
-  @override
-  String get code => throw _privateConstructorUsedError;
-  @override
-  String get status => throw _privateConstructorUsedError;
-  @override
-  String get message => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$OutletCategoryResponsesCopyWith<_OutletCategoryResponses> get copyWith =>
       throw _privateConstructorUsedError;
 }

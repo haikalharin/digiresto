@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'detail_outlet_model.freezed.dart';
@@ -13,9 +14,9 @@ String emptyToJson(DetailOutletResponse data) => json.encode(data.toJson());
 @freezed
 abstract class DetailOutletResponse with _$DetailOutletResponse {
   const factory DetailOutletResponse({
-    required DetailOutletStatusResponse response,
+    required StatusResponse response,
     required DetailOutletDataResponse data,
-    required DetailOutletMetaResponse meta,
+    required MetaResponse meta,
   }) = _DetailOutletResponse;
 
   factory DetailOutletResponse.fromJson(Map<String, dynamic> json) =>
@@ -62,26 +63,4 @@ abstract class DetailOutletDataLastUpdateResponse
   factory DetailOutletDataLastUpdateResponse.fromJson(
           Map<String, dynamic> json) =>
       _$DetailOutletDataLastUpdateResponseFromJson(json);
-}
-
-@freezed
-abstract class DetailOutletMetaResponse with _$DetailOutletMetaResponse {
-  const factory DetailOutletMetaResponse({
-    required String version,
-  }) = _DetailOutletMetaResponse;
-
-  factory DetailOutletMetaResponse.fromJson(Map<String, dynamic> json) =>
-      _$DetailOutletMetaResponseFromJson(json);
-}
-
-@freezed
-abstract class DetailOutletStatusResponse with _$DetailOutletStatusResponse {
-  const factory DetailOutletStatusResponse({
-    required String code,
-    required String status,
-    required String message,
-  }) = _DetailOutletStatusResponse;
-
-  factory DetailOutletStatusResponse.fromJson(Map<String, dynamic> json) =>
-      _$DetailOutletStatusResponseFromJson(json);
 }

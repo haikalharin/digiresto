@@ -1,5 +1,6 @@
 class OrderDetailViewArgument {
   final outletId;
+  final merchantId;
 
-  OrderDetailViewArgument(this.outletId);
+  OrderDetailViewArgument(this.outletId, this.merchantId);
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'outlet_category_response_old.freezed.dart';
@@ -14,9 +15,9 @@ String emptyToJson(OutletCategoryResponseOld data) =>
 @freezed
 abstract class OutletCategoryResponseOld with _$OutletCategoryResponseOld {
   const factory OutletCategoryResponseOld({
-    required OutletCategoryResponses response,
+    required StatusResponse response,
     required List<OutletCategoryDataResponse> data,
-    required OutletCategoryMetaResponse meta,
+    required MetaResponse meta,
   }) = _OutletCategoryResponseOld;
 
   factory OutletCategoryResponseOld.fromJson(Map<String, dynamic> json) =>
@@ -105,28 +106,6 @@ final defaultListValues = EnumValues({
   "onlineDriver": DefaultList.ONLINE_DRIVER,
   "takeAway": DefaultList.TAKE_AWAY
 });
-
-@freezed
-abstract class OutletCategoryMetaResponse with _$OutletCategoryMetaResponse {
-  const factory OutletCategoryMetaResponse({
-    required String version,
-  }) = _OutletCategoryMetaResponse;
-
-  factory OutletCategoryMetaResponse.fromJson(Map<String, dynamic> json) =>
-      _$OutletCategoryMetaResponseFromJson(json);
-}
-
-@freezed
-abstract class OutletCategoryResponses with _$OutletCategoryResponses {
-  const factory OutletCategoryResponses({
-    required String code,
-    required String status,
-    required String message,
-  }) = _OutletCategoryResponses;
-
-  factory OutletCategoryResponses.fromJson(Map<String, dynamic> json) =>
-      _$OutletCategoryResponsesFromJson(json);
-}
 
 class EnumValues<T> {
   Map<String, T> map;

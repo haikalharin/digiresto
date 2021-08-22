@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
+import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
@@ -21,32 +22,19 @@ import 'package:get/get.dart';
 
 import 'detailProductDialog.dart';
 
-class DetailOutletScreen extends StatefulWidget {
-  @override
-  _DetailOutletScreenState createState() => _DetailOutletScreenState();
-}
-
-class _DetailOutletScreenState extends State<DetailOutletScreen> {
-  OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
+class DetailOutletScreen extends GetView<OrderViewController> {
+  final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
   final searchController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
   //OrderStore _orderStore;
-  DetailOutletDataResponse? detailOutlet;
 
   //bool loadDataApi;
-  int page = 1;
-  String? filterCategory;
-  String? searchName;
-  String? orderType;
-  int orderProductLength = 0;
-  bool detailOutletLoading = false;
+
   goBack(BuildContext context) {
     Get.back();
   }
 
-  @override
   void initState() {
-    super.initState();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -56,15 +44,9 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
     });
   }
 
-  refresh() {
-    setState(() {
-      //all the reload processes
-    });
-  }
+  refresh() {}
 
-  @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
     // _orderStore = Provider.of<OrderStore>(context);
 
     // setState(() {
@@ -77,18 +59,15 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   }
 
   void searchActionText(String keyword) {
-    setState(() {
-      page = 1;
-      searchName = keyword;
-    });
+    controller.page.value = 1;
+    controller.searchName.value = keyword;
     //getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
   }
 
   void searchActionCategory(String? category) {
-    setState(() {
-      page = 1;
-      filterCategory = category;
-    });
+    controller.page.value = 1;
+    controller.filterCategory.value = category ?? "";
+
     //getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
   }
 
@@ -130,7 +109,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
 
   Widget _search() {
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.grey,
       ),
       child: Container(
@@ -241,7 +220,7 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                 ),
                 textAlign: TextAlign.center),
           ),
-          detailOutlet != null
+          controller.detailOutlet?.value != null
               ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   GestureDetector(
                     onTap: () {
@@ -326,14 +305,14 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
           ),
         ),
         ListProductOutletWidget(
-          orderType: orderType!,
+          orderType: controller.orderType.value,
           data: data,
           runDetailAction: (_showDetailProduct, orderType) {
             "_showDetailProduct";
           },
           scrollDirection: Axis.vertical,
         ),
-        Loading.smallLoading(detailOutletLoading),
+        Loading.smallLoading(controller.detailOutletLoading.value),
       ],
     );
   }
@@ -341,104 +320,115 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
   _showDetailProduct(Map<String, dynamic> dataProduct, String orderType) {
     //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
     Navigator.push(
-            context,
+            Get.context!,
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
                       dataProduct: dataProduct, orderType: orderType);
                 },
                 fullscreenDialog: true))
-        .then((value) {
-      setState(() {});
-    });
+        .then((value) {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: "_orderStore.orderProduct".length > 0
-          ? GestureDetector(
-              onTap: () {
-                Get.toNamed(Routers.orderCart);
-              },
-              child: Container(
-                height: 70,
-                color: Colors.white,
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(bottom: 10),
-                child: Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.red,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    height: 50,
-                    width: MediaQuery.of(context).size.width - 50,
+    Get.put(OrderViewController());
+    return BlocConsumer<OrderBloc, OrderState>(
+      listener: (context, state) {
+        state.maybeMap(getDetailOutletSuccess: (r) {}, orElse: () {});
+      },
+      builder: (context, state) {
+        return Scaffold(
+          floatingActionButton: "_orderStore.orderProduct".length > 0
+              ? GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routers.orderCart);
+                  },
+                  child: Container(
+                    height: 70,
+                    color: Colors.white,
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.only(bottom: 10),
                     child: Container(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+                        decoration: BoxDecoration(
+                          color: AppColors.red,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        height: 50,
+                        width: MediaQuery.of(context).size.width - 50,
+                        child: Container(
+                          padding: EdgeInsets.only(left: 15, right: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "_orderStore.orderProduct".length.toString() +
-                                    " items",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                              Row(
+                                children: [
+                                  controller.detailOutlet?.value != null
+                                      ? Text(
+                                          "_orderStore.orderProduct"
+                                                  .length
+                                                  .toString() +
+                                              " items",
+                                          style: TextStyle(
+                                            fontFamily: "roboto",
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        )
+                                      : Container(),
+                                  Container(
+                                    margin: EdgeInsets.all(5),
+                                    height: 30,
+                                    width: 1.5,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    "Lihat Keranjang",
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Container(
-                                margin: EdgeInsets.all(5),
-                                height: 30,
-                                width: 1.5,
-                                color: Colors.white,
-                              ),
-                              Text(
-                                "Lihat Keranjang",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              controller.detailOutlet?.value != null
+                                  ? Text(
+                                      "Rp. " +
+                                          Utils.formatRupiah(10000.toString()),
+                                      style: TextStyle(
+                                        fontFamily: "roboto",
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  : Container()
                             ],
                           ),
-                          Text(
-                            "Rp. " +
-                                Utils.formatRupiah(
-                                    "_orderStore.orderPriceTotal".toString()),
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
-              ),
-            )
-          : Container(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: Column(
-        children: [
-          TopBackgound(backgroundColor: AppColors.red),
-          BlocConsumer<OrderBloc, OrderState>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return Container(
+                        )),
+                  ),
+                )
+              : Container(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          body: Column(
+            children: [
+              TopBackgound(backgroundColor: AppColors.red),
+              Container(
                 height: MediaQuery.of(context).size.height - 30,
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   child: Column(
                     children: [
-                      _header(detailOutlet!),
-                      detailOutlet != null ? _search() : Container(),
+                      controller.detailOutlet?.value != null
+                          ? _header(controller.detailOutlet!.value)
+                          : Container(),
+                      controller.detailOutlet?.value != null
+                          ? _search()
+                          : Container(),
                       // detailOutlet != null
                       //     ? _category(detailOutlet!, filterCategory!)
                       //     : Container(),
@@ -451,11 +441,11 @@ class _DetailOutletScreenState extends State<DetailOutletScreen> {
                     ],
                   ),
                 ),
-              );
-            },
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

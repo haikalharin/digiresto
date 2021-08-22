@@ -54,6 +54,9 @@ class Endpoints {
   static const String urlGetDetailOutlet = "/forward?r=v2/getdetailoutlet";
   static const String urlGetOutletProductCategory =
       "/forward?r=v2/getproductcategory";
+  static const String urlGetListPromoOutlet = "/forward?r=v2/getpromooutlet";
+  static const String urlGetListVoucherOutlet =
+      "/forward?r=v2/getvoucheroutlet";
   static const String urlGetProduct = "/forward?r=v2/getproduct";
   static const String urlCreateCartSession = "/forward?r=createcartsession";
   static const String urlUpdateCartSession = "/forward?r=updatecartsession";

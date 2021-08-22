@@ -3,12 +3,16 @@ import 'package:digiresto/domain/entity/order/cart_session_model.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
+import 'package:digiresto/domain/entity/order/param/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:injectable/injectable.dart';
 
@@ -29,6 +33,34 @@ class OrderRepository {
   Future<Either<Exception, OutletCategoryResponse>> getOutletByCategory(
       Map<String, dynamic> object) async {
     return await _orderApi.getOutletByCategory(object).then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, OutletProductCategoryResponse>>
+      getOutletProductCategory(Map<String, dynamic> object) async {
+    return await _orderApi.getOutletProductCategory(object).then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, OutletListProductResponse>> getOutletListProduct(
+      Map<String, dynamic> object) async {
+    return await _orderApi.getOutletListProduct(object).then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, PromoOutletResponse>> getListPromoOutlet(
+      Map<String, dynamic> object) async {
+    return await _orderApi.getListPromoOutlet(object).then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, GetListVoucherOutletResponse>> getListVoucherOutlet(
+      Map<String, dynamic> object) async {
+    return await _orderApi.getListVoucherOutlet(object).then((value) {
       return value;
     });
   }

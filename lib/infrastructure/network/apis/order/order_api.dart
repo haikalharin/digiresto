@@ -9,6 +9,7 @@ import 'package:digiresto/domain/entity/order/cart_session_model.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
@@ -17,6 +18,7 @@ import 'package:digiresto/domain/entity/order/param/outlet_product_category_resp
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:injectable/injectable.dart';
 
@@ -252,6 +254,56 @@ class OrderApi {
               // }
               );
       return right(OutletListProductResponse.fromJson(apiResult));
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, PromoOutletResponse>> getListPromoOutlet(
+      Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlGetListPromoOutlet;
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, content: object);
+      // {
+// 	"query_string": {
+//         "outletId": "254",
+//         "merchantId": "340"
+// 	},
+// 	"body": {
+
+// 	}
+// }
+      return right(PromoOutletResponse.fromJson(apiResult));
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, GetListVoucherOutletResponse>> getListVoucherOutlet(
+      Map<String, dynamic> object) async {
+    try {
+      String apiUrl = Endpoints.urlGetListPromoOutlet;
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, content: object);
+      // {
+// 	"query_string": {
+//         "outletId": "254",
+//         "merchantId": "340"
+// 	},
+// 	"body": {
+
+// 	}
+// }
+      return right(GetListVoucherOutletResponse.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
