@@ -8,6 +8,18 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getOutletByCategory(
       GetOutletByCategoryParam request) = _GetOutletByCategory;
 
+  const factory OrderEvent.getOutletProductCategory(
+      GetOutletProductCategoryParam request) = _GetOutletProductCategory;
+
+  const factory OrderEvent.getListPromoOutlet(GetListPromoOutletParam request) =
+      _GetListPromoOutlet;
+
+  const factory OrderEvent.getListVoucherOutlet(
+      GetListVoucherOutletParam request) = _GetListVoucherOutlet;
+
+  const factory OrderEvent.getOutletListProduct(GetOutletProductParam request) =
+      _GetOutletListProduct;
+
   const factory OrderEvent.getPromoOutlet(GetPromoOutletParam request) =
       _GetPromoOutlet;
 

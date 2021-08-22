@@ -28,6 +28,32 @@ class _$OrderEventTearOff {
     );
   }
 
+  _GetOutletProductCategory getOutletProductCategory(
+      GetOutletProductCategoryParam request) {
+    return _GetOutletProductCategory(
+      request,
+    );
+  }
+
+  _GetListPromoOutlet getListPromoOutlet(GetListPromoOutletParam request) {
+    return _GetListPromoOutlet(
+      request,
+    );
+  }
+
+  _GetListVoucherOutlet getListVoucherOutlet(
+      GetListVoucherOutletParam request) {
+    return _GetListVoucherOutlet(
+      request,
+    );
+  }
+
+  _GetOutletListProduct getOutletListProduct(GetOutletProductParam request) {
+    return _GetOutletListProduct(
+      request,
+    );
+  }
+
   _GetPromoOutlet getPromoOutlet(GetPromoOutletParam request) {
     return _GetPromoOutlet(
       request,
@@ -88,6 +114,14 @@ mixin _$OrderEvent {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -102,6 +136,11 @@ mixin _$OrderEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -117,6 +156,11 @@ mixin _$OrderEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -131,6 +175,10 @@ mixin _$OrderEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -239,6 +287,14 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -256,6 +312,11 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -277,6 +338,11 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -294,6 +360,10 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -400,6 +470,14 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -417,6 +495,11 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -438,6 +521,11 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -455,6 +543,10 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -479,6 +571,740 @@ abstract class _GetOutletByCategory implements OrderEvent {
   GetOutletByCategoryParam get request => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetOutletByCategoryCopyWith<_GetOutletByCategory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetOutletProductCategoryCopyWith<$Res> {
+  factory _$GetOutletProductCategoryCopyWith(_GetOutletProductCategory value,
+          $Res Function(_GetOutletProductCategory) then) =
+      __$GetOutletProductCategoryCopyWithImpl<$Res>;
+  $Res call({GetOutletProductCategoryParam request});
+
+  $GetOutletProductCategoryParamCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$GetOutletProductCategoryCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetOutletProductCategoryCopyWith<$Res> {
+  __$GetOutletProductCategoryCopyWithImpl(_GetOutletProductCategory _value,
+      $Res Function(_GetOutletProductCategory) _then)
+      : super(_value, (v) => _then(v as _GetOutletProductCategory));
+
+  @override
+  _GetOutletProductCategory get _value =>
+      super._value as _GetOutletProductCategory;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetOutletProductCategory(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as GetOutletProductCategoryParam,
+    ));
+  }
+
+  @override
+  $GetOutletProductCategoryParamCopyWith<$Res> get request {
+    return $GetOutletProductCategoryParamCopyWith<$Res>(_value.request,
+        (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetOutletProductCategory implements _GetOutletProductCategory {
+  const _$_GetOutletProductCategory(this.request);
+
+  @override
+  final GetOutletProductCategoryParam request;
+
+  @override
+  String toString() {
+    return 'OrderEvent.getOutletProductCategory(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetOutletProductCategory &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetOutletProductCategoryCopyWith<_GetOutletProductCategory> get copyWith =>
+      __$GetOutletProductCategoryCopyWithImpl<_GetOutletProductCategory>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+  }) {
+    return getOutletProductCategory(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getOutletProductCategory != null) {
+      return getOutletProductCategory(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+  }) {
+    return getOutletProductCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getOutletProductCategory != null) {
+      return getOutletProductCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetOutletProductCategory implements OrderEvent {
+  const factory _GetOutletProductCategory(
+      GetOutletProductCategoryParam request) = _$_GetOutletProductCategory;
+
+  GetOutletProductCategoryParam get request =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetOutletProductCategoryCopyWith<_GetOutletProductCategory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetListPromoOutletCopyWith<$Res> {
+  factory _$GetListPromoOutletCopyWith(
+          _GetListPromoOutlet value, $Res Function(_GetListPromoOutlet) then) =
+      __$GetListPromoOutletCopyWithImpl<$Res>;
+  $Res call({GetListPromoOutletParam request});
+
+  $GetListPromoOutletParamCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$GetListPromoOutletCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetListPromoOutletCopyWith<$Res> {
+  __$GetListPromoOutletCopyWithImpl(
+      _GetListPromoOutlet _value, $Res Function(_GetListPromoOutlet) _then)
+      : super(_value, (v) => _then(v as _GetListPromoOutlet));
+
+  @override
+  _GetListPromoOutlet get _value => super._value as _GetListPromoOutlet;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetListPromoOutlet(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as GetListPromoOutletParam,
+    ));
+  }
+
+  @override
+  $GetListPromoOutletParamCopyWith<$Res> get request {
+    return $GetListPromoOutletParamCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetListPromoOutlet implements _GetListPromoOutlet {
+  const _$_GetListPromoOutlet(this.request);
+
+  @override
+  final GetListPromoOutletParam request;
+
+  @override
+  String toString() {
+    return 'OrderEvent.getListPromoOutlet(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetListPromoOutlet &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetListPromoOutletCopyWith<_GetListPromoOutlet> get copyWith =>
+      __$GetListPromoOutletCopyWithImpl<_GetListPromoOutlet>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+  }) {
+    return getListPromoOutlet(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getListPromoOutlet != null) {
+      return getListPromoOutlet(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+  }) {
+    return getListPromoOutlet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getListPromoOutlet != null) {
+      return getListPromoOutlet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetListPromoOutlet implements OrderEvent {
+  const factory _GetListPromoOutlet(GetListPromoOutletParam request) =
+      _$_GetListPromoOutlet;
+
+  GetListPromoOutletParam get request => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetListPromoOutletCopyWith<_GetListPromoOutlet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetListVoucherOutletCopyWith<$Res> {
+  factory _$GetListVoucherOutletCopyWith(_GetListVoucherOutlet value,
+          $Res Function(_GetListVoucherOutlet) then) =
+      __$GetListVoucherOutletCopyWithImpl<$Res>;
+  $Res call({GetListVoucherOutletParam request});
+
+  $GetListVoucherOutletParamCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$GetListVoucherOutletCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetListVoucherOutletCopyWith<$Res> {
+  __$GetListVoucherOutletCopyWithImpl(
+      _GetListVoucherOutlet _value, $Res Function(_GetListVoucherOutlet) _then)
+      : super(_value, (v) => _then(v as _GetListVoucherOutlet));
+
+  @override
+  _GetListVoucherOutlet get _value => super._value as _GetListVoucherOutlet;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetListVoucherOutlet(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as GetListVoucherOutletParam,
+    ));
+  }
+
+  @override
+  $GetListVoucherOutletParamCopyWith<$Res> get request {
+    return $GetListVoucherOutletParamCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
+  const _$_GetListVoucherOutlet(this.request);
+
+  @override
+  final GetListVoucherOutletParam request;
+
+  @override
+  String toString() {
+    return 'OrderEvent.getListVoucherOutlet(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetListVoucherOutlet &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetListVoucherOutletCopyWith<_GetListVoucherOutlet> get copyWith =>
+      __$GetListVoucherOutletCopyWithImpl<_GetListVoucherOutlet>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+  }) {
+    return getListVoucherOutlet(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getListVoucherOutlet != null) {
+      return getListVoucherOutlet(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+  }) {
+    return getListVoucherOutlet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getListVoucherOutlet != null) {
+      return getListVoucherOutlet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetListVoucherOutlet implements OrderEvent {
+  const factory _GetListVoucherOutlet(GetListVoucherOutletParam request) =
+      _$_GetListVoucherOutlet;
+
+  GetListVoucherOutletParam get request => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetListVoucherOutletCopyWith<_GetListVoucherOutlet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetOutletListProductCopyWith<$Res> {
+  factory _$GetOutletListProductCopyWith(_GetOutletListProduct value,
+          $Res Function(_GetOutletListProduct) then) =
+      __$GetOutletListProductCopyWithImpl<$Res>;
+  $Res call({GetOutletProductParam request});
+
+  $GetOutletProductParamCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$GetOutletListProductCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetOutletListProductCopyWith<$Res> {
+  __$GetOutletListProductCopyWithImpl(
+      _GetOutletListProduct _value, $Res Function(_GetOutletListProduct) _then)
+      : super(_value, (v) => _then(v as _GetOutletListProduct));
+
+  @override
+  _GetOutletListProduct get _value => super._value as _GetOutletListProduct;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetOutletListProduct(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as GetOutletProductParam,
+    ));
+  }
+
+  @override
+  $GetOutletProductParamCopyWith<$Res> get request {
+    return $GetOutletProductParamCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetOutletListProduct implements _GetOutletListProduct {
+  const _$_GetOutletListProduct(this.request);
+
+  @override
+  final GetOutletProductParam request;
+
+  @override
+  String toString() {
+    return 'OrderEvent.getOutletListProduct(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetOutletListProduct &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetOutletListProductCopyWith<_GetOutletListProduct> get copyWith =>
+      __$GetOutletListProductCopyWithImpl<_GetOutletListProduct>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+  }) {
+    return getOutletListProduct(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getOutletListProduct != null) {
+      return getOutletListProduct(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+  }) {
+    return getOutletListProduct(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getOutletListProduct != null) {
+      return getOutletListProduct(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetOutletListProduct implements OrderEvent {
+  const factory _GetOutletListProduct(GetOutletProductParam request) =
+      _$_GetOutletListProduct;
+
+  GetOutletProductParam get request => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetOutletListProductCopyWith<_GetOutletListProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -559,6 +1385,14 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -576,6 +1410,11 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -597,6 +1436,11 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -614,6 +1458,10 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -709,6 +1557,14 @@ class _$_GetHotPromo implements _GetHotPromo {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -726,6 +1582,11 @@ class _$_GetHotPromo implements _GetHotPromo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -747,6 +1608,11 @@ class _$_GetHotPromo implements _GetHotPromo {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -764,6 +1630,10 @@ class _$_GetHotPromo implements _GetHotPromo {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -868,6 +1738,14 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -885,6 +1763,11 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -906,6 +1789,11 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -923,6 +1811,10 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -1028,6 +1920,14 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -1045,6 +1945,11 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -1066,6 +1971,11 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -1083,6 +1993,10 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -1188,6 +2102,14 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -1205,6 +2127,11 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -1226,6 +2153,11 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -1243,6 +2175,10 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -1348,6 +2284,14 @@ class _$_CreateCartSession implements _CreateCartSession {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -1365,6 +2309,11 @@ class _$_CreateCartSession implements _CreateCartSession {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -1386,6 +2335,11 @@ class _$_CreateCartSession implements _CreateCartSession {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -1403,6 +2357,10 @@ class _$_CreateCartSession implements _CreateCartSession {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -1508,6 +2466,14 @@ class _$_UpdateCartSession implements _UpdateCartSession {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -1525,6 +2491,11 @@ class _$_UpdateCartSession implements _UpdateCartSession {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -1546,6 +2517,11 @@ class _$_UpdateCartSession implements _UpdateCartSession {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -1563,6 +2539,10 @@ class _$_UpdateCartSession implements _UpdateCartSession {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -1658,6 +2638,14 @@ class _$_CheckoutCart implements _CheckoutCart {
         getOutletByLocation,
     required TResult Function(GetOutletByCategoryParam request)
         getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
     required TResult Function(GetPromoOutletParam request) getPromoOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
@@ -1675,6 +2663,11 @@ class _$_CheckoutCart implements _CheckoutCart {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
     TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
     TResult Function(GetPromoOutletParam request)? getPromoOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
@@ -1696,6 +2689,11 @@ class _$_CheckoutCart implements _CheckoutCart {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOutletByLocation value) getOutletByLocation,
     required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
     required TResult Function(_GetPromoOutlet value) getPromoOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
@@ -1713,6 +2711,10 @@ class _$_CheckoutCart implements _CheckoutCart {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOutletByLocation value)? getOutletByLocation,
     TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
     TResult Function(_GetPromoOutlet value)? getPromoOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
@@ -1781,6 +2783,34 @@ class _$OrderStateTearOff {
     );
   }
 
+  _GetListPromoOutletSuccess getListPromoOutletSuccess(
+      PromoOutletDataResponse request) {
+    return _GetListPromoOutletSuccess(
+      request,
+    );
+  }
+
+  _GetListVoucherOutletSuccess getListVoucherOutletSuccess(
+      List<GetListVoucherOutletDataResponse> request) {
+    return _GetListVoucherOutletSuccess(
+      request,
+    );
+  }
+
+  _GetOutletListProductSuccess getOutletListProductSuccess(
+      List<OutletListProductDataResponse> request) {
+    return _GetOutletListProductSuccess(
+      request,
+    );
+  }
+
+  _GetOutletProductCategorySuccess getOutletProductCategorySuccess(
+      List<OutletProductDataResponse> request) {
+    return _GetOutletProductCategorySuccess(
+      request,
+    );
+  }
+
   _GetHotPromoSuccess getHotPromoSuccess(List<HotPromo> response) {
     return _GetHotPromoSuccess(
       response,
@@ -1845,6 +2875,14 @@ mixin _$OrderState {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -1870,6 +2908,14 @@ mixin _$OrderState {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -1892,6 +2938,14 @@ mixin _$OrderState {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -1917,6 +2971,14 @@ mixin _$OrderState {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -1991,6 +3053,14 @@ class _$_Initial implements _Initial {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -2019,6 +3089,14 @@ class _$_Initial implements _Initial {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -2047,6 +3125,14 @@ class _$_Initial implements _Initial {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -2075,6 +3161,14 @@ class _$_Initial implements _Initial {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -2143,6 +3237,14 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -2171,6 +3273,14 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -2199,6 +3309,14 @@ class _$_LoadInProgress implements _LoadInProgress {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -2227,6 +3345,14 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -2295,6 +3421,14 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -2323,6 +3457,14 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -2351,6 +3493,14 @@ class _$_LoadSuccess implements _LoadSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -2379,6 +3529,14 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -2472,6 +3630,14 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -2500,6 +3666,14 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -2528,6 +3702,14 @@ class _$_LoadFailure implements _LoadFailure {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -2556,6 +3738,14 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -2659,6 +3849,14 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -2687,6 +3885,14 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -2715,6 +3921,14 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -2743,6 +3957,14 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -2848,6 +4070,14 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -2876,6 +4106,14 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -2904,6 +4142,14 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -2932,6 +4178,14 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -3035,6 +4289,14 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -3063,6 +4325,14 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -3091,6 +4361,14 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -3119,6 +4397,14 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -3143,6 +4429,901 @@ abstract class _GetPromoOutletSuccess implements OrderState {
   @JsonKey(ignore: true)
   _$GetPromoOutletSuccessCopyWith<_GetPromoOutletSuccess> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetListPromoOutletSuccessCopyWith<$Res> {
+  factory _$GetListPromoOutletSuccessCopyWith(_GetListPromoOutletSuccess value,
+          $Res Function(_GetListPromoOutletSuccess) then) =
+      __$GetListPromoOutletSuccessCopyWithImpl<$Res>;
+  $Res call({PromoOutletDataResponse request});
+
+  $PromoOutletDataResponseCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$GetListPromoOutletSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetListPromoOutletSuccessCopyWith<$Res> {
+  __$GetListPromoOutletSuccessCopyWithImpl(_GetListPromoOutletSuccess _value,
+      $Res Function(_GetListPromoOutletSuccess) _then)
+      : super(_value, (v) => _then(v as _GetListPromoOutletSuccess));
+
+  @override
+  _GetListPromoOutletSuccess get _value =>
+      super._value as _GetListPromoOutletSuccess;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetListPromoOutletSuccess(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as PromoOutletDataResponse,
+    ));
+  }
+
+  @override
+  $PromoOutletDataResponseCopyWith<$Res> get request {
+    return $PromoOutletDataResponseCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
+  const _$_GetListPromoOutletSuccess(this.request);
+
+  @override
+  final PromoOutletDataResponse request;
+
+  @override
+  String toString() {
+    return 'OrderState.getListPromoOutletSuccess(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetListPromoOutletSuccess &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetListPromoOutletSuccessCopyWith<_GetListPromoOutletSuccess>
+      get copyWith =>
+          __$GetListPromoOutletSuccessCopyWithImpl<_GetListPromoOutletSuccess>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+  }) {
+    return getListPromoOutletSuccess(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getListPromoOutletSuccess != null) {
+      return getListPromoOutletSuccess(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+  }) {
+    return getListPromoOutletSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getListPromoOutletSuccess != null) {
+      return getListPromoOutletSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetListPromoOutletSuccess implements OrderState {
+  const factory _GetListPromoOutletSuccess(PromoOutletDataResponse request) =
+      _$_GetListPromoOutletSuccess;
+
+  PromoOutletDataResponse get request => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetListPromoOutletSuccessCopyWith<_GetListPromoOutletSuccess>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetListVoucherOutletSuccessCopyWith<$Res> {
+  factory _$GetListVoucherOutletSuccessCopyWith(
+          _GetListVoucherOutletSuccess value,
+          $Res Function(_GetListVoucherOutletSuccess) then) =
+      __$GetListVoucherOutletSuccessCopyWithImpl<$Res>;
+  $Res call({List<GetListVoucherOutletDataResponse> request});
+}
+
+/// @nodoc
+class __$GetListVoucherOutletSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetListVoucherOutletSuccessCopyWith<$Res> {
+  __$GetListVoucherOutletSuccessCopyWithImpl(
+      _GetListVoucherOutletSuccess _value,
+      $Res Function(_GetListVoucherOutletSuccess) _then)
+      : super(_value, (v) => _then(v as _GetListVoucherOutletSuccess));
+
+  @override
+  _GetListVoucherOutletSuccess get _value =>
+      super._value as _GetListVoucherOutletSuccess;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetListVoucherOutletSuccess(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as List<GetListVoucherOutletDataResponse>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
+  const _$_GetListVoucherOutletSuccess(this.request);
+
+  @override
+  final List<GetListVoucherOutletDataResponse> request;
+
+  @override
+  String toString() {
+    return 'OrderState.getListVoucherOutletSuccess(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetListVoucherOutletSuccess &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetListVoucherOutletSuccessCopyWith<_GetListVoucherOutletSuccess>
+      get copyWith => __$GetListVoucherOutletSuccessCopyWithImpl<
+          _GetListVoucherOutletSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+  }) {
+    return getListVoucherOutletSuccess(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getListVoucherOutletSuccess != null) {
+      return getListVoucherOutletSuccess(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+  }) {
+    return getListVoucherOutletSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getListVoucherOutletSuccess != null) {
+      return getListVoucherOutletSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetListVoucherOutletSuccess implements OrderState {
+  const factory _GetListVoucherOutletSuccess(
+          List<GetListVoucherOutletDataResponse> request) =
+      _$_GetListVoucherOutletSuccess;
+
+  List<GetListVoucherOutletDataResponse> get request =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetListVoucherOutletSuccessCopyWith<_GetListVoucherOutletSuccess>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetOutletListProductSuccessCopyWith<$Res> {
+  factory _$GetOutletListProductSuccessCopyWith(
+          _GetOutletListProductSuccess value,
+          $Res Function(_GetOutletListProductSuccess) then) =
+      __$GetOutletListProductSuccessCopyWithImpl<$Res>;
+  $Res call({List<OutletListProductDataResponse> request});
+}
+
+/// @nodoc
+class __$GetOutletListProductSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetOutletListProductSuccessCopyWith<$Res> {
+  __$GetOutletListProductSuccessCopyWithImpl(
+      _GetOutletListProductSuccess _value,
+      $Res Function(_GetOutletListProductSuccess) _then)
+      : super(_value, (v) => _then(v as _GetOutletListProductSuccess));
+
+  @override
+  _GetOutletListProductSuccess get _value =>
+      super._value as _GetOutletListProductSuccess;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetOutletListProductSuccess(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as List<OutletListProductDataResponse>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
+  const _$_GetOutletListProductSuccess(this.request);
+
+  @override
+  final List<OutletListProductDataResponse> request;
+
+  @override
+  String toString() {
+    return 'OrderState.getOutletListProductSuccess(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetOutletListProductSuccess &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetOutletListProductSuccessCopyWith<_GetOutletListProductSuccess>
+      get copyWith => __$GetOutletListProductSuccessCopyWithImpl<
+          _GetOutletListProductSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+  }) {
+    return getOutletListProductSuccess(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getOutletListProductSuccess != null) {
+      return getOutletListProductSuccess(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+  }) {
+    return getOutletListProductSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getOutletListProductSuccess != null) {
+      return getOutletListProductSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetOutletListProductSuccess implements OrderState {
+  const factory _GetOutletListProductSuccess(
+          List<OutletListProductDataResponse> request) =
+      _$_GetOutletListProductSuccess;
+
+  List<OutletListProductDataResponse> get request =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetOutletListProductSuccessCopyWith<_GetOutletListProductSuccess>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetOutletProductCategorySuccessCopyWith<$Res> {
+  factory _$GetOutletProductCategorySuccessCopyWith(
+          _GetOutletProductCategorySuccess value,
+          $Res Function(_GetOutletProductCategorySuccess) then) =
+      __$GetOutletProductCategorySuccessCopyWithImpl<$Res>;
+  $Res call({List<OutletProductDataResponse> request});
+}
+
+/// @nodoc
+class __$GetOutletProductCategorySuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetOutletProductCategorySuccessCopyWith<$Res> {
+  __$GetOutletProductCategorySuccessCopyWithImpl(
+      _GetOutletProductCategorySuccess _value,
+      $Res Function(_GetOutletProductCategorySuccess) _then)
+      : super(_value, (v) => _then(v as _GetOutletProductCategorySuccess));
+
+  @override
+  _GetOutletProductCategorySuccess get _value =>
+      super._value as _GetOutletProductCategorySuccess;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetOutletProductCategorySuccess(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as List<OutletProductDataResponse>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetOutletProductCategorySuccess
+    implements _GetOutletProductCategorySuccess {
+  const _$_GetOutletProductCategorySuccess(this.request);
+
+  @override
+  final List<OutletProductDataResponse> request;
+
+  @override
+  String toString() {
+    return 'OrderState.getOutletProductCategorySuccess(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetOutletProductCategorySuccess &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetOutletProductCategorySuccessCopyWith<_GetOutletProductCategorySuccess>
+      get copyWith => __$GetOutletProductCategorySuccessCopyWithImpl<
+          _GetOutletProductCategorySuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+  }) {
+    return getOutletProductCategorySuccess(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getOutletProductCategorySuccess != null) {
+      return getOutletProductCategorySuccess(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+  }) {
+    return getOutletProductCategorySuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getOutletProductCategorySuccess != null) {
+      return getOutletProductCategorySuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetOutletProductCategorySuccess implements OrderState {
+  const factory _GetOutletProductCategorySuccess(
+          List<OutletProductDataResponse> request) =
+      _$_GetOutletProductCategorySuccess;
+
+  List<OutletProductDataResponse> get request =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetOutletProductCategorySuccessCopyWith<_GetOutletProductCategorySuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -3220,6 +5401,14 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -3248,6 +5437,14 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -3276,6 +5473,14 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -3304,6 +5509,14 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -3415,6 +5628,14 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -3443,6 +5664,14 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -3471,6 +5700,14 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -3499,6 +5736,14 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -3602,6 +5847,14 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -3630,6 +5883,14 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -3658,6 +5919,14 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -3686,6 +5955,14 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -3788,6 +6065,14 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -3816,6 +6101,14 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -3844,6 +6137,14 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -3872,6 +6173,14 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -3975,6 +6284,14 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -4003,6 +6320,14 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -4031,6 +6356,14 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -4059,6 +6392,14 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -4162,6 +6503,14 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -4190,6 +6539,14 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -4218,6 +6575,14 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -4246,6 +6611,14 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
@@ -4348,6 +6721,14 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByCategorySuccess,
     required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(PromoOutletDataResponse request)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> request)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> request)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductDataResponse> request)
+        getOutletProductCategorySuccess,
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
@@ -4376,6 +6757,14 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByCategorySuccess,
     TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(PromoOutletDataResponse request)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> request)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> request)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductDataResponse> request)?
+        getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
@@ -4404,6 +6793,14 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(_GetPromoOutletSuccess value)
         getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
     required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
     required TResult Function(_GetDetailOutletSuccess value)
         getDetailOutletSuccess,
@@ -4432,6 +6829,14 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(_GetOutletByCategorySucess value)?
         getOutletByCategorySuccess,
     TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
     TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
     TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,

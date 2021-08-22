@@ -13,8 +13,13 @@ import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.d
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
-import 'package:digiresto/domain/entity/order/param/outlet_product_category_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
@@ -180,11 +185,11 @@ class OrderApi {
   }
 
   Future<Either<Exception, DetailOutletResponse>> getDetailOutlet(
-      Map<String, dynamic> object) async {
+      GetDetailOutletParam object) async {
     try {
       String apiUrl = Endpoints.urlGetDetailOutlet;
       final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
+          await _networkService.postHttp(path: apiUrl, content: object.toJson()
               // {
               //   "query_string": {
               //     "outletName": object["outletName"],
@@ -208,11 +213,11 @@ class OrderApi {
   }
 
   Future<Either<Exception, OutletProductCategoryResponse>>
-      getOutletProductCategory(Map<String, dynamic> object) async {
+      getOutletProductCategory(GetOutletProductCategoryParam object) async {
     try {
       String apiUrl = Endpoints.urlGetOutletProductCategory;
       final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
+          await _networkService.postHttp(path: apiUrl, content: object.toJson()
               // {
               //   "query_string": {
               //     "outletName": object["outletName"],
@@ -236,23 +241,22 @@ class OrderApi {
   }
 
   Future<Either<Exception, OutletListProductResponse>> getOutletListProduct(
-      Map<String, dynamic> object) async {
+      GetOutletProductParam object) async {
     try {
       String apiUrl = Endpoints.urlGetProduct;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "outletName": object["outletName"],
-              //     "page": object["page"],
-              //     "limit": object["limit"],
-              //     "produclds": object["produclds"],
-              //     "filter": object["filter"],
-              //     "category": object["category"]
-              //   },
-              //   "body": {}
-              // }
-              );
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: object.toJson());
+//           {
+// 	"query_string": {
+//         "outletId": "822",
+//         "categoryId": "1409",
+//         "page": 1,
+//         "limit": 5
+// 	},
+// 	"body": {
+
+// 	}
+// }
       return right(OutletListProductResponse.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
@@ -264,11 +268,11 @@ class OrderApi {
   }
 
   Future<Either<Exception, PromoOutletResponse>> getListPromoOutlet(
-      Map<String, dynamic> object) async {
+      GetListPromoOutletParam object) async {
     try {
       String apiUrl = Endpoints.urlGetListPromoOutlet;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object);
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: object.toJson());
       // {
 // 	"query_string": {
 //         "outletId": "254",
@@ -289,11 +293,11 @@ class OrderApi {
   }
 
   Future<Either<Exception, GetListVoucherOutletResponse>> getListVoucherOutlet(
-      Map<String, dynamic> object) async {
+      GetListVoucherOutletParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetListPromoOutlet;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object);
+      String apiUrl = Endpoints.urlGetListVoucherOutlet;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: object.toJson());
       // {
 // 	"query_string": {
 //         "outletId": "254",

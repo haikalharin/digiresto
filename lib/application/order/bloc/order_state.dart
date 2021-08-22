@@ -16,6 +16,21 @@ class OrderState with _$OrderState {
   const factory OrderState.getPromoOutletSuccess(List<PromoOutlet> response) =
       _GetPromoOutletSuccess;
 
+  const factory OrderState.getListPromoOutletSuccess(
+      PromoOutletDataResponse request) = _GetListPromoOutletSuccess;
+
+  const factory OrderState.getListVoucherOutletSuccess(
+          List<GetListVoucherOutletDataResponse> request) =
+      _GetListVoucherOutletSuccess;
+
+  const factory OrderState.getOutletListProductSuccess(
+          List<OutletListProductDataResponse> request) =
+      _GetOutletListProductSuccess;
+
+  const factory OrderState.getOutletProductCategorySuccess(
+          List<OutletProductDataResponse> request) =
+      _GetOutletProductCategorySuccess;
+
   const factory OrderState.getHotPromoSuccess(List<HotPromo> response) =
       _GetHotPromoSuccess;
 
