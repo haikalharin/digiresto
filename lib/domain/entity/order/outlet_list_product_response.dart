@@ -105,7 +105,7 @@ abstract class OutletListProductDataVariantResponse
     required String code,
     required String sku,
     required bool isPreorder,
-    required DateTime? preorderPeriod,
+    required int? preorderPeriod,
     required int? crossoutPrice,
     required int? stock,
     required int? limit,
@@ -120,6 +120,29 @@ abstract class OutletListProductDataVariantResponse
     required String categoryName,
     required List<OutletListProductDataModifierGroupResponse> modifierGroups,
   }) = _OutletListProductDataVariantResponse;
+
+  static OutletListProductDataResponse variantToDetailProductResponse(
+      OutletListProductDataVariantResponse data) {
+    return OutletListProductDataResponse(
+        categoryCode: data.categoryCode,
+        categoryId: data.categoryId,
+        categoryName: data.categoryName,
+        code: data.code,
+        crossoutPrice: data.crossoutPrice,
+        description: data.description,
+        id: data.id,
+        image: data.image,
+        isPreorder: data.isPreorder,
+        limit: data.limit,
+        modifierGroups: data.modifierGroups,
+        name: data.name,
+        preorderPeriod: data.preorderPeriod,
+        price: data.price,
+        sku: data.sku,
+        stock: data.stock,
+        variants: [],
+        weight: data.weight);
+  }
 
   factory OutletListProductDataVariantResponse.fromJson(
           Map<String, dynamic> json) =>

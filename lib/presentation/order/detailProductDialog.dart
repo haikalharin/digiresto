@@ -4,21 +4,22 @@ import 'dart:core';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DetailProductDialog extends StatefulWidget {
-  final dataProduct;
+  final OutletListProductDataResponse dataProduct;
   final orderType;
   final qtyProduct;
   final mode;
   @override
   DetailProductDialog(
       {Key? key,
-      @required this.dataProduct,
-      @required this.orderType,
+      required this.dataProduct,
+      required this.orderType,
       this.mode = "new",
       this.qtyProduct = 1})
       : super(key: key);
@@ -31,7 +32,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   int totalqty = 1;
   // OrderStore _orderStore;
   // UserStore _userStore;
-  dynamic dataProductState;
+  late OutletListProductDataResponse dataProductState;
+  late OutletListProductDataResponse variantProductSelected;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -39,12 +41,13 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     // _userStore = Provider.of<UserStore>(context);
     setState(() {
       dataProductState = widget.dataProduct;
+      variantProductSelected = dataProductState;
       totalqty = widget.qtyProduct;
     });
     Timer.run(() {
-      if (dataProductState["variants"].length > 0) {
+      if (dataProductState.variants.length > 0) {
         _showMaterialDialog();
-      }
+      } else {}
     });
   }
 
@@ -62,16 +65,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     }
   }
 
-  _chooseVariants(dynamic data) {
+  _chooseVariants(OutletListProductDataVariantResponse data) {
     //print("choose variant"+data.toString());
     setState(() {
-      dataProductState = data;
+      variantProductSelected =
+          OutletListProductDataVariantResponse.variantToDetailProductResponse(
+              data);
     });
     Navigator.of(context).pop();
   }
 
   _showMaterialDialog() {
-    double height = (dataProductState["variants"].length == 1)
+    double height = (dataProductState.variants.length == 1)
         ? MediaQuery.of(context).size.height - 300
         : MediaQuery.of(context).size.height - 220;
     showDialog(
@@ -94,7 +99,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                   children: [
                     ListProductVariant(
                         runAction: _chooseVariants,
-                        data: dataProductState["variants"]),
+                        data: dataProductState.variants),
                     Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width - 190,
@@ -128,34 +133,35 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   Widget build(BuildContext context) {
     int? price;
     int? beforePrice;
-    if (dataProductState["isUseSalesType"] == true) {
-      for (int i = 0; i < dataProductState["salesTypes"].length; i++) {
-        if (dataProductState["salesTypes"][i]["code"] == widget.orderType) {
-          price = dataProductState["salesTypes"][i]["price"];
-        }
-      }
-      if (price == null) {
-        price = dataProductState != null
-            ? dataProductState["price"]
-            : dataProductState["originalPrice"];
+    // if (dataProductState["isUseSalesType"] == true) {
+    //   for (int i = 0; i < dataProductState["salesTypes"].length; i++) {
+    //     if (dataProductState["salesTypes"][i]["code"] == widget.orderType) {
+    //       price = dataProductState["salesTypes"][i]["price"];
+    //     }
+    //   }
+    //   if (price == null) {
+    //     price = dataProductState.crossoutPrice!= null
+    //         ? dataProductState.crossoutPrice
+    //         : dataProductState.price;
+    //   }
+    // }
+
+    if (variantProductSelected.crossoutPrice != null) {
+      if ((variantProductSelected.crossoutPrice ?? 0) <
+          variantProductSelected.price) {
+        price = variantProductSelected.crossoutPrice;
+        beforePrice = variantProductSelected.price;
+      } else {
+        price = variantProductSelected.crossoutPrice;
       }
     } else {
-      if (dataProductState["price"] != null) {
-        if (dataProductState["price"] < dataProductState["originalPrice"]) {
-          price = dataProductState["price"];
-          beforePrice = dataProductState["originalPrice"];
-        } else {
-          price = dataProductState["price"];
-        }
-      } else {
-        price = dataProductState["originalPrice"];
-      }
+      price = variantProductSelected.price;
     }
 
     // _userStore.setRandomCacheImage(
     //     dataProductState["img"], dataProductState["id"].toString());
     //String defaultImage = _userStore.getRandomCacheImage(dataProductState["id"].toString());
-    String? defaultImage;
+    String defaultImage = "";
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,7 +180,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         borderRadius: BorderRadius.all(Radius.circular(2.0)),
                         child: Image(
                           image: RandomImages.getImageUrlDefault(
-                              dataProductState["img"], defaultImage),
+                              variantProductSelected.image, defaultImage),
                           fit: BoxFit.cover,
                           width: double.infinity,
                           alignment: Alignment.center,
@@ -208,7 +214,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       color: Colors.white,
                       width: MediaQuery.of(context).size.width / 2 + 50,
                       padding: const EdgeInsets.only(top: 5),
-                      child: Text(dataProductState["name"],
+                      child: Text(variantProductSelected.name,
                           softWrap: true,
                           maxLines: 3,
                           //overflow: TextOverflow.ellipsis,

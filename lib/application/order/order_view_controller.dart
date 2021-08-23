@@ -5,6 +5,7 @@ import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart'
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -12,11 +13,11 @@ class OrderViewController extends GetxController {
   var page = 1.obs;
   var categoryId = "".obs;
   var search = "".obs;
-  var filterCategory = "".obs;
-  var searchName = "".obs;
   var orderType = "".obs;
   var orderProductLength = 0.obs;
   var detailOutletLoading = false.obs;
+  var indexTabBar = 0.obs;
+  Rxn<OrderDetailViewArgument> outlet = Rxn<OrderDetailViewArgument>();
 
   var orderSalesTypes = "".obs;
   Rx<DeliveryMethod> selectedDeliveryMethod = DeliveryMethod(name: "").obs;

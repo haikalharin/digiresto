@@ -1733,7 +1733,7 @@ class _$OutletListProductDataVariantResponseTearOff {
       {required String code,
       required String sku,
       required bool isPreorder,
-      required DateTime? preorderPeriod,
+      required int? preorderPeriod,
       required int? crossoutPrice,
       required int? stock,
       required int? limit,
@@ -1783,7 +1783,7 @@ mixin _$OutletListProductDataVariantResponse {
   String get code => throw _privateConstructorUsedError;
   String get sku => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
-  DateTime? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod => throw _privateConstructorUsedError;
   int? get crossoutPrice => throw _privateConstructorUsedError;
   int? get stock => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
@@ -1816,7 +1816,7 @@ abstract class $OutletListProductDataVariantResponseCopyWith<$Res> {
       {String code,
       String sku,
       bool isPreorder,
-      DateTime? preorderPeriod,
+      int? preorderPeriod,
       int? crossoutPrice,
       int? stock,
       int? limit,
@@ -1877,7 +1877,7 @@ class _$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       preorderPeriod: preorderPeriod == freezed
           ? _value.preorderPeriod
           : preorderPeriod // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as int?,
       crossoutPrice: crossoutPrice == freezed
           ? _value.crossoutPrice
           : crossoutPrice // ignore: cast_nullable_to_non_nullable
@@ -1946,7 +1946,7 @@ abstract class _$OutletListProductDataVariantResponseCopyWith<$Res>
       {String code,
       String sku,
       bool isPreorder,
-      DateTime? preorderPeriod,
+      int? preorderPeriod,
       int? crossoutPrice,
       int? stock,
       int? limit,
@@ -2011,7 +2011,7 @@ class __$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       preorderPeriod: preorderPeriod == freezed
           ? _value.preorderPeriod
           : preorderPeriod // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as int?,
       crossoutPrice: crossoutPrice == freezed
           ? _value.crossoutPrice
           : crossoutPrice // ignore: cast_nullable_to_non_nullable
@@ -2102,7 +2102,7 @@ class _$_OutletListProductDataVariantResponse
   @override
   final bool isPreorder;
   @override
-  final DateTime? preorderPeriod;
+  final int? preorderPeriod;
   @override
   final int? crossoutPrice;
   @override
@@ -2223,7 +2223,7 @@ abstract class _OutletListProductDataVariantResponse
       {required String code,
       required String sku,
       required bool isPreorder,
-      required DateTime? preorderPeriod,
+      required int? preorderPeriod,
       required int? crossoutPrice,
       required int? stock,
       required int? limit,
@@ -2250,7 +2250,7 @@ abstract class _OutletListProductDataVariantResponse
   @override
   bool get isPreorder => throw _privateConstructorUsedError;
   @override
-  DateTime? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod => throw _privateConstructorUsedError;
   @override
   int? get crossoutPrice => throw _privateConstructorUsedError;
   @override

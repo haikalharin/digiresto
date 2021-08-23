@@ -29,24 +29,12 @@ import 'detailProductDialog.dart';
 
 class DetailOutletScreen extends GetView<OrderViewController> {
   final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
-  final searchController = TextEditingController();
-  final ScrollController _scrollController = new ScrollController();
   //OrderStore _orderStore;
 
   //bool loadDataApi;
 
   goBack(BuildContext context) {
     Get.back();
-  }
-
-  void initState() {
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        // getDetailOutlet(
-        //     _orderStore.orderOutletName, searchName, filterCategory, page + 1);
-      }
-    });
   }
 
   refresh() {}
@@ -61,126 +49,6 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     // });
     // getDetailOutlet(
     //     _orderStore.orderOutletName, searchName, filterCategory, page);
-  }
-
-  void searchActionText(String keyword) {
-    controller.page.value = 1;
-    controller.search.value = keyword;
-    getListProduct();
-    //getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
-  }
-
-  void searchActionCategory(String? category) {
-    controller.page.value = 1;
-    controller.categoryId.value = category ?? "";
-    getListProduct();
-  }
-
-  void getDetailOutlet() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
-            body: GetDetailOutletBodyParam(),
-            queryString: GetDetailOutletQueryParam(outletId: args.outletId))));
-    // setState(() {
-    //   detailOutletLoading = true;
-    // });
-    // _orderStore.getDetailOutlet({
-    //   "outletName": outletName,
-    //   "page": pageParam,
-    //   "limit": 0,
-    //   "produclds": [],
-    //   "filter": filter,
-    //   "category": category
-    // }).then((res) {
-    //   if (pageParam > page) {
-    //     setState(() {
-    //       page += 1;
-    //       detailOutlet.product.addAll(res.product);
-    //     });
-    //   } else {
-    //     setState(() {
-    //       page = 1;
-    //       detailOutlet = res;
-    //     });
-    //   }
-    //   detailOutletLoading = false;
-    // }).catchError((err) {
-    //   detailOutletLoading = false;
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
-  }
-
-  void getListProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
-                categoryId: controller.categoryId.value,
-                filter: controller.search.value,
-                limit: 15,
-                outletId: args.outletId,
-                page: controller.page.value))));
-  }
-
-  void getCategoryProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletProductCategory(
-        GetOutletProductCategoryParam(
-            body: GetOutletProductCategoryBodyParam(),
-            queryString:
-                GetOutletProductCategoryQueryParam(outletId: args.outletId))));
-  }
-
-  void getPromoProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getListPromoOutlet(
-        GetListPromoOutletParam(
-            body: GetListPromoOutletBodyParam(),
-            queryString: GetListPromoOutletQueryParam(
-                merchantId: args.merchantId, outletId: args.outletId))));
-  }
-
-  Widget _search() {
-    return Theme(
-      data: Theme.of(Get.context!).copyWith(
-        primaryColor: Colors.grey,
-      ),
-      child: Container(
-        padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-        child: TextField(
-            textInputAction: TextInputAction.search,
-            onSubmitted: (value) {
-              searchActionText(value.toString());
-            },
-            controller: searchController,
-            readOnly: false,
-            style: TextStyle(
-              fontSize: 12.0,
-            ),
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.greyInput,
-              contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              hintText: "Cari",
-              border: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.greyInput, width: 32.0),
-                  borderRadius: BorderRadius.circular(15)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.greyInput, width: 32.0),
-                  borderRadius: BorderRadius.circular(15)),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                borderSide: BorderSide(width: 1, color: Colors.white),
-              ),
-            )),
-      ),
-    );
   }
 
   Widget _header(DetailOutletDataResponse data) {
@@ -298,6 +166,354 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     ]);
   }
 
+  void getDetailOutlet() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
+        GetDetailOutletParam(
+            body: GetDetailOutletBodyParam(),
+            queryString: GetDetailOutletQueryParam(
+                outletId: controller.outlet.value!.outletId))));
+    // setState(() {
+    //   detailOutletLoading = true;
+    // });
+    // _orderStore.getDetailOutlet({
+    //   "outletName": outletName,
+    //   "page": pageParam,
+    //   "limit": 0,
+    //   "produclds": [],
+    //   "filter": filter,
+    //   "category": category
+    // }).then((res) {
+    //   if (pageParam > page) {
+    //     setState(() {
+    //       page += 1;
+    //       detailOutlet.product.addAll(res.product);
+    //     });
+    //   } else {
+    //     setState(() {
+    //       page = 1;
+    //       detailOutlet = res;
+    //     });
+    //   }
+    //   detailOutletLoading = false;
+    // }).catchError((err) {
+    //   detailOutletLoading = false;
+    //   print(err.toString());
+    //   ErrorPopupWidget.showDioError(context, err, null);
+    // });
+  }
+
+  void getListProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
+        GetOutletProductParam(
+            body: GetOutletProductBodyParam(),
+            queryString: GetOutletProductQueryParam(
+                categoryId: controller.categoryId.value,
+                filter: controller.search.value,
+                limit: 15,
+                outletId: controller.outlet.value!.outletId,
+                page: controller.page.value))));
+  }
+
+  void getCategoryProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletProductCategory(
+        GetOutletProductCategoryParam(
+            body: GetOutletProductCategoryBodyParam(),
+            queryString: GetOutletProductCategoryQueryParam(
+                outletId: controller.outlet.value!.outletId))));
+  }
+
+  void getPromoProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getListPromoOutlet(
+        GetListPromoOutletParam(
+            body: GetListPromoOutletBodyParam(),
+            queryString: GetListPromoOutletQueryParam(
+                merchantId: controller.outlet.value!.merchantId,
+                outletId: controller.outlet.value!.outletId))));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put(OrderViewController());
+    controller.outlet.value = args;
+    getDetailOutlet();
+    getListProduct();
+    getCategoryProduct();
+    getPromoProduct();
+    return BlocConsumer<OrderBloc, OrderState>(
+      listener: (context, state) {
+        state.maybeMap(
+            getDetailOutletSuccess: (r) {
+              controller.detailOutlet.value = r.response;
+            },
+            getOutletListProductSuccess: (r) {
+              controller.listProduct.value = r.response;
+            },
+            getListPromoOutletSuccess: (r) {
+              controller.listPromo.value = r.response;
+            },
+            getListVoucherOutletSuccess: (r) {
+              controller.listVoucher.value = r.response;
+            },
+            getOutletProductCategorySuccess: (r) {
+              controller.listCategory.value = r.response;
+            },
+            loadFailure: (e) {},
+            orElse: () {});
+      },
+      builder: (context, state) {
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            floatingActionButton: "_orderStore.orderProduct".length > 0
+                ? GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routers.orderCart);
+                    },
+                    child: Container(
+                      height: 70,
+                      color: Colors.white,
+                      alignment: Alignment.bottomCenter,
+                      // decoration: BoxDecoration(
+                      //     color: Colors.white,
+                      //     boxShadow: [CustomShadow.standard]),
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.red,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: Container(
+                            padding: EdgeInsets.only(left: 15, right: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    controller.detailOutlet.value != null
+                                        ? Text(
+                                            "_orderStore.orderProduct"
+                                                    .length
+                                                    .toString() +
+                                                " items",
+                                            style: TextStyle(
+                                              fontFamily: "roboto",
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          )
+                                        : Container(),
+                                    Container(
+                                      margin: EdgeInsets.all(5),
+                                      height: 30,
+                                      width: 1.5,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      "Lihat Keranjang",
+                                      style: TextStyle(
+                                        fontFamily: "roboto",
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                controller.detailOutlet.value != null
+                                    ? Text(
+                                        "Rp. " +
+                                            Utils.formatRupiah(
+                                                10000.toString()),
+                                        style: TextStyle(
+                                          fontFamily: "roboto",
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    : Container()
+                              ],
+                            ),
+                          )),
+                    ),
+                  )
+                : Container(),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            body: Column(
+              children: [
+                TopBackgound(backgroundColor: AppColors.red),
+                controller.detailOutlet.value != null
+                    ? _header(controller.detailOutlet.value!)
+                    : Container(),
+                TabBar(
+                    onTap: (index) {
+                      controller.indexTabBar.value = index;
+                    },
+                    tabs: [
+                      Obx((() => Tab(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ImageIcon(
+                                    AssetImage(AppAssets.iconOutletOverview),
+                                    color: controller.indexTabBar.value == 0
+                                        ? AppColors.redTabBar
+                                        : AppColors.greyCOC0C0),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Overview",
+                                  style: controller.indexTabBar.value == 0
+                                      ? AppFont.textRed14Bold
+                                      : AppFont.textGrey14Bold,
+                                )
+                              ],
+                            ),
+                          ))),
+                      Obx((() => Tab(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ImageIcon(
+                                    AssetImage(AppAssets.iconOutletOverview),
+                                    color: controller.indexTabBar.value == 1
+                                        ? AppColors.redTabBar
+                                        : AppColors.greyCOC0C0),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Menu",
+                                  style: controller.indexTabBar.value == 1
+                                      ? AppFont.textRed14Bold
+                                      : AppFont.textGrey14Bold,
+                                )
+                              ],
+                            ),
+                          ))),
+                    ]),
+                Expanded(
+                  child: TabBarView(children: [
+                    _BodyOutletOverview(),
+                    _BodyOutletMenu(),
+                  ]),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _BodyOutletOverview extends GetView<OrderViewController> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class _BodyOutletMenu extends GetView<OrderViewController> {
+  void initState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // getDetailOutlet(
+        //     _orderStore.orderOutletName, searchName, filterCategory, page + 1);
+      }
+    });
+  }
+
+  final searchController = TextEditingController();
+  final ScrollController _scrollController = new ScrollController();
+  void searchActionText(String keyword) {
+    controller.page.value = 1;
+    controller.search.value = keyword;
+    getListProduct();
+    //getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
+  }
+
+  _showDetailProduct(
+      OutletListProductDataResponse dataProduct, String orderType) {
+    //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
+    Navigator.push(
+            Get.context!,
+            MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return DetailProductDialog(
+                      dataProduct: dataProduct, orderType: orderType);
+                },
+                fullscreenDialog: true))
+        .then((value) {});
+  }
+
+  void searchActionCategory(String? category) {
+    controller.page.value = 1;
+    controller.categoryId.value = category ?? "";
+    getListProduct();
+  }
+
+  void getListProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
+        GetOutletProductParam(
+            body: GetOutletProductBodyParam(),
+            queryString: GetOutletProductQueryParam(
+                categoryId: controller.categoryId.value,
+                filter: controller.search.value,
+                limit: 15,
+                outletId: controller.outlet.value!.outletId,
+                page: controller.page.value))));
+  }
+
+  Widget _search() {
+    return Theme(
+      data: Theme.of(Get.context!).copyWith(
+        primaryColor: Colors.grey,
+      ),
+      child: Container(
+        padding:
+            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+        child: TextField(
+            textInputAction: TextInputAction.search,
+            onSubmitted: (value) {
+              searchActionText(value.toString());
+            },
+            controller: searchController,
+            readOnly: false,
+            style: TextStyle(
+              fontSize: 12.0,
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.greyInput,
+              contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              hintText: "Cari",
+              border: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColors.greyInput, width: 32.0),
+                  borderRadius: BorderRadius.circular(15)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColors.greyInput, width: 32.0),
+                  borderRadius: BorderRadius.circular(15)),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                borderSide: BorderSide(width: 1, color: Colors.white),
+              ),
+            )),
+      ),
+    );
+  }
+
   Widget _category(
       List<OutletProductCategoryDataResponse> data, String selected) {
     List<OutletProductCategoryDataResponse> paramCategory = [];
@@ -338,8 +554,8 @@ class DetailOutletScreen extends GetView<OrderViewController> {
         ListProductOutletWidget(
           orderType: controller.orderType.value,
           data: data,
-          runDetailAction: (_showDetailProduct, orderType) {
-            "_showDetailProduct";
+          runDetailAction: (listProduct, orderType) {
+            _showDetailProduct(listProduct, orderType);
           },
           scrollDirection: Axis.vertical,
         ),
@@ -348,162 +564,37 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     );
   }
 
-  _showDetailProduct(Map<String, dynamic> dataProduct, String orderType) {
-    //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
-    Navigator.push(
-            Get.context!,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return DetailProductDialog(
-                      dataProduct: dataProduct, orderType: orderType);
-                },
-                fullscreenDialog: true))
-        .then((value) {});
-  }
-
   @override
   Widget build(BuildContext context) {
-    Get.put(OrderViewController());
-    getDetailOutlet();
-    getListProduct();
-    getCategoryProduct();
-    getPromoProduct();
-    return BlocConsumer<OrderBloc, OrderState>(
-      listener: (context, state) {
-        state.maybeMap(
-            getDetailOutletSuccess: (r) {
-              controller.detailOutlet.value = r.response;
-            },
-            getOutletListProductSuccess: (r) {
-              controller.listProduct.value = r.response;
-            },
-            getListPromoOutletSuccess: (r) {
-              controller.listPromo.value = r.response;
-            },
-            getListVoucherOutletSuccess: (r) {
-              controller.listVoucher.value = r.response;
-            },
-            getOutletProductCategorySuccess: (r) {
-              controller.listCategory.value = r.response;
-            },
-            loadFailure: (e) {},
-            orElse: () {});
-      },
-      builder: (context, state) {
-        return Scaffold(
-          floatingActionButton: "_orderStore.orderProduct".length > 0
-              ? GestureDetector(
-                  onTap: () {
-                    Get.toNamed(Routers.orderCart);
-                  },
-                  child: Container(
-                    height: 70,
-                    color: Colors.white,
-                    alignment: Alignment.bottomCenter,
-                    // decoration: BoxDecoration(
-                    //     color: Colors.white,
-                    //     boxShadow: [CustomShadow.standard]),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.red,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        height: 50,
-                        width: MediaQuery.of(context).size.width - 50,
-                        child: Container(
-                          padding: EdgeInsets.only(left: 15, right: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  controller.detailOutlet.value != null
-                                      ? Text(
-                                          "_orderStore.orderProduct"
-                                                  .length
-                                                  .toString() +
-                                              " items",
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        )
-                                      : Container(),
-                                  Container(
-                                    margin: EdgeInsets.all(5),
-                                    height: 30,
-                                    width: 1.5,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Lihat Keranjang",
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              controller.detailOutlet.value != null
-                                  ? Text(
-                                      "Rp. " +
-                                          Utils.formatRupiah(10000.toString()),
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  : Container()
-                            ],
-                          ),
-                        )),
-                  ),
-                )
-              : Container(),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          body: Column(
-            children: [
-              TopBackgound(backgroundColor: AppColors.red),
-              controller.detailOutlet.value != null
-                  ? _header(controller.detailOutlet.value!)
-                  : Container(),
-              controller.detailOutlet.value != null ? _search() : Container(),
-              controller.listCategory.value != null
-                  ? _category(controller.listCategory.value!,
-                      controller.categoryId.value)
-                  : Container(),
-              Expanded(
-                child: Container(
-                  //height: MediaQuery.of(context).size.height - 30,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Column(
-                      children: [
-                        controller.listPromo.value != null
-                            ? _promo(controller.listPromo.value!)
-                            : Container(),
-                        controller.listProduct.value != null
-                            ? _product(controller.listProduct.value!)
-                            : Container(),
-                      ],
-                    ),
-                  ),
-                ),
+    return Column(
+      children: [
+        controller.detailOutlet.value != null ? _search() : Container(),
+        controller.listCategory.value != null
+            ? _category(
+                controller.listCategory.value!, controller.categoryId.value)
+            : Container(),
+        Expanded(
+          child: Container(
+            //height: MediaQuery.of(context).size.height - 30,
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  controller.listPromo.value != null
+                      ? _promo(controller.listPromo.value!)
+                      : Container(),
+                  controller.listProduct.value != null
+                      ? _product(controller.listProduct.value!)
+                      : Container(),
+                ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              )
-            ],
+            ),
           ),
-        );
-      },
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.1,
+        )
+      ],
     );
   }
 }

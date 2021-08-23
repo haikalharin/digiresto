@@ -57,4 +57,15 @@ class AppAssets {
   static const String iconBackBlack = "assets/icons/ic_back_black.png";
   static const String iconLocationCircleRed =
       "assets/icons/ic_location_circle_red.png";
+  static const String iconOutletMenu = "assets/icons/ic_outlet_menu.png";
+  static const String iconOutletOverview =
+      "assets/icons/ic_outlet_overview.png";
+  static const String iconOutletOrderDelivery =
+      "assets/icons/ic_outlet_order_delivery.png";
+  static const String iconOutletOrderDineIn =
+      "assets/icons/ic_outlet_order_dine_in.png";
+  static const String iconOutletOrderTakeIt =
+      "assets/icons/ic_outlet_order_take_it.png";
+  static const String iconOutletOrderDriveThru =
+      "assets/icons/ic_outlet_order_drive_thru.png";
 }

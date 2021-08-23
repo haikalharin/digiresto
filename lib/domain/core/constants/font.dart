@@ -31,4 +31,7 @@ class AppFont {
 
   static TextStyle textRed14Bold = GoogleFonts.poppins(
       color: AppColors.redYoung, fontSize: 14, fontWeight: FontWeight.w700);
+
+  static TextStyle textGrey14Bold = GoogleFonts.poppins(
+      color: AppColors.greyCOC0C0, fontSize: 14, fontWeight: FontWeight.w700);
 }
