@@ -22,9 +22,9 @@ class _$OutletListProductResponseTearOff {
   const _$OutletListProductResponseTearOff();
 
   _OutletListProductResponse call(
-      {required OutletListProductStatusResponse response,
+      {required StatusResponse response,
       required List<OutletListProductDataResponse> data,
-      required OutletListProductMetaResponse meta}) {
+      required MetaResponse meta}) {
     return _OutletListProductResponse(
       response: response,
       data: data,
@@ -42,11 +42,10 @@ const $OutletListProductResponse = _$OutletListProductResponseTearOff();
 
 /// @nodoc
 mixin _$OutletListProductResponse {
-  OutletListProductStatusResponse get response =>
-      throw _privateConstructorUsedError;
+  StatusResponse get response => throw _privateConstructorUsedError;
   List<OutletListProductDataResponse> get data =>
       throw _privateConstructorUsedError;
-  OutletListProductMetaResponse get meta => throw _privateConstructorUsedError;
+  MetaResponse get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,12 +59,12 @@ abstract class $OutletListProductResponseCopyWith<$Res> {
           $Res Function(OutletListProductResponse) then) =
       _$OutletListProductResponseCopyWithImpl<$Res>;
   $Res call(
-      {OutletListProductStatusResponse response,
+      {StatusResponse response,
       List<OutletListProductDataResponse> data,
-      OutletListProductMetaResponse meta});
+      MetaResponse meta});
 
-  $OutletListProductStatusResponseCopyWith<$Res> get response;
-  $OutletListProductMetaResponseCopyWith<$Res> get meta;
+  $StatusResponseCopyWith<$Res> get response;
+  $MetaResponseCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -87,7 +86,7 @@ class _$OutletListProductResponseCopyWithImpl<$Res>
       response: response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as OutletListProductStatusResponse,
+              as StatusResponse,
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -95,21 +94,20 @@ class _$OutletListProductResponseCopyWithImpl<$Res>
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
-              as OutletListProductMetaResponse,
+              as MetaResponse,
     ));
   }
 
   @override
-  $OutletListProductStatusResponseCopyWith<$Res> get response {
-    return $OutletListProductStatusResponseCopyWith<$Res>(_value.response,
-        (value) {
+  $StatusResponseCopyWith<$Res> get response {
+    return $StatusResponseCopyWith<$Res>(_value.response, (value) {
       return _then(_value.copyWith(response: value));
     });
   }
 
   @override
-  $OutletListProductMetaResponseCopyWith<$Res> get meta {
-    return $OutletListProductMetaResponseCopyWith<$Res>(_value.meta, (value) {
+  $MetaResponseCopyWith<$Res> get meta {
+    return $MetaResponseCopyWith<$Res>(_value.meta, (value) {
       return _then(_value.copyWith(meta: value));
     });
   }
@@ -123,14 +121,14 @@ abstract class _$OutletListProductResponseCopyWith<$Res>
       __$OutletListProductResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {OutletListProductStatusResponse response,
+      {StatusResponse response,
       List<OutletListProductDataResponse> data,
-      OutletListProductMetaResponse meta});
+      MetaResponse meta});
 
   @override
-  $OutletListProductStatusResponseCopyWith<$Res> get response;
+  $StatusResponseCopyWith<$Res> get response;
   @override
-  $OutletListProductMetaResponseCopyWith<$Res> get meta;
+  $MetaResponseCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -155,7 +153,7 @@ class __$OutletListProductResponseCopyWithImpl<$Res>
       response: response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as OutletListProductStatusResponse,
+              as StatusResponse,
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -163,7 +161,7 @@ class __$OutletListProductResponseCopyWithImpl<$Res>
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
-              as OutletListProductMetaResponse,
+              as MetaResponse,
     ));
   }
 }
@@ -178,11 +176,11 @@ class _$_OutletListProductResponse implements _OutletListProductResponse {
       _$_$_OutletListProductResponseFromJson(json);
 
   @override
-  final OutletListProductStatusResponse response;
+  final StatusResponse response;
   @override
   final List<OutletListProductDataResponse> data;
   @override
-  final OutletListProductMetaResponse meta;
+  final MetaResponse meta;
 
   @override
   String toString() {
@@ -224,22 +222,20 @@ class _$_OutletListProductResponse implements _OutletListProductResponse {
 
 abstract class _OutletListProductResponse implements OutletListProductResponse {
   const factory _OutletListProductResponse(
-          {required OutletListProductStatusResponse response,
-          required List<OutletListProductDataResponse> data,
-          required OutletListProductMetaResponse meta}) =
-      _$_OutletListProductResponse;
+      {required StatusResponse response,
+      required List<OutletListProductDataResponse> data,
+      required MetaResponse meta}) = _$_OutletListProductResponse;
 
   factory _OutletListProductResponse.fromJson(Map<String, dynamic> json) =
       _$_OutletListProductResponse.fromJson;
 
   @override
-  OutletListProductStatusResponse get response =>
-      throw _privateConstructorUsedError;
+  StatusResponse get response => throw _privateConstructorUsedError;
   @override
   List<OutletListProductDataResponse> get data =>
       throw _privateConstructorUsedError;
   @override
-  OutletListProductMetaResponse get meta => throw _privateConstructorUsedError;
+  MetaResponse get meta => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductResponseCopyWith<_OutletListProductResponse>
@@ -264,7 +260,7 @@ class _$OutletListProductDataModifierGroupResponseTearOff {
       required int allowQuantity,
       required int minQuantity,
       required int maxQuantity,
-      required List<OutletListProductDataResponse> modifiers}) {
+      required List<OutletListProductDataSubModifierGroupResponse> modifiers}) {
     return _OutletListProductDataModifierGroupResponse(
       name: name,
       id: id,
@@ -296,7 +292,7 @@ mixin _$OutletListProductDataModifierGroupResponse {
   int get allowQuantity => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
-  List<OutletListProductDataResponse> get modifiers =>
+  List<OutletListProductDataSubModifierGroupResponse> get modifiers =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -320,7 +316,7 @@ abstract class $OutletListProductDataModifierGroupResponseCopyWith<$Res> {
       int allowQuantity,
       int minQuantity,
       int maxQuantity,
-      List<OutletListProductDataResponse> modifiers});
+      List<OutletListProductDataSubModifierGroupResponse> modifiers});
 }
 
 /// @nodoc
@@ -376,7 +372,7 @@ class _$OutletListProductDataModifierGroupResponseCopyWithImpl<$Res>
       modifiers: modifiers == freezed
           ? _value.modifiers
           : modifiers // ignore: cast_nullable_to_non_nullable
-              as List<OutletListProductDataResponse>,
+              as List<OutletListProductDataSubModifierGroupResponse>,
     ));
   }
 }
@@ -397,7 +393,7 @@ abstract class _$OutletListProductDataModifierGroupResponseCopyWith<$Res>
       int allowQuantity,
       int minQuantity,
       int maxQuantity,
-      List<OutletListProductDataResponse> modifiers});
+      List<OutletListProductDataSubModifierGroupResponse> modifiers});
 }
 
 /// @nodoc
@@ -457,7 +453,7 @@ class __$OutletListProductDataModifierGroupResponseCopyWithImpl<$Res>
       modifiers: modifiers == freezed
           ? _value.modifiers
           : modifiers // ignore: cast_nullable_to_non_nullable
-              as List<OutletListProductDataResponse>,
+              as List<OutletListProductDataSubModifierGroupResponse>,
     ));
   }
 }
@@ -495,7 +491,7 @@ class _$_OutletListProductDataModifierGroupResponse
   @override
   final int maxQuantity;
   @override
-  final List<OutletListProductDataResponse> modifiers;
+  final List<OutletListProductDataSubModifierGroupResponse> modifiers;
 
   @override
   String toString() {
@@ -557,15 +553,15 @@ class _$_OutletListProductDataModifierGroupResponse
 abstract class _OutletListProductDataModifierGroupResponse
     implements OutletListProductDataModifierGroupResponse {
   const factory _OutletListProductDataModifierGroupResponse(
-          {required String name,
-          required String id,
-          required String code,
-          required int allowMultiple,
-          required int allowQuantity,
-          required int minQuantity,
-          required int maxQuantity,
-          required List<OutletListProductDataResponse> modifiers}) =
-      _$_OutletListProductDataModifierGroupResponse;
+      {required String name,
+      required String id,
+      required String code,
+      required int allowMultiple,
+      required int allowQuantity,
+      required int minQuantity,
+      required int maxQuantity,
+      required List<OutletListProductDataSubModifierGroupResponse>
+          modifiers}) = _$_OutletListProductDataModifierGroupResponse;
 
   factory _OutletListProductDataModifierGroupResponse.fromJson(
           Map<String, dynamic> json) =
@@ -586,12 +582,554 @@ abstract class _OutletListProductDataModifierGroupResponse
   @override
   int get maxQuantity => throw _privateConstructorUsedError;
   @override
-  List<OutletListProductDataResponse> get modifiers =>
+  List<OutletListProductDataSubModifierGroupResponse> get modifiers =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductDataModifierGroupResponseCopyWith<
           _OutletListProductDataModifierGroupResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+OutletListProductDataSubModifierGroupResponse
+    _$OutletListProductDataSubModifierGroupResponseFromJson(
+        Map<String, dynamic> json) {
+  return _OutletListProductDataSubModifierGroupResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$OutletListProductDataSubModifierGroupResponseTearOff {
+  const _$OutletListProductDataSubModifierGroupResponseTearOff();
+
+  _OutletListProductDataSubModifierGroupResponse call(
+      {required String code,
+      required String sku,
+      required bool isPreorder,
+      required int? preorderPeriod,
+      required int? crossoutPrice,
+      required int? stock,
+      required int? limit,
+      required String id,
+      required String name,
+      required int price,
+      required int weight,
+      required String description,
+      required String image,
+      required String categoryId,
+      required String categoryCode,
+      required String categoryName}) {
+    return _OutletListProductDataSubModifierGroupResponse(
+      code: code,
+      sku: sku,
+      isPreorder: isPreorder,
+      preorderPeriod: preorderPeriod,
+      crossoutPrice: crossoutPrice,
+      stock: stock,
+      limit: limit,
+      id: id,
+      name: name,
+      price: price,
+      weight: weight,
+      description: description,
+      image: image,
+      categoryId: categoryId,
+      categoryCode: categoryCode,
+      categoryName: categoryName,
+    );
+  }
+
+  OutletListProductDataSubModifierGroupResponse fromJson(
+      Map<String, Object> json) {
+    return OutletListProductDataSubModifierGroupResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $OutletListProductDataSubModifierGroupResponse =
+    _$OutletListProductDataSubModifierGroupResponseTearOff();
+
+/// @nodoc
+mixin _$OutletListProductDataSubModifierGroupResponse {
+  String get code => throw _privateConstructorUsedError;
+  String get sku => throw _privateConstructorUsedError;
+  bool get isPreorder => throw _privateConstructorUsedError;
+  int? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get crossoutPrice => throw _privateConstructorUsedError;
+  int? get stock => throw _privateConstructorUsedError;
+  int? get limit => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
+  int get weight => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryCode => throw _privateConstructorUsedError;
+  String get categoryName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OutletListProductDataSubModifierGroupResponseCopyWith<
+          OutletListProductDataSubModifierGroupResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
+  factory $OutletListProductDataSubModifierGroupResponseCopyWith(
+          OutletListProductDataSubModifierGroupResponse value,
+          $Res Function(OutletListProductDataSubModifierGroupResponse) then) =
+      _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>;
+  $Res call(
+      {String code,
+      String sku,
+      bool isPreorder,
+      int? preorderPeriod,
+      int? crossoutPrice,
+      int? stock,
+      int? limit,
+      String id,
+      String name,
+      int price,
+      int weight,
+      String description,
+      String image,
+      String categoryId,
+      String categoryCode,
+      String categoryName});
+}
+
+/// @nodoc
+class _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
+    implements $OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
+  _$OutletListProductDataSubModifierGroupResponseCopyWithImpl(
+      this._value, this._then);
+
+  final OutletListProductDataSubModifierGroupResponse _value;
+  // ignore: unused_field
+  final $Res Function(OutletListProductDataSubModifierGroupResponse) _then;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? sku = freezed,
+    Object? isPreorder = freezed,
+    Object? preorderPeriod = freezed,
+    Object? crossoutPrice = freezed,
+    Object? stock = freezed,
+    Object? limit = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? weight = freezed,
+    Object? description = freezed,
+    Object? image = freezed,
+    Object? categoryId = freezed,
+    Object? categoryCode = freezed,
+    Object? categoryName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      sku: sku == freezed
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPreorder: isPreorder == freezed
+          ? _value.isPreorder
+          : isPreorder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      preorderPeriod: preorderPeriod == freezed
+          ? _value.preorderPeriod
+          : preorderPeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      crossoutPrice: crossoutPrice == freezed
+          ? _value.crossoutPrice
+          : crossoutPrice // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stock: stock == freezed
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      limit: limit == freezed
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryCode: categoryCode == freezed
+          ? _value.categoryCode
+          : categoryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: categoryName == freezed
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$OutletListProductDataSubModifierGroupResponseCopyWith<$Res>
+    implements $OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
+  factory _$OutletListProductDataSubModifierGroupResponseCopyWith(
+          _OutletListProductDataSubModifierGroupResponse value,
+          $Res Function(_OutletListProductDataSubModifierGroupResponse) then) =
+      __$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String code,
+      String sku,
+      bool isPreorder,
+      int? preorderPeriod,
+      int? crossoutPrice,
+      int? stock,
+      int? limit,
+      String id,
+      String name,
+      int price,
+      int weight,
+      String description,
+      String image,
+      String categoryId,
+      String categoryCode,
+      String categoryName});
+}
+
+/// @nodoc
+class __$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
+    extends _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
+    implements _$OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
+  __$OutletListProductDataSubModifierGroupResponseCopyWithImpl(
+      _OutletListProductDataSubModifierGroupResponse _value,
+      $Res Function(_OutletListProductDataSubModifierGroupResponse) _then)
+      : super(_value,
+            (v) => _then(v as _OutletListProductDataSubModifierGroupResponse));
+
+  @override
+  _OutletListProductDataSubModifierGroupResponse get _value =>
+      super._value as _OutletListProductDataSubModifierGroupResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? sku = freezed,
+    Object? isPreorder = freezed,
+    Object? preorderPeriod = freezed,
+    Object? crossoutPrice = freezed,
+    Object? stock = freezed,
+    Object? limit = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? weight = freezed,
+    Object? description = freezed,
+    Object? image = freezed,
+    Object? categoryId = freezed,
+    Object? categoryCode = freezed,
+    Object? categoryName = freezed,
+  }) {
+    return _then(_OutletListProductDataSubModifierGroupResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      sku: sku == freezed
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPreorder: isPreorder == freezed
+          ? _value.isPreorder
+          : isPreorder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      preorderPeriod: preorderPeriod == freezed
+          ? _value.preorderPeriod
+          : preorderPeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      crossoutPrice: crossoutPrice == freezed
+          ? _value.crossoutPrice
+          : crossoutPrice // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stock: stock == freezed
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      limit: limit == freezed
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryCode: categoryCode == freezed
+          ? _value.categoryCode
+          : categoryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: categoryName == freezed
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_OutletListProductDataSubModifierGroupResponse
+    implements _OutletListProductDataSubModifierGroupResponse {
+  const _$_OutletListProductDataSubModifierGroupResponse(
+      {required this.code,
+      required this.sku,
+      required this.isPreorder,
+      required this.preorderPeriod,
+      required this.crossoutPrice,
+      required this.stock,
+      required this.limit,
+      required this.id,
+      required this.name,
+      required this.price,
+      required this.weight,
+      required this.description,
+      required this.image,
+      required this.categoryId,
+      required this.categoryCode,
+      required this.categoryName});
+
+  factory _$_OutletListProductDataSubModifierGroupResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$_$_OutletListProductDataSubModifierGroupResponseFromJson(json);
+
+  @override
+  final String code;
+  @override
+  final String sku;
+  @override
+  final bool isPreorder;
+  @override
+  final int? preorderPeriod;
+  @override
+  final int? crossoutPrice;
+  @override
+  final int? stock;
+  @override
+  final int? limit;
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final int price;
+  @override
+  final int weight;
+  @override
+  final String description;
+  @override
+  final String image;
+  @override
+  final String categoryId;
+  @override
+  final String categoryCode;
+  @override
+  final String categoryName;
+
+  @override
+  String toString() {
+    return 'OutletListProductDataSubModifierGroupResponse(code: $code, sku: $sku, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, crossoutPrice: $crossoutPrice, stock: $stock, limit: $limit, id: $id, name: $name, price: $price, weight: $weight, description: $description, image: $image, categoryId: $categoryId, categoryCode: $categoryCode, categoryName: $categoryName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OutletListProductDataSubModifierGroupResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.sku, sku) ||
+                const DeepCollectionEquality().equals(other.sku, sku)) &&
+            (identical(other.isPreorder, isPreorder) ||
+                const DeepCollectionEquality()
+                    .equals(other.isPreorder, isPreorder)) &&
+            (identical(other.preorderPeriod, preorderPeriod) ||
+                const DeepCollectionEquality()
+                    .equals(other.preorderPeriod, preorderPeriod)) &&
+            (identical(other.crossoutPrice, crossoutPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.crossoutPrice, crossoutPrice)) &&
+            (identical(other.stock, stock) ||
+                const DeepCollectionEquality().equals(other.stock, stock)) &&
+            (identical(other.limit, limit) ||
+                const DeepCollectionEquality().equals(other.limit, limit)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.weight, weight) ||
+                const DeepCollectionEquality().equals(other.weight, weight)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.categoryCode, categoryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryCode, categoryCode)) &&
+            (identical(other.categoryName, categoryName) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryName, categoryName)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(sku) ^
+      const DeepCollectionEquality().hash(isPreorder) ^
+      const DeepCollectionEquality().hash(preorderPeriod) ^
+      const DeepCollectionEquality().hash(crossoutPrice) ^
+      const DeepCollectionEquality().hash(stock) ^
+      const DeepCollectionEquality().hash(limit) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(weight) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(categoryCode) ^
+      const DeepCollectionEquality().hash(categoryName);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OutletListProductDataSubModifierGroupResponseCopyWith<
+          _OutletListProductDataSubModifierGroupResponse>
+      get copyWith =>
+          __$OutletListProductDataSubModifierGroupResponseCopyWithImpl<
+              _OutletListProductDataSubModifierGroupResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_OutletListProductDataSubModifierGroupResponseToJson(this);
+  }
+}
+
+abstract class _OutletListProductDataSubModifierGroupResponse
+    implements OutletListProductDataSubModifierGroupResponse {
+  const factory _OutletListProductDataSubModifierGroupResponse(
+          {required String code,
+          required String sku,
+          required bool isPreorder,
+          required int? preorderPeriod,
+          required int? crossoutPrice,
+          required int? stock,
+          required int? limit,
+          required String id,
+          required String name,
+          required int price,
+          required int weight,
+          required String description,
+          required String image,
+          required String categoryId,
+          required String categoryCode,
+          required String categoryName}) =
+      _$_OutletListProductDataSubModifierGroupResponse;
+
+  factory _OutletListProductDataSubModifierGroupResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_OutletListProductDataSubModifierGroupResponse.fromJson;
+
+  @override
+  String get code => throw _privateConstructorUsedError;
+  @override
+  String get sku => throw _privateConstructorUsedError;
+  @override
+  bool get isPreorder => throw _privateConstructorUsedError;
+  @override
+  int? get preorderPeriod => throw _privateConstructorUsedError;
+  @override
+  int? get crossoutPrice => throw _privateConstructorUsedError;
+  @override
+  int? get stock => throw _privateConstructorUsedError;
+  @override
+  int? get limit => throw _privateConstructorUsedError;
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  int get price => throw _privateConstructorUsedError;
+  @override
+  int get weight => throw _privateConstructorUsedError;
+  @override
+  String get description => throw _privateConstructorUsedError;
+  @override
+  String get image => throw _privateConstructorUsedError;
+  @override
+  String get categoryId => throw _privateConstructorUsedError;
+  @override
+  String get categoryCode => throw _privateConstructorUsedError;
+  @override
+  String get categoryName => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$OutletListProductDataSubModifierGroupResponseCopyWith<
+          _OutletListProductDataSubModifierGroupResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -608,10 +1146,10 @@ class _$OutletListProductDataResponseTearOff {
       {required String code,
       required String sku,
       required bool isPreorder,
-      required int preorderPeriod,
+      required int? preorderPeriod,
       required int? crossoutPrice,
-      required int stock,
-      required dynamic limit,
+      required int? stock,
+      required int? limit,
       required String id,
       required String name,
       required int price,
@@ -621,7 +1159,7 @@ class _$OutletListProductDataResponseTearOff {
       required String categoryId,
       required String categoryCode,
       required String categoryName,
-      required List<OutletListProductDataResponse> variants,
+      required List<OutletListProductDataVariantResponse> variants,
       required List<OutletListProductDataModifierGroupResponse>
           modifierGroups}) {
     return _OutletListProductDataResponse(
@@ -659,10 +1197,10 @@ mixin _$OutletListProductDataResponse {
   String get code => throw _privateConstructorUsedError;
   String get sku => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
-  int get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod => throw _privateConstructorUsedError;
   int? get crossoutPrice => throw _privateConstructorUsedError;
-  int get stock => throw _privateConstructorUsedError;
-  dynamic get limit => throw _privateConstructorUsedError;
+  int? get stock => throw _privateConstructorUsedError;
+  int? get limit => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
@@ -672,7 +1210,7 @@ mixin _$OutletListProductDataResponse {
   String get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
   String get categoryName => throw _privateConstructorUsedError;
-  List<OutletListProductDataResponse> get variants =>
+  List<OutletListProductDataVariantResponse> get variants =>
       throw _privateConstructorUsedError;
   List<OutletListProductDataModifierGroupResponse> get modifierGroups =>
       throw _privateConstructorUsedError;
@@ -693,10 +1231,10 @@ abstract class $OutletListProductDataResponseCopyWith<$Res> {
       {String code,
       String sku,
       bool isPreorder,
-      int preorderPeriod,
+      int? preorderPeriod,
       int? crossoutPrice,
-      int stock,
-      dynamic limit,
+      int? stock,
+      int? limit,
       String id,
       String name,
       int price,
@@ -706,7 +1244,7 @@ abstract class $OutletListProductDataResponseCopyWith<$Res> {
       String categoryId,
       String categoryCode,
       String categoryName,
-      List<OutletListProductDataResponse> variants,
+      List<OutletListProductDataVariantResponse> variants,
       List<OutletListProductDataModifierGroupResponse> modifierGroups});
 }
 
@@ -756,7 +1294,7 @@ class _$OutletListProductDataResponseCopyWithImpl<$Res>
       preorderPeriod: preorderPeriod == freezed
           ? _value.preorderPeriod
           : preorderPeriod // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       crossoutPrice: crossoutPrice == freezed
           ? _value.crossoutPrice
           : crossoutPrice // ignore: cast_nullable_to_non_nullable
@@ -764,11 +1302,11 @@ class _$OutletListProductDataResponseCopyWithImpl<$Res>
       stock: stock == freezed
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       limit: limit == freezed
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -808,7 +1346,7 @@ class _$OutletListProductDataResponseCopyWithImpl<$Res>
       variants: variants == freezed
           ? _value.variants
           : variants // ignore: cast_nullable_to_non_nullable
-              as List<OutletListProductDataResponse>,
+              as List<OutletListProductDataVariantResponse>,
       modifierGroups: modifierGroups == freezed
           ? _value.modifierGroups
           : modifierGroups // ignore: cast_nullable_to_non_nullable
@@ -829,10 +1367,10 @@ abstract class _$OutletListProductDataResponseCopyWith<$Res>
       {String code,
       String sku,
       bool isPreorder,
-      int preorderPeriod,
+      int? preorderPeriod,
       int? crossoutPrice,
-      int stock,
-      dynamic limit,
+      int? stock,
+      int? limit,
       String id,
       String name,
       int price,
@@ -842,7 +1380,7 @@ abstract class _$OutletListProductDataResponseCopyWith<$Res>
       String categoryId,
       String categoryCode,
       String categoryName,
-      List<OutletListProductDataResponse> variants,
+      List<OutletListProductDataVariantResponse> variants,
       List<OutletListProductDataModifierGroupResponse> modifierGroups});
 }
 
@@ -896,7 +1434,7 @@ class __$OutletListProductDataResponseCopyWithImpl<$Res>
       preorderPeriod: preorderPeriod == freezed
           ? _value.preorderPeriod
           : preorderPeriod // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       crossoutPrice: crossoutPrice == freezed
           ? _value.crossoutPrice
           : crossoutPrice // ignore: cast_nullable_to_non_nullable
@@ -904,11 +1442,11 @@ class __$OutletListProductDataResponseCopyWithImpl<$Res>
       stock: stock == freezed
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       limit: limit == freezed
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -948,7 +1486,7 @@ class __$OutletListProductDataResponseCopyWithImpl<$Res>
       variants: variants == freezed
           ? _value.variants
           : variants // ignore: cast_nullable_to_non_nullable
-              as List<OutletListProductDataResponse>,
+              as List<OutletListProductDataVariantResponse>,
       modifierGroups: modifierGroups == freezed
           ? _value.modifierGroups
           : modifierGroups // ignore: cast_nullable_to_non_nullable
@@ -992,13 +1530,13 @@ class _$_OutletListProductDataResponse
   @override
   final bool isPreorder;
   @override
-  final int preorderPeriod;
+  final int? preorderPeriod;
   @override
   final int? crossoutPrice;
   @override
-  final int stock;
+  final int? stock;
   @override
-  final dynamic limit;
+  final int? limit;
   @override
   final String id;
   @override
@@ -1018,7 +1556,7 @@ class _$_OutletListProductDataResponse
   @override
   final String categoryName;
   @override
-  final List<OutletListProductDataResponse> variants;
+  final List<OutletListProductDataVariantResponse> variants;
   @override
   final List<OutletListProductDataModifierGroupResponse> modifierGroups;
 
@@ -1118,10 +1656,10 @@ abstract class _OutletListProductDataResponse
       {required String code,
       required String sku,
       required bool isPreorder,
-      required int preorderPeriod,
+      required int? preorderPeriod,
       required int? crossoutPrice,
-      required int stock,
-      required dynamic limit,
+      required int? stock,
+      required int? limit,
       required String id,
       required String name,
       required int price,
@@ -1131,7 +1669,7 @@ abstract class _OutletListProductDataResponse
       required String categoryId,
       required String categoryCode,
       required String categoryName,
-      required List<OutletListProductDataResponse> variants,
+      required List<OutletListProductDataVariantResponse> variants,
       required List<OutletListProductDataModifierGroupResponse>
           modifierGroups}) = _$_OutletListProductDataResponse;
 
@@ -1145,13 +1683,13 @@ abstract class _OutletListProductDataResponse
   @override
   bool get isPreorder => throw _privateConstructorUsedError;
   @override
-  int get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod => throw _privateConstructorUsedError;
   @override
   int? get crossoutPrice => throw _privateConstructorUsedError;
   @override
-  int get stock => throw _privateConstructorUsedError;
+  int? get stock => throw _privateConstructorUsedError;
   @override
-  dynamic get limit => throw _privateConstructorUsedError;
+  int? get limit => throw _privateConstructorUsedError;
   @override
   String get id => throw _privateConstructorUsedError;
   @override
@@ -1171,7 +1709,7 @@ abstract class _OutletListProductDataResponse
   @override
   String get categoryName => throw _privateConstructorUsedError;
   @override
-  List<OutletListProductDataResponse> get variants =>
+  List<OutletListProductDataVariantResponse> get variants =>
       throw _privateConstructorUsedError;
   @override
   List<OutletListProductDataModifierGroupResponse> get modifierGroups =>
@@ -1182,364 +1720,567 @@ abstract class _OutletListProductDataResponse
       get copyWith => throw _privateConstructorUsedError;
 }
 
-OutletListProductMetaResponse _$OutletListProductMetaResponseFromJson(
-    Map<String, dynamic> json) {
-  return _OutletListProductMetaResponse.fromJson(json);
+OutletListProductDataVariantResponse
+    _$OutletListProductDataVariantResponseFromJson(Map<String, dynamic> json) {
+  return _OutletListProductDataVariantResponse.fromJson(json);
 }
 
 /// @nodoc
-class _$OutletListProductMetaResponseTearOff {
-  const _$OutletListProductMetaResponseTearOff();
+class _$OutletListProductDataVariantResponseTearOff {
+  const _$OutletListProductDataVariantResponseTearOff();
 
-  _OutletListProductMetaResponse call({required String version}) {
-    return _OutletListProductMetaResponse(
-      version: version,
-    );
-  }
-
-  OutletListProductMetaResponse fromJson(Map<String, Object> json) {
-    return OutletListProductMetaResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OutletListProductMetaResponse = _$OutletListProductMetaResponseTearOff();
-
-/// @nodoc
-mixin _$OutletListProductMetaResponse {
-  String get version => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $OutletListProductMetaResponseCopyWith<OutletListProductMetaResponse>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $OutletListProductMetaResponseCopyWith<$Res> {
-  factory $OutletListProductMetaResponseCopyWith(
-          OutletListProductMetaResponse value,
-          $Res Function(OutletListProductMetaResponse) then) =
-      _$OutletListProductMetaResponseCopyWithImpl<$Res>;
-  $Res call({String version});
-}
-
-/// @nodoc
-class _$OutletListProductMetaResponseCopyWithImpl<$Res>
-    implements $OutletListProductMetaResponseCopyWith<$Res> {
-  _$OutletListProductMetaResponseCopyWithImpl(this._value, this._then);
-
-  final OutletListProductMetaResponse _value;
-  // ignore: unused_field
-  final $Res Function(OutletListProductMetaResponse) _then;
-
-  @override
-  $Res call({
-    Object? version = freezed,
-  }) {
-    return _then(_value.copyWith(
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$OutletListProductMetaResponseCopyWith<$Res>
-    implements $OutletListProductMetaResponseCopyWith<$Res> {
-  factory _$OutletListProductMetaResponseCopyWith(
-          _OutletListProductMetaResponse value,
-          $Res Function(_OutletListProductMetaResponse) then) =
-      __$OutletListProductMetaResponseCopyWithImpl<$Res>;
-  @override
-  $Res call({String version});
-}
-
-/// @nodoc
-class __$OutletListProductMetaResponseCopyWithImpl<$Res>
-    extends _$OutletListProductMetaResponseCopyWithImpl<$Res>
-    implements _$OutletListProductMetaResponseCopyWith<$Res> {
-  __$OutletListProductMetaResponseCopyWithImpl(
-      _OutletListProductMetaResponse _value,
-      $Res Function(_OutletListProductMetaResponse) _then)
-      : super(_value, (v) => _then(v as _OutletListProductMetaResponse));
-
-  @override
-  _OutletListProductMetaResponse get _value =>
-      super._value as _OutletListProductMetaResponse;
-
-  @override
-  $Res call({
-    Object? version = freezed,
-  }) {
-    return _then(_OutletListProductMetaResponse(
-      version: version == freezed
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_OutletListProductMetaResponse
-    implements _OutletListProductMetaResponse {
-  const _$_OutletListProductMetaResponse({required this.version});
-
-  factory _$_OutletListProductMetaResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$_$_OutletListProductMetaResponseFromJson(json);
-
-  @override
-  final String version;
-
-  @override
-  String toString() {
-    return 'OutletListProductMetaResponse(version: $version)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _OutletListProductMetaResponse &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(other.version, version)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(version);
-
-  @JsonKey(ignore: true)
-  @override
-  _$OutletListProductMetaResponseCopyWith<_OutletListProductMetaResponse>
-      get copyWith => __$OutletListProductMetaResponseCopyWithImpl<
-          _OutletListProductMetaResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_OutletListProductMetaResponseToJson(this);
-  }
-}
-
-abstract class _OutletListProductMetaResponse
-    implements OutletListProductMetaResponse {
-  const factory _OutletListProductMetaResponse({required String version}) =
-      _$_OutletListProductMetaResponse;
-
-  factory _OutletListProductMetaResponse.fromJson(Map<String, dynamic> json) =
-      _$_OutletListProductMetaResponse.fromJson;
-
-  @override
-  String get version => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$OutletListProductMetaResponseCopyWith<_OutletListProductMetaResponse>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-OutletListProductStatusResponse _$OutletListProductStatusResponseFromJson(
-    Map<String, dynamic> json) {
-  return _OutletListProductStatusResponse.fromJson(json);
-}
-
-/// @nodoc
-class _$OutletListProductStatusResponseTearOff {
-  const _$OutletListProductStatusResponseTearOff();
-
-  _OutletListProductStatusResponse call(
-      {required String code, required String status, required String message}) {
-    return _OutletListProductStatusResponse(
+  _OutletListProductDataVariantResponse call(
+      {required String code,
+      required String sku,
+      required bool isPreorder,
+      required DateTime? preorderPeriod,
+      required int? crossoutPrice,
+      required int? stock,
+      required int? limit,
+      required String id,
+      required String name,
+      required int price,
+      required int weight,
+      required String description,
+      required String image,
+      required String categoryId,
+      required String categoryCode,
+      required String categoryName,
+      required List<OutletListProductDataModifierGroupResponse>
+          modifierGroups}) {
+    return _OutletListProductDataVariantResponse(
       code: code,
-      status: status,
-      message: message,
+      sku: sku,
+      isPreorder: isPreorder,
+      preorderPeriod: preorderPeriod,
+      crossoutPrice: crossoutPrice,
+      stock: stock,
+      limit: limit,
+      id: id,
+      name: name,
+      price: price,
+      weight: weight,
+      description: description,
+      image: image,
+      categoryId: categoryId,
+      categoryCode: categoryCode,
+      categoryName: categoryName,
+      modifierGroups: modifierGroups,
     );
   }
 
-  OutletListProductStatusResponse fromJson(Map<String, Object> json) {
-    return OutletListProductStatusResponse.fromJson(json);
+  OutletListProductDataVariantResponse fromJson(Map<String, Object> json) {
+    return OutletListProductDataVariantResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $OutletListProductStatusResponse =
-    _$OutletListProductStatusResponseTearOff();
+const $OutletListProductDataVariantResponse =
+    _$OutletListProductDataVariantResponseTearOff();
 
 /// @nodoc
-mixin _$OutletListProductStatusResponse {
+mixin _$OutletListProductDataVariantResponse {
   String get code => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  String get sku => throw _privateConstructorUsedError;
+  bool get isPreorder => throw _privateConstructorUsedError;
+  DateTime? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get crossoutPrice => throw _privateConstructorUsedError;
+  int? get stock => throw _privateConstructorUsedError;
+  int? get limit => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
+  int get weight => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryCode => throw _privateConstructorUsedError;
+  String get categoryName => throw _privateConstructorUsedError;
+  List<OutletListProductDataModifierGroupResponse> get modifierGroups =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OutletListProductStatusResponseCopyWith<OutletListProductStatusResponse>
+  $OutletListProductDataVariantResponseCopyWith<
+          OutletListProductDataVariantResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OutletListProductStatusResponseCopyWith<$Res> {
-  factory $OutletListProductStatusResponseCopyWith(
-          OutletListProductStatusResponse value,
-          $Res Function(OutletListProductStatusResponse) then) =
-      _$OutletListProductStatusResponseCopyWithImpl<$Res>;
-  $Res call({String code, String status, String message});
+abstract class $OutletListProductDataVariantResponseCopyWith<$Res> {
+  factory $OutletListProductDataVariantResponseCopyWith(
+          OutletListProductDataVariantResponse value,
+          $Res Function(OutletListProductDataVariantResponse) then) =
+      _$OutletListProductDataVariantResponseCopyWithImpl<$Res>;
+  $Res call(
+      {String code,
+      String sku,
+      bool isPreorder,
+      DateTime? preorderPeriod,
+      int? crossoutPrice,
+      int? stock,
+      int? limit,
+      String id,
+      String name,
+      int price,
+      int weight,
+      String description,
+      String image,
+      String categoryId,
+      String categoryCode,
+      String categoryName,
+      List<OutletListProductDataModifierGroupResponse> modifierGroups});
 }
 
 /// @nodoc
-class _$OutletListProductStatusResponseCopyWithImpl<$Res>
-    implements $OutletListProductStatusResponseCopyWith<$Res> {
-  _$OutletListProductStatusResponseCopyWithImpl(this._value, this._then);
+class _$OutletListProductDataVariantResponseCopyWithImpl<$Res>
+    implements $OutletListProductDataVariantResponseCopyWith<$Res> {
+  _$OutletListProductDataVariantResponseCopyWithImpl(this._value, this._then);
 
-  final OutletListProductStatusResponse _value;
+  final OutletListProductDataVariantResponse _value;
   // ignore: unused_field
-  final $Res Function(OutletListProductStatusResponse) _then;
+  final $Res Function(OutletListProductDataVariantResponse) _then;
 
   @override
   $Res call({
     Object? code = freezed,
-    Object? status = freezed,
-    Object? message = freezed,
+    Object? sku = freezed,
+    Object? isPreorder = freezed,
+    Object? preorderPeriod = freezed,
+    Object? crossoutPrice = freezed,
+    Object? stock = freezed,
+    Object? limit = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? weight = freezed,
+    Object? description = freezed,
+    Object? image = freezed,
+    Object? categoryId = freezed,
+    Object? categoryCode = freezed,
+    Object? categoryName = freezed,
+    Object? modifierGroups = freezed,
   }) {
     return _then(_value.copyWith(
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      sku: sku == freezed
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
               as String,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      isPreorder: isPreorder == freezed
+          ? _value.isPreorder
+          : isPreorder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      preorderPeriod: preorderPeriod == freezed
+          ? _value.preorderPeriod
+          : preorderPeriod // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      crossoutPrice: crossoutPrice == freezed
+          ? _value.crossoutPrice
+          : crossoutPrice // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stock: stock == freezed
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      limit: limit == freezed
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryCode: categoryCode == freezed
+          ? _value.categoryCode
+          : categoryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: categoryName == freezed
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      modifierGroups: modifierGroups == freezed
+          ? _value.modifierGroups
+          : modifierGroups // ignore: cast_nullable_to_non_nullable
+              as List<OutletListProductDataModifierGroupResponse>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$OutletListProductStatusResponseCopyWith<$Res>
-    implements $OutletListProductStatusResponseCopyWith<$Res> {
-  factory _$OutletListProductStatusResponseCopyWith(
-          _OutletListProductStatusResponse value,
-          $Res Function(_OutletListProductStatusResponse) then) =
-      __$OutletListProductStatusResponseCopyWithImpl<$Res>;
+abstract class _$OutletListProductDataVariantResponseCopyWith<$Res>
+    implements $OutletListProductDataVariantResponseCopyWith<$Res> {
+  factory _$OutletListProductDataVariantResponseCopyWith(
+          _OutletListProductDataVariantResponse value,
+          $Res Function(_OutletListProductDataVariantResponse) then) =
+      __$OutletListProductDataVariantResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String code, String status, String message});
+  $Res call(
+      {String code,
+      String sku,
+      bool isPreorder,
+      DateTime? preorderPeriod,
+      int? crossoutPrice,
+      int? stock,
+      int? limit,
+      String id,
+      String name,
+      int price,
+      int weight,
+      String description,
+      String image,
+      String categoryId,
+      String categoryCode,
+      String categoryName,
+      List<OutletListProductDataModifierGroupResponse> modifierGroups});
 }
 
 /// @nodoc
-class __$OutletListProductStatusResponseCopyWithImpl<$Res>
-    extends _$OutletListProductStatusResponseCopyWithImpl<$Res>
-    implements _$OutletListProductStatusResponseCopyWith<$Res> {
-  __$OutletListProductStatusResponseCopyWithImpl(
-      _OutletListProductStatusResponse _value,
-      $Res Function(_OutletListProductStatusResponse) _then)
-      : super(_value, (v) => _then(v as _OutletListProductStatusResponse));
+class __$OutletListProductDataVariantResponseCopyWithImpl<$Res>
+    extends _$OutletListProductDataVariantResponseCopyWithImpl<$Res>
+    implements _$OutletListProductDataVariantResponseCopyWith<$Res> {
+  __$OutletListProductDataVariantResponseCopyWithImpl(
+      _OutletListProductDataVariantResponse _value,
+      $Res Function(_OutletListProductDataVariantResponse) _then)
+      : super(_value, (v) => _then(v as _OutletListProductDataVariantResponse));
 
   @override
-  _OutletListProductStatusResponse get _value =>
-      super._value as _OutletListProductStatusResponse;
+  _OutletListProductDataVariantResponse get _value =>
+      super._value as _OutletListProductDataVariantResponse;
 
   @override
   $Res call({
     Object? code = freezed,
-    Object? status = freezed,
-    Object? message = freezed,
+    Object? sku = freezed,
+    Object? isPreorder = freezed,
+    Object? preorderPeriod = freezed,
+    Object? crossoutPrice = freezed,
+    Object? stock = freezed,
+    Object? limit = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? weight = freezed,
+    Object? description = freezed,
+    Object? image = freezed,
+    Object? categoryId = freezed,
+    Object? categoryCode = freezed,
+    Object? categoryName = freezed,
+    Object? modifierGroups = freezed,
   }) {
-    return _then(_OutletListProductStatusResponse(
+    return _then(_OutletListProductDataVariantResponse(
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      sku: sku == freezed
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
               as String,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      isPreorder: isPreorder == freezed
+          ? _value.isPreorder
+          : isPreorder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      preorderPeriod: preorderPeriod == freezed
+          ? _value.preorderPeriod
+          : preorderPeriod // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      crossoutPrice: crossoutPrice == freezed
+          ? _value.crossoutPrice
+          : crossoutPrice // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stock: stock == freezed
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      limit: limit == freezed
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryCode: categoryCode == freezed
+          ? _value.categoryCode
+          : categoryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: categoryName == freezed
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      modifierGroups: modifierGroups == freezed
+          ? _value.modifierGroups
+          : modifierGroups // ignore: cast_nullable_to_non_nullable
+              as List<OutletListProductDataModifierGroupResponse>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_OutletListProductStatusResponse
-    implements _OutletListProductStatusResponse {
-  const _$_OutletListProductStatusResponse(
-      {required this.code, required this.status, required this.message});
+class _$_OutletListProductDataVariantResponse
+    implements _OutletListProductDataVariantResponse {
+  const _$_OutletListProductDataVariantResponse(
+      {required this.code,
+      required this.sku,
+      required this.isPreorder,
+      required this.preorderPeriod,
+      required this.crossoutPrice,
+      required this.stock,
+      required this.limit,
+      required this.id,
+      required this.name,
+      required this.price,
+      required this.weight,
+      required this.description,
+      required this.image,
+      required this.categoryId,
+      required this.categoryCode,
+      required this.categoryName,
+      required this.modifierGroups});
 
-  factory _$_OutletListProductStatusResponse.fromJson(
+  factory _$_OutletListProductDataVariantResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_OutletListProductStatusResponseFromJson(json);
+      _$_$_OutletListProductDataVariantResponseFromJson(json);
 
   @override
   final String code;
   @override
-  final String status;
+  final String sku;
   @override
-  final String message;
+  final bool isPreorder;
+  @override
+  final DateTime? preorderPeriod;
+  @override
+  final int? crossoutPrice;
+  @override
+  final int? stock;
+  @override
+  final int? limit;
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final int price;
+  @override
+  final int weight;
+  @override
+  final String description;
+  @override
+  final String image;
+  @override
+  final String categoryId;
+  @override
+  final String categoryCode;
+  @override
+  final String categoryName;
+  @override
+  final List<OutletListProductDataModifierGroupResponse> modifierGroups;
 
   @override
   String toString() {
-    return 'OutletListProductStatusResponse(code: $code, status: $status, message: $message)';
+    return 'OutletListProductDataVariantResponse(code: $code, sku: $sku, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, crossoutPrice: $crossoutPrice, stock: $stock, limit: $limit, id: $id, name: $name, price: $price, weight: $weight, description: $description, image: $image, categoryId: $categoryId, categoryCode: $categoryCode, categoryName: $categoryName, modifierGroups: $modifierGroups)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletListProductStatusResponse &&
+        (other is _OutletListProductDataVariantResponse &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+            (identical(other.sku, sku) ||
+                const DeepCollectionEquality().equals(other.sku, sku)) &&
+            (identical(other.isPreorder, isPreorder) ||
+                const DeepCollectionEquality()
+                    .equals(other.isPreorder, isPreorder)) &&
+            (identical(other.preorderPeriod, preorderPeriod) ||
+                const DeepCollectionEquality()
+                    .equals(other.preorderPeriod, preorderPeriod)) &&
+            (identical(other.crossoutPrice, crossoutPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.crossoutPrice, crossoutPrice)) &&
+            (identical(other.stock, stock) ||
+                const DeepCollectionEquality().equals(other.stock, stock)) &&
+            (identical(other.limit, limit) ||
+                const DeepCollectionEquality().equals(other.limit, limit)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.weight, weight) ||
+                const DeepCollectionEquality().equals(other.weight, weight)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.categoryCode, categoryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryCode, categoryCode)) &&
+            (identical(other.categoryName, categoryName) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryName, categoryName)) &&
+            (identical(other.modifierGroups, modifierGroups) ||
+                const DeepCollectionEquality()
+                    .equals(other.modifierGroups, modifierGroups)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(message);
+      const DeepCollectionEquality().hash(sku) ^
+      const DeepCollectionEquality().hash(isPreorder) ^
+      const DeepCollectionEquality().hash(preorderPeriod) ^
+      const DeepCollectionEquality().hash(crossoutPrice) ^
+      const DeepCollectionEquality().hash(stock) ^
+      const DeepCollectionEquality().hash(limit) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(weight) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(categoryCode) ^
+      const DeepCollectionEquality().hash(categoryName) ^
+      const DeepCollectionEquality().hash(modifierGroups);
 
   @JsonKey(ignore: true)
   @override
-  _$OutletListProductStatusResponseCopyWith<_OutletListProductStatusResponse>
-      get copyWith => __$OutletListProductStatusResponseCopyWithImpl<
-          _OutletListProductStatusResponse>(this, _$identity);
+  _$OutletListProductDataVariantResponseCopyWith<
+          _OutletListProductDataVariantResponse>
+      get copyWith => __$OutletListProductDataVariantResponseCopyWithImpl<
+          _OutletListProductDataVariantResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletListProductStatusResponseToJson(this);
+    return _$_$_OutletListProductDataVariantResponseToJson(this);
   }
 }
 
-abstract class _OutletListProductStatusResponse
-    implements OutletListProductStatusResponse {
-  const factory _OutletListProductStatusResponse(
+abstract class _OutletListProductDataVariantResponse
+    implements OutletListProductDataVariantResponse {
+  const factory _OutletListProductDataVariantResponse(
       {required String code,
-      required String status,
-      required String message}) = _$_OutletListProductStatusResponse;
+      required String sku,
+      required bool isPreorder,
+      required DateTime? preorderPeriod,
+      required int? crossoutPrice,
+      required int? stock,
+      required int? limit,
+      required String id,
+      required String name,
+      required int price,
+      required int weight,
+      required String description,
+      required String image,
+      required String categoryId,
+      required String categoryCode,
+      required String categoryName,
+      required List<OutletListProductDataModifierGroupResponse>
+          modifierGroups}) = _$_OutletListProductDataVariantResponse;
 
-  factory _OutletListProductStatusResponse.fromJson(Map<String, dynamic> json) =
-      _$_OutletListProductStatusResponse.fromJson;
+  factory _OutletListProductDataVariantResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_OutletListProductDataVariantResponse.fromJson;
 
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get sku => throw _privateConstructorUsedError;
   @override
-  String get message => throw _privateConstructorUsedError;
+  bool get isPreorder => throw _privateConstructorUsedError;
+  @override
+  DateTime? get preorderPeriod => throw _privateConstructorUsedError;
+  @override
+  int? get crossoutPrice => throw _privateConstructorUsedError;
+  @override
+  int? get stock => throw _privateConstructorUsedError;
+  @override
+  int? get limit => throw _privateConstructorUsedError;
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  int get price => throw _privateConstructorUsedError;
+  @override
+  int get weight => throw _privateConstructorUsedError;
+  @override
+  String get description => throw _privateConstructorUsedError;
+  @override
+  String get image => throw _privateConstructorUsedError;
+  @override
+  String get categoryId => throw _privateConstructorUsedError;
+  @override
+  String get categoryCode => throw _privateConstructorUsedError;
+  @override
+  String get categoryName => throw _privateConstructorUsedError;
+  @override
+  List<OutletListProductDataModifierGroupResponse> get modifierGroups =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OutletListProductStatusResponseCopyWith<_OutletListProductStatusResponse>
+  _$OutletListProductDataVariantResponseCopyWith<
+          _OutletListProductDataVariantResponse>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListFoodCategory extends StatelessWidget {
-  final List<OutletProductDataResponse> data;
+  final List<OutletProductCategoryDataResponse> data;
   final Axis scrollDirection;
-  final String selected;
+  final String? selected;
   final void Function(String?) runAction;
   const ListFoodCategory(
       {Key? key,
@@ -43,7 +43,7 @@ class ListFoodCategory extends StatelessWidget {
                   if (data[index].id == 0) {
                     runAction(null);
                   } else {
-                    runAction(data[index].name);
+                    runAction(data[index].id.toString());
                   }
                 },
                 child: Container(

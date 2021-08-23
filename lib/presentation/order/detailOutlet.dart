@@ -10,8 +10,13 @@ import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
+import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_food_category_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_outlet_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
@@ -60,19 +65,18 @@ class DetailOutletScreen extends GetView<OrderViewController> {
 
   void searchActionText(String keyword) {
     controller.page.value = 1;
-    controller.searchName.value = keyword;
+    controller.search.value = keyword;
+    getListProduct();
     //getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
   }
 
   void searchActionCategory(String? category) {
     controller.page.value = 1;
-    controller.filterCategory.value = category ?? "";
-
-    //getDetailOutlet(_orderStore.orderOutletName, searchName, filterCategory, 1);
+    controller.categoryId.value = category ?? "";
+    getListProduct();
   }
 
-  void getDetailOutlet(
-      String outletName, String filter, String category, int pageParam) {
+  void getDetailOutlet() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
         GetDetailOutletParam(
             body: GetDetailOutletBodyParam(),
@@ -105,6 +109,34 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     //   print(err.toString());
     //   ErrorPopupWidget.showDioError(context, err, null);
     // });
+  }
+
+  void getListProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
+        GetOutletProductParam(
+            body: GetOutletProductBodyParam(),
+            queryString: GetOutletProductQueryParam(
+                categoryId: controller.categoryId.value,
+                filter: controller.search.value,
+                limit: 15,
+                outletId: args.outletId,
+                page: controller.page.value))));
+  }
+
+  void getCategoryProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletProductCategory(
+        GetOutletProductCategoryParam(
+            body: GetOutletProductCategoryBodyParam(),
+            queryString:
+                GetOutletProductCategoryQueryParam(outletId: args.outletId))));
+  }
+
+  void getPromoProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getListPromoOutlet(
+        GetListPromoOutletParam(
+            body: GetListPromoOutletBodyParam(),
+            queryString: GetListPromoOutletQueryParam(
+                merchantId: args.merchantId, outletId: args.outletId))));
   }
 
   Widget _search() {
@@ -178,7 +210,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                 ),
                 Container(
                   width: 200,
-                  child: Text("_orderStore.orderOutletDetailName",
+                  child: Text(data.description,
                       //detailOutlet != null ? data.outlet["detail"]["name"] : ""
                       style: TextStyle(
                         fontFamily: "roboto",
@@ -199,28 +231,28 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               ],
             ),
           ),
-          // Container(
-          //         child: Text(_orderStore.orderMerchantName.toString(),
-          //             style: TextStyle(
-          //               fontFamily: "roboto",
-          //               color: Colors.white,
-          //               fontSize: 16,
-          //               fontWeight: FontWeight.normal,
-          //             ),
-          //             textAlign: TextAlign.center),
-          //       ),
           Container(
-            padding: EdgeInsets.only(top: 10),
-            child: Text("Power by Digiresto",
+            child: Text(data.merchantName.toString(),
                 style: TextStyle(
                   fontFamily: "roboto",
-                  color: Colors.white70,
-                  fontSize: 12,
+                  color: Colors.white,
+                  fontSize: 16,
                   fontWeight: FontWeight.normal,
                 ),
                 textAlign: TextAlign.center),
           ),
-          controller.detailOutlet?.value != null
+          // Container(
+          //   padding: EdgeInsets.only(top: 10),
+          //   child: Text("Power by Digiresto",
+          //       style: TextStyle(
+          //         fontFamily: "roboto",
+          //         color: Colors.white70,
+          //         fontSize: 12,
+          //         fontWeight: FontWeight.normal,
+          //       ),
+          //       textAlign: TextAlign.center),
+          // ),
+          controller.detailOutlet.value != null
               ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   GestureDetector(
                     onTap: () {
@@ -266,9 +298,10 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     ]);
   }
 
-  Widget _category(List<OutletProductDataResponse> data, String selected) {
-    List<OutletProductDataResponse> paramCategory = [];
-    paramCategory.add(OutletProductDataResponse(
+  Widget _category(
+      List<OutletProductCategoryDataResponse> data, String selected) {
+    List<OutletProductCategoryDataResponse> paramCategory = [];
+    paramCategory.add(OutletProductCategoryDataResponse(
         code: '0', id: 0, name: 'SEMUA', order: null));
     paramCategory.addAll(data);
     return ListFoodCategory(
@@ -277,14 +310,12 @@ class DetailOutletScreen extends GetView<OrderViewController> {
         runAction: searchActionCategory);
   }
 
-  // Widget _promo(DetailOutletDataResponse data) {
-  //   return data.merchant!["promo"].length == 0
-  //       ? Container()
-  //       : DetailOutletHotPromoWidget(
-  //           height: 175.0,
-  //           data: data.merchant!["promo"],
-  //           scrollDirection: Axis.horizontal);
-  // }
+  Widget _promo(List<PromoOutletDataResponse> data) {
+    return data.length == 0
+        ? Container()
+        : DetailOutletHotPromoWidget(
+            height: 175.0, data: data, scrollDirection: Axis.horizontal);
+  }
 
   Widget _product(List<OutletListProductDataResponse> data) {
     return Column(
@@ -333,9 +364,30 @@ class DetailOutletScreen extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
     Get.put(OrderViewController());
+    getDetailOutlet();
+    getListProduct();
+    getCategoryProduct();
+    getPromoProduct();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
-        state.maybeMap(getDetailOutletSuccess: (r) {}, orElse: () {});
+        state.maybeMap(
+            getDetailOutletSuccess: (r) {
+              controller.detailOutlet.value = r.response;
+            },
+            getOutletListProductSuccess: (r) {
+              controller.listProduct.value = r.response;
+            },
+            getListPromoOutletSuccess: (r) {
+              controller.listPromo.value = r.response;
+            },
+            getListVoucherOutletSuccess: (r) {
+              controller.listVoucher.value = r.response;
+            },
+            getOutletProductCategorySuccess: (r) {
+              controller.listCategory.value = r.response;
+            },
+            loadFailure: (e) {},
+            orElse: () {});
       },
       builder: (context, state) {
         return Scaffold(
@@ -348,7 +400,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                     height: 70,
                     color: Colors.white,
                     alignment: Alignment.bottomCenter,
-                    padding: EdgeInsets.only(bottom: 10),
+                    // decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //     boxShadow: [CustomShadow.standard]),
                     child: Container(
                         decoration: BoxDecoration(
                           color: AppColors.red,
@@ -363,7 +417,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                             children: [
                               Row(
                                 children: [
-                                  controller.detailOutlet?.value != null
+                                  controller.detailOutlet.value != null
                                       ? Text(
                                           "_orderStore.orderProduct"
                                                   .length
@@ -394,7 +448,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                                   ),
                                 ],
                               ),
-                              controller.detailOutlet?.value != null
+                              controller.detailOutlet.value != null
                                   ? Text(
                                       "Rp. " +
                                           Utils.formatRupiah(10000.toString()),
@@ -417,30 +471,34 @@ class DetailOutletScreen extends GetView<OrderViewController> {
           body: Column(
             children: [
               TopBackgound(backgroundColor: AppColors.red),
-              Container(
-                height: MediaQuery.of(context).size.height - 30,
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  child: Column(
-                    children: [
-                      controller.detailOutlet?.value != null
-                          ? _header(controller.detailOutlet!.value)
-                          : Container(),
-                      controller.detailOutlet?.value != null
-                          ? _search()
-                          : Container(),
-                      // detailOutlet != null
-                      //     ? _category(detailOutlet!, filterCategory!)
-                      //     : Container(),
-                      // detailOutlet != null
-                      //     ? _promo(detailOutlet!)
-                      //     : Container(),
-                      // detailOutlet != null
-                      //     ? _product(detailOutlet!)
-                      //     : Container(),
-                    ],
+              controller.detailOutlet.value != null
+                  ? _header(controller.detailOutlet.value!)
+                  : Container(),
+              controller.detailOutlet.value != null ? _search() : Container(),
+              controller.listCategory.value != null
+                  ? _category(controller.listCategory.value!,
+                      controller.categoryId.value)
+                  : Container(),
+              Expanded(
+                child: Container(
+                  //height: MediaQuery.of(context).size.height - 30,
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        controller.listPromo.value != null
+                            ? _promo(controller.listPromo.value!)
+                            : Container(),
+                        controller.listProduct.value != null
+                            ? _product(controller.listProduct.value!)
+                            : Container(),
+                      ],
+                    ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
               )
             ],
           ),

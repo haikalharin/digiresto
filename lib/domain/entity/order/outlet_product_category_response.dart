@@ -16,7 +16,7 @@ abstract class OutletProductCategoryResponse
     with _$OutletProductCategoryResponse {
   const factory OutletProductCategoryResponse({
     required OutletProductCategoryStatusResponse response,
-    required List<OutletProductDataResponse> data,
+    required List<OutletProductCategoryDataResponse> data,
     required OutletProductMetaResponse meta,
   }) = _OutletProductCategoryResponse;
 
@@ -25,15 +25,17 @@ abstract class OutletProductCategoryResponse
 }
 
 @freezed
-abstract class OutletProductDataResponse with _$OutletProductDataResponse {
-  const factory OutletProductDataResponse({
+abstract class OutletProductCategoryDataResponse
+    with _$OutletProductDataResponse {
+  const factory OutletProductCategoryDataResponse({
     required int id,
     required String code,
     required String name,
     required dynamic order,
   }) = _OutletProductDataResponse;
 
-  factory OutletProductDataResponse.fromJson(Map<String, dynamic> json) =>
+  factory OutletProductCategoryDataResponse.fromJson(
+          Map<String, dynamic> json) =>
       _$OutletProductDataResponseFromJson(json);
 }
 

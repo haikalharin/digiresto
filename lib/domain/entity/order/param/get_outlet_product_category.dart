@@ -17,7 +17,7 @@ abstract class GetOutletProductCategoryParam
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletProductCategoryParam({
     required GetOutletProductCategoryQueryParam queryString,
-    required Body body,
+    required GetOutletProductCategoryBodyParam body,
   }) = _GetOutletProductCategoryParam;
 
   factory GetOutletProductCategoryParam.fromJson(Map<String, dynamic> json) =>
@@ -25,10 +25,14 @@ abstract class GetOutletProductCategoryParam
 }
 
 @freezed
-abstract class Body with _$Body {
-  const factory Body() = _Body;
+abstract class GetOutletProductCategoryBodyParam
+    with _$GetOutletProductCategoryBodyParam {
+  const factory GetOutletProductCategoryBodyParam() =
+      _GetOutletProductCategoryBodyParam;
 
-  factory Body.fromJson(Map<String, dynamic> json) => _$BodyFromJson(json);
+  factory GetOutletProductCategoryBodyParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetOutletProductCategoryBodyParamFromJson(json);
 }
 
 @freezed

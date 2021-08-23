@@ -23,7 +23,7 @@ class _$OutletProductCategoryResponseTearOff {
 
   _OutletProductCategoryResponse call(
       {required OutletProductCategoryStatusResponse response,
-      required List<OutletProductDataResponse> data,
+      required List<OutletProductCategoryDataResponse> data,
       required OutletProductMetaResponse meta}) {
     return _OutletProductCategoryResponse(
       response: response,
@@ -44,7 +44,7 @@ const $OutletProductCategoryResponse = _$OutletProductCategoryResponseTearOff();
 mixin _$OutletProductCategoryResponse {
   OutletProductCategoryStatusResponse get response =>
       throw _privateConstructorUsedError;
-  List<OutletProductDataResponse> get data =>
+  List<OutletProductCategoryDataResponse> get data =>
       throw _privateConstructorUsedError;
   OutletProductMetaResponse get meta => throw _privateConstructorUsedError;
 
@@ -62,7 +62,7 @@ abstract class $OutletProductCategoryResponseCopyWith<$Res> {
       _$OutletProductCategoryResponseCopyWithImpl<$Res>;
   $Res call(
       {OutletProductCategoryStatusResponse response,
-      List<OutletProductDataResponse> data,
+      List<OutletProductCategoryDataResponse> data,
       OutletProductMetaResponse meta});
 
   $OutletProductCategoryStatusResponseCopyWith<$Res> get response;
@@ -92,7 +92,7 @@ class _$OutletProductCategoryResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<OutletProductDataResponse>,
+              as List<OutletProductCategoryDataResponse>,
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ abstract class _$OutletProductCategoryResponseCopyWith<$Res>
   @override
   $Res call(
       {OutletProductCategoryStatusResponse response,
-      List<OutletProductDataResponse> data,
+      List<OutletProductCategoryDataResponse> data,
       OutletProductMetaResponse meta});
 
   @override
@@ -162,7 +162,7 @@ class __$OutletProductCategoryResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<OutletProductDataResponse>,
+              as List<OutletProductCategoryDataResponse>,
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
@@ -185,7 +185,7 @@ class _$_OutletProductCategoryResponse
   @override
   final OutletProductCategoryStatusResponse response;
   @override
-  final List<OutletProductDataResponse> data;
+  final List<OutletProductCategoryDataResponse> data;
   @override
   final OutletProductMetaResponse meta;
 
@@ -230,7 +230,7 @@ abstract class _OutletProductCategoryResponse
     implements OutletProductCategoryResponse {
   const factory _OutletProductCategoryResponse(
           {required OutletProductCategoryStatusResponse response,
-          required List<OutletProductDataResponse> data,
+          required List<OutletProductCategoryDataResponse> data,
           required OutletProductMetaResponse meta}) =
       _$_OutletProductCategoryResponse;
 
@@ -241,7 +241,7 @@ abstract class _OutletProductCategoryResponse
   OutletProductCategoryStatusResponse get response =>
       throw _privateConstructorUsedError;
   @override
-  List<OutletProductDataResponse> get data =>
+  List<OutletProductCategoryDataResponse> get data =>
       throw _privateConstructorUsedError;
   @override
   OutletProductMetaResponse get meta => throw _privateConstructorUsedError;
@@ -251,7 +251,7 @@ abstract class _OutletProductCategoryResponse
       get copyWith => throw _privateConstructorUsedError;
 }
 
-OutletProductDataResponse _$OutletProductDataResponseFromJson(
+OutletProductCategoryDataResponse _$OutletProductDataResponseFromJson(
     Map<String, dynamic> json) {
   return _OutletProductDataResponse.fromJson(json);
 }
@@ -273,8 +273,8 @@ class _$OutletProductDataResponseTearOff {
     );
   }
 
-  OutletProductDataResponse fromJson(Map<String, Object> json) {
-    return OutletProductDataResponse.fromJson(json);
+  OutletProductCategoryDataResponse fromJson(Map<String, Object> json) {
+    return OutletProductCategoryDataResponse.fromJson(json);
   }
 }
 
@@ -290,14 +290,15 @@ mixin _$OutletProductDataResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OutletProductDataResponseCopyWith<OutletProductDataResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  $OutletProductDataResponseCopyWith<OutletProductCategoryDataResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $OutletProductDataResponseCopyWith<$Res> {
-  factory $OutletProductDataResponseCopyWith(OutletProductDataResponse value,
-          $Res Function(OutletProductDataResponse) then) =
+  factory $OutletProductDataResponseCopyWith(
+          OutletProductCategoryDataResponse value,
+          $Res Function(OutletProductCategoryDataResponse) then) =
       _$OutletProductDataResponseCopyWithImpl<$Res>;
   $Res call({int id, String code, String name, dynamic order});
 }
@@ -307,9 +308,9 @@ class _$OutletProductDataResponseCopyWithImpl<$Res>
     implements $OutletProductDataResponseCopyWith<$Res> {
   _$OutletProductDataResponseCopyWithImpl(this._value, this._then);
 
-  final OutletProductDataResponse _value;
+  final OutletProductCategoryDataResponse _value;
   // ignore: unused_field
-  final $Res Function(OutletProductDataResponse) _then;
+  final $Res Function(OutletProductCategoryDataResponse) _then;
 
   @override
   $Res call({
@@ -450,7 +451,8 @@ class _$_OutletProductDataResponse implements _OutletProductDataResponse {
   }
 }
 
-abstract class _OutletProductDataResponse implements OutletProductDataResponse {
+abstract class _OutletProductDataResponse
+    implements OutletProductCategoryDataResponse {
   const factory _OutletProductDataResponse(
       {required int id,
       required String code,

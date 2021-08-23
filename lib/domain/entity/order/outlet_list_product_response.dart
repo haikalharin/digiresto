@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'outlet_list_product_response.freezed.dart';
@@ -14,9 +15,9 @@ String emptyToJson(OutletListProductResponse data) =>
 @freezed
 abstract class OutletListProductResponse with _$OutletListProductResponse {
   const factory OutletListProductResponse({
-    required OutletListProductStatusResponse response,
+    required StatusResponse response,
     required List<OutletListProductDataResponse> data,
-    required OutletListProductMetaResponse meta,
+    required MetaResponse meta,
   }) = _OutletListProductResponse;
 
   factory OutletListProductResponse.fromJson(Map<String, dynamic> json) =>
@@ -34,7 +35,7 @@ abstract class OutletListProductDataModifierGroupResponse
     required int allowQuantity,
     required int minQuantity,
     required int maxQuantity,
-    required List<OutletListProductDataResponse> modifiers,
+    required List<OutletListProductDataSubModifierGroupResponse> modifiers,
   }) = _OutletListProductDataModifierGroupResponse;
 
   factory OutletListProductDataModifierGroupResponse.fromJson(
@@ -43,16 +44,16 @@ abstract class OutletListProductDataModifierGroupResponse
 }
 
 @freezed
-abstract class OutletListProductDataResponse
-    with _$OutletListProductDataResponse {
-  const factory OutletListProductDataResponse({
+abstract class OutletListProductDataSubModifierGroupResponse
+    with _$OutletListProductDataSubModifierGroupResponse {
+  const factory OutletListProductDataSubModifierGroupResponse({
     required String code,
     required String sku,
     required bool isPreorder,
-    required int preorderPeriod,
+    required int? preorderPeriod,
     required int? crossoutPrice,
-    required int stock,
-    required dynamic limit,
+    required int? stock,
+    required int? limit,
     required String id,
     required String name,
     required int price,
@@ -62,7 +63,34 @@ abstract class OutletListProductDataResponse
     required String categoryId,
     required String categoryCode,
     required String categoryName,
-    required List<OutletListProductDataResponse> variants,
+  }) = _OutletListProductDataSubModifierGroupResponse;
+
+  factory OutletListProductDataSubModifierGroupResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$OutletListProductDataSubModifierGroupResponseFromJson(json);
+}
+
+@freezed
+abstract class OutletListProductDataResponse
+    with _$OutletListProductDataResponse {
+  const factory OutletListProductDataResponse({
+    required String code,
+    required String sku,
+    required bool isPreorder,
+    required int? preorderPeriod,
+    required int? crossoutPrice,
+    required int? stock,
+    required int? limit,
+    required String id,
+    required String name,
+    required int price,
+    required int weight,
+    required String description,
+    required String image,
+    required String categoryId,
+    required String categoryCode,
+    required String categoryName,
+    required List<OutletListProductDataVariantResponse> variants,
     required List<OutletListProductDataModifierGroupResponse> modifierGroups,
   }) = _OutletListProductDataResponse;
 
@@ -71,25 +99,29 @@ abstract class OutletListProductDataResponse
 }
 
 @freezed
-abstract class OutletListProductMetaResponse
-    with _$OutletListProductMetaResponse {
-  const factory OutletListProductMetaResponse({
-    required String version,
-  }) = _OutletListProductMetaResponse;
-
-  factory OutletListProductMetaResponse.fromJson(Map<String, dynamic> json) =>
-      _$OutletListProductMetaResponseFromJson(json);
-}
-
-@freezed
-abstract class OutletListProductStatusResponse
-    with _$OutletListProductStatusResponse {
-  const factory OutletListProductStatusResponse({
+abstract class OutletListProductDataVariantResponse
+    with _$OutletListProductDataVariantResponse {
+  const factory OutletListProductDataVariantResponse({
     required String code,
-    required String status,
-    required String message,
-  }) = _OutletListProductStatusResponse;
+    required String sku,
+    required bool isPreorder,
+    required DateTime? preorderPeriod,
+    required int? crossoutPrice,
+    required int? stock,
+    required int? limit,
+    required String id,
+    required String name,
+    required int price,
+    required int weight,
+    required String description,
+    required String image,
+    required String categoryId,
+    required String categoryCode,
+    required String categoryName,
+    required List<OutletListProductDataModifierGroupResponse> modifierGroups,
+  }) = _OutletListProductDataVariantResponse;
 
-  factory OutletListProductStatusResponse.fromJson(Map<String, dynamic> json) =>
-      _$OutletListProductStatusResponseFromJson(json);
+  factory OutletListProductDataVariantResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$OutletListProductDataVariantResponseFromJson(json);
 }

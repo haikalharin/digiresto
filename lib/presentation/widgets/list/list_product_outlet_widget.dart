@@ -1,3 +1,4 @@
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
+        physics: ClampingScrollPhysics(),
         scrollDirection: widget.scrollDirection,
         shrinkWrap: true, // new line
         padding: const EdgeInsets.all(8),
@@ -108,21 +109,21 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                       children: <Widget>[
                         Row(
                           children: [
-                            // Container(
-                            //   padding: EdgeInsets.only(right: 5, left: 5),
-                            //   child: ClipRRect(
-                            //     borderRadius:
-                            //         BorderRadius.all(Radius.circular(8.0)),
-                            //     child: Image(
-                            //       image: RandomImages.getImageUrlDefault(
-                            //           widget.data[index]["img"], defaultImage),
-                            //       fit: BoxFit.fill,
-                            //       height: 96,
-                            //       width: 96,
-                            //       alignment: Alignment.center,
-                            //     ),
-                            //   ),
-                            // ),
+                            Container(
+                              padding: EdgeInsets.only(right: 5, left: 5),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                child: Image(
+                                  image: RandomImages.getImageUrlDefault(
+                                      widget.data[index].image, ""),
+                                  fit: BoxFit.fill,
+                                  height: 96,
+                                  width: 96,
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            ),
                             Container(
                               alignment: Alignment.topLeft,
                               padding: const EdgeInsets.only(top: 5),

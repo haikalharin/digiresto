@@ -22,7 +22,7 @@ class _$PromoOutletResponseTearOff {
 
   _PromoOutletResponse call(
       {required StatusResponse response,
-      required PromoOutletDataResponse data,
+      required List<PromoOutletDataResponse> data,
       required MetaResponse meta}) {
     return _PromoOutletResponse(
       response: response,
@@ -42,7 +42,7 @@ const $PromoOutletResponse = _$PromoOutletResponseTearOff();
 /// @nodoc
 mixin _$PromoOutletResponse {
   StatusResponse get response => throw _privateConstructorUsedError;
-  PromoOutletDataResponse get data => throw _privateConstructorUsedError;
+  List<PromoOutletDataResponse> get data => throw _privateConstructorUsedError;
   MetaResponse get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,11 +58,10 @@ abstract class $PromoOutletResponseCopyWith<$Res> {
       _$PromoOutletResponseCopyWithImpl<$Res>;
   $Res call(
       {StatusResponse response,
-      PromoOutletDataResponse data,
+      List<PromoOutletDataResponse> data,
       MetaResponse meta});
 
   $StatusResponseCopyWith<$Res> get response;
-  $PromoOutletDataResponseCopyWith<$Res> get data;
   $MetaResponseCopyWith<$Res> get meta;
 }
 
@@ -89,7 +88,7 @@ class _$PromoOutletResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as PromoOutletDataResponse,
+              as List<PromoOutletDataResponse>,
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
@@ -101,13 +100,6 @@ class _$PromoOutletResponseCopyWithImpl<$Res>
   $StatusResponseCopyWith<$Res> get response {
     return $StatusResponseCopyWith<$Res>(_value.response, (value) {
       return _then(_value.copyWith(response: value));
-    });
-  }
-
-  @override
-  $PromoOutletDataResponseCopyWith<$Res> get data {
-    return $PromoOutletDataResponseCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
     });
   }
 
@@ -128,13 +120,11 @@ abstract class _$PromoOutletResponseCopyWith<$Res>
   @override
   $Res call(
       {StatusResponse response,
-      PromoOutletDataResponse data,
+      List<PromoOutletDataResponse> data,
       MetaResponse meta});
 
   @override
   $StatusResponseCopyWith<$Res> get response;
-  @override
-  $PromoOutletDataResponseCopyWith<$Res> get data;
   @override
   $MetaResponseCopyWith<$Res> get meta;
 }
@@ -164,7 +154,7 @@ class __$PromoOutletResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as PromoOutletDataResponse,
+              as List<PromoOutletDataResponse>,
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
@@ -185,7 +175,7 @@ class _$_PromoOutletResponse implements _PromoOutletResponse {
   @override
   final StatusResponse response;
   @override
-  final PromoOutletDataResponse data;
+  final List<PromoOutletDataResponse> data;
   @override
   final MetaResponse meta;
 
@@ -229,7 +219,7 @@ class _$_PromoOutletResponse implements _PromoOutletResponse {
 abstract class _PromoOutletResponse implements PromoOutletResponse {
   const factory _PromoOutletResponse(
       {required StatusResponse response,
-      required PromoOutletDataResponse data,
+      required List<PromoOutletDataResponse> data,
       required MetaResponse meta}) = _$_PromoOutletResponse;
 
   factory _PromoOutletResponse.fromJson(Map<String, dynamic> json) =
@@ -238,7 +228,7 @@ abstract class _PromoOutletResponse implements PromoOutletResponse {
   @override
   StatusResponse get response => throw _privateConstructorUsedError;
   @override
-  PromoOutletDataResponse get data => throw _privateConstructorUsedError;
+  List<PromoOutletDataResponse> get data => throw _privateConstructorUsedError;
   @override
   MetaResponse get meta => throw _privateConstructorUsedError;
   @override
@@ -257,9 +247,25 @@ class _$PromoOutletDataResponseTearOff {
   const _$PromoOutletDataResponseTearOff();
 
   _PromoOutletDataResponse call(
-      {required List<PromoOutletDataMenuCategoryResponse> menuCategory}) {
+      {required String id,
+      required String banner,
+      required String? icon,
+      required String? outletId,
+      required String? productId,
+      required PromoOutletDataVoucherResponse? voucher,
+      required bool isFreeDelivery,
+      required String? url,
+      required String name}) {
     return _PromoOutletDataResponse(
-      menuCategory: menuCategory,
+      id: id,
+      banner: banner,
+      icon: icon,
+      outletId: outletId,
+      productId: productId,
+      voucher: voucher,
+      isFreeDelivery: isFreeDelivery,
+      url: url,
+      name: name,
     );
   }
 
@@ -273,8 +279,16 @@ const $PromoOutletDataResponse = _$PromoOutletDataResponseTearOff();
 
 /// @nodoc
 mixin _$PromoOutletDataResponse {
-  List<PromoOutletDataMenuCategoryResponse> get menuCategory =>
+  String get id => throw _privateConstructorUsedError;
+  String get banner => throw _privateConstructorUsedError;
+  String? get icon => throw _privateConstructorUsedError;
+  String? get outletId => throw _privateConstructorUsedError;
+  String? get productId => throw _privateConstructorUsedError;
+  PromoOutletDataVoucherResponse? get voucher =>
       throw _privateConstructorUsedError;
+  bool get isFreeDelivery => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -287,7 +301,18 @@ abstract class $PromoOutletDataResponseCopyWith<$Res> {
   factory $PromoOutletDataResponseCopyWith(PromoOutletDataResponse value,
           $Res Function(PromoOutletDataResponse) then) =
       _$PromoOutletDataResponseCopyWithImpl<$Res>;
-  $Res call({List<PromoOutletDataMenuCategoryResponse> menuCategory});
+  $Res call(
+      {String id,
+      String banner,
+      String? icon,
+      String? outletId,
+      String? productId,
+      PromoOutletDataVoucherResponse? voucher,
+      bool isFreeDelivery,
+      String? url,
+      String name});
+
+  $PromoOutletDataVoucherResponseCopyWith<$Res>? get voucher;
 }
 
 /// @nodoc
@@ -301,14 +326,66 @@ class _$PromoOutletDataResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? menuCategory = freezed,
+    Object? id = freezed,
+    Object? banner = freezed,
+    Object? icon = freezed,
+    Object? outletId = freezed,
+    Object? productId = freezed,
+    Object? voucher = freezed,
+    Object? isFreeDelivery = freezed,
+    Object? url = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      menuCategory: menuCategory == freezed
-          ? _value.menuCategory
-          : menuCategory // ignore: cast_nullable_to_non_nullable
-              as List<PromoOutletDataMenuCategoryResponse>,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      banner: banner == freezed
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      outletId: outletId == freezed
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voucher: voucher == freezed
+          ? _value.voucher
+          : voucher // ignore: cast_nullable_to_non_nullable
+              as PromoOutletDataVoucherResponse?,
+      isFreeDelivery: isFreeDelivery == freezed
+          ? _value.isFreeDelivery
+          : isFreeDelivery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+
+  @override
+  $PromoOutletDataVoucherResponseCopyWith<$Res>? get voucher {
+    if (_value.voucher == null) {
+      return null;
+    }
+
+    return $PromoOutletDataVoucherResponseCopyWith<$Res>(_value.voucher!,
+        (value) {
+      return _then(_value.copyWith(voucher: value));
+    });
   }
 }
 
@@ -319,7 +396,19 @@ abstract class _$PromoOutletDataResponseCopyWith<$Res>
           $Res Function(_PromoOutletDataResponse) then) =
       __$PromoOutletDataResponseCopyWithImpl<$Res>;
   @override
-  $Res call({List<PromoOutletDataMenuCategoryResponse> menuCategory});
+  $Res call(
+      {String id,
+      String banner,
+      String? icon,
+      String? outletId,
+      String? productId,
+      PromoOutletDataVoucherResponse? voucher,
+      bool isFreeDelivery,
+      String? url,
+      String name});
+
+  @override
+  $PromoOutletDataVoucherResponseCopyWith<$Res>? get voucher;
 }
 
 /// @nodoc
@@ -336,13 +425,53 @@ class __$PromoOutletDataResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? menuCategory = freezed,
+    Object? id = freezed,
+    Object? banner = freezed,
+    Object? icon = freezed,
+    Object? outletId = freezed,
+    Object? productId = freezed,
+    Object? voucher = freezed,
+    Object? isFreeDelivery = freezed,
+    Object? url = freezed,
+    Object? name = freezed,
   }) {
     return _then(_PromoOutletDataResponse(
-      menuCategory: menuCategory == freezed
-          ? _value.menuCategory
-          : menuCategory // ignore: cast_nullable_to_non_nullable
-              as List<PromoOutletDataMenuCategoryResponse>,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      banner: banner == freezed
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      outletId: outletId == freezed
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voucher: voucher == freezed
+          ? _value.voucher
+          : voucher // ignore: cast_nullable_to_non_nullable
+              as PromoOutletDataVoucherResponse?,
+      isFreeDelivery: isFreeDelivery == freezed
+          ? _value.isFreeDelivery
+          : isFreeDelivery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -350,31 +479,84 @@ class __$PromoOutletDataResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PromoOutletDataResponse implements _PromoOutletDataResponse {
-  const _$_PromoOutletDataResponse({required this.menuCategory});
+  const _$_PromoOutletDataResponse(
+      {required this.id,
+      required this.banner,
+      required this.icon,
+      required this.outletId,
+      required this.productId,
+      required this.voucher,
+      required this.isFreeDelivery,
+      required this.url,
+      required this.name});
 
   factory _$_PromoOutletDataResponse.fromJson(Map<String, dynamic> json) =>
       _$_$_PromoOutletDataResponseFromJson(json);
 
   @override
-  final List<PromoOutletDataMenuCategoryResponse> menuCategory;
+  final String id;
+  @override
+  final String banner;
+  @override
+  final String? icon;
+  @override
+  final String? outletId;
+  @override
+  final String? productId;
+  @override
+  final PromoOutletDataVoucherResponse? voucher;
+  @override
+  final bool isFreeDelivery;
+  @override
+  final String? url;
+  @override
+  final String name;
 
   @override
   String toString() {
-    return 'PromoOutletDataResponse(menuCategory: $menuCategory)';
+    return 'PromoOutletDataResponse(id: $id, banner: $banner, icon: $icon, outletId: $outletId, productId: $productId, voucher: $voucher, isFreeDelivery: $isFreeDelivery, url: $url, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PromoOutletDataResponse &&
-            (identical(other.menuCategory, menuCategory) ||
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.banner, banner) ||
+                const DeepCollectionEquality().equals(other.banner, banner)) &&
+            (identical(other.icon, icon) ||
+                const DeepCollectionEquality().equals(other.icon, icon)) &&
+            (identical(other.outletId, outletId) ||
                 const DeepCollectionEquality()
-                    .equals(other.menuCategory, menuCategory)));
+                    .equals(other.outletId, outletId)) &&
+            (identical(other.productId, productId) ||
+                const DeepCollectionEquality()
+                    .equals(other.productId, productId)) &&
+            (identical(other.voucher, voucher) ||
+                const DeepCollectionEquality()
+                    .equals(other.voucher, voucher)) &&
+            (identical(other.isFreeDelivery, isFreeDelivery) ||
+                const DeepCollectionEquality()
+                    .equals(other.isFreeDelivery, isFreeDelivery)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(menuCategory);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(banner) ^
+      const DeepCollectionEquality().hash(icon) ^
+      const DeepCollectionEquality().hash(outletId) ^
+      const DeepCollectionEquality().hash(productId) ^
+      const DeepCollectionEquality().hash(voucher) ^
+      const DeepCollectionEquality().hash(isFreeDelivery) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(name);
 
   @JsonKey(ignore: true)
   @override
@@ -390,428 +572,141 @@ class _$_PromoOutletDataResponse implements _PromoOutletDataResponse {
 
 abstract class _PromoOutletDataResponse implements PromoOutletDataResponse {
   const factory _PromoOutletDataResponse(
-          {required List<PromoOutletDataMenuCategoryResponse> menuCategory}) =
-      _$_PromoOutletDataResponse;
+      {required String id,
+      required String banner,
+      required String? icon,
+      required String? outletId,
+      required String? productId,
+      required PromoOutletDataVoucherResponse? voucher,
+      required bool isFreeDelivery,
+      required String? url,
+      required String name}) = _$_PromoOutletDataResponse;
 
   factory _PromoOutletDataResponse.fromJson(Map<String, dynamic> json) =
       _$_PromoOutletDataResponse.fromJson;
 
   @override
-  List<PromoOutletDataMenuCategoryResponse> get menuCategory =>
+  String get id => throw _privateConstructorUsedError;
+  @override
+  String get banner => throw _privateConstructorUsedError;
+  @override
+  String? get icon => throw _privateConstructorUsedError;
+  @override
+  String? get outletId => throw _privateConstructorUsedError;
+  @override
+  String? get productId => throw _privateConstructorUsedError;
+  @override
+  PromoOutletDataVoucherResponse? get voucher =>
       throw _privateConstructorUsedError;
+  @override
+  bool get isFreeDelivery => throw _privateConstructorUsedError;
+  @override
+  String? get url => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PromoOutletDataResponseCopyWith<_PromoOutletDataResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-PromoOutletDataMenuCategoryResponse
-    _$PromoOutletDataMenuCategoryResponseFromJson(Map<String, dynamic> json) {
-  return _PromoOutletDataMenuCategoryResponse.fromJson(json);
+PromoOutletDataVoucherResponse _$PromoOutletDataVoucherResponseFromJson(
+    Map<String, dynamic> json) {
+  return _PromoOutletDataVoucherResponse.fromJson(json);
 }
 
 /// @nodoc
-class _$PromoOutletDataMenuCategoryResponseTearOff {
-  const _$PromoOutletDataMenuCategoryResponseTearOff();
+class _$PromoOutletDataVoucherResponseTearOff {
+  const _$PromoOutletDataVoucherResponseTearOff();
 
-  _PromoOutletDataMenuCategoryResponse call(
-      {required String id,
-      required bool isEnable,
-      required String title,
-      required String icon,
-      required PromoOutletDataMenuCategoryParamResponse param,
-      required bool withLocation}) {
-    return _PromoOutletDataMenuCategoryResponse(
-      id: id,
-      isEnable: isEnable,
-      title: title,
-      icon: icon,
-      param: param,
-      withLocation: withLocation,
+  _PromoOutletDataVoucherResponse call({required String code}) {
+    return _PromoOutletDataVoucherResponse(
+      code: code,
     );
   }
 
-  PromoOutletDataMenuCategoryResponse fromJson(Map<String, Object> json) {
-    return PromoOutletDataMenuCategoryResponse.fromJson(json);
+  PromoOutletDataVoucherResponse fromJson(Map<String, Object> json) {
+    return PromoOutletDataVoucherResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $PromoOutletDataMenuCategoryResponse =
-    _$PromoOutletDataMenuCategoryResponseTearOff();
+const $PromoOutletDataVoucherResponse =
+    _$PromoOutletDataVoucherResponseTearOff();
 
 /// @nodoc
-mixin _$PromoOutletDataMenuCategoryResponse {
-  String get id => throw _privateConstructorUsedError;
-  bool get isEnable => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get icon => throw _privateConstructorUsedError;
-  PromoOutletDataMenuCategoryParamResponse get param =>
-      throw _privateConstructorUsedError;
-  bool get withLocation => throw _privateConstructorUsedError;
+mixin _$PromoOutletDataVoucherResponse {
+  String get code => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PromoOutletDataMenuCategoryResponseCopyWith<
-          PromoOutletDataMenuCategoryResponse>
+  $PromoOutletDataVoucherResponseCopyWith<PromoOutletDataVoucherResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PromoOutletDataMenuCategoryResponseCopyWith<$Res> {
-  factory $PromoOutletDataMenuCategoryResponseCopyWith(
-          PromoOutletDataMenuCategoryResponse value,
-          $Res Function(PromoOutletDataMenuCategoryResponse) then) =
-      _$PromoOutletDataMenuCategoryResponseCopyWithImpl<$Res>;
-  $Res call(
-      {String id,
-      bool isEnable,
-      String title,
-      String icon,
-      PromoOutletDataMenuCategoryParamResponse param,
-      bool withLocation});
-
-  $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> get param;
+abstract class $PromoOutletDataVoucherResponseCopyWith<$Res> {
+  factory $PromoOutletDataVoucherResponseCopyWith(
+          PromoOutletDataVoucherResponse value,
+          $Res Function(PromoOutletDataVoucherResponse) then) =
+      _$PromoOutletDataVoucherResponseCopyWithImpl<$Res>;
+  $Res call({String code});
 }
 
 /// @nodoc
-class _$PromoOutletDataMenuCategoryResponseCopyWithImpl<$Res>
-    implements $PromoOutletDataMenuCategoryResponseCopyWith<$Res> {
-  _$PromoOutletDataMenuCategoryResponseCopyWithImpl(this._value, this._then);
+class _$PromoOutletDataVoucherResponseCopyWithImpl<$Res>
+    implements $PromoOutletDataVoucherResponseCopyWith<$Res> {
+  _$PromoOutletDataVoucherResponseCopyWithImpl(this._value, this._then);
 
-  final PromoOutletDataMenuCategoryResponse _value;
+  final PromoOutletDataVoucherResponse _value;
   // ignore: unused_field
-  final $Res Function(PromoOutletDataMenuCategoryResponse) _then;
+  final $Res Function(PromoOutletDataVoucherResponse) _then;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? isEnable = freezed,
-    Object? title = freezed,
-    Object? icon = freezed,
-    Object? param = freezed,
-    Object? withLocation = freezed,
+    Object? code = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      isEnable: isEnable == freezed
-          ? _value.isEnable
-          : isEnable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: icon == freezed
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String,
-      param: param == freezed
-          ? _value.param
-          : param // ignore: cast_nullable_to_non_nullable
-              as PromoOutletDataMenuCategoryParamResponse,
-      withLocation: withLocation == freezed
-          ? _value.withLocation
-          : withLocation // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-
-  @override
-  $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> get param {
-    return $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res>(_value.param,
-        (value) {
-      return _then(_value.copyWith(param: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$PromoOutletDataMenuCategoryResponseCopyWith<$Res>
-    implements $PromoOutletDataMenuCategoryResponseCopyWith<$Res> {
-  factory _$PromoOutletDataMenuCategoryResponseCopyWith(
-          _PromoOutletDataMenuCategoryResponse value,
-          $Res Function(_PromoOutletDataMenuCategoryResponse) then) =
-      __$PromoOutletDataMenuCategoryResponseCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String id,
-      bool isEnable,
-      String title,
-      String icon,
-      PromoOutletDataMenuCategoryParamResponse param,
-      bool withLocation});
-
-  @override
-  $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> get param;
-}
-
-/// @nodoc
-class __$PromoOutletDataMenuCategoryResponseCopyWithImpl<$Res>
-    extends _$PromoOutletDataMenuCategoryResponseCopyWithImpl<$Res>
-    implements _$PromoOutletDataMenuCategoryResponseCopyWith<$Res> {
-  __$PromoOutletDataMenuCategoryResponseCopyWithImpl(
-      _PromoOutletDataMenuCategoryResponse _value,
-      $Res Function(_PromoOutletDataMenuCategoryResponse) _then)
-      : super(_value, (v) => _then(v as _PromoOutletDataMenuCategoryResponse));
-
-  @override
-  _PromoOutletDataMenuCategoryResponse get _value =>
-      super._value as _PromoOutletDataMenuCategoryResponse;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? isEnable = freezed,
-    Object? title = freezed,
-    Object? icon = freezed,
-    Object? param = freezed,
-    Object? withLocation = freezed,
-  }) {
-    return _then(_PromoOutletDataMenuCategoryResponse(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      isEnable: isEnable == freezed
-          ? _value.isEnable
-          : isEnable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: icon == freezed
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String,
-      param: param == freezed
-          ? _value.param
-          : param // ignore: cast_nullable_to_non_nullable
-              as PromoOutletDataMenuCategoryParamResponse,
-      withLocation: withLocation == freezed
-          ? _value.withLocation
-          : withLocation // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_PromoOutletDataMenuCategoryResponse
-    implements _PromoOutletDataMenuCategoryResponse {
-  const _$_PromoOutletDataMenuCategoryResponse(
-      {required this.id,
-      required this.isEnable,
-      required this.title,
-      required this.icon,
-      required this.param,
-      required this.withLocation});
-
-  factory _$_PromoOutletDataMenuCategoryResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$_$_PromoOutletDataMenuCategoryResponseFromJson(json);
-
-  @override
-  final String id;
-  @override
-  final bool isEnable;
-  @override
-  final String title;
-  @override
-  final String icon;
-  @override
-  final PromoOutletDataMenuCategoryParamResponse param;
-  @override
-  final bool withLocation;
-
-  @override
-  String toString() {
-    return 'PromoOutletDataMenuCategoryResponse(id: $id, isEnable: $isEnable, title: $title, icon: $icon, param: $param, withLocation: $withLocation)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _PromoOutletDataMenuCategoryResponse &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.isEnable, isEnable) ||
-                const DeepCollectionEquality()
-                    .equals(other.isEnable, isEnable)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.icon, icon) ||
-                const DeepCollectionEquality().equals(other.icon, icon)) &&
-            (identical(other.param, param) ||
-                const DeepCollectionEquality().equals(other.param, param)) &&
-            (identical(other.withLocation, withLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.withLocation, withLocation)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(isEnable) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(icon) ^
-      const DeepCollectionEquality().hash(param) ^
-      const DeepCollectionEquality().hash(withLocation);
-
-  @JsonKey(ignore: true)
-  @override
-  _$PromoOutletDataMenuCategoryResponseCopyWith<
-          _PromoOutletDataMenuCategoryResponse>
-      get copyWith => __$PromoOutletDataMenuCategoryResponseCopyWithImpl<
-          _PromoOutletDataMenuCategoryResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_PromoOutletDataMenuCategoryResponseToJson(this);
-  }
-}
-
-abstract class _PromoOutletDataMenuCategoryResponse
-    implements PromoOutletDataMenuCategoryResponse {
-  const factory _PromoOutletDataMenuCategoryResponse(
-      {required String id,
-      required bool isEnable,
-      required String title,
-      required String icon,
-      required PromoOutletDataMenuCategoryParamResponse param,
-      required bool withLocation}) = _$_PromoOutletDataMenuCategoryResponse;
-
-  factory _PromoOutletDataMenuCategoryResponse.fromJson(
-          Map<String, dynamic> json) =
-      _$_PromoOutletDataMenuCategoryResponse.fromJson;
-
-  @override
-  String get id => throw _privateConstructorUsedError;
-  @override
-  bool get isEnable => throw _privateConstructorUsedError;
-  @override
-  String get title => throw _privateConstructorUsedError;
-  @override
-  String get icon => throw _privateConstructorUsedError;
-  @override
-  PromoOutletDataMenuCategoryParamResponse get param =>
-      throw _privateConstructorUsedError;
-  @override
-  bool get withLocation => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$PromoOutletDataMenuCategoryResponseCopyWith<
-          _PromoOutletDataMenuCategoryResponse>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-PromoOutletDataMenuCategoryParamResponse
-    _$PromoOutletDataMenuCategoryParamResponseFromJson(
-        Map<String, dynamic> json) {
-  return _PromoOutletDataMenuCategoryParamResponse.fromJson(json);
-}
-
-/// @nodoc
-class _$PromoOutletDataMenuCategoryParamResponseTearOff {
-  const _$PromoOutletDataMenuCategoryParamResponseTearOff();
-
-  _PromoOutletDataMenuCategoryParamResponse call({required String category}) {
-    return _PromoOutletDataMenuCategoryParamResponse(
-      category: category,
-    );
-  }
-
-  PromoOutletDataMenuCategoryParamResponse fromJson(Map<String, Object> json) {
-    return PromoOutletDataMenuCategoryParamResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PromoOutletDataMenuCategoryParamResponse =
-    _$PromoOutletDataMenuCategoryParamResponseTearOff();
-
-/// @nodoc
-mixin _$PromoOutletDataMenuCategoryParamResponse {
-  String get category => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PromoOutletDataMenuCategoryParamResponseCopyWith<
-          PromoOutletDataMenuCategoryParamResponse>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> {
-  factory $PromoOutletDataMenuCategoryParamResponseCopyWith(
-          PromoOutletDataMenuCategoryParamResponse value,
-          $Res Function(PromoOutletDataMenuCategoryParamResponse) then) =
-      _$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<$Res>;
-  $Res call({String category});
-}
-
-/// @nodoc
-class _$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<$Res>
-    implements $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> {
-  _$PromoOutletDataMenuCategoryParamResponseCopyWithImpl(
-      this._value, this._then);
-
-  final PromoOutletDataMenuCategoryParamResponse _value;
-  // ignore: unused_field
-  final $Res Function(PromoOutletDataMenuCategoryParamResponse) _then;
-
-  @override
-  $Res call({
-    Object? category = freezed,
-  }) {
-    return _then(_value.copyWith(
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$PromoOutletDataMenuCategoryParamResponseCopyWith<$Res>
-    implements $PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> {
-  factory _$PromoOutletDataMenuCategoryParamResponseCopyWith(
-          _PromoOutletDataMenuCategoryParamResponse value,
-          $Res Function(_PromoOutletDataMenuCategoryParamResponse) then) =
-      __$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<$Res>;
+abstract class _$PromoOutletDataVoucherResponseCopyWith<$Res>
+    implements $PromoOutletDataVoucherResponseCopyWith<$Res> {
+  factory _$PromoOutletDataVoucherResponseCopyWith(
+          _PromoOutletDataVoucherResponse value,
+          $Res Function(_PromoOutletDataVoucherResponse) then) =
+      __$PromoOutletDataVoucherResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String category});
+  $Res call({String code});
 }
 
 /// @nodoc
-class __$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<$Res>
-    extends _$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<$Res>
-    implements _$PromoOutletDataMenuCategoryParamResponseCopyWith<$Res> {
-  __$PromoOutletDataMenuCategoryParamResponseCopyWithImpl(
-      _PromoOutletDataMenuCategoryParamResponse _value,
-      $Res Function(_PromoOutletDataMenuCategoryParamResponse) _then)
-      : super(_value,
-            (v) => _then(v as _PromoOutletDataMenuCategoryParamResponse));
+class __$PromoOutletDataVoucherResponseCopyWithImpl<$Res>
+    extends _$PromoOutletDataVoucherResponseCopyWithImpl<$Res>
+    implements _$PromoOutletDataVoucherResponseCopyWith<$Res> {
+  __$PromoOutletDataVoucherResponseCopyWithImpl(
+      _PromoOutletDataVoucherResponse _value,
+      $Res Function(_PromoOutletDataVoucherResponse) _then)
+      : super(_value, (v) => _then(v as _PromoOutletDataVoucherResponse));
 
   @override
-  _PromoOutletDataMenuCategoryParamResponse get _value =>
-      super._value as _PromoOutletDataMenuCategoryParamResponse;
+  _PromoOutletDataVoucherResponse get _value =>
+      super._value as _PromoOutletDataVoucherResponse;
 
   @override
   $Res call({
-    Object? category = freezed,
+    Object? code = freezed,
   }) {
-    return _then(_PromoOutletDataMenuCategoryParamResponse(
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+    return _then(_PromoOutletDataVoucherResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -819,62 +714,58 @@ class __$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PromoOutletDataMenuCategoryParamResponse
-    implements _PromoOutletDataMenuCategoryParamResponse {
-  const _$_PromoOutletDataMenuCategoryParamResponse({required this.category});
+class _$_PromoOutletDataVoucherResponse
+    implements _PromoOutletDataVoucherResponse {
+  const _$_PromoOutletDataVoucherResponse({required this.code});
 
-  factory _$_PromoOutletDataMenuCategoryParamResponse.fromJson(
+  factory _$_PromoOutletDataVoucherResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_PromoOutletDataMenuCategoryParamResponseFromJson(json);
+      _$_$_PromoOutletDataVoucherResponseFromJson(json);
 
   @override
-  final String category;
+  final String code;
 
   @override
   String toString() {
-    return 'PromoOutletDataMenuCategoryParamResponse(category: $category)';
+    return 'PromoOutletDataVoucherResponse(code: $code)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PromoOutletDataMenuCategoryParamResponse &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality()
-                    .equals(other.category, category)));
+        (other is _PromoOutletDataVoucherResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(category);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(code);
 
   @JsonKey(ignore: true)
   @override
-  _$PromoOutletDataMenuCategoryParamResponseCopyWith<
-          _PromoOutletDataMenuCategoryParamResponse>
-      get copyWith => __$PromoOutletDataMenuCategoryParamResponseCopyWithImpl<
-          _PromoOutletDataMenuCategoryParamResponse>(this, _$identity);
+  _$PromoOutletDataVoucherResponseCopyWith<_PromoOutletDataVoucherResponse>
+      get copyWith => __$PromoOutletDataVoucherResponseCopyWithImpl<
+          _PromoOutletDataVoucherResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PromoOutletDataMenuCategoryParamResponseToJson(this);
+    return _$_$_PromoOutletDataVoucherResponseToJson(this);
   }
 }
 
-abstract class _PromoOutletDataMenuCategoryParamResponse
-    implements PromoOutletDataMenuCategoryParamResponse {
-  const factory _PromoOutletDataMenuCategoryParamResponse(
-      {required String category}) = _$_PromoOutletDataMenuCategoryParamResponse;
+abstract class _PromoOutletDataVoucherResponse
+    implements PromoOutletDataVoucherResponse {
+  const factory _PromoOutletDataVoucherResponse({required String code}) =
+      _$_PromoOutletDataVoucherResponse;
 
-  factory _PromoOutletDataMenuCategoryParamResponse.fromJson(
-          Map<String, dynamic> json) =
-      _$_PromoOutletDataMenuCategoryParamResponse.fromJson;
+  factory _PromoOutletDataVoucherResponse.fromJson(Map<String, dynamic> json) =
+      _$_PromoOutletDataVoucherResponse.fromJson;
 
   @override
-  String get category => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PromoOutletDataMenuCategoryParamResponseCopyWith<
-          _PromoOutletDataMenuCategoryParamResponse>
+  _$PromoOutletDataVoucherResponseCopyWith<_PromoOutletDataVoucherResponse>
       get copyWith => throw _privateConstructorUsedError;
 }

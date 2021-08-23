@@ -263,6 +263,8 @@ class OrderApi {
     } on TimeOutException catch (_) {
       return left(TimeOutException());
     } catch (e, stactrace) {
+      print("$e error");
+      print(stactrace.toString());
       return left(NetworkException(message: stactrace));
     }
   }

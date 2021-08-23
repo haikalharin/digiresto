@@ -23,7 +23,7 @@ class _$GetOutletProductCategoryParamTearOff {
 
   _GetOutletProductCategoryParam call(
       {required GetOutletProductCategoryQueryParam queryString,
-      required Body body}) {
+      required GetOutletProductCategoryBodyParam body}) {
     return _GetOutletProductCategoryParam(
       queryString: queryString,
       body: body,
@@ -42,7 +42,8 @@ const $GetOutletProductCategoryParam = _$GetOutletProductCategoryParamTearOff();
 mixin _$GetOutletProductCategoryParam {
   GetOutletProductCategoryQueryParam get queryString =>
       throw _privateConstructorUsedError;
-  Body get body => throw _privateConstructorUsedError;
+  GetOutletProductCategoryBodyParam get body =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,10 +57,12 @@ abstract class $GetOutletProductCategoryParamCopyWith<$Res> {
           GetOutletProductCategoryParam value,
           $Res Function(GetOutletProductCategoryParam) then) =
       _$GetOutletProductCategoryParamCopyWithImpl<$Res>;
-  $Res call({GetOutletProductCategoryQueryParam queryString, Body body});
+  $Res call(
+      {GetOutletProductCategoryQueryParam queryString,
+      GetOutletProductCategoryBodyParam body});
 
   $GetOutletProductCategoryQueryParamCopyWith<$Res> get queryString;
-  $BodyCopyWith<$Res> get body;
+  $GetOutletProductCategoryBodyParamCopyWith<$Res> get body;
 }
 
 /// @nodoc
@@ -84,7 +87,7 @@ class _$GetOutletProductCategoryParamCopyWithImpl<$Res>
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as Body,
+              as GetOutletProductCategoryBodyParam,
     ));
   }
 
@@ -97,8 +100,9 @@ class _$GetOutletProductCategoryParamCopyWithImpl<$Res>
   }
 
   @override
-  $BodyCopyWith<$Res> get body {
-    return $BodyCopyWith<$Res>(_value.body, (value) {
+  $GetOutletProductCategoryBodyParamCopyWith<$Res> get body {
+    return $GetOutletProductCategoryBodyParamCopyWith<$Res>(_value.body,
+        (value) {
       return _then(_value.copyWith(body: value));
     });
   }
@@ -112,12 +116,14 @@ abstract class _$GetOutletProductCategoryParamCopyWith<$Res>
           $Res Function(_GetOutletProductCategoryParam) then) =
       __$GetOutletProductCategoryParamCopyWithImpl<$Res>;
   @override
-  $Res call({GetOutletProductCategoryQueryParam queryString, Body body});
+  $Res call(
+      {GetOutletProductCategoryQueryParam queryString,
+      GetOutletProductCategoryBodyParam body});
 
   @override
   $GetOutletProductCategoryQueryParamCopyWith<$Res> get queryString;
   @override
-  $BodyCopyWith<$Res> get body;
+  $GetOutletProductCategoryBodyParamCopyWith<$Res> get body;
 }
 
 /// @nodoc
@@ -146,7 +152,7 @@ class __$GetOutletProductCategoryParamCopyWithImpl<$Res>
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as Body,
+              as GetOutletProductCategoryBodyParam,
     ));
   }
 }
@@ -166,7 +172,7 @@ class _$_GetOutletProductCategoryParam
   @override
   final GetOutletProductCategoryQueryParam queryString;
   @override
-  final Body body;
+  final GetOutletProductCategoryBodyParam body;
 
   @override
   String toString() {
@@ -205,8 +211,9 @@ class _$_GetOutletProductCategoryParam
 abstract class _GetOutletProductCategoryParam
     implements GetOutletProductCategoryParam {
   const factory _GetOutletProductCategoryParam(
-      {required GetOutletProductCategoryQueryParam queryString,
-      required Body body}) = _$_GetOutletProductCategoryParam;
+          {required GetOutletProductCategoryQueryParam queryString,
+          required GetOutletProductCategoryBodyParam body}) =
+      _$_GetOutletProductCategoryParam;
 
   factory _GetOutletProductCategoryParam.fromJson(Map<String, dynamic> json) =
       _$_GetOutletProductCategoryParam.fromJson;
@@ -215,85 +222,100 @@ abstract class _GetOutletProductCategoryParam
   GetOutletProductCategoryQueryParam get queryString =>
       throw _privateConstructorUsedError;
   @override
-  Body get body => throw _privateConstructorUsedError;
+  GetOutletProductCategoryBodyParam get body =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GetOutletProductCategoryParamCopyWith<_GetOutletProductCategoryParam>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-Body _$BodyFromJson(Map<String, dynamic> json) {
-  return _Body.fromJson(json);
+GetOutletProductCategoryBodyParam _$GetOutletProductCategoryBodyParamFromJson(
+    Map<String, dynamic> json) {
+  return _GetOutletProductCategoryBodyParam.fromJson(json);
 }
 
 /// @nodoc
-class _$BodyTearOff {
-  const _$BodyTearOff();
+class _$GetOutletProductCategoryBodyParamTearOff {
+  const _$GetOutletProductCategoryBodyParamTearOff();
 
-  _Body call() {
-    return const _Body();
+  _GetOutletProductCategoryBodyParam call() {
+    return const _GetOutletProductCategoryBodyParam();
   }
 
-  Body fromJson(Map<String, Object> json) {
-    return Body.fromJson(json);
+  GetOutletProductCategoryBodyParam fromJson(Map<String, Object> json) {
+    return GetOutletProductCategoryBodyParam.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Body = _$BodyTearOff();
+const $GetOutletProductCategoryBodyParam =
+    _$GetOutletProductCategoryBodyParamTearOff();
 
 /// @nodoc
-mixin _$Body {
+mixin _$GetOutletProductCategoryBodyParam {
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BodyCopyWith<$Res> {
-  factory $BodyCopyWith(Body value, $Res Function(Body) then) =
-      _$BodyCopyWithImpl<$Res>;
+abstract class $GetOutletProductCategoryBodyParamCopyWith<$Res> {
+  factory $GetOutletProductCategoryBodyParamCopyWith(
+          GetOutletProductCategoryBodyParam value,
+          $Res Function(GetOutletProductCategoryBodyParam) then) =
+      _$GetOutletProductCategoryBodyParamCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$BodyCopyWithImpl<$Res> implements $BodyCopyWith<$Res> {
-  _$BodyCopyWithImpl(this._value, this._then);
+class _$GetOutletProductCategoryBodyParamCopyWithImpl<$Res>
+    implements $GetOutletProductCategoryBodyParamCopyWith<$Res> {
+  _$GetOutletProductCategoryBodyParamCopyWithImpl(this._value, this._then);
 
-  final Body _value;
+  final GetOutletProductCategoryBodyParam _value;
   // ignore: unused_field
-  final $Res Function(Body) _then;
+  final $Res Function(GetOutletProductCategoryBodyParam) _then;
 }
 
 /// @nodoc
-abstract class _$BodyCopyWith<$Res> {
-  factory _$BodyCopyWith(_Body value, $Res Function(_Body) then) =
-      __$BodyCopyWithImpl<$Res>;
+abstract class _$GetOutletProductCategoryBodyParamCopyWith<$Res> {
+  factory _$GetOutletProductCategoryBodyParamCopyWith(
+          _GetOutletProductCategoryBodyParam value,
+          $Res Function(_GetOutletProductCategoryBodyParam) then) =
+      __$GetOutletProductCategoryBodyParamCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$BodyCopyWithImpl<$Res> extends _$BodyCopyWithImpl<$Res>
-    implements _$BodyCopyWith<$Res> {
-  __$BodyCopyWithImpl(_Body _value, $Res Function(_Body) _then)
-      : super(_value, (v) => _then(v as _Body));
+class __$GetOutletProductCategoryBodyParamCopyWithImpl<$Res>
+    extends _$GetOutletProductCategoryBodyParamCopyWithImpl<$Res>
+    implements _$GetOutletProductCategoryBodyParamCopyWith<$Res> {
+  __$GetOutletProductCategoryBodyParamCopyWithImpl(
+      _GetOutletProductCategoryBodyParam _value,
+      $Res Function(_GetOutletProductCategoryBodyParam) _then)
+      : super(_value, (v) => _then(v as _GetOutletProductCategoryBodyParam));
 
   @override
-  _Body get _value => super._value as _Body;
+  _GetOutletProductCategoryBodyParam get _value =>
+      super._value as _GetOutletProductCategoryBodyParam;
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Body implements _Body {
-  const _$_Body();
+class _$_GetOutletProductCategoryBodyParam
+    implements _GetOutletProductCategoryBodyParam {
+  const _$_GetOutletProductCategoryBodyParam();
 
-  factory _$_Body.fromJson(Map<String, dynamic> json) =>
-      _$_$_BodyFromJson(json);
+  factory _$_GetOutletProductCategoryBodyParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$_$_GetOutletProductCategoryBodyParamFromJson(json);
 
   @override
   String toString() {
-    return 'Body()';
+    return 'GetOutletProductCategoryBodyParam()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Body);
+    return identical(this, other) ||
+        (other is _GetOutletProductCategoryBodyParam);
   }
 
   @override
@@ -301,14 +323,18 @@ class _$_Body implements _Body {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_BodyToJson(this);
+    return _$_$_GetOutletProductCategoryBodyParamToJson(this);
   }
 }
 
-abstract class _Body implements Body {
-  const factory _Body() = _$_Body;
+abstract class _GetOutletProductCategoryBodyParam
+    implements GetOutletProductCategoryBodyParam {
+  const factory _GetOutletProductCategoryBodyParam() =
+      _$_GetOutletProductCategoryBodyParam;
 
-  factory _Body.fromJson(Map<String, dynamic> json) = _$_Body.fromJson;
+  factory _GetOutletProductCategoryBodyParam.fromJson(
+          Map<String, dynamic> json) =
+      _$_GetOutletProductCategoryBodyParam.fromJson;
 }
 
 GetOutletProductCategoryQueryParam _$GetOutletProductCategoryQueryParamFromJson(
