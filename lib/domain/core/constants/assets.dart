@@ -68,4 +68,7 @@ class AppAssets {
       "assets/icons/ic_outlet_order_take_it.png";
   static const String iconOutletOrderDriveThru =
       "assets/icons/ic_outlet_order_drive_thru.png";
+  static const String iconWeb = "assets/icons/ic_web.png";
+  static const String iconInstagram = "assets/icons/ic_instagram.png";
+  static const String iconSendMessage = "assets/icons/ic_send_message.png";
 }

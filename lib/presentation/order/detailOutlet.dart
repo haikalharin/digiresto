@@ -15,6 +15,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_food_category_widget.dart';
@@ -64,104 +65,48 @@ class DetailOutletScreen extends GetView<OrderViewController> {
           shape: BoxShape.rectangle,
         ),
       ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                new IconButton(
-                  icon: new Icon(Icons.arrow_back_outlined,
-                      color: Colors.white, size: 24.0),
-                  onPressed: () => Get.back(),
-                ),
-                Container(
-                  width: 200,
-                  child: Text(data.description,
-                      //detailOutlet != null ? data.outlet["detail"]["name"] : ""
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center),
-                ),
-                new IconButton(
-                  icon:
-                      new Icon(Icons.refresh, color: Colors.white, size: 24.0),
-                  onPressed: () => {
-                    // getDetailOutlet(_orderStore.orderOutletName,
-                    //   searchName, filterCategory, 1)
-                  },
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: Text(data.merchantName.toString(),
-                style: TextStyle(
-                  fontFamily: "roboto",
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                ),
-                textAlign: TextAlign.center),
-          ),
-          // Container(
-          //   padding: EdgeInsets.only(top: 10),
-          //   child: Text("Power by Digiresto",
-          //       style: TextStyle(
-          //         fontFamily: "roboto",
-          //         color: Colors.white70,
-          //         fontSize: 12,
-          //         fontWeight: FontWeight.normal,
-          //       ),
-          //       textAlign: TextAlign.center),
-          // ),
-          controller.detailOutlet.value != null
-              ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  GestureDetector(
-                    onTap: () {
-                      print("launch call " + data.ownerPhone.toString());
-                      LaunchUrl.call(data.ownerPhone.toString());
-                    },
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      margin: EdgeInsets.only(right: 10),
-                      child: new Icon(Icons.call,
-                          color: AppColors.redYoung, size: 20.0),
-                    ),
+      Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  new IconButton(
+                    icon: new Icon(Icons.arrow_back_outlined,
+                        color: Colors.white, size: 24.0),
+                    onPressed: () => Get.back(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      String phone = data.ownerPhone.toString();
-                      String url = "https://api.whatsapp.com/send/?phone=" +
-                          phone +
-                          "&text=hi%20Digiresto";
-                      LaunchUrl.run(url);
+                  Container(
+                    width: 200,
+                    child: Text(data.merchantName,
+                        //detailOutlet != null ? data.outlet["detail"]["name"] : ""
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.left),
+                  ),
+                  new IconButton(
+                    icon: new Icon(Icons.refresh,
+                        color: Colors.white, size: 24.0),
+                    onPressed: () => {
+                      // getDetailOutlet(_orderStore.orderOutletName,
+                      //   searchName, filterCategory, 1)
                     },
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      margin: EdgeInsets.only(right: 10),
-                      child: new Icon(Icons.message,
-                          color: AppColors.redYoung, size: 20.0),
-                    ),
-                  )
-                ])
-              : Container()
-        ],
+                  ),
+                ],
+              ),
+            ),
+            controller.detailOutlet.value != null
+                ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [])
+                : Container()
+          ],
+        ),
       ),
     ]);
   }
@@ -414,7 +359,195 @@ class DetailOutletScreen extends GetView<OrderViewController> {
 class _BodyOutletOverview extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return controller.detailOutlet.value != null
+        ? Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Informasi Outlet",
+                    style: AppFont.textBlack14Bold,
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    controller.detailOutlet.value!.address,
+                    style: AppFont.textBlack12Regular,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      CustomRating(
+                        currentRating: controller.detailOutlet.value!.rating,
+                        onRatingSelected: (int) {},
+                        isEnable: false,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "${controller.detailOutlet.value!.totalReview} review",
+                        style: AppFont.textBlack12Regular
+                            .copyWith(color: AppColors.greyRating),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 28,
+                        child: ElevatedButton(
+                          onPressed: null,
+                          child: Text(
+                              controller.detailOutlet.value!.isOpen
+                                  ? "Open"
+                                  : "Closed",
+                              style: AppFont.textBlack12Bold
+                                  .copyWith(color: Colors.white)),
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: AppColors.green54C30F))),
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.green54C30F)),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                      "Last update ${controller.detailOutlet.value!.lastUpdate.literal}",
+                      style: AppFont.textBlack12Regular),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      ImageIcon(AssetImage(AppAssets.iconInstagram),
+                          size: 18, color: AppColors.redTabBar),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        "@instagram",
+                        style: AppFont.textBlack12SemiBold
+                            .copyWith(color: AppColors.redTabBar),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    children: [
+                      ImageIcon(AssetImage(AppAssets.iconWeb),
+                          size: 18, color: AppColors.redTabBar),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        "www.website.com",
+                        style: AppFont.textBlack12SemiBold
+                            .copyWith(color: AppColors.redTabBar),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.greyBorder),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Wrap(children: controller.generateListSalesType()),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              String phone =
+                                  controller.detailOutlet.value!.ownerPhone;
+                              String url =
+                                  "https://api.whatsapp.com/send/?phone=" +
+                                      phone +
+                                      "&text=hi%20Digiresto";
+                              LaunchUrl.run(url);
+                            },
+                            child: Row(
+                              children: [
+                                ImageIcon(AssetImage(AppAssets.iconSendMessage),
+                                    color: AppColors.white),
+                                SizedBox(width: 8),
+                                Text("Kirim Pesan",
+                                    style: AppFont.textBlack12SemiBold
+                                        .copyWith(color: Colors.white)),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        side: BorderSide(
+                                            color: AppColors.redTabBar))),
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.redTabBar)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: ElevatedButton(
+                            onPressed: null,
+                            child: Row(
+                              children: [
+                                ImageIcon(AssetImage(AppAssets.iconSendMessage),
+                                    color: AppColors.white),
+                                SizedBox(width: 8),
+                                Text("Lihat Lokasi",
+                                    style: AppFont.textBlack12SemiBold
+                                        .copyWith(color: Colors.white)),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        side: BorderSide(
+                                            color: AppColors.redTabBar))),
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.redTabBar)),
+                          ),
+                        ),
+                      ]),
+                ],
+              ),
+            ),
+          )
+        : Container();
   }
 }
 
