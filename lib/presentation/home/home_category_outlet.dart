@@ -18,7 +18,8 @@ class HomeCategoryOutletScreen
   Widget build(BuildContext context) {
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
     Get.put(HomeCategoryOutletViewController());
-    controller.setCategoryByTitle(args.title);
+    controller.args.value = args;
+    controller.setCategoryByTitle();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -29,14 +30,14 @@ class HomeCategoryOutletScreen
               //getOutletByLocation();
               Get.back();
             }),
-        title: Text(args.title,
+        title: Text(controller.args.value!.title,
             style: AppFont.textBlack15Bold, textAlign: TextAlign.center),
       ),
       body: Container(
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [Expanded(child: _BodyCategoryWidget(args: args))],
+          children: [Expanded(child: _BodyCategoryWidget())],
         ),
       ),
     );
@@ -44,9 +45,6 @@ class HomeCategoryOutletScreen
 }
 
 class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
-  final HomeOrderViewArgument args;
-  _BodyCategoryWidget({required this.args});
-
   final searchController = TextEditingController();
 
   void getOutletByLocation(String search, int pageParam) {
