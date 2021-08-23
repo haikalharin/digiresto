@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -28,13 +29,14 @@ class ListFoodCategory extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               Color selectedTextColor;
               Color selectedContaineerColor;
-              if (selected == null && data[index].id == 0) {
+              if (selected == "" && data[index].id == 0) {
                 selectedTextColor = Colors.white;
                 selectedContaineerColor = AppColors.redYoung;
               } else {
-                selectedTextColor =
-                    selected == data[index].name ? Colors.white : Colors.black;
-                selectedContaineerColor = selected == data[index].name
+                selectedTextColor = selected == data[index].id.toString()
+                    ? Colors.white
+                    : Colors.black;
+                selectedContaineerColor = selected == data[index].id.toString()
                     ? AppColors.redYoung
                     : AppColors.greyStroke;
               }
@@ -47,17 +49,18 @@ class ListFoodCategory extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  padding: EdgeInsets.all(7),
+                  padding: EdgeInsets.only(left: 24, right: 24),
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     //color: AppColors.greyStroke,
                     color: selectedContaineerColor,
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: Center(
                       child: Text(
                     '${data[index].name}',
-                    style: TextStyle(color: selectedTextColor),
+                    style: AppFont.textBlack13Regular
+                        .copyWith(color: selectedTextColor),
                   )),
                 ),
               );

@@ -302,7 +302,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
       List<OutletProductCategoryDataResponse> data, String selected) {
     List<OutletProductCategoryDataResponse> paramCategory = [];
     paramCategory.add(OutletProductCategoryDataResponse(
-        code: '0', id: 0, name: 'SEMUA', order: null));
+        code: '0', id: 0, name: 'Semua', order: null));
     paramCategory.addAll(data);
     return ListFoodCategory(
         data: paramCategory,
