@@ -6,14 +6,22 @@ class CustomTextField extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   final String? Function(String?)? validator;
   final String hintText;
+  final TextStyle? hintStyle;
+  final TextStyle? inputStyle;
+  final Color? focusBorderColor;
   final TextInputType? keyboardType;
+  final Widget? prefix;
   final Function(String)? onChange;
   const CustomTextField(
       {Key? key,
       this.controller,
       this.autovalidateMode,
+      this.prefix,
       this.validator,
       this.hintText = '',
+      this.hintStyle,
+      this.inputStyle,
+      this.focusBorderColor,
       this.keyboardType,
       this.onChange})
       : super(key: key);
@@ -24,13 +32,15 @@ class CustomTextField extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       onChanged: onChange,
       controller: controller,
-      style: Styles.inputStyle,
+      style: inputStyle ?? Styles.inputStyle,
       decoration: InputDecoration(
+        prefix: prefix,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          borderSide: BorderSide(color: Colors.grey, width: 0.7),
+          borderSide:
+              BorderSide(color: focusBorderColor ?? Colors.grey, width: 0.7),
         ),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -46,7 +56,7 @@ class CustomTextField extends StatelessWidget {
         ),
         errorStyle: Styles.hintStyle.copyWith(color: AppColors.yellow),
         hintText: hintText,
-        hintStyle: Styles.hintStyle,
+        hintStyle: hintStyle ?? Styles.hintStyle,
         fillColor: AppColors.inputFillColor,
         filled: true,
       ),

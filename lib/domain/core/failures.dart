@@ -48,5 +48,9 @@ class ValueFailure<T> with _$ValueFailure<T> {
       NoteExceed<T>;
   const factory ValueFailure.confirmationNotMatch({required T? failedValue}) =
       ConfirmationNotMatch<T>;
+  const factory ValueFailure.lessThanMinimum({
+    required T? failedValue,
+    required num min,
+  }) = LessThanMinimum<T>;
   // const factory ValueFailure.
 }

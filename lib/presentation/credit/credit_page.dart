@@ -3,14 +3,14 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
-import 'package:digiresto/presentation/credit/credit_menu.dart';
+import 'package:digiresto/presentation/credit/widgets/credit_menu.dart';
+import 'package:digiresto/presentation/credit/credit_subcategory_page.dart';
+import 'package:digiresto/presentation/credit/widgets/credit_tabview.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import 'credit_tabview.dart';
 
 class CreditTabController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -175,12 +175,17 @@ class CreditPage extends StatelessWidget {
                               subtitle: 'Pilih metode yang diinginkan',
                               menus: list.unlock
                                   .map(
-                                    (topupMethod) => CreditMenu(
-                                      assetSvgIcon:
-                                          'assets/credit_transfer.svg',
-                                      label: topupMethod.title,
-                                      onTap: () {},
-                                    ),
+                                    (topupMethod) => topupMethod.isEnable
+                                        ? CreditMenu(
+                                            assetSvgIcon: CreditAssetIcon(
+                                                    topupMethod.destination)
+                                                .asset,
+                                            label: topupMethod.title,
+                                            onTap: () => Get.to(
+                                                CreditSubCategoryPage(
+                                                    topupMethod)),
+                                          )
+                                        : SizedBox(),
                                   )
                                   .toList(),
                             ),

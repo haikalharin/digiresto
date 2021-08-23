@@ -4,6 +4,18 @@ import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+class CreditAssetIcon {
+  final String destination;
+  CreditAssetIcon(this.destination);
+  Map<String, String> assetsByDestination = {
+    "TOP_UP_BANK": 'assets/credit_transfer.svg',
+    "TOP_UP_VA": 'assets/credit_virtual_acc.svg'
+  };
+
+  String get asset =>
+      assetsByDestination[destination] ?? 'assets/credit_transfer.svg';
+}
+
 class CreditMenu extends StatelessWidget {
   final void Function()? onTap;
   final String assetSvgIcon;

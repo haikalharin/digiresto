@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/credit/credit_failure.dart';
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/credit/i_credit_repository.dart';
+import 'package:digiresto/domain/credit/top_up_details.dart';
 import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/domain/credit/user_balance.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -41,6 +42,40 @@ class CreditRepository implements ICreditRepository {
       final userBalanceData = Map<String, dynamic>.from(data);
 
       return right(UserBalance.fromJson(userBalanceData));
+    } on ServerException catch (e) {
+      logger.d(e.message);
+      return left(CreditFailure.serverException(
+        code: e.code,
+        message: e.message,
+      ));
+    } on NoInternetException catch (_) {
+      return left(CreditFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(CreditFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<CreditFailure, TopUpDetails>> topUp({
+    required String bankCode,
+    required String customerPhone,
+    required String finalAmount,
+  }) async {
+    String apiUrl = Endpoints.urlTopup;
+    try {
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, useAuth: true, content: {
+        "body": {
+          "bankCode": bankCode,
+          "customerPhone": customerPhone,
+          "finalAmount": finalAmount,
+        }
+      });
+      final data = (apiResult as Map<String, dynamic>)['data'];
+      final topUpDetails = Map<String, dynamic>.from(data);
+
+      return right(TopUpDetails.fromJson(topUpDetails));
     } on ServerException catch (e) {
       logger.d(e.message);
       return left(CreditFailure.serverException(

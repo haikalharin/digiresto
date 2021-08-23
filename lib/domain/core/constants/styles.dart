@@ -63,6 +63,9 @@ class Styles {
   static TextStyle creditNominalStyle = GoogleFonts.poppins(
       color: AppColors.mainColor, fontSize: 40, fontWeight: FontWeight.w700);
 
+  static TextStyle creditNominalSmallStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 25, fontWeight: FontWeight.w700);
+
   static TextStyle creditCurrencyStyle = GoogleFonts.poppins(
       color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w600);
 
@@ -76,5 +79,14 @@ class Styles {
   );
 
   static TextStyle creditMenuSubtitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle appBarTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold);
+
+  static TextStyle creditTopupTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold);
+
+  static TextStyle creditTopupSubtitleStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
 }

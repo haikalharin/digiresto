@@ -1,11 +1,11 @@
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/presentation/credit/credit_menu.dart';
+import 'package:digiresto/presentation/credit/widgets/credit_menu.dart';
 import 'package:flutter/material.dart';
 
 class CreditTabView extends StatelessWidget {
   final String title;
   final String subtitle;
-  final List<CreditMenu> menus;
+  final List<Widget> menus;
   const CreditTabView({
     Key? key,
     this.title = '',
