@@ -28,6 +28,7 @@ class AppColors {
   static final Color greyField = Color(0xFF7A7A7A);
   static final Color greyCOC0C0 = Color(0xFFC0C0C0);
   static final Color greyBorder = Color(0xFFE3E3E3);
+  static final Color greyDEDEDE = Color(0xFFDEDEDE);
   static final Color cream = Color(0xFFFFECC7);
   static final Color backgroundPink = Color(0xFFFFE2E4);
   static final Color borderPink = Color(0xFFFFA5AA);

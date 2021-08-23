@@ -33,6 +33,8 @@ class AppFont {
       color: AppColors.black, fontSize: 17, fontWeight: FontWeight.w700);
   static TextStyle textBlack12SemiBold = GoogleFonts.poppins(
       color: AppColors.black, fontSize: 12, fontWeight: FontWeight.w600);
+  static TextStyle textBlack10SemiBold = GoogleFonts.poppins(
+      color: AppColors.black, fontSize: 10, fontWeight: FontWeight.w600);
   static TextStyle textBlack13SemiBold = GoogleFonts.poppins(
       color: AppColors.black, fontSize: 13, fontWeight: FontWeight.w600);
 
