@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of '../outlet_product_category_response.dart';
+part of 'outlet_product_category_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -251,21 +251,21 @@ abstract class _OutletProductCategoryResponse
       get copyWith => throw _privateConstructorUsedError;
 }
 
-OutletProductCategoryDataResponse _$OutletProductDataResponseFromJson(
+OutletProductCategoryDataResponse _$OutletProductCategoryDataResponseFromJson(
     Map<String, dynamic> json) {
-  return _OutletProductDataResponse.fromJson(json);
+  return _OutletProductCategoryDataResponse.fromJson(json);
 }
 
 /// @nodoc
-class _$OutletProductDataResponseTearOff {
-  const _$OutletProductDataResponseTearOff();
+class _$OutletProductCategoryDataResponseTearOff {
+  const _$OutletProductCategoryDataResponseTearOff();
 
-  _OutletProductDataResponse call(
+  _OutletProductCategoryDataResponse call(
       {required int id,
       required String code,
       required String name,
       required dynamic order}) {
-    return _OutletProductDataResponse(
+    return _OutletProductCategoryDataResponse(
       id: id,
       code: code,
       name: name,
@@ -279,10 +279,11 @@ class _$OutletProductDataResponseTearOff {
 }
 
 /// @nodoc
-const $OutletProductDataResponse = _$OutletProductDataResponseTearOff();
+const $OutletProductCategoryDataResponse =
+    _$OutletProductCategoryDataResponseTearOff();
 
 /// @nodoc
-mixin _$OutletProductDataResponse {
+mixin _$OutletProductCategoryDataResponse {
   int get id => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -290,23 +291,23 @@ mixin _$OutletProductDataResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OutletProductDataResponseCopyWith<OutletProductCategoryDataResponse>
+  $OutletProductCategoryDataResponseCopyWith<OutletProductCategoryDataResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OutletProductDataResponseCopyWith<$Res> {
-  factory $OutletProductDataResponseCopyWith(
+abstract class $OutletProductCategoryDataResponseCopyWith<$Res> {
+  factory $OutletProductCategoryDataResponseCopyWith(
           OutletProductCategoryDataResponse value,
           $Res Function(OutletProductCategoryDataResponse) then) =
-      _$OutletProductDataResponseCopyWithImpl<$Res>;
+      _$OutletProductCategoryDataResponseCopyWithImpl<$Res>;
   $Res call({int id, String code, String name, dynamic order});
 }
 
 /// @nodoc
-class _$OutletProductDataResponseCopyWithImpl<$Res>
-    implements $OutletProductDataResponseCopyWith<$Res> {
-  _$OutletProductDataResponseCopyWithImpl(this._value, this._then);
+class _$OutletProductCategoryDataResponseCopyWithImpl<$Res>
+    implements $OutletProductCategoryDataResponseCopyWith<$Res> {
+  _$OutletProductCategoryDataResponseCopyWithImpl(this._value, this._then);
 
   final OutletProductCategoryDataResponse _value;
   // ignore: unused_field
@@ -341,26 +342,28 @@ class _$OutletProductDataResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$OutletProductDataResponseCopyWith<$Res>
-    implements $OutletProductDataResponseCopyWith<$Res> {
-  factory _$OutletProductDataResponseCopyWith(_OutletProductDataResponse value,
-          $Res Function(_OutletProductDataResponse) then) =
-      __$OutletProductDataResponseCopyWithImpl<$Res>;
+abstract class _$OutletProductCategoryDataResponseCopyWith<$Res>
+    implements $OutletProductCategoryDataResponseCopyWith<$Res> {
+  factory _$OutletProductCategoryDataResponseCopyWith(
+          _OutletProductCategoryDataResponse value,
+          $Res Function(_OutletProductCategoryDataResponse) then) =
+      __$OutletProductCategoryDataResponseCopyWithImpl<$Res>;
   @override
   $Res call({int id, String code, String name, dynamic order});
 }
 
 /// @nodoc
-class __$OutletProductDataResponseCopyWithImpl<$Res>
-    extends _$OutletProductDataResponseCopyWithImpl<$Res>
-    implements _$OutletProductDataResponseCopyWith<$Res> {
-  __$OutletProductDataResponseCopyWithImpl(_OutletProductDataResponse _value,
-      $Res Function(_OutletProductDataResponse) _then)
-      : super(_value, (v) => _then(v as _OutletProductDataResponse));
+class __$OutletProductCategoryDataResponseCopyWithImpl<$Res>
+    extends _$OutletProductCategoryDataResponseCopyWithImpl<$Res>
+    implements _$OutletProductCategoryDataResponseCopyWith<$Res> {
+  __$OutletProductCategoryDataResponseCopyWithImpl(
+      _OutletProductCategoryDataResponse _value,
+      $Res Function(_OutletProductCategoryDataResponse) _then)
+      : super(_value, (v) => _then(v as _OutletProductCategoryDataResponse));
 
   @override
-  _OutletProductDataResponse get _value =>
-      super._value as _OutletProductDataResponse;
+  _OutletProductCategoryDataResponse get _value =>
+      super._value as _OutletProductCategoryDataResponse;
 
   @override
   $Res call({
@@ -369,7 +372,7 @@ class __$OutletProductDataResponseCopyWithImpl<$Res>
     Object? name = freezed,
     Object? order = freezed,
   }) {
-    return _then(_OutletProductDataResponse(
+    return _then(_OutletProductCategoryDataResponse(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -392,15 +395,17 @@ class __$OutletProductDataResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OutletProductDataResponse implements _OutletProductDataResponse {
-  const _$_OutletProductDataResponse(
+class _$_OutletProductCategoryDataResponse
+    implements _OutletProductCategoryDataResponse {
+  const _$_OutletProductCategoryDataResponse(
       {required this.id,
       required this.code,
       required this.name,
       required this.order});
 
-  factory _$_OutletProductDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletProductDataResponseFromJson(json);
+  factory _$_OutletProductCategoryDataResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$_$_OutletProductCategoryDataResponseFromJson(json);
 
   @override
   final int id;
@@ -413,13 +418,13 @@ class _$_OutletProductDataResponse implements _OutletProductDataResponse {
 
   @override
   String toString() {
-    return 'OutletProductDataResponse(id: $id, code: $code, name: $name, order: $order)';
+    return 'OutletProductCategoryDataResponse(id: $id, code: $code, name: $name, order: $order)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletProductDataResponse &&
+        (other is _OutletProductCategoryDataResponse &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.code, code) ||
@@ -440,27 +445,28 @@ class _$_OutletProductDataResponse implements _OutletProductDataResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$OutletProductDataResponseCopyWith<_OutletProductDataResponse>
-      get copyWith =>
-          __$OutletProductDataResponseCopyWithImpl<_OutletProductDataResponse>(
-              this, _$identity);
+  _$OutletProductCategoryDataResponseCopyWith<
+          _OutletProductCategoryDataResponse>
+      get copyWith => __$OutletProductCategoryDataResponseCopyWithImpl<
+          _OutletProductCategoryDataResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletProductDataResponseToJson(this);
+    return _$_$_OutletProductCategoryDataResponseToJson(this);
   }
 }
 
-abstract class _OutletProductDataResponse
+abstract class _OutletProductCategoryDataResponse
     implements OutletProductCategoryDataResponse {
-  const factory _OutletProductDataResponse(
+  const factory _OutletProductCategoryDataResponse(
       {required int id,
       required String code,
       required String name,
-      required dynamic order}) = _$_OutletProductDataResponse;
+      required dynamic order}) = _$_OutletProductCategoryDataResponse;
 
-  factory _OutletProductDataResponse.fromJson(Map<String, dynamic> json) =
-      _$_OutletProductDataResponse.fromJson;
+  factory _OutletProductCategoryDataResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_OutletProductCategoryDataResponse.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;
@@ -472,7 +478,8 @@ abstract class _OutletProductDataResponse
   dynamic get order => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OutletProductDataResponseCopyWith<_OutletProductDataResponse>
+  _$OutletProductCategoryDataResponseCopyWith<
+          _OutletProductCategoryDataResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 

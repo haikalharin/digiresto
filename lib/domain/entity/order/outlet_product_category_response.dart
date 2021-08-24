@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'param/outlet_product_category_response.freezed.dart';
-part 'param/outlet_product_category_response.g.dart';
+part 'outlet_product_category_response.freezed.dart';
+part 'outlet_product_category_response.g.dart';
 
 OutletProductCategoryResponse emptyFromJson(String str) =>
     OutletProductCategoryResponse.fromJson(json.decode(str));
@@ -26,17 +26,17 @@ abstract class OutletProductCategoryResponse
 
 @freezed
 abstract class OutletProductCategoryDataResponse
-    with _$OutletProductDataResponse {
+    with _$OutletProductCategoryDataResponse {
   const factory OutletProductCategoryDataResponse({
     required int id,
     required String code,
     required String name,
     required dynamic order,
-  }) = _OutletProductDataResponse;
+  }) = _OutletProductCategoryDataResponse;
 
   factory OutletProductCategoryDataResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$OutletProductDataResponseFromJson(json);
+      _$OutletProductCategoryDataResponseFromJson(json);
 }
 
 @freezed
