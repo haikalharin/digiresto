@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:digiresto/domain/entity/order/cart_session_model.dart';
+import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
@@ -11,6 +11,7 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/checkout_cart_param.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
@@ -151,10 +152,18 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       },
       createCartSession: (request) async* {
         final createCartSession =
-            await _orderRepository.createCartSession(request.request.toJson());
+            await _orderRepository.createCartSession(request.request);
         yield createCartSession.fold(
           (error) => OrderState.loadFailure(error),
-          (list) => OrderState.createCartSessionSuccess(list),
+          (list) => OrderState.createCartSessionSuccess(list.data),
+        );
+      },
+      getCartSession: (request) async* {
+        final getCartSession =
+            await _orderRepository.getCartSession(request.request);
+        yield getCartSession.fold(
+          (error) => OrderState.loadFailure(error),
+          (list) => OrderState.getCartSessionSuccess(list.data),
         );
       },
       updateCartSession: (request) async* {
@@ -162,7 +171,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             await _orderRepository.updateCartSession(request.request);
         yield updateCartSession.fold(
           (error) => OrderState.loadFailure(error),
-          (list) => OrderState.updateCartSessionSuccess(list),
+          (list) => OrderState.updateCartSessionSuccess(list.data),
         );
       },
       checkoutCart: (request) async* {

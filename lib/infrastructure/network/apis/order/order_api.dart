@@ -5,7 +5,7 @@ import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
-import 'package:digiresto/domain/entity/order/cart_session_model.dart';
+import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
@@ -14,6 +14,8 @@ import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
+import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
@@ -319,17 +321,13 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, CartSessionResponse>> createCartSession(
-      Map<String, dynamic> object) async {
+  Future<Either<Exception, CartSessionResponseApi>> createCartSession(
+      CreateCartSessionParam object) async {
     try {
       String apiUrl = Endpoints.urlCreateCartSession;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: {"query_string": {}, "body": object["body"]});
-      var data = (apiResult as Map<String, dynamic>)['data'];
-      return right(CartSessionResponse(
-          sessionId: data['sessionId'],
-          transactionData:
-              CartSession.createCartSession(data['transactionData'])));
+          path: apiUrl, content: object.toJson());
+      return right(CartSessionResponseApi.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -339,17 +337,33 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, CartSessionResponse>> updateCartSession(
+  Future<Either<Exception, CartSessionResponseApi>> getCartSession(
+      GetCartSessionParam object) async {
+    try {
+      String apiUrl = Endpoints.urlGetCartSession;
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
+        "query_string": {
+          "sessionId": object.sessionId,
+        },
+        "body": {}
+      });
+      return right(CartSessionResponseApi.fromJson(apiResult));
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, CartSessionResponseApi>> updateCartSession(
       UpdateCartSessionParam object) async {
     try {
       String apiUrl = Endpoints.urlUpdateCartSession;
       final apiResult = await _networkService.postHttp(
           path: apiUrl, content: object.toJson());
-      var data = (apiResult as Map<String, dynamic>)['data'];
-      return right(CartSessionResponse(
-          sessionId: data['sessionId'],
-          transactionData:
-              CartSession.createCartSession(data['transactionData'])));
+      return right(CartSessionResponseApi.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {

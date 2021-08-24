@@ -90,6 +90,12 @@ class _$OrderEventTearOff {
     );
   }
 
+  _GetCartSession getCartSession(GetCartSessionParam request) {
+    return _GetCartSession(
+      request,
+    );
+  }
+
   _UpdateCartSession updateCartSession(UpdateCartSessionParam request) {
     return _UpdateCartSession(
       request,
@@ -128,6 +134,7 @@ mixin _$OrderEvent {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) =>
@@ -147,6 +154,7 @@ mixin _$OrderEvent {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -167,6 +175,7 @@ mixin _$OrderEvent {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) =>
@@ -185,6 +194,7 @@ mixin _$OrderEvent {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -301,6 +311,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -323,6 +334,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -349,6 +361,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -370,6 +383,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -484,6 +498,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -506,6 +521,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -532,6 +548,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -553,6 +570,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -669,6 +687,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -691,6 +710,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -717,6 +737,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -738,6 +759,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -852,6 +874,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -874,6 +897,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -900,6 +924,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -921,6 +946,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -1035,6 +1061,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -1057,6 +1084,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -1083,6 +1111,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -1104,6 +1133,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -1218,6 +1248,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -1240,6 +1271,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -1266,6 +1298,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -1287,6 +1320,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -1399,6 +1433,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -1421,6 +1456,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -1447,6 +1483,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -1468,6 +1505,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -1571,6 +1609,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -1593,6 +1632,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -1619,6 +1659,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -1640,6 +1681,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -1752,6 +1794,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -1774,6 +1817,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -1800,6 +1844,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -1821,6 +1866,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -1934,6 +1980,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -1956,6 +2003,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -1982,6 +2030,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -2003,6 +2052,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -2116,6 +2166,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -2138,6 +2189,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -2164,6 +2216,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -2185,6 +2238,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -2298,6 +2352,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -2320,6 +2375,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -2346,6 +2402,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -2367,6 +2424,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -2385,6 +2443,182 @@ abstract class _CreateCartSession implements OrderEvent {
   CreateCartSessionParam get request => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$CreateCartSessionCopyWith<_CreateCartSession> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetCartSessionCopyWith<$Res> {
+  factory _$GetCartSessionCopyWith(
+          _GetCartSession value, $Res Function(_GetCartSession) then) =
+      __$GetCartSessionCopyWithImpl<$Res>;
+  $Res call({GetCartSessionParam request});
+}
+
+/// @nodoc
+class __$GetCartSessionCopyWithImpl<$Res> extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetCartSessionCopyWith<$Res> {
+  __$GetCartSessionCopyWithImpl(
+      _GetCartSession _value, $Res Function(_GetCartSession) _then)
+      : super(_value, (v) => _then(v as _GetCartSession));
+
+  @override
+  _GetCartSession get _value => super._value as _GetCartSession;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_GetCartSession(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as GetCartSessionParam,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetCartSession implements _GetCartSession {
+  const _$_GetCartSession(this.request);
+
+  @override
+  final GetCartSessionParam request;
+
+  @override
+  String toString() {
+    return 'OrderEvent.getCartSession(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetCartSession &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetCartSessionCopyWith<_GetCartSession> get copyWith =>
+      __$GetCartSessionCopyWithImpl<_GetCartSession>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+  }) {
+    return getCartSession(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getCartSession != null) {
+      return getCartSession(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+  }) {
+    return getCartSession(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    required TResult orElse(),
+  }) {
+    if (getCartSession != null) {
+      return getCartSession(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCartSession implements OrderEvent {
+  const factory _GetCartSession(GetCartSessionParam request) =
+      _$_GetCartSession;
+
+  GetCartSessionParam get request => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetCartSessionCopyWith<_GetCartSession> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2480,6 +2714,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -2502,6 +2737,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -2528,6 +2764,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -2549,6 +2786,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -2652,6 +2890,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
     required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
     required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(GetCartSessionParam request) getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
   }) {
@@ -2674,6 +2913,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
     TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
     TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(GetCartSessionParam request)? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
     required TResult orElse(),
@@ -2700,6 +2940,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
     required TResult Function(_GeliveryInquiry value) deliveryInquiry,
     required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
   }) {
@@ -2721,6 +2962,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
     TResult Function(_GeliveryInquiry value)? deliveryInquiry,
     TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     required TResult orElse(),
@@ -2845,6 +3087,12 @@ class _$OrderStateTearOff {
     );
   }
 
+  _GetCartSessionSuccess getCartSessionSuccess(CartSessionResponse response) {
+    return _GetCartSessionSuccess(
+      response,
+    );
+  }
+
   _UpdateCartSessionSuccess updateCartSessionSuccess(
       CartSessionResponse response) {
     return _UpdateCartSessionSuccess(
@@ -2893,6 +3141,8 @@ mixin _$OrderState {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) =>
@@ -2921,6 +3171,7 @@ mixin _$OrderState {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -2955,6 +3206,8 @@ mixin _$OrderState {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -2984,6 +3237,7 @@ mixin _$OrderState {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3071,6 +3325,8 @@ class _$_Initial implements _Initial {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -3102,6 +3358,7 @@ class _$_Initial implements _Initial {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3142,6 +3399,8 @@ class _$_Initial implements _Initial {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -3174,6 +3433,7 @@ class _$_Initial implements _Initial {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3255,6 +3515,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -3286,6 +3548,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3326,6 +3589,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -3358,6 +3623,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3439,6 +3705,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -3470,6 +3738,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3510,6 +3779,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -3542,6 +3813,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3648,6 +3920,8 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -3679,6 +3953,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3719,6 +3994,8 @@ class _$_LoadFailure implements _LoadFailure {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -3751,6 +4028,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3867,6 +4145,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -3898,6 +4178,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -3938,6 +4219,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -3970,6 +4253,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4088,6 +4372,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -4119,6 +4405,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4159,6 +4446,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -4191,6 +4480,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4307,6 +4597,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -4338,6 +4630,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4378,6 +4671,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -4410,6 +4705,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4527,6 +4823,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -4558,6 +4856,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4598,6 +4897,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -4630,6 +4931,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4749,6 +5051,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -4780,6 +5084,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4820,6 +5125,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -4852,6 +5159,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -4972,6 +5280,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -5003,6 +5313,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5043,6 +5354,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -5075,6 +5388,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5196,6 +5510,8 @@ class _$_GetOutletProductCategorySuccess
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -5227,6 +5543,7 @@ class _$_GetOutletProductCategorySuccess
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5267,6 +5584,8 @@ class _$_GetOutletProductCategorySuccess
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -5299,6 +5618,7 @@ class _$_GetOutletProductCategorySuccess
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5415,6 +5735,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -5446,6 +5768,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5486,6 +5809,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -5518,6 +5843,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5642,6 +5968,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -5673,6 +6001,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5713,6 +6042,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -5745,6 +6076,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5861,6 +6193,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -5892,6 +6226,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -5932,6 +6267,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -5964,6 +6301,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6079,6 +6417,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -6110,6 +6450,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6150,6 +6491,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -6182,6 +6525,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6209,6 +6553,8 @@ abstract class _$CreateCartSessionSuccessCopyWith<$Res> {
           $Res Function(_CreateCartSessionSuccess) then) =
       __$CreateCartSessionSuccessCopyWithImpl<$Res>;
   $Res call({CartSessionResponse response});
+
+  $CartSessionResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -6233,6 +6579,13 @@ class __$CreateCartSessionSuccessCopyWithImpl<$Res>
           : response // ignore: cast_nullable_to_non_nullable
               as CartSessionResponse,
     ));
+  }
+
+  @override
+  $CartSessionResponseCopyWith<$Res> get response {
+    return $CartSessionResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
@@ -6298,6 +6651,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -6329,6 +6684,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6369,6 +6725,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -6401,6 +6759,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6423,11 +6782,246 @@ abstract class _CreateCartSessionSuccess implements OrderState {
 }
 
 /// @nodoc
+abstract class _$GetCartSessionSuccessCopyWith<$Res> {
+  factory _$GetCartSessionSuccessCopyWith(_GetCartSessionSuccess value,
+          $Res Function(_GetCartSessionSuccess) then) =
+      __$GetCartSessionSuccessCopyWithImpl<$Res>;
+  $Res call({CartSessionResponse response});
+
+  $CartSessionResponseCopyWith<$Res> get response;
+}
+
+/// @nodoc
+class __$GetCartSessionSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetCartSessionSuccessCopyWith<$Res> {
+  __$GetCartSessionSuccessCopyWithImpl(_GetCartSessionSuccess _value,
+      $Res Function(_GetCartSessionSuccess) _then)
+      : super(_value, (v) => _then(v as _GetCartSessionSuccess));
+
+  @override
+  _GetCartSessionSuccess get _value => super._value as _GetCartSessionSuccess;
+
+  @override
+  $Res call({
+    Object? response = freezed,
+  }) {
+    return _then(_GetCartSessionSuccess(
+      response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as CartSessionResponse,
+    ));
+  }
+
+  @override
+  $CartSessionResponseCopyWith<$Res> get response {
+    return $CartSessionResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
+  const _$_GetCartSessionSuccess(this.response);
+
+  @override
+  final CartSessionResponse response;
+
+  @override
+  String toString() {
+    return 'OrderState.getCartSessionSuccess(response: $response)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetCartSessionSuccess &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetCartSessionSuccessCopyWith<_GetCartSessionSuccess> get copyWith =>
+      __$GetCartSessionSuccessCopyWithImpl<_GetCartSessionSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<PromoOutletDataResponse> response)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> response)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> response)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductCategoryDataResponse> response)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+  }) {
+    return getCartSessionSuccess(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<PromoOutletDataResponse> response)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> response)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> response)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductCategoryDataResponse> response)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionSuccess != null) {
+      return getCartSessionSuccess(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+  }) {
+    return getCartSessionSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionSuccess != null) {
+      return getCartSessionSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCartSessionSuccess implements OrderState {
+  const factory _GetCartSessionSuccess(CartSessionResponse response) =
+      _$_GetCartSessionSuccess;
+
+  CartSessionResponse get response => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetCartSessionSuccessCopyWith<_GetCartSessionSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$UpdateCartSessionSuccessCopyWith<$Res> {
   factory _$UpdateCartSessionSuccessCopyWith(_UpdateCartSessionSuccess value,
           $Res Function(_UpdateCartSessionSuccess) then) =
       __$UpdateCartSessionSuccessCopyWithImpl<$Res>;
   $Res call({CartSessionResponse response});
+
+  $CartSessionResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -6452,6 +7046,13 @@ class __$UpdateCartSessionSuccessCopyWithImpl<$Res>
           : response // ignore: cast_nullable_to_non_nullable
               as CartSessionResponse,
     ));
+  }
+
+  @override
+  $CartSessionResponseCopyWith<$Res> get response {
+    return $CartSessionResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
@@ -6517,6 +7118,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -6548,6 +7151,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6588,6 +7192,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -6620,6 +7226,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6735,6 +7342,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function(CartSessionResponse response)
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
   }) {
@@ -6766,6 +7375,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     required TResult orElse(),
@@ -6806,6 +7416,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         deliveryInquirySuccess,
     required TResult Function(_CreateCartSessionSuccess value)
         createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -6838,6 +7450,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
     TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     required TResult orElse(),
