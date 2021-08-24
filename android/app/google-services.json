@@ -1,0 +1,235 @@
+{
+  "project_info": {
+    "project_number": "816269151511",
+    "firebase_url": "https://digiapp-fbdf3.firebaseio.com",
+    "project_id": "digiapp-fbdf3",
+    "storage_bucket": "digiapp-fbdf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816269151511:android:7ea1b466785358af60fb52",
+        "android_client_info": {
+          "package_name": "id.damcorp.digiresto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816269151511-28729p2re34effd78uc87d8f4atb9o91.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.digiresto",
+            "certificate_hash": "a4cc9af6bba3b8cb7659de54ac827bd848bcb8ab"
+          }
+        },
+        {
+          "client_id": "816269151511-lojh0eemm7ivudkvrofujrc13bud9t9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.digiresto",
+            "certificate_hash": "50d159621e5469447c08cec426f7359040a96e7f"
+          }
+        },
+        {
+          "client_id": "816269151511-vfkjhbsrgl3tgjl243jnslhnkbai6cig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.digiresto",
+            "certificate_hash": "f6140890a4ad127cbe098e8f61bde912f80d6af0"
+          }
+        },
+        {
+          "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxDSNciAIuKdZJ19GXIB8bqiKjzy-TL0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "816269151511-9jbj94ss3jj1pp5lr3e9caf5au7isri1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "id.damcorp.digiresto"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816269151511:android:7c7c5948441c6b1960fb52",
+        "android_client_info": {
+          "package_name": "id.damcorp.digiresto.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816269151511-o35728qlpq6rq7ivda8mgh8tuinosok7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.digiresto.dev",
+            "certificate_hash": "a4cc9af6bba3b8cb7659de54ac827bd848bcb8ab"
+          }
+        },
+        {
+          "client_id": "816269151511-s0j0mus5ulkc1u4e694dtmsql7j65epq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.digiresto.dev",
+            "certificate_hash": "50d159621e5469447c08cec426f7359040a96e7f"
+          }
+        },
+        {
+          "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxDSNciAIuKdZJ19GXIB8bqiKjzy-TL0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "816269151511-9jbj94ss3jj1pp5lr3e9caf5au7isri1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "id.damcorp.digiresto"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816269151511:android:fd1f89d99d7cbadd60fb52",
+        "android_client_info": {
+          "package_name": "id.damcorp.maqan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816269151511-7o1b88rhqasurksa6oi8ko3pi3tdmhit.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.maqan",
+            "certificate_hash": "af8a45fea4acc7d20ba55b61e627241d06d97610"
+          }
+        },
+        {
+          "client_id": "816269151511-r72c9nikhto7p30kfmbeo96iclalj5ak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.maqan",
+            "certificate_hash": "50d159621e5469447c08cec426f7359040a96e7f"
+          }
+        },
+        {
+          "client_id": "816269151511-u7jn115modr56jrhtca7q1nobje0b70h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.maqan",
+            "certificate_hash": "a4cc9af6bba3b8cb7659de54ac827bd848bcb8ab"
+          }
+        },
+        {
+          "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxDSNciAIuKdZJ19GXIB8bqiKjzy-TL0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "816269151511-9jbj94ss3jj1pp5lr3e9caf5au7isri1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "id.damcorp.digiresto"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816269151511:android:cac50dca05cd34b560fb52",
+        "android_client_info": {
+          "package_name": "id.damcorp.maqan.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816269151511-mom0l67d30vo0alaclplvud0n39ui8fl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.maqan.dev",
+            "certificate_hash": "a4cc9af6bba3b8cb7659de54ac827bd848bcb8ab"
+          }
+        },
+        {
+          "client_id": "816269151511-uqr0qis1gio4bsd1bc3ijhm8iq7tf79f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.damcorp.maqan.dev",
+            "certificate_hash": "50d159621e5469447c08cec426f7359040a96e7f"
+          }
+        },
+        {
+          "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxDSNciAIuKdZJ19GXIB8bqiKjzy-TL0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816269151511-2l7rd043armr8e7d9avofjg06c54497f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "816269151511-9jbj94ss3jj1pp5lr3e9caf5au7isri1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "id.damcorp.digiresto"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

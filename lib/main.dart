@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
-import 'application/home/home_user_bloc/home_user_bloc.dart';
+import 'application/order/bloc/order_bloc.dart';
 import 'injection.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
@@ -25,13 +25,11 @@ class InitiateProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider<HomeUserBloc>(
-        create: (context) => getIt<HomeUserBloc>(),
-      ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),
       BlocProvider<AddressMapBloc>(
           create: (context) => getIt<AddressMapBloc>()),
+      BlocProvider<OrderBloc>(create: (context) => getIt<OrderBloc>()),
       BlocProvider<AppBloc>(
         create: (context) => getIt<AppBloc>()..add(AppEvent.started()),
       )

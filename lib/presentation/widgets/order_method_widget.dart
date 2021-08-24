@@ -1,7 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
-import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OrderMethodPopup {
   Future<void> showMyDialog(BuildContext context, Map<String, dynamic> param,
@@ -128,7 +126,6 @@ class OrderMethodWidget extends StatelessWidget {
             "orderOutletDetailName": param["detailName"],
             //   "userProfile": _userStore.profile
           });
-          Get.toNamed(Routers.orderDetailOutlet);
         },
         color: AppColors.red,
         child: Text(textOrderMethod,
