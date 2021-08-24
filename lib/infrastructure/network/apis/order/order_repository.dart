@@ -24,12 +24,27 @@ import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:injectable/injectable.dart';
 
 import 'order_api.dart';
+import 'order_local.dart';
 
 @injectable
 class OrderRepository {
   final OrderApi _orderApi;
+  final OrderLocal _orderLocal;
 
-  OrderRepository(this._orderApi);
+  OrderRepository(this._orderApi, this._orderLocal);
+
+  Future<Either<Exception, String?>> getSessionId() async {
+    return await _orderLocal.getSessionId().then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, String?>> setSessionId(String value) async {
+    return await _orderLocal.setSessionId(value).then((value) {
+      return value;
+    });
+  }
+
   Future<Either<Exception, OutletCategoryResponse>> getOutletByLocation(
       Map<String, dynamic> object) async {
     return await _orderApi.getOutletByLocation(object).then((value) {
@@ -114,21 +129,21 @@ class OrderRepository {
     });
   }
 
-  Future<Either<Exception, CartSessionResponseApi>> createCartSession(
+  Future<Either<Exception, CartSessionResponseApi?>> createCartSession(
       CreateCartSessionParam object) async {
     return await _orderApi.createCartSession(object).then((value) {
       return value;
     });
   }
 
-  Future<Either<Exception, CartSessionResponseApi>> getCartSession(
+  Future<Either<Exception, CartSessionResponseApi?>> getCartSession(
       GetCartSessionParam object) async {
     return await _orderApi.getCartSession(object).then((value) {
       return value;
     });
   }
 
-  Future<Either<Exception, CartSessionResponseApi>> updateCartSession(
+  Future<Either<Exception, CartSessionResponseApi?>> updateCartSession(
       UpdateCartSessionParam object) async {
     return await _orderApi.updateCartSession(object).then((value) {
       return value;

@@ -5,7 +5,8 @@ enum StorageConstants {
   security,
   cache,
   aimUser,
-  address
+  address,
+  order
 }
 
 abstract class IStorage {

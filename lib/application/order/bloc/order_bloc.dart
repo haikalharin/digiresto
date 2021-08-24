@@ -153,25 +153,41 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       createCartSession: (request) async* {
         final createCartSession =
             await _orderRepository.createCartSession(request.request);
+        var dataCart = createCartSession.getOrElse(() => null);
+        if (dataCart != null) {
+          await _orderRepository.setSessionId(dataCart.data.sessionId!);
+        }
+
         yield createCartSession.fold(
           (error) => OrderState.loadFailure(error),
-          (list) => OrderState.createCartSessionSuccess(list.data),
+          (list) => OrderState.createCartSessionSuccess(list!.data),
         );
       },
-      getCartSession: (request) async* {
-        final getCartSession =
-            await _orderRepository.getCartSession(request.request);
+      getCartSession: (_) async* {
+        final sessionId =
+            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        final getCartSession = await _orderRepository
+            .getCartSession(GetCartSessionParam(sessionId: sessionId!));
+
         yield getCartSession.fold(
           (error) => OrderState.loadFailure(error),
-          (list) => OrderState.getCartSessionSuccess(list.data),
+          (list) => OrderState.getCartSessionSuccess(list!.data),
         );
       },
       updateCartSession: (request) async* {
+        final sessionId =
+            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        final param = request.request.copyWith(
+            queryString: UpdateCartSessionQueryParam(sessionId: sessionId!));
         final updateCartSession =
-            await _orderRepository.updateCartSession(request.request);
+            await _orderRepository.updateCartSession(param);
+        var dataCart = updateCartSession.getOrElse(() => null);
+        if (dataCart != null) {
+          await _orderRepository.setSessionId(dataCart.data.sessionId!);
+        }
         yield updateCartSession.fold(
           (error) => OrderState.loadFailure(error),
-          (list) => OrderState.updateCartSessionSuccess(list.data),
+          (list) => OrderState.updateCartSessionSuccess(list!.data),
         );
       },
       checkoutCart: (request) async* {
