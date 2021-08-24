@@ -487,12 +487,15 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                           width: MediaQuery.of(context).size.width * 0.45,
                           child: ElevatedButton(
                             onPressed: () {
-                              String phone =
-                                  controller.detailOutlet.value!.ownerPhone;
-                              String url =
-                                  "https://api.whatsapp.com/send/?phone=" +
-                                      phone +
-                                      "&text=hi%20Digiresto";
+                              // String phone =
+                              //     controller.detailOutlet.value!.ownerPhone;
+                              //                           String url =
+                              // "https://api.whatsapp.com/send/?phone=" +
+                              //     phone +
+                              //     "&text=hi%20Digiresto";
+                              String callBackUrl =
+                                  controller.detailOutlet.value!.callbackUrl;
+                              String url = callBackUrl;
                               LaunchUrl.run(url);
                             },
                             child: Row(
