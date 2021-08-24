@@ -6,14 +6,16 @@ import 'package:get/route_manager.dart';
 
 class ChooseBankWidget extends StatelessWidget {
   final TopUpSubCategory bankItem;
-  const ChooseBankWidget(this.bankItem, {Key? key}) : super(key: key);
+  final String destination;
+  const ChooseBankWidget(this.bankItem, this.destination, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: InkWell(
-        onTap: () => Get.to(TopUpCreditPage(bankItem)),
+        onTap: () => Get.to(TopUpCreditPage(bankItem, destination)),
         borderRadius: BorderRadius.circular(10),
         child: Ink(
           width: double.infinity,

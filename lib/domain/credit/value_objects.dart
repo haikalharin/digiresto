@@ -10,8 +10,9 @@ class Nominal extends ValueObject<String> {
   factory Nominal(
     String input,
   ) {
+    final String nom = input.replaceAll('.', '');
     return Nominal._(
-      ValueValidators.validateMinNumber(input, 10000),
+      ValueValidators.validateMinNumber(nom, 10000),
     );
   }
 

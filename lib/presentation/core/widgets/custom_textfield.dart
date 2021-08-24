@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
@@ -12,29 +13,32 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? prefix;
   final Function(String)? onChange;
-  const CustomTextField(
-      {Key? key,
-      this.controller,
-      this.autovalidateMode,
-      this.prefix,
-      this.validator,
-      this.hintText = '',
-      this.hintStyle,
-      this.inputStyle,
-      this.focusBorderColor,
-      this.keyboardType,
-      this.onChange})
-      : super(key: key);
+  final List<TextInputFormatter>? inputFormatters;
+  const CustomTextField({
+    Key? key,
+    this.controller,
+    this.autovalidateMode,
+    this.prefix,
+    this.validator,
+    this.hintText = '',
+    this.hintStyle,
+    this.inputStyle,
+    this.focusBorderColor,
+    this.keyboardType,
+    this.onChange,
+    this.inputFormatters,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: inputFormatters,
       autovalidateMode: autovalidateMode,
       onChanged: onChange,
       controller: controller,
       style: inputStyle ?? Styles.inputStyle,
       decoration: InputDecoration(
-        prefix: prefix,
+        prefixIcon: prefix,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         focusedBorder: OutlineInputBorder(

@@ -16,8 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TopUpCreditEventTearOff {
   const _$TopUpCreditEventTearOff();
 
-  _Started started() {
-    return const _Started();
+  _NominalChanged nominalChanged(String nominalStr) {
+    return _NominalChanged(
+      nominalStr,
+    );
+  }
+
+  _TopUpSubmitted topUpSubmitted(String bankCode) {
+    return _TopUpSubmitted(
+      bankCode,
+    );
+  }
+
+  _ChangeDestination changeDestination(String destination) {
+    return _ChangeDestination(
+      destination,
+    );
   }
 }
 
@@ -28,23 +42,31 @@ const $TopUpCreditEvent = _$TopUpCreditEventTearOff();
 mixin _$TopUpCreditEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String nominalStr) nominalChanged,
+    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(String destination) changeDestination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String nominalStr)? nominalChanged,
+    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(String destination)? changeDestination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_NominalChanged value) nominalChanged,
+    required TResult Function(_TopUpSubmitted value) topUpSubmitted,
+    required TResult Function(_ChangeDestination value) changeDestination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_NominalChanged value)? nominalChanged,
+    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
+    TResult Function(_ChangeDestination value)? changeDestination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,55 +90,88 @@ class _$TopUpCreditEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$NominalChangedCopyWith<$Res> {
+  factory _$NominalChangedCopyWith(
+          _NominalChanged value, $Res Function(_NominalChanged) then) =
+      __$NominalChangedCopyWithImpl<$Res>;
+  $Res call({String nominalStr});
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$TopUpCreditEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+class __$NominalChangedCopyWithImpl<$Res>
+    extends _$TopUpCreditEventCopyWithImpl<$Res>
+    implements _$NominalChangedCopyWith<$Res> {
+  __$NominalChangedCopyWithImpl(
+      _NominalChanged _value, $Res Function(_NominalChanged) _then)
+      : super(_value, (v) => _then(v as _NominalChanged));
 
   @override
-  _Started get _value => super._value as _Started;
+  _NominalChanged get _value => super._value as _NominalChanged;
+
+  @override
+  $Res call({
+    Object? nominalStr = freezed,
+  }) {
+    return _then(_NominalChanged(
+      nominalStr == freezed
+          ? _value.nominalStr
+          : nominalStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$_NominalChanged implements _NominalChanged {
+  const _$_NominalChanged(this.nominalStr);
+
+  @override
+  final String nominalStr;
 
   @override
   String toString() {
-    return 'TopUpCreditEvent.started()';
+    return 'TopUpCreditEvent.nominalChanged(nominalStr: $nominalStr)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+    return identical(this, other) ||
+        (other is _NominalChanged &&
+            (identical(other.nominalStr, nominalStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.nominalStr, nominalStr)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nominalStr);
+
+  @JsonKey(ignore: true)
+  @override
+  _$NominalChangedCopyWith<_NominalChanged> get copyWith =>
+      __$NominalChangedCopyWithImpl<_NominalChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String nominalStr) nominalChanged,
+    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(String destination) changeDestination,
   }) {
-    return started();
+    return nominalChanged(nominalStr);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String nominalStr)? nominalChanged,
+    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(String destination)? changeDestination,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (nominalChanged != null) {
+      return nominalChanged(nominalStr);
     }
     return orElse();
   }
@@ -124,34 +179,300 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_NominalChanged value) nominalChanged,
+    required TResult Function(_TopUpSubmitted value) topUpSubmitted,
+    required TResult Function(_ChangeDestination value) changeDestination,
   }) {
-    return started(this);
+    return nominalChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_NominalChanged value)? nominalChanged,
+    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
+    TResult Function(_ChangeDestination value)? changeDestination,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (nominalChanged != null) {
+      return nominalChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements TopUpCreditEvent {
-  const factory _Started() = _$_Started;
+abstract class _NominalChanged implements TopUpCreditEvent {
+  const factory _NominalChanged(String nominalStr) = _$_NominalChanged;
+
+  String get nominalStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$NominalChangedCopyWith<_NominalChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$TopUpSubmittedCopyWith<$Res> {
+  factory _$TopUpSubmittedCopyWith(
+          _TopUpSubmitted value, $Res Function(_TopUpSubmitted) then) =
+      __$TopUpSubmittedCopyWithImpl<$Res>;
+  $Res call({String bankCode});
+}
+
+/// @nodoc
+class __$TopUpSubmittedCopyWithImpl<$Res>
+    extends _$TopUpCreditEventCopyWithImpl<$Res>
+    implements _$TopUpSubmittedCopyWith<$Res> {
+  __$TopUpSubmittedCopyWithImpl(
+      _TopUpSubmitted _value, $Res Function(_TopUpSubmitted) _then)
+      : super(_value, (v) => _then(v as _TopUpSubmitted));
+
+  @override
+  _TopUpSubmitted get _value => super._value as _TopUpSubmitted;
+
+  @override
+  $Res call({
+    Object? bankCode = freezed,
+  }) {
+    return _then(_TopUpSubmitted(
+      bankCode == freezed
+          ? _value.bankCode
+          : bankCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TopUpSubmitted implements _TopUpSubmitted {
+  const _$_TopUpSubmitted(this.bankCode);
+
+  @override
+  final String bankCode;
+
+  @override
+  String toString() {
+    return 'TopUpCreditEvent.topUpSubmitted(bankCode: $bankCode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TopUpSubmitted &&
+            (identical(other.bankCode, bankCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankCode, bankCode)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(bankCode);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TopUpSubmittedCopyWith<_TopUpSubmitted> get copyWith =>
+      __$TopUpSubmittedCopyWithImpl<_TopUpSubmitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String nominalStr) nominalChanged,
+    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(String destination) changeDestination,
+  }) {
+    return topUpSubmitted(bankCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String nominalStr)? nominalChanged,
+    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(String destination)? changeDestination,
+    required TResult orElse(),
+  }) {
+    if (topUpSubmitted != null) {
+      return topUpSubmitted(bankCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NominalChanged value) nominalChanged,
+    required TResult Function(_TopUpSubmitted value) topUpSubmitted,
+    required TResult Function(_ChangeDestination value) changeDestination,
+  }) {
+    return topUpSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NominalChanged value)? nominalChanged,
+    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
+    TResult Function(_ChangeDestination value)? changeDestination,
+    required TResult orElse(),
+  }) {
+    if (topUpSubmitted != null) {
+      return topUpSubmitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TopUpSubmitted implements TopUpCreditEvent {
+  const factory _TopUpSubmitted(String bankCode) = _$_TopUpSubmitted;
+
+  String get bankCode => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$TopUpSubmittedCopyWith<_TopUpSubmitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ChangeDestinationCopyWith<$Res> {
+  factory _$ChangeDestinationCopyWith(
+          _ChangeDestination value, $Res Function(_ChangeDestination) then) =
+      __$ChangeDestinationCopyWithImpl<$Res>;
+  $Res call({String destination});
+}
+
+/// @nodoc
+class __$ChangeDestinationCopyWithImpl<$Res>
+    extends _$TopUpCreditEventCopyWithImpl<$Res>
+    implements _$ChangeDestinationCopyWith<$Res> {
+  __$ChangeDestinationCopyWithImpl(
+      _ChangeDestination _value, $Res Function(_ChangeDestination) _then)
+      : super(_value, (v) => _then(v as _ChangeDestination));
+
+  @override
+  _ChangeDestination get _value => super._value as _ChangeDestination;
+
+  @override
+  $Res call({
+    Object? destination = freezed,
+  }) {
+    return _then(_ChangeDestination(
+      destination == freezed
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeDestination implements _ChangeDestination {
+  const _$_ChangeDestination(this.destination);
+
+  @override
+  final String destination;
+
+  @override
+  String toString() {
+    return 'TopUpCreditEvent.changeDestination(destination: $destination)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ChangeDestination &&
+            (identical(other.destination, destination) ||
+                const DeepCollectionEquality()
+                    .equals(other.destination, destination)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(destination);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ChangeDestinationCopyWith<_ChangeDestination> get copyWith =>
+      __$ChangeDestinationCopyWithImpl<_ChangeDestination>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String nominalStr) nominalChanged,
+    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(String destination) changeDestination,
+  }) {
+    return changeDestination(destination);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String nominalStr)? nominalChanged,
+    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(String destination)? changeDestination,
+    required TResult orElse(),
+  }) {
+    if (changeDestination != null) {
+      return changeDestination(destination);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NominalChanged value) nominalChanged,
+    required TResult Function(_TopUpSubmitted value) topUpSubmitted,
+    required TResult Function(_ChangeDestination value) changeDestination,
+  }) {
+    return changeDestination(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NominalChanged value)? nominalChanged,
+    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
+    TResult Function(_ChangeDestination value)? changeDestination,
+    required TResult orElse(),
+  }) {
+    if (changeDestination != null) {
+      return changeDestination(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeDestination implements TopUpCreditEvent {
+  const factory _ChangeDestination(String destination) = _$_ChangeDestination;
+
+  String get destination => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ChangeDestinationCopyWith<_ChangeDestination> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$TopUpCreditStateTearOff {
   const _$TopUpCreditStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _TopUpCreditState call(
+      {required Nominal nominal,
+      required bool showError,
+      required bool isSubmitting,
+      required String destination,
+      required Option<Either<CreditFailure, TopUpVADetails>>
+          topUpVAfailureOrSuccess,
+      required Option<Either<CreditFailure, TopUpBankDetails>>
+          topUpBankfailureOrSuccess}) {
+    return _TopUpCreditState(
+      nominal: nominal,
+      showError: showError,
+      isSubmitting: isSubmitting,
+      destination: destination,
+      topUpVAfailureOrSuccess: topUpVAfailureOrSuccess,
+      topUpBankfailureOrSuccess: topUpBankfailureOrSuccess,
+    );
   }
 }
 
@@ -160,27 +481,17 @@ const $TopUpCreditState = _$TopUpCreditStateTearOff();
 
 /// @nodoc
 mixin _$TopUpCreditState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
+  Nominal get nominal => throw _privateConstructorUsedError;
+  bool get showError => throw _privateConstructorUsedError;
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  String get destination => throw _privateConstructorUsedError;
+  Option<Either<CreditFailure, TopUpVADetails>> get topUpVAfailureOrSuccess =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  Option<Either<CreditFailure, TopUpBankDetails>>
+      get topUpBankfailureOrSuccess => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TopUpCreditStateCopyWith<TopUpCreditState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -189,6 +500,14 @@ abstract class $TopUpCreditStateCopyWith<$Res> {
   factory $TopUpCreditStateCopyWith(
           TopUpCreditState value, $Res Function(TopUpCreditState) then) =
       _$TopUpCreditStateCopyWithImpl<$Res>;
+  $Res call(
+      {Nominal nominal,
+      bool showError,
+      bool isSubmitting,
+      String destination,
+      Option<Either<CreditFailure, TopUpVADetails>> topUpVAfailureOrSuccess,
+      Option<Either<CreditFailure, TopUpBankDetails>>
+          topUpBankfailureOrSuccess});
 }
 
 /// @nodoc
@@ -199,83 +518,211 @@ class _$TopUpCreditStateCopyWithImpl<$Res>
   final TopUpCreditState _value;
   // ignore: unused_field
   final $Res Function(TopUpCreditState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$TopUpCreditStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object? nominal = freezed,
+    Object? showError = freezed,
+    Object? isSubmitting = freezed,
+    Object? destination = freezed,
+    Object? topUpVAfailureOrSuccess = freezed,
+    Object? topUpBankfailureOrSuccess = freezed,
+  }) {
+    return _then(_value.copyWith(
+      nominal: nominal == freezed
+          ? _value.nominal
+          : nominal // ignore: cast_nullable_to_non_nullable
+              as Nominal,
+      showError: showError == freezed
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      destination: destination == freezed
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+      topUpVAfailureOrSuccess: topUpVAfailureOrSuccess == freezed
+          ? _value.topUpVAfailureOrSuccess
+          : topUpVAfailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<CreditFailure, TopUpVADetails>>,
+      topUpBankfailureOrSuccess: topUpBankfailureOrSuccess == freezed
+          ? _value.topUpBankfailureOrSuccess
+          : topUpBankfailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<CreditFailure, TopUpBankDetails>>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$TopUpCreditStateCopyWith<$Res>
+    implements $TopUpCreditStateCopyWith<$Res> {
+  factory _$TopUpCreditStateCopyWith(
+          _TopUpCreditState value, $Res Function(_TopUpCreditState) then) =
+      __$TopUpCreditStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {Nominal nominal,
+      bool showError,
+      bool isSubmitting,
+      String destination,
+      Option<Either<CreditFailure, TopUpVADetails>> topUpVAfailureOrSuccess,
+      Option<Either<CreditFailure, TopUpBankDetails>>
+          topUpBankfailureOrSuccess});
+}
+
+/// @nodoc
+class __$TopUpCreditStateCopyWithImpl<$Res>
+    extends _$TopUpCreditStateCopyWithImpl<$Res>
+    implements _$TopUpCreditStateCopyWith<$Res> {
+  __$TopUpCreditStateCopyWithImpl(
+      _TopUpCreditState _value, $Res Function(_TopUpCreditState) _then)
+      : super(_value, (v) => _then(v as _TopUpCreditState));
+
+  @override
+  _TopUpCreditState get _value => super._value as _TopUpCreditState;
+
+  @override
+  $Res call({
+    Object? nominal = freezed,
+    Object? showError = freezed,
+    Object? isSubmitting = freezed,
+    Object? destination = freezed,
+    Object? topUpVAfailureOrSuccess = freezed,
+    Object? topUpBankfailureOrSuccess = freezed,
+  }) {
+    return _then(_TopUpCreditState(
+      nominal: nominal == freezed
+          ? _value.nominal
+          : nominal // ignore: cast_nullable_to_non_nullable
+              as Nominal,
+      showError: showError == freezed
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      destination: destination == freezed
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
+      topUpVAfailureOrSuccess: topUpVAfailureOrSuccess == freezed
+          ? _value.topUpVAfailureOrSuccess
+          : topUpVAfailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<CreditFailure, TopUpVADetails>>,
+      topUpBankfailureOrSuccess: topUpBankfailureOrSuccess == freezed
+          ? _value.topUpBankfailureOrSuccess
+          : topUpBankfailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<CreditFailure, TopUpBankDetails>>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_TopUpCreditState implements _TopUpCreditState {
+  const _$_TopUpCreditState(
+      {required this.nominal,
+      required this.showError,
+      required this.isSubmitting,
+      required this.destination,
+      required this.topUpVAfailureOrSuccess,
+      required this.topUpBankfailureOrSuccess});
+
+  @override
+  final Nominal nominal;
+  @override
+  final bool showError;
+  @override
+  final bool isSubmitting;
+  @override
+  final String destination;
+  @override
+  final Option<Either<CreditFailure, TopUpVADetails>> topUpVAfailureOrSuccess;
+  @override
+  final Option<Either<CreditFailure, TopUpBankDetails>>
+      topUpBankfailureOrSuccess;
 
   @override
   String toString() {
-    return 'TopUpCreditState.initial()';
+    return 'TopUpCreditState(nominal: $nominal, showError: $showError, isSubmitting: $isSubmitting, destination: $destination, topUpVAfailureOrSuccess: $topUpVAfailureOrSuccess, topUpBankfailureOrSuccess: $topUpBankfailureOrSuccess)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other is _TopUpCreditState &&
+            (identical(other.nominal, nominal) ||
+                const DeepCollectionEquality()
+                    .equals(other.nominal, nominal)) &&
+            (identical(other.showError, showError) ||
+                const DeepCollectionEquality()
+                    .equals(other.showError, showError)) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSubmitting, isSubmitting)) &&
+            (identical(other.destination, destination) ||
+                const DeepCollectionEquality()
+                    .equals(other.destination, destination)) &&
+            (identical(
+                    other.topUpVAfailureOrSuccess, topUpVAfailureOrSuccess) ||
+                const DeepCollectionEquality().equals(
+                    other.topUpVAfailureOrSuccess, topUpVAfailureOrSuccess)) &&
+            (identical(other.topUpBankfailureOrSuccess,
+                    topUpBankfailureOrSuccess) ||
+                const DeepCollectionEquality().equals(
+                    other.topUpBankfailureOrSuccess,
+                    topUpBankfailureOrSuccess)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(nominal) ^
+      const DeepCollectionEquality().hash(showError) ^
+      const DeepCollectionEquality().hash(isSubmitting) ^
+      const DeepCollectionEquality().hash(destination) ^
+      const DeepCollectionEquality().hash(topUpVAfailureOrSuccess) ^
+      const DeepCollectionEquality().hash(topUpBankfailureOrSuccess);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$TopUpCreditStateCopyWith<_TopUpCreditState> get copyWith =>
+      __$TopUpCreditStateCopyWithImpl<_TopUpCreditState>(this, _$identity);
 }
 
-abstract class _Initial implements TopUpCreditState {
-  const factory _Initial() = _$_Initial;
+abstract class _TopUpCreditState implements TopUpCreditState {
+  const factory _TopUpCreditState(
+      {required Nominal nominal,
+      required bool showError,
+      required bool isSubmitting,
+      required String destination,
+      required Option<Either<CreditFailure, TopUpVADetails>>
+          topUpVAfailureOrSuccess,
+      required Option<Either<CreditFailure, TopUpBankDetails>>
+          topUpBankfailureOrSuccess}) = _$_TopUpCreditState;
+
+  @override
+  Nominal get nominal => throw _privateConstructorUsedError;
+  @override
+  bool get showError => throw _privateConstructorUsedError;
+  @override
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  @override
+  String get destination => throw _privateConstructorUsedError;
+  @override
+  Option<Either<CreditFailure, TopUpVADetails>> get topUpVAfailureOrSuccess =>
+      throw _privateConstructorUsedError;
+  @override
+  Option<Either<CreditFailure, TopUpBankDetails>>
+      get topUpBankfailureOrSuccess => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$TopUpCreditStateCopyWith<_TopUpCreditState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

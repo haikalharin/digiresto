@@ -152,7 +152,6 @@ class ApiAuthFacade implements IAuthFacade {
           optionOf(_userAuth),
         ),
       );
-      await _storage.close();
     }
     await _storage.close();
     return failureOrSuccess;

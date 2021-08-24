@@ -42,7 +42,7 @@ class CreditSubCategoryPage extends StatelessWidget {
                 ...topUpMethod.subCategory
                     .map(
                       (bankItem) => bankItem.isEnable
-                          ? ChooseBankWidget(bankItem)
+                          ? ChooseBankWidget(bankItem, topUpMethod.destination)
                           : SizedBox(),
                     )
                     .toList()

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'top_up_details.dart';
+part of 'top_up_va_details.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TopUpDetails _$TopUpDetailsFromJson(Map<String, dynamic> json) {
-  return _TopUpDetails.fromJson(json);
+TopUpVADetails _$TopUpVADetailsFromJson(Map<String, dynamic> json) {
+  return _TopUpVADetails.fromJson(json);
 }
 
 /// @nodoc
-class _$TopUpDetailsTearOff {
-  const _$TopUpDetailsTearOff();
+class _$TopUpVADetailsTearOff {
+  const _$TopUpVADetailsTearOff();
 
-  _TopUpDetails call(
+  _TopUpVADetails call(
       {required String orderId,
       required String title,
       required String vaNumber,
@@ -28,7 +28,7 @@ class _$TopUpDetailsTearOff {
       required int expires,
       required DateTime expiresAt,
       required String serviceProvider}) {
-    return _TopUpDetails(
+    return _TopUpVADetails(
       orderId: orderId,
       title: title,
       vaNumber: vaNumber,
@@ -39,16 +39,16 @@ class _$TopUpDetailsTearOff {
     );
   }
 
-  TopUpDetails fromJson(Map<String, Object> json) {
-    return TopUpDetails.fromJson(json);
+  TopUpVADetails fromJson(Map<String, Object> json) {
+    return TopUpVADetails.fromJson(json);
   }
 }
 
 /// @nodoc
-const $TopUpDetails = _$TopUpDetailsTearOff();
+const $TopUpVADetails = _$TopUpVADetailsTearOff();
 
 /// @nodoc
-mixin _$TopUpDetails {
+mixin _$TopUpVADetails {
   String get orderId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get vaNumber => throw _privateConstructorUsedError;
@@ -59,15 +59,15 @@ mixin _$TopUpDetails {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TopUpDetailsCopyWith<TopUpDetails> get copyWith =>
+  $TopUpVADetailsCopyWith<TopUpVADetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TopUpDetailsCopyWith<$Res> {
-  factory $TopUpDetailsCopyWith(
-          TopUpDetails value, $Res Function(TopUpDetails) then) =
-      _$TopUpDetailsCopyWithImpl<$Res>;
+abstract class $TopUpVADetailsCopyWith<$Res> {
+  factory $TopUpVADetailsCopyWith(
+          TopUpVADetails value, $Res Function(TopUpVADetails) then) =
+      _$TopUpVADetailsCopyWithImpl<$Res>;
   $Res call(
       {String orderId,
       String title,
@@ -79,12 +79,13 @@ abstract class $TopUpDetailsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TopUpDetailsCopyWithImpl<$Res> implements $TopUpDetailsCopyWith<$Res> {
-  _$TopUpDetailsCopyWithImpl(this._value, this._then);
+class _$TopUpVADetailsCopyWithImpl<$Res>
+    implements $TopUpVADetailsCopyWith<$Res> {
+  _$TopUpVADetailsCopyWithImpl(this._value, this._then);
 
-  final TopUpDetails _value;
+  final TopUpVADetails _value;
   // ignore: unused_field
-  final $Res Function(TopUpDetails) _then;
+  final $Res Function(TopUpVADetails) _then;
 
   @override
   $Res call({
@@ -130,11 +131,11 @@ class _$TopUpDetailsCopyWithImpl<$Res> implements $TopUpDetailsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TopUpDetailsCopyWith<$Res>
-    implements $TopUpDetailsCopyWith<$Res> {
-  factory _$TopUpDetailsCopyWith(
-          _TopUpDetails value, $Res Function(_TopUpDetails) then) =
-      __$TopUpDetailsCopyWithImpl<$Res>;
+abstract class _$TopUpVADetailsCopyWith<$Res>
+    implements $TopUpVADetailsCopyWith<$Res> {
+  factory _$TopUpVADetailsCopyWith(
+          _TopUpVADetails value, $Res Function(_TopUpVADetails) then) =
+      __$TopUpVADetailsCopyWithImpl<$Res>;
   @override
   $Res call(
       {String orderId,
@@ -147,14 +148,15 @@ abstract class _$TopUpDetailsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TopUpDetailsCopyWithImpl<$Res> extends _$TopUpDetailsCopyWithImpl<$Res>
-    implements _$TopUpDetailsCopyWith<$Res> {
-  __$TopUpDetailsCopyWithImpl(
-      _TopUpDetails _value, $Res Function(_TopUpDetails) _then)
-      : super(_value, (v) => _then(v as _TopUpDetails));
+class __$TopUpVADetailsCopyWithImpl<$Res>
+    extends _$TopUpVADetailsCopyWithImpl<$Res>
+    implements _$TopUpVADetailsCopyWith<$Res> {
+  __$TopUpVADetailsCopyWithImpl(
+      _TopUpVADetails _value, $Res Function(_TopUpVADetails) _then)
+      : super(_value, (v) => _then(v as _TopUpVADetails));
 
   @override
-  _TopUpDetails get _value => super._value as _TopUpDetails;
+  _TopUpVADetails get _value => super._value as _TopUpVADetails;
 
   @override
   $Res call({
@@ -166,7 +168,7 @@ class __$TopUpDetailsCopyWithImpl<$Res> extends _$TopUpDetailsCopyWithImpl<$Res>
     Object? expiresAt = freezed,
     Object? serviceProvider = freezed,
   }) {
-    return _then(_TopUpDetails(
+    return _then(_TopUpVADetails(
       orderId: orderId == freezed
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
@@ -201,8 +203,8 @@ class __$TopUpDetailsCopyWithImpl<$Res> extends _$TopUpDetailsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TopUpDetails implements _TopUpDetails {
-  const _$_TopUpDetails(
+class _$_TopUpVADetails implements _TopUpVADetails {
+  const _$_TopUpVADetails(
       {required this.orderId,
       required this.title,
       required this.vaNumber,
@@ -211,8 +213,8 @@ class _$_TopUpDetails implements _TopUpDetails {
       required this.expiresAt,
       required this.serviceProvider});
 
-  factory _$_TopUpDetails.fromJson(Map<String, dynamic> json) =>
-      _$_$_TopUpDetailsFromJson(json);
+  factory _$_TopUpVADetails.fromJson(Map<String, dynamic> json) =>
+      _$_$_TopUpVADetailsFromJson(json);
 
   @override
   final String orderId;
@@ -231,13 +233,13 @@ class _$_TopUpDetails implements _TopUpDetails {
 
   @override
   String toString() {
-    return 'TopUpDetails(orderId: $orderId, title: $title, vaNumber: $vaNumber, finalAmount: $finalAmount, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider)';
+    return 'TopUpVADetails(orderId: $orderId, title: $title, vaNumber: $vaNumber, finalAmount: $finalAmount, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TopUpDetails &&
+        (other is _TopUpVADetails &&
             (identical(other.orderId, orderId) ||
                 const DeepCollectionEquality()
                     .equals(other.orderId, orderId)) &&
@@ -273,27 +275,27 @@ class _$_TopUpDetails implements _TopUpDetails {
 
   @JsonKey(ignore: true)
   @override
-  _$TopUpDetailsCopyWith<_TopUpDetails> get copyWith =>
-      __$TopUpDetailsCopyWithImpl<_TopUpDetails>(this, _$identity);
+  _$TopUpVADetailsCopyWith<_TopUpVADetails> get copyWith =>
+      __$TopUpVADetailsCopyWithImpl<_TopUpVADetails>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TopUpDetailsToJson(this);
+    return _$_$_TopUpVADetailsToJson(this);
   }
 }
 
-abstract class _TopUpDetails implements TopUpDetails {
-  const factory _TopUpDetails(
+abstract class _TopUpVADetails implements TopUpVADetails {
+  const factory _TopUpVADetails(
       {required String orderId,
       required String title,
       required String vaNumber,
       required String finalAmount,
       required int expires,
       required DateTime expiresAt,
-      required String serviceProvider}) = _$_TopUpDetails;
+      required String serviceProvider}) = _$_TopUpVADetails;
 
-  factory _TopUpDetails.fromJson(Map<String, dynamic> json) =
-      _$_TopUpDetails.fromJson;
+  factory _TopUpVADetails.fromJson(Map<String, dynamic> json) =
+      _$_TopUpVADetails.fromJson;
 
   @override
   String get orderId => throw _privateConstructorUsedError;
@@ -311,6 +313,6 @@ abstract class _TopUpDetails implements TopUpDetails {
   String get serviceProvider => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TopUpDetailsCopyWith<_TopUpDetails> get copyWith =>
+  _$TopUpVADetailsCopyWith<_TopUpVADetails> get copyWith =>
       throw _privateConstructorUsedError;
 }

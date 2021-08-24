@@ -89,4 +89,10 @@ class Styles {
 
   static TextStyle creditTopupSubtitleStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle creditDetailsLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle creditDetailsStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w700);
 }
