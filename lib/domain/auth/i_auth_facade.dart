@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
+import 'package:digiresto/domain/auth/entity/login_otp.dart';
 import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
@@ -20,9 +21,13 @@ abstract class IAuthFacade {
     required PhoneNumber phoneNumber,
     required Otp otp,
   });
+  Future<Either<AuthFailure, LoginOtp>> loginOtp({
+    required PhoneNumber phoneNumber,
+    required Otp otp,
+  });
   Future<Either<AuthFailure, RegisterStatus>> register({
     required RegisterInput registerInput,
   });
+  Future<Either<AuthFailure, Unit>> signOut();
   Future<void> changeUrl({required String url});
-  Future<Either<AuthFailure, bool>> signOut();
 }

@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
-import 'package:digiresto/main.dart';
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-// import 'package:get/route_manager.dart';
 import 'package:injectable/injectable.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
+import 'package:digiresto/main.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:shake/shake.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -5,7 +5,6 @@ import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/login/widgets/dev_mode_dialog.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
@@ -13,7 +12,7 @@ import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -49,6 +48,14 @@ class LoginForm extends StatelessWidget {
 
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
+        state.otpFailureOrSuccessOption.fold(
+          () => null,
+          (link) => Get.to(
+            ValidateOtpPage(
+              phoneNumber: state.phoneNumber.getOrCrash(),
+            ),
+          ),
+        );
         print(state.isShowDialogShake);
         if (state.isShowDialogShake) {
           if (Get.isDialogOpen == null || Get.isDialogOpen == false) {

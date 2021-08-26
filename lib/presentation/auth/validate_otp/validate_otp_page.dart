@@ -8,6 +8,7 @@ import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -72,8 +73,8 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
                   invalidOtp: (_) => 'Invalid Otp',
                 )),
             // (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
-            (isMember) => isMember
-                ? Get.to(LoginPinPage(widget.phoneNumber))
+            (login) => login.isMember
+                ? Get.offAllNamed(Routers.auth)
                 : Get.to(RegisterPage(widget.phoneNumber)),
           ),
         );

@@ -150,4 +150,16 @@ class ValueValidators {
       return left(ValueFailure.lengthTooShort(failedValue: value, min: length));
     return right(value);
   }
+
+  static Either<ValueFailure<String>, String> validateMinNumber(
+    String input,
+    num minNumber,
+  ) {
+    if ((num.tryParse(input) ?? 0) >= minNumber) {
+      return right(input);
+    } else {
+      return left(
+          ValueFailure.lessThanMinimum(failedValue: input, min: minNumber));
+    }
+  }
 }

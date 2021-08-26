@@ -24,7 +24,9 @@ class Endpoints {
 
   static const String urlGetOtp = "/auth/register/token?phoneNumber=";
   static const String urlValidateOtp = "/auth/register/validateOtp";
+  static const String urlLoginOtp = "/auth/register/loginOtp";
   static const String urlLogin = "/auth/login";
+  static const String urlLogout = "/auth/logout";
   static const String urlRegister = "/auth/register";
   static const String urlBalance = "/user/balance";
   static const String urlCreditHistory = "/user/account/history";
@@ -39,6 +41,7 @@ class Endpoints {
   static const String urlTopup = "/forward?r=topup";
   static const String urlTopupPending = "/forward?r=topuppending";
   static const String urlCancelBilling = "/forward?r=cancelbilling";
+  static const String urlPaymentHistory = "/user/account/history";
 
   //home
   static const String urlGetPromo = "/forward?r=getpromo";

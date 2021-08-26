@@ -24,7 +24,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       authCheckRequested: (e) async* {
         final userOption = await _authFacade.getSignedInUser();
         yield userOption.fold(
-          (failure) => AuthState.authFailure(failure),
+          (failure) => failure.maybeMap(
+              orElse: () => AuthState.authFailure(failure),
+              invalidToken: (e) {
+                _authFacade.signOut();
+                return AuthState.unauthenticated();
+              }),
           (user) => user.fold(
             () => const AuthState.unauthenticated(),
             (a) => AuthState.authenticated(),
