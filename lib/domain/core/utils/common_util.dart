@@ -50,6 +50,11 @@ class CommonUtils {
     return 'Rp. ' + format.format(amount);
   }
 
+  static String currencyFormatOnlyNominal(double amount) {
+    NumberFormat format = NumberFormat("#,##0", "id_ID");
+    return format.format(amount);
+  }
+
   static bool validateEmail(String value) {
     return _emailRegExp.hasMatch(value);
   }

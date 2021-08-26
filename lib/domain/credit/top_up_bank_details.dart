@@ -11,7 +11,7 @@ String topUpBankDetailsToJson(TopUpBankDetails data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class TopUpBankDetails with _$TopUpBankDetails {
+class TopUpBankDetails with _$TopUpBankDetails {
   const factory TopUpBankDetails({
     required DateTime formattedTransactionDate,
     required String bankAccName,

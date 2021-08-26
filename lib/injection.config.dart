@@ -15,13 +15,15 @@ import 'package:logger/logger.dart' as _i11;
 
 import 'application/address/list/address_list_bloc.dart' as _i30;
 import 'application/address/map/address_map_bloc.dart' as _i31;
-import 'application/auth/auth_bloc.dart' as _i43;
+import 'application/auth/auth_bloc.dart' as _i45;
 import 'application/auth/login/login_bloc.dart' as _i39;
-import 'application/auth/register/register_bloc.dart' as _i40;
-import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i42;
+import 'application/auth/register/register_bloc.dart' as _i41;
+import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i43;
 import 'application/core/app_bloc.dart' as _i16;
-import 'application/credit/credit_bloc.dart' as _i44;
-import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i41;
+import 'application/credit/credit_bloc.dart' as _i46;
+import 'application/credit/recent_history/recent_history_bloc.dart' as _i40;
+import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i42;
+import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i44;
 import 'application/home/home_user_bloc/home_user_bloc.dart' as _i34;
 import 'domain/auth/i_auth_facade.dart' as _i35;
 import 'domain/core/constants/network/env.dart' as _i6;
@@ -33,7 +35,7 @@ import 'infrastructure/auth/api_auth_facade.dart' as _i36;
 import 'infrastructure/core/auth_interceptor.dart' as _i17;
 import 'infrastructure/core/location_service.dart' as _i10;
 import 'infrastructure/core/network_service.dart' as _i21;
-import 'infrastructure/core/register_module.dart' as _i45;
+import 'infrastructure/core/register_module.dart' as _i47;
 import 'infrastructure/core/storage.dart' as _i14;
 import 'infrastructure/credit/credit_repository.dart' as _i38;
 import 'infrastructure/network/apis/auth/auth_api.dart' as _i32;
@@ -117,16 +119,20 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i37.ICreditRepository>(() =>
       _i38.CreditRepository(get<_i20.INetworkService>(), get<_i11.Logger>()));
   gh.factory<_i39.LoginBloc>(() => _i39.LoginBloc(get<_i35.IAuthFacade>()));
-  gh.factory<_i40.RegisterBloc>(
-      () => _i40.RegisterBloc(get<_i35.IAuthFacade>()));
-  gh.factory<_i41.TopUpCreditBloc>(() => _i41.TopUpCreditBloc(
+  gh.factory<_i40.RecentHistoryBloc>(
+      () => _i40.RecentHistoryBloc(get<_i37.ICreditRepository>()));
+  gh.factory<_i41.RegisterBloc>(
+      () => _i41.RegisterBloc(get<_i35.IAuthFacade>()));
+  gh.factory<_i42.TopUpCreditBloc>(() => _i42.TopUpCreditBloc(
       get<_i37.ICreditRepository>(), get<_i13.IStorage>()));
-  gh.factory<_i42.ValidateOtpBloc>(
-      () => _i42.ValidateOtpBloc(get<_i35.IAuthFacade>(), get<_i11.Logger>()));
-  gh.factory<_i43.AuthBloc>(() => _i43.AuthBloc(get<_i35.IAuthFacade>()));
-  gh.factory<_i44.CreditBloc>(
-      () => _i44.CreditBloc(get<_i37.ICreditRepository>()));
+  gh.factory<_i43.ValidateOtpBloc>(
+      () => _i43.ValidateOtpBloc(get<_i35.IAuthFacade>(), get<_i11.Logger>()));
+  gh.factory<_i44.WaitingPaymentBloc>(
+      () => _i44.WaitingPaymentBloc(get<_i37.ICreditRepository>()));
+  gh.factory<_i45.AuthBloc>(() => _i45.AuthBloc(get<_i35.IAuthFacade>()));
+  gh.factory<_i46.CreditBloc>(
+      () => _i46.CreditBloc(get<_i37.ICreditRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i45.RegisterModule {}
+class _$RegisterModule extends _i47.RegisterModule {}

@@ -14,7 +14,7 @@ UserBalance userBalanceFromJson(String str) =>
 String userBalanceToJson(UserBalance data) => json.encode(data.toJson());
 
 @freezed
-abstract class UserBalance with _$UserBalance {
+class UserBalance with _$UserBalance {
   const factory UserBalance({
     required String username,
     required String balance,

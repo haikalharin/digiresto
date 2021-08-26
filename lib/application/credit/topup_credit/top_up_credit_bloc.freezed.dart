@@ -22,9 +22,9 @@ class _$TopUpCreditEventTearOff {
     );
   }
 
-  _TopUpSubmitted topUpSubmitted(String bankCode) {
+  _TopUpSubmitted topUpSubmitted(TopUpSubCategoryParam param) {
     return _TopUpSubmitted(
-      bankCode,
+      param,
     );
   }
 
@@ -43,14 +43,14 @@ mixin _$TopUpCreditEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nominalStr) nominalChanged,
-    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(TopUpSubCategoryParam param) topUpSubmitted,
     required TResult Function(String destination) changeDestination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
     TResult Function(String destination)? changeDestination,
     required TResult orElse(),
   }) =>
@@ -156,7 +156,7 @@ class _$_NominalChanged implements _NominalChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nominalStr) nominalChanged,
-    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(TopUpSubCategoryParam param) topUpSubmitted,
     required TResult Function(String destination) changeDestination,
   }) {
     return nominalChanged(nominalStr);
@@ -166,7 +166,7 @@ class _$_NominalChanged implements _NominalChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
     TResult Function(String destination)? changeDestination,
     required TResult orElse(),
   }) {
@@ -215,7 +215,9 @@ abstract class _$TopUpSubmittedCopyWith<$Res> {
   factory _$TopUpSubmittedCopyWith(
           _TopUpSubmitted value, $Res Function(_TopUpSubmitted) then) =
       __$TopUpSubmittedCopyWithImpl<$Res>;
-  $Res call({String bankCode});
+  $Res call({TopUpSubCategoryParam param});
+
+  $TopUpSubCategoryParamCopyWith<$Res> get param;
 }
 
 /// @nodoc
@@ -231,42 +233,48 @@ class __$TopUpSubmittedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? bankCode = freezed,
+    Object? param = freezed,
   }) {
     return _then(_TopUpSubmitted(
-      bankCode == freezed
-          ? _value.bankCode
-          : bankCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      param == freezed
+          ? _value.param
+          : param // ignore: cast_nullable_to_non_nullable
+              as TopUpSubCategoryParam,
     ));
+  }
+
+  @override
+  $TopUpSubCategoryParamCopyWith<$Res> get param {
+    return $TopUpSubCategoryParamCopyWith<$Res>(_value.param, (value) {
+      return _then(_value.copyWith(param: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_TopUpSubmitted implements _TopUpSubmitted {
-  const _$_TopUpSubmitted(this.bankCode);
+  const _$_TopUpSubmitted(this.param);
 
   @override
-  final String bankCode;
+  final TopUpSubCategoryParam param;
 
   @override
   String toString() {
-    return 'TopUpCreditEvent.topUpSubmitted(bankCode: $bankCode)';
+    return 'TopUpCreditEvent.topUpSubmitted(param: $param)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _TopUpSubmitted &&
-            (identical(other.bankCode, bankCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.bankCode, bankCode)));
+            (identical(other.param, param) ||
+                const DeepCollectionEquality().equals(other.param, param)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(bankCode);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(param);
 
   @JsonKey(ignore: true)
   @override
@@ -277,22 +285,22 @@ class _$_TopUpSubmitted implements _TopUpSubmitted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nominalStr) nominalChanged,
-    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(TopUpSubCategoryParam param) topUpSubmitted,
     required TResult Function(String destination) changeDestination,
   }) {
-    return topUpSubmitted(bankCode);
+    return topUpSubmitted(param);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
     TResult Function(String destination)? changeDestination,
     required TResult orElse(),
   }) {
     if (topUpSubmitted != null) {
-      return topUpSubmitted(bankCode);
+      return topUpSubmitted(param);
     }
     return orElse();
   }
@@ -323,9 +331,10 @@ class _$_TopUpSubmitted implements _TopUpSubmitted {
 }
 
 abstract class _TopUpSubmitted implements TopUpCreditEvent {
-  const factory _TopUpSubmitted(String bankCode) = _$_TopUpSubmitted;
+  const factory _TopUpSubmitted(TopUpSubCategoryParam param) =
+      _$_TopUpSubmitted;
 
-  String get bankCode => throw _privateConstructorUsedError;
+  TopUpSubCategoryParam get param => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$TopUpSubmittedCopyWith<_TopUpSubmitted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -398,7 +407,7 @@ class _$_ChangeDestination implements _ChangeDestination {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nominalStr) nominalChanged,
-    required TResult Function(String bankCode) topUpSubmitted,
+    required TResult Function(TopUpSubCategoryParam param) topUpSubmitted,
     required TResult Function(String destination) changeDestination,
   }) {
     return changeDestination(destination);
@@ -408,7 +417,7 @@ class _$_ChangeDestination implements _ChangeDestination {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(String bankCode)? topUpSubmitted,
+    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
     TResult Function(String destination)? changeDestination,
     required TResult orElse(),
   }) {

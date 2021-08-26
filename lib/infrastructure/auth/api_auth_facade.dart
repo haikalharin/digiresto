@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
+import 'package:digiresto/domain/auth/entity/login_otp.dart';
 import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
@@ -197,5 +198,48 @@ class ApiAuthFacade implements IAuthFacade {
   Future<void> changeUrl({required String url}) async {
     await _storage.openBox(StorageConstants.base);
     await _storage.putString(key: 'devUrl', value: url);
+  }
+
+  @override
+  Future<Either<AuthFailure, LoginOtp>> loginOtp(
+      {required PhoneNumber phoneNumber, required Otp otp}) async {
+    String apiUrl = Endpoints.urlLoginOtp;
+    String _phoneNumber = phoneNumber.getOrCrash();
+    String _otp = otp.getOrCrash();
+
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "phoneNumber": _phoneNumber,
+          "otp": _otp,
+        },
+      );
+      final data = (apiResult as Map<String, dynamic>)['data'];
+      logger.d('data' + data.toString());
+      final userData = Map<String, dynamic>.from(data);
+      logger.d('userdata: ' + userData.toString());
+      final _login = LoginOtp.fromJson(userData);
+
+      if (_login.isMember) {
+        final _user = UserAuth.fromJson(userData);
+        await _storage.openBox(StorageConstants.user);
+        await _storage.putData(json: _user.toJson());
+        final _userInStorage = await _storage.getData();
+        logger.d('user in storage :' + _userInStorage.toString());
+        await _storage.close();
+      }
+      return right(_login);
+    } on ServerException catch (e) {
+      logger.d(e.code);
+      if (e.code == '22') {
+        return left(AuthFailure.invalidOtp(e.message));
+      }
+      return left(AuthFailure.serverError());
+    } on NoInternetException catch (_) {
+      return left(AuthFailure.noInternet());
+    } catch (e) {
+      return left(AuthFailure.serverError());
+    }
   }
 }

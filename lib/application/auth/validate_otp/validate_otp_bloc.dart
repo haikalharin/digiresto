@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
+import 'package:digiresto/domain/auth/entity/login_otp.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -64,7 +65,7 @@ class ValidateOtpBloc extends Bloc<ValidateOtpEvent, ValidateOtpState> {
         _logger.d(
             'Event inputSubmitting ${_event.otpStr} ${_event.phoneNumberStr}');
 
-        final isMember = await _authFacade.validateOtp(
+        final isMember = await _authFacade.loginOtp(
           phoneNumber: PhoneNumber(_event.phoneNumberStr),
           otp: Otp(_event.otpStr),
         );

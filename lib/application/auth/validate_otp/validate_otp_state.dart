@@ -6,7 +6,7 @@ class ValidateOtpState with _$ValidateOtpState {
     required Otp otp,
     required bool showErrorMessages,
     required bool isSubmitting,
-    required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
+    required Option<Either<AuthFailure, LoginOtp>> validateFailureOrSuccess,
     required Option<Function> onInvalidOtpOption,
   }) = _ValidateOtpState;
 

@@ -475,7 +475,7 @@ class _$ValidateOtpStateTearOff {
       {required Otp otp,
       required bool showErrorMessages,
       required bool isSubmitting,
-      required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
+      required Option<Either<AuthFailure, LoginOtp>> validateFailureOrSuccess,
       required Option<Function> onInvalidOtpOption}) {
     return _ValidateOtpState(
       otp: otp,
@@ -495,7 +495,7 @@ mixin _$ValidateOtpState {
   Otp get otp => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
-  Option<Either<AuthFailure, bool>> get validateFailureOrSuccess =>
+  Option<Either<AuthFailure, LoginOtp>> get validateFailureOrSuccess =>
       throw _privateConstructorUsedError;
   Option<Function> get onInvalidOtpOption => throw _privateConstructorUsedError;
 
@@ -513,7 +513,7 @@ abstract class $ValidateOtpStateCopyWith<$Res> {
       {Otp otp,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
+      Option<Either<AuthFailure, LoginOtp>> validateFailureOrSuccess,
       Option<Function> onInvalidOtpOption});
 }
 
@@ -550,7 +550,7 @@ class _$ValidateOtpStateCopyWithImpl<$Res>
       validateFailureOrSuccess: validateFailureOrSuccess == freezed
           ? _value.validateFailureOrSuccess
           : validateFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, bool>>,
+              as Option<Either<AuthFailure, LoginOtp>>,
       onInvalidOtpOption: onInvalidOtpOption == freezed
           ? _value.onInvalidOtpOption
           : onInvalidOtpOption // ignore: cast_nullable_to_non_nullable
@@ -570,7 +570,7 @@ abstract class _$ValidateOtpStateCopyWith<$Res>
       {Otp otp,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
+      Option<Either<AuthFailure, LoginOtp>> validateFailureOrSuccess,
       Option<Function> onInvalidOtpOption});
 }
 
@@ -609,7 +609,7 @@ class __$ValidateOtpStateCopyWithImpl<$Res>
       validateFailureOrSuccess: validateFailureOrSuccess == freezed
           ? _value.validateFailureOrSuccess
           : validateFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, bool>>,
+              as Option<Either<AuthFailure, LoginOtp>>,
       onInvalidOtpOption: onInvalidOtpOption == freezed
           ? _value.onInvalidOtpOption
           : onInvalidOtpOption // ignore: cast_nullable_to_non_nullable
@@ -635,7 +635,7 @@ class _$_ValidateOtpState implements _ValidateOtpState {
   @override
   final bool isSubmitting;
   @override
-  final Option<Either<AuthFailure, bool>> validateFailureOrSuccess;
+  final Option<Either<AuthFailure, LoginOtp>> validateFailureOrSuccess;
   @override
   final Option<Function> onInvalidOtpOption;
 
@@ -686,7 +686,7 @@ abstract class _ValidateOtpState implements ValidateOtpState {
       {required Otp otp,
       required bool showErrorMessages,
       required bool isSubmitting,
-      required Option<Either<AuthFailure, bool>> validateFailureOrSuccess,
+      required Option<Either<AuthFailure, LoginOtp>> validateFailureOrSuccess,
       required Option<Function> onInvalidOtpOption}) = _$_ValidateOtpState;
 
   @override
@@ -696,7 +696,7 @@ abstract class _ValidateOtpState implements ValidateOtpState {
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
-  Option<Either<AuthFailure, bool>> get validateFailureOrSuccess =>
+  Option<Either<AuthFailure, LoginOtp>> get validateFailureOrSuccess =>
       throw _privateConstructorUsedError;
   @override
   Option<Function> get onInvalidOtpOption => throw _privateConstructorUsedError;

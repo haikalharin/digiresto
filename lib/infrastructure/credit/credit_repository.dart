@@ -4,7 +4,9 @@ import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/credit/credit_failure.dart';
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/credit/i_credit_repository.dart';
+import 'package:digiresto/domain/credit/payment_history.dart';
 import 'package:digiresto/domain/credit/top_up_bank_details.dart';
+import 'package:digiresto/domain/credit/top_up_pending.dart';
 import 'package:digiresto/domain/credit/top_up_va_details.dart';
 import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/domain/credit/user_balance.dart';
@@ -20,15 +22,28 @@ class CreditRepository implements ICreditRepository {
   @override
   Future<Either<CreditFailure, IList<TopUpMethod>>> getTopUpMethod() async {
     String apiUrl = Endpoints.urlTopupList;
-    final apiResult = await _networkService.getHttp(
-      path: apiUrl,
-      useAuth: true,
-    );
-    final data = (apiResult as Map<String, dynamic>)['data']['topupMethod'];
-    final topUpData = List<Map<String, dynamic>>.from(data);
-    final result = topUpData.map((a) => TopUpMethod.fromJson(a)).toIList();
-    logger.d(data);
-    return right(result);
+    try {
+      final apiResult = await _networkService.getHttp(
+        path: apiUrl,
+        useAuth: true,
+      );
+      final data = (apiResult as Map<String, dynamic>)['data']['topupMethod'];
+      final topUpData = List<Map<String, dynamic>>.from(data);
+      final result = topUpData.map((a) => TopUpMethod.fromJson(a)).toIList();
+      logger.d(data);
+      return right(result);
+    } on ServerException catch (e) {
+      logger.d(e.message);
+      return left(CreditFailure.serverException(
+        code: e.code,
+        message: e.message,
+      ));
+    } on NoInternetException catch (_) {
+      return left(CreditFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(CreditFailure.unexpected());
+    }
   }
 
   @override
@@ -61,7 +76,8 @@ class CreditRepository implements ICreditRepository {
   Future<Either<CreditFailure, TopUpVADetails>> topUpVA({
     required String bankCode,
     required String customerPhone,
-    required String finalAmount,
+    required String amount,
+    required String fee,
   }) async {
     String apiUrl = Endpoints.urlTopup;
     try {
@@ -70,7 +86,8 @@ class CreditRepository implements ICreditRepository {
         "body": {
           "bankCode": bankCode,
           "customerPhone": customerPhone,
-          "finalAmount": finalAmount,
+          "amount": amount,
+          "fee": fee,
         }
       });
       final data = (apiResult as Map<String, dynamic>)['data'];
@@ -109,6 +126,95 @@ class CreditRepository implements ICreditRepository {
       final data = (apiResult as Map<String, dynamic>)['data'];
       final topUpDetails = Map<String, dynamic>.from(data);
       return right(TopUpBankDetails.fromJson(topUpDetails));
+    } on ServerException catch (e) {
+      logger.d(e.message);
+      return left(CreditFailure.serverException(
+        code: e.code,
+        message: e.message,
+      ));
+    } on NoInternetException catch (_) {
+      return left(CreditFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(CreditFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<CreditFailure, IList<TopUpPending>>> getTopUpPending() async {
+    String apiUrl = Endpoints.urlTopupPending;
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        useAuth: true,
+      );
+      final data = (apiResult as Map<String, dynamic>)['data'];
+      final listData = List.from(data);
+      final listTopUp =
+          listData.map((json) => TopUpPending.fromJson(json)).toIList();
+      return right(listTopUp);
+    } on ServerException catch (e) {
+      logger.d(e.message);
+      return left(CreditFailure.serverException(
+        code: e.code,
+        message: e.message,
+      ));
+    } on NoInternetException catch (_) {
+      return left(CreditFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(CreditFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<CreditFailure, String>> cancelTopup(String billingId) async {
+    String apiUrl = Endpoints.urlCancelBilling;
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        useAuth: true,
+        content: {
+          "query_string": {
+            "billingId": billingId,
+          },
+          "body": {}
+        },
+      );
+      final data = (apiResult as Map<String, dynamic>)['response']["code"];
+      return right(data);
+    } on ServerException catch (e) {
+      logger.d(e.message);
+      return left(CreditFailure.serverException(
+        code: e.code,
+        message: e.message,
+      ));
+    } on NoInternetException catch (_) {
+      return left(CreditFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(CreditFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<CreditFailure, PaymentHistory>> getRecentHistory({
+    required int onPage,
+    required int pageSize,
+  }) async {
+    String apiUrl = Endpoints.urlPaymentHistory;
+
+    try {
+      final apiResult = await _networkService.getHttp(
+        path: '$apiUrl?onPage=$onPage&pageSize=$pageSize',
+        useAuth: true,
+      );
+      final data =
+          (apiResult as Map<String, dynamic>)['data']['accountHistory'];
+      final json = Map<String, dynamic>.from(data);
+      final result = PaymentHistory.fromJson(json);
+      logger.d(data);
+      return right(result);
     } on ServerException catch (e) {
       logger.d(e.message);
       return left(CreditFailure.serverException(

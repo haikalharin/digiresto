@@ -95,4 +95,16 @@ class Styles {
 
   static TextStyle creditDetailsStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.w700);
+
+  static TextStyle topUpDateStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle topUpDetailsStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle dialogTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold);
+
+  static TextStyle dialogSubtitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
 }

@@ -7,6 +7,7 @@ import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/credit/credit_failure.dart';
 import 'package:digiresto/domain/credit/i_credit_repository.dart';
 import 'package:digiresto/domain/credit/top_up_bank_details.dart';
+import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/domain/credit/top_up_va_details.dart';
 import 'package:digiresto/domain/credit/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -41,7 +42,6 @@ class TopUpCreditBloc extends Bloc<TopUpCreditEvent, TopUpCreditState> {
       topUpSubmitted: (_event) async* {
         yield state.copyWith(
           isSubmitting: true,
-          showError: true,
         );
         final isNominalValid = state.nominal.isValid();
         Either<CreditFailure, TopUpVADetails>? vaFailureOrSuccess;
@@ -55,14 +55,14 @@ class TopUpCreditBloc extends Bloc<TopUpCreditEvent, TopUpCreditState> {
           switch (state.destination) {
             case 'TOP_UP_VA':
               vaFailureOrSuccess = await _creditRepository.topUpVA(
-                bankCode: _event.bankCode,
-                customerPhone: _userAuth.mobilePhone!,
-                finalAmount: _nominal,
-              );
+                  bankCode: _event.param.bankCode,
+                  customerPhone: _userAuth.mobilePhone!,
+                  amount: _nominal,
+                  fee: _event.param.fee ?? '0');
               break;
             case 'TOP_UP_BANK':
               bankFailureOrSuccess = await _creditRepository.topUpBank(
-                bankCode: _event.bankCode,
+                bankCode: _event.param.bankCode,
                 customerPhone: _userAuth.mobilePhone!,
                 finalAmount: _nominal,
               );
@@ -73,7 +73,6 @@ class TopUpCreditBloc extends Bloc<TopUpCreditEvent, TopUpCreditState> {
         }
         yield state.copyWith(
           isSubmitting: false,
-          showError: false,
           topUpVAfailureOrSuccess: optionOf(vaFailureOrSuccess),
           topUpBankfailureOrSuccess: optionOf(bankFailureOrSuccess),
         );

@@ -24,18 +24,20 @@ class _$TopUpVADetailsTearOff {
       {required String orderId,
       required String title,
       required String vaNumber,
+      required String amount,
+      required String fee,
       required String finalAmount,
       required int expires,
-      required DateTime expiresAt,
-      required String serviceProvider}) {
+      required DateTime expiresAt}) {
     return _TopUpVADetails(
       orderId: orderId,
       title: title,
       vaNumber: vaNumber,
+      amount: amount,
+      fee: fee,
       finalAmount: finalAmount,
       expires: expires,
       expiresAt: expiresAt,
-      serviceProvider: serviceProvider,
     );
   }
 
@@ -52,10 +54,11 @@ mixin _$TopUpVADetails {
   String get orderId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get vaNumber => throw _privateConstructorUsedError;
+  String get amount => throw _privateConstructorUsedError;
+  String get fee => throw _privateConstructorUsedError;
   String get finalAmount => throw _privateConstructorUsedError;
   int get expires => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
-  String get serviceProvider => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,10 +75,11 @@ abstract class $TopUpVADetailsCopyWith<$Res> {
       {String orderId,
       String title,
       String vaNumber,
+      String amount,
+      String fee,
       String finalAmount,
       int expires,
-      DateTime expiresAt,
-      String serviceProvider});
+      DateTime expiresAt});
 }
 
 /// @nodoc
@@ -92,10 +96,11 @@ class _$TopUpVADetailsCopyWithImpl<$Res>
     Object? orderId = freezed,
     Object? title = freezed,
     Object? vaNumber = freezed,
+    Object? amount = freezed,
+    Object? fee = freezed,
     Object? finalAmount = freezed,
     Object? expires = freezed,
     Object? expiresAt = freezed,
-    Object? serviceProvider = freezed,
   }) {
     return _then(_value.copyWith(
       orderId: orderId == freezed
@@ -110,6 +115,14 @@ class _$TopUpVADetailsCopyWithImpl<$Res>
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      fee: fee == freezed
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as String,
       finalAmount: finalAmount == freezed
           ? _value.finalAmount
           : finalAmount // ignore: cast_nullable_to_non_nullable
@@ -122,10 +135,6 @@ class _$TopUpVADetailsCopyWithImpl<$Res>
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      serviceProvider: serviceProvider == freezed
-          ? _value.serviceProvider
-          : serviceProvider // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -141,10 +150,11 @@ abstract class _$TopUpVADetailsCopyWith<$Res>
       {String orderId,
       String title,
       String vaNumber,
+      String amount,
+      String fee,
       String finalAmount,
       int expires,
-      DateTime expiresAt,
-      String serviceProvider});
+      DateTime expiresAt});
 }
 
 /// @nodoc
@@ -163,10 +173,11 @@ class __$TopUpVADetailsCopyWithImpl<$Res>
     Object? orderId = freezed,
     Object? title = freezed,
     Object? vaNumber = freezed,
+    Object? amount = freezed,
+    Object? fee = freezed,
     Object? finalAmount = freezed,
     Object? expires = freezed,
     Object? expiresAt = freezed,
-    Object? serviceProvider = freezed,
   }) {
     return _then(_TopUpVADetails(
       orderId: orderId == freezed
@@ -181,6 +192,14 @@ class __$TopUpVADetailsCopyWithImpl<$Res>
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      fee: fee == freezed
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as String,
       finalAmount: finalAmount == freezed
           ? _value.finalAmount
           : finalAmount // ignore: cast_nullable_to_non_nullable
@@ -193,10 +212,6 @@ class __$TopUpVADetailsCopyWithImpl<$Res>
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      serviceProvider: serviceProvider == freezed
-          ? _value.serviceProvider
-          : serviceProvider // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -208,10 +223,11 @@ class _$_TopUpVADetails implements _TopUpVADetails {
       {required this.orderId,
       required this.title,
       required this.vaNumber,
+      required this.amount,
+      required this.fee,
       required this.finalAmount,
       required this.expires,
-      required this.expiresAt,
-      required this.serviceProvider});
+      required this.expiresAt});
 
   factory _$_TopUpVADetails.fromJson(Map<String, dynamic> json) =>
       _$_$_TopUpVADetailsFromJson(json);
@@ -223,17 +239,19 @@ class _$_TopUpVADetails implements _TopUpVADetails {
   @override
   final String vaNumber;
   @override
+  final String amount;
+  @override
+  final String fee;
+  @override
   final String finalAmount;
   @override
   final int expires;
   @override
   final DateTime expiresAt;
-  @override
-  final String serviceProvider;
 
   @override
   String toString() {
-    return 'TopUpVADetails(orderId: $orderId, title: $title, vaNumber: $vaNumber, finalAmount: $finalAmount, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider)';
+    return 'TopUpVADetails(orderId: $orderId, title: $title, vaNumber: $vaNumber, amount: $amount, fee: $fee, finalAmount: $finalAmount, expires: $expires, expiresAt: $expiresAt)';
   }
 
   @override
@@ -248,6 +266,10 @@ class _$_TopUpVADetails implements _TopUpVADetails {
             (identical(other.vaNumber, vaNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.vaNumber, vaNumber)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.fee, fee) ||
+                const DeepCollectionEquality().equals(other.fee, fee)) &&
             (identical(other.finalAmount, finalAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.finalAmount, finalAmount)) &&
@@ -256,10 +278,7 @@ class _$_TopUpVADetails implements _TopUpVADetails {
                     .equals(other.expires, expires)) &&
             (identical(other.expiresAt, expiresAt) ||
                 const DeepCollectionEquality()
-                    .equals(other.expiresAt, expiresAt)) &&
-            (identical(other.serviceProvider, serviceProvider) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceProvider, serviceProvider)));
+                    .equals(other.expiresAt, expiresAt)));
   }
 
   @override
@@ -268,10 +287,11 @@ class _$_TopUpVADetails implements _TopUpVADetails {
       const DeepCollectionEquality().hash(orderId) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(vaNumber) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(fee) ^
       const DeepCollectionEquality().hash(finalAmount) ^
       const DeepCollectionEquality().hash(expires) ^
-      const DeepCollectionEquality().hash(expiresAt) ^
-      const DeepCollectionEquality().hash(serviceProvider);
+      const DeepCollectionEquality().hash(expiresAt);
 
   @JsonKey(ignore: true)
   @override
@@ -289,10 +309,11 @@ abstract class _TopUpVADetails implements TopUpVADetails {
       {required String orderId,
       required String title,
       required String vaNumber,
+      required String amount,
+      required String fee,
       required String finalAmount,
       required int expires,
-      required DateTime expiresAt,
-      required String serviceProvider}) = _$_TopUpVADetails;
+      required DateTime expiresAt}) = _$_TopUpVADetails;
 
   factory _TopUpVADetails.fromJson(Map<String, dynamic> json) =
       _$_TopUpVADetails.fromJson;
@@ -304,13 +325,15 @@ abstract class _TopUpVADetails implements TopUpVADetails {
   @override
   String get vaNumber => throw _privateConstructorUsedError;
   @override
+  String get amount => throw _privateConstructorUsedError;
+  @override
+  String get fee => throw _privateConstructorUsedError;
+  @override
   String get finalAmount => throw _privateConstructorUsedError;
   @override
   int get expires => throw _privateConstructorUsedError;
   @override
   DateTime get expiresAt => throw _privateConstructorUsedError;
-  @override
-  String get serviceProvider => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TopUpVADetailsCopyWith<_TopUpVADetails> get copyWith =>

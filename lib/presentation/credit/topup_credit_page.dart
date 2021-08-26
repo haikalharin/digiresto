@@ -1,5 +1,6 @@
 import 'package:digiresto/application/credit/topup_credit/top_up_credit_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/core/utils/input_formatter.dart';
 import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/injection.dart';
@@ -202,24 +203,62 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                         ],
                         keyboardType: TextInputType.number,
                         prefix: Padding(
-                          padding: EdgeInsets.only(left: 15, right: 5),
+                          padding: EdgeInsets.only(
+                            left: 15,
+                            right: 2,
+                            top: 2,
+                          ),
                           child: Text(
                             'Rp ',
                             style: Styles.creditNominalSmallStyle.copyWith(
                               color: controller.text == ''
                                   ? AppColors.greyColor
-                                  : AppColors.mainColor,
+                                  : AppColors.black,
                             ),
                           ),
                         ),
                         hintText: '0',
                         hintStyle: Styles.creditNominalSmallStyle
                             .copyWith(color: AppColors.greyColor),
-                        inputStyle: Styles.creditNominalSmallStyle,
+                        inputStyle: Styles.creditNominalSmallStyle.copyWith(
+                          color: AppColors.black,
+                        ),
+                        validator: (_) => state.nominal.value.fold(
+                          (failure) => failure.maybeMap(
+                            orElse: () => 'Invalid Nomina',
+                            lessThanMinimum: (_) => 'Minimum 10.000',
+                          ),
+                          (_) => null,
+                        ),
                       )
                     ],
                   ),
                 ),
+                Divider(
+                  thickness: 12,
+                  color: AppColors.dividerColor,
+                ),
+                if (widget.bankItem.param.fee != null)
+                  Padding(
+                    padding: EdgeInsets.all(Dimens.defaultMargin),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Catatan :',
+                          style: Styles.creditMenuSubtitleStyle,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Transaksi ini akan dikenakan biaya sebesar ${CommonUtils.currencyFormat(double.parse(widget.bankItem.param.fee ?? '0'))}',
+                          style: Styles.creditMenuSubtitleStyle
+                              .copyWith(color: AppColors.redYoung),
+                        ),
+                      ],
+                    ),
+                  ),
               ],
             ),
             Positioned(
@@ -230,7 +269,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                 label: 'Isi Saldo',
                 onPressed: () => _topUpBloc.add(
                   TopUpCreditEvent.topUpSubmitted(
-                    widget.bankItem.param.bankCode,
+                    widget.bankItem.param,
                   ),
                 ),
                 color: AppColors.mainColor,

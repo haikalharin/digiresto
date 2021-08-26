@@ -4,21 +4,22 @@ import 'dart:convert';
 part 'top_up_va_details.freezed.dart';
 part 'top_up_va_details.g.dart';
 
-TopUpVADetails topUpDetailsFromJson(String str) =>
+TopUpVADetails topUpVaDetailsFromJson(String str) =>
     TopUpVADetails.fromJson(json.decode(str));
 
-String topUpDetailsToJson(TopUpVADetails data) => json.encode(data.toJson());
+String topUpVaDetailsToJson(TopUpVADetails data) => json.encode(data.toJson());
 
 @freezed
-abstract class TopUpVADetails with _$TopUpVADetails {
+class TopUpVADetails with _$TopUpVADetails {
   const factory TopUpVADetails({
     required String orderId,
     required String title,
     required String vaNumber,
+    required String amount,
+    required String fee,
     required String finalAmount,
     required int expires,
     required DateTime expiresAt,
-    required String serviceProvider,
   }) = _TopUpVADetails;
 
   factory TopUpVADetails.fromJson(Map<String, dynamic> json) =>

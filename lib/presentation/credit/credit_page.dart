@@ -1,8 +1,11 @@
 import 'package:digiresto/application/credit/credit_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
+import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
+import 'package:digiresto/presentation/credit/recent_history_page.dart';
+import 'package:digiresto/presentation/credit/waiting_payment_page.dart';
 import 'package:digiresto/presentation/credit/widgets/credit_menu.dart';
 import 'package:digiresto/presentation/credit/credit_subcategory_page.dart';
 import 'package:digiresto/presentation/credit/widgets/credit_tabview.dart';
@@ -119,7 +122,8 @@ class CreditPage extends StatelessWidget {
                                       style: Styles.creditCurrencyStyle,
                                     ),
                                     Text(
-                                      userBalance.balance,
+                                      CommonUtils.currencyFormatOnlyNominal(
+                                          double.parse(userBalance.balance)),
                                       style: Styles.creditNominalStyle
                                           .copyWith(height: 1.2),
                                     ),
@@ -198,12 +202,12 @@ class CreditPage extends StatelessWidget {
                             CreditMenu(
                               assetSvgIcon: 'assets/credit_waiting_payment.svg',
                               label: 'Menunggu Pembayaran',
-                              onTap: () {},
+                              onTap: () => Get.to(WaitingPaymentPage()),
                             ),
                             CreditMenu(
                               assetSvgIcon: 'assets/credit_history.svg',
                               label: 'Riwayat Terakhir',
-                              onTap: () {},
+                              onTap: () => Get.to(RecentHistoryPage()),
                             ),
                           ],
                         ),
