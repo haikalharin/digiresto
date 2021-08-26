@@ -46,10 +46,8 @@ class OrderRepository {
   }
 
   Future<DetailOutletDataResponse?> setOutletDetailID(
-      DetailOutletDataResponse object,
-      {bool isRemoveProductCart = true}) async {
-    return _orderLocal.setOutletDetailID(object,
-        isRemoveProductCart: isRemoveProductCart);
+      DetailOutletDataResponse object) async {
+    return _orderLocal.setOutletDetailID(object);
   }
 
   Future<DetailOutletDataResponse?> getOutletDetailID() async {

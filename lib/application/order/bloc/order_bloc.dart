@@ -215,7 +215,28 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           );
         }
       },
-      removeCart: (r) async* {},
+      removeCart: (r) async* {
+        final removeCart = await _orderRepository.removeProduct(r.request);
+        final sessionId =
+            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        if (removeCart == null || sessionId == null) {
+          yield OrderState.loadFailure(Exception());
+        } else {
+          final createCartSession = await _orderRepository.updateCartSession(
+              UpdateCartSessionParam(
+                  body: UpdateCartSessionBodyParam(
+                      items: removeCart.items ?? [],
+                      customerNote: '',
+                      paymentType: ''),
+                  queryString:
+                      UpdateCartSessionQueryParam(sessionId: sessionId)));
+
+          yield createCartSession.fold(
+            (error) => OrderState.loadFailure(error),
+            (list) => OrderState.removeCartSuccess(list!.data),
+          );
+        }
+      },
       getCartSession: (_) async* {
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);

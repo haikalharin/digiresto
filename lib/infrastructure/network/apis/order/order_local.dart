@@ -73,13 +73,8 @@ class OrderLocal {
   }
 
   Future<DetailOutletDataResponse?> setOutletDetailID(
-      DetailOutletDataResponse object,
-      {bool isRemoveProductCart = true}) async {
+      DetailOutletDataResponse object) async {
     try {
-      if (isRemoveProductCart) {
-        await _storage.openBox(StorageConstants.orderProduct);
-        await _storage.deleteData();
-      }
       await _storage.openBox(StorageConstants.outletDetail);
       await _storage.setJson(key: _sessionIdKey, object: object.toJson());
       final _outletJson = _storage.getJson(key: _sessionIdKey);
