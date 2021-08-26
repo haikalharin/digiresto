@@ -5,13 +5,14 @@
 // **************************************************************************
 
 import 'package:alice/alice.dart' as _i3;
-import 'package:connectivity_plus/connectivity_plus.dart' as _i5;
-import 'package:dio/dio.dart' as _i18;
-import 'package:geolocator/geolocator.dart' as _i7;
+import 'package:connectivity_plus/connectivity_plus.dart' as _i7;
+import 'package:dio/dio.dart' as _i20;
+import 'package:flutter/material.dart' as _i5;
+import 'package:geolocator/geolocator.dart' as _i9;
 import 'package:get_it/get_it.dart' as _i1;
-import 'package:hive_flutter/hive_flutter.dart' as _i8;
+import 'package:hive_flutter/hive_flutter.dart' as _i10;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:logger/logger.dart' as _i11;
+import 'package:logger/logger.dart' as _i13;
 
 import 'application/address/list/address_list_bloc.dart' as _i30;
 import 'application/address/map/address_map_bloc.dart' as _i31;
@@ -69,20 +70,20 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i6.Env>(() => _i6.EnvProd(), registerFor: {_prod});
   gh.lazySingleton<_i7.GeolocatorPlatform>(
       () => registerModule.goelocatorPlatform);
-  gh.lazySingleton<_i8.HiveInterface>(() => registerModule.hive);
-  gh.lazySingleton<_i9.ILocationService>(
-      () => _i10.LocationService(get<_i7.GeolocatorPlatform>()));
-  gh.lazySingleton<_i11.Logger>(() => registerModule.logger);
-  gh.factory<_i12.SimpleBlocObserver>(
-      () => _i12.SimpleBlocObserver(get<_i11.Logger>()));
-  gh.lazySingleton<_i13.IStorage>(
-      () => _i14.Storage(get<_i8.HiveInterface>(), get<_i11.Logger>()));
-  gh.factory<_i15.UserLocal>(() => _i15.UserLocal(get<_i13.IStorage>()));
-  gh.factory<_i16.AppBloc>(() => _i16.AppBloc(get<_i13.IStorage>()));
-  gh.factory<_i17.AuthInterceptor>(
-      () => _i17.AuthInterceptor(get<_i13.IStorage>()));
-  await gh.lazySingletonAsync<_i18.Dio>(
-      () => registerModule.dio(get<_i3.Alice>(), get<_i13.IStorage>()),
+  gh.lazySingleton<_i10.HiveInterface>(() => registerModule.hive);
+  gh.lazySingleton<_i11.ILocationService>(
+      () => _i12.LocationService(get<_i9.GeolocatorPlatform>()));
+  gh.lazySingleton<_i13.Logger>(() => registerModule.logger);
+  gh.factory<_i14.SimpleBlocObserver>(
+      () => _i14.SimpleBlocObserver(get<_i13.Logger>()));
+  gh.lazySingleton<_i15.IStorage>(
+      () => _i16.Storage(get<_i10.HiveInterface>(), get<_i13.Logger>()));
+  gh.factory<_i17.UserLocal>(() => _i17.UserLocal(get<_i15.IStorage>()));
+  gh.factory<_i18.AppBloc>(() => _i18.AppBloc(get<_i15.IStorage>()));
+  gh.factory<_i19.AuthInterceptor>(
+      () => _i19.AuthInterceptor(get<_i15.IStorage>()));
+  await gh.lazySingletonAsync<_i20.Dio>(
+      () => registerModule.dio(get<_i3.Alice>(), get<_i15.IStorage>()),
       preResolve: true);
   gh.factory<_i19.DioClient>(() =>
       _i19.DioClient(get<_i18.Dio>(), get<_i11.Logger>(), get<_i6.Env>()));

@@ -1,13 +1,15 @@
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListProductOutletWidget extends StatefulWidget {
-  final List<dynamic> data;
+  final List<OutletListProductDataResponse> data;
   final String orderType;
   final Axis scrollDirection;
   final height;
-  final void Function(Map<String, dynamic>, String) runDetailAction;
+  final void Function(OutletListProductDataResponse, String) runDetailAction;
 
   const ListProductOutletWidget(
       {Key? key,
@@ -40,7 +42,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
+        physics: ClampingScrollPhysics(),
         scrollDirection: widget.scrollDirection,
         shrinkWrap: true, // new line
         padding: const EdgeInsets.all(8),
@@ -56,37 +58,37 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
           // }else{
           //   randomImg=true;
           // }
-          if (widget.data[index]["isUseSalesType"] == true) {
-            for (int i = 0; i < widget.data[index]["salesTypes"].length; i++) {
-              if (widget.data[index]["salesTypes"][i]["code"] ==
-                  widget.orderType) {
-                price = widget.data[index]["salesTypes"][i]["price"];
-              }
-            }
-            if (price == null) {
-              price = widget.data[index]["price"] != null
-                  ? widget.data[index]["price"]
-                  : widget.data[index]["originalPrice"];
+          // if (widget.data[index]["isUseSalesType"] == true) {
+          //   for (int i = 0; i < widget.data[index]["salesTypes"].length; i++) {
+          //     if (widget.data[index]["salesTypes"][i]["code"] ==
+          //         widget.orderType) {
+          //       price = widget.data[index]["salesTypes"][i]["price"];
+          //     }
+          //   }
+          //   if (price == null) {
+          //     price = widget.data[index].crossoutPrice != null
+          //         ? widget.data[index].crossoutPrice
+          //         : widget.data[index].price;
+          //   }
+          // } else {
+          if (widget.data[index].crossoutPrice != null) {
+            if (widget.data[index].crossoutPrice! < widget.data[index].price) {
+              price = widget.data[index].crossoutPrice;
+              beforePrice = widget.data[index].price;
+            } else {
+              price = widget.data[index].crossoutPrice;
             }
           } else {
-            if (widget.data[index]["price"] != null) {
-              if (widget.data[index]["price"] <
-                  widget.data[index]["originalPrice"]) {
-                price = widget.data[index]["price"];
-                beforePrice = widget.data[index]["originalPrice"];
-              } else {
-                price = widget.data[index]["price"];
-              }
-            } else {
-              price = widget.data[index]["originalPrice"];
-            }
+            price = widget.data[index].price;
           }
+          //}
 
           // _userStore?.setRandomCacheImage(
           //     widget.data[index]["img"], widget.data[index]["id"].toString());
           // String defaultImage = _userStore!
           //     .getRandomCacheImage(widget.data[index]["id"].toString());
-          return widget.data[index]["category"] == "HIDDEN"
+          //return widget.data[index]["category"] == "HIDDEN"
+          return false
               ? Container()
               : GestureDetector(
                   onTap: () => {
@@ -107,26 +109,26 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                       children: <Widget>[
                         Row(
                           children: [
-                            // Container(
-                            //   padding: EdgeInsets.only(right: 5, left: 5),
-                            //   child: ClipRRect(
-                            //     borderRadius:
-                            //         BorderRadius.all(Radius.circular(8.0)),
-                            //     child: Image(
-                            //       image: RandomImages.getImageUrlDefault(
-                            //           widget.data[index]["img"], defaultImage),
-                            //       fit: BoxFit.fill,
-                            //       height: 96,
-                            //       width: 96,
-                            //       alignment: Alignment.center,
-                            //     ),
-                            //   ),
-                            // ),
+                            Container(
+                              padding: EdgeInsets.only(right: 5, left: 5),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                child: Image(
+                                  image: RandomImages.getImageUrlDefault(
+                                      widget.data[index].image, ""),
+                                  fit: BoxFit.fill,
+                                  height: 96,
+                                  width: 96,
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            ),
                             Container(
                               alignment: Alignment.topLeft,
                               padding: const EdgeInsets.only(top: 5),
                               width: MediaQuery.of(context).size.width - 210,
-                              child: Text(widget.data[index]["name"],
+                              child: Text(widget.data[index].name,
                                   softWrap: false,
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
@@ -140,7 +142,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                             ),
                           ],
                         ),
-                        (widget.data[index]["variants"].length == 0)
+                        (widget.data[index].variants.length == 0)
                             ? Column(
                                 children: [
                                   Container(

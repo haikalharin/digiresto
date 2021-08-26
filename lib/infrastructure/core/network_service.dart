@@ -27,10 +27,10 @@ class NetworkService implements INetworkService {
       String? parameter,
       Map<String, dynamic>? queryParameter,
       Map<String, dynamic>? header,
-      bool useAuth = false}) async {
+      bool useAuth = true}) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
-      // await baseStorage.openBox(StorageConstants.user);
+      await baseStorage.openBox(StorageConstants.user);
 
       try {
         logger.d('get Http : $path');
@@ -40,23 +40,23 @@ class NetworkService implements INetworkService {
           'content-type': ContentType.json.mimeType,
           'accept': ContentType.json.mimeType
         });
-        // if (useAuth) {
-        //   final _userInStorage = await baseStorage.getData();
-        //   final _userAuth = UserAuth.fromJson(_userInStorage);
-        //   final String? security = _userAuth.token;
-        //   if (security != null) {
-        //     headers.addAll({'Authorization': 'Bearer $security'});
-        //   }
-        // }
+        if (useAuth) {
+          final _userInStorage = await baseStorage.getData();
+          final _userAuth = UserAuth.fromJson(_userInStorage);
+          final String? security = _userAuth.token;
+          if (security != null) {
+            headers.addAll({'Authorization': 'Bearer $security'});
+          }
+        }
 
-        // if (header != null) {
-        //   headers.addAll(header);
-        // }
+        if (header != null) {
+          headers.addAll(header);
+        }
 
         _dio.options.headers = headers;
         logger.d(_dio.options.headers);
 
-        // await baseStorage.close();
+        await baseStorage.close();
         String baseUrl = await _env.getBaseUrl;
         logger.d('dio base url : $baseUrl');
 

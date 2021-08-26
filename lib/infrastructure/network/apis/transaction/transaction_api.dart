@@ -1,25 +1,23 @@
 import 'dart:async';
 
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
 import 'package:digiresto/domain/entity/response_model.dart' as ResponseStatus;
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
-import 'package:digiresto/infrastructure/network/dio_client.dart';
-// import 'package:digiresto/infrastructure/network/rest_client.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@Injectable()
 class TransactionApi {
-  // dio instance
-  final DioClient _dioClient;
+  final INetworkService _networkService;
 
   // injecting dio instance
-  TransactionApi(this._dioClient);
+  TransactionApi(this._networkService);
 
   Future<List<TransactionHistory>> getTransactionHistory() async {
     try {
       String apiUrl = Endpoints.urlGetTransactionHistory;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {"outletName": ""},
         "body": {}
       });
@@ -41,7 +39,7 @@ class TransactionApi {
   Future<TransactionMobile> getTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlGetTransaction;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {"receiptCode": receiptCode},
         "body": {}
       });
@@ -58,7 +56,7 @@ class TransactionApi {
   Future<TransactionMobile> cancelTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlCancelTransaction;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {"receiptCode": receiptCode},
         "body": {}
       });
@@ -75,7 +73,7 @@ class TransactionApi {
   Future<ResponseStatus.Response> acceptTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlAcceptTransaction;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {"receiptCode": receiptCode},
         "body": {}
       });
@@ -92,8 +90,8 @@ class TransactionApi {
   Future<List<TransactionHistory>> getOngoingTransaction() async {
     try {
       String apiUrl = Endpoints.urlOngoingTransaction;
-      final apiResult =
-          await _dioClient.post(apiUrl, data: {"query_string": {}, "body": {}});
+      final apiResult = await _networkService
+          .postHttp(path: apiUrl, content: {"query_string": {}, "body": {}});
 
       var ongoingTransaction = (apiResult as Map<String, dynamic>)['data'];
       List<TransactionHistory> listTransactionHistory = [];

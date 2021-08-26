@@ -1,10 +1,13 @@
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
+import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class DetailOutletHotPromoWidget extends StatefulWidget {
-  final List<dynamic> data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
+  final List<PromoOutletDataResponse>
+      data; // = <String>['A', 'B', 'C','D', 'E', 'F'];
   final Axis scrollDirection;
   final height;
   const DetailOutletHotPromoWidget(
@@ -69,24 +72,24 @@ class _DetailOutletHotPromoWidgetState
                 width: 150,
                 child: Column(
                   children: <Widget>[
-                    // ClipRRect(
-                    //   borderRadius: BorderRadius.only(
-                    //       topLeft: Radius.circular(8.0),
-                    //       topRight: Radius.circular(8.0)),
-                    //   child: Image(
-                    //     image: RandomImages.getImageUrlDefault(
-                    //         widget.data[index]["img"], defaultImage),
-                    //     fit: BoxFit.fill,
-                    //     width: 150,
-                    //     height: 96,
-                    //     alignment: Alignment.center,
-                    //   ),
-                    // ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0)),
+                      child: Image(
+                        image: RandomImages.getImageUrlDefault(
+                            widget.data[index].icon, ""),
+                        fit: BoxFit.fill,
+                        width: 150,
+                        height: 96,
+                        alignment: Alignment.center,
+                      ),
+                    ),
                     Container(
                       padding: const EdgeInsets.only(left: 5, top: 5),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        widget.data[index]["title"].toString().toString(),
+                        widget.data[index].name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -96,7 +99,7 @@ class _DetailOutletHotPromoWidgetState
                         ),
                       ),
                     ),
-                    widget.data[index]["voucherCode"] != null
+                    widget.data[index].voucher != null
                         ? Container(
                             padding: const EdgeInsets.only(left: 5, top: 5),
                             child: Row(
@@ -110,7 +113,7 @@ class _DetailOutletHotPromoWidgetState
                                   padding: EdgeInsets.only(left: 5),
                                   width: 110,
                                   child: Text(
-                                    widget.data[index]["voucherCode"],
+                                    widget.data[index].voucher!.code,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(

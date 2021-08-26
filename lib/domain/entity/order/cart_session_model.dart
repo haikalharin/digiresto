@@ -1,6 +1,15 @@
 import 'package:digiresto/domain/entity/response_model.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
 
+class CartSessionResponse {
+  String sessionId;
+  CartSession transactionData;
+  CartSessionResponse({
+    required this.sessionId,
+    required this.transactionData,
+  });
+}
+
 class CartSession {
   String? sessionId;
   Response? response;
