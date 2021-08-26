@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'create_cart_session_param.dart';
+
 part 'update_cart_session_param.freezed.dart';
 part 'update_cart_session_param.g.dart';
 
@@ -25,41 +27,13 @@ abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
 @freezed
 abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
   const factory UpdateCartSessionBodyParam({
-    required String paymentType,
-    required String customerNote,
-    required List<UpdateCartSessionBodyItemParam> items,
+    required String? paymentType,
+    required String? customerNote,
+    required List<CreateUpdateCartSessionItemParam>? items,
   }) = _UpdateCartSessionBodyParam;
 
   factory UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
       _$UpdateCartSessionBodyParamFromJson(json);
-}
-
-@freezed
-abstract class UpdateCartSessionBodyItemParam
-    with _$UpdateCartSessionBodyItemParam {
-  const factory UpdateCartSessionBodyItemParam({
-    required int productId,
-    required List<UpdateCartSessionBodyItemModifierParam> modifiers,
-    required String note,
-    required int qty,
-  }) = _UpdateCartSessionBodyItemParam;
-
-  factory UpdateCartSessionBodyItemParam.fromJson(Map<String, dynamic> json) =>
-      _$UpdateCartSessionBodyItemParamFromJson(json);
-}
-
-@freezed
-abstract class UpdateCartSessionBodyItemModifierParam
-    with _$UpdateCartSessionBodyItemModifierParam {
-  const factory UpdateCartSessionBodyItemModifierParam({
-    required int modifierId,
-    required String modifierGroupId,
-    required int qty,
-  }) = _UpdateCartSessionBodyItemModifierParam;
-
-  factory UpdateCartSessionBodyItemModifierParam.fromJson(
-          Map<String, dynamic> json) =>
-      _$UpdateCartSessionBodyItemModifierParamFromJson(json);
 }
 
 @freezed

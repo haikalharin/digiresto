@@ -43,6 +43,12 @@ class OrderState with _$OrderState {
   const factory OrderState.deliveryInquirySuccess(
       List<DeliveryMethod> response) = _GeliveryInquirySuccess;
 
+  const factory OrderState.addCartSuccess(CartSessionResponse response) =
+      _AddCartSuccess;
+
+  const factory OrderState.removeCartSuccess(CartSessionResponse response) =
+      _RemoveCartSuccess;
+
   const factory OrderState.createCartSessionSuccess(
       CartSessionResponse response) = _CreateCartSessionSuccess;
 

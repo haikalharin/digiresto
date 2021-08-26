@@ -6,7 +6,9 @@ enum StorageConstants {
   cache,
   aimUser,
   address,
-  order
+  cart,
+  outletDetail,
+  orderProduct
 }
 
 abstract class IStorage {
@@ -29,4 +31,9 @@ abstract class IStorage {
   Future<List?> getListData();
   Future<void> deleteData();
   Future<void> deleteString({required String key});
+  Future<void> setJson(
+      {required String key, required Map<String, dynamic> object});
+  dynamic getJson({
+    required String key,
+  });
 }

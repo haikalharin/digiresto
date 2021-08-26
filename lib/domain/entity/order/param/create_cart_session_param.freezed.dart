@@ -242,7 +242,7 @@ class _$CreateCartSessionBodyParamTearOff {
       required String eta,
       required String salesType,
       required String receiptCode,
-      required List<CreateCartSessionItemParam> items}) {
+      required List<CreateUpdateCartSessionItemParam> items}) {
     return _CreateCartSessionBodyParam(
       outletName: outletName,
       customerName: customerName,
@@ -284,7 +284,7 @@ mixin _$CreateCartSessionBodyParam {
   String get eta => throw _privateConstructorUsedError;
   String get salesType => throw _privateConstructorUsedError;
   String get receiptCode => throw _privateConstructorUsedError;
-  List<CreateCartSessionItemParam> get items =>
+  List<CreateUpdateCartSessionItemParam> get items =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -312,7 +312,7 @@ abstract class $CreateCartSessionBodyParamCopyWith<$Res> {
       String eta,
       String salesType,
       String receiptCode,
-      List<CreateCartSessionItemParam> items});
+      List<CreateUpdateCartSessionItemParam> items});
 }
 
 /// @nodoc
@@ -397,7 +397,7 @@ class _$CreateCartSessionBodyParamCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CreateCartSessionItemParam>,
+              as List<CreateUpdateCartSessionItemParam>,
     ));
   }
 }
@@ -424,7 +424,7 @@ abstract class _$CreateCartSessionBodyParamCopyWith<$Res>
       String eta,
       String salesType,
       String receiptCode,
-      List<CreateCartSessionItemParam> items});
+      List<CreateUpdateCartSessionItemParam> items});
 }
 
 /// @nodoc
@@ -512,7 +512,7 @@ class __$CreateCartSessionBodyParamCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<CreateCartSessionItemParam>,
+              as List<CreateUpdateCartSessionItemParam>,
     ));
   }
 }
@@ -566,7 +566,7 @@ class _$_CreateCartSessionBodyParam implements _CreateCartSessionBodyParam {
   @override
   final String receiptCode;
   @override
-  final List<CreateCartSessionItemParam> items;
+  final List<CreateUpdateCartSessionItemParam> items;
 
   @override
   String toString() {
@@ -665,7 +665,7 @@ abstract class _CreateCartSessionBodyParam
           required String eta,
           required String salesType,
           required String receiptCode,
-          required List<CreateCartSessionItemParam> items}) =
+          required List<CreateUpdateCartSessionItemParam> items}) =
       _$_CreateCartSessionBodyParam;
 
   factory _CreateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =
@@ -698,7 +698,7 @@ abstract class _CreateCartSessionBodyParam
   @override
   String get receiptCode => throw _privateConstructorUsedError;
   @override
-  List<CreateCartSessionItemParam> get items =>
+  List<CreateUpdateCartSessionItemParam> get items =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -706,21 +706,21 @@ abstract class _CreateCartSessionBodyParam
       get copyWith => throw _privateConstructorUsedError;
 }
 
-CreateCartSessionItemParam _$CreateCartSessionItemParamFromJson(
+CreateUpdateCartSessionItemParam _$CreateUpdateCartSessionItemParamFromJson(
     Map<String, dynamic> json) {
-  return _CreateCartSessionItemParam.fromJson(json);
+  return _CreateUpdateCartSessionItemParam.fromJson(json);
 }
 
 /// @nodoc
-class _$CreateCartSessionItemParamTearOff {
-  const _$CreateCartSessionItemParamTearOff();
+class _$CreateUpdateCartSessionItemParamTearOff {
+  const _$CreateUpdateCartSessionItemParamTearOff();
 
-  _CreateCartSessionItemParam call(
+  _CreateUpdateCartSessionItemParam call(
       {required int productId,
       required List<CreateCartSessionItemModifierParam> modifiers,
       required String note,
       required int qty}) {
-    return _CreateCartSessionItemParam(
+    return _CreateUpdateCartSessionItemParam(
       productId: productId,
       modifiers: modifiers,
       note: note,
@@ -728,16 +728,17 @@ class _$CreateCartSessionItemParamTearOff {
     );
   }
 
-  CreateCartSessionItemParam fromJson(Map<String, Object> json) {
-    return CreateCartSessionItemParam.fromJson(json);
+  CreateUpdateCartSessionItemParam fromJson(Map<String, Object> json) {
+    return CreateUpdateCartSessionItemParam.fromJson(json);
   }
 }
 
 /// @nodoc
-const $CreateCartSessionItemParam = _$CreateCartSessionItemParamTearOff();
+const $CreateUpdateCartSessionItemParam =
+    _$CreateUpdateCartSessionItemParamTearOff();
 
 /// @nodoc
-mixin _$CreateCartSessionItemParam {
+mixin _$CreateUpdateCartSessionItemParam {
   int get productId => throw _privateConstructorUsedError;
   List<CreateCartSessionItemModifierParam> get modifiers =>
       throw _privateConstructorUsedError;
@@ -746,15 +747,16 @@ mixin _$CreateCartSessionItemParam {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreateCartSessionItemParamCopyWith<CreateCartSessionItemParam>
+  $CreateUpdateCartSessionItemParamCopyWith<CreateUpdateCartSessionItemParam>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateCartSessionItemParamCopyWith<$Res> {
-  factory $CreateCartSessionItemParamCopyWith(CreateCartSessionItemParam value,
-          $Res Function(CreateCartSessionItemParam) then) =
-      _$CreateCartSessionItemParamCopyWithImpl<$Res>;
+abstract class $CreateUpdateCartSessionItemParamCopyWith<$Res> {
+  factory $CreateUpdateCartSessionItemParamCopyWith(
+          CreateUpdateCartSessionItemParam value,
+          $Res Function(CreateUpdateCartSessionItemParam) then) =
+      _$CreateUpdateCartSessionItemParamCopyWithImpl<$Res>;
   $Res call(
       {int productId,
       List<CreateCartSessionItemModifierParam> modifiers,
@@ -763,13 +765,13 @@ abstract class $CreateCartSessionItemParamCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CreateCartSessionItemParamCopyWithImpl<$Res>
-    implements $CreateCartSessionItemParamCopyWith<$Res> {
-  _$CreateCartSessionItemParamCopyWithImpl(this._value, this._then);
+class _$CreateUpdateCartSessionItemParamCopyWithImpl<$Res>
+    implements $CreateUpdateCartSessionItemParamCopyWith<$Res> {
+  _$CreateUpdateCartSessionItemParamCopyWithImpl(this._value, this._then);
 
-  final CreateCartSessionItemParam _value;
+  final CreateUpdateCartSessionItemParam _value;
   // ignore: unused_field
-  final $Res Function(CreateCartSessionItemParam) _then;
+  final $Res Function(CreateUpdateCartSessionItemParam) _then;
 
   @override
   $Res call({
@@ -800,12 +802,12 @@ class _$CreateCartSessionItemParamCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreateCartSessionItemParamCopyWith<$Res>
-    implements $CreateCartSessionItemParamCopyWith<$Res> {
-  factory _$CreateCartSessionItemParamCopyWith(
-          _CreateCartSessionItemParam value,
-          $Res Function(_CreateCartSessionItemParam) then) =
-      __$CreateCartSessionItemParamCopyWithImpl<$Res>;
+abstract class _$CreateUpdateCartSessionItemParamCopyWith<$Res>
+    implements $CreateUpdateCartSessionItemParamCopyWith<$Res> {
+  factory _$CreateUpdateCartSessionItemParamCopyWith(
+          _CreateUpdateCartSessionItemParam value,
+          $Res Function(_CreateUpdateCartSessionItemParam) then) =
+      __$CreateUpdateCartSessionItemParamCopyWithImpl<$Res>;
   @override
   $Res call(
       {int productId,
@@ -815,16 +817,17 @@ abstract class _$CreateCartSessionItemParamCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CreateCartSessionItemParamCopyWithImpl<$Res>
-    extends _$CreateCartSessionItemParamCopyWithImpl<$Res>
-    implements _$CreateCartSessionItemParamCopyWith<$Res> {
-  __$CreateCartSessionItemParamCopyWithImpl(_CreateCartSessionItemParam _value,
-      $Res Function(_CreateCartSessionItemParam) _then)
-      : super(_value, (v) => _then(v as _CreateCartSessionItemParam));
+class __$CreateUpdateCartSessionItemParamCopyWithImpl<$Res>
+    extends _$CreateUpdateCartSessionItemParamCopyWithImpl<$Res>
+    implements _$CreateUpdateCartSessionItemParamCopyWith<$Res> {
+  __$CreateUpdateCartSessionItemParamCopyWithImpl(
+      _CreateUpdateCartSessionItemParam _value,
+      $Res Function(_CreateUpdateCartSessionItemParam) _then)
+      : super(_value, (v) => _then(v as _CreateUpdateCartSessionItemParam));
 
   @override
-  _CreateCartSessionItemParam get _value =>
-      super._value as _CreateCartSessionItemParam;
+  _CreateUpdateCartSessionItemParam get _value =>
+      super._value as _CreateUpdateCartSessionItemParam;
 
   @override
   $Res call({
@@ -833,7 +836,7 @@ class __$CreateCartSessionItemParamCopyWithImpl<$Res>
     Object? note = freezed,
     Object? qty = freezed,
   }) {
-    return _then(_CreateCartSessionItemParam(
+    return _then(_CreateUpdateCartSessionItemParam(
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -856,15 +859,17 @@ class __$CreateCartSessionItemParamCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateCartSessionItemParam implements _CreateCartSessionItemParam {
-  const _$_CreateCartSessionItemParam(
+class _$_CreateUpdateCartSessionItemParam
+    implements _CreateUpdateCartSessionItemParam {
+  const _$_CreateUpdateCartSessionItemParam(
       {required this.productId,
       required this.modifiers,
       required this.note,
       required this.qty});
 
-  factory _$_CreateCartSessionItemParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateCartSessionItemParamFromJson(json);
+  factory _$_CreateUpdateCartSessionItemParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$_$_CreateUpdateCartSessionItemParamFromJson(json);
 
   @override
   final int productId;
@@ -877,13 +882,13 @@ class _$_CreateCartSessionItemParam implements _CreateCartSessionItemParam {
 
   @override
   String toString() {
-    return 'CreateCartSessionItemParam(productId: $productId, modifiers: $modifiers, note: $note, qty: $qty)';
+    return 'CreateUpdateCartSessionItemParam(productId: $productId, modifiers: $modifiers, note: $note, qty: $qty)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CreateCartSessionItemParam &&
+        (other is _CreateUpdateCartSessionItemParam &&
             (identical(other.productId, productId) ||
                 const DeepCollectionEquality()
                     .equals(other.productId, productId)) &&
@@ -906,26 +911,26 @@ class _$_CreateCartSessionItemParam implements _CreateCartSessionItemParam {
 
   @JsonKey(ignore: true)
   @override
-  _$CreateCartSessionItemParamCopyWith<_CreateCartSessionItemParam>
-      get copyWith => __$CreateCartSessionItemParamCopyWithImpl<
-          _CreateCartSessionItemParam>(this, _$identity);
+  _$CreateUpdateCartSessionItemParamCopyWith<_CreateUpdateCartSessionItemParam>
+      get copyWith => __$CreateUpdateCartSessionItemParamCopyWithImpl<
+          _CreateUpdateCartSessionItemParam>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateCartSessionItemParamToJson(this);
+    return _$_$_CreateUpdateCartSessionItemParamToJson(this);
   }
 }
 
-abstract class _CreateCartSessionItemParam
-    implements CreateCartSessionItemParam {
-  const factory _CreateCartSessionItemParam(
+abstract class _CreateUpdateCartSessionItemParam
+    implements CreateUpdateCartSessionItemParam {
+  const factory _CreateUpdateCartSessionItemParam(
       {required int productId,
       required List<CreateCartSessionItemModifierParam> modifiers,
       required String note,
-      required int qty}) = _$_CreateCartSessionItemParam;
+      required int qty}) = _$_CreateUpdateCartSessionItemParam;
 
-  factory _CreateCartSessionItemParam.fromJson(Map<String, dynamic> json) =
-      _$_CreateCartSessionItemParam.fromJson;
+  factory _CreateUpdateCartSessionItemParam.fromJson(
+      Map<String, dynamic> json) = _$_CreateUpdateCartSessionItemParam.fromJson;
 
   @override
   int get productId => throw _privateConstructorUsedError;
@@ -938,7 +943,7 @@ abstract class _CreateCartSessionItemParam
   int get qty => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CreateCartSessionItemParamCopyWith<_CreateCartSessionItemParam>
+  _$CreateUpdateCartSessionItemParamCopyWith<_CreateUpdateCartSessionItemParam>
       get copyWith => throw _privateConstructorUsedError;
 }
 

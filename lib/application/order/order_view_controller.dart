@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
@@ -15,7 +16,7 @@ class OrderViewController extends GetxController {
   var page = 1.obs;
   var categoryId = "".obs;
   var search = "".obs;
-  var orderType = "".obs;
+  var orderType = "dineIn".obs;
   var orderProductLength = 0.obs;
   var detailOutletLoading = false.obs;
   var indexTabBar = 0.obs;
@@ -33,6 +34,7 @@ class OrderViewController extends GetxController {
       Rxn<List<GetListVoucherOutletDataResponse>>();
   Rxn<List<PromoOutletDataResponse>> listPromo =
       Rxn<List<PromoOutletDataResponse>>();
+  Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
 
   List<Widget> generateListSalesType() {
     List<Widget> listWidget = [];

@@ -1,18 +1,23 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
+import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class DetailProductDialog extends StatefulWidget {
   final OutletListProductDataResponse dataProduct;
-  final orderType;
+  final String orderType;
   final qtyProduct;
   final mode;
   @override
@@ -43,6 +48,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       dataProductState = widget.dataProduct;
       variantProductSelected = dataProductState;
       totalqty = widget.qtyProduct;
+      _setTotalQtyFromExistCart();
     });
     Timer.run(() {
       if (dataProductState.variants.length > 0) {
@@ -58,11 +64,25 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   void minus() {
-    if (totalqty > 0) {
+    if (totalqty > 1) {
       setState(() {
         totalqty--;
       });
     }
+  }
+
+  void setProduct() {
+    var controller = Get.find<OrderViewController>();
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.addCart(
+              CreateUpdateCartSessionItemParam(
+                  modifiers: [],
+                  note: '',
+                  productId: int.parse(variantProductSelected.id),
+                  qty: totalqty),
+              controller.detailOutlet.value!,
+              widget.orderType),
+        );
   }
 
   _chooseVariants(OutletListProductDataVariantResponse data) {
@@ -72,7 +92,21 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
           OutletListProductDataVariantResponse.variantToDetailProductResponse(
               data);
     });
+    _setTotalQtyFromExistCart();
     Navigator.of(context).pop();
+  }
+
+  _setTotalQtyFromExistCart() {
+    final cartSession = Get.find<OrderViewController>().cartSession.value;
+    if (cartSession != null) {
+      cartSession.transactionData.items.forEach((element) {
+        if (variantProductSelected.id == element.productId.toString()) {
+          setState(() {
+            totalqty = element.qty;
+          });
+        }
+      });
+    }
   }
 
   _showMaterialDialog() {
@@ -162,132 +196,87 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     //     dataProductState["img"], dataProductState["id"].toString());
     //String defaultImage = _userStore.getRandomCacheImage(dataProductState["id"].toString());
     String defaultImage = "";
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TopBackgound(backgroundColor: AppColors.red),
-              Container(
-                height: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                        child: Image(
-                          image: RandomImages.getImageUrlDefault(
-                              variantProductSelected.image, defaultImage),
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(7),
-                      child: CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.black54,
-                        child: new IconButton(
-                            icon: new Icon(Icons.close,
-                                color: Colors.white, size: 30.0),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            }),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      alignment: Alignment.topLeft,
-                      color: Colors.white,
-                      width: MediaQuery.of(context).size.width / 2 + 50,
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Text(variantProductSelected.name,
-                          softWrap: true,
-                          maxLines: 3,
-                          //overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.left),
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          alignment: Alignment.topLeft,
-                          padding: const EdgeInsets.only(top: 5),
-                          //width: 10,
-                          child:
-                              Text("Rp." + Utils.formatRupiah(price.toString()),
-                                  softWrap: false,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontFamily: "roboto",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left),
-                        ),
-                        beforePrice != null
-                            ? Container(
-                                alignment: Alignment.topLeft,
-                                padding: const EdgeInsets.only(top: 5),
-                                //width: 10,
-                                child: Text(
-                                    "Rp." +
-                                        Utils.formatRupiah(
-                                            beforePrice.toString()),
-                                    softWrap: false,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.black38,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.lineThrough),
-                                    textAlign: TextAlign.left),
-                              )
-                            : Container(),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Container(
-            color: Colors.white,
-            child: Column(
+    return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
+      var controller = Get.find<OrderViewController>();
+      state.maybeMap(addCartSuccess: (r) {
+        controller.cartSession.value = r.response;
+        Get.back();
+      }, orElse: () {
+        //
+      });
+    }, builder: (context, state) {
+      return Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TopBackgound(backgroundColor: AppColors.red),
                 Container(
-                  padding: EdgeInsets.all(5),
+                  height: MediaQuery.of(context).size.width,
+                  child: Stack(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                          child: Image(
+                            image: RandomImages.getImageUrlDefault(
+                                variantProductSelected.image, defaultImage),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(7),
+                        child: CircleAvatar(
+                          radius: 25,
+                          backgroundColor: Colors.black54,
+                          child: new IconButton(
+                              icon: new Icon(Icons.close,
+                                  color: Colors.white, size: 30.0),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              }),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.all(10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
+                    children: [
                       Container(
                         alignment: Alignment.topLeft,
-                        padding: const EdgeInsets.all(5),
-                        //width: 10,
-                        child:
-                            Text("Rp." + Utils.formatRupiah(price.toString()),
+                        color: Colors.white,
+                        width: MediaQuery.of(context).size.width / 2 + 50,
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text(variantProductSelected.name,
+                            softWrap: true,
+                            maxLines: 3,
+                            //overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: "roboto",
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.left),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.only(top: 5),
+                            //width: 10,
+                            child: Text(
+                                "Rp." + Utils.formatRupiah(price.toString()),
                                 softWrap: false,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -298,23 +287,57 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.left),
-                      ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              minus();
-                            },
-                            child: CircleAvatar(
-                              radius: 14,
-                              backgroundColor: AppColors.greyStroke,
-                              child: new Icon(Icons.remove,
-                                  color: AppColors.redYoung, size: 20.0),
-                            ),
                           ),
+                          beforePrice != null
+                              ? Container(
+                                  alignment: Alignment.topLeft,
+                                  padding: const EdgeInsets.only(top: 5),
+                                  //width: 10,
+                                  child: Text(
+                                      "Rp." +
+                                          Utils.formatRupiah(
+                                              beforePrice.toString()),
+                                      softWrap: false,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontFamily: "roboto",
+                                          color: Colors.black38,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          decoration:
+                                              TextDecoration.lineThrough),
+                                      textAlign: TextAlign.left),
+                                )
+                              : Container(),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SafeArea(
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(left: 5, right: 5),
-                            child: Text(totalqty.toString(),
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.all(5),
+                            //width: 10,
+                            child: Text(
+                                "Rp." +
+                                    Utils.formatRupiah(
+                                        ((price ?? 0) * totalqty).toString()),
+                                softWrap: false,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontFamily: "roboto",
                                   color: Colors.black,
@@ -323,55 +346,156 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 ),
                                 textAlign: TextAlign.left),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              plus();
-                            },
-                            child: CircleAvatar(
-                              radius: 14,
-                              backgroundColor: AppColors.greyStroke,
-                              child: new Icon(Icons.add,
-                                  color: AppColors.redYoung, size: 20.0),
-                            ),
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  minus();
+                                },
+                                child: CircleAvatar(
+                                  radius: 14,
+                                  backgroundColor: AppColors.greyStroke,
+                                  child: new Icon(Icons.remove,
+                                      color: AppColors.redYoung, size: 20.0),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: 5, right: 5),
+                                child: Text(totalqty.toString(),
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  plus();
+                                },
+                                child: CircleAvatar(
+                                  radius: 14,
+                                  backgroundColor: AppColors.greyStroke,
+                                  child: new Icon(Icons.add,
+                                      color: AppColors.redYoung, size: 20.0),
+                                ),
+                              )
+                            ],
                           )
                         ],
-                      )
-                    ],
-                  ),
-                ),
-                (widget.mode == "new")
-                    ? Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
+                      ),
+                    ),
+                    (widget.mode == "new")
+                        ? Container(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  height: 50,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2 - 5,
+                                  child: RaisedButton(
+                                    onPressed: () {
+                                      setProduct();
+                                      // if (_userStore.skipAndContinue ?? false) {
+                                      //   ErrorPopupWidget.showLoginRequired(context,
+                                      //       () {
+                                      //     Navigator.of(context).pop();
+                                      //   }, () {
+                                      //     _userStore.removeSkipAndContinue();
+                                      //     _userStore.removeAuthToken();
+                                      //     Navigator.of(context)
+                                      //         .pushNamed(Routes.input_phone);
+                                      //   });
+                                      // } else {
+                                      //   // _orderStore.setProduct(
+                                      //   //     dataProductState["id"],
+                                      //   //     totalqty,
+                                      //   //     price,
+                                      //   //     dataProductState);
+                                      //   Navigator.of(context).pop();
+                                      // }
+                                    },
+                                    color: AppColors.red,
+                                    child: Text("+keranjang",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(25.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  height: 50,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2 - 5,
+                                  child: RaisedButton(
+                                    onPressed: () {
+                                      setProduct();
+                                      // if (_userStore.skipAndContinue ?? false) {
+                                      //   ErrorPopupWidget.showLoginRequired(context,
+                                      //       () {
+                                      //     Navigator.of(context).pop();
+                                      //   }, () {
+                                      //     _userStore.removeSkipAndContinue();
+                                      //     _userStore.removeAuthToken();
+                                      //     Navigator.of(context)
+                                      //         .pushNamed(Routes.input_phone);
+                                      //   });
+                                      // } else {
+                                      //   _orderStore.setProduct(
+                                      //       dataProductState["id"],
+                                      //       totalqty,
+                                      //       price,
+                                      //       dataProductState);
+                                      //   Navigator.of(context)
+                                      //       .popAndPushNamed(Routes.order_cart);
+                                      // }
+                                    },
+                                    color: Colors.white,
+                                    child: Text("Beli sekarang",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.red)),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(25.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: Container(
                               padding: EdgeInsets.all(5),
                               height: 50,
-                              width: MediaQuery.of(context).size.width / 2 - 5,
+                              width: double.infinity,
                               child: RaisedButton(
                                 onPressed: () {
-                                  // if (_userStore.skipAndContinue ?? false) {
-                                  //   ErrorPopupWidget.showLoginRequired(context,
-                                  //       () {
-                                  //     Navigator.of(context).pop();
-                                  //   }, () {
-                                  //     _userStore.removeSkipAndContinue();
-                                  //     _userStore.removeAuthToken();
-                                  //     Navigator.of(context)
-                                  //         .pushNamed(Routes.input_phone);
-                                  //   });
-                                  // } else {
-                                  //   // _orderStore.setProduct(
-                                  //   //     dataProductState["id"],
-                                  //   //     totalqty,
-                                  //   //     price,
-                                  //   //     dataProductState);
-                                  //   Navigator.of(context).pop();
-                                  // }
+                                  // _orderStore.setProduct(dataProductState["id"],
+                                  //     totalqty, price, dataProductState);
+                                  Navigator.of(context).pop();
                                 },
                                 color: AppColors.red,
-                                child: Text("+keranjang",
+                                child: Text("Perbaharui Keranjang",
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -385,83 +509,14 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              height: 50,
-                              width: MediaQuery.of(context).size.width / 2 - 5,
-                              child: RaisedButton(
-                                onPressed: () {
-                                  // if (_userStore.skipAndContinue ?? false) {
-                                  //   ErrorPopupWidget.showLoginRequired(context,
-                                  //       () {
-                                  //     Navigator.of(context).pop();
-                                  //   }, () {
-                                  //     _userStore.removeSkipAndContinue();
-                                  //     _userStore.removeAuthToken();
-                                  //     Navigator.of(context)
-                                  //         .pushNamed(Routes.input_phone);
-                                  //   });
-                                  // } else {
-                                  //   _orderStore.setProduct(
-                                  //       dataProductState["id"],
-                                  //       totalqty,
-                                  //       price,
-                                  //       dataProductState);
-                                  //   Navigator.of(context)
-                                  //       .popAndPushNamed(Routes.order_cart);
-                                  // }
-                                },
-                                color: Colors.white,
-                                child: Text("Beli sekarang",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.red)),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(25.0),
-                                  side: BorderSide(
-                                    width: 1,
-                                    color: AppColors.red,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Container(
-                          padding: EdgeInsets.all(5),
-                          height: 50,
-                          width: double.infinity,
-                          child: RaisedButton(
-                            onPressed: () {
-                              // _orderStore.setProduct(dataProductState["id"],
-                              //     totalqty, price, dataProductState);
-                              Navigator.of(context).pop();
-                            },
-                            color: AppColors.red,
-                            child: Text("Perbaharui Keranjang",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(25.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+                          )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    });
   }
 }

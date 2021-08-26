@@ -176,6 +176,10 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                 outletId: controller.outlet.value!.outletId))));
   }
 
+  void getCartSession() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+  }
+
   @override
   Widget build(BuildContext context) {
     Get.put(OrderViewController());
@@ -184,6 +188,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     getListProduct();
     getCategoryProduct();
     getPromoProduct();
+    getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         state.maybeMap(
@@ -202,6 +207,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
             getOutletProductCategorySuccess: (r) {
               controller.listCategory.value = r.response;
             },
+            getCartSessionSuccess: (r) {
+              controller.cartSession.value = r.response;
+            },
             loadFailure: (e) {},
             orElse: () {});
       },
@@ -209,84 +217,6 @@ class DetailOutletScreen extends GetView<OrderViewController> {
         return DefaultTabController(
           length: 2,
           child: Scaffold(
-            floatingActionButton: "_orderStore.orderProduct".length > 0
-                ? GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routers.orderCart);
-                    },
-                    child: Container(
-                      height: 70,
-                      color: Colors.white,
-                      alignment: Alignment.bottomCenter,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.white,
-                      //     boxShadow: [CustomShadow.standard]),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.red,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          height: 50,
-                          width: MediaQuery.of(context).size.width - 50,
-                          child: Container(
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    controller.detailOutlet.value != null
-                                        ? Text(
-                                            "_orderStore.orderProduct"
-                                                    .length
-                                                    .toString() +
-                                                " items",
-                                            style: TextStyle(
-                                              fontFamily: "roboto",
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          )
-                                        : Container(),
-                                    Container(
-                                      margin: EdgeInsets.all(5),
-                                      height: 30,
-                                      width: 1.5,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Lihat Keranjang",
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                controller.detailOutlet.value != null
-                                    ? Text(
-                                        "Rp. " +
-                                            Utils.formatRupiah(
-                                                10000.toString()),
-                                        style: TextStyle(
-                                          fontFamily: "roboto",
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      )
-                                    : Container()
-                              ],
-                            ),
-                          )),
-                    ),
-                  )
-                : Container(),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
             body: Column(
               children: [
                 TopBackgound(backgroundColor: AppColors.red),
@@ -700,6 +630,91 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
     );
   }
 
+  Widget _cartTotal() {
+    return controller.cartSession.value != null &&
+            controller.cartSession.value?.transactionData.outletName ==
+                controller.detailOutlet.value?.endpointName
+        ? SafeArea(
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed(Routers.orderCart);
+              },
+              child: Container(
+                height: 70,
+                color: Colors.white,
+                alignment: Alignment.bottomCenter,
+                // decoration: BoxDecoration(
+                //     color: Colors.white, boxShadow: [CustomShadow.standard]),
+                child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.red,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    height: 50,
+                    width: MediaQuery.of(Get.context!).size.width - 50,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              controller.cartSession.value!.transactionData
+                                          .items.length >
+                                      0
+                                  ? Text(
+                                      controller.cartSession.value!
+                                              .transactionData.items.length
+                                              .toString() +
+                                          " items",
+                                      style: TextStyle(
+                                        fontFamily: "roboto",
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    )
+                                  : Container(),
+                              Container(
+                                margin: EdgeInsets.all(5),
+                                height: 30,
+                                width: 1.5,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                "Lihat Keranjang",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          controller.detailOutlet.value != null
+                              ? Text(
+                                  "Rp. " +
+                                      Utils.formatRupiah(controller.cartSession
+                                          .value!.transactionData.totalPayment
+                                          .toString()),
+                                  style: TextStyle(
+                                    fontFamily: "roboto",
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      ),
+                    )),
+              ),
+            ),
+          )
+        : Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -727,9 +742,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
             ),
           ),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.1,
-        )
+        _cartTotal()
       ],
     );
   }

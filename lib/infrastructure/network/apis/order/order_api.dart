@@ -321,7 +321,7 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, CartSessionResponseApi>> createCartSession(
+  Future<Either<Exception, CartSessionResponseApi?>> createCartSession(
       CreateCartSessionParam object) async {
     try {
       String apiUrl = Endpoints.urlCreateCartSession;
@@ -337,7 +337,7 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, CartSessionResponseApi>> getCartSession(
+  Future<Either<Exception, CartSessionResponseApi?>> getCartSession(
       GetCartSessionParam object) async {
     try {
       String apiUrl = Endpoints.urlGetCartSession;
@@ -357,7 +357,7 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, CartSessionResponseApi>> updateCartSession(
+  Future<Either<Exception, CartSessionResponseApi?>> updateCartSession(
       UpdateCartSessionParam object) async {
     try {
       String apiUrl = Endpoints.urlUpdateCartSession;

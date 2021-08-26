@@ -229,9 +229,9 @@ class _$UpdateCartSessionBodyParamTearOff {
   const _$UpdateCartSessionBodyParamTearOff();
 
   _UpdateCartSessionBodyParam call(
-      {required String paymentType,
-      required String customerNote,
-      required List<UpdateCartSessionBodyItemParam> items}) {
+      {required String? paymentType,
+      required String? customerNote,
+      required List<CreateUpdateCartSessionItemParam>? items}) {
     return _UpdateCartSessionBodyParam(
       paymentType: paymentType,
       customerNote: customerNote,
@@ -249,9 +249,9 @@ const $UpdateCartSessionBodyParam = _$UpdateCartSessionBodyParamTearOff();
 
 /// @nodoc
 mixin _$UpdateCartSessionBodyParam {
-  String get paymentType => throw _privateConstructorUsedError;
-  String get customerNote => throw _privateConstructorUsedError;
-  List<UpdateCartSessionBodyItemParam> get items =>
+  String? get paymentType => throw _privateConstructorUsedError;
+  String? get customerNote => throw _privateConstructorUsedError;
+  List<CreateUpdateCartSessionItemParam>? get items =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -266,9 +266,9 @@ abstract class $UpdateCartSessionBodyParamCopyWith<$Res> {
           $Res Function(UpdateCartSessionBodyParam) then) =
       _$UpdateCartSessionBodyParamCopyWithImpl<$Res>;
   $Res call(
-      {String paymentType,
-      String customerNote,
-      List<UpdateCartSessionBodyItemParam> items});
+      {String? paymentType,
+      String? customerNote,
+      List<CreateUpdateCartSessionItemParam>? items});
 }
 
 /// @nodoc
@@ -290,15 +290,15 @@ class _$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       paymentType: paymentType == freezed
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerNote: customerNote == freezed
           ? _value.customerNote
           : customerNote // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<UpdateCartSessionBodyItemParam>,
+              as List<CreateUpdateCartSessionItemParam>?,
     ));
   }
 }
@@ -312,9 +312,9 @@ abstract class _$UpdateCartSessionBodyParamCopyWith<$Res>
       __$UpdateCartSessionBodyParamCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String paymentType,
-      String customerNote,
-      List<UpdateCartSessionBodyItemParam> items});
+      {String? paymentType,
+      String? customerNote,
+      List<CreateUpdateCartSessionItemParam>? items});
 }
 
 /// @nodoc
@@ -339,15 +339,15 @@ class __$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       paymentType: paymentType == freezed
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerNote: customerNote == freezed
           ? _value.customerNote
           : customerNote // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<UpdateCartSessionBodyItemParam>,
+              as List<CreateUpdateCartSessionItemParam>?,
     ));
   }
 }
@@ -364,11 +364,11 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
       _$_$_UpdateCartSessionBodyParamFromJson(json);
 
   @override
-  final String paymentType;
+  final String? paymentType;
   @override
-  final String customerNote;
+  final String? customerNote;
   @override
-  final List<UpdateCartSessionBodyItemParam> items;
+  final List<CreateUpdateCartSessionItemParam>? items;
 
   @override
   String toString() {
@@ -411,480 +411,24 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
 abstract class _UpdateCartSessionBodyParam
     implements UpdateCartSessionBodyParam {
   const factory _UpdateCartSessionBodyParam(
-          {required String paymentType,
-          required String customerNote,
-          required List<UpdateCartSessionBodyItemParam> items}) =
+          {required String? paymentType,
+          required String? customerNote,
+          required List<CreateUpdateCartSessionItemParam>? items}) =
       _$_UpdateCartSessionBodyParam;
 
   factory _UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =
       _$_UpdateCartSessionBodyParam.fromJson;
 
   @override
-  String get paymentType => throw _privateConstructorUsedError;
+  String? get paymentType => throw _privateConstructorUsedError;
   @override
-  String get customerNote => throw _privateConstructorUsedError;
+  String? get customerNote => throw _privateConstructorUsedError;
   @override
-  List<UpdateCartSessionBodyItemParam> get items =>
+  List<CreateUpdateCartSessionItemParam>? get items =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UpdateCartSessionBodyParamCopyWith<_UpdateCartSessionBodyParam>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-UpdateCartSessionBodyItemParam _$UpdateCartSessionBodyItemParamFromJson(
-    Map<String, dynamic> json) {
-  return _UpdateCartSessionBodyItemParam.fromJson(json);
-}
-
-/// @nodoc
-class _$UpdateCartSessionBodyItemParamTearOff {
-  const _$UpdateCartSessionBodyItemParamTearOff();
-
-  _UpdateCartSessionBodyItemParam call(
-      {required int productId,
-      required List<UpdateCartSessionBodyItemModifierParam> modifiers,
-      required String note,
-      required int qty}) {
-    return _UpdateCartSessionBodyItemParam(
-      productId: productId,
-      modifiers: modifiers,
-      note: note,
-      qty: qty,
-    );
-  }
-
-  UpdateCartSessionBodyItemParam fromJson(Map<String, Object> json) {
-    return UpdateCartSessionBodyItemParam.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $UpdateCartSessionBodyItemParam =
-    _$UpdateCartSessionBodyItemParamTearOff();
-
-/// @nodoc
-mixin _$UpdateCartSessionBodyItemParam {
-  int get productId => throw _privateConstructorUsedError;
-  List<UpdateCartSessionBodyItemModifierParam> get modifiers =>
-      throw _privateConstructorUsedError;
-  String get note => throw _privateConstructorUsedError;
-  int get qty => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UpdateCartSessionBodyItemParamCopyWith<UpdateCartSessionBodyItemParam>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpdateCartSessionBodyItemParamCopyWith<$Res> {
-  factory $UpdateCartSessionBodyItemParamCopyWith(
-          UpdateCartSessionBodyItemParam value,
-          $Res Function(UpdateCartSessionBodyItemParam) then) =
-      _$UpdateCartSessionBodyItemParamCopyWithImpl<$Res>;
-  $Res call(
-      {int productId,
-      List<UpdateCartSessionBodyItemModifierParam> modifiers,
-      String note,
-      int qty});
-}
-
-/// @nodoc
-class _$UpdateCartSessionBodyItemParamCopyWithImpl<$Res>
-    implements $UpdateCartSessionBodyItemParamCopyWith<$Res> {
-  _$UpdateCartSessionBodyItemParamCopyWithImpl(this._value, this._then);
-
-  final UpdateCartSessionBodyItemParam _value;
-  // ignore: unused_field
-  final $Res Function(UpdateCartSessionBodyItemParam) _then;
-
-  @override
-  $Res call({
-    Object? productId = freezed,
-    Object? modifiers = freezed,
-    Object? note = freezed,
-    Object? qty = freezed,
-  }) {
-    return _then(_value.copyWith(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as int,
-      modifiers: modifiers == freezed
-          ? _value.modifiers
-          : modifiers // ignore: cast_nullable_to_non_nullable
-              as List<UpdateCartSessionBodyItemModifierParam>,
-      note: note == freezed
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String,
-      qty: qty == freezed
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$UpdateCartSessionBodyItemParamCopyWith<$Res>
-    implements $UpdateCartSessionBodyItemParamCopyWith<$Res> {
-  factory _$UpdateCartSessionBodyItemParamCopyWith(
-          _UpdateCartSessionBodyItemParam value,
-          $Res Function(_UpdateCartSessionBodyItemParam) then) =
-      __$UpdateCartSessionBodyItemParamCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {int productId,
-      List<UpdateCartSessionBodyItemModifierParam> modifiers,
-      String note,
-      int qty});
-}
-
-/// @nodoc
-class __$UpdateCartSessionBodyItemParamCopyWithImpl<$Res>
-    extends _$UpdateCartSessionBodyItemParamCopyWithImpl<$Res>
-    implements _$UpdateCartSessionBodyItemParamCopyWith<$Res> {
-  __$UpdateCartSessionBodyItemParamCopyWithImpl(
-      _UpdateCartSessionBodyItemParam _value,
-      $Res Function(_UpdateCartSessionBodyItemParam) _then)
-      : super(_value, (v) => _then(v as _UpdateCartSessionBodyItemParam));
-
-  @override
-  _UpdateCartSessionBodyItemParam get _value =>
-      super._value as _UpdateCartSessionBodyItemParam;
-
-  @override
-  $Res call({
-    Object? productId = freezed,
-    Object? modifiers = freezed,
-    Object? note = freezed,
-    Object? qty = freezed,
-  }) {
-    return _then(_UpdateCartSessionBodyItemParam(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as int,
-      modifiers: modifiers == freezed
-          ? _value.modifiers
-          : modifiers // ignore: cast_nullable_to_non_nullable
-              as List<UpdateCartSessionBodyItemModifierParam>,
-      note: note == freezed
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String,
-      qty: qty == freezed
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_UpdateCartSessionBodyItemParam
-    implements _UpdateCartSessionBodyItemParam {
-  const _$_UpdateCartSessionBodyItemParam(
-      {required this.productId,
-      required this.modifiers,
-      required this.note,
-      required this.qty});
-
-  factory _$_UpdateCartSessionBodyItemParam.fromJson(
-          Map<String, dynamic> json) =>
-      _$_$_UpdateCartSessionBodyItemParamFromJson(json);
-
-  @override
-  final int productId;
-  @override
-  final List<UpdateCartSessionBodyItemModifierParam> modifiers;
-  @override
-  final String note;
-  @override
-  final int qty;
-
-  @override
-  String toString() {
-    return 'UpdateCartSessionBodyItemParam(productId: $productId, modifiers: $modifiers, note: $note, qty: $qty)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _UpdateCartSessionBodyItemParam &&
-            (identical(other.productId, productId) ||
-                const DeepCollectionEquality()
-                    .equals(other.productId, productId)) &&
-            (identical(other.modifiers, modifiers) ||
-                const DeepCollectionEquality()
-                    .equals(other.modifiers, modifiers)) &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)) &&
-            (identical(other.qty, qty) ||
-                const DeepCollectionEquality().equals(other.qty, qty)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(productId) ^
-      const DeepCollectionEquality().hash(modifiers) ^
-      const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(qty);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UpdateCartSessionBodyItemParamCopyWith<_UpdateCartSessionBodyItemParam>
-      get copyWith => __$UpdateCartSessionBodyItemParamCopyWithImpl<
-          _UpdateCartSessionBodyItemParam>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_UpdateCartSessionBodyItemParamToJson(this);
-  }
-}
-
-abstract class _UpdateCartSessionBodyItemParam
-    implements UpdateCartSessionBodyItemParam {
-  const factory _UpdateCartSessionBodyItemParam(
-      {required int productId,
-      required List<UpdateCartSessionBodyItemModifierParam> modifiers,
-      required String note,
-      required int qty}) = _$_UpdateCartSessionBodyItemParam;
-
-  factory _UpdateCartSessionBodyItemParam.fromJson(Map<String, dynamic> json) =
-      _$_UpdateCartSessionBodyItemParam.fromJson;
-
-  @override
-  int get productId => throw _privateConstructorUsedError;
-  @override
-  List<UpdateCartSessionBodyItemModifierParam> get modifiers =>
-      throw _privateConstructorUsedError;
-  @override
-  String get note => throw _privateConstructorUsedError;
-  @override
-  int get qty => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$UpdateCartSessionBodyItemParamCopyWith<_UpdateCartSessionBodyItemParam>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-UpdateCartSessionBodyItemModifierParam
-    _$UpdateCartSessionBodyItemModifierParamFromJson(
-        Map<String, dynamic> json) {
-  return _UpdateCartSessionBodyItemModifierParam.fromJson(json);
-}
-
-/// @nodoc
-class _$UpdateCartSessionBodyItemModifierParamTearOff {
-  const _$UpdateCartSessionBodyItemModifierParamTearOff();
-
-  _UpdateCartSessionBodyItemModifierParam call(
-      {required int modifierId,
-      required String modifierGroupId,
-      required int qty}) {
-    return _UpdateCartSessionBodyItemModifierParam(
-      modifierId: modifierId,
-      modifierGroupId: modifierGroupId,
-      qty: qty,
-    );
-  }
-
-  UpdateCartSessionBodyItemModifierParam fromJson(Map<String, Object> json) {
-    return UpdateCartSessionBodyItemModifierParam.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $UpdateCartSessionBodyItemModifierParam =
-    _$UpdateCartSessionBodyItemModifierParamTearOff();
-
-/// @nodoc
-mixin _$UpdateCartSessionBodyItemModifierParam {
-  int get modifierId => throw _privateConstructorUsedError;
-  String get modifierGroupId => throw _privateConstructorUsedError;
-  int get qty => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UpdateCartSessionBodyItemModifierParamCopyWith<
-          UpdateCartSessionBodyItemModifierParam>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpdateCartSessionBodyItemModifierParamCopyWith<$Res> {
-  factory $UpdateCartSessionBodyItemModifierParamCopyWith(
-          UpdateCartSessionBodyItemModifierParam value,
-          $Res Function(UpdateCartSessionBodyItemModifierParam) then) =
-      _$UpdateCartSessionBodyItemModifierParamCopyWithImpl<$Res>;
-  $Res call({int modifierId, String modifierGroupId, int qty});
-}
-
-/// @nodoc
-class _$UpdateCartSessionBodyItemModifierParamCopyWithImpl<$Res>
-    implements $UpdateCartSessionBodyItemModifierParamCopyWith<$Res> {
-  _$UpdateCartSessionBodyItemModifierParamCopyWithImpl(this._value, this._then);
-
-  final UpdateCartSessionBodyItemModifierParam _value;
-  // ignore: unused_field
-  final $Res Function(UpdateCartSessionBodyItemModifierParam) _then;
-
-  @override
-  $Res call({
-    Object? modifierId = freezed,
-    Object? modifierGroupId = freezed,
-    Object? qty = freezed,
-  }) {
-    return _then(_value.copyWith(
-      modifierId: modifierId == freezed
-          ? _value.modifierId
-          : modifierId // ignore: cast_nullable_to_non_nullable
-              as int,
-      modifierGroupId: modifierGroupId == freezed
-          ? _value.modifierGroupId
-          : modifierGroupId // ignore: cast_nullable_to_non_nullable
-              as String,
-      qty: qty == freezed
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$UpdateCartSessionBodyItemModifierParamCopyWith<$Res>
-    implements $UpdateCartSessionBodyItemModifierParamCopyWith<$Res> {
-  factory _$UpdateCartSessionBodyItemModifierParamCopyWith(
-          _UpdateCartSessionBodyItemModifierParam value,
-          $Res Function(_UpdateCartSessionBodyItemModifierParam) then) =
-      __$UpdateCartSessionBodyItemModifierParamCopyWithImpl<$Res>;
-  @override
-  $Res call({int modifierId, String modifierGroupId, int qty});
-}
-
-/// @nodoc
-class __$UpdateCartSessionBodyItemModifierParamCopyWithImpl<$Res>
-    extends _$UpdateCartSessionBodyItemModifierParamCopyWithImpl<$Res>
-    implements _$UpdateCartSessionBodyItemModifierParamCopyWith<$Res> {
-  __$UpdateCartSessionBodyItemModifierParamCopyWithImpl(
-      _UpdateCartSessionBodyItemModifierParam _value,
-      $Res Function(_UpdateCartSessionBodyItemModifierParam) _then)
-      : super(
-            _value, (v) => _then(v as _UpdateCartSessionBodyItemModifierParam));
-
-  @override
-  _UpdateCartSessionBodyItemModifierParam get _value =>
-      super._value as _UpdateCartSessionBodyItemModifierParam;
-
-  @override
-  $Res call({
-    Object? modifierId = freezed,
-    Object? modifierGroupId = freezed,
-    Object? qty = freezed,
-  }) {
-    return _then(_UpdateCartSessionBodyItemModifierParam(
-      modifierId: modifierId == freezed
-          ? _value.modifierId
-          : modifierId // ignore: cast_nullable_to_non_nullable
-              as int,
-      modifierGroupId: modifierGroupId == freezed
-          ? _value.modifierGroupId
-          : modifierGroupId // ignore: cast_nullable_to_non_nullable
-              as String,
-      qty: qty == freezed
-          ? _value.qty
-          : qty // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_UpdateCartSessionBodyItemModifierParam
-    implements _UpdateCartSessionBodyItemModifierParam {
-  const _$_UpdateCartSessionBodyItemModifierParam(
-      {required this.modifierId,
-      required this.modifierGroupId,
-      required this.qty});
-
-  factory _$_UpdateCartSessionBodyItemModifierParam.fromJson(
-          Map<String, dynamic> json) =>
-      _$_$_UpdateCartSessionBodyItemModifierParamFromJson(json);
-
-  @override
-  final int modifierId;
-  @override
-  final String modifierGroupId;
-  @override
-  final int qty;
-
-  @override
-  String toString() {
-    return 'UpdateCartSessionBodyItemModifierParam(modifierId: $modifierId, modifierGroupId: $modifierGroupId, qty: $qty)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _UpdateCartSessionBodyItemModifierParam &&
-            (identical(other.modifierId, modifierId) ||
-                const DeepCollectionEquality()
-                    .equals(other.modifierId, modifierId)) &&
-            (identical(other.modifierGroupId, modifierGroupId) ||
-                const DeepCollectionEquality()
-                    .equals(other.modifierGroupId, modifierGroupId)) &&
-            (identical(other.qty, qty) ||
-                const DeepCollectionEquality().equals(other.qty, qty)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(modifierId) ^
-      const DeepCollectionEquality().hash(modifierGroupId) ^
-      const DeepCollectionEquality().hash(qty);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UpdateCartSessionBodyItemModifierParamCopyWith<
-          _UpdateCartSessionBodyItemModifierParam>
-      get copyWith => __$UpdateCartSessionBodyItemModifierParamCopyWithImpl<
-          _UpdateCartSessionBodyItemModifierParam>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_UpdateCartSessionBodyItemModifierParamToJson(this);
-  }
-}
-
-abstract class _UpdateCartSessionBodyItemModifierParam
-    implements UpdateCartSessionBodyItemModifierParam {
-  const factory _UpdateCartSessionBodyItemModifierParam(
-      {required int modifierId,
-      required String modifierGroupId,
-      required int qty}) = _$_UpdateCartSessionBodyItemModifierParam;
-
-  factory _UpdateCartSessionBodyItemModifierParam.fromJson(
-          Map<String, dynamic> json) =
-      _$_UpdateCartSessionBodyItemModifierParam.fromJson;
-
-  @override
-  int get modifierId => throw _privateConstructorUsedError;
-  @override
-  String get modifierGroupId => throw _privateConstructorUsedError;
-  @override
-  int get qty => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$UpdateCartSessionBodyItemModifierParamCopyWith<
-          _UpdateCartSessionBodyItemModifierParam>
       get copyWith => throw _privateConstructorUsedError;
 }
 

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
@@ -32,6 +33,32 @@ class OrderRepository {
   final OrderLocal _orderLocal;
 
   OrderRepository(this._orderApi, this._orderLocal);
+
+  Future<UpdateCartSessionBodyParam?> setProduct(
+      CreateUpdateCartSessionItemParam object,
+      DetailOutletDataResponse outlet) async {
+    return _orderLocal.setProduct(object, outlet);
+  }
+
+  Future<UpdateCartSessionBodyParam?> removeProduct(
+      CreateUpdateCartSessionItemParam object) async {
+    return _orderLocal.removeProduct(object);
+  }
+
+  Future<DetailOutletDataResponse?> setOutletDetailID(
+      DetailOutletDataResponse object,
+      {bool isRemoveProductCart = true}) async {
+    return _orderLocal.setOutletDetailID(object,
+        isRemoveProductCart: isRemoveProductCart);
+  }
+
+  Future<DetailOutletDataResponse?> getOutletDetailID() async {
+    return _orderLocal.getOutletDetailID();
+  }
+
+  Future<UserAuth?> getLocalUserProfile() async {
+    return _orderLocal.getLocalUserProfile();
+  }
 
   Future<Either<Exception, String?>> getSessionId() async {
     return await _orderLocal.getSessionId().then((value) {

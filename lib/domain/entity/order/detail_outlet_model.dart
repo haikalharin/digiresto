@@ -56,7 +56,7 @@ abstract class DetailOutletDataResponse with _$DetailOutletDataResponse {
 abstract class DetailOutletDataLastUpdateResponse
     with _$DetailOutletDataLastUpdateResponse {
   const factory DetailOutletDataLastUpdateResponse({
-    required DateTime time,
+    required String time,
     required String literal,
   }) = _DetailOutletDataLastUpdateResponse;
 

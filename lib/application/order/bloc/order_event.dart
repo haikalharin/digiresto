@@ -37,6 +37,12 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.createCartSession(CreateCartSessionParam request) =
       _CreateCartSession;
 
+  const factory OrderEvent.addCart(CreateUpdateCartSessionItemParam request,
+      DetailOutletDataResponse outlet, String salesType) = _AddCart;
+
+  const factory OrderEvent.removeCart(
+      CreateUpdateCartSessionItemParam request) = _RemoveCart;
+
   const factory OrderEvent.getCartSession() = _GetCartSession;
 
   const factory OrderEvent.updateCartSession(UpdateCartSessionParam request) =

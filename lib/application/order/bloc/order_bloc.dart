@@ -163,11 +163,64 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (list) => OrderState.createCartSessionSuccess(list!.data),
         );
       },
+      addCart: (request) async* {
+        final sessionId =
+            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        final userProfile = (await _orderRepository.getLocalUserProfile())!;
+        await _orderRepository.setOutletDetailID(request.outlet);
+        final setProduct =
+            await _orderRepository.setProduct(request.request, request.outlet);
+
+        if (sessionId == null) {
+          final createCartSession = await _orderRepository.createCartSession(
+              CreateCartSessionParam(
+                  body: CreateCartSessionBodyParam(
+                      outletName: request.outlet.endpointName,
+                      customerName: userProfile.name!,
+                      customerPhone: userProfile.mobilePhone!,
+                      customerTableNumber: "",
+                      customerSmoking: false,
+                      customerPax: "1",
+                      customerNote: "",
+                      customerCarType: "",
+                      customerCarColor: "",
+                      customerCarNumber: "",
+                      eta: "now",
+                      salesType: request.salesType,
+                      receiptCode: "",
+                      items: setProduct?.items ?? []),
+                  queryString: CreateCartSessionQueryParam()));
+
+          var dataCart = createCartSession.getOrElse(() => null);
+          if (dataCart != null) {
+            await _orderRepository.setSessionId(dataCart.data.sessionId!);
+          }
+          yield createCartSession.fold(
+            (error) => OrderState.loadFailure(error),
+            (list) => OrderState.createCartSessionSuccess(list!.data),
+          );
+        } else {
+          final createCartSession = await _orderRepository.updateCartSession(
+              UpdateCartSessionParam(
+                  body: UpdateCartSessionBodyParam(
+                      items: setProduct?.items ?? [],
+                      customerNote: '',
+                      paymentType: ''),
+                  queryString:
+                      UpdateCartSessionQueryParam(sessionId: sessionId)));
+
+          yield createCartSession.fold(
+            (error) => OrderState.loadFailure(error),
+            (list) => OrderState.createCartSessionSuccess(list!.data),
+          );
+        }
+      },
+      removeCart: (r) async* {},
       getCartSession: (_) async* {
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final getCartSession = await _orderRepository
-            .getCartSession(GetCartSessionParam(sessionId: sessionId!));
+            .getCartSession(GetCartSessionParam(sessionId: sessionId ?? ""));
 
         yield getCartSession.fold(
           (error) => OrderState.loadFailure(error),

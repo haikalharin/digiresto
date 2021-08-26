@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -73,6 +74,19 @@ class Storage implements IStorage {
   String? getString({required String key}) {
     String? value = box.get(key);
     return value;
+  }
+
+  @override
+  getJson({required String key}) {
+    dynamic value = box.get(key) != null ? jsonDecode(box.get(key)) : null;
+    return value;
+  }
+
+  @override
+  Future<void> setJson(
+      {required String key, required Map<String, dynamic> object}) async {
+    await box.put(key, jsonEncode(object));
+    return;
   }
 
   Future<DateTime?> getDate({required String key}) async {

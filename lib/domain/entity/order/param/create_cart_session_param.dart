@@ -38,7 +38,7 @@ abstract class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
     required String eta,
     required String salesType,
     required String receiptCode,
-    required List<CreateCartSessionItemParam> items,
+    required List<CreateUpdateCartSessionItemParam> items,
   }) = _CreateCartSessionBodyParam;
 
   factory CreateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -46,16 +46,18 @@ abstract class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
 }
 
 @freezed
-abstract class CreateCartSessionItemParam with _$CreateCartSessionItemParam {
-  const factory CreateCartSessionItemParam({
+abstract class CreateUpdateCartSessionItemParam
+    with _$CreateUpdateCartSessionItemParam {
+  const factory CreateUpdateCartSessionItemParam({
     required int productId,
     required List<CreateCartSessionItemModifierParam> modifiers,
     required String note,
     required int qty,
-  }) = _CreateCartSessionItemParam;
+  }) = _CreateUpdateCartSessionItemParam;
 
-  factory CreateCartSessionItemParam.fromJson(Map<String, dynamic> json) =>
-      _$CreateCartSessionItemParamFromJson(json);
+  factory CreateUpdateCartSessionItemParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateUpdateCartSessionItemParamFromJson(json);
 }
 
 @freezed

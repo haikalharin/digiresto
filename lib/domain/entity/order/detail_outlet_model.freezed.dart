@@ -900,7 +900,7 @@ class _$DetailOutletDataLastUpdateResponseTearOff {
   const _$DetailOutletDataLastUpdateResponseTearOff();
 
   _DetailOutletDataLastUpdateResponse call(
-      {required DateTime time, required String literal}) {
+      {required String time, required String literal}) {
     return _DetailOutletDataLastUpdateResponse(
       time: time,
       literal: literal,
@@ -918,7 +918,7 @@ const $DetailOutletDataLastUpdateResponse =
 
 /// @nodoc
 mixin _$DetailOutletDataLastUpdateResponse {
-  DateTime get time => throw _privateConstructorUsedError;
+  String get time => throw _privateConstructorUsedError;
   String get literal => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -934,7 +934,7 @@ abstract class $DetailOutletDataLastUpdateResponseCopyWith<$Res> {
           DetailOutletDataLastUpdateResponse value,
           $Res Function(DetailOutletDataLastUpdateResponse) then) =
       _$DetailOutletDataLastUpdateResponseCopyWithImpl<$Res>;
-  $Res call({DateTime time, String literal});
+  $Res call({String time, String literal});
 }
 
 /// @nodoc
@@ -955,7 +955,7 @@ class _$DetailOutletDataLastUpdateResponseCopyWithImpl<$Res>
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       literal: literal == freezed
           ? _value.literal
           : literal // ignore: cast_nullable_to_non_nullable
@@ -972,7 +972,7 @@ abstract class _$DetailOutletDataLastUpdateResponseCopyWith<$Res>
           $Res Function(_DetailOutletDataLastUpdateResponse) then) =
       __$DetailOutletDataLastUpdateResponseCopyWithImpl<$Res>;
   @override
-  $Res call({DateTime time, String literal});
+  $Res call({String time, String literal});
 }
 
 /// @nodoc
@@ -997,7 +997,7 @@ class __$DetailOutletDataLastUpdateResponseCopyWithImpl<$Res>
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       literal: literal == freezed
           ? _value.literal
           : literal // ignore: cast_nullable_to_non_nullable
@@ -1018,7 +1018,7 @@ class _$_DetailOutletDataLastUpdateResponse
       _$_$_DetailOutletDataLastUpdateResponseFromJson(json);
 
   @override
-  final DateTime time;
+  final String time;
   @override
   final String literal;
 
@@ -1059,7 +1059,7 @@ class _$_DetailOutletDataLastUpdateResponse
 abstract class _DetailOutletDataLastUpdateResponse
     implements DetailOutletDataLastUpdateResponse {
   const factory _DetailOutletDataLastUpdateResponse(
-      {required DateTime time,
+      {required String time,
       required String literal}) = _$_DetailOutletDataLastUpdateResponse;
 
   factory _DetailOutletDataLastUpdateResponse.fromJson(
@@ -1067,7 +1067,7 @@ abstract class _DetailOutletDataLastUpdateResponse
       _$_DetailOutletDataLastUpdateResponse.fromJson;
 
   @override
-  DateTime get time => throw _privateConstructorUsedError;
+  String get time => throw _privateConstructorUsedError;
   @override
   String get literal => throw _privateConstructorUsedError;
   @override
