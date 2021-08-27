@@ -501,7 +501,7 @@ class _$TransactionDataTearOff {
       required int deliveryAmount,
       required int totalPayment,
       required String salesType,
-      required List<Item> items,
+      required List<TransactionDataItemResponse> items,
       required int itemWeight,
       required bool isUseVoucher,
       required List<dynamic> promos,
@@ -595,7 +595,8 @@ mixin _$TransactionData {
   int get deliveryAmount => throw _privateConstructorUsedError;
   int get totalPayment => throw _privateConstructorUsedError;
   String get salesType => throw _privateConstructorUsedError;
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<TransactionDataItemResponse> get items =>
+      throw _privateConstructorUsedError;
   int get itemWeight => throw _privateConstructorUsedError;
   bool get isUseVoucher => throw _privateConstructorUsedError;
   List<dynamic> get promos => throw _privateConstructorUsedError;
@@ -649,7 +650,7 @@ abstract class $TransactionDataCopyWith<$Res> {
       int deliveryAmount,
       int totalPayment,
       String salesType,
-      List<Item> items,
+      List<TransactionDataItemResponse> items,
       int itemWeight,
       bool isUseVoucher,
       List<dynamic> promos,
@@ -846,7 +847,7 @@ class _$TransactionDataCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<TransactionDataItemResponse>,
       itemWeight: itemWeight == freezed
           ? _value.itemWeight
           : itemWeight // ignore: cast_nullable_to_non_nullable
@@ -916,7 +917,7 @@ abstract class _$TransactionDataCopyWith<$Res>
       int deliveryAmount,
       int totalPayment,
       String salesType,
-      List<Item> items,
+      List<TransactionDataItemResponse> items,
       int itemWeight,
       bool isUseVoucher,
       List<dynamic> promos,
@@ -1115,7 +1116,7 @@ class __$TransactionDataCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<TransactionDataItemResponse>,
       itemWeight: itemWeight == freezed
           ? _value.itemWeight
           : itemWeight // ignore: cast_nullable_to_non_nullable
@@ -1259,7 +1260,7 @@ class _$_TransactionData implements _TransactionData {
   @override
   final String salesType;
   @override
-  final List<Item> items;
+  final List<TransactionDataItemResponse> items;
   @override
   final int itemWeight;
   @override
@@ -1457,7 +1458,7 @@ abstract class _TransactionData implements TransactionData {
       required int deliveryAmount,
       required int totalPayment,
       required String salesType,
-      required List<Item> items,
+      required List<TransactionDataItemResponse> items,
       required int itemWeight,
       required bool isUseVoucher,
       required List<dynamic> promos,
@@ -1535,7 +1536,8 @@ abstract class _TransactionData implements TransactionData {
   @override
   String get salesType => throw _privateConstructorUsedError;
   @override
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<TransactionDataItemResponse> get items =>
+      throw _privateConstructorUsedError;
   @override
   int get itemWeight => throw _privateConstructorUsedError;
   @override
@@ -1555,15 +1557,16 @@ abstract class _TransactionData implements TransactionData {
       throw _privateConstructorUsedError;
 }
 
-Item _$ItemFromJson(Map<String, dynamic> json) {
-  return _Item.fromJson(json);
+TransactionDataItemResponse _$TransactionDataItemResponseFromJson(
+    Map<String, dynamic> json) {
+  return _TransactionDataItemResponse.fromJson(json);
 }
 
 /// @nodoc
-class _$ItemTearOff {
-  const _$ItemTearOff();
+class _$TransactionDataItemResponseTearOff {
+  const _$TransactionDataItemResponseTearOff();
 
-  _Item call(
+  _TransactionDataItemResponse call(
       {required int productId,
       required String title,
       required int price,
@@ -1588,7 +1591,7 @@ class _$ItemTearOff {
       required int subtotal,
       required int serviceAmount,
       required int taxAmount}) {
-    return _Item(
+    return _TransactionDataItemResponse(
       productId: productId,
       title: title,
       price: price,
@@ -1616,16 +1619,16 @@ class _$ItemTearOff {
     );
   }
 
-  Item fromJson(Map<String, Object> json) {
-    return Item.fromJson(json);
+  TransactionDataItemResponse fromJson(Map<String, Object> json) {
+    return TransactionDataItemResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Item = _$ItemTearOff();
+const $TransactionDataItemResponse = _$TransactionDataItemResponseTearOff();
 
 /// @nodoc
-mixin _$Item {
+mixin _$TransactionDataItemResponse {
   int get productId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
@@ -1653,13 +1656,16 @@ mixin _$Item {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
+  $TransactionDataItemResponseCopyWith<TransactionDataItemResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) then) =
-      _$ItemCopyWithImpl<$Res>;
+abstract class $TransactionDataItemResponseCopyWith<$Res> {
+  factory $TransactionDataItemResponseCopyWith(
+          TransactionDataItemResponse value,
+          $Res Function(TransactionDataItemResponse) then) =
+      _$TransactionDataItemResponseCopyWithImpl<$Res>;
   $Res call(
       {int productId,
       String title,
@@ -1688,12 +1694,13 @@ abstract class $ItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._value, this._then);
+class _$TransactionDataItemResponseCopyWithImpl<$Res>
+    implements $TransactionDataItemResponseCopyWith<$Res> {
+  _$TransactionDataItemResponseCopyWithImpl(this._value, this._then);
 
-  final Item _value;
+  final TransactionDataItemResponse _value;
   // ignore: unused_field
-  final $Res Function(Item) _then;
+  final $Res Function(TransactionDataItemResponse) _then;
 
   @override
   $Res call({
@@ -1824,9 +1831,12 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
-  factory _$ItemCopyWith(_Item value, $Res Function(_Item) then) =
-      __$ItemCopyWithImpl<$Res>;
+abstract class _$TransactionDataItemResponseCopyWith<$Res>
+    implements $TransactionDataItemResponseCopyWith<$Res> {
+  factory _$TransactionDataItemResponseCopyWith(
+          _TransactionDataItemResponse value,
+          $Res Function(_TransactionDataItemResponse) then) =
+      __$TransactionDataItemResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {int productId,
@@ -1856,13 +1866,17 @@ abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
-    implements _$ItemCopyWith<$Res> {
-  __$ItemCopyWithImpl(_Item _value, $Res Function(_Item) _then)
-      : super(_value, (v) => _then(v as _Item));
+class __$TransactionDataItemResponseCopyWithImpl<$Res>
+    extends _$TransactionDataItemResponseCopyWithImpl<$Res>
+    implements _$TransactionDataItemResponseCopyWith<$Res> {
+  __$TransactionDataItemResponseCopyWithImpl(
+      _TransactionDataItemResponse _value,
+      $Res Function(_TransactionDataItemResponse) _then)
+      : super(_value, (v) => _then(v as _TransactionDataItemResponse));
 
   @override
-  _Item get _value => super._value as _Item;
+  _TransactionDataItemResponse get _value =>
+      super._value as _TransactionDataItemResponse;
 
   @override
   $Res call({
@@ -1891,7 +1905,7 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
     Object? serviceAmount = freezed,
     Object? taxAmount = freezed,
   }) {
-    return _then(_Item(
+    return _then(_TransactionDataItemResponse(
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -1994,8 +2008,8 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Item implements _Item {
-  const _$_Item(
+class _$_TransactionDataItemResponse implements _TransactionDataItemResponse {
+  const _$_TransactionDataItemResponse(
       {required this.productId,
       required this.title,
       required this.price,
@@ -2021,8 +2035,8 @@ class _$_Item implements _Item {
       required this.serviceAmount,
       required this.taxAmount});
 
-  factory _$_Item.fromJson(Map<String, dynamic> json) =>
-      _$_$_ItemFromJson(json);
+  factory _$_TransactionDataItemResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_TransactionDataItemResponseFromJson(json);
 
   @override
   final int productId;
@@ -2075,13 +2089,13 @@ class _$_Item implements _Item {
 
   @override
   String toString() {
-    return 'Item(productId: $productId, title: $title, price: $price, code: $code, cost: $cost, qty: $qty, basicWeight: $basicWeight, weight: $weight, category: $category, categoryId: $categoryId, categoryCode: $categoryCode, sku: $sku, note: $note, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, amount: $amount, modifiers: $modifiers, modifiersAmount: $modifiersAmount, modifiersCost: $modifiersCost, modifiersDiscount: $modifiersDiscount, singleModifiersAmount: $singleModifiersAmount, subtotal: $subtotal, serviceAmount: $serviceAmount, taxAmount: $taxAmount)';
+    return 'TransactionDataItemResponse(productId: $productId, title: $title, price: $price, code: $code, cost: $cost, qty: $qty, basicWeight: $basicWeight, weight: $weight, category: $category, categoryId: $categoryId, categoryCode: $categoryCode, sku: $sku, note: $note, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, amount: $amount, modifiers: $modifiers, modifiersAmount: $modifiersAmount, modifiersCost: $modifiersCost, modifiersDiscount: $modifiersDiscount, singleModifiersAmount: $singleModifiersAmount, subtotal: $subtotal, serviceAmount: $serviceAmount, taxAmount: $taxAmount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Item &&
+        (other is _TransactionDataItemResponse &&
             (identical(other.productId, productId) ||
                 const DeepCollectionEquality()
                     .equals(other.productId, productId)) &&
@@ -2177,17 +2191,19 @@ class _$_Item implements _Item {
 
   @JsonKey(ignore: true)
   @override
-  _$ItemCopyWith<_Item> get copyWith =>
-      __$ItemCopyWithImpl<_Item>(this, _$identity);
+  _$TransactionDataItemResponseCopyWith<_TransactionDataItemResponse>
+      get copyWith => __$TransactionDataItemResponseCopyWithImpl<
+          _TransactionDataItemResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ItemToJson(this);
+    return _$_$_TransactionDataItemResponseToJson(this);
   }
 }
 
-abstract class _Item implements Item {
-  const factory _Item(
+abstract class _TransactionDataItemResponse
+    implements TransactionDataItemResponse {
+  const factory _TransactionDataItemResponse(
       {required int productId,
       required String title,
       required int price,
@@ -2211,9 +2227,10 @@ abstract class _Item implements Item {
       required int singleModifiersAmount,
       required int subtotal,
       required int serviceAmount,
-      required int taxAmount}) = _$_Item;
+      required int taxAmount}) = _$_TransactionDataItemResponse;
 
-  factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
+  factory _TransactionDataItemResponse.fromJson(Map<String, dynamic> json) =
+      _$_TransactionDataItemResponse.fromJson;
 
   @override
   int get productId => throw _privateConstructorUsedError;
@@ -2265,7 +2282,8 @@ abstract class _Item implements Item {
   int get taxAmount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ItemCopyWith<_Item> get copyWith => throw _privateConstructorUsedError;
+  _$TransactionDataItemResponseCopyWith<_TransactionDataItemResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Modifier _$ModifierFromJson(Map<String, dynamic> json) {

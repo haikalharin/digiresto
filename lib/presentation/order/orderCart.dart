@@ -1,47 +1,39 @@
 import 'dart:core';
 
+import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
+import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
-import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/cart_session_response.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'detailProductDialog.dart';
 
-class OrderCartScreen extends StatefulWidget {
-  @override
-  _OrderCartScreenState createState() => _OrderCartScreenState();
-}
-
-class KeyValueModel {
-  String key;
-  String value;
-  KeyValueModel({required this.key, required this.value});
-}
-
-class _OrderCartScreenState extends State<OrderCartScreen> {
+class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   // UserStore _userStore;
   // OrderStore _orderStore;
   //TransactionStore _transactionStore;
-  DetailOutletDataResponse? detailOutlet;
-  Loading _loading = new Loading();
 
   void loadingAdd() {
-    setState(() {
-      _loading.add();
-    });
+    controller.loading.value.add();
   }
 
   void loadingDelete() {
-    setState(() {
-      _loading.delete();
-    });
+    controller.loading.value.delete();
   }
 
   final ScrollController _scrollController = new ScrollController();
@@ -50,32 +42,6 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   final voucherCodeController = TextEditingController();
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
-  bool? useSchedule;
-  int reloadCounter = 0;
-  DateTime? selectedDate;
-  bool notesSubmited = true;
-
-  List<KeyValueModel> _dataSmoking = [
-    KeyValueModel(key: "1", value: "Smoking"),
-    KeyValueModel(key: "2", value: "Non Smoking"),
-  ];
-
-  List<KeyValueModel> _dataClock = [
-    KeyValueModel(key: "13:00", value: "13:00"),
-    KeyValueModel(key: "14:00", value: "14:00"),
-    KeyValueModel(key: "15:00", value: "15:00"),
-    KeyValueModel(key: "16:00", value: "16:00"),
-    KeyValueModel(key: "17:00", value: "17:00"),
-    KeyValueModel(key: "18:00", value: "18:00"),
-    KeyValueModel(key: "19:00", value: "19:00"),
-    KeyValueModel(key: "20:00", value: "20:00"),
-    KeyValueModel(key: "21:00", value: "21:00"),
-    KeyValueModel(key: "22:00", value: "22:00"),
-    KeyValueModel(key: "23:00", value: "23:00"),
-    KeyValueModel(key: "24:00", value: "24:00"),
-  ];
-  String? _selectedValueClock;
-  String? _selectedValueSmoking;
 
   //List<PaymentMethod> _paymentMethods;
 
@@ -83,9 +49,8 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     Navigator.pop(context);
   }
 
-  @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
+    //super.didChangeDependencies();
     // _userStore = Provider.of<UserStore>(context);
     // _orderStore = Provider.of<OrderStore>(context);
     // _transactionStore = Provider.of<TransactionStore>(context);
@@ -110,232 +75,28 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     // }
   }
 
+  void getCartSession() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+  }
+
+  void getActiveAddress() {
+    Get.context!.read<HomeUserBloc>()..add(HomeUserEvent.getActiveAddress());
+  }
+
   void initDialogPlace() {
-    setState(() {
-      useSchedule = false;
-      paxController.text = "1";
-      selectedDate = DateTime.now();
-      _selectedValueClock = "13:00";
-      _selectedValueSmoking = "1";
-      selectedDateController.text =
-          new DateFormat("yyyy/MM/dd").format(DateTime.now());
-    });
-  }
-
-  void _editCart(Map<String, dynamic> x, String y) {}
-
-  void _plusProduct(
-      int productId, int qty, int price, Map<String, dynamic> detailProduct) {
-    setState(() {
-      reloadCounter++;
-    });
-    //_orderStore.setProduct(productId, qty, price, detailProduct);
-  }
-
-  _showDetailProduct(Map<String, dynamic> dataProduct, String orderType) {
-    //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
-    Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return DetailProductDialog(
-                      dataProduct: dataProduct["detail"],
-                      orderType: orderType,
-                      mode: "edit",
-                      qtyProduct: dataProduct["qty"]);
-                },
-                fullscreenDialog: true))
-        .then((value) {
-      setState(() {
-        reloadCounter++;
-      });
-    });
-  }
-
-  Widget _order() {
-    return Container(
-      color: Colors.white,
-      width: double.infinity,
-      padding: EdgeInsets.only(top: 10, left: 10, right: 5),
-      margin: EdgeInsets.only(top: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            child: Text(
-              "_orderStore.orderOutletDetailName",
-              //_orderStore.orderOutlet.detail["name"],
-              //detailOutlet != null ? data.outlet["detail"]["name"] : ""
-              style: TextStyle(
-                fontFamily: "roboto",
-                //color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          // Container(
-          //   padding: EdgeInsets.only(top: 10),
-          //   child: Text(
-          //     _orderStore.orderMerchantName.toString(),
-          //     //_orderStore.orderOutlet.merchantName,
-          //     //detailOutlet != null ? data.outlet["detail"]["name"] : ""
-          //     style: TextStyle(
-          //       fontFamily: "roboto",
-          //       //color: Colors.white,
-          //       fontSize: 14,
-          //       fontWeight: FontWeight.bold,
-          //     ),
-          //   ),
-          // ),
-
-          //#######
-          // Container(
-          //   width: double.infinity,
-          //   child: ListProductCartWidget(
-          //     addOrRemove: _plusProduct,
-          //     orderType: _orderStore.orderSalesTypesCode,
-          //     data: _orderStore.orderProduct,
-          //     runDetailAction: _showDetailProduct,
-          //     runEditAction: _editCart,
-          //     scrollDirection: Axis.vertical,
-          //   ),
-          // ),
-        ],
-      ),
-    );
-  }
-
-  Widget _addNew() {
-    return Column(
-      children: [
-        Container(
-          color: AppColors.greyStroke,
-          height: 5,
-          width: double.infinity,
-        ),
-        Container(
-          color: Colors.white,
-          width: double.infinity,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    Text("Mau pesan yang lain ? ",
-                        style: TextStyle(
-                          fontFamily: "roboto",
-                          //color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    Container(
-                      padding: EdgeInsets.only(left: 10, top: 5, bottom: 10),
-                      child: Text("Tambahkan pesanan lainnya ",
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            //color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(right: 10),
-                height: 35,
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(Routers.orderDetailOutlet);
-                  },
-                  color: Colors.white,
-                  child: Text("Tambah",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.red)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(5.0),
-                    side: BorderSide(
-                      width: 1,
-                      color: AppColors.red,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          color: AppColors.greyStroke,
-          height: 10,
-          width: double.infinity,
-        ),
-      ],
-    );
-  }
-
-  Widget _header() {
-    return Stack(children: [
-      Container(
-        height: 120,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssets.bgHome),
-            fit: BoxFit.fill,
-          ),
-          shape: BoxShape.rectangle,
-        ),
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                new IconButton(
-                  icon: new Icon(Icons.arrow_back_outlined,
-                      color: Colors.white, size: 24.0),
-                  onPressed: () {
-                    //if (_userStore.activeHistoryScreen=='profile.address'){
-                    //_userStore.setActivedHomeTab("home");
-                    Navigator.of(context).pushNamed(Routers.home);
-                    //}
-                  },
-                ),
-                Container(
-                  child: Text("Detail Order",
-                      //detailOutlet != null ? data.outlet["detail"]["name"] : ""
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center),
-                ),
-                Container(
-                  width: 50,
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    ]);
+    controller.useSchedule.value = false;
+    paxController.text = "1";
+    controller.selectedDate.value = DateTime.now();
+    controller.selectedValueClock.value = "13:00";
+    controller.selectedValueSmoking.value = "1";
+    selectedDateController.text =
+        new DateFormat("yyyy/MM/dd").format(DateTime.now());
   }
 
   String getValueSmoking(String key) {
-    for (int i = 0; i <= _dataSmoking.length; i++) {
-      if (_dataSmoking[i].key == key) {
-        return _dataSmoking[i].value;
+    for (int i = 0; i <= controller.dataSmoking.toList().length; i++) {
+      if (controller.dataSmoking.toList()[i].key == key) {
+        return controller.dataSmoking.toList()[i].value!;
       }
     }
     return "";
@@ -344,7 +105,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate!, // Refer step 1
+      initialDate: controller.selectedDate.value!, // Refer step 1
       firstDate: DateTime(2000),
       lastDate: DateTime(2030),
       builder: (BuildContext context, Widget? child) {
@@ -357,17 +118,15 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
             ));
       },
     );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-        selectedDateController.text =
-            new DateFormat("yyyy/MM/dd").format(picked);
-      });
+    if (picked != null && picked != controller.selectedDate.value!) {
+      controller.selectedDate.value = picked;
+      selectedDateController.text = new DateFormat("yyyy/MM/dd").format(picked);
+    }
   }
 
   Widget _notes() {
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
       ),
       child: Container(
@@ -398,7 +157,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                         controller: placeInfoController,
                         readOnly: true,
                         onTap: () {
-                          _dialogPlace(context);
+                          _dialogPlace(Get.context!);
                         },
                         style: TextStyle(
                           fontSize: 14.0,
@@ -448,9 +207,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                         textInputAction: TextInputAction.search,
                         onSubmitted: (value) {},
                         onChanged: (text) {
-                          setState(() {
-                            notesSubmited = false;
-                          });
+                          controller.notesSubmited.value = false;
                         },
                         controller: notesController,
                         readOnly: false,
@@ -475,7 +232,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           ),
                         )),
                   ),
-                  notesSubmited == false
+                  controller.notesSubmited.value == false
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -488,9 +245,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                                 height: 55,
                                 child: RaisedButton(
                                   onPressed: () {
-                                    setState(() {
-                                      notesSubmited = true;
-                                    });
+                                    controller.notesSubmited.value = true;
                                   },
                                   color: AppColors.red,
                                   child: Text("Simpan",
@@ -528,7 +283,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
 
   Widget _paymentMethod() {
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
       ),
       child: Container(
@@ -564,7 +319,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   if ("_orderStore.orderPaymentTypeText" != null)
                     FlatButton(
                         onPressed: () {
-                          Navigator.of(context)
+                          Navigator.of(Get.context!)
                               .pushNamed(Routers.selectPaymentMethod);
                         },
                         color: Colors.white,
@@ -583,7 +338,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   else
                     FlatButton(
                         onPressed: () {
-                          Navigator.of(context)
+                          Navigator.of(Get.context!)
                               .pushNamed(Routers.selectPaymentMethod);
                         },
                         color: Colors.white,
@@ -615,7 +370,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
 
   Widget _deliveryMethod() {
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
       ),
       child: Container(
@@ -651,7 +406,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   if ("_orderStore.selectedDeliveryMethod" != null)
                     FlatButton(
                         onPressed: () {
-                          Navigator.of(context)
+                          Navigator.of(Get.context!)
                               .pushNamed(Routers.selectDeliveryMethod);
                         },
                         color: Colors.white,
@@ -670,7 +425,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                   else
                     FlatButton(
                         onPressed: () {
-                          Navigator.of(context)
+                          Navigator.of(Get.context!)
                               .pushNamed(Routers.selectDeliveryMethod);
                         },
                         color: Colors.white,
@@ -703,7 +458,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
   Widget _detailPayment() {
     //final transaction = _orderStore.countedTransaction;
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
       ),
       child: Container(
@@ -870,7 +625,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
               content: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                  height: useSchedule! ? 350 : 270,
+                  height: controller.useSchedule.value! ? 350 : 270,
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -896,10 +651,10 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Switch(
-                            value: useSchedule!,
+                            value: controller.useSchedule.value!,
                             onChanged: (value) {
                               setState(() {
-                                useSchedule = value;
+                                controller.useSchedule.value = value;
                               });
                             },
                             activeTrackColor: Colors.redAccent,
@@ -907,7 +662,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                           )
                         ],
                       ),
-                      useSchedule!
+                      controller.useSchedule.value!
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -983,17 +738,20 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                                                 borderSide: BorderSide(
                                                     color: Colors.black),
                                               )),
-                                          value: _selectedValueClock,
-                                          items: _dataClock
+                                          value: controller
+                                              .selectedValueClock.value,
+                                          items: controller.dataClock
+                                              .toList()
                                               .map((data) =>
                                                   DropdownMenuItem<String>(
-                                                    child: Text(data.value),
+                                                    child: Text(data.value!),
                                                     value: data.key,
                                                   ))
                                               .toList(),
                                           onChanged: (String? value) {
                                             setState(() {
-                                              _selectedValueClock = value;
+                                              controller.selectedValueClock
+                                                  .value = value;
                                             });
                                           },
                                         ),
@@ -1066,16 +824,17 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
                               )),
-                          value: _selectedValueSmoking,
-                          items: _dataSmoking
+                          value: controller.selectedValueSmoking.value,
+                          items: controller.dataSmoking
+                              .toList()
                               .map((data) => DropdownMenuItem<String>(
-                                    child: Text(data.value),
+                                    child: Text(data.value!),
                                     value: data.key,
                                   ))
                               .toList(),
                           onChanged: (String? value) {
                             setState(() {
-                              _selectedValueSmoking = value;
+                              controller.selectedValueSmoking.value = value;
                             });
                           },
                         ),
@@ -1162,7 +921,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
 
   Widget _useVoucherCode() {
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
       ),
       child: Container(
@@ -1186,7 +945,7 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width / 1.5,
+                        width: MediaQuery.of(Get.context!).size.width / 1.5,
                         padding: const EdgeInsets.only(top: 15, bottom: 10),
                         child: TextField(
                             textInputAction: TextInputAction.search,
@@ -1257,34 +1016,81 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
     );
   }
 
+  void getDetailOutlet() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
+        GetDetailOutletParam(
+            body: GetDetailOutletBodyParam(),
+            queryString: GetDetailOutletQueryParam(
+                outletId: controller.cartSession.value!.transactionData.outletId
+                    .toString()))));
+  }
+
+  void getListProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
+        GetOutletProductParam(
+            body: GetOutletProductBodyParam(),
+            queryString: GetOutletProductQueryParam(
+                categoryId: "",
+                filter: "",
+                limit: 15,
+                outletId: controller.cartSession.value!.transactionData.outletId
+                    .toString(),
+                page: 1))));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          TopBackgound(backgroundColor: AppColors.red),
-          Container(
-            height: MediaQuery.of(context).size.height -
-                MediaQuery.of(context).padding.top,
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  _header(),
-                  _order(),
-                  _addNew(),
-                  _notes(),
-                  _useVoucherCode(),
-                  // Observer(builder: (context) => _paymentMethod()),
-                  // if (_orderStore.orderSalesTypes == 'onlineDriver')
-                  //   Observer(builder: (context) => _deliveryMethod()),
-                  // Observer(builder: (context) => _detailPayment()),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+    getActiveAddress();
+    getCartSession();
+    return BlocConsumer<OrderBloc, OrderState>(
+      listener: (context, state) {
+        state.maybeMap(
+            getCartSessionSuccess: (r) {
+              controller.cartSession.value = r.response;
+              getDetailOutlet();
+              getListProduct();
+            },
+            getDetailOutletSuccess: (r) {
+              controller.detailOutlet.value = r.response;
+            },
+            getOutletListProductSuccess: (r) {
+              controller.listProduct.value = r.response;
+            },
+            orElse: () {});
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: Column(
+            children: [
+              TopBackgound(backgroundColor: AppColors.red),
+              Expanded(
+                child: Container(
+                  height: MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top,
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        _HeaderOrderCart(),
+                        controller.detailOutlet.value != null &&
+                                controller.listProduct.value != null
+                            ? _ProductOrderCart()
+                            : Container(),
+                        _notes(),
+                        _useVoucherCode(),
+                        // Observer(builder: (context) => _paymentMethod()),
+                        // if (_orderStore.orderSalesTypes == 'onlineDriver')
+                        //   Observer(builder: (context) => _deliveryMethod()),
+                        // Observer(builder: (context) => _detailPayment()),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -1301,5 +1107,246 @@ class _OrderCartScreenState extends State<OrderCartScreen> {
         ),
       ],
     );
+  }
+}
+
+class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
+  void _editCart(TransactionDataItemResponse x, String y) {}
+
+  void _plusProduct(int productId, int qty, int price,
+      TransactionDataItemResponse detailProduct) {
+    controller.reloadCounter.value++;
+
+    //_orderStore.setProduct(productId, qty, price, detailProduct);
+  }
+
+  _showDetailProduct(TransactionDataItemResponse cartProduct,
+      OutletListProductDataResponse product, String orderType) {
+    //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
+    Navigator.push(
+            Get.context!,
+            MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return DetailProductDialog(
+                      dataProduct: product,
+                      orderType: orderType,
+                      mode: "edit",
+                      qtyProduct: cartProduct.qty);
+                },
+                fullscreenDialog: true))
+        .then((value) {
+      controller.reloadCounter.value++;
+    });
+  }
+
+  Widget _addNew() {
+    return Column(
+      children: [
+        Container(
+          color: AppColors.greyStroke,
+          height: 5,
+          width: double.infinity,
+        ),
+        Container(
+          color: Colors.white,
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                child: Column(
+                  children: [
+                    Text("Mau pesan yang lain ? ",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          //color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Container(
+                      padding: EdgeInsets.only(left: 10, top: 5, bottom: 10),
+                      child: Text("Tambahkan pesanan lainnya ",
+                          style: TextStyle(
+                            fontFamily: "roboto",
+                            //color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(right: 10),
+                height: 35,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.of(Get.context!).pushNamed(
+                        Routers.orderDetailOutlet,
+                        arguments: OrderDetailViewArgument(
+                            controller.detailOutlet.value!.id,
+                            controller.detailOutlet.value!.merchantId));
+                  },
+                  color: Colors.white,
+                  child: Text("Tambah",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.red)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(5.0),
+                    side: BorderSide(
+                      width: 1,
+                      color: AppColors.red,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          color: AppColors.greyStroke,
+          height: 10,
+          width: double.infinity,
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white,
+          width: double.infinity,
+          padding: EdgeInsets.only(top: 10, left: 10, right: 5),
+          margin: EdgeInsets.only(top: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                child: Text(
+                  "Pesanan",
+                  //_orderStore.orderOutlet.detail["name"],
+                  //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
+                  style: TextStyle(
+                    fontFamily: "roboto",
+                    //color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              // Container(
+              //   padding: EdgeInsets.only(top: 10),
+              //   child: Text(
+              //     _orderStore.orderMerchantName.toString(),
+              //     //_orderStore.orderOutlet.merchantName,
+              //     //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
+              //     style: TextStyle(
+              //       fontFamily: "roboto",
+              //       //color: Colors.white,
+              //       fontSize: 14,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+
+              //#######
+              Container(
+                width: double.infinity,
+                child: ListProductCartWidget(
+                    addOrRemove: _plusProduct,
+                    orderType:
+                        controller.cartSession.value!.transactionData.salesType,
+                    productCart:
+                        controller.cartSession.value!.transactionData.items,
+                    runDetailAction: _showDetailProduct,
+                    runEditAction: _editCart,
+                    scrollDirection: Axis.vertical,
+                    product: controller.listProduct.value!),
+              ),
+            ],
+          ),
+        ),
+        _addNew(),
+      ],
+    );
+  }
+}
+
+class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<HomeUserBloc, HomeUserState>(
+        listener: (context, state) {
+      state.maybeMap(
+          getActiveAddressSuccess: (r) {
+            controller.activeAddress.value = r.response;
+          },
+          orElse: () {});
+    }, builder: (context, state) {
+      return Container();
+    });
+  }
+}
+
+class _HeaderOrderCart extends GetView<OrderCartScreenViewController> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      Container(
+        height: 120,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(AppAssets.bgHome),
+            fit: BoxFit.fill,
+          ),
+          shape: BoxShape.rectangle,
+        ),
+      ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                new IconButton(
+                  icon: new Icon(Icons.arrow_back_outlined,
+                      color: Colors.white, size: 24.0),
+                  onPressed: () {
+                    //if (_userStore.activeHistoryScreen=='profile.address'){
+                    //_userStore.setActivedHomeTab("home");
+                    Navigator.of(Get.context!).pushNamed(Routers.home);
+                    //}
+                  },
+                ),
+                Container(
+                  child: Text("Detail Order",
+                      //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center),
+                ),
+                Container(
+                  width: 50,
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    ]);
   }
 }

@@ -197,7 +197,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           }
           yield createCartSession.fold(
             (error) => OrderState.loadFailure(error),
-            (list) => OrderState.createCartSessionSuccess(list!.data),
+            (list) => OrderState.addCartSuccess(list!.data),
           );
         } else {
           final createCartSession = await _orderRepository.updateCartSession(
@@ -211,7 +211,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
           yield createCartSession.fold(
             (error) => OrderState.loadFailure(error),
-            (list) => OrderState.createCartSessionSuccess(list!.data),
+            (list) => OrderState.addCartSuccess(list!.data),
           );
         }
       },

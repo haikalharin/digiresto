@@ -71,7 +71,7 @@ abstract class TransactionData with _$TransactionData {
     required int deliveryAmount,
     required int totalPayment,
     required String salesType,
-    required List<Item> items,
+    required List<TransactionDataItemResponse> items,
     required int itemWeight,
     required bool isUseVoucher,
     required List<dynamic> promos,
@@ -85,8 +85,8 @@ abstract class TransactionData with _$TransactionData {
 }
 
 @freezed
-abstract class Item with _$Item {
-  const factory Item({
+abstract class TransactionDataItemResponse with _$TransactionDataItemResponse {
+  const factory TransactionDataItemResponse({
     required int productId,
     required String title,
     required int price,
@@ -111,9 +111,10 @@ abstract class Item with _$Item {
     required int subtotal,
     required int serviceAmount,
     required int taxAmount,
-  }) = _Item;
+  }) = _TransactionDataItemResponse;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory TransactionDataItemResponse.fromJson(Map<String, dynamic> json) =>
+      _$TransactionDataItemResponseFromJson(json);
 }
 
 @freezed

@@ -4,6 +4,7 @@ import 'package:digiresto/presentation/address/map/add_address.dart';
 import 'package:digiresto/presentation/address/map/add_location.dart';
 import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
+import 'package:digiresto/presentation/cart/cart.dart';
 // import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
@@ -109,6 +110,7 @@ class Routers {
     GetPage(name: Routers.orderDetailOutlet, page: () => DetailOutletScreen()),
     GetPage(
         name: Routers.homeOutletCategory,
-        page: () => HomeCategoryOutletScreen())
+        page: () => HomeCategoryOutletScreen()),
+    GetPage(name: Routers.orderCart, page: () => CartScreen())
   ];
 }

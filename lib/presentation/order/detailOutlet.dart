@@ -182,7 +182,6 @@ class DetailOutletScreen extends GetView<OrderViewController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OrderViewController());
     controller.outlet.value = args;
     getDetailOutlet();
     getListProduct();
@@ -208,6 +207,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               controller.listCategory.value = r.response;
             },
             getCartSessionSuccess: (r) {
+              controller.cartSession.value = r.response;
+            },
+            addCartSuccess: (r) {
               controller.cartSession.value = r.response;
             },
             loadFailure: (e) {},
@@ -631,7 +633,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   Widget _cartTotal() {
-    return controller.cartSession.value != null &&
+    return Obx(() => controller.cartSession.value != null &&
             controller.cartSession.value?.transactionData.outletName ==
                 controller.detailOutlet.value?.endpointName
         ? SafeArea(
@@ -712,7 +714,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
               ),
             ),
           )
-        : Container();
+        : Container());
   }
 
   @override

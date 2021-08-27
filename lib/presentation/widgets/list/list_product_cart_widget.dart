@@ -1,25 +1,32 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/cart_session_response.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListProductCartWidget extends StatefulWidget {
-  final List<dynamic> data;
+  final List<TransactionDataItemResponse> productCart;
+  final List<OutletListProductDataResponse> product;
   final String orderType;
   final Axis scrollDirection;
   final height;
-  final void Function(Map<String, dynamic>, String) runEditAction;
-  final void Function(int, int, int, Map<String, dynamic>) addOrRemove;
-  final void Function(Map<String, dynamic>, String) runDetailAction;
+  final void Function(TransactionDataItemResponse, String) runEditAction;
+  final void Function(int, int, int, TransactionDataItemResponse) addOrRemove;
+  final void Function(
+          TransactionDataItemResponse, OutletListProductDataResponse, String)
+      runDetailAction;
   const ListProductCartWidget(
       {Key? key,
-      required this.data,
+      required this.productCart,
       this.scrollDirection = Axis.vertical,
       this.height,
       required this.orderType,
       required this.runEditAction,
       required this.addOrRemove,
-      required this.runDetailAction})
+      required this.runDetailAction,
+      required this.product})
       : super(key: key);
 
   @override
@@ -40,6 +47,27 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
     //   _userStore = Provider.of<UserStore>(context);
   }
 
+  String getImageUrl(int index) {
+    String url = "";
+    widget.product.forEach((element) {
+      if (widget.productCart[index].productId.toString() == element.id) {
+        url = element.image;
+      }
+    });
+    return url;
+  }
+
+  OutletListProductDataResponse? getMetaProduct(int index) {
+    OutletListProductDataResponse? product;
+
+    widget.product.forEach((element) {
+      if (widget.productCart[index].productId.toString() == element.id) {
+        product = element;
+      }
+    });
+    return product;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -47,36 +75,36 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
         scrollDirection: widget.scrollDirection,
         shrinkWrap: true, // new line
         padding: const EdgeInsets.all(8),
-        itemCount: widget.data.length,
+        itemCount: widget.productCart.length,
         itemBuilder: (BuildContext context, int index) {
           int? price;
           //int beforePrice;
-          if (widget.data[index]["detail"]["isUseSalesType"] == true) {
-            for (int i = 0;
-                i < widget.data[index]["detail"]["salesTypes"].length;
-                i++) {
-              if (widget.data[index]["detail"]["salesTypes"][i]["code"] ==
-                  widget.orderType) {
-                price = widget.data[index]["detail"]["salesTypes"][i]["price"];
-              }
-            }
-            if (price == null) {
-              price = widget.data[index]["detail"]["price"] != null
-                  ? widget.data[index]["detail"]["price"]
-                  : widget.data[index]["detail"]["originalPrice"];
+          // if (widget.data[index]["detail"]["isUseSalesType"] == true) {
+          //   for (int i = 0;
+          //       i < widget.data[index]["detail"]["salesTypes"].length;
+          //       i++) {
+          //     if (widget.data[index]["detail"]["salesTypes"][i]["code"] ==
+          //         widget.orderType) {
+          //       price = widget.data[index]["detail"]["salesTypes"][i]["price"];
+          //     }
+          //   }
+          //   if (price == null) {
+          //     price = widget.data[index]["detail"]["price"] != null
+          //         ? widget.data[index]["detail"]["price"]
+          //         : widget.data[index]["detail"]["originalPrice"];
+          //   }
+          // }
+
+          if (widget.productCart[index] != null) {
+            if (widget.productCart[index].amount <
+                widget.productCart[index].price) {
+              price = widget.productCart[index].amount;
+              //beforePrice = widget.data[index]["detail"]["originalPrice"];
+            } else {
+              price = widget.productCart[index].price;
             }
           } else {
-            if (widget.data[index]["detail"]["price"] != null) {
-              if (widget.data[index]["detail"]["price"] <
-                  widget.data[index]["detail"]["originalPrice"]) {
-                price = widget.data[index]["detail"]["price"];
-                //beforePrice = widget.data[index]["detail"]["originalPrice"];
-              } else {
-                price = widget.data[index]["detail"]["price"];
-              }
-            } else {
-              price = widget.data[index]["detail"]["originalPrice"];
-            }
+            price = widget.productCart[index].price;
           }
 
           // _userStore?.setRandomCacheImage(
@@ -84,12 +112,11 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
           // String defaultImage = _userStore!
           //     .getRandomCacheImage(widget.data[index]["id"].toString());
 
-          return widget.data[index]["detail"]["categoryCode"] == "HIDDEN"
+          return widget.productCart[index].categoryCode == "HIDDEN"
               ? Container()
               : GestureDetector(
-                  onTap: () => {
-                    //runEditAction(data[index],orderType)
-                  },
+                  onTap: () => widget.runEditAction(
+                      widget.productCart[index], widget.orderType),
                   child: Container(
                     decoration: BoxDecoration(
                       //color: Colors.amber[100],
@@ -100,22 +127,22 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        // Container(
-                        //   padding: EdgeInsets.only(right: 5, left: 5),
-                        //   child: ClipRRect(
-                        //     borderRadius:
-                        //         BorderRadius.all(Radius.circular(8.0)),
-                        //     child: Image(
-                        //       //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
-                        //       image: RandomImages.getImageUrlDefault(
-                        //           widget.data[index]["img"], defaultImage),
-                        //       fit: BoxFit.fill,
-                        //       height: 64,
-                        //       width: 64,
-                        //       alignment: Alignment.center,
-                        //     ),
-                        //   ),
-                        // ),
+                        Container(
+                          padding: EdgeInsets.only(right: 5, left: 5),
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
+                            child: Image(
+                              //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
+                              image: RandomImages.getImageUrlDefault(
+                                  getImageUrl(index), ""),
+                              fit: BoxFit.fill,
+                              height: 64,
+                              width: 64,
+                              alignment: Alignment.center,
+                            ),
+                          ),
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -126,18 +153,17 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                   padding: const EdgeInsets.only(top: 5),
                                   width:
                                       MediaQuery.of(context).size.width - 200,
-                                  child:
-                                      Text(widget.data[index]["detail"]["name"],
-                                          softWrap: false,
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.left),
+                                  child: Text(widget.productCart[index].title,
+                                      softWrap: false,
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontFamily: "roboto",
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.left),
                                 ),
                                 Column(
                                   children: [
@@ -148,7 +174,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                       child: Text(
                                           "Rp." +
                                               Utils.formatRupiah(widget
-                                                  .data[index]["total"]
+                                                  .productCart[index].amount
                                                   .toString()),
                                           softWrap: false,
                                           maxLines: 2,
@@ -177,11 +203,13 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     height: 40,
                                     child: RaisedButton(
                                       onPressed: () {
-                                        print(widget.data[index]);
+                                        print(widget.productCart[index]);
                                         print(widget.orderType);
                                         widget.runDetailAction(
-                                            widget.data[index],
-                                            widget.orderType);
+                                          widget.productCart[index],
+                                          getMetaProduct(index)!,
+                                          widget.orderType,
+                                        );
                                       },
                                       color: AppColors.red,
                                       child: Text("Ubah",
@@ -205,10 +233,10 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     GestureDetector(
                                       onTap: () {
                                         widget.addOrRemove(
-                                            widget.data[index]["detail"]["id"],
-                                            widget.data[index]["qty"] - 1,
+                                            widget.productCart[index].productId,
+                                            widget.productCart[index].qty - 1,
                                             price!,
-                                            widget.data[index]["detail"]);
+                                            widget.productCart[index]);
                                         //minus();
                                       },
                                       child: CircleAvatar(
@@ -223,7 +251,8 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                       padding:
                                           EdgeInsets.only(left: 5, right: 5),
                                       child: Text(
-                                          widget.data[index]["qty"].toString(),
+                                          widget.productCart[index].qty
+                                              .toString(),
                                           style: TextStyle(
                                             fontFamily: "roboto",
                                             color: Colors.black,
@@ -235,10 +264,10 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     GestureDetector(
                                       onTap: () {
                                         widget.addOrRemove(
-                                            widget.data[index]["detail"]["id"],
-                                            widget.data[index]["qty"] + 1,
+                                            widget.productCart[index].productId,
+                                            widget.productCart[index].qty + 1,
                                             price!,
-                                            widget.data[index]["detail"]);
+                                            widget.productCart[index]);
                                         //plus();
                                       },
                                       child: CircleAvatar(

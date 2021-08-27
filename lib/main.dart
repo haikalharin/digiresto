@@ -1,13 +1,18 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
+import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
+import 'application/home/home_content_view_controller.dart';
+import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'application/order/bloc/order_bloc.dart';
+import 'application/order/order_view_controller.dart';
 import 'injection.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
@@ -24,7 +29,16 @@ Future<void> main() async {
 class InitiateProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeContentViewController());
+    //add for cart & order transaction
+    Get.put(OrderViewController());
+    Get.put(OrderCartScreenViewController());
     return MultiBlocProvider(providers: [
+      BlocProvider<HomeUserBloc>(
+        create: (context) => getIt<HomeUserBloc>()
+          ..add(HomeUserEvent.getActiveAddress())
+          ..add(HomeUserEvent.getStaticBanner()),
+      ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),
       BlocProvider<AddressMapBloc>(
