@@ -14,6 +14,7 @@ class CustomButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final BorderRadius borderRadius;
   final Widget? child;
+  final TextStyle? fontStyle;
 
   const CustomButton({
     Key? key,
@@ -28,7 +29,10 @@ class CustomButton extends StatelessWidget {
     this.margin = EdgeInsets.zero,
     this.child,
     this.padding = EdgeInsets.zero,
-    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+    this.borderRadius = const BorderRadius.all(
+      Radius.circular(8),
+    ),
+    this.fontStyle,
   }) : super(key: key);
 
   @override
@@ -56,7 +60,8 @@ class CustomButton extends StatelessWidget {
         child: child ??
             Text(
               label,
-              style: Styles.buttonLabelStyle.copyWith(color: fontColor),
+              style: fontStyle ??
+                  Styles.buttonLabelStyle.copyWith(color: fontColor),
             ),
       ),
     );

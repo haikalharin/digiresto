@@ -107,4 +107,13 @@ class Styles {
 
   static TextStyle dialogSubtitleStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
+
+  static TextStyle profileNameStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+
+  static TextStyle profileDetailStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle profileMenuLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w700);
 }

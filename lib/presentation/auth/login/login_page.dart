@@ -48,14 +48,6 @@ class LoginForm extends StatelessWidget {
 
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
-        state.otpFailureOrSuccessOption.fold(
-          () => null,
-          (link) => Get.to(
-            ValidateOtpPage(
-              phoneNumber: state.phoneNumber.getOrCrash(),
-            ),
-          ),
-        );
         print(state.isShowDialogShake);
         if (state.isShowDialogShake) {
           if (Get.isDialogOpen == null || Get.isDialogOpen == false) {
@@ -68,17 +60,18 @@ class LoginForm extends StatelessWidget {
                 },
               ),
               cancel: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    side: BorderSide(color: AppColors.mainColor),
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(color: AppColors.mainColor),
-                  )),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  side: BorderSide(color: AppColors.mainColor),
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(color: AppColors.mainColor),
+                ),
+              ),
               confirm: ElevatedButton(
                   onPressed: () {
                     _selectedUrl = _baseUrl;

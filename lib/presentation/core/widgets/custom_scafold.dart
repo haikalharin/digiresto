@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/route_manager.dart';
 import 'package:digiresto/domain/core/theme.dart';
 
@@ -14,7 +15,7 @@ class CustomScafold extends StatelessWidget {
 
   const CustomScafold({
     Key? key,
-    required this.body,
+    this.body = const SizedBox(),
     this.suffixWidget = const SizedBox(
       width: 35,
     ),
@@ -51,10 +52,9 @@ class CustomScafold extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 15),
                           child: GestureDetector(
                             onTap: () => Get.back(),
-                            child: Icon(
-                              Icons.arrow_back_rounded,
+                            child: SvgPicture.asset(
+                              'assets/arrow_back_icon.svg',
                               color: iconBackColor,
-                              size: 25,
                             ),
                           ),
                         )
