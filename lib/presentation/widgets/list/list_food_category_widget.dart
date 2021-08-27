@@ -1,11 +1,13 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/constants/font.dart';
+import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListFoodCategory extends StatelessWidget {
-  final List<dynamic> data;
+  final List<OutletProductCategoryDataResponse> data;
   final Axis scrollDirection;
-  final String selected;
+  final String? selected;
   final void Function(String?) runAction;
   const ListFoodCategory(
       {Key? key,
@@ -27,37 +29,38 @@ class ListFoodCategory extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               Color selectedTextColor;
               Color selectedContaineerColor;
-              if (selected == null && data[index]["id"] == 0) {
+              if (selected == "" && data[index].id == 0) {
                 selectedTextColor = Colors.white;
                 selectedContaineerColor = AppColors.redYoung;
               } else {
-                selectedTextColor = selected == data[index]["title"]
+                selectedTextColor = selected == data[index].id.toString()
                     ? Colors.white
                     : Colors.black;
-                selectedContaineerColor = selected == data[index]["title"]
+                selectedContaineerColor = selected == data[index].id.toString()
                     ? AppColors.redYoung
                     : AppColors.greyStroke;
               }
               return GestureDetector(
                 onTap: () {
-                  if (data[index]["id"] == 0) {
+                  if (data[index].id == 0) {
                     runAction(null);
                   } else {
-                    runAction(data[index]["title"]);
+                    runAction(data[index].id.toString());
                   }
                 },
                 child: Container(
-                  padding: EdgeInsets.all(7),
+                  padding: EdgeInsets.only(left: 24, right: 24),
                   margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     //color: AppColors.greyStroke,
                     color: selectedContaineerColor,
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: Center(
                       child: Text(
-                    '${data[index]["title"]}',
-                    style: TextStyle(color: selectedTextColor),
+                    '${data[index].name}',
+                    style: AppFont.textBlack13Regular
+                        .copyWith(color: selectedTextColor),
                   )),
                 ),
               );

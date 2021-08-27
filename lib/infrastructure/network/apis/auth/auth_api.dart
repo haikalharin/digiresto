@@ -2,32 +2,29 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/auth/login_pin_model.dart';
 import 'package:digiresto/domain/entity/auth/otp_validate_model.dart';
 import 'package:digiresto/domain/entity/auth/otp_wame_model.dart';
 import 'package:digiresto/domain/entity/auth/register_model.dart';
-import 'package:digiresto/infrastructure/network/dio_client.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../dio_client.dart';
-// import '../../rest_client.dart';
-
-@injectable
+@Injectable()
 class AuthApi {
   // dio instance
-  final DioClient _dioClient;
+  final INetworkService _networkService;
 
   // injecting dio instance
   AuthApi(
-    this._dioClient,
+    this._networkService,
   );
 
   Future<LoginPin> login(String handPhone, String pin) async {
     try {
       String apiUrl = Endpoints.urlLogin;
 
-      final apiResult = await _dioClient
-          .post(apiUrl, data: {"username": handPhone, "password": pin});
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: {"username": handPhone, "password": pin});
       var userData = (apiResult as Map<String, dynamic>)['data'];
       return LoginPin.createPin(userData);
     } catch (e) {
@@ -40,7 +37,7 @@ class AuthApi {
     try {
       String apiUrl = Endpoints.urlLogin;
       Codec<String, String> stringToBase64 = utf8.fuse(base64);
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "grant_type": "client_credentials",
         "client_id": clientId,
         "client_secret": stringToBase64
@@ -58,7 +55,7 @@ class AuthApi {
     try {
       String apiUrl = Endpoints.urlGetOtp + handPhone;
 
-      final apiResult = await _dioClient.get(apiUrl);
+      final apiResult = await _networkService.getHttp(path: apiUrl);
       var userData = (apiResult as Map<String, dynamic>)['data'];
       return OtpWame.createOtp(userData);
     } catch (e) {
@@ -71,8 +68,8 @@ class AuthApi {
     try {
       String apiUrl = Endpoints.urlValidateOtp;
 
-      final apiResult = await _dioClient
-          .post(apiUrl, data: {"phoneNumber": handPhone, "otp": otp});
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: {"phoneNumber": handPhone, "otp": otp});
       var userData = (apiResult as Map<String, dynamic>)['data'];
       return OtpValidate.createOtp(userData);
     } catch (e) {
@@ -84,7 +81,7 @@ class AuthApi {
   Future<Register> register(Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlRegister;
-      final apiResult = await _dioClient.post(apiUrl, data: {
+      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "pushId": object["pushid"].toString(),
         "uid": object["uid"].toString(),
         "credential": object["credential"].toString(),

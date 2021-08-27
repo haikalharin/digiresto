@@ -8,12 +8,14 @@ import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart'
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
 import 'package:digiresto/presentation/home/home_all_promo.dart';
+import 'package:digiresto/presentation/home/home_category_outlet.dart';
 import 'package:digiresto/presentation/home/home_digidiscount.dart';
 import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
 import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/profile/edit_profile/edit_profile_page.dart';
 import 'package:digiresto/presentation/profile/profile_page.dart';
+import 'package:digiresto/presentation/order/detailOutlet.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
 import 'package:get/route_manager.dart';
 
@@ -32,6 +34,7 @@ class Routers {
   static const String homeAddLocation = '/home_add_location';
   static const String homeNearbyOutlet = '/home_nearby_outlet';
   static const String homeDigiDiscount = '/home_digidiscount';
+  static const String homeOutletCategory = '/home_outletCategory';
   static const String onboarding = '/onboarding';
   static const String inputPhone = '/inputphone';
   static const String verifyOtp = '/verifyotp';
@@ -115,5 +118,9 @@ class Routers {
       page: () => HomeDigidiscountScreen(),
     ),
     GetPage(name: Routers.setAddressAdd, page: () => AddAddressScreen()),
+    GetPage(name: Routers.orderDetailOutlet, page: () => DetailOutletScreen()),
+    GetPage(
+        name: Routers.homeOutletCategory,
+        page: () => HomeCategoryOutletScreen())
   ];
 }

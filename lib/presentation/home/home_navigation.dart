@@ -1,3 +1,4 @@
+import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/presentation/credit/credit_page.dart';
@@ -87,7 +88,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeContentController());
+    Get.put(HomeContentViewController());
     final _listPage = <Widget>[
       HomeContentScreen(),
       Container(),

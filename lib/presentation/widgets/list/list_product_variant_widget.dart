@@ -1,12 +1,13 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListProductVariant extends StatefulWidget {
-  final List<dynamic> data;
+  final List<OutletListProductDataVariantResponse> data;
   final Axis scrollDirection;
-  final void Function(dynamic) runAction;
+  final void Function(OutletListProductDataVariantResponse) runAction;
   const ListProductVariant(
       {Key? key,
       required this.data,
@@ -82,7 +83,7 @@ class _ListProductVariantState extends State<ListProductVariant> {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(top: 5),
                         width: MediaQuery.of(context).size.width - 100,
-                        child: Text(widget.data[index]["name"],
+                        child: Text(widget.data[index].name,
                             softWrap: false,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -100,7 +101,7 @@ class _ListProductVariantState extends State<ListProductVariant> {
                         child: Text(
                             "Rp. " +
                                 Utils.formatRupiah(
-                                    widget.data[index]["price"].toString()),
+                                    widget.data[index].price.toString()),
                             softWrap: false,
                             maxLines: 3,
                             style: TextStyle(
