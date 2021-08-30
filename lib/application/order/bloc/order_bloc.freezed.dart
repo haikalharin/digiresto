@@ -120,6 +120,16 @@ class _$OrderEventTearOff {
       request,
     );
   }
+
+  _GetSalesTypeCart getSalesTypeCart() {
+    return const _GetSalesTypeCart();
+  }
+
+  _SetSalesTypeCart setSalesTypeCart(String value) {
+    return _SetSalesTypeCart(
+      value,
+    );
+  }
 }
 
 /// @nodoc
@@ -155,6 +165,8 @@ mixin _$OrderEvent {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,6 +191,8 @@ mixin _$OrderEvent {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -202,6 +216,8 @@ mixin _$OrderEvent {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -223,6 +239,8 @@ mixin _$OrderEvent {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -345,6 +363,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getOutletByLocation(request);
   }
@@ -372,6 +392,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletByLocation != null) {
@@ -401,6 +423,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getOutletByLocation(this);
   }
@@ -425,6 +449,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletByLocation != null) {
@@ -545,6 +571,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getOutletByCategory(request);
   }
@@ -572,6 +600,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletByCategory != null) {
@@ -601,6 +631,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getOutletByCategory(this);
   }
@@ -625,6 +657,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletByCategory != null) {
@@ -747,6 +781,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getOutletProductCategory(request);
   }
@@ -774,6 +810,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletProductCategory != null) {
@@ -803,6 +841,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getOutletProductCategory(this);
   }
@@ -827,6 +867,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletProductCategory != null) {
@@ -947,6 +989,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getListPromoOutlet(request);
   }
@@ -974,6 +1018,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getListPromoOutlet != null) {
@@ -1003,6 +1049,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getListPromoOutlet(this);
   }
@@ -1027,6 +1075,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getListPromoOutlet != null) {
@@ -1147,6 +1197,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getListVoucherOutlet(request);
   }
@@ -1174,6 +1226,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getListVoucherOutlet != null) {
@@ -1203,6 +1257,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getListVoucherOutlet(this);
   }
@@ -1227,6 +1283,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getListVoucherOutlet != null) {
@@ -1347,6 +1405,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getOutletListProduct(request);
   }
@@ -1374,6 +1434,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletListProduct != null) {
@@ -1403,6 +1465,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getOutletListProduct(this);
   }
@@ -1427,6 +1491,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getOutletListProduct != null) {
@@ -1545,6 +1611,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getPromoOutlet(request);
   }
@@ -1572,6 +1640,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getPromoOutlet != null) {
@@ -1601,6 +1671,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getPromoOutlet(this);
   }
@@ -1625,6 +1697,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getPromoOutlet != null) {
@@ -1734,6 +1808,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getHotPromo(request);
   }
@@ -1761,6 +1837,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getHotPromo != null) {
@@ -1790,6 +1868,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getHotPromo(this);
   }
@@ -1814,6 +1894,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getHotPromo != null) {
@@ -1932,6 +2014,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getDetailOutlet(request);
   }
@@ -1959,6 +2043,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getDetailOutlet != null) {
@@ -1988,6 +2074,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getDetailOutlet(this);
   }
@@ -2012,6 +2100,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getDetailOutlet != null) {
@@ -2131,6 +2221,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getPaymentMethod(request);
   }
@@ -2158,6 +2250,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getPaymentMethod != null) {
@@ -2187,6 +2281,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getPaymentMethod(this);
   }
@@ -2211,6 +2307,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getPaymentMethod != null) {
@@ -2330,6 +2428,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return deliveryInquiry(request);
   }
@@ -2357,6 +2457,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (deliveryInquiry != null) {
@@ -2386,6 +2488,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return deliveryInquiry(this);
   }
@@ -2410,6 +2514,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (deliveryInquiry != null) {
@@ -2529,6 +2635,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return createCartSession(request);
   }
@@ -2556,6 +2664,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (createCartSession != null) {
@@ -2585,6 +2695,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return createCartSession(this);
   }
@@ -2609,6 +2721,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (createCartSession != null) {
@@ -2760,6 +2874,8 @@ class _$_AddCart implements _AddCart {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return addCart(request, outlet, salesType);
   }
@@ -2787,6 +2903,8 @@ class _$_AddCart implements _AddCart {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (addCart != null) {
@@ -2816,6 +2934,8 @@ class _$_AddCart implements _AddCart {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return addCart(this);
   }
@@ -2840,6 +2960,8 @@ class _$_AddCart implements _AddCart {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (addCart != null) {
@@ -2962,6 +3084,8 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return removeCart(request);
   }
@@ -2989,6 +3113,8 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (removeCart != null) {
@@ -3018,6 +3144,8 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return removeCart(this);
   }
@@ -3042,6 +3170,8 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (removeCart != null) {
@@ -3127,6 +3257,8 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return getCartSession();
   }
@@ -3154,6 +3286,8 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getCartSession != null) {
@@ -3183,6 +3317,8 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return getCartSession(this);
   }
@@ -3207,6 +3343,8 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (getCartSession != null) {
@@ -3320,6 +3458,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return updateCartSession(request);
   }
@@ -3347,6 +3487,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (updateCartSession != null) {
@@ -3376,6 +3518,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return updateCartSession(this);
   }
@@ -3400,6 +3544,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (updateCartSession != null) {
@@ -3509,6 +3655,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
   }) {
     return checkoutCart(request);
   }
@@ -3536,6 +3684,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (checkoutCart != null) {
@@ -3565,6 +3715,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(_GetCartSession value) getCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
   }) {
     return checkoutCart(this);
   }
@@ -3589,6 +3741,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(_GetCartSession value)? getCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
     required TResult orElse(),
   }) {
     if (checkoutCart != null) {
@@ -3604,6 +3758,370 @@ abstract class _CheckoutCart implements OrderEvent {
   CheckoutCartParam get request => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$CheckoutCartCopyWith<_CheckoutCart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetSalesTypeCartCopyWith<$Res> {
+  factory _$GetSalesTypeCartCopyWith(
+          _GetSalesTypeCart value, $Res Function(_GetSalesTypeCart) then) =
+      __$GetSalesTypeCartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetSalesTypeCartCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetSalesTypeCartCopyWith<$Res> {
+  __$GetSalesTypeCartCopyWithImpl(
+      _GetSalesTypeCart _value, $Res Function(_GetSalesTypeCart) _then)
+      : super(_value, (v) => _then(v as _GetSalesTypeCart));
+
+  @override
+  _GetSalesTypeCart get _value => super._value as _GetSalesTypeCart;
+}
+
+/// @nodoc
+
+class _$_GetSalesTypeCart implements _GetSalesTypeCart {
+  const _$_GetSalesTypeCart();
+
+  @override
+  String toString() {
+    return 'OrderEvent.getSalesTypeCart()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetSalesTypeCart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)
+        addCart,
+    required TResult Function(CreateUpdateCartSessionItemParam request)
+        removeCart,
+    required TResult Function() getCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
+  }) {
+    return getSalesTypeCart();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)?
+        addCart,
+    TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
+    TResult Function()? getCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
+    required TResult orElse(),
+  }) {
+    if (getSalesTypeCart != null) {
+      return getSalesTypeCart();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_AddCart value) addCart,
+    required TResult Function(_RemoveCart value) removeCart,
+    required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
+  }) {
+    return getSalesTypeCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_AddCart value)? addCart,
+    TResult Function(_RemoveCart value)? removeCart,
+    TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
+    required TResult orElse(),
+  }) {
+    if (getSalesTypeCart != null) {
+      return getSalesTypeCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSalesTypeCart implements OrderEvent {
+  const factory _GetSalesTypeCart() = _$_GetSalesTypeCart;
+}
+
+/// @nodoc
+abstract class _$SetSalesTypeCartCopyWith<$Res> {
+  factory _$SetSalesTypeCartCopyWith(
+          _SetSalesTypeCart value, $Res Function(_SetSalesTypeCart) then) =
+      __$SetSalesTypeCartCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$SetSalesTypeCartCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$SetSalesTypeCartCopyWith<$Res> {
+  __$SetSalesTypeCartCopyWithImpl(
+      _SetSalesTypeCart _value, $Res Function(_SetSalesTypeCart) _then)
+      : super(_value, (v) => _then(v as _SetSalesTypeCart));
+
+  @override
+  _SetSalesTypeCart get _value => super._value as _SetSalesTypeCart;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_SetSalesTypeCart(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetSalesTypeCart implements _SetSalesTypeCart {
+  const _$_SetSalesTypeCart(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'OrderEvent.setSalesTypeCart(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SetSalesTypeCart &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetSalesTypeCartCopyWith<_SetSalesTypeCart> get copyWith =>
+      __$SetSalesTypeCartCopyWithImpl<_SetSalesTypeCart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)
+        addCart,
+    required TResult Function(CreateUpdateCartSessionItemParam request)
+        removeCart,
+    required TResult Function() getCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
+  }) {
+    return setSalesTypeCart(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)?
+        addCart,
+    TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
+    TResult Function()? getCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
+    required TResult orElse(),
+  }) {
+    if (setSalesTypeCart != null) {
+      return setSalesTypeCart(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_AddCart value) addCart,
+    required TResult Function(_RemoveCart value) removeCart,
+    required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
+  }) {
+    return setSalesTypeCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_AddCart value)? addCart,
+    TResult Function(_RemoveCart value)? removeCart,
+    TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
+    required TResult orElse(),
+  }) {
+    if (setSalesTypeCart != null) {
+      return setSalesTypeCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetSalesTypeCart implements OrderEvent {
+  const factory _SetSalesTypeCart(String value) = _$_SetSalesTypeCart;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$SetSalesTypeCartCopyWith<_SetSalesTypeCart> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3741,6 +4259,18 @@ class _$OrderStateTearOff {
       response,
     );
   }
+
+  _GetSalesTypeCartSuccess getSalesTypeCartSuccess(String value) {
+    return _GetSalesTypeCartSuccess(
+      value,
+    );
+  }
+
+  _SetSalesTypeCartSuccess setSalesTypeCartSuccess(String value) {
+    return _SetSalesTypeCartSuccess(
+      value,
+    );
+  }
 }
 
 /// @nodoc
@@ -3783,6 +4313,8 @@ mixin _$OrderState {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3814,6 +4346,8 @@ mixin _$OrderState {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -3853,6 +4387,10 @@ mixin _$OrderState {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3884,6 +4422,8 @@ mixin _$OrderState {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -3975,6 +4515,8 @@ class _$_Initial implements _Initial {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return initial();
   }
@@ -4009,6 +4551,8 @@ class _$_Initial implements _Initial {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -4054,6 +4598,10 @@ class _$_Initial implements _Initial {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return initial(this);
   }
@@ -4088,6 +4636,8 @@ class _$_Initial implements _Initial {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -4173,6 +4723,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return loadInProgress();
   }
@@ -4207,6 +4759,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -4252,6 +4806,10 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return loadInProgress(this);
   }
@@ -4286,6 +4844,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -4371,6 +4931,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return loadSuccess();
   }
@@ -4405,6 +4967,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -4450,6 +5014,10 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return loadSuccess(this);
   }
@@ -4484,6 +5052,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -4594,6 +5164,8 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return loadFailure(message);
   }
@@ -4628,6 +5200,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -4673,6 +5247,10 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return loadFailure(this);
   }
@@ -4707,6 +5285,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -4827,6 +5407,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getOutletByLocationSuccess(response);
   }
@@ -4861,6 +5443,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletByLocationSuccess != null) {
@@ -4906,6 +5490,10 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getOutletByLocationSuccess(this);
   }
@@ -4940,6 +5528,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletByLocationSuccess != null) {
@@ -5062,6 +5652,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getOutletByCategorySuccess(response);
   }
@@ -5096,6 +5688,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletByCategorySuccess != null) {
@@ -5141,6 +5735,10 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getOutletByCategorySuccess(this);
   }
@@ -5175,6 +5773,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletByCategorySuccess != null) {
@@ -5295,6 +5895,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getPromoOutletSuccess(response);
   }
@@ -5329,6 +5931,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getPromoOutletSuccess != null) {
@@ -5374,6 +5978,10 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getPromoOutletSuccess(this);
   }
@@ -5408,6 +6016,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getPromoOutletSuccess != null) {
@@ -5529,6 +6139,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getListPromoOutletSuccess(response);
   }
@@ -5563,6 +6175,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getListPromoOutletSuccess != null) {
@@ -5608,6 +6222,10 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getListPromoOutletSuccess(this);
   }
@@ -5642,6 +6260,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getListPromoOutletSuccess != null) {
@@ -5765,6 +6385,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getListVoucherOutletSuccess(response);
   }
@@ -5799,6 +6421,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getListVoucherOutletSuccess != null) {
@@ -5844,6 +6468,10 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getListVoucherOutletSuccess(this);
   }
@@ -5878,6 +6506,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getListVoucherOutletSuccess != null) {
@@ -6002,6 +6632,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getOutletListProductSuccess(response);
   }
@@ -6036,6 +6668,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletListProductSuccess != null) {
@@ -6081,6 +6715,10 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getOutletListProductSuccess(this);
   }
@@ -6115,6 +6753,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletListProductSuccess != null) {
@@ -6240,6 +6880,8 @@ class _$_GetOutletProductCategorySuccess
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getOutletProductCategorySuccess(response);
   }
@@ -6274,6 +6916,8 @@ class _$_GetOutletProductCategorySuccess
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletProductCategorySuccess != null) {
@@ -6319,6 +6963,10 @@ class _$_GetOutletProductCategorySuccess
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getOutletProductCategorySuccess(this);
   }
@@ -6353,6 +7001,8 @@ class _$_GetOutletProductCategorySuccess
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getOutletProductCategorySuccess != null) {
@@ -6473,6 +7123,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getHotPromoSuccess(response);
   }
@@ -6507,6 +7159,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getHotPromoSuccess != null) {
@@ -6552,6 +7206,10 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getHotPromoSuccess(this);
   }
@@ -6586,6 +7244,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getHotPromoSuccess != null) {
@@ -6714,6 +7374,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getDetailOutletSuccess(response);
   }
@@ -6748,6 +7410,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getDetailOutletSuccess != null) {
@@ -6793,6 +7457,10 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getDetailOutletSuccess(this);
   }
@@ -6827,6 +7495,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getDetailOutletSuccess != null) {
@@ -6947,6 +7617,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getPaymentMethodSuccess(response);
   }
@@ -6981,6 +7653,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getPaymentMethodSuccess != null) {
@@ -7026,6 +7700,10 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getPaymentMethodSuccess(this);
   }
@@ -7060,6 +7738,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getPaymentMethodSuccess != null) {
@@ -7179,6 +7859,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return deliveryInquirySuccess(response);
   }
@@ -7213,6 +7895,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (deliveryInquirySuccess != null) {
@@ -7258,6 +7942,10 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return deliveryInquirySuccess(this);
   }
@@ -7292,6 +7980,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (deliveryInquirySuccess != null) {
@@ -7418,6 +8108,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return addCartSuccess(response);
   }
@@ -7452,6 +8144,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (addCartSuccess != null) {
@@ -7497,6 +8191,10 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return addCartSuccess(this);
   }
@@ -7531,6 +8229,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (addCartSuccess != null) {
@@ -7658,6 +8358,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return removeCartSuccess(response);
   }
@@ -7692,6 +8394,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (removeCartSuccess != null) {
@@ -7737,6 +8441,10 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return removeCartSuccess(this);
   }
@@ -7771,6 +8479,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (removeCartSuccess != null) {
@@ -7900,6 +8610,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return createCartSessionSuccess(response);
   }
@@ -7934,6 +8646,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (createCartSessionSuccess != null) {
@@ -7979,6 +8693,10 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return createCartSessionSuccess(this);
   }
@@ -8013,6 +8731,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (createCartSessionSuccess != null) {
@@ -8141,6 +8861,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return getCartSessionSuccess(response);
   }
@@ -8175,6 +8897,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getCartSessionSuccess != null) {
@@ -8220,6 +8944,10 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return getCartSessionSuccess(this);
   }
@@ -8254,6 +8982,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (getCartSessionSuccess != null) {
@@ -8383,6 +9113,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return updateCartSessionSuccess(response);
   }
@@ -8417,6 +9149,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (updateCartSessionSuccess != null) {
@@ -8462,6 +9196,10 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return updateCartSessionSuccess(this);
   }
@@ -8496,6 +9234,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (updateCartSessionSuccess != null) {
@@ -8615,6 +9355,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
     return checkoutCartSuccess(response);
   }
@@ -8649,6 +9391,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (checkoutCartSuccess != null) {
@@ -8694,6 +9438,10 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
   }) {
     return checkoutCartSuccess(this);
   }
@@ -8728,6 +9476,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
     required TResult orElse(),
   }) {
     if (checkoutCartSuccess != null) {
@@ -8744,5 +9494,489 @@ abstract class _CheckoutCartSuccess implements OrderState {
   CheckoutResponse get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$CheckoutCartSuccessCopyWith<_CheckoutCartSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetSalesTypeCartSuccessCopyWith<$Res> {
+  factory _$GetSalesTypeCartSuccessCopyWith(_GetSalesTypeCartSuccess value,
+          $Res Function(_GetSalesTypeCartSuccess) then) =
+      __$GetSalesTypeCartSuccessCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$GetSalesTypeCartSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetSalesTypeCartSuccessCopyWith<$Res> {
+  __$GetSalesTypeCartSuccessCopyWithImpl(_GetSalesTypeCartSuccess _value,
+      $Res Function(_GetSalesTypeCartSuccess) _then)
+      : super(_value, (v) => _then(v as _GetSalesTypeCartSuccess));
+
+  @override
+  _GetSalesTypeCartSuccess get _value =>
+      super._value as _GetSalesTypeCartSuccess;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_GetSalesTypeCartSuccess(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
+  const _$_GetSalesTypeCartSuccess(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'OrderState.getSalesTypeCartSuccess(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetSalesTypeCartSuccess &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetSalesTypeCartSuccessCopyWith<_GetSalesTypeCartSuccess> get copyWith =>
+      __$GetSalesTypeCartSuccessCopyWithImpl<_GetSalesTypeCartSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<PromoOutletDataResponse> response)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> response)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> response)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductCategoryDataResponse> response)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response) addCartSuccess,
+    required TResult Function(CartSessionResponse response) removeCartSuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
+  }) {
+    return getSalesTypeCartSuccess(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<PromoOutletDataResponse> response)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> response)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> response)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductCategoryDataResponse> response)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? addCartSuccess,
+    TResult Function(CartSessionResponse response)? removeCartSuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getSalesTypeCartSuccess != null) {
+      return getSalesTypeCartSuccess(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_AddCartSuccess value) addCartSuccess,
+    required TResult Function(_RemoveCartSuccess value) removeCartSuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
+  }) {
+    return getSalesTypeCartSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_AddCartSuccess value)? addCartSuccess,
+    TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (getSalesTypeCartSuccess != null) {
+      return getSalesTypeCartSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSalesTypeCartSuccess implements OrderState {
+  const factory _GetSalesTypeCartSuccess(String value) =
+      _$_GetSalesTypeCartSuccess;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetSalesTypeCartSuccessCopyWith<_GetSalesTypeCartSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SetSalesTypeCartSuccessCopyWith<$Res> {
+  factory _$SetSalesTypeCartSuccessCopyWith(_SetSalesTypeCartSuccess value,
+          $Res Function(_SetSalesTypeCartSuccess) then) =
+      __$SetSalesTypeCartSuccessCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$SetSalesTypeCartSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$SetSalesTypeCartSuccessCopyWith<$Res> {
+  __$SetSalesTypeCartSuccessCopyWithImpl(_SetSalesTypeCartSuccess _value,
+      $Res Function(_SetSalesTypeCartSuccess) _then)
+      : super(_value, (v) => _then(v as _SetSalesTypeCartSuccess));
+
+  @override
+  _SetSalesTypeCartSuccess get _value =>
+      super._value as _SetSalesTypeCartSuccess;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_SetSalesTypeCartSuccess(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
+  const _$_SetSalesTypeCartSuccess(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'OrderState.setSalesTypeCartSuccess(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SetSalesTypeCartSuccess &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetSalesTypeCartSuccessCopyWith<_SetSalesTypeCartSuccess> get copyWith =>
+      __$SetSalesTypeCartSuccessCopyWithImpl<_SetSalesTypeCartSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(Exception message) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<PromoOutletDataResponse> response)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> response)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> response)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductCategoryDataResponse> response)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethod> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethod> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response) addCartSuccess,
+    required TResult Function(CartSessionResponse response) removeCartSuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
+  }) {
+    return setSalesTypeCartSuccess(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(Exception message)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<PromoOutletDataResponse> response)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> response)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> response)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductCategoryDataResponse> response)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? addCartSuccess,
+    TResult Function(CartSessionResponse response)? removeCartSuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (setSalesTypeCartSuccess != null) {
+      return setSalesTypeCartSuccess(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getPromoOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_AddCartSuccess value) addCartSuccess,
+    required TResult Function(_RemoveCartSuccess value) removeCartSuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
+  }) {
+    return setSalesTypeCartSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_AddCartSuccess value)? addCartSuccess,
+    TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
+    required TResult orElse(),
+  }) {
+    if (setSalesTypeCartSuccess != null) {
+      return setSalesTypeCartSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetSalesTypeCartSuccess implements OrderState {
+  const factory _SetSalesTypeCartSuccess(String value) =
+      _$_SetSalesTypeCartSuccess;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$SetSalesTypeCartSuccessCopyWith<_SetSalesTypeCartSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

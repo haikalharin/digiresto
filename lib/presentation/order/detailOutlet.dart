@@ -52,6 +52,58 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     //     _orderStore.orderOutletName, searchName, filterCategory, page);
   }
 
+  Future<void> _showDialogSalesType() async {
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+        ),
+        backgroundColor: Colors.white,
+        context: Get.context!,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              SizedBox(
+                height: 8,
+              ),
+              ListTile(
+                // leading: GestureDetector(
+                //   onTap: () {
+                //     Get.back();
+                //   },
+                //   child: ImageIcon(
+                //     AssetImage(AppAssets.iconBackBlack),
+                //     color: Colors.black,
+                //   ),
+                // ),
+                title: Container(
+                  //make title to center
+                  //transform: Matrix4.translationValues(-24, 0, 0),
+                  child: Center(
+                    child: new Text(
+                      'Silahkan pilih tipe order',
+                      style: AppFont.textBlack17Bold,
+                    ),
+                  ),
+                ),
+                enabled: false,
+              ),
+              Column(
+                children: controller.generateListSalesTypeOption((element) {
+                  Get.context!
+                      .read<OrderBloc>()
+                      .add(OrderEvent.setSalesTypeCart(element));
+                  Get.back(closeOverlays: true);
+                }),
+              ),
+              SizedBox(
+                height: 16,
+              )
+            ],
+          );
+        });
+  }
+
   Widget _header(DetailOutletDataResponse data) {
     return Stack(children: [
       Container(
@@ -68,43 +120,104 @@ class DetailOutletScreen extends GetView<OrderViewController> {
       Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   new IconButton(
                     icon: new Icon(Icons.arrow_back_outlined,
                         color: Colors.white, size: 24.0),
                     onPressed: () => Get.back(),
                   ),
-                  Container(
-                    width: 200,
-                    child: Text(data.merchantName,
-                        //detailOutlet != null ? data.outlet["detail"]["name"] : ""
-                        style: TextStyle(
-                          fontFamily: "roboto",
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: 200,
+                              child: Text(data.merchantName,
+                                  //detailOutlet != null ? data.outlet["detail"]["name"] : ""
+                                  style: TextStyle(
+                                    fontFamily: "roboto",
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.left),
+                            ),
+                            IconButton(
+                              icon: new Icon(Icons.refresh,
+                                  color: Colors.white, size: 24.0),
+                              onPressed: () => {
+                                // getDetailOutlet(_orderStore.orderOutletName,
+                                //   searchName, filterCategory, 1)
+                              },
+                            ),
+                          ],
                         ),
-                        textAlign: TextAlign.left),
-                  ),
-                  new IconButton(
-                    icon: new Icon(Icons.refresh,
-                        color: Colors.white, size: 24.0),
-                    onPressed: () => {
-                      // getDetailOutlet(_orderStore.orderOutletName,
-                      //   searchName, filterCategory, 1)
-                    },
+                        controller.detailOutlet.value != null
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                    Text(
+                                      "Order type:",
+                                      style: AppFont.textBlack10SemiBold
+                                          .copyWith(color: AppColors.white),
+                                    ),
+                                    SizedBox(
+                                      width: 9,
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        _showDialogSalesType();
+                                      },
+                                      child: Container(
+                                        width: Get.width * 0.55,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            controller
+                                                .generateListSalesTypeIcon(
+                                                    color: AppColors.white),
+                                            SizedBox(
+                                              width: 8,
+                                            ),
+                                            Obx(() => Text(
+                                                  Utils.formatSalesType(
+                                                      controller.salesType
+                                                              .value ??
+                                                          ""),
+                                                  style: AppFont.textBlack14Bold
+                                                      .copyWith(
+                                                          color:
+                                                              AppColors.white),
+                                                )),
+                                            Icon(Icons.expand_more,
+                                                color: AppColors.white),
+                                          ],
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.white30,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(42))),
+                                    )
+                                  ])
+                            : Container()
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            controller.detailOutlet.value != null
-                ? Row(mainAxisAlignment: MainAxisAlignment.end, children: [])
-                : Container()
           ],
         ),
       ),
@@ -192,6 +305,11 @@ class DetailOutletScreen extends GetView<OrderViewController> {
       listener: (context, state) {
         state.maybeMap(
             getDetailOutletSuccess: (r) {
+              if (controller.salesType.value == null) {
+                Get.context!
+                    .read<OrderBloc>()
+                    .add(OrderEvent.setSalesTypeCart(r.response.salesTypes[0]));
+              }
               controller.detailOutlet.value = r.response;
             },
             getOutletListProductSuccess: (r) {
@@ -211,6 +329,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
             },
             addCartSuccess: (r) {
               controller.cartSession.value = r.response;
+            },
+            setSalesTypeCartSuccess: (r) {
+              controller.salesType.value = r.value;
             },
             loadFailure: (e) {},
             orElse: () {});
@@ -415,7 +536,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          height: 40,
+                          height: 43,
                           width: MediaQuery.of(context).size.width * 0.45,
                           child: ElevatedButton(
                             onPressed: () {
@@ -431,6 +552,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                               LaunchUrl.run(url);
                             },
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ImageIcon(AssetImage(AppAssets.iconSendMessage),
                                     color: AppColors.white),
@@ -452,13 +574,14 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                           ),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 43,
                           width: MediaQuery.of(context).size.width * 0.45,
                           child: ElevatedButton(
                             onPressed: null,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                ImageIcon(AssetImage(AppAssets.iconSendMessage),
+                                ImageIcon(AssetImage(AppAssets.iconMapRed),
                                     color: AppColors.white),
                                 SizedBox(width: 8),
                                 Text("Lihat Lokasi",

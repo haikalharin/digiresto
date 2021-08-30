@@ -54,6 +54,14 @@ class OrderRepository {
     return _orderLocal.getOutletDetailID();
   }
 
+  Future<String?> getSalesTypeCart() async {
+    return _orderLocal.getSalesTypeCart();
+  }
+
+  Future<String?> setSalesTypeCart(String value) async {
+    return _orderLocal.setSalesTypeCart(value);
+  }
+
   Future<UserAuth?> getLocalUserProfile() async {
     return _orderLocal.getLocalUserProfile();
   }

@@ -50,4 +50,8 @@ class OrderEvent with _$OrderEvent {
 
   const factory OrderEvent.checkoutCart(CheckoutCartParam request) =
       _CheckoutCart;
+
+  const factory OrderEvent.getSalesTypeCart() = _GetSalesTypeCart;
+
+  const factory OrderEvent.setSalesTypeCart(String value) = _SetSalesTypeCart;
 }

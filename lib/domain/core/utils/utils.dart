@@ -1,6 +1,21 @@
 import 'package:intl/intl.dart';
 
 class Utils {
+  static String formatSalesType(String type) {
+    switch (type) {
+      case "dineIn":
+        return "Makan di Tempat";
+      case "takeAway":
+        return "Bawa Pulang";
+      case "onlineDriver":
+        return "Pesan Antar";
+      case "driveThru":
+        return "Drive Thru";
+      default:
+        return "";
+    }
+  }
+
   static String formatRupiah(String? balance) {
     if (balance == "0" ||
         balance == null ||

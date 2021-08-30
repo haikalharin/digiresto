@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart';
 class OrderLocal {
   final IStorage _storage;
   final String _sessionIdKey = "sessionId";
+  final String _salesTypeIdKey = "salesTypeId";
   OrderLocal(this._storage);
 
   Future<UpdateCartSessionBodyParam?> setProduct(
@@ -70,6 +71,29 @@ class OrderLocal {
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
     await _storage.close();
     return productModel;
+  }
+
+  Future<String?> getSalesTypeCart() async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      final sessionId = _storage.getString(key: _salesTypeIdKey);
+      await _storage.close();
+      return sessionId;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<String?> setSalesTypeCart(String value) async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.putString(key: _salesTypeIdKey, value: value);
+      final sessionId = _storage.getString(key: _salesTypeIdKey);
+      await _storage.close();
+      return sessionId;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<DetailOutletDataResponse?> setOutletDetailID(

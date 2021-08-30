@@ -248,6 +248,23 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (list) => OrderState.getCartSessionSuccess(list!.data),
         );
       },
+      getSalesTypeCart: (_) async* {
+        final getSalesTypeCart = await _orderRepository.getSalesTypeCart();
+        if (getSalesTypeCart != null) {
+          yield OrderState.getSalesTypeCartSuccess(getSalesTypeCart);
+        } else {
+          yield OrderState.loadFailure(Exception(getSalesTypeCart));
+        }
+      },
+      setSalesTypeCart: (r) async* {
+        final setSalesTypeCart =
+            await _orderRepository.setSalesTypeCart(r.value);
+        if (setSalesTypeCart != null) {
+          yield OrderState.setSalesTypeCartSuccess(setSalesTypeCart);
+        } else {
+          yield OrderState.loadFailure(Exception(setSalesTypeCart));
+        }
+      },
       updateCartSession: (request) async* {
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);

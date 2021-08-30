@@ -60,4 +60,10 @@ class OrderState with _$OrderState {
 
   const factory OrderState.checkoutCartSuccess(CheckoutResponse response) =
       _CheckoutCartSuccess;
+
+  const factory OrderState.getSalesTypeCartSuccess(String value) =
+      _GetSalesTypeCartSuccess;
+
+  const factory OrderState.setSalesTypeCartSuccess(String value) =
+      _SetSalesTypeCartSuccess;
 }

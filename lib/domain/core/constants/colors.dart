@@ -21,6 +21,7 @@ class AppColors {
   static final Color red = Color(0xFFB31B22); // Selects a mid-range green.
   static final Color redYoung = Color(0xFFCE210E); // Selects a mid-range green.
   static final Color redTabBar = Color(0xFFC9272F);
+  static final Color redD12B34 = Color(0xFFD12B34);
   static final Color greyStroke = Color(0xFFEDEDED);
   static final Color greyDivider = Color(0xFFEAEAEA);
   static final Color greyFill = Color(0xFFFAFAFA);
