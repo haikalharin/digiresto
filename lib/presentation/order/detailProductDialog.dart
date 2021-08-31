@@ -490,9 +490,10 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               width: double.infinity,
                               child: RaisedButton(
                                 onPressed: () {
+                                  setProduct();
                                   // _orderStore.setProduct(dataProductState["id"],
                                   //     totalqty, price, dataProductState);
-                                  Navigator.of(context).pop();
+                                  Get.back(closeOverlays: true);
                                 },
                                 color: AppColors.red,
                                 child: Text("Perbaharui Keranjang",

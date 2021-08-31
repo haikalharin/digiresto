@@ -372,86 +372,88 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   }
 
   Widget _selectSalesTypeMethod() {
-    return Theme(
-      data: Theme.of(Get.context!).copyWith(
-        primaryColor: Colors.black,
-      ),
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Tipe Order", style: AppFont.textBlack14Regular),
-                      Row(
-                        children: [
-                          controller.generateSalesTypeIcon(
-                              color: AppColors.redD42C35),
-                          SizedBox(width: 8),
-                          Text(
-                              Utils.formatSalesType(
-                                  controller.salesType.value ?? ""),
-                              style: AppFont.textBlack14Bold),
-                        ],
-                      )
-                    ],
-                  ),
-                  if (controller.salesType.value != null)
-                    FlatButton(
-                        onPressed: () {
-                          _showDialogSalesType();
-                        },
-                        color: Colors.white,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
-                          ),
-                        ),
-                        child: Text('Ubah',
-                            style: TextStyle(
-                              color: AppColors.red,
-                              fontWeight: FontWeight.bold,
-                            )))
-                  else
-                    FlatButton(
-                        onPressed: () {
-                          _showDialogSalesType();
-                        },
-                        color: Colors.white,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
-                          ),
-                        ),
-                        child: Text('Pilih',
-                            style: TextStyle(
-                              color: AppColors.red,
-                              fontWeight: FontWeight.bold,
-                            )))
-                ],
-              ),
-            ),
-            Container(
-              color: AppColors.greyStroke,
-              height: 10,
-              width: double.infinity,
-            ),
-          ],
+    return Obx(() {
+      return Theme(
+        data: Theme.of(Get.context!).copyWith(
+          primaryColor: Colors.black,
         ),
-      ),
-    );
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Tipe Order", style: AppFont.textBlack14Regular),
+                        Row(
+                          children: [
+                            controller.generateSalesTypeIcon(
+                                color: AppColors.redD42C35),
+                            SizedBox(width: 8),
+                            Text(
+                                Utils.formatSalesType(
+                                    controller.salesType.value ?? ""),
+                                style: AppFont.textBlack14Bold),
+                          ],
+                        )
+                      ],
+                    ),
+                    if (controller.salesType.value != null)
+                      FlatButton(
+                          onPressed: () {
+                            _showDialogSalesType();
+                          },
+                          color: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
+                          ),
+                          child: Text('Ubah',
+                              style: TextStyle(
+                                color: AppColors.red,
+                                fontWeight: FontWeight.bold,
+                              )))
+                    else
+                      FlatButton(
+                          onPressed: () {
+                            _showDialogSalesType();
+                          },
+                          color: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
+                          ),
+                          child: Text('Pilih',
+                              style: TextStyle(
+                                color: AppColors.red,
+                                fontWeight: FontWeight.bold,
+                              )))
+                  ],
+                ),
+              ),
+              Container(
+                color: AppColors.greyStroke,
+                height: 10,
+                width: double.infinity,
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   Widget _paymentMethod() {
@@ -1236,6 +1238,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             getOutletListProductSuccess: (r) {
               controller.listProduct.value = r.response;
             },
+            setSalesTypeCartSuccess: (r) {
+              controller.salesType.value = r.value;
+            },
             getSalesTypeCartSuccess: (r) {
               controller.salesType.value = r.value;
             },
@@ -1309,7 +1314,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
 }
 
 class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
-  void _editCart(TransactionDataItemResponse x, String y) {}
+  void getCartSession() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+  }
+
+  void _editCart(TransactionDataItemResponse x, String y) {
+    print("editcart");
+  }
 
   void _plusProduct(int productId, int qty, int price,
       TransactionDataItemResponse detailProduct) {
@@ -1333,6 +1344,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                 },
                 fullscreenDialog: true))
         .then((value) {
+      getCartSession();
       controller.reloadCounter.value++;
     });
   }
