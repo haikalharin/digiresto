@@ -45,6 +45,10 @@ class _$AddressListEventTearOff {
       request,
     );
   }
+
+  _GetActiveAddress getActiveAddress() {
+    return const _GetActiveAddress();
+  }
 }
 
 /// @nodoc
@@ -59,6 +63,7 @@ mixin _$AddressListEvent {
     required TResult Function(UserAddress model) setActiveAddress,
     required TResult Function(UserRemoveAddressParam request) removeAddress,
     required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +73,7 @@ mixin _$AddressListEvent {
     TResult Function(UserAddress model)? setActiveAddress,
     TResult Function(UserRemoveAddressParam request)? removeAddress,
     TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,6 +84,7 @@ mixin _$AddressListEvent {
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_RemoveAddress value) removeAddress,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +94,7 @@ mixin _$AddressListEvent {
     TResult Function(_SetActiveAddress value)? setActiveAddress,
     TResult Function(_RemoveAddress value)? removeAddress,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,6 +187,7 @@ class _$_SetDefault implements _SetDefault {
     required TResult Function(UserAddress model) setActiveAddress,
     required TResult Function(UserRemoveAddressParam request) removeAddress,
     required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return setDefault(request);
   }
@@ -191,6 +200,7 @@ class _$_SetDefault implements _SetDefault {
     TResult Function(UserAddress model)? setActiveAddress,
     TResult Function(UserRemoveAddressParam request)? removeAddress,
     TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (setDefault != null) {
@@ -207,6 +217,7 @@ class _$_SetDefault implements _SetDefault {
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_RemoveAddress value) removeAddress,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return setDefault(this);
   }
@@ -219,6 +230,7 @@ class _$_SetDefault implements _SetDefault {
     TResult Function(_SetActiveAddress value)? setActiveAddress,
     TResult Function(_RemoveAddress value)? removeAddress,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (setDefault != null) {
@@ -307,6 +319,7 @@ class _$_GetGeoCode implements _GetGeoCode {
     required TResult Function(UserAddress model) setActiveAddress,
     required TResult Function(UserRemoveAddressParam request) removeAddress,
     required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return getGeoCode(request);
   }
@@ -319,6 +332,7 @@ class _$_GetGeoCode implements _GetGeoCode {
     TResult Function(UserAddress model)? setActiveAddress,
     TResult Function(UserRemoveAddressParam request)? removeAddress,
     TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (getGeoCode != null) {
@@ -335,6 +349,7 @@ class _$_GetGeoCode implements _GetGeoCode {
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_RemoveAddress value) removeAddress,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return getGeoCode(this);
   }
@@ -347,6 +362,7 @@ class _$_GetGeoCode implements _GetGeoCode {
     TResult Function(_SetActiveAddress value)? setActiveAddress,
     TResult Function(_RemoveAddress value)? removeAddress,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (getGeoCode != null) {
@@ -444,6 +460,7 @@ class _$_SetActiveAddress implements _SetActiveAddress {
     required TResult Function(UserAddress model) setActiveAddress,
     required TResult Function(UserRemoveAddressParam request) removeAddress,
     required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return setActiveAddress(model);
   }
@@ -456,6 +473,7 @@ class _$_SetActiveAddress implements _SetActiveAddress {
     TResult Function(UserAddress model)? setActiveAddress,
     TResult Function(UserRemoveAddressParam request)? removeAddress,
     TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (setActiveAddress != null) {
@@ -472,6 +490,7 @@ class _$_SetActiveAddress implements _SetActiveAddress {
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_RemoveAddress value) removeAddress,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return setActiveAddress(this);
   }
@@ -484,6 +503,7 @@ class _$_SetActiveAddress implements _SetActiveAddress {
     TResult Function(_SetActiveAddress value)? setActiveAddress,
     TResult Function(_RemoveAddress value)? removeAddress,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (setActiveAddress != null) {
@@ -572,6 +592,7 @@ class _$_RemoveAddress implements _RemoveAddress {
     required TResult Function(UserAddress model) setActiveAddress,
     required TResult Function(UserRemoveAddressParam request) removeAddress,
     required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return removeAddress(request);
   }
@@ -584,6 +605,7 @@ class _$_RemoveAddress implements _RemoveAddress {
     TResult Function(UserAddress model)? setActiveAddress,
     TResult Function(UserRemoveAddressParam request)? removeAddress,
     TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (removeAddress != null) {
@@ -600,6 +622,7 @@ class _$_RemoveAddress implements _RemoveAddress {
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_RemoveAddress value) removeAddress,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return removeAddress(this);
   }
@@ -612,6 +635,7 @@ class _$_RemoveAddress implements _RemoveAddress {
     TResult Function(_SetActiveAddress value)? setActiveAddress,
     TResult Function(_RemoveAddress value)? removeAddress,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (removeAddress != null) {
@@ -701,6 +725,7 @@ class _$_AddAddress implements _AddAddress {
     required TResult Function(UserAddress model) setActiveAddress,
     required TResult Function(UserRemoveAddressParam request) removeAddress,
     required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
   }) {
     return addAddress(request);
   }
@@ -713,6 +738,7 @@ class _$_AddAddress implements _AddAddress {
     TResult Function(UserAddress model)? setActiveAddress,
     TResult Function(UserRemoveAddressParam request)? removeAddress,
     TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -729,6 +755,7 @@ class _$_AddAddress implements _AddAddress {
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_RemoveAddress value) removeAddress,
     required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
   }) {
     return addAddress(this);
   }
@@ -741,6 +768,7 @@ class _$_AddAddress implements _AddAddress {
     TResult Function(_SetActiveAddress value)? setActiveAddress,
     TResult Function(_RemoveAddress value)? removeAddress,
     TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
     required TResult orElse(),
   }) {
     if (addAddress != null) {
@@ -757,6 +785,108 @@ abstract class _AddAddress implements AddressListEvent {
   @JsonKey(ignore: true)
   _$AddAddressCopyWith<_AddAddress> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetActiveAddressCopyWith<$Res> {
+  factory _$GetActiveAddressCopyWith(
+          _GetActiveAddress value, $Res Function(_GetActiveAddress) then) =
+      __$GetActiveAddressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetActiveAddressCopyWithImpl<$Res>
+    extends _$AddressListEventCopyWithImpl<$Res>
+    implements _$GetActiveAddressCopyWith<$Res> {
+  __$GetActiveAddressCopyWithImpl(
+      _GetActiveAddress _value, $Res Function(_GetActiveAddress) _then)
+      : super(_value, (v) => _then(v as _GetActiveAddress));
+
+  @override
+  _GetActiveAddress get _value => super._value as _GetActiveAddress;
+}
+
+/// @nodoc
+
+class _$_GetActiveAddress implements _GetActiveAddress {
+  const _$_GetActiveAddress();
+
+  @override
+  String toString() {
+    return 'AddressListEvent.getActiveAddress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetActiveAddress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserSetDefaultAddressParam request) setDefault,
+    required TResult Function(GetGeoCodeParam request) getGeoCode,
+    required TResult Function(UserAddress model) setActiveAddress,
+    required TResult Function(UserRemoveAddressParam request) removeAddress,
+    required TResult Function(UserAddAddressParam request) addAddress,
+    required TResult Function() getActiveAddress,
+  }) {
+    return getActiveAddress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserSetDefaultAddressParam request)? setDefault,
+    TResult Function(GetGeoCodeParam request)? getGeoCode,
+    TResult Function(UserAddress model)? setActiveAddress,
+    TResult Function(UserRemoveAddressParam request)? removeAddress,
+    TResult Function(UserAddAddressParam request)? addAddress,
+    TResult Function()? getActiveAddress,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddress != null) {
+      return getActiveAddress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_GetGeoCode value) getGeoCode,
+    required TResult Function(_SetActiveAddress value) setActiveAddress,
+    required TResult Function(_RemoveAddress value) removeAddress,
+    required TResult Function(_AddAddress value) addAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
+  }) {
+    return getActiveAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_GetGeoCode value)? getGeoCode,
+    TResult Function(_SetActiveAddress value)? setActiveAddress,
+    TResult Function(_RemoveAddress value)? removeAddress,
+    TResult Function(_AddAddress value)? addAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddress != null) {
+      return getActiveAddress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetActiveAddress implements AddressListEvent {
+  const factory _GetActiveAddress() = _$_GetActiveAddress;
 }
 
 /// @nodoc
@@ -828,6 +958,12 @@ class _$AddressListStateTearOff {
       response,
     );
   }
+
+  _GetActiveAddressSuccess getActiveAddressSuccess(UserAddress response) {
+    return _GetActiveAddressSuccess(
+      response,
+    );
+  }
 }
 
 /// @nodoc
@@ -849,6 +985,7 @@ mixin _$AddressListState {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -865,6 +1002,7 @@ mixin _$AddressListState {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -883,6 +1021,8 @@ mixin _$AddressListState {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -899,6 +1039,7 @@ mixin _$AddressListState {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -970,6 +1111,7 @@ class _$_Initial implements _Initial {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return initial();
   }
@@ -989,6 +1131,7 @@ class _$_Initial implements _Initial {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1013,6 +1156,8 @@ class _$_Initial implements _Initial {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return initial(this);
   }
@@ -1032,6 +1177,7 @@ class _$_Initial implements _Initial {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1097,6 +1243,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return loadInProgress();
   }
@@ -1116,6 +1263,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -1140,6 +1288,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return loadInProgress(this);
   }
@@ -1159,6 +1309,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -1224,6 +1375,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return loadSuccess();
   }
@@ -1243,6 +1395,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -1267,6 +1420,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return loadSuccess(this);
   }
@@ -1286,6 +1441,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -1376,6 +1532,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return loadFailure(message);
   }
@@ -1395,6 +1552,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -1419,6 +1577,8 @@ class _$_LoadFailure implements _LoadFailure {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return loadFailure(this);
   }
@@ -1438,6 +1598,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -1534,6 +1695,7 @@ class _$_SaveAddressSuccess implements _SaveAddressSuccess {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return setDefaultSuccess(response);
   }
@@ -1553,6 +1715,7 @@ class _$_SaveAddressSuccess implements _SaveAddressSuccess {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setDefaultSuccess != null) {
@@ -1577,6 +1740,8 @@ class _$_SaveAddressSuccess implements _SaveAddressSuccess {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return setDefaultSuccess(this);
   }
@@ -1596,6 +1761,7 @@ class _$_SaveAddressSuccess implements _SaveAddressSuccess {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setDefaultSuccess != null) {
@@ -1692,6 +1858,7 @@ class _$_SaveAddressFail implements _SaveAddressFail {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return setDefaultFail(message);
   }
@@ -1711,6 +1878,7 @@ class _$_SaveAddressFail implements _SaveAddressFail {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setDefaultFail != null) {
@@ -1735,6 +1903,8 @@ class _$_SaveAddressFail implements _SaveAddressFail {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return setDefaultFail(this);
   }
@@ -1754,6 +1924,7 @@ class _$_SaveAddressFail implements _SaveAddressFail {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setDefaultFail != null) {
@@ -1850,6 +2021,7 @@ class _$_UserRemoveAddress implements _UserRemoveAddress {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return removeAddressSuccess(response);
   }
@@ -1869,6 +2041,7 @@ class _$_UserRemoveAddress implements _UserRemoveAddress {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (removeAddressSuccess != null) {
@@ -1893,6 +2066,8 @@ class _$_UserRemoveAddress implements _UserRemoveAddress {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return removeAddressSuccess(this);
   }
@@ -1912,6 +2087,7 @@ class _$_UserRemoveAddress implements _UserRemoveAddress {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (removeAddressSuccess != null) {
@@ -2009,6 +2185,7 @@ class _$_GetGeoCodeSuccess implements _GetGeoCodeSuccess {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return getGeoCodeSuccess(response);
   }
@@ -2028,6 +2205,7 @@ class _$_GetGeoCodeSuccess implements _GetGeoCodeSuccess {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (getGeoCodeSuccess != null) {
@@ -2052,6 +2230,8 @@ class _$_GetGeoCodeSuccess implements _GetGeoCodeSuccess {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return getGeoCodeSuccess(this);
   }
@@ -2071,6 +2251,7 @@ class _$_GetGeoCodeSuccess implements _GetGeoCodeSuccess {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (getGeoCodeSuccess != null) {
@@ -2166,6 +2347,7 @@ class _$_GetGeoCodeFail implements _GetGeoCodeFail {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return getGeoCodeFail(message);
   }
@@ -2185,6 +2367,7 @@ class _$_GetGeoCodeFail implements _GetGeoCodeFail {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (getGeoCodeFail != null) {
@@ -2209,6 +2392,8 @@ class _$_GetGeoCodeFail implements _GetGeoCodeFail {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return getGeoCodeFail(this);
   }
@@ -2228,6 +2413,7 @@ class _$_GetGeoCodeFail implements _GetGeoCodeFail {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (getGeoCodeFail != null) {
@@ -2335,6 +2521,7 @@ class _$_SetActiveAddressSuccess implements _SetActiveAddressSuccess {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return setActiveAddressSuccess(response);
   }
@@ -2354,6 +2541,7 @@ class _$_SetActiveAddressSuccess implements _SetActiveAddressSuccess {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setActiveAddressSuccess != null) {
@@ -2378,6 +2566,8 @@ class _$_SetActiveAddressSuccess implements _SetActiveAddressSuccess {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return setActiveAddressSuccess(this);
   }
@@ -2397,6 +2587,7 @@ class _$_SetActiveAddressSuccess implements _SetActiveAddressSuccess {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setActiveAddressSuccess != null) {
@@ -2494,6 +2685,7 @@ class _$_SetActiveAddressFail implements _SetActiveAddressFail {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return setActiveAddressFail(message);
   }
@@ -2513,6 +2705,7 @@ class _$_SetActiveAddressFail implements _SetActiveAddressFail {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setActiveAddressFail != null) {
@@ -2537,6 +2730,8 @@ class _$_SetActiveAddressFail implements _SetActiveAddressFail {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return setActiveAddressFail(this);
   }
@@ -2556,6 +2751,7 @@ class _$_SetActiveAddressFail implements _SetActiveAddressFail {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (setActiveAddressFail != null) {
@@ -2652,6 +2848,7 @@ class _$_AddAddressSuccess implements _AddAddressSuccess {
     required TResult Function(UserAddress response) setActiveAddressSuccess,
     required TResult Function(String message) setActiveAddressFail,
     required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
   }) {
     return addAddressSuccess(response);
   }
@@ -2671,6 +2868,7 @@ class _$_AddAddressSuccess implements _AddAddressSuccess {
     TResult Function(UserAddress response)? setActiveAddressSuccess,
     TResult Function(String message)? setActiveAddressFail,
     TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (addAddressSuccess != null) {
@@ -2695,6 +2893,8 @@ class _$_AddAddressSuccess implements _AddAddressSuccess {
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
     required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
   }) {
     return addAddressSuccess(this);
   }
@@ -2714,6 +2914,7 @@ class _$_AddAddressSuccess implements _AddAddressSuccess {
     TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
     TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
     TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     required TResult orElse(),
   }) {
     if (addAddressSuccess != null) {
@@ -2730,5 +2931,180 @@ abstract class _AddAddressSuccess implements AddressListState {
   UserAddAddress get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$AddAddressSuccessCopyWith<_AddAddressSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetActiveAddressSuccessCopyWith<$Res> {
+  factory _$GetActiveAddressSuccessCopyWith(_GetActiveAddressSuccess value,
+          $Res Function(_GetActiveAddressSuccess) then) =
+      __$GetActiveAddressSuccessCopyWithImpl<$Res>;
+  $Res call({UserAddress response});
+
+  $UserAddressCopyWith<$Res> get response;
+}
+
+/// @nodoc
+class __$GetActiveAddressSuccessCopyWithImpl<$Res>
+    extends _$AddressListStateCopyWithImpl<$Res>
+    implements _$GetActiveAddressSuccessCopyWith<$Res> {
+  __$GetActiveAddressSuccessCopyWithImpl(_GetActiveAddressSuccess _value,
+      $Res Function(_GetActiveAddressSuccess) _then)
+      : super(_value, (v) => _then(v as _GetActiveAddressSuccess));
+
+  @override
+  _GetActiveAddressSuccess get _value =>
+      super._value as _GetActiveAddressSuccess;
+
+  @override
+  $Res call({
+    Object? response = freezed,
+  }) {
+    return _then(_GetActiveAddressSuccess(
+      response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as UserAddress,
+    ));
+  }
+
+  @override
+  $UserAddressCopyWith<$Res> get response {
+    return $UserAddressCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
+  const _$_GetActiveAddressSuccess(this.response);
+
+  @override
+  final UserAddress response;
+
+  @override
+  String toString() {
+    return 'AddressListState.getActiveAddressSuccess(response: $response)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetActiveAddressSuccess &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetActiveAddressSuccessCopyWith<_GetActiveAddressSuccess> get copyWith =>
+      __$GetActiveAddressSuccessCopyWithImpl<_GetActiveAddressSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(String message) loadFailure,
+    required TResult Function(List<UserAddress> response) setDefaultSuccess,
+    required TResult Function(String message) setDefaultFail,
+    required TResult Function(UserRemoveAddress response) removeAddressSuccess,
+    required TResult Function(Geocode response) getGeoCodeSuccess,
+    required TResult Function(String message) getGeoCodeFail,
+    required TResult Function(UserAddress response) setActiveAddressSuccess,
+    required TResult Function(String message) setActiveAddressFail,
+    required TResult Function(UserAddAddress response) addAddressSuccess,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+  }) {
+    return getActiveAddressSuccess(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(String message)? loadFailure,
+    TResult Function(List<UserAddress> response)? setDefaultSuccess,
+    TResult Function(String message)? setDefaultFail,
+    TResult Function(UserRemoveAddress response)? removeAddressSuccess,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+    TResult Function(UserAddAddress response)? addAddressSuccess,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddressSuccess != null) {
+      return getActiveAddressSuccess(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_SaveAddressSuccess value) setDefaultSuccess,
+    required TResult Function(_SaveAddressFail value) setDefaultFail,
+    required TResult Function(_UserRemoveAddress value) removeAddressSuccess,
+    required TResult Function(_GetGeoCodeSuccess value) getGeoCodeSuccess,
+    required TResult Function(_GetGeoCodeFail value) getGeoCodeFail,
+    required TResult Function(_SetActiveAddressSuccess value)
+        setActiveAddressSuccess,
+    required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
+    required TResult Function(_AddAddressSuccess value) addAddressSuccess,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+  }) {
+    return getActiveAddressSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? setDefaultSuccess,
+    TResult Function(_SaveAddressFail value)? setDefaultFail,
+    TResult Function(_UserRemoveAddress value)? removeAddressSuccess,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+    TResult Function(_AddAddressSuccess value)? addAddressSuccess,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    required TResult orElse(),
+  }) {
+    if (getActiveAddressSuccess != null) {
+      return getActiveAddressSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetActiveAddressSuccess implements AddressListState {
+  const factory _GetActiveAddressSuccess(UserAddress response) =
+      _$_GetActiveAddressSuccess;
+
+  UserAddress get response => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetActiveAddressSuccessCopyWith<_GetActiveAddressSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

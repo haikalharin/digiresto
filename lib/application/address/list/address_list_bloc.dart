@@ -57,6 +57,11 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
       yield addAddress.fold(
           (error) => AddressListState.loadFailure(error.toString()),
           (data) => AddressListState.addAddressSuccess(data));
+    }, getActiveAddress: (value) async* {
+      final setActiveAddress = await _userRepository.getActiveAddress();
+      yield setActiveAddress.fold(
+          (error) => AddressListState.loadFailure(error.toString()),
+          (data) => AddressListState.getActiveAddressSuccess(data));
     });
   }
 }

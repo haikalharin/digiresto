@@ -20,7 +20,6 @@ class OrderLocal {
     if (_outletModel?.id != outlet.id) {
       await _storage.openBox(StorageConstants.orderProduct);
       await _storage.deleteData();
-      await setOutletDetailID(outlet);
     }
 
     await _storage.openBox(StorageConstants.orderProduct);

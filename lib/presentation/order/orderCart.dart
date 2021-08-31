@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -1479,16 +1479,21 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
 
 class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
   void getActiveAddress() {
-    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
+    Get.context!
+        .read<AddressListBloc>()
+        .add(AddressListEvent.getActiveAddress());
   }
 
   @override
   Widget build(BuildContext context) {
     getActiveAddress();
-    return BlocConsumer<HomeUserBloc, HomeUserState>(
+    return BlocConsumer<AddressListBloc, AddressListState>(
         listener: (context, state) {
       state.maybeMap(
           getActiveAddressSuccess: (r) {
+            controller.activeAddress.value = r.response;
+          },
+          setActiveAddressSuccess: (r) {
             controller.activeAddress.value = r.response;
           },
           orElse: () {});
@@ -1498,12 +1503,12 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
               primaryColor: Colors.black,
             ),
             child: Container(
-              padding: EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    padding: EdgeInsets.all(10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1529,7 +1534,12 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                         ),
                         if (controller.salesType.value != null)
                           FlatButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(Routers.homeAllAddress)!
+                                    .then((value) {
+                                  getActiveAddress();
+                                });
+                              },
                               color: Colors.white,
                               shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(5.0),
@@ -1562,24 +1572,29 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                       ],
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          width: Get.width * 0.9,
-                          child: Text(
-                            controller.activeAddress.value?.address ?? "",
-                            style: AppFont.textBlack12Regular
-                                .copyWith(color: AppColors.grey747474),
-                          ),
-                        )
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 16),
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(4),
+                            width: Get.width * 0.85,
+                            child: Obx(() => Text(
+                                  controller.activeAddress.value?.address ?? "",
+                                  style: AppFont.textBlack12Regular
+                                      .copyWith(color: AppColors.grey747474),
+                                )),
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                          color: AppColors.greyF6F6F6,
+                          borderRadius: BorderRadius.circular(4)),
                     ),
-                    decoration: BoxDecoration(
-                        color: AppColors.greyF6F6F6,
-                        borderRadius: BorderRadius.circular(4)),
                   ),
+                  SizedBox(height: 16),
                   Container(
                     color: AppColors.greyStroke,
                     height: 10,

@@ -12,4 +12,5 @@ class AddressListEvent with _$AddressListEvent {
       _RemoveAddress;
   const factory AddressListEvent.addAddress(UserAddAddressParam request) =
       _AddAddress;
+  const factory AddressListEvent.getActiveAddress() = _GetActiveAddress;
 }

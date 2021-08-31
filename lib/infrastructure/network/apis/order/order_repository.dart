@@ -45,12 +45,12 @@ class OrderRepository {
     return _orderLocal.removeProduct(object);
   }
 
-  Future<DetailOutletDataResponse?> setOutletDetailID(
+  Future<DetailOutletDataResponse?> setCartOutletDetailID(
       DetailOutletDataResponse object) async {
     return _orderLocal.setOutletDetailID(object);
   }
 
-  Future<DetailOutletDataResponse?> getOutletDetailID() async {
+  Future<DetailOutletDataResponse?> getCartOutletDetailID() async {
     return _orderLocal.getOutletDetailID();
   }
 

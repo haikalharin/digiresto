@@ -176,11 +176,14 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final userProfile = (await _orderRepository.getLocalUserProfile())!;
-        await _orderRepository.setOutletDetailID(request.outlet);
         final setProduct =
             await _orderRepository.setProduct(request.request, request.outlet);
+        final getOutletDetailID =
+            await _orderRepository.getCartOutletDetailID();
+        final outletID = getOutletDetailID?.id ?? "";
 
-        if (sessionId == null) {
+        //create new cart session, if add cart in the different outlet
+        if (sessionId == null || outletID != request.outlet.id) {
           final createCartSession = await _orderRepository.createCartSession(
               CreateCartSessionParam(
                   body: CreateCartSessionBodyParam(
@@ -202,6 +205,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
           var dataCart = createCartSession.getOrElse(() => null);
           if (dataCart != null) {
+            await _orderRepository.setCartOutletDetailID(request.outlet);
             await _orderRepository.setSessionId(dataCart.data.sessionId!);
           }
           yield createCartSession.fold(
