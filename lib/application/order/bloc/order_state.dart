@@ -5,7 +5,7 @@ class OrderState with _$OrderState {
   const factory OrderState.initial() = _Initial;
   const factory OrderState.loadInProgress() = _LoadInProgress;
   const factory OrderState.loadSuccess() = _LoadSuccess;
-  const factory OrderState.loadFailure(Exception message) = _LoadFailure;
+  const factory OrderState.loadFailure(OrderFailure e) = _LoadFailure;
 
   const factory OrderState.getOutletByLocationSuccess(
       List<OutletCategoryDataResponse> response) = _GetOutletByLocationSucess;

@@ -79,10 +79,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
   }
 
-  void getActiveAddress() {
-    Get.context!.read<HomeUserBloc>()..add(HomeUserEvent.getActiveAddress());
-  }
-
   void initDialogPlace() {
     controller.useSchedule.value = false;
     paxController.text = "1";
@@ -141,45 +137,45 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 children: [
                   //if (_orderStore.orderSalesTypes == 'dineIn')
 
-                  Text("Info Makan di Tempat",
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        //color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  //if (_orderStore.orderSalesTypes == 'dineIn')
-                  Container(
-                    padding: const EdgeInsets.only(top: 5, bottom: 10),
-                    child: TextField(
-                        textInputAction: TextInputAction.search,
-                        onSubmitted: (value) {},
-                        controller: placeInfoController,
-                        readOnly: true,
-                        onTap: () {
-                          _dialogPlace(Get.context!);
-                        },
-                        style: TextStyle(
-                          fontSize: 14.0,
-                        ),
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: AppColors.greyFill,
-                          contentPadding: EdgeInsets.only(
-                              top: 12, bottom: 12, left: 10, right: 10),
-                          hintText: "",
-                          border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                              borderRadius: BorderRadius.circular(5)),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black),
-                          ),
-                        )),
-                  ),
+                  // Text("Info Makan di Tempat",
+                  //     style: TextStyle(
+                  //       fontFamily: "roboto",
+                  //       //color: Colors.white,
+                  //       fontSize: 14,
+                  //       fontWeight: FontWeight.bold,
+                  //     )),
+                  // //if (_orderStore.orderSalesTypes == 'dineIn')
+                  // Container(
+                  //   padding: const EdgeInsets.only(top: 5, bottom: 10),
+                  //   child: TextField(
+                  //       textInputAction: TextInputAction.search,
+                  //       onSubmitted: (value) {},
+                  //       controller: placeInfoController,
+                  //       readOnly: true,
+                  //       onTap: () {
+                  //         _dialogPlace(Get.context!);
+                  //       },
+                  //       style: TextStyle(
+                  //         fontSize: 14.0,
+                  //       ),
+                  //       decoration: InputDecoration(
+                  //         isDense: true,
+                  //         filled: true,
+                  //         fillColor: AppColors.greyFill,
+                  //         contentPadding: EdgeInsets.only(
+                  //             top: 12, bottom: 12, left: 10, right: 10),
+                  //         hintText: "",
+                  //         border: OutlineInputBorder(
+                  //             borderSide:
+                  //                 BorderSide(color: Colors.black, width: 32.0),
+                  //             borderRadius: BorderRadius.circular(5)),
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.all(Radius.circular(5)),
+                  //           borderSide:
+                  //               BorderSide(width: 1, color: Colors.black),
+                  //         ),
+                  //       )),
+                  // ),
                   Row(
                     children: [
                       Text("Catatan",
@@ -267,6 +263,183 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           ],
                         )
                       : Container()
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget titleDetailOutlet() {
+    return Theme(
+      data: Theme.of(Get.context!).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Outlet", style: AppFont.textBlack14Regular),
+                      Row(
+                        children: [
+                          Text(controller.detailOutlet.value!.name,
+                              style: AppFont.textBlack14Bold),
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showDialogSalesType() async {
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+        ),
+        backgroundColor: Colors.white,
+        context: Get.context!,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              SizedBox(
+                height: 8,
+              ),
+              ListTile(
+                // leading: GestureDetector(
+                //   onTap: () {
+                //     Get.back();
+                //   },
+                //   child: ImageIcon(
+                //     AssetImage(AppAssets.iconBackBlack),
+                //     color: Colors.black,
+                //   ),
+                // ),
+                title: Container(
+                  //make title to center
+                  //transform: Matrix4.translationValues(-24, 0, 0),
+                  child: Center(
+                    child: new Text(
+                      'Silahkan pilih tipe order',
+                      style: AppFont.textBlack17Bold,
+                    ),
+                  ),
+                ),
+                enabled: false,
+              ),
+              Column(
+                children: controller.generateListSalesTypeOption((element) {
+                  Get.context!
+                      .read<OrderBloc>()
+                      .add(OrderEvent.setSalesTypeCart(element));
+                  Get.back(closeOverlays: true);
+                }),
+              ),
+              SizedBox(
+                height: 16,
+              )
+            ],
+          );
+        });
+  }
+
+  Widget _selectSalesTypeMethod() {
+    return Theme(
+      data: Theme.of(Get.context!).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Tipe Order", style: AppFont.textBlack14Regular),
+                      Row(
+                        children: [
+                          controller.generateSalesTypeIcon(
+                              color: AppColors.redD42C35),
+                          SizedBox(width: 8),
+                          Text(
+                              Utils.formatSalesType(
+                                  controller.salesType.value ?? ""),
+                              style: AppFont.textBlack14Bold),
+                        ],
+                      )
+                    ],
+                  ),
+                  if (controller.salesType.value != null)
+                    FlatButton(
+                        onPressed: () {
+                          _showDialogSalesType();
+                        },
+                        color: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(5.0),
+                          side: BorderSide(
+                            width: 1,
+                            color: AppColors.red,
+                          ),
+                        ),
+                        child: Text('Ubah',
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontWeight: FontWeight.bold,
+                            )))
+                  else
+                    FlatButton(
+                        onPressed: () {
+                          _showDialogSalesType();
+                        },
+                        color: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(5.0),
+                          side: BorderSide(
+                            width: 1,
+                            color: AppColors.red,
+                          ),
+                        ),
+                        child: Text('Pilih',
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontWeight: FontWeight.bold,
+                            )))
                 ],
               ),
             ),
@@ -486,7 +659,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     children: [
                       Text('Subtotal'),
                       Text("Rp." +
-                          Utils.formatRupiah("transaction.subtotal.toString()"))
+                          Utils.formatRupiah(controller
+                              .cartSession.value!.transactionData.subtotal
+                              .toString()))
                     ],
                   ),
                   // for (var i = 0; i < transaction.taxesAndServices.length; i++)
@@ -516,8 +691,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     children: [
                       Text('Total'),
                       Text("Rp." +
-                          Utils.formatRupiah(
-                              "transaction.totalPayment.toString()"))
+                          Utils.formatRupiah(controller
+                              .cartSession.value!.transactionData.totalPayment
+                              .toString()))
                     ],
                   ),
                   SizedBox(
@@ -625,7 +801,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               content: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                  height: controller.useSchedule.value! ? 350 : 270,
+                  height: (controller.useSchedule.value ?? false) ? 350 : 270,
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1038,9 +1214,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 page: 1))));
   }
 
+  void getSalesTypeOrder() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
+  }
+
   @override
   Widget build(BuildContext context) {
-    getActiveAddress();
+    getSalesTypeOrder();
     getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
@@ -1055,6 +1235,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             },
             getOutletListProductSuccess: (r) {
               controller.listProduct.value = r.response;
+            },
+            getSalesTypeCartSuccess: (r) {
+              controller.salesType.value = r.value;
             },
             orElse: () {});
       },
@@ -1072,12 +1255,27 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     child: Column(
                       children: [
                         _HeaderOrderCart(),
+                        controller.detailOutlet.value != null
+                            ? titleDetailOutlet()
+                            : Container(),
+                        controller.salesType.value != null &&
+                                controller.detailOutlet.value != null
+                            ? _selectSalesTypeMethod()
+                            : Container(),
+
+                        _AddressOrderCart(),
+
                         controller.detailOutlet.value != null &&
                                 controller.listProduct.value != null
                             ? _ProductOrderCart()
                             : Container(),
                         _notes(),
                         _useVoucherCode(),
+                        _paymentMethod(),
+                        _deliveryMethod(),
+                        controller.cartSession.value != null
+                            ? _detailPayment()
+                            : Container()
                         // Observer(builder: (context) => _paymentMethod()),
                         // if (_orderStore.orderSalesTypes == 'onlineDriver')
                         //   Observer(builder: (context) => _deliveryMethod()),
@@ -1280,8 +1478,13 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
 }
 
 class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
+  void getActiveAddress() {
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
+  }
+
   @override
   Widget build(BuildContext context) {
+    getActiveAddress();
     return BlocConsumer<HomeUserBloc, HomeUserState>(
         listener: (context, state) {
       state.maybeMap(
@@ -1290,7 +1493,102 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
           },
           orElse: () {});
     }, builder: (context, state) {
-      return Container();
+      return Obx(() => Theme(
+            data: Theme.of(Get.context!).copyWith(
+              primaryColor: Colors.black,
+            ),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Lokasi Pengiriman",
+                                style: AppFont.textBlack14Regular),
+                            Row(
+                              children: [
+                                ImageIcon(
+                                  AssetImage(AppAssets.iconMarkerMove),
+                                  color: AppColors.redD42C35,
+                                  size: 16,
+                                ),
+                                SizedBox(width: 8),
+                                Text(controller.activeAddress.value?.name ?? "",
+                                    style: AppFont.textBlack14Bold),
+                              ],
+                            )
+                          ],
+                        ),
+                        if (controller.salesType.value != null)
+                          FlatButton(
+                              onPressed: () {},
+                              color: Colors.white,
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(5.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                              child: Text('Ubah',
+                                  style: TextStyle(
+                                    color: AppColors.red,
+                                    fontWeight: FontWeight.bold,
+                                  )))
+                        else
+                          FlatButton(
+                              onPressed: () {},
+                              color: Colors.white,
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(5.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                              child: Text('Pilih',
+                                  style: TextStyle(
+                                    color: AppColors.red,
+                                    fontWeight: FontWeight.bold,
+                                  )))
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          width: Get.width * 0.9,
+                          child: Text(
+                            controller.activeAddress.value?.address ?? "",
+                            style: AppFont.textBlack12Regular
+                                .copyWith(color: AppColors.grey747474),
+                          ),
+                        )
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                        color: AppColors.greyF6F6F6,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  Container(
+                    color: AppColors.greyStroke,
+                    height: 10,
+                    width: double.infinity,
+                  ),
+                ],
+              ),
+            ),
+          ));
     });
   }
 }

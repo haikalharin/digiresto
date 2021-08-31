@@ -139,9 +139,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
             getOutletByLocationSuccess: (r) {
               controller.listOutlet.value = r.response;
             },
-            loadFailure: (e) {
-              print(e.message);
-            },
+            loadFailure: (e) {},
             orElse: () {});
       },
       builder: (context, state) {

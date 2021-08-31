@@ -46,6 +46,7 @@ class Routers {
   static const String orderCart = '/order_cart';
   static const String selectPaymentMethod = '/select_payment_method';
   static const String selectDeliveryMethod = '/select_delivery_method';
+  static const String selectSalesTypeMethod = '/select_sales_type_method';
   static const String paymentReceipt = '/payment_receipt';
   static const String paymentWebView = '/payment_web_view';
   static const String paymentVa = '/payment_va';

@@ -4141,9 +4141,9 @@ class _$OrderStateTearOff {
     return const _LoadSuccess();
   }
 
-  _LoadFailure loadFailure(Exception message) {
+  _LoadFailure loadFailure(OrderFailure e) {
     return _LoadFailure(
-      message,
+      e,
     );
   }
 
@@ -4283,7 +4283,7 @@ mixin _$OrderState {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -4322,7 +4322,7 @@ mixin _$OrderState {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -4485,7 +4485,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -4527,7 +4527,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -4693,7 +4693,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -4735,7 +4735,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -4901,7 +4901,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -4943,7 +4943,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -5072,7 +5072,9 @@ abstract class _$LoadFailureCopyWith<$Res> {
   factory _$LoadFailureCopyWith(
           _LoadFailure value, $Res Function(_LoadFailure) then) =
       __$LoadFailureCopyWithImpl<$Res>;
-  $Res call({Exception message});
+  $Res call({OrderFailure e});
+
+  $OrderFailureCopyWith<$Res> get e;
 }
 
 /// @nodoc
@@ -5087,41 +5089,48 @@ class __$LoadFailureCopyWithImpl<$Res> extends _$OrderStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? message = freezed,
+    Object? e = freezed,
   }) {
     return _then(_LoadFailure(
-      message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as Exception,
+      e == freezed
+          ? _value.e
+          : e // ignore: cast_nullable_to_non_nullable
+              as OrderFailure,
     ));
+  }
+
+  @override
+  $OrderFailureCopyWith<$Res> get e {
+    return $OrderFailureCopyWith<$Res>(_value.e, (value) {
+      return _then(_value.copyWith(e: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_LoadFailure implements _LoadFailure {
-  const _$_LoadFailure(this.message);
+  const _$_LoadFailure(this.e);
 
   @override
-  final Exception message;
+  final OrderFailure e;
 
   @override
   String toString() {
-    return 'OrderState.loadFailure(message: $message)';
+    return 'OrderState.loadFailure(e: $e)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LoadFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+            (identical(other.e, e) ||
+                const DeepCollectionEquality().equals(other.e, e)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
 
   @JsonKey(ignore: true)
   @override
@@ -5134,7 +5143,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -5167,7 +5176,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(String value) getSalesTypeCartSuccess,
     required TResult Function(String value) setSalesTypeCartSuccess,
   }) {
-    return loadFailure(message);
+    return loadFailure(e);
   }
 
   @override
@@ -5176,7 +5185,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -5205,7 +5214,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
-      return loadFailure(message);
+      return loadFailure(e);
     }
     return orElse();
   }
@@ -5297,9 +5306,9 @@ class _$_LoadFailure implements _LoadFailure {
 }
 
 abstract class _LoadFailure implements OrderState {
-  const factory _LoadFailure(Exception message) = _$_LoadFailure;
+  const factory _LoadFailure(OrderFailure e) = _$_LoadFailure;
 
-  Exception get message => throw _privateConstructorUsedError;
+  OrderFailure get e => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$LoadFailureCopyWith<_LoadFailure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -5377,7 +5386,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -5419,7 +5428,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -5622,7 +5631,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -5664,7 +5673,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -5865,7 +5874,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -5907,7 +5916,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -6109,7 +6118,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -6151,7 +6160,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -6355,7 +6364,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -6397,7 +6406,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -6602,7 +6611,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -6644,7 +6653,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -6850,7 +6859,7 @@ class _$_GetOutletProductCategorySuccess
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -6892,7 +6901,7 @@ class _$_GetOutletProductCategorySuccess
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -7093,7 +7102,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -7135,7 +7144,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -7344,7 +7353,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -7386,7 +7395,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -7587,7 +7596,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -7629,7 +7638,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -7829,7 +7838,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -7871,7 +7880,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -8078,7 +8087,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -8120,7 +8129,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -8328,7 +8337,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -8370,7 +8379,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -8580,7 +8589,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -8622,7 +8631,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -8831,7 +8840,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -8873,7 +8882,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -9083,7 +9092,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -9125,7 +9134,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -9325,7 +9334,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -9367,7 +9376,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -9567,7 +9576,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -9609,7 +9618,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
@@ -9809,7 +9818,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function() loadSuccess,
-    required TResult Function(Exception message) loadFailure,
+    required TResult Function(OrderFailure e) loadFailure,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByLocationSuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
@@ -9851,7 +9860,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function()? loadSuccess,
-    TResult Function(Exception message)? loadFailure,
+    TResult Function(OrderFailure e)? loadFailure,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByLocationSuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?

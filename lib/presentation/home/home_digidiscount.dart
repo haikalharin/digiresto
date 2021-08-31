@@ -118,9 +118,7 @@ class HomeDigidiscountScreen
               getPromoOutletSuccess: (r) {
                 controller.listPromoOutlet.value = r.response;
               },
-              loadFailure: (e) {
-                print(e.message);
-              },
+              loadFailure: (e) {},
               orElse: () {});
         },
         builder: (context, state) {

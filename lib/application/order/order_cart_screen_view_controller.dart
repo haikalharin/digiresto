@@ -1,9 +1,11 @@
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderCartScreenViewController extends GetxController {
@@ -19,11 +21,198 @@ class OrderCartScreenViewController extends GetxController {
       Rxn<List<OutletListProductDataResponse>>();
   Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
   var activeAddress = Rxn<UserAddress>();
+  var salesType = Rxn<String>();
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
+
+  Widget generateSalesTypeIcon({Color color = Colors.black, double size = 16}) {
+    Widget listWidget;
+
+    if (salesType.value == "dineIn") {
+      listWidget = ImageIcon(AssetImage(AppAssets.iconOutletOrderDineIn),
+          size: size, color: color);
+    } else if (salesType.value == "takeAway") {
+      listWidget = ImageIcon(AssetImage(AppAssets.iconOutletOrderTakeIt),
+          size: size, color: color);
+    } else if (salesType.value == "onlineDriver") {
+      listWidget = ImageIcon(AssetImage(AppAssets.iconOutletOrderDelivery),
+          size: size, color: color);
+    } else if (salesType.value == "driveThru") {
+      listWidget = ImageIcon(AssetImage(AppAssets.iconOutletOrderDriveThru),
+          size: size, color: color);
+    } else {
+      listWidget = Container();
+    }
+
+    return listWidget;
+  }
+
+  List<Widget> generateListSalesTypeOption(onTap(String element)) {
+    List<Widget> listWidget = [];
+    detailOutlet.value!.salesTypes.forEach((element) {
+      if (element == "dineIn") {
+        listWidget.add(Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+          child: Row(
+            children: [
+              Container(
+                child: ImageIcon(
+                  AssetImage(AppAssets.iconOutletOrderDineIn),
+                  color: AppColors.white,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: AppColors.redD12B34, shape: BoxShape.circle),
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Makan di Tempat', style: AppFont.textBlack14Bold),
+              Expanded(child: Container()),
+              ElevatedButton(
+                  onPressed: () {
+                    onTap(element);
+                  },
+                  child: Text(
+                    "Pilih",
+                    style: AppFont.textBlack12Bold
+                        .copyWith(color: AppColors.redD12B34),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      elevation: 0,
+                      side: BorderSide(
+                        width: 1.0,
+                        color: AppColors.redD12B34,
+                      ))),
+            ],
+          ),
+        ));
+      } else if (element == "takeAway") {
+        listWidget.add(Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+          child: Row(
+            children: [
+              Container(
+                child: ImageIcon(
+                  AssetImage(AppAssets.iconOutletOrderTakeIt),
+                  color: AppColors.white,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: AppColors.redD12B34, shape: BoxShape.circle),
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Bawa Pulang', style: AppFont.textBlack14Bold),
+              Expanded(child: Container()),
+              ElevatedButton(
+                  onPressed: () {
+                    onTap(element);
+                  },
+                  child: Text(
+                    "Pilih",
+                    style: AppFont.textBlack12Bold
+                        .copyWith(color: AppColors.redD12B34),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      elevation: 0,
+                      side: BorderSide(
+                        width: 1.0,
+                        color: AppColors.redD12B34,
+                      ))),
+            ],
+          ),
+        ));
+      } else if (element == "onlineDriver") {
+        listWidget.add(Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+          child: Row(
+            children: [
+              Container(
+                child: ImageIcon(
+                  AssetImage(AppAssets.iconOutletOrderDelivery),
+                  color: AppColors.white,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: AppColors.redD12B34, shape: BoxShape.circle),
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Pesan Antar', style: AppFont.textBlack14Bold),
+              Expanded(child: Container()),
+              ElevatedButton(
+                  onPressed: () {
+                    onTap(element);
+                  },
+                  child: Text(
+                    "Pilih",
+                    style: AppFont.textBlack12Bold
+                        .copyWith(color: AppColors.redD12B34),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      elevation: 0,
+                      side: BorderSide(
+                        width: 1.0,
+                        color: AppColors.redD12B34,
+                      ))),
+            ],
+          ),
+        ));
+      } else if (element == "driveThru") {
+        listWidget.add(Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+          child: Row(
+            children: [
+              Container(
+                child: ImageIcon(
+                  AssetImage(AppAssets.iconOutletOrderDriveThru),
+                  color: AppColors.white,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: AppColors.redD12B34, shape: BoxShape.circle),
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              Text('Drive Thru', style: AppFont.textBlack14Bold),
+              Expanded(child: Container()),
+              ElevatedButton(
+                  onPressed: () {
+                    onTap(element);
+                  },
+                  child: Text(
+                    "Pilih",
+                    style: AppFont.textBlack12Bold
+                        .copyWith(color: AppColors.redD12B34),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      elevation: 0,
+                      side: BorderSide(
+                        width: 1.0,
+                        color: AppColors.redD12B34,
+                      ))),
+            ],
+          ),
+        ));
+      }
+    });
+    return listWidget;
+  }
 
   RxList<KeyValueModel> dataClock = [
     KeyValueModel(key: "13:00", value: "13:00"),

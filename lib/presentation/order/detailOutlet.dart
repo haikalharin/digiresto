@@ -293,9 +293,14 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
   }
 
+  void getSalesTypeOrder() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
+  }
+
   @override
   Widget build(BuildContext context) {
     controller.outlet.value = args;
+    getSalesTypeOrder();
     getDetailOutlet();
     getListProduct();
     getCategoryProduct();
@@ -333,7 +338,12 @@ class DetailOutletScreen extends GetView<OrderViewController> {
             setSalesTypeCartSuccess: (r) {
               controller.salesType.value = r.value;
             },
-            loadFailure: (e) {},
+            getSalesTypeCartSuccess: (r) {
+              controller.salesType.value = r.value;
+            },
+            loadFailure: (e) {
+              e.e.maybeMap(salesTypeNull: (e) {}, orElse: () {});
+            },
             orElse: () {});
       },
       builder: (context, state) {

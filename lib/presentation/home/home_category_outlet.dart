@@ -146,9 +146,7 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
               print(r.response);
               controller.listOutlet.value = r.response;
             },
-            loadFailure: (e) {
-              print(e.message);
-            },
+            loadFailure: (e) {},
             orElse: () {});
       },
       builder: (context, state) {

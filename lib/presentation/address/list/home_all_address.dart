@@ -452,11 +452,9 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
   }
 
   void setActiveAddress(UserAddress userAddress) {
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.setActiveAddress(
-        UserAddress(
-            address: userAddress.address.toString(),
-            latitude: userAddress.latitude.toString(),
-            longitude: userAddress.longitude.toString())));
+    Get.context!
+        .read<AddressListBloc>()
+        .add(AddressListEvent.setActiveAddress(userAddress));
   }
 
   void getAddress() async {

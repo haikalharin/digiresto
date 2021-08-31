@@ -27,6 +27,7 @@ import 'package:digiresto/domain/entity/order/payment_method.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/order/order_failure.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:digiresto/infrastructure/network/apis/user/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -57,7 +58,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getOutletByLocation = await _orderRepository.getOutletByLocation(
             request.request.copyWith(queryString: queryString).toJson());
         yield getOutletByLocation.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getOutletByLocationFail()),
           (list) => OrderState.getOutletByLocationSuccess(list.data),
         );
       },
@@ -70,7 +72,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getOutletByCategory = await _orderRepository.getOutletByCategory(
             request.request.copyWith(queryString: queryString).toJson());
         yield getOutletByCategory.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getOutletByCategoryFail()),
           (list) => OrderState.getOutletByCategorySuccess(list.data),
         );
       },
@@ -78,7 +81,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getListPromoOutlet =
             await _orderRepository.getListPromoOutlet(request.request);
         yield getListPromoOutlet.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getListPromoOutletFail()),
           (list) => OrderState.getListPromoOutletSuccess(list.data),
         );
       },
@@ -86,7 +90,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getListVoucherOutlet =
             await _orderRepository.getListVoucherOutlet(request.request);
         yield getListVoucherOutlet.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getListVoucherOutletFail()),
           (list) => OrderState.getListVoucherOutletSuccess(list.data),
         );
       },
@@ -94,7 +99,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getOutletListProduct =
             await _orderRepository.getOutletListProduct(request.request);
         yield getOutletListProduct.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getOutletListProductFail()),
           (list) => OrderState.getOutletListProductSuccess(list.data),
         );
       },
@@ -102,7 +108,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getOutletProductCategory =
             await _orderRepository.getOutletProductCategory(request.request);
         yield getOutletProductCategory.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(
+              OrderFailure.getOutletProductCategoryFail()),
           (list) => OrderState.getOutletProductCategorySuccess(list.data),
         );
       },
@@ -115,14 +122,14 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getPromoOutlet = await _orderRepository.getPromoOutlet(
             request.request.copyWith(queryString: queryString).toJson());
         yield getPromoOutlet.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(OrderFailure.getPromoOutletFail()),
           (list) => OrderState.getPromoOutletSuccess(list),
         );
       },
       getHotPromo: (request) async* {
         final getHotPromo = await _orderRepository.getHotPromo(request.request);
         yield getHotPromo.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(OrderFailure.getHotPromoFail()),
           (list) => OrderState.getHotPromoSuccess(list),
         );
       },
@@ -130,7 +137,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getDetailOutlet =
             await _orderRepository.getDetailOutlet(request.request);
         yield getDetailOutlet.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(OrderFailure.getDetailOutletFail()),
           (list) => OrderState.getDetailOutletSuccess(list.data),
         );
       },
@@ -138,7 +145,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getPaymentMethod =
             await _orderRepository.getPaymentMethod(request.request.toJson());
         yield getPaymentMethod.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getPaymentMethodFail()),
           (list) => OrderState.getPaymentMethodSuccess(list),
         );
       },
@@ -146,7 +154,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final deliveryInquiry =
             await _orderRepository.deliveryInquiry(request.request.toJson());
         yield deliveryInquiry.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(OrderFailure.deliveryInquiryFail()),
           (list) => OrderState.deliveryInquirySuccess(list),
         );
       },
@@ -159,7 +167,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
 
         yield createCartSession.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.createCartSessionFail()),
           (list) => OrderState.createCartSessionSuccess(list!.data),
         );
       },
@@ -196,7 +205,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             await _orderRepository.setSessionId(dataCart.data.sessionId!);
           }
           yield createCartSession.fold(
-            (error) => OrderState.loadFailure(error),
+            (error) => OrderState.loadFailure(OrderFailure.addCartFail()),
             (list) => OrderState.addCartSuccess(list!.data),
           );
         } else {
@@ -210,7 +219,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
           yield createCartSession.fold(
-            (error) => OrderState.loadFailure(error),
+            (error) => OrderState.loadFailure(OrderFailure.addCartFail()),
             (list) => OrderState.addCartSuccess(list!.data),
           );
         }
@@ -220,7 +229,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         if (removeCart == null || sessionId == null) {
-          yield OrderState.loadFailure(Exception());
+          yield OrderState.loadFailure(OrderFailure.removeCartFail());
         } else {
           final createCartSession = await _orderRepository.updateCartSession(
               UpdateCartSessionParam(
@@ -232,7 +241,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
           yield createCartSession.fold(
-            (error) => OrderState.loadFailure(error),
+            (error) => OrderState.loadFailure(OrderFailure.removeCartFail()),
             (list) => OrderState.removeCartSuccess(list!.data),
           );
         }
@@ -244,7 +253,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             .getCartSession(GetCartSessionParam(sessionId: sessionId ?? ""));
 
         yield getCartSession.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(OrderFailure.getCartSessionFail()),
           (list) => OrderState.getCartSessionSuccess(list!.data),
         );
       },
@@ -253,7 +262,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         if (getSalesTypeCart != null) {
           yield OrderState.getSalesTypeCartSuccess(getSalesTypeCart);
         } else {
-          yield OrderState.loadFailure(Exception(getSalesTypeCart));
+          yield OrderState.loadFailure(OrderFailure.salesTypeNull());
         }
       },
       setSalesTypeCart: (r) async* {
@@ -262,7 +271,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         if (setSalesTypeCart != null) {
           yield OrderState.setSalesTypeCartSuccess(setSalesTypeCart);
         } else {
-          yield OrderState.loadFailure(Exception(setSalesTypeCart));
+          yield OrderState.loadFailure(OrderFailure.salesTypeNull());
         }
       },
       updateCartSession: (request) async* {
@@ -277,7 +286,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           await _orderRepository.setSessionId(dataCart.data.sessionId!);
         }
         yield updateCartSession.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) =>
+              OrderState.loadFailure(OrderFailure.updateCartSessionFail()),
           (list) => OrderState.updateCartSessionSuccess(list!.data),
         );
       },
@@ -285,7 +295,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final checkoutCart =
             await _orderRepository.checkout(request.request.sessionId);
         yield checkoutCart.fold(
-          (error) => OrderState.loadFailure(error),
+          (error) => OrderState.loadFailure(OrderFailure.checkoutCartFail()),
           (list) => OrderState.checkoutCartSuccess(list),
         );
       },
