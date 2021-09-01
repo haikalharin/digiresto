@@ -129,7 +129,7 @@ class ProfileWidget extends StatelessWidget {
                   height: Dimens.dialogMargin,
                 ),
                 CustomButton(
-                  onPressed: () => _authBloc.add(AuthEvent.signedOut()),
+                  // onPressed: () => _authBloc.add(AuthEvent.signedOut()),
                   margin:
                       EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
                   borderRadius: BorderRadius.circular(22),
