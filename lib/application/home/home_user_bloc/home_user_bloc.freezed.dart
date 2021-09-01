@@ -27,6 +27,10 @@ class _$HomeUserEventTearOff {
   _GetActiveAddress getActiveAddress() {
     return const _GetActiveAddress();
   }
+
+  _GetCartSessionID getCartSessionID() {
+    return const _GetCartSessionID();
+  }
 }
 
 /// @nodoc
@@ -39,6 +43,7 @@ mixin _$HomeUserEvent {
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
     required TResult Function() getActiveAddress,
+    required TResult Function() getCartSessionID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +51,7 @@ mixin _$HomeUserEvent {
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
     TResult Function()? getActiveAddress,
+    TResult Function()? getCartSessionID,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +60,7 @@ mixin _$HomeUserEvent {
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
     required TResult Function(_GetActiveAddress value) getActiveAddress,
+    required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +68,7 @@ mixin _$HomeUserEvent {
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
     TResult Function(_GetActiveAddress value)? getActiveAddress,
+    TResult Function(_GetCartSessionID value)? getCartSessionID,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +134,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
     required TResult Function() getActiveAddress,
+    required TResult Function() getCartSessionID,
   }) {
     return getStaticBanner();
   }
@@ -136,6 +145,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
     TResult Function()? getActiveAddress,
+    TResult Function()? getCartSessionID,
     required TResult orElse(),
   }) {
     if (getStaticBanner != null) {
@@ -150,6 +160,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
     required TResult Function(_GetActiveAddress value) getActiveAddress,
+    required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getStaticBanner(this);
   }
@@ -160,6 +171,7 @@ class _$_GetStaticBanner implements _GetStaticBanner {
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
     TResult Function(_GetActiveAddress value)? getActiveAddress,
+    TResult Function(_GetCartSessionID value)? getCartSessionID,
     required TResult orElse(),
   }) {
     if (getStaticBanner != null) {
@@ -216,6 +228,7 @@ class _$_GetListAddress implements _GetListAddress {
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
     required TResult Function() getActiveAddress,
+    required TResult Function() getCartSessionID,
   }) {
     return getListAddress();
   }
@@ -226,6 +239,7 @@ class _$_GetListAddress implements _GetListAddress {
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
     TResult Function()? getActiveAddress,
+    TResult Function()? getCartSessionID,
     required TResult orElse(),
   }) {
     if (getListAddress != null) {
@@ -240,6 +254,7 @@ class _$_GetListAddress implements _GetListAddress {
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
     required TResult Function(_GetActiveAddress value) getActiveAddress,
+    required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getListAddress(this);
   }
@@ -250,6 +265,7 @@ class _$_GetListAddress implements _GetListAddress {
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
     TResult Function(_GetActiveAddress value)? getActiveAddress,
+    TResult Function(_GetCartSessionID value)? getCartSessionID,
     required TResult orElse(),
   }) {
     if (getListAddress != null) {
@@ -306,6 +322,7 @@ class _$_GetActiveAddress implements _GetActiveAddress {
     required TResult Function() getStaticBanner,
     required TResult Function() getListAddress,
     required TResult Function() getActiveAddress,
+    required TResult Function() getCartSessionID,
   }) {
     return getActiveAddress();
   }
@@ -316,6 +333,7 @@ class _$_GetActiveAddress implements _GetActiveAddress {
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
     TResult Function()? getActiveAddress,
+    TResult Function()? getCartSessionID,
     required TResult orElse(),
   }) {
     if (getActiveAddress != null) {
@@ -330,6 +348,7 @@ class _$_GetActiveAddress implements _GetActiveAddress {
     required TResult Function(_GetStaticBanner value) getStaticBanner,
     required TResult Function(_GetListAddress value) getListAddress,
     required TResult Function(_GetActiveAddress value) getActiveAddress,
+    required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getActiveAddress(this);
   }
@@ -340,6 +359,7 @@ class _$_GetActiveAddress implements _GetActiveAddress {
     TResult Function(_GetStaticBanner value)? getStaticBanner,
     TResult Function(_GetListAddress value)? getListAddress,
     TResult Function(_GetActiveAddress value)? getActiveAddress,
+    TResult Function(_GetCartSessionID value)? getCartSessionID,
     required TResult orElse(),
   }) {
     if (getActiveAddress != null) {
@@ -351,6 +371,100 @@ class _$_GetActiveAddress implements _GetActiveAddress {
 
 abstract class _GetActiveAddress implements HomeUserEvent {
   const factory _GetActiveAddress() = _$_GetActiveAddress;
+}
+
+/// @nodoc
+abstract class _$GetCartSessionIDCopyWith<$Res> {
+  factory _$GetCartSessionIDCopyWith(
+          _GetCartSessionID value, $Res Function(_GetCartSessionID) then) =
+      __$GetCartSessionIDCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetCartSessionIDCopyWithImpl<$Res>
+    extends _$HomeUserEventCopyWithImpl<$Res>
+    implements _$GetCartSessionIDCopyWith<$Res> {
+  __$GetCartSessionIDCopyWithImpl(
+      _GetCartSessionID _value, $Res Function(_GetCartSessionID) _then)
+      : super(_value, (v) => _then(v as _GetCartSessionID));
+
+  @override
+  _GetCartSessionID get _value => super._value as _GetCartSessionID;
+}
+
+/// @nodoc
+
+class _$_GetCartSessionID implements _GetCartSessionID {
+  const _$_GetCartSessionID();
+
+  @override
+  String toString() {
+    return 'HomeUserEvent.getCartSessionID()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetCartSessionID);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getStaticBanner,
+    required TResult Function() getListAddress,
+    required TResult Function() getActiveAddress,
+    required TResult Function() getCartSessionID,
+  }) {
+    return getCartSessionID();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getStaticBanner,
+    TResult Function()? getListAddress,
+    TResult Function()? getActiveAddress,
+    TResult Function()? getCartSessionID,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionID != null) {
+      return getCartSessionID();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetStaticBanner value) getStaticBanner,
+    required TResult Function(_GetListAddress value) getListAddress,
+    required TResult Function(_GetActiveAddress value) getActiveAddress,
+    required TResult Function(_GetCartSessionID value) getCartSessionID,
+  }) {
+    return getCartSessionID(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetStaticBanner value)? getStaticBanner,
+    TResult Function(_GetListAddress value)? getListAddress,
+    TResult Function(_GetActiveAddress value)? getActiveAddress,
+    TResult Function(_GetCartSessionID value)? getCartSessionID,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionID != null) {
+      return getCartSessionID(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCartSessionID implements HomeUserEvent {
+  const factory _GetCartSessionID() = _$_GetCartSessionID;
 }
 
 /// @nodoc
@@ -408,6 +522,18 @@ class _$HomeUserStateTearOff {
       message,
     );
   }
+
+  _GetCartSessionIDSuccess getCartSessionIDSuccess(String? sessionID) {
+    return _GetCartSessionIDSuccess(
+      sessionID,
+    );
+  }
+
+  _GetCartSessionIDFail getCartSessionIDFail(String message) {
+    return _GetCartSessionIDFail(
+      message,
+    );
+  }
 }
 
 /// @nodoc
@@ -427,6 +553,8 @@ mixin _$HomeUserState {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -441,6 +569,8 @@ mixin _$HomeUserState {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -457,6 +587,9 @@ mixin _$HomeUserState {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -471,6 +604,8 @@ mixin _$HomeUserState {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -540,6 +675,8 @@ class _$_Initial implements _Initial {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return initial();
   }
@@ -557,6 +694,8 @@ class _$_Initial implements _Initial {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -579,6 +718,9 @@ class _$_Initial implements _Initial {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return initial(this);
   }
@@ -596,6 +738,8 @@ class _$_Initial implements _Initial {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -659,6 +803,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return loadInProgress();
   }
@@ -676,6 +822,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -698,6 +846,9 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return loadInProgress(this);
   }
@@ -715,6 +866,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -777,6 +930,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return loadSuccess();
   }
@@ -794,6 +949,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -816,6 +973,9 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return loadSuccess(this);
   }
@@ -833,6 +993,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -895,6 +1057,8 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return loadFailure();
   }
@@ -912,6 +1076,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -934,6 +1100,9 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return loadFailure(this);
   }
@@ -951,6 +1120,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -1039,6 +1210,8 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return bannerLoadSuccess(list);
   }
@@ -1056,6 +1229,8 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (bannerLoadSuccess != null) {
@@ -1078,6 +1253,9 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return bannerLoadSuccess(this);
   }
@@ -1095,6 +1273,8 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (bannerLoadSuccess != null) {
@@ -1189,6 +1369,8 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return bannerLoadFailed(message);
   }
@@ -1206,6 +1388,8 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (bannerLoadFailed != null) {
@@ -1228,6 +1412,9 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return bannerLoadFailed(this);
   }
@@ -1245,6 +1432,8 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (bannerLoadFailed != null) {
@@ -1338,6 +1527,8 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return addressListSuccess(list);
   }
@@ -1355,6 +1546,8 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (addressListSuccess != null) {
@@ -1377,6 +1570,9 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return addressListSuccess(this);
   }
@@ -1394,6 +1590,8 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (addressListSuccess != null) {
@@ -1488,6 +1686,8 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return addressListFailed(message);
   }
@@ -1505,6 +1705,8 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (addressListFailed != null) {
@@ -1527,6 +1729,9 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return addressListFailed(this);
   }
@@ -1544,6 +1749,8 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (addressListFailed != null) {
@@ -1649,6 +1856,8 @@ class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return getActiveAddressSuccess(response);
   }
@@ -1666,6 +1875,8 @@ class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (getActiveAddressSuccess != null) {
@@ -1688,6 +1899,9 @@ class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return getActiveAddressSuccess(this);
   }
@@ -1705,6 +1919,8 @@ class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (getActiveAddressSuccess != null) {
@@ -1800,6 +2016,8 @@ class _$_GetActiveAddressFail implements _GetActiveAddressFail {
     required TResult Function(String message) addressListFailed,
     required TResult Function(UserAddress response) getActiveAddressSuccess,
     required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
   }) {
     return getActiveAddressFail(message);
   }
@@ -1817,6 +2035,8 @@ class _$_GetActiveAddressFail implements _GetActiveAddressFail {
     TResult Function(String message)? addressListFailed,
     TResult Function(UserAddress response)? getActiveAddressSuccess,
     TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (getActiveAddressFail != null) {
@@ -1839,6 +2059,9 @@ class _$_GetActiveAddressFail implements _GetActiveAddressFail {
     required TResult Function(_GetActiveAddressSuccess value)
         getActiveAddressSuccess,
     required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return getActiveAddressFail(this);
   }
@@ -1856,6 +2079,8 @@ class _$_GetActiveAddressFail implements _GetActiveAddressFail {
     TResult Function(_AddressLoadFailed value)? addressListFailed,
     TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
     TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
     required TResult orElse(),
   }) {
     if (getActiveAddressFail != null) {
@@ -1871,5 +2096,326 @@ abstract class _GetActiveAddressFail implements HomeUserState {
   String get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetActiveAddressFailCopyWith<_GetActiveAddressFail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetCartSessionIDSuccessCopyWith<$Res> {
+  factory _$GetCartSessionIDSuccessCopyWith(_GetCartSessionIDSuccess value,
+          $Res Function(_GetCartSessionIDSuccess) then) =
+      __$GetCartSessionIDSuccessCopyWithImpl<$Res>;
+  $Res call({String? sessionID});
+}
+
+/// @nodoc
+class __$GetCartSessionIDSuccessCopyWithImpl<$Res>
+    extends _$HomeUserStateCopyWithImpl<$Res>
+    implements _$GetCartSessionIDSuccessCopyWith<$Res> {
+  __$GetCartSessionIDSuccessCopyWithImpl(_GetCartSessionIDSuccess _value,
+      $Res Function(_GetCartSessionIDSuccess) _then)
+      : super(_value, (v) => _then(v as _GetCartSessionIDSuccess));
+
+  @override
+  _GetCartSessionIDSuccess get _value =>
+      super._value as _GetCartSessionIDSuccess;
+
+  @override
+  $Res call({
+    Object? sessionID = freezed,
+  }) {
+    return _then(_GetCartSessionIDSuccess(
+      sessionID == freezed
+          ? _value.sessionID
+          : sessionID // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetCartSessionIDSuccess implements _GetCartSessionIDSuccess {
+  const _$_GetCartSessionIDSuccess(this.sessionID);
+
+  @override
+  final String? sessionID;
+
+  @override
+  String toString() {
+    return 'HomeUserState.getCartSessionIDSuccess(sessionID: $sessionID)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetCartSessionIDSuccess &&
+            (identical(other.sessionID, sessionID) ||
+                const DeepCollectionEquality()
+                    .equals(other.sessionID, sessionID)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(sessionID);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetCartSessionIDSuccessCopyWith<_GetCartSessionIDSuccess> get copyWith =>
+      __$GetCartSessionIDSuccessCopyWithImpl<_GetCartSessionIDSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function() loadFailure,
+    required TResult Function(List<StaticBanner> list) bannerLoadSuccess,
+    required TResult Function(String message) bannerLoadFailed,
+    required TResult Function(List<UserAddress> list) addressListSuccess,
+    required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
+  }) {
+    return getCartSessionIDSuccess(sessionID);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
+    TResult Function(String message)? bannerLoadFailed,
+    TResult Function(List<UserAddress> list)? addressListSuccess,
+    TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionIDSuccess != null) {
+      return getCartSessionIDSuccess(sessionID);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_BannerLoadSuccess value) bannerLoadSuccess,
+    required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
+    required TResult Function(_AddressLoadSuccess value) addressListSuccess,
+    required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
+  }) {
+    return getCartSessionIDSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
+    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
+    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
+    TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionIDSuccess != null) {
+      return getCartSessionIDSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCartSessionIDSuccess implements HomeUserState {
+  const factory _GetCartSessionIDSuccess(String? sessionID) =
+      _$_GetCartSessionIDSuccess;
+
+  String? get sessionID => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetCartSessionIDSuccessCopyWith<_GetCartSessionIDSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetCartSessionIDFailCopyWith<$Res> {
+  factory _$GetCartSessionIDFailCopyWith(_GetCartSessionIDFail value,
+          $Res Function(_GetCartSessionIDFail) then) =
+      __$GetCartSessionIDFailCopyWithImpl<$Res>;
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$GetCartSessionIDFailCopyWithImpl<$Res>
+    extends _$HomeUserStateCopyWithImpl<$Res>
+    implements _$GetCartSessionIDFailCopyWith<$Res> {
+  __$GetCartSessionIDFailCopyWithImpl(
+      _GetCartSessionIDFail _value, $Res Function(_GetCartSessionIDFail) _then)
+      : super(_value, (v) => _then(v as _GetCartSessionIDFail));
+
+  @override
+  _GetCartSessionIDFail get _value => super._value as _GetCartSessionIDFail;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_GetCartSessionIDFail(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetCartSessionIDFail implements _GetCartSessionIDFail {
+  const _$_GetCartSessionIDFail(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'HomeUserState.getCartSessionIDFail(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetCartSessionIDFail &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetCartSessionIDFailCopyWith<_GetCartSessionIDFail> get copyWith =>
+      __$GetCartSessionIDFailCopyWithImpl<_GetCartSessionIDFail>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function() loadFailure,
+    required TResult Function(List<StaticBanner> list) bannerLoadSuccess,
+    required TResult Function(String message) bannerLoadFailed,
+    required TResult Function(List<UserAddress> list) addressListSuccess,
+    required TResult Function(String message) addressListFailed,
+    required TResult Function(UserAddress response) getActiveAddressSuccess,
+    required TResult Function(String message) getActiveAddressFail,
+    required TResult Function(String? sessionID) getCartSessionIDSuccess,
+    required TResult Function(String message) getCartSessionIDFail,
+  }) {
+    return getCartSessionIDFail(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
+    TResult Function(String message)? bannerLoadFailed,
+    TResult Function(List<UserAddress> list)? addressListSuccess,
+    TResult Function(String message)? addressListFailed,
+    TResult Function(UserAddress response)? getActiveAddressSuccess,
+    TResult Function(String message)? getActiveAddressFail,
+    TResult Function(String? sessionID)? getCartSessionIDSuccess,
+    TResult Function(String message)? getCartSessionIDFail,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionIDFail != null) {
+      return getCartSessionIDFail(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_BannerLoadSuccess value) bannerLoadSuccess,
+    required TResult Function(_BannerLoadFailed value) bannerLoadFailed,
+    required TResult Function(_AddressLoadSuccess value) addressListSuccess,
+    required TResult Function(_AddressLoadFailed value) addressListFailed,
+    required TResult Function(_GetActiveAddressSuccess value)
+        getActiveAddressSuccess,
+    required TResult Function(_GetActiveAddressFail value) getActiveAddressFail,
+    required TResult Function(_GetCartSessionIDSuccess value)
+        getCartSessionIDSuccess,
+    required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
+  }) {
+    return getCartSessionIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
+    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
+    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
+    TResult Function(_AddressLoadFailed value)? addressListFailed,
+    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
+    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
+    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
+    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
+    required TResult orElse(),
+  }) {
+    if (getCartSessionIDFail != null) {
+      return getCartSessionIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCartSessionIDFail implements HomeUserState {
+  const factory _GetCartSessionIDFail(String message) = _$_GetCartSessionIDFail;
+
+  String get message => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetCartSessionIDFailCopyWith<_GetCartSessionIDFail> get copyWith =>
       throw _privateConstructorUsedError;
 }

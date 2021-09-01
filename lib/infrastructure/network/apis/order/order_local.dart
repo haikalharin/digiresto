@@ -113,6 +113,9 @@ class OrderLocal {
   Future<DetailOutletDataResponse?> getOutletDetailID() async {
     await _storage.openBox(StorageConstants.outletDetail);
     final _outletJson = _storage.getJson(key: _sessionIdKey);
+    if (_outletJson == null) {
+      return null;
+    }
     final _outletModel = DetailOutletDataResponse.fromJson(_outletJson);
     await _storage.close();
     return _outletModel;

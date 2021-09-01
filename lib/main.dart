@@ -40,7 +40,8 @@ class InitiateProvider extends StatelessWidget {
       BlocProvider<HomeUserBloc>(
         create: (context) => getIt<HomeUserBloc>()
           ..add(HomeUserEvent.getActiveAddress())
-          ..add(HomeUserEvent.getStaticBanner()),
+          ..add(HomeUserEvent.getStaticBanner())
+          ..add(HomeUserEvent.getCartSessionID()),
       ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),

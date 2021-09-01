@@ -40,6 +40,11 @@ class HomeUserBloc extends Bloc<HomeUserEvent, HomeUserState> {
       yield setActiveAddress.fold(
           (error) => HomeUserState.getActiveAddressFail(error.toString()),
           (data) => HomeUserState.getActiveAddressSuccess(data));
+    }, getCartSessionID: (r) async* {
+      final setActiveAddress = await _orderRepository.getSessionId();
+      yield setActiveAddress.fold(
+          (error) => HomeUserState.getCartSessionIDFail(error.toString()),
+          (data) => HomeUserState.getCartSessionIDSuccess(data));
     });
   }
 }

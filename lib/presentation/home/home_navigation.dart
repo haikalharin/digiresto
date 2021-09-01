@@ -1,8 +1,12 @@
+import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/cart/cart.dart';
 import 'package:digiresto/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class HomeNavigationScreen extends StatefulWidget {
   @override
@@ -11,35 +15,98 @@ class HomeNavigationScreen extends StatefulWidget {
 
 class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   int _selectedTabIndex = 0;
-
+  bool isHaveCart = false;
   void _onNavBarTapped(int index) {
     setState(() {
-      _selectedTabIndex = index;
+      if (isHaveCart) {
+        _selectedTabIndex = index;
+      } else {
+        _selectedTabIndex = index;
+        if (_selectedTabIndex == 1) {
+          _selectedTabIndex = 0;
+          showMyDialog();
+        }
+      }
     });
   }
-
-  // UserStore? _userStore;
-  // OrderStore? _orderStore;
 
   @override
   void initState() {
     super.initState();
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // _userStore = Provider.of<UserStore>(context);
-    // _orderStore = Provider.of<OrderStore>(context);
-    // print(_userStore?.activeHomeTab);
-    // if (_userStore?.activeHomeTab == 'profile') {
-    //   _onNavBarTapped(3);
-    // } else if (_userStore?.activeHomeTab == 'credits') {
-    //   _onNavBarTapped(2);
-    // } else if (_userStore?.activeHomeTab == 'home') {
-    //   _onNavBarTapped(0);
-    // }
-    //parameter route
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
+  }
+
+  Future<void> showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          //title: Text(param.detail["name"]),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      "Keranjang",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      "Keranjang pesananmu kosong, silahkan pilih menu",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    )),
+                Container(
+                  padding: EdgeInsets.all(5),
+                  width: MediaQuery.of(context).size.width - 100,
+                  height: 50,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Get.back(closeOverlays: true);
+                    },
+                    color: AppColors.red,
+                    child: Text("Ok",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(5.0),
+                      side: BorderSide(
+                        width: 1,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   Widget cartBadge() {
@@ -141,8 +208,23 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
       iconSize: 20,
     );
     return Scaffold(
-      body: Container(
-        child: _listPage[_selectedTabIndex],
+      body: BlocConsumer<HomeUserBloc, HomeUserState>(
+        listener: (context, state) {
+          state.maybeMap(
+              getCartSessionIDSuccess: (r) {
+                if (r.sessionID == null || r.sessionID == "") {
+                  isHaveCart = false;
+                } else {
+                  isHaveCart = true;
+                }
+              },
+              orElse: () {});
+        },
+        builder: (context, state) {
+          return Container(
+            child: _listPage[_selectedTabIndex],
+          );
+        },
       ),
       bottomNavigationBar: _buttomNavBar,
     );
