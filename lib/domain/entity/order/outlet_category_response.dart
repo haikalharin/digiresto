@@ -12,7 +12,7 @@ OutletCategoryResponse emptyFromJson(String str) =>
 String emptyToJson(OutletCategoryResponse data) => json.encode(data.toJson());
 
 @freezed
-abstract class OutletCategoryResponse with _$OutletCategoryResponse {
+class OutletCategoryResponse with _$OutletCategoryResponse {
   const factory OutletCategoryResponse({
     required StatusResponse response,
     required List<OutletCategoryDataResponse> data,
@@ -24,7 +24,7 @@ abstract class OutletCategoryResponse with _$OutletCategoryResponse {
 }
 
 @freezed
-abstract class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
+class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
   const factory OutletCategoryDataResponse({
     required String endpointName,
     required String id,
@@ -46,7 +46,7 @@ abstract class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
 }
 
 @freezed
-abstract class OutletCategoryDataDistanceResponse
+class OutletCategoryDataDistanceResponse
     with _$OutletCategoryDataDistanceResponse {
   const factory OutletCategoryDataDistanceResponse({
     required double realRadius,

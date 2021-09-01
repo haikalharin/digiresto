@@ -1,18 +1,38 @@
+import 'package:digiresto/application/profile/edit_profile/edit_profile_bloc.dart';
 import 'package:digiresto/application/profile/edit_profile/edit_profile_controller.dart';
+import 'package:digiresto/domain/auth/entity/user_profile.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  final UserProfile _profile;
+
+  const EditProfilePage(this._profile, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final EditProfileController _controller = Get.put(EditProfileController());
+    return BlocProvider<EditProfileBloc>(
+      create: (context) => getIt<EditProfileBloc>(),
+      child: EditProfileWidget(_profile),
+    );
+  }
+}
+
+class EditProfileWidget extends StatelessWidget {
+  final UserProfile _profile;
+  const EditProfileWidget(this._profile, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final EditProfileController _controller =
+        Get.put(EditProfileController(_profile));
 
     return CustomScafold(
       showBackButton: true,
@@ -51,6 +71,7 @@ class EditProfilePage extends StatelessWidget {
                     height: 8,
                   ),
                   CustomTextField(
+                    controller: _controller.nameCtrl,
                     enabled: _isEditing,
                     focusBorderColor: Colors.green,
                     borderColor: AppColors.greyColor,
@@ -67,6 +88,7 @@ class EditProfilePage extends StatelessWidget {
                     height: 8,
                   ),
                   CustomTextField(
+                    controller: _controller.emailCtrl,
                     enabled: _isEditing,
                     focusBorderColor: Colors.green,
                     borderColor: AppColors.greyColor,
@@ -83,6 +105,7 @@ class EditProfilePage extends StatelessWidget {
                     height: 8,
                   ),
                   CustomTextField(
+                    controller: _controller.phoneCtrl,
                     enabled: false,
                   ),
                   SizedBox(

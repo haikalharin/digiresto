@@ -6,11 +6,13 @@ class CollapsedScafold extends StatelessWidget {
   final String title;
   final Widget body;
   final bool showBackButton;
+  final PreferredSizeWidget? tabbar;
   const CollapsedScafold({
     Key? key,
     this.title = 'Title',
     this.body = const SizedBox(),
     this.showBackButton = false,
+    this.tabbar,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class CollapsedScafold extends StatelessWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
+              automaticallyImplyLeading: false,
               expandedHeight: 150.0,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
@@ -79,6 +82,11 @@ class CollapsedScafold extends StatelessWidget {
                 ),
               ),
             ),
+            if (tabbar != null)
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(tabbar!),
+                pinned: true,
+              ),
           ];
         },
         body: MediaQuery.removePadding(
@@ -88,5 +96,27 @@ class CollapsedScafold extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final PreferredSizeWidget _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return _tabBar;
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }

@@ -145,7 +145,7 @@ class ApiAuthFacade implements IAuthFacade {
       await _storage.putData(json: _user.toJson());
       await _storage.close();
       final _userAuth = UserAuth.fromJson(_userInStorage);
-      final _userProfile = await getProfile(_userAuth.token!);
+      final _userProfile = await getProfile();
       logger.d(_userProfile);
       failureOrSuccess = _userProfile.fold(
         (l) => left(l),
@@ -173,7 +173,7 @@ class ApiAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, UserProfile>> getProfile(String token) async {
+  Future<Either<AuthFailure, UserProfile>> getProfile() async {
     try {
       final apiResult = await _networkService.getHttp(
         path: Endpoints.urlProfile,

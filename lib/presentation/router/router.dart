@@ -1,4 +1,5 @@
 // import 'package:digiresto/presentation/home/add_location.dart';
+import 'package:digiresto/domain/auth/entity/user_profile.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
 import 'package:digiresto/presentation/address/map/add_location.dart';
@@ -14,6 +15,7 @@ import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
 import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/profile/edit_profile/edit_profile_page.dart';
+import 'package:digiresto/presentation/profile/order_history/order_history_page.dart';
 import 'package:digiresto/presentation/profile/profile_page.dart';
 import 'package:digiresto/presentation/order/detailOutlet.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
@@ -27,6 +29,7 @@ class Routers {
   static const String login = '/login';
   static const String profile = '/profile';
   static const String editProfile = '/edit_profile';
+  static const String orderHistory = '/order_history';
   static const String homePromoUrl = '/home_promo_url';
   static const String homeAllPromo = '/home_all_promo';
   static const String homeAllAddress = '/home_all_address';
@@ -82,7 +85,11 @@ class Routers {
     ),
     GetPage(
       name: Routers.editProfile,
-      page: () => EditProfilePage(),
+      page: () => EditProfilePage(Get.arguments as UserProfile),
+    ),
+    GetPage(
+      name: Routers.orderHistory,
+      page: () => OrderHistoryPage(),
     ),
     GetPage(
         name: Routers.verifyOtp,

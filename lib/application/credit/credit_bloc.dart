@@ -17,7 +17,7 @@ part 'credit_bloc.freezed.dart';
 @injectable
 class CreditBloc extends Bloc<CreditEvent, CreditState> {
   ICreditRepository _creditRepository;
-  CreditBloc(this._creditRepository) : super(_Initial());
+  CreditBloc(this._creditRepository) : super(CreditState.initial());
 
   @override
   Stream<CreditState> mapEventToState(
@@ -25,13 +25,23 @@ class CreditBloc extends Bloc<CreditEvent, CreditState> {
   ) async* {
     yield* event.map(
       started: (_event) async* {
-        yield CreditState.loading();
         final listTopUpMethod = await _creditRepository.getTopUpMethod();
         final userBalance = await _creditRepository.getUserBalance();
 
-        yield CreditState.loaded(
-          userBalance: userBalance,
-          listTopUpMethod: listTopUpMethod,
+        yield state.copyWith(
+          userBalance: optionOf(userBalance),
+          listTopUpMethod: optionOf(listTopUpMethod),
+        );
+      },
+      refreshBalance: (_event) async* {
+        yield state.copyWith(
+          userBalance: none(),
+        );
+
+        final userBalance = await _creditRepository.getUserBalance();
+
+        yield state.copyWith(
+          userBalance: optionOf(userBalance),
         );
       },
     );

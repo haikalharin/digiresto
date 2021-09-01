@@ -12,7 +12,7 @@ abstract class IAuthFacade {
     required PhoneNumber phoneNumber,
   });
   Future<Either<AuthFailure, Option<UserAuth>>> getSignedInUser();
-  Future<Either<AuthFailure, UserProfile>> getProfile(String token);
+  Future<Either<AuthFailure, UserProfile>> getProfile();
   Future<Either<AuthFailure, UserAuth>> loginPin({
     required PhoneNumber phoneNumber,
     required Pin pin,

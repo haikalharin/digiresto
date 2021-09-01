@@ -20,7 +20,7 @@ class ProfileMenuWidget extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Ink(
             width: double.infinity,
             child: Padding(

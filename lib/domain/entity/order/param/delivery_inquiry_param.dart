@@ -12,7 +12,7 @@ DeliveryInquiryParam emptyFromJson(String str) =>
 String emptyToJson(DeliveryInquiryParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class DeliveryInquiryParam with _$DeliveryInquiryParam {
+class DeliveryInquiryParam with _$DeliveryInquiryParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DeliveryInquiryParam({
     required DeliveryInquiryQueryParam queryString,
@@ -24,7 +24,7 @@ abstract class DeliveryInquiryParam with _$DeliveryInquiryParam {
 }
 
 @freezed
-abstract class DeliveryInquiryBodyParam with _$DeliveryInquiryBodyParam {
+class DeliveryInquiryBodyParam with _$DeliveryInquiryBodyParam {
   const factory DeliveryInquiryBodyParam({
     required DeliveryInquiryBodyCustomerParam customer,
     required int weight,
@@ -35,8 +35,7 @@ abstract class DeliveryInquiryBodyParam with _$DeliveryInquiryBodyParam {
 }
 
 @freezed
-abstract class DeliveryInquiryBodyCustomerParam
-    with _$DeliveryInquiryBodyCustomerParam {
+class DeliveryInquiryBodyCustomerParam with _$DeliveryInquiryBodyCustomerParam {
   const factory DeliveryInquiryBodyCustomerParam({
     required List<String> location,
   }) = _DeliveryInquiryBodyCustomerParam;
@@ -47,7 +46,7 @@ abstract class DeliveryInquiryBodyCustomerParam
 }
 
 @freezed
-abstract class DeliveryInquiryQueryParam with _$DeliveryInquiryQueryParam {
+class DeliveryInquiryQueryParam with _$DeliveryInquiryQueryParam {
   const factory DeliveryInquiryQueryParam({
     required String outletName,
   }) = _DeliveryInquiryQueryParam;

@@ -15,7 +15,7 @@ GetOutletProductParam emptyFromJson(String str) =>
 String emptyToJson(GetOutletProductParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class GetOutletProductParam with _$GetOutletProductParam {
+class GetOutletProductParam with _$GetOutletProductParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletProductParam({
     required GetOutletProductQueryParam queryString,
@@ -27,7 +27,7 @@ abstract class GetOutletProductParam with _$GetOutletProductParam {
 }
 
 @freezed
-abstract class GetOutletProductBodyParam with _$GetOutletProductBodyParam {
+class GetOutletProductBodyParam with _$GetOutletProductBodyParam {
   const factory GetOutletProductBodyParam() = _GetOutletProductBodyParam;
 
   factory GetOutletProductBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -35,7 +35,7 @@ abstract class GetOutletProductBodyParam with _$GetOutletProductBodyParam {
 }
 
 @freezed
-abstract class GetOutletProductQueryParam with _$GetOutletProductQueryParam {
+class GetOutletProductQueryParam with _$GetOutletProductQueryParam {
   const factory GetOutletProductQueryParam({
     required String outletId,
     required String categoryId,

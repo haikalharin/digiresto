@@ -2,6 +2,7 @@ import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/presentation/credit/credit_page.dart';
+import 'package:digiresto/presentation/home/home_page.dart';
 import 'package:digiresto/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -90,7 +91,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   Widget build(BuildContext context) {
     Get.put(HomeContentViewController());
     final _listPage = <Widget>[
-      HomeContentScreen(),
+      HomePage(),
       Container(),
       CreditPage(),
       ProfilePage(),
