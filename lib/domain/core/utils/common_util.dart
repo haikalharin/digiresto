@@ -46,8 +46,13 @@ class CommonUtils {
   }
 
   static String currencyFormat(double amount) {
-    NumberFormat format = NumberFormat("#,##0.00", "id_ID");
+    NumberFormat format = NumberFormat("#,##0", "id_ID");
     return 'Rp. ' + format.format(amount);
+  }
+
+  static String currencyFormatOnlyNominal(double amount) {
+    NumberFormat format = NumberFormat("#,##0", "id_ID");
+    return format.format(amount);
   }
 
   static bool validateEmail(String value) {

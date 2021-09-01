@@ -111,6 +111,14 @@ class _$ValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+  LessThanMinimum<T> lessThanMinimum<T>(
+      {required T? failedValue, required num min}) {
+    return LessThanMinimum<T>(
+      failedValue: failedValue,
+      min: min,
+    );
+  }
 }
 
 /// @nodoc
@@ -137,6 +145,7 @@ mixin _$ValueFailure<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -156,6 +165,7 @@ mixin _$ValueFailure<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -177,6 +187,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -196,6 +207,7 @@ mixin _$ValueFailure<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -312,6 +324,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return exceedingLength(failedValue, max);
   }
@@ -334,6 +347,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -361,6 +375,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return exceedingLength(this);
   }
@@ -383,6 +398,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -496,6 +512,7 @@ class _$TooShort<T> implements TooShort<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return lengthTooShort(failedValue, min);
   }
@@ -518,6 +535,7 @@ class _$TooShort<T> implements TooShort<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (lengthTooShort != null) {
@@ -545,6 +563,7 @@ class _$TooShort<T> implements TooShort<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return lengthTooShort(this);
   }
@@ -567,6 +586,7 @@ class _$TooShort<T> implements TooShort<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (lengthTooShort != null) {
@@ -667,6 +687,7 @@ class _$Empty<T> implements Empty<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return empty(failedValue);
   }
@@ -689,6 +710,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -716,6 +738,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return empty(this);
   }
@@ -738,6 +761,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -839,6 +863,7 @@ class _$Multiline<T> implements Multiline<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return multiline(failedValue);
   }
@@ -861,6 +886,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -888,6 +914,7 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return multiline(this);
   }
@@ -910,6 +937,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -1022,6 +1050,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return listTooLong(failedValue, max);
   }
@@ -1044,6 +1073,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -1071,6 +1101,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return listTooLong(this);
   }
@@ -1093,6 +1124,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -1196,6 +1228,7 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return invalidPhone(failedValue);
   }
@@ -1218,6 +1251,7 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidPhone != null) {
@@ -1245,6 +1279,7 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidPhone(this);
   }
@@ -1267,6 +1302,7 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidPhone != null) {
@@ -1368,6 +1404,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return invalidEmail(failedValue);
   }
@@ -1390,6 +1427,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -1417,6 +1455,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidEmail(this);
   }
@@ -1439,6 +1478,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -1541,6 +1581,7 @@ class _$UnregisteredPhone<T> implements UnregisteredPhone<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return unregisteredPhone(failedValue);
   }
@@ -1563,6 +1604,7 @@ class _$UnregisteredPhone<T> implements UnregisteredPhone<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (unregisteredPhone != null) {
@@ -1590,6 +1632,7 @@ class _$UnregisteredPhone<T> implements UnregisteredPhone<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return unregisteredPhone(this);
   }
@@ -1612,6 +1655,7 @@ class _$UnregisteredPhone<T> implements UnregisteredPhone<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (unregisteredPhone != null) {
@@ -1714,6 +1758,7 @@ class _$InvalidObject<T> implements InvalidObject<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return invalidObject(failedValue);
   }
@@ -1736,6 +1781,7 @@ class _$InvalidObject<T> implements InvalidObject<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidObject != null) {
@@ -1763,6 +1809,7 @@ class _$InvalidObject<T> implements InvalidObject<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidObject(this);
   }
@@ -1785,6 +1832,7 @@ class _$InvalidObject<T> implements InvalidObject<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidObject != null) {
@@ -1860,6 +1908,7 @@ class _$EmptyObject<T> implements EmptyObject<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return emptyObject();
   }
@@ -1882,6 +1931,7 @@ class _$EmptyObject<T> implements EmptyObject<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (emptyObject != null) {
@@ -1909,6 +1959,7 @@ class _$EmptyObject<T> implements EmptyObject<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return emptyObject(this);
   }
@@ -1931,6 +1982,7 @@ class _$EmptyObject<T> implements EmptyObject<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (emptyObject != null) {
@@ -2027,6 +2079,7 @@ class _$ShortToken<T> implements ShortToken<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return shortToken(failedValue);
   }
@@ -2049,6 +2102,7 @@ class _$ShortToken<T> implements ShortToken<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (shortToken != null) {
@@ -2076,6 +2130,7 @@ class _$ShortToken<T> implements ShortToken<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return shortToken(this);
   }
@@ -2098,6 +2153,7 @@ class _$ShortToken<T> implements ShortToken<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (shortToken != null) {
@@ -2211,6 +2267,7 @@ class _$ExceedBalance<T> implements ExceedBalance<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return exceedingBalance(failedValue, maxBalance);
   }
@@ -2233,6 +2290,7 @@ class _$ExceedBalance<T> implements ExceedBalance<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (exceedingBalance != null) {
@@ -2260,6 +2318,7 @@ class _$ExceedBalance<T> implements ExceedBalance<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return exceedingBalance(this);
   }
@@ -2282,6 +2341,7 @@ class _$ExceedBalance<T> implements ExceedBalance<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (exceedingBalance != null) {
@@ -2397,6 +2457,7 @@ class _$InvalidDateTime<T> implements InvalidDateTime<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return invalidDateTime(failedValue, pattern);
   }
@@ -2419,6 +2480,7 @@ class _$InvalidDateTime<T> implements InvalidDateTime<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidDateTime != null) {
@@ -2446,6 +2508,7 @@ class _$InvalidDateTime<T> implements InvalidDateTime<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidDateTime(this);
   }
@@ -2468,6 +2531,7 @@ class _$InvalidDateTime<T> implements InvalidDateTime<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (invalidDateTime != null) {
@@ -2572,6 +2636,7 @@ class _$NoteExceed<T> implements NoteExceed<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return noteExceed(failedValue);
   }
@@ -2594,6 +2659,7 @@ class _$NoteExceed<T> implements NoteExceed<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (noteExceed != null) {
@@ -2621,6 +2687,7 @@ class _$NoteExceed<T> implements NoteExceed<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return noteExceed(this);
   }
@@ -2643,6 +2710,7 @@ class _$NoteExceed<T> implements NoteExceed<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (noteExceed != null) {
@@ -2745,6 +2813,7 @@ class _$ConfirmationNotMatch<T> implements ConfirmationNotMatch<T> {
         invalidDateTime,
     required TResult Function(T? failedValue) noteExceed,
     required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
   }) {
     return confirmationNotMatch(failedValue);
   }
@@ -2767,6 +2836,7 @@ class _$ConfirmationNotMatch<T> implements ConfirmationNotMatch<T> {
     TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
     TResult Function(T? failedValue)? noteExceed,
     TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (confirmationNotMatch != null) {
@@ -2794,6 +2864,7 @@ class _$ConfirmationNotMatch<T> implements ConfirmationNotMatch<T> {
     required TResult Function(NoteExceed<T> value) noteExceed,
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return confirmationNotMatch(this);
   }
@@ -2816,6 +2887,7 @@ class _$ConfirmationNotMatch<T> implements ConfirmationNotMatch<T> {
     TResult Function(InvalidDateTime<T> value)? invalidDateTime,
     TResult Function(NoteExceed<T> value)? noteExceed,
     TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
     required TResult orElse(),
   }) {
     if (confirmationNotMatch != null) {
@@ -2832,5 +2904,194 @@ abstract class ConfirmationNotMatch<T> implements ValueFailure<T> {
   T? get failedValue => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ConfirmationNotMatchCopyWith<T, ConfirmationNotMatch<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LessThanMinimumCopyWith<T, $Res> {
+  factory $LessThanMinimumCopyWith(
+          LessThanMinimum<T> value, $Res Function(LessThanMinimum<T>) then) =
+      _$LessThanMinimumCopyWithImpl<T, $Res>;
+  $Res call({T? failedValue, num min});
+}
+
+/// @nodoc
+class _$LessThanMinimumCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $LessThanMinimumCopyWith<T, $Res> {
+  _$LessThanMinimumCopyWithImpl(
+      LessThanMinimum<T> _value, $Res Function(LessThanMinimum<T>) _then)
+      : super(_value, (v) => _then(v as LessThanMinimum<T>));
+
+  @override
+  LessThanMinimum<T> get _value => super._value as LessThanMinimum<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? min = freezed,
+  }) {
+    return _then(LessThanMinimum<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T?,
+      min: min == freezed
+          ? _value.min
+          : min // ignore: cast_nullable_to_non_nullable
+              as num,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LessThanMinimum<T> implements LessThanMinimum<T> {
+  const _$LessThanMinimum({required this.failedValue, required this.min});
+
+  @override
+  final T? failedValue;
+  @override
+  final num min;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.lessThanMinimum(failedValue: $failedValue, min: $min)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LessThanMinimum<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)) &&
+            (identical(other.min, min) ||
+                const DeepCollectionEquality().equals(other.min, min)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failedValue) ^
+      const DeepCollectionEquality().hash(min);
+
+  @JsonKey(ignore: true)
+  @override
+  $LessThanMinimumCopyWith<T, LessThanMinimum<T>> get copyWith =>
+      _$LessThanMinimumCopyWithImpl<T, LessThanMinimum<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T? failedValue, int max) exceedingLength,
+    required TResult Function(T? failedValue, int min) lengthTooShort,
+    required TResult Function(T? failedValue) empty,
+    required TResult Function(T? failedValue) multiline,
+    required TResult Function(T? failedValue, int max) listTooLong,
+    required TResult Function(T? failedValue) invalidPhone,
+    required TResult Function(T? failedValue) invalidEmail,
+    required TResult Function(T? failedValue) unregisteredPhone,
+    required TResult Function(T? failedValue) invalidObject,
+    required TResult Function() emptyObject,
+    required TResult Function(T? failedValue) shortToken,
+    required TResult Function(double failedValue, double maxBalance)
+        exceedingBalance,
+    required TResult Function(DateTime failedValue, String pattern)
+        invalidDateTime,
+    required TResult Function(T? failedValue) noteExceed,
+    required TResult Function(T? failedValue) confirmationNotMatch,
+    required TResult Function(T? failedValue, num min) lessThanMinimum,
+  }) {
+    return lessThanMinimum(failedValue, min);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T? failedValue, int max)? exceedingLength,
+    TResult Function(T? failedValue, int min)? lengthTooShort,
+    TResult Function(T? failedValue)? empty,
+    TResult Function(T? failedValue)? multiline,
+    TResult Function(T? failedValue, int max)? listTooLong,
+    TResult Function(T? failedValue)? invalidPhone,
+    TResult Function(T? failedValue)? invalidEmail,
+    TResult Function(T? failedValue)? unregisteredPhone,
+    TResult Function(T? failedValue)? invalidObject,
+    TResult Function()? emptyObject,
+    TResult Function(T? failedValue)? shortToken,
+    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
+    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
+    TResult Function(T? failedValue)? noteExceed,
+    TResult Function(T? failedValue)? confirmationNotMatch,
+    TResult Function(T? failedValue, num min)? lessThanMinimum,
+    required TResult orElse(),
+  }) {
+    if (lessThanMinimum != null) {
+      return lessThanMinimum(failedValue, min);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(TooShort<T> value) lengthTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(InvalidPhone<T> value) invalidPhone,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(UnregisteredPhone<T> value) unregisteredPhone,
+    required TResult Function(InvalidObject<T> value) invalidObject,
+    required TResult Function(EmptyObject<T> value) emptyObject,
+    required TResult Function(ShortToken<T> value) shortToken,
+    required TResult Function(ExceedBalance<T> value) exceedingBalance,
+    required TResult Function(InvalidDateTime<T> value) invalidDateTime,
+    required TResult Function(NoteExceed<T> value) noteExceed,
+    required TResult Function(ConfirmationNotMatch<T> value)
+        confirmationNotMatch,
+    required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
+  }) {
+    return lessThanMinimum(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(TooShort<T> value)? lengthTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(InvalidPhone<T> value)? invalidPhone,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
+    TResult Function(InvalidObject<T> value)? invalidObject,
+    TResult Function(EmptyObject<T> value)? emptyObject,
+    TResult Function(ShortToken<T> value)? shortToken,
+    TResult Function(ExceedBalance<T> value)? exceedingBalance,
+    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
+    TResult Function(NoteExceed<T> value)? noteExceed,
+    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
+    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
+    required TResult orElse(),
+  }) {
+    if (lessThanMinimum != null) {
+      return lessThanMinimum(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LessThanMinimum<T> implements ValueFailure<T> {
+  const factory LessThanMinimum({required T? failedValue, required num min}) =
+      _$LessThanMinimum<T>;
+
+  T? get failedValue => throw _privateConstructorUsedError;
+  num get min => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LessThanMinimumCopyWith<T, LessThanMinimum<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

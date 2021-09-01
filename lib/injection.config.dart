@@ -16,25 +16,31 @@ import 'package:logger/logger.dart' as _i13;
 
 import 'application/address/list/address_list_bloc.dart' as _i33;
 import 'application/address/map/address_map_bloc.dart' as _i34;
-import 'application/auth/auth_bloc.dart' as _i44;
-import 'application/auth/login/login_bloc.dart' as _i40;
-import 'application/auth/register/register_bloc.dart' as _i42;
-import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i43;
+import 'application/auth/auth_bloc.dart' as _i49;
+import 'application/auth/login/login_bloc.dart' as _i42;
+import 'application/auth/register/register_bloc.dart' as _i45;
+import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i47;
 import 'application/core/app_bloc.dart' as _i19;
+import 'application/credit/credit_bloc.dart' as _i50;
+import 'application/credit/recent_history/recent_history_bloc.dart' as _i44;
+import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i46;
+import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i48;
 import 'application/home/home_user_bloc/home_user_bloc.dart' as _i37;
-import 'application/order/bloc/order_bloc.dart' as _i41;
+import 'application/order/bloc/order_bloc.dart' as _i43;
 import 'domain/auth/i_auth_facade.dart' as _i38;
 import 'domain/core/constants/network/env.dart' as _i8;
 import 'domain/core/interfaces/i_location_service.dart' as _i11;
 import 'domain/core/interfaces/i_network_service.dart' as _i23;
 import 'domain/core/interfaces/i_storage.dart' as _i15;
 import 'domain/core/utils/locale/app_localization.dart' as _i4;
+import 'domain/credit/i_credit_repository.dart' as _i40;
 import 'infrastructure/auth/api_auth_facade.dart' as _i39;
 import 'infrastructure/core/auth_interceptor.dart' as _i20;
 import 'infrastructure/core/location_service.dart' as _i12;
 import 'infrastructure/core/network_service.dart' as _i24;
-import 'infrastructure/core/register_module.dart' as _i45;
+import 'infrastructure/core/register_module.dart' as _i51;
 import 'infrastructure/core/storage.dart' as _i16;
+import 'infrastructure/credit/credit_repository.dart' as _i41;
 import 'infrastructure/network/apis/auth/auth_api.dart' as _i35;
 import 'infrastructure/network/apis/auth/auth_repository.dart' as _i36;
 import 'infrastructure/network/apis/map/map_api.dart' as _i25;
@@ -117,15 +123,25 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i32.UserRepository>(), get<_i28.OrderRepository>()));
   gh.lazySingleton<_i38.IAuthFacade>(() => _i39.ApiAuthFacade(
       get<_i23.INetworkService>(), get<_i13.Logger>(), get<_i15.IStorage>()));
-  gh.factory<_i40.LoginBloc>(() => _i40.LoginBloc(get<_i38.IAuthFacade>()));
-  gh.factory<_i41.OrderBloc>(() =>
-      _i41.OrderBloc(get<_i28.OrderRepository>(), get<_i32.UserRepository>()));
-  gh.factory<_i42.RegisterBloc>(
-      () => _i42.RegisterBloc(get<_i38.IAuthFacade>()));
-  gh.factory<_i43.ValidateOtpBloc>(
-      () => _i43.ValidateOtpBloc(get<_i38.IAuthFacade>(), get<_i13.Logger>()));
-  gh.factory<_i44.AuthBloc>(() => _i44.AuthBloc(get<_i38.IAuthFacade>()));
+  gh.lazySingleton<_i40.ICreditRepository>(() =>
+      _i41.CreditRepository(get<_i23.INetworkService>(), get<_i13.Logger>()));
+  gh.factory<_i42.LoginBloc>(() => _i42.LoginBloc(get<_i38.IAuthFacade>()));
+  gh.factory<_i43.OrderBloc>(() =>
+      _i43.OrderBloc(get<_i28.OrderRepository>(), get<_i32.UserRepository>()));
+  gh.factory<_i44.RecentHistoryBloc>(
+      () => _i44.RecentHistoryBloc(get<_i40.ICreditRepository>()));
+  gh.factory<_i45.RegisterBloc>(
+      () => _i45.RegisterBloc(get<_i38.IAuthFacade>()));
+  gh.factory<_i46.TopUpCreditBloc>(() => _i46.TopUpCreditBloc(
+      get<_i40.ICreditRepository>(), get<_i15.IStorage>()));
+  gh.factory<_i47.ValidateOtpBloc>(
+      () => _i47.ValidateOtpBloc(get<_i38.IAuthFacade>(), get<_i13.Logger>()));
+  gh.factory<_i48.WaitingPaymentBloc>(
+      () => _i48.WaitingPaymentBloc(get<_i40.ICreditRepository>()));
+  gh.factory<_i49.AuthBloc>(() => _i49.AuthBloc(get<_i38.IAuthFacade>()));
+  gh.factory<_i50.CreditBloc>(
+      () => _i50.CreditBloc(get<_i40.ICreditRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i45.RegisterModule {}
+class _$RegisterModule extends _i51.RegisterModule {}

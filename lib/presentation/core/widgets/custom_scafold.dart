@@ -8,13 +8,21 @@ class CustomScafold extends StatelessWidget {
   final Widget body;
   final Widget suffixWidget;
   final String title;
+  final Color appBarColor;
+  final Color iconBackColor;
+  final Color titleFontColor;
 
   const CustomScafold({
     Key? key,
     required this.body,
-    this.suffixWidget = const SizedBox(),
+    this.suffixWidget = const SizedBox(
+      width: 35,
+    ),
     this.title = '',
     this.showBackButton = false,
+    this.appBarColor = Colors.white,
+    this.iconBackColor = Colors.black,
+    this.titleFontColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -31,29 +39,34 @@ class CustomScafold extends StatelessWidget {
               height: MediaQuery.of(context).padding.top,
             ),
             Container(
-              color: AppColors.mainColor,
+              color: appBarColor,
               padding: const EdgeInsets.all(
                 Dimens.defaultMargin,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (showBackButton)
-                    Container(
-                      margin: const EdgeInsets.only(right: 15),
-                      child: GestureDetector(
-                        onTap: () => Get.back(),
-                        child: const Icon(
-                          Icons.arrow_back_rounded,
-                          color: Colors.white,
-                          size: 30,
+                  showBackButton
+                      ? Container(
+                          margin: const EdgeInsets.only(right: 15),
+                          child: GestureDetector(
+                            onTap: () => Get.back(),
+                            child: Icon(
+                              Icons.arrow_back_rounded,
+                              color: iconBackColor,
+                              size: 25,
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          width: 35,
                         ),
-                      ),
-                    ),
                   Expanded(
                     child: Text(
                       title,
-                      style: Styles.titleStyle,
+                      style: Styles.appBarTitleStyle
+                          .copyWith(color: titleFontColor),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   suffixWidget,

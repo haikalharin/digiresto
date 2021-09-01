@@ -56,4 +56,55 @@ class Styles {
 
   static TextStyle guideSkipStyle = GoogleFonts.poppins(
       color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w700);
+
+  static TextStyle creditLabelStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w600);
+
+  static TextStyle creditNominalStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 40, fontWeight: FontWeight.w700);
+
+  static TextStyle creditNominalSmallStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 25, fontWeight: FontWeight.w700);
+
+  static TextStyle creditCurrencyStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w600);
+
+  static TextStyle creditTabStyle = GoogleFonts.poppins(
+      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w700);
+
+  static TextStyle creditMenuTitleStyle = GoogleFonts.poppins(
+    color: Colors.black,
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle creditMenuSubtitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle appBarTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold);
+
+  static TextStyle creditTopupTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold);
+
+  static TextStyle creditTopupSubtitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle creditDetailsLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle creditDetailsStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w700);
+
+  static TextStyle topUpDateStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle topUpDetailsStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle dialogTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold);
+
+  static TextStyle dialogSubtitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
 }
