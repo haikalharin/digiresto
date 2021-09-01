@@ -20,6 +20,7 @@ import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_by_merchant_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
@@ -69,6 +70,33 @@ class OrderApi {
       String apiUrl = Endpoints.urlGetOutletByCategory;
       final apiResult =
           await _networkService.postHttp(path: apiUrl, content: object
+              // {
+              //   "query_string": {
+              //     "location": object["location"].toString(),
+              //     "page": object["page"],
+              //     "filter": object["filter"].toString(),
+              //     "body": {}
+              //   }
+              // }
+              );
+      return right(OutletCategoryResponse.fromJson(apiResult));
+    } on ServerException catch (e) {
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } catch (e, stactrace) {
+      print(e.toString());
+      print(stactrace.toString());
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, OutletCategoryResponse>> getOutletByMerchant(
+      GetOutletByMerchantParam object) async {
+    try {
+      String apiUrl = Endpoints.urlGetOutletByMerchant;
+      final apiResult =
+          await _networkService.postHttp(path: apiUrl, content: object.toJson()
               // {
               //   "query_string": {
               //     "location": object["location"].toString(),

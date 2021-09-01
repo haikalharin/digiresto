@@ -257,7 +257,7 @@ class _$OutletCategoryDataResponseTearOff {
       required List<String> salesTypes,
       required bool isOpen,
       required String? logo,
-      required int countOutlet,
+      required int? countOutlet,
       required String merchantId,
       required String merchantName,
       required String? merchantLogo,
@@ -297,7 +297,7 @@ mixin _$OutletCategoryDataResponse {
   List<String> get salesTypes => throw _privateConstructorUsedError;
   bool get isOpen => throw _privateConstructorUsedError;
   String? get logo => throw _privateConstructorUsedError;
-  int get countOutlet => throw _privateConstructorUsedError;
+  int? get countOutlet => throw _privateConstructorUsedError;
   String get merchantId => throw _privateConstructorUsedError;
   String get merchantName => throw _privateConstructorUsedError;
   String? get merchantLogo => throw _privateConstructorUsedError;
@@ -324,7 +324,7 @@ abstract class $OutletCategoryDataResponseCopyWith<$Res> {
       List<String> salesTypes,
       bool isOpen,
       String? logo,
-      int countOutlet,
+      int? countOutlet,
       String merchantId,
       String merchantName,
       String? merchantLogo,
@@ -391,7 +391,7 @@ class _$OutletCategoryDataResponseCopyWithImpl<$Res>
       countOutlet: countOutlet == freezed
           ? _value.countOutlet
           : countOutlet // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       merchantId: merchantId == freezed
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
@@ -440,7 +440,7 @@ abstract class _$OutletCategoryDataResponseCopyWith<$Res>
       List<String> salesTypes,
       bool isOpen,
       String? logo,
-      int countOutlet,
+      int? countOutlet,
       String merchantId,
       String merchantName,
       String? merchantLogo,
@@ -511,7 +511,7 @@ class __$OutletCategoryDataResponseCopyWithImpl<$Res>
       countOutlet: countOutlet == freezed
           ? _value.countOutlet
           : countOutlet // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       merchantId: merchantId == freezed
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
@@ -572,7 +572,7 @@ class _$_OutletCategoryDataResponse implements _OutletCategoryDataResponse {
   @override
   final String? logo;
   @override
-  final int countOutlet;
+  final int? countOutlet;
   @override
   final String merchantId;
   @override
@@ -668,7 +668,7 @@ abstract class _OutletCategoryDataResponse
           required List<String> salesTypes,
           required bool isOpen,
           required String? logo,
-          required int countOutlet,
+          required int? countOutlet,
           required String merchantId,
           required String merchantName,
           required String? merchantLogo,
@@ -694,7 +694,7 @@ abstract class _OutletCategoryDataResponse
   @override
   String? get logo => throw _privateConstructorUsedError;
   @override
-  int get countOutlet => throw _privateConstructorUsedError;
+  int? get countOutlet => throw _privateConstructorUsedError;
   @override
   String get merchantId => throw _privateConstructorUsedError;
   @override

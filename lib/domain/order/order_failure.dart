@@ -9,6 +9,8 @@ class OrderFailure with _$OrderFailure implements Exception {
       _GetOutletByLocationFail;
   const factory OrderFailure.getOutletByCategoryFail() =
       _GetOutletByCategoryFail;
+  const factory OrderFailure.getOutletByMerchantFail() =
+      _GetOutletByMerchantFail;
   const factory OrderFailure.getListPromoOutletFail() = _GetListPromoOutletFail;
   const factory OrderFailure.getListVoucherOutletFail() =
       _GetListVoucherOutletFail;

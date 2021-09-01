@@ -18,6 +18,7 @@ import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_by_category_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_by_merchant_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dart';
@@ -75,6 +76,20 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (error) =>
               OrderState.loadFailure(OrderFailure.getOutletByCategoryFail()),
           (list) => OrderState.getOutletByCategorySuccess(list.data),
+        );
+      },
+      getOutletByMerchant: (r) async* {
+        final address = await _userRepository.getActiveAddress();
+        final activeAddr = address.getOrElse(() => UserAddress());
+        final queryString = r.request.queryString.copyWith(
+            location: "${activeAddr.latitude}, ${activeAddr.longitude}");
+
+        final getOutletByMerchant = await _orderRepository
+            .getOutletByMerchant(r.request.copyWith(queryString: queryString));
+        yield getOutletByMerchant.fold(
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getOutletByMerchantFail()),
+          (list) => OrderState.getOutletByMerchantSuccess(list.data),
         );
       },
       getListPromoOutlet: (request) async* {

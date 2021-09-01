@@ -13,6 +13,7 @@ import 'package:digiresto/presentation/home/home_category_outlet.dart';
 import 'package:digiresto/presentation/home/home_digidiscount.dart';
 import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
 import 'package:digiresto/presentation/home/home_promo_url.dart';
+import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/order/detailOutlet.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
@@ -32,6 +33,7 @@ class Routers {
   static const String homeNearbyOutlet = '/home_nearby_outlet';
   static const String homeDigiDiscount = '/home_digidiscount';
   static const String homeOutletCategory = '/home_outletCategory';
+  static const String homeSeeAllOutlet = '/home_see_all_outlet';
   static const String onboarding = '/onboarding';
   static const String inputPhone = '/inputphone';
   static const String verifyOtp = '/verifyotp';
@@ -112,6 +114,7 @@ class Routers {
     GetPage(
         name: Routers.homeOutletCategory,
         page: () => HomeCategoryOutletScreen()),
-    GetPage(name: Routers.orderCart, page: () => CartScreen())
+    GetPage(name: Routers.orderCart, page: () => CartScreen()),
+    GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet())
   ];
 }

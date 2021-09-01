@@ -28,6 +28,10 @@ class _$OrderFailureTearOff {
     return const _GetOutletByCategoryFail();
   }
 
+  _GetOutletByMerchantFail getOutletByMerchantFail() {
+    return const _GetOutletByMerchantFail();
+  }
+
   _GetListPromoOutletFail getListPromoOutletFail() {
     return const _GetListPromoOutletFail();
   }
@@ -99,6 +103,7 @@ mixin _$OrderFailure {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -121,6 +126,7 @@ mixin _$OrderFailure {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -146,6 +152,8 @@ mixin _$OrderFailure {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -174,6 +182,7 @@ mixin _$OrderFailure {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -254,6 +263,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -279,6 +289,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -310,6 +321,8 @@ class _$_SalesTypeNull implements _SalesTypeNull {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -341,6 +354,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -414,6 +428,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -439,6 +454,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -470,6 +486,8 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -501,6 +519,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -574,6 +593,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -599,6 +619,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -630,6 +651,8 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -661,6 +684,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -688,6 +712,171 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
 
 abstract class _GetOutletByCategoryFail implements OrderFailure {
   const factory _GetOutletByCategoryFail() = _$_GetOutletByCategoryFail;
+}
+
+/// @nodoc
+abstract class _$GetOutletByMerchantFailCopyWith<$Res> {
+  factory _$GetOutletByMerchantFailCopyWith(_GetOutletByMerchantFail value,
+          $Res Function(_GetOutletByMerchantFail) then) =
+      __$GetOutletByMerchantFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetOutletByMerchantFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$GetOutletByMerchantFailCopyWith<$Res> {
+  __$GetOutletByMerchantFailCopyWithImpl(_GetOutletByMerchantFail _value,
+      $Res Function(_GetOutletByMerchantFail) _then)
+      : super(_value, (v) => _then(v as _GetOutletByMerchantFail));
+
+  @override
+  _GetOutletByMerchantFail get _value =>
+      super._value as _GetOutletByMerchantFail;
+}
+
+/// @nodoc
+
+class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
+  const _$_GetOutletByMerchantFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.getOutletByMerchantFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetOutletByMerchantFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+  }) {
+    return getOutletByMerchantFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    required TResult orElse(),
+  }) {
+    if (getOutletByMerchantFail != null) {
+      return getOutletByMerchantFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+  }) {
+    return getOutletByMerchantFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    required TResult orElse(),
+  }) {
+    if (getOutletByMerchantFail != null) {
+      return getOutletByMerchantFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetOutletByMerchantFail implements OrderFailure {
+  const factory _GetOutletByMerchantFail() = _$_GetOutletByMerchantFail;
 }
 
 /// @nodoc
@@ -733,6 +922,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -758,6 +948,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -789,6 +980,8 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -820,6 +1013,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -893,6 +1087,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -918,6 +1113,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -949,6 +1145,8 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -980,6 +1178,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -1052,6 +1251,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -1077,6 +1277,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -1108,6 +1309,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -1139,6 +1342,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -1214,6 +1418,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -1239,6 +1444,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -1270,6 +1476,8 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -1301,6 +1509,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -1374,6 +1583,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -1399,6 +1609,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -1430,6 +1641,8 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -1461,6 +1674,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -1533,6 +1747,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -1558,6 +1773,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -1589,6 +1805,8 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -1620,6 +1838,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -1692,6 +1911,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -1717,6 +1937,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -1748,6 +1969,8 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -1779,6 +2002,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -1851,6 +2075,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -1876,6 +2101,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -1907,6 +2133,8 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -1938,6 +2166,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2010,6 +2239,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2035,6 +2265,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -2066,6 +2297,8 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -2097,6 +2330,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2169,6 +2403,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2194,6 +2429,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -2225,6 +2461,8 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -2256,6 +2494,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2327,6 +2566,7 @@ class _$_AddCartFail implements _AddCartFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2352,6 +2592,7 @@ class _$_AddCartFail implements _AddCartFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -2383,6 +2624,8 @@ class _$_AddCartFail implements _AddCartFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -2414,6 +2657,7 @@ class _$_AddCartFail implements _AddCartFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2486,6 +2730,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2511,6 +2756,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -2542,6 +2788,8 @@ class _$_RemoveCartFail implements _RemoveCartFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -2573,6 +2821,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2645,6 +2894,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2670,6 +2920,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -2701,6 +2952,8 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -2732,6 +2985,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2804,6 +3058,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2829,6 +3084,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -2860,6 +3116,8 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -2891,6 +3149,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
@@ -2963,6 +3222,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     required TResult Function() salesTypeNull,
     required TResult Function() getOutletByLocationFail,
     required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
     required TResult Function() getListPromoOutletFail,
     required TResult Function() getListVoucherOutletFail,
     required TResult Function() getOutletListProductFail,
@@ -2988,6 +3248,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     TResult Function()? salesTypeNull,
     TResult Function()? getOutletByLocationFail,
     TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
     TResult Function()? getListPromoOutletFail,
     TResult Function()? getListVoucherOutletFail,
     TResult Function()? getOutletListProductFail,
@@ -3019,6 +3280,8 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
         getOutletByLocationFail,
     required TResult Function(_GetOutletByCategoryFail value)
         getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
     required TResult Function(_GetListPromoOutletFail value)
         getListPromoOutletFail,
     required TResult Function(_GetListVoucherOutletFail value)
@@ -3050,6 +3313,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     TResult Function(_SalesTypeNull value)? salesTypeNull,
     TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
     TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
     TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
     TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
     TResult Function(_GetOutletListProduct value)? getOutletListProductFail,

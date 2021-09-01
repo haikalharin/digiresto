@@ -2,6 +2,8 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
+import 'package:digiresto/domain/order/home_see_all_outlet_view_argument.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -262,13 +264,19 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                                           widget.data[index])),
                                 ),
                               ),
-                              widget.data[index].countOutlet > 1
+                              (widget.data[index].countOutlet ?? 0) > 1
                                   ? SizedBox(
                                       height: 32,
                                       width: MediaQuery.of(context).size.width *
                                           0.68,
                                       child: ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.toNamed(Routers.homeSeeAllOutlet,
+                                              arguments:
+                                                  HomeSeeAllOutletViewArgument(
+                                                      data:
+                                                          widget.data[index]));
+                                        },
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,

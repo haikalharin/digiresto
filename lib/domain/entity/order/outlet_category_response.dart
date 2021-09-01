@@ -33,7 +33,7 @@ abstract class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
     required List<String> salesTypes,
     required bool isOpen,
     required String? logo,
-    required int countOutlet,
+    required int? countOutlet,
     required String merchantId,
     required String merchantName,
     required String? merchantLogo,

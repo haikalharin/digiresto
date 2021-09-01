@@ -8,6 +8,9 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getOutletByCategory(
       GetOutletByCategoryParam request) = _GetOutletByCategory;
 
+  const factory OrderEvent.getOutletByMerchant(
+      GetOutletByMerchantParam request) = _GetOutletByMerchant;
+
   const factory OrderEvent.getOutletProductCategory(
       GetOutletProductCategoryParam request) = _GetOutletProductCategory;
 

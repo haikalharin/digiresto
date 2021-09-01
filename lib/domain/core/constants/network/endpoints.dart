@@ -49,6 +49,8 @@ class Endpoints {
       "/forward?r=v2/getoutletbylocation";
   static const String urlGetOutletByCategory =
       "/forward?r=v2/getoutletbycategory";
+  static const String urlGetOutletByMerchant =
+      "/forward?r=v2/getoutletbymerchant";
 
   //order
   static const String urlGetDetailOutlet = "/forward?r=v2/getdetailoutlet";

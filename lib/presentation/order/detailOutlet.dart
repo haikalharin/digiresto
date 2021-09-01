@@ -141,7 +141,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                           children: [
                             Container(
                               width: 200,
-                              child: Text(data.merchantName,
+                              child: Text(data.name,
                                   //detailOutlet != null ? data.outlet["detail"]["name"] : ""
                                   style: TextStyle(
                                     fontFamily: "roboto",

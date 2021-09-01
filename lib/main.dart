@@ -3,6 +3,7 @@ import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,9 @@ export 'package:digiresto/presentation/core/app_widget.dart';
 //TODO: Importance Jgn lupa ganti environment ini ketika di publish ke store
 const env = Environment.dev;
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  await Firebase.initializeApp();
   await configureInjection(env);
   // Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(InitiateProvider());
