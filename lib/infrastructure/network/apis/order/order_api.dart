@@ -7,7 +7,7 @@ import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
-import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
@@ -447,7 +447,7 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, List<DeliveryMethod>>> deliveryInquiry(
+  Future<Either<Exception, List<DeliveryMethodDataResponse>>> deliveryInquiry(
       Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlDeliveryInquiry;
@@ -466,8 +466,8 @@ class OrderApi {
               // }
               );
       var methods = (apiResult as Map<String, dynamic>)['data'];
-      return right(List<DeliveryMethod>.from(
-          methods.map((data) => DeliveryMethod.create(data))));
+      return right(List<DeliveryMethodDataResponse>.from(
+          methods.map((data) => DeliveryMethodDataResponse.fromJson(data))));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {

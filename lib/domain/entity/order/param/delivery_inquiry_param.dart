@@ -25,6 +25,7 @@ abstract class DeliveryInquiryParam with _$DeliveryInquiryParam {
 
 @freezed
 abstract class DeliveryInquiryBodyParam with _$DeliveryInquiryBodyParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DeliveryInquiryBodyParam({
     required DeliveryInquiryBodyCustomerParam customer,
     required int weight,

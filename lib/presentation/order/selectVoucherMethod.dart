@@ -1,13 +1,8 @@
-import 'package:digiresto/application/credit/credit_bloc.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
-import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/utils.dart';
-import 'package:digiresto/domain/credit/user_balance.dart';
-import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dart';
-import 'package:digiresto/domain/entity/order/payment_method_response.dart';
-import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
-import 'package:digiresto/injection.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
+import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -15,14 +10,14 @@ import 'package:get/get.dart';
 class SelectVouchertMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    OrderSelectPaymentMethodViewArgument args =
-        Get.arguments as OrderSelectPaymentMethodViewArgument;
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethod(
-        GetPaymentMethodParam(
-            body: GetPaymentMethodBodyParam(),
-            queryString: GetPaymentMethodQueryParam(
-                outletName: args.outlet.endpointName,
-                salesType: args.salestype))));
+    OrderSelectVoucherMethodViewArgument args =
+        Get.arguments as OrderSelectVoucherMethodViewArgument;
+    Get.context!.read<OrderBloc>().add(OrderEvent.getListVoucherOutlet(
+        GetListVoucherOutletParam(
+            body: GetListVoucherOutletBodyParam(),
+            queryString: GetListVoucherOutletQueryParam(
+                merchantId: args.outlet.merchantId,
+                outletId: args.outlet.id))));
     return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
       state.maybeMap(
           getPaymentMethodSuccess: (r) {
@@ -40,7 +35,7 @@ class SelectVouchertMethodScreen extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
             title: Text(
-              'Metode Pembayaran',
+              'Voucher Saya',
               style: TextStyle(
                 fontFamily: "roboto",
                 color: Colors.black,
@@ -49,12 +44,12 @@ class SelectVouchertMethodScreen extends StatelessWidget {
             centerTitle: true,
             backgroundColor: Colors.white,
           ),
-          body: state.maybeMap(getPaymentMethodSuccess: (r) {
+          body: state.maybeMap(getListVoucherOutletSuccess: (r) {
             return ListView.separated(
               shrinkWrap: true,
               itemCount: r.response.length,
               itemBuilder: (context, index) =>
-                  _buildItemList(context, r.response[index]),
+                  _buildItemList(r.response[index]),
               separatorBuilder: (context, index) => SizedBox(height: 5),
             );
           }, orElse: () {
@@ -63,32 +58,8 @@ class SelectVouchertMethodScreen extends StatelessWidget {
     });
   }
 
-  Widget _showSubtitle() {
-    return BlocProvider<CreditBloc>(
-        create: (context) => getIt<CreditBloc>()..add(CreditEvent.started()),
-        child: BlocBuilder<CreditBloc, CreditState>(builder: (context, state) {
-          return state.maybeMap(loaded: (r) {
-            String tmpBalance = Utils.formatRupiah(r.userBalance
-                .getOrElse(() => UserBalance(username: "", balance: ""))
-                .balance);
-
-            return Text("Rp. " + tmpBalance,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14));
-          }, orElse: () {
-            return Text("Rp. 0",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14));
-          });
-        }));
-  }
-
-  Widget _buildItemList(context, PaymentMethodDataResponse item) {
-    String title = item.title.replaceAll('%1\$s', Strings.appName);
+  Widget _buildItemList(GetListVoucherOutletDataResponse response) {
+    String title = response.name;
     return Container(
       color: Colors.white,
       padding: EdgeInsets.all(20),
@@ -104,20 +75,26 @@ class SelectVouchertMethodScreen extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   )),
-              _showSubtitle()
+              Text(response.code,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 14))
             ],
           ),
-          FlatButton(
+          ElevatedButton(
               onPressed: () {
-                //_orderStore.setPaymentMethod(item);
-                Navigator.of(context).pop();
+                //save to local
+                Get.back();
               },
-              color: Colors.white,
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(5.0),
-                side: BorderSide(
-                  width: 1,
-                  color: AppColors.red,
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(5.0),
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.red,
+                  ),
                 ),
               ),
               child: Text('Pilih',

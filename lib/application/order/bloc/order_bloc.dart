@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
-import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
@@ -165,9 +165,14 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (list) => OrderState.getPaymentMethodSuccess(list),
         );
       },
-      deliveryInquiry: (request) async* {
-        final deliveryInquiry =
-            await _orderRepository.deliveryInquiry(request.request.toJson());
+      deliveryInquiry: (r) async* {
+        final address = await _userRepository.getActiveAddress();
+        final activeAddr = address.getOrElse(() => UserAddress());
+        final customerParam = r.request.body.copyWith(
+            customer: DeliveryInquiryBodyCustomerParam(
+                location: [activeAddr.latitude!, activeAddr.longitude!]));
+        final deliveryInquiry = await _orderRepository
+            .deliveryInquiry(r.request.copyWith(body: customerParam).toJson());
         yield deliveryInquiry.fold(
           (error) => OrderState.loadFailure(OrderFailure.deliveryInquiryFail()),
           (list) => OrderState.deliveryInquirySuccess(list),

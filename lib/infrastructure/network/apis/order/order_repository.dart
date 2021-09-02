@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
-import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
@@ -163,7 +163,7 @@ class OrderRepository {
     });
   }
 
-  Future<Either<Exception, List<DeliveryMethod>>> deliveryInquiry(
+  Future<Either<Exception, List<DeliveryMethodDataResponse>>> deliveryInquiry(
       Map<String, dynamic> object) async {
     return await _orderApi.deliveryInquiry(object).then((value) {
       return value;

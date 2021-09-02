@@ -44,7 +44,7 @@ class OrderState with _$OrderState {
       List<PaymentMethodDataResponse> response) = _GetPaymentMethodSuccess;
 
   const factory OrderState.deliveryInquirySuccess(
-      List<DeliveryMethod> response) = _GeliveryInquirySuccess;
+      List<DeliveryMethodDataResponse> response) = _GeliveryInquirySuccess;
 
   const factory OrderState.addCartSuccess(CartSessionResponse response) =
       _AddCartSuccess;

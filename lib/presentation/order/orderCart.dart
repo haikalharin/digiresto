@@ -11,7 +11,9 @@ import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
+import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
@@ -602,8 +604,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               )),
-                          if (controller.paymentMethod.value?.title != null)
-                            Text(controller.paymentMethod.value?.title ?? "",
+                          if (controller.voucherMethod.value != null)
+                            Text(controller.voucherMethod.value?.name ?? "",
                                 style: TextStyle(
                                   fontFamily: "roboto",
                                   //color: Colors.white,
@@ -613,13 +615,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       ),
                     ],
                   ),
-                  if (controller.paymentMethod.value != null)
+                  if (controller.voucherMethod.value != null)
                     ElevatedButton(
                         onPressed: () {
-                          Get.toNamed(Routers.selectPaymentMethod,
-                              arguments: OrderSelectPaymentMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!,
-                                  salestype: controller.salesType.value!));
+                          Get.toNamed(Routers.selectVoucherVoucher,
+                              arguments: OrderSelectVoucherMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!));
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -639,10 +640,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   else
                     ElevatedButton(
                         onPressed: () {
-                          Get.toNamed(Routers.selectPaymentMethod,
-                              arguments: OrderSelectPaymentMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!,
-                                  salestype: controller.salesType.value!));
+                          Get.toNamed(Routers.selectVoucherVoucher,
+                              arguments: OrderSelectVoucherMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!));
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -708,8 +708,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               )),
-                          if (controller.paymentMethod.value?.title != null)
-                            Text(controller.paymentMethod.value?.title ?? "",
+                          if (controller.deliveryMethod.value != null)
+                            Text(
+                                controller.deliveryMethod.value?.provider ?? "",
                                 style: TextStyle(
                                   fontFamily: "roboto",
                                   //color: Colors.white,
@@ -719,13 +720,14 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       ),
                     ],
                   ),
-                  if (controller.paymentMethod.value != null)
+                  if (controller.deliveryMethod.value != null)
                     ElevatedButton(
                         onPressed: () {
-                          Get.toNamed(Routers.selectPaymentMethod,
-                              arguments: OrderSelectPaymentMethodViewArgument(
+                          Get.toNamed(Routers.selectDeliveryMethod,
+                              arguments: OrderSelectDeliveryMethodViewArgument(
                                   outlet: controller.detailOutlet.value!,
-                                  salestype: controller.salesType.value!));
+                                  itemWeight: controller.cartSession.value!
+                                      .transactionData.itemWeight));
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -745,10 +747,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   else
                     ElevatedButton(
                         onPressed: () {
-                          Get.toNamed(Routers.selectPaymentMethod,
-                              arguments: OrderSelectPaymentMethodViewArgument(
+                          Get.toNamed(Routers.selectDeliveryMethod,
+                              arguments: OrderSelectDeliveryMethodViewArgument(
                                   outlet: controller.detailOutlet.value!,
-                                  salestype: controller.salesType.value!));
+                                  itemWeight: controller.cartSession.value!
+                                      .transactionData.itemWeight));
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,

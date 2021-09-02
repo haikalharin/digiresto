@@ -343,7 +343,8 @@ class __$DeliveryInquiryBodyParamCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_DeliveryInquiryBodyParam implements _DeliveryInquiryBodyParam {
   const _$_DeliveryInquiryBodyParam(
       {required this.customer, required this.weight});

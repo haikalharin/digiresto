@@ -54,7 +54,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
               shrinkWrap: true,
               itemCount: r.response.length,
               itemBuilder: (context, index) =>
-                  _buildItemList(context, r.response[index]),
+                  _buildItemList(r.response[index]),
               separatorBuilder: (context, index) => SizedBox(height: 5),
             );
           }, orElse: () {
@@ -87,7 +87,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
         }));
   }
 
-  Widget _buildItemList(context, PaymentMethodDataResponse item) {
+  Widget _buildItemList(PaymentMethodDataResponse item) {
     String title = item.title.replaceAll('%1\$s', Strings.appName);
     return Container(
       color: Colors.white,
@@ -109,17 +109,19 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                   : Container(),
             ],
           ),
-          FlatButton(
+          ElevatedButton(
               onPressed: () {
-                //_orderStore.setPaymentMethod(item);
-                Navigator.of(context).pop();
+                //save to local
+                Get.back();
               },
-              color: Colors.white,
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(5.0),
-                side: BorderSide(
-                  width: 1,
-                  color: AppColors.red,
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(5.0),
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.red,
+                  ),
                 ),
               ),
               child: Text('Pilih',

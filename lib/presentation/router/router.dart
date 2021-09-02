@@ -16,6 +16,7 @@ import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/order/detailOutlet.dart';
+import 'package:digiresto/presentation/order/selectDeliveryMethod.dart';
 import 'package:digiresto/presentation/order/selectPaymentMethod.dart';
 import 'package:digiresto/presentation/order/selectVoucherMethod.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
@@ -127,6 +128,6 @@ class Routers {
         page: () => SelectVouchertMethodScreen()),
     GetPage(
         name: Routers.selectDeliveryMethod,
-        page: () => SelectVouchertMethodScreen())
+        page: () => SelectDeliveryMethodScreen())
   ];
 }

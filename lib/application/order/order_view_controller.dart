@@ -1,6 +1,6 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
-import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
@@ -24,7 +24,8 @@ class OrderViewController extends GetxController {
   Rxn<OrderDetailViewArgument> outlet = Rxn<OrderDetailViewArgument>();
 
   var orderSalesTypes = "".obs;
-  Rx<DeliveryMethod> selectedDeliveryMethod = DeliveryMethod(name: "").obs;
+  Rxn<DeliveryMethodDataResponse> selectedDeliveryMethod =
+      Rxn<DeliveryMethodDataResponse>();
   Rx<TransactionMobile> transaction = TransactionMobile().obs;
   Rxn<DetailOutletDataResponse> detailOutlet = Rxn<DetailOutletDataResponse>();
   Rxn<List<OutletProductCategoryDataResponse>> listCategory =

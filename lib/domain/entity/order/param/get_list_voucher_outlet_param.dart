@@ -13,6 +13,7 @@ String emptyToJson(GetListVoucherOutletParam data) =>
 
 @freezed
 abstract class GetListVoucherOutletParam with _$GetListVoucherOutletParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetListVoucherOutletParam({
     required GetListVoucherOutletQueryParam queryString,
     required GetListVoucherOutletBodyParam body,

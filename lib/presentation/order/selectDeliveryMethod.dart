@@ -1,65 +1,80 @@
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
-import 'package:digiresto/domain/entity/order/delivery_method_model.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
+import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
+import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class SelectDeliveryMethodScreen extends StatelessWidget {
-  // OrderStore _orderStore;
-  // UserStore _userStore;
-
   @override
   Widget build(BuildContext context) {
-    // _orderStore = Provider.of<OrderStore>(context);
-    // _userStore = Provider.of<UserStore>(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text(
-          'Pesan Antar',
-          style: TextStyle(
-            fontFamily: "roboto",
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
-      // body: ListView.separated(
-      //   shrinkWrap: true,
-      //   itemCount: _orderStore.listDeliveryMethod.length,
-      //   itemBuilder: (context, index) =>
-      //       _buildProviderList(context, _orderStore.listDeliveryMethod[index]),
-      //   separatorBuilder: (context, index) => SizedBox(height: 5),
-      // ),
-    );
+    OrderSelectDeliveryMethodViewArgument args =
+        Get.arguments as OrderSelectDeliveryMethodViewArgument;
+    Get.context!.read<OrderBloc>().add(OrderEvent.deliveryInquiry(
+        DeliveryInquiryParam(
+            body: DeliveryInquiryBodyParam(
+                customer: DeliveryInquiryBodyCustomerParam(location: []),
+                weight: args.itemWeight),
+            queryString: DeliveryInquiryQueryParam(
+                outletName: args.outlet.endpointName))));
+    return BlocConsumer<OrderBloc, OrderState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Scaffold(
+              appBar: AppBar(
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                ),
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                title: Text(
+                  'Pesan Antar',
+                  style: TextStyle(
+                    fontFamily: "roboto",
+                    color: Colors.black,
+                  ),
+                ),
+                centerTitle: true,
+                backgroundColor: Colors.white,
+              ),
+              body: state.maybeMap(deliveryInquirySuccess: (r) {
+                return ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: r.response.length,
+                  itemBuilder: (context, index) =>
+                      _buildProviderList(r.response[index]),
+                  separatorBuilder: (context, index) => SizedBox(height: 5),
+                );
+              }, orElse: () {
+                return Container();
+              }));
+        });
   }
 
-  Widget _buildProviderList(context, DeliveryMethod provider) {
+  Widget _buildProviderList(DeliveryMethodDataResponse response) {
     return Container(
       child: Column(
         children: [
-          _buildProviderTitle(context, "provider.name"),
+          _buildProviderTitle(response.provider),
           SizedBox(height: 5),
-          // ListView.separated(
-          //   shrinkWrap: true,
-          //   itemCount: provider.shipmentMethods.length,
-          //   itemBuilder: (context, index) => _buildItemList(
-          //       context, provider.shipmentMethods[index], provider),
-          //   separatorBuilder: (context, index) => SizedBox(height: 5),
-          // ),
+          ListView.separated(
+            shrinkWrap: true,
+            itemCount: response.shipmentMethods.length,
+            itemBuilder: (context, index) =>
+                _buildItemList(response.shipmentMethods[index]),
+            separatorBuilder: (context, index) => SizedBox(height: 5),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildProviderTitle(context, String title) {
+  Widget _buildProviderTitle(String title) {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -73,10 +88,9 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildItemList(
-      context, Map<String, dynamic> item, DeliveryMethod provider) {
-    String description = item['description'] != null
-        ? item['description'].toString() + " - "
+  Widget _buildItemList(DeliveryMethodDataShipmentMethodResponse response) {
+    String description = response.description != null
+        ? response.description.toString() + " - "
         : "";
     return Container(
       color: Colors.white,
@@ -88,7 +102,7 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(item['name'],
+              Text(response.name,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -97,33 +111,27 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
               SizedBox(height: 5),
               Text(
                   description +
-                      (item['price'] > 0
-                          ? Rupiah.format(item['price'].toString())
+                      (response.price > 0
+                          ? Rupiah.format(response.price.toString())
                           : 'Free'),
                   style: TextStyle(
                     color: Colors.black,
                   )),
             ],
           ),
-          FlatButton(
+          ElevatedButton(
               onPressed: () {
-                // _orderStore.setDeliveryMethod({
-                //   'method': item,
-                //   'param': provider.paramString,
-                //   'user': {
-                //     'address': _userStore.activeAddress,
-                //     'addressLat': _userStore.activeAddressLat,
-                //     'addressLng': _userStore.activeAddresslng,
-                //   }
-                // });
-                Navigator.of(context).pop();
+                //save to local
+                Get.back();
               },
-              color: Colors.white,
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(5.0),
-                side: BorderSide(
-                  width: 1,
-                  color: AppColors.red,
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(5.0),
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.red,
+                  ),
                 ),
               ),
               child: Text('Pilih',
