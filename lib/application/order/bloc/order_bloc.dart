@@ -24,7 +24,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
-import 'package:digiresto/domain/entity/order/payment_method.dart';
+import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';

@@ -4535,7 +4535,7 @@ class _$OrderStateTearOff {
   }
 
   _GetPaymentMethodSuccess getPaymentMethodSuccess(
-      List<PaymentMethod> response) {
+      List<PaymentMethodDataResponse> response) {
     return _GetPaymentMethodSuccess(
       response,
     );
@@ -4628,7 +4628,7 @@ mixin _$OrderState {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -4668,7 +4668,8 @@ mixin _$OrderState {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -4838,7 +4839,7 @@ class _$_Initial implements _Initial {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -4881,7 +4882,8 @@ class _$_Initial implements _Initial {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -5054,7 +5056,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -5097,7 +5099,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -5270,7 +5273,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -5313,7 +5316,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -5520,7 +5524,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -5563,7 +5567,8 @@ class _$_LoadFailure implements _LoadFailure {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -5771,7 +5776,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -5814,7 +5819,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -6024,7 +6030,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -6067,7 +6073,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -6277,7 +6284,7 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -6320,7 +6327,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -6528,7 +6536,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -6571,7 +6579,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -6780,7 +6789,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -6823,7 +6832,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -7034,7 +7044,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -7077,7 +7087,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -7289,7 +7300,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -7332,7 +7343,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -7545,7 +7557,7 @@ class _$_GetOutletProductCategorySuccess
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -7588,7 +7600,8 @@ class _$_GetOutletProductCategorySuccess
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -7796,7 +7809,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -7839,7 +7852,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -8055,7 +8069,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -8098,7 +8112,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -8221,7 +8236,7 @@ abstract class _$GetPaymentMethodSuccessCopyWith<$Res> {
   factory _$GetPaymentMethodSuccessCopyWith(_GetPaymentMethodSuccess value,
           $Res Function(_GetPaymentMethodSuccess) then) =
       __$GetPaymentMethodSuccessCopyWithImpl<$Res>;
-  $Res call({List<PaymentMethod> response});
+  $Res call({List<PaymentMethodDataResponse> response});
 }
 
 /// @nodoc
@@ -8244,7 +8259,7 @@ class __$GetPaymentMethodSuccessCopyWithImpl<$Res>
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as List<PaymentMethod>,
+              as List<PaymentMethodDataResponse>,
     ));
   }
 }
@@ -8255,7 +8270,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
   const _$_GetPaymentMethodSuccess(this.response);
 
   @override
-  final List<PaymentMethod> response;
+  final List<PaymentMethodDataResponse> response;
 
   @override
   String toString() {
@@ -8306,7 +8321,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -8349,7 +8364,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -8458,10 +8474,11 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
 }
 
 abstract class _GetPaymentMethodSuccess implements OrderState {
-  const factory _GetPaymentMethodSuccess(List<PaymentMethod> response) =
-      _$_GetPaymentMethodSuccess;
+  const factory _GetPaymentMethodSuccess(
+      List<PaymentMethodDataResponse> response) = _$_GetPaymentMethodSuccess;
 
-  List<PaymentMethod> get response => throw _privateConstructorUsedError;
+  List<PaymentMethodDataResponse> get response =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetPaymentMethodSuccessCopyWith<_GetPaymentMethodSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -8556,7 +8573,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -8599,7 +8616,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -8813,7 +8831,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -8856,7 +8874,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -9071,7 +9090,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -9114,7 +9133,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -9331,7 +9351,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -9374,7 +9394,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -9590,7 +9611,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -9633,7 +9654,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -9850,7 +9872,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -9893,7 +9915,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -10100,7 +10123,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -10143,7 +10166,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -10350,7 +10374,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -10393,7 +10417,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,
@@ -10600,7 +10625,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
     required TResult Function(List<HotPromo> response) getHotPromoSuccess,
     required TResult Function(DetailOutletDataResponse response)
         getDetailOutletSuccess,
-    required TResult Function(List<PaymentMethod> response)
+    required TResult Function(List<PaymentMethodDataResponse> response)
         getPaymentMethodSuccess,
     required TResult Function(List<DeliveryMethod> response)
         deliveryInquirySuccess,
@@ -10643,7 +10668,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         getOutletProductCategorySuccess,
     TResult Function(List<HotPromo> response)? getHotPromoSuccess,
     TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
-    TResult Function(List<PaymentMethod> response)? getPaymentMethodSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
     TResult Function(List<DeliveryMethod> response)? deliveryInquirySuccess,
     TResult Function(CartSessionResponse response)? addCartSuccess,
     TResult Function(CartSessionResponse response)? removeCartSuccess,

@@ -151,7 +151,7 @@ class __$GetPaymentMethodParamCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_GetPaymentMethodParam implements _GetPaymentMethodParam {
   const _$_GetPaymentMethodParam(
       {required this.queryString, required this.body});
@@ -226,12 +226,8 @@ GetPaymentMethodBodyParam _$GetPaymentMethodBodyParamFromJson(
 class _$GetPaymentMethodBodyParamTearOff {
   const _$GetPaymentMethodBodyParamTearOff();
 
-  _GetPaymentMethodBodyParam call(
-      {required String customerPhone, required String finalAmount}) {
-    return _GetPaymentMethodBodyParam(
-      customerPhone: customerPhone,
-      finalAmount: finalAmount,
-    );
+  _GetPaymentMethodBodyParam call() {
+    return const _GetPaymentMethodBodyParam();
   }
 
   GetPaymentMethodBodyParam fromJson(Map<String, Object> json) {
@@ -244,13 +240,7 @@ const $GetPaymentMethodBodyParam = _$GetPaymentMethodBodyParamTearOff();
 
 /// @nodoc
 mixin _$GetPaymentMethodBodyParam {
-  String get customerPhone => throw _privateConstructorUsedError;
-  String get finalAmount => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $GetPaymentMethodBodyParamCopyWith<GetPaymentMethodBodyParam> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -258,7 +248,6 @@ abstract class $GetPaymentMethodBodyParamCopyWith<$Res> {
   factory $GetPaymentMethodBodyParamCopyWith(GetPaymentMethodBodyParam value,
           $Res Function(GetPaymentMethodBodyParam) then) =
       _$GetPaymentMethodBodyParamCopyWithImpl<$Res>;
-  $Res call({String customerPhone, String finalAmount});
 }
 
 /// @nodoc
@@ -269,33 +258,13 @@ class _$GetPaymentMethodBodyParamCopyWithImpl<$Res>
   final GetPaymentMethodBodyParam _value;
   // ignore: unused_field
   final $Res Function(GetPaymentMethodBodyParam) _then;
-
-  @override
-  $Res call({
-    Object? customerPhone = freezed,
-    Object? finalAmount = freezed,
-  }) {
-    return _then(_value.copyWith(
-      customerPhone: customerPhone == freezed
-          ? _value.customerPhone
-          : customerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      finalAmount: finalAmount == freezed
-          ? _value.finalAmount
-          : finalAmount // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$GetPaymentMethodBodyParamCopyWith<$Res>
-    implements $GetPaymentMethodBodyParamCopyWith<$Res> {
+abstract class _$GetPaymentMethodBodyParamCopyWith<$Res> {
   factory _$GetPaymentMethodBodyParamCopyWith(_GetPaymentMethodBodyParam value,
           $Res Function(_GetPaymentMethodBodyParam) then) =
       __$GetPaymentMethodBodyParamCopyWithImpl<$Res>;
-  @override
-  $Res call({String customerPhone, String finalAmount});
 }
 
 /// @nodoc
@@ -309,68 +278,28 @@ class __$GetPaymentMethodBodyParamCopyWithImpl<$Res>
   @override
   _GetPaymentMethodBodyParam get _value =>
       super._value as _GetPaymentMethodBodyParam;
-
-  @override
-  $Res call({
-    Object? customerPhone = freezed,
-    Object? finalAmount = freezed,
-  }) {
-    return _then(_GetPaymentMethodBodyParam(
-      customerPhone: customerPhone == freezed
-          ? _value.customerPhone
-          : customerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      finalAmount: finalAmount == freezed
-          ? _value.finalAmount
-          : finalAmount // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_GetPaymentMethodBodyParam implements _GetPaymentMethodBodyParam {
-  const _$_GetPaymentMethodBodyParam(
-      {required this.customerPhone, required this.finalAmount});
+  const _$_GetPaymentMethodBodyParam();
 
   factory _$_GetPaymentMethodBodyParam.fromJson(Map<String, dynamic> json) =>
       _$_$_GetPaymentMethodBodyParamFromJson(json);
 
   @override
-  final String customerPhone;
-  @override
-  final String finalAmount;
-
-  @override
   String toString() {
-    return 'GetPaymentMethodBodyParam(customerPhone: $customerPhone, finalAmount: $finalAmount)';
+    return 'GetPaymentMethodBodyParam()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _GetPaymentMethodBodyParam &&
-            (identical(other.customerPhone, customerPhone) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerPhone, customerPhone)) &&
-            (identical(other.finalAmount, finalAmount) ||
-                const DeepCollectionEquality()
-                    .equals(other.finalAmount, finalAmount)));
+    return identical(this, other) || (other is _GetPaymentMethodBodyParam);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(customerPhone) ^
-      const DeepCollectionEquality().hash(finalAmount);
-
-  @JsonKey(ignore: true)
-  @override
-  _$GetPaymentMethodBodyParamCopyWith<_GetPaymentMethodBodyParam>
-      get copyWith =>
-          __$GetPaymentMethodBodyParamCopyWithImpl<_GetPaymentMethodBodyParam>(
-              this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   Map<String, dynamic> toJson() {
@@ -379,21 +308,10 @@ class _$_GetPaymentMethodBodyParam implements _GetPaymentMethodBodyParam {
 }
 
 abstract class _GetPaymentMethodBodyParam implements GetPaymentMethodBodyParam {
-  const factory _GetPaymentMethodBodyParam(
-      {required String customerPhone,
-      required String finalAmount}) = _$_GetPaymentMethodBodyParam;
+  const factory _GetPaymentMethodBodyParam() = _$_GetPaymentMethodBodyParam;
 
   factory _GetPaymentMethodBodyParam.fromJson(Map<String, dynamic> json) =
       _$_GetPaymentMethodBodyParam.fromJson;
-
-  @override
-  String get customerPhone => throw _privateConstructorUsedError;
-  @override
-  String get finalAmount => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$GetPaymentMethodBodyParamCopyWith<_GetPaymentMethodBodyParam>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 GetPaymentMethodQueryParam _$GetPaymentMethodQueryParamFromJson(
@@ -405,9 +323,11 @@ GetPaymentMethodQueryParam _$GetPaymentMethodQueryParamFromJson(
 class _$GetPaymentMethodQueryParamTearOff {
   const _$GetPaymentMethodQueryParamTearOff();
 
-  _GetPaymentMethodQueryParam call({required String bankCode}) {
+  _GetPaymentMethodQueryParam call(
+      {required String outletName, required String salesType}) {
     return _GetPaymentMethodQueryParam(
-      bankCode: bankCode,
+      outletName: outletName,
+      salesType: salesType,
     );
   }
 
@@ -421,7 +341,8 @@ const $GetPaymentMethodQueryParam = _$GetPaymentMethodQueryParamTearOff();
 
 /// @nodoc
 mixin _$GetPaymentMethodQueryParam {
-  String get bankCode => throw _privateConstructorUsedError;
+  String get outletName => throw _privateConstructorUsedError;
+  String get salesType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -434,7 +355,7 @@ abstract class $GetPaymentMethodQueryParamCopyWith<$Res> {
   factory $GetPaymentMethodQueryParamCopyWith(GetPaymentMethodQueryParam value,
           $Res Function(GetPaymentMethodQueryParam) then) =
       _$GetPaymentMethodQueryParamCopyWithImpl<$Res>;
-  $Res call({String bankCode});
+  $Res call({String outletName, String salesType});
 }
 
 /// @nodoc
@@ -448,12 +369,17 @@ class _$GetPaymentMethodQueryParamCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? bankCode = freezed,
+    Object? outletName = freezed,
+    Object? salesType = freezed,
   }) {
     return _then(_value.copyWith(
-      bankCode: bankCode == freezed
-          ? _value.bankCode
-          : bankCode // ignore: cast_nullable_to_non_nullable
+      outletName: outletName == freezed
+          ? _value.outletName
+          : outletName // ignore: cast_nullable_to_non_nullable
+              as String,
+      salesType: salesType == freezed
+          ? _value.salesType
+          : salesType // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -467,7 +393,7 @@ abstract class _$GetPaymentMethodQueryParamCopyWith<$Res>
           $Res Function(_GetPaymentMethodQueryParam) then) =
       __$GetPaymentMethodQueryParamCopyWithImpl<$Res>;
   @override
-  $Res call({String bankCode});
+  $Res call({String outletName, String salesType});
 }
 
 /// @nodoc
@@ -484,12 +410,17 @@ class __$GetPaymentMethodQueryParamCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? bankCode = freezed,
+    Object? outletName = freezed,
+    Object? salesType = freezed,
   }) {
     return _then(_GetPaymentMethodQueryParam(
-      bankCode: bankCode == freezed
-          ? _value.bankCode
-          : bankCode // ignore: cast_nullable_to_non_nullable
+      outletName: outletName == freezed
+          ? _value.outletName
+          : outletName // ignore: cast_nullable_to_non_nullable
+              as String,
+      salesType: salesType == freezed
+          ? _value.salesType
+          : salesType // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -498,31 +429,39 @@ class __$GetPaymentMethodQueryParamCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GetPaymentMethodQueryParam implements _GetPaymentMethodQueryParam {
-  const _$_GetPaymentMethodQueryParam({required this.bankCode});
+  const _$_GetPaymentMethodQueryParam(
+      {required this.outletName, required this.salesType});
 
   factory _$_GetPaymentMethodQueryParam.fromJson(Map<String, dynamic> json) =>
       _$_$_GetPaymentMethodQueryParamFromJson(json);
 
   @override
-  final String bankCode;
+  final String outletName;
+  @override
+  final String salesType;
 
   @override
   String toString() {
-    return 'GetPaymentMethodQueryParam(bankCode: $bankCode)';
+    return 'GetPaymentMethodQueryParam(outletName: $outletName, salesType: $salesType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _GetPaymentMethodQueryParam &&
-            (identical(other.bankCode, bankCode) ||
+            (identical(other.outletName, outletName) ||
                 const DeepCollectionEquality()
-                    .equals(other.bankCode, bankCode)));
+                    .equals(other.outletName, outletName)) &&
+            (identical(other.salesType, salesType) ||
+                const DeepCollectionEquality()
+                    .equals(other.salesType, salesType)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(bankCode);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(outletName) ^
+      const DeepCollectionEquality().hash(salesType);
 
   @JsonKey(ignore: true)
   @override
@@ -538,14 +477,17 @@ class _$_GetPaymentMethodQueryParam implements _GetPaymentMethodQueryParam {
 
 abstract class _GetPaymentMethodQueryParam
     implements GetPaymentMethodQueryParam {
-  const factory _GetPaymentMethodQueryParam({required String bankCode}) =
-      _$_GetPaymentMethodQueryParam;
+  const factory _GetPaymentMethodQueryParam(
+      {required String outletName,
+      required String salesType}) = _$_GetPaymentMethodQueryParam;
 
   factory _GetPaymentMethodQueryParam.fromJson(Map<String, dynamic> json) =
       _$_GetPaymentMethodQueryParam.fromJson;
 
   @override
-  String get bankCode => throw _privateConstructorUsedError;
+  String get outletName => throw _privateConstructorUsedError;
+  @override
+  String get salesType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GetPaymentMethodQueryParamCopyWith<_GetPaymentMethodQueryParam>

@@ -11,6 +11,7 @@ import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
@@ -472,37 +473,54 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Metode Pembayaran",
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            //color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      if ("_orderStore.orderPaymentTypeText" != null)
-                        Text("_orderStore.orderPaymentTypeText",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              //color: Colors.white,
-                              fontSize: 14,
-                            )),
+                      ImageIcon(
+                        AssetImage(
+                          AppAssets.iconTransfeer,
+                        ),
+                        size: 24,
+                        color: AppColors.redD12B34,
+                      ),
+                      SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Metode Pembayaran",
+                              style: TextStyle(
+                                fontFamily: "roboto",
+                                //color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          if (controller.paymentMethod.value?.title != null)
+                            Text(controller.paymentMethod.value?.title ?? "",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  //color: Colors.white,
+                                  fontSize: 14,
+                                )),
+                        ],
+                      ),
                     ],
                   ),
-                  if ("_orderStore.orderPaymentTypeText" != null)
-                    FlatButton(
+                  if (controller.paymentMethod.value != null)
+                    ElevatedButton(
                         onPressed: () {
-                          Navigator.of(Get.context!)
-                              .pushNamed(Routers.selectPaymentMethod);
+                          Get.toNamed(Routers.selectPaymentMethod,
+                              arguments: OrderSelectPaymentMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!,
+                                  salestype: controller.salesType.value!));
                         },
-                        color: Colors.white,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
                           ),
                         ),
                         child: Text('Ubah',
@@ -511,17 +529,129 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               fontWeight: FontWeight.bold,
                             )))
                   else
-                    FlatButton(
+                    ElevatedButton(
                         onPressed: () {
-                          Navigator.of(Get.context!)
-                              .pushNamed(Routers.selectPaymentMethod);
+                          Get.toNamed(Routers.selectPaymentMethod,
+                              arguments: OrderSelectPaymentMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!,
+                                  salestype: controller.salesType.value!));
                         },
-                        color: Colors.white,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
+                          ),
+                        ),
+                        child: Text('Pilih',
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontWeight: FontWeight.bold,
+                            )))
+                ],
+              ),
+            ),
+            Container(
+              color: AppColors.greyStroke,
+              height: 10,
+              width: double.infinity,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _voucherMethod() {
+    return Theme(
+      data: Theme.of(Get.context!).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ImageIcon(
+                        AssetImage(
+                          AppAssets.iconVoucher,
+                        ),
+                        size: 24,
+                        color: AppColors.redD12B34,
+                      ),
+                      SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Voucher Saya",
+                              style: TextStyle(
+                                fontFamily: "roboto",
+                                //color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          if (controller.paymentMethod.value?.title != null)
+                            Text(controller.paymentMethod.value?.title ?? "",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  //color: Colors.white,
+                                  fontSize: 14,
+                                )),
+                        ],
+                      ),
+                    ],
+                  ),
+                  if (controller.paymentMethod.value != null)
+                    ElevatedButton(
+                        onPressed: () {
+                          Get.toNamed(Routers.selectPaymentMethod,
+                              arguments: OrderSelectPaymentMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!,
+                                  salestype: controller.salesType.value!));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
+                          ),
+                        ),
+                        child: Text('Ubah',
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontWeight: FontWeight.bold,
+                            )))
+                  else
+                    ElevatedButton(
+                        onPressed: () {
+                          Get.toNamed(Routers.selectPaymentMethod,
+                              arguments: OrderSelectPaymentMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!,
+                                  salestype: controller.salesType.value!));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
                           ),
                         ),
                         child: Text('Pilih',
@@ -559,37 +689,52 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Pesan Antar",
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            //color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      if ("_orderStore.selectedDeliveryMethod" != null)
-                        Text("_orderStore.selectedDeliveryMethod['name']",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              //color: Colors.white,
-                              fontSize: 14,
-                            )),
+                      ImageIcon(
+                        AssetImage(AppAssets.iconOutletOrderDelivery),
+                        size: 24,
+                        color: AppColors.redD12B34,
+                      ),
+                      SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Pengiriman",
+                              style: TextStyle(
+                                fontFamily: "roboto",
+                                //color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          if (controller.paymentMethod.value?.title != null)
+                            Text(controller.paymentMethod.value?.title ?? "",
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  //color: Colors.white,
+                                  fontSize: 14,
+                                )),
+                        ],
+                      ),
                     ],
                   ),
-                  if ("_orderStore.selectedDeliveryMethod" != null)
-                    FlatButton(
+                  if (controller.paymentMethod.value != null)
+                    ElevatedButton(
                         onPressed: () {
-                          Navigator.of(Get.context!)
-                              .pushNamed(Routers.selectDeliveryMethod);
+                          Get.toNamed(Routers.selectPaymentMethod,
+                              arguments: OrderSelectPaymentMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!,
+                                  salestype: controller.salesType.value!));
                         },
-                        color: Colors.white,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
                           ),
                         ),
                         child: Text('Ubah',
@@ -598,17 +743,21 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               fontWeight: FontWeight.bold,
                             )))
                   else
-                    FlatButton(
+                    ElevatedButton(
                         onPressed: () {
-                          Navigator.of(Get.context!)
-                              .pushNamed(Routers.selectDeliveryMethod);
+                          Get.toNamed(Routers.selectPaymentMethod,
+                              arguments: OrderSelectPaymentMethodViewArgument(
+                                  outlet: controller.detailOutlet.value!,
+                                  salestype: controller.salesType.value!));
                         },
-                        color: Colors.white,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
                           ),
                         ),
                         child: Text('Pilih',
@@ -1275,9 +1424,18 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             ? _ProductOrderCart()
                             : Container(),
                         _notes(),
-                        _useVoucherCode(),
-                        _paymentMethod(),
-                        _deliveryMethod(),
+                        controller.detailOutlet.value != null
+                            ? _useVoucherCode()
+                            : Container(),
+                        controller.detailOutlet.value != null
+                            ? _paymentMethod()
+                            : Container(),
+                        controller.detailOutlet.value != null
+                            ? _voucherMethod()
+                            : Container(),
+                        controller.detailOutlet.value != null
+                            ? _deliveryMethod()
+                            : Container(),
                         controller.cartSession.value != null
                             ? _detailPayment()
                             : Container()

@@ -16,6 +16,8 @@ import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/order/detailOutlet.dart';
+import 'package:digiresto/presentation/order/selectPaymentMethod.dart';
+import 'package:digiresto/presentation/order/selectVoucherMethod.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
 import 'package:get/route_manager.dart';
 
@@ -47,6 +49,7 @@ class Routers {
   static const String orderDetailOutlet = '/order_detail_outlet';
   static const String orderCart = '/order_cart';
   static const String selectPaymentMethod = '/select_payment_method';
+  static const String selectVoucherVoucher = '/select_payment_voucher';
   static const String selectDeliveryMethod = '/select_delivery_method';
   static const String selectSalesTypeMethod = '/select_sales_type_method';
   static const String paymentReceipt = '/payment_receipt';
@@ -115,6 +118,15 @@ class Routers {
         name: Routers.homeOutletCategory,
         page: () => HomeCategoryOutletScreen()),
     GetPage(name: Routers.orderCart, page: () => CartScreen()),
-    GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet())
+    GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet()),
+    GetPage(
+        name: Routers.selectPaymentMethod,
+        page: () => SelectPaymentMethodScreen()),
+    GetPage(
+        name: Routers.selectVoucherVoucher,
+        page: () => SelectVouchertMethodScreen()),
+    GetPage(
+        name: Routers.selectDeliveryMethod,
+        page: () => SelectVouchertMethodScreen())
   ];
 }

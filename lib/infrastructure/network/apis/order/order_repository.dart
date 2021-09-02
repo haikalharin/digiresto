@@ -19,7 +19,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_by_merchant_param
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
-import 'package:digiresto/domain/entity/order/payment_method.dart';
+import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
@@ -156,7 +156,7 @@ class OrderRepository {
     });
   }
 
-  Future<Either<Exception, List<PaymentMethod>>> getPaymentMethod(
+  Future<Either<Exception, List<PaymentMethodDataResponse>>> getPaymentMethod(
       Map<String, dynamic> object) async {
     return await _orderApi.getPaymentMethod(object).then((value) {
       return value;

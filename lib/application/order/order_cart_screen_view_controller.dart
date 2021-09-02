@@ -4,6 +4,7 @@ import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ class OrderCartScreenViewController extends GetxController {
   Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
   var activeAddress = Rxn<UserAddress>();
   var salesType = Rxn<String>();
+  var paymentMethod = Rxn<PaymentMethodDataResponse>();
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),

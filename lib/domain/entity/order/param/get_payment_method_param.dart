@@ -12,7 +12,7 @@ String emptyToJson(GetPaymentMethodParam data) => json.encode(data.toJson());
 
 @freezed
 abstract class GetPaymentMethodParam with _$GetPaymentMethodParam {
-  @JsonSerializable(fieldRename: FieldRename.pascal)
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetPaymentMethodParam({
     required GetPaymentMethodQueryParam queryString,
     required GetPaymentMethodBodyParam body,
@@ -24,10 +24,7 @@ abstract class GetPaymentMethodParam with _$GetPaymentMethodParam {
 
 @freezed
 abstract class GetPaymentMethodBodyParam with _$GetPaymentMethodBodyParam {
-  const factory GetPaymentMethodBodyParam({
-    required String customerPhone,
-    required String finalAmount,
-  }) = _GetPaymentMethodBodyParam;
+  const factory GetPaymentMethodBodyParam() = _GetPaymentMethodBodyParam;
 
   factory GetPaymentMethodBodyParam.fromJson(Map<String, dynamic> json) =>
       _$GetPaymentMethodBodyParamFromJson(json);
@@ -35,9 +32,9 @@ abstract class GetPaymentMethodBodyParam with _$GetPaymentMethodBodyParam {
 
 @freezed
 abstract class GetPaymentMethodQueryParam with _$GetPaymentMethodQueryParam {
-  const factory GetPaymentMethodQueryParam({
-    required String bankCode,
-  }) = _GetPaymentMethodQueryParam;
+  const factory GetPaymentMethodQueryParam(
+      {required String outletName,
+      required String salesType}) = _GetPaymentMethodQueryParam;
 
   factory GetPaymentMethodQueryParam.fromJson(Map<String, dynamic> json) =>
       _$GetPaymentMethodQueryParamFromJson(json);

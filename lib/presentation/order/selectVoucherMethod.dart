@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class SelectPaymentMethodScreen extends StatelessWidget {
+class SelectVouchertMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     OrderSelectPaymentMethodViewArgument args =
@@ -63,7 +63,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
     });
   }
 
-  Widget _showCredits() {
+  Widget _showSubtitle() {
     return BlocProvider<CreditBloc>(
         create: (context) => getIt<CreditBloc>()..add(CreditEvent.started()),
         child: BlocBuilder<CreditBloc, CreditState>(builder: (context, state) {
@@ -104,9 +104,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   )),
-              title.toLowerCase() == "digiresto credits"
-                  ? _showCredits()
-                  : Container(),
+              _showSubtitle()
             ],
           ),
           FlatButton(
