@@ -16,6 +16,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_food_category_widget.dart';
@@ -30,26 +31,9 @@ import 'detailProductDialog.dart';
 
 class DetailOutletScreen extends GetView<OrderViewController> {
   final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
-  //OrderStore _orderStore;
-
-  //bool loadDataApi;
 
   goBack(BuildContext context) {
     Get.back();
-  }
-
-  refresh() {}
-
-  void didChangeDependencies() {
-    // _orderStore = Provider.of<OrderStore>(context);
-
-    // setState(() {
-    //   filterCategory = null;
-    //   searchName = "";
-    //   orderType = _orderStore.orderSalesTypesCode;
-    // });
-    // getDetailOutlet(
-    //     _orderStore.orderOutletName, searchName, filterCategory, page);
   }
 
   Future<void> _showDialogSalesType() async {
@@ -316,6 +300,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                     .add(OrderEvent.setSalesTypeCart(r.response.salesTypes[0]));
               }
               controller.detailOutlet.value = r.response;
+              controller.isLoading.value = false;
             },
             getOutletListProductSuccess: (r) {
               controller.listProduct.value = r.response;
@@ -342,77 +327,89 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               controller.salesType.value = r.value;
             },
             loadFailure: (e) {
-              e.e.maybeMap(salesTypeNull: (e) {}, orElse: () {});
+              e.e.maybeMap(
+                  salesTypeNull: (e) {},
+                  getDetailOutletFail: (e) {
+                    Get.back();
+                  },
+                  orElse: () {});
             },
             orElse: () {});
       },
       builder: (context, state) {
-        return DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            body: Column(
-              children: [
-                TopBackgound(backgroundColor: AppColors.red),
-                controller.detailOutlet.value != null
-                    ? _header(controller.detailOutlet.value!)
-                    : Container(),
-                TabBar(
-                    onTap: (index) {
-                      controller.indexTabBar.value = index;
-                    },
-                    tabs: [
-                      Obx((() => Tab(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(
-                                    AssetImage(AppAssets.iconOutletOverview),
-                                    color: controller.indexTabBar.value == 0
-                                        ? AppColors.redTabBar
-                                        : AppColors.greyCOC0C0),
-                                SizedBox(
-                                  width: 5,
+        return StackWithProgress(
+          isLoading: controller.isLoading.value,
+          children: [
+            DefaultTabController(
+              length: 2,
+              child: Scaffold(
+                body: Column(
+                  children: [
+                    TopBackgound(backgroundColor: AppColors.red),
+                    controller.detailOutlet.value != null
+                        ? _header(controller.detailOutlet.value!)
+                        : Container(),
+                    TabBar(
+                        onTap: (index) {
+                          controller.indexTabBar.value = index;
+                        },
+                        tabs: [
+                          Obx((() => Tab(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ImageIcon(
+                                        AssetImage(
+                                            AppAssets.iconOutletOverview),
+                                        color: controller.indexTabBar.value == 0
+                                            ? AppColors.redTabBar
+                                            : AppColors.greyCOC0C0),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Overview",
+                                      style: controller.indexTabBar.value == 0
+                                          ? AppFont.textRed14Bold
+                                          : AppFont.textGrey14Bold,
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "Overview",
-                                  style: controller.indexTabBar.value == 0
-                                      ? AppFont.textRed14Bold
-                                      : AppFont.textGrey14Bold,
-                                )
-                              ],
-                            ),
-                          ))),
-                      Obx((() => Tab(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(
-                                    AssetImage(AppAssets.iconOutletOverview),
-                                    color: controller.indexTabBar.value == 1
-                                        ? AppColors.redTabBar
-                                        : AppColors.greyCOC0C0),
-                                SizedBox(
-                                  width: 5,
+                              ))),
+                          Obx((() => Tab(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ImageIcon(
+                                        AssetImage(
+                                            AppAssets.iconOutletOverview),
+                                        color: controller.indexTabBar.value == 1
+                                            ? AppColors.redTabBar
+                                            : AppColors.greyCOC0C0),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Menu",
+                                      style: controller.indexTabBar.value == 1
+                                          ? AppFont.textRed14Bold
+                                          : AppFont.textGrey14Bold,
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "Menu",
-                                  style: controller.indexTabBar.value == 1
-                                      ? AppFont.textRed14Bold
-                                      : AppFont.textGrey14Bold,
-                                )
-                              ],
-                            ),
-                          ))),
-                    ]),
-                Expanded(
-                  child: TabBarView(children: [
-                    _BodyOutletOverview(),
-                    _BodyOutletMenu(),
-                  ]),
+                              ))),
+                        ]),
+                    Expanded(
+                      child: TabBarView(children: [
+                        _BodyOutletOverview(),
+                        _BodyOutletMenu(),
+                      ]),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            )
+          ],
         );
       },
     );

@@ -1421,13 +1421,16 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 page: 1))));
   }
 
-  void getSalesTypeOrder() {
+  void getCartCache() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethodID());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDeliveryMethodID());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
     Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
   }
 
   @override
   Widget build(BuildContext context) {
-    getSalesTypeOrder();
+    getCartCache();
     getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
@@ -1498,7 +1501,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         controller.detailOutlet.value != null
                             ? _voucherMethod()
                             : Container(),
-                        controller.detailOutlet.value != null
+                        controller.detailOutlet.value != null &&
+                                controller.salesType.value == "onlineDriver"
                             ? _deliveryMethod()
                             : Container(),
                         controller.cartSession.value != null

@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class OrderViewController extends GetxController {
+  var isLoading = true.obs;
   var page = 1.obs;
   var categoryId = "".obs;
   var search = "".obs;
