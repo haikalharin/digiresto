@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
+import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -11,7 +14,88 @@ class OrderLocal {
   final IStorage _storage;
   final String _sessionIdKey = "sessionId";
   final String _salesTypeIdKey = "salesTypeId";
+  final String _paymentMethodKey = "paymentMethod";
+  final String _deliveryMethodKey = "deliveryMethodKey";
+  final String _voucherMethodKey = "voucherMethodKey";
   OrderLocal(this._storage);
+
+  Future<PaymentMethodDataResponse?> setPaymentMethod(
+      PaymentMethodDataResponse data) async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(key: _paymentMethodKey, object: data.toJson());
+      final object = _storage.getJson(key: _paymentMethodKey);
+      final model = PaymentMethodDataResponse.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<PaymentMethodDataResponse?> getPaymentMethod() async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(key: _paymentMethodKey);
+      final model = PaymentMethodDataResponse.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<DeliveryMethodDataResponse?> setDeliveryMethod(
+      DeliveryMethodDataResponse data) async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(key: _deliveryMethodKey, object: data.toJson());
+      final object = _storage.getJson(key: _deliveryMethodKey);
+      final model = DeliveryMethodDataResponse.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<DeliveryMethodDataResponse?> getDeliveryMethod() async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(key: _deliveryMethodKey);
+      final model = DeliveryMethodDataResponse.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<GetListVoucherOutletDataResponse?> setVoucherMethod(
+      GetListVoucherOutletDataResponse data) async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(key: _voucherMethodKey, object: data.toJson());
+      final object = _storage.getJson(key: _voucherMethodKey);
+      final model = GetListVoucherOutletDataResponse.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<GetListVoucherOutletDataResponse?> getVoucherMethod() async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(key: _voucherMethodKey);
+      final model = GetListVoucherOutletDataResponse.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
 
   Future<UpdateCartSessionBodyParam?> setProduct(
       CreateUpdateCartSessionItemParam object,

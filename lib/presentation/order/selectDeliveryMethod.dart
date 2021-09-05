@@ -66,7 +66,7 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
             shrinkWrap: true,
             itemCount: response.shipmentMethods.length,
             itemBuilder: (context, index) =>
-                _buildItemList(response.shipmentMethods[index]),
+                _buildItemList(response.shipmentMethods[index], response),
             separatorBuilder: (context, index) => SizedBox(height: 5),
           ),
         ],
@@ -88,9 +88,10 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildItemList(DeliveryMethodDataShipmentMethodResponse response) {
-    String description = response.description != null
-        ? response.description.toString() + " - "
+  Widget _buildItemList(DeliveryMethodDataShipmentMethodResponse shipment,
+      DeliveryMethodDataResponse response) {
+    String description = shipment.description != null
+        ? shipment.description.toString() + " - "
         : "";
     return Container(
       color: Colors.white,
@@ -111,8 +112,8 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
               SizedBox(height: 5),
               Text(
                   description +
-                      (response.price > 0
-                          ? Rupiah.format(response.price.toString())
+                      (shipment.price > 0
+                          ? Rupiah.format(shipment.price.toString())
                           : 'Free'),
                   style: TextStyle(
                     color: Colors.black,
@@ -122,6 +123,12 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 //save to local
+                final deliveryMethod = response;
+                deliveryMethod.shipmentMethods.clear();
+                deliveryMethod.shipmentMethods.add(shipment);
+                Get.context!
+                    .read<OrderBloc>()
+                    .add(OrderEvent.setDeliveryMethodID(deliveryMethod));
                 Get.back();
               },
               style: ElevatedButton.styleFrom(

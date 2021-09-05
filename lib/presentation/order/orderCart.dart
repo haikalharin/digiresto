@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
+import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -27,10 +28,6 @@ import 'package:intl/intl.dart';
 import 'detailProductDialog.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
-  // UserStore _userStore;
-  // OrderStore _orderStore;
-  //TransactionStore _transactionStore;
-
   void loadingAdd() {
     controller.loading.value.add();
   }
@@ -460,6 +457,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   }
 
   Widget _paymentMethod() {
+    String? title = controller.paymentMethod.value?.title
+        .replaceAll('%1\$s', Strings.appName);
     return Theme(
       data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
@@ -496,8 +495,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               )),
-                          if (controller.paymentMethod.value?.title != null)
-                            Text(controller.paymentMethod.value?.title ?? "",
+                          if (title != null)
+                            Text(title,
                                 style: TextStyle(
                                   fontFamily: "roboto",
                                   //color: Colors.white,
@@ -511,9 +510,17 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     ElevatedButton(
                         onPressed: () {
                           Get.toNamed(Routers.selectPaymentMethod,
-                              arguments: OrderSelectPaymentMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!,
-                                  salestype: controller.salesType.value!));
+                                  arguments:
+                                      OrderSelectPaymentMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!,
+                                          salestype:
+                                              controller.salesType.value!))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getPaymentMethodID());
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -534,9 +541,17 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     ElevatedButton(
                         onPressed: () {
                           Get.toNamed(Routers.selectPaymentMethod,
-                              arguments: OrderSelectPaymentMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!,
-                                  salestype: controller.salesType.value!));
+                                  arguments:
+                                      OrderSelectPaymentMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!,
+                                          salestype:
+                                              controller.salesType.value!))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getPaymentMethodID());
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -619,8 +634,16 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     ElevatedButton(
                         onPressed: () {
                           Get.toNamed(Routers.selectVoucherVoucher,
-                              arguments: OrderSelectVoucherMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!));
+                                  arguments:
+                                      OrderSelectVoucherMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getVoucherMethodID());
+                          });
+                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -641,8 +664,16 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     ElevatedButton(
                         onPressed: () {
                           Get.toNamed(Routers.selectVoucherVoucher,
-                              arguments: OrderSelectVoucherMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!));
+                                  arguments:
+                                      OrderSelectVoucherMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getVoucherMethodID());
+                          });
+                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -724,10 +755,21 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     ElevatedButton(
                         onPressed: () {
                           Get.toNamed(Routers.selectDeliveryMethod,
-                              arguments: OrderSelectDeliveryMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!,
-                                  itemWeight: controller.cartSession.value!
-                                      .transactionData.itemWeight));
+                                  arguments:
+                                      OrderSelectDeliveryMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!,
+                                          itemWeight: controller
+                                              .cartSession
+                                              .value!
+                                              .transactionData
+                                              .itemWeight))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getDeliveryMethodID());
+                          });
+                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -748,10 +790,21 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     ElevatedButton(
                         onPressed: () {
                           Get.toNamed(Routers.selectDeliveryMethod,
-                              arguments: OrderSelectDeliveryMethodViewArgument(
-                                  outlet: controller.detailOutlet.value!,
-                                  itemWeight: controller.cartSession.value!
-                                      .transactionData.itemWeight));
+                                  arguments:
+                                      OrderSelectDeliveryMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!,
+                                          itemWeight: controller
+                                              .cartSession
+                                              .value!
+                                              .transactionData
+                                              .itemWeight))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getDeliveryMethodID());
+                          });
+                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -1395,6 +1448,15 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             },
             getSalesTypeCartSuccess: (r) {
               controller.salesType.value = r.value;
+            },
+            getPaymentMethodIDSuccess: (r) {
+              controller.paymentMethod.value = r.data;
+            },
+            getDeliveryMethodIDSuccess: (r) {
+              controller.deliveryMethod.value = r.data;
+            },
+            getVoucherMethodIDSuccess: (r) {
+              controller.voucherMethod.value = r.data;
             },
             orElse: () {});
       },

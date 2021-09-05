@@ -112,6 +112,9 @@ class SelectPaymentMethodScreen extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 //save to local
+                Get.context!
+                    .read<OrderBloc>()
+                    .add(OrderEvent.setPaymentMethodID(item));
                 Get.back();
               },
               style: ElevatedButton.styleFrom(

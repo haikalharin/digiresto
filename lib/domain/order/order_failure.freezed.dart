@@ -91,6 +91,30 @@ class _$OrderFailureTearOff {
   _CheckoutCartFail checkoutCartFail() {
     return const _CheckoutCartFail();
   }
+
+  _SetPaymentMethodIDFail setPaymentMethodIDFail() {
+    return const _SetPaymentMethodIDFail();
+  }
+
+  _GetPaymentMethodIDFail getPaymentMethodIDFail() {
+    return const _GetPaymentMethodIDFail();
+  }
+
+  _SetDeliveryMethodIDFail setDeliveryMethodIDFail() {
+    return const _SetDeliveryMethodIDFail();
+  }
+
+  _GetDeliveryMethodIDFail getDeliveryMethodIDFail() {
+    return const _GetDeliveryMethodIDFail();
+  }
+
+  _SetVoucherMethodIDFail setVoucherMethodIDFail() {
+    return const _SetVoucherMethodIDFail();
+  }
+
+  _GetVoucherMethodIDFail getVoucherMethodIDFail() {
+    return const _GetVoucherMethodIDFail();
+  }
 }
 
 /// @nodoc
@@ -119,6 +143,12 @@ mixin _$OrderFailure {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -142,6 +172,12 @@ mixin _$OrderFailure {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -175,6 +211,18 @@ mixin _$OrderFailure {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -199,6 +247,12 @@ mixin _$OrderFailure {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -279,6 +333,12 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return salesTypeNull();
   }
@@ -305,6 +365,12 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (salesTypeNull != null) {
@@ -344,6 +410,18 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return salesTypeNull(this);
   }
@@ -371,6 +449,12 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (salesTypeNull != null) {
@@ -444,6 +528,12 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getOutletByLocationFail();
   }
@@ -470,6 +560,12 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletByLocationFail != null) {
@@ -509,6 +605,18 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getOutletByLocationFail(this);
   }
@@ -536,6 +644,12 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletByLocationFail != null) {
@@ -609,6 +723,12 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getOutletByCategoryFail();
   }
@@ -635,6 +755,12 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletByCategoryFail != null) {
@@ -674,6 +800,18 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getOutletByCategoryFail(this);
   }
@@ -701,6 +839,12 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletByCategoryFail != null) {
@@ -774,6 +918,12 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getOutletByMerchantFail();
   }
@@ -800,6 +950,12 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletByMerchantFail != null) {
@@ -839,6 +995,18 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getOutletByMerchantFail(this);
   }
@@ -866,6 +1034,12 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletByMerchantFail != null) {
@@ -938,6 +1112,12 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getListPromoOutletFail();
   }
@@ -964,6 +1144,12 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getListPromoOutletFail != null) {
@@ -1003,6 +1189,18 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getListPromoOutletFail(this);
   }
@@ -1030,6 +1228,12 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getListPromoOutletFail != null) {
@@ -1103,6 +1307,12 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getListVoucherOutletFail();
   }
@@ -1129,6 +1339,12 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getListVoucherOutletFail != null) {
@@ -1168,6 +1384,18 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getListVoucherOutletFail(this);
   }
@@ -1195,6 +1423,12 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getListVoucherOutletFail != null) {
@@ -1267,6 +1501,12 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getOutletListProductFail();
   }
@@ -1293,6 +1533,12 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletListProductFail != null) {
@@ -1332,6 +1578,18 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getOutletListProductFail(this);
   }
@@ -1359,6 +1617,12 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletListProductFail != null) {
@@ -1434,6 +1698,12 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getOutletProductCategoryFail();
   }
@@ -1460,6 +1730,12 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletProductCategoryFail != null) {
@@ -1499,6 +1775,18 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getOutletProductCategoryFail(this);
   }
@@ -1526,6 +1814,12 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getOutletProductCategoryFail != null) {
@@ -1599,6 +1893,12 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getPromoOutletFail();
   }
@@ -1625,6 +1925,12 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getPromoOutletFail != null) {
@@ -1664,6 +1970,18 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getPromoOutletFail(this);
   }
@@ -1691,6 +2009,12 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getPromoOutletFail != null) {
@@ -1763,6 +2087,12 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getHotPromoFail();
   }
@@ -1789,6 +2119,12 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getHotPromoFail != null) {
@@ -1828,6 +2164,18 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getHotPromoFail(this);
   }
@@ -1855,6 +2203,12 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getHotPromoFail != null) {
@@ -1927,6 +2281,12 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getDetailOutletFail();
   }
@@ -1953,6 +2313,12 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getDetailOutletFail != null) {
@@ -1992,6 +2358,18 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getDetailOutletFail(this);
   }
@@ -2019,6 +2397,12 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getDetailOutletFail != null) {
@@ -2091,6 +2475,12 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getPaymentMethodFail();
   }
@@ -2117,6 +2507,12 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getPaymentMethodFail != null) {
@@ -2156,6 +2552,18 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getPaymentMethodFail(this);
   }
@@ -2183,6 +2591,12 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getPaymentMethodFail != null) {
@@ -2255,6 +2669,12 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return deliveryInquiryFail();
   }
@@ -2281,6 +2701,12 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (deliveryInquiryFail != null) {
@@ -2320,6 +2746,18 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return deliveryInquiryFail(this);
   }
@@ -2347,6 +2785,12 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (deliveryInquiryFail != null) {
@@ -2419,6 +2863,12 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return createCartSessionFail();
   }
@@ -2445,6 +2895,12 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (createCartSessionFail != null) {
@@ -2484,6 +2940,18 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return createCartSessionFail(this);
   }
@@ -2511,6 +2979,12 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (createCartSessionFail != null) {
@@ -2582,6 +3056,12 @@ class _$_AddCartFail implements _AddCartFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return addCartFail();
   }
@@ -2608,6 +3088,12 @@ class _$_AddCartFail implements _AddCartFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (addCartFail != null) {
@@ -2647,6 +3133,18 @@ class _$_AddCartFail implements _AddCartFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return addCartFail(this);
   }
@@ -2674,6 +3172,12 @@ class _$_AddCartFail implements _AddCartFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (addCartFail != null) {
@@ -2746,6 +3250,12 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return removeCartFail();
   }
@@ -2772,6 +3282,12 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (removeCartFail != null) {
@@ -2811,6 +3327,18 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return removeCartFail(this);
   }
@@ -2838,6 +3366,12 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (removeCartFail != null) {
@@ -2910,6 +3444,12 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return getCartSessionFail();
   }
@@ -2936,6 +3476,12 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getCartSessionFail != null) {
@@ -2975,6 +3521,18 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return getCartSessionFail(this);
   }
@@ -3002,6 +3560,12 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (getCartSessionFail != null) {
@@ -3074,6 +3638,12 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return updateCartSessionFail();
   }
@@ -3100,6 +3670,12 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (updateCartSessionFail != null) {
@@ -3139,6 +3715,18 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return updateCartSessionFail(this);
   }
@@ -3166,6 +3754,12 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (updateCartSessionFail != null) {
@@ -3238,6 +3832,12 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
     required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
   }) {
     return checkoutCartFail();
   }
@@ -3264,6 +3864,12 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
     TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (checkoutCartFail != null) {
@@ -3303,6 +3909,18 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     required TResult Function(_UpdateCartSessionFail value)
         updateCartSessionFail,
     required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
   }) {
     return checkoutCartFail(this);
   }
@@ -3330,6 +3948,12 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
     TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
     required TResult orElse(),
   }) {
     if (checkoutCartFail != null) {
@@ -3341,4 +3965,1170 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
 
 abstract class _CheckoutCartFail implements OrderFailure {
   const factory _CheckoutCartFail() = _$_CheckoutCartFail;
+}
+
+/// @nodoc
+abstract class _$SetPaymentMethodIDFailCopyWith<$Res> {
+  factory _$SetPaymentMethodIDFailCopyWith(_SetPaymentMethodIDFail value,
+          $Res Function(_SetPaymentMethodIDFail) then) =
+      __$SetPaymentMethodIDFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SetPaymentMethodIDFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$SetPaymentMethodIDFailCopyWith<$Res> {
+  __$SetPaymentMethodIDFailCopyWithImpl(_SetPaymentMethodIDFail _value,
+      $Res Function(_SetPaymentMethodIDFail) _then)
+      : super(_value, (v) => _then(v as _SetPaymentMethodIDFail));
+
+  @override
+  _SetPaymentMethodIDFail get _value => super._value as _SetPaymentMethodIDFail;
+}
+
+/// @nodoc
+
+class _$_SetPaymentMethodIDFail implements _SetPaymentMethodIDFail {
+  const _$_SetPaymentMethodIDFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.setPaymentMethodIDFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SetPaymentMethodIDFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return setPaymentMethodIDFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (setPaymentMethodIDFail != null) {
+      return setPaymentMethodIDFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return setPaymentMethodIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (setPaymentMethodIDFail != null) {
+      return setPaymentMethodIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetPaymentMethodIDFail implements OrderFailure {
+  const factory _SetPaymentMethodIDFail() = _$_SetPaymentMethodIDFail;
+}
+
+/// @nodoc
+abstract class _$GetPaymentMethodIDFailCopyWith<$Res> {
+  factory _$GetPaymentMethodIDFailCopyWith(_GetPaymentMethodIDFail value,
+          $Res Function(_GetPaymentMethodIDFail) then) =
+      __$GetPaymentMethodIDFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetPaymentMethodIDFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$GetPaymentMethodIDFailCopyWith<$Res> {
+  __$GetPaymentMethodIDFailCopyWithImpl(_GetPaymentMethodIDFail _value,
+      $Res Function(_GetPaymentMethodIDFail) _then)
+      : super(_value, (v) => _then(v as _GetPaymentMethodIDFail));
+
+  @override
+  _GetPaymentMethodIDFail get _value => super._value as _GetPaymentMethodIDFail;
+}
+
+/// @nodoc
+
+class _$_GetPaymentMethodIDFail implements _GetPaymentMethodIDFail {
+  const _$_GetPaymentMethodIDFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.getPaymentMethodIDFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetPaymentMethodIDFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return getPaymentMethodIDFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (getPaymentMethodIDFail != null) {
+      return getPaymentMethodIDFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return getPaymentMethodIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (getPaymentMethodIDFail != null) {
+      return getPaymentMethodIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetPaymentMethodIDFail implements OrderFailure {
+  const factory _GetPaymentMethodIDFail() = _$_GetPaymentMethodIDFail;
+}
+
+/// @nodoc
+abstract class _$SetDeliveryMethodIDFailCopyWith<$Res> {
+  factory _$SetDeliveryMethodIDFailCopyWith(_SetDeliveryMethodIDFail value,
+          $Res Function(_SetDeliveryMethodIDFail) then) =
+      __$SetDeliveryMethodIDFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SetDeliveryMethodIDFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$SetDeliveryMethodIDFailCopyWith<$Res> {
+  __$SetDeliveryMethodIDFailCopyWithImpl(_SetDeliveryMethodIDFail _value,
+      $Res Function(_SetDeliveryMethodIDFail) _then)
+      : super(_value, (v) => _then(v as _SetDeliveryMethodIDFail));
+
+  @override
+  _SetDeliveryMethodIDFail get _value =>
+      super._value as _SetDeliveryMethodIDFail;
+}
+
+/// @nodoc
+
+class _$_SetDeliveryMethodIDFail implements _SetDeliveryMethodIDFail {
+  const _$_SetDeliveryMethodIDFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.setDeliveryMethodIDFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SetDeliveryMethodIDFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return setDeliveryMethodIDFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (setDeliveryMethodIDFail != null) {
+      return setDeliveryMethodIDFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return setDeliveryMethodIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (setDeliveryMethodIDFail != null) {
+      return setDeliveryMethodIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetDeliveryMethodIDFail implements OrderFailure {
+  const factory _SetDeliveryMethodIDFail() = _$_SetDeliveryMethodIDFail;
+}
+
+/// @nodoc
+abstract class _$GetDeliveryMethodIDFailCopyWith<$Res> {
+  factory _$GetDeliveryMethodIDFailCopyWith(_GetDeliveryMethodIDFail value,
+          $Res Function(_GetDeliveryMethodIDFail) then) =
+      __$GetDeliveryMethodIDFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetDeliveryMethodIDFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$GetDeliveryMethodIDFailCopyWith<$Res> {
+  __$GetDeliveryMethodIDFailCopyWithImpl(_GetDeliveryMethodIDFail _value,
+      $Res Function(_GetDeliveryMethodIDFail) _then)
+      : super(_value, (v) => _then(v as _GetDeliveryMethodIDFail));
+
+  @override
+  _GetDeliveryMethodIDFail get _value =>
+      super._value as _GetDeliveryMethodIDFail;
+}
+
+/// @nodoc
+
+class _$_GetDeliveryMethodIDFail implements _GetDeliveryMethodIDFail {
+  const _$_GetDeliveryMethodIDFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.getDeliveryMethodIDFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetDeliveryMethodIDFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return getDeliveryMethodIDFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (getDeliveryMethodIDFail != null) {
+      return getDeliveryMethodIDFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return getDeliveryMethodIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (getDeliveryMethodIDFail != null) {
+      return getDeliveryMethodIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDeliveryMethodIDFail implements OrderFailure {
+  const factory _GetDeliveryMethodIDFail() = _$_GetDeliveryMethodIDFail;
+}
+
+/// @nodoc
+abstract class _$SetVoucherMethodIDFailCopyWith<$Res> {
+  factory _$SetVoucherMethodIDFailCopyWith(_SetVoucherMethodIDFail value,
+          $Res Function(_SetVoucherMethodIDFail) then) =
+      __$SetVoucherMethodIDFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SetVoucherMethodIDFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$SetVoucherMethodIDFailCopyWith<$Res> {
+  __$SetVoucherMethodIDFailCopyWithImpl(_SetVoucherMethodIDFail _value,
+      $Res Function(_SetVoucherMethodIDFail) _then)
+      : super(_value, (v) => _then(v as _SetVoucherMethodIDFail));
+
+  @override
+  _SetVoucherMethodIDFail get _value => super._value as _SetVoucherMethodIDFail;
+}
+
+/// @nodoc
+
+class _$_SetVoucherMethodIDFail implements _SetVoucherMethodIDFail {
+  const _$_SetVoucherMethodIDFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.setVoucherMethodIDFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SetVoucherMethodIDFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return setVoucherMethodIDFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (setVoucherMethodIDFail != null) {
+      return setVoucherMethodIDFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return setVoucherMethodIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (setVoucherMethodIDFail != null) {
+      return setVoucherMethodIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetVoucherMethodIDFail implements OrderFailure {
+  const factory _SetVoucherMethodIDFail() = _$_SetVoucherMethodIDFail;
+}
+
+/// @nodoc
+abstract class _$GetVoucherMethodIDFailCopyWith<$Res> {
+  factory _$GetVoucherMethodIDFailCopyWith(_GetVoucherMethodIDFail value,
+          $Res Function(_GetVoucherMethodIDFail) then) =
+      __$GetVoucherMethodIDFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetVoucherMethodIDFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$GetVoucherMethodIDFailCopyWith<$Res> {
+  __$GetVoucherMethodIDFailCopyWithImpl(_GetVoucherMethodIDFail _value,
+      $Res Function(_GetVoucherMethodIDFail) _then)
+      : super(_value, (v) => _then(v as _GetVoucherMethodIDFail));
+
+  @override
+  _GetVoucherMethodIDFail get _value => super._value as _GetVoucherMethodIDFail;
+}
+
+/// @nodoc
+
+class _$_GetVoucherMethodIDFail implements _GetVoucherMethodIDFail {
+  const _$_GetVoucherMethodIDFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.getVoucherMethodIDFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetVoucherMethodIDFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return getVoucherMethodIDFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (getVoucherMethodIDFail != null) {
+      return getVoucherMethodIDFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return getVoucherMethodIDFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (getVoucherMethodIDFail != null) {
+      return getVoucherMethodIDFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetVoucherMethodIDFail implements OrderFailure {
+  const factory _GetVoucherMethodIDFail() = _$_GetVoucherMethodIDFail;
 }

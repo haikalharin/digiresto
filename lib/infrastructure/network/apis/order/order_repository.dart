@@ -35,6 +35,33 @@ class OrderRepository {
 
   OrderRepository(this._orderApi, this._orderLocal);
 
+  Future<PaymentMethodDataResponse?> setPaymentMethodID(
+      PaymentMethodDataResponse data) async {
+    return _orderLocal.setPaymentMethod(data);
+  }
+
+  Future<PaymentMethodDataResponse?> getPaymentMethodID() async {
+    return _orderLocal.getPaymentMethod();
+  }
+
+  Future<DeliveryMethodDataResponse?> setDeliveryMethodID(
+      DeliveryMethodDataResponse data) async {
+    return _orderLocal.setDeliveryMethod(data);
+  }
+
+  Future<DeliveryMethodDataResponse?> getDeliveryMethodID() async {
+    return _orderLocal.getDeliveryMethod();
+  }
+
+  Future<GetListVoucherOutletDataResponse?> setVoucherMethodID(
+      GetListVoucherOutletDataResponse data) async {
+    return _orderLocal.setVoucherMethod(data);
+  }
+
+  Future<GetListVoucherOutletDataResponse?> getVoucherMethodID() async {
+    return _orderLocal.getVoucherMethod();
+  }
+
   Future<UpdateCartSessionBodyParam?> setProduct(
       CreateUpdateCartSessionItemParam object,
       DetailOutletDataResponse outlet) async {

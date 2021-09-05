@@ -57,4 +57,19 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getSalesTypeCart() = _GetSalesTypeCart;
 
   const factory OrderEvent.setSalesTypeCart(String value) = _SetSalesTypeCart;
+
+  const factory OrderEvent.setPaymentMethodID(PaymentMethodDataResponse data) =
+      _SetPaymentMethodID;
+
+  const factory OrderEvent.getPaymentMethodID() = _GetPaymentMethodID;
+
+  const factory OrderEvent.setDeliveryMethodID(
+      DeliveryMethodDataResponse data) = _SetDeliveryMethodID;
+
+  const factory OrderEvent.getDeliveryMethodID() = _GetDeliveryMethodID;
+
+  const factory OrderEvent.setVoucherMethodID(
+      GetListVoucherOutletDataResponse data) = _SetVoucherMethodID;
+
+  const factory OrderEvent.getVoucherMethodID() = _GetVoucherMethodID;
 }

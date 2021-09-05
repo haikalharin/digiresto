@@ -323,6 +323,58 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (list) => OrderState.checkoutCartSuccess(list),
         );
       },
+      getDeliveryMethodID: (r) async* {
+        final getDeliveryMethodID =
+            await _orderRepository.getDeliveryMethodID();
+        if (getDeliveryMethodID != null) {
+          yield OrderState.getDeliveryMethodIDSuccess(getDeliveryMethodID);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.getDeliveryMethodIDFail());
+        }
+      },
+      setDeliveryMethodID: (r) async* {
+        final setDeliveryMethodID =
+            await _orderRepository.setDeliveryMethodID(r.data);
+        if (setDeliveryMethodID != null) {
+          yield OrderState.setDeliveryMethodIDSuccess(setDeliveryMethodID);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.setDeliveryMethodIDFail());
+        }
+      },
+      getPaymentMethodID: (r) async* {
+        final getPaymentMethodID = await _orderRepository.getPaymentMethodID();
+        if (getPaymentMethodID != null) {
+          yield OrderState.getPaymentMethodIDSuccess(getPaymentMethodID);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.getPaymentMethodIDFail());
+        }
+      },
+      setPaymentMethodID: (r) async* {
+        final setPaymentMethodID =
+            await _orderRepository.setPaymentMethodID(r.data);
+        if (setPaymentMethodID != null) {
+          yield OrderState.setPaymentMethodIDSuccess(setPaymentMethodID);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.setPaymentMethodIDFail());
+        }
+      },
+      getVoucherMethodID: (r) async* {
+        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
+        if (getVoucherMethodID != null) {
+          yield OrderState.getVoucherMethodIDSuccess(getVoucherMethodID);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.getVoucherMethodIDFail());
+        }
+      },
+      setVoucherMethodID: (r) async* {
+        final setVoucherMethodID =
+            await _orderRepository.setVoucherMethodID(r.data);
+        if (setVoucherMethodID != null) {
+          yield OrderState.setVoucherMethodIDSuccess(setVoucherMethodID);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.setVoucherMethodIDFail());
+        }
+      },
     );
   }
 }

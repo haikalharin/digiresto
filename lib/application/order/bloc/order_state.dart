@@ -69,4 +69,22 @@ class OrderState with _$OrderState {
 
   const factory OrderState.setSalesTypeCartSuccess(String value) =
       _SetSalesTypeCartSuccess;
+
+  const factory OrderState.setPaymentMethodIDSuccess(
+      PaymentMethodDataResponse data) = _SetPaymentMethodIDSuccess;
+
+  const factory OrderState.getPaymentMethodIDSuccess(
+      PaymentMethodDataResponse data) = _GetPaymentMethodIDSuccess;
+
+  const factory OrderState.setDeliveryMethodIDSuccess(
+      DeliveryMethodDataResponse data) = _SetDeliveryMethodIDSuccess;
+
+  const factory OrderState.getDeliveryMethodIDSuccess(
+      DeliveryMethodDataResponse data) = _GetDeliveryMethodIDSuccess;
+
+  const factory OrderState.setVoucherMethodIDSuccess(
+      GetListVoucherOutletDataResponse data) = _SetVoucherMethodIDSuccess;
+
+  const factory OrderState.getVoucherMethodIDSuccess(
+      GetListVoucherOutletDataResponse data) = _GetVoucherMethodIDSuccess;
 }

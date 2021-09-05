@@ -85,6 +85,9 @@ class SelectVouchertMethodScreen extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 //save to local
+                Get.context!
+                    .read<OrderBloc>()
+                    .add(OrderEvent.setVoucherMethodID(response));
                 Get.back();
               },
               style: ElevatedButton.styleFrom(

@@ -28,4 +28,12 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.getCartSessionFail() = _GetCartSessionFail;
   const factory OrderFailure.updateCartSessionFail() = _UpdateCartSessionFail;
   const factory OrderFailure.checkoutCartFail() = _CheckoutCartFail;
+  const factory OrderFailure.setPaymentMethodIDFail() = _SetPaymentMethodIDFail;
+  const factory OrderFailure.getPaymentMethodIDFail() = _GetPaymentMethodIDFail;
+  const factory OrderFailure.setDeliveryMethodIDFail() =
+      _SetDeliveryMethodIDFail;
+  const factory OrderFailure.getDeliveryMethodIDFail() =
+      _GetDeliveryMethodIDFail;
+  const factory OrderFailure.setVoucherMethodIDFail() = _SetVoucherMethodIDFail;
+  const factory OrderFailure.getVoucherMethodIDFail() = _GetVoucherMethodIDFail;
 }
