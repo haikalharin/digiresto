@@ -11,6 +11,7 @@ import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
@@ -21,6 +22,7 @@ import 'package:digiresto/domain/order/order_select_voucher_method_view_argument
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
@@ -35,14 +37,6 @@ import 'package:intl/intl.dart';
 import 'detailProductDialog.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
-  void loadingAdd() {
-    controller.loading.value.add();
-  }
-
-  void loadingDelete() {
-    controller.loading.value.delete();
-  }
-
   final ScrollController _scrollController = new ScrollController();
   final notesController = TextEditingController();
   final placeInfoController = TextEditingController();
@@ -650,7 +644,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 .read<OrderBloc>()
                                 .add(OrderEvent.getVoucherMethodID());
                           });
-                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -1418,6 +1411,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           BlocListener<OrderBloc, OrderState>(
             listener: (context, state) {
               state.maybeMap(
+                  addCartSuccess: (r) {
+                    controller.cartSession.value = r.response;
+                    controller.isLoading.value = false;
+                  },
                   getCartSessionSuccess: (r) {
                     controller.cartSession.value = r.response;
                     getDetailOutlet();
@@ -1429,6 +1426,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   getOutletListProductSuccess: (r) {
                     controller.listProduct.value = r.response;
+                    controller.isLoading.value = false;
                   },
                   setSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
@@ -1465,15 +1463,15 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       return;
                     }
 
-                    if (checkoutResponse.receiptCode == "") {
+                    if (checkoutResponse?.receiptCode == "") {
                       Loading.dismiss();
                       print("error response cheeckout 2:");
-                    } else if (checkoutResponse.payment.isCredit) {
+                    } else if (checkoutResponse?.payment.isCredit ?? false) {
                       Get.context!.read<TransactionBloc>().add(
                           TransactionEvent.getTransaction(
-                              checkoutResponse.receiptCode));
+                              checkoutResponse!.receiptCode));
                       Loading.dismiss();
-                    } else if (checkoutResponse.payment.isWebView) {
+                    } else if (checkoutResponse?.payment.isWebView ?? false) {
                       Loading.dismiss();
                       Get.offNamedUntil(
                           Routers.paymentWebView, (route) => false,
@@ -1482,10 +1480,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                   controller.checkoutResponse.value!));
                       // Navigator.of(context).pushNamedAndRemoveUntil(
                       //     Routers.paymentWebView, (_) => false);
-                    } else if (checkoutResponse.payment.isDeeplink) {
+                    } else if (checkoutResponse?.payment.isDeeplink ?? false) {
                       //Need test on real device to simulate open payment app
                       Loading.dismiss();
-                      LaunchUrl.run(checkoutResponse.payment.deeplink,
+                      LaunchUrl.run(checkoutResponse!.payment.deeplink,
                           onError: () {
                         ErrorPopupWidget.show("Error", "App Launch Error", () {
                           Get.offNamedUntil(
@@ -1503,7 +1501,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       });
                     } else {
                       Loading.dismiss();
-                      if (checkoutResponse.payment.paymentCode != null) {
+                      if (checkoutResponse?.payment.paymentCode != null) {
                         Get.offNamedUntil(Routers.paymentVa, (route) => false,
                             arguments: PaymentVAViewArgument(
                                 checkoutDataResponse:
@@ -1558,55 +1556,60 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               body: Column(
                 children: [
                   TopBackgound(backgroundColor: AppColors.red),
-                  Expanded(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height -
-                          MediaQuery.of(context).padding.top,
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        child: Column(
-                          children: [
-                            _HeaderOrderCart(),
-                            controller.detailOutlet.value != null
-                                ? titleDetailOutlet()
-                                : Container(),
-                            controller.salesType.value != null &&
-                                    controller.detailOutlet.value != null
-                                ? _selectSalesTypeMethod()
-                                : Container(),
+                  StackWithProgress(
+                      isLoading: controller.isLoading.value,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height -
+                                MediaQuery.of(context).padding.top,
+                            child: SingleChildScrollView(
+                              controller: _scrollController,
+                              child: Column(
+                                children: [
+                                  _HeaderOrderCart(),
+                                  controller.detailOutlet.value != null
+                                      ? titleDetailOutlet()
+                                      : Container(),
+                                  controller.salesType.value != null &&
+                                          controller.detailOutlet.value != null
+                                      ? _selectSalesTypeMethod()
+                                      : Container(),
 
-                            _AddressOrderCart(),
+                                  _AddressOrderCart(),
 
-                            controller.detailOutlet.value != null &&
-                                    controller.listProduct.value != null
-                                ? _ProductOrderCart()
-                                : Container(),
-                            _notes(),
-                            controller.detailOutlet.value != null
-                                ? _useVoucherCode()
-                                : Container(),
-                            controller.detailOutlet.value != null
-                                ? _paymentMethod()
-                                : Container(),
-                            controller.detailOutlet.value != null
-                                ? _voucherMethod()
-                                : Container(),
-                            controller.detailOutlet.value != null &&
-                                    controller.salesType.value == "onlineDriver"
-                                ? _deliveryMethod()
-                                : Container(),
-                            controller.cartSession.value != null
-                                ? _detailPayment()
-                                : Container()
-                            // Observer(builder: (context) => _paymentMethod()),
-                            // if (_orderStore.orderSalesTypes == 'onlineDriver')
-                            //   Observer(builder: (context) => _deliveryMethod()),
-                            // Observer(builder: (context) => _detailPayment()),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
+                                  controller.detailOutlet.value != null &&
+                                          controller.listProduct.value != null
+                                      ? _ProductOrderCart()
+                                      : Container(),
+                                  _notes(),
+                                  controller.detailOutlet.value != null
+                                      ? _useVoucherCode()
+                                      : Container(),
+                                  controller.detailOutlet.value != null
+                                      ? _paymentMethod()
+                                      : Container(),
+                                  controller.detailOutlet.value != null
+                                      ? _voucherMethod()
+                                      : Container(),
+                                  controller.detailOutlet.value != null &&
+                                          controller.salesType.value ==
+                                              "onlineDriver"
+                                      ? _deliveryMethod()
+                                      : Container(),
+                                  controller.cartSession.value != null
+                                      ? _detailPayment()
+                                      : Container()
+                                  // Observer(builder: (context) => _paymentMethod()),
+                                  // if (_orderStore.orderSalesTypes == 'onlineDriver')
+                                  //   Observer(builder: (context) => _deliveryMethod()),
+                                  // Observer(builder: (context) => _detailPayment()),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ]),
                 ],
               ),
             );
@@ -1642,8 +1645,13 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
   void _plusProduct(int productId, int qty, int price,
       TransactionDataItemResponse detailProduct) {
     controller.reloadCounter.value++;
-
-    //_orderStore.setProduct(productId, qty, price, detailProduct);
+    if (qty != 0) {
+      controller.isLoading.value = true;
+      var productParam = CreateUpdateCartSessionItemParam(
+          modifiers: [], note: '', productId: productId, qty: qty);
+      Get.context!.read<OrderBloc>().add(OrderEvent.addCart(productParam,
+          controller.detailOutlet.value!, controller.salesType.value!));
+    }
   }
 
   _showDetailProduct(TransactionDataItemResponse cartProduct,
@@ -1756,17 +1764,10 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                child: Text(
-                  "Pesanan",
-                  //_orderStore.orderOutlet.detail["name"],
-                  //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    //color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text("Pesanan",
+                    //_orderStore.orderOutlet.detail["name"],
+                    //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
+                    style: AppFont.textBlack14Regular),
               ),
               // Container(
               //   padding: EdgeInsets.only(top: 10),

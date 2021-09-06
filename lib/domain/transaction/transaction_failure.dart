@@ -17,4 +17,7 @@ class TransactionFailure with _$TransactionFailure implements Exception {
 
   const factory TransactionFailure.acceptTransactionFail() =
       _AcceptTransactionFail;
+
+  const factory TransactionFailure.addFavoriteTransactionFail() =
+      _AddFavoriteTransactionFail;
 }

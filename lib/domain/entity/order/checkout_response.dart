@@ -15,7 +15,7 @@ String emptyToJson(CheckoutResponse data) => json.encode(data.toJson());
 abstract class CheckoutResponse with _$CheckoutResponse {
   const factory CheckoutResponse({
     required StatusResponse response,
-    required CheckoutDataResponse data,
+    required CheckoutDataResponse? data,
     required MetaResponse meta,
   }) = _CheckoutResponse;
 

@@ -22,4 +22,7 @@ abstract class TransactionState with _$TransactionState {
 
   const factory TransactionState.acceptTransactionSuccess(
       StatusResponse response) = _AcceptTransactionSuccess;
+
+  const factory TransactionState.addFavoriteTransactionSuccess(bool isSuccess) =
+      _AddFavoriteTransactionSuccess;
 }

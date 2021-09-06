@@ -1,5 +1,4 @@
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
@@ -13,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderCartScreenViewController extends GetxController {
-  var loading = new Loading().obs;
+  var isLoading = true.obs;
   var useSchedule = Rxn<bool>();
   var reloadCounter = 0.obs;
   var selectedDate = Rxn<DateTime>();

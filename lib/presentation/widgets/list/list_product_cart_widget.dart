@@ -78,6 +78,17 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
         itemCount: widget.productCart.length,
         itemBuilder: (BuildContext context, int index) {
           int? price;
+          var productCart = widget.productCart[index];
+
+          void minus() {
+            final initialQty = productCart.qty;
+            productCart = productCart.copyWith(qty: initialQty - 1);
+          }
+
+          void plus() {
+            final initialQty = productCart.qty;
+            productCart = productCart.copyWith(qty: initialQty + 1);
+          }
           //int beforePrice;
           // if (widget.data[index]["detail"]["isUseSalesType"] == true) {
           //   for (int i = 0;
@@ -95,16 +106,15 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
           //   }
           // }
 
-          if (widget.productCart[index] != null) {
-            if (widget.productCart[index].amount <
-                widget.productCart[index].price) {
-              price = widget.productCart[index].amount;
+          if (productCart != null) {
+            if (productCart.amount < productCart.price) {
+              price = productCart.amount;
               //beforePrice = widget.data[index]["detail"]["originalPrice"];
             } else {
-              price = widget.productCart[index].price;
+              price = productCart.price;
             }
           } else {
-            price = widget.productCart[index].price;
+            price = productCart.price;
           }
 
           // _userStore?.setRandomCacheImage(
@@ -112,11 +122,11 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
           // String defaultImage = _userStore!
           //     .getRandomCacheImage(widget.data[index]["id"].toString());
 
-          return widget.productCart[index].categoryCode == "HIDDEN"
+          return productCart.categoryCode == "HIDDEN"
               ? Container()
               : GestureDetector(
-                  onTap: () => widget.runEditAction(
-                      widget.productCart[index], widget.orderType),
+                  onTap: () =>
+                      widget.runEditAction(productCart, widget.orderType),
                   child: Container(
                     decoration: BoxDecoration(
                       //color: Colors.amber[100],
@@ -153,7 +163,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                   padding: const EdgeInsets.only(top: 5),
                                   width:
                                       MediaQuery.of(context).size.width - 200,
-                                  child: Text(widget.productCart[index].title,
+                                  child: Text(productCart.title,
                                       softWrap: false,
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
@@ -203,10 +213,10 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     height: 40,
                                     child: RaisedButton(
                                       onPressed: () {
-                                        print(widget.productCart[index]);
+                                        print(productCart);
                                         print(widget.orderType);
                                         widget.runDetailAction(
-                                          widget.productCart[index],
+                                          productCart,
                                           getMetaProduct(index)!,
                                           widget.orderType,
                                         );
@@ -233,10 +243,10 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     GestureDetector(
                                       onTap: () {
                                         widget.addOrRemove(
-                                            widget.productCart[index].productId,
-                                            widget.productCart[index].qty - 1,
+                                            productCart.productId,
+                                            productCart.qty - 1,
                                             price!,
-                                            widget.productCart[index]);
+                                            productCart);
                                         //minus();
                                       },
                                       child: CircleAvatar(
@@ -250,9 +260,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     Container(
                                       padding:
                                           EdgeInsets.only(left: 5, right: 5),
-                                      child: Text(
-                                          widget.productCart[index].qty
-                                              .toString(),
+                                      child: Text(productCart.qty.toString(),
                                           style: TextStyle(
                                             fontFamily: "roboto",
                                             color: Colors.black,
@@ -264,10 +272,10 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     GestureDetector(
                                       onTap: () {
                                         widget.addOrRemove(
-                                            widget.productCart[index].productId,
-                                            widget.productCart[index].qty + 1,
+                                            productCart.productId,
+                                            productCart.qty + 1,
                                             price!,
-                                            widget.productCart[index]);
+                                            productCart);
                                         //plus();
                                       },
                                       child: CircleAvatar(

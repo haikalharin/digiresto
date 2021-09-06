@@ -16,4 +16,7 @@ abstract class TransactionEvent with _$TransactionEvent {
 
   const factory TransactionEvent.acceptTransaction(String receiptCode) =
       _AcceptTransaction;
+
+  const factory TransactionEvent.addFavoriteTransaction(
+      AddFavoriteTransactionParam request) = _AddFavoriteTransaction;
 }

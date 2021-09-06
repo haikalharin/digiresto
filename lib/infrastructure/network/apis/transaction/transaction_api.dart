@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
+import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:injectable/injectable.dart';
 
@@ -99,6 +100,24 @@ class TransactionApi {
     } catch (e) {
       print(e.toString());
       return null;
+    }
+  }
+
+  Future<bool> addFavoriteTransaction(
+      AddFavoriteTransactionParam request) async {
+    try {
+      String apiUrl = Endpoints.urlAddFavoriteTransaction;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, content: request.toJson());
+      var favoriteTransaction =
+          (apiResult as Map<String, dynamic>)['response']['code'] as String;
+      if (favoriteTransaction != "00") {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (e) {
+      return false;
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
+import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:digiresto/domain/transaction/transaction_failure.dart';
 import 'package:digiresto/infrastructure/network/apis/transaction/transaction_repository.dart';
@@ -66,6 +67,16 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
             TransactionFailure.acceptTransactionFail());
       } else {
         yield TransactionState.acceptTransactionSuccess(acceptTransaction);
+      }
+    }, addFavoriteTransaction: (r) async* {
+      final addFavoriteTransaction =
+          await _transactionRepository.addFavoriteTransaction(r.request);
+      if (addFavoriteTransaction == false) {
+        yield TransactionState.loadFailure(
+            TransactionFailure.addFavoriteTransactionFail());
+      } else {
+        yield TransactionState.addFavoriteTransactionSuccess(
+            addFavoriteTransaction);
       }
     });
   }

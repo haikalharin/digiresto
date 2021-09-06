@@ -22,7 +22,7 @@ class _$CheckoutResponseTearOff {
 
   _CheckoutResponse call(
       {required StatusResponse response,
-      required CheckoutDataResponse data,
+      required CheckoutDataResponse? data,
       required MetaResponse meta}) {
     return _CheckoutResponse(
       response: response,
@@ -42,7 +42,7 @@ const $CheckoutResponse = _$CheckoutResponseTearOff();
 /// @nodoc
 mixin _$CheckoutResponse {
   StatusResponse get response => throw _privateConstructorUsedError;
-  CheckoutDataResponse get data => throw _privateConstructorUsedError;
+  CheckoutDataResponse? get data => throw _privateConstructorUsedError;
   MetaResponse get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,10 +57,10 @@ abstract class $CheckoutResponseCopyWith<$Res> {
           CheckoutResponse value, $Res Function(CheckoutResponse) then) =
       _$CheckoutResponseCopyWithImpl<$Res>;
   $Res call(
-      {StatusResponse response, CheckoutDataResponse data, MetaResponse meta});
+      {StatusResponse response, CheckoutDataResponse? data, MetaResponse meta});
 
   $StatusResponseCopyWith<$Res> get response;
-  $CheckoutDataResponseCopyWith<$Res> get data;
+  $CheckoutDataResponseCopyWith<$Res>? get data;
   $MetaResponseCopyWith<$Res> get meta;
 }
 
@@ -87,7 +87,7 @@ class _$CheckoutResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as CheckoutDataResponse,
+              as CheckoutDataResponse?,
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
@@ -103,8 +103,12 @@ class _$CheckoutResponseCopyWithImpl<$Res>
   }
 
   @override
-  $CheckoutDataResponseCopyWith<$Res> get data {
-    return $CheckoutDataResponseCopyWith<$Res>(_value.data, (value) {
+  $CheckoutDataResponseCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $CheckoutDataResponseCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -125,12 +129,12 @@ abstract class _$CheckoutResponseCopyWith<$Res>
       __$CheckoutResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {StatusResponse response, CheckoutDataResponse data, MetaResponse meta});
+      {StatusResponse response, CheckoutDataResponse? data, MetaResponse meta});
 
   @override
   $StatusResponseCopyWith<$Res> get response;
   @override
-  $CheckoutDataResponseCopyWith<$Res> get data;
+  $CheckoutDataResponseCopyWith<$Res>? get data;
   @override
   $MetaResponseCopyWith<$Res> get meta;
 }
@@ -160,7 +164,7 @@ class __$CheckoutResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as CheckoutDataResponse,
+              as CheckoutDataResponse?,
       meta: meta == freezed
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
@@ -181,7 +185,7 @@ class _$_CheckoutResponse implements _CheckoutResponse {
   @override
   final StatusResponse response;
   @override
-  final CheckoutDataResponse data;
+  final CheckoutDataResponse? data;
   @override
   final MetaResponse meta;
 
@@ -224,7 +228,7 @@ class _$_CheckoutResponse implements _CheckoutResponse {
 abstract class _CheckoutResponse implements CheckoutResponse {
   const factory _CheckoutResponse(
       {required StatusResponse response,
-      required CheckoutDataResponse data,
+      required CheckoutDataResponse? data,
       required MetaResponse meta}) = _$_CheckoutResponse;
 
   factory _CheckoutResponse.fromJson(Map<String, dynamic> json) =
@@ -233,7 +237,7 @@ abstract class _CheckoutResponse implements CheckoutResponse {
   @override
   StatusResponse get response => throw _privateConstructorUsedError;
   @override
-  CheckoutDataResponse get data => throw _privateConstructorUsedError;
+  CheckoutDataResponse? get data => throw _privateConstructorUsedError;
   @override
   MetaResponse get meta => throw _privateConstructorUsedError;
   @override

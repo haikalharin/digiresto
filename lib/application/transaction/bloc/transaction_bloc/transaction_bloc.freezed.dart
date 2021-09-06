@@ -41,6 +41,13 @@ class _$TransactionEventTearOff {
       receiptCode,
     );
   }
+
+  _AddFavoriteTransaction addFavoriteTransaction(
+      AddFavoriteTransactionParam request) {
+    return _AddFavoriteTransaction(
+      request,
+    );
+  }
 }
 
 /// @nodoc
@@ -55,6 +62,8 @@ mixin _$TransactionEvent {
     required TResult Function(String receiptCode) getTransaction,
     required TResult Function(String receiptCode) cancelTransaction,
     required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +73,8 @@ mixin _$TransactionEvent {
     TResult Function(String receiptCode)? getTransaction,
     TResult Function(String receiptCode)? cancelTransaction,
     TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +87,8 @@ mixin _$TransactionEvent {
     required TResult Function(_GetTransaction value) getTransaction,
     required TResult Function(_CancelTransaction value) cancelTransaction,
     required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +98,7 @@ mixin _$TransactionEvent {
     TResult Function(_GetTransaction value)? getTransaction,
     TResult Function(_CancelTransaction value)? cancelTransaction,
     TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -152,6 +166,8 @@ class _$_GetTransactionHistory implements _GetTransactionHistory {
     required TResult Function(String receiptCode) getTransaction,
     required TResult Function(String receiptCode) cancelTransaction,
     required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
   }) {
     return getTransactionHistory();
   }
@@ -164,6 +180,8 @@ class _$_GetTransactionHistory implements _GetTransactionHistory {
     TResult Function(String receiptCode)? getTransaction,
     TResult Function(String receiptCode)? cancelTransaction,
     TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (getTransactionHistory != null) {
@@ -182,6 +200,8 @@ class _$_GetTransactionHistory implements _GetTransactionHistory {
     required TResult Function(_GetTransaction value) getTransaction,
     required TResult Function(_CancelTransaction value) cancelTransaction,
     required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
   }) {
     return getTransactionHistory(this);
   }
@@ -194,6 +214,7 @@ class _$_GetTransactionHistory implements _GetTransactionHistory {
     TResult Function(_GetTransaction value)? getTransaction,
     TResult Function(_CancelTransaction value)? cancelTransaction,
     TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (getTransactionHistory != null) {
@@ -252,6 +273,8 @@ class _$_GetOngoingTransaction implements _GetOngoingTransaction {
     required TResult Function(String receiptCode) getTransaction,
     required TResult Function(String receiptCode) cancelTransaction,
     required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
   }) {
     return getOngoingTransaction();
   }
@@ -264,6 +287,8 @@ class _$_GetOngoingTransaction implements _GetOngoingTransaction {
     TResult Function(String receiptCode)? getTransaction,
     TResult Function(String receiptCode)? cancelTransaction,
     TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (getOngoingTransaction != null) {
@@ -282,6 +307,8 @@ class _$_GetOngoingTransaction implements _GetOngoingTransaction {
     required TResult Function(_GetTransaction value) getTransaction,
     required TResult Function(_CancelTransaction value) cancelTransaction,
     required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
   }) {
     return getOngoingTransaction(this);
   }
@@ -294,6 +321,7 @@ class _$_GetOngoingTransaction implements _GetOngoingTransaction {
     TResult Function(_GetTransaction value)? getTransaction,
     TResult Function(_CancelTransaction value)? cancelTransaction,
     TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (getOngoingTransaction != null) {
@@ -378,6 +406,8 @@ class _$_GetTransaction implements _GetTransaction {
     required TResult Function(String receiptCode) getTransaction,
     required TResult Function(String receiptCode) cancelTransaction,
     required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
   }) {
     return getTransaction(receiptCode);
   }
@@ -390,6 +420,8 @@ class _$_GetTransaction implements _GetTransaction {
     TResult Function(String receiptCode)? getTransaction,
     TResult Function(String receiptCode)? cancelTransaction,
     TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (getTransaction != null) {
@@ -408,6 +440,8 @@ class _$_GetTransaction implements _GetTransaction {
     required TResult Function(_GetTransaction value) getTransaction,
     required TResult Function(_CancelTransaction value) cancelTransaction,
     required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
   }) {
     return getTransaction(this);
   }
@@ -420,6 +454,7 @@ class _$_GetTransaction implements _GetTransaction {
     TResult Function(_GetTransaction value)? getTransaction,
     TResult Function(_CancelTransaction value)? cancelTransaction,
     TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (getTransaction != null) {
@@ -509,6 +544,8 @@ class _$_CancelTransaction implements _CancelTransaction {
     required TResult Function(String receiptCode) getTransaction,
     required TResult Function(String receiptCode) cancelTransaction,
     required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
   }) {
     return cancelTransaction(receiptCode);
   }
@@ -521,6 +558,8 @@ class _$_CancelTransaction implements _CancelTransaction {
     TResult Function(String receiptCode)? getTransaction,
     TResult Function(String receiptCode)? cancelTransaction,
     TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (cancelTransaction != null) {
@@ -539,6 +578,8 @@ class _$_CancelTransaction implements _CancelTransaction {
     required TResult Function(_GetTransaction value) getTransaction,
     required TResult Function(_CancelTransaction value) cancelTransaction,
     required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
   }) {
     return cancelTransaction(this);
   }
@@ -551,6 +592,7 @@ class _$_CancelTransaction implements _CancelTransaction {
     TResult Function(_GetTransaction value)? getTransaction,
     TResult Function(_CancelTransaction value)? cancelTransaction,
     TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (cancelTransaction != null) {
@@ -640,6 +682,8 @@ class _$_AcceptTransaction implements _AcceptTransaction {
     required TResult Function(String receiptCode) getTransaction,
     required TResult Function(String receiptCode) cancelTransaction,
     required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
   }) {
     return acceptTransaction(receiptCode);
   }
@@ -652,6 +696,8 @@ class _$_AcceptTransaction implements _AcceptTransaction {
     TResult Function(String receiptCode)? getTransaction,
     TResult Function(String receiptCode)? cancelTransaction,
     TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (acceptTransaction != null) {
@@ -670,6 +716,8 @@ class _$_AcceptTransaction implements _AcceptTransaction {
     required TResult Function(_GetTransaction value) getTransaction,
     required TResult Function(_CancelTransaction value) cancelTransaction,
     required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
   }) {
     return acceptTransaction(this);
   }
@@ -682,6 +730,7 @@ class _$_AcceptTransaction implements _AcceptTransaction {
     TResult Function(_GetTransaction value)? getTransaction,
     TResult Function(_CancelTransaction value)? cancelTransaction,
     TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
     required TResult orElse(),
   }) {
     if (acceptTransaction != null) {
@@ -697,6 +746,154 @@ abstract class _AcceptTransaction implements TransactionEvent {
   String get receiptCode => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$AcceptTransactionCopyWith<_AcceptTransaction> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$AddFavoriteTransactionCopyWith<$Res> {
+  factory _$AddFavoriteTransactionCopyWith(_AddFavoriteTransaction value,
+          $Res Function(_AddFavoriteTransaction) then) =
+      __$AddFavoriteTransactionCopyWithImpl<$Res>;
+  $Res call({AddFavoriteTransactionParam request});
+
+  $AddFavoriteTransactionParamCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$AddFavoriteTransactionCopyWithImpl<$Res>
+    extends _$TransactionEventCopyWithImpl<$Res>
+    implements _$AddFavoriteTransactionCopyWith<$Res> {
+  __$AddFavoriteTransactionCopyWithImpl(_AddFavoriteTransaction _value,
+      $Res Function(_AddFavoriteTransaction) _then)
+      : super(_value, (v) => _then(v as _AddFavoriteTransaction));
+
+  @override
+  _AddFavoriteTransaction get _value => super._value as _AddFavoriteTransaction;
+
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_AddFavoriteTransaction(
+      request == freezed
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as AddFavoriteTransactionParam,
+    ));
+  }
+
+  @override
+  $AddFavoriteTransactionParamCopyWith<$Res> get request {
+    return $AddFavoriteTransactionParamCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_AddFavoriteTransaction implements _AddFavoriteTransaction {
+  const _$_AddFavoriteTransaction(this.request);
+
+  @override
+  final AddFavoriteTransactionParam request;
+
+  @override
+  String toString() {
+    return 'TransactionEvent.addFavoriteTransaction(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AddFavoriteTransaction &&
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AddFavoriteTransactionCopyWith<_AddFavoriteTransaction> get copyWith =>
+      __$AddFavoriteTransactionCopyWithImpl<_AddFavoriteTransaction>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getTransactionHistory,
+    required TResult Function() getOngoingTransaction,
+    required TResult Function(String receiptCode) getTransaction,
+    required TResult Function(String receiptCode) cancelTransaction,
+    required TResult Function(String receiptCode) acceptTransaction,
+    required TResult Function(AddFavoriteTransactionParam request)
+        addFavoriteTransaction,
+  }) {
+    return addFavoriteTransaction(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getTransactionHistory,
+    TResult Function()? getOngoingTransaction,
+    TResult Function(String receiptCode)? getTransaction,
+    TResult Function(String receiptCode)? cancelTransaction,
+    TResult Function(String receiptCode)? acceptTransaction,
+    TResult Function(AddFavoriteTransactionParam request)?
+        addFavoriteTransaction,
+    required TResult orElse(),
+  }) {
+    if (addFavoriteTransaction != null) {
+      return addFavoriteTransaction(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetTransactionHistory value)
+        getTransactionHistory,
+    required TResult Function(_GetOngoingTransaction value)
+        getOngoingTransaction,
+    required TResult Function(_GetTransaction value) getTransaction,
+    required TResult Function(_CancelTransaction value) cancelTransaction,
+    required TResult Function(_AcceptTransaction value) acceptTransaction,
+    required TResult Function(_AddFavoriteTransaction value)
+        addFavoriteTransaction,
+  }) {
+    return addFavoriteTransaction(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
+    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
+    TResult Function(_GetTransaction value)? getTransaction,
+    TResult Function(_CancelTransaction value)? cancelTransaction,
+    TResult Function(_AcceptTransaction value)? acceptTransaction,
+    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
+    required TResult orElse(),
+  }) {
+    if (addFavoriteTransaction != null) {
+      return addFavoriteTransaction(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddFavoriteTransaction implements TransactionEvent {
+  const factory _AddFavoriteTransaction(AddFavoriteTransactionParam request) =
+      _$_AddFavoriteTransaction;
+
+  AddFavoriteTransactionParam get request => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$AddFavoriteTransactionCopyWith<_AddFavoriteTransaction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -755,6 +952,12 @@ class _$TransactionStateTearOff {
       response,
     );
   }
+
+  _AddFavoriteTransactionSuccess addFavoriteTransactionSuccess(bool isSuccess) {
+    return _AddFavoriteTransactionSuccess(
+      isSuccess,
+    );
+  }
 }
 
 /// @nodoc
@@ -777,6 +980,7 @@ mixin _$TransactionState {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -793,6 +997,7 @@ mixin _$TransactionState {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -812,6 +1017,8 @@ mixin _$TransactionState {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -827,6 +1034,8 @@ mixin _$TransactionState {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -899,6 +1108,7 @@ class _$_Initial implements _Initial {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return initial();
   }
@@ -918,6 +1128,7 @@ class _$_Initial implements _Initial {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -943,6 +1154,8 @@ class _$_Initial implements _Initial {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return initial(this);
   }
@@ -961,6 +1174,8 @@ class _$_Initial implements _Initial {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1027,6 +1242,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return loadInProgress();
   }
@@ -1046,6 +1262,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -1071,6 +1288,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return loadInProgress(this);
   }
@@ -1089,6 +1308,8 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -1155,6 +1376,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return loadSuccess();
   }
@@ -1174,6 +1396,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -1199,6 +1422,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return loadSuccess(this);
   }
@@ -1217,6 +1442,8 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -1317,6 +1544,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return loadFailure(error);
   }
@@ -1336,6 +1564,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -1361,6 +1590,8 @@ class _$_LoadFailure implements _LoadFailure {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return loadFailure(this);
   }
@@ -1379,6 +1610,8 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -1480,6 +1713,7 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return getTransactionHistorySuccess(response);
   }
@@ -1499,6 +1733,7 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (getTransactionHistorySuccess != null) {
@@ -1524,6 +1759,8 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return getTransactionHistorySuccess(this);
   }
@@ -1542,6 +1779,8 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (getTransactionHistorySuccess != null) {
@@ -1644,6 +1883,7 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return getOngoingTransactionSuccess(response);
   }
@@ -1663,6 +1903,7 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (getOngoingTransactionSuccess != null) {
@@ -1688,6 +1929,8 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return getOngoingTransactionSuccess(this);
   }
@@ -1706,6 +1949,8 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (getOngoingTransactionSuccess != null) {
@@ -1814,6 +2059,7 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return getTransactionSuccess(response);
   }
@@ -1833,6 +2079,7 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (getTransactionSuccess != null) {
@@ -1858,6 +2105,8 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return getTransactionSuccess(this);
   }
@@ -1876,6 +2125,8 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (getTransactionSuccess != null) {
@@ -1985,6 +2236,7 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return cancelTransactionSuccess(response);
   }
@@ -2004,6 +2256,7 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (cancelTransactionSuccess != null) {
@@ -2029,6 +2282,8 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return cancelTransactionSuccess(this);
   }
@@ -2047,6 +2302,8 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (cancelTransactionSuccess != null) {
@@ -2156,6 +2413,7 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
     required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
   }) {
     return acceptTransactionSuccess(response);
   }
@@ -2175,6 +2433,7 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
     TResult Function(TransactionMobileResponse response)?
         cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (acceptTransactionSuccess != null) {
@@ -2200,6 +2459,8 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
         cancelTransactionSuccess,
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
   }) {
     return acceptTransactionSuccess(this);
   }
@@ -2218,6 +2479,8 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
     TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
     TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
     TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
     required TResult orElse(),
   }) {
     if (acceptTransactionSuccess != null) {
@@ -2235,4 +2498,175 @@ abstract class _AcceptTransactionSuccess implements TransactionState {
   @JsonKey(ignore: true)
   _$AcceptTransactionSuccessCopyWith<_AcceptTransactionSuccess> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$AddFavoriteTransactionSuccessCopyWith<$Res> {
+  factory _$AddFavoriteTransactionSuccessCopyWith(
+          _AddFavoriteTransactionSuccess value,
+          $Res Function(_AddFavoriteTransactionSuccess) then) =
+      __$AddFavoriteTransactionSuccessCopyWithImpl<$Res>;
+  $Res call({bool isSuccess});
+}
+
+/// @nodoc
+class __$AddFavoriteTransactionSuccessCopyWithImpl<$Res>
+    extends _$TransactionStateCopyWithImpl<$Res>
+    implements _$AddFavoriteTransactionSuccessCopyWith<$Res> {
+  __$AddFavoriteTransactionSuccessCopyWithImpl(
+      _AddFavoriteTransactionSuccess _value,
+      $Res Function(_AddFavoriteTransactionSuccess) _then)
+      : super(_value, (v) => _then(v as _AddFavoriteTransactionSuccess));
+
+  @override
+  _AddFavoriteTransactionSuccess get _value =>
+      super._value as _AddFavoriteTransactionSuccess;
+
+  @override
+  $Res call({
+    Object? isSuccess = freezed,
+  }) {
+    return _then(_AddFavoriteTransactionSuccess(
+      isSuccess == freezed
+          ? _value.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddFavoriteTransactionSuccess
+    implements _AddFavoriteTransactionSuccess {
+  const _$_AddFavoriteTransactionSuccess(this.isSuccess);
+
+  @override
+  final bool isSuccess;
+
+  @override
+  String toString() {
+    return 'TransactionState.addFavoriteTransactionSuccess(isSuccess: $isSuccess)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AddFavoriteTransactionSuccess &&
+            (identical(other.isSuccess, isSuccess) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSuccess, isSuccess)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isSuccess);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AddFavoriteTransactionSuccessCopyWith<_AddFavoriteTransactionSuccess>
+      get copyWith => __$AddFavoriteTransactionSuccessCopyWithImpl<
+          _AddFavoriteTransactionSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(TransactionFailure error) loadFailure,
+    required TResult Function(List<TransactionHistory> response)
+        getTransactionHistorySuccess,
+    required TResult Function(List<TransactionHistory> response)
+        getOngoingTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
+        cancelTransactionSuccess,
+    required TResult Function(StatusResponse response) acceptTransactionSuccess,
+    required TResult Function(bool isSuccess) addFavoriteTransactionSuccess,
+  }) {
+    return addFavoriteTransactionSuccess(isSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(TransactionFailure error)? loadFailure,
+    TResult Function(List<TransactionHistory> response)?
+        getTransactionHistorySuccess,
+    TResult Function(List<TransactionHistory> response)?
+        getOngoingTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
+    TResult Function(StatusResponse response)? acceptTransactionSuccess,
+    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
+    required TResult orElse(),
+  }) {
+    if (addFavoriteTransactionSuccess != null) {
+      return addFavoriteTransactionSuccess(isSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetTransactionHistorySuccess value)
+        getTransactionHistorySuccess,
+    required TResult Function(_GetOngoingTransactionSuccess value)
+        getOngoingTransactionSuccess,
+    required TResult Function(_GetTransactionSuccess value)
+        getTransactionSuccess,
+    required TResult Function(_CancelTransactionSuccess value)
+        cancelTransactionSuccess,
+    required TResult Function(_AcceptTransactionSuccess value)
+        acceptTransactionSuccess,
+    required TResult Function(_AddFavoriteTransactionSuccess value)
+        addFavoriteTransactionSuccess,
+  }) {
+    return addFavoriteTransactionSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetTransactionHistorySuccess value)?
+        getTransactionHistorySuccess,
+    TResult Function(_GetOngoingTransactionSuccess value)?
+        getOngoingTransactionSuccess,
+    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
+    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
+    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
+    TResult Function(_AddFavoriteTransactionSuccess value)?
+        addFavoriteTransactionSuccess,
+    required TResult orElse(),
+  }) {
+    if (addFavoriteTransactionSuccess != null) {
+      return addFavoriteTransactionSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddFavoriteTransactionSuccess implements TransactionState {
+  const factory _AddFavoriteTransactionSuccess(bool isSuccess) =
+      _$_AddFavoriteTransactionSuccess;
+
+  bool get isSuccess => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$AddFavoriteTransactionSuccessCopyWith<_AddFavoriteTransactionSuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }
