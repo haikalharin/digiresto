@@ -16,6 +16,17 @@ class LaunchUrl {
     }
   }
 
+  static Future<void> openMap(double latitude, double longitude,
+      {required Function() onError}) async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      onError();
+    }
+  }
+
   static Future call(phone) async {
     String tmp = "###" + phone.toString();
     String idFormatTmp = tmp.replaceAll("###08", "###628");

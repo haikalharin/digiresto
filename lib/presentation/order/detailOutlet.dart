@@ -18,6 +18,7 @@ import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_food_category_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_outlet_widget.dart';
@@ -588,7 +589,17 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                           height: 43,
                           width: MediaQuery.of(context).size.width * 0.45,
                           child: ElevatedButton(
-                            onPressed: null,
+                            onPressed: () async {
+                              final location =
+                                  controller.detailOutlet.value!.location;
+                              await LaunchUrl.openMap(double.parse(location[0]),
+                                  double.parse(location[1]), onError: () {
+                                ErrorPopupWidget.show(
+                                    "Error", "error membuka aplikasi map", () {
+                                  Get.back(closeOverlays: true);
+                                });
+                              });
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
