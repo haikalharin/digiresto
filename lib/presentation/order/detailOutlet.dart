@@ -4,7 +4,6 @@ import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
@@ -16,6 +15,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
+import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
@@ -763,7 +763,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
           },
           scrollDirection: Axis.vertical,
         ),
-        Loading.smallLoading(controller.detailOutletLoading.value),
+        //Loading.smallLoading(controller.detailOutletLoading.value),
       ],
     );
   }
@@ -772,17 +772,17 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
     return Obx(() => controller.cartSession.value != null &&
             controller.cartSession.value?.transactionData.outletName ==
                 controller.detailOutlet.value?.endpointName
-        ? SafeArea(
-            child: GestureDetector(
-              onTap: () {
-                Get.toNamed(Routers.orderCart);
-              },
+        ? GestureDetector(
+            onTap: () {
+              Get.toNamed(Routers.orderCart);
+            },
+            child: SafeArea(
               child: Container(
                 height: 70,
-                color: Colors.white,
+                //color: Colors.white,
                 alignment: Alignment.bottomCenter,
-                // decoration: BoxDecoration(
-                //     color: Colors.white, boxShadow: [CustomShadow.standard]),
+                decoration: BoxDecoration(
+                    color: Colors.white, boxShadow: [CustomShadow.justTop]),
                 child: Container(
                     decoration: BoxDecoration(
                       color: AppColors.red,
