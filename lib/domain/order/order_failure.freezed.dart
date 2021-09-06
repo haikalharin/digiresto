@@ -76,6 +76,10 @@ class _$OrderFailureTearOff {
     return const _AddCartFail();
   }
 
+  _UpdateCartFail updateCartFail() {
+    return const _UpdateCartFail();
+  }
+
   _RemoveCartFail removeCartFail() {
     return const _RemoveCartFail();
   }
@@ -139,6 +143,7 @@ mixin _$OrderFailure {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -168,6 +173,7 @@ mixin _$OrderFailure {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -206,6 +212,7 @@ mixin _$OrderFailure {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -243,6 +250,7 @@ mixin _$OrderFailure {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -329,6 +337,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -361,6 +370,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -405,6 +415,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -445,6 +456,7 @@ class _$_SalesTypeNull implements _SalesTypeNull {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -524,6 +536,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -556,6 +569,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -600,6 +614,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -640,6 +655,7 @@ class _$_GetOutletByLocationFail implements _GetOutletByLocationFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -719,6 +735,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -751,6 +768,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -795,6 +813,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -835,6 +854,7 @@ class _$_GetOutletByCategoryFail implements _GetOutletByCategoryFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -914,6 +934,7 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -946,6 +967,7 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -990,6 +1012,7 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -1030,6 +1053,7 @@ class _$_GetOutletByMerchantFail implements _GetOutletByMerchantFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -1108,6 +1132,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -1140,6 +1165,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -1184,6 +1210,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -1224,6 +1251,7 @@ class _$_GetListPromoOutletFail implements _GetListPromoOutletFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -1303,6 +1331,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -1335,6 +1364,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -1379,6 +1409,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -1419,6 +1450,7 @@ class _$_GetListVoucherOutletFail implements _GetListVoucherOutletFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -1497,6 +1529,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -1529,6 +1562,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -1573,6 +1607,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -1613,6 +1648,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -1694,6 +1730,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -1726,6 +1763,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -1770,6 +1808,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -1810,6 +1849,7 @@ class _$_GetOutletProductCategoryFail implements _GetOutletProductCategoryFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -1889,6 +1929,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -1921,6 +1962,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -1965,6 +2007,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -2005,6 +2048,7 @@ class _$_GetPromoOutletFail implements _GetPromoOutletFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -2083,6 +2127,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -2115,6 +2160,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -2159,6 +2205,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -2199,6 +2246,7 @@ class _$_GetHotPromoFail implements _GetHotPromoFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -2277,6 +2325,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -2309,6 +2358,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -2353,6 +2403,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -2393,6 +2444,7 @@ class _$_GetDetailOutletFail implements _GetDetailOutletFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -2471,6 +2523,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -2503,6 +2556,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -2547,6 +2601,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -2587,6 +2642,7 @@ class _$_GetPaymentMethodFail implements _GetPaymentMethodFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -2665,6 +2721,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -2697,6 +2754,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -2741,6 +2799,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -2781,6 +2840,7 @@ class _$_DeliveryInquiryFail implements _DeliveryInquiryFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -2859,6 +2919,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -2891,6 +2952,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -2935,6 +2997,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -2975,6 +3038,7 @@ class _$_CreateCartSessionFail implements _CreateCartSessionFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -3052,6 +3116,7 @@ class _$_AddCartFail implements _AddCartFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -3084,6 +3149,7 @@ class _$_AddCartFail implements _AddCartFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -3128,6 +3194,7 @@ class _$_AddCartFail implements _AddCartFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -3168,6 +3235,7 @@ class _$_AddCartFail implements _AddCartFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -3189,6 +3257,204 @@ class _$_AddCartFail implements _AddCartFail {
 
 abstract class _AddCartFail implements OrderFailure {
   const factory _AddCartFail() = _$_AddCartFail;
+}
+
+/// @nodoc
+abstract class _$UpdateCartFailCopyWith<$Res> {
+  factory _$UpdateCartFailCopyWith(
+          _UpdateCartFail value, $Res Function(_UpdateCartFail) then) =
+      __$UpdateCartFailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UpdateCartFailCopyWithImpl<$Res>
+    extends _$OrderFailureCopyWithImpl<$Res>
+    implements _$UpdateCartFailCopyWith<$Res> {
+  __$UpdateCartFailCopyWithImpl(
+      _UpdateCartFail _value, $Res Function(_UpdateCartFail) _then)
+      : super(_value, (v) => _then(v as _UpdateCartFail));
+
+  @override
+  _UpdateCartFail get _value => super._value as _UpdateCartFail;
+}
+
+/// @nodoc
+
+class _$_UpdateCartFail implements _UpdateCartFail {
+  const _$_UpdateCartFail();
+
+  @override
+  String toString() {
+    return 'OrderFailure.updateCartFail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _UpdateCartFail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() salesTypeNull,
+    required TResult Function() getOutletByLocationFail,
+    required TResult Function() getOutletByCategoryFail,
+    required TResult Function() getOutletByMerchantFail,
+    required TResult Function() getListPromoOutletFail,
+    required TResult Function() getListVoucherOutletFail,
+    required TResult Function() getOutletListProductFail,
+    required TResult Function() getOutletProductCategoryFail,
+    required TResult Function() getPromoOutletFail,
+    required TResult Function() getHotPromoFail,
+    required TResult Function() getDetailOutletFail,
+    required TResult Function() getPaymentMethodFail,
+    required TResult Function() deliveryInquiryFail,
+    required TResult Function() createCartSessionFail,
+    required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
+    required TResult Function() removeCartFail,
+    required TResult Function() getCartSessionFail,
+    required TResult Function() updateCartSessionFail,
+    required TResult Function() checkoutCartFail,
+    required TResult Function() setPaymentMethodIDFail,
+    required TResult Function() getPaymentMethodIDFail,
+    required TResult Function() setDeliveryMethodIDFail,
+    required TResult Function() getDeliveryMethodIDFail,
+    required TResult Function() setVoucherMethodIDFail,
+    required TResult Function() getVoucherMethodIDFail,
+  }) {
+    return updateCartFail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? salesTypeNull,
+    TResult Function()? getOutletByLocationFail,
+    TResult Function()? getOutletByCategoryFail,
+    TResult Function()? getOutletByMerchantFail,
+    TResult Function()? getListPromoOutletFail,
+    TResult Function()? getListVoucherOutletFail,
+    TResult Function()? getOutletListProductFail,
+    TResult Function()? getOutletProductCategoryFail,
+    TResult Function()? getPromoOutletFail,
+    TResult Function()? getHotPromoFail,
+    TResult Function()? getDetailOutletFail,
+    TResult Function()? getPaymentMethodFail,
+    TResult Function()? deliveryInquiryFail,
+    TResult Function()? createCartSessionFail,
+    TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
+    TResult Function()? removeCartFail,
+    TResult Function()? getCartSessionFail,
+    TResult Function()? updateCartSessionFail,
+    TResult Function()? checkoutCartFail,
+    TResult Function()? setPaymentMethodIDFail,
+    TResult Function()? getPaymentMethodIDFail,
+    TResult Function()? setDeliveryMethodIDFail,
+    TResult Function()? getDeliveryMethodIDFail,
+    TResult Function()? setVoucherMethodIDFail,
+    TResult Function()? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (updateCartFail != null) {
+      return updateCartFail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SalesTypeNull value) salesTypeNull,
+    required TResult Function(_GetOutletByLocationFail value)
+        getOutletByLocationFail,
+    required TResult Function(_GetOutletByCategoryFail value)
+        getOutletByCategoryFail,
+    required TResult Function(_GetOutletByMerchantFail value)
+        getOutletByMerchantFail,
+    required TResult Function(_GetListPromoOutletFail value)
+        getListPromoOutletFail,
+    required TResult Function(_GetListVoucherOutletFail value)
+        getListVoucherOutletFail,
+    required TResult Function(_GetOutletListProduct value)
+        getOutletListProductFail,
+    required TResult Function(_GetOutletProductCategoryFail value)
+        getOutletProductCategoryFail,
+    required TResult Function(_GetPromoOutletFail value) getPromoOutletFail,
+    required TResult Function(_GetHotPromoFail value) getHotPromoFail,
+    required TResult Function(_GetDetailOutletFail value) getDetailOutletFail,
+    required TResult Function(_GetPaymentMethodFail value) getPaymentMethodFail,
+    required TResult Function(_DeliveryInquiryFail value) deliveryInquiryFail,
+    required TResult Function(_CreateCartSessionFail value)
+        createCartSessionFail,
+    required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
+    required TResult Function(_RemoveCartFail value) removeCartFail,
+    required TResult Function(_GetCartSessionFail value) getCartSessionFail,
+    required TResult Function(_UpdateCartSessionFail value)
+        updateCartSessionFail,
+    required TResult Function(_CheckoutCartFail value) checkoutCartFail,
+    required TResult Function(_SetPaymentMethodIDFail value)
+        setPaymentMethodIDFail,
+    required TResult Function(_GetPaymentMethodIDFail value)
+        getPaymentMethodIDFail,
+    required TResult Function(_SetDeliveryMethodIDFail value)
+        setDeliveryMethodIDFail,
+    required TResult Function(_GetDeliveryMethodIDFail value)
+        getDeliveryMethodIDFail,
+    required TResult Function(_SetVoucherMethodIDFail value)
+        setVoucherMethodIDFail,
+    required TResult Function(_GetVoucherMethodIDFail value)
+        getVoucherMethodIDFail,
+  }) {
+    return updateCartFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SalesTypeNull value)? salesTypeNull,
+    TResult Function(_GetOutletByLocationFail value)? getOutletByLocationFail,
+    TResult Function(_GetOutletByCategoryFail value)? getOutletByCategoryFail,
+    TResult Function(_GetOutletByMerchantFail value)? getOutletByMerchantFail,
+    TResult Function(_GetListPromoOutletFail value)? getListPromoOutletFail,
+    TResult Function(_GetListVoucherOutletFail value)? getListVoucherOutletFail,
+    TResult Function(_GetOutletListProduct value)? getOutletListProductFail,
+    TResult Function(_GetOutletProductCategoryFail value)?
+        getOutletProductCategoryFail,
+    TResult Function(_GetPromoOutletFail value)? getPromoOutletFail,
+    TResult Function(_GetHotPromoFail value)? getHotPromoFail,
+    TResult Function(_GetDetailOutletFail value)? getDetailOutletFail,
+    TResult Function(_GetPaymentMethodFail value)? getPaymentMethodFail,
+    TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
+    TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
+    TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
+    TResult Function(_RemoveCartFail value)? removeCartFail,
+    TResult Function(_GetCartSessionFail value)? getCartSessionFail,
+    TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
+    TResult Function(_CheckoutCartFail value)? checkoutCartFail,
+    TResult Function(_SetPaymentMethodIDFail value)? setPaymentMethodIDFail,
+    TResult Function(_GetPaymentMethodIDFail value)? getPaymentMethodIDFail,
+    TResult Function(_SetDeliveryMethodIDFail value)? setDeliveryMethodIDFail,
+    TResult Function(_GetDeliveryMethodIDFail value)? getDeliveryMethodIDFail,
+    TResult Function(_SetVoucherMethodIDFail value)? setVoucherMethodIDFail,
+    TResult Function(_GetVoucherMethodIDFail value)? getVoucherMethodIDFail,
+    required TResult orElse(),
+  }) {
+    if (updateCartFail != null) {
+      return updateCartFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCartFail implements OrderFailure {
+  const factory _UpdateCartFail() = _$_UpdateCartFail;
 }
 
 /// @nodoc
@@ -3246,6 +3512,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -3278,6 +3545,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -3322,6 +3590,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -3362,6 +3631,7 @@ class _$_RemoveCartFail implements _RemoveCartFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -3440,6 +3710,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -3472,6 +3743,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -3516,6 +3788,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -3556,6 +3829,7 @@ class _$_GetCartSessionFail implements _GetCartSessionFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -3634,6 +3908,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -3666,6 +3941,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -3710,6 +3986,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -3750,6 +4027,7 @@ class _$_UpdateCartSessionFail implements _UpdateCartSessionFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -3828,6 +4106,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -3860,6 +4139,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -3904,6 +4184,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -3944,6 +4225,7 @@ class _$_CheckoutCartFail implements _CheckoutCartFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -4022,6 +4304,7 @@ class _$_SetPaymentMethodIDFail implements _SetPaymentMethodIDFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -4054,6 +4337,7 @@ class _$_SetPaymentMethodIDFail implements _SetPaymentMethodIDFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -4098,6 +4382,7 @@ class _$_SetPaymentMethodIDFail implements _SetPaymentMethodIDFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -4138,6 +4423,7 @@ class _$_SetPaymentMethodIDFail implements _SetPaymentMethodIDFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -4216,6 +4502,7 @@ class _$_GetPaymentMethodIDFail implements _GetPaymentMethodIDFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -4248,6 +4535,7 @@ class _$_GetPaymentMethodIDFail implements _GetPaymentMethodIDFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -4292,6 +4580,7 @@ class _$_GetPaymentMethodIDFail implements _GetPaymentMethodIDFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -4332,6 +4621,7 @@ class _$_GetPaymentMethodIDFail implements _GetPaymentMethodIDFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -4411,6 +4701,7 @@ class _$_SetDeliveryMethodIDFail implements _SetDeliveryMethodIDFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -4443,6 +4734,7 @@ class _$_SetDeliveryMethodIDFail implements _SetDeliveryMethodIDFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -4487,6 +4779,7 @@ class _$_SetDeliveryMethodIDFail implements _SetDeliveryMethodIDFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -4527,6 +4820,7 @@ class _$_SetDeliveryMethodIDFail implements _SetDeliveryMethodIDFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -4606,6 +4900,7 @@ class _$_GetDeliveryMethodIDFail implements _GetDeliveryMethodIDFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -4638,6 +4933,7 @@ class _$_GetDeliveryMethodIDFail implements _GetDeliveryMethodIDFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -4682,6 +4978,7 @@ class _$_GetDeliveryMethodIDFail implements _GetDeliveryMethodIDFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -4722,6 +5019,7 @@ class _$_GetDeliveryMethodIDFail implements _GetDeliveryMethodIDFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -4800,6 +5098,7 @@ class _$_SetVoucherMethodIDFail implements _SetVoucherMethodIDFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -4832,6 +5131,7 @@ class _$_SetVoucherMethodIDFail implements _SetVoucherMethodIDFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -4876,6 +5176,7 @@ class _$_SetVoucherMethodIDFail implements _SetVoucherMethodIDFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -4916,6 +5217,7 @@ class _$_SetVoucherMethodIDFail implements _SetVoucherMethodIDFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,
@@ -4994,6 +5296,7 @@ class _$_GetVoucherMethodIDFail implements _GetVoucherMethodIDFail {
     required TResult Function() deliveryInquiryFail,
     required TResult Function() createCartSessionFail,
     required TResult Function() addCartFail,
+    required TResult Function() updateCartFail,
     required TResult Function() removeCartFail,
     required TResult Function() getCartSessionFail,
     required TResult Function() updateCartSessionFail,
@@ -5026,6 +5329,7 @@ class _$_GetVoucherMethodIDFail implements _GetVoucherMethodIDFail {
     TResult Function()? deliveryInquiryFail,
     TResult Function()? createCartSessionFail,
     TResult Function()? addCartFail,
+    TResult Function()? updateCartFail,
     TResult Function()? removeCartFail,
     TResult Function()? getCartSessionFail,
     TResult Function()? updateCartSessionFail,
@@ -5070,6 +5374,7 @@ class _$_GetVoucherMethodIDFail implements _GetVoucherMethodIDFail {
     required TResult Function(_CreateCartSessionFail value)
         createCartSessionFail,
     required TResult Function(_AddCartFail value) addCartFail,
+    required TResult Function(_UpdateCartFail value) updateCartFail,
     required TResult Function(_RemoveCartFail value) removeCartFail,
     required TResult Function(_GetCartSessionFail value) getCartSessionFail,
     required TResult Function(_UpdateCartSessionFail value)
@@ -5110,6 +5415,7 @@ class _$_GetVoucherMethodIDFail implements _GetVoucherMethodIDFail {
     TResult Function(_DeliveryInquiryFail value)? deliveryInquiryFail,
     TResult Function(_CreateCartSessionFail value)? createCartSessionFail,
     TResult Function(_AddCartFail value)? addCartFail,
+    TResult Function(_UpdateCartFail value)? updateCartFail,
     TResult Function(_RemoveCartFail value)? removeCartFail,
     TResult Function(_GetCartSessionFail value)? getCartSessionFail,
     TResult Function(_UpdateCartSessionFail value)? updateCartSessionFail,

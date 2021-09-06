@@ -906,87 +906,91 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   SizedBox(
                     height: 20,
                   ),
-                  FlatButton(
-                      minWidth: double.infinity,
-                      onPressed: () async {
-                        //validation
-                        // if (_orderStore.orderPaymentType == null) {
-                        //   ErrorPopupWidget.show(context, "Digiresto",
-                        //       "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
-                        //       () {
-                        //     Navigator.of(context).pop();
-                        //     Navigator.of(context)
-                        //         .pushNamed(Routers.selectPaymentMethod);
-                        //   });
-                        // } else if (placeInfoController.text == "" &&
-                        //     _orderStore.orderSalesTypesCode == "DI") {
-                        //   ErrorPopupWidget.show(context, "Digiresto",
-                        //       "Info Makan di Tempat tidak boleh kosong", () {
-                        //     Navigator.of(context).pop();
-                        //     _dialogPlace(context);
-                        //   });
-                        // } else {
-                        //   ErrorPopupWidget.confirmation(context, "Digiresto",
-                        //       "Apakah Anda yakin dengan orderan ini?",
-                        //       () async {
-                        //     Navigator.of(context).pop();
-                        //     Loading.show();
-                        //     print('DEBUG >> do checkout');
-                        //     var checkoutResponse =
-                        //         await _orderStore.checkout().catchError((err) {
-                        //       print("error response checkout 1:");
-                        //       print(err);
-                        //       Loading.dismiss();
-                        //       ErrorPopupWidget.show(
-                        //           context, "Digiresto", "Transaksi gagal", () {
-                        //         Navigator.of(context).pop();
-                        //       });
-                        //     });
-                        //     if (checkoutResponse.receiptCode == "") {
-                        //       Loading.dismiss();
-                        //       print("error response cheeckout 2:");
-                        //     } else if (checkoutResponse.payment.isCredit) {
-                        //       await _orderStore.getTransaction();
-                        //       await _transactionStore
-                        //           .getOngoingTransaction()
-                        //           .then((res) {
-                        //         print(
-                        //             "success get data ongoing transaction : ");
-                        //       }).catchError((err) {
-                        //         print("error response: " + err.toString());
-                        //         ErrorPopupWidget.showDioError(
-                        //             context, err, null);
-                        //       });
-                        //       Loading.dismiss();
-                        //       Navigator.of(context).pushNamedAndRemoveUntil(
-                        //           Routes.payment_receipt, (_) => false);
-                        //     } else if (checkoutResponse.payment.isWebView) {
-                        //       Loading.dismiss();
-                        //       Navigator.of(context).pushNamedAndRemoveUntil(
-                        //           Routes.payment_web_view, (_) => false);
-                        //     } else if (checkoutResponse.payment.isDeeplink) {
-                        //       //Need test on real device to simulate open payment app
-                        //       Loading.dismiss();
-                        //       LaunchUrl.run(checkoutResponse.payment.deeplink);
-                        //     } else {
-                        //       Loading.dismiss();
-                        //       if (checkoutResponse
-                        //           .payment.paymentCode.isNotEmpty) {
-                        //         Navigator.of(context).pushNamedAndRemoveUntil(
-                        //             Routers.paymentVa, (_) => false);
-                        //       }
-                        //     }
-                        //   }
-                        //   );
-                        // }
-                      },
-                      color: AppColors.red,
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      child: Text(
-                        'Order',
-                        style: TextStyle(color: Colors.white),
-                      ))
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          //validation
+                          // if (_orderStore.orderPaymentType == null) {
+                          //   ErrorPopupWidget.show(context, "Digiresto",
+                          //       "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
+                          //       () {
+                          //     Navigator.of(context).pop();
+                          //     Navigator.of(context)
+                          //         .pushNamed(Routers.selectPaymentMethod);
+                          //   });
+                          // } else if (placeInfoController.text == "" &&
+                          //     _orderStore.orderSalesTypesCode == "DI") {
+                          //   ErrorPopupWidget.show(context, "Digiresto",
+                          //       "Info Makan di Tempat tidak boleh kosong", () {
+                          //     Navigator.of(context).pop();
+                          //     _dialogPlace(context);
+                          //   });
+                          // } else {
+                          //   ErrorPopupWidget.confirmation(context, "Digiresto",
+                          //       "Apakah Anda yakin dengan orderan ini?",
+                          //       () async {
+                          //     Navigator.of(context).pop();
+                          //     Loading.show();
+                          //     print('DEBUG >> do checkout');
+                          //     var checkoutResponse =
+                          //         await _orderStore.checkout().catchError((err) {
+                          //       print("error response checkout 1:");
+                          //       print(err);
+                          //       Loading.dismiss();
+                          //       ErrorPopupWidget.show(
+                          //           context, "Digiresto", "Transaksi gagal", () {
+                          //         Navigator.of(context).pop();
+                          //       });
+                          //     });
+                          //     if (checkoutResponse.receiptCode == "") {
+                          //       Loading.dismiss();
+                          //       print("error response cheeckout 2:");
+                          //     } else if (checkoutResponse.payment.isCredit) {
+                          //       await _orderStore.getTransaction();
+                          //       await _transactionStore
+                          //           .getOngoingTransaction()
+                          //           .then((res) {
+                          //         print(
+                          //             "success get data ongoing transaction : ");
+                          //       }).catchError((err) {
+                          //         print("error response: " + err.toString());
+                          //         ErrorPopupWidget.showDioError(
+                          //             context, err, null);
+                          //       });
+                          //       Loading.dismiss();
+                          //       Navigator.of(context).pushNamedAndRemoveUntil(
+                          //           Routes.payment_receipt, (_) => false);
+                          //     } else if (checkoutResponse.payment.isWebView) {
+                          //       Loading.dismiss();
+                          //       Navigator.of(context).pushNamedAndRemoveUntil(
+                          //           Routes.payment_web_view, (_) => false);
+                          //     } else if (checkoutResponse.payment.isDeeplink) {
+                          //       //Need test on real device to simulate open payment app
+                          //       Loading.dismiss();
+                          //       LaunchUrl.run(checkoutResponse.payment.deeplink);
+                          //     } else {
+                          //       Loading.dismiss();
+                          //       if (checkoutResponse
+                          //           .payment.paymentCode.isNotEmpty) {
+                          //         Navigator.of(context).pushNamedAndRemoveUntil(
+                          //             Routers.paymentVa, (_) => false);
+                          //       }
+                          //     }
+                          //   }
+                          //   );
+                          // }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: AppColors.red,
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30.0)),
+                        ),
+                        child: Text(
+                          'Order',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  )
                 ],
               ),
             ),
@@ -1428,6 +1432,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
   }
 
+  void updateCartParam() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.updateCart());
+  }
+
   @override
   Widget build(BuildContext context) {
     getCartCache();
@@ -1448,18 +1456,23 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             },
             setSalesTypeCartSuccess: (r) {
               controller.salesType.value = r.value;
+              updateCartParam();
             },
             getSalesTypeCartSuccess: (r) {
               controller.salesType.value = r.value;
+              updateCartParam();
             },
             getPaymentMethodIDSuccess: (r) {
               controller.paymentMethod.value = r.data;
+              updateCartParam();
             },
             getDeliveryMethodIDSuccess: (r) {
               controller.deliveryMethod.value = r.data;
+              updateCartParam();
             },
             getVoucherMethodIDSuccess: (r) {
               controller.voucherMethod.value = r.data;
+              updateCartParam();
             },
             orElse: () {});
       },

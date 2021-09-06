@@ -192,6 +192,47 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (list) => OrderState.createCartSessionSuccess(list!.data),
         );
       },
+      updateCart: (request) async* {
+        final sessionId =
+            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        final getProduct = await _orderRepository.getProduct();
+        final paymentType = await _orderRepository.getPaymentMethodID();
+        final address = await _userRepository.getActiveAddress();
+        final activeAddr = address.getOrElse(() => UserAddress());
+        final deliveryInq = await _orderRepository.getDeliveryMethodID();
+        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
+        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+
+        UpdateCartSessionBodyDeliveryParam? deliveryParam;
+        if (deliveryInq != null) {
+          UpdateCartSessionBodyDeliveryParam(
+              address: activeAddr.address!,
+              location: [activeAddr.latitude!, activeAddr.longitude!],
+              price: deliveryInq.shipmentMethods.first.price,
+              provider: deliveryInq.provider);
+        }
+        final createCartSession = await _orderRepository.updateCartSession(
+            UpdateCartSessionParam(
+                body: UpdateCartSessionBodyParam(
+                    items: getProduct?.items ?? [],
+                    customerNote: '',
+                    paymentType: paymentType?.id ?? "",
+                    customerPax: '1',
+                    customerSmoking: 'false',
+                    delivery: deliveryParam,
+                    eta: 'now',
+                    promos: getVoucherMethodID == null
+                        ? []
+                        : [getVoucherMethodID.code],
+                    salesType: getSalesTypeCart ?? ""),
+                queryString:
+                    UpdateCartSessionQueryParam(sessionId: sessionId!)));
+
+        yield createCartSession.fold(
+          (error) => OrderState.loadFailure(OrderFailure.addCartFail()),
+          (list) => OrderState.addCartSuccess(list!.data),
+        );
+      },
       addCart: (request) async* {
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
@@ -201,6 +242,21 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getOutletDetailID =
             await _orderRepository.getCartOutletDetailID();
         final outletID = getOutletDetailID?.id ?? "";
+        final paymentType = await _orderRepository.getPaymentMethodID();
+        final address = await _userRepository.getActiveAddress();
+        final activeAddr = address.getOrElse(() => UserAddress());
+        final deliveryInq = await _orderRepository.getDeliveryMethodID();
+        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
+        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+
+        UpdateCartSessionBodyDeliveryParam? deliveryParam;
+        if (deliveryInq != null) {
+          UpdateCartSessionBodyDeliveryParam(
+              address: activeAddr.address!,
+              location: [activeAddr.latitude!, activeAddr.longitude!],
+              price: deliveryInq.shipmentMethods.first.price,
+              provider: deliveryInq.provider);
+        }
 
         //create new cart session, if add cart in the different outlet
         if (sessionId == null || outletID != request.outlet.id) {
@@ -218,7 +274,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerCarColor: "",
                       customerCarNumber: "",
                       eta: "now",
-                      salesType: request.salesType,
+                      salesType:
+                          getSalesTypeCart != null ? getSalesTypeCart : "",
                       receiptCode: "",
                       items: setProduct?.items ?? []),
                   queryString: CreateCartSessionQueryParam()));
@@ -238,7 +295,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                   body: UpdateCartSessionBodyParam(
                       items: setProduct?.items ?? [],
                       customerNote: '',
-                      paymentType: ''),
+                      paymentType: paymentType?.id ?? "",
+                      customerPax: '1',
+                      customerSmoking: 'false',
+                      delivery: deliveryParam,
+                      eta: 'now',
+                      promos: getVoucherMethodID == null
+                          ? []
+                          : [getVoucherMethodID.code],
+                      salesType: getSalesTypeCart ?? ""),
                   queryString:
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
@@ -260,7 +325,14 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                   body: UpdateCartSessionBodyParam(
                       items: removeCart.items ?? [],
                       customerNote: '',
-                      paymentType: ''),
+                      paymentType: '',
+                      customerPax: '',
+                      customerSmoking: '',
+                      delivery: UpdateCartSessionBodyDeliveryParam(
+                          address: '', location: [], price: 0, provider: ''),
+                      eta: 'now',
+                      promos: [],
+                      salesType: ''),
                   queryString:
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
@@ -282,7 +354,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getSalesTypeCart: (_) async* {
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCart();
+        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         if (getSalesTypeCart != null) {
           yield OrderState.getSalesTypeCartSuccess(getSalesTypeCart);
         } else {
@@ -291,7 +363,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       },
       setSalesTypeCart: (r) async* {
         final setSalesTypeCart =
-            await _orderRepository.setSalesTypeCart(r.value);
+            await _orderRepository.setSalesTypeCartID(r.value);
         if (setSalesTypeCart != null) {
           yield OrderState.setSalesTypeCartSuccess(setSalesTypeCart);
         } else {

@@ -78,8 +78,12 @@ class Storage implements IStorage {
 
   @override
   getJson({required String key}) {
-    dynamic value = box.get(key) != null ? jsonDecode(box.get(key)) : null;
-    return value;
+    try {
+      dynamic value = box.get(key) != null ? jsonDecode(box.get(key)) : null;
+      return value;
+    } catch (e) {
+      return null;
+    }
   }
 
   @override

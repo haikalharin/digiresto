@@ -49,6 +49,8 @@ class OrderState with _$OrderState {
   const factory OrderState.addCartSuccess(CartSessionResponse response) =
       _AddCartSuccess;
 
+  const factory OrderState.updateCart() = _UpdateCartSuccess;
+
   const factory OrderState.removeCartSuccess(CartSessionResponse response) =
       _RemoveCartSuccess;
 
