@@ -229,14 +229,14 @@ class _$UpdateCartSessionBodyParamTearOff {
   const _$UpdateCartSessionBodyParamTearOff();
 
   _UpdateCartSessionBodyParam call(
-      {required String paymentType,
-      required String customerNote,
-      required String customerPax,
-      required String customerSmoking,
+      {required String? paymentType,
+      required String? customerNote,
+      required String? customerPax,
+      required String? customerSmoking,
       required UpdateCartSessionBodyDeliveryParam? delivery,
-      required String eta,
-      required List<String> promos,
-      required String salesType,
+      required String? eta,
+      required List<String>? promos,
+      required String? salesType,
       required List<CreateUpdateCartSessionItemParam>? items}) {
     return _UpdateCartSessionBodyParam(
       paymentType: paymentType,
@@ -261,15 +261,15 @@ const $UpdateCartSessionBodyParam = _$UpdateCartSessionBodyParamTearOff();
 
 /// @nodoc
 mixin _$UpdateCartSessionBodyParam {
-  String get paymentType => throw _privateConstructorUsedError;
-  String get customerNote => throw _privateConstructorUsedError;
-  String get customerPax => throw _privateConstructorUsedError;
-  String get customerSmoking => throw _privateConstructorUsedError;
+  String? get paymentType => throw _privateConstructorUsedError;
+  String? get customerNote => throw _privateConstructorUsedError;
+  String? get customerPax => throw _privateConstructorUsedError;
+  String? get customerSmoking => throw _privateConstructorUsedError;
   UpdateCartSessionBodyDeliveryParam? get delivery =>
       throw _privateConstructorUsedError;
-  String get eta => throw _privateConstructorUsedError;
-  List<String> get promos => throw _privateConstructorUsedError;
-  String get salesType => throw _privateConstructorUsedError;
+  String? get eta => throw _privateConstructorUsedError;
+  List<String>? get promos => throw _privateConstructorUsedError;
+  String? get salesType => throw _privateConstructorUsedError;
   List<CreateUpdateCartSessionItemParam>? get items =>
       throw _privateConstructorUsedError;
 
@@ -285,14 +285,14 @@ abstract class $UpdateCartSessionBodyParamCopyWith<$Res> {
           $Res Function(UpdateCartSessionBodyParam) then) =
       _$UpdateCartSessionBodyParamCopyWithImpl<$Res>;
   $Res call(
-      {String paymentType,
-      String customerNote,
-      String customerPax,
-      String customerSmoking,
+      {String? paymentType,
+      String? customerNote,
+      String? customerPax,
+      String? customerSmoking,
       UpdateCartSessionBodyDeliveryParam? delivery,
-      String eta,
-      List<String> promos,
-      String salesType,
+      String? eta,
+      List<String>? promos,
+      String? salesType,
       List<CreateUpdateCartSessionItemParam>? items});
 
   $UpdateCartSessionBodyDeliveryParamCopyWith<$Res>? get delivery;
@@ -323,19 +323,19 @@ class _$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       paymentType: paymentType == freezed
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerNote: customerNote == freezed
           ? _value.customerNote
           : customerNote // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -343,15 +343,15 @@ class _$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       eta: eta == freezed
           ? _value.eta
           : eta // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       promos: promos == freezed
           ? _value.promos
           : promos // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       salesType: salesType == freezed
           ? _value.salesType
           : salesType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -381,14 +381,14 @@ abstract class _$UpdateCartSessionBodyParamCopyWith<$Res>
       __$UpdateCartSessionBodyParamCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String paymentType,
-      String customerNote,
-      String customerPax,
-      String customerSmoking,
+      {String? paymentType,
+      String? customerNote,
+      String? customerPax,
+      String? customerSmoking,
       UpdateCartSessionBodyDeliveryParam? delivery,
-      String eta,
-      List<String> promos,
-      String salesType,
+      String? eta,
+      List<String>? promos,
+      String? salesType,
       List<CreateUpdateCartSessionItemParam>? items});
 
   @override
@@ -423,19 +423,19 @@ class __$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       paymentType: paymentType == freezed
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerNote: customerNote == freezed
           ? _value.customerNote
           : customerNote // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -443,15 +443,15 @@ class __$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       eta: eta == freezed
           ? _value.eta
           : eta // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       promos: promos == freezed
           ? _value.promos
           : promos // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       salesType: salesType == freezed
           ? _value.salesType
           : salesType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -478,21 +478,21 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
       _$_$_UpdateCartSessionBodyParamFromJson(json);
 
   @override
-  final String paymentType;
+  final String? paymentType;
   @override
-  final String customerNote;
+  final String? customerNote;
   @override
-  final String customerPax;
+  final String? customerPax;
   @override
-  final String customerSmoking;
+  final String? customerSmoking;
   @override
   final UpdateCartSessionBodyDeliveryParam? delivery;
   @override
-  final String eta;
+  final String? eta;
   @override
-  final List<String> promos;
+  final List<String>? promos;
   @override
-  final String salesType;
+  final String? salesType;
   @override
   final List<CreateUpdateCartSessionItemParam>? items;
 
@@ -559,14 +559,14 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
 abstract class _UpdateCartSessionBodyParam
     implements UpdateCartSessionBodyParam {
   const factory _UpdateCartSessionBodyParam(
-          {required String paymentType,
-          required String customerNote,
-          required String customerPax,
-          required String customerSmoking,
+          {required String? paymentType,
+          required String? customerNote,
+          required String? customerPax,
+          required String? customerSmoking,
           required UpdateCartSessionBodyDeliveryParam? delivery,
-          required String eta,
-          required List<String> promos,
-          required String salesType,
+          required String? eta,
+          required List<String>? promos,
+          required String? salesType,
           required List<CreateUpdateCartSessionItemParam>? items}) =
       _$_UpdateCartSessionBodyParam;
 
@@ -574,22 +574,22 @@ abstract class _UpdateCartSessionBodyParam
       _$_UpdateCartSessionBodyParam.fromJson;
 
   @override
-  String get paymentType => throw _privateConstructorUsedError;
+  String? get paymentType => throw _privateConstructorUsedError;
   @override
-  String get customerNote => throw _privateConstructorUsedError;
+  String? get customerNote => throw _privateConstructorUsedError;
   @override
-  String get customerPax => throw _privateConstructorUsedError;
+  String? get customerPax => throw _privateConstructorUsedError;
   @override
-  String get customerSmoking => throw _privateConstructorUsedError;
+  String? get customerSmoking => throw _privateConstructorUsedError;
   @override
   UpdateCartSessionBodyDeliveryParam? get delivery =>
       throw _privateConstructorUsedError;
   @override
-  String get eta => throw _privateConstructorUsedError;
+  String? get eta => throw _privateConstructorUsedError;
   @override
-  List<String> get promos => throw _privateConstructorUsedError;
+  List<String>? get promos => throw _privateConstructorUsedError;
   @override
-  String get salesType => throw _privateConstructorUsedError;
+  String? get salesType => throw _privateConstructorUsedError;
   @override
   List<CreateUpdateCartSessionItemParam>? get items =>
       throw _privateConstructorUsedError;

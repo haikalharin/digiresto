@@ -205,7 +205,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
         if (deliveryInq != null) {
-          UpdateCartSessionBodyDeliveryParam(
+          deliveryParam = UpdateCartSessionBodyDeliveryParam(
               address: activeAddr.address!,
               location: [activeAddr.latitude!, activeAddr.longitude!],
               price: deliveryInq.shipmentMethods.first.price,

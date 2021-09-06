@@ -27,14 +27,14 @@ abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
 @freezed
 abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
   const factory UpdateCartSessionBodyParam({
-    required String paymentType,
-    required String customerNote,
-    required String customerPax,
-    required String customerSmoking,
+    required String? paymentType,
+    required String? customerNote,
+    required String? customerPax,
+    required String? customerSmoking,
     required UpdateCartSessionBodyDeliveryParam? delivery,
-    required String eta,
-    required List<String> promos,
-    required String salesType,
+    required String? eta,
+    required List<String>? promos,
+    required String? salesType,
     required List<CreateUpdateCartSessionItemParam>? items,
   }) = _UpdateCartSessionBodyParam;
 
