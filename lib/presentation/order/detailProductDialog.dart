@@ -6,6 +6,7 @@ import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
@@ -20,11 +21,13 @@ class DetailProductDialog extends StatefulWidget {
   final String orderType;
   final qtyProduct;
   final mode;
+  final DetailOutletDataResponse detailOutlet;
   @override
   DetailProductDialog(
       {Key? key,
       required this.dataProduct,
       required this.orderType,
+      required this.detailOutlet,
       this.mode = "new",
       this.qtyProduct = 1})
       : super(key: key);
@@ -72,7 +75,6 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   void setProduct() {
-    var controller = Get.find<OrderViewController>();
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
               CreateUpdateCartSessionItemParam(
@@ -80,7 +82,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                   note: '',
                   productId: int.parse(variantProductSelected.id),
                   qty: totalqty),
-              controller.detailOutlet.value!,
+              widget.detailOutlet,
               widget.orderType),
         );
   }

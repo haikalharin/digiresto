@@ -648,7 +648,9 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
-                      dataProduct: dataProduct, orderType: orderType);
+                      dataProduct: dataProduct,
+                      orderType: orderType,
+                      detailOutlet: controller.detailOutlet.value!);
                 },
                 fullscreenDialog: true))
         .then((value) {});

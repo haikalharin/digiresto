@@ -1556,60 +1556,64 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               body: Column(
                 children: [
                   TopBackgound(backgroundColor: AppColors.red),
-                  StackWithProgress(
-                      isLoading: controller.isLoading.value,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: MediaQuery.of(context).size.height -
-                                MediaQuery.of(context).padding.top,
-                            child: SingleChildScrollView(
-                              controller: _scrollController,
-                              child: Column(
-                                children: [
-                                  _HeaderOrderCart(),
-                                  controller.detailOutlet.value != null
-                                      ? titleDetailOutlet()
-                                      : Container(),
-                                  controller.salesType.value != null &&
-                                          controller.detailOutlet.value != null
-                                      ? _selectSalesTypeMethod()
-                                      : Container(),
+                  Expanded(
+                    child: Obx(() => StackWithProgress(
+                            isLoading: controller.isLoading.value,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height -
+                                      MediaQuery.of(context).padding.top,
+                                  child: SingleChildScrollView(
+                                    controller: _scrollController,
+                                    child: Column(
+                                      children: [
+                                        _HeaderOrderCart(),
+                                        controller.detailOutlet.value != null
+                                            ? titleDetailOutlet()
+                                            : Container(),
+                                        controller.salesType.value != null &&
+                                                controller.detailOutlet.value !=
+                                                    null
+                                            ? _selectSalesTypeMethod()
+                                            : Container(),
 
-                                  _AddressOrderCart(),
+                                        _AddressOrderCart(),
 
-                                  controller.detailOutlet.value != null &&
-                                          controller.listProduct.value != null
-                                      ? _ProductOrderCart()
-                                      : Container(),
-                                  _notes(),
-                                  controller.detailOutlet.value != null
-                                      ? _useVoucherCode()
-                                      : Container(),
-                                  controller.detailOutlet.value != null
-                                      ? _paymentMethod()
-                                      : Container(),
-                                  controller.detailOutlet.value != null
-                                      ? _voucherMethod()
-                                      : Container(),
-                                  controller.detailOutlet.value != null &&
-                                          controller.salesType.value ==
-                                              "onlineDriver"
-                                      ? _deliveryMethod()
-                                      : Container(),
-                                  controller.cartSession.value != null
-                                      ? _detailPayment()
-                                      : Container()
-                                  // Observer(builder: (context) => _paymentMethod()),
-                                  // if (_orderStore.orderSalesTypes == 'onlineDriver')
-                                  //   Observer(builder: (context) => _deliveryMethod()),
-                                  // Observer(builder: (context) => _detailPayment()),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ]),
+                                        controller.detailOutlet.value != null &&
+                                                controller.listProduct.value !=
+                                                    null
+                                            ? _ProductOrderCart()
+                                            : Container(),
+                                        _notes(),
+                                        controller.detailOutlet.value != null
+                                            ? _useVoucherCode()
+                                            : Container(),
+                                        controller.detailOutlet.value != null
+                                            ? _paymentMethod()
+                                            : Container(),
+                                        controller.detailOutlet.value != null
+                                            ? _voucherMethod()
+                                            : Container(),
+                                        controller.detailOutlet.value != null &&
+                                                controller.salesType.value ==
+                                                    "onlineDriver"
+                                            ? _deliveryMethod()
+                                            : Container(),
+                                        controller.cartSession.value != null
+                                            ? _detailPayment()
+                                            : Container()
+                                        // Observer(builder: (context) => _paymentMethod()),
+                                        // if (_orderStore.orderSalesTypes == 'onlineDriver')
+                                        //   Observer(builder: (context) => _deliveryMethod()),
+                                        // Observer(builder: (context) => _detailPayment()),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                  ),
                 ],
               ),
             );
@@ -1665,7 +1669,8 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                       dataProduct: product,
                       orderType: orderType,
                       mode: "edit",
-                      qtyProduct: cartProduct.qty);
+                      qtyProduct: cartProduct.qty,
+                      detailOutlet: controller.detailOutlet.value!);
                 },
                 fullscreenDialog: true))
         .then((value) {
