@@ -375,7 +375,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
       Get.find<HomeContentViewController>().setLoadingListAddress(false);
     }).catchError((e) {
       Get.find<HomeContentViewController>().setLoadingListAddress(false);
-      ErrorPopupWidget.show(Get.context!, "Digiresto",
+      ErrorPopupWidget.show("Digiresto",
           "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
           () {
         {

@@ -2743,7 +2743,7 @@ class _$TaxesAndServiceTearOff {
       required String code,
       required String name,
       required String type,
-      required int percentage,
+      required int? percentage,
       required List<String> salesTypes,
       required String title,
       required int amount}) {
@@ -2773,7 +2773,7 @@ mixin _$TaxesAndService {
   String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  int get percentage => throw _privateConstructorUsedError;
+  int? get percentage => throw _privateConstructorUsedError;
   List<String> get salesTypes => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
@@ -2794,7 +2794,7 @@ abstract class $TaxesAndServiceCopyWith<$Res> {
       String code,
       String name,
       String type,
-      int percentage,
+      int? percentage,
       List<String> salesTypes,
       String title,
       int amount});
@@ -2840,7 +2840,7 @@ class _$TaxesAndServiceCopyWithImpl<$Res>
       percentage: percentage == freezed
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
@@ -2869,7 +2869,7 @@ abstract class _$TaxesAndServiceCopyWith<$Res>
       String code,
       String name,
       String type,
-      int percentage,
+      int? percentage,
       List<String> salesTypes,
       String title,
       int amount});
@@ -2917,7 +2917,7 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
       percentage: percentage == freezed
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
@@ -2959,7 +2959,7 @@ class _$_TaxesAndService implements _TaxesAndService {
   @override
   final String type;
   @override
-  final int percentage;
+  final int? percentage;
   @override
   final List<String> salesTypes;
   @override
@@ -3025,7 +3025,7 @@ abstract class _TaxesAndService implements TaxesAndService {
       required String code,
       required String name,
       required String type,
-      required int percentage,
+      required int? percentage,
       required List<String> salesTypes,
       required String title,
       required int amount}) = _$_TaxesAndService;
@@ -3042,7 +3042,7 @@ abstract class _TaxesAndService implements TaxesAndService {
   @override
   String get type => throw _privateConstructorUsedError;
   @override
-  int get percentage => throw _privateConstructorUsedError;
+  int? get percentage => throw _privateConstructorUsedError;
   @override
   List<String> get salesTypes => throw _privateConstructorUsedError;
   @override

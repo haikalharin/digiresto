@@ -8,7 +8,6 @@ import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
-import 'package:digiresto/domain/entity/order/param/checkout_cart_param.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
@@ -209,7 +208,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               address: activeAddr.address!,
               location: [activeAddr.latitude!, activeAddr.longitude!],
               price: deliveryInq.shipmentMethods.first.price,
-              provider: deliveryInq.provider);
+              provider: deliveryInq.provider,
+              shipmentMethod: deliveryInq.shipmentMethods.first.name);
         }
         final createCartSession = await _orderRepository.updateCartSession(
             UpdateCartSessionParam(
@@ -255,7 +255,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               address: activeAddr.address!,
               location: [activeAddr.latitude!, activeAddr.longitude!],
               price: deliveryInq.shipmentMethods.first.price,
-              provider: deliveryInq.provider);
+              provider: deliveryInq.provider,
+              shipmentMethod: deliveryInq.shipmentMethods.first.name);
         }
 
         //create new cart session, if add cart in the different outlet
@@ -329,7 +330,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerPax: '',
                       customerSmoking: '',
                       delivery: UpdateCartSessionBodyDeliveryParam(
-                          address: '', location: [], price: 0, provider: ''),
+                          address: '',
+                          location: [],
+                          price: 0,
+                          provider: '',
+                          shipmentMethod: ''),
                       eta: 'now',
                       promos: [],
                       salesType: ''),
@@ -388,12 +393,17 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       checkoutCart: (request) async* {
-        final checkoutCart =
-            await _orderRepository.checkout(request.request.sessionId);
-        yield checkoutCart.fold(
-          (error) => OrderState.loadFailure(OrderFailure.checkoutCartFail()),
-          (list) => OrderState.checkoutCartSuccess(list),
-        );
+        final sessionId =
+            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        if (sessionId != null) {
+          final checkoutCart = await _orderRepository.checkout(sessionId);
+          yield checkoutCart.fold(
+            (error) => OrderState.loadFailure(OrderFailure.checkoutCartFail()),
+            (list) => OrderState.checkoutCartSuccess(list),
+          );
+        } else {
+          yield OrderState.loadFailure(OrderFailure.checkoutCartFail());
+        }
       },
       getDeliveryMethodID: (r) async* {
         final getDeliveryMethodID =

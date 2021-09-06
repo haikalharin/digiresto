@@ -49,6 +49,7 @@ abstract class UpdateCartSessionBodyDeliveryParam
     required String provider,
     required int price,
     required String address,
+    required String shipmentMethod,
     required List<String> location,
   }) = _UpdateCartSessionBodyDeliveryParam;
 

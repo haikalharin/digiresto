@@ -3,8 +3,11 @@ import 'dart:core';
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
+import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
+import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
@@ -16,6 +19,7 @@ import 'package:digiresto/domain/order/order_select_delivery_method_view_argumen
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -909,77 +913,34 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                        onPressed: () async {
+                        onPressed: () {
                           //validation
-                          // if (_orderStore.orderPaymentType == null) {
-                          //   ErrorPopupWidget.show(context, "Digiresto",
-                          //       "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
-                          //       () {
-                          //     Navigator.of(context).pop();
-                          //     Navigator.of(context)
-                          //         .pushNamed(Routers.selectPaymentMethod);
-                          //   });
-                          // } else if (placeInfoController.text == "" &&
-                          //     _orderStore.orderSalesTypesCode == "DI") {
-                          //   ErrorPopupWidget.show(context, "Digiresto",
-                          //       "Info Makan di Tempat tidak boleh kosong", () {
-                          //     Navigator.of(context).pop();
-                          //     _dialogPlace(context);
-                          //   });
-                          // } else {
-                          //   ErrorPopupWidget.confirmation(context, "Digiresto",
-                          //       "Apakah Anda yakin dengan orderan ini?",
-                          //       () async {
-                          //     Navigator.of(context).pop();
-                          //     Loading.show();
-                          //     print('DEBUG >> do checkout');
-                          //     var checkoutResponse =
-                          //         await _orderStore.checkout().catchError((err) {
-                          //       print("error response checkout 1:");
-                          //       print(err);
-                          //       Loading.dismiss();
-                          //       ErrorPopupWidget.show(
-                          //           context, "Digiresto", "Transaksi gagal", () {
-                          //         Navigator.of(context).pop();
-                          //       });
-                          //     });
-                          //     if (checkoutResponse.receiptCode == "") {
-                          //       Loading.dismiss();
-                          //       print("error response cheeckout 2:");
-                          //     } else if (checkoutResponse.payment.isCredit) {
-                          //       await _orderStore.getTransaction();
-                          //       await _transactionStore
-                          //           .getOngoingTransaction()
-                          //           .then((res) {
-                          //         print(
-                          //             "success get data ongoing transaction : ");
-                          //       }).catchError((err) {
-                          //         print("error response: " + err.toString());
-                          //         ErrorPopupWidget.showDioError(
-                          //             context, err, null);
-                          //       });
-                          //       Loading.dismiss();
-                          //       Navigator.of(context).pushNamedAndRemoveUntil(
-                          //           Routes.payment_receipt, (_) => false);
-                          //     } else if (checkoutResponse.payment.isWebView) {
-                          //       Loading.dismiss();
-                          //       Navigator.of(context).pushNamedAndRemoveUntil(
-                          //           Routes.payment_web_view, (_) => false);
-                          //     } else if (checkoutResponse.payment.isDeeplink) {
-                          //       //Need test on real device to simulate open payment app
-                          //       Loading.dismiss();
-                          //       LaunchUrl.run(checkoutResponse.payment.deeplink);
-                          //     } else {
-                          //       Loading.dismiss();
-                          //       if (checkoutResponse
-                          //           .payment.paymentCode.isNotEmpty) {
-                          //         Navigator.of(context).pushNamedAndRemoveUntil(
-                          //             Routers.paymentVa, (_) => false);
-                          //       }
-                          //     }
-                          //   }
-                          //   );
-                          // }
+                          if (controller.paymentMethod.value == null) {
+                            ErrorPopupWidget.show("Digiresto",
+                                "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
+                                () {
+                              Get.back();
+                              Get.toNamed(Routers.selectPaymentMethod);
+                            });
+                          } else if (placeInfoController.text == "" &&
+                              controller.salesType.value == "dineIn") {
+                            ErrorPopupWidget.show("Digiresto",
+                                "Info Makan di Tempat tidak boleh kosong", () {
+                              Get.back();
+                              _dialogPlace();
+                            });
+                          } else {
+                            ErrorPopupWidget.confirmation("Digiresto",
+                                "Apakah Anda yakin dengan orderan ini?",
+                                () async {
+                              Get.back();
+                              Loading.show();
+                              print('DEBUG >> do checkout');
+                              Get.context!
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.checkoutCart());
+                            });
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: AppColors.red,
@@ -1005,9 +966,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     );
   }
 
-  _dialogPlace(BuildContext context) {
+  _dialogPlace() {
     showDialog(
-        context: context,
+        context: Get.context!,
         builder: (BuildContext context) => new AlertDialog(
               content: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
@@ -1440,101 +1401,178 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   Widget build(BuildContext context) {
     getCartCache();
     getCartSession();
-    return BlocConsumer<OrderBloc, OrderState>(
-      listener: (context, state) {
-        state.maybeMap(
-            getCartSessionSuccess: (r) {
-              controller.cartSession.value = r.response;
-              getDetailOutlet();
-              getListProduct();
-            },
-            getDetailOutletSuccess: (r) {
-              controller.detailOutlet.value = r.response;
-            },
-            getOutletListProductSuccess: (r) {
-              controller.listProduct.value = r.response;
-            },
-            setSalesTypeCartSuccess: (r) {
-              controller.salesType.value = r.value;
-              updateCartParam();
-            },
-            getSalesTypeCartSuccess: (r) {
-              controller.salesType.value = r.value;
-              updateCartParam();
-            },
-            getPaymentMethodIDSuccess: (r) {
-              controller.paymentMethod.value = r.data;
-              updateCartParam();
-            },
-            getDeliveryMethodIDSuccess: (r) {
-              controller.deliveryMethod.value = r.data;
-              updateCartParam();
-            },
-            getVoucherMethodIDSuccess: (r) {
-              controller.voucherMethod.value = r.data;
-              updateCartParam();
-            },
-            orElse: () {});
-      },
-      builder: (context, state) {
-        return Scaffold(
-          body: Column(
-            children: [
-              TopBackgound(backgroundColor: AppColors.red),
-              Expanded(
-                child: Container(
-                  height: MediaQuery.of(context).size.height -
-                      MediaQuery.of(context).padding.top,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Column(
-                      children: [
-                        _HeaderOrderCart(),
-                        controller.detailOutlet.value != null
-                            ? titleDetailOutlet()
-                            : Container(),
-                        controller.salesType.value != null &&
-                                controller.detailOutlet.value != null
-                            ? _selectSalesTypeMethod()
-                            : Container(),
+    return MultiBlocListener(
+        listeners: [
+          BlocListener<OrderBloc, OrderState>(
+            listener: (context, state) {
+              state.maybeMap(
+                  getCartSessionSuccess: (r) {
+                    controller.cartSession.value = r.response;
+                    getDetailOutlet();
+                    getListProduct();
+                    print("data diterima");
+                  },
+                  getDetailOutletSuccess: (r) {
+                    controller.detailOutlet.value = r.response;
+                  },
+                  getOutletListProductSuccess: (r) {
+                    controller.listProduct.value = r.response;
+                  },
+                  setSalesTypeCartSuccess: (r) {
+                    controller.salesType.value = r.value;
+                    updateCartParam();
+                  },
+                  getSalesTypeCartSuccess: (r) {
+                    controller.salesType.value = r.value;
+                    updateCartParam();
+                  },
+                  getPaymentMethodIDSuccess: (r) {
+                    controller.paymentMethod.value = r.data;
+                    updateCartParam();
+                  },
+                  getDeliveryMethodIDSuccess: (r) {
+                    controller.deliveryMethod.value = r.data;
+                    updateCartParam();
+                  },
+                  getVoucherMethodIDSuccess: (r) {
+                    controller.voucherMethod.value = r.data;
+                    updateCartParam();
+                  },
+                  checkoutCartSuccess: (r) {
+                    var checkoutResponse = r.response.data;
 
-                        _AddressOrderCart(),
+                    if (r.response.response.messageDisplay != null &&
+                        r.response.response.code != "00") {
+                      final message = r.response.response.messageDisplay;
+                      print("error response checkout 1:");
 
-                        controller.detailOutlet.value != null &&
-                                controller.listProduct.value != null
-                            ? _ProductOrderCart()
-                            : Container(),
-                        _notes(),
-                        controller.detailOutlet.value != null
-                            ? _useVoucherCode()
-                            : Container(),
-                        controller.detailOutlet.value != null
-                            ? _paymentMethod()
-                            : Container(),
-                        controller.detailOutlet.value != null
-                            ? _voucherMethod()
-                            : Container(),
-                        controller.detailOutlet.value != null &&
-                                controller.salesType.value == "onlineDriver"
-                            ? _deliveryMethod()
-                            : Container(),
-                        controller.cartSession.value != null
-                            ? _detailPayment()
-                            : Container()
-                        // Observer(builder: (context) => _paymentMethod()),
-                        // if (_orderStore.orderSalesTypes == 'onlineDriver')
-                        //   Observer(builder: (context) => _deliveryMethod()),
-                        // Observer(builder: (context) => _detailPayment()),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ],
+                      Loading.dismiss();
+                      ErrorPopupWidget.show("Digiresto", message!.id, () {
+                        Get.back();
+                      });
+                      return;
+                    }
+
+                    if (checkoutResponse.receiptCode == "") {
+                      Loading.dismiss();
+                      print("error response cheeckout 2:");
+                    } else if (checkoutResponse.payment.isCredit) {
+                      Get.context!.read<TransactionBloc>().add(
+                          TransactionEvent.getTransaction(
+                              checkoutResponse.receiptCode));
+                      Loading.dismiss();
+                    } else if (checkoutResponse.payment.isWebView) {
+                      Loading.dismiss();
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          Routers.paymentWebView, (_) => false);
+                    } else if (checkoutResponse.payment.isDeeplink) {
+                      //Need test on real device to simulate open payment app
+                      Loading.dismiss();
+                      LaunchUrl.run(checkoutResponse.payment.deeplink);
+                    } else {
+                      Loading.dismiss();
+                      if (checkoutResponse.payment.paymentCode != null) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            Routers.paymentVa, (_) => false);
+                      }
+                    }
+                  },
+                  loadFailure: (e) {
+                    e.e.maybeMap(
+                        checkoutCartFail: (e) {
+                          print("error response checkout 1:");
+
+                          Loading.dismiss();
+                          ErrorPopupWidget.show("Digiresto", "Transaksi gagal",
+                              () {
+                            Get.back();
+                          });
+                        },
+                        orElse: () {});
+                  },
+                  orElse: () {});
+            },
           ),
-        );
-      },
-    );
+          BlocListener<TransactionBloc, TransactionState>(
+            listener: (context, state) {
+              state.maybeMap(
+                  getTransactionSuccess: (r) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        Routers.paymentReceipt, (_) => false);
+                  },
+                  getOngoingTransactionSuccess: (r) {},
+                  loadFailure: (e) {
+                    e.error.maybeMap(orElse: () {
+                      ErrorPopupWidget.show("Error", "Transaction Error", () {
+                        Get.back();
+                      });
+                    });
+                  },
+                  orElse: () {});
+            },
+          )
+        ],
+        child: BlocBuilder<OrderBloc, OrderState>(
+          builder: (context, state) {
+            return Obx(() => Scaffold(
+                  body: Column(
+                    children: [
+                      TopBackgound(backgroundColor: AppColors.red),
+                      Expanded(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height -
+                              MediaQuery.of(context).padding.top,
+                          child: SingleChildScrollView(
+                            controller: _scrollController,
+                            child: Column(
+                              children: [
+                                _HeaderOrderCart(),
+                                controller.detailOutlet.value != null
+                                    ? titleDetailOutlet()
+                                    : Container(),
+                                controller.salesType.value != null &&
+                                        controller.detailOutlet.value != null
+                                    ? _selectSalesTypeMethod()
+                                    : Container(),
+
+                                _AddressOrderCart(),
+
+                                controller.detailOutlet.value != null &&
+                                        controller.listProduct.value != null
+                                    ? _ProductOrderCart()
+                                    : Container(),
+                                _notes(),
+                                controller.detailOutlet.value != null
+                                    ? _useVoucherCode()
+                                    : Container(),
+                                controller.detailOutlet.value != null
+                                    ? _paymentMethod()
+                                    : Container(),
+                                controller.detailOutlet.value != null
+                                    ? _voucherMethod()
+                                    : Container(),
+                                controller.detailOutlet.value != null &&
+                                        controller.salesType.value ==
+                                            "onlineDriver"
+                                    ? _deliveryMethod()
+                                    : Container(),
+                                controller.cartSession.value != null
+                                    ? _detailPayment()
+                                    : Container()
+                                // Observer(builder: (context) => _paymentMethod()),
+                                // if (_orderStore.orderSalesTypes == 'onlineDriver')
+                                //   Observer(builder: (context) => _deliveryMethod()),
+                                // Observer(builder: (context) => _detailPayment()),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ));
+          },
+        ));
   }
 
   Widget _buildTaxAndServiceList(TransactionHistoryTaxesAndServices item) {

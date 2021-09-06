@@ -125,10 +125,8 @@ class _$OrderEventTearOff {
     );
   }
 
-  _CheckoutCart checkoutCart(CheckoutCartParam request) {
-    return _CheckoutCart(
-      request,
-    );
+  _CheckoutCart checkoutCart() {
+    return const _CheckoutCart();
   }
 
   _GetSalesTypeCart getSalesTypeCart() {
@@ -208,7 +206,7 @@ mixin _$OrderEvent {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -245,7 +243,7 @@ mixin _$OrderEvent {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -442,7 +440,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -482,7 +480,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -686,7 +684,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -726,7 +724,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -930,7 +928,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -970,7 +968,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -1176,7 +1174,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -1216,7 +1214,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -1420,7 +1418,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -1460,7 +1458,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -1664,7 +1662,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -1704,7 +1702,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -1908,7 +1906,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -1948,7 +1946,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -2150,7 +2148,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -2190,7 +2188,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -2383,7 +2381,7 @@ class _$_GetHotPromo implements _GetHotPromo {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -2423,7 +2421,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -2625,7 +2623,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -2665,7 +2663,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -2868,7 +2866,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -2908,7 +2906,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -3111,7 +3109,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -3151,7 +3149,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -3354,7 +3352,7 @@ class _$_CreateCartSession implements _CreateCartSession {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -3394,7 +3392,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -3629,7 +3627,7 @@ class _$_AddCart implements _AddCart {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -3669,7 +3667,7 @@ class _$_AddCart implements _AddCart {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -3840,7 +3838,7 @@ class _$_UpdateCart implements _UpdateCart {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -3880,7 +3878,7 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -4077,7 +4075,7 @@ class _$_RemoveCart implements _RemoveCart {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -4117,7 +4115,7 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -4286,7 +4284,7 @@ class _$_GetCartSession implements _GetCartSession {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -4326,7 +4324,7 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -4523,7 +4521,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -4563,7 +4561,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -4669,7 +4667,6 @@ abstract class _$CheckoutCartCopyWith<$Res> {
   factory _$CheckoutCartCopyWith(
           _CheckoutCart value, $Res Function(_CheckoutCart) then) =
       __$CheckoutCartCopyWithImpl<$Res>;
-  $Res call({CheckoutCartParam request});
 }
 
 /// @nodoc
@@ -4681,49 +4678,25 @@ class __$CheckoutCartCopyWithImpl<$Res> extends _$OrderEventCopyWithImpl<$Res>
 
   @override
   _CheckoutCart get _value => super._value as _CheckoutCart;
-
-  @override
-  $Res call({
-    Object? request = freezed,
-  }) {
-    return _then(_CheckoutCart(
-      request == freezed
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as CheckoutCartParam,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_CheckoutCart implements _CheckoutCart {
-  const _$_CheckoutCart(this.request);
-
-  @override
-  final CheckoutCartParam request;
+  const _$_CheckoutCart();
 
   @override
   String toString() {
-    return 'OrderEvent.checkoutCart(request: $request)';
+    return 'OrderEvent.checkoutCart()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _CheckoutCart &&
-            (identical(other.request, request) ||
-                const DeepCollectionEquality().equals(other.request, request)));
+    return identical(this, other) || (other is _CheckoutCart);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
-
-  @JsonKey(ignore: true)
-  @override
-  _$CheckoutCartCopyWith<_CheckoutCart> get copyWith =>
-      __$CheckoutCartCopyWithImpl<_CheckoutCart>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -4756,7 +4729,7 @@ class _$_CheckoutCart implements _CheckoutCart {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -4769,7 +4742,7 @@ class _$_CheckoutCart implements _CheckoutCart {
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
   }) {
-    return checkoutCart(request);
+    return checkoutCart();
   }
 
   @override
@@ -4796,7 +4769,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -4808,7 +4781,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult orElse(),
   }) {
     if (checkoutCart != null) {
-      return checkoutCart(request);
+      return checkoutCart();
     }
     return orElse();
   }
@@ -4888,12 +4861,7 @@ class _$_CheckoutCart implements _CheckoutCart {
 }
 
 abstract class _CheckoutCart implements OrderEvent {
-  const factory _CheckoutCart(CheckoutCartParam request) = _$_CheckoutCart;
-
-  CheckoutCartParam get request => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$CheckoutCartCopyWith<_CheckoutCart> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _CheckoutCart() = _$_CheckoutCart;
 }
 
 /// @nodoc
@@ -4964,7 +4932,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -5004,7 +4972,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -5192,7 +5160,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -5232,7 +5200,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -5434,7 +5402,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -5474,7 +5442,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -5643,7 +5611,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -5683,7 +5651,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -5881,7 +5849,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -5921,7 +5889,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -6090,7 +6058,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -6130,7 +6098,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -6328,7 +6296,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -6368,7 +6336,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -6538,7 +6506,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
         removeCart,
     required TResult Function() getCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
-    required TResult Function(CheckoutCartParam request) checkoutCart,
+    required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
     required TResult Function(String value) setSalesTypeCart,
     required TResult Function(PaymentMethodDataResponse data)
@@ -6578,7 +6546,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
-    TResult Function(CheckoutCartParam request)? checkoutCart,
+    TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
     TResult Function(String value)? setSalesTypeCart,
     TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
@@ -13707,6 +13675,8 @@ abstract class _$CheckoutCartSuccessCopyWith<$Res> {
           $Res Function(_CheckoutCartSuccess) then) =
       __$CheckoutCartSuccessCopyWithImpl<$Res>;
   $Res call({CheckoutResponse response});
+
+  $CheckoutResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -13730,6 +13700,13 @@ class __$CheckoutCartSuccessCopyWithImpl<$Res>
           : response // ignore: cast_nullable_to_non_nullable
               as CheckoutResponse,
     ));
+  }
+
+  @override
+  $CheckoutResponseCopyWith<$Res> get response {
+    return $CheckoutResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 

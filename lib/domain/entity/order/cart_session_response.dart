@@ -146,7 +146,7 @@ abstract class TaxesAndService with _$TaxesAndService {
     required String code,
     required String name,
     required String type,
-    required int percentage,
+    required int? percentage,
     required List<String> salesTypes,
     required String title,
     required int amount,

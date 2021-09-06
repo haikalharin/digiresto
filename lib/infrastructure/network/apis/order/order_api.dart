@@ -410,8 +410,7 @@ class OrderApi {
         },
         "body": {}
       });
-      var data = (apiResult as Map<String, dynamic>)['data'];
-      return right(CheckoutResponse.create(data));
+      return right(CheckoutResponse.fromJson(apiResult));
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {

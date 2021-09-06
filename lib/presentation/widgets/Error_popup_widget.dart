@@ -7,11 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ErrorPopupWidget {
-  static confirmation(BuildContext context, String title, String message,
-      void Function() runAction) {
+  static confirmation(String title, String message, void Function() runAction) {
     return showDialog(
         barrierDismissible: false,
-        context: context,
+        context: Get.context!,
         builder: (_) => new AlertDialog(
               title: Center(
                   child: Text(
@@ -45,10 +44,10 @@ class ErrorPopupWidget {
                         children: [
                           Container(
                             height: 40,
-                            width: MediaQuery.of(context).size.width / 3 - 10,
+                            width: Get.width / 3 - 10,
                             child: RaisedButton(
                               onPressed: () {
-                                Navigator.of(context).pop();
+                                Get.back();
                               },
                               color: Colors.white,
                               child: Text("Batal",
@@ -67,7 +66,7 @@ class ErrorPopupWidget {
                           ),
                           Container(
                             height: 40,
-                            width: MediaQuery.of(context).size.width / 3 - 10,
+                            width: Get.width / 3 - 10,
                             child: RaisedButton(
                               onPressed: () {
                                 runAction();
@@ -96,11 +95,10 @@ class ErrorPopupWidget {
             ));
   }
 
-  static show(BuildContext context, String title, String message,
-      void Function() runAction) {
+  static show(String title, String message, void Function() runAction) {
     return showDialog(
         barrierDismissible: false,
-        context: context,
+        context: Get.context!,
         builder: (_) => new AlertDialog(
               title: Center(
                   child: Text(
@@ -156,14 +154,13 @@ class ErrorPopupWidget {
             ));
   }
 
-  static showDioError(
-      BuildContext context, DioError dioError, void Function()? runAction) {
+  static showDioError(DioError dioError, void Function()? runAction) {
     KeyValueModel respError = ResponseMapping.getMessage(dioError);
     //  UserStore _userStore;
     //  _userStore = Provider.of<UserStore>(context, listen: false);
     return showDialog(
         barrierDismissible: false,
-        context: context,
+        context: Get.context!,
         builder: (_) => new AlertDialog(
               title: Center(
                   child: Text(
@@ -275,7 +272,7 @@ class ErrorPopupWidget {
       void Function() runAction) {
     return showDialog(
         barrierDismissible: false,
-        context: context,
+        context: Get.context!,
         builder: (_) => new AlertDialog(
               title: Center(
                   child: Text(

@@ -612,11 +612,13 @@ class _$UpdateCartSessionBodyDeliveryParamTearOff {
       {required String provider,
       required int price,
       required String address,
+      required String shipmentMethod,
       required List<String> location}) {
     return _UpdateCartSessionBodyDeliveryParam(
       provider: provider,
       price: price,
       address: address,
+      shipmentMethod: shipmentMethod,
       location: location,
     );
   }
@@ -635,6 +637,7 @@ mixin _$UpdateCartSessionBodyDeliveryParam {
   String get provider => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
+  String get shipmentMethod => throw _privateConstructorUsedError;
   List<String> get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -651,7 +654,11 @@ abstract class $UpdateCartSessionBodyDeliveryParamCopyWith<$Res> {
           $Res Function(UpdateCartSessionBodyDeliveryParam) then) =
       _$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>;
   $Res call(
-      {String provider, int price, String address, List<String> location});
+      {String provider,
+      int price,
+      String address,
+      String shipmentMethod,
+      List<String> location});
 }
 
 /// @nodoc
@@ -668,6 +675,7 @@ class _$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
     Object? provider = freezed,
     Object? price = freezed,
     Object? address = freezed,
+    Object? shipmentMethod = freezed,
     Object? location = freezed,
   }) {
     return _then(_value.copyWith(
@@ -682,6 +690,10 @@ class _$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      shipmentMethod: shipmentMethod == freezed
+          ? _value.shipmentMethod
+          : shipmentMethod // ignore: cast_nullable_to_non_nullable
               as String,
       location: location == freezed
           ? _value.location
@@ -700,7 +712,11 @@ abstract class _$UpdateCartSessionBodyDeliveryParamCopyWith<$Res>
       __$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String provider, int price, String address, List<String> location});
+      {String provider,
+      int price,
+      String address,
+      String shipmentMethod,
+      List<String> location});
 }
 
 /// @nodoc
@@ -721,6 +737,7 @@ class __$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
     Object? provider = freezed,
     Object? price = freezed,
     Object? address = freezed,
+    Object? shipmentMethod = freezed,
     Object? location = freezed,
   }) {
     return _then(_UpdateCartSessionBodyDeliveryParam(
@@ -735,6 +752,10 @@ class __$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      shipmentMethod: shipmentMethod == freezed
+          ? _value.shipmentMethod
+          : shipmentMethod // ignore: cast_nullable_to_non_nullable
               as String,
       location: location == freezed
           ? _value.location
@@ -752,6 +773,7 @@ class _$_UpdateCartSessionBodyDeliveryParam
       {required this.provider,
       required this.price,
       required this.address,
+      required this.shipmentMethod,
       required this.location});
 
   factory _$_UpdateCartSessionBodyDeliveryParam.fromJson(
@@ -765,11 +787,13 @@ class _$_UpdateCartSessionBodyDeliveryParam
   @override
   final String address;
   @override
+  final String shipmentMethod;
+  @override
   final List<String> location;
 
   @override
   String toString() {
-    return 'UpdateCartSessionBodyDeliveryParam(provider: $provider, price: $price, address: $address, location: $location)';
+    return 'UpdateCartSessionBodyDeliveryParam(provider: $provider, price: $price, address: $address, shipmentMethod: $shipmentMethod, location: $location)';
   }
 
   @override
@@ -784,6 +808,9 @@ class _$_UpdateCartSessionBodyDeliveryParam
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
+            (identical(other.shipmentMethod, shipmentMethod) ||
+                const DeepCollectionEquality()
+                    .equals(other.shipmentMethod, shipmentMethod)) &&
             (identical(other.location, location) ||
                 const DeepCollectionEquality()
                     .equals(other.location, location)));
@@ -795,6 +822,7 @@ class _$_UpdateCartSessionBodyDeliveryParam
       const DeepCollectionEquality().hash(provider) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(shipmentMethod) ^
       const DeepCollectionEquality().hash(location);
 
   @JsonKey(ignore: true)
@@ -816,6 +844,7 @@ abstract class _UpdateCartSessionBodyDeliveryParam
       {required String provider,
       required int price,
       required String address,
+      required String shipmentMethod,
       required List<String> location}) = _$_UpdateCartSessionBodyDeliveryParam;
 
   factory _UpdateCartSessionBodyDeliveryParam.fromJson(
@@ -828,6 +857,8 @@ abstract class _UpdateCartSessionBodyDeliveryParam
   int get price => throw _privateConstructorUsedError;
   @override
   String get address => throw _privateConstructorUsedError;
+  @override
+  String get shipmentMethod => throw _privateConstructorUsedError;
   @override
   List<String> get location => throw _privateConstructorUsedError;
   @override

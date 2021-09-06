@@ -168,11 +168,15 @@ class _$StatusResponseTearOff {
   const _$StatusResponseTearOff();
 
   _StatusResponse call(
-      {required String code, required String status, required String message}) {
+      {required String code,
+      required String status,
+      required String message,
+      required StatusMessageDisplayResponse? messageDisplay}) {
     return _StatusResponse(
       code: code,
       status: status,
       message: message,
+      messageDisplay: messageDisplay,
     );
   }
 
@@ -189,6 +193,8 @@ mixin _$StatusResponse {
   String get code => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  StatusMessageDisplayResponse? get messageDisplay =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -201,7 +207,13 @@ abstract class $StatusResponseCopyWith<$Res> {
   factory $StatusResponseCopyWith(
           StatusResponse value, $Res Function(StatusResponse) then) =
       _$StatusResponseCopyWithImpl<$Res>;
-  $Res call({String code, String status, String message});
+  $Res call(
+      {String code,
+      String status,
+      String message,
+      StatusMessageDisplayResponse? messageDisplay});
+
+  $StatusMessageDisplayResponseCopyWith<$Res>? get messageDisplay;
 }
 
 /// @nodoc
@@ -218,6 +230,7 @@ class _$StatusResponseCopyWithImpl<$Res>
     Object? code = freezed,
     Object? status = freezed,
     Object? message = freezed,
+    Object? messageDisplay = freezed,
   }) {
     return _then(_value.copyWith(
       code: code == freezed
@@ -232,7 +245,23 @@ class _$StatusResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      messageDisplay: messageDisplay == freezed
+          ? _value.messageDisplay
+          : messageDisplay // ignore: cast_nullable_to_non_nullable
+              as StatusMessageDisplayResponse?,
     ));
+  }
+
+  @override
+  $StatusMessageDisplayResponseCopyWith<$Res>? get messageDisplay {
+    if (_value.messageDisplay == null) {
+      return null;
+    }
+
+    return $StatusMessageDisplayResponseCopyWith<$Res>(_value.messageDisplay!,
+        (value) {
+      return _then(_value.copyWith(messageDisplay: value));
+    });
   }
 }
 
@@ -243,7 +272,14 @@ abstract class _$StatusResponseCopyWith<$Res>
           _StatusResponse value, $Res Function(_StatusResponse) then) =
       __$StatusResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String code, String status, String message});
+  $Res call(
+      {String code,
+      String status,
+      String message,
+      StatusMessageDisplayResponse? messageDisplay});
+
+  @override
+  $StatusMessageDisplayResponseCopyWith<$Res>? get messageDisplay;
 }
 
 /// @nodoc
@@ -262,6 +298,7 @@ class __$StatusResponseCopyWithImpl<$Res>
     Object? code = freezed,
     Object? status = freezed,
     Object? message = freezed,
+    Object? messageDisplay = freezed,
   }) {
     return _then(_StatusResponse(
       code: code == freezed
@@ -276,6 +313,10 @@ class __$StatusResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      messageDisplay: messageDisplay == freezed
+          ? _value.messageDisplay
+          : messageDisplay // ignore: cast_nullable_to_non_nullable
+              as StatusMessageDisplayResponse?,
     ));
   }
 }
@@ -284,7 +325,10 @@ class __$StatusResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_StatusResponse implements _StatusResponse {
   const _$_StatusResponse(
-      {required this.code, required this.status, required this.message});
+      {required this.code,
+      required this.status,
+      required this.message,
+      required this.messageDisplay});
 
   factory _$_StatusResponse.fromJson(Map<String, dynamic> json) =>
       _$_$_StatusResponseFromJson(json);
@@ -295,10 +339,12 @@ class _$_StatusResponse implements _StatusResponse {
   final String status;
   @override
   final String message;
+  @override
+  final StatusMessageDisplayResponse? messageDisplay;
 
   @override
   String toString() {
-    return 'StatusResponse(code: $code, status: $status, message: $message)';
+    return 'StatusResponse(code: $code, status: $status, message: $message, messageDisplay: $messageDisplay)';
   }
 
   @override
@@ -310,7 +356,11 @@ class _$_StatusResponse implements _StatusResponse {
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+                const DeepCollectionEquality()
+                    .equals(other.message, message)) &&
+            (identical(other.messageDisplay, messageDisplay) ||
+                const DeepCollectionEquality()
+                    .equals(other.messageDisplay, messageDisplay)));
   }
 
   @override
@@ -318,7 +368,8 @@ class _$_StatusResponse implements _StatusResponse {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(message);
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(messageDisplay);
 
   @JsonKey(ignore: true)
   @override
@@ -333,9 +384,11 @@ class _$_StatusResponse implements _StatusResponse {
 
 abstract class _StatusResponse implements StatusResponse {
   const factory _StatusResponse(
-      {required String code,
-      required String status,
-      required String message}) = _$_StatusResponse;
+          {required String code,
+          required String status,
+          required String message,
+          required StatusMessageDisplayResponse? messageDisplay}) =
+      _$_StatusResponse;
 
   factory _StatusResponse.fromJson(Map<String, dynamic> json) =
       _$_StatusResponse.fromJson;
@@ -347,7 +400,188 @@ abstract class _StatusResponse implements StatusResponse {
   @override
   String get message => throw _privateConstructorUsedError;
   @override
+  StatusMessageDisplayResponse? get messageDisplay =>
+      throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$StatusResponseCopyWith<_StatusResponse> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+StatusMessageDisplayResponse _$StatusMessageDisplayResponseFromJson(
+    Map<String, dynamic> json) {
+  return _StatusMessageDisplayResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$StatusMessageDisplayResponseTearOff {
+  const _$StatusMessageDisplayResponseTearOff();
+
+  _StatusMessageDisplayResponse call({required String id, required String en}) {
+    return _StatusMessageDisplayResponse(
+      id: id,
+      en: en,
+    );
+  }
+
+  StatusMessageDisplayResponse fromJson(Map<String, Object> json) {
+    return StatusMessageDisplayResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $StatusMessageDisplayResponse = _$StatusMessageDisplayResponseTearOff();
+
+/// @nodoc
+mixin _$StatusMessageDisplayResponse {
+  String get id => throw _privateConstructorUsedError;
+  String get en => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StatusMessageDisplayResponseCopyWith<StatusMessageDisplayResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StatusMessageDisplayResponseCopyWith<$Res> {
+  factory $StatusMessageDisplayResponseCopyWith(
+          StatusMessageDisplayResponse value,
+          $Res Function(StatusMessageDisplayResponse) then) =
+      _$StatusMessageDisplayResponseCopyWithImpl<$Res>;
+  $Res call({String id, String en});
+}
+
+/// @nodoc
+class _$StatusMessageDisplayResponseCopyWithImpl<$Res>
+    implements $StatusMessageDisplayResponseCopyWith<$Res> {
+  _$StatusMessageDisplayResponseCopyWithImpl(this._value, this._then);
+
+  final StatusMessageDisplayResponse _value;
+  // ignore: unused_field
+  final $Res Function(StatusMessageDisplayResponse) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? en = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      en: en == freezed
+          ? _value.en
+          : en // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$StatusMessageDisplayResponseCopyWith<$Res>
+    implements $StatusMessageDisplayResponseCopyWith<$Res> {
+  factory _$StatusMessageDisplayResponseCopyWith(
+          _StatusMessageDisplayResponse value,
+          $Res Function(_StatusMessageDisplayResponse) then) =
+      __$StatusMessageDisplayResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({String id, String en});
+}
+
+/// @nodoc
+class __$StatusMessageDisplayResponseCopyWithImpl<$Res>
+    extends _$StatusMessageDisplayResponseCopyWithImpl<$Res>
+    implements _$StatusMessageDisplayResponseCopyWith<$Res> {
+  __$StatusMessageDisplayResponseCopyWithImpl(
+      _StatusMessageDisplayResponse _value,
+      $Res Function(_StatusMessageDisplayResponse) _then)
+      : super(_value, (v) => _then(v as _StatusMessageDisplayResponse));
+
+  @override
+  _StatusMessageDisplayResponse get _value =>
+      super._value as _StatusMessageDisplayResponse;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? en = freezed,
+  }) {
+    return _then(_StatusMessageDisplayResponse(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      en: en == freezed
+          ? _value.en
+          : en // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_StatusMessageDisplayResponse implements _StatusMessageDisplayResponse {
+  const _$_StatusMessageDisplayResponse({required this.id, required this.en});
+
+  factory _$_StatusMessageDisplayResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_StatusMessageDisplayResponseFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String en;
+
+  @override
+  String toString() {
+    return 'StatusMessageDisplayResponse(id: $id, en: $en)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _StatusMessageDisplayResponse &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.en, en) ||
+                const DeepCollectionEquality().equals(other.en, en)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(en);
+
+  @JsonKey(ignore: true)
+  @override
+  _$StatusMessageDisplayResponseCopyWith<_StatusMessageDisplayResponse>
+      get copyWith => __$StatusMessageDisplayResponseCopyWithImpl<
+          _StatusMessageDisplayResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_StatusMessageDisplayResponseToJson(this);
+  }
+}
+
+abstract class _StatusMessageDisplayResponse
+    implements StatusMessageDisplayResponse {
+  const factory _StatusMessageDisplayResponse(
+      {required String id,
+      required String en}) = _$_StatusMessageDisplayResponse;
+
+  factory _StatusMessageDisplayResponse.fromJson(Map<String, dynamic> json) =
+      _$_StatusMessageDisplayResponse.fromJson;
+
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  String get en => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$StatusMessageDisplayResponseCopyWith<_StatusMessageDisplayResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
