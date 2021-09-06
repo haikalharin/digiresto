@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
-import 'package:digiresto/domain/entity/response_model.dart' as ResponseStatus;
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:injectable/injectable.dart';
 
@@ -14,7 +14,7 @@ class TransactionApi {
   // injecting dio instance
   TransactionApi(this._networkService);
 
-  Future<List<TransactionHistory>> getTransactionHistory() async {
+  Future<List<TransactionHistory>?> getTransactionHistory() async {
     try {
       String apiUrl = Endpoints.urlGetTransactionHistory;
       final apiResult = await _networkService.postHttp(path: apiUrl, content: {
@@ -32,11 +32,11 @@ class TransactionApi {
       return listTransactionHistory;
     } catch (e) {
       print(e.toString());
-      throw e;
+      return null;
     }
   }
 
-  Future<TransactionMobile> getTransaction(String receiptCode) async {
+  Future<TransactionMobile?> getTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlGetTransaction;
       final apiResult = await _networkService.postHttp(path: apiUrl, content: {
@@ -49,11 +49,11 @@ class TransactionApi {
       return TransactionMobile.create(data);
     } catch (e) {
       print(e.toString());
-      throw e;
+      return null;
     }
   }
 
-  Future<TransactionMobile> cancelTransaction(String receiptCode) async {
+  Future<TransactionMobile?> cancelTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlCancelTransaction;
       final apiResult = await _networkService.postHttp(path: apiUrl, content: {
@@ -66,11 +66,11 @@ class TransactionApi {
       return TransactionMobile.create(data);
     } catch (e) {
       print(e.toString());
-      throw e;
+      return null;
     }
   }
 
-  Future<ResponseStatus.Response> acceptTransaction(String receiptCode) async {
+  Future<StatusResponse?> acceptTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlAcceptTransaction;
       final apiResult = await _networkService.postHttp(path: apiUrl, content: {
@@ -80,14 +80,14 @@ class TransactionApi {
 
       var data = (apiResult
           as Map<String, dynamic>)['response']; //mengambil data data didalam
-      return ResponseStatus.Response.createResponse(data);
+      return StatusResponse.fromJson(data);
     } catch (e) {
       print(e.toString());
-      throw e;
+      return null;
     }
   }
 
-  Future<List<TransactionHistory>> getOngoingTransaction() async {
+  Future<List<TransactionHistory>?> getOngoingTransaction() async {
     try {
       String apiUrl = Endpoints.urlOngoingTransaction;
       final apiResult = await _networkService
@@ -102,7 +102,7 @@ class TransactionApi {
       return listTransactionHistory;
     } catch (e) {
       print(e.toString());
-      throw e;
+      return null;
     }
   }
 }
