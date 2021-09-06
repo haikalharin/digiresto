@@ -6,7 +6,6 @@ import 'package:digiresto/domain/auth/entity/login_otp.dart';
 import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
-import 'package:digiresto/domain/auth/entity/user_profile.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
@@ -14,6 +13,7 @@ import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/exceptions/server_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/domain/profile/i_profile_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
@@ -22,10 +22,12 @@ class ApiAuthFacade implements IAuthFacade {
   final Logger logger;
   final INetworkService _networkService;
   final IStorage _storage;
+  final IProfileRepository _profileRepository;
   const ApiAuthFacade(
     this._networkService,
     this.logger,
     this._storage,
+    this._profileRepository,
   );
   @override
   Future<Either<AuthFailure, String>> getOtp(
@@ -145,7 +147,7 @@ class ApiAuthFacade implements IAuthFacade {
       await _storage.putData(json: _user.toJson());
       await _storage.close();
       final _userAuth = UserAuth.fromJson(_userInStorage);
-      final _userProfile = await getProfile();
+      final _userProfile = await _profileRepository.getProfile();
       logger.d(_userProfile);
       failureOrSuccess = _userProfile.fold(
         (l) => left(l),
@@ -170,28 +172,6 @@ class ApiAuthFacade implements IAuthFacade {
     await _storage.deleteData();
     await _storage.close();
     return right(unit);
-  }
-
-  @override
-  Future<Either<AuthFailure, UserProfile>> getProfile() async {
-    try {
-      final apiResult = await _networkService.getHttp(
-        path: Endpoints.urlProfile,
-        useAuth: true,
-      );
-      logger.d(apiResult);
-      final data = (apiResult as Map<String, dynamic>)['data'];
-      final userData = Map<String, dynamic>.from(data);
-      logger.d(data);
-      return right(UserProfile.fromJson(userData));
-    } on ServerException catch (e) {
-      return left(AuthFailure.invalidToken(e.message));
-    } on NoInternetException catch (_) {
-      return left(AuthFailure.noInternet());
-    } catch (e, stactrace) {
-      logger.d('coba ' + stactrace.toString());
-      return left(AuthFailure.unknownError());
-    }
   }
 
   @override

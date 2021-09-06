@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/route_manager.dart';
 
-class OrderOnProcessWidget extends StatelessWidget {
-  final OrderHistory orderOnProcess;
-  const OrderOnProcessWidget(this.orderOnProcess, {Key? key}) : super(key: key);
+class OrderCompletedWidget extends StatelessWidget {
+  final OrderHistory orderCompleted;
+  const OrderCompletedWidget(this.orderCompleted, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class OrderOnProcessWidget extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => Get.to(OrderDetailsPage(orderOnProcess.receiptCode)),
+          onTap: () => Get.to(OrderDetailsPage(orderCompleted.receiptCode)),
           borderRadius: BorderRadius.circular(4),
           child: Column(
             children: [
@@ -46,11 +46,11 @@ class OrderOnProcessWidget extends StatelessWidget {
                         children: [
                           Text(
                             CommonUtils.dateFormat('dd MMM yyyy, HH:mm:ss',
-                                orderOnProcess.deviceTimestamp)!,
+                                orderCompleted.deviceTimestamp)!,
                             style: Styles.topUpDateStyle,
                           ),
                           Text(
-                            orderOnProcess.outlet.detail.name,
+                            orderCompleted.outlet.detail.name,
                             style: Styles.topUpDetailsStyle.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -76,7 +76,7 @@ class OrderOnProcessWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Kode Struk'),
-                        Text(orderOnProcess.receiptCode),
+                        Text(orderCompleted.receiptCode),
                       ],
                     ),
                     SizedBox(
@@ -86,7 +86,7 @@ class OrderOnProcessWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Tipe Order'),
-                        Text(orderOnProcess.salesType),
+                        Text(orderCompleted.salesType),
                       ],
                     ),
                     SizedBox(
@@ -96,7 +96,7 @@ class OrderOnProcessWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Status Transaksi'),
-                        Text(orderOnProcess.status),
+                        Text(orderCompleted.status),
                       ],
                     ),
                     SizedBox(
@@ -107,7 +107,7 @@ class OrderOnProcessWidget extends StatelessWidget {
                       children: [
                         Text('Total'),
                         Text(CommonUtils.currencyFormat(
-                            double.parse(orderOnProcess.finalAmount))),
+                            double.parse(orderCompleted.finalAmount))),
                       ],
                     ),
                   ],

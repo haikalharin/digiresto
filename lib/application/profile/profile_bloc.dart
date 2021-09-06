@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
-import 'package:digiresto/domain/auth/entity/user_profile.dart';
-import 'package:digiresto/domain/auth/i_auth_facade.dart';
+import 'package:digiresto/domain/profile/i_profile_repository.dart';
+import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,8 +13,8 @@ part 'profile_bloc.freezed.dart';
 
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final IAuthFacade _authFacade;
-  ProfileBloc(this._authFacade) : super(_Initial());
+  final IProfileRepository _profileRepository;
+  ProfileBloc(this._profileRepository) : super(_Initial());
 
   @override
   Stream<ProfileState> mapEventToState(
@@ -23,7 +23,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     yield* event.map(
       started: (_event) async* {
         yield ProfileState.loading();
-        final failureOrSuccess = await _authFacade.getProfile();
+        final failureOrSuccess = await _profileRepository.getProfile();
         yield failureOrSuccess.fold(
           (failure) => ProfileState.loadFailure(failure),
           (userProfile) => ProfileState.loadSuccess(userProfile),

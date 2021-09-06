@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     Key? key,
     this.onPressed,
-    required this.label,
+    this.label = 'Submit',
     this.color = AppColors.yellowButtonColor,
     this.fontColor = Colors.black,
     this.borderColor = Colors.transparent,
@@ -48,13 +48,21 @@ class CustomButton extends StatelessWidget {
       ),
       height: height,
       width: width,
-      padding: padding,
       margin: margin,
       child: ElevatedButton(
         style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: borderRadius,
+          )),
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           shadowColor: MaterialStateProperty.all(Colors.transparent),
           padding: MaterialStateProperty.all(padding),
+          overlayColor: color == Colors.white
+              ? MaterialStateProperty.all(
+                  AppColors.mainColor.withOpacity(0.1),
+                )
+              : null,
         ),
         onPressed: onPressed,
         child: child ??

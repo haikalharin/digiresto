@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
+import 'package:digiresto/domain/profile/order_pending.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class OrderPendingWidget extends StatelessWidget {
-  const OrderPendingWidget({Key? key}) : super(key: key);
+  final OrderPending orderPending;
+  const OrderPendingWidget(this.orderPending, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +41,12 @@ class OrderPendingWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '31 Agustus',
+                        CommonUtils.dateFormat('dd MMMM yyyy, HH:mm',
+                            orderPending.deviceTimestamp)!,
                         style: Styles.topUpDateStyle,
                       ),
                       Text(
-                        'Isi Saldo',
+                        orderPending.outlet.detail.name,
                         style: Styles.topUpDetailsStyle.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -61,6 +64,10 @@ class OrderPendingWidget extends StatelessWidget {
                     return [
                       PopupMenuItem(
                         value: 1,
+                        child: Text('Detail'),
+                      ),
+                      PopupMenuItem(
+                        value: 2,
                         child: Text('Batalkan'),
                       ),
                     ];
@@ -87,7 +94,8 @@ class OrderPendingWidget extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: Text('Bayar sebelum '),
+            child: Text(
+                'Bayar sebelum ${CommonUtils.dateFormat('dd MMMM yyyy, HH:mm', orderPending.billingDetail.expiresAt)}'),
           ),
           Padding(
             padding: EdgeInsets.all(
@@ -96,6 +104,30 @@ class OrderPendingWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Nama Bank',
+                      style: Styles.topUpDetailsStyle.copyWith(
+                        color: AppColors.greyColor1,
+                      ),
+                    ),
+                    Text(
+                      orderPending.billingDetail.title,
+                      style: Styles.topUpDetailsStyle.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -109,7 +141,7 @@ class OrderPendingWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '080808080',
+                          orderPending.billingDetail.vaNumber,
                           style: Styles.topUpDetailsStyle.copyWith(
                             color: AppColors.mainColor,
                             fontSize: 15,
@@ -124,7 +156,7 @@ class OrderPendingWidget extends StatelessWidget {
                         onTap: () {
                           Clipboard.setData(
                             ClipboardData(
-                              text: '080808080',
+                              text: orderPending.billingDetail.vaNumber,
                             ),
                           );
                           Get.snackbar(
@@ -161,49 +193,6 @@ class OrderPendingWidget extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isVa ? 'Virtual Account' : 'Nama Pemilik Rekening',
-                      style: Styles.topUpDetailsStyle.copyWith(
-                        color: AppColors.greyColor1,
-                      ),
-                    ),
-                    Text(
-                      'VA Mandiri',
-                      style: Styles.topUpDetailsStyle.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                if (!isVa)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Nama Bank',
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          color: AppColors.greyColor1,
-                        ),
-                      ),
-                      Text(
-                        'Mandiri',
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                    ],
-                  ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -217,7 +206,8 @@ class OrderPendingWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Rp 10.000',
+                          CommonUtils.currencyFormat(
+                              orderPending.billingDetail.amount.toDouble()),
                           style: Styles.topUpDetailsStyle.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -231,7 +221,7 @@ class OrderPendingWidget extends StatelessWidget {
                         onTap: () {
                           Clipboard.setData(
                             ClipboardData(
-                              text: '100000',
+                              text: '${orderPending.billingDetail.amount}',
                             ),
                           );
                           Get.snackbar(
@@ -268,26 +258,26 @@ class OrderPendingWidget extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                if (!isVa)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.warning_rounded,
-                        color: AppColors.mainColor,
-                        size: 27,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Pastikan nominal sesuai hingga 3 digit terakhir',
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          color: AppColors.mainColor,
-                        ),
-                      )
-                    ],
-                  )
+                // if (!isVa)
+                //   Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Icon(
+                //         Icons.warning_rounded,
+                //         color: AppColors.mainColor,
+                //         size: 27,
+                //       ),
+                //       SizedBox(
+                //         width: 10,
+                //       ),
+                //       Text(
+                //         'Pastikan nominal sesuai hingga 3 digit terakhir',
+                //         style: Styles.topUpDetailsStyle.copyWith(
+                //           color: AppColors.mainColor,
+                //         ),
+                //       )
+                //     ],
+                //   )
               ],
             ),
           ),

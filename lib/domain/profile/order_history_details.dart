@@ -1,17 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-part 'order_pending.freezed.dart';
-part 'order_pending.g.dart';
+part 'order_history_details.freezed.dart';
+part 'order_history_details.g.dart';
 
-OrderPending orderPendingFromJson(String str) =>
-    OrderPending.fromJson(json.decode(str));
+OrderHistoryDetails orderHistoryDetailsFromJson(String str) =>
+    OrderHistoryDetails.fromJson(json.decode(str));
 
-String orderPendingToJson(OrderPending data) => json.encode(data.toJson());
+String orderHistoryDetailsToJson(OrderHistoryDetails data) =>
+    json.encode(data.toJson());
 
 @freezed
-class OrderPending with _$OrderPending {
-  const factory OrderPending({
+class OrderHistoryDetails with _$OrderHistoryDetails {
+  const factory OrderHistoryDetails({
     required String outletName,
     required int outletId,
     required String customerName,
@@ -27,7 +28,6 @@ class OrderPending with _$OrderPending {
     required String customerCarColor,
     required String customerCarNumber,
     required String eta,
-    required int deliveryAmount,
     required int totalChange,
     required int discountAmount,
     required int discountPercentage,
@@ -42,9 +42,10 @@ class OrderPending with _$OrderPending {
     required int totalService,
     required int totalTax,
     required int voucherAmount,
+    required int deliveryAmount,
     required int totalPayment,
     required String salesType,
-    required List<Item> items,
+    required List<MenuItem> items,
     required int itemWeight,
     required bool isUseVoucher,
     required List<dynamic> promos,
@@ -52,7 +53,7 @@ class OrderPending with _$OrderPending {
     required List<TaxesAndService> taxesAndServices,
     required int itemTotalAmount,
     required String note,
-    required Delivery gosend,
+    @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
     required int originalDeliveryAmount,
     required DateTime deviceTimestamp,
     required String receiptCode,
@@ -61,12 +62,13 @@ class OrderPending with _$OrderPending {
     required String orderId,
     required String status,
     required DeliveryDetail deliveryDetail,
-    required BillingDetail billingDetail,
+    required Rating rating,
+    @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
     required Delivery delivery,
-  }) = _OrderPending;
+  }) = _OrderHistoryDetails;
 
-  factory OrderPending.fromJson(Map<String, dynamic> json) =>
-      _$OrderPendingFromJson(json);
+  factory OrderHistoryDetails.fromJson(Map<String, dynamic> json) =>
+      _$OrderHistoryDetailsFromJson(json);
 }
 
 @freezed
@@ -75,13 +77,9 @@ class BillingDetail with _$BillingDetail {
     required String title,
     required int amount,
     required String vaNumber,
-    required int expires,
+    required DateTime expires,
     required DateTime expiresAt,
     required String serviceProvider,
-    required bool isCredit,
-    required bool isDeeplink,
-    required bool isWebView,
-    required bool isSingleBilling,
   }) = _BillingDetail;
 
   factory BillingDetail.fromJson(Map<String, dynamic> json) =>
@@ -114,12 +112,14 @@ class DeliveryDetail with _$DeliveryDetail {
     required String bookingExpired,
     required String deliveryId,
     required bool isDelivered,
-    required DeliverFrom from,
-    required DeliverTo to,
+    required From from,
+    required To to,
     required List<dynamic> status,
     required bool isDelete,
     required DateTime createdDate,
     required String ownerPhone,
+    required String driverName,
+    required String driverPhone,
   }) = _DeliveryDetail;
 
   factory DeliveryDetail.fromJson(Map<String, dynamic> json) =>
@@ -127,34 +127,32 @@ class DeliveryDetail with _$DeliveryDetail {
 }
 
 @freezed
-class DeliverFrom with _$DeliverFrom {
-  const factory DeliverFrom({
+class From with _$From {
+  const factory From({
     required List<double> location,
     required String name,
     required String address,
     required String phone,
-  }) = _DeliverFrom;
+  }) = _From;
 
-  factory DeliverFrom.fromJson(Map<String, dynamic> json) =>
-      _$DeliverFromFromJson(json);
+  factory From.fromJson(Map<String, dynamic> json) => _$FromFromJson(json);
 }
 
 @freezed
-class DeliverTo with _$DeliverTo {
-  const factory DeliverTo({
+class To with _$To {
+  const factory To({
     required List<String> location,
     required String name,
     required String address,
     required String phone,
-  }) = _DeliverTo;
+  }) = _To;
 
-  factory DeliverTo.fromJson(Map<String, dynamic> json) =>
-      _$DeliverToFromJson(json);
+  factory To.fromJson(Map<String, dynamic> json) => _$ToFromJson(json);
 }
 
 @freezed
-class Item with _$Item {
-  const factory Item({
+class MenuItem with _$MenuItem {
+  const factory MenuItem({
     required int productId,
     required String title,
     required int price,
@@ -180,9 +178,13 @@ class Item with _$Item {
     required int serviceAmount,
     required int taxAmount,
     required bool isStock,
-  }) = _Item;
+    required String img,
+    required String image,
+    required int transactionLimit,
+  }) = _MenuItem;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory MenuItem.fromJson(Map<String, dynamic> json) =>
+      _$MenuItemFromJson(json);
 }
 
 @freezed
@@ -194,22 +196,23 @@ class Outlet with _$Outlet {
     required String cashierId,
     required String deviceId,
     required String assignId,
-    required Moka quinos,
+    required Rating quinos,
     required bool isNonSku,
-    required Moka moka,
-    required OutletDetail detail,
+    required Rating moka,
+    required Detail detail,
     required bool isLive,
     required OrderMethod orderMethod,
     required bool isDelete,
     required DateTime createdDate,
+    required String poCutoff,
   }) = _Outlet;
 
   factory Outlet.fromJson(Map<String, dynamic> json) => _$OutletFromJson(json);
 }
 
 @freezed
-class OutletDetail with _$OutletDetail {
-  const factory OutletDetail({
+class Detail with _$Detail {
+  const factory Detail({
     required String name,
     required String address,
     required List<dynamic> taxesAndServices,
@@ -220,17 +223,16 @@ class OutletDetail with _$OutletDetail {
     required String driverPhone,
     required List<dynamic> area,
     required List<dynamic> deliveryLocation,
-  }) = _OutletDetail;
+  }) = _Detail;
 
-  factory OutletDetail.fromJson(Map<String, dynamic> json) =>
-      _$OutletDetailFromJson(json);
+  factory Detail.fromJson(Map<String, dynamic> json) => _$DetailFromJson(json);
 }
 
 @freezed
-class Moka with _$Moka {
-  const factory Moka() = _Moka;
+class Rating with _$Rating {
+  const factory Rating() = _Rating;
 
-  factory Moka.fromJson(Map<String, dynamic> json) => _$MokaFromJson(json);
+  factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
 }
 
 @freezed

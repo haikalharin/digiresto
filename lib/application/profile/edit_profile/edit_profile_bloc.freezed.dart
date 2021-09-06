@@ -450,13 +450,18 @@ class _$EditProfileStateTearOff {
   const _$EditProfileStateTearOff();
 
   _EditProfileState call(
-      {required FullName fullName,
+      {required bool isSubmitting,
+      required bool showError,
+      required FullName fullName,
       required EmailAddress emailAddress,
-      required Option<Either<AuthFailure, Unit>> optionFailureOrSuccess}) {
+      required Option<Either<ProfileFailure, Unit>>
+          saveOptionFailureOrSuccess}) {
     return _EditProfileState(
+      isSubmitting: isSubmitting,
+      showError: showError,
       fullName: fullName,
       emailAddress: emailAddress,
-      optionFailureOrSuccess: optionFailureOrSuccess,
+      saveOptionFailureOrSuccess: saveOptionFailureOrSuccess,
     );
   }
 }
@@ -466,9 +471,11 @@ const $EditProfileState = _$EditProfileStateTearOff();
 
 /// @nodoc
 mixin _$EditProfileState {
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get showError => throw _privateConstructorUsedError;
   FullName get fullName => throw _privateConstructorUsedError;
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
-  Option<Either<AuthFailure, Unit>> get optionFailureOrSuccess =>
+  Option<Either<ProfileFailure, Unit>> get saveOptionFailureOrSuccess =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -482,9 +489,11 @@ abstract class $EditProfileStateCopyWith<$Res> {
           EditProfileState value, $Res Function(EditProfileState) then) =
       _$EditProfileStateCopyWithImpl<$Res>;
   $Res call(
-      {FullName fullName,
+      {bool isSubmitting,
+      bool showError,
+      FullName fullName,
       EmailAddress emailAddress,
-      Option<Either<AuthFailure, Unit>> optionFailureOrSuccess});
+      Option<Either<ProfileFailure, Unit>> saveOptionFailureOrSuccess});
 }
 
 /// @nodoc
@@ -498,11 +507,21 @@ class _$EditProfileStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isSubmitting = freezed,
+    Object? showError = freezed,
     Object? fullName = freezed,
     Object? emailAddress = freezed,
-    Object? optionFailureOrSuccess = freezed,
+    Object? saveOptionFailureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showError: showError == freezed
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
+              as bool,
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -511,10 +530,10 @@ class _$EditProfileStateCopyWithImpl<$Res>
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
-      optionFailureOrSuccess: optionFailureOrSuccess == freezed
-          ? _value.optionFailureOrSuccess
-          : optionFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, Unit>>,
+      saveOptionFailureOrSuccess: saveOptionFailureOrSuccess == freezed
+          ? _value.saveOptionFailureOrSuccess
+          : saveOptionFailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<ProfileFailure, Unit>>,
     ));
   }
 }
@@ -527,9 +546,11 @@ abstract class _$EditProfileStateCopyWith<$Res>
       __$EditProfileStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {FullName fullName,
+      {bool isSubmitting,
+      bool showError,
+      FullName fullName,
       EmailAddress emailAddress,
-      Option<Either<AuthFailure, Unit>> optionFailureOrSuccess});
+      Option<Either<ProfileFailure, Unit>> saveOptionFailureOrSuccess});
 }
 
 /// @nodoc
@@ -545,11 +566,21 @@ class __$EditProfileStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isSubmitting = freezed,
+    Object? showError = freezed,
     Object? fullName = freezed,
     Object? emailAddress = freezed,
-    Object? optionFailureOrSuccess = freezed,
+    Object? saveOptionFailureOrSuccess = freezed,
   }) {
     return _then(_EditProfileState(
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showError: showError == freezed
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
+              as bool,
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -558,10 +589,10 @@ class __$EditProfileStateCopyWithImpl<$Res>
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
-      optionFailureOrSuccess: optionFailureOrSuccess == freezed
-          ? _value.optionFailureOrSuccess
-          : optionFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, Unit>>,
+      saveOptionFailureOrSuccess: saveOptionFailureOrSuccess == freezed
+          ? _value.saveOptionFailureOrSuccess
+          : saveOptionFailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Option<Either<ProfileFailure, Unit>>,
     ));
   }
 }
@@ -572,20 +603,26 @@ class _$_EditProfileState
     with DiagnosticableTreeMixin
     implements _EditProfileState {
   const _$_EditProfileState(
-      {required this.fullName,
+      {required this.isSubmitting,
+      required this.showError,
+      required this.fullName,
       required this.emailAddress,
-      required this.optionFailureOrSuccess});
+      required this.saveOptionFailureOrSuccess});
 
+  @override
+  final bool isSubmitting;
+  @override
+  final bool showError;
   @override
   final FullName fullName;
   @override
   final EmailAddress emailAddress;
   @override
-  final Option<Either<AuthFailure, Unit>> optionFailureOrSuccess;
+  final Option<Either<ProfileFailure, Unit>> saveOptionFailureOrSuccess;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfileState(fullName: $fullName, emailAddress: $emailAddress, optionFailureOrSuccess: $optionFailureOrSuccess)';
+    return 'EditProfileState(isSubmitting: $isSubmitting, showError: $showError, fullName: $fullName, emailAddress: $emailAddress, saveOptionFailureOrSuccess: $saveOptionFailureOrSuccess)';
   }
 
   @override
@@ -593,33 +630,45 @@ class _$_EditProfileState
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'EditProfileState'))
+      ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
+      ..add(DiagnosticsProperty('showError', showError))
       ..add(DiagnosticsProperty('fullName', fullName))
       ..add(DiagnosticsProperty('emailAddress', emailAddress))
       ..add(DiagnosticsProperty(
-          'optionFailureOrSuccess', optionFailureOrSuccess));
+          'saveOptionFailureOrSuccess', saveOptionFailureOrSuccess));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _EditProfileState &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSubmitting, isSubmitting)) &&
+            (identical(other.showError, showError) ||
+                const DeepCollectionEquality()
+                    .equals(other.showError, showError)) &&
             (identical(other.fullName, fullName) ||
                 const DeepCollectionEquality()
                     .equals(other.fullName, fullName)) &&
             (identical(other.emailAddress, emailAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.emailAddress, emailAddress)) &&
-            (identical(other.optionFailureOrSuccess, optionFailureOrSuccess) ||
+            (identical(other.saveOptionFailureOrSuccess,
+                    saveOptionFailureOrSuccess) ||
                 const DeepCollectionEquality().equals(
-                    other.optionFailureOrSuccess, optionFailureOrSuccess)));
+                    other.saveOptionFailureOrSuccess,
+                    saveOptionFailureOrSuccess)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isSubmitting) ^
+      const DeepCollectionEquality().hash(showError) ^
       const DeepCollectionEquality().hash(fullName) ^
       const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(optionFailureOrSuccess);
+      const DeepCollectionEquality().hash(saveOptionFailureOrSuccess);
 
   @JsonKey(ignore: true)
   @override
@@ -629,17 +678,23 @@ class _$_EditProfileState
 
 abstract class _EditProfileState implements EditProfileState {
   const factory _EditProfileState(
-          {required FullName fullName,
-          required EmailAddress emailAddress,
-          required Option<Either<AuthFailure, Unit>> optionFailureOrSuccess}) =
-      _$_EditProfileState;
+      {required bool isSubmitting,
+      required bool showError,
+      required FullName fullName,
+      required EmailAddress emailAddress,
+      required Option<Either<ProfileFailure, Unit>>
+          saveOptionFailureOrSuccess}) = _$_EditProfileState;
 
+  @override
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  @override
+  bool get showError => throw _privateConstructorUsedError;
   @override
   FullName get fullName => throw _privateConstructorUsedError;
   @override
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   @override
-  Option<Either<AuthFailure, Unit>> get optionFailureOrSuccess =>
+  Option<Either<ProfileFailure, Unit>> get saveOptionFailureOrSuccess =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

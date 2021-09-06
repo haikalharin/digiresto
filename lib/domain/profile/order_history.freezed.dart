@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'order_on_process.dart';
+part of 'order_history.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-OrderOnProccess _$OrderOnProccessFromJson(Map<String, dynamic> json) {
-  return _OrderOnProccess.fromJson(json);
+OrderHistory _$OrderHistoryFromJson(Map<String, dynamic> json) {
+  return _OrderHistory.fromJson(json);
 }
 
 /// @nodoc
-class _$OrderOnProccessTearOff {
-  const _$OrderOnProccessTearOff();
+class _$OrderHistoryTearOff {
+  const _$OrderHistoryTearOff();
 
-  _OrderOnProccess call(
+  _OrderHistory call(
       {required DateTime deviceTimestamp,
       required Outlet outlet,
       required String receiptCode,
@@ -29,7 +29,7 @@ class _$OrderOnProccessTearOff {
       required String status,
       required String finalAmount,
       required String discountAmount}) {
-    return _OrderOnProccess(
+    return _OrderHistory(
       deviceTimestamp: deviceTimestamp,
       outlet: outlet,
       receiptCode: receiptCode,
@@ -41,16 +41,16 @@ class _$OrderOnProccessTearOff {
     );
   }
 
-  OrderOnProccess fromJson(Map<String, Object> json) {
-    return OrderOnProccess.fromJson(json);
+  OrderHistory fromJson(Map<String, Object> json) {
+    return OrderHistory.fromJson(json);
   }
 }
 
 /// @nodoc
-const $OrderOnProccess = _$OrderOnProccessTearOff();
+const $OrderHistory = _$OrderHistoryTearOff();
 
 /// @nodoc
-mixin _$OrderOnProccess {
+mixin _$OrderHistory {
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
   Outlet get outlet => throw _privateConstructorUsedError;
   String get receiptCode => throw _privateConstructorUsedError;
@@ -62,15 +62,15 @@ mixin _$OrderOnProccess {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OrderOnProccessCopyWith<OrderOnProccess> get copyWith =>
+  $OrderHistoryCopyWith<OrderHistory> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderOnProccessCopyWith<$Res> {
-  factory $OrderOnProccessCopyWith(
-          OrderOnProccess value, $Res Function(OrderOnProccess) then) =
-      _$OrderOnProccessCopyWithImpl<$Res>;
+abstract class $OrderHistoryCopyWith<$Res> {
+  factory $OrderHistoryCopyWith(
+          OrderHistory value, $Res Function(OrderHistory) then) =
+      _$OrderHistoryCopyWithImpl<$Res>;
   $Res call(
       {DateTime deviceTimestamp,
       Outlet outlet,
@@ -85,13 +85,12 @@ abstract class $OrderOnProccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderOnProccessCopyWithImpl<$Res>
-    implements $OrderOnProccessCopyWith<$Res> {
-  _$OrderOnProccessCopyWithImpl(this._value, this._then);
+class _$OrderHistoryCopyWithImpl<$Res> implements $OrderHistoryCopyWith<$Res> {
+  _$OrderHistoryCopyWithImpl(this._value, this._then);
 
-  final OrderOnProccess _value;
+  final OrderHistory _value;
   // ignore: unused_field
-  final $Res Function(OrderOnProccess) _then;
+  final $Res Function(OrderHistory) _then;
 
   @override
   $Res call({
@@ -149,11 +148,11 @@ class _$OrderOnProccessCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$OrderOnProccessCopyWith<$Res>
-    implements $OrderOnProccessCopyWith<$Res> {
-  factory _$OrderOnProccessCopyWith(
-          _OrderOnProccess value, $Res Function(_OrderOnProccess) then) =
-      __$OrderOnProccessCopyWithImpl<$Res>;
+abstract class _$OrderHistoryCopyWith<$Res>
+    implements $OrderHistoryCopyWith<$Res> {
+  factory _$OrderHistoryCopyWith(
+          _OrderHistory value, $Res Function(_OrderHistory) then) =
+      __$OrderHistoryCopyWithImpl<$Res>;
   @override
   $Res call(
       {DateTime deviceTimestamp,
@@ -170,15 +169,14 @@ abstract class _$OrderOnProccessCopyWith<$Res>
 }
 
 /// @nodoc
-class __$OrderOnProccessCopyWithImpl<$Res>
-    extends _$OrderOnProccessCopyWithImpl<$Res>
-    implements _$OrderOnProccessCopyWith<$Res> {
-  __$OrderOnProccessCopyWithImpl(
-      _OrderOnProccess _value, $Res Function(_OrderOnProccess) _then)
-      : super(_value, (v) => _then(v as _OrderOnProccess));
+class __$OrderHistoryCopyWithImpl<$Res> extends _$OrderHistoryCopyWithImpl<$Res>
+    implements _$OrderHistoryCopyWith<$Res> {
+  __$OrderHistoryCopyWithImpl(
+      _OrderHistory _value, $Res Function(_OrderHistory) _then)
+      : super(_value, (v) => _then(v as _OrderHistory));
 
   @override
-  _OrderOnProccess get _value => super._value as _OrderOnProccess;
+  _OrderHistory get _value => super._value as _OrderHistory;
 
   @override
   $Res call({
@@ -191,7 +189,7 @@ class __$OrderOnProccessCopyWithImpl<$Res>
     Object? finalAmount = freezed,
     Object? discountAmount = freezed,
   }) {
-    return _then(_OrderOnProccess(
+    return _then(_OrderHistory(
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
@@ -230,8 +228,8 @@ class __$OrderOnProccessCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OrderOnProccess implements _OrderOnProccess {
-  const _$_OrderOnProccess(
+class _$_OrderHistory implements _OrderHistory {
+  const _$_OrderHistory(
       {required this.deviceTimestamp,
       required this.outlet,
       required this.receiptCode,
@@ -241,8 +239,8 @@ class _$_OrderOnProccess implements _OrderOnProccess {
       required this.finalAmount,
       required this.discountAmount});
 
-  factory _$_OrderOnProccess.fromJson(Map<String, dynamic> json) =>
-      _$_$_OrderOnProccessFromJson(json);
+  factory _$_OrderHistory.fromJson(Map<String, dynamic> json) =>
+      _$_$_OrderHistoryFromJson(json);
 
   @override
   final DateTime deviceTimestamp;
@@ -263,13 +261,13 @@ class _$_OrderOnProccess implements _OrderOnProccess {
 
   @override
   String toString() {
-    return 'OrderOnProccess(deviceTimestamp: $deviceTimestamp, outlet: $outlet, receiptCode: $receiptCode, preorderPeriod: $preorderPeriod, salesType: $salesType, status: $status, finalAmount: $finalAmount, discountAmount: $discountAmount)';
+    return 'OrderHistory(deviceTimestamp: $deviceTimestamp, outlet: $outlet, receiptCode: $receiptCode, preorderPeriod: $preorderPeriod, salesType: $salesType, status: $status, finalAmount: $finalAmount, discountAmount: $discountAmount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OrderOnProccess &&
+        (other is _OrderHistory &&
             (identical(other.deviceTimestamp, deviceTimestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.deviceTimestamp, deviceTimestamp)) &&
@@ -308,17 +306,17 @@ class _$_OrderOnProccess implements _OrderOnProccess {
 
   @JsonKey(ignore: true)
   @override
-  _$OrderOnProccessCopyWith<_OrderOnProccess> get copyWith =>
-      __$OrderOnProccessCopyWithImpl<_OrderOnProccess>(this, _$identity);
+  _$OrderHistoryCopyWith<_OrderHistory> get copyWith =>
+      __$OrderHistoryCopyWithImpl<_OrderHistory>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OrderOnProccessToJson(this);
+    return _$_$_OrderHistoryToJson(this);
   }
 }
 
-abstract class _OrderOnProccess implements OrderOnProccess {
-  const factory _OrderOnProccess(
+abstract class _OrderHistory implements OrderHistory {
+  const factory _OrderHistory(
       {required DateTime deviceTimestamp,
       required Outlet outlet,
       required String receiptCode,
@@ -326,10 +324,10 @@ abstract class _OrderOnProccess implements OrderOnProccess {
       required String salesType,
       required String status,
       required String finalAmount,
-      required String discountAmount}) = _$_OrderOnProccess;
+      required String discountAmount}) = _$_OrderHistory;
 
-  factory _OrderOnProccess.fromJson(Map<String, dynamic> json) =
-      _$_OrderOnProccess.fromJson;
+  factory _OrderHistory.fromJson(Map<String, dynamic> json) =
+      _$_OrderHistory.fromJson;
 
   @override
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
@@ -349,7 +347,7 @@ abstract class _OrderOnProccess implements OrderOnProccess {
   String get discountAmount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OrderOnProccessCopyWith<_OrderOnProccess> get copyWith =>
+  _$OrderHistoryCopyWith<_OrderHistory> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -361,7 +359,7 @@ Outlet _$OutletFromJson(Map<String, dynamic> json) {
 class _$OutletTearOff {
   const _$OutletTearOff();
 
-  _Outlet call({required OutletDetail detail, required String poCutoff}) {
+  _Outlet call({required Detail detail, required String poCutoff}) {
     return _Outlet(
       detail: detail,
       poCutoff: poCutoff,
@@ -378,7 +376,7 @@ const $Outlet = _$OutletTearOff();
 
 /// @nodoc
 mixin _$Outlet {
-  OutletDetail get detail => throw _privateConstructorUsedError;
+  Detail get detail => throw _privateConstructorUsedError;
   String get poCutoff => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -390,9 +388,9 @@ mixin _$Outlet {
 abstract class $OutletCopyWith<$Res> {
   factory $OutletCopyWith(Outlet value, $Res Function(Outlet) then) =
       _$OutletCopyWithImpl<$Res>;
-  $Res call({OutletDetail detail, String poCutoff});
+  $Res call({Detail detail, String poCutoff});
 
-  $OutletDetailCopyWith<$Res> get detail;
+  $DetailCopyWith<$Res> get detail;
 }
 
 /// @nodoc
@@ -412,7 +410,7 @@ class _$OutletCopyWithImpl<$Res> implements $OutletCopyWith<$Res> {
       detail: detail == freezed
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as OutletDetail,
+              as Detail,
       poCutoff: poCutoff == freezed
           ? _value.poCutoff
           : poCutoff // ignore: cast_nullable_to_non_nullable
@@ -421,8 +419,8 @@ class _$OutletCopyWithImpl<$Res> implements $OutletCopyWith<$Res> {
   }
 
   @override
-  $OutletDetailCopyWith<$Res> get detail {
-    return $OutletDetailCopyWith<$Res>(_value.detail, (value) {
+  $DetailCopyWith<$Res> get detail {
+    return $DetailCopyWith<$Res>(_value.detail, (value) {
       return _then(_value.copyWith(detail: value));
     });
   }
@@ -433,10 +431,10 @@ abstract class _$OutletCopyWith<$Res> implements $OutletCopyWith<$Res> {
   factory _$OutletCopyWith(_Outlet value, $Res Function(_Outlet) then) =
       __$OutletCopyWithImpl<$Res>;
   @override
-  $Res call({OutletDetail detail, String poCutoff});
+  $Res call({Detail detail, String poCutoff});
 
   @override
-  $OutletDetailCopyWith<$Res> get detail;
+  $DetailCopyWith<$Res> get detail;
 }
 
 /// @nodoc
@@ -457,7 +455,7 @@ class __$OutletCopyWithImpl<$Res> extends _$OutletCopyWithImpl<$Res>
       detail: detail == freezed
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as OutletDetail,
+              as Detail,
       poCutoff: poCutoff == freezed
           ? _value.poCutoff
           : poCutoff // ignore: cast_nullable_to_non_nullable
@@ -475,7 +473,7 @@ class _$_Outlet implements _Outlet {
       _$_$_OutletFromJson(json);
 
   @override
-  final OutletDetail detail;
+  final Detail detail;
   @override
   final String poCutoff;
 
@@ -513,13 +511,13 @@ class _$_Outlet implements _Outlet {
 }
 
 abstract class _Outlet implements Outlet {
-  const factory _Outlet(
-      {required OutletDetail detail, required String poCutoff}) = _$_Outlet;
+  const factory _Outlet({required Detail detail, required String poCutoff}) =
+      _$_Outlet;
 
   factory _Outlet.fromJson(Map<String, dynamic> json) = _$_Outlet.fromJson;
 
   @override
-  OutletDetail get detail => throw _privateConstructorUsedError;
+  Detail get detail => throw _privateConstructorUsedError;
   @override
   String get poCutoff => throw _privateConstructorUsedError;
   @override
@@ -527,53 +525,51 @@ abstract class _Outlet implements Outlet {
   _$OutletCopyWith<_Outlet> get copyWith => throw _privateConstructorUsedError;
 }
 
-OutletDetail _$OutletDetailFromJson(Map<String, dynamic> json) {
-  return _OutletDetail.fromJson(json);
+Detail _$DetailFromJson(Map<String, dynamic> json) {
+  return _Detail.fromJson(json);
 }
 
 /// @nodoc
-class _$OutletDetailTearOff {
-  const _$OutletDetailTearOff();
+class _$DetailTearOff {
+  const _$DetailTearOff();
 
-  _OutletDetail call({required String name}) {
-    return _OutletDetail(
+  _Detail call({required String name}) {
+    return _Detail(
       name: name,
     );
   }
 
-  OutletDetail fromJson(Map<String, Object> json) {
-    return OutletDetail.fromJson(json);
+  Detail fromJson(Map<String, Object> json) {
+    return Detail.fromJson(json);
   }
 }
 
 /// @nodoc
-const $OutletDetail = _$OutletDetailTearOff();
+const $Detail = _$DetailTearOff();
 
 /// @nodoc
-mixin _$OutletDetail {
+mixin _$Detail {
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OutletDetailCopyWith<OutletDetail> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DetailCopyWith<Detail> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OutletDetailCopyWith<$Res> {
-  factory $OutletDetailCopyWith(
-          OutletDetail value, $Res Function(OutletDetail) then) =
-      _$OutletDetailCopyWithImpl<$Res>;
+abstract class $DetailCopyWith<$Res> {
+  factory $DetailCopyWith(Detail value, $Res Function(Detail) then) =
+      _$DetailCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
-  _$OutletDetailCopyWithImpl(this._value, this._then);
+class _$DetailCopyWithImpl<$Res> implements $DetailCopyWith<$Res> {
+  _$DetailCopyWithImpl(this._value, this._then);
 
-  final OutletDetail _value;
+  final Detail _value;
   // ignore: unused_field
-  final $Res Function(OutletDetail) _then;
+  final $Res Function(Detail) _then;
 
   @override
   $Res call({
@@ -589,30 +585,27 @@ class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OutletDetailCopyWith<$Res>
-    implements $OutletDetailCopyWith<$Res> {
-  factory _$OutletDetailCopyWith(
-          _OutletDetail value, $Res Function(_OutletDetail) then) =
-      __$OutletDetailCopyWithImpl<$Res>;
+abstract class _$DetailCopyWith<$Res> implements $DetailCopyWith<$Res> {
+  factory _$DetailCopyWith(_Detail value, $Res Function(_Detail) then) =
+      __$DetailCopyWithImpl<$Res>;
   @override
   $Res call({String name});
 }
 
 /// @nodoc
-class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
-    implements _$OutletDetailCopyWith<$Res> {
-  __$OutletDetailCopyWithImpl(
-      _OutletDetail _value, $Res Function(_OutletDetail) _then)
-      : super(_value, (v) => _then(v as _OutletDetail));
+class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
+    implements _$DetailCopyWith<$Res> {
+  __$DetailCopyWithImpl(_Detail _value, $Res Function(_Detail) _then)
+      : super(_value, (v) => _then(v as _Detail));
 
   @override
-  _OutletDetail get _value => super._value as _OutletDetail;
+  _Detail get _value => super._value as _Detail;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(_OutletDetail(
+    return _then(_Detail(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -623,24 +616,24 @@ class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OutletDetail implements _OutletDetail {
-  const _$_OutletDetail({required this.name});
+class _$_Detail implements _Detail {
+  const _$_Detail({required this.name});
 
-  factory _$_OutletDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletDetailFromJson(json);
+  factory _$_Detail.fromJson(Map<String, dynamic> json) =>
+      _$_$_DetailFromJson(json);
 
   @override
   final String name;
 
   @override
   String toString() {
-    return 'OutletDetail(name: $name)';
+    return 'Detail(name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletDetail &&
+        (other is _Detail &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)));
   }
@@ -651,25 +644,23 @@ class _$_OutletDetail implements _OutletDetail {
 
   @JsonKey(ignore: true)
   @override
-  _$OutletDetailCopyWith<_OutletDetail> get copyWith =>
-      __$OutletDetailCopyWithImpl<_OutletDetail>(this, _$identity);
+  _$DetailCopyWith<_Detail> get copyWith =>
+      __$DetailCopyWithImpl<_Detail>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletDetailToJson(this);
+    return _$_$_DetailToJson(this);
   }
 }
 
-abstract class _OutletDetail implements OutletDetail {
-  const factory _OutletDetail({required String name}) = _$_OutletDetail;
+abstract class _Detail implements Detail {
+  const factory _Detail({required String name}) = _$_Detail;
 
-  factory _OutletDetail.fromJson(Map<String, dynamic> json) =
-      _$_OutletDetail.fromJson;
+  factory _Detail.fromJson(Map<String, dynamic> json) = _$_Detail.fromJson;
 
   @override
   String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OutletDetailCopyWith<_OutletDetail> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$DetailCopyWith<_Detail> get copyWith => throw _privateConstructorUsedError;
 }

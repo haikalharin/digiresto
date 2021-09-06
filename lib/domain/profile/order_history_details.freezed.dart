@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'order_pending.dart';
+part of 'order_history_details.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-OrderPending _$OrderPendingFromJson(Map<String, dynamic> json) {
-  return _OrderPending.fromJson(json);
+OrderHistoryDetails _$OrderHistoryDetailsFromJson(Map<String, dynamic> json) {
+  return _OrderHistoryDetails.fromJson(json);
 }
 
 /// @nodoc
-class _$OrderPendingTearOff {
-  const _$OrderPendingTearOff();
+class _$OrderHistoryDetailsTearOff {
+  const _$OrderHistoryDetailsTearOff();
 
-  _OrderPending call(
+  _OrderHistoryDetails call(
       {required String outletName,
       required int outletId,
       required String customerName,
@@ -36,7 +36,6 @@ class _$OrderPendingTearOff {
       required String customerCarColor,
       required String customerCarNumber,
       required String eta,
-      required int deliveryAmount,
       required int totalChange,
       required int discountAmount,
       required int discountPercentage,
@@ -51,9 +50,10 @@ class _$OrderPendingTearOff {
       required int totalService,
       required int totalTax,
       required int voucherAmount,
+      required int deliveryAmount,
       required int totalPayment,
       required String salesType,
-      required List<Item> items,
+      required List<MenuItem> items,
       required int itemWeight,
       required bool isUseVoucher,
       required List<dynamic> promos,
@@ -61,7 +61,7 @@ class _$OrderPendingTearOff {
       required List<TaxesAndService> taxesAndServices,
       required int itemTotalAmount,
       required String note,
-      required Delivery gosend,
+      @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
       required int originalDeliveryAmount,
       required DateTime deviceTimestamp,
       required String receiptCode,
@@ -70,9 +70,10 @@ class _$OrderPendingTearOff {
       required String orderId,
       required String status,
       required DeliveryDetail deliveryDetail,
-      required BillingDetail billingDetail,
+      required Rating rating,
+      @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
       required Delivery delivery}) {
-    return _OrderPending(
+    return _OrderHistoryDetails(
       outletName: outletName,
       outletId: outletId,
       customerName: customerName,
@@ -88,7 +89,6 @@ class _$OrderPendingTearOff {
       customerCarColor: customerCarColor,
       customerCarNumber: customerCarNumber,
       eta: eta,
-      deliveryAmount: deliveryAmount,
       totalChange: totalChange,
       discountAmount: discountAmount,
       discountPercentage: discountPercentage,
@@ -103,6 +103,7 @@ class _$OrderPendingTearOff {
       totalService: totalService,
       totalTax: totalTax,
       voucherAmount: voucherAmount,
+      deliveryAmount: deliveryAmount,
       totalPayment: totalPayment,
       salesType: salesType,
       items: items,
@@ -113,7 +114,7 @@ class _$OrderPendingTearOff {
       taxesAndServices: taxesAndServices,
       itemTotalAmount: itemTotalAmount,
       note: note,
-      gosend: gosend,
+      grabpawoon: grabpawoon,
       originalDeliveryAmount: originalDeliveryAmount,
       deviceTimestamp: deviceTimestamp,
       receiptCode: receiptCode,
@@ -122,21 +123,22 @@ class _$OrderPendingTearOff {
       orderId: orderId,
       status: status,
       deliveryDetail: deliveryDetail,
+      rating: rating,
       billingDetail: billingDetail,
       delivery: delivery,
     );
   }
 
-  OrderPending fromJson(Map<String, Object> json) {
-    return OrderPending.fromJson(json);
+  OrderHistoryDetails fromJson(Map<String, Object> json) {
+    return OrderHistoryDetails.fromJson(json);
   }
 }
 
 /// @nodoc
-const $OrderPending = _$OrderPendingTearOff();
+const $OrderHistoryDetails = _$OrderHistoryDetailsTearOff();
 
 /// @nodoc
-mixin _$OrderPending {
+mixin _$OrderHistoryDetails {
   String get outletName => throw _privateConstructorUsedError;
   int get outletId => throw _privateConstructorUsedError;
   String get customerName => throw _privateConstructorUsedError;
@@ -152,7 +154,6 @@ mixin _$OrderPending {
   String get customerCarColor => throw _privateConstructorUsedError;
   String get customerCarNumber => throw _privateConstructorUsedError;
   String get eta => throw _privateConstructorUsedError;
-  int get deliveryAmount => throw _privateConstructorUsedError;
   int get totalChange => throw _privateConstructorUsedError;
   int get discountAmount => throw _privateConstructorUsedError;
   int get discountPercentage => throw _privateConstructorUsedError;
@@ -167,9 +168,10 @@ mixin _$OrderPending {
   int get totalService => throw _privateConstructorUsedError;
   int get totalTax => throw _privateConstructorUsedError;
   int get voucherAmount => throw _privateConstructorUsedError;
+  int get deliveryAmount => throw _privateConstructorUsedError;
   int get totalPayment => throw _privateConstructorUsedError;
   String get salesType => throw _privateConstructorUsedError;
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<MenuItem> get items => throw _privateConstructorUsedError;
   int get itemWeight => throw _privateConstructorUsedError;
   bool get isUseVoucher => throw _privateConstructorUsedError;
   List<dynamic> get promos => throw _privateConstructorUsedError;
@@ -178,7 +180,8 @@ mixin _$OrderPending {
       throw _privateConstructorUsedError;
   int get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
-  Delivery get gosend => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  Delivery? get grabpawoon => throw _privateConstructorUsedError;
   int get originalDeliveryAmount => throw _privateConstructorUsedError;
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
   String get receiptCode => throw _privateConstructorUsedError;
@@ -187,20 +190,22 @@ mixin _$OrderPending {
   String get orderId => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   DeliveryDetail get deliveryDetail => throw _privateConstructorUsedError;
-  BillingDetail get billingDetail => throw _privateConstructorUsedError;
+  Rating get rating => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  BillingDetail? get billingDetail => throw _privateConstructorUsedError;
   Delivery get delivery => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OrderPendingCopyWith<OrderPending> get copyWith =>
+  $OrderHistoryDetailsCopyWith<OrderHistoryDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderPendingCopyWith<$Res> {
-  factory $OrderPendingCopyWith(
-          OrderPending value, $Res Function(OrderPending) then) =
-      _$OrderPendingCopyWithImpl<$Res>;
+abstract class $OrderHistoryDetailsCopyWith<$Res> {
+  factory $OrderHistoryDetailsCopyWith(
+          OrderHistoryDetails value, $Res Function(OrderHistoryDetails) then) =
+      _$OrderHistoryDetailsCopyWithImpl<$Res>;
   $Res call(
       {String outletName,
       int outletId,
@@ -217,7 +222,6 @@ abstract class $OrderPendingCopyWith<$Res> {
       String customerCarColor,
       String customerCarNumber,
       String eta,
-      int deliveryAmount,
       int totalChange,
       int discountAmount,
       int discountPercentage,
@@ -232,9 +236,10 @@ abstract class $OrderPendingCopyWith<$Res> {
       int totalService,
       int totalTax,
       int voucherAmount,
+      int deliveryAmount,
       int totalPayment,
       String salesType,
-      List<Item> items,
+      List<MenuItem> items,
       int itemWeight,
       bool isUseVoucher,
       List<dynamic> promos,
@@ -242,7 +247,7 @@ abstract class $OrderPendingCopyWith<$Res> {
       List<TaxesAndService> taxesAndServices,
       int itemTotalAmount,
       String note,
-      Delivery gosend,
+      @JsonKey(includeIfNull: true) Delivery? grabpawoon,
       int originalDeliveryAmount,
       DateTime deviceTimestamp,
       String receiptCode,
@@ -251,23 +256,26 @@ abstract class $OrderPendingCopyWith<$Res> {
       String orderId,
       String status,
       DeliveryDetail deliveryDetail,
-      BillingDetail billingDetail,
+      Rating rating,
+      @JsonKey(includeIfNull: true) BillingDetail? billingDetail,
       Delivery delivery});
 
-  $DeliveryCopyWith<$Res> get gosend;
+  $DeliveryCopyWith<$Res>? get grabpawoon;
   $OutletCopyWith<$Res> get outlet;
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
-  $BillingDetailCopyWith<$Res> get billingDetail;
+  $RatingCopyWith<$Res> get rating;
+  $BillingDetailCopyWith<$Res>? get billingDetail;
   $DeliveryCopyWith<$Res> get delivery;
 }
 
 /// @nodoc
-class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
-  _$OrderPendingCopyWithImpl(this._value, this._then);
+class _$OrderHistoryDetailsCopyWithImpl<$Res>
+    implements $OrderHistoryDetailsCopyWith<$Res> {
+  _$OrderHistoryDetailsCopyWithImpl(this._value, this._then);
 
-  final OrderPending _value;
+  final OrderHistoryDetails _value;
   // ignore: unused_field
-  final $Res Function(OrderPending) _then;
+  final $Res Function(OrderHistoryDetails) _then;
 
   @override
   $Res call({
@@ -286,7 +294,6 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
     Object? customerCarColor = freezed,
     Object? customerCarNumber = freezed,
     Object? eta = freezed,
-    Object? deliveryAmount = freezed,
     Object? totalChange = freezed,
     Object? discountAmount = freezed,
     Object? discountPercentage = freezed,
@@ -301,6 +308,7 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
     Object? totalService = freezed,
     Object? totalTax = freezed,
     Object? voucherAmount = freezed,
+    Object? deliveryAmount = freezed,
     Object? totalPayment = freezed,
     Object? salesType = freezed,
     Object? items = freezed,
@@ -311,7 +319,7 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
     Object? taxesAndServices = freezed,
     Object? itemTotalAmount = freezed,
     Object? note = freezed,
-    Object? gosend = freezed,
+    Object? grabpawoon = freezed,
     Object? originalDeliveryAmount = freezed,
     Object? deviceTimestamp = freezed,
     Object? receiptCode = freezed,
@@ -320,6 +328,7 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
     Object? orderId = freezed,
     Object? status = freezed,
     Object? deliveryDetail = freezed,
+    Object? rating = freezed,
     Object? billingDetail = freezed,
     Object? delivery = freezed,
   }) {
@@ -384,10 +393,6 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
           ? _value.eta
           : eta // ignore: cast_nullable_to_non_nullable
               as String,
-      deliveryAmount: deliveryAmount == freezed
-          ? _value.deliveryAmount
-          : deliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
       totalChange: totalChange == freezed
           ? _value.totalChange
           : totalChange // ignore: cast_nullable_to_non_nullable
@@ -444,6 +449,10 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      deliveryAmount: deliveryAmount == freezed
+          ? _value.deliveryAmount
+          : deliveryAmount // ignore: cast_nullable_to_non_nullable
+              as int,
       totalPayment: totalPayment == freezed
           ? _value.totalPayment
           : totalPayment // ignore: cast_nullable_to_non_nullable
@@ -455,7 +464,7 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<MenuItem>,
       itemWeight: itemWeight == freezed
           ? _value.itemWeight
           : itemWeight // ignore: cast_nullable_to_non_nullable
@@ -484,10 +493,10 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      gosend: gosend == freezed
-          ? _value.gosend
-          : gosend // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+      grabpawoon: grabpawoon == freezed
+          ? _value.grabpawoon
+          : grabpawoon // ignore: cast_nullable_to_non_nullable
+              as Delivery?,
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
@@ -520,10 +529,14 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
           ? _value.deliveryDetail
           : deliveryDetail // ignore: cast_nullable_to_non_nullable
               as DeliveryDetail,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as Rating,
       billingDetail: billingDetail == freezed
           ? _value.billingDetail
           : billingDetail // ignore: cast_nullable_to_non_nullable
-              as BillingDetail,
+              as BillingDetail?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -532,9 +545,13 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
   }
 
   @override
-  $DeliveryCopyWith<$Res> get gosend {
-    return $DeliveryCopyWith<$Res>(_value.gosend, (value) {
-      return _then(_value.copyWith(gosend: value));
+  $DeliveryCopyWith<$Res>? get grabpawoon {
+    if (_value.grabpawoon == null) {
+      return null;
+    }
+
+    return $DeliveryCopyWith<$Res>(_value.grabpawoon!, (value) {
+      return _then(_value.copyWith(grabpawoon: value));
     });
   }
 
@@ -553,8 +570,19 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
   }
 
   @override
-  $BillingDetailCopyWith<$Res> get billingDetail {
-    return $BillingDetailCopyWith<$Res>(_value.billingDetail, (value) {
+  $RatingCopyWith<$Res> get rating {
+    return $RatingCopyWith<$Res>(_value.rating, (value) {
+      return _then(_value.copyWith(rating: value));
+    });
+  }
+
+  @override
+  $BillingDetailCopyWith<$Res>? get billingDetail {
+    if (_value.billingDetail == null) {
+      return null;
+    }
+
+    return $BillingDetailCopyWith<$Res>(_value.billingDetail!, (value) {
       return _then(_value.copyWith(billingDetail: value));
     });
   }
@@ -568,11 +596,11 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OrderPendingCopyWith<$Res>
-    implements $OrderPendingCopyWith<$Res> {
-  factory _$OrderPendingCopyWith(
-          _OrderPending value, $Res Function(_OrderPending) then) =
-      __$OrderPendingCopyWithImpl<$Res>;
+abstract class _$OrderHistoryDetailsCopyWith<$Res>
+    implements $OrderHistoryDetailsCopyWith<$Res> {
+  factory _$OrderHistoryDetailsCopyWith(_OrderHistoryDetails value,
+          $Res Function(_OrderHistoryDetails) then) =
+      __$OrderHistoryDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
       {String outletName,
@@ -590,7 +618,6 @@ abstract class _$OrderPendingCopyWith<$Res>
       String customerCarColor,
       String customerCarNumber,
       String eta,
-      int deliveryAmount,
       int totalChange,
       int discountAmount,
       int discountPercentage,
@@ -605,9 +632,10 @@ abstract class _$OrderPendingCopyWith<$Res>
       int totalService,
       int totalTax,
       int voucherAmount,
+      int deliveryAmount,
       int totalPayment,
       String salesType,
-      List<Item> items,
+      List<MenuItem> items,
       int itemWeight,
       bool isUseVoucher,
       List<dynamic> promos,
@@ -615,7 +643,7 @@ abstract class _$OrderPendingCopyWith<$Res>
       List<TaxesAndService> taxesAndServices,
       int itemTotalAmount,
       String note,
-      Delivery gosend,
+      @JsonKey(includeIfNull: true) Delivery? grabpawoon,
       int originalDeliveryAmount,
       DateTime deviceTimestamp,
       String receiptCode,
@@ -624,30 +652,34 @@ abstract class _$OrderPendingCopyWith<$Res>
       String orderId,
       String status,
       DeliveryDetail deliveryDetail,
-      BillingDetail billingDetail,
+      Rating rating,
+      @JsonKey(includeIfNull: true) BillingDetail? billingDetail,
       Delivery delivery});
 
   @override
-  $DeliveryCopyWith<$Res> get gosend;
+  $DeliveryCopyWith<$Res>? get grabpawoon;
   @override
   $OutletCopyWith<$Res> get outlet;
   @override
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
   @override
-  $BillingDetailCopyWith<$Res> get billingDetail;
+  $RatingCopyWith<$Res> get rating;
+  @override
+  $BillingDetailCopyWith<$Res>? get billingDetail;
   @override
   $DeliveryCopyWith<$Res> get delivery;
 }
 
 /// @nodoc
-class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
-    implements _$OrderPendingCopyWith<$Res> {
-  __$OrderPendingCopyWithImpl(
-      _OrderPending _value, $Res Function(_OrderPending) _then)
-      : super(_value, (v) => _then(v as _OrderPending));
+class __$OrderHistoryDetailsCopyWithImpl<$Res>
+    extends _$OrderHistoryDetailsCopyWithImpl<$Res>
+    implements _$OrderHistoryDetailsCopyWith<$Res> {
+  __$OrderHistoryDetailsCopyWithImpl(
+      _OrderHistoryDetails _value, $Res Function(_OrderHistoryDetails) _then)
+      : super(_value, (v) => _then(v as _OrderHistoryDetails));
 
   @override
-  _OrderPending get _value => super._value as _OrderPending;
+  _OrderHistoryDetails get _value => super._value as _OrderHistoryDetails;
 
   @override
   $Res call({
@@ -666,7 +698,6 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
     Object? customerCarColor = freezed,
     Object? customerCarNumber = freezed,
     Object? eta = freezed,
-    Object? deliveryAmount = freezed,
     Object? totalChange = freezed,
     Object? discountAmount = freezed,
     Object? discountPercentage = freezed,
@@ -681,6 +712,7 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
     Object? totalService = freezed,
     Object? totalTax = freezed,
     Object? voucherAmount = freezed,
+    Object? deliveryAmount = freezed,
     Object? totalPayment = freezed,
     Object? salesType = freezed,
     Object? items = freezed,
@@ -691,7 +723,7 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
     Object? taxesAndServices = freezed,
     Object? itemTotalAmount = freezed,
     Object? note = freezed,
-    Object? gosend = freezed,
+    Object? grabpawoon = freezed,
     Object? originalDeliveryAmount = freezed,
     Object? deviceTimestamp = freezed,
     Object? receiptCode = freezed,
@@ -700,10 +732,11 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
     Object? orderId = freezed,
     Object? status = freezed,
     Object? deliveryDetail = freezed,
+    Object? rating = freezed,
     Object? billingDetail = freezed,
     Object? delivery = freezed,
   }) {
-    return _then(_OrderPending(
+    return _then(_OrderHistoryDetails(
       outletName: outletName == freezed
           ? _value.outletName
           : outletName // ignore: cast_nullable_to_non_nullable
@@ -764,10 +797,6 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
           ? _value.eta
           : eta // ignore: cast_nullable_to_non_nullable
               as String,
-      deliveryAmount: deliveryAmount == freezed
-          ? _value.deliveryAmount
-          : deliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
       totalChange: totalChange == freezed
           ? _value.totalChange
           : totalChange // ignore: cast_nullable_to_non_nullable
@@ -824,6 +853,10 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      deliveryAmount: deliveryAmount == freezed
+          ? _value.deliveryAmount
+          : deliveryAmount // ignore: cast_nullable_to_non_nullable
+              as int,
       totalPayment: totalPayment == freezed
           ? _value.totalPayment
           : totalPayment // ignore: cast_nullable_to_non_nullable
@@ -835,7 +868,7 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<MenuItem>,
       itemWeight: itemWeight == freezed
           ? _value.itemWeight
           : itemWeight // ignore: cast_nullable_to_non_nullable
@@ -864,10 +897,10 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      gosend: gosend == freezed
-          ? _value.gosend
-          : gosend // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+      grabpawoon: grabpawoon == freezed
+          ? _value.grabpawoon
+          : grabpawoon // ignore: cast_nullable_to_non_nullable
+              as Delivery?,
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
@@ -900,10 +933,14 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
           ? _value.deliveryDetail
           : deliveryDetail // ignore: cast_nullable_to_non_nullable
               as DeliveryDetail,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as Rating,
       billingDetail: billingDetail == freezed
           ? _value.billingDetail
           : billingDetail // ignore: cast_nullable_to_non_nullable
-              as BillingDetail,
+              as BillingDetail?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -914,8 +951,8 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OrderPending implements _OrderPending {
-  const _$_OrderPending(
+class _$_OrderHistoryDetails implements _OrderHistoryDetails {
+  const _$_OrderHistoryDetails(
       {required this.outletName,
       required this.outletId,
       required this.customerName,
@@ -931,7 +968,6 @@ class _$_OrderPending implements _OrderPending {
       required this.customerCarColor,
       required this.customerCarNumber,
       required this.eta,
-      required this.deliveryAmount,
       required this.totalChange,
       required this.discountAmount,
       required this.discountPercentage,
@@ -946,6 +982,7 @@ class _$_OrderPending implements _OrderPending {
       required this.totalService,
       required this.totalTax,
       required this.voucherAmount,
+      required this.deliveryAmount,
       required this.totalPayment,
       required this.salesType,
       required this.items,
@@ -956,7 +993,7 @@ class _$_OrderPending implements _OrderPending {
       required this.taxesAndServices,
       required this.itemTotalAmount,
       required this.note,
-      required this.gosend,
+      @JsonKey(includeIfNull: true) required this.grabpawoon,
       required this.originalDeliveryAmount,
       required this.deviceTimestamp,
       required this.receiptCode,
@@ -965,11 +1002,12 @@ class _$_OrderPending implements _OrderPending {
       required this.orderId,
       required this.status,
       required this.deliveryDetail,
-      required this.billingDetail,
+      required this.rating,
+      @JsonKey(includeIfNull: true) required this.billingDetail,
       required this.delivery});
 
-  factory _$_OrderPending.fromJson(Map<String, dynamic> json) =>
-      _$_$_OrderPendingFromJson(json);
+  factory _$_OrderHistoryDetails.fromJson(Map<String, dynamic> json) =>
+      _$_$_OrderHistoryDetailsFromJson(json);
 
   @override
   final String outletName;
@@ -1002,8 +1040,6 @@ class _$_OrderPending implements _OrderPending {
   @override
   final String eta;
   @override
-  final int deliveryAmount;
-  @override
   final int totalChange;
   @override
   final int discountAmount;
@@ -1032,11 +1068,13 @@ class _$_OrderPending implements _OrderPending {
   @override
   final int voucherAmount;
   @override
+  final int deliveryAmount;
+  @override
   final int totalPayment;
   @override
   final String salesType;
   @override
-  final List<Item> items;
+  final List<MenuItem> items;
   @override
   final int itemWeight;
   @override
@@ -1052,7 +1090,8 @@ class _$_OrderPending implements _OrderPending {
   @override
   final String note;
   @override
-  final Delivery gosend;
+  @JsonKey(includeIfNull: true)
+  final Delivery? grabpawoon;
   @override
   final int originalDeliveryAmount;
   @override
@@ -1070,19 +1109,22 @@ class _$_OrderPending implements _OrderPending {
   @override
   final DeliveryDetail deliveryDetail;
   @override
-  final BillingDetail billingDetail;
+  final Rating rating;
+  @override
+  @JsonKey(includeIfNull: true)
+  final BillingDetail? billingDetail;
   @override
   final Delivery delivery;
 
   @override
   String toString() {
-    return 'OrderPending(outletName: $outletName, outletId: $outletId, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, recipientName: $recipientName, recipientPhone: $recipientPhone, customerTableNumber: $customerTableNumber, customerSmoking: $customerSmoking, customerPax: $customerPax, customerNote: $customerNote, customerCarType: $customerCarType, customerCarColor: $customerCarColor, customerCarNumber: $customerCarNumber, eta: $eta, deliveryAmount: $deliveryAmount, totalChange: $totalChange, discountAmount: $discountAmount, discountPercentage: $discountPercentage, finalAmount: $finalAmount, receiptTotalDiscount: $receiptTotalDiscount, roundAmount: $roundAmount, subtotal: $subtotal, totalDiscount: $totalDiscount, totalItemAmount: $totalItemAmount, totalItemCost: $totalItemCost, totalItemDiscount: $totalItemDiscount, totalService: $totalService, totalTax: $totalTax, voucherAmount: $voucherAmount, totalPayment: $totalPayment, salesType: $salesType, items: $items, itemWeight: $itemWeight, isUseVoucher: $isUseVoucher, promos: $promos, paymentList: $paymentList, taxesAndServices: $taxesAndServices, itemTotalAmount: $itemTotalAmount, note: $note, gosend: $gosend, originalDeliveryAmount: $originalDeliveryAmount, deviceTimestamp: $deviceTimestamp, receiptCode: $receiptCode, payments: $payments, outlet: $outlet, orderId: $orderId, status: $status, deliveryDetail: $deliveryDetail, billingDetail: $billingDetail, delivery: $delivery)';
+    return 'OrderHistoryDetails(outletName: $outletName, outletId: $outletId, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, recipientName: $recipientName, recipientPhone: $recipientPhone, customerTableNumber: $customerTableNumber, customerSmoking: $customerSmoking, customerPax: $customerPax, customerNote: $customerNote, customerCarType: $customerCarType, customerCarColor: $customerCarColor, customerCarNumber: $customerCarNumber, eta: $eta, totalChange: $totalChange, discountAmount: $discountAmount, discountPercentage: $discountPercentage, finalAmount: $finalAmount, receiptTotalDiscount: $receiptTotalDiscount, roundAmount: $roundAmount, subtotal: $subtotal, totalDiscount: $totalDiscount, totalItemAmount: $totalItemAmount, totalItemCost: $totalItemCost, totalItemDiscount: $totalItemDiscount, totalService: $totalService, totalTax: $totalTax, voucherAmount: $voucherAmount, deliveryAmount: $deliveryAmount, totalPayment: $totalPayment, salesType: $salesType, items: $items, itemWeight: $itemWeight, isUseVoucher: $isUseVoucher, promos: $promos, paymentList: $paymentList, taxesAndServices: $taxesAndServices, itemTotalAmount: $itemTotalAmount, note: $note, grabpawoon: $grabpawoon, originalDeliveryAmount: $originalDeliveryAmount, deviceTimestamp: $deviceTimestamp, receiptCode: $receiptCode, payments: $payments, outlet: $outlet, orderId: $orderId, status: $status, deliveryDetail: $deliveryDetail, rating: $rating, billingDetail: $billingDetail, delivery: $delivery)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OrderPending &&
+        (other is _OrderHistoryDetails &&
             (identical(other.outletName, outletName) ||
                 const DeepCollectionEquality()
                     .equals(other.outletName, outletName)) &&
@@ -1127,9 +1169,6 @@ class _$_OrderPending implements _OrderPending {
                     .equals(other.customerCarNumber, customerCarNumber)) &&
             (identical(other.eta, eta) ||
                 const DeepCollectionEquality().equals(other.eta, eta)) &&
-            (identical(other.deliveryAmount, deliveryAmount) ||
-                const DeepCollectionEquality()
-                    .equals(other.deliveryAmount, deliveryAmount)) &&
             (identical(other.totalChange, totalChange) ||
                 const DeepCollectionEquality()
                     .equals(other.totalChange, totalChange)) &&
@@ -1148,7 +1187,9 @@ class _$_OrderPending implements _OrderPending {
             (identical(other.roundAmount, roundAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.roundAmount, roundAmount)) &&
-            (identical(other.subtotal, subtotal) || const DeepCollectionEquality().equals(other.subtotal, subtotal)) &&
+            (identical(other.subtotal, subtotal) ||
+                const DeepCollectionEquality()
+                    .equals(other.subtotal, subtotal)) &&
             (identical(other.totalDiscount, totalDiscount) || const DeepCollectionEquality().equals(other.totalDiscount, totalDiscount)) &&
             (identical(other.totalItemAmount, totalItemAmount) || const DeepCollectionEquality().equals(other.totalItemAmount, totalItemAmount)) &&
             (identical(other.totalItemCost, totalItemCost) || const DeepCollectionEquality().equals(other.totalItemCost, totalItemCost)) &&
@@ -1156,6 +1197,7 @@ class _$_OrderPending implements _OrderPending {
             (identical(other.totalService, totalService) || const DeepCollectionEquality().equals(other.totalService, totalService)) &&
             (identical(other.totalTax, totalTax) || const DeepCollectionEquality().equals(other.totalTax, totalTax)) &&
             (identical(other.voucherAmount, voucherAmount) || const DeepCollectionEquality().equals(other.voucherAmount, voucherAmount)) &&
+            (identical(other.deliveryAmount, deliveryAmount) || const DeepCollectionEquality().equals(other.deliveryAmount, deliveryAmount)) &&
             (identical(other.totalPayment, totalPayment) || const DeepCollectionEquality().equals(other.totalPayment, totalPayment)) &&
             (identical(other.salesType, salesType) || const DeepCollectionEquality().equals(other.salesType, salesType)) &&
             (identical(other.items, items) || const DeepCollectionEquality().equals(other.items, items)) &&
@@ -1166,7 +1208,7 @@ class _$_OrderPending implements _OrderPending {
             (identical(other.taxesAndServices, taxesAndServices) || const DeepCollectionEquality().equals(other.taxesAndServices, taxesAndServices)) &&
             (identical(other.itemTotalAmount, itemTotalAmount) || const DeepCollectionEquality().equals(other.itemTotalAmount, itemTotalAmount)) &&
             (identical(other.note, note) || const DeepCollectionEquality().equals(other.note, note)) &&
-            (identical(other.gosend, gosend) || const DeepCollectionEquality().equals(other.gosend, gosend)) &&
+            (identical(other.grabpawoon, grabpawoon) || const DeepCollectionEquality().equals(other.grabpawoon, grabpawoon)) &&
             (identical(other.originalDeliveryAmount, originalDeliveryAmount) || const DeepCollectionEquality().equals(other.originalDeliveryAmount, originalDeliveryAmount)) &&
             (identical(other.deviceTimestamp, deviceTimestamp) || const DeepCollectionEquality().equals(other.deviceTimestamp, deviceTimestamp)) &&
             (identical(other.receiptCode, receiptCode) || const DeepCollectionEquality().equals(other.receiptCode, receiptCode)) &&
@@ -1175,6 +1217,7 @@ class _$_OrderPending implements _OrderPending {
             (identical(other.orderId, orderId) || const DeepCollectionEquality().equals(other.orderId, orderId)) &&
             (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.deliveryDetail, deliveryDetail) || const DeepCollectionEquality().equals(other.deliveryDetail, deliveryDetail)) &&
+            (identical(other.rating, rating) || const DeepCollectionEquality().equals(other.rating, rating)) &&
             (identical(other.billingDetail, billingDetail) || const DeepCollectionEquality().equals(other.billingDetail, billingDetail)) &&
             (identical(other.delivery, delivery) || const DeepCollectionEquality().equals(other.delivery, delivery)));
   }
@@ -1197,7 +1240,6 @@ class _$_OrderPending implements _OrderPending {
       const DeepCollectionEquality().hash(customerCarColor) ^
       const DeepCollectionEquality().hash(customerCarNumber) ^
       const DeepCollectionEquality().hash(eta) ^
-      const DeepCollectionEquality().hash(deliveryAmount) ^
       const DeepCollectionEquality().hash(totalChange) ^
       const DeepCollectionEquality().hash(discountAmount) ^
       const DeepCollectionEquality().hash(discountPercentage) ^
@@ -1212,6 +1254,7 @@ class _$_OrderPending implements _OrderPending {
       const DeepCollectionEquality().hash(totalService) ^
       const DeepCollectionEquality().hash(totalTax) ^
       const DeepCollectionEquality().hash(voucherAmount) ^
+      const DeepCollectionEquality().hash(deliveryAmount) ^
       const DeepCollectionEquality().hash(totalPayment) ^
       const DeepCollectionEquality().hash(salesType) ^
       const DeepCollectionEquality().hash(items) ^
@@ -1222,7 +1265,7 @@ class _$_OrderPending implements _OrderPending {
       const DeepCollectionEquality().hash(taxesAndServices) ^
       const DeepCollectionEquality().hash(itemTotalAmount) ^
       const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(gosend) ^
+      const DeepCollectionEquality().hash(grabpawoon) ^
       const DeepCollectionEquality().hash(originalDeliveryAmount) ^
       const DeepCollectionEquality().hash(deviceTimestamp) ^
       const DeepCollectionEquality().hash(receiptCode) ^
@@ -1231,22 +1274,24 @@ class _$_OrderPending implements _OrderPending {
       const DeepCollectionEquality().hash(orderId) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(deliveryDetail) ^
+      const DeepCollectionEquality().hash(rating) ^
       const DeepCollectionEquality().hash(billingDetail) ^
       const DeepCollectionEquality().hash(delivery);
 
   @JsonKey(ignore: true)
   @override
-  _$OrderPendingCopyWith<_OrderPending> get copyWith =>
-      __$OrderPendingCopyWithImpl<_OrderPending>(this, _$identity);
+  _$OrderHistoryDetailsCopyWith<_OrderHistoryDetails> get copyWith =>
+      __$OrderHistoryDetailsCopyWithImpl<_OrderHistoryDetails>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OrderPendingToJson(this);
+    return _$_$_OrderHistoryDetailsToJson(this);
   }
 }
 
-abstract class _OrderPending implements OrderPending {
-  const factory _OrderPending(
+abstract class _OrderHistoryDetails implements OrderHistoryDetails {
+  const factory _OrderHistoryDetails(
       {required String outletName,
       required int outletId,
       required String customerName,
@@ -1262,7 +1307,6 @@ abstract class _OrderPending implements OrderPending {
       required String customerCarColor,
       required String customerCarNumber,
       required String eta,
-      required int deliveryAmount,
       required int totalChange,
       required int discountAmount,
       required int discountPercentage,
@@ -1277,9 +1321,10 @@ abstract class _OrderPending implements OrderPending {
       required int totalService,
       required int totalTax,
       required int voucherAmount,
+      required int deliveryAmount,
       required int totalPayment,
       required String salesType,
-      required List<Item> items,
+      required List<MenuItem> items,
       required int itemWeight,
       required bool isUseVoucher,
       required List<dynamic> promos,
@@ -1287,7 +1332,7 @@ abstract class _OrderPending implements OrderPending {
       required List<TaxesAndService> taxesAndServices,
       required int itemTotalAmount,
       required String note,
-      required Delivery gosend,
+      @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
       required int originalDeliveryAmount,
       required DateTime deviceTimestamp,
       required String receiptCode,
@@ -1296,11 +1341,12 @@ abstract class _OrderPending implements OrderPending {
       required String orderId,
       required String status,
       required DeliveryDetail deliveryDetail,
-      required BillingDetail billingDetail,
-      required Delivery delivery}) = _$_OrderPending;
+      required Rating rating,
+      @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
+      required Delivery delivery}) = _$_OrderHistoryDetails;
 
-  factory _OrderPending.fromJson(Map<String, dynamic> json) =
-      _$_OrderPending.fromJson;
+  factory _OrderHistoryDetails.fromJson(Map<String, dynamic> json) =
+      _$_OrderHistoryDetails.fromJson;
 
   @override
   String get outletName => throw _privateConstructorUsedError;
@@ -1333,8 +1379,6 @@ abstract class _OrderPending implements OrderPending {
   @override
   String get eta => throw _privateConstructorUsedError;
   @override
-  int get deliveryAmount => throw _privateConstructorUsedError;
-  @override
   int get totalChange => throw _privateConstructorUsedError;
   @override
   int get discountAmount => throw _privateConstructorUsedError;
@@ -1363,11 +1407,13 @@ abstract class _OrderPending implements OrderPending {
   @override
   int get voucherAmount => throw _privateConstructorUsedError;
   @override
+  int get deliveryAmount => throw _privateConstructorUsedError;
+  @override
   int get totalPayment => throw _privateConstructorUsedError;
   @override
   String get salesType => throw _privateConstructorUsedError;
   @override
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<MenuItem> get items => throw _privateConstructorUsedError;
   @override
   int get itemWeight => throw _privateConstructorUsedError;
   @override
@@ -1384,7 +1430,8 @@ abstract class _OrderPending implements OrderPending {
   @override
   String get note => throw _privateConstructorUsedError;
   @override
-  Delivery get gosend => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  Delivery? get grabpawoon => throw _privateConstructorUsedError;
   @override
   int get originalDeliveryAmount => throw _privateConstructorUsedError;
   @override
@@ -1402,12 +1449,15 @@ abstract class _OrderPending implements OrderPending {
   @override
   DeliveryDetail get deliveryDetail => throw _privateConstructorUsedError;
   @override
-  BillingDetail get billingDetail => throw _privateConstructorUsedError;
+  Rating get rating => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(includeIfNull: true)
+  BillingDetail? get billingDetail => throw _privateConstructorUsedError;
   @override
   Delivery get delivery => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OrderPendingCopyWith<_OrderPending> get copyWith =>
+  _$OrderHistoryDetailsCopyWith<_OrderHistoryDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1423,13 +1473,9 @@ class _$BillingDetailTearOff {
       {required String title,
       required int amount,
       required String vaNumber,
-      required int expires,
+      required DateTime expires,
       required DateTime expiresAt,
-      required String serviceProvider,
-      required bool isCredit,
-      required bool isDeeplink,
-      required bool isWebView,
-      required bool isSingleBilling}) {
+      required String serviceProvider}) {
     return _BillingDetail(
       title: title,
       amount: amount,
@@ -1437,10 +1483,6 @@ class _$BillingDetailTearOff {
       expires: expires,
       expiresAt: expiresAt,
       serviceProvider: serviceProvider,
-      isCredit: isCredit,
-      isDeeplink: isDeeplink,
-      isWebView: isWebView,
-      isSingleBilling: isSingleBilling,
     );
   }
 
@@ -1457,13 +1499,9 @@ mixin _$BillingDetail {
   String get title => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String get vaNumber => throw _privateConstructorUsedError;
-  int get expires => throw _privateConstructorUsedError;
+  DateTime get expires => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
   String get serviceProvider => throw _privateConstructorUsedError;
-  bool get isCredit => throw _privateConstructorUsedError;
-  bool get isDeeplink => throw _privateConstructorUsedError;
-  bool get isWebView => throw _privateConstructorUsedError;
-  bool get isSingleBilling => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1480,13 +1518,9 @@ abstract class $BillingDetailCopyWith<$Res> {
       {String title,
       int amount,
       String vaNumber,
-      int expires,
+      DateTime expires,
       DateTime expiresAt,
-      String serviceProvider,
-      bool isCredit,
-      bool isDeeplink,
-      bool isWebView,
-      bool isSingleBilling});
+      String serviceProvider});
 }
 
 /// @nodoc
@@ -1506,10 +1540,6 @@ class _$BillingDetailCopyWithImpl<$Res>
     Object? expires = freezed,
     Object? expiresAt = freezed,
     Object? serviceProvider = freezed,
-    Object? isCredit = freezed,
-    Object? isDeeplink = freezed,
-    Object? isWebView = freezed,
-    Object? isSingleBilling = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -1527,7 +1557,7 @@ class _$BillingDetailCopyWithImpl<$Res>
       expires: expires == freezed
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
-              as int,
+              as DateTime,
       expiresAt: expiresAt == freezed
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
@@ -1536,22 +1566,6 @@ class _$BillingDetailCopyWithImpl<$Res>
           ? _value.serviceProvider
           : serviceProvider // ignore: cast_nullable_to_non_nullable
               as String,
-      isCredit: isCredit == freezed
-          ? _value.isCredit
-          : isCredit // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDeeplink: isDeeplink == freezed
-          ? _value.isDeeplink
-          : isDeeplink // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isWebView: isWebView == freezed
-          ? _value.isWebView
-          : isWebView // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSingleBilling: isSingleBilling == freezed
-          ? _value.isSingleBilling
-          : isSingleBilling // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1567,13 +1581,9 @@ abstract class _$BillingDetailCopyWith<$Res>
       {String title,
       int amount,
       String vaNumber,
-      int expires,
+      DateTime expires,
       DateTime expiresAt,
-      String serviceProvider,
-      bool isCredit,
-      bool isDeeplink,
-      bool isWebView,
-      bool isSingleBilling});
+      String serviceProvider});
 }
 
 /// @nodoc
@@ -1595,10 +1605,6 @@ class __$BillingDetailCopyWithImpl<$Res>
     Object? expires = freezed,
     Object? expiresAt = freezed,
     Object? serviceProvider = freezed,
-    Object? isCredit = freezed,
-    Object? isDeeplink = freezed,
-    Object? isWebView = freezed,
-    Object? isSingleBilling = freezed,
   }) {
     return _then(_BillingDetail(
       title: title == freezed
@@ -1616,7 +1622,7 @@ class __$BillingDetailCopyWithImpl<$Res>
       expires: expires == freezed
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
-              as int,
+              as DateTime,
       expiresAt: expiresAt == freezed
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
@@ -1625,22 +1631,6 @@ class __$BillingDetailCopyWithImpl<$Res>
           ? _value.serviceProvider
           : serviceProvider // ignore: cast_nullable_to_non_nullable
               as String,
-      isCredit: isCredit == freezed
-          ? _value.isCredit
-          : isCredit // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDeeplink: isDeeplink == freezed
-          ? _value.isDeeplink
-          : isDeeplink // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isWebView: isWebView == freezed
-          ? _value.isWebView
-          : isWebView // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSingleBilling: isSingleBilling == freezed
-          ? _value.isSingleBilling
-          : isSingleBilling // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1654,11 +1644,7 @@ class _$_BillingDetail implements _BillingDetail {
       required this.vaNumber,
       required this.expires,
       required this.expiresAt,
-      required this.serviceProvider,
-      required this.isCredit,
-      required this.isDeeplink,
-      required this.isWebView,
-      required this.isSingleBilling});
+      required this.serviceProvider});
 
   factory _$_BillingDetail.fromJson(Map<String, dynamic> json) =>
       _$_$_BillingDetailFromJson(json);
@@ -1670,23 +1656,15 @@ class _$_BillingDetail implements _BillingDetail {
   @override
   final String vaNumber;
   @override
-  final int expires;
+  final DateTime expires;
   @override
   final DateTime expiresAt;
   @override
   final String serviceProvider;
-  @override
-  final bool isCredit;
-  @override
-  final bool isDeeplink;
-  @override
-  final bool isWebView;
-  @override
-  final bool isSingleBilling;
 
   @override
   String toString() {
-    return 'BillingDetail(title: $title, amount: $amount, vaNumber: $vaNumber, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider, isCredit: $isCredit, isDeeplink: $isDeeplink, isWebView: $isWebView, isSingleBilling: $isSingleBilling)';
+    return 'BillingDetail(title: $title, amount: $amount, vaNumber: $vaNumber, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider)';
   }
 
   @override
@@ -1708,19 +1686,7 @@ class _$_BillingDetail implements _BillingDetail {
                     .equals(other.expiresAt, expiresAt)) &&
             (identical(other.serviceProvider, serviceProvider) ||
                 const DeepCollectionEquality()
-                    .equals(other.serviceProvider, serviceProvider)) &&
-            (identical(other.isCredit, isCredit) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCredit, isCredit)) &&
-            (identical(other.isDeeplink, isDeeplink) ||
-                const DeepCollectionEquality()
-                    .equals(other.isDeeplink, isDeeplink)) &&
-            (identical(other.isWebView, isWebView) ||
-                const DeepCollectionEquality()
-                    .equals(other.isWebView, isWebView)) &&
-            (identical(other.isSingleBilling, isSingleBilling) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSingleBilling, isSingleBilling)));
+                    .equals(other.serviceProvider, serviceProvider)));
   }
 
   @override
@@ -1731,11 +1697,7 @@ class _$_BillingDetail implements _BillingDetail {
       const DeepCollectionEquality().hash(vaNumber) ^
       const DeepCollectionEquality().hash(expires) ^
       const DeepCollectionEquality().hash(expiresAt) ^
-      const DeepCollectionEquality().hash(serviceProvider) ^
-      const DeepCollectionEquality().hash(isCredit) ^
-      const DeepCollectionEquality().hash(isDeeplink) ^
-      const DeepCollectionEquality().hash(isWebView) ^
-      const DeepCollectionEquality().hash(isSingleBilling);
+      const DeepCollectionEquality().hash(serviceProvider);
 
   @JsonKey(ignore: true)
   @override
@@ -1753,13 +1715,9 @@ abstract class _BillingDetail implements BillingDetail {
       {required String title,
       required int amount,
       required String vaNumber,
-      required int expires,
+      required DateTime expires,
       required DateTime expiresAt,
-      required String serviceProvider,
-      required bool isCredit,
-      required bool isDeeplink,
-      required bool isWebView,
-      required bool isSingleBilling}) = _$_BillingDetail;
+      required String serviceProvider}) = _$_BillingDetail;
 
   factory _BillingDetail.fromJson(Map<String, dynamic> json) =
       _$_BillingDetail.fromJson;
@@ -1771,19 +1729,11 @@ abstract class _BillingDetail implements BillingDetail {
   @override
   String get vaNumber => throw _privateConstructorUsedError;
   @override
-  int get expires => throw _privateConstructorUsedError;
+  DateTime get expires => throw _privateConstructorUsedError;
   @override
   DateTime get expiresAt => throw _privateConstructorUsedError;
   @override
   String get serviceProvider => throw _privateConstructorUsedError;
-  @override
-  bool get isCredit => throw _privateConstructorUsedError;
-  @override
-  bool get isDeeplink => throw _privateConstructorUsedError;
-  @override
-  bool get isWebView => throw _privateConstructorUsedError;
-  @override
-  bool get isSingleBilling => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BillingDetailCopyWith<_BillingDetail> get copyWith =>
@@ -2056,12 +2006,14 @@ class _$DeliveryDetailTearOff {
       required String bookingExpired,
       required String deliveryId,
       required bool isDelivered,
-      required DeliverFrom from,
-      required DeliverTo to,
+      required From from,
+      required To to,
       required List<dynamic> status,
       required bool isDelete,
       required DateTime createdDate,
-      required String ownerPhone}) {
+      required String ownerPhone,
+      required String driverName,
+      required String driverPhone}) {
     return _DeliveryDetail(
       orderId: orderId,
       distance: distance,
@@ -2078,6 +2030,8 @@ class _$DeliveryDetailTearOff {
       isDelete: isDelete,
       createdDate: createdDate,
       ownerPhone: ownerPhone,
+      driverName: driverName,
+      driverPhone: driverPhone,
     );
   }
 
@@ -2100,12 +2054,14 @@ mixin _$DeliveryDetail {
   String get bookingExpired => throw _privateConstructorUsedError;
   String get deliveryId => throw _privateConstructorUsedError;
   bool get isDelivered => throw _privateConstructorUsedError;
-  DeliverFrom get from => throw _privateConstructorUsedError;
-  DeliverTo get to => throw _privateConstructorUsedError;
+  From get from => throw _privateConstructorUsedError;
+  To get to => throw _privateConstructorUsedError;
   List<dynamic> get status => throw _privateConstructorUsedError;
   bool get isDelete => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
   String get ownerPhone => throw _privateConstructorUsedError;
+  String get driverName => throw _privateConstructorUsedError;
+  String get driverPhone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2128,15 +2084,17 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       String bookingExpired,
       String deliveryId,
       bool isDelivered,
-      DeliverFrom from,
-      DeliverTo to,
+      From from,
+      To to,
       List<dynamic> status,
       bool isDelete,
       DateTime createdDate,
-      String ownerPhone});
+      String ownerPhone,
+      String driverName,
+      String driverPhone});
 
-  $DeliverFromCopyWith<$Res> get from;
-  $DeliverToCopyWith<$Res> get to;
+  $FromCopyWith<$Res> get from;
+  $ToCopyWith<$Res> get to;
 }
 
 /// @nodoc
@@ -2165,6 +2123,8 @@ class _$DeliveryDetailCopyWithImpl<$Res>
     Object? isDelete = freezed,
     Object? createdDate = freezed,
     Object? ownerPhone = freezed,
+    Object? driverName = freezed,
+    Object? driverPhone = freezed,
   }) {
     return _then(_value.copyWith(
       orderId: orderId == freezed
@@ -2206,11 +2166,11 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as DeliverFrom,
+              as From,
       to: to == freezed
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as DeliverTo,
+              as To,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -2227,19 +2187,27 @@ class _$DeliveryDetailCopyWithImpl<$Res>
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
               as String,
+      driverName: driverName == freezed
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      driverPhone: driverPhone == freezed
+          ? _value.driverPhone
+          : driverPhone // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
   @override
-  $DeliverFromCopyWith<$Res> get from {
-    return $DeliverFromCopyWith<$Res>(_value.from, (value) {
+  $FromCopyWith<$Res> get from {
+    return $FromCopyWith<$Res>(_value.from, (value) {
       return _then(_value.copyWith(from: value));
     });
   }
 
   @override
-  $DeliverToCopyWith<$Res> get to {
-    return $DeliverToCopyWith<$Res>(_value.to, (value) {
+  $ToCopyWith<$Res> get to {
+    return $ToCopyWith<$Res>(_value.to, (value) {
       return _then(_value.copyWith(to: value));
     });
   }
@@ -2262,17 +2230,19 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       String bookingExpired,
       String deliveryId,
       bool isDelivered,
-      DeliverFrom from,
-      DeliverTo to,
+      From from,
+      To to,
       List<dynamic> status,
       bool isDelete,
       DateTime createdDate,
-      String ownerPhone});
+      String ownerPhone,
+      String driverName,
+      String driverPhone});
 
   @override
-  $DeliverFromCopyWith<$Res> get from;
+  $FromCopyWith<$Res> get from;
   @override
-  $DeliverToCopyWith<$Res> get to;
+  $ToCopyWith<$Res> get to;
 }
 
 /// @nodoc
@@ -2303,6 +2273,8 @@ class __$DeliveryDetailCopyWithImpl<$Res>
     Object? isDelete = freezed,
     Object? createdDate = freezed,
     Object? ownerPhone = freezed,
+    Object? driverName = freezed,
+    Object? driverPhone = freezed,
   }) {
     return _then(_DeliveryDetail(
       orderId: orderId == freezed
@@ -2344,11 +2316,11 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as DeliverFrom,
+              as From,
       to: to == freezed
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as DeliverTo,
+              as To,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -2364,6 +2336,14 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      driverName: driverName == freezed
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      driverPhone: driverPhone == freezed
+          ? _value.driverPhone
+          : driverPhone // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -2387,7 +2367,9 @@ class _$_DeliveryDetail implements _DeliveryDetail {
       required this.status,
       required this.isDelete,
       required this.createdDate,
-      required this.ownerPhone});
+      required this.ownerPhone,
+      required this.driverName,
+      required this.driverPhone});
 
   factory _$_DeliveryDetail.fromJson(Map<String, dynamic> json) =>
       _$_$_DeliveryDetailFromJson(json);
@@ -2411,9 +2393,9 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   @override
   final bool isDelivered;
   @override
-  final DeliverFrom from;
+  final From from;
   @override
-  final DeliverTo to;
+  final To to;
   @override
   final List<dynamic> status;
   @override
@@ -2422,10 +2404,14 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   final DateTime createdDate;
   @override
   final String ownerPhone;
+  @override
+  final String driverName;
+  @override
+  final String driverPhone;
 
   @override
   String toString() {
-    return 'DeliveryDetail(orderId: $orderId, distance: $distance, provider: $provider, shipmentMethod: $shipmentMethod, fee: $fee, bookingCode: $bookingCode, bookingExpired: $bookingExpired, deliveryId: $deliveryId, isDelivered: $isDelivered, from: $from, to: $to, status: $status, isDelete: $isDelete, createdDate: $createdDate, ownerPhone: $ownerPhone)';
+    return 'DeliveryDetail(orderId: $orderId, distance: $distance, provider: $provider, shipmentMethod: $shipmentMethod, fee: $fee, bookingCode: $bookingCode, bookingExpired: $bookingExpired, deliveryId: $deliveryId, isDelivered: $isDelivered, from: $from, to: $to, status: $status, isDelete: $isDelete, createdDate: $createdDate, ownerPhone: $ownerPhone, driverName: $driverName, driverPhone: $driverPhone)';
   }
 
   @override
@@ -2472,7 +2458,13 @@ class _$_DeliveryDetail implements _DeliveryDetail {
                     .equals(other.createdDate, createdDate)) &&
             (identical(other.ownerPhone, ownerPhone) ||
                 const DeepCollectionEquality()
-                    .equals(other.ownerPhone, ownerPhone)));
+                    .equals(other.ownerPhone, ownerPhone)) &&
+            (identical(other.driverName, driverName) ||
+                const DeepCollectionEquality()
+                    .equals(other.driverName, driverName)) &&
+            (identical(other.driverPhone, driverPhone) ||
+                const DeepCollectionEquality()
+                    .equals(other.driverPhone, driverPhone)));
   }
 
   @override
@@ -2492,7 +2484,9 @@ class _$_DeliveryDetail implements _DeliveryDetail {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(isDelete) ^
       const DeepCollectionEquality().hash(createdDate) ^
-      const DeepCollectionEquality().hash(ownerPhone);
+      const DeepCollectionEquality().hash(ownerPhone) ^
+      const DeepCollectionEquality().hash(driverName) ^
+      const DeepCollectionEquality().hash(driverPhone);
 
   @JsonKey(ignore: true)
   @override
@@ -2516,12 +2510,14 @@ abstract class _DeliveryDetail implements DeliveryDetail {
       required String bookingExpired,
       required String deliveryId,
       required bool isDelivered,
-      required DeliverFrom from,
-      required DeliverTo to,
+      required From from,
+      required To to,
       required List<dynamic> status,
       required bool isDelete,
       required DateTime createdDate,
-      required String ownerPhone}) = _$_DeliveryDetail;
+      required String ownerPhone,
+      required String driverName,
+      required String driverPhone}) = _$_DeliveryDetail;
 
   factory _DeliveryDetail.fromJson(Map<String, dynamic> json) =
       _$_DeliveryDetail.fromJson;
@@ -2545,9 +2541,9 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @override
   bool get isDelivered => throw _privateConstructorUsedError;
   @override
-  DeliverFrom get from => throw _privateConstructorUsedError;
+  From get from => throw _privateConstructorUsedError;
   @override
-  DeliverTo get to => throw _privateConstructorUsedError;
+  To get to => throw _privateConstructorUsedError;
   @override
   List<dynamic> get status => throw _privateConstructorUsedError;
   @override
@@ -2557,25 +2553,29 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @override
   String get ownerPhone => throw _privateConstructorUsedError;
   @override
+  String get driverName => throw _privateConstructorUsedError;
+  @override
+  String get driverPhone => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$DeliveryDetailCopyWith<_DeliveryDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-DeliverFrom _$DeliverFromFromJson(Map<String, dynamic> json) {
-  return _DeliverFrom.fromJson(json);
+From _$FromFromJson(Map<String, dynamic> json) {
+  return _From.fromJson(json);
 }
 
 /// @nodoc
-class _$DeliverFromTearOff {
-  const _$DeliverFromTearOff();
+class _$FromTearOff {
+  const _$FromTearOff();
 
-  _DeliverFrom call(
+  _From call(
       {required List<double> location,
       required String name,
       required String address,
       required String phone}) {
-    return _DeliverFrom(
+    return _From(
       location: location,
       name: name,
       address: address,
@@ -2583,16 +2583,16 @@ class _$DeliverFromTearOff {
     );
   }
 
-  DeliverFrom fromJson(Map<String, Object> json) {
-    return DeliverFrom.fromJson(json);
+  From fromJson(Map<String, Object> json) {
+    return From.fromJson(json);
   }
 }
 
 /// @nodoc
-const $DeliverFrom = _$DeliverFromTearOff();
+const $From = _$FromTearOff();
 
 /// @nodoc
-mixin _$DeliverFrom {
+mixin _$From {
   List<double> get location => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
@@ -2600,25 +2600,23 @@ mixin _$DeliverFrom {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeliverFromCopyWith<DeliverFrom> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FromCopyWith<From> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeliverFromCopyWith<$Res> {
-  factory $DeliverFromCopyWith(
-          DeliverFrom value, $Res Function(DeliverFrom) then) =
-      _$DeliverFromCopyWithImpl<$Res>;
+abstract class $FromCopyWith<$Res> {
+  factory $FromCopyWith(From value, $Res Function(From) then) =
+      _$FromCopyWithImpl<$Res>;
   $Res call({List<double> location, String name, String address, String phone});
 }
 
 /// @nodoc
-class _$DeliverFromCopyWithImpl<$Res> implements $DeliverFromCopyWith<$Res> {
-  _$DeliverFromCopyWithImpl(this._value, this._then);
+class _$FromCopyWithImpl<$Res> implements $FromCopyWith<$Res> {
+  _$FromCopyWithImpl(this._value, this._then);
 
-  final DeliverFrom _value;
+  final From _value;
   // ignore: unused_field
-  final $Res Function(DeliverFrom) _then;
+  final $Res Function(From) _then;
 
   @override
   $Res call({
@@ -2649,24 +2647,21 @@ class _$DeliverFromCopyWithImpl<$Res> implements $DeliverFromCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DeliverFromCopyWith<$Res>
-    implements $DeliverFromCopyWith<$Res> {
-  factory _$DeliverFromCopyWith(
-          _DeliverFrom value, $Res Function(_DeliverFrom) then) =
-      __$DeliverFromCopyWithImpl<$Res>;
+abstract class _$FromCopyWith<$Res> implements $FromCopyWith<$Res> {
+  factory _$FromCopyWith(_From value, $Res Function(_From) then) =
+      __$FromCopyWithImpl<$Res>;
   @override
   $Res call({List<double> location, String name, String address, String phone});
 }
 
 /// @nodoc
-class __$DeliverFromCopyWithImpl<$Res> extends _$DeliverFromCopyWithImpl<$Res>
-    implements _$DeliverFromCopyWith<$Res> {
-  __$DeliverFromCopyWithImpl(
-      _DeliverFrom _value, $Res Function(_DeliverFrom) _then)
-      : super(_value, (v) => _then(v as _DeliverFrom));
+class __$FromCopyWithImpl<$Res> extends _$FromCopyWithImpl<$Res>
+    implements _$FromCopyWith<$Res> {
+  __$FromCopyWithImpl(_From _value, $Res Function(_From) _then)
+      : super(_value, (v) => _then(v as _From));
 
   @override
-  _DeliverFrom get _value => super._value as _DeliverFrom;
+  _From get _value => super._value as _From;
 
   @override
   $Res call({
@@ -2675,7 +2670,7 @@ class __$DeliverFromCopyWithImpl<$Res> extends _$DeliverFromCopyWithImpl<$Res>
     Object? address = freezed,
     Object? phone = freezed,
   }) {
-    return _then(_DeliverFrom(
+    return _then(_From(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -2698,15 +2693,15 @@ class __$DeliverFromCopyWithImpl<$Res> extends _$DeliverFromCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DeliverFrom implements _DeliverFrom {
-  const _$_DeliverFrom(
+class _$_From implements _From {
+  const _$_From(
       {required this.location,
       required this.name,
       required this.address,
       required this.phone});
 
-  factory _$_DeliverFrom.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeliverFromFromJson(json);
+  factory _$_From.fromJson(Map<String, dynamic> json) =>
+      _$_$_FromFromJson(json);
 
   @override
   final List<double> location;
@@ -2719,13 +2714,13 @@ class _$_DeliverFrom implements _DeliverFrom {
 
   @override
   String toString() {
-    return 'DeliverFrom(location: $location, name: $name, address: $address, phone: $phone)';
+    return 'From(location: $location, name: $name, address: $address, phone: $phone)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DeliverFrom &&
+        (other is _From &&
             (identical(other.location, location) ||
                 const DeepCollectionEquality()
                     .equals(other.location, location)) &&
@@ -2748,24 +2743,23 @@ class _$_DeliverFrom implements _DeliverFrom {
 
   @JsonKey(ignore: true)
   @override
-  _$DeliverFromCopyWith<_DeliverFrom> get copyWith =>
-      __$DeliverFromCopyWithImpl<_DeliverFrom>(this, _$identity);
+  _$FromCopyWith<_From> get copyWith =>
+      __$FromCopyWithImpl<_From>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeliverFromToJson(this);
+    return _$_$_FromToJson(this);
   }
 }
 
-abstract class _DeliverFrom implements DeliverFrom {
-  const factory _DeliverFrom(
+abstract class _From implements From {
+  const factory _From(
       {required List<double> location,
       required String name,
       required String address,
-      required String phone}) = _$_DeliverFrom;
+      required String phone}) = _$_From;
 
-  factory _DeliverFrom.fromJson(Map<String, dynamic> json) =
-      _$_DeliverFrom.fromJson;
+  factory _From.fromJson(Map<String, dynamic> json) = _$_From.fromJson;
 
   @override
   List<double> get location => throw _privateConstructorUsedError;
@@ -2777,24 +2771,23 @@ abstract class _DeliverFrom implements DeliverFrom {
   String get phone => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DeliverFromCopyWith<_DeliverFrom> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$FromCopyWith<_From> get copyWith => throw _privateConstructorUsedError;
 }
 
-DeliverTo _$DeliverToFromJson(Map<String, dynamic> json) {
-  return _DeliverTo.fromJson(json);
+To _$ToFromJson(Map<String, dynamic> json) {
+  return _To.fromJson(json);
 }
 
 /// @nodoc
-class _$DeliverToTearOff {
-  const _$DeliverToTearOff();
+class _$ToTearOff {
+  const _$ToTearOff();
 
-  _DeliverTo call(
+  _To call(
       {required List<String> location,
       required String name,
       required String address,
       required String phone}) {
-    return _DeliverTo(
+    return _To(
       location: location,
       name: name,
       address: address,
@@ -2802,16 +2795,16 @@ class _$DeliverToTearOff {
     );
   }
 
-  DeliverTo fromJson(Map<String, Object> json) {
-    return DeliverTo.fromJson(json);
+  To fromJson(Map<String, Object> json) {
+    return To.fromJson(json);
   }
 }
 
 /// @nodoc
-const $DeliverTo = _$DeliverToTearOff();
+const $To = _$ToTearOff();
 
 /// @nodoc
-mixin _$DeliverTo {
+mixin _$To {
   List<String> get location => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
@@ -2819,24 +2812,23 @@ mixin _$DeliverTo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeliverToCopyWith<DeliverTo> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ToCopyWith<To> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeliverToCopyWith<$Res> {
-  factory $DeliverToCopyWith(DeliverTo value, $Res Function(DeliverTo) then) =
-      _$DeliverToCopyWithImpl<$Res>;
+abstract class $ToCopyWith<$Res> {
+  factory $ToCopyWith(To value, $Res Function(To) then) =
+      _$ToCopyWithImpl<$Res>;
   $Res call({List<String> location, String name, String address, String phone});
 }
 
 /// @nodoc
-class _$DeliverToCopyWithImpl<$Res> implements $DeliverToCopyWith<$Res> {
-  _$DeliverToCopyWithImpl(this._value, this._then);
+class _$ToCopyWithImpl<$Res> implements $ToCopyWith<$Res> {
+  _$ToCopyWithImpl(this._value, this._then);
 
-  final DeliverTo _value;
+  final To _value;
   // ignore: unused_field
-  final $Res Function(DeliverTo) _then;
+  final $Res Function(To) _then;
 
   @override
   $Res call({
@@ -2867,22 +2859,21 @@ class _$DeliverToCopyWithImpl<$Res> implements $DeliverToCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DeliverToCopyWith<$Res> implements $DeliverToCopyWith<$Res> {
-  factory _$DeliverToCopyWith(
-          _DeliverTo value, $Res Function(_DeliverTo) then) =
-      __$DeliverToCopyWithImpl<$Res>;
+abstract class _$ToCopyWith<$Res> implements $ToCopyWith<$Res> {
+  factory _$ToCopyWith(_To value, $Res Function(_To) then) =
+      __$ToCopyWithImpl<$Res>;
   @override
   $Res call({List<String> location, String name, String address, String phone});
 }
 
 /// @nodoc
-class __$DeliverToCopyWithImpl<$Res> extends _$DeliverToCopyWithImpl<$Res>
-    implements _$DeliverToCopyWith<$Res> {
-  __$DeliverToCopyWithImpl(_DeliverTo _value, $Res Function(_DeliverTo) _then)
-      : super(_value, (v) => _then(v as _DeliverTo));
+class __$ToCopyWithImpl<$Res> extends _$ToCopyWithImpl<$Res>
+    implements _$ToCopyWith<$Res> {
+  __$ToCopyWithImpl(_To _value, $Res Function(_To) _then)
+      : super(_value, (v) => _then(v as _To));
 
   @override
-  _DeliverTo get _value => super._value as _DeliverTo;
+  _To get _value => super._value as _To;
 
   @override
   $Res call({
@@ -2891,7 +2882,7 @@ class __$DeliverToCopyWithImpl<$Res> extends _$DeliverToCopyWithImpl<$Res>
     Object? address = freezed,
     Object? phone = freezed,
   }) {
-    return _then(_DeliverTo(
+    return _then(_To(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -2914,15 +2905,14 @@ class __$DeliverToCopyWithImpl<$Res> extends _$DeliverToCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DeliverTo implements _DeliverTo {
-  const _$_DeliverTo(
+class _$_To implements _To {
+  const _$_To(
       {required this.location,
       required this.name,
       required this.address,
       required this.phone});
 
-  factory _$_DeliverTo.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeliverToFromJson(json);
+  factory _$_To.fromJson(Map<String, dynamic> json) => _$_$_ToFromJson(json);
 
   @override
   final List<String> location;
@@ -2935,13 +2925,13 @@ class _$_DeliverTo implements _DeliverTo {
 
   @override
   String toString() {
-    return 'DeliverTo(location: $location, name: $name, address: $address, phone: $phone)';
+    return 'To(location: $location, name: $name, address: $address, phone: $phone)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DeliverTo &&
+        (other is _To &&
             (identical(other.location, location) ||
                 const DeepCollectionEquality()
                     .equals(other.location, location)) &&
@@ -2964,24 +2954,22 @@ class _$_DeliverTo implements _DeliverTo {
 
   @JsonKey(ignore: true)
   @override
-  _$DeliverToCopyWith<_DeliverTo> get copyWith =>
-      __$DeliverToCopyWithImpl<_DeliverTo>(this, _$identity);
+  _$ToCopyWith<_To> get copyWith => __$ToCopyWithImpl<_To>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeliverToToJson(this);
+    return _$_$_ToToJson(this);
   }
 }
 
-abstract class _DeliverTo implements DeliverTo {
-  const factory _DeliverTo(
+abstract class _To implements To {
+  const factory _To(
       {required List<String> location,
       required String name,
       required String address,
-      required String phone}) = _$_DeliverTo;
+      required String phone}) = _$_To;
 
-  factory _DeliverTo.fromJson(Map<String, dynamic> json) =
-      _$_DeliverTo.fromJson;
+  factory _To.fromJson(Map<String, dynamic> json) = _$_To.fromJson;
 
   @override
   List<String> get location => throw _privateConstructorUsedError;
@@ -2993,19 +2981,18 @@ abstract class _DeliverTo implements DeliverTo {
   String get phone => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DeliverToCopyWith<_DeliverTo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$ToCopyWith<_To> get copyWith => throw _privateConstructorUsedError;
 }
 
-Item _$ItemFromJson(Map<String, dynamic> json) {
-  return _Item.fromJson(json);
+MenuItem _$MenuItemFromJson(Map<String, dynamic> json) {
+  return _MenuItem.fromJson(json);
 }
 
 /// @nodoc
-class _$ItemTearOff {
-  const _$ItemTearOff();
+class _$MenuItemTearOff {
+  const _$MenuItemTearOff();
 
-  _Item call(
+  _MenuItem call(
       {required int productId,
       required String title,
       required int price,
@@ -3030,8 +3017,11 @@ class _$ItemTearOff {
       required int subtotal,
       required int serviceAmount,
       required int taxAmount,
-      required bool isStock}) {
-    return _Item(
+      required bool isStock,
+      required String img,
+      required String image,
+      required int transactionLimit}) {
+    return _MenuItem(
       productId: productId,
       title: title,
       price: price,
@@ -3057,19 +3047,22 @@ class _$ItemTearOff {
       serviceAmount: serviceAmount,
       taxAmount: taxAmount,
       isStock: isStock,
+      img: img,
+      image: image,
+      transactionLimit: transactionLimit,
     );
   }
 
-  Item fromJson(Map<String, Object> json) {
-    return Item.fromJson(json);
+  MenuItem fromJson(Map<String, Object> json) {
+    return MenuItem.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Item = _$ItemTearOff();
+const $MenuItem = _$MenuItemTearOff();
 
 /// @nodoc
-mixin _$Item {
+mixin _$MenuItem {
   int get productId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
@@ -3095,16 +3088,20 @@ mixin _$Item {
   int get serviceAmount => throw _privateConstructorUsedError;
   int get taxAmount => throw _privateConstructorUsedError;
   bool get isStock => throw _privateConstructorUsedError;
+  String get img => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  int get transactionLimit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
+  $MenuItemCopyWith<MenuItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) then) =
-      _$ItemCopyWithImpl<$Res>;
+abstract class $MenuItemCopyWith<$Res> {
+  factory $MenuItemCopyWith(MenuItem value, $Res Function(MenuItem) then) =
+      _$MenuItemCopyWithImpl<$Res>;
   $Res call(
       {int productId,
       String title,
@@ -3130,16 +3127,19 @@ abstract class $ItemCopyWith<$Res> {
       int subtotal,
       int serviceAmount,
       int taxAmount,
-      bool isStock});
+      bool isStock,
+      String img,
+      String image,
+      int transactionLimit});
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._value, this._then);
+class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
+  _$MenuItemCopyWithImpl(this._value, this._then);
 
-  final Item _value;
+  final MenuItem _value;
   // ignore: unused_field
-  final $Res Function(Item) _then;
+  final $Res Function(MenuItem) _then;
 
   @override
   $Res call({
@@ -3168,6 +3168,9 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
     Object? serviceAmount = freezed,
     Object? taxAmount = freezed,
     Object? isStock = freezed,
+    Object? img = freezed,
+    Object? image = freezed,
+    Object? transactionLimit = freezed,
   }) {
     return _then(_value.copyWith(
       productId: productId == freezed
@@ -3270,14 +3273,26 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
           ? _value.isStock
           : isStock // ignore: cast_nullable_to_non_nullable
               as bool,
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      transactionLimit: transactionLimit == freezed
+          ? _value.transactionLimit
+          : transactionLimit // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
-  factory _$ItemCopyWith(_Item value, $Res Function(_Item) then) =
-      __$ItemCopyWithImpl<$Res>;
+abstract class _$MenuItemCopyWith<$Res> implements $MenuItemCopyWith<$Res> {
+  factory _$MenuItemCopyWith(_MenuItem value, $Res Function(_MenuItem) then) =
+      __$MenuItemCopyWithImpl<$Res>;
   @override
   $Res call(
       {int productId,
@@ -3304,17 +3319,20 @@ abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       int subtotal,
       int serviceAmount,
       int taxAmount,
-      bool isStock});
+      bool isStock,
+      String img,
+      String image,
+      int transactionLimit});
 }
 
 /// @nodoc
-class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
-    implements _$ItemCopyWith<$Res> {
-  __$ItemCopyWithImpl(_Item _value, $Res Function(_Item) _then)
-      : super(_value, (v) => _then(v as _Item));
+class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
+    implements _$MenuItemCopyWith<$Res> {
+  __$MenuItemCopyWithImpl(_MenuItem _value, $Res Function(_MenuItem) _then)
+      : super(_value, (v) => _then(v as _MenuItem));
 
   @override
-  _Item get _value => super._value as _Item;
+  _MenuItem get _value => super._value as _MenuItem;
 
   @override
   $Res call({
@@ -3343,8 +3361,11 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
     Object? serviceAmount = freezed,
     Object? taxAmount = freezed,
     Object? isStock = freezed,
+    Object? img = freezed,
+    Object? image = freezed,
+    Object? transactionLimit = freezed,
   }) {
-    return _then(_Item(
+    return _then(_MenuItem(
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -3445,14 +3466,26 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
           ? _value.isStock
           : isStock // ignore: cast_nullable_to_non_nullable
               as bool,
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      transactionLimit: transactionLimit == freezed
+          ? _value.transactionLimit
+          : transactionLimit // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Item implements _Item {
-  const _$_Item(
+class _$_MenuItem implements _MenuItem {
+  const _$_MenuItem(
       {required this.productId,
       required this.title,
       required this.price,
@@ -3477,10 +3510,13 @@ class _$_Item implements _Item {
       required this.subtotal,
       required this.serviceAmount,
       required this.taxAmount,
-      required this.isStock});
+      required this.isStock,
+      required this.img,
+      required this.image,
+      required this.transactionLimit});
 
-  factory _$_Item.fromJson(Map<String, dynamic> json) =>
-      _$_$_ItemFromJson(json);
+  factory _$_MenuItem.fromJson(Map<String, dynamic> json) =>
+      _$_$_MenuItemFromJson(json);
 
   @override
   final int productId;
@@ -3532,16 +3568,22 @@ class _$_Item implements _Item {
   final int taxAmount;
   @override
   final bool isStock;
+  @override
+  final String img;
+  @override
+  final String image;
+  @override
+  final int transactionLimit;
 
   @override
   String toString() {
-    return 'Item(productId: $productId, title: $title, price: $price, code: $code, cost: $cost, qty: $qty, basicWeight: $basicWeight, weight: $weight, category: $category, categoryId: $categoryId, categoryCode: $categoryCode, sku: $sku, note: $note, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, amount: $amount, modifiers: $modifiers, modifiersAmount: $modifiersAmount, modifiersCost: $modifiersCost, modifiersDiscount: $modifiersDiscount, singleModifiersAmount: $singleModifiersAmount, subtotal: $subtotal, serviceAmount: $serviceAmount, taxAmount: $taxAmount, isStock: $isStock)';
+    return 'MenuItem(productId: $productId, title: $title, price: $price, code: $code, cost: $cost, qty: $qty, basicWeight: $basicWeight, weight: $weight, category: $category, categoryId: $categoryId, categoryCode: $categoryCode, sku: $sku, note: $note, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, amount: $amount, modifiers: $modifiers, modifiersAmount: $modifiersAmount, modifiersCost: $modifiersCost, modifiersDiscount: $modifiersDiscount, singleModifiersAmount: $singleModifiersAmount, subtotal: $subtotal, serviceAmount: $serviceAmount, taxAmount: $taxAmount, isStock: $isStock, img: $img, image: $image, transactionLimit: $transactionLimit)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Item &&
+        (other is _MenuItem &&
             (identical(other.productId, productId) ||
                 const DeepCollectionEquality()
                     .equals(other.productId, productId)) &&
@@ -3606,7 +3648,12 @@ class _$_Item implements _Item {
                 const DeepCollectionEquality()
                     .equals(other.taxAmount, taxAmount)) &&
             (identical(other.isStock, isStock) ||
-                const DeepCollectionEquality().equals(other.isStock, isStock)));
+                const DeepCollectionEquality()
+                    .equals(other.isStock, isStock)) &&
+            (identical(other.img, img) ||
+                const DeepCollectionEquality().equals(other.img, img)) &&
+            (identical(other.image, image) || const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.transactionLimit, transactionLimit) || const DeepCollectionEquality().equals(other.transactionLimit, transactionLimit)));
   }
 
   @override
@@ -3636,21 +3683,24 @@ class _$_Item implements _Item {
       const DeepCollectionEquality().hash(subtotal) ^
       const DeepCollectionEquality().hash(serviceAmount) ^
       const DeepCollectionEquality().hash(taxAmount) ^
-      const DeepCollectionEquality().hash(isStock);
+      const DeepCollectionEquality().hash(isStock) ^
+      const DeepCollectionEquality().hash(img) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(transactionLimit);
 
   @JsonKey(ignore: true)
   @override
-  _$ItemCopyWith<_Item> get copyWith =>
-      __$ItemCopyWithImpl<_Item>(this, _$identity);
+  _$MenuItemCopyWith<_MenuItem> get copyWith =>
+      __$MenuItemCopyWithImpl<_MenuItem>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ItemToJson(this);
+    return _$_$_MenuItemToJson(this);
   }
 }
 
-abstract class _Item implements Item {
-  const factory _Item(
+abstract class _MenuItem implements MenuItem {
+  const factory _MenuItem(
       {required int productId,
       required String title,
       required int price,
@@ -3675,9 +3725,12 @@ abstract class _Item implements Item {
       required int subtotal,
       required int serviceAmount,
       required int taxAmount,
-      required bool isStock}) = _$_Item;
+      required bool isStock,
+      required String img,
+      required String image,
+      required int transactionLimit}) = _$_MenuItem;
 
-  factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
+  factory _MenuItem.fromJson(Map<String, dynamic> json) = _$_MenuItem.fromJson;
 
   @override
   int get productId => throw _privateConstructorUsedError;
@@ -3730,8 +3783,15 @@ abstract class _Item implements Item {
   @override
   bool get isStock => throw _privateConstructorUsedError;
   @override
+  String get img => throw _privateConstructorUsedError;
+  @override
+  String get image => throw _privateConstructorUsedError;
+  @override
+  int get transactionLimit => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  _$ItemCopyWith<_Item> get copyWith => throw _privateConstructorUsedError;
+  _$MenuItemCopyWith<_MenuItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Outlet _$OutletFromJson(Map<String, dynamic> json) {
@@ -3749,14 +3809,15 @@ class _$OutletTearOff {
       required String cashierId,
       required String deviceId,
       required String assignId,
-      required Moka quinos,
+      required Rating quinos,
       required bool isNonSku,
-      required Moka moka,
-      required OutletDetail detail,
+      required Rating moka,
+      required Detail detail,
       required bool isLive,
       required OrderMethod orderMethod,
       required bool isDelete,
-      required DateTime createdDate}) {
+      required DateTime createdDate,
+      required String poCutoff}) {
     return _Outlet(
       name: name,
       outletId: outletId,
@@ -3772,6 +3833,7 @@ class _$OutletTearOff {
       orderMethod: orderMethod,
       isDelete: isDelete,
       createdDate: createdDate,
+      poCutoff: poCutoff,
     );
   }
 
@@ -3791,14 +3853,15 @@ mixin _$Outlet {
   String get cashierId => throw _privateConstructorUsedError;
   String get deviceId => throw _privateConstructorUsedError;
   String get assignId => throw _privateConstructorUsedError;
-  Moka get quinos => throw _privateConstructorUsedError;
+  Rating get quinos => throw _privateConstructorUsedError;
   bool get isNonSku => throw _privateConstructorUsedError;
-  Moka get moka => throw _privateConstructorUsedError;
-  OutletDetail get detail => throw _privateConstructorUsedError;
+  Rating get moka => throw _privateConstructorUsedError;
+  Detail get detail => throw _privateConstructorUsedError;
   bool get isLive => throw _privateConstructorUsedError;
   OrderMethod get orderMethod => throw _privateConstructorUsedError;
   bool get isDelete => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
+  String get poCutoff => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3816,18 +3879,19 @@ abstract class $OutletCopyWith<$Res> {
       String cashierId,
       String deviceId,
       String assignId,
-      Moka quinos,
+      Rating quinos,
       bool isNonSku,
-      Moka moka,
-      OutletDetail detail,
+      Rating moka,
+      Detail detail,
       bool isLive,
       OrderMethod orderMethod,
       bool isDelete,
-      DateTime createdDate});
+      DateTime createdDate,
+      String poCutoff});
 
-  $MokaCopyWith<$Res> get quinos;
-  $MokaCopyWith<$Res> get moka;
-  $OutletDetailCopyWith<$Res> get detail;
+  $RatingCopyWith<$Res> get quinos;
+  $RatingCopyWith<$Res> get moka;
+  $DetailCopyWith<$Res> get detail;
   $OrderMethodCopyWith<$Res> get orderMethod;
 }
 
@@ -3855,6 +3919,7 @@ class _$OutletCopyWithImpl<$Res> implements $OutletCopyWith<$Res> {
     Object? orderMethod = freezed,
     Object? isDelete = freezed,
     Object? createdDate = freezed,
+    Object? poCutoff = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -3884,7 +3949,7 @@ class _$OutletCopyWithImpl<$Res> implements $OutletCopyWith<$Res> {
       quinos: quinos == freezed
           ? _value.quinos
           : quinos // ignore: cast_nullable_to_non_nullable
-              as Moka,
+              as Rating,
       isNonSku: isNonSku == freezed
           ? _value.isNonSku
           : isNonSku // ignore: cast_nullable_to_non_nullable
@@ -3892,11 +3957,11 @@ class _$OutletCopyWithImpl<$Res> implements $OutletCopyWith<$Res> {
       moka: moka == freezed
           ? _value.moka
           : moka // ignore: cast_nullable_to_non_nullable
-              as Moka,
+              as Rating,
       detail: detail == freezed
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as OutletDetail,
+              as Detail,
       isLive: isLive == freezed
           ? _value.isLive
           : isLive // ignore: cast_nullable_to_non_nullable
@@ -3913,26 +3978,30 @@ class _$OutletCopyWithImpl<$Res> implements $OutletCopyWith<$Res> {
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      poCutoff: poCutoff == freezed
+          ? _value.poCutoff
+          : poCutoff // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
   @override
-  $MokaCopyWith<$Res> get quinos {
-    return $MokaCopyWith<$Res>(_value.quinos, (value) {
+  $RatingCopyWith<$Res> get quinos {
+    return $RatingCopyWith<$Res>(_value.quinos, (value) {
       return _then(_value.copyWith(quinos: value));
     });
   }
 
   @override
-  $MokaCopyWith<$Res> get moka {
-    return $MokaCopyWith<$Res>(_value.moka, (value) {
+  $RatingCopyWith<$Res> get moka {
+    return $RatingCopyWith<$Res>(_value.moka, (value) {
       return _then(_value.copyWith(moka: value));
     });
   }
 
   @override
-  $OutletDetailCopyWith<$Res> get detail {
-    return $OutletDetailCopyWith<$Res>(_value.detail, (value) {
+  $DetailCopyWith<$Res> get detail {
+    return $DetailCopyWith<$Res>(_value.detail, (value) {
       return _then(_value.copyWith(detail: value));
     });
   }
@@ -3957,21 +4026,22 @@ abstract class _$OutletCopyWith<$Res> implements $OutletCopyWith<$Res> {
       String cashierId,
       String deviceId,
       String assignId,
-      Moka quinos,
+      Rating quinos,
       bool isNonSku,
-      Moka moka,
-      OutletDetail detail,
+      Rating moka,
+      Detail detail,
       bool isLive,
       OrderMethod orderMethod,
       bool isDelete,
-      DateTime createdDate});
+      DateTime createdDate,
+      String poCutoff});
 
   @override
-  $MokaCopyWith<$Res> get quinos;
+  $RatingCopyWith<$Res> get quinos;
   @override
-  $MokaCopyWith<$Res> get moka;
+  $RatingCopyWith<$Res> get moka;
   @override
-  $OutletDetailCopyWith<$Res> get detail;
+  $DetailCopyWith<$Res> get detail;
   @override
   $OrderMethodCopyWith<$Res> get orderMethod;
 }
@@ -4001,6 +4071,7 @@ class __$OutletCopyWithImpl<$Res> extends _$OutletCopyWithImpl<$Res>
     Object? orderMethod = freezed,
     Object? isDelete = freezed,
     Object? createdDate = freezed,
+    Object? poCutoff = freezed,
   }) {
     return _then(_Outlet(
       name: name == freezed
@@ -4030,7 +4101,7 @@ class __$OutletCopyWithImpl<$Res> extends _$OutletCopyWithImpl<$Res>
       quinos: quinos == freezed
           ? _value.quinos
           : quinos // ignore: cast_nullable_to_non_nullable
-              as Moka,
+              as Rating,
       isNonSku: isNonSku == freezed
           ? _value.isNonSku
           : isNonSku // ignore: cast_nullable_to_non_nullable
@@ -4038,11 +4109,11 @@ class __$OutletCopyWithImpl<$Res> extends _$OutletCopyWithImpl<$Res>
       moka: moka == freezed
           ? _value.moka
           : moka // ignore: cast_nullable_to_non_nullable
-              as Moka,
+              as Rating,
       detail: detail == freezed
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as OutletDetail,
+              as Detail,
       isLive: isLive == freezed
           ? _value.isLive
           : isLive // ignore: cast_nullable_to_non_nullable
@@ -4059,6 +4130,10 @@ class __$OutletCopyWithImpl<$Res> extends _$OutletCopyWithImpl<$Res>
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      poCutoff: poCutoff == freezed
+          ? _value.poCutoff
+          : poCutoff // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -4080,7 +4155,8 @@ class _$_Outlet implements _Outlet {
       required this.isLive,
       required this.orderMethod,
       required this.isDelete,
-      required this.createdDate});
+      required this.createdDate,
+      required this.poCutoff});
 
   factory _$_Outlet.fromJson(Map<String, dynamic> json) =>
       _$_$_OutletFromJson(json);
@@ -4098,13 +4174,13 @@ class _$_Outlet implements _Outlet {
   @override
   final String assignId;
   @override
-  final Moka quinos;
+  final Rating quinos;
   @override
   final bool isNonSku;
   @override
-  final Moka moka;
+  final Rating moka;
   @override
-  final OutletDetail detail;
+  final Detail detail;
   @override
   final bool isLive;
   @override
@@ -4113,10 +4189,12 @@ class _$_Outlet implements _Outlet {
   final bool isDelete;
   @override
   final DateTime createdDate;
+  @override
+  final String poCutoff;
 
   @override
   String toString() {
-    return 'Outlet(name: $name, outletId: $outletId, merchantId: $merchantId, cashierId: $cashierId, deviceId: $deviceId, assignId: $assignId, quinos: $quinos, isNonSku: $isNonSku, moka: $moka, detail: $detail, isLive: $isLive, orderMethod: $orderMethod, isDelete: $isDelete, createdDate: $createdDate)';
+    return 'Outlet(name: $name, outletId: $outletId, merchantId: $merchantId, cashierId: $cashierId, deviceId: $deviceId, assignId: $assignId, quinos: $quinos, isNonSku: $isNonSku, moka: $moka, detail: $detail, isLive: $isLive, orderMethod: $orderMethod, isDelete: $isDelete, createdDate: $createdDate, poCutoff: $poCutoff)';
   }
 
   @override
@@ -4159,7 +4237,10 @@ class _$_Outlet implements _Outlet {
                     .equals(other.isDelete, isDelete)) &&
             (identical(other.createdDate, createdDate) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdDate, createdDate)));
+                    .equals(other.createdDate, createdDate)) &&
+            (identical(other.poCutoff, poCutoff) ||
+                const DeepCollectionEquality()
+                    .equals(other.poCutoff, poCutoff)));
   }
 
   @override
@@ -4178,7 +4259,8 @@ class _$_Outlet implements _Outlet {
       const DeepCollectionEquality().hash(isLive) ^
       const DeepCollectionEquality().hash(orderMethod) ^
       const DeepCollectionEquality().hash(isDelete) ^
-      const DeepCollectionEquality().hash(createdDate);
+      const DeepCollectionEquality().hash(createdDate) ^
+      const DeepCollectionEquality().hash(poCutoff);
 
   @JsonKey(ignore: true)
   @override
@@ -4199,14 +4281,15 @@ abstract class _Outlet implements Outlet {
       required String cashierId,
       required String deviceId,
       required String assignId,
-      required Moka quinos,
+      required Rating quinos,
       required bool isNonSku,
-      required Moka moka,
-      required OutletDetail detail,
+      required Rating moka,
+      required Detail detail,
       required bool isLive,
       required OrderMethod orderMethod,
       required bool isDelete,
-      required DateTime createdDate}) = _$_Outlet;
+      required DateTime createdDate,
+      required String poCutoff}) = _$_Outlet;
 
   factory _Outlet.fromJson(Map<String, dynamic> json) = _$_Outlet.fromJson;
 
@@ -4223,13 +4306,13 @@ abstract class _Outlet implements Outlet {
   @override
   String get assignId => throw _privateConstructorUsedError;
   @override
-  Moka get quinos => throw _privateConstructorUsedError;
+  Rating get quinos => throw _privateConstructorUsedError;
   @override
   bool get isNonSku => throw _privateConstructorUsedError;
   @override
-  Moka get moka => throw _privateConstructorUsedError;
+  Rating get moka => throw _privateConstructorUsedError;
   @override
-  OutletDetail get detail => throw _privateConstructorUsedError;
+  Detail get detail => throw _privateConstructorUsedError;
   @override
   bool get isLive => throw _privateConstructorUsedError;
   @override
@@ -4239,19 +4322,21 @@ abstract class _Outlet implements Outlet {
   @override
   DateTime get createdDate => throw _privateConstructorUsedError;
   @override
+  String get poCutoff => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$OutletCopyWith<_Outlet> get copyWith => throw _privateConstructorUsedError;
 }
 
-OutletDetail _$OutletDetailFromJson(Map<String, dynamic> json) {
-  return _OutletDetail.fromJson(json);
+Detail _$DetailFromJson(Map<String, dynamic> json) {
+  return _Detail.fromJson(json);
 }
 
 /// @nodoc
-class _$OutletDetailTearOff {
-  const _$OutletDetailTearOff();
+class _$DetailTearOff {
+  const _$DetailTearOff();
 
-  _OutletDetail call(
+  _Detail call(
       {required String name,
       required String address,
       required List<dynamic> taxesAndServices,
@@ -4262,7 +4347,7 @@ class _$OutletDetailTearOff {
       required String driverPhone,
       required List<dynamic> area,
       required List<dynamic> deliveryLocation}) {
-    return _OutletDetail(
+    return _Detail(
       name: name,
       address: address,
       taxesAndServices: taxesAndServices,
@@ -4276,16 +4361,16 @@ class _$OutletDetailTearOff {
     );
   }
 
-  OutletDetail fromJson(Map<String, Object> json) {
-    return OutletDetail.fromJson(json);
+  Detail fromJson(Map<String, Object> json) {
+    return Detail.fromJson(json);
   }
 }
 
 /// @nodoc
-const $OutletDetail = _$OutletDetailTearOff();
+const $Detail = _$DetailTearOff();
 
 /// @nodoc
-mixin _$OutletDetail {
+mixin _$Detail {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
@@ -4299,15 +4384,13 @@ mixin _$OutletDetail {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OutletDetailCopyWith<OutletDetail> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DetailCopyWith<Detail> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OutletDetailCopyWith<$Res> {
-  factory $OutletDetailCopyWith(
-          OutletDetail value, $Res Function(OutletDetail) then) =
-      _$OutletDetailCopyWithImpl<$Res>;
+abstract class $DetailCopyWith<$Res> {
+  factory $DetailCopyWith(Detail value, $Res Function(Detail) then) =
+      _$DetailCopyWithImpl<$Res>;
   $Res call(
       {String name,
       String address,
@@ -4322,12 +4405,12 @@ abstract class $OutletDetailCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
-  _$OutletDetailCopyWithImpl(this._value, this._then);
+class _$DetailCopyWithImpl<$Res> implements $DetailCopyWith<$Res> {
+  _$DetailCopyWithImpl(this._value, this._then);
 
-  final OutletDetail _value;
+  final Detail _value;
   // ignore: unused_field
-  final $Res Function(OutletDetail) _then;
+  final $Res Function(Detail) _then;
 
   @override
   $Res call({
@@ -4388,11 +4471,9 @@ class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OutletDetailCopyWith<$Res>
-    implements $OutletDetailCopyWith<$Res> {
-  factory _$OutletDetailCopyWith(
-          _OutletDetail value, $Res Function(_OutletDetail) then) =
-      __$OutletDetailCopyWithImpl<$Res>;
+abstract class _$DetailCopyWith<$Res> implements $DetailCopyWith<$Res> {
+  factory _$DetailCopyWith(_Detail value, $Res Function(_Detail) then) =
+      __$DetailCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name,
@@ -4408,14 +4489,13 @@ abstract class _$OutletDetailCopyWith<$Res>
 }
 
 /// @nodoc
-class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
-    implements _$OutletDetailCopyWith<$Res> {
-  __$OutletDetailCopyWithImpl(
-      _OutletDetail _value, $Res Function(_OutletDetail) _then)
-      : super(_value, (v) => _then(v as _OutletDetail));
+class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
+    implements _$DetailCopyWith<$Res> {
+  __$DetailCopyWithImpl(_Detail _value, $Res Function(_Detail) _then)
+      : super(_value, (v) => _then(v as _Detail));
 
   @override
-  _OutletDetail get _value => super._value as _OutletDetail;
+  _Detail get _value => super._value as _Detail;
 
   @override
   $Res call({
@@ -4430,7 +4510,7 @@ class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
     Object? area = freezed,
     Object? deliveryLocation = freezed,
   }) {
-    return _then(_OutletDetail(
+    return _then(_Detail(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -4477,8 +4557,8 @@ class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OutletDetail implements _OutletDetail {
-  const _$_OutletDetail(
+class _$_Detail implements _Detail {
+  const _$_Detail(
       {required this.name,
       required this.address,
       required this.taxesAndServices,
@@ -4490,8 +4570,8 @@ class _$_OutletDetail implements _OutletDetail {
       required this.area,
       required this.deliveryLocation});
 
-  factory _$_OutletDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletDetailFromJson(json);
+  factory _$_Detail.fromJson(Map<String, dynamic> json) =>
+      _$_$_DetailFromJson(json);
 
   @override
   final String name;
@@ -4516,13 +4596,13 @@ class _$_OutletDetail implements _OutletDetail {
 
   @override
   String toString() {
-    return 'OutletDetail(name: $name, address: $address, taxesAndServices: $taxesAndServices, location: $location, phone: $phone, kurirPrice: $kurirPrice, deliveryProvider: $deliveryProvider, driverPhone: $driverPhone, area: $area, deliveryLocation: $deliveryLocation)';
+    return 'Detail(name: $name, address: $address, taxesAndServices: $taxesAndServices, location: $location, phone: $phone, kurirPrice: $kurirPrice, deliveryProvider: $deliveryProvider, driverPhone: $driverPhone, area: $area, deliveryLocation: $deliveryLocation)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletDetail &&
+        (other is _Detail &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.address, address) ||
@@ -4568,17 +4648,17 @@ class _$_OutletDetail implements _OutletDetail {
 
   @JsonKey(ignore: true)
   @override
-  _$OutletDetailCopyWith<_OutletDetail> get copyWith =>
-      __$OutletDetailCopyWithImpl<_OutletDetail>(this, _$identity);
+  _$DetailCopyWith<_Detail> get copyWith =>
+      __$DetailCopyWithImpl<_Detail>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletDetailToJson(this);
+    return _$_$_DetailToJson(this);
   }
 }
 
-abstract class _OutletDetail implements OutletDetail {
-  const factory _OutletDetail(
+abstract class _Detail implements Detail {
+  const factory _Detail(
       {required String name,
       required String address,
       required List<dynamic> taxesAndServices,
@@ -4588,10 +4668,9 @@ abstract class _OutletDetail implements OutletDetail {
       required List<String> deliveryProvider,
       required String driverPhone,
       required List<dynamic> area,
-      required List<dynamic> deliveryLocation}) = _$_OutletDetail;
+      required List<dynamic> deliveryLocation}) = _$_Detail;
 
-  factory _OutletDetail.fromJson(Map<String, dynamic> json) =
-      _$_OutletDetail.fromJson;
+  factory _Detail.fromJson(Map<String, dynamic> json) = _$_Detail.fromJson;
 
   @override
   String get name => throw _privateConstructorUsedError;
@@ -4615,82 +4694,81 @@ abstract class _OutletDetail implements OutletDetail {
   List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OutletDetailCopyWith<_OutletDetail> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$DetailCopyWith<_Detail> get copyWith => throw _privateConstructorUsedError;
 }
 
-Moka _$MokaFromJson(Map<String, dynamic> json) {
-  return _Moka.fromJson(json);
+Rating _$RatingFromJson(Map<String, dynamic> json) {
+  return _Rating.fromJson(json);
 }
 
 /// @nodoc
-class _$MokaTearOff {
-  const _$MokaTearOff();
+class _$RatingTearOff {
+  const _$RatingTearOff();
 
-  _Moka call() {
-    return const _Moka();
+  _Rating call() {
+    return const _Rating();
   }
 
-  Moka fromJson(Map<String, Object> json) {
-    return Moka.fromJson(json);
+  Rating fromJson(Map<String, Object> json) {
+    return Rating.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Moka = _$MokaTearOff();
+const $Rating = _$RatingTearOff();
 
 /// @nodoc
-mixin _$Moka {
+mixin _$Rating {
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MokaCopyWith<$Res> {
-  factory $MokaCopyWith(Moka value, $Res Function(Moka) then) =
-      _$MokaCopyWithImpl<$Res>;
+abstract class $RatingCopyWith<$Res> {
+  factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
+      _$RatingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MokaCopyWithImpl<$Res> implements $MokaCopyWith<$Res> {
-  _$MokaCopyWithImpl(this._value, this._then);
+class _$RatingCopyWithImpl<$Res> implements $RatingCopyWith<$Res> {
+  _$RatingCopyWithImpl(this._value, this._then);
 
-  final Moka _value;
+  final Rating _value;
   // ignore: unused_field
-  final $Res Function(Moka) _then;
+  final $Res Function(Rating) _then;
 }
 
 /// @nodoc
-abstract class _$MokaCopyWith<$Res> {
-  factory _$MokaCopyWith(_Moka value, $Res Function(_Moka) then) =
-      __$MokaCopyWithImpl<$Res>;
+abstract class _$RatingCopyWith<$Res> {
+  factory _$RatingCopyWith(_Rating value, $Res Function(_Rating) then) =
+      __$RatingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$MokaCopyWithImpl<$Res> extends _$MokaCopyWithImpl<$Res>
-    implements _$MokaCopyWith<$Res> {
-  __$MokaCopyWithImpl(_Moka _value, $Res Function(_Moka) _then)
-      : super(_value, (v) => _then(v as _Moka));
+class __$RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
+    implements _$RatingCopyWith<$Res> {
+  __$RatingCopyWithImpl(_Rating _value, $Res Function(_Rating) _then)
+      : super(_value, (v) => _then(v as _Rating));
 
   @override
-  _Moka get _value => super._value as _Moka;
+  _Rating get _value => super._value as _Rating;
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Moka implements _Moka {
-  const _$_Moka();
+class _$_Rating implements _Rating {
+  const _$_Rating();
 
-  factory _$_Moka.fromJson(Map<String, dynamic> json) =>
-      _$_$_MokaFromJson(json);
+  factory _$_Rating.fromJson(Map<String, dynamic> json) =>
+      _$_$_RatingFromJson(json);
 
   @override
   String toString() {
-    return 'Moka()';
+    return 'Rating()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Moka);
+    return identical(this, other) || (other is _Rating);
   }
 
   @override
@@ -4698,14 +4776,14 @@ class _$_Moka implements _Moka {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MokaToJson(this);
+    return _$_$_RatingToJson(this);
   }
 }
 
-abstract class _Moka implements Moka {
-  const factory _Moka() = _$_Moka;
+abstract class _Rating implements Rating {
+  const factory _Rating() = _$_Rating;
 
-  factory _Moka.fromJson(Map<String, dynamic> json) = _$_Moka.fromJson;
+  factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
 }
 
 OrderMethod _$OrderMethodFromJson(Map<String, dynamic> json) {
