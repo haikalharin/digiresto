@@ -16,6 +16,9 @@ import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/order/detailOutlet.dart';
+import 'package:digiresto/presentation/order/paymentReceipt.dart';
+import 'package:digiresto/presentation/order/paymentVA.dart';
+import 'package:digiresto/presentation/order/paymentWebView.dart';
 import 'package:digiresto/presentation/order/selectDeliveryMethod.dart';
 import 'package:digiresto/presentation/order/selectPaymentMethod.dart';
 import 'package:digiresto/presentation/order/selectVoucherMethod.dart';
@@ -128,6 +131,9 @@ class Routers {
         page: () => SelectVouchertMethodScreen()),
     GetPage(
         name: Routers.selectDeliveryMethod,
-        page: () => SelectDeliveryMethodScreen())
+        page: () => SelectDeliveryMethodScreen()),
+    GetPage(name: Routers.paymentReceipt, page: () => PaymentReceiptScreen()),
+    GetPage(name: Routers.paymentVa, page: () => PaymentVAScreen()),
+    GetPage(name: Routers.paymentWebView, page: () => PaymentWebViewScreen()),
   ];
 }

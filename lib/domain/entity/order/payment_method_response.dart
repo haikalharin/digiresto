@@ -33,6 +33,7 @@ abstract class PaymentMethodDataResponse with _$PaymentMethodDataResponse {
     required String id,
     required String title,
     required bool isEnable,
+    required String? ammount,
     required int digirestoPaymentId,
     required List<String> channels,
     required List<String> salesTypes,

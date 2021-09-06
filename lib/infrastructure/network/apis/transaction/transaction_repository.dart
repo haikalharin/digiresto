@@ -1,5 +1,5 @@
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
-import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
+import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:digiresto/infrastructure/network/apis/transaction/transaction_api.dart';
 import 'package:injectable/injectable.dart';
@@ -21,13 +21,14 @@ class TransactionRepository {
     });
   }
 
-  Future<TransactionMobile?> getTransaction(String receiptCode) async {
+  Future<TransactionMobileResponse?> getTransaction(String receiptCode) async {
     return await _transactionApi.getTransaction(receiptCode).then((value) {
       return value;
     });
   }
 
-  Future<TransactionMobile?> cancelTransaction(String receiptCode) async {
+  Future<TransactionMobileResponse?> cancelTransaction(
+      String receiptCode) async {
     return await _transactionApi.cancelTransaction(receiptCode).then((value) {
       return value;
     });

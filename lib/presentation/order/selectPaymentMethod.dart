@@ -63,21 +63,22 @@ class SelectPaymentMethodScreen extends StatelessWidget {
     });
   }
 
-  Widget _showCredits() {
+  Widget _showCredits({required Function(UserBalance) balance}) {
     return BlocProvider<CreditBloc>(
         create: (context) => getIt<CreditBloc>()..add(CreditEvent.started()),
         child: BlocBuilder<CreditBloc, CreditState>(builder: (context, state) {
           return state.maybeMap(loaded: (r) {
-            String tmpBalance = Utils.formatRupiah(r.userBalance
-                .getOrElse(() => UserBalance(username: "", balance: ""))
-                .balance);
-
+            final userBalance = r.userBalance
+                .getOrElse(() => UserBalance(username: "", balance: "0"));
+            String tmpBalance = Utils.formatRupiah(userBalance.balance);
+            balance(userBalance);
             return Text("Rp. " + tmpBalance,
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
                     fontSize: 14));
           }, orElse: () {
+            balance(UserBalance(username: "", balance: "0"));
             return Text("Rp. 0",
                 style: TextStyle(
                     color: Colors.black,
@@ -88,7 +89,9 @@ class SelectPaymentMethodScreen extends StatelessWidget {
   }
 
   Widget _buildItemList(PaymentMethodDataResponse item) {
+    PaymentMethodDataResponse? paymentMethod;
     String title = item.title.replaceAll('%1\$s', Strings.appName);
+    paymentMethod = item;
     return Container(
       color: Colors.white,
       padding: EdgeInsets.all(20),
@@ -105,7 +108,10 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   )),
               title.toLowerCase() == "digiresto credits"
-                  ? _showCredits()
+                  ? _showCredits(balance: (balance) {
+                      paymentMethod =
+                          paymentMethod!.copyWith(ammount: balance.balance);
+                    })
                   : Container(),
             ],
           ),
@@ -114,7 +120,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                 //save to local
                 Get.context!
                     .read<OrderBloc>()
-                    .add(OrderEvent.setPaymentMethodID(item));
+                    .add(OrderEvent.setPaymentMethodID(paymentMethod!));
                 Get.back();
               },
               style: ElevatedButton.styleFrom(

@@ -1,25 +1,16 @@
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class PaymentWebView extends StatefulWidget {
-  @override
-  _PaymentWebViewState createState() => _PaymentWebViewState();
-}
-
-class _PaymentWebViewState extends State<PaymentWebView> {
-  WebViewController? _controller;
-  String _title = "Payment";
-  //OrderStore _orderStore;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    //_orderStore = Provider.of<OrderStore>(context);
-  }
-
+class PaymentWebViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
+    WebViewController? _controller;
+    String _title = "Payment";
+    PaymentWebViewArgument args = Get.arguments as PaymentWebViewArgument;
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -27,9 +18,10 @@ class _PaymentWebViewState extends State<PaymentWebView> {
         ),
         leading: IconButton(
           icon: Icon(Icons.close),
-          onPressed: () async {
-            //await _orderStore.getTransaction();
-            Navigator.of(context).pushReplacementNamed(Routers.paymentReceipt);
+          onPressed: () {
+            Get.offNamed(Routers.paymentReceipt,
+                arguments: PaymentReceiptViewArgument(
+                    checkoutDataResponse: args.checkoutDataResponse));
           },
         ),
         title: Text(
@@ -45,16 +37,14 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       body: Container(
         child: WebView(
           javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: "_orderStore.paymentData.url",
+          initialUrl: args.checkoutDataResponse.payment.url,
           onWebViewCreated: (WebViewController wvcontroller) {
             _controller = wvcontroller;
           },
           onPageFinished: (String param) async {
-            // final pageTitle = await _controller.getTitle();
-            // print('DEBUG >> title $pageTitle');
-            // setState(() {
-            //   _title = pageTitle;
-            // });
+            final pageTitle = (await _controller?.getTitle()) ?? "";
+            print('DEBUG >> title $pageTitle');
+            _title = pageTitle;
           },
         ),
       ),

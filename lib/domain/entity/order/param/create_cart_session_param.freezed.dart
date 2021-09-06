@@ -233,7 +233,7 @@ class _$CreateCartSessionBodyParamTearOff {
       required String customerName,
       required String customerPhone,
       required String customerTableNumber,
-      required bool customerSmoking,
+      required String customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -275,7 +275,7 @@ mixin _$CreateCartSessionBodyParam {
   String get customerName => throw _privateConstructorUsedError;
   String get customerPhone => throw _privateConstructorUsedError;
   String get customerTableNumber => throw _privateConstructorUsedError;
-  bool get customerSmoking => throw _privateConstructorUsedError;
+  String get customerSmoking => throw _privateConstructorUsedError;
   String get customerPax => throw _privateConstructorUsedError;
   String get customerNote => throw _privateConstructorUsedError;
   String get customerCarType => throw _privateConstructorUsedError;
@@ -303,7 +303,7 @@ abstract class $CreateCartSessionBodyParamCopyWith<$Res> {
       String customerName,
       String customerPhone,
       String customerTableNumber,
-      bool customerSmoking,
+      String customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -361,7 +361,7 @@ class _$CreateCartSessionBodyParamCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as String,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -415,7 +415,7 @@ abstract class _$CreateCartSessionBodyParamCopyWith<$Res>
       String customerName,
       String customerPhone,
       String customerTableNumber,
-      bool customerSmoking,
+      String customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -476,7 +476,7 @@ class __$CreateCartSessionBodyParamCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as String,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -548,7 +548,7 @@ class _$_CreateCartSessionBodyParam implements _CreateCartSessionBodyParam {
   @override
   final String customerTableNumber;
   @override
-  final bool customerSmoking;
+  final String customerSmoking;
   @override
   final String customerPax;
   @override
@@ -656,7 +656,7 @@ abstract class _CreateCartSessionBodyParam
           required String customerName,
           required String customerPhone,
           required String customerTableNumber,
-          required bool customerSmoking,
+          required String customerSmoking,
           required String customerPax,
           required String customerNote,
           required String customerCarType,
@@ -680,7 +680,7 @@ abstract class _CreateCartSessionBodyParam
   @override
   String get customerTableNumber => throw _privateConstructorUsedError;
   @override
-  bool get customerSmoking => throw _privateConstructorUsedError;
+  String get customerSmoking => throw _privateConstructorUsedError;
   @override
   String get customerPax => throw _privateConstructorUsedError;
   @override

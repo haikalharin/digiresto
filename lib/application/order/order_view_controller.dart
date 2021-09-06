@@ -6,7 +6,7 @@ import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.d
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
-import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
+import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +27,7 @@ class OrderViewController extends GetxController {
   var orderSalesTypes = "".obs;
   Rxn<DeliveryMethodDataResponse> selectedDeliveryMethod =
       Rxn<DeliveryMethodDataResponse>();
-  Rx<TransactionMobile> transaction = TransactionMobile().obs;
+  Rxn<TransactionMobileResponse> transaction = Rxn<TransactionMobileResponse>();
   Rxn<DetailOutletDataResponse> detailOutlet = Rxn<DetailOutletDataResponse>();
   Rxn<List<OutletProductCategoryDataResponse>> listCategory =
       Rxn<List<OutletProductCategoryDataResponse>>();

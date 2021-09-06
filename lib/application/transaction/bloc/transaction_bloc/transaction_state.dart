@@ -15,10 +15,10 @@ abstract class TransactionState with _$TransactionState {
       List<TransactionHistory> response) = _GetOngoingTransactionSuccess;
 
   const factory TransactionState.getTransactionSuccess(
-      TransactionMobile response) = _GetTransactionSuccess;
+      TransactionMobileResponse response) = _GetTransactionSuccess;
 
   const factory TransactionState.cancelTransactionSuccess(
-      TransactionMobile response) = _CancelTransactionSuccess;
+      TransactionMobileResponse response) = _CancelTransactionSuccess;
 
   const factory TransactionState.acceptTransactionSuccess(
       StatusResponse response) = _AcceptTransactionSuccess;

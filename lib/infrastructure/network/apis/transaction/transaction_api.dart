@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
-import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
+import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:injectable/injectable.dart';
 
@@ -36,7 +36,7 @@ class TransactionApi {
     }
   }
 
-  Future<TransactionMobile?> getTransaction(String receiptCode) async {
+  Future<TransactionMobileResponse?> getTransaction(String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlGetTransaction;
       final apiResult = await _networkService.postHttp(path: apiUrl, content: {
@@ -44,26 +44,22 @@ class TransactionApi {
         "body": {}
       });
 
-      var data = (apiResult
-          as Map<String, dynamic>)['data']; //mengambil data data didalam
-      return TransactionMobile.create(data);
+      return TransactionMobileResponse.fromJson(apiResult);
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  Future<TransactionMobile?> cancelTransaction(String receiptCode) async {
+  Future<TransactionMobileResponse?> cancelTransaction(
+      String receiptCode) async {
     try {
       String apiUrl = Endpoints.urlCancelTransaction;
       final apiResult = await _networkService.postHttp(path: apiUrl, content: {
         "query_string": {"receiptCode": receiptCode},
         "body": {}
       });
-
-      var data = (apiResult
-          as Map<String, dynamic>)['data']; //mengambil data data didalam
-      return TransactionMobile.create(data);
+      return TransactionMobileResponse.fromJson(apiResult);
     } catch (e) {
       print(e.toString());
       return null;

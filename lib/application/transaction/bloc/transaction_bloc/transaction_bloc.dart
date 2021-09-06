@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
-import 'package:digiresto/domain/entity/order/transaction_mobile.dart';
+import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
 import 'package:digiresto/domain/transaction/transaction_failure.dart';
 import 'package:digiresto/infrastructure/network/apis/transaction/transaction_repository.dart';

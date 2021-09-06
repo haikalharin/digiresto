@@ -253,6 +253,7 @@ class _$PaymentMethodDataResponseTearOff {
       {required String id,
       required String title,
       required bool isEnable,
+      required String? ammount,
       required int digirestoPaymentId,
       required List<String> channels,
       required List<String> salesTypes,
@@ -274,6 +275,7 @@ class _$PaymentMethodDataResponseTearOff {
       id: id,
       title: title,
       isEnable: isEnable,
+      ammount: ammount,
       digirestoPaymentId: digirestoPaymentId,
       channels: channels,
       salesTypes: salesTypes,
@@ -307,6 +309,7 @@ mixin _$PaymentMethodDataResponse {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get isEnable => throw _privateConstructorUsedError;
+  String? get ammount => throw _privateConstructorUsedError;
   int get digirestoPaymentId => throw _privateConstructorUsedError;
   List<String> get channels => throw _privateConstructorUsedError;
   List<String> get salesTypes => throw _privateConstructorUsedError;
@@ -340,6 +343,7 @@ abstract class $PaymentMethodDataResponseCopyWith<$Res> {
       {String id,
       String title,
       bool isEnable,
+      String? ammount,
       int digirestoPaymentId,
       List<String> channels,
       List<String> salesTypes,
@@ -373,6 +377,7 @@ class _$PaymentMethodDataResponseCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? isEnable = freezed,
+    Object? ammount = freezed,
     Object? digirestoPaymentId = freezed,
     Object? channels = freezed,
     Object? salesTypes = freezed,
@@ -404,6 +409,10 @@ class _$PaymentMethodDataResponseCopyWithImpl<$Res>
           ? _value.isEnable
           : isEnable // ignore: cast_nullable_to_non_nullable
               as bool,
+      ammount: ammount == freezed
+          ? _value.ammount
+          : ammount // ignore: cast_nullable_to_non_nullable
+              as String?,
       digirestoPaymentId: digirestoPaymentId == freezed
           ? _value.digirestoPaymentId
           : digirestoPaymentId // ignore: cast_nullable_to_non_nullable
@@ -487,6 +496,7 @@ abstract class _$PaymentMethodDataResponseCopyWith<$Res>
       {String id,
       String title,
       bool isEnable,
+      String? ammount,
       int digirestoPaymentId,
       List<String> channels,
       List<String> salesTypes,
@@ -523,6 +533,7 @@ class __$PaymentMethodDataResponseCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? isEnable = freezed,
+    Object? ammount = freezed,
     Object? digirestoPaymentId = freezed,
     Object? channels = freezed,
     Object? salesTypes = freezed,
@@ -554,6 +565,10 @@ class __$PaymentMethodDataResponseCopyWithImpl<$Res>
           ? _value.isEnable
           : isEnable // ignore: cast_nullable_to_non_nullable
               as bool,
+      ammount: ammount == freezed
+          ? _value.ammount
+          : ammount // ignore: cast_nullable_to_non_nullable
+              as String?,
       digirestoPaymentId: digirestoPaymentId == freezed
           ? _value.digirestoPaymentId
           : digirestoPaymentId // ignore: cast_nullable_to_non_nullable
@@ -633,6 +648,7 @@ class _$_PaymentMethodDataResponse implements _PaymentMethodDataResponse {
       {required this.id,
       required this.title,
       required this.isEnable,
+      required this.ammount,
       required this.digirestoPaymentId,
       required this.channels,
       required this.salesTypes,
@@ -660,6 +676,8 @@ class _$_PaymentMethodDataResponse implements _PaymentMethodDataResponse {
   final String title;
   @override
   final bool isEnable;
+  @override
+  final String? ammount;
   @override
   final int digirestoPaymentId;
   @override
@@ -697,7 +715,7 @@ class _$_PaymentMethodDataResponse implements _PaymentMethodDataResponse {
 
   @override
   String toString() {
-    return 'PaymentMethodDataResponse(id: $id, title: $title, isEnable: $isEnable, digirestoPaymentId: $digirestoPaymentId, channels: $channels, salesTypes: $salesTypes, excludeMerchant: $excludeMerchant, isUsePaymentSwitcher: $isUsePaymentSwitcher, isCredit: $isCredit, isEDC: $isEDC, isQr: $isQr, isVoucher: $isVoucher, isCash: $isCash, isWebView: $isWebView, isDeeplink: $isDeeplink, image: $image, paymentSwitcherCode: $paymentSwitcherCode, expire: $expire, deeplinkUrl: $deeplinkUrl, isSingleBilling: $isSingleBilling)';
+    return 'PaymentMethodDataResponse(id: $id, title: $title, isEnable: $isEnable, ammount: $ammount, digirestoPaymentId: $digirestoPaymentId, channels: $channels, salesTypes: $salesTypes, excludeMerchant: $excludeMerchant, isUsePaymentSwitcher: $isUsePaymentSwitcher, isCredit: $isCredit, isEDC: $isEDC, isQr: $isQr, isVoucher: $isVoucher, isCash: $isCash, isWebView: $isWebView, isDeeplink: $isDeeplink, image: $image, paymentSwitcherCode: $paymentSwitcherCode, expire: $expire, deeplinkUrl: $deeplinkUrl, isSingleBilling: $isSingleBilling)';
   }
 
   @override
@@ -711,6 +729,9 @@ class _$_PaymentMethodDataResponse implements _PaymentMethodDataResponse {
             (identical(other.isEnable, isEnable) ||
                 const DeepCollectionEquality()
                     .equals(other.isEnable, isEnable)) &&
+            (identical(other.ammount, ammount) ||
+                const DeepCollectionEquality()
+                    .equals(other.ammount, ammount)) &&
             (identical(other.digirestoPaymentId, digirestoPaymentId) ||
                 const DeepCollectionEquality()
                     .equals(other.digirestoPaymentId, digirestoPaymentId)) &&
@@ -765,6 +786,7 @@ class _$_PaymentMethodDataResponse implements _PaymentMethodDataResponse {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(isEnable) ^
+      const DeepCollectionEquality().hash(ammount) ^
       const DeepCollectionEquality().hash(digirestoPaymentId) ^
       const DeepCollectionEquality().hash(channels) ^
       const DeepCollectionEquality().hash(salesTypes) ^
@@ -801,6 +823,7 @@ abstract class _PaymentMethodDataResponse implements PaymentMethodDataResponse {
       {required String id,
       required String title,
       required bool isEnable,
+      required String? ammount,
       required int digirestoPaymentId,
       required List<String> channels,
       required List<String> salesTypes,
@@ -828,6 +851,8 @@ abstract class _PaymentMethodDataResponse implements PaymentMethodDataResponse {
   String get title => throw _privateConstructorUsedError;
   @override
   bool get isEnable => throw _privateConstructorUsedError;
+  @override
+  String? get ammount => throw _privateConstructorUsedError;
   @override
   int get digirestoPaymentId => throw _privateConstructorUsedError;
   @override

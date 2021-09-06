@@ -331,18 +331,21 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                   child: SizedBox(
                     width: MediaQuery.of(Get.context!).size.width / 2 - 40,
                     height: 45,
-                    child: RaisedButton(
-                        onPressed: () {
-                          LaunchUrl.run("https://www.digiresto.co.id/");
-                        },
-                        color: AppColors.redYoung,
-                        child: Text("Selengkapnya",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(25.0))),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        LaunchUrl.run("https://www.digiresto.co.id/",
+                            onError: () {}, onSuccess: () {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                          primary: AppColors.redYoung,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(25.0))),
+                      child: Text("Selengkapnya",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white)),
+                    ),
                   ),
                 ),
               ),

@@ -556,7 +556,11 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                               String callBackUrl =
                                   controller.detailOutlet.value!.callbackUrl;
                               String url = callBackUrl;
-                              LaunchUrl.run(url);
+                              LaunchUrl.run(
+                                url,
+                                onError: () {},
+                                onSuccess: () {},
+                              );
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

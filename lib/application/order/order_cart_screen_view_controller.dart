@@ -2,6 +2,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
+import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
@@ -28,6 +29,7 @@ class OrderCartScreenViewController extends GetxController {
   var paymentMethod = Rxn<PaymentMethodDataResponse>();
   var deliveryMethod = Rxn<DeliveryMethodDataResponse>();
   var voucherMethod = Rxn<GetListVoucherOutletDataResponse>();
+  var checkoutResponse = Rxn<CheckoutDataResponse>();
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),

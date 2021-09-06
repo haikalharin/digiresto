@@ -736,14 +736,15 @@ class _$TransactionStateTearOff {
     );
   }
 
-  _GetTransactionSuccess getTransactionSuccess(TransactionMobile response) {
+  _GetTransactionSuccess getTransactionSuccess(
+      TransactionMobileResponse response) {
     return _GetTransactionSuccess(
       response,
     );
   }
 
   _CancelTransactionSuccess cancelTransactionSuccess(
-      TransactionMobile response) {
+      TransactionMobileResponse response) {
     return _CancelTransactionSuccess(
       response,
     );
@@ -771,8 +772,9 @@ mixin _$TransactionState {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) =>
@@ -787,8 +789,9 @@ mixin _$TransactionState {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) =>
@@ -891,8 +894,9 @@ class _$_Initial implements _Initial {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -910,8 +914,9 @@ class _$_Initial implements _Initial {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1017,8 +1022,9 @@ class _$_LoadInProgress implements _LoadInProgress {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1036,8 +1042,9 @@ class _$_LoadInProgress implements _LoadInProgress {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1143,8 +1150,9 @@ class _$_LoadSuccess implements _LoadSuccess {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1162,8 +1170,9 @@ class _$_LoadSuccess implements _LoadSuccess {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1303,8 +1312,9 @@ class _$_LoadFailure implements _LoadFailure {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1322,8 +1332,9 @@ class _$_LoadFailure implements _LoadFailure {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1464,8 +1475,9 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1483,8 +1495,9 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1626,8 +1639,9 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1645,8 +1659,9 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1715,7 +1730,9 @@ abstract class _$GetTransactionSuccessCopyWith<$Res> {
   factory _$GetTransactionSuccessCopyWith(_GetTransactionSuccess value,
           $Res Function(_GetTransactionSuccess) then) =
       __$GetTransactionSuccessCopyWithImpl<$Res>;
-  $Res call({TransactionMobile response});
+  $Res call({TransactionMobileResponse response});
+
+  $TransactionMobileResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -1737,8 +1754,15 @@ class __$GetTransactionSuccessCopyWithImpl<$Res>
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as TransactionMobile,
+              as TransactionMobileResponse,
     ));
+  }
+
+  @override
+  $TransactionMobileResponseCopyWith<$Res> get response {
+    return $TransactionMobileResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
@@ -1748,7 +1772,7 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
   const _$_GetTransactionSuccess(this.response);
 
   @override
-  final TransactionMobile response;
+  final TransactionMobileResponse response;
 
   @override
   String toString() {
@@ -1785,8 +1809,9 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1804,8 +1829,9 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -1860,10 +1886,10 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
 }
 
 abstract class _GetTransactionSuccess implements TransactionState {
-  const factory _GetTransactionSuccess(TransactionMobile response) =
+  const factory _GetTransactionSuccess(TransactionMobileResponse response) =
       _$_GetTransactionSuccess;
 
-  TransactionMobile get response => throw _privateConstructorUsedError;
+  TransactionMobileResponse get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetTransactionSuccessCopyWith<_GetTransactionSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1874,7 +1900,9 @@ abstract class _$CancelTransactionSuccessCopyWith<$Res> {
   factory _$CancelTransactionSuccessCopyWith(_CancelTransactionSuccess value,
           $Res Function(_CancelTransactionSuccess) then) =
       __$CancelTransactionSuccessCopyWithImpl<$Res>;
-  $Res call({TransactionMobile response});
+  $Res call({TransactionMobileResponse response});
+
+  $TransactionMobileResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -1897,8 +1925,15 @@ class __$CancelTransactionSuccessCopyWithImpl<$Res>
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as TransactionMobile,
+              as TransactionMobileResponse,
     ));
+  }
+
+  @override
+  $TransactionMobileResponseCopyWith<$Res> get response {
+    return $TransactionMobileResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
@@ -1908,7 +1943,7 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
   const _$_CancelTransactionSuccess(this.response);
 
   @override
-  final TransactionMobile response;
+  final TransactionMobileResponse response;
 
   @override
   String toString() {
@@ -1945,8 +1980,9 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -1964,8 +2000,9 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {
@@ -2020,10 +2057,10 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
 }
 
 abstract class _CancelTransactionSuccess implements TransactionState {
-  const factory _CancelTransactionSuccess(TransactionMobile response) =
+  const factory _CancelTransactionSuccess(TransactionMobileResponse response) =
       _$_CancelTransactionSuccess;
 
-  TransactionMobile get response => throw _privateConstructorUsedError;
+  TransactionMobileResponse get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$CancelTransactionSuccessCopyWith<_CancelTransactionSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2114,8 +2151,9 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
         getTransactionHistorySuccess,
     required TResult Function(List<TransactionHistory> response)
         getOngoingTransactionSuccess,
-    required TResult Function(TransactionMobile response) getTransactionSuccess,
-    required TResult Function(TransactionMobile response)
+    required TResult Function(TransactionMobileResponse response)
+        getTransactionSuccess,
+    required TResult Function(TransactionMobileResponse response)
         cancelTransactionSuccess,
     required TResult Function(StatusResponse response) acceptTransactionSuccess,
   }) {
@@ -2133,8 +2171,9 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
         getTransactionHistorySuccess,
     TResult Function(List<TransactionHistory> response)?
         getOngoingTransactionSuccess,
-    TResult Function(TransactionMobile response)? getTransactionSuccess,
-    TResult Function(TransactionMobile response)? cancelTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
+    TResult Function(TransactionMobileResponse response)?
+        cancelTransactionSuccess,
     TResult Function(StatusResponse response)? acceptTransactionSuccess,
     required TResult orElse(),
   }) {

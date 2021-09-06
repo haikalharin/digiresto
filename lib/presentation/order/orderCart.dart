@@ -18,6 +18,9 @@ import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
@@ -922,6 +925,15 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.back();
                               Get.toNamed(Routers.selectPaymentMethod);
                             });
+                          } else if (controller.paymentMethod.value!.id ==
+                              "papaya") {
+                            if (controller.paymentMethod.value!.ammount ==
+                                "0") {
+                              ErrorPopupWidget.show("Digiresto",
+                                  "Digiresto Credit Anda Tidak Mencukupi", () {
+                                Get.back();
+                              });
+                            }
                           } else if (placeInfoController.text == "" &&
                               controller.salesType.value == "dineIn") {
                             ErrorPopupWidget.show("Digiresto",
@@ -1440,7 +1452,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   checkoutCartSuccess: (r) {
                     var checkoutResponse = r.response.data;
-
+                    controller.checkoutResponse.value = checkoutResponse;
                     if (r.response.response.messageDisplay != null &&
                         r.response.response.code != "00") {
                       final message = r.response.response.messageDisplay;
@@ -1463,17 +1475,41 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Loading.dismiss();
                     } else if (checkoutResponse.payment.isWebView) {
                       Loading.dismiss();
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          Routers.paymentWebView, (_) => false);
+                      Get.offNamedUntil(
+                          Routers.paymentWebView, (route) => false,
+                          arguments: PaymentWebViewArgument(
+                              checkoutDataResponse:
+                                  controller.checkoutResponse.value!));
+                      // Navigator.of(context).pushNamedAndRemoveUntil(
+                      //     Routers.paymentWebView, (_) => false);
                     } else if (checkoutResponse.payment.isDeeplink) {
                       //Need test on real device to simulate open payment app
                       Loading.dismiss();
-                      LaunchUrl.run(checkoutResponse.payment.deeplink);
+                      LaunchUrl.run(checkoutResponse.payment.deeplink,
+                          onError: () {
+                        ErrorPopupWidget.show("Error", "App Launch Error", () {
+                          Get.offNamedUntil(
+                              Routers.paymentReceipt, (route) => false,
+                              arguments: PaymentReceiptViewArgument(
+                                  checkoutDataResponse:
+                                      controller.checkoutResponse.value!));
+                        });
+                      }, onSuccess: () {
+                        Get.offNamedUntil(
+                            Routers.paymentReceipt, (route) => false,
+                            arguments: PaymentReceiptViewArgument(
+                                checkoutDataResponse:
+                                    controller.checkoutResponse.value!));
+                      });
                     } else {
                       Loading.dismiss();
                       if (checkoutResponse.payment.paymentCode != null) {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            Routers.paymentVa, (_) => false);
+                        Get.offNamedUntil(Routers.paymentVa, (route) => false,
+                            arguments: PaymentVAViewArgument(
+                                checkoutDataResponse:
+                                    controller.checkoutResponse.value!));
+                        // Navigator.of(context).pushNamedAndRemoveUntil(
+                        //     Routers.paymentVa, (_) => false);
                       }
                     }
                   },
@@ -1497,8 +1533,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             listener: (context, state) {
               state.maybeMap(
                   getTransactionSuccess: (r) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        Routers.paymentReceipt, (_) => false);
+                    Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+                        arguments: PaymentReceiptViewArgument(
+                            checkoutDataResponse:
+                                controller.checkoutResponse.value!));
+                    // Navigator.of(context).pushNamedAndRemoveUntil(
+                    //     Routers.paymentReceipt, (_) => false);
                   },
                   getOngoingTransactionSuccess: (r) {},
                   loadFailure: (e) {
@@ -1514,63 +1554,62 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         ],
         child: BlocBuilder<OrderBloc, OrderState>(
           builder: (context, state) {
-            return Obx(() => Scaffold(
-                  body: Column(
-                    children: [
-                      TopBackgound(backgroundColor: AppColors.red),
-                      Expanded(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height -
-                              MediaQuery.of(context).padding.top,
-                          child: SingleChildScrollView(
-                            controller: _scrollController,
-                            child: Column(
-                              children: [
-                                _HeaderOrderCart(),
-                                controller.detailOutlet.value != null
-                                    ? titleDetailOutlet()
-                                    : Container(),
-                                controller.salesType.value != null &&
-                                        controller.detailOutlet.value != null
-                                    ? _selectSalesTypeMethod()
-                                    : Container(),
+            return Scaffold(
+              body: Column(
+                children: [
+                  TopBackgound(backgroundColor: AppColors.red),
+                  Expanded(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height -
+                          MediaQuery.of(context).padding.top,
+                      child: SingleChildScrollView(
+                        controller: _scrollController,
+                        child: Column(
+                          children: [
+                            _HeaderOrderCart(),
+                            controller.detailOutlet.value != null
+                                ? titleDetailOutlet()
+                                : Container(),
+                            controller.salesType.value != null &&
+                                    controller.detailOutlet.value != null
+                                ? _selectSalesTypeMethod()
+                                : Container(),
 
-                                _AddressOrderCart(),
+                            _AddressOrderCart(),
 
-                                controller.detailOutlet.value != null &&
-                                        controller.listProduct.value != null
-                                    ? _ProductOrderCart()
-                                    : Container(),
-                                _notes(),
-                                controller.detailOutlet.value != null
-                                    ? _useVoucherCode()
-                                    : Container(),
-                                controller.detailOutlet.value != null
-                                    ? _paymentMethod()
-                                    : Container(),
-                                controller.detailOutlet.value != null
-                                    ? _voucherMethod()
-                                    : Container(),
-                                controller.detailOutlet.value != null &&
-                                        controller.salesType.value ==
-                                            "onlineDriver"
-                                    ? _deliveryMethod()
-                                    : Container(),
-                                controller.cartSession.value != null
-                                    ? _detailPayment()
-                                    : Container()
-                                // Observer(builder: (context) => _paymentMethod()),
-                                // if (_orderStore.orderSalesTypes == 'onlineDriver')
-                                //   Observer(builder: (context) => _deliveryMethod()),
-                                // Observer(builder: (context) => _detailPayment()),
-                              ],
-                            ),
-                          ),
+                            controller.detailOutlet.value != null &&
+                                    controller.listProduct.value != null
+                                ? _ProductOrderCart()
+                                : Container(),
+                            _notes(),
+                            controller.detailOutlet.value != null
+                                ? _useVoucherCode()
+                                : Container(),
+                            controller.detailOutlet.value != null
+                                ? _paymentMethod()
+                                : Container(),
+                            controller.detailOutlet.value != null
+                                ? _voucherMethod()
+                                : Container(),
+                            controller.detailOutlet.value != null &&
+                                    controller.salesType.value == "onlineDriver"
+                                ? _deliveryMethod()
+                                : Container(),
+                            controller.cartSession.value != null
+                                ? _detailPayment()
+                                : Container()
+                            // Observer(builder: (context) => _paymentMethod()),
+                            // if (_orderStore.orderSalesTypes == 'onlineDriver')
+                            //   Observer(builder: (context) => _deliveryMethod()),
+                            // Observer(builder: (context) => _detailPayment()),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ));
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
           },
         ));
   }

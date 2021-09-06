@@ -268,7 +268,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerName: userProfile.name!,
                       customerPhone: userProfile.mobilePhone!,
                       customerTableNumber: "",
-                      customerSmoking: false,
+                      customerSmoking: 'false',
                       customerPax: "1",
                       customerNote: "",
                       customerCarType: "",

@@ -2,32 +2,20 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
 import 'package:digiresto/domain/entity/user/user_profile_model.dart';
+import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class PaymentVA extends StatefulWidget {
-  @override
-  _PaymentVAState createState() => _PaymentVAState();
-}
-
-class _PaymentVAState extends State<PaymentVA> {
-  // OrderStore _orderStore;
-  // UserStore _userStore;
-  UserProfile? _userProfile;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // _orderStore = Provider.of<OrderStore>(context);
-    // _userStore = Provider.of<UserStore>(context);
-    // _userProfile = _userStore.profile;
-  }
-
+class PaymentVAScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final vaPayment = "_orderStore.paymentData.paymentCode";
+    UserProfile? _userProfile;
+    PaymentVAViewArgument args = Get.arguments as PaymentVAViewArgument;
+    final vaPayment = args.checkoutDataResponse.payment.paymentCode;
 
     final df = new DateFormat('EEEE, dd MMMM yyyy, hh:mm');
     final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
@@ -77,7 +65,7 @@ class _PaymentVAState extends State<PaymentVA> {
                   Text('Batas akhir pembayaran'),
                   SizedBox(height: 5),
                   Text(
-                    df.format(isoParser.parse("vaPayment['expiresAt']")),
+                    df.format(isoParser.parse(vaPayment!.expiresAt.toString())),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -97,14 +85,14 @@ class _PaymentVAState extends State<PaymentVA> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "vaPayment['title']",
+                            vaPayment.title,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(height: 5),
                           Text(
-                            "vaPayment['vaNumber']",
+                            vaPayment.vaNumber,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.red,
@@ -115,7 +103,7 @@ class _PaymentVAState extends State<PaymentVA> {
                       FlatButton(
                           onPressed: () {
                             Clipboard.setData(
-                                ClipboardData(text: "vaPayment['vaNumber']"));
+                                ClipboardData(text: vaPayment.vaNumber));
                             Ctoast.show('VA Number Copied');
                           },
                           color: Colors.white,
@@ -148,7 +136,7 @@ class _PaymentVAState extends State<PaymentVA> {
                           Text('Total pembayaran'),
                           SizedBox(height: 5),
                           Text(
-                            Rupiah.format("vaPayment['amount']".toString()),
+                            Rupiah.format(vaPayment.amount.toString()),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -158,7 +146,7 @@ class _PaymentVAState extends State<PaymentVA> {
                       FlatButton(
                           onPressed: () {
                             Clipboard.setData(ClipboardData(
-                                text: "vaPayment['amount']".toString()));
+                                text: vaPayment.amount.toString()));
                             Ctoast.show('Amount Copied');
                           },
                           color: Colors.white,
@@ -193,9 +181,9 @@ class _PaymentVAState extends State<PaymentVA> {
                 child: FlatButton(
                     minWidth: double.infinity,
                     onPressed: () async {
-                      //await _orderStore.getTransaction();
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routers.paymentReceipt);
+                      Get.offNamed(Routers.paymentReceipt,
+                          arguments: PaymentReceiptViewArgument(
+                              checkoutDataResponse: args.checkoutDataResponse));
                     },
                     color: AppColors.red,
                     shape: new RoundedRectangleBorder(
