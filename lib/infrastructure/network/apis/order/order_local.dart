@@ -104,6 +104,8 @@ class OrderLocal {
     if (_outletModel?.id != outlet.id) {
       await _storage.openBox(StorageConstants.orderProduct);
       await _storage.deleteData();
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.deleteData();
     }
 
     await _storage.openBox(StorageConstants.orderProduct);
@@ -112,7 +114,15 @@ class OrderLocal {
     if (_productJson == null) {
       await _storage.openBox(StorageConstants.orderProduct);
       var list = UpdateCartSessionBodyParam(
-          customerNote: "", paymentType: "", items: []);
+          customerNote: "",
+          paymentType: "",
+          items: [],
+          customerPax: '',
+          customerSmoking: '',
+          delivery: null,
+          eta: '',
+          promos: [],
+          salesType: '');
       await _storage.setJson(key: _sessionIdKey, object: list.toJson());
       _productJson = _storage.getJson(key: _sessionIdKey);
       //_productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
@@ -125,13 +135,33 @@ class OrderLocal {
     //parse to list
     var _listResult = _result.entries.map((e) => e.value).toList();
     var list = UpdateCartSessionBodyParam(
-        customerNote: "", paymentType: "", items: _listResult);
+        customerNote: "",
+        paymentType: "",
+        items: _listResult,
+        customerPax: '',
+        customerSmoking: '',
+        delivery: null,
+        eta: '',
+        promos: [],
+        salesType: '');
     await _storage.setJson(key: _sessionIdKey, object: list.toJson());
 
     final productJson = _storage.getJson(key: _sessionIdKey);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
     await _storage.close();
     return productModel;
+  }
+
+  Future<UpdateCartSessionBodyParam?> getProduct() async {
+    await _storage.openBox(StorageConstants.orderProduct);
+    try {
+      var _productJson = _storage.getJson(key: _sessionIdKey);
+      final productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
+      await _storage.close();
+      return productModel;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<UpdateCartSessionBodyParam?> removeProduct(
@@ -147,7 +177,15 @@ class OrderLocal {
     //parse to list
     var _listResult = _result.entries.map((e) => e.value).toList();
     var list = UpdateCartSessionBodyParam(
-        customerNote: "", paymentType: "", items: _listResult);
+        customerNote: "",
+        paymentType: "",
+        items: _listResult,
+        customerPax: '',
+        customerSmoking: '',
+        delivery: null,
+        eta: '',
+        promos: [],
+        salesType: '');
     await _storage.setJson(key: _sessionIdKey, object: list.toJson());
 
     final productJson = _storage.getJson(key: _sessionIdKey);

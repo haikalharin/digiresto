@@ -27,13 +27,34 @@ abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
 @freezed
 abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
   const factory UpdateCartSessionBodyParam({
-    required String? paymentType,
-    required String? customerNote,
+    required String paymentType,
+    required String customerNote,
+    required String customerPax,
+    required String customerSmoking,
+    required UpdateCartSessionBodyDeliveryParam? delivery,
+    required String eta,
+    required List<String> promos,
+    required String salesType,
     required List<CreateUpdateCartSessionItemParam>? items,
   }) = _UpdateCartSessionBodyParam;
 
   factory UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
       _$UpdateCartSessionBodyParamFromJson(json);
+}
+
+@freezed
+abstract class UpdateCartSessionBodyDeliveryParam
+    with _$UpdateCartSessionBodyDeliveryParam {
+  const factory UpdateCartSessionBodyDeliveryParam({
+    required String provider,
+    required int price,
+    required String address,
+    required List<String> location,
+  }) = _UpdateCartSessionBodyDeliveryParam;
+
+  factory UpdateCartSessionBodyDeliveryParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$UpdateCartSessionBodyDeliveryParamFromJson(json);
 }
 
 @freezed

@@ -229,12 +229,24 @@ class _$UpdateCartSessionBodyParamTearOff {
   const _$UpdateCartSessionBodyParamTearOff();
 
   _UpdateCartSessionBodyParam call(
-      {required String? paymentType,
-      required String? customerNote,
+      {required String paymentType,
+      required String customerNote,
+      required String customerPax,
+      required String customerSmoking,
+      required UpdateCartSessionBodyDeliveryParam? delivery,
+      required String eta,
+      required List<String> promos,
+      required String salesType,
       required List<CreateUpdateCartSessionItemParam>? items}) {
     return _UpdateCartSessionBodyParam(
       paymentType: paymentType,
       customerNote: customerNote,
+      customerPax: customerPax,
+      customerSmoking: customerSmoking,
+      delivery: delivery,
+      eta: eta,
+      promos: promos,
+      salesType: salesType,
       items: items,
     );
   }
@@ -249,8 +261,15 @@ const $UpdateCartSessionBodyParam = _$UpdateCartSessionBodyParamTearOff();
 
 /// @nodoc
 mixin _$UpdateCartSessionBodyParam {
-  String? get paymentType => throw _privateConstructorUsedError;
-  String? get customerNote => throw _privateConstructorUsedError;
+  String get paymentType => throw _privateConstructorUsedError;
+  String get customerNote => throw _privateConstructorUsedError;
+  String get customerPax => throw _privateConstructorUsedError;
+  String get customerSmoking => throw _privateConstructorUsedError;
+  UpdateCartSessionBodyDeliveryParam? get delivery =>
+      throw _privateConstructorUsedError;
+  String get eta => throw _privateConstructorUsedError;
+  List<String> get promos => throw _privateConstructorUsedError;
+  String get salesType => throw _privateConstructorUsedError;
   List<CreateUpdateCartSessionItemParam>? get items =>
       throw _privateConstructorUsedError;
 
@@ -266,9 +285,17 @@ abstract class $UpdateCartSessionBodyParamCopyWith<$Res> {
           $Res Function(UpdateCartSessionBodyParam) then) =
       _$UpdateCartSessionBodyParamCopyWithImpl<$Res>;
   $Res call(
-      {String? paymentType,
-      String? customerNote,
+      {String paymentType,
+      String customerNote,
+      String customerPax,
+      String customerSmoking,
+      UpdateCartSessionBodyDeliveryParam? delivery,
+      String eta,
+      List<String> promos,
+      String salesType,
       List<CreateUpdateCartSessionItemParam>? items});
+
+  $UpdateCartSessionBodyDeliveryParamCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -284,22 +311,64 @@ class _$UpdateCartSessionBodyParamCopyWithImpl<$Res>
   $Res call({
     Object? paymentType = freezed,
     Object? customerNote = freezed,
+    Object? customerPax = freezed,
+    Object? customerSmoking = freezed,
+    Object? delivery = freezed,
+    Object? eta = freezed,
+    Object? promos = freezed,
+    Object? salesType = freezed,
     Object? items = freezed,
   }) {
     return _then(_value.copyWith(
       paymentType: paymentType == freezed
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       customerNote: customerNote == freezed
           ? _value.customerNote
           : customerNote // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      customerPax: customerPax == freezed
+          ? _value.customerPax
+          : customerPax // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerSmoking: customerSmoking == freezed
+          ? _value.customerSmoking
+          : customerSmoking // ignore: cast_nullable_to_non_nullable
+              as String,
+      delivery: delivery == freezed
+          ? _value.delivery
+          : delivery // ignore: cast_nullable_to_non_nullable
+              as UpdateCartSessionBodyDeliveryParam?,
+      eta: eta == freezed
+          ? _value.eta
+          : eta // ignore: cast_nullable_to_non_nullable
+              as String,
+      promos: promos == freezed
+          ? _value.promos
+          : promos // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      salesType: salesType == freezed
+          ? _value.salesType
+          : salesType // ignore: cast_nullable_to_non_nullable
+              as String,
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CreateUpdateCartSessionItemParam>?,
     ));
+  }
+
+  @override
+  $UpdateCartSessionBodyDeliveryParamCopyWith<$Res>? get delivery {
+    if (_value.delivery == null) {
+      return null;
+    }
+
+    return $UpdateCartSessionBodyDeliveryParamCopyWith<$Res>(_value.delivery!,
+        (value) {
+      return _then(_value.copyWith(delivery: value));
+    });
   }
 }
 
@@ -312,9 +381,18 @@ abstract class _$UpdateCartSessionBodyParamCopyWith<$Res>
       __$UpdateCartSessionBodyParamCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? paymentType,
-      String? customerNote,
+      {String paymentType,
+      String customerNote,
+      String customerPax,
+      String customerSmoking,
+      UpdateCartSessionBodyDeliveryParam? delivery,
+      String eta,
+      List<String> promos,
+      String salesType,
       List<CreateUpdateCartSessionItemParam>? items});
+
+  @override
+  $UpdateCartSessionBodyDeliveryParamCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -333,17 +411,47 @@ class __$UpdateCartSessionBodyParamCopyWithImpl<$Res>
   $Res call({
     Object? paymentType = freezed,
     Object? customerNote = freezed,
+    Object? customerPax = freezed,
+    Object? customerSmoking = freezed,
+    Object? delivery = freezed,
+    Object? eta = freezed,
+    Object? promos = freezed,
+    Object? salesType = freezed,
     Object? items = freezed,
   }) {
     return _then(_UpdateCartSessionBodyParam(
       paymentType: paymentType == freezed
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       customerNote: customerNote == freezed
           ? _value.customerNote
           : customerNote // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      customerPax: customerPax == freezed
+          ? _value.customerPax
+          : customerPax // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerSmoking: customerSmoking == freezed
+          ? _value.customerSmoking
+          : customerSmoking // ignore: cast_nullable_to_non_nullable
+              as String,
+      delivery: delivery == freezed
+          ? _value.delivery
+          : delivery // ignore: cast_nullable_to_non_nullable
+              as UpdateCartSessionBodyDeliveryParam?,
+      eta: eta == freezed
+          ? _value.eta
+          : eta // ignore: cast_nullable_to_non_nullable
+              as String,
+      promos: promos == freezed
+          ? _value.promos
+          : promos // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      salesType: salesType == freezed
+          ? _value.salesType
+          : salesType // ignore: cast_nullable_to_non_nullable
+              as String,
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -358,21 +466,39 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
   const _$_UpdateCartSessionBodyParam(
       {required this.paymentType,
       required this.customerNote,
+      required this.customerPax,
+      required this.customerSmoking,
+      required this.delivery,
+      required this.eta,
+      required this.promos,
+      required this.salesType,
       required this.items});
 
   factory _$_UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
       _$_$_UpdateCartSessionBodyParamFromJson(json);
 
   @override
-  final String? paymentType;
+  final String paymentType;
   @override
-  final String? customerNote;
+  final String customerNote;
+  @override
+  final String customerPax;
+  @override
+  final String customerSmoking;
+  @override
+  final UpdateCartSessionBodyDeliveryParam? delivery;
+  @override
+  final String eta;
+  @override
+  final List<String> promos;
+  @override
+  final String salesType;
   @override
   final List<CreateUpdateCartSessionItemParam>? items;
 
   @override
   String toString() {
-    return 'UpdateCartSessionBodyParam(paymentType: $paymentType, customerNote: $customerNote, items: $items)';
+    return 'UpdateCartSessionBodyParam(paymentType: $paymentType, customerNote: $customerNote, customerPax: $customerPax, customerSmoking: $customerSmoking, delivery: $delivery, eta: $eta, promos: $promos, salesType: $salesType, items: $items)';
   }
 
   @override
@@ -385,6 +511,22 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
             (identical(other.customerNote, customerNote) ||
                 const DeepCollectionEquality()
                     .equals(other.customerNote, customerNote)) &&
+            (identical(other.customerPax, customerPax) ||
+                const DeepCollectionEquality()
+                    .equals(other.customerPax, customerPax)) &&
+            (identical(other.customerSmoking, customerSmoking) ||
+                const DeepCollectionEquality()
+                    .equals(other.customerSmoking, customerSmoking)) &&
+            (identical(other.delivery, delivery) ||
+                const DeepCollectionEquality()
+                    .equals(other.delivery, delivery)) &&
+            (identical(other.eta, eta) ||
+                const DeepCollectionEquality().equals(other.eta, eta)) &&
+            (identical(other.promos, promos) ||
+                const DeepCollectionEquality().equals(other.promos, promos)) &&
+            (identical(other.salesType, salesType) ||
+                const DeepCollectionEquality()
+                    .equals(other.salesType, salesType)) &&
             (identical(other.items, items) ||
                 const DeepCollectionEquality().equals(other.items, items)));
   }
@@ -394,6 +536,12 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(paymentType) ^
       const DeepCollectionEquality().hash(customerNote) ^
+      const DeepCollectionEquality().hash(customerPax) ^
+      const DeepCollectionEquality().hash(customerSmoking) ^
+      const DeepCollectionEquality().hash(delivery) ^
+      const DeepCollectionEquality().hash(eta) ^
+      const DeepCollectionEquality().hash(promos) ^
+      const DeepCollectionEquality().hash(salesType) ^
       const DeepCollectionEquality().hash(items);
 
   @JsonKey(ignore: true)
@@ -411,8 +559,14 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
 abstract class _UpdateCartSessionBodyParam
     implements UpdateCartSessionBodyParam {
   const factory _UpdateCartSessionBodyParam(
-          {required String? paymentType,
-          required String? customerNote,
+          {required String paymentType,
+          required String customerNote,
+          required String customerPax,
+          required String customerSmoking,
+          required UpdateCartSessionBodyDeliveryParam? delivery,
+          required String eta,
+          required List<String> promos,
+          required String salesType,
           required List<CreateUpdateCartSessionItemParam>? items}) =
       _$_UpdateCartSessionBodyParam;
 
@@ -420,15 +574,266 @@ abstract class _UpdateCartSessionBodyParam
       _$_UpdateCartSessionBodyParam.fromJson;
 
   @override
-  String? get paymentType => throw _privateConstructorUsedError;
+  String get paymentType => throw _privateConstructorUsedError;
   @override
-  String? get customerNote => throw _privateConstructorUsedError;
+  String get customerNote => throw _privateConstructorUsedError;
+  @override
+  String get customerPax => throw _privateConstructorUsedError;
+  @override
+  String get customerSmoking => throw _privateConstructorUsedError;
+  @override
+  UpdateCartSessionBodyDeliveryParam? get delivery =>
+      throw _privateConstructorUsedError;
+  @override
+  String get eta => throw _privateConstructorUsedError;
+  @override
+  List<String> get promos => throw _privateConstructorUsedError;
+  @override
+  String get salesType => throw _privateConstructorUsedError;
   @override
   List<CreateUpdateCartSessionItemParam>? get items =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UpdateCartSessionBodyParamCopyWith<_UpdateCartSessionBodyParam>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+UpdateCartSessionBodyDeliveryParam _$UpdateCartSessionBodyDeliveryParamFromJson(
+    Map<String, dynamic> json) {
+  return _UpdateCartSessionBodyDeliveryParam.fromJson(json);
+}
+
+/// @nodoc
+class _$UpdateCartSessionBodyDeliveryParamTearOff {
+  const _$UpdateCartSessionBodyDeliveryParamTearOff();
+
+  _UpdateCartSessionBodyDeliveryParam call(
+      {required String provider,
+      required int price,
+      required String address,
+      required List<String> location}) {
+    return _UpdateCartSessionBodyDeliveryParam(
+      provider: provider,
+      price: price,
+      address: address,
+      location: location,
+    );
+  }
+
+  UpdateCartSessionBodyDeliveryParam fromJson(Map<String, Object> json) {
+    return UpdateCartSessionBodyDeliveryParam.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $UpdateCartSessionBodyDeliveryParam =
+    _$UpdateCartSessionBodyDeliveryParamTearOff();
+
+/// @nodoc
+mixin _$UpdateCartSessionBodyDeliveryParam {
+  String get provider => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  List<String> get location => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateCartSessionBodyDeliveryParamCopyWith<
+          UpdateCartSessionBodyDeliveryParam>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateCartSessionBodyDeliveryParamCopyWith<$Res> {
+  factory $UpdateCartSessionBodyDeliveryParamCopyWith(
+          UpdateCartSessionBodyDeliveryParam value,
+          $Res Function(UpdateCartSessionBodyDeliveryParam) then) =
+      _$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>;
+  $Res call(
+      {String provider, int price, String address, List<String> location});
+}
+
+/// @nodoc
+class _$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
+    implements $UpdateCartSessionBodyDeliveryParamCopyWith<$Res> {
+  _$UpdateCartSessionBodyDeliveryParamCopyWithImpl(this._value, this._then);
+
+  final UpdateCartSessionBodyDeliveryParam _value;
+  // ignore: unused_field
+  final $Res Function(UpdateCartSessionBodyDeliveryParam) _then;
+
+  @override
+  $Res call({
+    Object? provider = freezed,
+    Object? price = freezed,
+    Object? address = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(_value.copyWith(
+      provider: provider == freezed
+          ? _value.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$UpdateCartSessionBodyDeliveryParamCopyWith<$Res>
+    implements $UpdateCartSessionBodyDeliveryParamCopyWith<$Res> {
+  factory _$UpdateCartSessionBodyDeliveryParamCopyWith(
+          _UpdateCartSessionBodyDeliveryParam value,
+          $Res Function(_UpdateCartSessionBodyDeliveryParam) then) =
+      __$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String provider, int price, String address, List<String> location});
+}
+
+/// @nodoc
+class __$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
+    extends _$UpdateCartSessionBodyDeliveryParamCopyWithImpl<$Res>
+    implements _$UpdateCartSessionBodyDeliveryParamCopyWith<$Res> {
+  __$UpdateCartSessionBodyDeliveryParamCopyWithImpl(
+      _UpdateCartSessionBodyDeliveryParam _value,
+      $Res Function(_UpdateCartSessionBodyDeliveryParam) _then)
+      : super(_value, (v) => _then(v as _UpdateCartSessionBodyDeliveryParam));
+
+  @override
+  _UpdateCartSessionBodyDeliveryParam get _value =>
+      super._value as _UpdateCartSessionBodyDeliveryParam;
+
+  @override
+  $Res call({
+    Object? provider = freezed,
+    Object? price = freezed,
+    Object? address = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(_UpdateCartSessionBodyDeliveryParam(
+      provider: provider == freezed
+          ? _value.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UpdateCartSessionBodyDeliveryParam
+    implements _UpdateCartSessionBodyDeliveryParam {
+  const _$_UpdateCartSessionBodyDeliveryParam(
+      {required this.provider,
+      required this.price,
+      required this.address,
+      required this.location});
+
+  factory _$_UpdateCartSessionBodyDeliveryParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$_$_UpdateCartSessionBodyDeliveryParamFromJson(json);
+
+  @override
+  final String provider;
+  @override
+  final int price;
+  @override
+  final String address;
+  @override
+  final List<String> location;
+
+  @override
+  String toString() {
+    return 'UpdateCartSessionBodyDeliveryParam(provider: $provider, price: $price, address: $address, location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateCartSessionBodyDeliveryParam &&
+            (identical(other.provider, provider) ||
+                const DeepCollectionEquality()
+                    .equals(other.provider, provider)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(provider) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(location);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateCartSessionBodyDeliveryParamCopyWith<
+          _UpdateCartSessionBodyDeliveryParam>
+      get copyWith => __$UpdateCartSessionBodyDeliveryParamCopyWithImpl<
+          _UpdateCartSessionBodyDeliveryParam>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UpdateCartSessionBodyDeliveryParamToJson(this);
+  }
+}
+
+abstract class _UpdateCartSessionBodyDeliveryParam
+    implements UpdateCartSessionBodyDeliveryParam {
+  const factory _UpdateCartSessionBodyDeliveryParam(
+      {required String provider,
+      required int price,
+      required String address,
+      required List<String> location}) = _$_UpdateCartSessionBodyDeliveryParam;
+
+  factory _UpdateCartSessionBodyDeliveryParam.fromJson(
+          Map<String, dynamic> json) =
+      _$_UpdateCartSessionBodyDeliveryParam.fromJson;
+
+  @override
+  String get provider => throw _privateConstructorUsedError;
+  @override
+  int get price => throw _privateConstructorUsedError;
+  @override
+  String get address => throw _privateConstructorUsedError;
+  @override
+  List<String> get location => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$UpdateCartSessionBodyDeliveryParamCopyWith<
+          _UpdateCartSessionBodyDeliveryParam>
       get copyWith => throw _privateConstructorUsedError;
 }
 

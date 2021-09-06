@@ -62,6 +62,10 @@ class OrderRepository {
     return _orderLocal.getVoucherMethod();
   }
 
+  Future<UpdateCartSessionBodyParam?> getProduct() async {
+    return _orderLocal.getProduct();
+  }
+
   Future<UpdateCartSessionBodyParam?> setProduct(
       CreateUpdateCartSessionItemParam object,
       DetailOutletDataResponse outlet) async {
@@ -82,11 +86,11 @@ class OrderRepository {
     return _orderLocal.getOutletDetailID();
   }
 
-  Future<String?> getSalesTypeCart() async {
+  Future<String?> getSalesTypeCartID() async {
     return _orderLocal.getSalesTypeCart();
   }
 
-  Future<String?> setSalesTypeCart(String value) async {
+  Future<String?> setSalesTypeCartID(String value) async {
     return _orderLocal.setSalesTypeCart(value);
   }
 
