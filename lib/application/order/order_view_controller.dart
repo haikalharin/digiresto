@@ -17,7 +17,6 @@ class OrderViewController extends GetxController {
   var page = 1.obs;
   var categoryId = "".obs;
   var search = "".obs;
-  var orderType = "dineIn".obs;
   var orderProductLength = 0.obs;
   var detailOutletLoading = false.obs;
   var indexTabBar = 0.obs;

@@ -769,7 +769,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
           ),
         ),
         ListProductOutletWidget(
-          orderType: controller.orderType.value,
+          orderType: controller.salesType.value!,
           data: data,
           runDetailAction: (listProduct, orderType) {
             _showDetailProduct(listProduct, orderType);
