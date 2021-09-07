@@ -215,7 +215,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             UpdateCartSessionParam(
                 body: UpdateCartSessionBodyParam(
                     items: getProduct?.items ?? [],
-                    customerNote: '',
+                    customerNote: request.note,
                     paymentType: paymentType?.id ?? "",
                     customerPax: '1',
                     customerSmoking: 'false',

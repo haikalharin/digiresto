@@ -230,6 +230,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 child: RaisedButton(
                                   onPressed: () {
                                     controller.notesSubmited.value = true;
+                                    updateCartParam();
                                   },
                                   color: AppColors.red,
                                   child: Text("Simpan",
@@ -1358,7 +1359,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   }
 
   void updateCartParam() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.updateCart());
+    Get.context!
+        .read<OrderBloc>()
+        .add(OrderEvent.updateCart(notesController.text));
   }
 
   @override
@@ -1376,6 +1379,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   getCartSessionSuccess: (r) {
                     controller.cartSession.value = r.response;
+                    notesController.text =
+                        r.response.transactionData.customerNote;
                     getDetailOutlet();
                     getListProduct();
                     print("data diterima");
@@ -1625,11 +1630,13 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
-                      dataProduct: product,
-                      orderType: orderType,
-                      mode: "edit",
-                      qtyProduct: cartProduct.qty,
-                      detailOutlet: controller.detailOutlet.value!);
+                    dataProduct: product,
+                    orderType: orderType,
+                    mode: "edit",
+                    qtyProduct: cartProduct.qty,
+                    detailOutlet: controller.detailOutlet.value!,
+                    note: cartProduct.note,
+                  );
                 },
                 fullscreenDialog: true))
         .then((value) {

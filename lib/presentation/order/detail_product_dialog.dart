@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 
 class DetailProductDialog extends StatefulWidget {
   final OutletListProductDataResponse dataProduct;
+  final String note;
   final String orderType;
   final qtyProduct;
   final mode;
@@ -28,6 +29,7 @@ class DetailProductDialog extends StatefulWidget {
       required this.dataProduct,
       required this.orderType,
       required this.detailOutlet,
+      required this.note,
       this.mode = "new",
       this.qtyProduct = 1})
       : super(key: key);
@@ -55,7 +57,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       variantProductSelected = dataProductState;
       totalqty = widget.qtyProduct;
       _setTotalQtyFromExistCart();
-      notesController.text = "";
+      notesController.text = widget.note;
     });
     Timer.run(() {
       if (dataProductState.variants.length > 0) {
@@ -350,9 +352,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
                         child: TextField(
                             textInputAction: TextInputAction.search,
-                            onSubmitted: (value) {
-                              notes = value;
-                            },
+                            onSubmitted: (value) {},
                             onChanged: (text) {
                               setState(() {
                                 noteIsSubmitted = false;
@@ -396,6 +396,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 child: RaisedButton(
                                   onPressed: () {
                                     setState(() {
+                                      notes = notesController.text;
                                       noteIsSubmitted = true;
                                     });
                                   },

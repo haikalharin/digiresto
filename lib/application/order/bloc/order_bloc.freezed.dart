@@ -105,8 +105,10 @@ class _$OrderEventTearOff {
     );
   }
 
-  _UpdateCart updateCart() {
-    return const _UpdateCart();
+  _UpdateCart updateCart(String note) {
+    return _UpdateCart(
+      note,
+    );
   }
 
   _RemoveCart removeCart(CreateUpdateCartSessionItemParam request) {
@@ -201,7 +203,7 @@ mixin _$OrderEvent {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -239,7 +241,7 @@ mixin _$OrderEvent {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -435,7 +437,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -476,7 +478,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -679,7 +681,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -720,7 +722,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -923,7 +925,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -964,7 +966,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -1169,7 +1171,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -1210,7 +1212,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -1413,7 +1415,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -1454,7 +1456,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -1657,7 +1659,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -1698,7 +1700,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -1901,7 +1903,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -1942,7 +1944,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -2143,7 +2145,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -2184,7 +2186,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -2376,7 +2378,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -2417,7 +2419,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -2618,7 +2620,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -2659,7 +2661,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -2861,7 +2863,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -2902,7 +2904,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -3104,7 +3106,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -3145,7 +3147,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -3347,7 +3349,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -3388,7 +3390,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -3622,7 +3624,7 @@ class _$_AddCart implements _AddCart {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -3663,7 +3665,7 @@ class _$_AddCart implements _AddCart {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -3776,6 +3778,7 @@ abstract class _$UpdateCartCopyWith<$Res> {
   factory _$UpdateCartCopyWith(
           _UpdateCart value, $Res Function(_UpdateCart) then) =
       __$UpdateCartCopyWithImpl<$Res>;
+  $Res call({String note});
 }
 
 /// @nodoc
@@ -3787,25 +3790,49 @@ class __$UpdateCartCopyWithImpl<$Res> extends _$OrderEventCopyWithImpl<$Res>
 
   @override
   _UpdateCart get _value => super._value as _UpdateCart;
+
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_UpdateCart(
+      note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_UpdateCart implements _UpdateCart {
-  const _$_UpdateCart();
+  const _$_UpdateCart(this.note);
+
+  @override
+  final String note;
 
   @override
   String toString() {
-    return 'OrderEvent.updateCart()';
+    return 'OrderEvent.updateCart(note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UpdateCart);
+    return identical(this, other) ||
+        (other is _UpdateCart &&
+            (identical(other.note, note) ||
+                const DeepCollectionEquality().equals(other.note, note)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(note);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateCartCopyWith<_UpdateCart> get copyWith =>
+      __$UpdateCartCopyWithImpl<_UpdateCart>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3833,7 +3860,7 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -3851,7 +3878,7 @@ class _$_UpdateCart implements _UpdateCart {
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
   }) {
-    return updateCart();
+    return updateCart(note);
   }
 
   @override
@@ -3874,7 +3901,7 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -3890,7 +3917,7 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult orElse(),
   }) {
     if (updateCart != null) {
-      return updateCart();
+      return updateCart(note);
     }
     return orElse();
   }
@@ -3970,7 +3997,12 @@ class _$_UpdateCart implements _UpdateCart {
 }
 
 abstract class _UpdateCart implements OrderEvent {
-  const factory _UpdateCart() = _$_UpdateCart;
+  const factory _UpdateCart(String note) = _$_UpdateCart;
+
+  String get note => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$UpdateCartCopyWith<_UpdateCart> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -4070,7 +4102,7 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -4111,7 +4143,7 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -4279,7 +4311,7 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -4320,7 +4352,7 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -4516,7 +4548,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -4557,7 +4589,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -4724,7 +4756,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -4765,7 +4797,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -4927,7 +4959,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -4968,7 +5000,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -5155,7 +5187,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -5196,7 +5228,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -5397,7 +5429,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -5438,7 +5470,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -5606,7 +5638,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -5647,7 +5679,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -5844,7 +5876,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -5885,7 +5917,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -6053,7 +6085,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -6094,7 +6126,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -6291,7 +6323,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -6332,7 +6364,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
@@ -6501,7 +6533,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)
         addCart,
-    required TResult Function() updateCart,
+    required TResult Function(String note) updateCart,
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
@@ -6542,7 +6574,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(CreateUpdateCartSessionItemParam request,
             DetailOutletDataResponse outlet, String salesType)?
         addCart,
-    TResult Function()? updateCart,
+    TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
