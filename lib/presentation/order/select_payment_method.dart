@@ -67,19 +67,19 @@ class SelectPaymentMethodScreen extends StatelessWidget {
     return BlocProvider<CreditBloc>(
         create: (context) => getIt<CreditBloc>()..add(CreditEvent.started()),
         child: BlocBuilder<CreditBloc, CreditState>(builder: (context, state) {
-          return state.maybeMap(loaded: (r) {
-            final userBalance = r.userBalance
-                .getOrElse(() => UserBalance(username: "", balance: "0"));
-            String tmpBalance = Utils.formatRupiah(userBalance.balance);
-            balance(userBalance);
-            return Text("Rp. " + tmpBalance,
+          return state.userBalance.fold(() {
+            balance(UserBalance(username: "", balance: "0"));
+            return Text("Rp. 0",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
                     fontSize: 14));
-          }, orElse: () {
-            balance(UserBalance(username: "", balance: "0"));
-            return Text("Rp. 0",
+          }, (r) {
+            final userBalance =
+                r.getOrElse(() => UserBalance(username: "", balance: "0"));
+            String tmpBalance = Utils.formatRupiah(userBalance.balance);
+            balance(userBalance);
+            return Text("Rp. " + tmpBalance,
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.normal,

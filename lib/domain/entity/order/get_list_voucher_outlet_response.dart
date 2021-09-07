@@ -13,8 +13,7 @@ String emptyToJson(GetListVoucherOutletResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class GetListVoucherOutletResponse
-    with _$GetListVoucherOutletResponse {
+class GetListVoucherOutletResponse with _$GetListVoucherOutletResponse {
   const factory GetListVoucherOutletResponse({
     required StatusResponse response,
     required List<GetListVoucherOutletDataResponse> data,
@@ -26,8 +25,7 @@ abstract class GetListVoucherOutletResponse
 }
 
 @freezed
-abstract class GetListVoucherOutletDataResponse
-    with _$GetListVoucherOutletDataResponse {
+class GetListVoucherOutletDataResponse with _$GetListVoucherOutletDataResponse {
   const factory GetListVoucherOutletDataResponse({
     required String name,
     required String code,

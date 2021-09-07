@@ -71,6 +71,8 @@ class Endpoints {
   static const String urlDeliveryInquiry = "/forward?r=deliveryinquiryv2";
 
   // transaction
+  static const String urlGetTransactionPending =
+      "/forward?r=transactionpending";
   static const String urlGetTransactionHistory =
       "/forward?r=transactionhistory";
   static const String urlGetTransaction = "/forward?r=transactionmobile";
@@ -78,6 +80,7 @@ class Endpoints {
   static const String urlAcceptTransaction = "/forward?r=donetransaction";
   static const String urlOngoingTransaction = "/forward?r=ongoingtransaction";
   static const String urlAddFavoriteTransaction = "/forward?r=addFavorite";
+  static const String urlGetCancelReasons = "/user/cancel/reasons?lang=";
 
   static String get devUrl {
     Box box = Hive.box('settings');

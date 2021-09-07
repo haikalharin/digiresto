@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-// To parse this JSON data, do
-//
-//     final empty = emptyFromJson(jsonString);
-
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,7 +12,7 @@ DeliveryMethodResponse emptyFromJson(String str) =>
 String emptyToJson(DeliveryMethodResponse data) => json.encode(data.toJson());
 
 @freezed
-abstract class DeliveryMethodResponse with _$DeliveryMethodResponse {
+class DeliveryMethodResponse with _$DeliveryMethodResponse {
   const factory DeliveryMethodResponse({
     required StatusResponse response,
     required List<DeliveryMethodDataResponse> data,
@@ -28,7 +24,7 @@ abstract class DeliveryMethodResponse with _$DeliveryMethodResponse {
 }
 
 @freezed
-abstract class DeliveryMethodDataResponse with _$DeliveryMethodDataResponse {
+class DeliveryMethodDataResponse with _$DeliveryMethodDataResponse {
   const factory DeliveryMethodDataResponse({
     required String provider,
     required String name,
@@ -41,8 +37,7 @@ abstract class DeliveryMethodDataResponse with _$DeliveryMethodDataResponse {
 }
 
 @freezed
-abstract class DeliveryMethodDataParamResponse
-    with _$DeliveryMethodDataParamResponse {
+class DeliveryMethodDataParamResponse with _$DeliveryMethodDataParamResponse {
   const factory DeliveryMethodDataParamResponse({
     required String? provider,
     required String? price,
@@ -56,7 +51,7 @@ abstract class DeliveryMethodDataParamResponse
 }
 
 @freezed
-abstract class DeliveryMethodDataShipmentMethodResponse
+class DeliveryMethodDataShipmentMethodResponse
     with _$DeliveryMethodDataShipmentMethodResponse {
   const factory DeliveryMethodDataShipmentMethodResponse({
     required String name,

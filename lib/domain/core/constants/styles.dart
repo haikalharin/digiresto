@@ -106,5 +106,35 @@ class Styles {
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold);
 
   static TextStyle dialogSubtitleStyle = GoogleFonts.poppins(
-      color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle profileNameStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+
+  static TextStyle profileDetailStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle profileMenuLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w700);
+
+  static TextStyle outletNameStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 16, fontWeight: FontWeight.w700);
+
+  static TextStyle receiptCodeStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w700);
+
+  static TextStyle menuItemLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemQtyStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemNoteStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemPriceStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w700);
 }

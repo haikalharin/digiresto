@@ -12,7 +12,7 @@ CheckoutResponse emptyFromJson(String str) =>
 String emptyToJson(CheckoutResponse data) => json.encode(data.toJson());
 
 @freezed
-abstract class CheckoutResponse with _$CheckoutResponse {
+class CheckoutResponse with _$CheckoutResponse {
   const factory CheckoutResponse({
     required StatusResponse response,
     required CheckoutDataResponse? data,
@@ -24,7 +24,7 @@ abstract class CheckoutResponse with _$CheckoutResponse {
 }
 
 @freezed
-abstract class CheckoutDataResponse with _$CheckoutDataResponse {
+class CheckoutDataResponse with _$CheckoutDataResponse {
   const factory CheckoutDataResponse({
     required String orderId,
     required dynamic qr,
@@ -38,7 +38,7 @@ abstract class CheckoutDataResponse with _$CheckoutDataResponse {
 }
 
 @freezed
-abstract class CheckoutDataPaymentResponse with _$CheckoutDataPaymentResponse {
+class CheckoutDataPaymentResponse with _$CheckoutDataPaymentResponse {
   const factory CheckoutDataPaymentResponse({
     required String? url,
     required String? deeplink,
@@ -54,8 +54,7 @@ abstract class CheckoutDataPaymentResponse with _$CheckoutDataPaymentResponse {
 }
 
 @freezed
-abstract class CheckoutDataPaymentCodeResponse
-    with _$CheckoutDataPaymentCodeResponse {
+class CheckoutDataPaymentCodeResponse with _$CheckoutDataPaymentCodeResponse {
   const factory CheckoutDataPaymentCodeResponse({
     required String? title,
     required int? amount,

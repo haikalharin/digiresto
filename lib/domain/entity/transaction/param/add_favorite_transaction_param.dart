@@ -12,7 +12,7 @@ String emptyToJson(AddFavoriteTransactionParam data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class AddFavoriteTransactionParam with _$AddFavoriteTransactionParam {
+class AddFavoriteTransactionParam with _$AddFavoriteTransactionParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AddFavoriteTransactionParam({
     required AddFavoriteTransactionQueryParam queryString,
@@ -24,8 +24,7 @@ abstract class AddFavoriteTransactionParam with _$AddFavoriteTransactionParam {
 }
 
 @freezed
-abstract class AddFavoriteTransactionBodyParam
-    with _$AddFavoriteTransactionBodyParam {
+class AddFavoriteTransactionBodyParam with _$AddFavoriteTransactionBodyParam {
   const factory AddFavoriteTransactionBodyParam({
     required String receiptCode,
   }) = _AddFavoriteTransactionBodyParam;
@@ -35,8 +34,7 @@ abstract class AddFavoriteTransactionBodyParam
 }
 
 @freezed
-abstract class AddFavoriteTransactionQueryParam
-    with _$AddFavoriteTransactionQueryParam {
+class AddFavoriteTransactionQueryParam with _$AddFavoriteTransactionQueryParam {
   const factory AddFavoriteTransactionQueryParam() =
       _AddFavoriteTransactionQueryParam;
 

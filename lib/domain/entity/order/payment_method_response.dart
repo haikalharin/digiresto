@@ -16,7 +16,7 @@ PaymentMethodResponse emptyFromJson(String str) =>
 String emptyToJson(PaymentMethodResponse data) => json.encode(data.toJson());
 
 @freezed
-abstract class PaymentMethodResponse with _$PaymentMethodResponse {
+class PaymentMethodResponse with _$PaymentMethodResponse {
   const factory PaymentMethodResponse({
     required StatusResponse response,
     required List<PaymentMethodDataResponse> data,
@@ -28,7 +28,7 @@ abstract class PaymentMethodResponse with _$PaymentMethodResponse {
 }
 
 @freezed
-abstract class PaymentMethodDataResponse with _$PaymentMethodDataResponse {
+class PaymentMethodDataResponse with _$PaymentMethodDataResponse {
   const factory PaymentMethodDataResponse({
     required String id,
     required String title,

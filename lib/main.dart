@@ -4,6 +4,7 @@ import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
+import 'package:digiresto/simple_bloc_delegate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Firebase.initializeApp();
   await configureInjection(env);
-  // Bloc.observer = getIt<SimpleBlocObserver>();
+  Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(InitiateProvider());
 }
 

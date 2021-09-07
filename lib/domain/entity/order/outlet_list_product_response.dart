@@ -13,7 +13,7 @@ String emptyToJson(OutletListProductResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class OutletListProductResponse with _$OutletListProductResponse {
+class OutletListProductResponse with _$OutletListProductResponse {
   const factory OutletListProductResponse({
     required StatusResponse response,
     required List<OutletListProductDataResponse> data,
@@ -25,7 +25,7 @@ abstract class OutletListProductResponse with _$OutletListProductResponse {
 }
 
 @freezed
-abstract class OutletListProductDataModifierGroupResponse
+class OutletListProductDataModifierGroupResponse
     with _$OutletListProductDataModifierGroupResponse {
   const factory OutletListProductDataModifierGroupResponse({
     required String name,
@@ -44,7 +44,7 @@ abstract class OutletListProductDataModifierGroupResponse
 }
 
 @freezed
-abstract class OutletListProductDataSubModifierGroupResponse
+class OutletListProductDataSubModifierGroupResponse
     with _$OutletListProductDataSubModifierGroupResponse {
   const factory OutletListProductDataSubModifierGroupResponse({
     required String code,
@@ -71,8 +71,7 @@ abstract class OutletListProductDataSubModifierGroupResponse
 }
 
 @freezed
-abstract class OutletListProductDataResponse
-    with _$OutletListProductDataResponse {
+class OutletListProductDataResponse with _$OutletListProductDataResponse {
   const factory OutletListProductDataResponse({
     required String code,
     required String sku,
@@ -99,7 +98,7 @@ abstract class OutletListProductDataResponse
 }
 
 @freezed
-abstract class OutletListProductDataVariantResponse
+class OutletListProductDataVariantResponse
     with _$OutletListProductDataVariantResponse {
   const factory OutletListProductDataVariantResponse({
     required String code,

@@ -1,4 +1,5 @@
 // import 'package:digiresto/presentation/home/add_location.dart';
+import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
 import 'package:digiresto/presentation/address/map/add_location.dart';
@@ -22,6 +23,9 @@ import 'package:digiresto/presentation/order/payment_web_view.dart';
 import 'package:digiresto/presentation/order/select_delivery_method.dart';
 import 'package:digiresto/presentation/order/select_payment_method.dart';
 import 'package:digiresto/presentation/order/select_voucher_method.dart';
+import 'package:digiresto/presentation/profile/edit_profile/edit_profile_page.dart';
+import 'package:digiresto/presentation/profile/order_history/order_history_page.dart';
+import 'package:digiresto/presentation/profile/profile_page.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
 import 'package:get/route_manager.dart';
 
@@ -30,7 +34,10 @@ class Routers {
   static const String intro = '/intro';
   static const String auth = '/auth';
   static const String home = '/home';
-  static const String login = 'login';
+  static const String login = '/login';
+  static const String profile = '/profile';
+  static const String editProfile = '/edit_profile';
+  static const String orderHistory = '/order_history';
   static const String homePromoUrl = '/home_promo_url';
   static const String homeAllPromo = '/home_all_promo';
   static const String homeAllAddress = '/home_all_address';
@@ -82,6 +89,18 @@ class Routers {
     GetPage(
       name: Routers.home,
       page: () => HomeScreen(),
+    ),
+    GetPage(
+      name: Routers.profile,
+      page: () => ProfilePage(),
+    ),
+    GetPage(
+      name: Routers.editProfile,
+      page: () => EditProfilePage(Get.arguments as UserProfile),
+    ),
+    GetPage(
+      name: Routers.orderHistory,
+      page: () => OrderHistoryPage(),
     ),
     GetPage(
         name: Routers.verifyOtp,

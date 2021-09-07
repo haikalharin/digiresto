@@ -13,7 +13,7 @@ UpdateCartSessionParam emptyFromJson(String str) =>
 String emptyToJson(UpdateCartSessionParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
+class UpdateCartSessionParam with _$UpdateCartSessionParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory UpdateCartSessionParam({
     required UpdateCartSessionQueryParam queryString,
@@ -25,7 +25,7 @@ abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
 }
 
 @freezed
-abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
+class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
   const factory UpdateCartSessionBodyParam({
     required String? paymentType,
     required String? customerNote,
@@ -43,7 +43,7 @@ abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
 }
 
 @freezed
-abstract class UpdateCartSessionBodyDeliveryParam
+class UpdateCartSessionBodyDeliveryParam
     with _$UpdateCartSessionBodyDeliveryParam {
   const factory UpdateCartSessionBodyDeliveryParam({
     required String provider,
@@ -59,7 +59,7 @@ abstract class UpdateCartSessionBodyDeliveryParam
 }
 
 @freezed
-abstract class UpdateCartSessionQueryParam with _$UpdateCartSessionQueryParam {
+class UpdateCartSessionQueryParam with _$UpdateCartSessionQueryParam {
   const factory UpdateCartSessionQueryParam({
     required String sessionId,
   }) = _UpdateCartSessionQueryParam;

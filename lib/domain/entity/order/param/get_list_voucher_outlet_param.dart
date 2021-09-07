@@ -12,7 +12,7 @@ String emptyToJson(GetListVoucherOutletParam data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class GetListVoucherOutletParam with _$GetListVoucherOutletParam {
+class GetListVoucherOutletParam with _$GetListVoucherOutletParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetListVoucherOutletParam({
     required GetListVoucherOutletQueryParam queryString,
@@ -24,8 +24,7 @@ abstract class GetListVoucherOutletParam with _$GetListVoucherOutletParam {
 }
 
 @freezed
-abstract class GetListVoucherOutletBodyParam
-    with _$GetListVoucherOutletBodyParam {
+class GetListVoucherOutletBodyParam with _$GetListVoucherOutletBodyParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetListVoucherOutletBodyParam() =
       _GetListVoucherOutletBodyParam;
@@ -35,8 +34,7 @@ abstract class GetListVoucherOutletBodyParam
 }
 
 @freezed
-abstract class GetListVoucherOutletQueryParam
-    with _$GetListVoucherOutletQueryParam {
+class GetListVoucherOutletQueryParam with _$GetListVoucherOutletQueryParam {
   const factory GetListVoucherOutletQueryParam({
     required String outletId,
     required String merchantId,

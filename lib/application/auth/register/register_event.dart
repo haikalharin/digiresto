@@ -18,4 +18,7 @@ class RegisterEvent with _$RegisterEvent {
     required Function onRetypePinError,
   }) = _OnNext;
   const factory RegisterEvent.toggleAgree() = _ToggleAgree;
+  const factory RegisterEvent.buttonSubmitted({
+    required String phoneNumberStr,
+  }) = _ButtonSubmitted;
 }

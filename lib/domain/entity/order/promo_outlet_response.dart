@@ -12,7 +12,7 @@ PromoOutletResponse emptyFromJson(String str) =>
 String emptyToJson(PromoOutletResponse data) => json.encode(data.toJson());
 
 @freezed
-abstract class PromoOutletResponse with _$PromoOutletResponse {
+class PromoOutletResponse with _$PromoOutletResponse {
   const factory PromoOutletResponse({
     required StatusResponse response,
     required List<PromoOutletDataResponse> data,
@@ -24,7 +24,7 @@ abstract class PromoOutletResponse with _$PromoOutletResponse {
 }
 
 @freezed
-abstract class PromoOutletDataResponse with _$PromoOutletDataResponse {
+class PromoOutletDataResponse with _$PromoOutletDataResponse {
   const factory PromoOutletDataResponse({
     required String id,
     required String banner,
@@ -42,8 +42,7 @@ abstract class PromoOutletDataResponse with _$PromoOutletDataResponse {
 }
 
 @freezed
-abstract class PromoOutletDataVoucherResponse
-    with _$PromoOutletDataVoucherResponse {
+class PromoOutletDataVoucherResponse with _$PromoOutletDataVoucherResponse {
   const factory PromoOutletDataVoucherResponse({
     required String code,
   }) = _PromoOutletDataVoucherResponse;

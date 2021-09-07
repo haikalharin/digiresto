@@ -12,8 +12,7 @@ String emptyToJson(OutletProductCategoryResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class OutletProductCategoryResponse
-    with _$OutletProductCategoryResponse {
+class OutletProductCategoryResponse with _$OutletProductCategoryResponse {
   const factory OutletProductCategoryResponse({
     required OutletProductCategoryStatusResponse response,
     required List<OutletProductCategoryDataResponse> data,
@@ -25,7 +24,7 @@ abstract class OutletProductCategoryResponse
 }
 
 @freezed
-abstract class OutletProductCategoryDataResponse
+class OutletProductCategoryDataResponse
     with _$OutletProductCategoryDataResponse {
   const factory OutletProductCategoryDataResponse({
     required int id,
@@ -40,7 +39,7 @@ abstract class OutletProductCategoryDataResponse
 }
 
 @freezed
-abstract class OutletProductMetaResponse with _$OutletProductMetaResponse {
+class OutletProductMetaResponse with _$OutletProductMetaResponse {
   const factory OutletProductMetaResponse({
     required String version,
   }) = _OutletProductMetaResponse;
@@ -50,7 +49,7 @@ abstract class OutletProductMetaResponse with _$OutletProductMetaResponse {
 }
 
 @freezed
-abstract class OutletProductCategoryStatusResponse
+class OutletProductCategoryStatusResponse
     with _$OutletProductCategoryStatusResponse {
   const factory OutletProductCategoryStatusResponse({
     required String code,

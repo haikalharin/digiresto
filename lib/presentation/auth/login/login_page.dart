@@ -3,7 +3,6 @@ import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/login/widgets/dev_mode_dialog.dart';
-import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
@@ -48,14 +47,6 @@ class LoginForm extends StatelessWidget {
 
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
-        state.otpFailureOrSuccessOption.fold(
-          () => null,
-          (link) => Get.to(
-            ValidateOtpPage(
-              phoneNumber: state.phoneNumber.getOrCrash(),
-            ),
-          ),
-        );
         print(state.isShowDialogShake);
         if (state.isShowDialogShake) {
           if (Get.isDialogOpen == null || Get.isDialogOpen == false) {
@@ -68,17 +59,18 @@ class LoginForm extends StatelessWidget {
                 },
               ),
               cancel: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    side: BorderSide(color: AppColors.mainColor),
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(color: AppColors.mainColor),
-                  )),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  side: BorderSide(color: AppColors.mainColor),
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(color: AppColors.mainColor),
+                ),
+              ),
               confirm: ElevatedButton(
                   onPressed: () {
                     _selectedUrl = _baseUrl;

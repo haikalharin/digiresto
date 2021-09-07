@@ -1,7 +1,7 @@
 part of 'transaction_bloc.dart';
 
 @freezed
-abstract class TransactionState with _$TransactionState {
+class TransactionState with _$TransactionState {
   const factory TransactionState.initial() = _Initial;
   const factory TransactionState.loadInProgress() = _LoadInProgress;
   const factory TransactionState.loadSuccess() = _LoadSuccess;

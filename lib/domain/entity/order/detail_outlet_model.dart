@@ -12,7 +12,7 @@ DetailOutletResponse emptyFromJson(String str) =>
 String emptyToJson(DetailOutletResponse data) => json.encode(data.toJson());
 
 @freezed
-abstract class DetailOutletResponse with _$DetailOutletResponse {
+class DetailOutletResponse with _$DetailOutletResponse {
   const factory DetailOutletResponse({
     required StatusResponse response,
     required DetailOutletDataResponse data,
@@ -24,7 +24,7 @@ abstract class DetailOutletResponse with _$DetailOutletResponse {
 }
 
 @freezed
-abstract class DetailOutletDataResponse with _$DetailOutletDataResponse {
+class DetailOutletDataResponse with _$DetailOutletDataResponse {
   const factory DetailOutletDataResponse({
     required String endpointName,
     required String id,
@@ -53,7 +53,7 @@ abstract class DetailOutletDataResponse with _$DetailOutletDataResponse {
 }
 
 @freezed
-abstract class DetailOutletDataLastUpdateResponse
+class DetailOutletDataLastUpdateResponse
     with _$DetailOutletDataLastUpdateResponse {
   const factory DetailOutletDataLastUpdateResponse({
     required String time,

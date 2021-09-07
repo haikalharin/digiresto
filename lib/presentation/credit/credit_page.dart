@@ -72,6 +72,7 @@ class CreditPage extends StatelessWidget {
       create: (context) => getIt<CreditBloc>()..add(CreditEvent.started()),
       child: BlocBuilder<CreditBloc, CreditState>(
         builder: (context, state) {
+          late final _bloc = BlocProvider.of<CreditBloc>(context);
           return ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -109,9 +110,9 @@ class CreditPage extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
-                            state.maybeMap(
-                              orElse: () => _widgetLoading(),
-                              loaded: (data) => data.userBalance.fold(
+                            state.userBalance.fold(
+                              () => _widgetLoading(),
+                              (data) => data.fold(
                                 (l) => _widgetError(),
                                 (userBalance) => Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,9 +137,15 @@ class CreditPage extends StatelessWidget {
                             ),
                             Container(
                               alignment: Alignment.bottomRight,
-                              child: Icon(
-                                Icons.refresh,
-                                color: AppColors.mainColor,
+                              child: GestureDetector(
+                                onTap: state.userBalance.fold(
+                                    () => null,
+                                    (_) => () => _bloc
+                                        .add(CreditEvent.refreshBalance())),
+                                child: Icon(
+                                  Icons.refresh,
+                                  color: AppColors.mainColor,
+                                ),
                               ),
                             )
                           ],
@@ -170,9 +177,9 @@ class CreditPage extends StatelessWidget {
                     () => SizedBox(
                       width: double.infinity,
                       child: [
-                        state.maybeMap(
-                          orElse: () => _widgetLoading(),
-                          loaded: (data) => data.listTopUpMethod.fold(
+                        state.listTopUpMethod.fold(
+                          () => _widgetLoading(),
+                          (data) => data.fold(
                             (failure) => _widgetError(),
                             (list) => CreditTabView(
                               title: 'Isi Saldo',

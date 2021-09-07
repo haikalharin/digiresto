@@ -11,7 +11,7 @@ GetPromoOutletParam emptyFromJson(String str) =>
 String emptyToJson(GetPromoOutletParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class GetPromoOutletParam with _$GetPromoOutletParam {
+class GetPromoOutletParam with _$GetPromoOutletParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetPromoOutletParam({
     required GetPromoOutletQueryParam queryString,
@@ -23,7 +23,7 @@ abstract class GetPromoOutletParam with _$GetPromoOutletParam {
 }
 
 @freezed
-abstract class GetPromoOutletBodyParam with _$GetPromoOutletBodyParam {
+class GetPromoOutletBodyParam with _$GetPromoOutletBodyParam {
   const factory GetPromoOutletBodyParam() = _GetPromoOutletBodyParam;
 
   factory GetPromoOutletBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -31,7 +31,7 @@ abstract class GetPromoOutletBodyParam with _$GetPromoOutletBodyParam {
 }
 
 @freezed
-abstract class GetPromoOutletQueryParam with _$GetPromoOutletQueryParam {
+class GetPromoOutletQueryParam with _$GetPromoOutletQueryParam {
   const factory GetPromoOutletQueryParam({
     required String location,
     required int page,

@@ -12,8 +12,7 @@ String emptyToJson(GetOutletProductCategoryParam data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class GetOutletProductCategoryParam
-    with _$GetOutletProductCategoryParam {
+class GetOutletProductCategoryParam with _$GetOutletProductCategoryParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletProductCategoryParam({
     required GetOutletProductCategoryQueryParam queryString,
@@ -25,7 +24,7 @@ abstract class GetOutletProductCategoryParam
 }
 
 @freezed
-abstract class GetOutletProductCategoryBodyParam
+class GetOutletProductCategoryBodyParam
     with _$GetOutletProductCategoryBodyParam {
   const factory GetOutletProductCategoryBodyParam() =
       _GetOutletProductCategoryBodyParam;
@@ -36,7 +35,7 @@ abstract class GetOutletProductCategoryBodyParam
 }
 
 @freezed
-abstract class GetOutletProductCategoryQueryParam
+class GetOutletProductCategoryQueryParam
     with _$GetOutletProductCategoryQueryParam {
   const factory GetOutletProductCategoryQueryParam({
     required String outletId,

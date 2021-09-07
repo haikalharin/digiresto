@@ -4,7 +4,7 @@ part 'status_api_response.freezed.dart';
 part 'status_api_response.g.dart';
 
 @freezed
-abstract class MetaResponse with _$MetaResponse {
+class MetaResponse with _$MetaResponse {
   const factory MetaResponse({
     required String version,
   }) = _MetaResponse;
@@ -14,7 +14,7 @@ abstract class MetaResponse with _$MetaResponse {
 }
 
 @freezed
-abstract class StatusResponse with _$StatusResponse {
+class StatusResponse with _$StatusResponse {
   const factory StatusResponse({
     required String code,
     required String status,
