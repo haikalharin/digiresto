@@ -488,39 +488,41 @@ class _StaticBanner extends GetView<HomeContentViewController> {
             ],
           ),
         ),
-        Container(
-          padding: EdgeInsets.only(left: 10, top: 5, right: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+        Obx(() => Container(
+              padding: EdgeInsets.only(left: 10, top: 5, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  for (int i = 0; i < controller.listStaticBanner.length; i++)
-                    i == controller.slideIndex.value
-                        ? _buildPageIndicator(true)
-                        : _buildPageIndicator(false),
+                  Row(
+                    children: [
+                      for (int i = 0;
+                          i < controller.listStaticBanner.length;
+                          i++)
+                        i == controller.slideIndex.value
+                            ? _buildPageIndicator(true)
+                            : _buildPageIndicator(false),
+                    ],
+                  ),
+                  //hidden see all promo request by user
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         "Lihat semua promo",
+                  //         style: AppFont.textRed14Bold,
+                  //       ),
+                  //       SizedBox(width: 9),
+                  //       Image(
+                  //         image: new AssetImage(AppAssets.iconForwardRed),
+                  //         height: 12,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                 ],
               ),
-              //hidden see all promo request by user
-              // GestureDetector(
-              //   onTap: () {},
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         "Lihat semua promo",
-              //         style: AppFont.textRed14Bold,
-              //       ),
-              //       SizedBox(width: 9),
-              //       Image(
-              //         image: new AssetImage(AppAssets.iconForwardRed),
-              //         height: 12,
-              //       ),
-              //     ],
-              //   ),
-              // )
-            ],
-          ),
-        )
+            ))
       ],
     );
   }
