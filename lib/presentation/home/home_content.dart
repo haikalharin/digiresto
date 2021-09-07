@@ -455,10 +455,11 @@ class _StaticBanner extends GetView<HomeContentViewController> {
                     child: Image(
                       image: data.promoBanner?.substring(1, 4) == 'data:'
                           ? MemoryImage(
-                              Base64Decoder().convert(data.promoBanner!))
-                          : NetworkImage(data.promoBanner!) as ImageProvider,
+                              Base64Decoder().convert(data.promoBanner!),
+                              scale: 0.5)
+                          : NetworkImage(data.promoBanner!, scale: 0.5)
+                              as ImageProvider,
                       fit: BoxFit.fill,
-                      height: 150,
                       alignment: Alignment.topCenter,
                     ),
                   )
@@ -474,7 +475,7 @@ class _StaticBanner extends GetView<HomeContentViewController> {
           padding: EdgeInsets.only(
             bottom: 10,
           ),
-          height: MediaQuery.of(Get.context!).size.height / 3 - 20,
+          height: Get.height * 0.25,
           width: double.infinity,
           child: PageView(
             scrollDirection: Axis.horizontal,
@@ -658,7 +659,7 @@ class _FoodRowItem extends GetView<HomeContentViewController> {
             children: <Widget>[
               Image(
                 image: new AssetImage(imageAsset),
-                height: 60,
+                height: 72,
               ),
               Text(
                 label,
