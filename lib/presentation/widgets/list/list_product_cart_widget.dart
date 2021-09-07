@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -210,8 +211,8 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                       MediaQuery.of(context).size.width - 200,
                                   child: Container(
                                     padding: EdgeInsets.all(5),
-                                    height: 40,
-                                    child: RaisedButton(
+                                    height: 35,
+                                    child: ElevatedButton(
                                       onPressed: () {
                                         print(productCart);
                                         print(widget.orderType);
@@ -221,20 +222,21 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                           widget.orderType,
                                         );
                                       },
-                                      color: AppColors.red,
-                                      child: Text("Ubah",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(25.0),
-                                        side: BorderSide(
-                                          width: 1,
-                                          color: AppColors.redYoung,
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.redD12B34,
+                                        shape: new RoundedRectangleBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(17.0),
+                                          side: BorderSide(
+                                            width: 1,
+                                            color: AppColors.red,
+                                          ),
                                         ),
                                       ),
+                                      child: Text('Ubah',
+                                          style: AppFont.textBlack10SemiBold
+                                              .copyWith(
+                                                  color: AppColors.white)),
                                     ),
                                   ),
                                 ),

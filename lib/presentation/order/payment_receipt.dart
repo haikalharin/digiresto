@@ -5,6 +5,7 @@ import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
@@ -172,150 +173,154 @@ class PaymentReceiptScreen extends StatelessWidget {
                                           AppAssets.imageTransactionReceipt),
                                       fit: BoxFit.fitWidth)),
                               //padding: EdgeInsets.all(20),
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      _transaction?.outletName ?? '',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text('Kode Struk:'),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      _transaction!.receiptCode,
-                                      style: TextStyle(
-                                        color: AppColors.red,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text('Waktu:'),
-                                    SizedBox(height: 5),
-                                    Text(df.format(isoParser.parse(_transaction!
-                                        .deviceTimestamp
-                                        .toString()))),
-                                    SizedBox(height: 5),
-                                    Divider(height: 1, color: Colors.black),
-                                    SizedBox(height: 5),
-                                    ListView.separated(
-                                      shrinkWrap: true,
-                                      itemCount: _transaction!.items.length,
-                                      itemBuilder: (context, index) => _lr(
-                                        Text(
-                                            '${_transaction!.items[index].title} ${_transaction!.items[index].qty}x'),
-                                        Text(
-                                          Rupiah.format(_transaction!
-                                              .items[index].subtotal
-                                              .toString()),
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(height: 5),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Divider(height: 1, color: Colors.black),
-                                    SizedBox(height: 5),
-                                    _lr(
-                                      Text('Subtotal'),
+                              child: Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    children: [
                                       Text(
-                                        Rupiah.format(
-                                            _transaction!.subtotal.toString()),
+                                        _transaction?.outletName ?? '',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
+                                          fontSize: 18,
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    ListView.separated(
-                                      shrinkWrap: true,
-                                      itemCount: _transaction!
-                                              .taxesAndServices?.length ??
-                                          0,
-                                      itemBuilder: (context, index) => _lr(
-                                        Text(_transaction!
-                                            .taxesAndServices![index]['name']),
-                                        Text(
-                                          Rupiah.format(_transaction!
-                                              .taxesAndServices![index]
-                                                  ['amount']
-                                              .toString()),
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(height: 5),
-                                    ),
-                                    SizedBox(height: 5),
-                                    if (_transaction!.salesType == 'DELIVERY')
-                                      _lr(
-                                        Text('Delivery'),
-                                        Text(
-                                          Rupiah.format(_transaction!
-                                              .deliveryAmount
-                                              .toString()),
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    if (_transaction!.salesType == 'DELIVERY')
                                       SizedBox(height: 5),
-                                    SizedBox(height: 5),
-                                    if (_transaction!.roundAmount != 0)
+                                      Text('Kode Struk:'),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        _transaction!.receiptCode,
+                                        style: TextStyle(
+                                          color: AppColors.red,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text('Waktu:'),
+                                      SizedBox(height: 5),
+                                      Text(df.format(isoParser.parse(
+                                          _transaction!.deviceTimestamp
+                                              .toString()))),
+                                      SizedBox(height: 5),
+                                      Divider(height: 1, color: Colors.black),
+                                      SizedBox(height: 5),
+                                      ListView.separated(
+                                        shrinkWrap: true,
+                                        itemCount: _transaction!.items.length,
+                                        itemBuilder: (context, index) => _lr(
+                                          Text(
+                                              '${_transaction!.items[index].title} ${_transaction!.items[index].qty}x'),
+                                          Text(
+                                            Rupiah.format(_transaction!
+                                                .items[index].subtotal
+                                                .toString()),
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        separatorBuilder: (context, index) =>
+                                            SizedBox(height: 5),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Divider(height: 1, color: Colors.black),
+                                      SizedBox(height: 5),
                                       _lr(
-                                        Text('Rounding'),
+                                        Text('Subtotal'),
                                         Text(
-                                          Rupiah.format(_transaction!
-                                              .roundAmount
+                                          Rupiah.format(_transaction!.subtotal
                                               .toString()),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
-                                    if (_transaction!.roundAmount != 0)
                                       SizedBox(height: 5),
-                                    Divider(height: 1, color: Colors.black),
-                                    SizedBox(height: 5),
-                                    _lr(
-                                      Text(
-                                        'Total Payment',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                      ListView.separated(
+                                        shrinkWrap: true,
+                                        itemCount: _transaction!
+                                                .taxesAndServices?.length ??
+                                            0,
+                                        itemBuilder: (context, index) => _lr(
+                                          Text(_transaction!
+                                                  .taxesAndServices![index]
+                                              ['name']),
+                                          Text(
+                                            Rupiah.format(_transaction!
+                                                .taxesAndServices![index]
+                                                    ['amount']
+                                                .toString()),
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        separatorBuilder: (context, index) =>
+                                            SizedBox(height: 5),
+                                      ),
+                                      SizedBox(height: 5),
+                                      if (_transaction!.salesType == 'DELIVERY')
+                                        _lr(
+                                          Text('Delivery'),
+                                          Text(
+                                            Rupiah.format(_transaction!
+                                                .deliveryAmount
+                                                .toString()),
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      if (_transaction!.salesType == 'DELIVERY')
+                                        SizedBox(height: 5),
+                                      SizedBox(height: 5),
+                                      if (_transaction!.roundAmount != 0)
+                                        _lr(
+                                          Text('Rounding'),
+                                          Text(
+                                            Rupiah.format(_transaction!
+                                                .roundAmount
+                                                .toString()),
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      if (_transaction!.roundAmount != 0)
+                                        SizedBox(height: 5),
+                                      Divider(height: 1, color: Colors.black),
+                                      SizedBox(height: 5),
+                                      _lr(
+                                        Text(
+                                          'Total Payment',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          Rupiah.format(_transaction!
+                                              .finalAmount
+                                              .toString()),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
+                                      SizedBox(height: 5),
+                                      Divider(height: 1, color: Colors.black),
+                                      SizedBox(height: 5),
                                       Text(
-                                        Rupiah.format(_transaction!.finalAmount
-                                            .toString()),
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        'Terima kasih telah melakukan pemesanan, kami akan segera memproses pesanan anda.',
+                                        textAlign: TextAlign.center,
                                       ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Divider(height: 1, color: Colors.black),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      'Terima kasih telah melakukan pemesanan, kami akan segera memproses pesanan anda.',
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    SizedBox(height: 15),
-                                    Text(
-                                      'Silahkan simpan bukti pesanan ini untuk ditunjukkan pada pihak resto.',
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
+                                      SizedBox(height: 15),
+                                      Text(
+                                        'Silahkan simpan bukti pesanan ini untuk ditunjukkan pada pihak resto.',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             )
@@ -332,7 +337,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                     width: double.infinity,
                     child: Column(
                       children: [
-                        if (_receiptStatusDesc == 'process')
+                        if (_receiptStatusDesc == 'process' ||
+                            _receiptStatusDesc == 'waiting')
                           ElevatedButton(
                             onPressed: () {
                               Get.context!.read<TransactionBloc>().add(
@@ -418,7 +424,9 @@ class PaymentReceiptScreen extends StatelessWidget {
             centerTitle: true,
             backgroundColor: AppColors.red,
           ),
-          body: Container(color: Colors.grey[200]),
+          body: StackWithProgress(
+              isLoading: true,
+              children: [Expanded(child: Container(color: Colors.grey[200]))]),
         );
       }
     });

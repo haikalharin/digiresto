@@ -178,22 +178,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   // ),
                   Row(
                     children: [
-                      Text("Catatan",
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            //color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          )),
+                      Text("Catatan", style: AppFont.textBlack14Bold),
                       Container(
                         padding: EdgeInsets.only(left: 5),
-                        child: Text("opsional",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: Colors.black87,
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                            )),
+                        child: Text("opsional", style: AppFont.textBlack8Light),
                       ),
                     ],
                   ),
@@ -489,54 +477,45 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Metode Pembayaran",
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                //color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              )),
+                              style: AppFont.textBlack14Bold),
                           if (title != null)
-                            Text(title,
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  //color: Colors.white,
-                                  fontSize: 14,
-                                )),
+                            Text(title, style: AppFont.textBlack12Light),
                         ],
                       ),
                     ],
                   ),
                   if (controller.paymentMethod.value != null)
-                    ElevatedButton(
-                        onPressed: () {
-                          Get.toNamed(Routers.selectPaymentMethod,
-                                  arguments:
-                                      OrderSelectPaymentMethodViewArgument(
-                                          outlet:
-                                              controller.detailOutlet.value!,
-                                          salestype:
-                                              controller.salesType.value!))!
-                              .then((value) {
-                            Get.context!
-                                .read<OrderBloc>()
-                                .add(OrderEvent.getPaymentMethodID());
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                    SizedBox(
+                      height: 20,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(Routers.selectPaymentMethod,
+                                    arguments:
+                                        OrderSelectPaymentMethodViewArgument(
+                                            outlet:
+                                                controller.detailOutlet.value!,
+                                            salestype:
+                                                controller.salesType.value!))!
+                                .then((value) {
+                              Get.context!
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.getPaymentMethodID());
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.redD12B34,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(17.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
                             ),
                           ),
-                        ),
-                        child: Text('Ubah',
-                            style: TextStyle(
-                              color: AppColors.red,
-                              fontWeight: FontWeight.bold,
-                            )))
+                          child: Text('Ubah',
+                              style: AppFont.textBlack10SemiBold
+                                  .copyWith(color: AppColors.white))),
+                    )
                   else
                     ElevatedButton(
                         onPressed: () {
@@ -612,53 +591,44 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Voucher Saya",
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                //color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              )),
+                          Text("Voucher Saya", style: AppFont.textBlack14Bold),
                           if (controller.voucherMethod.value != null)
                             Text(controller.voucherMethod.value?.name ?? "",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  //color: Colors.white,
-                                  fontSize: 14,
-                                )),
+                                style: AppFont.textBlack12Light),
                         ],
                       ),
                     ],
                   ),
                   if (controller.voucherMethod.value != null)
-                    ElevatedButton(
-                        onPressed: () {
-                          Get.toNamed(Routers.selectVoucherVoucher,
-                                  arguments:
-                                      OrderSelectVoucherMethodViewArgument(
-                                          outlet:
-                                              controller.detailOutlet.value!))!
-                              .then((value) {
-                            Get.context!
-                                .read<OrderBloc>()
-                                .add(OrderEvent.getVoucherMethodID());
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                    SizedBox(
+                      height: 20,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(Routers.selectVoucherVoucher,
+                                    arguments:
+                                        OrderSelectVoucherMethodViewArgument(
+                                            outlet: controller
+                                                .detailOutlet.value!))!
+                                .then((value) {
+                              Get.context!
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.getVoucherMethodID());
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.redD12B34,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(17.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
                             ),
                           ),
-                        ),
-                        child: Text('Ubah',
-                            style: TextStyle(
-                              color: AppColors.red,
-                              fontWeight: FontWeight.bold,
-                            )))
+                          child: Text('Ubah',
+                              style: AppFont.textBlack10SemiBold
+                                  .copyWith(color: AppColors.white))),
+                    )
                   else
                     ElevatedButton(
                         onPressed: () {
@@ -731,60 +701,50 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Pengiriman",
-                              style: TextStyle(
-                                fontFamily: "roboto",
-                                //color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              )),
+                          Text("Pengiriman", style: AppFont.textBlack14Bold),
                           if (controller.deliveryMethod.value != null)
                             Text(
                                 controller.deliveryMethod.value?.provider ?? "",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  //color: Colors.white,
-                                  fontSize: 14,
-                                )),
+                                style: AppFont.textBlack12Light),
                         ],
                       ),
                     ],
                   ),
                   if (controller.deliveryMethod.value != null)
-                    ElevatedButton(
-                        onPressed: () {
-                          Get.toNamed(Routers.selectDeliveryMethod,
-                                  arguments:
-                                      OrderSelectDeliveryMethodViewArgument(
-                                          outlet:
-                                              controller.detailOutlet.value!,
-                                          itemWeight: controller
-                                              .cartSession
-                                              .value!
-                                              .transactionData
-                                              .itemWeight))!
-                              .then((value) {
-                            Get.context!
-                                .read<OrderBloc>()
-                                .add(OrderEvent.getDeliveryMethodID());
-                          });
-                          ;
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                    SizedBox(
+                      height: 20,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(Routers.selectDeliveryMethod,
+                                    arguments:
+                                        OrderSelectDeliveryMethodViewArgument(
+                                            outlet:
+                                                controller.detailOutlet.value!,
+                                            itemWeight: controller
+                                                .cartSession
+                                                .value!
+                                                .transactionData
+                                                .itemWeight))!
+                                .then((value) {
+                              Get.context!
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.getDeliveryMethodID());
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.redD12B34,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(17.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
                             ),
                           ),
-                        ),
-                        child: Text('Ubah',
-                            style: TextStyle(
-                              color: AppColors.red,
-                              fontWeight: FontWeight.bold,
-                            )))
+                          child: Text('Ubah',
+                              style: AppFont.textBlack10SemiBold
+                                  .copyWith(color: AppColors.white))),
+                    )
                   else
                     ElevatedButton(
                         onPressed: () {
@@ -1693,25 +1653,16 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(left: 10, top: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Mau pesan yang lain ? ",
-                        style: TextStyle(
-                          fontFamily: "roboto",
-                          //color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        )),
+                        style: AppFont.textBlack14Bold),
                     Container(
-                      padding: EdgeInsets.only(left: 10, top: 5, bottom: 10),
+                      padding: EdgeInsets.only(top: 5, bottom: 10),
                       child: Text("Tambahkan pesanan lainnya ",
-                          style: TextStyle(
-                            fontFamily: "roboto",
-                            //color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          )),
+                          style: AppFont.textBlack14Regular),
                     ),
                   ],
                 ),
@@ -1768,27 +1719,8 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                child: Text("Pesanan",
-                    //_orderStore.orderOutlet.detail["name"],
-                    //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
-                    style: AppFont.textBlack14Regular),
+                child: Text("Pesanan", style: AppFont.textBlack14Regular),
               ),
-              // Container(
-              //   padding: EdgeInsets.only(top: 10),
-              //   child: Text(
-              //     _orderStore.orderMerchantName.toString(),
-              //     //_orderStore.orderOutlet.merchantName,
-              //     //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
-              //     style: TextStyle(
-              //       fontFamily: "roboto",
-              //       //color: Colors.white,
-              //       fontSize: 14,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
-
-              //#######
               Container(
                 width: double.infinity,
                 child: ListProductCartWidget(
