@@ -67,7 +67,7 @@ abstract class TransactionMobileDataResponse
     required bool isUseVoucher,
     required List<TransactionMobileDataPromoResponse> promos,
     required List<TransactionMobileDataPaymentListResponse> paymentList,
-    required List<dynamic>? taxesAndServices,
+    required List<TransactionTaxesAndService>? taxesAndServices,
     required int itemTotalAmount,
     required String note,
     required int? originalDeliveryAmount,
@@ -196,7 +196,7 @@ abstract class TransactionMobileDataOutletDetailResponse
   const factory TransactionMobileDataOutletDetailResponse({
     required String name,
     required String address,
-    required List<dynamic> taxesAndServices,
+    required List<TransactionTaxesAndService> taxesAndServices,
     required List<String> location,
     required String phone,
     required String kurirPrice,
@@ -211,6 +211,20 @@ abstract class TransactionMobileDataOutletDetailResponse
   factory TransactionMobileDataOutletDetailResponse.fromJson(
           Map<String, dynamic> json) =>
       _$TransactionMobileDataOutletDetailResponseFromJson(json);
+}
+
+@freezed
+class TransactionTaxesAndService with _$TransactionTaxesAndService {
+  const factory TransactionTaxesAndService({
+    required int id,
+    required String name,
+    required String title,
+    required int amount,
+    required dynamic type,
+  }) = _TransactionTaxesAndService;
+
+  factory TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =>
+      _$TransactionTaxesAndServiceFromJson(json);
 }
 
 @freezed

@@ -297,7 +297,7 @@ class _$TransactionMobileDataResponseTearOff {
       required bool isUseVoucher,
       required List<TransactionMobileDataPromoResponse> promos,
       required List<TransactionMobileDataPaymentListResponse> paymentList,
-      required List<dynamic>? taxesAndServices,
+      required List<TransactionTaxesAndService>? taxesAndServices,
       required int itemTotalAmount,
       required String note,
       required int? originalDeliveryAmount,
@@ -416,7 +416,8 @@ mixin _$TransactionMobileDataResponse {
       throw _privateConstructorUsedError;
   List<TransactionMobileDataPaymentListResponse> get paymentList =>
       throw _privateConstructorUsedError;
-  List<dynamic>? get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService>? get taxesAndServices =>
+      throw _privateConstructorUsedError;
   int get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   int? get originalDeliveryAmount => throw _privateConstructorUsedError;
@@ -487,7 +488,7 @@ abstract class $TransactionMobileDataResponseCopyWith<$Res> {
       bool isUseVoucher,
       List<TransactionMobileDataPromoResponse> promos,
       List<TransactionMobileDataPaymentListResponse> paymentList,
-      List<dynamic>? taxesAndServices,
+      List<TransactionTaxesAndService>? taxesAndServices,
       int itemTotalAmount,
       String note,
       int? originalDeliveryAmount,
@@ -725,7 +726,7 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<TransactionTaxesAndService>?,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -889,7 +890,7 @@ abstract class _$TransactionMobileDataResponseCopyWith<$Res>
       bool isUseVoucher,
       List<TransactionMobileDataPromoResponse> promos,
       List<TransactionMobileDataPaymentListResponse> paymentList,
-      List<dynamic>? taxesAndServices,
+      List<TransactionTaxesAndService>? taxesAndServices,
       int itemTotalAmount,
       String note,
       int? originalDeliveryAmount,
@@ -1136,7 +1137,7 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<TransactionTaxesAndService>?,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -1329,7 +1330,7 @@ class _$_TransactionMobileDataResponse
   @override
   final List<TransactionMobileDataPaymentListResponse> paymentList;
   @override
-  final List<dynamic>? taxesAndServices;
+  final List<TransactionTaxesAndService>? taxesAndServices;
   @override
   final int itemTotalAmount;
   @override
@@ -1569,7 +1570,7 @@ abstract class _TransactionMobileDataResponse
           required bool isUseVoucher,
           required List<TransactionMobileDataPromoResponse> promos,
           required List<TransactionMobileDataPaymentListResponse> paymentList,
-          required List<dynamic>? taxesAndServices,
+          required List<TransactionTaxesAndService>? taxesAndServices,
           required int itemTotalAmount,
           required String note,
           required int? originalDeliveryAmount,
@@ -1666,7 +1667,8 @@ abstract class _TransactionMobileDataResponse
   List<TransactionMobileDataPaymentListResponse> get paymentList =>
       throw _privateConstructorUsedError;
   @override
-  List<dynamic>? get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService>? get taxesAndServices =>
+      throw _privateConstructorUsedError;
   @override
   int get itemTotalAmount => throw _privateConstructorUsedError;
   @override
@@ -3731,7 +3733,7 @@ class _$TransactionMobileDataOutletDetailResponseTearOff {
   _TransactionMobileDataOutletDetailResponse call(
       {required String name,
       required String address,
-      required List<dynamic> taxesAndServices,
+      required List<TransactionTaxesAndService> taxesAndServices,
       required List<String> location,
       required String phone,
       required String kurirPrice,
@@ -3770,7 +3772,8 @@ const $TransactionMobileDataOutletDetailResponse =
 mixin _$TransactionMobileDataOutletDetailResponse {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService> get taxesAndServices =>
+      throw _privateConstructorUsedError;
   List<String> get location => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get kurirPrice => throw _privateConstructorUsedError;
@@ -3797,7 +3800,7 @@ abstract class $TransactionMobileDataOutletDetailResponseCopyWith<$Res> {
   $Res call(
       {String name,
       String address,
-      List<dynamic> taxesAndServices,
+      List<TransactionTaxesAndService> taxesAndServices,
       List<String> location,
       String phone,
       String kurirPrice,
@@ -3846,7 +3849,7 @@ class _$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TransactionTaxesAndService>,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -3898,7 +3901,7 @@ abstract class _$TransactionMobileDataOutletDetailResponseCopyWith<$Res>
   $Res call(
       {String name,
       String address,
-      List<dynamic> taxesAndServices,
+      List<TransactionTaxesAndService> taxesAndServices,
       List<String> location,
       String phone,
       String kurirPrice,
@@ -3951,7 +3954,7 @@ class __$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TransactionTaxesAndService>,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -4019,7 +4022,7 @@ class _$_TransactionMobileDataOutletDetailResponse
   @override
   final String address;
   @override
-  final List<dynamic> taxesAndServices;
+  final List<TransactionTaxesAndService> taxesAndServices;
   @override
   final List<String> location;
   @override
@@ -4117,7 +4120,7 @@ abstract class _TransactionMobileDataOutletDetailResponse
   const factory _TransactionMobileDataOutletDetailResponse(
           {required String name,
           required String address,
-          required List<dynamic> taxesAndServices,
+          required List<TransactionTaxesAndService> taxesAndServices,
           required List<String> location,
           required String phone,
           required String kurirPrice,
@@ -4138,7 +4141,8 @@ abstract class _TransactionMobileDataOutletDetailResponse
   @override
   String get address => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService> get taxesAndServices =>
+      throw _privateConstructorUsedError;
   @override
   List<String> get location => throw _privateConstructorUsedError;
   @override
@@ -4161,6 +4165,252 @@ abstract class _TransactionMobileDataOutletDetailResponse
   @JsonKey(ignore: true)
   _$TransactionMobileDataOutletDetailResponseCopyWith<
           _TransactionMobileDataOutletDetailResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+TransactionTaxesAndService _$TransactionTaxesAndServiceFromJson(
+    Map<String, dynamic> json) {
+  return _TransactionTaxesAndService.fromJson(json);
+}
+
+/// @nodoc
+class _$TransactionTaxesAndServiceTearOff {
+  const _$TransactionTaxesAndServiceTearOff();
+
+  _TransactionTaxesAndService call(
+      {required int id,
+      required String name,
+      required String title,
+      required int amount,
+      required dynamic type}) {
+    return _TransactionTaxesAndService(
+      id: id,
+      name: name,
+      title: title,
+      amount: amount,
+      type: type,
+    );
+  }
+
+  TransactionTaxesAndService fromJson(Map<String, Object> json) {
+    return TransactionTaxesAndService.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $TransactionTaxesAndService = _$TransactionTaxesAndServiceTearOff();
+
+/// @nodoc
+mixin _$TransactionTaxesAndService {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
+  dynamic get type => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TransactionTaxesAndServiceCopyWith<TransactionTaxesAndService>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TransactionTaxesAndServiceCopyWith<$Res> {
+  factory $TransactionTaxesAndServiceCopyWith(TransactionTaxesAndService value,
+          $Res Function(TransactionTaxesAndService) then) =
+      _$TransactionTaxesAndServiceCopyWithImpl<$Res>;
+  $Res call({int id, String name, String title, int amount, dynamic type});
+}
+
+/// @nodoc
+class _$TransactionTaxesAndServiceCopyWithImpl<$Res>
+    implements $TransactionTaxesAndServiceCopyWith<$Res> {
+  _$TransactionTaxesAndServiceCopyWithImpl(this._value, this._then);
+
+  final TransactionTaxesAndService _value;
+  // ignore: unused_field
+  final $Res Function(TransactionTaxesAndService) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? title = freezed,
+    Object? amount = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$TransactionTaxesAndServiceCopyWith<$Res>
+    implements $TransactionTaxesAndServiceCopyWith<$Res> {
+  factory _$TransactionTaxesAndServiceCopyWith(
+          _TransactionTaxesAndService value,
+          $Res Function(_TransactionTaxesAndService) then) =
+      __$TransactionTaxesAndServiceCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, String name, String title, int amount, dynamic type});
+}
+
+/// @nodoc
+class __$TransactionTaxesAndServiceCopyWithImpl<$Res>
+    extends _$TransactionTaxesAndServiceCopyWithImpl<$Res>
+    implements _$TransactionTaxesAndServiceCopyWith<$Res> {
+  __$TransactionTaxesAndServiceCopyWithImpl(_TransactionTaxesAndService _value,
+      $Res Function(_TransactionTaxesAndService) _then)
+      : super(_value, (v) => _then(v as _TransactionTaxesAndService));
+
+  @override
+  _TransactionTaxesAndService get _value =>
+      super._value as _TransactionTaxesAndService;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? title = freezed,
+    Object? amount = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(_TransactionTaxesAndService(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TransactionTaxesAndService implements _TransactionTaxesAndService {
+  const _$_TransactionTaxesAndService(
+      {required this.id,
+      required this.name,
+      required this.title,
+      required this.amount,
+      required this.type});
+
+  factory _$_TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =>
+      _$_$_TransactionTaxesAndServiceFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String title;
+  @override
+  final int amount;
+  @override
+  final dynamic type;
+
+  @override
+  String toString() {
+    return 'TransactionTaxesAndService(id: $id, name: $name, title: $title, amount: $amount, type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TransactionTaxesAndService &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(type);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TransactionTaxesAndServiceCopyWith<_TransactionTaxesAndService>
+      get copyWith => __$TransactionTaxesAndServiceCopyWithImpl<
+          _TransactionTaxesAndService>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_TransactionTaxesAndServiceToJson(this);
+  }
+}
+
+abstract class _TransactionTaxesAndService
+    implements TransactionTaxesAndService {
+  const factory _TransactionTaxesAndService(
+      {required int id,
+      required String name,
+      required String title,
+      required int amount,
+      required dynamic type}) = _$_TransactionTaxesAndService;
+
+  factory _TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =
+      _$_TransactionTaxesAndService.fromJson;
+
+  @override
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  String get title => throw _privateConstructorUsedError;
+  @override
+  int get amount => throw _privateConstructorUsedError;
+  @override
+  dynamic get type => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$TransactionTaxesAndServiceCopyWith<_TransactionTaxesAndService>
       get copyWith => throw _privateConstructorUsedError;
 }
 
