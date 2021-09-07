@@ -275,8 +275,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerCarColor: "",
                       customerCarNumber: "",
                       eta: "now",
-                      salesType:
-                          getSalesTypeCart != null ? getSalesTypeCart : "",
+                      salesType: getSalesTypeCart != null
+                          ? getSalesTypeCart
+                          : request.salesType,
                       receiptCode: "",
                       items: setProduct?.items ?? []),
                   queryString: CreateCartSessionQueryParam()));

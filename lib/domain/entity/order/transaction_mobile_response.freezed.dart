@@ -297,20 +297,20 @@ class _$TransactionMobileDataResponseTearOff {
       required bool isUseVoucher,
       required List<TransactionMobileDataPromoResponse> promos,
       required List<TransactionMobileDataPaymentListResponse> paymentList,
-      required List<dynamic> taxesAndServices,
+      required List<dynamic>? taxesAndServices,
       required int itemTotalAmount,
       required String note,
-      required int originalDeliveryAmount,
-      required String deviceTimestamp,
+      required int? originalDeliveryAmount,
+      required String? deviceTimestamp,
       required String receiptCode,
-      required List<TransactionMobileDataPaymentResponse> payments,
-      required TransactionMobileDataOutletResponse outlet,
-      required String orderId,
-      required String status,
-      required TransactionMobileDataDeliveryDetailResponse deliveryDetail,
-      required TransactionMobileDataRatingResponse rating,
+      required List<TransactionMobileDataPaymentResponse>? payments,
+      required TransactionMobileDataOutletResponse? outlet,
+      required String? orderId,
+      required String? status,
+      required TransactionMobileDataDeliveryDetailResponse? deliveryDetail,
+      required TransactionMobileDataRatingResponse? rating,
       required TransactionMobileDataBillingDetailResponse? billingDetail,
-      required TransactionMobileDataDeliveryResponse delivery}) {
+      required TransactionMobileDataDeliveryResponse? delivery}) {
     return _TransactionMobileDataResponse(
       outletName: outletName,
       outletId: outletId,
@@ -416,25 +416,25 @@ mixin _$TransactionMobileDataResponse {
       throw _privateConstructorUsedError;
   List<TransactionMobileDataPaymentListResponse> get paymentList =>
       throw _privateConstructorUsedError;
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
+  List<dynamic>? get taxesAndServices => throw _privateConstructorUsedError;
   int get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
-  int get originalDeliveryAmount => throw _privateConstructorUsedError;
-  String get deviceTimestamp => throw _privateConstructorUsedError;
+  int? get originalDeliveryAmount => throw _privateConstructorUsedError;
+  String? get deviceTimestamp => throw _privateConstructorUsedError;
   String get receiptCode => throw _privateConstructorUsedError;
-  List<TransactionMobileDataPaymentResponse> get payments =>
+  List<TransactionMobileDataPaymentResponse>? get payments =>
       throw _privateConstructorUsedError;
-  TransactionMobileDataOutletResponse get outlet =>
+  TransactionMobileDataOutletResponse? get outlet =>
       throw _privateConstructorUsedError;
-  String get orderId => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  TransactionMobileDataDeliveryDetailResponse get deliveryDetail =>
+  String? get orderId => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  TransactionMobileDataDeliveryDetailResponse? get deliveryDetail =>
       throw _privateConstructorUsedError;
-  TransactionMobileDataRatingResponse get rating =>
+  TransactionMobileDataRatingResponse? get rating =>
       throw _privateConstructorUsedError;
   TransactionMobileDataBillingDetailResponse? get billingDetail =>
       throw _privateConstructorUsedError;
-  TransactionMobileDataDeliveryResponse get delivery =>
+  TransactionMobileDataDeliveryResponse? get delivery =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -487,26 +487,27 @@ abstract class $TransactionMobileDataResponseCopyWith<$Res> {
       bool isUseVoucher,
       List<TransactionMobileDataPromoResponse> promos,
       List<TransactionMobileDataPaymentListResponse> paymentList,
-      List<dynamic> taxesAndServices,
+      List<dynamic>? taxesAndServices,
       int itemTotalAmount,
       String note,
-      int originalDeliveryAmount,
-      String deviceTimestamp,
+      int? originalDeliveryAmount,
+      String? deviceTimestamp,
       String receiptCode,
-      List<TransactionMobileDataPaymentResponse> payments,
-      TransactionMobileDataOutletResponse outlet,
-      String orderId,
-      String status,
-      TransactionMobileDataDeliveryDetailResponse deliveryDetail,
-      TransactionMobileDataRatingResponse rating,
+      List<TransactionMobileDataPaymentResponse>? payments,
+      TransactionMobileDataOutletResponse? outlet,
+      String? orderId,
+      String? status,
+      TransactionMobileDataDeliveryDetailResponse? deliveryDetail,
+      TransactionMobileDataRatingResponse? rating,
       TransactionMobileDataBillingDetailResponse? billingDetail,
-      TransactionMobileDataDeliveryResponse delivery});
+      TransactionMobileDataDeliveryResponse? delivery});
 
-  $TransactionMobileDataOutletResponseCopyWith<$Res> get outlet;
-  $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res> get deliveryDetail;
-  $TransactionMobileDataRatingResponseCopyWith<$Res> get rating;
+  $TransactionMobileDataOutletResponseCopyWith<$Res>? get outlet;
+  $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res>?
+      get deliveryDetail;
+  $TransactionMobileDataRatingResponseCopyWith<$Res>? get rating;
   $TransactionMobileDataBillingDetailResponseCopyWith<$Res>? get billingDetail;
-  $TransactionMobileDataDeliveryResponseCopyWith<$Res> get delivery;
+  $TransactionMobileDataDeliveryResponseCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -724,7 +725,7 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -736,11 +737,11 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       receiptCode: receiptCode == freezed
           ? _value.receiptCode
           : receiptCode // ignore: cast_nullable_to_non_nullable
@@ -748,27 +749,27 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       payments: payments == freezed
           ? _value.payments
           : payments // ignore: cast_nullable_to_non_nullable
-              as List<TransactionMobileDataPaymentResponse>,
+              as List<TransactionMobileDataPaymentResponse>?,
       outlet: outlet == freezed
           ? _value.outlet
           : outlet // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataOutletResponse,
+              as TransactionMobileDataOutletResponse?,
       orderId: orderId == freezed
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deliveryDetail: deliveryDetail == freezed
           ? _value.deliveryDetail
           : deliveryDetail // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataDeliveryDetailResponse,
+              as TransactionMobileDataDeliveryDetailResponse?,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataRatingResponse,
+              as TransactionMobileDataRatingResponse?,
       billingDetail: billingDetail == freezed
           ? _value.billingDetail
           : billingDetail // ignore: cast_nullable_to_non_nullable
@@ -776,30 +777,42 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataDeliveryResponse,
+              as TransactionMobileDataDeliveryResponse?,
     ));
   }
 
   @override
-  $TransactionMobileDataOutletResponseCopyWith<$Res> get outlet {
-    return $TransactionMobileDataOutletResponseCopyWith<$Res>(_value.outlet,
+  $TransactionMobileDataOutletResponseCopyWith<$Res>? get outlet {
+    if (_value.outlet == null) {
+      return null;
+    }
+
+    return $TransactionMobileDataOutletResponseCopyWith<$Res>(_value.outlet!,
         (value) {
       return _then(_value.copyWith(outlet: value));
     });
   }
 
   @override
-  $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res>
+  $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res>?
       get deliveryDetail {
+    if (_value.deliveryDetail == null) {
+      return null;
+    }
+
     return $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res>(
-        _value.deliveryDetail, (value) {
+        _value.deliveryDetail!, (value) {
       return _then(_value.copyWith(deliveryDetail: value));
     });
   }
 
   @override
-  $TransactionMobileDataRatingResponseCopyWith<$Res> get rating {
-    return $TransactionMobileDataRatingResponseCopyWith<$Res>(_value.rating,
+  $TransactionMobileDataRatingResponseCopyWith<$Res>? get rating {
+    if (_value.rating == null) {
+      return null;
+    }
+
+    return $TransactionMobileDataRatingResponseCopyWith<$Res>(_value.rating!,
         (value) {
       return _then(_value.copyWith(rating: value));
     });
@@ -818,9 +831,13 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
   }
 
   @override
-  $TransactionMobileDataDeliveryResponseCopyWith<$Res> get delivery {
-    return $TransactionMobileDataDeliveryResponseCopyWith<$Res>(_value.delivery,
-        (value) {
+  $TransactionMobileDataDeliveryResponseCopyWith<$Res>? get delivery {
+    if (_value.delivery == null) {
+      return null;
+    }
+
+    return $TransactionMobileDataDeliveryResponseCopyWith<$Res>(
+        _value.delivery!, (value) {
       return _then(_value.copyWith(delivery: value));
     });
   }
@@ -872,31 +889,32 @@ abstract class _$TransactionMobileDataResponseCopyWith<$Res>
       bool isUseVoucher,
       List<TransactionMobileDataPromoResponse> promos,
       List<TransactionMobileDataPaymentListResponse> paymentList,
-      List<dynamic> taxesAndServices,
+      List<dynamic>? taxesAndServices,
       int itemTotalAmount,
       String note,
-      int originalDeliveryAmount,
-      String deviceTimestamp,
+      int? originalDeliveryAmount,
+      String? deviceTimestamp,
       String receiptCode,
-      List<TransactionMobileDataPaymentResponse> payments,
-      TransactionMobileDataOutletResponse outlet,
-      String orderId,
-      String status,
-      TransactionMobileDataDeliveryDetailResponse deliveryDetail,
-      TransactionMobileDataRatingResponse rating,
+      List<TransactionMobileDataPaymentResponse>? payments,
+      TransactionMobileDataOutletResponse? outlet,
+      String? orderId,
+      String? status,
+      TransactionMobileDataDeliveryDetailResponse? deliveryDetail,
+      TransactionMobileDataRatingResponse? rating,
       TransactionMobileDataBillingDetailResponse? billingDetail,
-      TransactionMobileDataDeliveryResponse delivery});
+      TransactionMobileDataDeliveryResponse? delivery});
 
   @override
-  $TransactionMobileDataOutletResponseCopyWith<$Res> get outlet;
+  $TransactionMobileDataOutletResponseCopyWith<$Res>? get outlet;
   @override
-  $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res> get deliveryDetail;
+  $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res>?
+      get deliveryDetail;
   @override
-  $TransactionMobileDataRatingResponseCopyWith<$Res> get rating;
+  $TransactionMobileDataRatingResponseCopyWith<$Res>? get rating;
   @override
   $TransactionMobileDataBillingDetailResponseCopyWith<$Res>? get billingDetail;
   @override
-  $TransactionMobileDataDeliveryResponseCopyWith<$Res> get delivery;
+  $TransactionMobileDataDeliveryResponseCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -1118,7 +1136,7 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -1130,11 +1148,11 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       receiptCode: receiptCode == freezed
           ? _value.receiptCode
           : receiptCode // ignore: cast_nullable_to_non_nullable
@@ -1142,27 +1160,27 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       payments: payments == freezed
           ? _value.payments
           : payments // ignore: cast_nullable_to_non_nullable
-              as List<TransactionMobileDataPaymentResponse>,
+              as List<TransactionMobileDataPaymentResponse>?,
       outlet: outlet == freezed
           ? _value.outlet
           : outlet // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataOutletResponse,
+              as TransactionMobileDataOutletResponse?,
       orderId: orderId == freezed
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deliveryDetail: deliveryDetail == freezed
           ? _value.deliveryDetail
           : deliveryDetail // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataDeliveryDetailResponse,
+              as TransactionMobileDataDeliveryDetailResponse?,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataRatingResponse,
+              as TransactionMobileDataRatingResponse?,
       billingDetail: billingDetail == freezed
           ? _value.billingDetail
           : billingDetail // ignore: cast_nullable_to_non_nullable
@@ -1170,7 +1188,7 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as TransactionMobileDataDeliveryResponse,
+              as TransactionMobileDataDeliveryResponse?,
     ));
   }
 }
@@ -1311,33 +1329,33 @@ class _$_TransactionMobileDataResponse
   @override
   final List<TransactionMobileDataPaymentListResponse> paymentList;
   @override
-  final List<dynamic> taxesAndServices;
+  final List<dynamic>? taxesAndServices;
   @override
   final int itemTotalAmount;
   @override
   final String note;
   @override
-  final int originalDeliveryAmount;
+  final int? originalDeliveryAmount;
   @override
-  final String deviceTimestamp;
+  final String? deviceTimestamp;
   @override
   final String receiptCode;
   @override
-  final List<TransactionMobileDataPaymentResponse> payments;
+  final List<TransactionMobileDataPaymentResponse>? payments;
   @override
-  final TransactionMobileDataOutletResponse outlet;
+  final TransactionMobileDataOutletResponse? outlet;
   @override
-  final String orderId;
+  final String? orderId;
   @override
-  final String status;
+  final String? status;
   @override
-  final TransactionMobileDataDeliveryDetailResponse deliveryDetail;
+  final TransactionMobileDataDeliveryDetailResponse? deliveryDetail;
   @override
-  final TransactionMobileDataRatingResponse rating;
+  final TransactionMobileDataRatingResponse? rating;
   @override
   final TransactionMobileDataBillingDetailResponse? billingDetail;
   @override
-  final TransactionMobileDataDeliveryResponse delivery;
+  final TransactionMobileDataDeliveryResponse? delivery;
 
   @override
   String toString() {
@@ -1551,20 +1569,20 @@ abstract class _TransactionMobileDataResponse
           required bool isUseVoucher,
           required List<TransactionMobileDataPromoResponse> promos,
           required List<TransactionMobileDataPaymentListResponse> paymentList,
-          required List<dynamic> taxesAndServices,
+          required List<dynamic>? taxesAndServices,
           required int itemTotalAmount,
           required String note,
-          required int originalDeliveryAmount,
-          required String deviceTimestamp,
+          required int? originalDeliveryAmount,
+          required String? deviceTimestamp,
           required String receiptCode,
-          required List<TransactionMobileDataPaymentResponse> payments,
-          required TransactionMobileDataOutletResponse outlet,
-          required String orderId,
-          required String status,
-          required TransactionMobileDataDeliveryDetailResponse deliveryDetail,
-          required TransactionMobileDataRatingResponse rating,
+          required List<TransactionMobileDataPaymentResponse>? payments,
+          required TransactionMobileDataOutletResponse? outlet,
+          required String? orderId,
+          required String? status,
+          required TransactionMobileDataDeliveryDetailResponse? deliveryDetail,
+          required TransactionMobileDataRatingResponse? rating,
           required TransactionMobileDataBillingDetailResponse? billingDetail,
-          required TransactionMobileDataDeliveryResponse delivery}) =
+          required TransactionMobileDataDeliveryResponse? delivery}) =
       _$_TransactionMobileDataResponse;
 
   factory _TransactionMobileDataResponse.fromJson(Map<String, dynamic> json) =
@@ -1648,38 +1666,38 @@ abstract class _TransactionMobileDataResponse
   List<TransactionMobileDataPaymentListResponse> get paymentList =>
       throw _privateConstructorUsedError;
   @override
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
+  List<dynamic>? get taxesAndServices => throw _privateConstructorUsedError;
   @override
   int get itemTotalAmount => throw _privateConstructorUsedError;
   @override
   String get note => throw _privateConstructorUsedError;
   @override
-  int get originalDeliveryAmount => throw _privateConstructorUsedError;
+  int? get originalDeliveryAmount => throw _privateConstructorUsedError;
   @override
-  String get deviceTimestamp => throw _privateConstructorUsedError;
+  String? get deviceTimestamp => throw _privateConstructorUsedError;
   @override
   String get receiptCode => throw _privateConstructorUsedError;
   @override
-  List<TransactionMobileDataPaymentResponse> get payments =>
+  List<TransactionMobileDataPaymentResponse>? get payments =>
       throw _privateConstructorUsedError;
   @override
-  TransactionMobileDataOutletResponse get outlet =>
+  TransactionMobileDataOutletResponse? get outlet =>
       throw _privateConstructorUsedError;
   @override
-  String get orderId => throw _privateConstructorUsedError;
+  String? get orderId => throw _privateConstructorUsedError;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   @override
-  TransactionMobileDataDeliveryDetailResponse get deliveryDetail =>
+  TransactionMobileDataDeliveryDetailResponse? get deliveryDetail =>
       throw _privateConstructorUsedError;
   @override
-  TransactionMobileDataRatingResponse get rating =>
+  TransactionMobileDataRatingResponse? get rating =>
       throw _privateConstructorUsedError;
   @override
   TransactionMobileDataBillingDetailResponse? get billingDetail =>
       throw _privateConstructorUsedError;
   @override
-  TransactionMobileDataDeliveryResponse get delivery =>
+  TransactionMobileDataDeliveryResponse? get delivery =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -2246,7 +2264,7 @@ class _$TransactionMobileDataDeliveryDetailResponseTearOff {
       required String? distance,
       required String? provider,
       required String? shipmentMethod,
-      required int? fee,
+      required dynamic fee,
       required String? bookingCode,
       required String? bookingExpired,
       required String? deliveryId,
@@ -2296,7 +2314,7 @@ mixin _$TransactionMobileDataDeliveryDetailResponse {
   String? get distance => throw _privateConstructorUsedError;
   String? get provider => throw _privateConstructorUsedError;
   String? get shipmentMethod => throw _privateConstructorUsedError;
-  int? get fee => throw _privateConstructorUsedError;
+  dynamic get fee => throw _privateConstructorUsedError;
   String? get bookingCode => throw _privateConstructorUsedError;
   String? get bookingExpired => throw _privateConstructorUsedError;
   String? get deliveryId => throw _privateConstructorUsedError;
@@ -2330,7 +2348,7 @@ abstract class $TransactionMobileDataDeliveryDetailResponseCopyWith<$Res> {
       String? distance,
       String? provider,
       String? shipmentMethod,
-      int? fee,
+      dynamic fee,
       String? bookingCode,
       String? bookingExpired,
       String? deliveryId,
@@ -2398,7 +2416,7 @@ class _$TransactionMobileDataDeliveryDetailResponseCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2488,7 +2506,7 @@ abstract class _$TransactionMobileDataDeliveryDetailResponseCopyWith<$Res>
       String? distance,
       String? provider,
       String? shipmentMethod,
-      int? fee,
+      dynamic fee,
       String? bookingCode,
       String? bookingExpired,
       String? deliveryId,
@@ -2562,7 +2580,7 @@ class __$TransactionMobileDataDeliveryDetailResponseCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2651,7 +2669,7 @@ class _$_TransactionMobileDataDeliveryDetailResponse
   @override
   final String? shipmentMethod;
   @override
-  final int? fee;
+  final dynamic fee;
   @override
   final String? bookingCode;
   @override
@@ -2777,7 +2795,7 @@ abstract class _TransactionMobileDataDeliveryDetailResponse
           required String? distance,
           required String? provider,
           required String? shipmentMethod,
-          required int? fee,
+          required dynamic fee,
           required String? bookingCode,
           required String? bookingExpired,
           required String? deliveryId,
@@ -2805,7 +2823,7 @@ abstract class _TransactionMobileDataDeliveryDetailResponse
   @override
   String? get shipmentMethod => throw _privateConstructorUsedError;
   @override
-  int? get fee => throw _privateConstructorUsedError;
+  dynamic get fee => throw _privateConstructorUsedError;
   @override
   String? get bookingCode => throw _privateConstructorUsedError;
   @override
@@ -3721,8 +3739,8 @@ class _$TransactionMobileDataOutletDetailResponseTearOff {
       required String maxRadius,
       required String driverPhone,
       required List<dynamic> area,
-      required List<String> deliveryProvider,
-      required List<dynamic> deliveryLocation}) {
+      required List<String>? deliveryProvider,
+      required List<dynamic>? deliveryLocation}) {
     return _TransactionMobileDataOutletDetailResponse(
       name: name,
       address: address,
@@ -3760,8 +3778,8 @@ mixin _$TransactionMobileDataOutletDetailResponse {
   String get maxRadius => throw _privateConstructorUsedError;
   String get driverPhone => throw _privateConstructorUsedError;
   List<dynamic> get area => throw _privateConstructorUsedError;
-  List<String> get deliveryProvider => throw _privateConstructorUsedError;
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<String>? get deliveryProvider => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3787,8 +3805,8 @@ abstract class $TransactionMobileDataOutletDetailResponseCopyWith<$Res> {
       String maxRadius,
       String driverPhone,
       List<dynamic> area,
-      List<String> deliveryProvider,
-      List<dynamic> deliveryLocation});
+      List<String>? deliveryProvider,
+      List<dynamic>? deliveryLocation});
 }
 
 /// @nodoc
@@ -3860,11 +3878,11 @@ class _$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       deliveryProvider: deliveryProvider == freezed
           ? _value.deliveryProvider
           : deliveryProvider // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
     ));
   }
 }
@@ -3888,8 +3906,8 @@ abstract class _$TransactionMobileDataOutletDetailResponseCopyWith<$Res>
       String maxRadius,
       String driverPhone,
       List<dynamic> area,
-      List<String> deliveryProvider,
-      List<dynamic> deliveryLocation});
+      List<String>? deliveryProvider,
+      List<dynamic>? deliveryLocation});
 }
 
 /// @nodoc
@@ -3965,11 +3983,11 @@ class __$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       deliveryProvider: deliveryProvider == freezed
           ? _value.deliveryProvider
           : deliveryProvider // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
     ));
   }
 }
@@ -4017,9 +4035,9 @@ class _$_TransactionMobileDataOutletDetailResponse
   @override
   final List<dynamic> area;
   @override
-  final List<String> deliveryProvider;
+  final List<String>? deliveryProvider;
   @override
-  final List<dynamic> deliveryLocation;
+  final List<dynamic>? deliveryLocation;
 
   @override
   String toString() {
@@ -4107,8 +4125,8 @@ abstract class _TransactionMobileDataOutletDetailResponse
           required String maxRadius,
           required String driverPhone,
           required List<dynamic> area,
-          required List<String> deliveryProvider,
-          required List<dynamic> deliveryLocation}) =
+          required List<String>? deliveryProvider,
+          required List<dynamic>? deliveryLocation}) =
       _$_TransactionMobileDataOutletDetailResponse;
 
   factory _TransactionMobileDataOutletDetailResponse.fromJson(
@@ -4136,9 +4154,9 @@ abstract class _TransactionMobileDataOutletDetailResponse
   @override
   List<dynamic> get area => throw _privateConstructorUsedError;
   @override
-  List<String> get deliveryProvider => throw _privateConstructorUsedError;
+  List<String>? get deliveryProvider => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TransactionMobileDataOutletDetailResponseCopyWith<

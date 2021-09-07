@@ -37,7 +37,7 @@ class PaymentReceiptScreen extends StatelessWidget {
 
       // _transaction = _orderStore.transactionAfterPayment;
 
-      String receiptStatus = _transaction!.status;
+      String receiptStatus = _transaction!.status ?? "initial";
       _receiptStatusTitle = i10n.nota_title_default;
       _receiptStatusDesc = '';
 
@@ -233,14 +233,15 @@ class PaymentReceiptScreen extends StatelessWidget {
                                   SizedBox(height: 5),
                                   ListView.separated(
                                     shrinkWrap: true,
-                                    itemCount:
-                                        _transaction!.taxesAndServices.length,
+                                    itemCount: _transaction!
+                                            .taxesAndServices?.length ??
+                                        0,
                                     itemBuilder: (context, index) => _lr(
-                                      Text(_transaction!.taxesAndServices[index]
-                                          ['name']),
+                                      Text(_transaction!
+                                          .taxesAndServices![index]['name']),
                                       Text(
                                         Rupiah.format(_transaction!
-                                            .taxesAndServices[index]['amount']
+                                            .taxesAndServices![index]['amount']
                                             .toString()),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -317,38 +318,70 @@ class PaymentReceiptScreen extends StatelessWidget {
                 ),
               ),
               SafeArea(
-                child: Container(
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Get.context!.read<TransactionBloc>().add(
-                              TransactionEvent.addFavoriteTransaction(
-                                  AddFavoriteTransactionParam(
-                                      body: AddFavoriteTransactionBodyParam(
-                                          receiptCode:
-                                              _transaction!.receiptCode),
-                                      queryString:
-                                          AddFavoriteTransactionQueryParam())));
-                        },
-                        child: Container(
-                          child: Text("Simpan Sebagai Favorit",
-                              style: AppFont.textBlack14Bold
-                                  .copyWith(color: AppColors.white)),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.redD12B34,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(22.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 8.0, bottom: 0.0, left: 40, right: 40),
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        if (_receiptStatusDesc == 'process')
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.context!.read<TransactionBloc>().add(
+                                  TransactionEvent.addFavoriteTransaction(
+                                      AddFavoriteTransactionParam(
+                                          body: AddFavoriteTransactionBodyParam(
+                                              receiptCode:
+                                                  _transaction!.receiptCode),
+                                          queryString:
+                                              AddFavoriteTransactionQueryParam())));
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 44,
+                              child: Center(
+                                child: Text("Simpan Sebagai Favorit",
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white)),
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColors.redD12B34,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(22.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        SizedBox(height: 5),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Container(
+                            width: double.infinity,
+                            height: 44,
+                            child: Center(
+                              child: Text("Ke Riwayat Pembelian",
+                                  style: AppFont.textBlack14Bold
+                                      .copyWith(color: AppColors.white)),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.redD12B34,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(22.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
