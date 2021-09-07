@@ -71,4 +71,7 @@ class AppAssets {
   static const String iconWeb = "assets/icons/ic_web.png";
   static const String iconInstagram = "assets/icons/ic_instagram.png";
   static const String iconSendMessage = "assets/icons/ic_send_message.png";
+
+  static const String imageTransactionReceipt =
+      "assets/images/transaction_receipt.png";
 }

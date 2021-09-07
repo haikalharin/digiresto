@@ -7,7 +7,6 @@ import 'package:digiresto/application/transaction/bloc/transaction_bloc/transact
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
@@ -939,7 +938,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 "Apakah Anda yakin dengan orderan ini?",
                                 () async {
                               Get.back();
-                              Loading.show();
+                              controller.isLoading.value = true;
                               print('DEBUG >> do checkout');
                               Get.context!
                                   .read<OrderBloc>()
@@ -1456,7 +1455,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       final message = r.response.response.messageDisplay;
                       print("error response checkout 1:");
 
-                      Loading.dismiss();
+                      controller.isLoading.value = false;
                       ErrorPopupWidget.show("Digiresto", message!.id, () {
                         Get.back();
                       });
@@ -1464,15 +1463,15 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     }
 
                     if (checkoutResponse?.receiptCode == "") {
-                      Loading.dismiss();
+                      controller.isLoading.value = false;
                       print("error response cheeckout 2:");
                     } else if (checkoutResponse?.payment.isCredit ?? false) {
                       Get.context!.read<TransactionBloc>().add(
                           TransactionEvent.getTransaction(
                               checkoutResponse!.receiptCode));
-                      Loading.dismiss();
+                      controller.isLoading.value = false;
                     } else if (checkoutResponse?.payment.isWebView ?? false) {
-                      Loading.dismiss();
+                      controller.isLoading.value = false;
                       Get.offNamedUntil(
                           Routers.paymentWebView, (route) => false,
                           arguments: PaymentWebViewArgument(
@@ -1482,7 +1481,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       //     Routers.paymentWebView, (_) => false);
                     } else if (checkoutResponse?.payment.isDeeplink ?? false) {
                       //Need test on real device to simulate open payment app
-                      Loading.dismiss();
+                      controller.isLoading.value = false;
                       LaunchUrl.run(checkoutResponse!.payment.deeplink,
                           onError: () {
                         ErrorPopupWidget.show("Error", "App Launch Error", () {
@@ -1500,7 +1499,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                     controller.checkoutResponse.value!));
                       });
                     } else {
-                      Loading.dismiss();
+                      controller.isLoading.value = false;
                       if (checkoutResponse?.payment.paymentCode != null) {
                         Get.offNamedUntil(Routers.paymentVa, (route) => false,
                             arguments: PaymentVAViewArgument(
@@ -1516,7 +1515,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         checkoutCartFail: (e) {
                           print("error response checkout 1:");
 
-                          Loading.dismiss();
+                          controller.isLoading.value = false;
                           ErrorPopupWidget.show("Digiresto", "Transaksi gagal",
                               () {
                             Get.back();
@@ -1910,7 +1909,7 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, right: 16),
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.all(5),
                       child: Row(
                         children: [
                           Container(
