@@ -34,7 +34,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'detailProductDialog.dart';
+import 'detail_product_dialog.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final ScrollController _scrollController = new ScrollController();

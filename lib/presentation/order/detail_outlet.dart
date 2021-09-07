@@ -28,7 +28,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import 'detailProductDialog.dart';
+import 'detail_product_dialog.dart';
 
 class DetailOutletScreen extends GetView<OrderViewController> {
   final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
