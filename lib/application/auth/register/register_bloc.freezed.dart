@@ -60,6 +60,12 @@ class _$RegisterEventTearOff {
   _ToggleAgree toggleAgree() {
     return const _ToggleAgree();
   }
+
+  _ButtonSubmitted buttonSubmitted({required String phoneNumberStr}) {
+    return _ButtonSubmitted(
+      phoneNumberStr: phoneNumberStr,
+    );
+  }
 }
 
 /// @nodoc
@@ -78,6 +84,7 @@ mixin _$RegisterEvent {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -91,6 +98,7 @@ mixin _$RegisterEvent {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,6 +111,7 @@ mixin _$RegisterEvent {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +123,7 @@ mixin _$RegisterEvent {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -182,6 +192,7 @@ class _$_Started implements _Started {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return started();
   }
@@ -198,6 +209,7 @@ class _$_Started implements _Started {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -216,6 +228,7 @@ class _$_Started implements _Started {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return started(this);
   }
@@ -230,6 +243,7 @@ class _$_Started implements _Started {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -316,6 +330,7 @@ class _$_NameChanged implements _NameChanged {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return nameChanged(nameStr);
   }
@@ -332,6 +347,7 @@ class _$_NameChanged implements _NameChanged {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -350,6 +366,7 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return nameChanged(this);
   }
@@ -364,6 +381,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -457,6 +475,7 @@ class _$_EmailChanged implements _EmailChanged {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return emailChanged(emailStr);
   }
@@ -473,6 +492,7 @@ class _$_EmailChanged implements _EmailChanged {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -491,6 +511,7 @@ class _$_EmailChanged implements _EmailChanged {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return emailChanged(this);
   }
@@ -505,6 +526,7 @@ class _$_EmailChanged implements _EmailChanged {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -596,6 +618,7 @@ class _$_PinChanged implements _PinChanged {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return pinChanged(pinStr);
   }
@@ -612,6 +635,7 @@ class _$_PinChanged implements _PinChanged {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (pinChanged != null) {
@@ -630,6 +654,7 @@ class _$_PinChanged implements _PinChanged {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return pinChanged(this);
   }
@@ -644,6 +669,7 @@ class _$_PinChanged implements _PinChanged {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (pinChanged != null) {
@@ -737,6 +763,7 @@ class _$_RetypePinChanged implements _RetypePinChanged {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return retypePinChanged(retypePinStr);
   }
@@ -753,6 +780,7 @@ class _$_RetypePinChanged implements _RetypePinChanged {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (retypePinChanged != null) {
@@ -771,6 +799,7 @@ class _$_RetypePinChanged implements _RetypePinChanged {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return retypePinChanged(this);
   }
@@ -785,6 +814,7 @@ class _$_RetypePinChanged implements _RetypePinChanged {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (retypePinChanged != null) {
@@ -917,6 +947,7 @@ class _$_OnNext implements _OnNext {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return onNext(phoneNumber, pageController, onPinError, onRetypePinError);
   }
@@ -933,6 +964,7 @@ class _$_OnNext implements _OnNext {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (onNext != null) {
@@ -951,6 +983,7 @@ class _$_OnNext implements _OnNext {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return onNext(this);
   }
@@ -965,6 +998,7 @@ class _$_OnNext implements _OnNext {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (onNext != null) {
@@ -1037,6 +1071,7 @@ class _$_ToggleAgree implements _ToggleAgree {
             Function onPinError, Function onRetypePinError)
         onNext,
     required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
   }) {
     return toggleAgree();
   }
@@ -1053,6 +1088,7 @@ class _$_ToggleAgree implements _ToggleAgree {
             Function onPinError, Function onRetypePinError)?
         onNext,
     TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (toggleAgree != null) {
@@ -1071,6 +1107,7 @@ class _$_ToggleAgree implements _ToggleAgree {
     required TResult Function(_RetypePinChanged value) retypePinChanged,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return toggleAgree(this);
   }
@@ -1085,6 +1122,7 @@ class _$_ToggleAgree implements _ToggleAgree {
     TResult Function(_RetypePinChanged value)? retypePinChanged,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
     required TResult orElse(),
   }) {
     if (toggleAgree != null) {
@@ -1096,6 +1134,153 @@ class _$_ToggleAgree implements _ToggleAgree {
 
 abstract class _ToggleAgree implements RegisterEvent {
   const factory _ToggleAgree() = _$_ToggleAgree;
+}
+
+/// @nodoc
+abstract class _$ButtonSubmittedCopyWith<$Res> {
+  factory _$ButtonSubmittedCopyWith(
+          _ButtonSubmitted value, $Res Function(_ButtonSubmitted) then) =
+      __$ButtonSubmittedCopyWithImpl<$Res>;
+  $Res call({String phoneNumberStr});
+}
+
+/// @nodoc
+class __$ButtonSubmittedCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$ButtonSubmittedCopyWith<$Res> {
+  __$ButtonSubmittedCopyWithImpl(
+      _ButtonSubmitted _value, $Res Function(_ButtonSubmitted) _then)
+      : super(_value, (v) => _then(v as _ButtonSubmitted));
+
+  @override
+  _ButtonSubmitted get _value => super._value as _ButtonSubmitted;
+
+  @override
+  $Res call({
+    Object? phoneNumberStr = freezed,
+  }) {
+    return _then(_ButtonSubmitted(
+      phoneNumberStr: phoneNumberStr == freezed
+          ? _value.phoneNumberStr
+          : phoneNumberStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ButtonSubmitted implements _ButtonSubmitted {
+  const _$_ButtonSubmitted({required this.phoneNumberStr});
+
+  @override
+  final String phoneNumberStr;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.buttonSubmitted(phoneNumberStr: $phoneNumberStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ButtonSubmitted &&
+            (identical(other.phoneNumberStr, phoneNumberStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumberStr, phoneNumberStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(phoneNumberStr);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ButtonSubmittedCopyWith<_ButtonSubmitted> get copyWith =>
+      __$ButtonSubmittedCopyWithImpl<_ButtonSubmitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String pinStr) pinChanged,
+    required TResult Function(String retypePinStr) retypePinChanged,
+    required TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)
+        onNext,
+    required TResult Function() toggleAgree,
+    required TResult Function(String phoneNumberStr) buttonSubmitted,
+  }) {
+    return buttonSubmitted(phoneNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+    required TResult orElse(),
+  }) {
+    if (buttonSubmitted != null) {
+      return buttonSubmitted(phoneNumberStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PinChanged value) pinChanged,
+    required TResult Function(_RetypePinChanged value) retypePinChanged,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_ToggleAgree value) toggleAgree,
+    required TResult Function(_ButtonSubmitted value) buttonSubmitted,
+  }) {
+    return buttonSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+    required TResult orElse(),
+  }) {
+    if (buttonSubmitted != null) {
+      return buttonSubmitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ButtonSubmitted implements RegisterEvent {
+  const factory _ButtonSubmitted({required String phoneNumberStr}) =
+      _$_ButtonSubmitted;
+
+  String get phoneNumberStr => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ButtonSubmittedCopyWith<_ButtonSubmitted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

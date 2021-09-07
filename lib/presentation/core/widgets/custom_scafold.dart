@@ -6,15 +6,19 @@ import 'package:digiresto/domain/core/theme.dart';
 
 class CustomScafold extends StatelessWidget {
   final bool showBackButton;
+  final bool centerTitle;
   final Widget body;
   final Widget suffixWidget;
   final String title;
+  final Widget? titleWidget;
   final Color appBarColor;
   final Color iconBackColor;
   final Color titleFontColor;
 
   const CustomScafold({
     Key? key,
+    this.centerTitle = true,
+    this.titleWidget,
     this.body = const SizedBox(),
     this.suffixWidget = const SizedBox(
       width: 35,
@@ -62,12 +66,14 @@ class CustomScafold extends StatelessWidget {
                           width: 35,
                         ),
                   Expanded(
-                    child: Text(
-                      title,
-                      style: Styles.appBarTitleStyle
-                          .copyWith(color: titleFontColor),
-                      textAlign: TextAlign.center,
-                    ),
+                    child: titleWidget ??
+                        Text(
+                          title,
+                          style: Styles.appBarTitleStyle
+                              .copyWith(color: titleFontColor),
+                          textAlign:
+                              centerTitle ? TextAlign.center : TextAlign.left,
+                        ),
                   ),
                   suffixWidget,
                 ],

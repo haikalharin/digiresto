@@ -108,6 +108,32 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           registerFailureOrSuccessOption: optionOf(failureOrSuccess),
         );
       },
+      buttonSubmitted: (_event) async* {
+        yield state.copyWith(
+          isSubmitting: true,
+          registerFailureOrSuccessOption: none(),
+        );
+        Either<AuthFailure, RegisterStatus>? failureOrSuccess;
+        final isNameValid = state.fullName.isValid();
+        final isEmailValid = state.email.isValid();
+        if (isNameValid && isEmailValid && state.agreeTerms) {
+          final registerInput = RegisterInput(
+            credential: '',
+            name: state.fullName.getOrCrash(),
+            accountNumber: _event.phoneNumberStr,
+            email: state.email.getOrCrash(),
+            pushId: '-',
+            uid: Uuid().v4(),
+          );
+          failureOrSuccess =
+              await _authFacade.register(registerInput: registerInput);
+        }
+        yield state.copyWith(
+          showErrorMessages: true,
+          isSubmitting: false,
+          registerFailureOrSuccessOption: optionOf(failureOrSuccess),
+        );
+      },
     );
   }
 }

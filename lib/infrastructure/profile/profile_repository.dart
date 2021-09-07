@@ -216,4 +216,60 @@ class ProfileRepository implements IProfileRepository {
       return left(ProfileFailure.unexpected());
     }
   }
+
+  @override
+  Future<Either<ProfileFailure, IList<String>>> getCancelReasons(
+      String lang) async {
+    try {
+      final apiResult = await _networkService.getHttp(
+        path: Endpoints.urlGetCancelReasons + lang,
+        useAuth: true,
+      );
+      logger.d(apiResult);
+      final data = (apiResult as Map<String, dynamic>)['data']['cancelReason'];
+      final list = List<String>.from(data).toIList();
+      return right(list);
+    } on ServerException catch (e) {
+      return left(ProfileFailure.serverError());
+    } on NoInternetException catch (_) {
+      return left(ProfileFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d('coba ' + stactrace.toString());
+      return left(ProfileFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<ProfileFailure, Unit>> cancelTransaction(
+      {required String receiptCode, required String reason}) async {
+    final _apiUrl = Endpoints.urlCancelTransaction;
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: _apiUrl,
+        useAuth: true,
+        content: {
+          "query_string": {
+            "receiptCode": receiptCode,
+          },
+          "body": {
+            "reason": reason,
+          }
+        },
+      );
+      logger.d(apiResult);
+      final data =
+          (apiResult as Map<String, dynamic>)['response']['code'] as String;
+      if (data != '00') {
+        return left(ProfileFailure.serverError());
+      }
+      return right(unit);
+    } on ServerException catch (_) {
+      return left(ProfileFailure.serverError());
+    } on NoInternetException catch (_) {
+      return left(ProfileFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d('coba ' + stactrace.toString());
+      return left(ProfileFailure.unexpected());
+    }
+  }
 }

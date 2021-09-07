@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:digiresto/domain/profile/i_profile_repository.dart';
 import 'package:digiresto/domain/profile/profile_failure.dart';

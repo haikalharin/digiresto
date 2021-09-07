@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
 import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';

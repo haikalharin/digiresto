@@ -2008,7 +2008,7 @@ class _$DeliveryDetailTearOff {
       required bool isDelivered,
       required From from,
       required To to,
-      required List<dynamic> status,
+      required List<DeliveryStatus> status,
       required bool isDelete,
       required DateTime createdDate,
       required String ownerPhone,
@@ -2056,7 +2056,7 @@ mixin _$DeliveryDetail {
   bool get isDelivered => throw _privateConstructorUsedError;
   From get from => throw _privateConstructorUsedError;
   To get to => throw _privateConstructorUsedError;
-  List<dynamic> get status => throw _privateConstructorUsedError;
+  List<DeliveryStatus> get status => throw _privateConstructorUsedError;
   bool get isDelete => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
   String get ownerPhone => throw _privateConstructorUsedError;
@@ -2086,7 +2086,7 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       bool isDelivered,
       From from,
       To to,
-      List<dynamic> status,
+      List<DeliveryStatus> status,
       bool isDelete,
       DateTime createdDate,
       String ownerPhone,
@@ -2174,7 +2174,7 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<DeliveryStatus>,
       isDelete: isDelete == freezed
           ? _value.isDelete
           : isDelete // ignore: cast_nullable_to_non_nullable
@@ -2232,7 +2232,7 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       bool isDelivered,
       From from,
       To to,
-      List<dynamic> status,
+      List<DeliveryStatus> status,
       bool isDelete,
       DateTime createdDate,
       String ownerPhone,
@@ -2324,7 +2324,7 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<DeliveryStatus>,
       isDelete: isDelete == freezed
           ? _value.isDelete
           : isDelete // ignore: cast_nullable_to_non_nullable
@@ -2397,7 +2397,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   @override
   final To to;
   @override
-  final List<dynamic> status;
+  final List<DeliveryStatus> status;
   @override
   final bool isDelete;
   @override
@@ -2512,7 +2512,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
       required bool isDelivered,
       required From from,
       required To to,
-      required List<dynamic> status,
+      required List<DeliveryStatus> status,
       required bool isDelete,
       required DateTime createdDate,
       required String ownerPhone,
@@ -2545,7 +2545,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @override
   To get to => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get status => throw _privateConstructorUsedError;
+  List<DeliveryStatus> get status => throw _privateConstructorUsedError;
   @override
   bool get isDelete => throw _privateConstructorUsedError;
   @override
@@ -5549,5 +5549,235 @@ abstract class _TaxesAndService implements TaxesAndService {
   @override
   @JsonKey(ignore: true)
   _$TaxesAndServiceCopyWith<_TaxesAndService> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DeliveryStatus _$DeliveryStatusFromJson(Map<String, dynamic> json) {
+  return _DeliveryStatus.fromJson(json);
+}
+
+/// @nodoc
+class _$DeliveryStatusTearOff {
+  const _$DeliveryStatusTearOff();
+
+  _DeliveryStatus call(
+      {required String state,
+      required DateTime updatedDate,
+      required String description,
+      required String statusDescription}) {
+    return _DeliveryStatus(
+      state: state,
+      updatedDate: updatedDate,
+      description: description,
+      statusDescription: statusDescription,
+    );
+  }
+
+  DeliveryStatus fromJson(Map<String, Object> json) {
+    return DeliveryStatus.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $DeliveryStatus = _$DeliveryStatusTearOff();
+
+/// @nodoc
+mixin _$DeliveryStatus {
+  String get state => throw _privateConstructorUsedError;
+  DateTime get updatedDate => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get statusDescription => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeliveryStatusCopyWith<DeliveryStatus> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeliveryStatusCopyWith<$Res> {
+  factory $DeliveryStatusCopyWith(
+          DeliveryStatus value, $Res Function(DeliveryStatus) then) =
+      _$DeliveryStatusCopyWithImpl<$Res>;
+  $Res call(
+      {String state,
+      DateTime updatedDate,
+      String description,
+      String statusDescription});
+}
+
+/// @nodoc
+class _$DeliveryStatusCopyWithImpl<$Res>
+    implements $DeliveryStatusCopyWith<$Res> {
+  _$DeliveryStatusCopyWithImpl(this._value, this._then);
+
+  final DeliveryStatus _value;
+  // ignore: unused_field
+  final $Res Function(DeliveryStatus) _then;
+
+  @override
+  $Res call({
+    Object? state = freezed,
+    Object? updatedDate = freezed,
+    Object? description = freezed,
+    Object? statusDescription = freezed,
+  }) {
+    return _then(_value.copyWith(
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDate: updatedDate == freezed
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      statusDescription: statusDescription == freezed
+          ? _value.statusDescription
+          : statusDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$DeliveryStatusCopyWith<$Res>
+    implements $DeliveryStatusCopyWith<$Res> {
+  factory _$DeliveryStatusCopyWith(
+          _DeliveryStatus value, $Res Function(_DeliveryStatus) then) =
+      __$DeliveryStatusCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String state,
+      DateTime updatedDate,
+      String description,
+      String statusDescription});
+}
+
+/// @nodoc
+class __$DeliveryStatusCopyWithImpl<$Res>
+    extends _$DeliveryStatusCopyWithImpl<$Res>
+    implements _$DeliveryStatusCopyWith<$Res> {
+  __$DeliveryStatusCopyWithImpl(
+      _DeliveryStatus _value, $Res Function(_DeliveryStatus) _then)
+      : super(_value, (v) => _then(v as _DeliveryStatus));
+
+  @override
+  _DeliveryStatus get _value => super._value as _DeliveryStatus;
+
+  @override
+  $Res call({
+    Object? state = freezed,
+    Object? updatedDate = freezed,
+    Object? description = freezed,
+    Object? statusDescription = freezed,
+  }) {
+    return _then(_DeliveryStatus(
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedDate: updatedDate == freezed
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      statusDescription: statusDescription == freezed
+          ? _value.statusDescription
+          : statusDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_DeliveryStatus implements _DeliveryStatus {
+  const _$_DeliveryStatus(
+      {required this.state,
+      required this.updatedDate,
+      required this.description,
+      required this.statusDescription});
+
+  factory _$_DeliveryStatus.fromJson(Map<String, dynamic> json) =>
+      _$_$_DeliveryStatusFromJson(json);
+
+  @override
+  final String state;
+  @override
+  final DateTime updatedDate;
+  @override
+  final String description;
+  @override
+  final String statusDescription;
+
+  @override
+  String toString() {
+    return 'DeliveryStatus(state: $state, updatedDate: $updatedDate, description: $description, statusDescription: $statusDescription)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DeliveryStatus &&
+            (identical(other.state, state) ||
+                const DeepCollectionEquality().equals(other.state, state)) &&
+            (identical(other.updatedDate, updatedDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedDate, updatedDate)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.statusDescription, statusDescription) ||
+                const DeepCollectionEquality()
+                    .equals(other.statusDescription, statusDescription)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(state) ^
+      const DeepCollectionEquality().hash(updatedDate) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(statusDescription);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeliveryStatusCopyWith<_DeliveryStatus> get copyWith =>
+      __$DeliveryStatusCopyWithImpl<_DeliveryStatus>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DeliveryStatusToJson(this);
+  }
+}
+
+abstract class _DeliveryStatus implements DeliveryStatus {
+  const factory _DeliveryStatus(
+      {required String state,
+      required DateTime updatedDate,
+      required String description,
+      required String statusDescription}) = _$_DeliveryStatus;
+
+  factory _DeliveryStatus.fromJson(Map<String, dynamic> json) =
+      _$_DeliveryStatus.fromJson;
+
+  @override
+  String get state => throw _privateConstructorUsedError;
+  @override
+  DateTime get updatedDate => throw _privateConstructorUsedError;
+  @override
+  String get description => throw _privateConstructorUsedError;
+  @override
+  String get statusDescription => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DeliveryStatusCopyWith<_DeliveryStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }

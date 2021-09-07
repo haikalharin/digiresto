@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/profile/order_history/order_details_done.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_onprocess.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
@@ -37,9 +38,8 @@ class OrderDetailsWidget extends StatelessWidget {
       body: BlocConsumer<OrderDetailsBloc, OrderDetailsState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state.map(
-            initial: (_state) => Container(),
-            loading: (_state) => Center(
+          return state.maybeMap(
+            orElse: () => Center(
               child: CircularProgressIndicator(),
             ),
             loadFailure: (_state) => Center(
@@ -54,10 +54,12 @@ class OrderDetailsWidget extends StatelessWidget {
             ),
             loadSuccess: (_state) {
               final _orderDetails = _state.orderHistoryDetails;
-              if (_orderDetails.status == 'waiting') {
+              if (_orderDetails.status == 'waiting' ||
+                  _orderDetails.status == 'process' ||
+                  _orderDetails.status == 'ready') {
                 return OrderDetailsOnProcess(_orderDetails);
               }
-              return Container();
+              return OrderDetailsDone(_orderDetails);
             },
           );
         },

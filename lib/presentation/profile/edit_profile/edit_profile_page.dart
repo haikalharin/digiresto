@@ -1,5 +1,6 @@
 import 'package:digiresto/application/profile/edit_profile/edit_profile_bloc.dart';
 import 'package:digiresto/application/profile/edit_profile/edit_profile_controller.dart';
+import 'package:digiresto/application/profile/profile_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/injection.dart';
@@ -53,30 +54,33 @@ class EditProfileWidget extends StatelessWidget {
                     orElse: () => 'Unexpected Error',
                     unableToUpdate: (_) => 'Unable to Update',
                   )),
-                  (success) => Get.dialog(
-                    CustomDialog(
-                      backgroundColor: Colors.white,
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Berhasil update profile",
-                            style: Styles.dialogTitleStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          CustomButton(
-                            color: AppColors.mainColor,
-                            fontColor: Colors.white,
-                            onPressed: () => Get.back(),
-                            label: 'Ok',
-                          ),
-                        ],
+                  (success) {
+                    _controller.setEditting(false);
+                    Get.dialog(
+                      CustomDialog(
+                        backgroundColor: Colors.white,
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Berhasil update profile",
+                              style: Styles.dialogTitleStyle,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            CustomButton(
+                              color: AppColors.mainColor,
+                              fontColor: Colors.white,
+                              onPressed: () => Get.back(),
+                              label: 'Ok',
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               );
             },

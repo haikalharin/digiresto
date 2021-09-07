@@ -114,7 +114,7 @@ class DeliveryDetail with _$DeliveryDetail {
     required bool isDelivered,
     required From from,
     required To to,
-    required List<dynamic> status,
+    required List<DeliveryStatus> status,
     required bool isDelete,
     required DateTime createdDate,
     required String ownerPhone,
@@ -276,4 +276,17 @@ class TaxesAndService with _$TaxesAndService {
 
   factory TaxesAndService.fromJson(Map<String, dynamic> json) =>
       _$TaxesAndServiceFromJson(json);
+}
+
+@freezed
+class DeliveryStatus with _$DeliveryStatus {
+  const factory DeliveryStatus({
+    required String state,
+    required DateTime updatedDate,
+    required String description,
+    required String statusDescription,
+  }) = _DeliveryStatus;
+
+  factory DeliveryStatus.fromJson(Map<String, dynamic> json) =>
+      _$DeliveryStatusFromJson(json);
 }

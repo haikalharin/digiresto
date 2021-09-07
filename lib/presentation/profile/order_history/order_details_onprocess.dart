@@ -1,9 +1,14 @@
+import 'package:digiresto/application/profile/order_details/order_details_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
+import 'package:digiresto/presentation/profile/order_history/cancel_order_page.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderDetailsOnProcess extends StatelessWidget {
@@ -12,6 +17,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late final _orderDetailBloc = BlocProvider.of<OrderDetailsBloc>(context);
     return ListView(
       padding: EdgeInsets.zero,
       children: [
@@ -202,19 +208,72 @@ class OrderDetailsOnProcess extends StatelessWidget {
               ),
               if (orderDetails.deliveryDetail.status.length == 0)
                 Text(
-                  'Menunggu driver',
+                  'Menunggu konfirmasi',
                   style: Styles.menuItemLabelStyle,
                 ),
               SizedBox(
                 height: 30,
               ),
-              CustomButton(
-                onPressed: () {},
-                borderRadius: BorderRadius.circular(30),
-                color: AppColors.mainColor,
-                label: 'Batal',
-                fontColor: Colors.white,
-              )
+              if (orderDetails.status == 'waiting')
+                CustomButton(
+                  onPressed: () => Get.dialog(
+                    CustomDialog(
+                      backgroundColor: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Batalkan Transaksi',
+                            style: Styles.dialogTitleStyle,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            'Apakah anda yakin ingin membatalkan transaksi ?',
+                            style: Styles.dialogSubtitleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => Get.back(),
+                                  color: Colors.white,
+                                  borderColor: AppColors.mainColor,
+                                  label: 'Batal',
+                                ),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => Get.off(CancelOrderPage(
+                                          orderDetails.receiptCode))
+                                      ?.then((value) => _orderDetailBloc.add(
+                                          OrderDetailsEvent.refresh(
+                                              orderDetails.receiptCode))),
+                                  color: AppColors.mainColor,
+                                  fontColor: Colors.white,
+                                  label: 'Ok',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(30),
+                  color: AppColors.mainColor,
+                  label: 'Batal',
+                  fontColor: Colors.white,
+                )
             ],
           ),
         ),

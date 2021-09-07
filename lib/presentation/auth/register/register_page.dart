@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:digiresto/application/auth/register/register_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/auth/widgets/draw_circle.dart';
@@ -167,7 +168,7 @@ memesan makan dengan Digiresto.""",
                       ),
                       CustomButton(
                         onPressed: () => Get.offAll(
-                          LoginPinPage(widget.phoneNumber),
+                          LoginPage(),
                         ),
                         label: 'Ok',
                       ),
@@ -183,101 +184,102 @@ memesan makan dengan Digiresto.""",
           return AuthScafold(
             onBackTap: backHandler,
             title: 'Daftar',
-            onNext: () => _registerBloc.add(
-              RegisterEvent.onNext(
-                phoneNumber: widget.phoneNumber,
-                pageController: _pageController,
-                onPinError: () =>
-                    _pinErrorController.add(ErrorAnimationType.shake),
-                onRetypePinError: () =>
-                    _retypePinErrorController.add(ErrorAnimationType.shake),
-              ),
-            ),
+            // onNext: () => _registerBloc.add(
+            //   RegisterEvent.onNext(
+            //     phoneNumber: widget.phoneNumber,
+            //     pageController: _pageController,
+            //     onPinError: () =>
+            //         _pinErrorController.add(ErrorAnimationType.shake),
+            //     onRetypePinError: () =>
+            //         _retypePinErrorController.add(ErrorAnimationType.shake),
+            //   ),
+            // ),
+            suffixWidget: SizedBox(),
             child: StackWithProgress(
               isLoading: state.isSubmitting,
               children: [
                 Column(
                   children: [
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: Dimens.defaultMargin,
-                        vertical: 30,
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Info Profil',
-                                style: Styles.loginDescStyle.copyWith(
-                                  color: AppColors.mainColor,
-                                ),
-                              ),
-                              Text(
-                                'Buat Pin Login',
-                                style: Styles.loginDescStyle.copyWith(
-                                  color: _page > 0
-                                      ? AppColors.mainColor
-                                      : AppColors.greyColor2,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      right: 8,
-                                    ),
-                                    child: DrawCircle(),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 3,
-                                  color: _page > 0
-                                      ? AppColors.mainColor
-                                      : AppColors.greyColor2,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 8,
-                                  ),
-                                  child: DrawCircle(
-                                    color: _page > 0
-                                        ? AppColors.mainColor
-                                        : AppColors.greyColor2,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          )
-                        ],
-                      ),
-                    ),
+                    // AnimatedContainer(
+                    //   duration: Duration(milliseconds: 500),
+                    //   curve: Curves.easeInOut,
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //   ),
+                    //   padding: EdgeInsets.symmetric(
+                    //     horizontal: Dimens.defaultMargin,
+                    //     vertical: 30,
+                    //   ),
+                    //   child: Column(
+                    //     children: [
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //         children: [
+                    //           Text(
+                    //             'Info Profil',
+                    //             style: Styles.loginDescStyle.copyWith(
+                    //               color: AppColors.mainColor,
+                    //             ),
+                    //           ),
+                    //           Text(
+                    //             'Buat Pin Login',
+                    //             style: Styles.loginDescStyle.copyWith(
+                    //               color: _page > 0
+                    //                   ? AppColors.mainColor
+                    //                   : AppColors.greyColor2,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       SizedBox(
+                    //         height: 10,
+                    //       ),
+                    //       Row(
+                    //         children: [
+                    //           Expanded(
+                    //             flex: 1,
+                    //             child: Container(
+                    //               alignment: Alignment.centerRight,
+                    //               child: Padding(
+                    //                 padding: EdgeInsets.only(
+                    //                   right: 8,
+                    //                 ),
+                    //                 child: DrawCircle(),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             flex: 2,
+                    //             child: Container(
+                    //               width: double.infinity,
+                    //               height: 3,
+                    //               color: _page > 0
+                    //                   ? AppColors.mainColor
+                    //                   : AppColors.greyColor2,
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             flex: 1,
+                    //             child: Padding(
+                    //               padding: EdgeInsets.only(
+                    //                 left: 8,
+                    //               ),
+                    //               child: DrawCircle(
+                    //                 color: _page > 0
+                    //                     ? AppColors.mainColor
+                    //                     : AppColors.greyColor2,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       SizedBox(
+                    //         height: 15,
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     Expanded(
                       child: PageView(
                         controller: _pageController,
@@ -335,6 +337,13 @@ memesan makan dengan Digiresto.""",
                                   label:
                                       'Dengan mengklik lanjutkan, Saya setuju dengan syarat dan ketentuan Digiresto.',
                                 ),
+                                SizedBox(height: 30),
+                                CustomButton(
+                                  onPressed: () => _registerBloc.add(
+                                      RegisterEvent.buttonSubmitted(
+                                          phoneNumberStr: widget.phoneNumber)),
+                                  label: 'Lanjutkan',
+                                )
                               ],
                             ),
                           ),

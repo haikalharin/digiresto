@@ -20,4 +20,9 @@ abstract class IProfileRepository {
   Future<Either<ProfileFailure, OrderHistoryDetails>> getOrderHistoryDetails({
     required String receiptCode,
   });
+  Future<Either<ProfileFailure, IList<String>>> getCancelReasons(String lang);
+  Future<Either<ProfileFailure, Unit>> cancelTransaction({
+    required String receiptCode,
+    required String reason,
+  });
 }

@@ -34,6 +34,7 @@ class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late final _authBloc = BlocProvider.of<AuthBloc>(context);
+    late final _profileBloc = BlocProvider.of<ProfileBloc>(context);
     return CollapsedScafold(
       title: 'Profile',
       body: BlocBuilder<ProfileBloc, ProfileState>(
@@ -83,7 +84,8 @@ class ProfileWidget extends StatelessWidget {
                             onPressed: () => Get.toNamed(
                               Routers.editProfile,
                               arguments: _state.userProfile,
-                            ),
+                            )?.then((value) =>
+                                _profileBloc.add(ProfileEvent.started())),
                             color: AppColors.mainColor,
                             fontColor: Colors.white,
                             label: 'ubah',
