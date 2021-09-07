@@ -251,7 +251,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
         if (deliveryInq != null) {
-          UpdateCartSessionBodyDeliveryParam(
+          deliveryParam = UpdateCartSessionBodyDeliveryParam(
               address: activeAddr.address!,
               location: [activeAddr.latitude!, activeAddr.longitude!],
               price: deliveryInq.shipmentMethods.first.price,
@@ -296,7 +296,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               UpdateCartSessionParam(
                   body: UpdateCartSessionBodyParam(
                       items: setProduct?.items ?? [],
-                      customerNote: '',
+                      customerNote: null,
                       paymentType: paymentType?.id ?? "",
                       customerPax: '1',
                       customerSmoking: 'false',
@@ -317,6 +317,22 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       },
       removeCart: (r) async* {
         final removeCart = await _orderRepository.removeProduct(r.request);
+        final paymentType = await _orderRepository.getPaymentMethodID();
+        final address = await _userRepository.getActiveAddress();
+        final activeAddr = address.getOrElse(() => UserAddress());
+        final deliveryInq = await _orderRepository.getDeliveryMethodID();
+        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
+        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+
+        UpdateCartSessionBodyDeliveryParam? deliveryParam;
+        if (deliveryInq != null) {
+          deliveryParam = UpdateCartSessionBodyDeliveryParam(
+              address: activeAddr.address!,
+              location: [activeAddr.latitude!, activeAddr.longitude!],
+              price: deliveryInq.shipmentMethods.first.price,
+              provider: deliveryInq.provider,
+              shipmentMethod: deliveryInq.shipmentMethods.first.name);
+        }
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         if (removeCart == null || sessionId == null) {
@@ -326,19 +342,16 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               UpdateCartSessionParam(
                   body: UpdateCartSessionBodyParam(
                       items: removeCart.items ?? [],
-                      customerNote: '',
-                      paymentType: '',
-                      customerPax: '',
-                      customerSmoking: '',
-                      delivery: UpdateCartSessionBodyDeliveryParam(
-                          address: '',
-                          location: [],
-                          price: 0,
-                          provider: '',
-                          shipmentMethod: ''),
+                      customerNote: null,
+                      paymentType: paymentType?.id ?? "",
+                      customerPax: '1',
+                      customerSmoking: 'false',
+                      delivery: deliveryParam,
                       eta: 'now',
-                      promos: [],
-                      salesType: ''),
+                      promos: getVoucherMethodID == null
+                          ? []
+                          : [getVoucherMethodID.code],
+                      salesType: getSalesTypeCart ?? ""),
                   queryString:
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
