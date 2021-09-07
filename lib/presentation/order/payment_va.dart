@@ -15,10 +15,9 @@ class PaymentVAScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     UserProfile? _userProfile;
     PaymentVAViewArgument args = Get.arguments as PaymentVAViewArgument;
-    final vaPayment = args.checkoutDataResponse.payment.paymentCode;
 
+    final vaPayment = args.checkoutDataResponse.payment.paymentCode;
     final df = new DateFormat('EEEE, dd MMMM yyyy, hh:mm');
-    final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -65,7 +64,7 @@ class PaymentVAScreen extends StatelessWidget {
                   Text('Batas akhir pembayaran'),
                   SizedBox(height: 5),
                   Text(
-                    df.format(isoParser.parse(vaPayment!.expiresAt.toString())),
+                    df.format(vaPayment!.expiresAt),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
