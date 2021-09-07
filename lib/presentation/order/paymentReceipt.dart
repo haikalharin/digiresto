@@ -82,28 +82,35 @@ class PaymentReceiptScreen extends StatelessWidget {
 
     Get.context!.read<TransactionBloc>().add(
         TransactionEvent.getTransaction(args.checkoutDataResponse.receiptCode));
-    return BlocBuilder<TransactionBloc, TransactionState>(
-        builder: (context, state) {
+    return BlocConsumer<TransactionBloc, TransactionState>(
+        listener: (context, state) {
       state.maybeMap(
           getTransactionSuccess: (r) {
             _transaction = r.response.data;
           },
           addFavoriteTransactionSuccess: (r) {
-            ErrorPopupWidget.show("Digiresto", "Tambah Favorit Berhasil", () {
-              Get.back(closeOverlays: true);
-            });
+            if (r.isSuccess) {
+              ErrorPopupWidget.show("Digiresto", "Tambah Favorit Berhasil", () {
+                Get.back();
+              });
+            } else {
+              ErrorPopupWidget.show("Digiresto", "Tambah Favorit Error", () {
+                Get.back();
+              });
+            }
           },
           loadFailure: (e) {
             e.error.maybeMap(
                 addFavoriteTransactionFail: (e) {
                   ErrorPopupWidget.show("Digiresto", "Tambah Favorit Error",
                       () {
-                    Get.back(closeOverlays: true);
+                    Get.back();
                   });
                 },
                 orElse: () {});
           },
           orElse: () {});
+    }, builder: (context, state) {
       if (_transaction != null) {
         checkStatus();
         return Scaffold(
@@ -389,7 +396,9 @@ class PaymentReceiptScreen extends StatelessWidget {
           ),
         );
       } else {
-        return Container();
+        return Container(
+          color: AppColors.white,
+        );
       }
     });
   }
