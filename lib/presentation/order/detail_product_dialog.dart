@@ -42,6 +42,9 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   // UserStore _userStore;
   late OutletListProductDataResponse dataProductState;
   late OutletListProductDataResponse variantProductSelected;
+  final notesController = TextEditingController();
+  String notes = '';
+  bool noteIsSubmitted = true;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -52,6 +55,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       variantProductSelected = dataProductState;
       totalqty = widget.qtyProduct;
       _setTotalQtyFromExistCart();
+      notesController.text = "";
     });
     Timer.run(() {
       if (dataProductState.variants.length > 0) {
@@ -79,7 +83,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
           OrderEvent.addCart(
               CreateUpdateCartSessionItemParam(
                   modifiers: [],
-                  note: '',
+                  note: notes,
                   productId: int.parse(variantProductSelected.id),
                   qty: totalqty),
               widget.detailOutlet,
@@ -317,6 +321,106 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     ],
                   ),
                 ),
+                Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: Container(
+                      color: AppColors.white,
+                      child: Text(variantProductSelected.description,
+                          style: AppFont.textBlack12Regular),
+                    )),
+                Divider(
+                  thickness: 12,
+                  color: AppColors.dividerColor,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text("Catatan", style: AppFont.textBlack14Bold),
+                          Container(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Text("opsional",
+                                style: AppFont.textBlack8Light),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(top: 5, bottom: 10),
+                        child: TextField(
+                            textInputAction: TextInputAction.search,
+                            onSubmitted: (value) {
+                              notes = value;
+                            },
+                            onChanged: (text) {
+                              setState(() {
+                                noteIsSubmitted = false;
+                              });
+                            },
+                            controller: notesController,
+                            readOnly: false,
+                            style: TextStyle(
+                              fontSize: 12.0,
+                            ),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              filled: true,
+                              fillColor: AppColors.greyFill,
+                              contentPadding: EdgeInsets.only(
+                                  top: 12, bottom: 12, left: 10, right: 10),
+                              hintText: "Contoh, tidak pakai bawang",
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black, width: 32.0),
+                                  borderRadius: BorderRadius.circular(5)),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black),
+                              ),
+                            )),
+                      ),
+                      if (noteIsSubmitted == false)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              alignment: Alignment.topCenter,
+                              padding: const EdgeInsets.only(top: 5),
+                              //width: MediaQuery. of(context). size. width-200,
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                height: 55,
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      noteIsSubmitted = true;
+                                    });
+                                  },
+                                  color: AppColors.red,
+                                  child: Text("Simpan",
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(5.0),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color: AppColors.redYoung,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                    ],
+                  ),
+                )
               ],
             ),
             SafeArea(
