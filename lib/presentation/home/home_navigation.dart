@@ -113,44 +113,84 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     );
   }
 
-  Widget cartBadge() {
-    return new Stack(children: <Widget>[
-      new Image.asset(
-        AppAssets.iconMenuCart,
-        width: 24,
-        height: 24,
-      ),
-      // _orderStore?.orderProduct?.isEmpty ??
-      //         false ||
-      //             _orderStore?.orderMerchantName == "" ||
-      //             _orderStore?.transactionData == null
-      //     ? new Positioned(
-      //         // draw a red marble
-      //         top: 0.0,
-      //         right: 0.0,
-      //         child: Container(),
-      //       )
-      //     : new Positioned(
-      //         // draw a red marble
-      //         bottom: 0,
-      //         right: 0,
-      //         child: Container(
-      //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-      //           decoration: BoxDecoration(
-      //               shape: BoxShape.circle, color: AppColors.redYoung),
-      //           // alignment: Alignment.topCenter,
-      //           child: Text(
-      //             _orderStore?.orderProduct?.isEmpty ??
-      //                     false ||
-      //                         _orderStore?.orderMerchantName == "" ||
-      //                         _orderStore?.transactionData == null
-      //                 ? "0"
-      //                 : _orderStore!.orderProduct!.length.toString(),
-      //             style: TextStyle(color: Colors.white),
-      //           ),
-      //         ),
-      //       )
-    ]);
+  Widget cartBadge(bool isActive) {
+    if (isActive) {
+      return new Stack(children: <Widget>[
+        new Image.asset(
+          AppAssets.iconMenuCartActive,
+          width: 30,
+          height: 30,
+        ),
+        // _orderStore?.orderProduct?.isEmpty ??
+        //         false ||
+        //             _orderStore?.orderMerchantName == "" ||
+        //             _orderStore?.transactionData == null
+        //     ? new Positioned(
+        //         // draw a red marble
+        //         top: 0.0,
+        //         right: 0.0,
+        //         child: Container(),
+        //       )
+        //     : new Positioned(
+        //         // draw a red marble
+        //         bottom: 0,
+        //         right: 0,
+        //         child: Container(
+        //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+        //           decoration: BoxDecoration(
+        //               shape: BoxShape.circle, color: AppColors.redYoung),
+        //           // alignment: Alignment.topCenter,
+        //           child: Text(
+        //             _orderStore?.orderProduct?.isEmpty ??
+        //                     false ||
+        //                         _orderStore?.orderMerchantName == "" ||
+        //                         _orderStore?.transactionData == null
+        //                 ? "0"
+        //                 : _orderStore!.orderProduct!.length.toString(),
+        //             style: TextStyle(color: Colors.white),
+        //           ),
+        //         ),
+        //       )
+      ]);
+    } else {
+      return new Stack(children: <Widget>[
+        new Image.asset(
+          AppAssets.iconMenuCart,
+          width: 30,
+          height: 30,
+        ),
+        // _orderStore?.orderProduct?.isEmpty ??
+        //         false ||
+        //             _orderStore?.orderMerchantName == "" ||
+        //             _orderStore?.transactionData == null
+        //     ? new Positioned(
+        //         // draw a red marble
+        //         top: 0.0,
+        //         right: 0.0,
+        //         child: Container(),
+        //       )
+        //     : new Positioned(
+        //         // draw a red marble
+        //         bottom: 0,
+        //         right: 0,
+        //         child: Container(
+        //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+        //           decoration: BoxDecoration(
+        //               shape: BoxShape.circle, color: AppColors.redYoung),
+        //           // alignment: Alignment.topCenter,
+        //           child: Text(
+        //             _orderStore?.orderProduct?.isEmpty ??
+        //                     false ||
+        //                         _orderStore?.orderMerchantName == "" ||
+        //                         _orderStore?.transactionData == null
+        //                 ? "0"
+        //                 : _orderStore!.orderProduct!.length.toString(),
+        //             style: TextStyle(color: Colors.white),
+        //           ),
+        //         ),
+        //       )
+      ]);
+    }
   }
 
   @override
@@ -160,43 +200,40 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
       CartScreen(),
       CreditPage(),
       ProfilePage(),
-      // CartScreen(),
-      // CreditScreen(),
-      // ProfileScreen(),
     ];
 
     final _bottomNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
           icon: new Image.asset(
             AppAssets.iconMenuHome,
-            width: 24,
-            height: 24,
+            width: 28,
+            height: 28,
           ),
           activeIcon: new Image.asset(AppAssets.iconMenuHomeActive,
-              width: 24, height: 24),
+              width: 28, height: 28),
           label: 'Home'),
       BottomNavigationBarItem(
           //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
-          icon: cartBadge(),
-          activeIcon: cartBadge(),
+          icon: cartBadge(false),
+          activeIcon: cartBadge(true),
           label: 'Cart'),
       BottomNavigationBarItem(
           icon: new Image.asset(
             AppAssets.iconMenuCredit,
-            width: 24,
-            height: 24,
+            width: 30,
+            height: 30,
           ),
           activeIcon: new Image.asset(AppAssets.iconMenuCreditActive,
-              width: 24, height: 24),
+              width: 30, height: 30),
           label: 'Credit'),
       BottomNavigationBarItem(
           icon: new Image.asset(
             AppAssets.iconMenuProfile,
-            width: 24,
-            height: 24,
+            width: 28,
+            height: 28,
           ),
           activeIcon: new Image.asset(AppAssets.iconMenuProfileActive,
-              width: 24, height: 24),
+              width: 28, height: 28),
           label: 'Profile'),
     ];
 
