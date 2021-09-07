@@ -57,9 +57,16 @@ abstract class CheckoutDataPaymentResponse with _$CheckoutDataPaymentResponse {
 abstract class CheckoutDataPaymentCodeResponse
     with _$CheckoutDataPaymentCodeResponse {
   const factory CheckoutDataPaymentCodeResponse({
-    required String title,
-    required int amount,
-    required String vaNumber,
+    required String? title,
+    required int? amount,
+    required String? vaNumber,
+    required DateTime? formattedTransactionDate,
+    required String? bankAccName,
+    required String? bankName,
+    required String? formattedUniqueAmount,
+    required String? bankAccNo,
+    required DateTime? transactionDate,
+    required String? uniqueAmount,
     required int expires,
     required DateTime expiresAt,
   }) = _CheckoutDataPaymentCodeResponse;

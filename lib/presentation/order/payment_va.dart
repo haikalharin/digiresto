@@ -17,6 +17,7 @@ class PaymentVAScreen extends StatelessWidget {
     PaymentVAViewArgument args = Get.arguments as PaymentVAViewArgument;
 
     final vaPayment = args.checkoutDataResponse.payment.paymentCode;
+    final vaAmount = vaPayment?.amount ?? vaPayment?.uniqueAmount ?? "0";
     final df = new DateFormat('EEEE, dd MMMM yyyy, hh:mm');
 
     return Scaffold(
@@ -74,58 +75,142 @@ class PaymentVAScreen extends StatelessWidget {
                     height: 1,
                     color: Colors.grey,
                   ),
-                  SizedBox(height: 10),
-                  Text('Transfer ke nomor Virtual Account'),
-                  SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            vaPayment.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                  if (vaPayment.vaNumber != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Text('Transfer ke nomor Virtual Account'),
+                        SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  vaPayment.title ?? "",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  vaPayment.vaNumber ?? "",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.red,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            vaPayment.vaNumber,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.red,
+                            ElevatedButton(
+                                onPressed: () {
+                                  Clipboard.setData(
+                                      ClipboardData(text: vaPayment.vaNumber));
+                                  Ctoast.show('VA Number Copied');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(5.0),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color: AppColors.red,
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Salin',
+                                    style: TextStyle(
+                                      color: AppColors.red,
+                                      fontWeight: FontWeight.bold,
+                                    )))
+                          ],
+                        ),
+                      ],
+                    ),
+                  if (vaPayment.bankAccNo != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Text('Transfer ke nomor'),
+                        SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  vaPayment.bankName ?? "",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  vaPayment.bankAccNo ?? "",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.red,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      FlatButton(
-                          onPressed: () {
-                            Clipboard.setData(
-                                ClipboardData(text: vaPayment.vaNumber));
-                            Ctoast.show('VA Number Copied');
-                          },
-                          color: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
-                            ),
-                          ),
-                          child: Text('Salin',
-                              style: TextStyle(
-                                color: AppColors.red,
-                                fontWeight: FontWeight.bold,
-                              )))
-                    ],
-                  ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Clipboard.setData(
+                                      ClipboardData(text: vaPayment.vaNumber));
+                                  Ctoast.show('VA Number Copied');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(5.0),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color: AppColors.red,
+                                    ),
+                                  ),
+                                ),
+                                child: Text('Salin',
+                                    style: TextStyle(
+                                      color: AppColors.red,
+                                      fontWeight: FontWeight.bold,
+                                    )))
+                          ],
+                        ),
+                      ],
+                    ),
                   SizedBox(height: 10),
                   Divider(
                     height: 1,
                     color: Colors.grey,
                   ),
-                  SizedBox(height: 10),
+                  if (vaPayment.bankAccName != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Text('Pemilik Rekening'),
+                        SizedBox(height: 5),
+                        Text(
+                          vaPayment.bankAccName ?? "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(height: 10),
+                      ],
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -135,7 +220,7 @@ class PaymentVAScreen extends StatelessWidget {
                           Text('Total pembayaran'),
                           SizedBox(height: 5),
                           Text(
-                            Rupiah.format(vaPayment.amount.toString()),
+                            Rupiah.format(vaAmount.toString()),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -144,8 +229,8 @@ class PaymentVAScreen extends StatelessWidget {
                       ),
                       FlatButton(
                           onPressed: () {
-                            Clipboard.setData(ClipboardData(
-                                text: vaPayment.amount.toString()));
+                            Clipboard.setData(
+                                ClipboardData(text: vaAmount.toString()));
                             Ctoast.show('Amount Copied');
                           },
                           color: Colors.white,

@@ -854,15 +854,29 @@ class _$CheckoutDataPaymentCodeResponseTearOff {
   const _$CheckoutDataPaymentCodeResponseTearOff();
 
   _CheckoutDataPaymentCodeResponse call(
-      {required String title,
-      required int amount,
-      required String vaNumber,
+      {required String? title,
+      required int? amount,
+      required String? vaNumber,
+      required DateTime? formattedTransactionDate,
+      required String? bankAccName,
+      required String? bankName,
+      required String? formattedUniqueAmount,
+      required String? bankAccNo,
+      required DateTime? transactionDate,
+      required String? uniqueAmount,
       required int expires,
       required DateTime expiresAt}) {
     return _CheckoutDataPaymentCodeResponse(
       title: title,
       amount: amount,
       vaNumber: vaNumber,
+      formattedTransactionDate: formattedTransactionDate,
+      bankAccName: bankAccName,
+      bankName: bankName,
+      formattedUniqueAmount: formattedUniqueAmount,
+      bankAccNo: bankAccNo,
+      transactionDate: transactionDate,
+      uniqueAmount: uniqueAmount,
       expires: expires,
       expiresAt: expiresAt,
     );
@@ -879,9 +893,16 @@ const $CheckoutDataPaymentCodeResponse =
 
 /// @nodoc
 mixin _$CheckoutDataPaymentCodeResponse {
-  String get title => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
-  String get vaNumber => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  int? get amount => throw _privateConstructorUsedError;
+  String? get vaNumber => throw _privateConstructorUsedError;
+  DateTime? get formattedTransactionDate => throw _privateConstructorUsedError;
+  String? get bankAccName => throw _privateConstructorUsedError;
+  String? get bankName => throw _privateConstructorUsedError;
+  String? get formattedUniqueAmount => throw _privateConstructorUsedError;
+  String? get bankAccNo => throw _privateConstructorUsedError;
+  DateTime? get transactionDate => throw _privateConstructorUsedError;
+  String? get uniqueAmount => throw _privateConstructorUsedError;
   int get expires => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
 
@@ -898,9 +919,16 @@ abstract class $CheckoutDataPaymentCodeResponseCopyWith<$Res> {
           $Res Function(CheckoutDataPaymentCodeResponse) then) =
       _$CheckoutDataPaymentCodeResponseCopyWithImpl<$Res>;
   $Res call(
-      {String title,
-      int amount,
-      String vaNumber,
+      {String? title,
+      int? amount,
+      String? vaNumber,
+      DateTime? formattedTransactionDate,
+      String? bankAccName,
+      String? bankName,
+      String? formattedUniqueAmount,
+      String? bankAccNo,
+      DateTime? transactionDate,
+      String? uniqueAmount,
       int expires,
       DateTime expiresAt});
 }
@@ -919,6 +947,13 @@ class _$CheckoutDataPaymentCodeResponseCopyWithImpl<$Res>
     Object? title = freezed,
     Object? amount = freezed,
     Object? vaNumber = freezed,
+    Object? formattedTransactionDate = freezed,
+    Object? bankAccName = freezed,
+    Object? bankName = freezed,
+    Object? formattedUniqueAmount = freezed,
+    Object? bankAccNo = freezed,
+    Object? transactionDate = freezed,
+    Object? uniqueAmount = freezed,
     Object? expires = freezed,
     Object? expiresAt = freezed,
   }) {
@@ -926,15 +961,43 @@ class _$CheckoutDataPaymentCodeResponseCopyWithImpl<$Res>
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       vaNumber: vaNumber == freezed
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      formattedTransactionDate: formattedTransactionDate == freezed
+          ? _value.formattedTransactionDate
+          : formattedTransactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      bankAccName: bankAccName == freezed
+          ? _value.bankAccName
+          : bankAccName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankName: bankName == freezed
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      formattedUniqueAmount: formattedUniqueAmount == freezed
+          ? _value.formattedUniqueAmount
+          : formattedUniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankAccNo: bankAccNo == freezed
+          ? _value.bankAccNo
+          : bankAccNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionDate: transactionDate == freezed
+          ? _value.transactionDate
+          : transactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      uniqueAmount: uniqueAmount == freezed
+          ? _value.uniqueAmount
+          : uniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
       expires: expires == freezed
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
@@ -956,9 +1019,16 @@ abstract class _$CheckoutDataPaymentCodeResponseCopyWith<$Res>
       __$CheckoutDataPaymentCodeResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String title,
-      int amount,
-      String vaNumber,
+      {String? title,
+      int? amount,
+      String? vaNumber,
+      DateTime? formattedTransactionDate,
+      String? bankAccName,
+      String? bankName,
+      String? formattedUniqueAmount,
+      String? bankAccNo,
+      DateTime? transactionDate,
+      String? uniqueAmount,
       int expires,
       DateTime expiresAt});
 }
@@ -981,6 +1051,13 @@ class __$CheckoutDataPaymentCodeResponseCopyWithImpl<$Res>
     Object? title = freezed,
     Object? amount = freezed,
     Object? vaNumber = freezed,
+    Object? formattedTransactionDate = freezed,
+    Object? bankAccName = freezed,
+    Object? bankName = freezed,
+    Object? formattedUniqueAmount = freezed,
+    Object? bankAccNo = freezed,
+    Object? transactionDate = freezed,
+    Object? uniqueAmount = freezed,
     Object? expires = freezed,
     Object? expiresAt = freezed,
   }) {
@@ -988,15 +1065,43 @@ class __$CheckoutDataPaymentCodeResponseCopyWithImpl<$Res>
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       vaNumber: vaNumber == freezed
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      formattedTransactionDate: formattedTransactionDate == freezed
+          ? _value.formattedTransactionDate
+          : formattedTransactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      bankAccName: bankAccName == freezed
+          ? _value.bankAccName
+          : bankAccName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankName: bankName == freezed
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      formattedUniqueAmount: formattedUniqueAmount == freezed
+          ? _value.formattedUniqueAmount
+          : formattedUniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankAccNo: bankAccNo == freezed
+          ? _value.bankAccNo
+          : bankAccNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transactionDate: transactionDate == freezed
+          ? _value.transactionDate
+          : transactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      uniqueAmount: uniqueAmount == freezed
+          ? _value.uniqueAmount
+          : uniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
       expires: expires == freezed
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
@@ -1017,6 +1122,13 @@ class _$_CheckoutDataPaymentCodeResponse
       {required this.title,
       required this.amount,
       required this.vaNumber,
+      required this.formattedTransactionDate,
+      required this.bankAccName,
+      required this.bankName,
+      required this.formattedUniqueAmount,
+      required this.bankAccNo,
+      required this.transactionDate,
+      required this.uniqueAmount,
       required this.expires,
       required this.expiresAt});
 
@@ -1025,11 +1137,25 @@ class _$_CheckoutDataPaymentCodeResponse
       _$_$_CheckoutDataPaymentCodeResponseFromJson(json);
 
   @override
-  final String title;
+  final String? title;
   @override
-  final int amount;
+  final int? amount;
   @override
-  final String vaNumber;
+  final String? vaNumber;
+  @override
+  final DateTime? formattedTransactionDate;
+  @override
+  final String? bankAccName;
+  @override
+  final String? bankName;
+  @override
+  final String? formattedUniqueAmount;
+  @override
+  final String? bankAccNo;
+  @override
+  final DateTime? transactionDate;
+  @override
+  final String? uniqueAmount;
   @override
   final int expires;
   @override
@@ -1037,7 +1163,7 @@ class _$_CheckoutDataPaymentCodeResponse
 
   @override
   String toString() {
-    return 'CheckoutDataPaymentCodeResponse(title: $title, amount: $amount, vaNumber: $vaNumber, expires: $expires, expiresAt: $expiresAt)';
+    return 'CheckoutDataPaymentCodeResponse(title: $title, amount: $amount, vaNumber: $vaNumber, formattedTransactionDate: $formattedTransactionDate, bankAccName: $bankAccName, bankName: $bankName, formattedUniqueAmount: $formattedUniqueAmount, bankAccNo: $bankAccNo, transactionDate: $transactionDate, uniqueAmount: $uniqueAmount, expires: $expires, expiresAt: $expiresAt)';
   }
 
   @override
@@ -1051,6 +1177,29 @@ class _$_CheckoutDataPaymentCodeResponse
             (identical(other.vaNumber, vaNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.vaNumber, vaNumber)) &&
+            (identical(
+                    other.formattedTransactionDate, formattedTransactionDate) ||
+                const DeepCollectionEquality().equals(
+                    other.formattedTransactionDate,
+                    formattedTransactionDate)) &&
+            (identical(other.bankAccName, bankAccName) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankAccName, bankAccName)) &&
+            (identical(other.bankName, bankName) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankName, bankName)) &&
+            (identical(other.formattedUniqueAmount, formattedUniqueAmount) ||
+                const DeepCollectionEquality().equals(
+                    other.formattedUniqueAmount, formattedUniqueAmount)) &&
+            (identical(other.bankAccNo, bankAccNo) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankAccNo, bankAccNo)) &&
+            (identical(other.transactionDate, transactionDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionDate, transactionDate)) &&
+            (identical(other.uniqueAmount, uniqueAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.uniqueAmount, uniqueAmount)) &&
             (identical(other.expires, expires) ||
                 const DeepCollectionEquality()
                     .equals(other.expires, expires)) &&
@@ -1065,6 +1214,13 @@ class _$_CheckoutDataPaymentCodeResponse
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(vaNumber) ^
+      const DeepCollectionEquality().hash(formattedTransactionDate) ^
+      const DeepCollectionEquality().hash(bankAccName) ^
+      const DeepCollectionEquality().hash(bankName) ^
+      const DeepCollectionEquality().hash(formattedUniqueAmount) ^
+      const DeepCollectionEquality().hash(bankAccNo) ^
+      const DeepCollectionEquality().hash(transactionDate) ^
+      const DeepCollectionEquality().hash(uniqueAmount) ^
       const DeepCollectionEquality().hash(expires) ^
       const DeepCollectionEquality().hash(expiresAt);
 
@@ -1083,9 +1239,16 @@ class _$_CheckoutDataPaymentCodeResponse
 abstract class _CheckoutDataPaymentCodeResponse
     implements CheckoutDataPaymentCodeResponse {
   const factory _CheckoutDataPaymentCodeResponse(
-      {required String title,
-      required int amount,
-      required String vaNumber,
+      {required String? title,
+      required int? amount,
+      required String? vaNumber,
+      required DateTime? formattedTransactionDate,
+      required String? bankAccName,
+      required String? bankName,
+      required String? formattedUniqueAmount,
+      required String? bankAccNo,
+      required DateTime? transactionDate,
+      required String? uniqueAmount,
       required int expires,
       required DateTime expiresAt}) = _$_CheckoutDataPaymentCodeResponse;
 
@@ -1093,11 +1256,25 @@ abstract class _CheckoutDataPaymentCodeResponse
       _$_CheckoutDataPaymentCodeResponse.fromJson;
 
   @override
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   @override
-  int get amount => throw _privateConstructorUsedError;
+  int? get amount => throw _privateConstructorUsedError;
   @override
-  String get vaNumber => throw _privateConstructorUsedError;
+  String? get vaNumber => throw _privateConstructorUsedError;
+  @override
+  DateTime? get formattedTransactionDate => throw _privateConstructorUsedError;
+  @override
+  String? get bankAccName => throw _privateConstructorUsedError;
+  @override
+  String? get bankName => throw _privateConstructorUsedError;
+  @override
+  String? get formattedUniqueAmount => throw _privateConstructorUsedError;
+  @override
+  String? get bankAccNo => throw _privateConstructorUsedError;
+  @override
+  DateTime? get transactionDate => throw _privateConstructorUsedError;
+  @override
+  String? get uniqueAmount => throw _privateConstructorUsedError;
   @override
   int get expires => throw _privateConstructorUsedError;
   @override
