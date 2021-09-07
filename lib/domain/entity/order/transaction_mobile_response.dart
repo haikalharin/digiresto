@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final empty = emptyFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
@@ -241,9 +237,9 @@ abstract class OrderMethod with _$OrderMethod {
 abstract class TransactionMobileDataPaymentListResponse
     with _$TransactionMobileDataPaymentListResponse {
   const factory TransactionMobileDataPaymentListResponse({
-    required int amount,
-    required String method,
-    required String voucherRefNumber,
+    required int? amount,
+    required String? method,
+    required String? voucherRefNumber,
   }) = _TransactionMobileDataPaymentListResponse;
 
   factory TransactionMobileDataPaymentListResponse.fromJson(
@@ -273,15 +269,15 @@ abstract class TransactionMobileDataPaymentResponse
 abstract class TransactionMobileDataPromoResponse
     with _$TransactionMobileDataPromoResponse {
   const factory TransactionMobileDataPromoResponse({
-    required List<String> paymentTypes,
-    required String title,
-    required String promoType,
-    required String type,
-    required int discount,
-    required int minPurchase,
-    required int promoId,
-    required String voucherRefNumber,
-    required String voucherCode,
+    required List<String>? paymentTypes,
+    required String? title,
+    required String? promoType,
+    required String? type,
+    required int? discount,
+    required int? minPurchase,
+    required int? promoId,
+    required String? voucherRefNumber,
+    required String? voucherCode,
     required int amount,
   }) = _TransactionMobileDataPromoResponse;
 

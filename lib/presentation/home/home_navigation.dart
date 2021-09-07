@@ -20,6 +20,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   int _selectedTabIndex = 0;
   bool isHaveCart = false;
   void _onNavBarTapped(int index) {
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
     setState(() {
       if (isHaveCart) {
         _selectedTabIndex = index;

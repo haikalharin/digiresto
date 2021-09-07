@@ -886,6 +886,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                   "Digiresto Credit Anda Tidak Mencukupi", () {
                                 Get.back();
                               });
+                            } else {
+                              controller.isLoading.value = true;
+                              Get.context!
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.checkoutCart());
                             }
                           } else if (placeInfoController.text == "" &&
                               controller.salesType.value == "dineIn") {
@@ -1431,9 +1436,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       controller.isLoading.value = false;
                       print("error response cheeckout 2:");
                     } else if (checkoutResponse?.payment.isCredit ?? false) {
-                      Get.context!.read<TransactionBloc>().add(
-                          TransactionEvent.getTransaction(
-                              checkoutResponse!.receiptCode));
+                      Get.offNamedUntil(
+                          Routers.paymentReceipt, (route) => false,
+                          arguments: PaymentReceiptViewArgument(
+                              checkoutDataResponse:
+                                  controller.checkoutResponse.value!));
                       controller.isLoading.value = false;
                     } else if (checkoutResponse?.payment.isWebView ?? false) {
                       controller.isLoading.value = false;
@@ -1494,14 +1501,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           BlocListener<TransactionBloc, TransactionState>(
             listener: (context, state) {
               state.maybeMap(
-                  getTransactionSuccess: (r) {
-                    Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
-                        arguments: PaymentReceiptViewArgument(
-                            checkoutDataResponse:
-                                controller.checkoutResponse.value!));
-                    // Navigator.of(context).pushNamedAndRemoveUntil(
-                    //     Routers.paymentReceipt, (_) => false);
-                  },
+                  getTransactionSuccess: (r) {},
                   getOngoingTransactionSuccess: (r) {},
                   loadFailure: (e) {
                     e.error.maybeMap(orElse: () {

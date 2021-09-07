@@ -179,7 +179,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Text(
-                                        _transaction?.outletName ?? '',
+                                        _transaction?.outlet?.detail.name ?? '',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
