@@ -207,14 +207,13 @@ class ProfileWidget extends StatelessWidget {
                                 Expanded(
                                   child: CustomButton(
                                     onPressed: () async {
-                                      await I10n.load(
+                                      Get.updateLocale(
                                           _langController.getLocale());
-                                      BlocProvider.of<DigiLocaleBloc>(context)
-                                          .add(DigiLocaleEvent.updateLocale(
+                                      context.read<DigiLocaleBloc>().add(
+                                          DigiLocaleEvent.updateLocale(
                                               locale:
                                                   _langController.getLocale()));
-
-                                      Phoenix.rebirth(context);
+                                      Get.back();
                                     },
                                     color: AppColors.mainColor,
                                     fontColor: Colors.white,

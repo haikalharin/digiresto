@@ -19,36 +19,44 @@ class AppWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DigiLocaleBloc, DigiLocaleState>(
-      buildWhen: (previous, current) =>
-          previous.toString() != current.toString(),
-      builder: (context, state) {
-        return state.maybeMap(
-            orElse: () => SizedBox.shrink(),
-            loadLocale: (lcl) {
-              return GetMaterialApp(
-                title: 'Digiresto',
-                navigatorKey: alice.getNavigatorKey(),
-                enableLog: false,
-                debugShowCheckedModeBanner: false,
-                localizationsDelegates: [
-                  I10n.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: I10n.delegate.supportedLocales,
-                locale: lcl.locale,
-                fallbackLocale: lcl.locale,
-                theme: ThemeData(
-                  primarySwatch: AppColors.mainMaterialColor,
-                  visualDensity: VisualDensity.adaptivePlatformDensity,
-                ),
-                getPages: Routers().routers,
-                initialRoute: Routers.splash,
-              );
-            });
+    return BlocListener<DigiLocaleBloc, DigiLocaleState>(
+      listener: (context, state) {
+        state.maybeMap(
+          orElse: () => null,
+          loadLocale: (value) => Get.updateLocale(value.locale),
+        );
       },
+      child:
+          //  (context, state) {
+          // return state.maybeMap(
+          //     orElse: () => SizedBox.shrink(),
+          //     loadLocale: (lcl) {
+          // return
+          GetMaterialApp(
+        title: 'Digiresto',
+        navigatorKey: alice.getNavigatorKey(),
+        enableLog: false,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          I10n.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: I10n.delegate.supportedLocales,
+        locale: Locale('en'),
+        fallbackLocale: Locale('en'),
+        theme: ThemeData(
+          primarySwatch: AppColors.mainMaterialColor,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        getPages: Routers().routers,
+        initialRoute: Routers.splash,
+      ),
     );
+    // }
+    // );
+    //   },
+    // );
   }
 }
