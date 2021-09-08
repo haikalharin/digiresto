@@ -19,7 +19,7 @@ String emptyToJson(TransactionMobileResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class TransactionMobileResponse with _$TransactionMobileResponse {
+class TransactionMobileResponse with _$TransactionMobileResponse {
   const factory TransactionMobileResponse({
     required StatusResponse response,
     required TransactionMobileDataResponse data,
@@ -31,8 +31,7 @@ abstract class TransactionMobileResponse with _$TransactionMobileResponse {
 }
 
 @freezed
-abstract class TransactionMobileDataResponse
-    with _$TransactionMobileDataResponse {
+class TransactionMobileDataResponse with _$TransactionMobileDataResponse {
   const factory TransactionMobileDataResponse({
     required String outletName,
     required int outletId,
@@ -92,7 +91,7 @@ abstract class TransactionMobileDataResponse
 }
 
 @freezed
-abstract class TransactionMobileDataBillingDetailResponse
+class TransactionMobileDataBillingDetailResponse
     with _$TransactionMobileDataBillingDetailResponse {
   const factory TransactionMobileDataBillingDetailResponse({
     required String? title,
@@ -108,7 +107,7 @@ abstract class TransactionMobileDataBillingDetailResponse
 }
 
 @freezed
-abstract class TransactionMobileDataDeliveryResponse
+class TransactionMobileDataDeliveryResponse
     with _$TransactionMobileDataDeliveryResponse {
   const factory TransactionMobileDataDeliveryResponse({
     required String provider,
@@ -124,7 +123,7 @@ abstract class TransactionMobileDataDeliveryResponse
 }
 
 @freezed
-abstract class TransactionMobileDataDeliveryDetailResponse
+class TransactionMobileDataDeliveryDetailResponse
     with _$TransactionMobileDataDeliveryDetailResponse {
   const factory TransactionMobileDataDeliveryDetailResponse({
     required String? orderId,
@@ -152,7 +151,7 @@ abstract class TransactionMobileDataDeliveryDetailResponse
 }
 
 @freezed
-abstract class TransactionMobileDataDeliveryDetailFromToResponse
+class TransactionMobileDataDeliveryDetailFromToResponse
     with _$TransactionMobileDataDeliveryDetailFromToResponse {
   const factory TransactionMobileDataDeliveryDetailFromToResponse({
     required List<String> location,
@@ -167,7 +166,7 @@ abstract class TransactionMobileDataDeliveryDetailFromToResponse
 }
 
 @freezed
-abstract class TransactionMobileDataOutletResponse
+class TransactionMobileDataOutletResponse
     with _$TransactionMobileDataOutletResponse {
   const factory TransactionMobileDataOutletResponse({
     required String name,
@@ -195,7 +194,7 @@ abstract class TransactionMobileDataOutletResponse
 }
 
 @freezed
-abstract class TransactionMobileDataOutletDetailResponse
+class TransactionMobileDataOutletDetailResponse
     with _$TransactionMobileDataOutletDetailResponse {
   const factory TransactionMobileDataOutletDetailResponse({
     required String name,
@@ -218,7 +217,7 @@ abstract class TransactionMobileDataOutletDetailResponse
 }
 
 @freezed
-abstract class Moka with _$Moka {
+class Moka with _$Moka {
   const factory Moka({
     required dynamic outletId,
   }) = _Moka;
@@ -227,7 +226,7 @@ abstract class Moka with _$Moka {
 }
 
 @freezed
-abstract class OrderMethod with _$OrderMethod {
+class OrderMethod with _$OrderMethod {
   const factory OrderMethod({
     required bool forceSelect,
     required List<String> defaultList,
@@ -238,7 +237,7 @@ abstract class OrderMethod with _$OrderMethod {
 }
 
 @freezed
-abstract class TransactionMobileDataPaymentListResponse
+class TransactionMobileDataPaymentListResponse
     with _$TransactionMobileDataPaymentListResponse {
   const factory TransactionMobileDataPaymentListResponse({
     required int amount,
@@ -252,7 +251,7 @@ abstract class TransactionMobileDataPaymentListResponse
 }
 
 @freezed
-abstract class TransactionMobileDataPaymentResponse
+class TransactionMobileDataPaymentResponse
     with _$TransactionMobileDataPaymentResponse {
   const factory TransactionMobileDataPaymentResponse({
     required int amount,
@@ -270,7 +269,7 @@ abstract class TransactionMobileDataPaymentResponse
 }
 
 @freezed
-abstract class TransactionMobileDataPromoResponse
+class TransactionMobileDataPromoResponse
     with _$TransactionMobileDataPromoResponse {
   const factory TransactionMobileDataPromoResponse({
     required List<String> paymentTypes,
@@ -291,7 +290,7 @@ abstract class TransactionMobileDataPromoResponse
 }
 
 @freezed
-abstract class TransactionMobileDataRatingResponse
+class TransactionMobileDataRatingResponse
     with _$TransactionMobileDataRatingResponse {
   const factory TransactionMobileDataRatingResponse() =
       _TransactionMobileDataRatingResponse;

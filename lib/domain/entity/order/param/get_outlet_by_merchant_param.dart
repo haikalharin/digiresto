@@ -11,7 +11,7 @@ GetOutletByMerchantParam emptyFromJson(String str) =>
 String emptyToJson(GetOutletByMerchantParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class GetOutletByMerchantParam with _$GetOutletByMerchantParam {
+class GetOutletByMerchantParam with _$GetOutletByMerchantParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletByMerchantParam({
     required GetOutletByMerchantQueryParam queryString,
@@ -23,8 +23,7 @@ abstract class GetOutletByMerchantParam with _$GetOutletByMerchantParam {
 }
 
 @freezed
-abstract class GetOutletByMerchantBodyParam
-    with _$GetOutletByMerchantBodyParam {
+class GetOutletByMerchantBodyParam with _$GetOutletByMerchantBodyParam {
   const factory GetOutletByMerchantBodyParam() = _GetOutletByMerchantBodyParam;
 
   factory GetOutletByMerchantBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -32,8 +31,7 @@ abstract class GetOutletByMerchantBodyParam
 }
 
 @freezed
-abstract class GetOutletByMerchantQueryParam
-    with _$GetOutletByMerchantQueryParam {
+class GetOutletByMerchantQueryParam with _$GetOutletByMerchantQueryParam {
   const factory GetOutletByMerchantQueryParam({
     required String location,
     required int page,

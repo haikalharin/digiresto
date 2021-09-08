@@ -1,4 +1,5 @@
 import 'package:digiresto/application/auth/auth_bloc.dart';
+import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/application/profile/profile_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'widgets/profile_menu_widget.dart';
@@ -31,10 +33,9 @@ class ChangeLanguageController extends GetxController {
 
   List<String> _locale = ["id", "en"];
 
-  List<String> _countryCode = ["ID", "EN"];
+  List<String> _countryCode = ["ID", "US"];
 
   Locale getLocale() {
-    print('language: ${languageIndex.value}');
     return Locale(
       _locale[languageIndex.value],
       _countryCode[languageIndex.value],
@@ -208,7 +209,12 @@ class ProfileWidget extends StatelessWidget {
                                     onPressed: () async {
                                       await I10n.load(
                                           _langController.getLocale());
-                                      // Phoenix.rebirth(context);
+                                      BlocProvider.of<DigiLocaleBloc>(context)
+                                          .add(DigiLocaleEvent.updateLocale(
+                                              locale:
+                                                  _langController.getLocale()));
+
+                                      Phoenix.rebirth(context);
                                     },
                                     color: AppColors.mainColor,
                                     fontColor: Colors.white,

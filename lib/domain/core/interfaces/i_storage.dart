@@ -4,11 +4,11 @@ enum StorageConstants {
   user,
   security,
   cache,
-  aimUser,
   address,
   cart,
   outletDetail,
-  orderProduct
+  orderProduct,
+  locale,
 }
 
 abstract class IStorage {

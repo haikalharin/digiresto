@@ -27,8 +27,7 @@ class StatusResponse with _$StatusResponse {
 }
 
 @freezed
-abstract class StatusMessageDisplayResponse
-    with _$StatusMessageDisplayResponse {
+class StatusMessageDisplayResponse with _$StatusMessageDisplayResponse {
   const factory StatusMessageDisplayResponse({
     required String id,
     required String en,
