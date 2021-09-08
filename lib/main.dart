@@ -13,6 +13,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import 'application/home/home_content_view_controller.dart';
+import 'application/home/home_navigation_view_controller.dart';
 import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'application/order/bloc/order_bloc.dart';
 import 'application/order/order_view_controller.dart';
@@ -34,6 +35,7 @@ Future<void> main() async {
 class InitiateProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeNavigationViewController());
     Get.put(HomeContentViewController());
     //add for cart & order transaction
     Get.put(OrderViewController());
