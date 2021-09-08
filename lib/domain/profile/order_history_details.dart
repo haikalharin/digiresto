@@ -93,7 +93,7 @@ class Delivery with _$Delivery {
     required int price,
     required String address,
     required String shipmentMethod,
-    required List<String> location,
+    required List<dynamic> location,
   }) = _Delivery;
 
   factory Delivery.fromJson(Map<String, dynamic> json) =>
@@ -129,7 +129,7 @@ class DeliveryDetail with _$DeliveryDetail {
 @freezed
 class From with _$From {
   const factory From({
-    required List<double> location,
+    required List<dynamic> location,
     required String name,
     required String address,
     required String phone,
@@ -141,7 +141,7 @@ class From with _$From {
 @freezed
 class To with _$To {
   const factory To({
-    required List<String> location,
+    required List<dynamic> location,
     required String name,
     required String address,
     required String phone,
@@ -180,7 +180,7 @@ class MenuItem with _$MenuItem {
     required bool isStock,
     required String img,
     required String image,
-    required int transactionLimit,
+    @JsonKey(includeIfNull: true) required int? transactionLimit,
   }) = _MenuItem;
 
   factory MenuItem.fromJson(Map<String, dynamic> json) =>
@@ -216,8 +216,8 @@ class Detail with _$Detail {
     required String name,
     required String address,
     required List<dynamic> taxesAndServices,
-    required List<double> location,
-    required String phone,
+    required List<dynamic> location,
+    @JsonKey(includeIfNull: true) required String? phone,
     required String kurirPrice,
     required List<String> deliveryProvider,
     required String driverPhone,

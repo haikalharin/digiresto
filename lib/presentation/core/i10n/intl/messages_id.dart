@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "country_code": MessageLookupByLibrary.simpleMessage("ID"),
         "home_end": MessageLookupByLibrary.simpleMessage(
             "-------------------------------------------------------------------------------------"),
         "home_start": MessageLookupByLibrary.simpleMessage(
@@ -31,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_tv_no_post_found":
             MessageLookupByLibrary.simpleMessage("No posts found"),
         "home_tv_posts": MessageLookupByLibrary.simpleMessage("Posts"),
+        "lang": MessageLookupByLibrary.simpleMessage("id"),
         "login_btn_forgot_password":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "login_btn_sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
@@ -81,6 +83,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_get_started_title":
             MessageLookupByLibrary.simpleMessage("Pengiriman Cepat dan Aman"),
         "onboarding_start": MessageLookupByLibrary.simpleMessage(
-            "Below are list of strings for onboarding")
+            "Below are list of strings for onboarding"),
+        "profile_about_digiresto":
+            MessageLookupByLibrary.simpleMessage("Tentang Digiresto"),
+        "profile_address": MessageLookupByLibrary.simpleMessage("Alamat"),
+        "profile_app_version":
+            MessageLookupByLibrary.simpleMessage("Versi Aplikasi"),
+        "profile_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "profile_change_language":
+            MessageLookupByLibrary.simpleMessage("Pilih Bahasa"),
+        "profile_customer_service":
+            MessageLookupByLibrary.simpleMessage("Customer Service"),
+        "profile_customer_service_desc": MessageLookupByLibrary.simpleMessage(
+            "Untuk informasi keluhan, Kritik & Saran dalam menggunakan aplikasi silahkan hubungi kami melalui link berikut:"),
+        "profile_edit": MessageLookupByLibrary.simpleMessage("Ubah"),
+        "profile_history":
+            MessageLookupByLibrary.simpleMessage("Riwayat pembelian"),
+        "profile_join_digiresto":
+            MessageLookupByLibrary.simpleMessage("Bergabung dengan digiresto"),
+        "profile_logout": MessageLookupByLibrary.simpleMessage("Keluar"),
+        "profile_privacy_policy":
+            MessageLookupByLibrary.simpleMessage("Kebijakan Privasi")
       };
 }

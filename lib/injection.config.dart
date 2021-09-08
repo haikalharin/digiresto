@@ -82,8 +82,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i4.AppLocalizations(get<_i5.Locale>()));
   gh.factory<_i6.AppWidget>(() => _i6.AppWidget(alice: get<_i3.Alice>()));
   gh.lazySingleton<_i7.Connectivity>(() => registerModule.connectivity);
-  gh.factory<_i8.Env>(() => _i8.EnvProd(), registerFor: {_prod});
   gh.factory<_i8.Env>(() => _i8.EnvDev(), registerFor: {_dev});
+  gh.factory<_i8.Env>(() => _i8.EnvProd(), registerFor: {_prod});
   gh.lazySingleton<_i9.GeolocatorPlatform>(
       () => registerModule.goelocatorPlatform);
   gh.lazySingleton<_i10.HiveInterface>(() => registerModule.hive);

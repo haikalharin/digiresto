@@ -70,6 +70,14 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
           receiptCode: _event.receiptCode,
           reason: _event.reason,
         );
+        yield failureOrSuccess.fold(
+          (failure) => _LoadFailure(failure: failure),
+          (cancelStatus) => _LoadCancelPage(
+            cancelReasons: _event.reasonList,
+            isSubmitting: false,
+            submitOption: optionOf(cancelStatus),
+          ),
+        );
       },
     );
   }

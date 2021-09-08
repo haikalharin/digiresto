@@ -6,7 +6,7 @@ import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
-import 'package:digiresto/presentation/profile/order_history/widgets/checklist_widget.dart';
+import 'package:digiresto/presentation/core/widgets/checklist_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';

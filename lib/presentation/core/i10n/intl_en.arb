@@ -1,4 +1,6 @@
 {
+    "lang": "en",
+    "country_code":"EN",
     "login_start": "Below are list of strings for login",
     "login_et_user_email": "Enter user email",
     "login_et_user_password": "Enter password",
@@ -39,11 +41,13 @@
     "onboarding_btn_next": "Next",
     "onboarding_end": "-------------------------------------------------------------------------------------",
     "profile_start": "Below are list of strings for login",
+    "profile_change_language": "Change Language",
     "profile_logout": "Logout",
     "profile_app_version": "App Version",
     "profile_privacy_policy": "Privacy Policy",
     "profile_about_digiresto": "About Digiresto",
     "profile_customer_service": "Customer Service",
+    "profile_join_digiresto": "Join with digiresto",
     "profile_customer_service_desc": "Untuk informasi keluhan, Kritik & Saran dalam menggunakan aplikasi silahkan hubungi kami melalui link berikut:",
     "profile_address": "Address",
     "profile_history": "History",
@@ -73,5 +77,7 @@
     "nota_ready_desc": "Your order is ready to deliver.",
     "nota_done_desc": "Your order is completed.",
     "nota_auto_done_desc": "Your order has been completed by the system.",
-    "nota_failed": "Payment failed"
+    "nota_failed": "Payment failed",
+
+    "profile_edit": "Edit"
 }

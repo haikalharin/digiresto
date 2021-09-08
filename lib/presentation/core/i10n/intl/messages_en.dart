@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "connection_error": MessageLookupByLibrary.simpleMessage(
             "Gagal mengambil data, silahkan coba beberapa saat lagi"),
+        "country_code": MessageLookupByLibrary.simpleMessage("EN"),
         "credit_end": MessageLookupByLibrary.simpleMessage(
             "-------------------------------------------------------------------------------------"),
         "credit_info": MessageLookupByLibrary.simpleMessage("My Credit"),
@@ -44,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_tv_no_post_found":
             MessageLookupByLibrary.simpleMessage("No posts found"),
         "home_tv_posts": MessageLookupByLibrary.simpleMessage("Posts"),
+        "lang": MessageLookupByLibrary.simpleMessage("en"),
         "login_body_base": MessageLookupByLibrary.simpleMessage(
             "Please select Base Url for the testing, or enter the base url you want to use"),
         "login_btn_forgot_password":
@@ -129,13 +131,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_app_version":
             MessageLookupByLibrary.simpleMessage("App Version"),
         "profile_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "profile_change_language":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
         "profile_customer_service":
             MessageLookupByLibrary.simpleMessage("Customer Service"),
         "profile_customer_service_desc": MessageLookupByLibrary.simpleMessage(
             "Untuk informasi keluhan, Kritik & Saran dalam menggunakan aplikasi silahkan hubungi kami melalui link berikut:"),
+        "profile_edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "profile_end": MessageLookupByLibrary.simpleMessage(
             "-------------------------------------------------------------------------------------"),
         "profile_history": MessageLookupByLibrary.simpleMessage("History"),
+        "profile_join_digiresto":
+            MessageLookupByLibrary.simpleMessage("Join with digiresto"),
         "profile_logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "profile_privacy_policy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),

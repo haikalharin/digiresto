@@ -50,6 +50,26 @@ class I10n {
     return Localizations.of<I10n>(context, I10n);
   }
 
+  /// `en`
+  String get lang {
+    return Intl.message(
+      'en',
+      name: 'lang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EN`
+  String get country_code {
+    return Intl.message(
+      'EN',
+      name: 'country_code',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Below are list of strings for login`
   String get login_start {
     return Intl.message(
@@ -450,6 +470,16 @@ class I10n {
     );
   }
 
+  /// `Change Language`
+  String get profile_change_language {
+    return Intl.message(
+      'Change Language',
+      name: 'profile_change_language',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Logout`
   String get profile_logout {
     return Intl.message(
@@ -495,6 +525,16 @@ class I10n {
     return Intl.message(
       'Customer Service',
       name: 'profile_customer_service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join with digiresto`
+  String get profile_join_digiresto {
+    return Intl.message(
+      'Join with digiresto',
+      name: 'profile_join_digiresto',
       desc: '',
       args: [],
     );
@@ -795,6 +835,16 @@ class I10n {
     return Intl.message(
       'Payment failed',
       name: 'nota_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get profile_edit {
+    return Intl.message(
+      'Edit',
+      name: 'profile_edit',
       desc: '',
       args: [],
     );

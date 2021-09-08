@@ -8,6 +8,7 @@ import 'package:digiresto/simple_bloc_delegate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -28,7 +29,11 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await configureInjection(env);
   Bloc.observer = getIt<SimpleBlocObserver>();
-  runApp(InitiateProvider());
+  runApp(
+    Phoenix(
+      child: InitiateProvider(),
+    ),
+  );
 }
 
 class InitiateProvider extends StatelessWidget {

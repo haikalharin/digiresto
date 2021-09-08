@@ -1,4 +1,6 @@
-{
+{   
+    "lang": "id",
+    "country_code":"ID",
     "login_start": "Below are list of strings for login",
     "login_et_user_email": "Enter user email",
     "login_et_user_password": "Enter password",
@@ -33,6 +35,20 @@
     "nota_ready_desc": "Pesanan Anda sudah siap untuk diantar.",
     "nota_done_desc": "Pesanan Anda sudah selesai.",
     "nota_auto_done_desc": "Pesanan Anda sudah diselesaikan oleh sistem.",
-    "nota_failed": "Pembayaran Gagal"
+    "nota_failed": "Pembayaran Gagal",
+
+    "profile_edit": "Ubah",
+    "profile_change_language": "Pilih Bahasa",
+    "profile_history": "Riwayat pembelian",
+    "profile_address": "Alamat",
+    "profile_logout": "Keluar",
+    "profile_app_version": "Versi Aplikasi",
+    "profile_privacy_policy": "Kebijakan Privasi",
+    "profile_about_digiresto": "Tentang Digiresto",
+    "profile_customer_service": "Customer Service",
+    
+    "profile_customer_service_desc": "Untuk informasi keluhan, Kritik & Saran dalam menggunakan aplikasi silahkan hubungi kami melalui link berikut:",
+    "profile_join_digiresto": "Bergabung dengan digiresto",
+    "profile_cancel": "Cancel"
   }
   

@@ -56,7 +56,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
           child: CustomButton(
             onPressed: () {
               final _phone = orderDetails.outlet.detail.phone;
-              final _phoneStr = _phone.startsWith('0') ? '62$_phone' : _phone;
+              final _phoneStr = _phone!.startsWith('0') ? '62$_phone' : _phone;
               launch('https://wa.me/$_phoneStr');
             },
             color: Colors.white,
