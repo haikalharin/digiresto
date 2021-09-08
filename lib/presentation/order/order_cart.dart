@@ -11,8 +11,6 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
@@ -44,36 +42,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final selectedDateController = TextEditingController();
 
   //List<PaymentMethod> _paymentMethods;
-
-  goBack(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  void didChangeDependencies() {
-    //super.didChangeDependencies();
-    // _userStore = Provider.of<UserStore>(context);
-    // _orderStore = Provider.of<OrderStore>(context);
-    // _transactionStore = Provider.of<TransactionStore>(context);
-    initDialogPlace();
-
-    // print(
-    //     'DEBUG >> transactionData on cart_store ${_orderStore.transactionData}');
-
-    // _orderStore.getPaymentMethod().then((value) {
-    //   print(value.toList().toString());
-    //   // setState(() {
-    //   //   _paymentMethods = value;
-    //   // });
-    // });
-
-    // _userStore.getBalance().then((value) => {});
-
-    // if (_orderStore.orderSalesTypes == 'onlineDriver') {
-    //   _orderStore.deliveryInquiry({
-    //     "location": [_userStore.activeAddressLat, _userStore.activeAddresslng]
-    //   });
-    // }
-  }
 
   void getCartSession() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
@@ -1334,37 +1302,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     );
   }
 
-  void getDetailOutlet() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
-            body: GetDetailOutletBodyParam(),
-            queryString: GetDetailOutletQueryParam(
-                outletId: controller
-                    .cartSession.value!.transactionData!.outletId
-                    .toString()))));
-  }
-
-  void getListProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
-                categoryId: "",
-                filter: "",
-                limit: 15,
-                outletId: controller
-                    .cartSession.value!.transactionData!.outletId
-                    .toString(),
-                page: 1))));
-  }
-
-  void getCartCache() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDeliveryMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
-  }
-
   void updateCartParam() {
     Get.context!
         .read<OrderBloc>()
@@ -1373,7 +1310,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
 
   @override
   Widget build(BuildContext context) {
-    getCartCache();
+    Get.put(OrderCartScreenViewController());
+    controller.getCartCache();
+    controller.getActiveAddress();
     getCartSession();
     return MultiBlocListener(
         listeners: [
@@ -1382,22 +1321,24 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               state.maybeMap(
                   addCartSuccess: (r) {
                     controller.cartSession.value = r.response;
-                    controller.isLoading.value = false;
+                    controller.checkAllLoaded();
                   },
                   getCartSessionSuccess: (r) {
                     controller.cartSession.value = r.response;
                     notesController.text =
                         r.response.transactionData!.customerNote;
-                    getDetailOutlet();
-                    getListProduct();
+                    controller.getDetailOutlet();
+                    controller.getListProduct();
                     print("data diterima");
+                    controller.checkAllLoaded();
                   },
                   getDetailOutletSuccess: (r) {
                     controller.detailOutlet.value = r.response;
+                    controller.checkAllLoaded();
                   },
                   getOutletListProductSuccess: (r) {
                     controller.listProduct.value = r.response;
-                    controller.isLoading.value = false;
+                    controller.checkAllLoaded();
                   },
                   setSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
@@ -1488,7 +1429,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     e.e.maybeMap(
                         checkoutCartFail: (e) {
                           print("error response checkout 1:");
-
                           controller.isLoading.value = false;
                           ErrorPopupWidget.show("Digiresto", "Transaksi gagal",
                               () {
@@ -1514,6 +1454,18 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   orElse: () {});
             },
+          ),
+          BlocListener<AddressListBloc, AddressListState>(
+            listener: (context, state) {
+              state.maybeMap(
+                  getActiveAddressSuccess: (r) {
+                    controller.activeAddress.value = r.response;
+                  },
+                  setActiveAddressSuccess: (r) {
+                    controller.activeAddress.value = r.response;
+                  },
+                  orElse: () {});
+            },
           )
         ],
         child: BlocBuilder<OrderBloc, OrderState>(
@@ -1526,7 +1478,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     child: Obx(() => StackWithProgress(
                             isLoading: controller.isLoading.value,
                             children: [
-                              Expanded(
+                              Positioned.fill(
                                 child: Container(
                                   height: MediaQuery.of(context).size.height -
                                       MediaQuery.of(context).padding.top,
@@ -1543,9 +1495,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                                     null
                                             ? _selectSalesTypeMethod()
                                             : Container(),
-
-                                        _AddressOrderCart(),
-
+                                        new _AddressOrderCart(),
                                         controller.detailOutlet.value != null &&
                                                 controller.listProduct.value !=
                                                     null
@@ -1632,6 +1582,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
+                    cartSession: controller.cartSession.value!,
                     dataProduct: product,
                     orderType: orderType,
                     mode: "edit",
@@ -1753,137 +1704,132 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
 }
 
 class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
-  void getActiveAddress() {
-    Get.context!
-        .read<AddressListBloc>()
-        .add(AddressListEvent.getActiveAddress());
-  }
-
   @override
   Widget build(BuildContext context) {
-    getActiveAddress();
-    return BlocConsumer<AddressListBloc, AddressListState>(
-        listener: (context, state) {
-      state.maybeMap(
-          getActiveAddressSuccess: (r) {
-            controller.activeAddress.value = r.response;
-          },
-          setActiveAddressSuccess: (r) {
-            controller.activeAddress.value = r.response;
-          },
-          orElse: () {});
-    }, builder: (context, state) {
-      return Obx(() => Theme(
-            data: Theme.of(Get.context!).copyWith(
-              primaryColor: Colors.black,
-            ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Lokasi Pengiriman",
-                                style: AppFont.textBlack14Regular),
-                            Row(
-                              children: [
-                                ImageIcon(
-                                  AssetImage(AppAssets.iconMarkerMove),
-                                  color: AppColors.redD42C35,
-                                  size: 16,
-                                ),
-                                SizedBox(width: 8),
-                                Text(controller.activeAddress.value?.name ?? "",
-                                    style: AppFont.textBlack14Bold),
-                              ],
-                            )
-                          ],
-                        ),
-                        if (controller.salesType.value != null)
-                          FlatButton(
-                              onPressed: () {
-                                Get.toNamed(Routers.homeAllAddress)!
-                                    .then((value) {
-                                  getActiveAddress();
-                                });
-                              },
-                              color: Colors.white,
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.red,
-                                ),
-                              ),
-                              child: Text('Ubah',
-                                  style: TextStyle(
-                                    color: AppColors.red,
-                                    fontWeight: FontWeight.bold,
-                                  )))
-                        else
-                          FlatButton(
-                              onPressed: () {},
-                              color: Colors.white,
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.red,
-                                ),
-                              ),
-                              child: Text('Pilih',
-                                  style: TextStyle(
-                                    color: AppColors.red,
-                                    fontWeight: FontWeight.bold,
-                                  )))
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0, right: 16),
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      child: Row(
+    return Obx(() => Theme(
+          data: Theme.of(Get.context!).copyWith(
+            primaryColor: Colors.black,
+          ),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            width: Get.width * 0.85,
-                            child: Obx(() => Text(
-                                  controller.activeAddress.value?.address ?? "",
-                                  style: AppFont.textBlack12Regular
-                                      .copyWith(color: AppColors.grey747474),
-                                )),
+                          Text("Lokasi Pengiriman",
+                              style: AppFont.textBlack14Regular),
+                          Row(
+                            children: [
+                              ImageIcon(
+                                AssetImage(AppAssets.iconMarkerMove),
+                                color: AppColors.redD42C35,
+                                size: 16,
+                              ),
+                              SizedBox(width: 8),
+                              Text(controller.activeAddress.value?.name ?? "",
+                                  style: AppFont.textBlack14Bold),
+                            ],
                           )
                         ],
                       ),
-                      decoration: BoxDecoration(
-                          color: AppColors.greyF6F6F6,
-                          borderRadius: BorderRadius.circular(4)),
+                      if (controller.salesType.value != null)
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.toNamed(Routers.homeAllAddress)!
+                                  .then((value) {
+                                controller.getActiveAddress();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(5.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                            ),
+                            child: Text('Ubah',
+                                style: TextStyle(
+                                  color: AppColors.red,
+                                  fontWeight: FontWeight.bold,
+                                )))
+                      else
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.toNamed(Routers.homeAllAddress)!
+                                  .then((value) {
+                                controller.getActiveAddress();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(5.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                            ),
+                            child: Text('Pilih',
+                                style: TextStyle(
+                                  color: AppColors.red,
+                                  fontWeight: FontWeight.bold,
+                                )))
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0, right: 16),
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          width: Get.width * 0.85,
+                          child: Obx(() => Text(
+                                controller.activeAddress.value?.address ?? "",
+                                style: AppFont.textBlack12Regular
+                                    .copyWith(color: AppColors.grey747474),
+                              )),
+                        )
+                      ],
                     ),
+                    decoration: BoxDecoration(
+                        color: AppColors.greyF6F6F6,
+                        borderRadius: BorderRadius.circular(4)),
                   ),
-                  SizedBox(height: 16),
-                  Container(
-                    color: AppColors.greyStroke,
-                    height: 10,
-                    width: double.infinity,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(height: 16),
+                Container(
+                  color: AppColors.greyStroke,
+                  height: 10,
+                  width: double.infinity,
+                ),
+              ],
             ),
-          ));
-    });
+          ),
+        ));
   }
 }
 
 class _HeaderOrderCart extends GetView<OrderCartScreenViewController> {
+  void goBack() {
+    Get.delete<OrderCartScreenViewController>();
+    Get.back();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -1910,10 +1856,7 @@ class _HeaderOrderCart extends GetView<OrderCartScreenViewController> {
                   icon: new Icon(Icons.arrow_back_outlined,
                       color: Colors.white, size: 24.0),
                   onPressed: () {
-                    //if (_userStore.activeHistoryScreen=='profile.address'){
-                    //_userStore.setActivedHomeTab("home");
-                    Navigator.of(Get.context!).pushNamed(Routers.home);
-                    //}
+                    goBack();
                   },
                 ),
                 Container(

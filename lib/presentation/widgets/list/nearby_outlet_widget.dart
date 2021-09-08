@@ -184,8 +184,8 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                                         BorderRadius.all(Radius.circular(8.0)),
                                     child: Image(
                                       image: RandomImages.getImageUrlDefault(
-                                          widget.data[index].merchantLogo, ""),
-                                      fit: BoxFit.fill,
+                                          widget.data[index].logo, ""),
+                                      fit: BoxFit.fitWidth,
                                       width: 96,
                                       alignment: Alignment.center,
                                     ),
