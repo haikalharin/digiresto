@@ -9,6 +9,7 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -81,6 +82,12 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   void setProduct() {
+    if (totalqty > (variantProductSelected.stock ?? 999)) {
+      ErrorPopupWidget.show("Digiresto", "out of stock", () {
+        Get.back();
+      });
+      return;
+    }
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
               CreateUpdateCartSessionItemParam(
@@ -107,7 +114,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   _setTotalQtyFromExistCart() {
     final cartSession = Get.find<OrderViewController>().cartSession.value;
     if (cartSession != null) {
-      cartSession.transactionData.items.forEach((element) {
+      cartSession.transactionData!.items.forEach((element) {
         if (variantProductSelected.id == element.productId.toString()) {
           setState(() {
             totalqty = element.qty;

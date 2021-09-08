@@ -255,7 +255,7 @@ class _$CartSessionResponseTearOff {
   _CartSessionResponse call(
       {required String? channel,
       required String? sessionId,
-      required TransactionData transactionData}) {
+      required TransactionData? transactionData}) {
     return _CartSessionResponse(
       channel: channel,
       sessionId: sessionId,
@@ -275,7 +275,7 @@ const $CartSessionResponse = _$CartSessionResponseTearOff();
 mixin _$CartSessionResponse {
   String? get channel => throw _privateConstructorUsedError;
   String? get sessionId => throw _privateConstructorUsedError;
-  TransactionData get transactionData => throw _privateConstructorUsedError;
+  TransactionData? get transactionData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -289,9 +289,9 @@ abstract class $CartSessionResponseCopyWith<$Res> {
           CartSessionResponse value, $Res Function(CartSessionResponse) then) =
       _$CartSessionResponseCopyWithImpl<$Res>;
   $Res call(
-      {String? channel, String? sessionId, TransactionData transactionData});
+      {String? channel, String? sessionId, TransactionData? transactionData});
 
-  $TransactionDataCopyWith<$Res> get transactionData;
+  $TransactionDataCopyWith<$Res>? get transactionData;
 }
 
 /// @nodoc
@@ -321,13 +321,17 @@ class _$CartSessionResponseCopyWithImpl<$Res>
       transactionData: transactionData == freezed
           ? _value.transactionData
           : transactionData // ignore: cast_nullable_to_non_nullable
-              as TransactionData,
+              as TransactionData?,
     ));
   }
 
   @override
-  $TransactionDataCopyWith<$Res> get transactionData {
-    return $TransactionDataCopyWith<$Res>(_value.transactionData, (value) {
+  $TransactionDataCopyWith<$Res>? get transactionData {
+    if (_value.transactionData == null) {
+      return null;
+    }
+
+    return $TransactionDataCopyWith<$Res>(_value.transactionData!, (value) {
       return _then(_value.copyWith(transactionData: value));
     });
   }
@@ -341,10 +345,10 @@ abstract class _$CartSessionResponseCopyWith<$Res>
       __$CartSessionResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? channel, String? sessionId, TransactionData transactionData});
+      {String? channel, String? sessionId, TransactionData? transactionData});
 
   @override
-  $TransactionDataCopyWith<$Res> get transactionData;
+  $TransactionDataCopyWith<$Res>? get transactionData;
 }
 
 /// @nodoc
@@ -376,7 +380,7 @@ class __$CartSessionResponseCopyWithImpl<$Res>
       transactionData: transactionData == freezed
           ? _value.transactionData
           : transactionData // ignore: cast_nullable_to_non_nullable
-              as TransactionData,
+              as TransactionData?,
     ));
   }
 }
@@ -397,7 +401,7 @@ class _$_CartSessionResponse implements _CartSessionResponse {
   @override
   final String? sessionId;
   @override
-  final TransactionData transactionData;
+  final TransactionData? transactionData;
 
   @override
   String toString() {
@@ -442,7 +446,7 @@ abstract class _CartSessionResponse implements CartSessionResponse {
   const factory _CartSessionResponse(
       {required String? channel,
       required String? sessionId,
-      required TransactionData transactionData}) = _$_CartSessionResponse;
+      required TransactionData? transactionData}) = _$_CartSessionResponse;
 
   factory _CartSessionResponse.fromJson(Map<String, dynamic> json) =
       _$_CartSessionResponse.fromJson;
@@ -452,7 +456,7 @@ abstract class _CartSessionResponse implements CartSessionResponse {
   @override
   String? get sessionId => throw _privateConstructorUsedError;
   @override
-  TransactionData get transactionData => throw _privateConstructorUsedError;
+  TransactionData? get transactionData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CartSessionResponseCopyWith<_CartSessionResponse> get copyWith =>

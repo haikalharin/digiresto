@@ -603,7 +603,7 @@ class _$OutletListProductDataSubModifierGroupResponseTearOff {
 
   _OutletListProductDataSubModifierGroupResponse call(
       {required String code,
-      required String sku,
+      required String? sku,
       required bool isPreorder,
       required int? preorderPeriod,
       required int? crossoutPrice,
@@ -651,7 +651,7 @@ const $OutletListProductDataSubModifierGroupResponse =
 /// @nodoc
 mixin _$OutletListProductDataSubModifierGroupResponse {
   String get code => throw _privateConstructorUsedError;
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
   int? get preorderPeriod => throw _privateConstructorUsedError;
   int? get crossoutPrice => throw _privateConstructorUsedError;
@@ -682,7 +682,7 @@ abstract class $OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
       _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>;
   $Res call(
       {String code,
-      String sku,
+      String? sku,
       bool isPreorder,
       int? preorderPeriod,
       int? crossoutPrice,
@@ -736,7 +736,7 @@ class _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isPreorder: isPreorder == freezed
           ? _value.isPreorder
           : isPreorder // ignore: cast_nullable_to_non_nullable
@@ -807,7 +807,7 @@ abstract class _$OutletListProductDataSubModifierGroupResponseCopyWith<$Res>
   @override
   $Res call(
       {String code,
-      String sku,
+      String? sku,
       bool isPreorder,
       int? preorderPeriod,
       int? crossoutPrice,
@@ -865,7 +865,7 @@ class __$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isPreorder: isPreorder == freezed
           ? _value.isPreorder
           : isPreorder // ignore: cast_nullable_to_non_nullable
@@ -955,7 +955,7 @@ class _$_OutletListProductDataSubModifierGroupResponse
   @override
   final String code;
   @override
-  final String sku;
+  final String? sku;
   @override
   final bool isPreorder;
   @override
@@ -1073,7 +1073,7 @@ abstract class _OutletListProductDataSubModifierGroupResponse
     implements OutletListProductDataSubModifierGroupResponse {
   const factory _OutletListProductDataSubModifierGroupResponse(
           {required String code,
-          required String sku,
+          required String? sku,
           required bool isPreorder,
           required int? preorderPeriod,
           required int? crossoutPrice,
@@ -1097,7 +1097,7 @@ abstract class _OutletListProductDataSubModifierGroupResponse
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   @override
   bool get isPreorder => throw _privateConstructorUsedError;
   @override
@@ -1144,7 +1144,7 @@ class _$OutletListProductDataResponseTearOff {
 
   _OutletListProductDataResponse call(
       {required String code,
-      required String sku,
+      required String? sku,
       required bool isPreorder,
       required int? preorderPeriod,
       required int? crossoutPrice,
@@ -1195,7 +1195,7 @@ const $OutletListProductDataResponse = _$OutletListProductDataResponseTearOff();
 /// @nodoc
 mixin _$OutletListProductDataResponse {
   String get code => throw _privateConstructorUsedError;
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
   int? get preorderPeriod => throw _privateConstructorUsedError;
   int? get crossoutPrice => throw _privateConstructorUsedError;
@@ -1229,7 +1229,7 @@ abstract class $OutletListProductDataResponseCopyWith<$Res> {
       _$OutletListProductDataResponseCopyWithImpl<$Res>;
   $Res call(
       {String code,
-      String sku,
+      String? sku,
       bool isPreorder,
       int? preorderPeriod,
       int? crossoutPrice,
@@ -1286,7 +1286,7 @@ class _$OutletListProductDataResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isPreorder: isPreorder == freezed
           ? _value.isPreorder
           : isPreorder // ignore: cast_nullable_to_non_nullable
@@ -1365,7 +1365,7 @@ abstract class _$OutletListProductDataResponseCopyWith<$Res>
   @override
   $Res call(
       {String code,
-      String sku,
+      String? sku,
       bool isPreorder,
       int? preorderPeriod,
       int? crossoutPrice,
@@ -1426,7 +1426,7 @@ class __$OutletListProductDataResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isPreorder: isPreorder == freezed
           ? _value.isPreorder
           : isPreorder // ignore: cast_nullable_to_non_nullable
@@ -1526,7 +1526,7 @@ class _$_OutletListProductDataResponse
   @override
   final String code;
   @override
-  final String sku;
+  final String? sku;
   @override
   final bool isPreorder;
   @override
@@ -1654,7 +1654,7 @@ abstract class _OutletListProductDataResponse
     implements OutletListProductDataResponse {
   const factory _OutletListProductDataResponse(
       {required String code,
-      required String sku,
+      required String? sku,
       required bool isPreorder,
       required int? preorderPeriod,
       required int? crossoutPrice,
@@ -1679,7 +1679,7 @@ abstract class _OutletListProductDataResponse
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   @override
   bool get isPreorder => throw _privateConstructorUsedError;
   @override
@@ -1731,7 +1731,7 @@ class _$OutletListProductDataVariantResponseTearOff {
 
   _OutletListProductDataVariantResponse call(
       {required String code,
-      required String sku,
+      required String? sku,
       required bool isPreorder,
       required int? preorderPeriod,
       required int? crossoutPrice,
@@ -1781,7 +1781,7 @@ const $OutletListProductDataVariantResponse =
 /// @nodoc
 mixin _$OutletListProductDataVariantResponse {
   String get code => throw _privateConstructorUsedError;
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
   int? get preorderPeriod => throw _privateConstructorUsedError;
   int? get crossoutPrice => throw _privateConstructorUsedError;
@@ -1814,7 +1814,7 @@ abstract class $OutletListProductDataVariantResponseCopyWith<$Res> {
       _$OutletListProductDataVariantResponseCopyWithImpl<$Res>;
   $Res call(
       {String code,
-      String sku,
+      String? sku,
       bool isPreorder,
       int? preorderPeriod,
       int? crossoutPrice,
@@ -1869,7 +1869,7 @@ class _$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isPreorder: isPreorder == freezed
           ? _value.isPreorder
           : isPreorder // ignore: cast_nullable_to_non_nullable
@@ -1944,7 +1944,7 @@ abstract class _$OutletListProductDataVariantResponseCopyWith<$Res>
   @override
   $Res call(
       {String code,
-      String sku,
+      String? sku,
       bool isPreorder,
       int? preorderPeriod,
       int? crossoutPrice,
@@ -2003,7 +2003,7 @@ class __$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isPreorder: isPreorder == freezed
           ? _value.isPreorder
           : isPreorder // ignore: cast_nullable_to_non_nullable
@@ -2098,7 +2098,7 @@ class _$_OutletListProductDataVariantResponse
   @override
   final String code;
   @override
-  final String sku;
+  final String? sku;
   @override
   final bool isPreorder;
   @override
@@ -2221,7 +2221,7 @@ abstract class _OutletListProductDataVariantResponse
     implements OutletListProductDataVariantResponse {
   const factory _OutletListProductDataVariantResponse(
       {required String code,
-      required String sku,
+      required String? sku,
       required bool isPreorder,
       required int? preorderPeriod,
       required int? crossoutPrice,
@@ -2246,7 +2246,7 @@ abstract class _OutletListProductDataVariantResponse
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   @override
   bool get isPreorder => throw _privateConstructorUsedError;
   @override

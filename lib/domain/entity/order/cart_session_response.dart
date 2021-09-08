@@ -28,7 +28,7 @@ class CartSessionResponse with _$CartSessionResponse {
   const factory CartSessionResponse({
     required String? channel,
     required String? sessionId,
-    required TransactionData transactionData,
+    required TransactionData? transactionData,
   }) = _CartSessionResponse;
 
   factory CartSessionResponse.fromJson(Map<String, dynamic> json) =>

@@ -783,7 +783,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
 
   Widget _cartTotal() {
     return Obx(() => controller.cartSession.value != null &&
-            controller.cartSession.value?.transactionData.outletName ==
+            controller.cartSession.value?.transactionData!.outletName ==
                 controller.detailOutlet.value?.endpointName
         ? GestureDetector(
             onTap: () {
@@ -810,12 +810,12 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                         children: [
                           Row(
                             children: [
-                              controller.cartSession.value!.transactionData
+                              controller.cartSession.value!.transactionData!
                                           .items.length >
                                       0
                                   ? Text(
                                       controller.cartSession.value!
-                                              .transactionData.items.length
+                                              .transactionData!.items.length
                                               .toString() +
                                           " items",
                                       style: TextStyle(
@@ -847,7 +847,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                               ? Text(
                                   "Rp. " +
                                       Utils.formatRupiah(controller.cartSession
-                                          .value!.transactionData.totalPayment
+                                          .value!.transactionData!.totalPayment
                                           .toString()),
                                   style: TextStyle(
                                     fontFamily: "roboto",
@@ -885,7 +885,8 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                   controller.listPromo.value != null
                       ? _promo(controller.listPromo.value!)
                       : Container(),
-                  controller.listProduct.value != null
+                  controller.listProduct.value != null &&
+                          controller.salesType.value != null
                       ? _product(controller.listProduct.value!)
                       : Container(),
                 ],

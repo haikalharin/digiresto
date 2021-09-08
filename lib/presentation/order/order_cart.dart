@@ -724,7 +724,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                             itemWeight: controller
                                                 .cartSession
                                                 .value!
-                                                .transactionData
+                                                .transactionData!
                                                 .itemWeight))!
                                 .then((value) {
                               Get.context!
@@ -757,7 +757,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                           itemWeight: controller
                                               .cartSession
                                               .value!
-                                              .transactionData
+                                              .transactionData!
                                               .itemWeight))!
                               .then((value) {
                             Get.context!
@@ -827,7 +827,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Text('Subtotal'),
                       Text("Rp." +
                           Utils.formatRupiah(controller
-                              .cartSession.value!.transactionData.subtotal
+                              .cartSession.value!.transactionData!.subtotal
                               .toString()))
                     ],
                   ),
@@ -859,7 +859,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Text('Total'),
                       Text("Rp." +
                           Utils.formatRupiah(controller
-                              .cartSession.value!.transactionData.totalPayment
+                              .cartSession.value!.transactionData!.totalPayment
                               .toString()))
                     ],
                   ),
@@ -1339,7 +1339,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         GetDetailOutletParam(
             body: GetDetailOutletBodyParam(),
             queryString: GetDetailOutletQueryParam(
-                outletId: controller.cartSession.value!.transactionData.outletId
+                outletId: controller
+                    .cartSession.value!.transactionData!.outletId
                     .toString()))));
   }
 
@@ -1351,7 +1352,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 categoryId: "",
                 filter: "",
                 limit: 15,
-                outletId: controller.cartSession.value!.transactionData.outletId
+                outletId: controller
+                    .cartSession.value!.transactionData!.outletId
                     .toString(),
                 page: 1))));
   }
@@ -1385,7 +1387,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   getCartSessionSuccess: (r) {
                     controller.cartSession.value = r.response;
                     notesController.text =
-                        r.response.transactionData.customerNote;
+                        r.response.transactionData!.customerNote;
                     getDetailOutlet();
                     getListProduct();
                     print("data diterima");
@@ -1732,10 +1734,10 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                 width: double.infinity,
                 child: ListProductCartWidget(
                     addOrRemove: _plusProduct,
-                    orderType:
-                        controller.cartSession.value!.transactionData.salesType,
+                    orderType: controller
+                        .cartSession.value!.transactionData!.salesType,
                     productCart:
-                        controller.cartSession.value!.transactionData.items,
+                        controller.cartSession.value!.transactionData!.items,
                     runDetailAction: _showDetailProduct,
                     runEditAction: _editCart,
                     scrollDirection: Axis.vertical,
