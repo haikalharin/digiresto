@@ -73,7 +73,10 @@ _$_TransactionMobileDataResponse _$_$_TransactionMobileDataResponseFromJson(
         .map((e) => TransactionMobileDataPaymentListResponse.fromJson(
             e as Map<String, dynamic>))
         .toList(),
-    taxesAndServices: json['taxesAndServices'] as List<dynamic>?,
+    taxesAndServices: (json['taxesAndServices'] as List<dynamic>?)
+        ?.map((e) =>
+            TransactionTaxesAndService.fromJson(e as Map<String, dynamic>))
+        .toList(),
     itemTotalAmount: json['itemTotalAmount'] as int,
     note: json['note'] as String,
     originalDeliveryAmount: json['originalDeliveryAmount'] as int?,
@@ -337,7 +340,10 @@ _$_TransactionMobileDataOutletDetailResponse
   return _$_TransactionMobileDataOutletDetailResponse(
     name: json['name'] as String,
     address: json['address'] as String,
-    taxesAndServices: json['taxesAndServices'] as List<dynamic>,
+    taxesAndServices: (json['taxesAndServices'] as List<dynamic>)
+        .map((e) =>
+            TransactionTaxesAndService.fromJson(e as Map<String, dynamic>))
+        .toList(),
     location:
         (json['location'] as List<dynamic>).map((e) => e as String).toList(),
     phone: json['phone'] as String,
@@ -370,6 +376,27 @@ Map<String, dynamic> _$_$_TransactionMobileDataOutletDetailResponseToJson(
       'deliveryLocation': instance.deliveryLocation,
     };
 
+_$_TransactionTaxesAndService _$_$_TransactionTaxesAndServiceFromJson(
+    Map<String, dynamic> json) {
+  return _$_TransactionTaxesAndService(
+    id: json['id'] as int,
+    name: json['name'] as String,
+    title: json['title'] as String,
+    amount: json['amount'] as int,
+    type: json['type'],
+  );
+}
+
+Map<String, dynamic> _$_$_TransactionTaxesAndServiceToJson(
+        _$_TransactionTaxesAndService instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'title': instance.title,
+      'amount': instance.amount,
+      'type': instance.type,
+    };
+
 _$_Moka _$_$_MokaFromJson(Map<String, dynamic> json) {
   return _$_Moka(
     outletId: json['outletId'],
@@ -398,9 +425,9 @@ _$_TransactionMobileDataPaymentListResponse
     _$_$_TransactionMobileDataPaymentListResponseFromJson(
         Map<String, dynamic> json) {
   return _$_TransactionMobileDataPaymentListResponse(
-    amount: json['amount'] as int,
-    method: json['method'] as String,
-    voucherRefNumber: json['voucherRefNumber'] as String,
+    amount: json['amount'] as int?,
+    method: json['method'] as String?,
+    voucherRefNumber: json['voucherRefNumber'] as String?,
   );
 }
 
@@ -441,17 +468,17 @@ Map<String, dynamic> _$_$_TransactionMobileDataPaymentResponseToJson(
 _$_TransactionMobileDataPromoResponse
     _$_$_TransactionMobileDataPromoResponseFromJson(Map<String, dynamic> json) {
   return _$_TransactionMobileDataPromoResponse(
-    paymentTypes: (json['paymentTypes'] as List<dynamic>)
-        .map((e) => e as String)
+    paymentTypes: (json['paymentTypes'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    title: json['title'] as String,
-    promoType: json['promoType'] as String,
-    type: json['type'] as String,
-    discount: json['discount'] as int,
-    minPurchase: json['minPurchase'] as int,
-    promoId: json['promoId'] as int,
-    voucherRefNumber: json['voucherRefNumber'] as String,
-    voucherCode: json['voucherCode'] as String,
+    title: json['title'] as String?,
+    promoType: json['promoType'] as String?,
+    type: json['type'] as String?,
+    discount: json['discount'] as int?,
+    minPurchase: json['minPurchase'] as int?,
+    promoId: json['promoId'] as int?,
+    voucherRefNumber: json['voucherRefNumber'] as String?,
+    voucherCode: json['voucherCode'] as String?,
     amount: json['amount'] as int,
   );
 }

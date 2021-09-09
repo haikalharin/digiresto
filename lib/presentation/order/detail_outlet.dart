@@ -8,9 +8,6 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
-import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
@@ -33,7 +30,8 @@ import 'detail_product_dialog.dart';
 class DetailOutletScreen extends GetView<OrderViewController> {
   final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
 
-  goBack(BuildContext context) {
+  void goBack() {
+    Get.delete<OrderViewController>();
     Get.back();
   }
 
@@ -75,9 +73,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               ),
               Column(
                 children: controller.generateListSalesTypeOption((element) {
-                  Get.context!
-                      .read<OrderBloc>()
-                      .add(OrderEvent.setSalesTypeCart(element));
+                  controller.setSalesType(element);
                   Get.back(closeOverlays: true);
                 }),
               ),
@@ -115,7 +111,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                   new IconButton(
                     icon: new Icon(Icons.arrow_back_outlined,
                         color: Colors.white, size: 24.0),
-                    onPressed: () => Get.back(),
+                    onPressed: () {
+                      goBack();
+                    },
                   ),
                   Expanded(
                     child: Column(
@@ -209,114 +207,45 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     ]);
   }
 
-  void getDetailOutlet() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
-            body: GetDetailOutletBodyParam(),
-            queryString: GetDetailOutletQueryParam(
-                outletId: controller.outlet.value!.outletId))));
-    // setState(() {
-    //   detailOutletLoading = true;
-    // });
-    // _orderStore.getDetailOutlet({
-    //   "outletName": outletName,
-    //   "page": pageParam,
-    //   "limit": 0,
-    //   "produclds": [],
-    //   "filter": filter,
-    //   "category": category
-    // }).then((res) {
-    //   if (pageParam > page) {
-    //     setState(() {
-    //       page += 1;
-    //       detailOutlet.product.addAll(res.product);
-    //     });
-    //   } else {
-    //     setState(() {
-    //       page = 1;
-    //       detailOutlet = res;
-    //     });
-    //   }
-    //   detailOutletLoading = false;
-    // }).catchError((err) {
-    //   detailOutletLoading = false;
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
-  }
-
-  void getListProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
-                categoryId: controller.categoryId.value,
-                filter: controller.search.value,
-                limit: 15,
-                outletId: controller.outlet.value!.outletId,
-                page: controller.page.value))));
-  }
-
-  void getCategoryProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletProductCategory(
-        GetOutletProductCategoryParam(
-            body: GetOutletProductCategoryBodyParam(),
-            queryString: GetOutletProductCategoryQueryParam(
-                outletId: controller.outlet.value!.outletId))));
-  }
-
-  void getPromoProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getListPromoOutlet(
-        GetListPromoOutletParam(
-            body: GetListPromoOutletBodyParam(),
-            queryString: GetListPromoOutletQueryParam(
-                merchantId: controller.outlet.value!.merchantId,
-                outletId: controller.outlet.value!.outletId))));
-  }
-
-  void getCartSession() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
-  }
-
-  void getSalesTypeOrder() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
-  }
-
   @override
   Widget build(BuildContext context) {
+    Get.put(OrderViewController());
     controller.outlet.value = args;
-    getSalesTypeOrder();
-    getDetailOutlet();
-    getListProduct();
-    getCategoryProduct();
-    getPromoProduct();
-    getCartSession();
+    controller.getSalesTypeOrder();
+    controller.getDetailOutlet();
+    controller.getListProduct();
+    controller.getCategoryProduct();
+    controller.getPromoProduct();
+    controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         state.maybeMap(
             getDetailOutletSuccess: (r) {
               if (controller.salesType.value == null) {
-                Get.context!
-                    .read<OrderBloc>()
-                    .add(OrderEvent.setSalesTypeCart(r.response.salesTypes[0]));
+                controller.setSalesType(r.response.salesTypes[0]);
               }
               controller.detailOutlet.value = r.response;
-              controller.isLoading.value = false;
+              controller.checkAllLoaded();
             },
             getOutletListProductSuccess: (r) {
               controller.listProduct.value = r.response;
+              controller.checkAllLoaded();
             },
             getListPromoOutletSuccess: (r) {
               controller.listPromo.value = r.response;
+              controller.checkAllLoaded();
             },
             getListVoucherOutletSuccess: (r) {
               controller.listVoucher.value = r.response;
+              controller.checkAllLoaded();
             },
             getOutletProductCategorySuccess: (r) {
               controller.listCategory.value = r.response;
+              controller.checkAllLoaded();
             },
             getCartSessionSuccess: (r) {
               controller.cartSession.value = r.response;
+              controller.checkAllLoaded();
             },
             addCartSuccess: (r) {
               controller.cartSession.value = r.response;
@@ -331,7 +260,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               e.e.maybeMap(
                   salesTypeNull: (e) {},
                   getDetailOutletFail: (e) {
-                    Get.back();
+                    goBack();
                   },
                   orElse: () {});
             },
@@ -659,6 +588,8 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
+                    cartSession: controller.cartSession.value,
+                    isDifferentOutlet: !controller.isSameOutlet(),
                     dataProduct: dataProduct,
                     orderType: orderType,
                     detailOutlet: controller.detailOutlet.value!,
@@ -769,7 +700,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
           ),
         ),
         ListProductOutletWidget(
-          orderType: controller.orderType.value,
+          orderType: controller.salesType.value!,
           data: data,
           runDetailAction: (listProduct, orderType) {
             _showDetailProduct(listProduct, orderType);
@@ -782,88 +713,90 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   Widget _cartTotal() {
-    return Obx(() => controller.cartSession.value != null &&
-            controller.cartSession.value?.transactionData.outletName ==
-                controller.detailOutlet.value?.endpointName
-        ? GestureDetector(
-            onTap: () {
-              Get.toNamed(Routers.orderCart);
-            },
-            child: SafeArea(
-              child: Container(
-                height: 70,
-                //color: Colors.white,
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                    color: Colors.white, boxShadow: [CustomShadow.justTop]),
-                child: Container(
+    return Obx(
+        () => controller.cartSession.value != null && controller.isSameOutlet()
+            ? GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routers.orderCart);
+                },
+                child: SafeArea(
+                  child: Container(
+                    height: 70,
+                    //color: Colors.white,
+                    alignment: Alignment.bottomCenter,
                     decoration: BoxDecoration(
-                      color: AppColors.red,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    height: 50,
-                    width: MediaQuery.of(Get.context!).size.width - 50,
+                        color: Colors.white, boxShadow: [CustomShadow.justTop]),
                     child: Container(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+                        decoration: BoxDecoration(
+                          color: AppColors.red,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        height: 50,
+                        width: MediaQuery.of(Get.context!).size.width - 50,
+                        child: Container(
+                          padding: EdgeInsets.only(left: 15, right: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              controller.cartSession.value!.transactionData
-                                          .items.length >
-                                      0
+                              Row(
+                                children: [
+                                  controller.cartSession.value!.transactionData!
+                                              .items.length >
+                                          0
+                                      ? Text(
+                                          controller.cartSession.value!
+                                                  .transactionData!.items.length
+                                                  .toString() +
+                                              " items",
+                                          style: TextStyle(
+                                            fontFamily: "roboto",
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        )
+                                      : Container(),
+                                  Container(
+                                    margin: EdgeInsets.all(5),
+                                    height: 30,
+                                    width: 1.5,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    "Lihat Keranjang",
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              controller.detailOutlet.value != null
                                   ? Text(
-                                      controller.cartSession.value!
-                                              .transactionData.items.length
-                                              .toString() +
-                                          " items",
+                                      "Rp. " +
+                                          Utils.formatRupiah(controller
+                                              .cartSession
+                                              .value!
+                                              .transactionData!
+                                              .totalPayment
+                                              .toString()),
                                       style: TextStyle(
                                         fontFamily: "roboto",
                                         color: Colors.white,
                                         fontSize: 12,
-                                        fontWeight: FontWeight.normal,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     )
-                                  : Container(),
-                              Container(
-                                margin: EdgeInsets.all(5),
-                                height: 30,
-                                width: 1.5,
-                                color: Colors.white,
-                              ),
-                              Text(
-                                "Lihat Keranjang",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                                  : Container()
                             ],
                           ),
-                          controller.detailOutlet.value != null
-                              ? Text(
-                                  "Rp. " +
-                                      Utils.formatRupiah(controller.cartSession
-                                          .value!.transactionData.totalPayment
-                                          .toString()),
-                                  style: TextStyle(
-                                    fontFamily: "roboto",
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              : Container()
-                        ],
-                      ),
-                    )),
-              ),
-            ),
-          )
-        : Container());
+                        )),
+                  ),
+                ),
+              )
+            : Container());
   }
 
   @override
@@ -885,7 +818,8 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                   controller.listPromo.value != null
                       ? _promo(controller.listPromo.value!)
                       : Container(),
-                  controller.listProduct.value != null
+                  controller.listProduct.value != null &&
+                          controller.salesType.value != null
                       ? _product(controller.listProduct.value!)
                       : Container(),
                 ],

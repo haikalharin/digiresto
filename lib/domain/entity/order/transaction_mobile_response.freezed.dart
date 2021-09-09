@@ -297,7 +297,7 @@ class _$TransactionMobileDataResponseTearOff {
       required bool isUseVoucher,
       required List<TransactionMobileDataPromoResponse> promos,
       required List<TransactionMobileDataPaymentListResponse> paymentList,
-      required List<dynamic>? taxesAndServices,
+      required List<TransactionTaxesAndService>? taxesAndServices,
       required int itemTotalAmount,
       required String note,
       required int? originalDeliveryAmount,
@@ -416,7 +416,8 @@ mixin _$TransactionMobileDataResponse {
       throw _privateConstructorUsedError;
   List<TransactionMobileDataPaymentListResponse> get paymentList =>
       throw _privateConstructorUsedError;
-  List<dynamic>? get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService>? get taxesAndServices =>
+      throw _privateConstructorUsedError;
   int get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   int? get originalDeliveryAmount => throw _privateConstructorUsedError;
@@ -487,7 +488,7 @@ abstract class $TransactionMobileDataResponseCopyWith<$Res> {
       bool isUseVoucher,
       List<TransactionMobileDataPromoResponse> promos,
       List<TransactionMobileDataPaymentListResponse> paymentList,
-      List<dynamic>? taxesAndServices,
+      List<TransactionTaxesAndService>? taxesAndServices,
       int itemTotalAmount,
       String note,
       int? originalDeliveryAmount,
@@ -725,7 +726,7 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<TransactionTaxesAndService>?,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -889,7 +890,7 @@ abstract class _$TransactionMobileDataResponseCopyWith<$Res>
       bool isUseVoucher,
       List<TransactionMobileDataPromoResponse> promos,
       List<TransactionMobileDataPaymentListResponse> paymentList,
-      List<dynamic>? taxesAndServices,
+      List<TransactionTaxesAndService>? taxesAndServices,
       int itemTotalAmount,
       String note,
       int? originalDeliveryAmount,
@@ -1136,7 +1137,7 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<TransactionTaxesAndService>?,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -1329,7 +1330,7 @@ class _$_TransactionMobileDataResponse
   @override
   final List<TransactionMobileDataPaymentListResponse> paymentList;
   @override
-  final List<dynamic>? taxesAndServices;
+  final List<TransactionTaxesAndService>? taxesAndServices;
   @override
   final int itemTotalAmount;
   @override
@@ -1569,7 +1570,7 @@ abstract class _TransactionMobileDataResponse
           required bool isUseVoucher,
           required List<TransactionMobileDataPromoResponse> promos,
           required List<TransactionMobileDataPaymentListResponse> paymentList,
-          required List<dynamic>? taxesAndServices,
+          required List<TransactionTaxesAndService>? taxesAndServices,
           required int itemTotalAmount,
           required String note,
           required int? originalDeliveryAmount,
@@ -1666,7 +1667,8 @@ abstract class _TransactionMobileDataResponse
   List<TransactionMobileDataPaymentListResponse> get paymentList =>
       throw _privateConstructorUsedError;
   @override
-  List<dynamic>? get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService>? get taxesAndServices =>
+      throw _privateConstructorUsedError;
   @override
   int get itemTotalAmount => throw _privateConstructorUsedError;
   @override
@@ -3731,7 +3733,7 @@ class _$TransactionMobileDataOutletDetailResponseTearOff {
   _TransactionMobileDataOutletDetailResponse call(
       {required String name,
       required String address,
-      required List<dynamic> taxesAndServices,
+      required List<TransactionTaxesAndService> taxesAndServices,
       required List<String> location,
       required String phone,
       required String kurirPrice,
@@ -3770,7 +3772,8 @@ const $TransactionMobileDataOutletDetailResponse =
 mixin _$TransactionMobileDataOutletDetailResponse {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService> get taxesAndServices =>
+      throw _privateConstructorUsedError;
   List<String> get location => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get kurirPrice => throw _privateConstructorUsedError;
@@ -3797,7 +3800,7 @@ abstract class $TransactionMobileDataOutletDetailResponseCopyWith<$Res> {
   $Res call(
       {String name,
       String address,
-      List<dynamic> taxesAndServices,
+      List<TransactionTaxesAndService> taxesAndServices,
       List<String> location,
       String phone,
       String kurirPrice,
@@ -3846,7 +3849,7 @@ class _$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TransactionTaxesAndService>,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -3898,7 +3901,7 @@ abstract class _$TransactionMobileDataOutletDetailResponseCopyWith<$Res>
   $Res call(
       {String name,
       String address,
-      List<dynamic> taxesAndServices,
+      List<TransactionTaxesAndService> taxesAndServices,
       List<String> location,
       String phone,
       String kurirPrice,
@@ -3951,7 +3954,7 @@ class __$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       taxesAndServices: taxesAndServices == freezed
           ? _value.taxesAndServices
           : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TransactionTaxesAndService>,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -4019,7 +4022,7 @@ class _$_TransactionMobileDataOutletDetailResponse
   @override
   final String address;
   @override
-  final List<dynamic> taxesAndServices;
+  final List<TransactionTaxesAndService> taxesAndServices;
   @override
   final List<String> location;
   @override
@@ -4117,7 +4120,7 @@ abstract class _TransactionMobileDataOutletDetailResponse
   const factory _TransactionMobileDataOutletDetailResponse(
           {required String name,
           required String address,
-          required List<dynamic> taxesAndServices,
+          required List<TransactionTaxesAndService> taxesAndServices,
           required List<String> location,
           required String phone,
           required String kurirPrice,
@@ -4138,7 +4141,8 @@ abstract class _TransactionMobileDataOutletDetailResponse
   @override
   String get address => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
+  List<TransactionTaxesAndService> get taxesAndServices =>
+      throw _privateConstructorUsedError;
   @override
   List<String> get location => throw _privateConstructorUsedError;
   @override
@@ -4161,6 +4165,252 @@ abstract class _TransactionMobileDataOutletDetailResponse
   @JsonKey(ignore: true)
   _$TransactionMobileDataOutletDetailResponseCopyWith<
           _TransactionMobileDataOutletDetailResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+TransactionTaxesAndService _$TransactionTaxesAndServiceFromJson(
+    Map<String, dynamic> json) {
+  return _TransactionTaxesAndService.fromJson(json);
+}
+
+/// @nodoc
+class _$TransactionTaxesAndServiceTearOff {
+  const _$TransactionTaxesAndServiceTearOff();
+
+  _TransactionTaxesAndService call(
+      {required int id,
+      required String name,
+      required String title,
+      required int amount,
+      required dynamic type}) {
+    return _TransactionTaxesAndService(
+      id: id,
+      name: name,
+      title: title,
+      amount: amount,
+      type: type,
+    );
+  }
+
+  TransactionTaxesAndService fromJson(Map<String, Object> json) {
+    return TransactionTaxesAndService.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $TransactionTaxesAndService = _$TransactionTaxesAndServiceTearOff();
+
+/// @nodoc
+mixin _$TransactionTaxesAndService {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
+  dynamic get type => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TransactionTaxesAndServiceCopyWith<TransactionTaxesAndService>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TransactionTaxesAndServiceCopyWith<$Res> {
+  factory $TransactionTaxesAndServiceCopyWith(TransactionTaxesAndService value,
+          $Res Function(TransactionTaxesAndService) then) =
+      _$TransactionTaxesAndServiceCopyWithImpl<$Res>;
+  $Res call({int id, String name, String title, int amount, dynamic type});
+}
+
+/// @nodoc
+class _$TransactionTaxesAndServiceCopyWithImpl<$Res>
+    implements $TransactionTaxesAndServiceCopyWith<$Res> {
+  _$TransactionTaxesAndServiceCopyWithImpl(this._value, this._then);
+
+  final TransactionTaxesAndService _value;
+  // ignore: unused_field
+  final $Res Function(TransactionTaxesAndService) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? title = freezed,
+    Object? amount = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$TransactionTaxesAndServiceCopyWith<$Res>
+    implements $TransactionTaxesAndServiceCopyWith<$Res> {
+  factory _$TransactionTaxesAndServiceCopyWith(
+          _TransactionTaxesAndService value,
+          $Res Function(_TransactionTaxesAndService) then) =
+      __$TransactionTaxesAndServiceCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, String name, String title, int amount, dynamic type});
+}
+
+/// @nodoc
+class __$TransactionTaxesAndServiceCopyWithImpl<$Res>
+    extends _$TransactionTaxesAndServiceCopyWithImpl<$Res>
+    implements _$TransactionTaxesAndServiceCopyWith<$Res> {
+  __$TransactionTaxesAndServiceCopyWithImpl(_TransactionTaxesAndService _value,
+      $Res Function(_TransactionTaxesAndService) _then)
+      : super(_value, (v) => _then(v as _TransactionTaxesAndService));
+
+  @override
+  _TransactionTaxesAndService get _value =>
+      super._value as _TransactionTaxesAndService;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? title = freezed,
+    Object? amount = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(_TransactionTaxesAndService(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TransactionTaxesAndService implements _TransactionTaxesAndService {
+  const _$_TransactionTaxesAndService(
+      {required this.id,
+      required this.name,
+      required this.title,
+      required this.amount,
+      required this.type});
+
+  factory _$_TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =>
+      _$_$_TransactionTaxesAndServiceFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String title;
+  @override
+  final int amount;
+  @override
+  final dynamic type;
+
+  @override
+  String toString() {
+    return 'TransactionTaxesAndService(id: $id, name: $name, title: $title, amount: $amount, type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TransactionTaxesAndService &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(type);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TransactionTaxesAndServiceCopyWith<_TransactionTaxesAndService>
+      get copyWith => __$TransactionTaxesAndServiceCopyWithImpl<
+          _TransactionTaxesAndService>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_TransactionTaxesAndServiceToJson(this);
+  }
+}
+
+abstract class _TransactionTaxesAndService
+    implements TransactionTaxesAndService {
+  const factory _TransactionTaxesAndService(
+      {required int id,
+      required String name,
+      required String title,
+      required int amount,
+      required dynamic type}) = _$_TransactionTaxesAndService;
+
+  factory _TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =
+      _$_TransactionTaxesAndService.fromJson;
+
+  @override
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  String get title => throw _privateConstructorUsedError;
+  @override
+  int get amount => throw _privateConstructorUsedError;
+  @override
+  dynamic get type => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$TransactionTaxesAndServiceCopyWith<_TransactionTaxesAndService>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -4488,9 +4738,9 @@ class _$TransactionMobileDataPaymentListResponseTearOff {
   const _$TransactionMobileDataPaymentListResponseTearOff();
 
   _TransactionMobileDataPaymentListResponse call(
-      {required int amount,
-      required String method,
-      required String voucherRefNumber}) {
+      {required int? amount,
+      required String? method,
+      required String? voucherRefNumber}) {
     return _TransactionMobileDataPaymentListResponse(
       amount: amount,
       method: method,
@@ -4509,9 +4759,9 @@ const $TransactionMobileDataPaymentListResponse =
 
 /// @nodoc
 mixin _$TransactionMobileDataPaymentListResponse {
-  int get amount => throw _privateConstructorUsedError;
-  String get method => throw _privateConstructorUsedError;
-  String get voucherRefNumber => throw _privateConstructorUsedError;
+  int? get amount => throw _privateConstructorUsedError;
+  String? get method => throw _privateConstructorUsedError;
+  String? get voucherRefNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4526,7 +4776,7 @@ abstract class $TransactionMobileDataPaymentListResponseCopyWith<$Res> {
           TransactionMobileDataPaymentListResponse value,
           $Res Function(TransactionMobileDataPaymentListResponse) then) =
       _$TransactionMobileDataPaymentListResponseCopyWithImpl<$Res>;
-  $Res call({int amount, String method, String voucherRefNumber});
+  $Res call({int? amount, String? method, String? voucherRefNumber});
 }
 
 /// @nodoc
@@ -4549,15 +4799,15 @@ class _$TransactionMobileDataPaymentListResponseCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       method: method == freezed
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voucherRefNumber: voucherRefNumber == freezed
           ? _value.voucherRefNumber
           : voucherRefNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -4570,7 +4820,7 @@ abstract class _$TransactionMobileDataPaymentListResponseCopyWith<$Res>
           $Res Function(_TransactionMobileDataPaymentListResponse) then) =
       __$TransactionMobileDataPaymentListResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int amount, String method, String voucherRefNumber});
+  $Res call({int? amount, String? method, String? voucherRefNumber});
 }
 
 /// @nodoc
@@ -4597,15 +4847,15 @@ class __$TransactionMobileDataPaymentListResponseCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       method: method == freezed
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voucherRefNumber: voucherRefNumber == freezed
           ? _value.voucherRefNumber
           : voucherRefNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -4624,11 +4874,11 @@ class _$_TransactionMobileDataPaymentListResponse
       _$_$_TransactionMobileDataPaymentListResponseFromJson(json);
 
   @override
-  final int amount;
+  final int? amount;
   @override
-  final String method;
+  final String? method;
   @override
-  final String voucherRefNumber;
+  final String? voucherRefNumber;
 
   @override
   String toString() {
@@ -4671,9 +4921,9 @@ class _$_TransactionMobileDataPaymentListResponse
 abstract class _TransactionMobileDataPaymentListResponse
     implements TransactionMobileDataPaymentListResponse {
   const factory _TransactionMobileDataPaymentListResponse(
-          {required int amount,
-          required String method,
-          required String voucherRefNumber}) =
+          {required int? amount,
+          required String? method,
+          required String? voucherRefNumber}) =
       _$_TransactionMobileDataPaymentListResponse;
 
   factory _TransactionMobileDataPaymentListResponse.fromJson(
@@ -4681,11 +4931,11 @@ abstract class _TransactionMobileDataPaymentListResponse
       _$_TransactionMobileDataPaymentListResponse.fromJson;
 
   @override
-  int get amount => throw _privateConstructorUsedError;
+  int? get amount => throw _privateConstructorUsedError;
   @override
-  String get method => throw _privateConstructorUsedError;
+  String? get method => throw _privateConstructorUsedError;
   @override
-  String get voucherRefNumber => throw _privateConstructorUsedError;
+  String? get voucherRefNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TransactionMobileDataPaymentListResponseCopyWith<
@@ -5018,15 +5268,15 @@ class _$TransactionMobileDataPromoResponseTearOff {
   const _$TransactionMobileDataPromoResponseTearOff();
 
   _TransactionMobileDataPromoResponse call(
-      {required List<String> paymentTypes,
-      required String title,
-      required String promoType,
-      required String type,
-      required int discount,
-      required int minPurchase,
-      required int promoId,
-      required String voucherRefNumber,
-      required String voucherCode,
+      {required List<String>? paymentTypes,
+      required String? title,
+      required String? promoType,
+      required String? type,
+      required int? discount,
+      required int? minPurchase,
+      required int? promoId,
+      required String? voucherRefNumber,
+      required String? voucherCode,
       required int amount}) {
     return _TransactionMobileDataPromoResponse(
       paymentTypes: paymentTypes,
@@ -5053,15 +5303,15 @@ const $TransactionMobileDataPromoResponse =
 
 /// @nodoc
 mixin _$TransactionMobileDataPromoResponse {
-  List<String> get paymentTypes => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get promoType => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  int get discount => throw _privateConstructorUsedError;
-  int get minPurchase => throw _privateConstructorUsedError;
-  int get promoId => throw _privateConstructorUsedError;
-  String get voucherRefNumber => throw _privateConstructorUsedError;
-  String get voucherCode => throw _privateConstructorUsedError;
+  List<String>? get paymentTypes => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get promoType => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  int? get discount => throw _privateConstructorUsedError;
+  int? get minPurchase => throw _privateConstructorUsedError;
+  int? get promoId => throw _privateConstructorUsedError;
+  String? get voucherRefNumber => throw _privateConstructorUsedError;
+  String? get voucherCode => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -5078,15 +5328,15 @@ abstract class $TransactionMobileDataPromoResponseCopyWith<$Res> {
           $Res Function(TransactionMobileDataPromoResponse) then) =
       _$TransactionMobileDataPromoResponseCopyWithImpl<$Res>;
   $Res call(
-      {List<String> paymentTypes,
-      String title,
-      String promoType,
-      String type,
-      int discount,
-      int minPurchase,
-      int promoId,
-      String voucherRefNumber,
-      String voucherCode,
+      {List<String>? paymentTypes,
+      String? title,
+      String? promoType,
+      String? type,
+      int? discount,
+      int? minPurchase,
+      int? promoId,
+      String? voucherRefNumber,
+      String? voucherCode,
       int amount});
 }
 
@@ -5116,39 +5366,39 @@ class _$TransactionMobileDataPromoResponseCopyWithImpl<$Res>
       paymentTypes: paymentTypes == freezed
           ? _value.paymentTypes
           : paymentTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       promoType: promoType == freezed
           ? _value.promoType
           : promoType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       discount: discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       minPurchase: minPurchase == freezed
           ? _value.minPurchase
           : minPurchase // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       promoId: promoId == freezed
           ? _value.promoId
           : promoId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       voucherRefNumber: voucherRefNumber == freezed
           ? _value.voucherRefNumber
           : voucherRefNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voucherCode: voucherCode == freezed
           ? _value.voucherCode
           : voucherCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -5166,15 +5416,15 @@ abstract class _$TransactionMobileDataPromoResponseCopyWith<$Res>
       __$TransactionMobileDataPromoResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<String> paymentTypes,
-      String title,
-      String promoType,
-      String type,
-      int discount,
-      int minPurchase,
-      int promoId,
-      String voucherRefNumber,
-      String voucherCode,
+      {List<String>? paymentTypes,
+      String? title,
+      String? promoType,
+      String? type,
+      int? discount,
+      int? minPurchase,
+      int? promoId,
+      String? voucherRefNumber,
+      String? voucherCode,
       int amount});
 }
 
@@ -5208,39 +5458,39 @@ class __$TransactionMobileDataPromoResponseCopyWithImpl<$Res>
       paymentTypes: paymentTypes == freezed
           ? _value.paymentTypes
           : paymentTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       promoType: promoType == freezed
           ? _value.promoType
           : promoType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       discount: discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       minPurchase: minPurchase == freezed
           ? _value.minPurchase
           : minPurchase // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       promoId: promoId == freezed
           ? _value.promoId
           : promoId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       voucherRefNumber: voucherRefNumber == freezed
           ? _value.voucherRefNumber
           : voucherRefNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voucherCode: voucherCode == freezed
           ? _value.voucherCode
           : voucherCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -5270,23 +5520,23 @@ class _$_TransactionMobileDataPromoResponse
       _$_$_TransactionMobileDataPromoResponseFromJson(json);
 
   @override
-  final List<String> paymentTypes;
+  final List<String>? paymentTypes;
   @override
-  final String title;
+  final String? title;
   @override
-  final String promoType;
+  final String? promoType;
   @override
-  final String type;
+  final String? type;
   @override
-  final int discount;
+  final int? discount;
   @override
-  final int minPurchase;
+  final int? minPurchase;
   @override
-  final int promoId;
+  final int? promoId;
   @override
-  final String voucherRefNumber;
+  final String? voucherRefNumber;
   @override
-  final String voucherCode;
+  final String? voucherCode;
   @override
   final int amount;
 
@@ -5358,15 +5608,15 @@ class _$_TransactionMobileDataPromoResponse
 abstract class _TransactionMobileDataPromoResponse
     implements TransactionMobileDataPromoResponse {
   const factory _TransactionMobileDataPromoResponse(
-      {required List<String> paymentTypes,
-      required String title,
-      required String promoType,
-      required String type,
-      required int discount,
-      required int minPurchase,
-      required int promoId,
-      required String voucherRefNumber,
-      required String voucherCode,
+      {required List<String>? paymentTypes,
+      required String? title,
+      required String? promoType,
+      required String? type,
+      required int? discount,
+      required int? minPurchase,
+      required int? promoId,
+      required String? voucherRefNumber,
+      required String? voucherCode,
       required int amount}) = _$_TransactionMobileDataPromoResponse;
 
   factory _TransactionMobileDataPromoResponse.fromJson(
@@ -5374,23 +5624,23 @@ abstract class _TransactionMobileDataPromoResponse
       _$_TransactionMobileDataPromoResponse.fromJson;
 
   @override
-  List<String> get paymentTypes => throw _privateConstructorUsedError;
+  List<String>? get paymentTypes => throw _privateConstructorUsedError;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   @override
-  String get promoType => throw _privateConstructorUsedError;
+  String? get promoType => throw _privateConstructorUsedError;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   @override
-  int get discount => throw _privateConstructorUsedError;
+  int? get discount => throw _privateConstructorUsedError;
   @override
-  int get minPurchase => throw _privateConstructorUsedError;
+  int? get minPurchase => throw _privateConstructorUsedError;
   @override
-  int get promoId => throw _privateConstructorUsedError;
+  int? get promoId => throw _privateConstructorUsedError;
   @override
-  String get voucherRefNumber => throw _privateConstructorUsedError;
+  String? get voucherRefNumber => throw _privateConstructorUsedError;
   @override
-  String get voucherCode => throw _privateConstructorUsedError;
+  String? get voucherCode => throw _privateConstructorUsedError;
   @override
   int get amount => throw _privateConstructorUsedError;
   @override

@@ -6,9 +6,11 @@ import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
+import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,16 +20,20 @@ import 'package:get/get.dart';
 
 class DetailProductDialog extends StatefulWidget {
   final OutletListProductDataResponse dataProduct;
+  final CartSessionResponse? cartSession;
   final String note;
   final String orderType;
   final qtyProduct;
   final mode;
+  final bool isDifferentOutlet;
   final DetailOutletDataResponse detailOutlet;
   @override
   DetailProductDialog(
       {Key? key,
       required this.dataProduct,
       required this.orderType,
+      required this.cartSession,
+      this.isDifferentOutlet = false,
       required this.detailOutlet,
       required this.note,
       this.mode = "new",
@@ -81,6 +87,27 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   void setProduct() {
+    if (widget.isDifferentOutlet) {
+      ErrorPopupWidget.confirmation("Digiresto", "outlet yang berbeda", () {
+        Get.context!.read<OrderBloc>().add(
+              OrderEvent.addCart(
+                  CreateUpdateCartSessionItemParam(
+                      modifiers: [],
+                      note: notes,
+                      productId: int.parse(variantProductSelected.id),
+                      qty: totalqty),
+                  widget.detailOutlet,
+                  widget.orderType),
+            );
+      });
+      return;
+    }
+    if (totalqty > (variantProductSelected.stock ?? 999)) {
+      ErrorPopupWidget.show("Digiresto", "out of stock", () {
+        Get.back();
+      });
+      return;
+    }
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
               CreateUpdateCartSessionItemParam(
@@ -105,16 +132,13 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   _setTotalQtyFromExistCart() {
-    final cartSession = Get.find<OrderViewController>().cartSession.value;
-    if (cartSession != null) {
-      cartSession.transactionData.items.forEach((element) {
-        if (variantProductSelected.id == element.productId.toString()) {
-          setState(() {
-            totalqty = element.qty;
-          });
-        }
-      });
-    }
+    widget.cartSession?.transactionData!.items.forEach((element) {
+      if (variantProductSelected.id == element.productId.toString()) {
+        setState(() {
+          totalqty = element.qty;
+        });
+      }
+    });
   }
 
   _showMaterialDialog() {

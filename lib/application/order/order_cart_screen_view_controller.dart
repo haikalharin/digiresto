@@ -1,3 +1,4 @@
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -6,10 +7,15 @@ import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import 'bloc/order_bloc.dart';
 
 class OrderCartScreenViewController extends GetxController {
   var isLoading = true.obs;
@@ -34,6 +40,49 @@ class OrderCartScreenViewController extends GetxController {
     KeyValueModel(key: "1", value: "Smoking"),
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
+
+  void getDetailOutlet() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
+        GetDetailOutletParam(
+            body: GetDetailOutletBodyParam(),
+            queryString: GetDetailOutletQueryParam(
+                outletId:
+                    cartSession.value!.transactionData!.outletId.toString()))));
+  }
+
+  void getListProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
+        GetOutletProductParam(
+            body: GetOutletProductBodyParam(),
+            queryString: GetOutletProductQueryParam(
+                categoryId: "",
+                filter: "",
+                limit: 15,
+                outletId:
+                    cartSession.value!.transactionData!.outletId.toString(),
+                page: 1))));
+  }
+
+  void getCartCache() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethodID());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDeliveryMethodID());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
+  }
+
+  void getActiveAddress() {
+    Get.context!
+        .read<AddressListBloc>()
+        .add(AddressListEvent.getActiveAddress());
+  }
+
+  void checkAllLoaded() {
+    if (cartSession.value != null &&
+        detailOutlet.value != null &&
+        listProduct.value != null) {
+      isLoading.value = false;
+    }
+  }
 
   Widget generateSalesTypeIcon({Color color = Colors.black, double size = 16}) {
     Widget listWidget;

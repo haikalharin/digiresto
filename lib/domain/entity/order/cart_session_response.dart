@@ -28,7 +28,7 @@ class CartSessionResponse with _$CartSessionResponse {
   const factory CartSessionResponse({
     required String? channel,
     required String? sessionId,
-    required TransactionData transactionData,
+    required TransactionData? transactionData,
   }) = _CartSessionResponse;
 
   factory CartSessionResponse.fromJson(Map<String, dynamic> json) =>
@@ -90,7 +90,7 @@ class TransactionDataItemResponse with _$TransactionDataItemResponse {
     required int productId,
     required String title,
     required int price,
-    required String code,
+    required String? code,
     required int cost,
     required int qty,
     required int basicWeight,
@@ -103,11 +103,11 @@ class TransactionDataItemResponse with _$TransactionDataItemResponse {
     required bool isPreorder,
     required int preorderPeriod,
     required int amount,
-    required List<Modifier> modifiers,
-    required int modifiersAmount,
-    required int modifiersCost,
-    required int modifiersDiscount,
-    required int singleModifiersAmount,
+    required List<Modifier>? modifiers,
+    required int? modifiersAmount,
+    required int? modifiersCost,
+    required int? modifiersDiscount,
+    required int? singleModifiersAmount,
     required int subtotal,
     required int serviceAmount,
     required int taxAmount,
@@ -143,13 +143,13 @@ class Modifier with _$Modifier {
 class TaxesAndService with _$TaxesAndService {
   const factory TaxesAndService({
     required int id,
-    required String code,
-    required String name,
-    required String type,
+    required String? code,
+    required String? name,
+    required String? type,
     required int? percentage,
-    required List<String> salesTypes,
-    required String title,
-    required int amount,
+    required List<String>? salesTypes,
+    required String? title,
+    required int? amount,
   }) = _TaxesAndService;
 
   factory TaxesAndService.fromJson(Map<String, dynamic> json) =>

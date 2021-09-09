@@ -284,6 +284,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
           var dataCart = createCartSession.getOrElse(() => null);
           if (dataCart != null) {
+            await _orderRepository.setSalesTypeCartID(request.salesType);
             await _orderRepository.setCartOutletDetailID(request.outlet);
             await _orderRepository.setSessionId(dataCart.data.sessionId!);
           }

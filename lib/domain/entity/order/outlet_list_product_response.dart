@@ -48,7 +48,7 @@ class OutletListProductDataSubModifierGroupResponse
     with _$OutletListProductDataSubModifierGroupResponse {
   const factory OutletListProductDataSubModifierGroupResponse({
     required String code,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int? preorderPeriod,
     required int? crossoutPrice,
@@ -74,7 +74,7 @@ class OutletListProductDataSubModifierGroupResponse
 class OutletListProductDataResponse with _$OutletListProductDataResponse {
   const factory OutletListProductDataResponse({
     required String code,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int? preorderPeriod,
     required int? crossoutPrice,
@@ -102,7 +102,7 @@ class OutletListProductDataVariantResponse
     with _$OutletListProductDataVariantResponse {
   const factory OutletListProductDataVariantResponse({
     required String code,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int? preorderPeriod,
     required int? crossoutPrice,

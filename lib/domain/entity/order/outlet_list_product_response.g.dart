@@ -62,7 +62,7 @@ _$_OutletListProductDataSubModifierGroupResponse
         Map<String, dynamic> json) {
   return _$_OutletListProductDataSubModifierGroupResponse(
     code: json['code'] as String,
-    sku: json['sku'] as String,
+    sku: json['sku'] as String?,
     isPreorder: json['isPreorder'] as bool,
     preorderPeriod: json['preorderPeriod'] as int?,
     crossoutPrice: json['crossoutPrice'] as int?,
@@ -105,7 +105,7 @@ _$_OutletListProductDataResponse _$_$_OutletListProductDataResponseFromJson(
     Map<String, dynamic> json) {
   return _$_OutletListProductDataResponse(
     code: json['code'] as String,
-    sku: json['sku'] as String,
+    sku: json['sku'] as String?,
     isPreorder: json['isPreorder'] as bool,
     preorderPeriod: json['preorderPeriod'] as int?,
     crossoutPrice: json['crossoutPrice'] as int?,
@@ -159,7 +159,7 @@ _$_OutletListProductDataVariantResponse
         Map<String, dynamic> json) {
   return _$_OutletListProductDataVariantResponse(
     code: json['code'] as String,
-    sku: json['sku'] as String,
+    sku: json['sku'] as String?,
     isPreorder: json['isPreorder'] as bool,
     preorderPeriod: json['preorderPeriod'] as int?,
     crossoutPrice: json['crossoutPrice'] as int?,

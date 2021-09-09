@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final empty = emptyFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
@@ -70,7 +66,7 @@ class TransactionMobileDataResponse with _$TransactionMobileDataResponse {
     required bool isUseVoucher,
     required List<TransactionMobileDataPromoResponse> promos,
     required List<TransactionMobileDataPaymentListResponse> paymentList,
-    required List<dynamic>? taxesAndServices,
+    required List<TransactionTaxesAndService>? taxesAndServices,
     required int itemTotalAmount,
     required String note,
     required int? originalDeliveryAmount,
@@ -199,7 +195,7 @@ class TransactionMobileDataOutletDetailResponse
   const factory TransactionMobileDataOutletDetailResponse({
     required String name,
     required String address,
-    required List<dynamic> taxesAndServices,
+    required List<TransactionTaxesAndService> taxesAndServices,
     required List<String> location,
     required String phone,
     required String kurirPrice,
@@ -217,7 +213,21 @@ class TransactionMobileDataOutletDetailResponse
 }
 
 @freezed
-class Moka with _$Moka {
+class TransactionTaxesAndService with _$TransactionTaxesAndService {
+  const factory TransactionTaxesAndService({
+    required int id,
+    required String name,
+    required String title,
+    required int amount,
+    required dynamic type,
+  }) = _TransactionTaxesAndService;
+
+  factory TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =>
+      _$TransactionTaxesAndServiceFromJson(json);
+}
+
+@freezed
+abstract class Moka with _$Moka {
   const factory Moka({
     required dynamic outletId,
   }) = _Moka;
@@ -240,9 +250,9 @@ class OrderMethod with _$OrderMethod {
 class TransactionMobileDataPaymentListResponse
     with _$TransactionMobileDataPaymentListResponse {
   const factory TransactionMobileDataPaymentListResponse({
-    required int amount,
-    required String method,
-    required String voucherRefNumber,
+    required int? amount,
+    required String? method,
+    required String? voucherRefNumber,
   }) = _TransactionMobileDataPaymentListResponse;
 
   factory TransactionMobileDataPaymentListResponse.fromJson(
@@ -272,15 +282,15 @@ class TransactionMobileDataPaymentResponse
 class TransactionMobileDataPromoResponse
     with _$TransactionMobileDataPromoResponse {
   const factory TransactionMobileDataPromoResponse({
-    required List<String> paymentTypes,
-    required String title,
-    required String promoType,
-    required String type,
-    required int discount,
-    required int minPurchase,
-    required int promoId,
-    required String voucherRefNumber,
-    required String voucherCode,
+    required List<String>? paymentTypes,
+    required String? title,
+    required String? promoType,
+    required String? type,
+    required int? discount,
+    required int? minPurchase,
+    required int? promoId,
+    required String? voucherRefNumber,
+    required String? voucherCode,
     required int amount,
   }) = _TransactionMobileDataPromoResponse;
 

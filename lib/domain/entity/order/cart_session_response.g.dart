@@ -28,8 +28,10 @@ _$_CartSessionResponse _$_$_CartSessionResponseFromJson(
   return _$_CartSessionResponse(
     channel: json['channel'] as String?,
     sessionId: json['sessionId'] as String?,
-    transactionData: TransactionData.fromJson(
-        json['transactionData'] as Map<String, dynamic>),
+    transactionData: json['transactionData'] == null
+        ? null
+        : TransactionData.fromJson(
+            json['transactionData'] as Map<String, dynamic>),
   );
 }
 
@@ -141,7 +143,7 @@ _$_TransactionDataItemResponse _$_$_TransactionDataItemResponseFromJson(
     productId: json['productId'] as int,
     title: json['title'] as String,
     price: json['price'] as int,
-    code: json['code'] as String,
+    code: json['code'] as String?,
     cost: json['cost'] as int,
     qty: json['qty'] as int,
     basicWeight: json['basicWeight'] as int,
@@ -154,13 +156,13 @@ _$_TransactionDataItemResponse _$_$_TransactionDataItemResponseFromJson(
     isPreorder: json['isPreorder'] as bool,
     preorderPeriod: json['preorderPeriod'] as int,
     amount: json['amount'] as int,
-    modifiers: (json['modifiers'] as List<dynamic>)
-        .map((e) => Modifier.fromJson(e as Map<String, dynamic>))
+    modifiers: (json['modifiers'] as List<dynamic>?)
+        ?.map((e) => Modifier.fromJson(e as Map<String, dynamic>))
         .toList(),
-    modifiersAmount: json['modifiersAmount'] as int,
-    modifiersCost: json['modifiersCost'] as int,
-    modifiersDiscount: json['modifiersDiscount'] as int,
-    singleModifiersAmount: json['singleModifiersAmount'] as int,
+    modifiersAmount: json['modifiersAmount'] as int?,
+    modifiersCost: json['modifiersCost'] as int?,
+    modifiersDiscount: json['modifiersDiscount'] as int?,
+    singleModifiersAmount: json['singleModifiersAmount'] as int?,
     subtotal: json['subtotal'] as int,
     serviceAmount: json['serviceAmount'] as int,
     taxAmount: json['taxAmount'] as int,
@@ -234,14 +236,15 @@ Map<String, dynamic> _$_$_ModifierToJson(_$_Modifier instance) =>
 _$_TaxesAndService _$_$_TaxesAndServiceFromJson(Map<String, dynamic> json) {
   return _$_TaxesAndService(
     id: json['id'] as int,
-    code: json['code'] as String,
-    name: json['name'] as String,
-    type: json['type'] as String,
+    code: json['code'] as String?,
+    name: json['name'] as String?,
+    type: json['type'] as String?,
     percentage: json['percentage'] as int?,
-    salesTypes:
-        (json['salesTypes'] as List<dynamic>).map((e) => e as String).toList(),
-    title: json['title'] as String,
-    amount: json['amount'] as int,
+    salesTypes: (json['salesTypes'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    title: json['title'] as String?,
+    amount: json['amount'] as int?,
   );
 }
 

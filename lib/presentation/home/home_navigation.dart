@@ -1,3 +1,4 @@
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
@@ -11,43 +12,27 @@ import 'package:get/get.dart';
 
 import 'home_content.dart';
 
-class HomeNavigationScreen extends StatefulWidget {
-  @override
-  _HomeNavigationScreenState createState() => _HomeNavigationScreenState();
-}
-
-class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
-  int _selectedTabIndex = 0;
-  bool isHaveCart = false;
+class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
   void _onNavBarTapped(int index) {
-    setState(() {
-      if (isHaveCart) {
-        _selectedTabIndex = index;
-      } else {
-        _selectedTabIndex = index;
-        if (_selectedTabIndex == 1) {
-          _selectedTabIndex = 0;
-          showMyDialog();
-        }
+    controller.indexOnTap.value = index;
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
+  }
+
+  void selectTab() {
+    if (controller.isHaveCart.value) {
+      controller.selectedTabIndex.value = controller.indexOnTap.value;
+    } else {
+      controller.selectedTabIndex.value = controller.indexOnTap.value;
+      if (controller.selectedTabIndex.value == 1) {
+        controller.selectedTabIndex.value = 0;
+        showMyDialog();
       }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
+    }
   }
 
   Future<void> showMyDialog() async {
     return showDialog<void>(
-      context: context,
+      context: Get.context!,
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
@@ -85,23 +70,25 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
                   padding: EdgeInsets.all(5),
                   width: MediaQuery.of(context).size.width - 100,
                   height: 50,
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       Get.back(closeOverlays: true);
                     },
-                    color: AppColors.red,
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                    ),
                     child: Text("Ok",
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.white)),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(5.0),
-                      side: BorderSide(
-                        width: 1,
-                        color: AppColors.red,
-                      ),
-                    ),
                   ),
                 )
               ],
@@ -112,124 +99,84 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     );
   }
 
-  Widget cartBadge() {
-    return new Stack(children: <Widget>[
-      new Image.asset(
-        AppAssets.iconMenuCart,
-        width: 24,
-        height: 24,
-      ),
-      // _orderStore?.orderProduct?.isEmpty ??
-      //         false ||
-      //             _orderStore?.orderMerchantName == "" ||
-      //             _orderStore?.transactionData == null
-      //     ? new Positioned(
-      //         // draw a red marble
-      //         top: 0.0,
-      //         right: 0.0,
-      //         child: Container(),
-      //       )
-      //     : new Positioned(
-      //         // draw a red marble
-      //         bottom: 0,
-      //         right: 0,
-      //         child: Container(
-      //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-      //           decoration: BoxDecoration(
-      //               shape: BoxShape.circle, color: AppColors.redYoung),
-      //           // alignment: Alignment.topCenter,
-      //           child: Text(
-      //             _orderStore?.orderProduct?.isEmpty ??
-      //                     false ||
-      //                         _orderStore?.orderMerchantName == "" ||
-      //                         _orderStore?.transactionData == null
-      //                 ? "0"
-      //                 : _orderStore!.orderProduct!.length.toString(),
-      //             style: TextStyle(color: Colors.white),
-      //           ),
-      //         ),
-      //       )
-    ]);
-  }
+  final _listPage = <Widget>[
+    HomeContentScreen(),
+    CartScreen(),
+    CreditPage(),
+    ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final _listPage = <Widget>[
-      HomeContentScreen(),
-      CartScreen(),
-      CreditPage(),
-      ProfilePage(),
-      // CartScreen(),
-      // CreditScreen(),
-      // ProfileScreen(),
-    ];
+    return BlocConsumer<HomeUserBloc, HomeUserState>(
+      listener: (context, state) {
+        state.maybeMap(getCartSessionIDSuccess: (r) {
+          if (r.sessionID == null || r.sessionID == "") {
+            controller.isHaveCart.value = false;
+          } else {
+            controller.isHaveCart.value = true;
+          }
+          selectTab();
+        }, orElse: () {
+          selectTab();
+        });
+      },
+      builder: (context, state) {
+        final _bottomNavBarItems = <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: new Image.asset(
+                AppAssets.iconMenuHome,
+                width: 28,
+                height: 28,
+              ),
+              activeIcon: new Image.asset(AppAssets.iconMenuHomeActive,
+                  width: 28, height: 28),
+              label: 'Home'),
+          BottomNavigationBarItem(
+              //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
+              icon: controller.cartBadge(false),
+              activeIcon: controller.cartBadge(true),
+              label: 'Cart'),
+          BottomNavigationBarItem(
+              icon: new Image.asset(
+                AppAssets.iconMenuCredit,
+                width: 30,
+                height: 30,
+              ),
+              activeIcon: new Image.asset(AppAssets.iconMenuCreditActive,
+                  width: 30, height: 30),
+              label: 'Credit'),
+          BottomNavigationBarItem(
+              icon: new Image.asset(
+                AppAssets.iconMenuProfile,
+                width: 28,
+                height: 28,
+              ),
+              activeIcon: new Image.asset(AppAssets.iconMenuProfileActive,
+                  width: 28, height: 28),
+              label: 'Profile'),
+        ];
 
-    final _bottomNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-          icon: new Image.asset(
-            AppAssets.iconMenuHome,
-            width: 24,
-            height: 24,
-          ),
-          activeIcon: new Image.asset(AppAssets.iconMenuHomeActive,
-              width: 24, height: 24),
-          label: 'Home'),
-      BottomNavigationBarItem(
-          //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
-          icon: cartBadge(),
-          activeIcon: cartBadge(),
-          label: 'Cart'),
-      BottomNavigationBarItem(
-          icon: new Image.asset(
-            AppAssets.iconMenuCredit,
-            width: 24,
-            height: 24,
-          ),
-          activeIcon: new Image.asset(AppAssets.iconMenuCreditActive,
-              width: 24, height: 24),
-          label: 'Credit'),
-      BottomNavigationBarItem(
-          icon: new Image.asset(
-            AppAssets.iconMenuProfile,
-            width: 24,
-            height: 24,
-          ),
-          activeIcon: new Image.asset(AppAssets.iconMenuProfileActive,
-              width: 24, height: 24),
-          label: 'Profile'),
-    ];
+        final _buttomNavBar = BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: _bottomNavBarItems,
+          currentIndex: controller.selectedTabIndex.value,
+          onTap: _onNavBarTapped,
+          selectedItemColor: AppColors.red,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          unselectedItemColor: Colors.black,
+          iconSize: 20,
+        );
 
-    final _buttomNavBar = BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      items: _bottomNavBarItems,
-      currentIndex: _selectedTabIndex,
-      onTap: _onNavBarTapped,
-      selectedItemColor: AppColors.red,
-      selectedFontSize: 12,
-      unselectedFontSize: 12,
-      unselectedItemColor: Colors.black,
-      iconSize: 20,
-    );
-    return Scaffold(
-      body: BlocConsumer<HomeUserBloc, HomeUserState>(
-        listener: (context, state) {
-          state.maybeMap(
-              getCartSessionIDSuccess: (r) {
-                if (r.sessionID == null || r.sessionID == "") {
-                  isHaveCart = false;
-                } else {
-                  isHaveCart = true;
-                }
-              },
-              orElse: () {});
-        },
-        builder: (context, state) {
-          return Container(
-            child: _listPage[_selectedTabIndex],
-          );
-        },
-      ),
-      bottomNavigationBar: _buttomNavBar,
+        return Obx(() {
+          return Scaffold(
+              body: Container(
+                child: _listPage[controller.selectedTabIndex.value],
+              ),
+              bottomNavigationBar: _buttomNavBar);
+        });
+      },
     );
   }
 }

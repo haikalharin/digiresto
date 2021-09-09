@@ -2,7 +2,6 @@ import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
-import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:digiresto/simple_bloc_delegate.dart';
@@ -15,9 +14,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import 'application/home/home_content_view_controller.dart';
+import 'application/home/home_navigation_view_controller.dart';
 import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'application/order/bloc/order_bloc.dart';
-import 'application/order/order_view_controller.dart';
 import 'injection.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
@@ -40,10 +39,8 @@ Future<void> main() async {
 class InitiateProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeNavigationViewController());
     Get.put(HomeContentViewController());
-    //add for cart & order transaction
-    Get.put(OrderViewController());
-    Get.put(OrderCartScreenViewController());
     return MultiBlocProvider(providers: [
       BlocProvider<HomeUserBloc>(
         create: (context) => getIt<HomeUserBloc>()

@@ -5,23 +5,35 @@ import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
+import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:provider/provider.dart';
+
+import 'bloc/order_bloc.dart';
 
 class OrderViewController extends GetxController {
   var isLoading = true.obs;
   var page = 1.obs;
   var categoryId = "".obs;
   var search = "".obs;
-  var orderType = "dineIn".obs;
   var orderProductLength = 0.obs;
   var detailOutletLoading = false.obs;
   var indexTabBar = 0.obs;
   var salesType = Rxn<String>();
+  bool isSameOutlet() {
+    return (cartSession.value?.transactionData!.outletName ==
+            detailOutlet.value?.endpointName ||
+        cartSession.value == null);
+  }
+
   Rxn<OrderDetailViewArgument> outlet = Rxn<OrderDetailViewArgument>();
 
   var orderSalesTypes = "".obs;
@@ -38,6 +50,101 @@ class OrderViewController extends GetxController {
   Rxn<List<PromoOutletDataResponse>> listPromo =
       Rxn<List<PromoOutletDataResponse>>();
   Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
+
+  void getDetailOutlet() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
+        GetDetailOutletParam(
+            body: GetDetailOutletBodyParam(),
+            queryString:
+                GetDetailOutletQueryParam(outletId: outlet.value!.outletId))));
+    // setState(() {
+    //   detailOutletLoading = true;
+    // });
+    // _orderStore.getDetailOutlet({
+    //   "outletName": outletName,
+    //   "page": pageParam,
+    //   "limit": 0,
+    //   "produclds": [],
+    //   "filter": filter,
+    //   "category": category
+    // }).then((res) {
+    //   if (pageParam > page) {
+    //     setState(() {
+    //       page += 1;
+    //       detailOutlet.product.addAll(res.product);
+    //     });
+    //   } else {
+    //     setState(() {
+    //       page = 1;
+    //       detailOutlet = res;
+    //     });
+    //   }
+    //   detailOutletLoading = false;
+    // }).catchError((err) {
+    //   detailOutletLoading = false;
+    //   print(err.toString());
+    //   ErrorPopupWidget.showDioError(context, err, null);
+    // });
+  }
+
+  void getListVoucher() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getListVoucherOutlet(
+        GetListVoucherOutletParam(
+            body: GetListVoucherOutletBodyParam(),
+            queryString: GetListVoucherOutletQueryParam(
+                merchantId: detailOutlet.value!.merchantId,
+                outletId: detailOutlet.value!.id))));
+  }
+
+  void setSalesType(value) {
+    Get.context!.read<OrderBloc>().add(OrderEvent.setSalesTypeCart(value));
+  }
+
+  void getListProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
+        GetOutletProductParam(
+            body: GetOutletProductBodyParam(),
+            queryString: GetOutletProductQueryParam(
+                categoryId: categoryId.value,
+                filter: search.value,
+                limit: 15,
+                outletId: outlet.value!.outletId,
+                page: page.value))));
+  }
+
+  void getCategoryProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletProductCategory(
+        GetOutletProductCategoryParam(
+            body: GetOutletProductCategoryBodyParam(),
+            queryString: GetOutletProductCategoryQueryParam(
+                outletId: outlet.value!.outletId))));
+  }
+
+  void getPromoProduct() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getListPromoOutlet(
+        GetListPromoOutletParam(
+            body: GetListPromoOutletBodyParam(),
+            queryString: GetListPromoOutletQueryParam(
+                merchantId: outlet.value!.merchantId,
+                outletId: outlet.value!.outletId))));
+  }
+
+  void getCartSession() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+  }
+
+  void getSalesTypeOrder() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
+  }
+
+  void checkAllLoaded() {
+    if (detailOutlet.value != null &&
+        listProduct.value != null &&
+        listPromo.value != null &&
+        listCategory.value != null) {
+      isLoading.value = false;
+    }
+  }
 
   Widget generateListSalesTypeIcon(
       {Color color = Colors.black, double size = 16}) {
