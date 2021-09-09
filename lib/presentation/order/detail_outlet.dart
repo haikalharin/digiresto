@@ -73,9 +73,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               ),
               Column(
                 children: controller.generateListSalesTypeOption((element) {
-                  Get.context!
-                      .read<OrderBloc>()
-                      .add(OrderEvent.setSalesTypeCart(element));
+                  controller.setSalesType(element);
                   Get.back(closeOverlays: true);
                 }),
               ),
@@ -224,9 +222,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
         state.maybeMap(
             getDetailOutletSuccess: (r) {
               if (controller.salesType.value == null) {
-                Get.context!
-                    .read<OrderBloc>()
-                    .add(OrderEvent.setSalesTypeCart(r.response.salesTypes[0]));
+                controller.setSalesType(r.response.salesTypes[0]);
               }
               controller.detailOutlet.value = r.response;
               controller.checkAllLoaded();
@@ -592,7 +588,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
-                    cartSession: controller.cartSession.value!,
+                    cartSession: controller.cartSession.value,
                     isDifferentOutlet: !controller.isSameOutlet(),
                     dataProduct: dataProduct,
                     orderType: orderType,

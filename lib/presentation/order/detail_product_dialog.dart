@@ -20,7 +20,7 @@ import 'package:get/get.dart';
 
 class DetailProductDialog extends StatefulWidget {
   final OutletListProductDataResponse dataProduct;
-  final CartSessionResponse cartSession;
+  final CartSessionResponse? cartSession;
   final String note;
   final String orderType;
   final qtyProduct;
@@ -88,7 +88,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
 
   void setProduct() {
     if (widget.isDifferentOutlet) {
-      ErrorPopupWidget.confirmation("Digiresto", "out of stock", () {
+      ErrorPopupWidget.confirmation("Digiresto", "outlet yang berbeda", () {
         Get.context!.read<OrderBloc>().add(
               OrderEvent.addCart(
                   CreateUpdateCartSessionItemParam(
@@ -132,7 +132,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   _setTotalQtyFromExistCart() {
-    widget.cartSession.transactionData!.items.forEach((element) {
+    widget.cartSession?.transactionData!.items.forEach((element) {
       if (variantProductSelected.id == element.productId.toString()) {
         setState(() {
           totalqty = element.qty;

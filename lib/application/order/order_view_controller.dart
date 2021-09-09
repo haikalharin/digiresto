@@ -29,8 +29,9 @@ class OrderViewController extends GetxController {
   var indexTabBar = 0.obs;
   var salesType = Rxn<String>();
   bool isSameOutlet() {
-    return cartSession.value?.transactionData!.outletName ==
-        detailOutlet.value?.endpointName;
+    return (cartSession.value?.transactionData!.outletName ==
+            detailOutlet.value?.endpointName ||
+        cartSession.value == null);
   }
 
   Rxn<OrderDetailViewArgument> outlet = Rxn<OrderDetailViewArgument>();
@@ -95,6 +96,10 @@ class OrderViewController extends GetxController {
                 outletId: detailOutlet.value!.id))));
   }
 
+  void setSalesType(value) {
+    Get.context!.read<OrderBloc>().add(OrderEvent.setSalesTypeCart(value));
+  }
+
   void getListProduct() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
         GetOutletProductParam(
@@ -136,8 +141,7 @@ class OrderViewController extends GetxController {
     if (detailOutlet.value != null &&
         listProduct.value != null &&
         listPromo.value != null &&
-        listCategory.value != null &&
-        cartSession.value != null) {
+        listCategory.value != null) {
       isLoading.value = false;
     }
   }
