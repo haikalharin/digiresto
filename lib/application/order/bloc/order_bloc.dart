@@ -3,6 +3,7 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/digi_discount_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
@@ -24,7 +25,6 @@ import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dar
 import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
-import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/order_failure.dart';
@@ -372,6 +372,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (error) => OrderState.loadFailure(OrderFailure.getCartSessionFail()),
           (list) => OrderState.getCartSessionSuccess(list!.data),
         );
+      },
+      removeCartSession: (value) async* {
+        final cartSession =
+            (await _orderRepository.setSessionId("")).getOrElse(() => null);
+        if (cartSession != null) {
+          yield OrderState.removeCartSessionSuccess();
+        } else {
+          yield OrderState.loadFailure(OrderFailure.removeCartSessionFail());
+        }
       },
       getSalesTypeCart: (_) async* {
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();

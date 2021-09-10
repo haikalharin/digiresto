@@ -50,6 +50,8 @@ class OrderEvent with _$OrderEvent {
 
   const factory OrderEvent.getCartSession() = _GetCartSession;
 
+  const factory OrderEvent.removeCartSession() = _RemoveCartSession;
+
   const factory OrderEvent.updateCartSession(UpdateCartSessionParam request) =
       _UpdateCartSession;
 

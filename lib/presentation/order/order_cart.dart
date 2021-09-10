@@ -6,7 +6,6 @@ import 'package:digiresto/application/order/order_cart_screen_view_controller.da
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
@@ -16,9 +15,6 @@ import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
-import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
-import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
-import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -1360,6 +1356,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     controller.voucherMethod.value = r.data;
                     updateCartParam();
                   },
+                  removeCartSessionSuccess: (r) {
+                    controller.checkCartSession();
+                  },
                   checkoutCartSuccess: (r) {
                     var checkoutResponse = r.response.data;
                     controller.checkoutResponse.value = checkoutResponse;
@@ -1374,56 +1373,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       });
                       return;
                     }
-
-                    if (checkoutResponse?.receiptCode == "") {
-                      controller.isLoading.value = false;
-                      print("error response cheeckout 2:");
-                    } else if (checkoutResponse?.payment.isCredit ?? false) {
-                      Get.offNamedUntil(
-                          Routers.paymentReceipt, (route) => false,
-                          arguments: PaymentReceiptViewArgument(
-                              checkoutDataResponse:
-                                  controller.checkoutResponse.value!));
-                      controller.isLoading.value = false;
-                    } else if (checkoutResponse?.payment.isWebView ?? false) {
-                      controller.isLoading.value = false;
-                      Get.offNamedUntil(
-                          Routers.paymentWebView, (route) => false,
-                          arguments: PaymentWebViewArgument(
-                              checkoutDataResponse:
-                                  controller.checkoutResponse.value!));
-                      // Navigator.of(context).pushNamedAndRemoveUntil(
-                      //     Routers.paymentWebView, (_) => false);
-                    } else if (checkoutResponse?.payment.isDeeplink ?? false) {
-                      //Need test on real device to simulate open payment app
-                      controller.isLoading.value = false;
-                      LaunchUrl.run(checkoutResponse!.payment.deeplink,
-                          onError: () {
-                        ErrorPopupWidget.show("Error", "App Launch Error", () {
-                          Get.offNamedUntil(
-                              Routers.paymentReceipt, (route) => false,
-                              arguments: PaymentReceiptViewArgument(
-                                  checkoutDataResponse:
-                                      controller.checkoutResponse.value!));
-                        });
-                      }, onSuccess: () {
-                        Get.offNamedUntil(
-                            Routers.paymentReceipt, (route) => false,
-                            arguments: PaymentReceiptViewArgument(
-                                checkoutDataResponse:
-                                    controller.checkoutResponse.value!));
-                      });
-                    } else {
-                      controller.isLoading.value = false;
-                      if (checkoutResponse?.payment.paymentCode != null) {
-                        Get.offNamedUntil(Routers.paymentVa, (route) => false,
-                            arguments: PaymentVAViewArgument(
-                                checkoutDataResponse:
-                                    controller.checkoutResponse.value!));
-                        // Navigator.of(context).pushNamedAndRemoveUntil(
-                        //     Routers.paymentVa, (_) => false);
-                      }
-                    }
+                    controller.removeCartSession();
                   },
                   loadFailure: (e) {
                     e.e.maybeMap(

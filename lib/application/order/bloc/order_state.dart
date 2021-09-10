@@ -16,8 +16,8 @@ class OrderState with _$OrderState {
   const factory OrderState.getOutletByMerchantSuccess(
       List<OutletCategoryDataResponse> response) = _GetOutletByMerchantSucess;
 
-  const factory OrderState.getPromoOutletSuccess(List<PromoOutlet> response) =
-      _GetPromoOutletSuccess;
+  const factory OrderState.getPromoOutletSuccess(
+      List<DigiDiscountOutletDataResponse> response) = _GetPromoOutletSuccess;
 
   const factory OrderState.getListPromoOutletSuccess(
       List<PromoOutletDataResponse> response) = _GetListPromoOutletSuccess;
@@ -59,6 +59,9 @@ class OrderState with _$OrderState {
 
   const factory OrderState.getCartSessionSuccess(CartSessionResponse response) =
       _GetCartSessionSuccess;
+
+  const factory OrderState.removeCartSessionSuccess() =
+      _RemoveCartSessionSuccess;
 
   const factory OrderState.updateCartSessionSuccess(
       CartSessionResponse response) = _UpdateCartSessionSuccess;

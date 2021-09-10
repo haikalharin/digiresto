@@ -27,6 +27,7 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.updateCartFail() = _UpdateCartFail;
   const factory OrderFailure.removeCartFail() = _RemoveCartFail;
   const factory OrderFailure.getCartSessionFail() = _GetCartSessionFail;
+  const factory OrderFailure.removeCartSessionFail() = _RemoveCartSessionFail;
   const factory OrderFailure.updateCartSessionFail() = _UpdateCartSessionFail;
   const factory OrderFailure.checkoutCartFail() = _CheckoutCartFail;
   const factory OrderFailure.setPaymentMethodIDFail() = _SetPaymentMethodIDFail;
