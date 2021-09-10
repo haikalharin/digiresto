@@ -30,7 +30,6 @@ class ListCategoryOutletWidget extends StatefulWidget {
 
 class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
   final ScrollController _scrollController = new ScrollController();
-//  UserStore? _userStore;
 
   @override
   void initState() {
@@ -41,13 +40,6 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
         widget.loadMoreAction();
       }
     });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    //   _userStore = Provider.of<UserStore>(context);
   }
 
   List<Widget> generateListSalesType(OutletCategoryDataResponse data) {
@@ -185,7 +177,8 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                                     child: Image(
                                       image: RandomImages.getImageUrlDefault(
                                           widget.data[index].logo, ""),
-                                      fit: BoxFit.fitWidth,
+                                      fit: BoxFit.cover,
+                                      height: 96,
                                       width: 96,
                                       alignment: Alignment.center,
                                     ),
@@ -313,7 +306,6 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                           ),
                         ],
                       ),
-                      //child: Center(child: Text('Entry ${data[index].id.toString()}')),
                     ),
                     Container(
                         height: 1,

@@ -1,14 +1,14 @@
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
-import 'package:digiresto/presentation/widgets/order_method_widget.dart';
+import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ListDigidiscountWidget extends StatefulWidget {
-  final List<dynamic> data;
+  final List<DigiDiscountOutletDataResponse> data;
   final Axis scrollDirection;
   final height;
-  final void Function(Map<String, dynamic>) runAction;
+  final void Function(DigiDiscountOutletDataResponse data) runAction;
 
   const ListDigidiscountWidget(
       {Key? key,
@@ -23,15 +23,8 @@ class ListDigidiscountWidget extends StatefulWidget {
 }
 
 class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
-  // UserStore? _userStore;
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    //   _userStore = Provider.of<UserStore>(context);
-  }
-
   @override
   Widget build(BuildContext context) {
-    OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         height: widget.height,
         child: ListView.builder(
@@ -44,22 +37,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
               // String defaultImage = _userStore!
               //     .getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
-                onTap: () => {
-                  if (widget.data[index].isOwnerLoggedIn)
-                    {
-                      _orderMethodPopup.showMyDialog(
-                          context,
-                          {
-                            "name": widget.data[index].name,
-                            "merchantName":
-                                widget.data[index].merchantName.toString(),
-                            "orderMethod":
-                                widget.data[index].orderMethod["defaultList"],
-                            "detailName": widget.data[index].outletName,
-                          },
-                          widget.runAction)
-                    }
-                },
+                onTap: () => {widget.runAction(widget.data[index])},
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7.0),
@@ -117,7 +95,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                                         ),
                                       )
                                     ])),
-                                (!widget.data[index].isOwnerLoggedIn)
+                                (!(widget.data[index].isOwnerLoggedIn))
                                     ? ClipRRect(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(8.0)),
@@ -191,15 +169,14 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5),
-                                  child:
-                                      Text(widget.data[index].distance["text"],
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                          textAlign: TextAlign.left),
+                                  child: Text(widget.data[index].distance.text,
+                                      style: TextStyle(
+                                        fontFamily: "roboto",
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      textAlign: TextAlign.left),
                                 ),
                               ],
                             ),

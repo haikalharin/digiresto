@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'detail_outlet_model.freezed.dart';
-part 'detail_outlet_model.g.dart';
+part 'detail_outlet_response.freezed.dart';
+part 'detail_outlet_response.g.dart';
 
 DetailOutletResponse emptyFromJson(String str) =>
     DetailOutletResponse.fromJson(json.decode(str));

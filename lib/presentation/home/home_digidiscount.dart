@@ -3,7 +3,7 @@ import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_digi_discount_outlet_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +21,10 @@ class HomeDigidiscountScreen
 
   void getPromoOutlet(String search, int pageParam) {
     Loading.show();
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
-        GetPromoOutletParam(
-            body: GetPromoOutletBodyParam(),
-            queryString: GetPromoOutletQueryParam(
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDigiDiscountOutlet(
+        GetDigiDiscountOutletParam(
+            body: GetDigiDiscountOutletBodyParam(),
+            queryString: GetDigiDiscountOutletQueryParam(
                 filter: '', location: '', page: controller.page.value))));
     // _orderStore?.getPromoOutlet({
     //   "location":
@@ -90,10 +90,10 @@ class HomeDigidiscountScreen
   @override
   Widget build(BuildContext context) {
     Get.put(HomeDigidiscountOutletViewController());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
-        GetPromoOutletParam(
-            body: GetPromoOutletBodyParam(),
-            queryString: GetPromoOutletQueryParam(
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDigiDiscountOutlet(
+        GetDigiDiscountOutletParam(
+            body: GetDigiDiscountOutletBodyParam(),
+            queryString: GetDigiDiscountOutletQueryParam(
                 filter: '', location: '', page: controller.page.value))));
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
     return Scaffold(
@@ -115,7 +115,7 @@ class HomeDigidiscountScreen
       body: BlocConsumer<OrderBloc, OrderState>(
         listener: (context, state) {
           state.maybeMap(
-              getPromoOutletSuccess: (r) {
+              getDigiDiscountOutletSuccess: (r) {
                 controller.listPromoOutlet.value = r.response;
               },
               loadFailure: (e) {},

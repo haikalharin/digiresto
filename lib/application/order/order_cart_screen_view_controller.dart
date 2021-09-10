@@ -1,16 +1,22 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
-import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
+import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +46,47 @@ class OrderCartScreenViewController extends GetxController {
     KeyValueModel(key: "1", value: "Smoking"),
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
+
+  void removeCartSession() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.removeCartSession());
+  }
+
+  void checkCartSession() {
+    if (checkoutResponse.value?.receiptCode == "") {
+      isLoading.value = false;
+      print("error response cheeckout 2:");
+    } else if (checkoutResponse.value?.payment.isCredit ?? false) {
+      Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+          arguments: PaymentReceiptViewArgument(
+              checkoutDataResponse: checkoutResponse.value!));
+      isLoading.value = false;
+    } else if (checkoutResponse.value?.payment.isWebView ?? false) {
+      isLoading.value = false;
+      Get.offNamedUntil(Routers.paymentWebView, (route) => false,
+          arguments: PaymentWebViewArgument(
+              checkoutDataResponse: checkoutResponse.value!));
+    } else if (checkoutResponse.value?.payment.isDeeplink ?? false) {
+      isLoading.value = false;
+      LaunchUrl.run(checkoutResponse.value!.payment.deeplink, onError: () {
+        ErrorPopupWidget.show("Error", "App Launch Error", () {
+          Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+              arguments: PaymentReceiptViewArgument(
+                  checkoutDataResponse: checkoutResponse.value!));
+        });
+      }, onSuccess: () {
+        Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+            arguments: PaymentReceiptViewArgument(
+                checkoutDataResponse: checkoutResponse.value!));
+      });
+    } else {
+      isLoading.value = false;
+      if (checkoutResponse.value?.payment.paymentCode != null) {
+        Get.offNamedUntil(Routers.paymentVa, (route) => false,
+            arguments: PaymentVAViewArgument(
+                checkoutDataResponse: checkoutResponse.value!));
+      }
+    }
+  }
 
   void getDetailOutlet() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(

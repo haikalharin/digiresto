@@ -16,7 +16,7 @@ class OrderState with _$OrderState {
   const factory OrderState.getOutletByMerchantSuccess(
       List<OutletCategoryDataResponse> response) = _GetOutletByMerchantSucess;
 
-  const factory OrderState.getPromoOutletSuccess(
+  const factory OrderState.getDigiDiscountOutletSuccess(
       List<DigiDiscountOutletDataResponse> response) = _GetPromoOutletSuccess;
 
   const factory OrderState.getListPromoOutletSuccess(

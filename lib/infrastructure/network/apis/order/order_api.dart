@@ -8,7 +8,8 @@ import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
-import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
@@ -25,7 +26,6 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
-import 'package:digiresto/domain/entity/order/promo_outlet_model.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:injectable/injectable.dart';
@@ -118,8 +118,8 @@ class OrderApi {
     }
   }
 
-  Future<Either<Exception, List<PromoOutlet>>> getPromoOutlet(
-      Map<String, dynamic> object) async {
+  Future<Either<Exception, List<DigiDiscountOutletDataResponse>>>
+      getPromoOutlet(Map<String, dynamic> object) async {
     try {
       String apiUrl = Endpoints.urlGetPromoOutlet;
       final apiResult =
@@ -136,9 +136,9 @@ class OrderApi {
 
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      List<PromoOutlet> listUserData = [];
+      List<DigiDiscountOutletDataResponse> listUserData = [];
       for (int i = 0; i < userData.length; i++) {
-        listUserData.add(PromoOutlet.createPromoOutlet(userData[i]));
+        listUserData.add(DigiDiscountOutletDataResponse.fromJson(userData[i]));
       }
       return right(listUserData);
     } on ServerException catch (e) {

@@ -24,7 +24,7 @@ class RandomImages {
     }
   }
 
-  static dynamic getImageUrlDefault(String? img, String? defaultImg) {
+  static ImageProvider getImageUrlDefault(String? img, String? defaultImg) {
     if (img == null || img == "") {
       if (defaultImg == null || defaultImg == "") {
         return getImage();

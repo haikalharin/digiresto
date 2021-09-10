@@ -23,8 +23,8 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getOutletListProduct(GetOutletProductParam request) =
       _GetOutletListProduct;
 
-  const factory OrderEvent.getPromoOutlet(GetPromoOutletParam request) =
-      _GetPromoOutlet;
+  const factory OrderEvent.getDigiDiscountOutlet(
+      GetDigiDiscountOutletParam request) = _GetPromoOutlet;
 
   const factory OrderEvent.getHotPromo(GetHotPromoParam request) = _GetHotPromo;
 

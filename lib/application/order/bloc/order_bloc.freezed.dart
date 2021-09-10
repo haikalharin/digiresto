@@ -60,7 +60,7 @@ class _$OrderEventTearOff {
     );
   }
 
-  _GetPromoOutlet getPromoOutlet(GetPromoOutletParam request) {
+  _GetPromoOutlet getDigiDiscountOutlet(GetDigiDiscountOutletParam request) {
     return _GetPromoOutlet(
       request,
     );
@@ -119,6 +119,10 @@ class _$OrderEventTearOff {
 
   _GetCartSession getCartSession() {
     return const _GetCartSession();
+  }
+
+  _RemoveCartSession removeCartSession() {
+    return const _RemoveCartSession();
   }
 
   _UpdateCartSession updateCartSession(UpdateCartSessionParam request) {
@@ -194,7 +198,8 @@ mixin _$OrderEvent {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -207,6 +212,7 @@ mixin _$OrderEvent {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -232,7 +238,7 @@ mixin _$OrderEvent {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -244,6 +250,7 @@ mixin _$OrderEvent {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -267,7 +274,7 @@ mixin _$OrderEvent {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -277,6 +284,7 @@ mixin _$OrderEvent {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -298,7 +306,7 @@ mixin _$OrderEvent {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -308,6 +316,7 @@ mixin _$OrderEvent {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -428,7 +437,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -441,6 +451,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -469,7 +480,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -481,6 +492,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -510,7 +522,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -520,6 +532,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -544,7 +557,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -554,6 +567,7 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -672,7 +686,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -685,6 +700,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -713,7 +729,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -725,6 +741,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -754,7 +771,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -764,6 +781,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -788,7 +806,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -798,6 +816,7 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -916,7 +935,8 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -929,6 +949,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -957,7 +978,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -969,6 +990,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -998,7 +1020,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -1008,6 +1030,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -1032,7 +1055,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -1042,6 +1065,7 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -1162,7 +1186,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -1175,6 +1200,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -1203,7 +1229,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -1215,6 +1241,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -1244,7 +1271,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -1254,6 +1281,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -1278,7 +1306,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -1288,6 +1316,7 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -1406,7 +1435,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -1419,6 +1449,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -1447,7 +1478,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -1459,6 +1490,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -1488,7 +1520,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -1498,6 +1530,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -1522,7 +1555,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -1532,6 +1565,7 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -1650,7 +1684,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -1663,6 +1698,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -1691,7 +1727,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -1703,6 +1739,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -1732,7 +1769,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -1742,6 +1779,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -1766,7 +1804,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -1776,6 +1814,7 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -1894,7 +1933,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -1907,6 +1947,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -1935,7 +1976,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -1947,6 +1988,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -1976,7 +2018,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -1986,6 +2028,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -2010,7 +2053,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -2020,6 +2063,7 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -2054,9 +2098,9 @@ abstract class _$GetPromoOutletCopyWith<$Res> {
   factory _$GetPromoOutletCopyWith(
           _GetPromoOutlet value, $Res Function(_GetPromoOutlet) then) =
       __$GetPromoOutletCopyWithImpl<$Res>;
-  $Res call({GetPromoOutletParam request});
+  $Res call({GetDigiDiscountOutletParam request});
 
-  $GetPromoOutletParamCopyWith<$Res> get request;
+  $GetDigiDiscountOutletParamCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -2077,13 +2121,13 @@ class __$GetPromoOutletCopyWithImpl<$Res> extends _$OrderEventCopyWithImpl<$Res>
       request == freezed
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as GetPromoOutletParam,
+              as GetDigiDiscountOutletParam,
     ));
   }
 
   @override
-  $GetPromoOutletParamCopyWith<$Res> get request {
-    return $GetPromoOutletParamCopyWith<$Res>(_value.request, (value) {
+  $GetDigiDiscountOutletParamCopyWith<$Res> get request {
+    return $GetDigiDiscountOutletParamCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value));
     });
   }
@@ -2095,11 +2139,11 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
   const _$_GetPromoOutlet(this.request);
 
   @override
-  final GetPromoOutletParam request;
+  final GetDigiDiscountOutletParam request;
 
   @override
   String toString() {
-    return 'OrderEvent.getPromoOutlet(request: $request)';
+    return 'OrderEvent.getDigiDiscountOutlet(request: $request)';
   }
 
   @override
@@ -2136,7 +2180,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -2149,6 +2194,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -2163,7 +2209,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
   }) {
-    return getPromoOutlet(request);
+    return getDigiDiscountOutlet(request);
   }
 
   @override
@@ -2177,7 +2223,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -2189,6 +2235,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -2201,8 +2248,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
   }) {
-    if (getPromoOutlet != null) {
-      return getPromoOutlet(request);
+    if (getDigiDiscountOutlet != null) {
+      return getDigiDiscountOutlet(request);
     }
     return orElse();
   }
@@ -2218,7 +2265,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -2228,6 +2275,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -2239,7 +2287,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
-    return getPromoOutlet(this);
+    return getDigiDiscountOutlet(this);
   }
 
   @override
@@ -2252,7 +2300,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -2262,6 +2310,7 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -2274,18 +2323,18 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
   }) {
-    if (getPromoOutlet != null) {
-      return getPromoOutlet(this);
+    if (getDigiDiscountOutlet != null) {
+      return getDigiDiscountOutlet(this);
     }
     return orElse();
   }
 }
 
 abstract class _GetPromoOutlet implements OrderEvent {
-  const factory _GetPromoOutlet(GetPromoOutletParam request) =
+  const factory _GetPromoOutlet(GetDigiDiscountOutletParam request) =
       _$_GetPromoOutlet;
 
-  GetPromoOutletParam get request => throw _privateConstructorUsedError;
+  GetDigiDiscountOutletParam get request => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetPromoOutletCopyWith<_GetPromoOutlet> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2369,7 +2418,8 @@ class _$_GetHotPromo implements _GetHotPromo {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -2382,6 +2432,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -2410,7 +2461,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -2422,6 +2473,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -2451,7 +2503,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -2461,6 +2513,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -2485,7 +2538,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -2495,6 +2548,7 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -2611,7 +2665,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -2624,6 +2679,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -2652,7 +2708,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -2664,6 +2720,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -2693,7 +2750,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -2703,6 +2760,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -2727,7 +2785,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -2737,6 +2795,7 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -2854,7 +2913,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -2867,6 +2927,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -2895,7 +2956,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -2907,6 +2968,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -2936,7 +2998,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -2946,6 +3008,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -2970,7 +3033,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -2980,6 +3043,7 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -3097,7 +3161,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -3110,6 +3175,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -3138,7 +3204,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -3150,6 +3216,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -3179,7 +3246,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -3189,6 +3256,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -3213,7 +3281,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -3223,6 +3291,7 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -3340,7 +3409,8 @@ class _$_CreateCartSession implements _CreateCartSession {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -3353,6 +3423,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -3381,7 +3452,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -3393,6 +3464,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -3422,7 +3494,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -3432,6 +3504,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -3456,7 +3529,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -3466,6 +3539,7 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -3615,7 +3689,8 @@ class _$_AddCart implements _AddCart {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -3628,6 +3703,7 @@ class _$_AddCart implements _AddCart {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -3656,7 +3732,7 @@ class _$_AddCart implements _AddCart {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -3668,6 +3744,7 @@ class _$_AddCart implements _AddCart {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -3697,7 +3774,7 @@ class _$_AddCart implements _AddCart {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -3707,6 +3784,7 @@ class _$_AddCart implements _AddCart {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -3731,7 +3809,7 @@ class _$_AddCart implements _AddCart {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -3741,6 +3819,7 @@ class _$_AddCart implements _AddCart {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -3851,7 +3930,8 @@ class _$_UpdateCart implements _UpdateCart {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -3864,6 +3944,7 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -3892,7 +3973,7 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -3904,6 +3985,7 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -3933,7 +4015,7 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -3943,6 +4025,7 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -3967,7 +4050,7 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -3977,6 +4060,7 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -4093,7 +4177,8 @@ class _$_RemoveCart implements _RemoveCart {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -4106,6 +4191,7 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -4134,7 +4220,7 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -4146,6 +4232,7 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -4175,7 +4262,7 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -4185,6 +4272,7 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -4209,7 +4297,7 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -4219,6 +4307,7 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -4302,7 +4391,8 @@ class _$_GetCartSession implements _GetCartSession {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -4315,6 +4405,7 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -4343,7 +4434,7 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -4355,6 +4446,7 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -4384,7 +4476,7 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -4394,6 +4486,7 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -4418,7 +4511,7 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -4428,6 +4521,7 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -4449,6 +4543,214 @@ class _$_GetCartSession implements _GetCartSession {
 
 abstract class _GetCartSession implements OrderEvent {
   const factory _GetCartSession() = _$_GetCartSession;
+}
+
+/// @nodoc
+abstract class _$RemoveCartSessionCopyWith<$Res> {
+  factory _$RemoveCartSessionCopyWith(
+          _RemoveCartSession value, $Res Function(_RemoveCartSession) then) =
+      __$RemoveCartSessionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RemoveCartSessionCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$RemoveCartSessionCopyWith<$Res> {
+  __$RemoveCartSessionCopyWithImpl(
+      _RemoveCartSession _value, $Res Function(_RemoveCartSession) _then)
+      : super(_value, (v) => _then(v as _RemoveCartSession));
+
+  @override
+  _RemoveCartSession get _value => super._value as _RemoveCartSession;
+}
+
+/// @nodoc
+
+class _$_RemoveCartSession implements _RemoveCartSession {
+  const _$_RemoveCartSession();
+
+  @override
+  String toString() {
+    return 'OrderEvent.removeCartSession()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _RemoveCartSession);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletByMerchantParam request)
+        getOutletByMerchant,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)
+        addCart,
+    required TResult Function(String note) updateCart,
+    required TResult Function(CreateUpdateCartSessionItemParam request)
+        removeCart,
+    required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function() checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
+    required TResult Function(PaymentMethodDataResponse data)
+        setPaymentMethodID,
+    required TResult Function() getPaymentMethodID,
+    required TResult Function(DeliveryMethodDataResponse data)
+        setDeliveryMethodID,
+    required TResult Function() getDeliveryMethodID,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        setVoucherMethodID,
+    required TResult Function() getVoucherMethodID,
+  }) {
+    return removeCartSession();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletByMerchantParam request)? getOutletByMerchant,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)?
+        addCart,
+    TResult Function(String note)? updateCart,
+    TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
+    TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function()? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
+    TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
+    TResult Function()? getPaymentMethodID,
+    TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
+    TResult Function()? getDeliveryMethodID,
+    TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
+    TResult Function()? getVoucherMethodID,
+    required TResult orElse(),
+  }) {
+    if (removeCartSession != null) {
+      return removeCartSession();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletByMerchant value) getOutletByMerchant,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_AddCart value) addCart,
+    required TResult Function(_UpdateCart value) updateCart,
+    required TResult Function(_RemoveCart value) removeCart,
+    required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
+    required TResult Function(_SetPaymentMethodID value) setPaymentMethodID,
+    required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
+    required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
+    required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
+    required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
+  }) {
+    return removeCartSession(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletByMerchant value)? getOutletByMerchant,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_AddCart value)? addCart,
+    TResult Function(_UpdateCart value)? updateCart,
+    TResult Function(_RemoveCart value)? removeCart,
+    TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
+    TResult Function(_SetPaymentMethodID value)? setPaymentMethodID,
+    TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
+    TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
+    TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
+    TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
+    required TResult orElse(),
+  }) {
+    if (removeCartSession != null) {
+      return removeCartSession(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveCartSession implements OrderEvent {
+  const factory _RemoveCartSession() = _$_RemoveCartSession;
 }
 
 /// @nodoc
@@ -4539,7 +4841,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -4552,6 +4855,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -4580,7 +4884,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -4592,6 +4896,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -4621,7 +4926,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -4631,6 +4936,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -4655,7 +4961,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -4665,6 +4971,7 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -4747,7 +5054,8 @@ class _$_CheckoutCart implements _CheckoutCart {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -4760,6 +5068,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -4788,7 +5097,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -4800,6 +5109,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -4829,7 +5139,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -4839,6 +5149,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -4863,7 +5174,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -4873,6 +5184,7 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -4950,7 +5262,8 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -4963,6 +5276,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -4991,7 +5305,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -5003,6 +5317,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -5032,7 +5347,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -5042,6 +5357,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -5066,7 +5382,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -5076,6 +5392,7 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -5178,7 +5495,8 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -5191,6 +5509,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -5219,7 +5538,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -5231,6 +5550,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -5260,7 +5580,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -5270,6 +5590,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -5294,7 +5615,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -5304,6 +5625,7 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -5420,7 +5742,8 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -5433,6 +5756,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -5461,7 +5785,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -5473,6 +5797,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -5502,7 +5827,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -5512,6 +5837,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -5536,7 +5862,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -5546,6 +5872,7 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -5629,7 +5956,8 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -5642,6 +5970,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -5670,7 +5999,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -5682,6 +6011,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -5711,7 +6041,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -5721,6 +6051,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -5745,7 +6076,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -5755,6 +6086,7 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -5867,7 +6199,8 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -5880,6 +6213,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -5908,7 +6242,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -5920,6 +6254,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -5949,7 +6284,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -5959,6 +6294,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -5983,7 +6319,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -5993,6 +6329,7 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -6076,7 +6413,8 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -6089,6 +6427,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -6117,7 +6456,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -6129,6 +6468,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -6158,7 +6498,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -6168,6 +6508,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -6192,7 +6533,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -6202,6 +6543,7 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -6314,7 +6656,8 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -6327,6 +6670,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -6355,7 +6699,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -6367,6 +6711,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -6396,7 +6741,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -6406,6 +6751,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -6430,7 +6776,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -6440,6 +6786,7 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -6524,7 +6871,8 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
         getListVoucherOutlet,
     required TResult Function(GetOutletProductParam request)
         getOutletListProduct,
-    required TResult Function(GetPromoOutletParam request) getPromoOutlet,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
     required TResult Function(GetHotPromoParam request) getHotPromo,
     required TResult Function(GetDetailOutletParam request) getDetailOutlet,
     required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
@@ -6537,6 +6885,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     required TResult Function(CreateUpdateCartSessionItemParam request)
         removeCart,
     required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
     required TResult Function(UpdateCartSessionParam request) updateCartSession,
     required TResult Function() checkoutCart,
     required TResult Function() getSalesTypeCart,
@@ -6565,7 +6914,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
     TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
     TResult Function(GetOutletProductParam request)? getOutletListProduct,
-    TResult Function(GetPromoOutletParam request)? getPromoOutlet,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
     TResult Function(GetHotPromoParam request)? getHotPromo,
     TResult Function(GetDetailOutletParam request)? getDetailOutlet,
     TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
@@ -6577,6 +6926,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(String note)? updateCart,
     TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
     TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
     TResult Function(UpdateCartSessionParam request)? updateCartSession,
     TResult Function()? checkoutCart,
     TResult Function()? getSalesTypeCart,
@@ -6606,7 +6956,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
     required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
     required TResult Function(_GetOutletListProduct value) getOutletListProduct,
-    required TResult Function(_GetPromoOutlet value) getPromoOutlet,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
     required TResult Function(_GetHotPromo value) getHotPromo,
     required TResult Function(_GetDetailOutlet value) getDetailOutlet,
     required TResult Function(_GetPaymentMethod value) getPaymentMethod,
@@ -6616,6 +6966,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     required TResult Function(_UpdateCart value) updateCart,
     required TResult Function(_RemoveCart value) removeCart,
     required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
     required TResult Function(_UpdateCartSession value) updateCartSession,
     required TResult Function(_CheckoutCart value) checkoutCart,
     required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
@@ -6640,7 +6991,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
     TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
     TResult Function(_GetOutletListProduct value)? getOutletListProduct,
-    TResult Function(_GetPromoOutlet value)? getPromoOutlet,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
     TResult Function(_GetHotPromo value)? getHotPromo,
     TResult Function(_GetDetailOutlet value)? getDetailOutlet,
     TResult Function(_GetPaymentMethod value)? getPaymentMethod,
@@ -6650,6 +7001,7 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(_UpdateCart value)? updateCart,
     TResult Function(_RemoveCart value)? removeCart,
     TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
     TResult Function(_UpdateCartSession value)? updateCartSession,
     TResult Function(_CheckoutCart value)? checkoutCart,
     TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
@@ -6716,7 +7068,8 @@ class _$OrderStateTearOff {
     );
   }
 
-  _GetPromoOutletSuccess getPromoOutletSuccess(List<PromoOutlet> response) {
+  _GetPromoOutletSuccess getDigiDiscountOutletSuccess(
+      List<DigiDiscountOutletDataResponse> response) {
     return _GetPromoOutletSuccess(
       response,
     );
@@ -6806,6 +7159,10 @@ class _$OrderStateTearOff {
     );
   }
 
+  _RemoveCartSessionSuccess removeCartSessionSuccess() {
+    return const _RemoveCartSessionSuccess();
+  }
+
   _UpdateCartSessionSuccess updateCartSessionSuccess(
       CartSessionResponse response) {
     return _UpdateCartSessionSuccess(
@@ -6891,7 +7248,8 @@ mixin _$OrderState {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -6914,6 +7272,7 @@ mixin _$OrderState {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -6945,7 +7304,8 @@ mixin _$OrderState {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -6965,6 +7325,7 @@ mixin _$OrderState {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -6995,7 +7356,7 @@ mixin _$OrderState {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -7018,6 +7379,8 @@ mixin _$OrderState {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -7051,7 +7414,8 @@ mixin _$OrderState {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -7069,6 +7433,7 @@ mixin _$OrderState {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -7153,7 +7518,8 @@ class _$_Initial implements _Initial {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -7176,6 +7542,7 @@ class _$_Initial implements _Initial {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -7210,7 +7577,8 @@ class _$_Initial implements _Initial {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -7230,6 +7598,7 @@ class _$_Initial implements _Initial {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -7266,7 +7635,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -7289,6 +7658,8 @@ class _$_Initial implements _Initial {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -7325,7 +7696,8 @@ class _$_Initial implements _Initial {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -7343,6 +7715,7 @@ class _$_Initial implements _Initial {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -7421,7 +7794,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -7444,6 +7818,7 @@ class _$_LoadInProgress implements _LoadInProgress {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -7478,7 +7853,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -7498,6 +7874,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -7534,7 +7911,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -7557,6 +7934,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -7593,7 +7972,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -7611,6 +7991,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -7689,7 +8070,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -7712,6 +8094,7 @@ class _$_LoadSuccess implements _LoadSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -7746,7 +8129,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -7766,6 +8150,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -7802,7 +8187,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -7825,6 +8210,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -7861,7 +8248,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -7879,6 +8267,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -7991,7 +8380,8 @@ class _$_LoadFailure implements _LoadFailure {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -8014,6 +8404,7 @@ class _$_LoadFailure implements _LoadFailure {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -8048,7 +8439,8 @@ class _$_LoadFailure implements _LoadFailure {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -8068,6 +8460,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -8104,7 +8497,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -8127,6 +8520,8 @@ class _$_LoadFailure implements _LoadFailure {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -8163,7 +8558,8 @@ class _$_LoadFailure implements _LoadFailure {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -8181,6 +8577,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -8294,7 +8691,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -8317,6 +8715,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -8351,7 +8750,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -8371,6 +8771,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -8407,7 +8808,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -8430,6 +8831,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -8466,7 +8869,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -8484,6 +8888,7 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -8599,7 +9004,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -8622,6 +9028,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -8656,7 +9063,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -8676,6 +9084,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -8712,7 +9121,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -8735,6 +9144,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -8771,7 +9182,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -8789,6 +9201,7 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -8904,7 +9317,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -8927,6 +9341,7 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -8961,7 +9376,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -8981,6 +9397,7 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -9017,7 +9434,7 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -9040,6 +9457,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -9076,7 +9495,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -9094,6 +9514,7 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -9135,7 +9556,7 @@ abstract class _$GetPromoOutletSuccessCopyWith<$Res> {
   factory _$GetPromoOutletSuccessCopyWith(_GetPromoOutletSuccess value,
           $Res Function(_GetPromoOutletSuccess) then) =
       __$GetPromoOutletSuccessCopyWithImpl<$Res>;
-  $Res call({List<PromoOutlet> response});
+  $Res call({List<DigiDiscountOutletDataResponse> response});
 }
 
 /// @nodoc
@@ -9157,7 +9578,7 @@ class __$GetPromoOutletSuccessCopyWithImpl<$Res>
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as List<PromoOutlet>,
+              as List<DigiDiscountOutletDataResponse>,
     ));
   }
 }
@@ -9168,11 +9589,11 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
   const _$_GetPromoOutletSuccess(this.response);
 
   @override
-  final List<PromoOutlet> response;
+  final List<DigiDiscountOutletDataResponse> response;
 
   @override
   String toString() {
-    return 'OrderState.getPromoOutletSuccess(response: $response)';
+    return 'OrderState.getDigiDiscountOutletSuccess(response: $response)';
   }
 
   @override
@@ -9207,7 +9628,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -9230,6 +9652,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -9248,7 +9671,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(GetListVoucherOutletDataResponse data)
         getVoucherMethodIDSuccess,
   }) {
-    return getPromoOutletSuccess(response);
+    return getDigiDiscountOutletSuccess(response);
   }
 
   @override
@@ -9264,7 +9687,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -9284,6 +9708,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -9300,8 +9725,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getVoucherMethodIDSuccess,
     required TResult orElse(),
   }) {
-    if (getPromoOutletSuccess != null) {
-      return getPromoOutletSuccess(response);
+    if (getDigiDiscountOutletSuccess != null) {
+      return getDigiDiscountOutletSuccess(response);
     }
     return orElse();
   }
@@ -9320,7 +9745,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -9343,6 +9768,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -9363,7 +9790,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     required TResult Function(_GetVoucherMethodIDSuccess value)
         getVoucherMethodIDSuccess,
   }) {
-    return getPromoOutletSuccess(this);
+    return getDigiDiscountOutletSuccess(this);
   }
 
   @override
@@ -9379,7 +9806,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -9397,6 +9825,7 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -9415,18 +9844,19 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         getVoucherMethodIDSuccess,
     required TResult orElse(),
   }) {
-    if (getPromoOutletSuccess != null) {
-      return getPromoOutletSuccess(this);
+    if (getDigiDiscountOutletSuccess != null) {
+      return getDigiDiscountOutletSuccess(this);
     }
     return orElse();
   }
 }
 
 abstract class _GetPromoOutletSuccess implements OrderState {
-  const factory _GetPromoOutletSuccess(List<PromoOutlet> response) =
-      _$_GetPromoOutletSuccess;
+  const factory _GetPromoOutletSuccess(
+      List<DigiDiscountOutletDataResponse> response) = _$_GetPromoOutletSuccess;
 
-  List<PromoOutlet> get response => throw _privateConstructorUsedError;
+  List<DigiDiscountOutletDataResponse> get response =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetPromoOutletSuccessCopyWith<_GetPromoOutletSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -9511,7 +9941,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -9534,6 +9965,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -9568,7 +10000,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -9588,6 +10021,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -9624,7 +10058,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -9647,6 +10081,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -9683,7 +10119,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -9701,6 +10138,7 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -9817,7 +10255,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -9840,6 +10279,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -9874,7 +10314,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -9894,6 +10335,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -9930,7 +10372,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -9953,6 +10395,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -9989,7 +10433,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -10007,6 +10452,7 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -10124,7 +10570,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -10147,6 +10594,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -10181,7 +10629,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -10201,6 +10650,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -10237,7 +10687,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -10260,6 +10710,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -10296,7 +10748,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -10314,6 +10767,7 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -10432,7 +10886,8 @@ class _$_GetOutletProductCategorySuccess
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -10455,6 +10910,7 @@ class _$_GetOutletProductCategorySuccess
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -10489,7 +10945,8 @@ class _$_GetOutletProductCategorySuccess
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -10509,6 +10966,7 @@ class _$_GetOutletProductCategorySuccess
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -10545,7 +11003,7 @@ class _$_GetOutletProductCategorySuccess
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -10568,6 +11026,8 @@ class _$_GetOutletProductCategorySuccess
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -10604,7 +11064,8 @@ class _$_GetOutletProductCategorySuccess
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -10622,6 +11083,7 @@ class _$_GetOutletProductCategorySuccess
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -10735,7 +11197,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -10758,6 +11221,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -10792,7 +11256,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -10812,6 +11277,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -10848,7 +11314,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -10871,6 +11337,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -10907,7 +11375,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -10925,6 +11394,7 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -11046,7 +11516,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -11069,6 +11540,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -11103,7 +11575,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -11123,6 +11596,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -11159,7 +11633,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -11182,6 +11656,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -11218,7 +11694,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -11236,6 +11713,7 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -11349,7 +11827,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -11372,6 +11851,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -11406,7 +11886,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -11426,6 +11907,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -11462,7 +11944,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -11485,6 +11967,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -11521,7 +12005,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -11539,6 +12024,7 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -11652,7 +12138,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -11675,6 +12162,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -11709,7 +12197,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -11729,6 +12218,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -11765,7 +12255,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -11788,6 +12278,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -11824,7 +12316,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -11842,6 +12335,7 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -11962,7 +12456,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -11985,6 +12480,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -12019,7 +12515,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -12039,6 +12536,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -12075,7 +12573,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -12098,6 +12596,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -12134,7 +12634,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -12152,6 +12653,7 @@ class _$_AddCartSuccess implements _AddCartSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -12237,7 +12739,8 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -12260,6 +12763,7 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -12294,7 +12798,8 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -12314,6 +12819,7 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -12350,7 +12856,7 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -12373,6 +12879,8 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -12409,7 +12917,8 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -12427,6 +12936,7 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -12541,7 +13051,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -12564,6 +13075,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -12598,7 +13110,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -12618,6 +13131,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -12654,7 +13168,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -12677,6 +13191,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -12713,7 +13229,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -12731,6 +13248,7 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -12853,7 +13371,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -12876,6 +13395,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -12910,7 +13430,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -12930,6 +13451,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -12966,7 +13488,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -12989,6 +13511,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -13025,7 +13549,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -13043,6 +13568,7 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -13164,7 +13690,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -13187,6 +13714,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -13221,7 +13749,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -13241,6 +13770,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -13277,7 +13807,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -13300,6 +13830,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -13336,7 +13868,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -13354,6 +13887,7 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -13387,6 +13921,284 @@ abstract class _GetCartSessionSuccess implements OrderState {
   @JsonKey(ignore: true)
   _$GetCartSessionSuccessCopyWith<_GetCartSessionSuccess> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$RemoveCartSessionSuccessCopyWith<$Res> {
+  factory _$RemoveCartSessionSuccessCopyWith(_RemoveCartSessionSuccess value,
+          $Res Function(_RemoveCartSessionSuccess) then) =
+      __$RemoveCartSessionSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RemoveCartSessionSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$RemoveCartSessionSuccessCopyWith<$Res> {
+  __$RemoveCartSessionSuccessCopyWithImpl(_RemoveCartSessionSuccess _value,
+      $Res Function(_RemoveCartSessionSuccess) _then)
+      : super(_value, (v) => _then(v as _RemoveCartSessionSuccess));
+
+  @override
+  _RemoveCartSessionSuccess get _value =>
+      super._value as _RemoveCartSessionSuccess;
+}
+
+/// @nodoc
+
+class _$_RemoveCartSessionSuccess implements _RemoveCartSessionSuccess {
+  const _$_RemoveCartSessionSuccess();
+
+  @override
+  String toString() {
+    return 'OrderState.removeCartSessionSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _RemoveCartSessionSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(OrderFailure e) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByMerchantSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
+    required TResult Function(List<PromoOutletDataResponse> response)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> response)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> response)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductCategoryDataResponse> response)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethodDataResponse> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethodDataResponse> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response) addCartSuccess,
+    required TResult Function() updateCart,
+    required TResult Function(CartSessionResponse response) removeCartSuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
+    required TResult Function(PaymentMethodDataResponse data)
+        setPaymentMethodIDSuccess,
+    required TResult Function(PaymentMethodDataResponse data)
+        getPaymentMethodIDSuccess,
+    required TResult Function(DeliveryMethodDataResponse data)
+        setDeliveryMethodIDSuccess,
+    required TResult Function(DeliveryMethodDataResponse data)
+        getDeliveryMethodIDSuccess,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        setVoucherMethodIDSuccess,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        getVoucherMethodIDSuccess,
+  }) {
+    return removeCartSessionSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(OrderFailure e)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByMerchantSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
+    TResult Function(List<PromoOutletDataResponse> response)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> response)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> response)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductCategoryDataResponse> response)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethodDataResponse> response)?
+        deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? addCartSuccess,
+    TResult Function()? updateCart,
+    TResult Function(CartSessionResponse response)? removeCartSuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
+    TResult Function(PaymentMethodDataResponse data)? setPaymentMethodIDSuccess,
+    TResult Function(PaymentMethodDataResponse data)? getPaymentMethodIDSuccess,
+    TResult Function(DeliveryMethodDataResponse data)?
+        setDeliveryMethodIDSuccess,
+    TResult Function(DeliveryMethodDataResponse data)?
+        getDeliveryMethodIDSuccess,
+    TResult Function(GetListVoucherOutletDataResponse data)?
+        setVoucherMethodIDSuccess,
+    TResult Function(GetListVoucherOutletDataResponse data)?
+        getVoucherMethodIDSuccess,
+    required TResult orElse(),
+  }) {
+    if (removeCartSessionSuccess != null) {
+      return removeCartSessionSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetOutletByMerchantSucess value)
+        getOutletByMerchantSuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getDigiDiscountOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_AddCartSuccess value) addCartSuccess,
+    required TResult Function(_UpdateCartSuccess value) updateCart,
+    required TResult Function(_RemoveCartSuccess value) removeCartSuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
+    required TResult Function(_SetPaymentMethodIDSuccess value)
+        setPaymentMethodIDSuccess,
+    required TResult Function(_GetPaymentMethodIDSuccess value)
+        getPaymentMethodIDSuccess,
+    required TResult Function(_SetDeliveryMethodIDSuccess value)
+        setDeliveryMethodIDSuccess,
+    required TResult Function(_GetDeliveryMethodIDSuccess value)
+        getDeliveryMethodIDSuccess,
+    required TResult Function(_SetVoucherMethodIDSuccess value)
+        setVoucherMethodIDSuccess,
+    required TResult Function(_GetVoucherMethodIDSuccess value)
+        getVoucherMethodIDSuccess,
+  }) {
+    return removeCartSessionSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetOutletByMerchantSucess value)?
+        getOutletByMerchantSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_AddCartSuccess value)? addCartSuccess,
+    TResult Function(_UpdateCartSuccess value)? updateCart,
+    TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
+    TResult Function(_SetPaymentMethodIDSuccess value)?
+        setPaymentMethodIDSuccess,
+    TResult Function(_GetPaymentMethodIDSuccess value)?
+        getPaymentMethodIDSuccess,
+    TResult Function(_SetDeliveryMethodIDSuccess value)?
+        setDeliveryMethodIDSuccess,
+    TResult Function(_GetDeliveryMethodIDSuccess value)?
+        getDeliveryMethodIDSuccess,
+    TResult Function(_SetVoucherMethodIDSuccess value)?
+        setVoucherMethodIDSuccess,
+    TResult Function(_GetVoucherMethodIDSuccess value)?
+        getVoucherMethodIDSuccess,
+    required TResult orElse(),
+  }) {
+    if (removeCartSessionSuccess != null) {
+      return removeCartSessionSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveCartSessionSuccess implements OrderState {
+  const factory _RemoveCartSessionSuccess() = _$_RemoveCartSessionSuccess;
 }
 
 /// @nodoc
@@ -13476,7 +14288,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -13499,6 +14312,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -13533,7 +14347,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -13553,6 +14368,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -13589,7 +14405,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -13612,6 +14428,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -13648,7 +14466,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -13666,6 +14485,7 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -13787,7 +14607,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -13810,6 +14631,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -13844,7 +14666,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -13864,6 +14687,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -13900,7 +14724,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -13923,6 +14747,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -13959,7 +14785,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -13977,6 +14804,7 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -14089,7 +14917,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -14112,6 +14941,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -14146,7 +14976,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -14166,6 +14997,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -14202,7 +15034,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -14225,6 +15057,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -14261,7 +15095,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -14279,6 +15114,7 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -14391,7 +15227,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -14414,6 +15251,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -14448,7 +15286,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -14468,6 +15307,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -14504,7 +15344,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -14527,6 +15367,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -14563,7 +15405,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -14581,6 +15424,7 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -14703,7 +15547,8 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -14726,6 +15571,7 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -14760,7 +15606,8 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -14780,6 +15627,7 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -14816,7 +15664,7 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -14839,6 +15687,8 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -14875,7 +15725,8 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -14893,6 +15744,7 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -15015,7 +15867,8 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -15038,6 +15891,7 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -15072,7 +15926,8 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -15092,6 +15947,7 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -15128,7 +15984,7 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -15151,6 +16007,8 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -15187,7 +16045,8 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -15205,6 +16064,7 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -15327,7 +16187,8 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -15350,6 +16211,7 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -15384,7 +16246,8 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -15404,6 +16267,7 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -15440,7 +16304,7 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -15463,6 +16327,8 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -15499,7 +16365,8 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -15517,6 +16384,7 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -15639,7 +16507,8 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -15662,6 +16531,7 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -15696,7 +16566,8 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -15716,6 +16587,7 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -15752,7 +16624,7 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -15775,6 +16647,8 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -15811,7 +16685,8 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -15829,6 +16704,7 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -15952,7 +16828,8 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -15975,6 +16852,7 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -16009,7 +16887,8 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -16029,6 +16908,7 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -16065,7 +16945,7 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -16088,6 +16968,8 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -16124,7 +17006,8 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -16142,6 +17025,7 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
@@ -16266,7 +17150,8 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         getOutletByCategorySuccess,
     required TResult Function(List<OutletCategoryDataResponse> response)
         getOutletByMerchantSuccess,
-    required TResult Function(List<PromoOutlet> response) getPromoOutletSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
     required TResult Function(List<PromoOutletDataResponse> response)
         getListPromoOutletSuccess,
     required TResult Function(List<GetListVoucherOutletDataResponse> response)
@@ -16289,6 +17174,7 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
     required TResult Function(CartSessionResponse response)
         updateCartSessionSuccess,
     required TResult Function(CheckoutResponse response) checkoutCartSuccess,
@@ -16323,7 +17209,8 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(List<OutletCategoryDataResponse> response)?
         getOutletByMerchantSuccess,
-    TResult Function(List<PromoOutlet> response)? getPromoOutletSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
     TResult Function(List<PromoOutletDataResponse> response)?
         getListPromoOutletSuccess,
     TResult Function(List<GetListVoucherOutletDataResponse> response)?
@@ -16343,6 +17230,7 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
     TResult Function(CartSessionResponse response)? removeCartSuccess,
     TResult Function(CartSessionResponse response)? createCartSessionSuccess,
     TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
     TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
     TResult Function(CheckoutResponse response)? checkoutCartSuccess,
     TResult Function(String value)? getSalesTypeCartSuccess,
@@ -16379,7 +17267,7 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
     required TResult Function(_GetOutletByMerchantSucess value)
         getOutletByMerchantSuccess,
     required TResult Function(_GetPromoOutletSuccess value)
-        getPromoOutletSuccess,
+        getDigiDiscountOutletSuccess,
     required TResult Function(_GetListPromoOutletSuccess value)
         getListPromoOutletSuccess,
     required TResult Function(_GetListVoucherOutletSuccess value)
@@ -16402,6 +17290,8 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         createCartSessionSuccess,
     required TResult Function(_GetCartSessionSuccess value)
         getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
     required TResult Function(_UpdateCartSessionSuccess value)
         updateCartSessionSuccess,
     required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
@@ -16438,7 +17328,8 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         getOutletByCategorySuccess,
     TResult Function(_GetOutletByMerchantSucess value)?
         getOutletByMerchantSuccess,
-    TResult Function(_GetPromoOutletSuccess value)? getPromoOutletSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
     TResult Function(_GetListPromoOutletSuccess value)?
         getListPromoOutletSuccess,
     TResult Function(_GetListVoucherOutletSuccess value)?
@@ -16456,6 +17347,7 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
     TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
     TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
     TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
     TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
     TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
     TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,

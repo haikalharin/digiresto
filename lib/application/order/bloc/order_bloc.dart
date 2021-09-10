@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
-import 'package:digiresto/domain/entity/order/detail_outlet_model.dart';
-import 'package:digiresto/domain/entity/order/digi_discount_outlet_model.dart';
+import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
@@ -13,6 +13,7 @@ import 'package:digiresto/domain/entity/order/param/create_cart_session_param.da
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_digi_discount_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
@@ -22,7 +23,6 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_by_merchant_param
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_category.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
@@ -127,7 +127,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (list) => OrderState.getOutletProductCategorySuccess(list.data),
         );
       },
-      getPromoOutlet: (request) async* {
+      getDigiDiscountOutlet: (request) async* {
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final queryString = request.request.queryString.copyWith(
@@ -137,7 +137,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             request.request.copyWith(queryString: queryString).toJson());
         yield getPromoOutlet.fold(
           (error) => OrderState.loadFailure(OrderFailure.getPromoOutletFail()),
-          (list) => OrderState.getPromoOutletSuccess(list),
+          (list) => OrderState.getDigiDiscountOutletSuccess(list),
         );
       },
       getHotPromo: (request) async* {
