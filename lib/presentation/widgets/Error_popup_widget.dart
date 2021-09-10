@@ -1,7 +1,4 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
-import 'package:digiresto/domain/core/constants/response_mapping.dart';
-import 'package:digiresto/domain/entity/key_value_model.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,45 +42,49 @@ class ErrorPopupWidget {
                           Container(
                             height: 40,
                             width: Get.width / 3 - 10,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 Get.back();
                               },
-                              color: Colors.white,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
                               child: Text("Batal",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.redYoung)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.redYoung,
-                                ),
-                              ),
                             ),
                           ),
                           Container(
                             height: 40,
                             width: Get.width / 3 - 10,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 runAction();
                               },
-                              color: AppColors.redYoung,
+                              style: ElevatedButton.styleFrom(
+                                primary: AppColors.redYoung,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
                               child: Text("Ok",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.redYoung,
-                                ),
-                              ),
                             ),
                           ),
                         ],
@@ -129,137 +130,25 @@ class ErrorPopupWidget {
                     Container(
                       height: 40,
                       width: double.infinity,
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () {
                           runAction();
                         },
-                        color: AppColors.redYoung,
+                        style: ElevatedButton.styleFrom(
+                          primary: AppColors.redYoung,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.redYoung,
+                            ),
+                          ),
+                        ),
                         child: Text("Ok",
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.redYoung,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ));
-  }
-
-  static showDioError(DioError dioError, void Function()? runAction) {
-    KeyValueModel respError = ResponseMapping.getMessage(dioError);
-    //  UserStore _userStore;
-    //  _userStore = Provider.of<UserStore>(context, listen: false);
-    return showDialog(
-        barrierDismissible: false,
-        context: Get.context!,
-        builder: (_) => new AlertDialog(
-              title: Center(
-                  child: Text(
-                "Digiresto",
-                style: TextStyle(
-                  fontFamily: "roboto",
-                  //color: AppColors.red,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              )),
-              content: Container(
-                height: 120,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      respError.desciption == ""
-                          ? respError.value!
-                          : respError.desciption.toString(),
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    Container(
-                      height: 40,
-                      width: double.infinity,
-                      child: RaisedButton(
-                        onPressed: () {
-                          if (respError.key == "21" || respError.key == "401") {
-                            // if (_userStore.skipAndContinue ?? false) {
-                            //   print("skip n continue invalid token");
-                            //   final DeviceInfoPlugin deviceInfoPlugin =
-                            //       new DeviceInfoPlugin();
-                            //   try {
-                            //     if (Platform.isIOS) {
-                            //       deviceInfoPlugin.iosInfo.then((data) {
-                            //         _userStore
-                            //             .loginNonUser(data.identifierForVendor)
-                            //             .then((value) {
-                            //           if (value?.token == null ||
-                            //               value?.token == null) {
-                            //             ErrorPopupWidget.show(
-                            //                 context,
-                            //                 "Digiresto",
-                            //                 "Sedang menyiapkan data, silahkan coba lagi",
-                            //                 () {
-                            //               Navigator.of(context).pop();
-                            //             });
-                            //           } else {
-                            //             Timer.run(() {
-                            //               _userStore
-                            //                   .saveAuthToken(value!.token!);
-                            //               _userStore.setSkipAndContinue(true);
-                            //               _userStore.removeAuthPhoneVerified();
-                            //               Navigator.of(context)
-                            //                   .pushNamedAndRemoveUntil(
-                            //                       Routes.home,
-                            //                       (Route<dynamic> route) =>
-                            //                           false);
-                            //             });
-                            //           }
-                            //         });
-                            //       });
-                            //     }
-                            //   } on PlatformException {
-                            //     print('Failed to get platform version');
-                            //   }
-                            // } else {
-                            //   _userStore.logoutSessionLogin();
-                            //   Navigator.of(context).pushNamedAndRemoveUntil(
-                            //       Routes.login_pin,
-                            //       (Route<dynamic> route) => false);
-                            // }
-                          } else if (runAction != null) {
-                            runAction();
-                            Get.back();
-                          } else {
-                            Get.back();
-                          }
-                          //
-                        },
-                        color: AppColors.redYoung,
-                        child: Text("Ok",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.redYoung,
-                          ),
-                        ),
                       ),
                     ),
                   ],
@@ -307,41 +196,45 @@ class ErrorPopupWidget {
                           Container(
                             height: 40,
                             width: MediaQuery.of(context).size.width / 3 - 10,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: cancelAction,
-                              color: Colors.white,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
                               child: Text("Batal",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.redYoung)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.redYoung,
-                                ),
-                              ),
                             ),
                           ),
                           Container(
                             height: 40,
                             width: MediaQuery.of(context).size.width / 3 - 10,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: runAction,
-                              color: AppColors.redYoung,
+                              style: ElevatedButton.styleFrom(
+                                primary: AppColors.redYoung,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
                               child: Text("Login",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.redYoung,
-                                ),
-                              ),
                             ),
                           ),
                         ],

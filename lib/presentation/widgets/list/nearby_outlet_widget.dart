@@ -4,7 +4,6 @@ import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/order/home_see_all_outlet_view_argument.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/order_method_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -120,7 +119,6 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
 
   @override
   Widget build(BuildContext context) {
-    OrderMethodPopup _orderMethodPopup = new OrderMethodPopup();
     return Container(
         height: widget.height,
         child: ListView.builder(
@@ -129,31 +127,10 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
             shrinkWrap: true,
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
-              // _userStore?.setRandomCacheImage(widget.data[index].merchantLogo,
-              //     widget.data[index].outletId.toString());
-              // String defaultImage = _userStore!
-              //     .getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
                 onTap: () => {
                   if (widget.data[index].isOpen)
-                    {
-                      // _oderMethodPopup.showMyDialog(context,widget.data[index],widget.runAction)
-                      //   _showMyDialog(context, widget.data[index])
-                      //print(widget.data[index].name);
-                      // _orderMethodPopup.showMyDialog(
-                      //     context,
-                      //     {
-                      //       "name": widget.data[index].name,
-                      //       "merchantName":
-                      //           widget.data[index].merchantName.toString(),
-                      //       "orderMethod":
-                      //           widget.data[index].orderMethod["defaultList"],
-                      //       "detailName": widget.data[index].outletName,
-                      //       // "userProfile": _userStore!.profile
-                      //     },
-                      //     widget.runAction)
-                      widget.runAction(widget.data[index])
-                    }
+                    {widget.runAction(widget.data[index])}
                 },
                 child: Column(
                   children: [
@@ -222,17 +199,6 @@ class _ListNearbyOutletWidgetState extends State<ListCategoryOutletWidget> {
                                     ),
                                     textAlign: TextAlign.left),
                               ),
-                              // Padding(
-                              //   padding: const EdgeInsets.only(top: 5),
-                              //   child: Text(
-                              //       widget.data[index].merchantName.toString(),
-                              //       style: TextStyle(
-                              //         fontFamily: "roboto",
-                              //         color: Colors.black,
-                              //         fontSize: 12,
-                              //         fontWeight: FontWeight.normal,
-                              //       ),
-                              //       textAlign: TextAlign.left),
                               // ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5),

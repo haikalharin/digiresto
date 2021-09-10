@@ -20,12 +20,6 @@ class ListProductVariant extends StatefulWidget {
 }
 
 class _ListProductVariantState extends State<ListProductVariant> {
-//  UserStore? _userStore;
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-//    _userStore = Provider.of<UserStore>(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     double height = (widget.data.length == 1)
@@ -66,19 +60,6 @@ class _ListProductVariantState extends State<ListProductVariant> {
                   ),
                   child: Column(
                     children: [
-                      // Container(
-                      //   padding: EdgeInsets.only(right: 5, left: 5),
-                      //   child: ClipRRect(
-                      //     borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                      //     child: Image(
-                      //       image: RandomImages.getImageUrlDefault(
-                      //           widget.data[index]["img"], defaultImage),
-                      //       fit: BoxFit.fill,
-                      //       width: 150,
-                      //       alignment: Alignment.center,
-                      //     ),
-                      //   ),
-                      // ),
                       Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(top: 5),
@@ -104,12 +85,8 @@ class _ListProductVariantState extends State<ListProductVariant> {
                                     widget.data[index].price.toString()),
                             softWrap: false,
                             maxLines: 3,
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              //color: AppColors.red  ,
-                              fontSize: 14,
-                              //fontWeight: FontWeight.bold,
-                            ),
+                            style:
+                                TextStyle(fontFamily: "roboto", fontSize: 14),
                             textAlign: TextAlign.left),
                       ),
                     ],

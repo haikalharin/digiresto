@@ -125,7 +125,9 @@ class OrderViewController extends GetxController {
         GetListPromoOutletParam(
             body: GetListPromoOutletBodyParam(),
             queryString: GetListPromoOutletQueryParam(
-                merchantId: outlet.value!.merchantId,
+                merchantId: outlet.value!.merchantId == ""
+                    ? (detailOutlet.value?.merchantId ?? "")
+                    : outlet.value!.merchantId,
                 outletId: outlet.value!.outletId))));
   }
 

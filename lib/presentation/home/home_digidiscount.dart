@@ -5,6 +5,8 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/order/param/get_digi_discount_outlet_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -143,11 +145,15 @@ class HomeDigidiscountScreen
                 Expanded(
                   child: ListDigidiscountWidget(
                     runAction: (param) {
-                      "_orderStore!.setOrderParameter";
+                      //merchant id set to empty, cause in response api not have valid merchant id
+                      Get.toNamed(Routers.orderDetailOutlet,
+                          arguments:
+                              OrderDetailViewArgument(param.outletId, ""));
                     },
                     height: MediaQuery.of(context).size.height / 1.2,
                     data: controller.listPromoOutlet,
                     scrollDirection: Axis.vertical,
+                    loadMoreAction: () {},
                   ),
                 ),
               ],

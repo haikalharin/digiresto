@@ -215,7 +215,6 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     controller.getDetailOutlet();
     controller.getListProduct();
     controller.getCategoryProduct();
-    controller.getPromoProduct();
     controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
@@ -225,6 +224,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                 controller.setSalesType(r.response.salesTypes[0]);
               }
               controller.detailOutlet.value = r.response;
+              controller.getPromoProduct();
               controller.checkAllLoaded();
             },
             getOutletListProductSuccess: (r) {

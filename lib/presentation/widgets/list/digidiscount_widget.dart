@@ -1,21 +1,26 @@
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 
 class ListDigidiscountWidget extends StatefulWidget {
   final List<DigiDiscountOutletDataResponse> data;
   final Axis scrollDirection;
   final height;
   final void Function(DigiDiscountOutletDataResponse data) runAction;
+  final void Function() loadMoreAction;
 
   const ListDigidiscountWidget(
       {Key? key,
       required this.data,
       this.scrollDirection = Axis.vertical,
       this.height,
-      required this.runAction})
+      required this.runAction,
+      required this.loadMoreAction})
       : super(key: key);
 
   @override
@@ -23,173 +28,214 @@ class ListDigidiscountWidget extends StatefulWidget {
 }
 
 class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
+  final ScrollController _scrollController = new ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        widget.loadMoreAction();
+      }
+    });
+  }
+
+  List<Widget> generateListSalesType(DigiDiscountOutletDataResponse data) {
+    List<Widget> listWidget = [];
+    data.orderMethod.defaultList.forEach((element) {
+      if (element == "dineIn") {
+        listWidget.add(Container(
+          width: MediaQuery.of(Get.context!).size.width * 0.32,
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconOutletOrderDineIn),
+                  size: 14, color: AppColors.redTabBar),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                "Makan di tempat",
+                style: AppFont.textBlack11Light,
+              ),
+            ],
+          ),
+        ));
+      } else if (element == "takeAway") {
+        listWidget.add(Container(
+          width: MediaQuery.of(Get.context!).size.width * 0.32,
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconOutletOrderTakeIt),
+                  size: 14, color: AppColors.redTabBar),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                "Bawa Pulang",
+                style: AppFont.textBlack11Light,
+              ),
+            ],
+          ),
+        ));
+      } else if (element == "onlineDriver") {
+        listWidget.add(Container(
+          width: MediaQuery.of(Get.context!).size.width * 0.32,
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconOutletOrderDelivery),
+                  size: 14, color: AppColors.redTabBar),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                "Pesan Antar",
+                style: AppFont.textBlack11Light,
+              ),
+            ],
+          ),
+        ));
+      } else if (element == "driveThru") {
+        listWidget.add(Container(
+          width: MediaQuery.of(Get.context!).size.width * 0.32,
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconOutletOrderDriveThru),
+                  size: 14, color: AppColors.redTabBar),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                "Drive Thru",
+                style: AppFont.textBlack11Light,
+              ),
+            ],
+          ),
+        ));
+      }
+    });
+    return listWidget;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         height: widget.height,
         child: ListView.builder(
+            controller: _scrollController,
             scrollDirection: widget.scrollDirection,
             shrinkWrap: true,
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
-              // _userStore?.setRandomCacheImage(widget.data[index].merchantLogo,
-              //     widget.data[index].outletId.toString());
-              // String defaultImage = _userStore!
-              //     .getRandomCacheImage(widget.data[index].outletId.toString());
               return GestureDetector(
-                onTap: () => {widget.runAction(widget.data[index])},
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  height: 110,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 10, bottom: 8),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Stack(
-                              children: [
-                                Container(
-                                    padding: EdgeInsets.only(right: 5),
-                                    child: Stack(children: [
-                                      // ClipRRect(
-                                      //   borderRadius: BorderRadius.all(
-                                      //       Radius.circular(8.0)),
-                                      //   child: Image(
-                                      //     image:
-                                      //         RandomImages.getImageUrlDefault(
-                                      //             widget
-                                      //                 .data[index].merchantLogo,
-                                      //             defaultImage),
-                                      //     fit: BoxFit.fill,
-                                      //     width: 96,
-                                      //     height: 96,
-                                      //     alignment: Alignment.center,
-                                      //   ),
-                                      // ),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 15),
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.red,
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(5),
-                                              bottomRight: Radius.circular(5)),
-                                        ),
-                                        child: Container(
-                                          padding: EdgeInsets.all(2),
-                                          child: Text("PROMO",
-                                              softWrap: false,
-                                              overflow: TextOverflow.ellipsis,
+                onTap: () => {
+                  if (widget.data[index].isLive)
+                    {widget.runAction(widget.data[index])}
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      padding: const EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7.0),
+                      ),
+                      //height: 96,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Stack(children: [
+                            Align(
+                              child: Container(
+                                  padding: EdgeInsets.only(right: 5),
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8.0)),
+                                    child: Image(
+                                      image: RandomImages.getImageUrlDefault(
+                                          widget.data[index].merchantLogo, ""),
+                                      fit: BoxFit.cover,
+                                      height: 96,
+                                      width: 96,
+                                      alignment: Alignment.center,
+                                    ),
+                                  )),
+                            ),
+                            !widget.data[index].isLive
+                                ? ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8.0)),
+                                    child: Container(
+                                      width: 96,
+                                      color: Colors.black54,
+                                      child: Center(
+                                          child: Text("Tutup",
                                               style: TextStyle(
                                                 fontFamily: "roboto",
                                                 color: Colors.white,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w700,
                                               ),
-                                              textAlign: TextAlign.left),
-                                        ),
-                                      )
-                                    ])),
-                                (!(widget.data[index].isOwnerLoggedIn))
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8.0)),
-                                        child: Container(
-                                          width: 96,
-                                          height: 96,
-                                          color: Colors.black54,
-                                          child: Center(
-                                              child: Text("Tutup",
-                                                  style: TextStyle(
-                                                    fontFamily: "roboto",
-                                                    color: Colors.white,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                  textAlign: TextAlign.left)),
-                                        ),
-                                      )
-                                    : Container()
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  width:
-                                      MediaQuery.of(context).size.width - 160,
-                                  child: Text(
-                                      widget.data[index].outletName.toString(),
-                                      softWrap: false,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.left),
+                                              textAlign: TextAlign.left)),
+                                    ),
+                                  )
+                                : Container(),
+                          ]),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: const EdgeInsets.only(top: 5),
+                                width: MediaQuery.of(context).size.width - 160,
+                                child: Text(
+                                    widget.data[index].detail.name.toString(),
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Text(widget.data[index].distance.text,
+                                    style: TextStyle(
+                                      fontFamily: "roboto",
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.left),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(Get.context!).size.width *
+                                    0.65,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 16, bottom: 16),
+                                  child: Wrap(
+                                      children: generateListSalesType(
+                                          widget.data[index])),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(
-                                      widget.data[index].merchantName
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                      textAlign: TextAlign.left),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    ImageIcon(
-                                        AssetImage(
-                                            AppAssets.iconHomeDiscountPercent),
-                                        color: AppColors.red),
-                                    Text("FREE ONGKIR",
-                                        style: TextStyle(
-                                          fontFamily: "roboto",
-                                          color: AppColors.red,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                        textAlign: TextAlign.left),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(widget.data[index].distance.text,
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                      textAlign: TextAlign.left),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              )
+                            ],
+                          ),
+                        ],
                       ),
-                      Container(
-                          height: 1,
-                          width: double.infinity,
-                          color: AppColors.greyStroke)
-                    ],
-                  ),
-                  //child: Center(child: Text('Entry ${data[index].id.toString()}')),
+                    ),
+                    Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: AppColors.greyStroke)
+                  ],
                 ),
               );
             }));
