@@ -374,8 +374,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       removeCartSession: (value) async* {
-        final cartSession =
-            (await _orderRepository.setSessionId("")).getOrElse(() => null);
+        final cartSession = (await _orderRepository.removeCartSesion());
         if (cartSession != null) {
           yield OrderState.removeCartSessionSuccess();
         } else {

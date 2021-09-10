@@ -3736,7 +3736,7 @@ class _$TransactionMobileDataOutletDetailResponseTearOff {
       required List<TransactionTaxesAndService> taxesAndServices,
       required List<String> location,
       required String phone,
-      required String kurirPrice,
+      required dynamic kurirPrice,
       required String deliveryType,
       required String maxRadius,
       required String driverPhone,
@@ -3776,7 +3776,7 @@ mixin _$TransactionMobileDataOutletDetailResponse {
       throw _privateConstructorUsedError;
   List<String> get location => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  String get kurirPrice => throw _privateConstructorUsedError;
+  dynamic get kurirPrice => throw _privateConstructorUsedError;
   String get deliveryType => throw _privateConstructorUsedError;
   String get maxRadius => throw _privateConstructorUsedError;
   String get driverPhone => throw _privateConstructorUsedError;
@@ -3803,7 +3803,7 @@ abstract class $TransactionMobileDataOutletDetailResponseCopyWith<$Res> {
       List<TransactionTaxesAndService> taxesAndServices,
       List<String> location,
       String phone,
-      String kurirPrice,
+      dynamic kurirPrice,
       String deliveryType,
       String maxRadius,
       String driverPhone,
@@ -3861,7 +3861,7 @@ class _$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       kurirPrice: kurirPrice == freezed
           ? _value.kurirPrice
           : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       deliveryType: deliveryType == freezed
           ? _value.deliveryType
           : deliveryType // ignore: cast_nullable_to_non_nullable
@@ -3904,7 +3904,7 @@ abstract class _$TransactionMobileDataOutletDetailResponseCopyWith<$Res>
       List<TransactionTaxesAndService> taxesAndServices,
       List<String> location,
       String phone,
-      String kurirPrice,
+      dynamic kurirPrice,
       String deliveryType,
       String maxRadius,
       String driverPhone,
@@ -3966,7 +3966,7 @@ class __$TransactionMobileDataOutletDetailResponseCopyWithImpl<$Res>
       kurirPrice: kurirPrice == freezed
           ? _value.kurirPrice
           : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       deliveryType: deliveryType == freezed
           ? _value.deliveryType
           : deliveryType // ignore: cast_nullable_to_non_nullable
@@ -4028,7 +4028,7 @@ class _$_TransactionMobileDataOutletDetailResponse
   @override
   final String phone;
   @override
-  final String kurirPrice;
+  final dynamic kurirPrice;
   @override
   final String deliveryType;
   @override
@@ -4123,7 +4123,7 @@ abstract class _TransactionMobileDataOutletDetailResponse
           required List<TransactionTaxesAndService> taxesAndServices,
           required List<String> location,
           required String phone,
-          required String kurirPrice,
+          required dynamic kurirPrice,
           required String deliveryType,
           required String maxRadius,
           required String driverPhone,
@@ -4148,7 +4148,7 @@ abstract class _TransactionMobileDataOutletDetailResponse
   @override
   String get phone => throw _privateConstructorUsedError;
   @override
-  String get kurirPrice => throw _privateConstructorUsedError;
+  dynamic get kurirPrice => throw _privateConstructorUsedError;
   @override
   String get deliveryType => throw _privateConstructorUsedError;
   @override

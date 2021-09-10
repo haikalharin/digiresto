@@ -37,8 +37,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
 
-  //List<PaymentMethod> _paymentMethods;
-
   void getCartSession() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
   }
@@ -840,7 +838,50 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
                                 () {
                               Get.back();
-                              Get.toNamed(Routers.selectPaymentMethod);
+                              Get.toNamed(Routers.selectPaymentMethod,
+                                      arguments:
+                                          OrderSelectPaymentMethodViewArgument(
+                                              outlet: controller
+                                                  .detailOutlet.value!,
+                                              salestype:
+                                                  controller.salesType.value!))!
+                                  .then((value) {
+                                Get.context!
+                                    .read<OrderBloc>()
+                                    .add(OrderEvent.getPaymentMethodID());
+                              });
+                            });
+                          } else if (controller.activeAddress.value == null) {
+                            ErrorPopupWidget.show(
+                                "Digiresto", "Anda belum memilih alamat tujuan",
+                                () {
+                              Get.back();
+                              Get.toNamed(Routers.homeAllAddress)!
+                                  .then((value) {
+                                controller.getActiveAddress();
+                              });
+                            });
+                          } else if (controller.salesType.value ==
+                                  "onlineDriver" &&
+                              controller.deliveryMethod.value == null) {
+                            ErrorPopupWidget.show("Digiresto",
+                                "Anda belum memilih jasa pengiriman", () {
+                              Get.back();
+                              Get.toNamed(Routers.selectDeliveryMethod,
+                                      arguments:
+                                          OrderSelectDeliveryMethodViewArgument(
+                                              outlet: controller
+                                                  .detailOutlet.value!,
+                                              itemWeight: controller
+                                                  .cartSession
+                                                  .value!
+                                                  .transactionData!
+                                                  .itemWeight))!
+                                  .then((value) {
+                                Get.context!
+                                    .read<OrderBloc>()
+                                    .add(OrderEvent.getDeliveryMethodID());
+                              });
                             });
                           } else if (controller.paymentMethod.value!.id ==
                               "papaya") {

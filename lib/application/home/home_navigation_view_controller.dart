@@ -1,11 +1,18 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import 'home_user_bloc/home_user_bloc.dart';
 
 class HomeNavigationViewController extends GetxController {
   var selectedTabIndex = 0.obs;
   var isHaveCart = false.obs;
   var indexOnTap = 0.obs;
+
+  void getCartSession() {
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
+  }
 
   Widget cartBadge(bool isActive) {
     if (isActive) {

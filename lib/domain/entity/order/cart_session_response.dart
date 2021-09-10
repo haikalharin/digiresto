@@ -98,7 +98,7 @@ class TransactionDataItemResponse with _$TransactionDataItemResponse {
     required String category,
     required int categoryId,
     required String categoryCode,
-    required String sku,
+    required String? sku,
     required String note,
     required bool isPreorder,
     required int preorderPeriod,

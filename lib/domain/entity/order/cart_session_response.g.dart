@@ -151,7 +151,7 @@ _$_TransactionDataItemResponse _$_$_TransactionDataItemResponseFromJson(
     category: json['category'] as String,
     categoryId: json['categoryId'] as int,
     categoryCode: json['categoryCode'] as String,
-    sku: json['sku'] as String,
+    sku: json['sku'] as String?,
     note: json['note'] as String,
     isPreorder: json['isPreorder'] as bool,
     preorderPeriod: json['preorderPeriod'] as int,

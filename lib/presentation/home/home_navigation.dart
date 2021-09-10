@@ -15,7 +15,7 @@ import 'home_content.dart';
 class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
   void _onNavBarTapped(int index) {
     controller.indexOnTap.value = index;
-    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
+    controller.getCartSession();
   }
 
   void selectTab() {
@@ -108,6 +108,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getCartSession();
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         state.maybeMap(getCartSessionIDSuccess: (r) {
@@ -117,8 +118,11 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
             controller.isHaveCart.value = true;
           }
           selectTab();
-        }, orElse: () {
+        }, getCartSessionIDFail: (e) {
+          controller.isHaveCart.value = false;
           selectTab();
+        }, orElse: () {
+          //selectTab();
         });
       },
       builder: (context, state) {

@@ -198,7 +198,7 @@ class TransactionMobileDataOutletDetailResponse
     required List<TransactionTaxesAndService> taxesAndServices,
     required List<String> location,
     required String phone,
-    required String kurirPrice,
+    required dynamic kurirPrice,
     required String deliveryType,
     required String maxRadius,
     required String driverPhone,

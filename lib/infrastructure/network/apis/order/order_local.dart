@@ -277,4 +277,17 @@ class OrderLocal {
       return left(Exception(stackTrace.toString()));
     }
   }
+
+  Future<String?> removeCartSesion() async {
+    try {
+      await _storage.openBox(StorageConstants.orderProduct);
+      await _storage.deleteData();
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.deleteData();
+      await _storage.close();
+      return "";
+    } catch (e) {
+      return null;
+    }
+  }
 }

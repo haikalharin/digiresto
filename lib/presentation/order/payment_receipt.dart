@@ -1,3 +1,4 @@
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
@@ -482,8 +483,10 @@ class PaymentReceiptScreen extends StatelessWidget {
             leading: IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                //_orderStore.clearCart();
-                Navigator.of(context).pushReplacementNamed(Routers.home);
+                Get.find<HomeNavigationViewController>()
+                    .selectedTabIndex
+                    .value = 0;
+                Get.offNamedUntil(Routers.splash, (route) => false);
               },
             ),
             title: Text(

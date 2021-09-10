@@ -347,7 +347,7 @@ _$_TransactionMobileDataOutletDetailResponse
     location:
         (json['location'] as List<dynamic>).map((e) => e as String).toList(),
     phone: json['phone'] as String,
-    kurirPrice: json['kurirPrice'] as String,
+    kurirPrice: json['kurirPrice'],
     deliveryType: json['deliveryType'] as String,
     maxRadius: json['maxRadius'] as String,
     driverPhone: json['driverPhone'] as String,

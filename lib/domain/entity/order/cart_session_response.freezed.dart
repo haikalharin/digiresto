@@ -1582,7 +1582,7 @@ class _$TransactionDataItemResponseTearOff {
       required String category,
       required int categoryId,
       required String categoryCode,
-      required String sku,
+      required String? sku,
       required String note,
       required bool isPreorder,
       required int preorderPeriod,
@@ -1644,7 +1644,7 @@ mixin _$TransactionDataItemResponse {
   String get category => throw _privateConstructorUsedError;
   int get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
   int get preorderPeriod => throw _privateConstructorUsedError;
@@ -1682,7 +1682,7 @@ abstract class $TransactionDataItemResponseCopyWith<$Res> {
       String category,
       int categoryId,
       String categoryCode,
-      String sku,
+      String? sku,
       String note,
       bool isPreorder,
       int preorderPeriod,
@@ -1781,7 +1781,7 @@ class _$TransactionDataItemResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -1854,7 +1854,7 @@ abstract class _$TransactionDataItemResponseCopyWith<$Res>
       String category,
       int categoryId,
       String categoryCode,
-      String sku,
+      String? sku,
       String note,
       bool isPreorder,
       int preorderPeriod,
@@ -1957,7 +1957,7 @@ class __$TransactionDataItemResponseCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -2065,7 +2065,7 @@ class _$_TransactionDataItemResponse implements _TransactionDataItemResponse {
   @override
   final String categoryCode;
   @override
-  final String sku;
+  final String? sku;
   @override
   final String note;
   @override
@@ -2219,7 +2219,7 @@ abstract class _TransactionDataItemResponse
       required String category,
       required int categoryId,
       required String categoryCode,
-      required String sku,
+      required String? sku,
       required String note,
       required bool isPreorder,
       required int preorderPeriod,
@@ -2259,7 +2259,7 @@ abstract class _TransactionDataItemResponse
   @override
   String get categoryCode => throw _privateConstructorUsedError;
   @override
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   @override
   String get note => throw _privateConstructorUsedError;
   @override

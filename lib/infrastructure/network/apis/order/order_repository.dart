@@ -35,6 +35,10 @@ class OrderRepository {
 
   OrderRepository(this._orderApi, this._orderLocal);
 
+  Future<String?> removeCartSesion() async {
+    return _orderLocal.removeCartSesion();
+  }
+
   Future<PaymentMethodDataResponse?> setPaymentMethodID(
       PaymentMethodDataResponse data) async {
     return _orderLocal.setPaymentMethod(data);
