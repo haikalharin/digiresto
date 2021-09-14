@@ -1,8 +1,6 @@
-import 'package:digiresto/domain/entity/order/checkout_response.dart';
-
 class PaymentReceiptViewArgument {
-  final CheckoutDataResponse checkoutDataResponse;
+  final String receiptCode;
   PaymentReceiptViewArgument({
-    required this.checkoutDataResponse,
+    required this.receiptCode,
   });
 }

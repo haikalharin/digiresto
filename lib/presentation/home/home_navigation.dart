@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/cart/cart.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/credit/credit_page.dart';
 import 'package:digiresto/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:get/get.dart';
 import 'home_content.dart';
 
 class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
+  final I10n lang = I10n.of(Get.context!);
   void _onNavBarTapped(int index) {
     controller.indexOnTap.value = index;
     controller.getCartSession();

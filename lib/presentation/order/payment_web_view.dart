@@ -21,7 +21,7 @@ class PaymentWebViewScreen extends StatelessWidget {
           onPressed: () {
             Get.offNamed(Routers.paymentReceipt,
                 arguments: PaymentReceiptViewArgument(
-                    checkoutDataResponse: args.checkoutDataResponse));
+                    receiptCode: args.checkoutDataResponse.receiptCode));
           },
         ),
         title: Text(

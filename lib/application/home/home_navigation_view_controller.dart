@@ -9,7 +9,6 @@ class HomeNavigationViewController extends GetxController {
   var selectedTabIndex = 0.obs;
   var isHaveCart = false.obs;
   var indexOnTap = 0.obs;
-
   void getCartSession() {
     Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
   }

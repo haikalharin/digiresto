@@ -87,8 +87,9 @@ class PaymentReceiptScreen extends StatelessWidget {
       }
     }
 
-    Get.context!.read<TransactionBloc>().add(
-        TransactionEvent.getTransaction(args.checkoutDataResponse.receiptCode));
+    Get.context!
+        .read<TransactionBloc>()
+        .add(TransactionEvent.getTransaction(args.receiptCode));
     return BlocConsumer<TransactionBloc, TransactionState>(
         listener: (context, state) {
       state.maybeMap(
@@ -150,7 +151,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                   final directory =
                       (await getApplicationDocumentsDirectory()).path;
                   String fileName =
-                      'struct ${_transaction?.outlet?.detail.name ?? ""} - ${args.checkoutDataResponse.receiptCode}';
+                      'struct ${_transaction?.outlet?.detail.name ?? ""} - ${args.receiptCode}';
                   var path = '$directory';
                   final screenShot = await screenshotController
                       .captureAndSave(path, fileName: fileName);

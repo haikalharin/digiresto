@@ -267,7 +267,8 @@ class PaymentVAScreen extends StatelessWidget {
                     onPressed: () async {
                       Get.offNamed(Routers.paymentReceipt,
                           arguments: PaymentReceiptViewArgument(
-                              checkoutDataResponse: args.checkoutDataResponse));
+                              receiptCode:
+                                  args.checkoutDataResponse.receiptCode));
                     },
                     color: AppColors.red,
                     shape: new RoundedRectangleBorder(
