@@ -19,6 +19,105 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'id';
 
+  static String m0(param) => "Apakah Anda yakin ingin menghapus ${param} ?";
+
+  static String m1(param) => "Rp ${param}";
+
+  static String m2(param) => "Hi ${param},";
+
+  static String m3(param) => "${param} berhasil disalin";
+
+  static String m4(param) => "${param} tidak boleh kosong.";
+
+  static String m5(param) =>
+      "Saldo ${param} Credit Anda tidak mencukupi untuk melakukan transaksi, silahkan isi ulang terlebih dahulu untuk melanjutkan pembayaran.";
+
+  static String m6(param) =>
+      "Apakah Anda yakin ingin menghapus order  ${param} ini dari favorit?";
+
+  static String m7(param) =>
+      "Apakah Anda yakin ingin menghapus ${param} dari order?";
+
+  static String m8(param) =>
+      "Apakah Anda yakin tidak ingin menggunakan voucher promo ${param} untuk order ini?";
+
+  static String m9(param) => "Minimal transaksi Rp ${param} belum terpenuhi.";
+
+  static String m10(param) =>
+      "Order sukses untuk transaksi dengan order id ${param}, silahkan klik OK untuk melanjutkan pembayaran menggunakan aplikasi %2\$s";
+
+  static String m11(param) =>
+      "Product ${param} yang anda pesan tidak tersedia atau habis.";
+
+  static String m12(param) =>
+      "Anda memiliki transaksi ${param} yang belum Anda bayarkan sebesar %2\$s. Jika Anda melanjutkan pembayaran ini, Transaksi tersebut akan dibatalkan.";
+
+  static String m13(param) => "Voucher dengan kode ${param} tidak valid.";
+
+  static String m14(param) => "Rp ${param}";
+
+  static String m15(param) =>
+      "Transaksi ini akan dikenakan biaya sebesar ${param}";
+
+  static String m16(param) => "${param} Credit";
+
+  static String m17(param) => "Toko ${param}";
+
+  static String m18(param) =>
+      "Apakah Anda yakin ingin membatalkan transaksi dengan nomer ${param} ?";
+
+  static String m19(param) => "Bayar sebelum ${param}";
+
+  static String m20(param) => "Kode Struk : ${param}";
+
+  static String m21(param) => "Temukan berbagai jenis makanan ${param}.";
+
+  static String m22(param) => "${param}/%2\$s";
+
+  static String m23(param) =>
+      "Silahkan masukkan enam digit kode verifikasi yang kami kirim ke WhatsApp Anda di nomor ${param}. Harap masukkan kode terbaru untuk melanjutkan.";
+
+  static String m24(param) => "Kirim Ulang (${param})";
+
+  static String m25(param) =>
+      "Selamat datang di ${param}, \nsilahkan pilih lokasi untuk melakukan pemesanan.";
+
+  static String m28(param) => "Pembaruan terakhir ${param}";
+
+  static String m29(param) => "Lihat semua ${param} outlet";
+
+  static String m30(param) => "Estimasi tanggal pengiriman: ${param}";
+
+  static String m31(param) =>
+      "Batas waktu pemesanan dan pembayaran maksimal pukul ${param} WIB. Pemesanan dan pembayaran diatas pukul ${param}, akan ditambah 1 hari untuk proses pengirimannya.";
+
+  static String m32(param) => "Estimasi tanggal kirim : ${param}";
+
+  static String m33(param) => "${param} Hari";
+
+  static String m34(param) => "Lebih dari ${param} Hari";
+
+  static String m35(param) =>
+      "Batas waktu pemesanan dan pembayaran maksimal pukul ${param} WIB";
+
+  static String m36(param) =>
+      "Pemesanan dan pembayaran diatas pukul ${param}, akan ditambah 1 hari untuk proses pengirimannya";
+
+  static String m37(param) =>
+      "Jumlah menu yang Anda pesan telah mencapai batas ${param} dalam 1x transaksi.";
+
+  static String m38(param) =>
+      "Product ini pada keranjang belanja Anda telah mencapai maksimal pembelian, yaitu sejumlah ${param} item.";
+
+  static String m39(param) => "Tentang ${param}";
+
+  static String m40(param) => "Bergabung dengan ${param}";
+
+  static String m41(param) =>
+      "Silahkan mulai melakukan pemesanan \nbersama ${param}";
+
+  static String m42(param) => "Isi Saldo ${param} Credit via %2\$s";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "_Billing": MessageLookupByLibrary.simpleMessage(""),
@@ -51,8 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Set default"),
         "address_delete": MessageLookupByLibrary.simpleMessage("Alamat"),
         "address_delete_action": MessageLookupByLibrary.simpleMessage("Hapus"),
-        "address_delete_confirmation": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin ingin menghapus %1\$s ?"),
+        "address_delete_confirmation": m0,
         "address_edit_title": MessageLookupByLibrary.simpleMessage(
             "Masukkan alamat yang diinginkan"),
         "address_location_detail":
@@ -91,8 +189,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "beranda_all_product": MessageLookupByLibrary.simpleMessage("Semua"),
         "beranda_all_product_deleted": MessageLookupByLibrary.simpleMessage(
             ", semua produk dalam keranjang akan dihapus."),
-        "beranda_balance_inquiry":
-            MessageLookupByLibrary.simpleMessage("Rp %1\$s"),
+        "beranda_balance_inquiry": m1,
         "beranda_cart_empty": MessageLookupByLibrary.simpleMessage(
             "Keranjang pesananmu kosong, silahkan pilih menu"),
         "beranda_category_see_all":
@@ -136,7 +233,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "billing_expired":
             MessageLookupByLibrary.simpleMessage("Batas akhir pembayaran"),
         "billing_fee": MessageLookupByLibrary.simpleMessage("Biaya Layanan"),
-        "billing_hi": MessageLookupByLibrary.simpleMessage("Hi %1\$s,"),
+        "billing_hi": m2,
         "billing_nominal": MessageLookupByLibrary.simpleMessage("Nominal"),
         "billing_payment_method":
             MessageLookupByLibrary.simpleMessage("Metode Pembayaran"),
@@ -144,8 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No. Rekening"),
         "billing_service_provider":
             MessageLookupByLibrary.simpleMessage("Penyedia Jasa"),
-        "billing_success_copy":
-            MessageLookupByLibrary.simpleMessage("%1\$s berhasil disalin"),
+        "billing_success_copy": m3,
         "billing_total_payment":
             MessageLookupByLibrary.simpleMessage("Total Pembayaran"),
         "billing_transaction_date":
@@ -168,11 +264,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Atur Lokasi Alamat"),
         "cart_address_not_valid_title": MessageLookupByLibrary.simpleMessage(
             "Titik Lokasi Tidak Ditemukan!"),
-        "cart_alert_order_info":
-            MessageLookupByLibrary.simpleMessage("%1\$s tidak boleh kosong."),
+        "cart_alert_order_info": m4,
         "cart_amount": MessageLookupByLibrary.simpleMessage("Jumlah"),
-        "cart_balance_limit": MessageLookupByLibrary.simpleMessage(
-            "Saldo %1\$s Credit Anda tidak mencukupi untuk melakukan transaksi, silahkan isi ulang terlebih dahulu untuk melanjutkan pembayaran."),
+        "cart_balance_limit": m5,
         "cart_bank_acc_name":
             MessageLookupByLibrary.simpleMessage("Nama Pemilik Rekening"),
         "cart_bank_acc_number":
@@ -197,12 +291,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart_car_type_title":
             MessageLookupByLibrary.simpleMessage("Tipe Kendaraan"),
         "cart_choose": MessageLookupByLibrary.simpleMessage("Pilih"),
-        "cart_delete_favorite": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin ingin menghapus order  %1\$s ini dari favorit?"),
-        "cart_delete_item": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin ingin menghapus %1\$s dari order?"),
-        "cart_delete_voucher": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin tidak ingin menggunakan voucher promo %1\$s untuk order ini?"),
+        "cart_delete_favorite": m6,
+        "cart_delete_item": m7,
+        "cart_delete_voucher": m8,
         "cart_delivery": MessageLookupByLibrary.simpleMessage("Pesan Antar"),
         "cart_delivery_address":
             MessageLookupByLibrary.simpleMessage("Lokasi Pengantaran"),
@@ -222,8 +313,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Info Drive Thru"),
         "cart_input_address":
             MessageLookupByLibrary.simpleMessage("Masukkan alamat"),
-        "cart_minimum_transaction_alert": MessageLookupByLibrary.simpleMessage(
-            "Minimal transaksi Rp %1\$s belum terpenuhi."),
+        "cart_minimum_transaction_alert": m9,
         "cart_modifier": MessageLookupByLibrary.simpleMessage("Tambahan"),
         "cart_my_voucher": MessageLookupByLibrary.simpleMessage("Voucher Saya"),
         "cart_my_voucher_empty":
@@ -236,8 +326,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart_optional": MessageLookupByLibrary.simpleMessage("Opsional"),
         "cart_order": MessageLookupByLibrary.simpleMessage("Order"),
         "cart_order_id": MessageLookupByLibrary.simpleMessage("Order Id"),
-        "cart_order_success_with_payment": MessageLookupByLibrary.simpleMessage(
-            "Order sukses untuk transaksi dengan order id %1\$s, silahkan klik OK untuk melanjutkan pembayaran menggunakan aplikasi %2\$s"),
+        "cart_order_success_with_payment": m10,
         "cart_order_title": MessageLookupByLibrary.simpleMessage("Pesanan"),
         "cart_order_type": MessageLookupByLibrary.simpleMessage("Tipe Order"),
         "cart_outlet": MessageLookupByLibrary.simpleMessage("Outlet"),
@@ -250,8 +339,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Metode Pembayaran"),
         "cart_payment_method_empty": MessageLookupByLibrary.simpleMessage(
             "Metode pembayaran tidak tersedia"),
-        "cart_product_empty": MessageLookupByLibrary.simpleMessage(
-            "Product %1\$s yang anda pesan tidak tersedia atau habis."),
+        "cart_product_empty": m11,
         "cart_product_free": MessageLookupByLibrary.simpleMessage("Free"),
         "cart_receipt_code": MessageLookupByLibrary.simpleMessage("Kode Struk"),
         "cart_schedule": MessageLookupByLibrary.simpleMessage("Jadwal"),
@@ -263,8 +351,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ganti Metode Pembayaran"),
         "cart_transaction_date":
             MessageLookupByLibrary.simpleMessage("Tanggal transaksi"),
-        "cart_transaction_pending_alert": MessageLookupByLibrary.simpleMessage(
-            "Anda memiliki transaksi %1\$s yang belum Anda bayarkan sebesar %2\$s. Jika Anda melanjutkan pembayaran ini, Transaksi tersebut akan dibatalkan."),
+        "cart_transaction_pending_alert": m12,
         "cart_transaction_pending_next":
             MessageLookupByLibrary.simpleMessage("Lanjut Pembayaran"),
         "cart_transaction_pending_title":
@@ -280,8 +367,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Masukkan Kode Voucher"),
         "cart_voucher_code_use":
             MessageLookupByLibrary.simpleMessage("Gunakan"),
-        "cart_voucher_invalid": MessageLookupByLibrary.simpleMessage(
-            "Voucher dengan kode %1\$s tidak valid."),
+        "cart_voucher_invalid": m13,
         "chat_driver": MessageLookupByLibrary.simpleMessage("Chat Kurir"),
         "chat_outlet": MessageLookupByLibrary.simpleMessage("Kirim Pesan"),
         "contact_email_subject": MessageLookupByLibrary.simpleMessage(
@@ -296,15 +382,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "credit_fund_transfer":
             MessageLookupByLibrary.simpleMessage("Transfer Rekening"),
         "credit_me": MessageLookupByLibrary.simpleMessage("Credit Saya"),
-        "credit_nominal": MessageLookupByLibrary.simpleMessage("Rp %1\$s"),
+        "credit_nominal": m14,
         "credit_note": MessageLookupByLibrary.simpleMessage("Catatan:"),
-        "credit_note_value": MessageLookupByLibrary.simpleMessage(
-            "Transaksi ini akan dikenakan biaya sebesar %1\$s"),
+        "credit_note_value": m15,
         "credit_pending_topup":
             MessageLookupByLibrary.simpleMessage("Menunggu Pembayaran"),
         "credit_recent_history":
             MessageLookupByLibrary.simpleMessage("Riwayat Terakhir"),
-        "credit_title": MessageLookupByLibrary.simpleMessage("%1\$s Credit"),
+        "credit_title": m16,
         "credit_title_1": MessageLookupByLibrary.simpleMessage("Isi Saldo"),
         "credit_title_2":
             MessageLookupByLibrary.simpleMessage("Riwayat Transaksi"),
@@ -410,17 +495,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "kiriman sedang dikirim kurir toko"),
         "history_order_type":
             MessageLookupByLibrary.simpleMessage("Tipe Order"),
-        "history_outlet_name":
-            MessageLookupByLibrary.simpleMessage("Toko %1\$s"),
+        "history_outlet_name": m17,
         "history_pending_already_expired":
             MessageLookupByLibrary.simpleMessage("Waktu habis"),
         "history_pending_cancel":
             MessageLookupByLibrary.simpleMessage("Batalkan"),
-        "history_pending_cancel_alert": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin ingin membatalkan transaksi dengan nomer %1\$s ?"),
+        "history_pending_cancel_alert": m18,
         "history_pending_detail": MessageLookupByLibrary.simpleMessage("Detil"),
-        "history_pending_expired":
-            MessageLookupByLibrary.simpleMessage("Bayar sebelum %1\$s"),
+        "history_pending_expired": m19,
         "history_pending_inquiry_expired": MessageLookupByLibrary.simpleMessage(
             "Waktu pembayaran transaksi sudah habis."),
         "history_pending_inquiry_pending": MessageLookupByLibrary.simpleMessage(
@@ -439,8 +521,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_process":
             MessageLookupByLibrary.simpleMessage("Pembelian\nDiproses"),
         "history_receipt": MessageLookupByLibrary.simpleMessage("Kode Struk"),
-        "history_receipt_code":
-            MessageLookupByLibrary.simpleMessage("Kode Struk : %1\$s"),
+        "history_receipt_code": m20,
         "history_reorder": MessageLookupByLibrary.simpleMessage("Beli Lagi"),
         "history_reorder_address":
             MessageLookupByLibrary.simpleMessage("Pilih Lokasi"),
@@ -465,8 +546,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Temukan info menarik dan terbaru."),
         "home_beranda": MessageLookupByLibrary.simpleMessage("Beranda"),
         "home_cart": MessageLookupByLibrary.simpleMessage("Keranjang"),
-        "home_category_hint": MessageLookupByLibrary.simpleMessage(
-            "Temukan berbagai jenis makanan %1\$s."),
+        "home_category_hint": m21,
         "home_credit": MessageLookupByLibrary.simpleMessage("Credit"),
         "home_digidiskon": MessageLookupByLibrary.simpleMessage("DigiDiskon"),
         "home_digidiskon_hint": MessageLookupByLibrary.simpleMessage(
@@ -514,15 +594,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "img_action_back": MessageLookupByLibrary.simpleMessage("icon kembali"),
         "input_address":
             MessageLookupByLibrary.simpleMessage("Masukkan Alamat"),
-        "input_count_limit":
-            MessageLookupByLibrary.simpleMessage("%1\$s/%2\$s"),
+        "input_count_limit": m22,
         "input_forgot_pin": MessageLookupByLibrary.simpleMessage("Lupa PIN"),
-        "input_otp_desc": MessageLookupByLibrary.simpleMessage(
-            "Silahkan masukkan enam digit kode verifikasi yang kami kirim ke WhatsApp Anda di nomor %1\$s. Harap masukkan kode terbaru untuk melanjutkan."),
+        "input_otp_desc": m23,
         "input_otp_desc_whatsapp":
             MessageLookupByLibrary.simpleMessage("Whatsapp"),
-        "input_otp_resend_code":
-            MessageLookupByLibrary.simpleMessage("Kirim Ulang (%1\$s)"),
+        "input_otp_resend_code": m24,
         "input_pin_desc":
             MessageLookupByLibrary.simpleMessage("Masukkan 6 digit PIN"),
         "input_pin_new_desc":
@@ -548,8 +625,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select location"),
         "landing_take_away":
             MessageLookupByLibrary.simpleMessage("Bawa Pulang"),
-        "landing_welcome_to": MessageLookupByLibrary.simpleMessage(
-            "Selamat datang di %1\$s, \nsilahkan pilih lokasi untuk melakukan pemesanan."),
+        "landing_welcome_to": m25,
         "lang": MessageLookupByLibrary.simpleMessage("id"),
         "lang_en": MessageLookupByLibrary.simpleMessage("Bahasa Inggris"),
         "lang_in": MessageLookupByLibrary.simpleMessage("Bahasa Indonesia"),
@@ -645,10 +721,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Maaf outlet sedang tutup."),
         "outlet_information":
             MessageLookupByLibrary.simpleMessage("Informasi Outlet"),
-        "outlet_last_update":
-            MessageLookupByLibrary.simpleMessage("Pembaruan terakhir %1\$s"),
-        "outlet_list_see_all_outlet":
-            MessageLookupByLibrary.simpleMessage("Lihat semua %1\$s outlet"),
+        "outlet_last_update": m28,
+        "outlet_list_see_all_outlet": m29,
         "outlet_list_title":
             MessageLookupByLibrary.simpleMessage("List Outlet"),
         "outlet_location": MessageLookupByLibrary.simpleMessage("Lihat Lokasi"),
@@ -723,25 +797,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Rp"),
         "powered_by_digiresto":
             MessageLookupByLibrary.simpleMessage("Powered By Digiresto"),
-        "preorder_billing_desc": MessageLookupByLibrary.simpleMessage(
-            "Estimasi tanggal pengiriman: %1\$s"),
-        "preorder_detail_desc": MessageLookupByLibrary.simpleMessage(
-            "Batas waktu pemesanan dan pembayaran maksimal pukul %1\$s WIB. Pemesanan dan pembayaran diatas pukul %1\$s, akan ditambah 1 hari untuk proses pengirimannya."),
-        "preorder_detail_estimate": MessageLookupByLibrary.simpleMessage(
-            "Estimasi tanggal kirim : %1\$s"),
-        "preorder_filter_a_day":
-            MessageLookupByLibrary.simpleMessage("%1\$s Hari"),
+        "preorder_billing_desc": m30,
+        "preorder_detail_desc": m31,
+        "preorder_detail_estimate": m32,
+        "preorder_filter_a_day": m33,
         "preorder_filter_all": MessageLookupByLibrary.simpleMessage("Semua"),
-        "preorder_filter_else":
-            MessageLookupByLibrary.simpleMessage("Lebih dari %1\$s Hari"),
+        "preorder_filter_else": m34,
         "preorder_filter_hint":
             MessageLookupByLibrary.simpleMessage("Temukan resto favorit Anda"),
         "preorder_not_found": MessageLookupByLibrary.simpleMessage(
             "Menu Pre Order tidak ditemukan."),
-        "preorder_tnc_desc_1": MessageLookupByLibrary.simpleMessage(
-            "Batas waktu pemesanan dan pembayaran maksimal pukul %1\$s WIB"),
-        "preorder_tnc_desc_2": MessageLookupByLibrary.simpleMessage(
-            "Pemesanan dan pembayaran diatas pukul %1\$s, akan ditambah 1 hari untuk proses pengirimannya"),
+        "preorder_tnc_desc_1": m35,
+        "preorder_tnc_desc_2": m36,
         "preorder_tnc_desc_2_bold":
             MessageLookupByLibrary.simpleMessage("ditambah 1 hari"),
         "preorder_tnc_ok": MessageLookupByLibrary.simpleMessage("Mengerti"),
@@ -754,9 +821,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "product_detail_alert_min_max_quantity":
             MessageLookupByLibrary.simpleMessage(
                 "Pemilihan produk belum sesuai ketentuan"),
-        "product_detail_alert_transaction_limit":
-            MessageLookupByLibrary.simpleMessage(
-                "Jumlah menu yang Anda pesan telah mencapai batas %1\$s dalam 1x transaksi."),
+        "product_detail_alert_transaction_limit": m37,
         "product_detail_counter_alert":
             MessageLookupByLibrary.simpleMessage("Jumlah tidak boleh kosong"),
         "product_detail_counter_alert_0":
@@ -767,11 +832,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Anda telah mencapai maksimal pembelian product ini!"),
         "product_detail_max_item_999": MessageLookupByLibrary.simpleMessage(
             "Maks. pembelian barang ini 999 item, kurangi pembelianmu, ya!"),
-        "product_detail_max_item_alert": MessageLookupByLibrary.simpleMessage(
-            "Product ini pada keranjang belanja Anda telah mencapai maksimal pembelian, yaitu sejumlah %1\$s item."),
+        "product_detail_max_item_alert": m38,
         "product_detail_sold_out":
             MessageLookupByLibrary.simpleMessage("Habis"),
-        "profile_about": MessageLookupByLibrary.simpleMessage("Tentang %1\$s"),
+        "profile_about": m39,
         "profile_address": MessageLookupByLibrary.simpleMessage("Alamat"),
         "profile_change_pin": MessageLookupByLibrary.simpleMessage("Ubah PIN"),
         "profile_customer_service":
@@ -787,8 +851,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_edit_title":
             MessageLookupByLibrary.simpleMessage("Ubah Profil"),
         "profile_history": MessageLookupByLibrary.simpleMessage("Riwayat"),
-        "profile_join_digiresto":
-            MessageLookupByLibrary.simpleMessage("Bergabung dengan %1\$s"),
+        "profile_join_digiresto": m40,
         "profile_language":
             MessageLookupByLibrary.simpleMessage("Pilih Bahasa"),
         "profile_logout": MessageLookupByLibrary.simpleMessage("Keluar"),
@@ -855,8 +918,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_list_order": MessageLookupByLibrary.simpleMessage("Daftar Order"),
         "text_menunggu": MessageLookupByLibrary.simpleMessage(
             "Menunggu Pesananmu Siap Diantar"),
-        "text_mulai_pesan": MessageLookupByLibrary.simpleMessage(
-            "Silahkan mulai melakukan pemesanan \nbersama %1\$s"),
+        "text_mulai_pesan": m41,
         "text_register": MessageLookupByLibrary.simpleMessage(
             "Pastikan nomor handphone anda valid untuk proses verifikasi"),
         "text_telp": MessageLookupByLibrary.simpleMessage("Telp."),
@@ -895,8 +957,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Jumlah saldo top up tidak boleh Rp. 0"),
         "topup_credit_minimal":
             MessageLookupByLibrary.simpleMessage("minimal Rp 10.000"),
-        "topup_credit_via": MessageLookupByLibrary.simpleMessage(
-            "Isi Saldo %1\$s Credit via %2\$s"),
+        "topup_credit_via": m42,
         "topup_desc": MessageLookupByLibrary.simpleMessage(
             "Silahkan lanjutkan proses isi saldo dengan detail sebagai berikut :"),
         "topup_info_transfer":

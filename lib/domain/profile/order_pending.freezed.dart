@@ -2354,7 +2354,7 @@ class _$DeliveryDetailTearOff {
       required String distance,
       required String provider,
       required String shipmentMethod,
-      required String fee,
+      required dynamic fee,
       required String bookingCode,
       required String bookingExpired,
       required String deliveryId,
@@ -2398,7 +2398,7 @@ mixin _$DeliveryDetail {
   String get distance => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
   String get shipmentMethod => throw _privateConstructorUsedError;
-  String get fee => throw _privateConstructorUsedError;
+  dynamic get fee => throw _privateConstructorUsedError;
   String get bookingCode => throw _privateConstructorUsedError;
   String get bookingExpired => throw _privateConstructorUsedError;
   String get deliveryId => throw _privateConstructorUsedError;
@@ -2426,7 +2426,7 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       String distance,
       String provider,
       String shipmentMethod,
-      String fee,
+      dynamic fee,
       String bookingCode,
       String bookingExpired,
       String deliveryId,
@@ -2489,7 +2489,7 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2560,7 +2560,7 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       String distance,
       String provider,
       String shipmentMethod,
-      String fee,
+      dynamic fee,
       String bookingCode,
       String bookingExpired,
       String deliveryId,
@@ -2627,7 +2627,7 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2704,7 +2704,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   @override
   final String shipmentMethod;
   @override
-  final String fee;
+  final dynamic fee;
   @override
   final String bookingCode;
   @override
@@ -2814,7 +2814,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
       required String distance,
       required String provider,
       required String shipmentMethod,
-      required String fee,
+      required dynamic fee,
       required String bookingCode,
       required String bookingExpired,
       required String deliveryId,
@@ -2838,7 +2838,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @override
   String get shipmentMethod => throw _privateConstructorUsedError;
   @override
-  String get fee => throw _privateConstructorUsedError;
+  dynamic get fee => throw _privateConstructorUsedError;
   @override
   String get bookingCode => throw _privateConstructorUsedError;
   @override
@@ -3324,7 +3324,7 @@ class _$ItemTearOff {
       required String category,
       required int categoryId,
       required String categoryCode,
-      required String sku,
+      required String? sku,
       required String note,
       required bool isPreorder,
       required int preorderPeriod,
@@ -3388,7 +3388,7 @@ mixin _$Item {
   String get category => throw _privateConstructorUsedError;
   int get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
   int get preorderPeriod => throw _privateConstructorUsedError;
@@ -3424,7 +3424,7 @@ abstract class $ItemCopyWith<$Res> {
       String category,
       int categoryId,
       String categoryCode,
-      String sku,
+      String? sku,
       String note,
       bool isPreorder,
       int preorderPeriod,
@@ -3524,7 +3524,7 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -3598,7 +3598,7 @@ abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       String category,
       int categoryId,
       String categoryCode,
-      String sku,
+      String? sku,
       String note,
       bool isPreorder,
       int preorderPeriod,
@@ -3699,7 +3699,7 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -3812,7 +3812,7 @@ class _$_Item implements _Item {
   @override
   final String categoryCode;
   @override
-  final String sku;
+  final String? sku;
   @override
   final String note;
   @override
@@ -3969,7 +3969,7 @@ abstract class _Item implements Item {
       required String category,
       required int categoryId,
       required String categoryCode,
-      required String sku,
+      required String? sku,
       required String note,
       required bool isPreorder,
       required int preorderPeriod,
@@ -4009,7 +4009,7 @@ abstract class _Item implements Item {
   @override
   String get categoryCode => throw _privateConstructorUsedError;
   @override
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   @override
   String get note => throw _privateConstructorUsedError;
   @override
@@ -4564,11 +4564,11 @@ class _$OutletDetailTearOff {
       required List<dynamic> taxesAndServices,
       required List<dynamic> location,
       required String phone,
-      required String kurirPrice,
+      required dynamic kurirPrice,
       required List<String> deliveryProvider,
       required String driverPhone,
       required List<dynamic> area,
-      required List<dynamic> deliveryLocation}) {
+      required List<dynamic>? deliveryLocation}) {
     return _OutletDetail(
       name: name,
       address: address,
@@ -4598,11 +4598,11 @@ mixin _$OutletDetail {
   List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
   List<dynamic> get location => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  String get kurirPrice => throw _privateConstructorUsedError;
+  dynamic get kurirPrice => throw _privateConstructorUsedError;
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
   String get driverPhone => throw _privateConstructorUsedError;
   List<dynamic> get area => throw _privateConstructorUsedError;
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4621,11 +4621,11 @@ abstract class $OutletDetailCopyWith<$Res> {
       List<dynamic> taxesAndServices,
       List<dynamic> location,
       String phone,
-      String kurirPrice,
+      dynamic kurirPrice,
       List<String> deliveryProvider,
       String driverPhone,
       List<dynamic> area,
-      List<dynamic> deliveryLocation});
+      List<dynamic>? deliveryLocation});
 }
 
 /// @nodoc
@@ -4673,7 +4673,7 @@ class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
       kurirPrice: kurirPrice == freezed
           ? _value.kurirPrice
           : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       deliveryProvider: deliveryProvider == freezed
           ? _value.deliveryProvider
           : deliveryProvider // ignore: cast_nullable_to_non_nullable
@@ -4689,7 +4689,7 @@ class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
     ));
   }
 }
@@ -4707,11 +4707,11 @@ abstract class _$OutletDetailCopyWith<$Res>
       List<dynamic> taxesAndServices,
       List<dynamic> location,
       String phone,
-      String kurirPrice,
+      dynamic kurirPrice,
       List<String> deliveryProvider,
       String driverPhone,
       List<dynamic> area,
-      List<dynamic> deliveryLocation});
+      List<dynamic>? deliveryLocation});
 }
 
 /// @nodoc
@@ -4761,7 +4761,7 @@ class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
       kurirPrice: kurirPrice == freezed
           ? _value.kurirPrice
           : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       deliveryProvider: deliveryProvider == freezed
           ? _value.deliveryProvider
           : deliveryProvider // ignore: cast_nullable_to_non_nullable
@@ -4777,7 +4777,7 @@ class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
     ));
   }
 }
@@ -4811,7 +4811,7 @@ class _$_OutletDetail implements _OutletDetail {
   @override
   final String phone;
   @override
-  final String kurirPrice;
+  final dynamic kurirPrice;
   @override
   final List<String> deliveryProvider;
   @override
@@ -4819,7 +4819,7 @@ class _$_OutletDetail implements _OutletDetail {
   @override
   final List<dynamic> area;
   @override
-  final List<dynamic> deliveryLocation;
+  final List<dynamic>? deliveryLocation;
 
   @override
   String toString() {
@@ -4891,11 +4891,11 @@ abstract class _OutletDetail implements OutletDetail {
       required List<dynamic> taxesAndServices,
       required List<dynamic> location,
       required String phone,
-      required String kurirPrice,
+      required dynamic kurirPrice,
       required List<String> deliveryProvider,
       required String driverPhone,
       required List<dynamic> area,
-      required List<dynamic> deliveryLocation}) = _$_OutletDetail;
+      required List<dynamic>? deliveryLocation}) = _$_OutletDetail;
 
   factory _OutletDetail.fromJson(Map<String, dynamic> json) =
       _$_OutletDetail.fromJson;
@@ -4911,7 +4911,7 @@ abstract class _OutletDetail implements OutletDetail {
   @override
   String get phone => throw _privateConstructorUsedError;
   @override
-  String get kurirPrice => throw _privateConstructorUsedError;
+  dynamic get kurirPrice => throw _privateConstructorUsedError;
   @override
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
   @override
@@ -4919,7 +4919,7 @@ abstract class _OutletDetail implements OutletDetail {
   @override
   List<dynamic> get area => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OutletDetailCopyWith<_OutletDetail> get copyWith =>

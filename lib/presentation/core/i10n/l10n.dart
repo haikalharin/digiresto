@@ -220,13 +220,13 @@ class I10n {
     );
   }
 
-  /// `%1$s/%2$s`
-  String get input_count_limit {
+  /// `{param}/%2$s`
+  String input_count_limit(Object param) {
     return Intl.message(
-      '%1\$s/%2\$s',
+      '$param/%2\$s',
       name: 'input_count_limit',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -292,13 +292,13 @@ class I10n {
 
   // skipped getter for the '_landing screen' key
 
-  /// `Welcome to %1$s, \nplease choose your location to start order.`
-  String get landing_welcome_to {
+  /// `Welcome to {param}, \nplease choose your location to start order.`
+  String landing_welcome_to(Object param) {
     return Intl.message(
-      'Welcome to %1\$s, \nplease choose your location to start order.',
+      'Welcome to $param, \nplease choose your location to start order.',
       name: 'landing_welcome_to',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -736,13 +736,13 @@ class I10n {
     );
   }
 
-  /// `Find a variety of %1$s foods.`
-  String get home_category_hint {
+  /// `Find a variety of {param} foods.`
+  String home_category_hint(Object param) {
     return Intl.message(
-      'Find a variety of %1\$s foods.',
+      'Find a variety of $param foods.',
       name: 'home_category_hint',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -868,13 +868,13 @@ class I10n {
 
   // skipped getter for the '_outlet list' key
 
-  /// `View all %1$s outlets`
-  String get outlet_list_see_all_outlet {
+  /// `View all {param} outlets`
+  String outlet_list_see_all_outlet(Object param) {
     return Intl.message(
-      'View all %1\$s outlets',
+      'View all $param outlets',
       name: 'outlet_list_see_all_outlet',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -910,23 +910,23 @@ class I10n {
     );
   }
 
-  /// `%1$s Day`
-  String get preorder_filter_a_day {
+  /// `{param} Day`
+  String preorder_filter_a_day(Object param) {
     return Intl.message(
-      '%1\$s Day',
+      '$param Day',
       name: 'preorder_filter_a_day',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `More than %1$s Days`
-  String get preorder_filter_else {
+  /// `More than {param} Days`
+  String preorder_filter_else(Object param) {
     return Intl.message(
-      'More than %1\$s Days',
+      'More than $param Days',
       name: 'preorder_filter_else',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -950,23 +950,23 @@ class I10n {
     );
   }
 
-  /// `The deadline of order and payment maximum at %1$s WIB`
-  String get preorder_tnc_desc_1 {
+  /// `The deadline of order and payment maximum at {param} WIB`
+  String preorder_tnc_desc_1(Object param) {
     return Intl.message(
-      'The deadline of order and payment maximum at %1\$s WIB',
+      'The deadline of order and payment maximum at $param WIB',
       name: 'preorder_tnc_desc_1',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `Order and payment after %1$s will be added 1 day for the delivery process`
-  String get preorder_tnc_desc_2 {
+  /// `Order and payment after {param} will be added 1 day for the delivery process`
+  String preorder_tnc_desc_2(Object param) {
     return Intl.message(
-      'Order and payment after %1\$s will be added 1 day for the delivery process',
+      'Order and payment after $param will be added 1 day for the delivery process',
       name: 'preorder_tnc_desc_2',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -990,33 +990,33 @@ class I10n {
     );
   }
 
-  /// `Deadline for ordering and payment is %1$s WIB. Orders and payments after %1$s, will be added 1 day for the delivery process.`
-  String get preorder_detail_desc {
+  /// `Deadline for ordering and payment is {param} WIB. Orders and payments after {param}, will be added 1 day for the delivery process.`
+  String preorder_detail_desc(Object param) {
     return Intl.message(
-      'Deadline for ordering and payment is %1\$s WIB. Orders and payments after %1\$s, will be added 1 day for the delivery process.',
+      'Deadline for ordering and payment is $param WIB. Orders and payments after $param, will be added 1 day for the delivery process.',
       name: 'preorder_detail_desc',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `Estimated delivery date : %1$s`
-  String get preorder_detail_estimate {
+  /// `Estimated delivery date : {param}`
+  String preorder_detail_estimate(Object param) {
     return Intl.message(
-      'Estimated delivery date : %1\$s',
+      'Estimated delivery date : $param',
       name: 'preorder_detail_estimate',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `Estimated delivery date: %1$s`
-  String get preorder_billing_desc {
+  /// `Estimated delivery date: {param}`
+  String preorder_billing_desc(Object param) {
     return Intl.message(
-      'Estimated delivery date: %1\$s',
+      'Estimated delivery date: $param',
       name: 'preorder_billing_desc',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1270,13 +1270,13 @@ class I10n {
     );
   }
 
-  /// `Last update %1$s`
-  String get outlet_last_update {
+  /// `Last update {param}`
+  String outlet_last_update(Object param) {
     return Intl.message(
-      'Last update %1\$s',
+      'Last update $param',
       name: 'outlet_last_update',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1410,13 +1410,13 @@ class I10n {
     );
   }
 
-  /// `About %1$s`
-  String get profile_about {
+  /// `About {param}`
+  String profile_about(Object param) {
     return Intl.message(
-      'About %1\$s',
+      'About $param',
       name: 'profile_about',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1470,13 +1470,13 @@ class I10n {
     );
   }
 
-  /// `Join %1$s`
-  String get profile_join_digiresto {
+  /// `Join {param}`
+  String profile_join_digiresto(Object param) {
     return Intl.message(
-      'Join %1\$s',
+      'Join $param',
       name: 'profile_join_digiresto',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1600,13 +1600,13 @@ class I10n {
     );
   }
 
-  /// `%1$s Credit`
-  String get credit_title {
+  /// `{param} Credit`
+  String credit_title(Object param) {
     return Intl.message(
-      '%1\$s Credit',
+      '$param Credit',
       name: 'credit_title',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1650,13 +1650,13 @@ class I10n {
     );
   }
 
-  /// `Rp %1$s`
-  String get credit_nominal {
+  /// `Rp {param}`
+  String credit_nominal(Object param) {
     return Intl.message(
-      'Rp %1\$s',
+      'Rp $param',
       name: 'credit_nominal',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1700,13 +1700,13 @@ class I10n {
     );
   }
 
-  /// `Top Up %1$s Credit via %2$s`
-  String get topup_credit_via {
+  /// `Top Up {param} Credit via %2$s`
+  String topup_credit_via(Object param) {
     return Intl.message(
-      'Top Up %1\$s Credit via %2\$s',
+      'Top Up $param Credit via %2\$s',
       name: 'topup_credit_via',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -1920,33 +1920,33 @@ class I10n {
     );
   }
 
-  /// `Are you sure want to delete %1$s from the order?`
-  String get cart_delete_item {
+  /// `Are you sure want to delete {param} from the order?`
+  String cart_delete_item(Object param) {
     return Intl.message(
-      'Are you sure want to delete %1\$s from the order?',
+      'Are you sure want to delete $param from the order?',
       name: 'cart_delete_item',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `Are you sure want to delete order %1$s from Favorite?`
-  String get cart_delete_favorite {
+  /// `Are you sure want to delete order {param} from Favorite?`
+  String cart_delete_favorite(Object param) {
     return Intl.message(
-      'Are you sure want to delete order %1\$s from Favorite?',
+      'Are you sure want to delete order $param from Favorite?',
       name: 'cart_delete_favorite',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `Are you sure you do not want to use the promo voucher %1$s for this order?`
-  String get cart_delete_voucher {
+  /// `Are you sure you do not want to use the promo voucher {param} for this order?`
+  String cart_delete_voucher(Object param) {
     return Intl.message(
-      'Are you sure you do not want to use the promo voucher %1\$s for this order?',
+      'Are you sure you do not want to use the promo voucher $param for this order?',
       name: 'cart_delete_voucher',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2190,23 +2190,23 @@ class I10n {
     );
   }
 
-  /// `Your %1$s credit balance is insufficient for transaction, please top up first to continue payment.`
-  String get cart_balance_limit {
+  /// `Your {param} credit balance is insufficient for transaction, please top up first to continue payment.`
+  String cart_balance_limit(Object param) {
     return Intl.message(
-      'Your %1\$s credit balance is insufficient for transaction, please top up first to continue payment.',
+      'Your $param credit balance is insufficient for transaction, please top up first to continue payment.',
       name: 'cart_balance_limit',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `Successfull order with transaction ID %1$s, Please click OK to continue to payment process %2$s`
-  String get cart_order_success_with_payment {
+  /// `Successfull order with transaction ID {param}, Please click OK to continue to payment process %2$s`
+  String cart_order_success_with_payment(Object param) {
     return Intl.message(
-      'Successfull order with transaction ID %1\$s, Please click OK to continue to payment process %2\$s',
+      'Successfull order with transaction ID $param, Please click OK to continue to payment process %2\$s',
       name: 'cart_order_success_with_payment',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2240,23 +2240,23 @@ class I10n {
     );
   }
 
-  /// `Minimum transaction %1$s needed.`
-  String get cart_minimum_transaction_alert {
+  /// `Minimum transaction {param} needed.`
+  String cart_minimum_transaction_alert(Object param) {
     return Intl.message(
-      'Minimum transaction %1\$s needed.',
+      'Minimum transaction $param needed.',
       name: 'cart_minimum_transaction_alert',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
-  /// `%1$s can not be empty.`
-  String get cart_alert_order_info {
+  /// `{param} can not be empty.`
+  String cart_alert_order_info(Object param) {
     return Intl.message(
-      '%1\$s can not be empty.',
+      '$param can not be empty.',
       name: 'cart_alert_order_info',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2280,13 +2280,13 @@ class I10n {
     );
   }
 
-  /// `Voucher code %1$s is invalid.`
-  String get cart_voucher_invalid {
+  /// `Voucher code {param} is invalid.`
+  String cart_voucher_invalid(Object param) {
     return Intl.message(
-      'Voucher code %1\$s is invalid.',
+      'Voucher code $param is invalid.',
       name: 'cart_voucher_invalid',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2320,13 +2320,13 @@ class I10n {
     );
   }
 
-  /// `Your product %1$s is unavailable or sold out.`
-  String get cart_product_empty {
+  /// `Your product {param} is unavailable or sold out.`
+  String cart_product_empty(Object param) {
     return Intl.message(
-      'Your product %1\$s is unavailable or sold out.',
+      'Your product $param is unavailable or sold out.',
       name: 'cart_product_empty',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2460,13 +2460,13 @@ class I10n {
     );
   }
 
-  /// `You have transaction %1$s which you have not paid for %2$s. If you continue this payment, that transaction will be cancelled.`
-  String get cart_transaction_pending_alert {
+  /// `You have transaction {param} which you have not paid for %2$s. If you continue this payment, that transaction will be cancelled.`
+  String cart_transaction_pending_alert(Object param) {
     return Intl.message(
-      'You have transaction %1\$s which you have not paid for %2\$s. If you continue this payment, that transaction will be cancelled.',
+      'You have transaction $param which you have not paid for %2\$s. If you continue this payment, that transaction will be cancelled.',
       name: 'cart_transaction_pending_alert',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2740,13 +2740,13 @@ class I10n {
     );
   }
 
-  /// `Are you sure want to delete %1$s ?`
-  String get address_delete_confirmation {
+  /// `Are you sure want to delete {param} ?`
+  String address_delete_confirmation(Object param) {
     return Intl.message(
-      'Are you sure want to delete %1\$s ?',
+      'Are you sure want to delete $param ?',
       name: 'address_delete_confirmation',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2802,13 +2802,13 @@ class I10n {
     );
   }
 
-  /// `This product has reached its maximum purchase for %1$s items.`
-  String get product_detail_max_item_alert {
+  /// `This product has reached its maximum purchase for {param} items.`
+  String product_detail_max_item_alert(Object param) {
     return Intl.message(
-      'This product has reached its maximum purchase for %1\$s items.',
+      'This product has reached its maximum purchase for $param items.',
       name: 'product_detail_max_item_alert',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -2862,13 +2862,13 @@ class I10n {
     );
   }
 
-  /// `The number of menus you ordered has reached the limit %1$s in one transaction.`
-  String get product_detail_alert_transaction_limit {
+  /// `The number of menus you ordered has reached the limit {param} in one transaction.`
+  String product_detail_alert_transaction_limit(Object param) {
     return Intl.message(
-      'The number of menus you ordered has reached the limit %1\$s in one transaction.',
+      'The number of menus you ordered has reached the limit $param in one transaction.',
       name: 'product_detail_alert_transaction_limit',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -3292,13 +3292,13 @@ class I10n {
     );
   }
 
-  /// `Please start your order with %1$s`
-  String get text_mulai_pesan {
+  /// `Please start your order with {param}`
+  String text_mulai_pesan(Object param) {
     return Intl.message(
-      'Please start your order with %1\$s',
+      'Please start your order with $param',
       name: 'text_mulai_pesan',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -3402,13 +3402,13 @@ class I10n {
     );
   }
 
-  /// `Receipt Code: %1$s`
-  String get history_receipt_code {
+  /// `Receipt Code: {param}`
+  String history_receipt_code(Object param) {
     return Intl.message(
-      'Receipt Code: %1\$s',
+      'Receipt Code: $param',
       name: 'history_receipt_code',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -3482,13 +3482,13 @@ class I10n {
     );
   }
 
-  /// `Outlet %1$s`
-  String get history_outlet_name {
+  /// `Outlet {param}`
+  String history_outlet_name(Object param) {
     return Intl.message(
-      'Outlet %1\$s',
+      'Outlet $param',
       name: 'history_outlet_name',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -3602,13 +3602,13 @@ class I10n {
     );
   }
 
-  /// `Pay before %1$s`
-  String get history_pending_expired {
+  /// `Pay before {param}`
+  String history_pending_expired(Object param) {
     return Intl.message(
-      'Pay before %1\$s',
+      'Pay before $param',
       name: 'history_pending_expired',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -3692,13 +3692,13 @@ class I10n {
     );
   }
 
-  /// `Are you sure you want to cancel a transaction with a number %1$s ?`
-  String get history_pending_cancel_alert {
+  /// `Are you sure you want to cancel a transaction with a number {param} ?`
+  String history_pending_cancel_alert(Object param) {
     return Intl.message(
-      'Are you sure you want to cancel a transaction with a number %1\$s ?',
+      'Are you sure you want to cancel a transaction with a number $param ?',
       name: 'history_pending_cancel_alert',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -4004,13 +4004,13 @@ class I10n {
 
   // skipped getter for the '_Input OTP Screen' key
 
-  /// `Please enter 6 digits of verification code sent to your Whatsapp at %1$s. Please enter the latest code to continue.`
-  String get input_otp_desc {
+  /// `Please enter 6 digits of verification code sent to your Whatsapp at {param}. Please enter the latest code to continue.`
+  String input_otp_desc(Object param) {
     return Intl.message(
-      'Please enter 6 digits of verification code sent to your Whatsapp at %1\$s. Please enter the latest code to continue.',
+      'Please enter 6 digits of verification code sent to your Whatsapp at $param. Please enter the latest code to continue.',
       name: 'input_otp_desc',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -4024,13 +4024,13 @@ class I10n {
     );
   }
 
-  /// `Resend (%1$s)`
-  String get input_otp_resend_code {
+  /// `Resend ({param})`
+  String input_otp_resend_code(Object param) {
     return Intl.message(
-      'Resend (%1\$s)',
+      'Resend ($param)',
       name: 'input_otp_resend_code',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -4420,13 +4420,13 @@ class I10n {
     );
   }
 
-  /// `Hi %1$s,`
-  String get billing_hi {
+  /// `Hi {param},`
+  String billing_hi(Object param) {
     return Intl.message(
-      'Hi %1\$s,',
+      'Hi $param,',
       name: 'billing_hi',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -4540,13 +4540,13 @@ class I10n {
     );
   }
 
-  /// `%1$s copied successfully`
-  String get billing_success_copy {
+  /// `{param} copied successfully`
+  String billing_success_copy(Object param) {
     return Intl.message(
-      '%1\$s copied successfully',
+      '$param copied successfully',
       name: 'billing_success_copy',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -5270,13 +5270,13 @@ class I10n {
     );
   }
 
-  /// `This transaction will be subject to a fee of %1$s`
-  String get credit_note_value {
+  /// `This transaction will be subject to a fee of {param}`
+  String credit_note_value(Object param) {
     return Intl.message(
-      'This transaction will be subject to a fee of %1\$s',
+      'This transaction will be subject to a fee of $param',
       name: 'credit_note_value',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 
@@ -5290,13 +5290,13 @@ class I10n {
     );
   }
 
-  /// `Rp %1$s`
-  String get beranda_balance_inquiry {
+  /// `Rp {param}`
+  String beranda_balance_inquiry(Object param) {
     return Intl.message(
-      'Rp %1\$s',
+      'Rp $param',
       name: 'beranda_balance_inquiry',
       desc: '',
-      args: [],
+      args: [param],
     );
   }
 

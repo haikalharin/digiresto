@@ -119,7 +119,7 @@ class DeliveryDetail with _$DeliveryDetail {
     required String distance,
     required String provider,
     required String shipmentMethod,
-    required String fee,
+    required dynamic fee,
     required String bookingCode,
     required String bookingExpired,
     required String deliveryId,
@@ -176,7 +176,7 @@ class Item with _$Item {
     required String category,
     required int categoryId,
     required String categoryCode,
-    required String sku,
+    required String? sku,
     required String note,
     required bool isPreorder,
     required int preorderPeriod,
@@ -225,11 +225,11 @@ class OutletDetail with _$OutletDetail {
     required List<dynamic> taxesAndServices,
     required List<dynamic> location,
     required String phone,
-    required String kurirPrice,
+    required dynamic kurirPrice,
     required List<String> deliveryProvider,
     required String driverPhone,
     required List<dynamic> area,
-    required List<dynamic> deliveryLocation,
+    required List<dynamic>? deliveryLocation,
   }) = _OutletDetail;
 
   factory OutletDetail.fromJson(Map<String, dynamic> json) =>

@@ -206,7 +206,7 @@ _$_DeliveryDetail _$_$_DeliveryDetailFromJson(Map<String, dynamic> json) {
     distance: json['distance'] as String,
     provider: json['provider'] as String,
     shipmentMethod: json['shipmentMethod'] as String,
-    fee: json['fee'] as String,
+    fee: json['fee'],
     bookingCode: json['bookingCode'] as String,
     bookingExpired: json['bookingExpired'] as String,
     deliveryId: json['deliveryId'] as String,
@@ -286,7 +286,7 @@ _$_Item _$_$_ItemFromJson(Map<String, dynamic> json) {
     category: json['category'] as String,
     categoryId: json['categoryId'] as int,
     categoryCode: json['categoryCode'] as String,
-    sku: json['sku'] as String,
+    sku: json['sku'] as String?,
     note: json['note'] as String,
     isPreorder: json['isPreorder'] as bool,
     preorderPeriod: json['preorderPeriod'] as int,
@@ -375,13 +375,13 @@ _$_OutletDetail _$_$_OutletDetailFromJson(Map<String, dynamic> json) {
     taxesAndServices: json['taxesAndServices'] as List<dynamic>,
     location: json['location'] as List<dynamic>,
     phone: json['phone'] as String,
-    kurirPrice: json['kurirPrice'] as String,
+    kurirPrice: json['kurirPrice'],
     deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
     driverPhone: json['driverPhone'] as String,
     area: json['area'] as List<dynamic>,
-    deliveryLocation: json['deliveryLocation'] as List<dynamic>,
+    deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
   );
 }
 

@@ -1,8 +1,12 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
+import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
+import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
+import 'package:digiresto/presentation/profile/order_history/cancel_order_page.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -62,7 +66,73 @@ class OrderPendingWidget extends StatelessWidget {
                     Icons.more_horiz,
                     size: 35,
                   ),
-                  onSelected: (_) {},
+                  onSelected: (index) {
+                    switch (index) {
+                      case 1:
+                        Get.toNamed(Routers.paymentReceipt,
+                            arguments: PaymentReceiptViewArgument(
+                              receiptCode: orderPending.receiptCode,
+                            ));
+                        break;
+                      case 2:
+                        Get.dialog(
+                          CustomDialog(
+                            backgroundColor: Colors.white,
+                            borderRadius: BorderRadius.circular(14),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Batalkan Transaksi',
+                                  style: Styles.dialogTitleStyle,
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Text(
+                                  'Apakah anda yakin ingin membatalkan transaksi ?',
+                                  style: Styles.dialogSubtitleStyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: CustomButton(
+                                        onPressed: () => Get.back(),
+                                        color: Colors.white,
+                                        borderColor: AppColors.mainColor,
+                                        label: 'Batal',
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Expanded(
+                                      child: CustomButton(
+                                        onPressed: () => Get.off(
+                                                CancelOrderPage(
+                                                    orderPending.receiptCode))
+                                            ?.then(
+                                          (value) => Get.back(),
+                                        ),
+                                        color: AppColors.mainColor,
+                                        fontColor: Colors.white,
+                                        label: 'Ok',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                        break;
+                      default:
+                    }
+                  },
                   itemBuilder: (context) {
                     return [
                       PopupMenuItem(

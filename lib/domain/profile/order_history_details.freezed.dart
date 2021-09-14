@@ -22,7 +22,7 @@ class _$OrderHistoryDetailsTearOff {
 
   _OrderHistoryDetails call(
       {required String outletName,
-      required int outletId,
+      required num outletId,
       required String customerName,
       required String customerEmail,
       required String customerPhone,
@@ -36,33 +36,33 @@ class _$OrderHistoryDetailsTearOff {
       required String customerCarColor,
       required String customerCarNumber,
       required String eta,
-      required int totalChange,
-      required int discountAmount,
-      required int discountPercentage,
-      required int finalAmount,
-      required int receiptTotalDiscount,
-      required int roundAmount,
-      required int subtotal,
-      required int totalDiscount,
-      required int totalItemAmount,
-      required int totalItemCost,
-      required int totalItemDiscount,
-      required int totalService,
-      required int totalTax,
-      required int voucherAmount,
-      required int deliveryAmount,
-      required int totalPayment,
+      required num totalChange,
+      required num discountAmount,
+      required num discountPercentage,
+      required num finalAmount,
+      required num receiptTotalDiscount,
+      required num roundAmount,
+      required num subtotal,
+      required num totalDiscount,
+      required num totalItemAmount,
+      required num totalItemCost,
+      required num totalItemDiscount,
+      required num totalService,
+      required num totalTax,
+      required num voucherAmount,
+      required num deliveryAmount,
+      required num totalPayment,
       required String salesType,
       required List<MenuItem> items,
-      required int itemWeight,
+      required num itemWeight,
       required bool isUseVoucher,
       required List<dynamic> promos,
       required List<dynamic> paymentList,
       required List<TaxesAndService> taxesAndServices,
-      required int itemTotalAmount,
+      required num itemTotalAmount,
       required String note,
       @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
-      required int originalDeliveryAmount,
+      required num? originalDeliveryAmount,
       required DateTime deviceTimestamp,
       required String receiptCode,
       required List<Payment> payments,
@@ -140,7 +140,7 @@ const $OrderHistoryDetails = _$OrderHistoryDetailsTearOff();
 /// @nodoc
 mixin _$OrderHistoryDetails {
   String get outletName => throw _privateConstructorUsedError;
-  int get outletId => throw _privateConstructorUsedError;
+  num get outletId => throw _privateConstructorUsedError;
   String get customerName => throw _privateConstructorUsedError;
   String get customerEmail => throw _privateConstructorUsedError;
   String get customerPhone => throw _privateConstructorUsedError;
@@ -154,35 +154,35 @@ mixin _$OrderHistoryDetails {
   String get customerCarColor => throw _privateConstructorUsedError;
   String get customerCarNumber => throw _privateConstructorUsedError;
   String get eta => throw _privateConstructorUsedError;
-  int get totalChange => throw _privateConstructorUsedError;
-  int get discountAmount => throw _privateConstructorUsedError;
-  int get discountPercentage => throw _privateConstructorUsedError;
-  int get finalAmount => throw _privateConstructorUsedError;
-  int get receiptTotalDiscount => throw _privateConstructorUsedError;
-  int get roundAmount => throw _privateConstructorUsedError;
-  int get subtotal => throw _privateConstructorUsedError;
-  int get totalDiscount => throw _privateConstructorUsedError;
-  int get totalItemAmount => throw _privateConstructorUsedError;
-  int get totalItemCost => throw _privateConstructorUsedError;
-  int get totalItemDiscount => throw _privateConstructorUsedError;
-  int get totalService => throw _privateConstructorUsedError;
-  int get totalTax => throw _privateConstructorUsedError;
-  int get voucherAmount => throw _privateConstructorUsedError;
-  int get deliveryAmount => throw _privateConstructorUsedError;
-  int get totalPayment => throw _privateConstructorUsedError;
+  num get totalChange => throw _privateConstructorUsedError;
+  num get discountAmount => throw _privateConstructorUsedError;
+  num get discountPercentage => throw _privateConstructorUsedError;
+  num get finalAmount => throw _privateConstructorUsedError;
+  num get receiptTotalDiscount => throw _privateConstructorUsedError;
+  num get roundAmount => throw _privateConstructorUsedError;
+  num get subtotal => throw _privateConstructorUsedError;
+  num get totalDiscount => throw _privateConstructorUsedError;
+  num get totalItemAmount => throw _privateConstructorUsedError;
+  num get totalItemCost => throw _privateConstructorUsedError;
+  num get totalItemDiscount => throw _privateConstructorUsedError;
+  num get totalService => throw _privateConstructorUsedError;
+  num get totalTax => throw _privateConstructorUsedError;
+  num get voucherAmount => throw _privateConstructorUsedError;
+  num get deliveryAmount => throw _privateConstructorUsedError;
+  num get totalPayment => throw _privateConstructorUsedError;
   String get salesType => throw _privateConstructorUsedError;
   List<MenuItem> get items => throw _privateConstructorUsedError;
-  int get itemWeight => throw _privateConstructorUsedError;
+  num get itemWeight => throw _privateConstructorUsedError;
   bool get isUseVoucher => throw _privateConstructorUsedError;
   List<dynamic> get promos => throw _privateConstructorUsedError;
   List<dynamic> get paymentList => throw _privateConstructorUsedError;
   List<TaxesAndService> get taxesAndServices =>
       throw _privateConstructorUsedError;
-  int get itemTotalAmount => throw _privateConstructorUsedError;
+  num get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
   Delivery? get grabpawoon => throw _privateConstructorUsedError;
-  int get originalDeliveryAmount => throw _privateConstructorUsedError;
+  num? get originalDeliveryAmount => throw _privateConstructorUsedError;
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
   String get receiptCode => throw _privateConstructorUsedError;
   List<Payment> get payments => throw _privateConstructorUsedError;
@@ -208,7 +208,7 @@ abstract class $OrderHistoryDetailsCopyWith<$Res> {
       _$OrderHistoryDetailsCopyWithImpl<$Res>;
   $Res call(
       {String outletName,
-      int outletId,
+      num outletId,
       String customerName,
       String customerEmail,
       String customerPhone,
@@ -222,33 +222,33 @@ abstract class $OrderHistoryDetailsCopyWith<$Res> {
       String customerCarColor,
       String customerCarNumber,
       String eta,
-      int totalChange,
-      int discountAmount,
-      int discountPercentage,
-      int finalAmount,
-      int receiptTotalDiscount,
-      int roundAmount,
-      int subtotal,
-      int totalDiscount,
-      int totalItemAmount,
-      int totalItemCost,
-      int totalItemDiscount,
-      int totalService,
-      int totalTax,
-      int voucherAmount,
-      int deliveryAmount,
-      int totalPayment,
+      num totalChange,
+      num discountAmount,
+      num discountPercentage,
+      num finalAmount,
+      num receiptTotalDiscount,
+      num roundAmount,
+      num subtotal,
+      num totalDiscount,
+      num totalItemAmount,
+      num totalItemCost,
+      num totalItemDiscount,
+      num totalService,
+      num totalTax,
+      num voucherAmount,
+      num deliveryAmount,
+      num totalPayment,
       String salesType,
       List<MenuItem> items,
-      int itemWeight,
+      num itemWeight,
       bool isUseVoucher,
       List<dynamic> promos,
       List<dynamic> paymentList,
       List<TaxesAndService> taxesAndServices,
-      int itemTotalAmount,
+      num itemTotalAmount,
       String note,
       @JsonKey(includeIfNull: true) Delivery? grabpawoon,
-      int originalDeliveryAmount,
+      num? originalDeliveryAmount,
       DateTime deviceTimestamp,
       String receiptCode,
       List<Payment> payments,
@@ -340,7 +340,7 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       outletId: outletId == freezed
           ? _value.outletId
           : outletId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       customerName: customerName == freezed
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
@@ -396,67 +396,67 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       totalChange: totalChange == freezed
           ? _value.totalChange
           : totalChange // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       discountAmount: discountAmount == freezed
           ? _value.discountAmount
           : discountAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       discountPercentage: discountPercentage == freezed
           ? _value.discountPercentage
           : discountPercentage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       finalAmount: finalAmount == freezed
           ? _value.finalAmount
           : finalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       receiptTotalDiscount: receiptTotalDiscount == freezed
           ? _value.receiptTotalDiscount
           : receiptTotalDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       roundAmount: roundAmount == freezed
           ? _value.roundAmount
           : roundAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       subtotal: subtotal == freezed
           ? _value.subtotal
           : subtotal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalDiscount: totalDiscount == freezed
           ? _value.totalDiscount
           : totalDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalItemAmount: totalItemAmount == freezed
           ? _value.totalItemAmount
           : totalItemAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalItemCost: totalItemCost == freezed
           ? _value.totalItemCost
           : totalItemCost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalItemDiscount: totalItemDiscount == freezed
           ? _value.totalItemDiscount
           : totalItemDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalService: totalService == freezed
           ? _value.totalService
           : totalService // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalTax: totalTax == freezed
           ? _value.totalTax
           : totalTax // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       voucherAmount: voucherAmount == freezed
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       deliveryAmount: deliveryAmount == freezed
           ? _value.deliveryAmount
           : deliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalPayment: totalPayment == freezed
           ? _value.totalPayment
           : totalPayment // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       salesType: salesType == freezed
           ? _value.salesType
           : salesType // ignore: cast_nullable_to_non_nullable
@@ -468,7 +468,7 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       itemWeight: itemWeight == freezed
           ? _value.itemWeight
           : itemWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       isUseVoucher: isUseVoucher == freezed
           ? _value.isUseVoucher
           : isUseVoucher // ignore: cast_nullable_to_non_nullable
@@ -488,7 +488,7 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -500,7 +500,7 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num?,
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
@@ -604,7 +604,7 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
   @override
   $Res call(
       {String outletName,
-      int outletId,
+      num outletId,
       String customerName,
       String customerEmail,
       String customerPhone,
@@ -618,33 +618,33 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
       String customerCarColor,
       String customerCarNumber,
       String eta,
-      int totalChange,
-      int discountAmount,
-      int discountPercentage,
-      int finalAmount,
-      int receiptTotalDiscount,
-      int roundAmount,
-      int subtotal,
-      int totalDiscount,
-      int totalItemAmount,
-      int totalItemCost,
-      int totalItemDiscount,
-      int totalService,
-      int totalTax,
-      int voucherAmount,
-      int deliveryAmount,
-      int totalPayment,
+      num totalChange,
+      num discountAmount,
+      num discountPercentage,
+      num finalAmount,
+      num receiptTotalDiscount,
+      num roundAmount,
+      num subtotal,
+      num totalDiscount,
+      num totalItemAmount,
+      num totalItemCost,
+      num totalItemDiscount,
+      num totalService,
+      num totalTax,
+      num voucherAmount,
+      num deliveryAmount,
+      num totalPayment,
       String salesType,
       List<MenuItem> items,
-      int itemWeight,
+      num itemWeight,
       bool isUseVoucher,
       List<dynamic> promos,
       List<dynamic> paymentList,
       List<TaxesAndService> taxesAndServices,
-      int itemTotalAmount,
+      num itemTotalAmount,
       String note,
       @JsonKey(includeIfNull: true) Delivery? grabpawoon,
-      int originalDeliveryAmount,
+      num? originalDeliveryAmount,
       DateTime deviceTimestamp,
       String receiptCode,
       List<Payment> payments,
@@ -744,7 +744,7 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       outletId: outletId == freezed
           ? _value.outletId
           : outletId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       customerName: customerName == freezed
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
@@ -800,67 +800,67 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       totalChange: totalChange == freezed
           ? _value.totalChange
           : totalChange // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       discountAmount: discountAmount == freezed
           ? _value.discountAmount
           : discountAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       discountPercentage: discountPercentage == freezed
           ? _value.discountPercentage
           : discountPercentage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       finalAmount: finalAmount == freezed
           ? _value.finalAmount
           : finalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       receiptTotalDiscount: receiptTotalDiscount == freezed
           ? _value.receiptTotalDiscount
           : receiptTotalDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       roundAmount: roundAmount == freezed
           ? _value.roundAmount
           : roundAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       subtotal: subtotal == freezed
           ? _value.subtotal
           : subtotal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalDiscount: totalDiscount == freezed
           ? _value.totalDiscount
           : totalDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalItemAmount: totalItemAmount == freezed
           ? _value.totalItemAmount
           : totalItemAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalItemCost: totalItemCost == freezed
           ? _value.totalItemCost
           : totalItemCost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalItemDiscount: totalItemDiscount == freezed
           ? _value.totalItemDiscount
           : totalItemDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalService: totalService == freezed
           ? _value.totalService
           : totalService // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalTax: totalTax == freezed
           ? _value.totalTax
           : totalTax // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       voucherAmount: voucherAmount == freezed
           ? _value.voucherAmount
           : voucherAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       deliveryAmount: deliveryAmount == freezed
           ? _value.deliveryAmount
           : deliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalPayment: totalPayment == freezed
           ? _value.totalPayment
           : totalPayment // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       salesType: salesType == freezed
           ? _value.salesType
           : salesType // ignore: cast_nullable_to_non_nullable
@@ -872,7 +872,7 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       itemWeight: itemWeight == freezed
           ? _value.itemWeight
           : itemWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       isUseVoucher: isUseVoucher == freezed
           ? _value.isUseVoucher
           : isUseVoucher // ignore: cast_nullable_to_non_nullable
@@ -892,7 +892,7 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -904,7 +904,7 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num?,
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
@@ -1012,7 +1012,7 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   @override
   final String outletName;
   @override
-  final int outletId;
+  final num outletId;
   @override
   final String customerName;
   @override
@@ -1040,43 +1040,43 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   @override
   final String eta;
   @override
-  final int totalChange;
+  final num totalChange;
   @override
-  final int discountAmount;
+  final num discountAmount;
   @override
-  final int discountPercentage;
+  final num discountPercentage;
   @override
-  final int finalAmount;
+  final num finalAmount;
   @override
-  final int receiptTotalDiscount;
+  final num receiptTotalDiscount;
   @override
-  final int roundAmount;
+  final num roundAmount;
   @override
-  final int subtotal;
+  final num subtotal;
   @override
-  final int totalDiscount;
+  final num totalDiscount;
   @override
-  final int totalItemAmount;
+  final num totalItemAmount;
   @override
-  final int totalItemCost;
+  final num totalItemCost;
   @override
-  final int totalItemDiscount;
+  final num totalItemDiscount;
   @override
-  final int totalService;
+  final num totalService;
   @override
-  final int totalTax;
+  final num totalTax;
   @override
-  final int voucherAmount;
+  final num voucherAmount;
   @override
-  final int deliveryAmount;
+  final num deliveryAmount;
   @override
-  final int totalPayment;
+  final num totalPayment;
   @override
   final String salesType;
   @override
   final List<MenuItem> items;
   @override
-  final int itemWeight;
+  final num itemWeight;
   @override
   final bool isUseVoucher;
   @override
@@ -1086,14 +1086,14 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   @override
   final List<TaxesAndService> taxesAndServices;
   @override
-  final int itemTotalAmount;
+  final num itemTotalAmount;
   @override
   final String note;
   @override
   @JsonKey(includeIfNull: true)
   final Delivery? grabpawoon;
   @override
-  final int originalDeliveryAmount;
+  final num? originalDeliveryAmount;
   @override
   final DateTime deviceTimestamp;
   @override
@@ -1293,7 +1293,7 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
 abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   const factory _OrderHistoryDetails(
       {required String outletName,
-      required int outletId,
+      required num outletId,
       required String customerName,
       required String customerEmail,
       required String customerPhone,
@@ -1307,33 +1307,33 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
       required String customerCarColor,
       required String customerCarNumber,
       required String eta,
-      required int totalChange,
-      required int discountAmount,
-      required int discountPercentage,
-      required int finalAmount,
-      required int receiptTotalDiscount,
-      required int roundAmount,
-      required int subtotal,
-      required int totalDiscount,
-      required int totalItemAmount,
-      required int totalItemCost,
-      required int totalItemDiscount,
-      required int totalService,
-      required int totalTax,
-      required int voucherAmount,
-      required int deliveryAmount,
-      required int totalPayment,
+      required num totalChange,
+      required num discountAmount,
+      required num discountPercentage,
+      required num finalAmount,
+      required num receiptTotalDiscount,
+      required num roundAmount,
+      required num subtotal,
+      required num totalDiscount,
+      required num totalItemAmount,
+      required num totalItemCost,
+      required num totalItemDiscount,
+      required num totalService,
+      required num totalTax,
+      required num voucherAmount,
+      required num deliveryAmount,
+      required num totalPayment,
       required String salesType,
       required List<MenuItem> items,
-      required int itemWeight,
+      required num itemWeight,
       required bool isUseVoucher,
       required List<dynamic> promos,
       required List<dynamic> paymentList,
       required List<TaxesAndService> taxesAndServices,
-      required int itemTotalAmount,
+      required num itemTotalAmount,
       required String note,
       @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
-      required int originalDeliveryAmount,
+      required num? originalDeliveryAmount,
       required DateTime deviceTimestamp,
       required String receiptCode,
       required List<Payment> payments,
@@ -1351,7 +1351,7 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   @override
   String get outletName => throw _privateConstructorUsedError;
   @override
-  int get outletId => throw _privateConstructorUsedError;
+  num get outletId => throw _privateConstructorUsedError;
   @override
   String get customerName => throw _privateConstructorUsedError;
   @override
@@ -1379,43 +1379,43 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   @override
   String get eta => throw _privateConstructorUsedError;
   @override
-  int get totalChange => throw _privateConstructorUsedError;
+  num get totalChange => throw _privateConstructorUsedError;
   @override
-  int get discountAmount => throw _privateConstructorUsedError;
+  num get discountAmount => throw _privateConstructorUsedError;
   @override
-  int get discountPercentage => throw _privateConstructorUsedError;
+  num get discountPercentage => throw _privateConstructorUsedError;
   @override
-  int get finalAmount => throw _privateConstructorUsedError;
+  num get finalAmount => throw _privateConstructorUsedError;
   @override
-  int get receiptTotalDiscount => throw _privateConstructorUsedError;
+  num get receiptTotalDiscount => throw _privateConstructorUsedError;
   @override
-  int get roundAmount => throw _privateConstructorUsedError;
+  num get roundAmount => throw _privateConstructorUsedError;
   @override
-  int get subtotal => throw _privateConstructorUsedError;
+  num get subtotal => throw _privateConstructorUsedError;
   @override
-  int get totalDiscount => throw _privateConstructorUsedError;
+  num get totalDiscount => throw _privateConstructorUsedError;
   @override
-  int get totalItemAmount => throw _privateConstructorUsedError;
+  num get totalItemAmount => throw _privateConstructorUsedError;
   @override
-  int get totalItemCost => throw _privateConstructorUsedError;
+  num get totalItemCost => throw _privateConstructorUsedError;
   @override
-  int get totalItemDiscount => throw _privateConstructorUsedError;
+  num get totalItemDiscount => throw _privateConstructorUsedError;
   @override
-  int get totalService => throw _privateConstructorUsedError;
+  num get totalService => throw _privateConstructorUsedError;
   @override
-  int get totalTax => throw _privateConstructorUsedError;
+  num get totalTax => throw _privateConstructorUsedError;
   @override
-  int get voucherAmount => throw _privateConstructorUsedError;
+  num get voucherAmount => throw _privateConstructorUsedError;
   @override
-  int get deliveryAmount => throw _privateConstructorUsedError;
+  num get deliveryAmount => throw _privateConstructorUsedError;
   @override
-  int get totalPayment => throw _privateConstructorUsedError;
+  num get totalPayment => throw _privateConstructorUsedError;
   @override
   String get salesType => throw _privateConstructorUsedError;
   @override
   List<MenuItem> get items => throw _privateConstructorUsedError;
   @override
-  int get itemWeight => throw _privateConstructorUsedError;
+  num get itemWeight => throw _privateConstructorUsedError;
   @override
   bool get isUseVoucher => throw _privateConstructorUsedError;
   @override
@@ -1426,14 +1426,14 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   List<TaxesAndService> get taxesAndServices =>
       throw _privateConstructorUsedError;
   @override
-  int get itemTotalAmount => throw _privateConstructorUsedError;
+  num get itemTotalAmount => throw _privateConstructorUsedError;
   @override
   String get note => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
   Delivery? get grabpawoon => throw _privateConstructorUsedError;
   @override
-  int get originalDeliveryAmount => throw _privateConstructorUsedError;
+  num? get originalDeliveryAmount => throw _privateConstructorUsedError;
   @override
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
   @override
@@ -1471,7 +1471,7 @@ class _$BillingDetailTearOff {
 
   _BillingDetail call(
       {required String title,
-      required int amount,
+      required num amount,
       required String vaNumber,
       required DateTime expires,
       required DateTime expiresAt,
@@ -1497,7 +1497,7 @@ const $BillingDetail = _$BillingDetailTearOff();
 /// @nodoc
 mixin _$BillingDetail {
   String get title => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   String get vaNumber => throw _privateConstructorUsedError;
   DateTime get expires => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
@@ -1516,7 +1516,7 @@ abstract class $BillingDetailCopyWith<$Res> {
       _$BillingDetailCopyWithImpl<$Res>;
   $Res call(
       {String title,
-      int amount,
+      num amount,
       String vaNumber,
       DateTime expires,
       DateTime expiresAt,
@@ -1549,7 +1549,7 @@ class _$BillingDetailCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       vaNumber: vaNumber == freezed
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
@@ -1579,7 +1579,7 @@ abstract class _$BillingDetailCopyWith<$Res>
   @override
   $Res call(
       {String title,
-      int amount,
+      num amount,
       String vaNumber,
       DateTime expires,
       DateTime expiresAt,
@@ -1614,7 +1614,7 @@ class __$BillingDetailCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       vaNumber: vaNumber == freezed
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
@@ -1652,7 +1652,7 @@ class _$_BillingDetail implements _BillingDetail {
   @override
   final String title;
   @override
-  final int amount;
+  final num amount;
   @override
   final String vaNumber;
   @override
@@ -1713,7 +1713,7 @@ class _$_BillingDetail implements _BillingDetail {
 abstract class _BillingDetail implements BillingDetail {
   const factory _BillingDetail(
       {required String title,
-      required int amount,
+      required num amount,
       required String vaNumber,
       required DateTime expires,
       required DateTime expiresAt,
@@ -1725,7 +1725,7 @@ abstract class _BillingDetail implements BillingDetail {
   @override
   String get title => throw _privateConstructorUsedError;
   @override
-  int get amount => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   @override
   String get vaNumber => throw _privateConstructorUsedError;
   @override
@@ -1750,9 +1750,9 @@ class _$DeliveryTearOff {
 
   _Delivery call(
       {required String provider,
-      required int price,
+      required num price,
       required String address,
-      required String shipmentMethod,
+      required String? shipmentMethod,
       required List<dynamic> location}) {
     return _Delivery(
       provider: provider,
@@ -1774,9 +1774,9 @@ const $Delivery = _$DeliveryTearOff();
 /// @nodoc
 mixin _$Delivery {
   String get provider => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get shipmentMethod => throw _privateConstructorUsedError;
+  String? get shipmentMethod => throw _privateConstructorUsedError;
   List<dynamic> get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1791,9 +1791,9 @@ abstract class $DeliveryCopyWith<$Res> {
       _$DeliveryCopyWithImpl<$Res>;
   $Res call(
       {String provider,
-      int price,
+      num price,
       String address,
-      String shipmentMethod,
+      String? shipmentMethod,
       List<dynamic> location});
 }
 
@@ -1821,7 +1821,7 @@ class _$DeliveryCopyWithImpl<$Res> implements $DeliveryCopyWith<$Res> {
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -1829,7 +1829,7 @@ class _$DeliveryCopyWithImpl<$Res> implements $DeliveryCopyWith<$Res> {
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -1845,9 +1845,9 @@ abstract class _$DeliveryCopyWith<$Res> implements $DeliveryCopyWith<$Res> {
   @override
   $Res call(
       {String provider,
-      int price,
+      num price,
       String address,
-      String shipmentMethod,
+      String? shipmentMethod,
       List<dynamic> location});
 }
 
@@ -1876,7 +1876,7 @@ class __$DeliveryCopyWithImpl<$Res> extends _$DeliveryCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -1884,7 +1884,7 @@ class __$DeliveryCopyWithImpl<$Res> extends _$DeliveryCopyWithImpl<$Res>
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -1909,11 +1909,11 @@ class _$_Delivery implements _Delivery {
   @override
   final String provider;
   @override
-  final int price;
+  final num price;
   @override
   final String address;
   @override
-  final String shipmentMethod;
+  final String? shipmentMethod;
   @override
   final List<dynamic> location;
 
@@ -1965,9 +1965,9 @@ class _$_Delivery implements _Delivery {
 abstract class _Delivery implements Delivery {
   const factory _Delivery(
       {required String provider,
-      required int price,
+      required num price,
       required String address,
-      required String shipmentMethod,
+      required String? shipmentMethod,
       required List<dynamic> location}) = _$_Delivery;
 
   factory _Delivery.fromJson(Map<String, dynamic> json) = _$_Delivery.fromJson;
@@ -1975,11 +1975,11 @@ abstract class _Delivery implements Delivery {
   @override
   String get provider => throw _privateConstructorUsedError;
   @override
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   @override
   String get address => throw _privateConstructorUsedError;
   @override
-  String get shipmentMethod => throw _privateConstructorUsedError;
+  String? get shipmentMethod => throw _privateConstructorUsedError;
   @override
   List<dynamic> get location => throw _privateConstructorUsedError;
   @override
@@ -2000,8 +2000,8 @@ class _$DeliveryDetailTearOff {
       {required String orderId,
       required String distance,
       required String provider,
-      required String shipmentMethod,
-      required int fee,
+      required String? shipmentMethod,
+      required num fee,
       required String bookingCode,
       required String bookingExpired,
       required String deliveryId,
@@ -2048,8 +2048,8 @@ mixin _$DeliveryDetail {
   String get orderId => throw _privateConstructorUsedError;
   String get distance => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
-  String get shipmentMethod => throw _privateConstructorUsedError;
-  int get fee => throw _privateConstructorUsedError;
+  String? get shipmentMethod => throw _privateConstructorUsedError;
+  num get fee => throw _privateConstructorUsedError;
   String get bookingCode => throw _privateConstructorUsedError;
   String get bookingExpired => throw _privateConstructorUsedError;
   String get deliveryId => throw _privateConstructorUsedError;
@@ -2078,8 +2078,8 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       {String orderId,
       String distance,
       String provider,
-      String shipmentMethod,
-      int fee,
+      String? shipmentMethod,
+      num fee,
       String bookingCode,
       String bookingExpired,
       String deliveryId,
@@ -2142,11 +2142,11 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2224,8 +2224,8 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       {String orderId,
       String distance,
       String provider,
-      String shipmentMethod,
-      int fee,
+      String? shipmentMethod,
+      num fee,
       String bookingCode,
       String bookingExpired,
       String deliveryId,
@@ -2292,11 +2292,11 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2381,9 +2381,9 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   @override
   final String provider;
   @override
-  final String shipmentMethod;
+  final String? shipmentMethod;
   @override
-  final int fee;
+  final num fee;
   @override
   final String bookingCode;
   @override
@@ -2504,8 +2504,8 @@ abstract class _DeliveryDetail implements DeliveryDetail {
       {required String orderId,
       required String distance,
       required String provider,
-      required String shipmentMethod,
-      required int fee,
+      required String? shipmentMethod,
+      required num fee,
       required String bookingCode,
       required String bookingExpired,
       required String deliveryId,
@@ -2529,9 +2529,9 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @override
   String get provider => throw _privateConstructorUsedError;
   @override
-  String get shipmentMethod => throw _privateConstructorUsedError;
+  String? get shipmentMethod => throw _privateConstructorUsedError;
   @override
-  int get fee => throw _privateConstructorUsedError;
+  num get fee => throw _privateConstructorUsedError;
   @override
   String get bookingCode => throw _privateConstructorUsedError;
   @override
@@ -2997,34 +2997,34 @@ class _$MenuItemTearOff {
   const _$MenuItemTearOff();
 
   _MenuItem call(
-      {required int productId,
+      {required num productId,
       required String title,
-      required int price,
+      required num price,
       required String code,
-      required int cost,
-      required int qty,
-      required int basicWeight,
-      required int weight,
+      required num cost,
+      required num qty,
+      required num basicWeight,
+      required num weight,
       required String category,
-      required int categoryId,
+      required num categoryId,
       required String categoryCode,
-      required String sku,
+      required String? sku,
       required String note,
       required bool isPreorder,
-      required int preorderPeriod,
-      required int amount,
+      required num preorderPeriod,
+      required num amount,
       required List<dynamic> modifiers,
-      required int modifiersAmount,
-      required int modifiersCost,
-      required int modifiersDiscount,
-      required int singleModifiersAmount,
-      required int subtotal,
-      required int serviceAmount,
-      required int taxAmount,
-      required bool isStock,
+      required num modifiersAmount,
+      required num modifiersCost,
+      required num modifiersDiscount,
+      required num singleModifiersAmount,
+      required num subtotal,
+      required num serviceAmount,
+      required num taxAmount,
+      required bool? isStock,
       required String img,
       required String image,
-      @JsonKey(includeIfNull: true) required int? transactionLimit}) {
+      @JsonKey(includeIfNull: true) required num? transactionLimit}) {
     return _MenuItem(
       productId: productId,
       title: title,
@@ -3067,35 +3067,35 @@ const $MenuItem = _$MenuItemTearOff();
 
 /// @nodoc
 mixin _$MenuItem {
-  int get productId => throw _privateConstructorUsedError;
+  num get productId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
-  int get cost => throw _privateConstructorUsedError;
-  int get qty => throw _privateConstructorUsedError;
-  int get basicWeight => throw _privateConstructorUsedError;
-  int get weight => throw _privateConstructorUsedError;
+  num get cost => throw _privateConstructorUsedError;
+  num get qty => throw _privateConstructorUsedError;
+  num get basicWeight => throw _privateConstructorUsedError;
+  num get weight => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
-  int get categoryId => throw _privateConstructorUsedError;
+  num get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   bool get isPreorder => throw _privateConstructorUsedError;
-  int get preorderPeriod => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  num get preorderPeriod => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   List<dynamic> get modifiers => throw _privateConstructorUsedError;
-  int get modifiersAmount => throw _privateConstructorUsedError;
-  int get modifiersCost => throw _privateConstructorUsedError;
-  int get modifiersDiscount => throw _privateConstructorUsedError;
-  int get singleModifiersAmount => throw _privateConstructorUsedError;
-  int get subtotal => throw _privateConstructorUsedError;
-  int get serviceAmount => throw _privateConstructorUsedError;
-  int get taxAmount => throw _privateConstructorUsedError;
-  bool get isStock => throw _privateConstructorUsedError;
+  num get modifiersAmount => throw _privateConstructorUsedError;
+  num get modifiersCost => throw _privateConstructorUsedError;
+  num get modifiersDiscount => throw _privateConstructorUsedError;
+  num get singleModifiersAmount => throw _privateConstructorUsedError;
+  num get subtotal => throw _privateConstructorUsedError;
+  num get serviceAmount => throw _privateConstructorUsedError;
+  num get taxAmount => throw _privateConstructorUsedError;
+  bool? get isStock => throw _privateConstructorUsedError;
   String get img => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
-  int? get transactionLimit => throw _privateConstructorUsedError;
+  num? get transactionLimit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3108,34 +3108,34 @@ abstract class $MenuItemCopyWith<$Res> {
   factory $MenuItemCopyWith(MenuItem value, $Res Function(MenuItem) then) =
       _$MenuItemCopyWithImpl<$Res>;
   $Res call(
-      {int productId,
+      {num productId,
       String title,
-      int price,
+      num price,
       String code,
-      int cost,
-      int qty,
-      int basicWeight,
-      int weight,
+      num cost,
+      num qty,
+      num basicWeight,
+      num weight,
       String category,
-      int categoryId,
+      num categoryId,
       String categoryCode,
-      String sku,
+      String? sku,
       String note,
       bool isPreorder,
-      int preorderPeriod,
-      int amount,
+      num preorderPeriod,
+      num amount,
       List<dynamic> modifiers,
-      int modifiersAmount,
-      int modifiersCost,
-      int modifiersDiscount,
-      int singleModifiersAmount,
-      int subtotal,
-      int serviceAmount,
-      int taxAmount,
-      bool isStock,
+      num modifiersAmount,
+      num modifiersCost,
+      num modifiersDiscount,
+      num singleModifiersAmount,
+      num subtotal,
+      num serviceAmount,
+      num taxAmount,
+      bool? isStock,
       String img,
       String image,
-      @JsonKey(includeIfNull: true) int? transactionLimit});
+      @JsonKey(includeIfNull: true) num? transactionLimit});
 }
 
 /// @nodoc
@@ -3181,7 +3181,7 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -3189,7 +3189,7 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -3197,19 +3197,19 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       cost: cost == freezed
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       qty: qty == freezed
           ? _value.qty
           : qty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       basicWeight: basicWeight == freezed
           ? _value.basicWeight
           : basicWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -3217,7 +3217,7 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       categoryCode: categoryCode == freezed
           ? _value.categoryCode
           : categoryCode // ignore: cast_nullable_to_non_nullable
@@ -3225,7 +3225,7 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -3237,11 +3237,11 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       preorderPeriod: preorderPeriod == freezed
           ? _value.preorderPeriod
           : preorderPeriod // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       modifiers: modifiers == freezed
           ? _value.modifiers
           : modifiers // ignore: cast_nullable_to_non_nullable
@@ -3249,35 +3249,35 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       modifiersAmount: modifiersAmount == freezed
           ? _value.modifiersAmount
           : modifiersAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       modifiersCost: modifiersCost == freezed
           ? _value.modifiersCost
           : modifiersCost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       modifiersDiscount: modifiersDiscount == freezed
           ? _value.modifiersDiscount
           : modifiersDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       singleModifiersAmount: singleModifiersAmount == freezed
           ? _value.singleModifiersAmount
           : singleModifiersAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       subtotal: subtotal == freezed
           ? _value.subtotal
           : subtotal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       serviceAmount: serviceAmount == freezed
           ? _value.serviceAmount
           : serviceAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       taxAmount: taxAmount == freezed
           ? _value.taxAmount
           : taxAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       isStock: isStock == freezed
           ? _value.isStock
           : isStock // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       img: img == freezed
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
@@ -3289,7 +3289,7 @@ class _$MenuItemCopyWithImpl<$Res> implements $MenuItemCopyWith<$Res> {
       transactionLimit: transactionLimit == freezed
           ? _value.transactionLimit
           : transactionLimit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
     ));
   }
 }
@@ -3300,34 +3300,34 @@ abstract class _$MenuItemCopyWith<$Res> implements $MenuItemCopyWith<$Res> {
       __$MenuItemCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int productId,
+      {num productId,
       String title,
-      int price,
+      num price,
       String code,
-      int cost,
-      int qty,
-      int basicWeight,
-      int weight,
+      num cost,
+      num qty,
+      num basicWeight,
+      num weight,
       String category,
-      int categoryId,
+      num categoryId,
       String categoryCode,
-      String sku,
+      String? sku,
       String note,
       bool isPreorder,
-      int preorderPeriod,
-      int amount,
+      num preorderPeriod,
+      num amount,
       List<dynamic> modifiers,
-      int modifiersAmount,
-      int modifiersCost,
-      int modifiersDiscount,
-      int singleModifiersAmount,
-      int subtotal,
-      int serviceAmount,
-      int taxAmount,
-      bool isStock,
+      num modifiersAmount,
+      num modifiersCost,
+      num modifiersDiscount,
+      num singleModifiersAmount,
+      num subtotal,
+      num serviceAmount,
+      num taxAmount,
+      bool? isStock,
       String img,
       String image,
-      @JsonKey(includeIfNull: true) int? transactionLimit});
+      @JsonKey(includeIfNull: true) num? transactionLimit});
 }
 
 /// @nodoc
@@ -3374,7 +3374,7 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -3382,7 +3382,7 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -3390,19 +3390,19 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       cost: cost == freezed
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       qty: qty == freezed
           ? _value.qty
           : qty // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       basicWeight: basicWeight == freezed
           ? _value.basicWeight
           : basicWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -3410,7 +3410,7 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       categoryCode: categoryCode == freezed
           ? _value.categoryCode
           : categoryCode // ignore: cast_nullable_to_non_nullable
@@ -3418,7 +3418,7 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -3430,11 +3430,11 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       preorderPeriod: preorderPeriod == freezed
           ? _value.preorderPeriod
           : preorderPeriod // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       modifiers: modifiers == freezed
           ? _value.modifiers
           : modifiers // ignore: cast_nullable_to_non_nullable
@@ -3442,35 +3442,35 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       modifiersAmount: modifiersAmount == freezed
           ? _value.modifiersAmount
           : modifiersAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       modifiersCost: modifiersCost == freezed
           ? _value.modifiersCost
           : modifiersCost // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       modifiersDiscount: modifiersDiscount == freezed
           ? _value.modifiersDiscount
           : modifiersDiscount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       singleModifiersAmount: singleModifiersAmount == freezed
           ? _value.singleModifiersAmount
           : singleModifiersAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       subtotal: subtotal == freezed
           ? _value.subtotal
           : subtotal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       serviceAmount: serviceAmount == freezed
           ? _value.serviceAmount
           : serviceAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       taxAmount: taxAmount == freezed
           ? _value.taxAmount
           : taxAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       isStock: isStock == freezed
           ? _value.isStock
           : isStock // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       img: img == freezed
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
@@ -3482,7 +3482,7 @@ class __$MenuItemCopyWithImpl<$Res> extends _$MenuItemCopyWithImpl<$Res>
       transactionLimit: transactionLimit == freezed
           ? _value.transactionLimit
           : transactionLimit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
     ));
   }
 }
@@ -3524,62 +3524,62 @@ class _$_MenuItem implements _MenuItem {
       _$_$_MenuItemFromJson(json);
 
   @override
-  final int productId;
+  final num productId;
   @override
   final String title;
   @override
-  final int price;
+  final num price;
   @override
   final String code;
   @override
-  final int cost;
+  final num cost;
   @override
-  final int qty;
+  final num qty;
   @override
-  final int basicWeight;
+  final num basicWeight;
   @override
-  final int weight;
+  final num weight;
   @override
   final String category;
   @override
-  final int categoryId;
+  final num categoryId;
   @override
   final String categoryCode;
   @override
-  final String sku;
+  final String? sku;
   @override
   final String note;
   @override
   final bool isPreorder;
   @override
-  final int preorderPeriod;
+  final num preorderPeriod;
   @override
-  final int amount;
+  final num amount;
   @override
   final List<dynamic> modifiers;
   @override
-  final int modifiersAmount;
+  final num modifiersAmount;
   @override
-  final int modifiersCost;
+  final num modifiersCost;
   @override
-  final int modifiersDiscount;
+  final num modifiersDiscount;
   @override
-  final int singleModifiersAmount;
+  final num singleModifiersAmount;
   @override
-  final int subtotal;
+  final num subtotal;
   @override
-  final int serviceAmount;
+  final num serviceAmount;
   @override
-  final int taxAmount;
+  final num taxAmount;
   @override
-  final bool isStock;
+  final bool? isStock;
   @override
   final String img;
   @override
   final String image;
   @override
   @JsonKey(includeIfNull: true)
-  final int? transactionLimit;
+  final num? transactionLimit;
 
   @override
   String toString() {
@@ -3707,95 +3707,95 @@ class _$_MenuItem implements _MenuItem {
 
 abstract class _MenuItem implements MenuItem {
   const factory _MenuItem(
-          {required int productId,
+          {required num productId,
           required String title,
-          required int price,
+          required num price,
           required String code,
-          required int cost,
-          required int qty,
-          required int basicWeight,
-          required int weight,
+          required num cost,
+          required num qty,
+          required num basicWeight,
+          required num weight,
           required String category,
-          required int categoryId,
+          required num categoryId,
           required String categoryCode,
-          required String sku,
+          required String? sku,
           required String note,
           required bool isPreorder,
-          required int preorderPeriod,
-          required int amount,
+          required num preorderPeriod,
+          required num amount,
           required List<dynamic> modifiers,
-          required int modifiersAmount,
-          required int modifiersCost,
-          required int modifiersDiscount,
-          required int singleModifiersAmount,
-          required int subtotal,
-          required int serviceAmount,
-          required int taxAmount,
-          required bool isStock,
+          required num modifiersAmount,
+          required num modifiersCost,
+          required num modifiersDiscount,
+          required num singleModifiersAmount,
+          required num subtotal,
+          required num serviceAmount,
+          required num taxAmount,
+          required bool? isStock,
           required String img,
           required String image,
-          @JsonKey(includeIfNull: true) required int? transactionLimit}) =
+          @JsonKey(includeIfNull: true) required num? transactionLimit}) =
       _$_MenuItem;
 
   factory _MenuItem.fromJson(Map<String, dynamic> json) = _$_MenuItem.fromJson;
 
   @override
-  int get productId => throw _privateConstructorUsedError;
+  num get productId => throw _privateConstructorUsedError;
   @override
   String get title => throw _privateConstructorUsedError;
   @override
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  int get cost => throw _privateConstructorUsedError;
+  num get cost => throw _privateConstructorUsedError;
   @override
-  int get qty => throw _privateConstructorUsedError;
+  num get qty => throw _privateConstructorUsedError;
   @override
-  int get basicWeight => throw _privateConstructorUsedError;
+  num get basicWeight => throw _privateConstructorUsedError;
   @override
-  int get weight => throw _privateConstructorUsedError;
+  num get weight => throw _privateConstructorUsedError;
   @override
   String get category => throw _privateConstructorUsedError;
   @override
-  int get categoryId => throw _privateConstructorUsedError;
+  num get categoryId => throw _privateConstructorUsedError;
   @override
   String get categoryCode => throw _privateConstructorUsedError;
   @override
-  String get sku => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
   @override
   String get note => throw _privateConstructorUsedError;
   @override
   bool get isPreorder => throw _privateConstructorUsedError;
   @override
-  int get preorderPeriod => throw _privateConstructorUsedError;
+  num get preorderPeriod => throw _privateConstructorUsedError;
   @override
-  int get amount => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   @override
   List<dynamic> get modifiers => throw _privateConstructorUsedError;
   @override
-  int get modifiersAmount => throw _privateConstructorUsedError;
+  num get modifiersAmount => throw _privateConstructorUsedError;
   @override
-  int get modifiersCost => throw _privateConstructorUsedError;
+  num get modifiersCost => throw _privateConstructorUsedError;
   @override
-  int get modifiersDiscount => throw _privateConstructorUsedError;
+  num get modifiersDiscount => throw _privateConstructorUsedError;
   @override
-  int get singleModifiersAmount => throw _privateConstructorUsedError;
+  num get singleModifiersAmount => throw _privateConstructorUsedError;
   @override
-  int get subtotal => throw _privateConstructorUsedError;
+  num get subtotal => throw _privateConstructorUsedError;
   @override
-  int get serviceAmount => throw _privateConstructorUsedError;
+  num get serviceAmount => throw _privateConstructorUsedError;
   @override
-  int get taxAmount => throw _privateConstructorUsedError;
+  num get taxAmount => throw _privateConstructorUsedError;
   @override
-  bool get isStock => throw _privateConstructorUsedError;
+  bool? get isStock => throw _privateConstructorUsedError;
   @override
   String get img => throw _privateConstructorUsedError;
   @override
   String get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
-  int? get transactionLimit => throw _privateConstructorUsedError;
+  num? get transactionLimit => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MenuItemCopyWith<_MenuItem> get copyWith =>
@@ -4350,11 +4350,11 @@ class _$DetailTearOff {
       required List<dynamic> taxesAndServices,
       required List<dynamic> location,
       @JsonKey(includeIfNull: true) required String? phone,
-      required String kurirPrice,
+      required dynamic kurirPrice,
       required List<String> deliveryProvider,
       required String driverPhone,
       required List<dynamic> area,
-      required List<dynamic> deliveryLocation}) {
+      required List<dynamic>? deliveryLocation}) {
     return _Detail(
       name: name,
       address: address,
@@ -4385,11 +4385,11 @@ mixin _$Detail {
   List<dynamic> get location => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
   String? get phone => throw _privateConstructorUsedError;
-  String get kurirPrice => throw _privateConstructorUsedError;
+  dynamic get kurirPrice => throw _privateConstructorUsedError;
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
   String get driverPhone => throw _privateConstructorUsedError;
   List<dynamic> get area => throw _privateConstructorUsedError;
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4406,11 +4406,11 @@ abstract class $DetailCopyWith<$Res> {
       List<dynamic> taxesAndServices,
       List<dynamic> location,
       @JsonKey(includeIfNull: true) String? phone,
-      String kurirPrice,
+      dynamic kurirPrice,
       List<String> deliveryProvider,
       String driverPhone,
       List<dynamic> area,
-      List<dynamic> deliveryLocation});
+      List<dynamic>? deliveryLocation});
 }
 
 /// @nodoc
@@ -4458,7 +4458,7 @@ class _$DetailCopyWithImpl<$Res> implements $DetailCopyWith<$Res> {
       kurirPrice: kurirPrice == freezed
           ? _value.kurirPrice
           : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       deliveryProvider: deliveryProvider == freezed
           ? _value.deliveryProvider
           : deliveryProvider // ignore: cast_nullable_to_non_nullable
@@ -4474,7 +4474,7 @@ class _$DetailCopyWithImpl<$Res> implements $DetailCopyWith<$Res> {
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
     ));
   }
 }
@@ -4490,11 +4490,11 @@ abstract class _$DetailCopyWith<$Res> implements $DetailCopyWith<$Res> {
       List<dynamic> taxesAndServices,
       List<dynamic> location,
       @JsonKey(includeIfNull: true) String? phone,
-      String kurirPrice,
+      dynamic kurirPrice,
       List<String> deliveryProvider,
       String driverPhone,
       List<dynamic> area,
-      List<dynamic> deliveryLocation});
+      List<dynamic>? deliveryLocation});
 }
 
 /// @nodoc
@@ -4543,7 +4543,7 @@ class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
       kurirPrice: kurirPrice == freezed
           ? _value.kurirPrice
           : kurirPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       deliveryProvider: deliveryProvider == freezed
           ? _value.deliveryProvider
           : deliveryProvider // ignore: cast_nullable_to_non_nullable
@@ -4559,7 +4559,7 @@ class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
     ));
   }
 }
@@ -4594,7 +4594,7 @@ class _$_Detail implements _Detail {
   @JsonKey(includeIfNull: true)
   final String? phone;
   @override
-  final String kurirPrice;
+  final dynamic kurirPrice;
   @override
   final List<String> deliveryProvider;
   @override
@@ -4602,7 +4602,7 @@ class _$_Detail implements _Detail {
   @override
   final List<dynamic> area;
   @override
-  final List<dynamic> deliveryLocation;
+  final List<dynamic>? deliveryLocation;
 
   @override
   String toString() {
@@ -4674,11 +4674,11 @@ abstract class _Detail implements Detail {
       required List<dynamic> taxesAndServices,
       required List<dynamic> location,
       @JsonKey(includeIfNull: true) required String? phone,
-      required String kurirPrice,
+      required dynamic kurirPrice,
       required List<String> deliveryProvider,
       required String driverPhone,
       required List<dynamic> area,
-      required List<dynamic> deliveryLocation}) = _$_Detail;
+      required List<dynamic>? deliveryLocation}) = _$_Detail;
 
   factory _Detail.fromJson(Map<String, dynamic> json) = _$_Detail.fromJson;
 
@@ -4694,7 +4694,7 @@ abstract class _Detail implements Detail {
   @JsonKey(includeIfNull: true)
   String? get phone => throw _privateConstructorUsedError;
   @override
-  String get kurirPrice => throw _privateConstructorUsedError;
+  dynamic get kurirPrice => throw _privateConstructorUsedError;
   @override
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
   @override
@@ -4702,7 +4702,7 @@ abstract class _Detail implements Detail {
   @override
   List<dynamic> get area => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DetailCopyWith<_Detail> get copyWith => throw _privateConstructorUsedError;
@@ -4717,7 +4717,7 @@ class _$RatingTearOff {
   const _$RatingTearOff();
 
   _Rating call(
-      {@JsonKey(includeIfNull: true) required int? rating,
+      {@JsonKey(includeIfNull: true) required num? rating,
       @JsonKey(includeIfNull: true) required String? review}) {
     return _Rating(
       rating: rating,
@@ -4736,7 +4736,7 @@ const $Rating = _$RatingTearOff();
 /// @nodoc
 mixin _$Rating {
   @JsonKey(includeIfNull: true)
-  int? get rating => throw _privateConstructorUsedError;
+  num? get rating => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
   String? get review => throw _privateConstructorUsedError;
 
@@ -4750,7 +4750,7 @@ abstract class $RatingCopyWith<$Res> {
   factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
       _$RatingCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(includeIfNull: true) int? rating,
+      {@JsonKey(includeIfNull: true) num? rating,
       @JsonKey(includeIfNull: true) String? review});
 }
 
@@ -4771,7 +4771,7 @@ class _$RatingCopyWithImpl<$Res> implements $RatingCopyWith<$Res> {
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       review: review == freezed
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
@@ -4786,7 +4786,7 @@ abstract class _$RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
       __$RatingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(includeIfNull: true) int? rating,
+      {@JsonKey(includeIfNull: true) num? rating,
       @JsonKey(includeIfNull: true) String? review});
 }
 
@@ -4808,7 +4808,7 @@ class __$RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       review: review == freezed
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
@@ -4829,7 +4829,7 @@ class _$_Rating implements _Rating {
 
   @override
   @JsonKey(includeIfNull: true)
-  final int? rating;
+  final num? rating;
   @override
   @JsonKey(includeIfNull: true)
   final String? review;
@@ -4868,14 +4868,14 @@ class _$_Rating implements _Rating {
 
 abstract class _Rating implements Rating {
   const factory _Rating(
-      {@JsonKey(includeIfNull: true) required int? rating,
+      {@JsonKey(includeIfNull: true) required num? rating,
       @JsonKey(includeIfNull: true) required String? review}) = _$_Rating;
 
   factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
 
   @override
   @JsonKey(includeIfNull: true)
-  int? get rating => throw _privateConstructorUsedError;
+  num? get rating => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
   String? get review => throw _privateConstructorUsedError;
@@ -5065,8 +5065,8 @@ class _$PaymentTearOff {
   const _$PaymentTearOff();
 
   _Payment call(
-      {required int amount,
-      required int change,
+      {required num amount,
+      required num change,
       required String method,
       required String companyPaymentMethodId,
       required DateTime timestamp,
@@ -5091,8 +5091,8 @@ const $Payment = _$PaymentTearOff();
 
 /// @nodoc
 mixin _$Payment {
-  int get amount => throw _privateConstructorUsedError;
-  int get change => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
+  num get change => throw _privateConstructorUsedError;
   String get method => throw _privateConstructorUsedError;
   String get companyPaymentMethodId => throw _privateConstructorUsedError;
   DateTime get timestamp => throw _privateConstructorUsedError;
@@ -5108,8 +5108,8 @@ abstract class $PaymentCopyWith<$Res> {
   factory $PaymentCopyWith(Payment value, $Res Function(Payment) then) =
       _$PaymentCopyWithImpl<$Res>;
   $Res call(
-      {int amount,
-      int change,
+      {num amount,
+      num change,
       String method,
       String companyPaymentMethodId,
       DateTime timestamp,
@@ -5137,11 +5137,11 @@ class _$PaymentCopyWithImpl<$Res> implements $PaymentCopyWith<$Res> {
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       change: change == freezed
           ? _value.change
           : change // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       method: method == freezed
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
@@ -5168,8 +5168,8 @@ abstract class _$PaymentCopyWith<$Res> implements $PaymentCopyWith<$Res> {
       __$PaymentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int amount,
-      int change,
+      {num amount,
+      num change,
       String method,
       String companyPaymentMethodId,
       DateTime timestamp,
@@ -5198,11 +5198,11 @@ class __$PaymentCopyWithImpl<$Res> extends _$PaymentCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       change: change == freezed
           ? _value.change
           : change // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       method: method == freezed
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
@@ -5238,9 +5238,9 @@ class _$_Payment implements _Payment {
       _$_$_PaymentFromJson(json);
 
   @override
-  final int amount;
+  final num amount;
   @override
-  final int change;
+  final num change;
   @override
   final String method;
   @override
@@ -5298,8 +5298,8 @@ class _$_Payment implements _Payment {
 
 abstract class _Payment implements Payment {
   const factory _Payment(
-      {required int amount,
-      required int change,
+      {required num amount,
+      required num change,
       required String method,
       required String companyPaymentMethodId,
       required DateTime timestamp,
@@ -5308,9 +5308,9 @@ abstract class _Payment implements Payment {
   factory _Payment.fromJson(Map<String, dynamic> json) = _$_Payment.fromJson;
 
   @override
-  int get amount => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   @override
-  int get change => throw _privateConstructorUsedError;
+  num get change => throw _privateConstructorUsedError;
   @override
   String get method => throw _privateConstructorUsedError;
   @override
@@ -5334,11 +5334,11 @@ class _$TaxesAndServiceTearOff {
   const _$TaxesAndServiceTearOff();
 
   _TaxesAndService call(
-      {required int id,
+      {required num id,
       required String code,
       required String name,
       required String type,
-      required int amount,
+      required num amount,
       required List<String> salesTypes,
       required List<String> paymentTypes,
       required String title}) {
@@ -5364,11 +5364,11 @@ const $TaxesAndService = _$TaxesAndServiceTearOff();
 
 /// @nodoc
 mixin _$TaxesAndService {
-  int get id => throw _privateConstructorUsedError;
+  num get id => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   List<String> get salesTypes => throw _privateConstructorUsedError;
   List<String> get paymentTypes => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -5385,11 +5385,11 @@ abstract class $TaxesAndServiceCopyWith<$Res> {
           TaxesAndService value, $Res Function(TaxesAndService) then) =
       _$TaxesAndServiceCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {num id,
       String code,
       String name,
       String type,
-      int amount,
+      num amount,
       List<String> salesTypes,
       List<String> paymentTypes,
       String title});
@@ -5419,7 +5419,7 @@ class _$TaxesAndServiceCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -5435,7 +5435,7 @@ class _$TaxesAndServiceCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
@@ -5460,11 +5460,11 @@ abstract class _$TaxesAndServiceCopyWith<$Res>
       __$TaxesAndServiceCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {num id,
       String code,
       String name,
       String type,
-      int amount,
+      num amount,
       List<String> salesTypes,
       List<String> paymentTypes,
       String title});
@@ -5496,7 +5496,7 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -5512,7 +5512,7 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
@@ -5546,7 +5546,7 @@ class _$_TaxesAndService implements _TaxesAndService {
       _$_$_TaxesAndServiceFromJson(json);
 
   @override
-  final int id;
+  final num id;
   @override
   final String code;
   @override
@@ -5554,7 +5554,7 @@ class _$_TaxesAndService implements _TaxesAndService {
   @override
   final String type;
   @override
-  final int amount;
+  final num amount;
   @override
   final List<String> salesTypes;
   @override
@@ -5616,11 +5616,11 @@ class _$_TaxesAndService implements _TaxesAndService {
 
 abstract class _TaxesAndService implements TaxesAndService {
   const factory _TaxesAndService(
-      {required int id,
+      {required num id,
       required String code,
       required String name,
       required String type,
-      required int amount,
+      required num amount,
       required List<String> salesTypes,
       required List<String> paymentTypes,
       required String title}) = _$_TaxesAndService;
@@ -5629,7 +5629,7 @@ abstract class _TaxesAndService implements TaxesAndService {
       _$_TaxesAndService.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  num get id => throw _privateConstructorUsedError;
   @override
   String get code => throw _privateConstructorUsedError;
   @override
@@ -5637,7 +5637,7 @@ abstract class _TaxesAndService implements TaxesAndService {
   @override
   String get type => throw _privateConstructorUsedError;
   @override
-  int get amount => throw _privateConstructorUsedError;
+  num get amount => throw _privateConstructorUsedError;
   @override
   List<String> get salesTypes => throw _privateConstructorUsedError;
   @override

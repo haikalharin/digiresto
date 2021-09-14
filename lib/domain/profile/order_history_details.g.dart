@@ -10,7 +10,7 @@ _$_OrderHistoryDetails _$_$_OrderHistoryDetailsFromJson(
     Map<String, dynamic> json) {
   return _$_OrderHistoryDetails(
     outletName: json['outletName'] as String,
-    outletId: json['outletId'] as int,
+    outletId: json['outletId'] as num,
     customerName: json['customerName'] as String,
     customerEmail: json['customerEmail'] as String,
     customerPhone: json['customerPhone'] as String,
@@ -24,39 +24,39 @@ _$_OrderHistoryDetails _$_$_OrderHistoryDetailsFromJson(
     customerCarColor: json['customerCarColor'] as String,
     customerCarNumber: json['customerCarNumber'] as String,
     eta: json['eta'] as String,
-    totalChange: json['totalChange'] as int,
-    discountAmount: json['discountAmount'] as int,
-    discountPercentage: json['discountPercentage'] as int,
-    finalAmount: json['finalAmount'] as int,
-    receiptTotalDiscount: json['receiptTotalDiscount'] as int,
-    roundAmount: json['roundAmount'] as int,
-    subtotal: json['subtotal'] as int,
-    totalDiscount: json['totalDiscount'] as int,
-    totalItemAmount: json['totalItemAmount'] as int,
-    totalItemCost: json['totalItemCost'] as int,
-    totalItemDiscount: json['totalItemDiscount'] as int,
-    totalService: json['totalService'] as int,
-    totalTax: json['totalTax'] as int,
-    voucherAmount: json['voucherAmount'] as int,
-    deliveryAmount: json['deliveryAmount'] as int,
-    totalPayment: json['totalPayment'] as int,
+    totalChange: json['totalChange'] as num,
+    discountAmount: json['discountAmount'] as num,
+    discountPercentage: json['discountPercentage'] as num,
+    finalAmount: json['finalAmount'] as num,
+    receiptTotalDiscount: json['receiptTotalDiscount'] as num,
+    roundAmount: json['roundAmount'] as num,
+    subtotal: json['subtotal'] as num,
+    totalDiscount: json['totalDiscount'] as num,
+    totalItemAmount: json['totalItemAmount'] as num,
+    totalItemCost: json['totalItemCost'] as num,
+    totalItemDiscount: json['totalItemDiscount'] as num,
+    totalService: json['totalService'] as num,
+    totalTax: json['totalTax'] as num,
+    voucherAmount: json['voucherAmount'] as num,
+    deliveryAmount: json['deliveryAmount'] as num,
+    totalPayment: json['totalPayment'] as num,
     salesType: json['salesType'] as String,
     items: (json['items'] as List<dynamic>)
         .map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
         .toList(),
-    itemWeight: json['itemWeight'] as int,
+    itemWeight: json['itemWeight'] as num,
     isUseVoucher: json['isUseVoucher'] as bool,
     promos: json['promos'] as List<dynamic>,
     paymentList: json['paymentList'] as List<dynamic>,
     taxesAndServices: (json['taxesAndServices'] as List<dynamic>)
         .map((e) => TaxesAndService.fromJson(e as Map<String, dynamic>))
         .toList(),
-    itemTotalAmount: json['itemTotalAmount'] as int,
+    itemTotalAmount: json['itemTotalAmount'] as num,
     note: json['note'] as String,
     grabpawoon: json['grabpawoon'] == null
         ? null
         : Delivery.fromJson(json['grabpawoon'] as Map<String, dynamic>),
-    originalDeliveryAmount: json['originalDeliveryAmount'] as int,
+    originalDeliveryAmount: json['originalDeliveryAmount'] as num?,
     deviceTimestamp: DateTime.parse(json['deviceTimestamp'] as String),
     receiptCode: json['receiptCode'] as String,
     payments: (json['payments'] as List<dynamic>)
@@ -135,7 +135,7 @@ Map<String, dynamic> _$_$_OrderHistoryDetailsToJson(
 _$_BillingDetail _$_$_BillingDetailFromJson(Map<String, dynamic> json) {
   return _$_BillingDetail(
     title: json['title'] as String,
-    amount: json['amount'] as int,
+    amount: json['amount'] as num,
     vaNumber: json['vaNumber'] as String,
     expires: DateTime.parse(json['expires'] as String),
     expiresAt: DateTime.parse(json['expiresAt'] as String),
@@ -156,9 +156,9 @@ Map<String, dynamic> _$_$_BillingDetailToJson(_$_BillingDetail instance) =>
 _$_Delivery _$_$_DeliveryFromJson(Map<String, dynamic> json) {
   return _$_Delivery(
     provider: json['provider'] as String,
-    price: json['price'] as int,
+    price: json['price'] as num,
     address: json['address'] as String,
-    shipmentMethod: json['shipmentMethod'] as String,
+    shipmentMethod: json['shipmentMethod'] as String?,
     location: json['location'] as List<dynamic>,
   );
 }
@@ -177,8 +177,8 @@ _$_DeliveryDetail _$_$_DeliveryDetailFromJson(Map<String, dynamic> json) {
     orderId: json['orderId'] as String,
     distance: json['distance'] as String,
     provider: json['provider'] as String,
-    shipmentMethod: json['shipmentMethod'] as String,
-    fee: json['fee'] as int,
+    shipmentMethod: json['shipmentMethod'] as String?,
+    fee: json['fee'] as num,
     bookingCode: json['bookingCode'] as String,
     bookingExpired: json['bookingExpired'] as String,
     deliveryId: json['deliveryId'] as String,
@@ -251,34 +251,34 @@ Map<String, dynamic> _$_$_ToToJson(_$_To instance) => <String, dynamic>{
 
 _$_MenuItem _$_$_MenuItemFromJson(Map<String, dynamic> json) {
   return _$_MenuItem(
-    productId: json['productId'] as int,
+    productId: json['productId'] as num,
     title: json['title'] as String,
-    price: json['price'] as int,
+    price: json['price'] as num,
     code: json['code'] as String,
-    cost: json['cost'] as int,
-    qty: json['qty'] as int,
-    basicWeight: json['basicWeight'] as int,
-    weight: json['weight'] as int,
+    cost: json['cost'] as num,
+    qty: json['qty'] as num,
+    basicWeight: json['basicWeight'] as num,
+    weight: json['weight'] as num,
     category: json['category'] as String,
-    categoryId: json['categoryId'] as int,
+    categoryId: json['categoryId'] as num,
     categoryCode: json['categoryCode'] as String,
-    sku: json['sku'] as String,
+    sku: json['sku'] as String?,
     note: json['note'] as String,
     isPreorder: json['isPreorder'] as bool,
-    preorderPeriod: json['preorderPeriod'] as int,
-    amount: json['amount'] as int,
+    preorderPeriod: json['preorderPeriod'] as num,
+    amount: json['amount'] as num,
     modifiers: json['modifiers'] as List<dynamic>,
-    modifiersAmount: json['modifiersAmount'] as int,
-    modifiersCost: json['modifiersCost'] as int,
-    modifiersDiscount: json['modifiersDiscount'] as int,
-    singleModifiersAmount: json['singleModifiersAmount'] as int,
-    subtotal: json['subtotal'] as int,
-    serviceAmount: json['serviceAmount'] as int,
-    taxAmount: json['taxAmount'] as int,
-    isStock: json['isStock'] as bool,
+    modifiersAmount: json['modifiersAmount'] as num,
+    modifiersCost: json['modifiersCost'] as num,
+    modifiersDiscount: json['modifiersDiscount'] as num,
+    singleModifiersAmount: json['singleModifiersAmount'] as num,
+    subtotal: json['subtotal'] as num,
+    serviceAmount: json['serviceAmount'] as num,
+    taxAmount: json['taxAmount'] as num,
+    isStock: json['isStock'] as bool?,
     img: json['img'] as String,
     image: json['image'] as String,
-    transactionLimit: json['transactionLimit'] as int?,
+    transactionLimit: json['transactionLimit'] as num?,
   );
 }
 
@@ -360,13 +360,13 @@ _$_Detail _$_$_DetailFromJson(Map<String, dynamic> json) {
     taxesAndServices: json['taxesAndServices'] as List<dynamic>,
     location: json['location'] as List<dynamic>,
     phone: json['phone'] as String?,
-    kurirPrice: json['kurirPrice'] as String,
+    kurirPrice: json['kurirPrice'],
     deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
     driverPhone: json['driverPhone'] as String,
     area: json['area'] as List<dynamic>,
-    deliveryLocation: json['deliveryLocation'] as List<dynamic>,
+    deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
   );
 }
 
@@ -385,7 +385,7 @@ Map<String, dynamic> _$_$_DetailToJson(_$_Detail instance) => <String, dynamic>{
 
 _$_Rating _$_$_RatingFromJson(Map<String, dynamic> json) {
   return _$_Rating(
-    rating: json['rating'] as int?,
+    rating: json['rating'] as num?,
     review: json['review'] as String?,
   );
 }
@@ -411,8 +411,8 @@ Map<String, dynamic> _$_$_OrderMethodToJson(_$_OrderMethod instance) =>
 
 _$_Payment _$_$_PaymentFromJson(Map<String, dynamic> json) {
   return _$_Payment(
-    amount: json['amount'] as int,
-    change: json['change'] as int,
+    amount: json['amount'] as num,
+    change: json['change'] as num,
     method: json['method'] as String,
     companyPaymentMethodId: json['companyPaymentMethodId'] as String,
     timestamp: DateTime.parse(json['timestamp'] as String),
@@ -432,11 +432,11 @@ Map<String, dynamic> _$_$_PaymentToJson(_$_Payment instance) =>
 
 _$_TaxesAndService _$_$_TaxesAndServiceFromJson(Map<String, dynamic> json) {
   return _$_TaxesAndService(
-    id: json['id'] as int,
+    id: json['id'] as num,
     code: json['code'] as String,
     name: json['name'] as String,
     type: json['type'] as String,
-    amount: json['amount'] as int,
+    amount: json['amount'] as num,
     salesTypes:
         (json['salesTypes'] as List<dynamic>).map((e) => e as String).toList(),
     paymentTypes: (json['paymentTypes'] as List<dynamic>)

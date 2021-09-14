@@ -287,7 +287,7 @@ class ProfileWidget extends StatelessWidget {
               ),
               ProfileMenuWidget(
                 onTap: () => Get.to(AboutDigiresto()),
-                label: i10n.profile_about,
+                label: i10n.profile_about('Digiresto'),
                 assetFile: 'assets/profile_about_digiresto.svg',
               ),
               ProfileMenuWidget(
@@ -298,7 +298,7 @@ class ProfileWidget extends StatelessWidget {
               ProfileMenuWidget(
                 onTap: () => launch(
                     'https://play.google.com/store/apps/details?id=id.damcorp.digimitra'),
-                label: i10n.profile_join_digiresto,
+                label: i10n.profile_join_digiresto('Digiresto'),
                 assetFile: 'assets/profile_join_us.svg',
               ),
               ProfileMenuWidget(
