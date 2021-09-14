@@ -132,7 +132,7 @@ _$_BillingDetail _$_$_BillingDetailFromJson(Map<String, dynamic> json) {
     orderId: json['orderId'] as String? ?? '',
     title: json['title'] as String? ?? '',
     vaNumber: json['vaNumber'] as String? ?? '',
-    amount: json['amount'] as String? ?? '',
+    amount: json['amount'],
     fee: json['fee'] as String? ?? '',
     finalAmount: json['finalAmount'] as String? ?? '',
     serviceProvider: json['serviceProvider'] as String? ?? '',

@@ -1433,7 +1433,7 @@ class _$BillingDetailTearOff {
       {@JsonKey(defaultValue: '') required String orderId,
       @JsonKey(defaultValue: '') required String title,
       @JsonKey(defaultValue: '') required String vaNumber,
-      @JsonKey(defaultValue: '') required String amount,
+      required dynamic amount,
       @JsonKey(defaultValue: '') required String fee,
       @JsonKey(defaultValue: '') required String finalAmount,
       @JsonKey(defaultValue: '') required String serviceProvider,
@@ -1490,8 +1490,7 @@ mixin _$BillingDetail {
   String get title => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: '')
   String get vaNumber => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
-  String get amount => throw _privateConstructorUsedError;
+  dynamic get amount => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: '')
   String get fee => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: '')
@@ -1534,7 +1533,7 @@ abstract class $BillingDetailCopyWith<$Res> {
       {@JsonKey(defaultValue: '') String orderId,
       @JsonKey(defaultValue: '') String title,
       @JsonKey(defaultValue: '') String vaNumber,
-      @JsonKey(defaultValue: '') String amount,
+      dynamic amount,
       @JsonKey(defaultValue: '') String fee,
       @JsonKey(defaultValue: '') String finalAmount,
       @JsonKey(defaultValue: '') String serviceProvider,
@@ -1601,7 +1600,7 @@ class _$BillingDetailCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -1681,7 +1680,7 @@ abstract class _$BillingDetailCopyWith<$Res>
       {@JsonKey(defaultValue: '') String orderId,
       @JsonKey(defaultValue: '') String title,
       @JsonKey(defaultValue: '') String vaNumber,
-      @JsonKey(defaultValue: '') String amount,
+      dynamic amount,
       @JsonKey(defaultValue: '') String fee,
       @JsonKey(defaultValue: '') String finalAmount,
       @JsonKey(defaultValue: '') String serviceProvider,
@@ -1750,7 +1749,7 @@ class __$BillingDetailCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -1826,7 +1825,7 @@ class _$_BillingDetail implements _BillingDetail {
       {@JsonKey(defaultValue: '') required this.orderId,
       @JsonKey(defaultValue: '') required this.title,
       @JsonKey(defaultValue: '') required this.vaNumber,
-      @JsonKey(defaultValue: '') required this.amount,
+      required this.amount,
       @JsonKey(defaultValue: '') required this.fee,
       @JsonKey(defaultValue: '') required this.finalAmount,
       @JsonKey(defaultValue: '') required this.serviceProvider,
@@ -1857,8 +1856,7 @@ class _$_BillingDetail implements _BillingDetail {
   @JsonKey(defaultValue: '')
   final String vaNumber;
   @override
-  @JsonKey(defaultValue: '')
-  final String amount;
+  final dynamic amount;
   @override
   @JsonKey(defaultValue: '')
   final String fee;
@@ -2012,7 +2010,7 @@ abstract class _BillingDetail implements BillingDetail {
       {@JsonKey(defaultValue: '') required String orderId,
       @JsonKey(defaultValue: '') required String title,
       @JsonKey(defaultValue: '') required String vaNumber,
-      @JsonKey(defaultValue: '') required String amount,
+      required dynamic amount,
       @JsonKey(defaultValue: '') required String fee,
       @JsonKey(defaultValue: '') required String finalAmount,
       @JsonKey(defaultValue: '') required String serviceProvider,
@@ -2043,8 +2041,7 @@ abstract class _BillingDetail implements BillingDetail {
   @JsonKey(defaultValue: '')
   String get vaNumber => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
-  String get amount => throw _privateConstructorUsedError;
+  dynamic get amount => throw _privateConstructorUsedError;
   @override
   @JsonKey(defaultValue: '')
   String get fee => throw _privateConstructorUsedError;

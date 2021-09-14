@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_pending.freezed.dart';
 part 'order_pending.g.dart';
@@ -75,7 +76,7 @@ class BillingDetail with _$BillingDetail {
     @JsonKey(defaultValue: '') required String orderId,
     @JsonKey(defaultValue: '') required String title,
     @JsonKey(defaultValue: '') required String vaNumber,
-    @JsonKey(defaultValue: '') required String amount,
+    required dynamic amount,
     @JsonKey(defaultValue: '') required String fee,
     @JsonKey(defaultValue: '') required String finalAmount,
     @JsonKey(defaultValue: '') required String serviceProvider,

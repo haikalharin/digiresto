@@ -304,7 +304,8 @@ class OrderPendingWidget extends StatelessWidget {
                         Text(
                           isVa
                               ? CommonUtils.currencyFormat(double.tryParse(
-                                      orderPending.billingDetail.amount) ??
+                                      orderPending.billingDetail.amount
+                                          .toString()) ??
                                   0)
                               : CommonUtils.currencyFormat(double.tryParse(
                                       orderPending
