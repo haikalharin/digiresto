@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/profile/i_profile_repository.dart';
-import 'package:digiresto/domain/profile/order_history_details.dart';
+import 'package:digiresto/domain/profile/order_history_details.dart'
+    hide Rating;
 import 'package:digiresto/domain/profile/profile_failure.dart';
+import 'package:digiresto/domain/profile/value_objects.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -31,8 +33,10 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
         );
         yield failureOrSuccess.fold(
           (failure) => _LoadFailure(failure: failure),
-          (orderHistoryDetails) =>
-              _LoadSuccess(orderHistoryDetails: orderHistoryDetails),
+          (orderHistoryDetails) => _LoadSuccess(
+            orderHistoryDetails: orderHistoryDetails,
+            optionSubmitRating: none(),
+          ),
         );
       },
       refresh: (_event) async* {
@@ -43,8 +47,10 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
         );
         yield failureOrSuccess.fold(
           (failure) => _LoadFailure(failure: failure),
-          (orderHistoryDetails) =>
-              _LoadSuccess(orderHistoryDetails: orderHistoryDetails),
+          (orderHistoryDetails) => _LoadSuccess(
+            orderHistoryDetails: orderHistoryDetails,
+            optionSubmitRating: none(),
+          ),
         );
       },
       cancelPageOpen: (_event) async* {
@@ -78,6 +84,35 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
             submitOption: optionOf(cancelStatus),
           ),
         );
+      },
+      ratingReviewSubmitted: (_event) async* {
+        final _rating = Rating(_event.rating.toString());
+        final _review = Review(_event.review);
+
+        final isRatingValid = _rating.isValid();
+        final isReviewValid = _review.isValid();
+        if (isRatingValid && isReviewValid) {
+          yield _Loading();
+          final ratingFailureOrSuccess = await _profileRepository.postRating(
+            receiptCode: _event.receiptCode,
+            rating: _event.rating,
+            review: _event.review,
+          );
+          final failureOrSuccess =
+              await _profileRepository.getOrderHistoryDetails(
+            receiptCode: _event.receiptCode,
+          );
+          yield ratingFailureOrSuccess.fold(
+            (failure) => _LoadFailure(failure: failure),
+            (rating) => failureOrSuccess.fold(
+              (failure) => _LoadFailure(failure: failure),
+              (orderHistoryDetails) => _LoadSuccess(
+                orderHistoryDetails: orderHistoryDetails,
+                optionSubmitRating: optionOf(rating),
+              ),
+            ),
+          );
+        }
       },
     );
   }

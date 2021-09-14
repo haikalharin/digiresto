@@ -40,7 +40,6 @@ dependencies:
   flutter_hooks: ^0.18.0
   flutter_localizations:
     sdk: flutter
-  flutter_phoenix: ^1.0.0
   flutter_secure_storage: ^4.2.1
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.8

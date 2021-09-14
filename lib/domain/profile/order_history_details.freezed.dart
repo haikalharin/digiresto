@@ -4716,8 +4716,13 @@ Rating _$RatingFromJson(Map<String, dynamic> json) {
 class _$RatingTearOff {
   const _$RatingTearOff();
 
-  _Rating call() {
-    return const _Rating();
+  _Rating call(
+      {@JsonKey(includeIfNull: true) required int? rating,
+      @JsonKey(includeIfNull: true) required String? review}) {
+    return _Rating(
+      rating: rating,
+      review: review,
+    );
   }
 
   Rating fromJson(Map<String, Object> json) {
@@ -4730,13 +4735,23 @@ const $Rating = _$RatingTearOff();
 
 /// @nodoc
 mixin _$Rating {
+  @JsonKey(includeIfNull: true)
+  int? get rating => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get review => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RatingCopyWith<Rating> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RatingCopyWith<$Res> {
   factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
       _$RatingCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(includeIfNull: true) int? rating,
+      @JsonKey(includeIfNull: true) String? review});
 }
 
 /// @nodoc
@@ -4746,12 +4761,33 @@ class _$RatingCopyWithImpl<$Res> implements $RatingCopyWith<$Res> {
   final Rating _value;
   // ignore: unused_field
   final $Res Function(Rating) _then;
+
+  @override
+  $Res call({
+    Object? rating = freezed,
+    Object? review = freezed,
+  }) {
+    return _then(_value.copyWith(
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      review: review == freezed
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$RatingCopyWith<$Res> {
+abstract class _$RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
   factory _$RatingCopyWith(_Rating value, $Res Function(_Rating) then) =
       __$RatingCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(includeIfNull: true) int? rating,
+      @JsonKey(includeIfNull: true) String? review});
 }
 
 /// @nodoc
@@ -4762,28 +4798,67 @@ class __$RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
 
   @override
   _Rating get _value => super._value as _Rating;
+
+  @override
+  $Res call({
+    Object? rating = freezed,
+    Object? review = freezed,
+  }) {
+    return _then(_Rating(
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      review: review == freezed
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_Rating implements _Rating {
-  const _$_Rating();
+  const _$_Rating(
+      {@JsonKey(includeIfNull: true) required this.rating,
+      @JsonKey(includeIfNull: true) required this.review});
 
   factory _$_Rating.fromJson(Map<String, dynamic> json) =>
       _$_$_RatingFromJson(json);
 
   @override
+  @JsonKey(includeIfNull: true)
+  final int? rating;
+  @override
+  @JsonKey(includeIfNull: true)
+  final String? review;
+
+  @override
   String toString() {
-    return 'Rating()';
+    return 'Rating(rating: $rating, review: $review)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Rating);
+    return identical(this, other) ||
+        (other is _Rating &&
+            (identical(other.rating, rating) ||
+                const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.review, review) ||
+                const DeepCollectionEquality().equals(other.review, review)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(review);
+
+  @JsonKey(ignore: true)
+  @override
+  _$RatingCopyWith<_Rating> get copyWith =>
+      __$RatingCopyWithImpl<_Rating>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -4792,9 +4867,21 @@ class _$_Rating implements _Rating {
 }
 
 abstract class _Rating implements Rating {
-  const factory _Rating() = _$_Rating;
+  const factory _Rating(
+      {@JsonKey(includeIfNull: true) required int? rating,
+      @JsonKey(includeIfNull: true) required String? review}) = _$_Rating;
 
   factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
+
+  @override
+  @JsonKey(includeIfNull: true)
+  int? get rating => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(includeIfNull: true)
+  String? get review => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$RatingCopyWith<_Rating> get copyWith => throw _privateConstructorUsedError;
 }
 
 OrderMethod _$OrderMethodFromJson(Map<String, dynamic> json) {

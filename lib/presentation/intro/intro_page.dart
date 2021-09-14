@@ -1,6 +1,7 @@
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/intro/intro.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/intro/intro_widget.dart';
@@ -21,26 +22,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   late final _appBloc = BlocProvider.of<AppBloc>(context);
   late final _controller = new PageController();
-  final _intros = <Intro>[
-    Intro(
-      image: SvgPicture.asset('assets/intro_1.svg'),
-      title: 'Temukan Makanan \nFavorit Anda',
-      description:
-          'Berbagai jenis makanan yang siap dipesan dengan mudah dan cepat.',
-    ),
-    Intro(
-      image: SvgPicture.asset('assets/intro_2.svg'),
-      title: 'Masukkan Alamat \nTujuan',
-      description:
-          'Masukkan alamat Anda untuk mempermudah kurir dalam pengiriman.',
-    ),
-    Intro(
-      image: SvgPicture.asset('assets/intro_3.svg'),
-      title: 'Pengiriman Cepat\ndan Aman',
-      description:
-          'Makanan Anda siap diantar ke alamat tujuan dengan berbagai kurir terpercaya.',
-    ),
-  ];
+
   int _currentPage = 0;
 
   @override
@@ -55,6 +37,25 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
+    final I10n i10n = I10n.of(context);
+    final _intros = <Intro>[
+      Intro(
+        image: SvgPicture.asset('assets/intro_1.svg'),
+        title: i10n.onboarding_title_1,
+        description: i10n.onboarding_desc_1,
+      ),
+      Intro(
+        image: SvgPicture.asset('assets/intro_2.svg'),
+        title: i10n.onboarding_title_2,
+        description: i10n.onboarding_desc_2,
+      ),
+      Intro(
+        image: SvgPicture.asset('assets/intro_3.svg'),
+        title: i10n.onboarding_title_3,
+        description: i10n.onboarding_desc_3,
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
@@ -114,7 +115,7 @@ class _IntroPageState extends State<IntroPage> {
                         _appBloc.add(AppEvent.skipIntro());
                         Get.offAllNamed(Routers.auth);
                       },
-                      label: 'Mulai Sekarang',
+                      label: i10n.onboarding_get_started,
                     )
                   : Row(
                       children: [
@@ -140,7 +141,7 @@ class _IntroPageState extends State<IntroPage> {
                               ),
                               curve: Curves.easeOut,
                             ),
-                            label: 'Lanjutkan',
+                            label: i10n.onboarding_skip,
                           ),
                         ),
                       ],

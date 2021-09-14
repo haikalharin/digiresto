@@ -52,8 +52,8 @@ class OrderPending with _$OrderPending {
     required List<TaxesAndService> taxesAndServices,
     required int itemTotalAmount,
     required String note,
-    required Delivery gosend,
-    required int originalDeliveryAmount,
+    @JsonKey(includeIfNull: true) required Delivery? gosend,
+    @JsonKey(includeIfNull: true) required int? originalDeliveryAmount,
     required DateTime deviceTimestamp,
     required String receiptCode,
     required List<Payment> payments,
@@ -72,12 +72,22 @@ class OrderPending with _$OrderPending {
 @freezed
 class BillingDetail with _$BillingDetail {
   const factory BillingDetail({
-    required String title,
-    required int amount,
-    required String vaNumber,
+    @JsonKey(defaultValue: '') required String orderId,
+    @JsonKey(defaultValue: '') required String title,
+    @JsonKey(defaultValue: '') required String vaNumber,
+    @JsonKey(defaultValue: '') required String amount,
+    @JsonKey(defaultValue: '') required String fee,
+    @JsonKey(defaultValue: '') required String finalAmount,
+    @JsonKey(defaultValue: '') required String serviceProvider,
+    @JsonKey(defaultValue: '') required String bankAccName,
+    @JsonKey(defaultValue: '') required String bankName,
+    @JsonKey(defaultValue: '') required String formattedUniqueAmount,
+    @JsonKey(defaultValue: '') required String bankAccNo,
+    @JsonKey(defaultValue: '') required String uniqueAmount,
+    @JsonKey(includeIfNull: true) required DateTime? transactionDate,
+    @JsonKey(includeIfNull: true) required DateTime? formattedTransactionDate,
     required int expires,
     required DateTime expiresAt,
-    required String serviceProvider,
     required bool isCredit,
     required bool isDeeplink,
     required bool isWebView,
@@ -95,7 +105,7 @@ class Delivery with _$Delivery {
     required int price,
     required String address,
     required String shipmentMethod,
-    required List<String> location,
+    required List<dynamic> location,
   }) = _Delivery;
 
   factory Delivery.fromJson(Map<String, dynamic> json) =>
@@ -109,7 +119,7 @@ class DeliveryDetail with _$DeliveryDetail {
     required String distance,
     required String provider,
     required String shipmentMethod,
-    required int fee,
+    required String fee,
     required String bookingCode,
     required String bookingExpired,
     required String deliveryId,
@@ -129,7 +139,7 @@ class DeliveryDetail with _$DeliveryDetail {
 @freezed
 class DeliverFrom with _$DeliverFrom {
   const factory DeliverFrom({
-    required List<double> location,
+    required List<dynamic> location,
     required String name,
     required String address,
     required String phone,
@@ -142,7 +152,7 @@ class DeliverFrom with _$DeliverFrom {
 @freezed
 class DeliverTo with _$DeliverTo {
   const factory DeliverTo({
-    required List<String> location,
+    required List<dynamic> location,
     required String name,
     required String address,
     required String phone,
@@ -213,7 +223,7 @@ class OutletDetail with _$OutletDetail {
     required String name,
     required String address,
     required List<dynamic> taxesAndServices,
-    required List<double> location,
+    required List<dynamic> location,
     required String phone,
     required String kurirPrice,
     required List<String> deliveryProvider,

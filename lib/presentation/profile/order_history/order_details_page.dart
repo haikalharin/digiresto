@@ -1,14 +1,11 @@
 import 'package:digiresto/application/profile/order_details/order_details_bloc.dart';
-import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
-import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_done.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_onprocess.dart';
-import 'package:digiresto/presentation/profile/order_history/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class OrderDetailsPage extends StatelessWidget {
   final String receiptCode;
@@ -36,7 +33,19 @@ class OrderDetailsWidget extends StatelessWidget {
       showBackButton: true,
       title: 'Detail Riwayat',
       body: BlocConsumer<OrderDetailsBloc, OrderDetailsState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.maybeMap(
+              orElse: () {},
+              loadSuccess: (_state) {
+                _state.optionSubmitRating.fold(
+                  () {},
+                  (a) => Get.defaultDialog(
+                    title: 'Success',
+                    middleText: 'Review Submitted',
+                  ),
+                );
+              });
+        },
         builder: (context, state) {
           return state.maybeMap(
             orElse: () => Center(

@@ -384,11 +384,16 @@ Map<String, dynamic> _$_$_DetailToJson(_$_Detail instance) => <String, dynamic>{
     };
 
 _$_Rating _$_$_RatingFromJson(Map<String, dynamic> json) {
-  return _$_Rating();
+  return _$_Rating(
+    rating: json['rating'] as int?,
+    review: json['review'] as String?,
+  );
 }
 
-Map<String, dynamic> _$_$_RatingToJson(_$_Rating instance) =>
-    <String, dynamic>{};
+Map<String, dynamic> _$_$_RatingToJson(_$_Rating instance) => <String, dynamic>{
+      'rating': instance.rating,
+      'review': instance.review,
+    };
 
 _$_OrderMethod _$_$_OrderMethodFromJson(Map<String, dynamic> json) {
   return _$_OrderMethod(

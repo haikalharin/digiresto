@@ -11,4 +11,9 @@ class OrderDetailsEvent with _$OrderDetailsEvent {
     required String reason,
     required IList<String> reasonList,
   }) = _CancelSubmitted;
+  const factory OrderDetailsEvent.ratingReviewSubmitted({
+    required String receiptCode,
+    required int rating,
+    required String review,
+  }) = _RatingReviewSubmitted;
 }

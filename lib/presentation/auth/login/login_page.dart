@@ -51,7 +51,7 @@ class LoginForm extends StatelessWidget {
         if (state.isShowDialogShake) {
           if (Get.isDialogOpen == null || Get.isDialogOpen == false) {
             Get.defaultDialog(
-              title: i10n.login_dev_mode,
+              title: i10n.dev_mode_title,
               content: DevModeDialog(
                 baseUrl: _selectedUrl,
                 onRadioChange: (val) {
@@ -124,14 +124,14 @@ class LoginForm extends StatelessWidget {
                   ),
                   children: [
                     Text(
-                      'Masuk',
+                      i10n.login_title,
                       style: Styles.loginTitleStyle,
                     ),
                     SizedBox(
                       height: 8,
                     ),
                     Text(
-                      'Pastikan nomor handphone Anda valid untuk proses verifikasi,',
+                      i10n.text_register,
                       style: Styles.loginDescStyle,
                     ),
                     SizedBox(
@@ -147,11 +147,12 @@ class LoginForm extends StatelessWidget {
                       validator: (_) => state.phoneNumber.value.fold(
                         (failure) => failure.maybeMap(
                           orElse: () => '',
-                          invalidPhone: (_) => 'Invalid Phone',
+                          invalidPhone: (_) =>
+                              i10n.login_input_your_mobile_number_is_wrong,
                         ),
                         (_) => null,
                       ),
-                      hintText: 'Nomor Handphone',
+                      hintText: i10n.login_phone,
                       keyboardType: TextInputType.phone,
                     ),
                     SizedBox(
@@ -159,7 +160,7 @@ class LoginForm extends StatelessWidget {
                     ),
                     CustomButton(
                       onPressed: _onFormSubmitted,
-                      label: 'Lanjut Verifikasi',
+                      label: i10n.login_btn,
                     ),
                   ],
                 )

@@ -6,6 +6,7 @@ class OrderDetailsState with _$OrderDetailsState {
   const factory OrderDetailsState.loading() = _Loading;
   const factory OrderDetailsState.loadSuccess({
     required OrderHistoryDetails orderHistoryDetails,
+    required Option<Unit> optionSubmitRating,
   }) = _LoadSuccess;
   const factory OrderDetailsState.loadFailure({
     required ProfileFailure failure,

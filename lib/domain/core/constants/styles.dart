@@ -22,7 +22,7 @@ class Styles {
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
   static TextStyle buttonLabelStyle = GoogleFonts.poppins(
-      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
+      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600);
 
   static TextStyle loginTitleStyle = GoogleFonts.poppins(
       color: Colors.white, fontSize: 24, fontWeight: FontWeight.w700);
@@ -137,4 +137,7 @@ class Styles {
 
   static TextStyle menuItemPriceStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 13, fontWeight: FontWeight.w700);
+
+  static TextStyle ratingLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w600);
 }

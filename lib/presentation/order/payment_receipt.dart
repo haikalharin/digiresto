@@ -45,7 +45,7 @@ class PaymentReceiptScreen extends StatelessWidget {
       // _transaction = _orderStore.transactionAfterPayment;
 
       String receiptStatus = _transaction!.status ?? "initial";
-      _receiptStatusTitle = i10n.nota_title_default;
+      _receiptStatusTitle = i10n.nota_title;
       _receiptStatusDesc = '';
 
       // initial = pending payment

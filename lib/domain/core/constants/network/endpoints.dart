@@ -81,6 +81,7 @@ class Endpoints {
   static const String urlOngoingTransaction = "/forward?r=ongoingtransaction";
   static const String urlAddFavoriteTransaction = "/forward?r=addFavorite";
   static const String urlGetCancelReasons = "/user/cancel/reasons?lang=";
+  static const String urlTransactionRating = "/forward?r=transactionrating";
 
   static String get devUrl {
     Box box = Hive.box('settings');

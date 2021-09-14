@@ -44,6 +44,17 @@ class _$OrderDetailsEventTearOff {
       reasonList: reasonList,
     );
   }
+
+  _RatingReviewSubmitted ratingReviewSubmitted(
+      {required String receiptCode,
+      required int rating,
+      required String review}) {
+    return _RatingReviewSubmitted(
+      receiptCode: receiptCode,
+      rating: rating,
+      review: review,
+    );
+  }
 }
 
 /// @nodoc
@@ -61,6 +72,8 @@ mixin _$OrderDetailsEvent {
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
         cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +84,8 @@ mixin _$OrderDetailsEvent {
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
         cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +95,8 @@ mixin _$OrderDetailsEvent {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +105,7 @@ mixin _$OrderDetailsEvent {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,6 +216,8 @@ class _$_Started implements _Started {
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
         cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
   }) {
     return started(receiptCode);
   }
@@ -211,6 +231,8 @@ class _$_Started implements _Started {
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
         cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -226,6 +248,8 @@ class _$_Started implements _Started {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
   }) {
     return started(this);
   }
@@ -237,6 +261,7 @@ class _$_Started implements _Started {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -328,6 +353,8 @@ class _$_Refresh implements _Refresh {
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
         cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
   }) {
     return refresh(receiptCode);
   }
@@ -341,6 +368,8 @@ class _$_Refresh implements _Refresh {
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
         cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -356,6 +385,8 @@ class _$_Refresh implements _Refresh {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
   }) {
     return refresh(this);
   }
@@ -367,6 +398,7 @@ class _$_Refresh implements _Refresh {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -461,6 +493,8 @@ class _$_CancelPageOpen implements _CancelPageOpen {
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
         cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
   }) {
     return cancelPageOpen(receiptCode);
   }
@@ -474,6 +508,8 @@ class _$_CancelPageOpen implements _CancelPageOpen {
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
         cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (cancelPageOpen != null) {
@@ -489,6 +525,8 @@ class _$_CancelPageOpen implements _CancelPageOpen {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
   }) {
     return cancelPageOpen(this);
   }
@@ -500,6 +538,7 @@ class _$_CancelPageOpen implements _CancelPageOpen {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (cancelPageOpen != null) {
@@ -619,6 +658,8 @@ class _$_CancelSubmitted implements _CancelSubmitted {
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
         cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
   }) {
     return cancelSubmitted(receiptCode, reason, reasonList);
   }
@@ -632,6 +673,8 @@ class _$_CancelSubmitted implements _CancelSubmitted {
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
         cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (cancelSubmitted != null) {
@@ -647,6 +690,8 @@ class _$_CancelSubmitted implements _CancelSubmitted {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
   }) {
     return cancelSubmitted(this);
   }
@@ -658,6 +703,7 @@ class _$_CancelSubmitted implements _CancelSubmitted {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
     required TResult orElse(),
   }) {
     if (cancelSubmitted != null) {
@@ -684,6 +730,174 @@ abstract class _CancelSubmitted implements OrderDetailsEvent {
 }
 
 /// @nodoc
+abstract class _$RatingReviewSubmittedCopyWith<$Res>
+    implements $OrderDetailsEventCopyWith<$Res> {
+  factory _$RatingReviewSubmittedCopyWith(_RatingReviewSubmitted value,
+          $Res Function(_RatingReviewSubmitted) then) =
+      __$RatingReviewSubmittedCopyWithImpl<$Res>;
+  @override
+  $Res call({String receiptCode, int rating, String review});
+}
+
+/// @nodoc
+class __$RatingReviewSubmittedCopyWithImpl<$Res>
+    extends _$OrderDetailsEventCopyWithImpl<$Res>
+    implements _$RatingReviewSubmittedCopyWith<$Res> {
+  __$RatingReviewSubmittedCopyWithImpl(_RatingReviewSubmitted _value,
+      $Res Function(_RatingReviewSubmitted) _then)
+      : super(_value, (v) => _then(v as _RatingReviewSubmitted));
+
+  @override
+  _RatingReviewSubmitted get _value => super._value as _RatingReviewSubmitted;
+
+  @override
+  $Res call({
+    Object? receiptCode = freezed,
+    Object? rating = freezed,
+    Object? review = freezed,
+  }) {
+    return _then(_RatingReviewSubmitted(
+      receiptCode: receiptCode == freezed
+          ? _value.receiptCode
+          : receiptCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int,
+      review: review == freezed
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
+  const _$_RatingReviewSubmitted(
+      {required this.receiptCode, required this.rating, required this.review});
+
+  @override
+  final String receiptCode;
+  @override
+  final int rating;
+  @override
+  final String review;
+
+  @override
+  String toString() {
+    return 'OrderDetailsEvent.ratingReviewSubmitted(receiptCode: $receiptCode, rating: $rating, review: $review)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _RatingReviewSubmitted &&
+            (identical(other.receiptCode, receiptCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.receiptCode, receiptCode)) &&
+            (identical(other.rating, rating) ||
+                const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.review, review) ||
+                const DeepCollectionEquality().equals(other.review, review)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(receiptCode) ^
+      const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(review);
+
+  @JsonKey(ignore: true)
+  @override
+  _$RatingReviewSubmittedCopyWith<_RatingReviewSubmitted> get copyWith =>
+      __$RatingReviewSubmittedCopyWithImpl<_RatingReviewSubmitted>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String receiptCode) started,
+    required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) cancelPageOpen,
+    required TResult Function(
+            String receiptCode, String reason, IList<String> reasonList)
+        cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
+  }) {
+    return ratingReviewSubmitted(receiptCode, rating, review);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String receiptCode)? started,
+    TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? cancelPageOpen,
+    TResult Function(
+            String receiptCode, String reason, IList<String> reasonList)?
+        cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
+    required TResult orElse(),
+  }) {
+    if (ratingReviewSubmitted != null) {
+      return ratingReviewSubmitted(receiptCode, rating, review);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_CancelPageOpen value) cancelPageOpen,
+    required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
+  }) {
+    return ratingReviewSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_CancelPageOpen value)? cancelPageOpen,
+    TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
+    required TResult orElse(),
+  }) {
+    if (ratingReviewSubmitted != null) {
+      return ratingReviewSubmitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RatingReviewSubmitted implements OrderDetailsEvent {
+  const factory _RatingReviewSubmitted(
+      {required String receiptCode,
+      required int rating,
+      required String review}) = _$_RatingReviewSubmitted;
+
+  @override
+  String get receiptCode => throw _privateConstructorUsedError;
+  int get rating => throw _privateConstructorUsedError;
+  String get review => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$RatingReviewSubmittedCopyWith<_RatingReviewSubmitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$OrderDetailsStateTearOff {
   const _$OrderDetailsStateTearOff();
 
@@ -695,9 +909,12 @@ class _$OrderDetailsStateTearOff {
     return const _Loading();
   }
 
-  _LoadSuccess loadSuccess({required OrderHistoryDetails orderHistoryDetails}) {
+  _LoadSuccess loadSuccess(
+      {required OrderHistoryDetails orderHistoryDetails,
+      required Option<Unit> optionSubmitRating}) {
     return _LoadSuccess(
       orderHistoryDetails: orderHistoryDetails,
+      optionSubmitRating: optionSubmitRating,
     );
   }
 
@@ -728,7 +945,8 @@ mixin _$OrderDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderHistoryDetails orderHistoryDetails)
+    required TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)
         loadSuccess,
     required TResult Function(ProfileFailure failure) loadFailure,
     required TResult Function(IList<String> cancelReasons, bool isSubmitting,
@@ -740,7 +958,9 @@ mixin _$OrderDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails)? loadSuccess,
+    TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)?
+        loadSuccess,
     TResult Function(ProfileFailure failure)? loadFailure,
     TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)?
@@ -825,7 +1045,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderHistoryDetails orderHistoryDetails)
+    required TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)
         loadSuccess,
     required TResult Function(ProfileFailure failure) loadFailure,
     required TResult Function(IList<String> cancelReasons, bool isSubmitting,
@@ -840,7 +1061,9 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails)? loadSuccess,
+    TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)?
+        loadSuccess,
     TResult Function(ProfileFailure failure)? loadFailure,
     TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)?
@@ -925,7 +1148,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderHistoryDetails orderHistoryDetails)
+    required TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)
         loadSuccess,
     required TResult Function(ProfileFailure failure) loadFailure,
     required TResult Function(IList<String> cancelReasons, bool isSubmitting,
@@ -940,7 +1164,9 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails)? loadSuccess,
+    TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)?
+        loadSuccess,
     TResult Function(ProfileFailure failure)? loadFailure,
     TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)?
@@ -991,7 +1217,9 @@ abstract class _$LoadSuccessCopyWith<$Res> {
   factory _$LoadSuccessCopyWith(
           _LoadSuccess value, $Res Function(_LoadSuccess) then) =
       __$LoadSuccessCopyWithImpl<$Res>;
-  $Res call({OrderHistoryDetails orderHistoryDetails});
+  $Res call(
+      {OrderHistoryDetails orderHistoryDetails,
+      Option<Unit> optionSubmitRating});
 
   $OrderHistoryDetailsCopyWith<$Res> get orderHistoryDetails;
 }
@@ -1010,12 +1238,17 @@ class __$LoadSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderHistoryDetails = freezed,
+    Object? optionSubmitRating = freezed,
   }) {
     return _then(_LoadSuccess(
       orderHistoryDetails: orderHistoryDetails == freezed
           ? _value.orderHistoryDetails
           : orderHistoryDetails // ignore: cast_nullable_to_non_nullable
               as OrderHistoryDetails,
+      optionSubmitRating: optionSubmitRating == freezed
+          ? _value.optionSubmitRating
+          : optionSubmitRating // ignore: cast_nullable_to_non_nullable
+              as Option<Unit>,
     ));
   }
 
@@ -1031,14 +1264,17 @@ class __$LoadSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess({required this.orderHistoryDetails});
+  const _$_LoadSuccess(
+      {required this.orderHistoryDetails, required this.optionSubmitRating});
 
   @override
   final OrderHistoryDetails orderHistoryDetails;
+  @override
+  final Option<Unit> optionSubmitRating;
 
   @override
   String toString() {
-    return 'OrderDetailsState.loadSuccess(orderHistoryDetails: $orderHistoryDetails)';
+    return 'OrderDetailsState.loadSuccess(orderHistoryDetails: $orderHistoryDetails, optionSubmitRating: $optionSubmitRating)';
   }
 
   @override
@@ -1047,13 +1283,17 @@ class _$_LoadSuccess implements _LoadSuccess {
         (other is _LoadSuccess &&
             (identical(other.orderHistoryDetails, orderHistoryDetails) ||
                 const DeepCollectionEquality()
-                    .equals(other.orderHistoryDetails, orderHistoryDetails)));
+                    .equals(other.orderHistoryDetails, orderHistoryDetails)) &&
+            (identical(other.optionSubmitRating, optionSubmitRating) ||
+                const DeepCollectionEquality()
+                    .equals(other.optionSubmitRating, optionSubmitRating)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(orderHistoryDetails);
+      const DeepCollectionEquality().hash(orderHistoryDetails) ^
+      const DeepCollectionEquality().hash(optionSubmitRating);
 
   @JsonKey(ignore: true)
   @override
@@ -1065,14 +1305,15 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderHistoryDetails orderHistoryDetails)
+    required TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)
         loadSuccess,
     required TResult Function(ProfileFailure failure) loadFailure,
     required TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)
         loadCancelPage,
   }) {
-    return loadSuccess(orderHistoryDetails);
+    return loadSuccess(orderHistoryDetails, optionSubmitRating);
   }
 
   @override
@@ -1080,7 +1321,9 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails)? loadSuccess,
+    TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)?
+        loadSuccess,
     TResult Function(ProfileFailure failure)? loadFailure,
     TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)?
@@ -1088,7 +1331,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(orderHistoryDetails);
+      return loadSuccess(orderHistoryDetails, optionSubmitRating);
     }
     return orElse();
   }
@@ -1124,10 +1367,12 @@ class _$_LoadSuccess implements _LoadSuccess {
 
 abstract class _LoadSuccess implements OrderDetailsState {
   const factory _LoadSuccess(
-      {required OrderHistoryDetails orderHistoryDetails}) = _$_LoadSuccess;
+      {required OrderHistoryDetails orderHistoryDetails,
+      required Option<Unit> optionSubmitRating}) = _$_LoadSuccess;
 
   OrderHistoryDetails get orderHistoryDetails =>
       throw _privateConstructorUsedError;
+  Option<Unit> get optionSubmitRating => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1209,7 +1454,8 @@ class _$_LoadFailure implements _LoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderHistoryDetails orderHistoryDetails)
+    required TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)
         loadSuccess,
     required TResult Function(ProfileFailure failure) loadFailure,
     required TResult Function(IList<String> cancelReasons, bool isSubmitting,
@@ -1224,7 +1470,9 @@ class _$_LoadFailure implements _LoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails)? loadSuccess,
+    TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)?
+        loadSuccess,
     TResult Function(ProfileFailure failure)? loadFailure,
     TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)?
@@ -1373,7 +1621,8 @@ class _$_LoadCancelPage implements _LoadCancelPage {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(OrderHistoryDetails orderHistoryDetails)
+    required TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)
         loadSuccess,
     required TResult Function(ProfileFailure failure) loadFailure,
     required TResult Function(IList<String> cancelReasons, bool isSubmitting,
@@ -1388,7 +1637,9 @@ class _$_LoadCancelPage implements _LoadCancelPage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails)? loadSuccess,
+    TResult Function(OrderHistoryDetails orderHistoryDetails,
+            Option<Unit> optionSubmitRating)?
+        loadSuccess,
     TResult Function(ProfileFailure failure)? loadFailure,
     TResult Function(IList<String> cancelReasons, bool isSubmitting,
             Option<Unit> submitOption)?

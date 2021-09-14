@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +14,7 @@ class OrderPendingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isVa = true;
+    final isVa = orderPending.billingDetail.vaNumber.isNotEmpty;
     return CustomCard(
       blurRadius: 2,
       spreadRadius: 2,
@@ -25,12 +26,14 @@ class OrderPendingWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.zero,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.all(
               15,
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SvgPicture.asset('assets/order_icon.svg'),
                 SizedBox(
@@ -104,17 +107,41 @@ class OrderPendingWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (!isVa)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Nama Bank',
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          color: AppColors.greyColor1,
+                        ),
+                      ),
+                      Text(
+                        orderPending.billingDetail.bankName,
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                    ],
+                  ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Nama Bank',
+                      isVa ? 'Virtual Account' : 'Nama Pemilik Rekening',
                       style: Styles.topUpDetailsStyle.copyWith(
                         color: AppColors.greyColor1,
                       ),
                     ),
                     Text(
-                      orderPending.billingDetail.title,
+                      isVa
+                          ? orderPending.billingDetail.title
+                          : orderPending.billingDetail.bankAccName,
                       style: Styles.topUpDetailsStyle.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -124,9 +151,6 @@ class OrderPendingWidget extends StatelessWidget {
                       height: 15,
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +165,9 @@ class OrderPendingWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          orderPending.billingDetail.vaNumber,
+                          isVa
+                              ? orderPending.billingDetail.vaNumber
+                              : orderPending.billingDetail.bankAccNo,
                           style: Styles.topUpDetailsStyle.copyWith(
                             color: AppColors.mainColor,
                             fontSize: 15,
@@ -206,8 +232,14 @@ class OrderPendingWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          CommonUtils.currencyFormat(
-                              orderPending.billingDetail.amount.toDouble()),
+                          isVa
+                              ? CommonUtils.currencyFormat(double.tryParse(
+                                      orderPending.billingDetail.amount) ??
+                                  0)
+                              : CommonUtils.currencyFormat(double.tryParse(
+                                      orderPending
+                                          .billingDetail.uniqueAmount) ??
+                                  0),
                           style: Styles.topUpDetailsStyle.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -258,26 +290,35 @@ class OrderPendingWidget extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                // if (!isVa)
-                //   Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       Icon(
-                //         Icons.warning_rounded,
-                //         color: AppColors.mainColor,
-                //         size: 27,
-                //       ),
-                //       SizedBox(
-                //         width: 10,
-                //       ),
-                //       Text(
-                //         'Pastikan nominal sesuai hingga 3 digit terakhir',
-                //         style: Styles.topUpDetailsStyle.copyWith(
-                //           color: AppColors.mainColor,
-                //         ),
-                //       )
-                //     ],
-                //   )
+                if (!isVa)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.warning_rounded,
+                        color: AppColors.mainColor,
+                        size: 27,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Pastikan nominal sesuai hingga 3 digit terakhir',
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          color: AppColors.mainColor,
+                        ),
+                      )
+                    ],
+                  ),
+                SizedBox(
+                  height: 15,
+                ),
+                CustomButton(
+                  label: 'Lakukan Pembayaran',
+                  onPressed: () {},
+                  color: AppColors.mainColor,
+                  fontColor: Colors.white,
+                )
               ],
             ),
           ),

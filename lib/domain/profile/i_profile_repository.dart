@@ -25,4 +25,9 @@ abstract class IProfileRepository {
     required String receiptCode,
     required String reason,
   });
+  Future<Either<ProfileFailure, Unit>> postRating({
+    required String receiptCode,
+    required int rating,
+    required String review,
+  });
 }

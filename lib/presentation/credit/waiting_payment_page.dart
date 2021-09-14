@@ -111,7 +111,13 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                                               Expanded(
                                                 child: CustomButton(
                                                   width: 100,
-                                                  onPressed: () => Get.back(),
+                                                  onPressed: () {
+                                                    _bloc.add(
+                                                        WaitingPaymentEvent
+                                                            .cancelTopup(
+                                                                billingId));
+                                                    Get.back();
+                                                  },
                                                   label: 'Ok',
                                                   fontColor: Colors.white,
                                                   borderColor:

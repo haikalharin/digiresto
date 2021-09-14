@@ -230,7 +230,10 @@ class Detail with _$Detail {
 
 @freezed
 class Rating with _$Rating {
-  const factory Rating() = _Rating;
+  const factory Rating({
+    @JsonKey(includeIfNull: true) required int? rating,
+    @JsonKey(includeIfNull: true) required String? review,
+  }) = _Rating;
 
   factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
 }

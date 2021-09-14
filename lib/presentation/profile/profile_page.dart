@@ -14,9 +14,7 @@ import 'package:digiresto/presentation/profile/privacy_policy.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'widgets/profile_menu_widget.dart';
@@ -125,7 +123,7 @@ class ProfileWidget extends StatelessWidget {
                                 _profileBloc.add(ProfileEvent.started())),
                             color: AppColors.mainColor,
                             fontColor: Colors.white,
-                            label: i10n.profile_edit,
+                            label: i10n.profile_edit_action,
                             padding: EdgeInsets.zero,
                             borderRadius: BorderRadius.circular(17),
                             height: 35,
@@ -158,14 +156,14 @@ class ProfileWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              i10n.profile_change_language,
+                              i10n.pilih_bahasa,
                               style: Styles.dialogTitleStyle,
                             ),
                             SizedBox(
                               height: 15,
                             ),
                             Text(
-                              'Silahkan pilih bahasa yang ingin digunakan',
+                              i10n.txt_pilih_bahasa,
                               style: Styles.dialogSubtitleStyle,
                               textAlign: TextAlign.center,
                             ),
@@ -177,7 +175,7 @@ class ProfileWidget extends StatelessWidget {
                               child: CheckList(
                                 value: 0,
                                 groupValue: _langController.languageIndex.value,
-                                label: 'Bahasa Indonesia',
+                                label: i10n.lang_in,
                               ),
                             ),
                             GestureDetector(
@@ -185,7 +183,7 @@ class ProfileWidget extends StatelessWidget {
                               child: CheckList(
                                 value: 1,
                                 groupValue: _langController.languageIndex.value,
-                                label: 'Bahasa Inggris',
+                                label: i10n.lang_en,
                               ),
                             ),
                             SizedBox(
@@ -198,7 +196,7 @@ class ProfileWidget extends StatelessWidget {
                                     onPressed: () => Get.back(),
                                     color: Colors.white,
                                     borderColor: AppColors.mainColor,
-                                    label: 'Batal',
+                                    label: i10n.alert_cancel,
                                   ),
                                 ),
                                 SizedBox(
@@ -217,7 +215,7 @@ class ProfileWidget extends StatelessWidget {
                                     },
                                     color: AppColors.mainColor,
                                     fontColor: Colors.white,
-                                    label: 'Ok',
+                                    label: i10n.alert_ok,
                                   ),
                                 ),
                               ],
@@ -228,7 +226,7 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   );
                 },
-                label: i10n.profile_change_language,
+                label: i10n.profile_language,
                 assetFile: 'assets/profile_language.svg',
               ),
               ProfileMenuWidget(
@@ -250,14 +248,14 @@ class ProfileWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          i10n.profile_customer_service,
+                          i10n.login_customer_service,
                           style: Styles.dialogTitleStyle,
                         ),
                         SizedBox(
                           height: 15,
                         ),
                         Text(
-                          'Untuk Informasi, keluhan, kritik & saran dalam menggunakan aplikasi silahkan hubungi kami melalui :',
+                          i10n.login_customer_service_desc,
                           style: Styles.dialogSubtitleStyle,
                           textAlign: TextAlign.center,
                         ),
@@ -289,7 +287,7 @@ class ProfileWidget extends StatelessWidget {
               ),
               ProfileMenuWidget(
                 onTap: () => Get.to(AboutDigiresto()),
-                label: i10n.profile_about_digiresto,
+                label: i10n.profile_about,
                 assetFile: 'assets/profile_about_digiresto.svg',
               ),
               ProfileMenuWidget(
@@ -304,7 +302,7 @@ class ProfileWidget extends StatelessWidget {
                 assetFile: 'assets/profile_join_us.svg',
               ),
               ProfileMenuWidget(
-                label: i10n.profile_app_version,
+                label: i10n.profile_version,
                 suffixWidget: Text('1.01.01'),
               ),
               SizedBox(
@@ -323,7 +321,7 @@ class ProfileWidget extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          'Apakah anda yakin ingin keluar ?',
+                          i10n.logout_alert,
                           style: Styles.dialogSubtitleStyle,
                           textAlign: TextAlign.center,
                         ),
@@ -337,7 +335,7 @@ class ProfileWidget extends StatelessWidget {
                                 onPressed: () => Get.back(),
                                 color: Colors.white,
                                 borderColor: AppColors.mainColor,
-                                label: 'Batal',
+                                label: i10n.alert_cancel,
                               ),
                             ),
                             SizedBox(
@@ -351,7 +349,7 @@ class ProfileWidget extends StatelessWidget {
                                 },
                                 color: AppColors.mainColor,
                                 fontColor: Colors.white,
-                                label: 'Ok',
+                                label: i10n.alert_ok,
                               ),
                             ),
                           ],

@@ -61,8 +61,8 @@ class _$OrderPendingTearOff {
       required List<TaxesAndService> taxesAndServices,
       required int itemTotalAmount,
       required String note,
-      required Delivery gosend,
-      required int originalDeliveryAmount,
+      @JsonKey(includeIfNull: true) required Delivery? gosend,
+      @JsonKey(includeIfNull: true) required int? originalDeliveryAmount,
       required DateTime deviceTimestamp,
       required String receiptCode,
       required List<Payment> payments,
@@ -178,8 +178,10 @@ mixin _$OrderPending {
       throw _privateConstructorUsedError;
   int get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
-  Delivery get gosend => throw _privateConstructorUsedError;
-  int get originalDeliveryAmount => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  Delivery? get gosend => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  int? get originalDeliveryAmount => throw _privateConstructorUsedError;
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
   String get receiptCode => throw _privateConstructorUsedError;
   List<Payment> get payments => throw _privateConstructorUsedError;
@@ -242,8 +244,8 @@ abstract class $OrderPendingCopyWith<$Res> {
       List<TaxesAndService> taxesAndServices,
       int itemTotalAmount,
       String note,
-      Delivery gosend,
-      int originalDeliveryAmount,
+      @JsonKey(includeIfNull: true) Delivery? gosend,
+      @JsonKey(includeIfNull: true) int? originalDeliveryAmount,
       DateTime deviceTimestamp,
       String receiptCode,
       List<Payment> payments,
@@ -254,7 +256,7 @@ abstract class $OrderPendingCopyWith<$Res> {
       BillingDetail billingDetail,
       Delivery delivery});
 
-  $DeliveryCopyWith<$Res> get gosend;
+  $DeliveryCopyWith<$Res>? get gosend;
   $OutletCopyWith<$Res> get outlet;
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
   $BillingDetailCopyWith<$Res> get billingDetail;
@@ -487,11 +489,11 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
       gosend: gosend == freezed
           ? _value.gosend
           : gosend // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+              as Delivery?,
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
@@ -532,8 +534,12 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
   }
 
   @override
-  $DeliveryCopyWith<$Res> get gosend {
-    return $DeliveryCopyWith<$Res>(_value.gosend, (value) {
+  $DeliveryCopyWith<$Res>? get gosend {
+    if (_value.gosend == null) {
+      return null;
+    }
+
+    return $DeliveryCopyWith<$Res>(_value.gosend!, (value) {
       return _then(_value.copyWith(gosend: value));
     });
   }
@@ -615,8 +621,8 @@ abstract class _$OrderPendingCopyWith<$Res>
       List<TaxesAndService> taxesAndServices,
       int itemTotalAmount,
       String note,
-      Delivery gosend,
-      int originalDeliveryAmount,
+      @JsonKey(includeIfNull: true) Delivery? gosend,
+      @JsonKey(includeIfNull: true) int? originalDeliveryAmount,
       DateTime deviceTimestamp,
       String receiptCode,
       List<Payment> payments,
@@ -628,7 +634,7 @@ abstract class _$OrderPendingCopyWith<$Res>
       Delivery delivery});
 
   @override
-  $DeliveryCopyWith<$Res> get gosend;
+  $DeliveryCopyWith<$Res>? get gosend;
   @override
   $OutletCopyWith<$Res> get outlet;
   @override
@@ -867,11 +873,11 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
       gosend: gosend == freezed
           ? _value.gosend
           : gosend // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+              as Delivery?,
       originalDeliveryAmount: originalDeliveryAmount == freezed
           ? _value.originalDeliveryAmount
           : originalDeliveryAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       deviceTimestamp: deviceTimestamp == freezed
           ? _value.deviceTimestamp
           : deviceTimestamp // ignore: cast_nullable_to_non_nullable
@@ -956,8 +962,8 @@ class _$_OrderPending implements _OrderPending {
       required this.taxesAndServices,
       required this.itemTotalAmount,
       required this.note,
-      required this.gosend,
-      required this.originalDeliveryAmount,
+      @JsonKey(includeIfNull: true) required this.gosend,
+      @JsonKey(includeIfNull: true) required this.originalDeliveryAmount,
       required this.deviceTimestamp,
       required this.receiptCode,
       required this.payments,
@@ -1052,9 +1058,11 @@ class _$_OrderPending implements _OrderPending {
   @override
   final String note;
   @override
-  final Delivery gosend;
+  @JsonKey(includeIfNull: true)
+  final Delivery? gosend;
   @override
-  final int originalDeliveryAmount;
+  @JsonKey(includeIfNull: true)
+  final int? originalDeliveryAmount;
   @override
   final DateTime deviceTimestamp;
   @override
@@ -1287,8 +1295,8 @@ abstract class _OrderPending implements OrderPending {
       required List<TaxesAndService> taxesAndServices,
       required int itemTotalAmount,
       required String note,
-      required Delivery gosend,
-      required int originalDeliveryAmount,
+      @JsonKey(includeIfNull: true) required Delivery? gosend,
+      @JsonKey(includeIfNull: true) required int? originalDeliveryAmount,
       required DateTime deviceTimestamp,
       required String receiptCode,
       required List<Payment> payments,
@@ -1384,9 +1392,11 @@ abstract class _OrderPending implements OrderPending {
   @override
   String get note => throw _privateConstructorUsedError;
   @override
-  Delivery get gosend => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  Delivery? get gosend => throw _privateConstructorUsedError;
   @override
-  int get originalDeliveryAmount => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  int? get originalDeliveryAmount => throw _privateConstructorUsedError;
   @override
   DateTime get deviceTimestamp => throw _privateConstructorUsedError;
   @override
@@ -1420,23 +1430,43 @@ class _$BillingDetailTearOff {
   const _$BillingDetailTearOff();
 
   _BillingDetail call(
-      {required String title,
-      required int amount,
-      required String vaNumber,
+      {@JsonKey(defaultValue: '') required String orderId,
+      @JsonKey(defaultValue: '') required String title,
+      @JsonKey(defaultValue: '') required String vaNumber,
+      @JsonKey(defaultValue: '') required String amount,
+      @JsonKey(defaultValue: '') required String fee,
+      @JsonKey(defaultValue: '') required String finalAmount,
+      @JsonKey(defaultValue: '') required String serviceProvider,
+      @JsonKey(defaultValue: '') required String bankAccName,
+      @JsonKey(defaultValue: '') required String bankName,
+      @JsonKey(defaultValue: '') required String formattedUniqueAmount,
+      @JsonKey(defaultValue: '') required String bankAccNo,
+      @JsonKey(defaultValue: '') required String uniqueAmount,
+      @JsonKey(includeIfNull: true) required DateTime? transactionDate,
+      @JsonKey(includeIfNull: true) required DateTime? formattedTransactionDate,
       required int expires,
       required DateTime expiresAt,
-      required String serviceProvider,
       required bool isCredit,
       required bool isDeeplink,
       required bool isWebView,
       required bool isSingleBilling}) {
     return _BillingDetail(
+      orderId: orderId,
       title: title,
-      amount: amount,
       vaNumber: vaNumber,
+      amount: amount,
+      fee: fee,
+      finalAmount: finalAmount,
+      serviceProvider: serviceProvider,
+      bankAccName: bankAccName,
+      bankName: bankName,
+      formattedUniqueAmount: formattedUniqueAmount,
+      bankAccNo: bankAccNo,
+      uniqueAmount: uniqueAmount,
+      transactionDate: transactionDate,
+      formattedTransactionDate: formattedTransactionDate,
       expires: expires,
       expiresAt: expiresAt,
-      serviceProvider: serviceProvider,
       isCredit: isCredit,
       isDeeplink: isDeeplink,
       isWebView: isWebView,
@@ -1454,12 +1484,36 @@ const $BillingDetail = _$BillingDetailTearOff();
 
 /// @nodoc
 mixin _$BillingDetail {
+  @JsonKey(defaultValue: '')
+  String get orderId => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
   String get title => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
   String get vaNumber => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get amount => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get fee => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get finalAmount => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get serviceProvider => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get bankAccName => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get bankName => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get formattedUniqueAmount => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get bankAccNo => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String get uniqueAmount => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  DateTime? get transactionDate => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  DateTime? get formattedTransactionDate => throw _privateConstructorUsedError;
   int get expires => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
-  String get serviceProvider => throw _privateConstructorUsedError;
   bool get isCredit => throw _privateConstructorUsedError;
   bool get isDeeplink => throw _privateConstructorUsedError;
   bool get isWebView => throw _privateConstructorUsedError;
@@ -1477,12 +1531,22 @@ abstract class $BillingDetailCopyWith<$Res> {
           BillingDetail value, $Res Function(BillingDetail) then) =
       _$BillingDetailCopyWithImpl<$Res>;
   $Res call(
-      {String title,
-      int amount,
-      String vaNumber,
+      {@JsonKey(defaultValue: '') String orderId,
+      @JsonKey(defaultValue: '') String title,
+      @JsonKey(defaultValue: '') String vaNumber,
+      @JsonKey(defaultValue: '') String amount,
+      @JsonKey(defaultValue: '') String fee,
+      @JsonKey(defaultValue: '') String finalAmount,
+      @JsonKey(defaultValue: '') String serviceProvider,
+      @JsonKey(defaultValue: '') String bankAccName,
+      @JsonKey(defaultValue: '') String bankName,
+      @JsonKey(defaultValue: '') String formattedUniqueAmount,
+      @JsonKey(defaultValue: '') String bankAccNo,
+      @JsonKey(defaultValue: '') String uniqueAmount,
+      @JsonKey(includeIfNull: true) DateTime? transactionDate,
+      @JsonKey(includeIfNull: true) DateTime? formattedTransactionDate,
       int expires,
       DateTime expiresAt,
-      String serviceProvider,
       bool isCredit,
       bool isDeeplink,
       bool isWebView,
@@ -1500,30 +1564,84 @@ class _$BillingDetailCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? orderId = freezed,
     Object? title = freezed,
-    Object? amount = freezed,
     Object? vaNumber = freezed,
+    Object? amount = freezed,
+    Object? fee = freezed,
+    Object? finalAmount = freezed,
+    Object? serviceProvider = freezed,
+    Object? bankAccName = freezed,
+    Object? bankName = freezed,
+    Object? formattedUniqueAmount = freezed,
+    Object? bankAccNo = freezed,
+    Object? uniqueAmount = freezed,
+    Object? transactionDate = freezed,
+    Object? formattedTransactionDate = freezed,
     Object? expires = freezed,
     Object? expiresAt = freezed,
-    Object? serviceProvider = freezed,
     Object? isCredit = freezed,
     Object? isDeeplink = freezed,
     Object? isWebView = freezed,
     Object? isSingleBilling = freezed,
   }) {
     return _then(_value.copyWith(
+      orderId: orderId == freezed
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
       vaNumber: vaNumber == freezed
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      fee: fee == freezed
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as String,
+      finalAmount: finalAmount == freezed
+          ? _value.finalAmount
+          : finalAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      serviceProvider: serviceProvider == freezed
+          ? _value.serviceProvider
+          : serviceProvider // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankAccName: bankAccName == freezed
+          ? _value.bankAccName
+          : bankAccName // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankName: bankName == freezed
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      formattedUniqueAmount: formattedUniqueAmount == freezed
+          ? _value.formattedUniqueAmount
+          : formattedUniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankAccNo: bankAccNo == freezed
+          ? _value.bankAccNo
+          : bankAccNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      uniqueAmount: uniqueAmount == freezed
+          ? _value.uniqueAmount
+          : uniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      transactionDate: transactionDate == freezed
+          ? _value.transactionDate
+          : transactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      formattedTransactionDate: formattedTransactionDate == freezed
+          ? _value.formattedTransactionDate
+          : formattedTransactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       expires: expires == freezed
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
@@ -1532,10 +1650,6 @@ class _$BillingDetailCopyWithImpl<$Res>
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      serviceProvider: serviceProvider == freezed
-          ? _value.serviceProvider
-          : serviceProvider // ignore: cast_nullable_to_non_nullable
-              as String,
       isCredit: isCredit == freezed
           ? _value.isCredit
           : isCredit // ignore: cast_nullable_to_non_nullable
@@ -1564,12 +1678,22 @@ abstract class _$BillingDetailCopyWith<$Res>
       __$BillingDetailCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String title,
-      int amount,
-      String vaNumber,
+      {@JsonKey(defaultValue: '') String orderId,
+      @JsonKey(defaultValue: '') String title,
+      @JsonKey(defaultValue: '') String vaNumber,
+      @JsonKey(defaultValue: '') String amount,
+      @JsonKey(defaultValue: '') String fee,
+      @JsonKey(defaultValue: '') String finalAmount,
+      @JsonKey(defaultValue: '') String serviceProvider,
+      @JsonKey(defaultValue: '') String bankAccName,
+      @JsonKey(defaultValue: '') String bankName,
+      @JsonKey(defaultValue: '') String formattedUniqueAmount,
+      @JsonKey(defaultValue: '') String bankAccNo,
+      @JsonKey(defaultValue: '') String uniqueAmount,
+      @JsonKey(includeIfNull: true) DateTime? transactionDate,
+      @JsonKey(includeIfNull: true) DateTime? formattedTransactionDate,
       int expires,
       DateTime expiresAt,
-      String serviceProvider,
       bool isCredit,
       bool isDeeplink,
       bool isWebView,
@@ -1589,30 +1713,84 @@ class __$BillingDetailCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? orderId = freezed,
     Object? title = freezed,
-    Object? amount = freezed,
     Object? vaNumber = freezed,
+    Object? amount = freezed,
+    Object? fee = freezed,
+    Object? finalAmount = freezed,
+    Object? serviceProvider = freezed,
+    Object? bankAccName = freezed,
+    Object? bankName = freezed,
+    Object? formattedUniqueAmount = freezed,
+    Object? bankAccNo = freezed,
+    Object? uniqueAmount = freezed,
+    Object? transactionDate = freezed,
+    Object? formattedTransactionDate = freezed,
     Object? expires = freezed,
     Object? expiresAt = freezed,
-    Object? serviceProvider = freezed,
     Object? isCredit = freezed,
     Object? isDeeplink = freezed,
     Object? isWebView = freezed,
     Object? isSingleBilling = freezed,
   }) {
     return _then(_BillingDetail(
+      orderId: orderId == freezed
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
       vaNumber: vaNumber == freezed
           ? _value.vaNumber
           : vaNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      fee: fee == freezed
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as String,
+      finalAmount: finalAmount == freezed
+          ? _value.finalAmount
+          : finalAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      serviceProvider: serviceProvider == freezed
+          ? _value.serviceProvider
+          : serviceProvider // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankAccName: bankAccName == freezed
+          ? _value.bankAccName
+          : bankAccName // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankName: bankName == freezed
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      formattedUniqueAmount: formattedUniqueAmount == freezed
+          ? _value.formattedUniqueAmount
+          : formattedUniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankAccNo: bankAccNo == freezed
+          ? _value.bankAccNo
+          : bankAccNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      uniqueAmount: uniqueAmount == freezed
+          ? _value.uniqueAmount
+          : uniqueAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      transactionDate: transactionDate == freezed
+          ? _value.transactionDate
+          : transactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      formattedTransactionDate: formattedTransactionDate == freezed
+          ? _value.formattedTransactionDate
+          : formattedTransactionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       expires: expires == freezed
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
@@ -1621,10 +1799,6 @@ class __$BillingDetailCopyWithImpl<$Res>
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      serviceProvider: serviceProvider == freezed
-          ? _value.serviceProvider
-          : serviceProvider // ignore: cast_nullable_to_non_nullable
-              as String,
       isCredit: isCredit == freezed
           ? _value.isCredit
           : isCredit // ignore: cast_nullable_to_non_nullable
@@ -1649,12 +1823,22 @@ class __$BillingDetailCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BillingDetail implements _BillingDetail {
   const _$_BillingDetail(
-      {required this.title,
-      required this.amount,
-      required this.vaNumber,
+      {@JsonKey(defaultValue: '') required this.orderId,
+      @JsonKey(defaultValue: '') required this.title,
+      @JsonKey(defaultValue: '') required this.vaNumber,
+      @JsonKey(defaultValue: '') required this.amount,
+      @JsonKey(defaultValue: '') required this.fee,
+      @JsonKey(defaultValue: '') required this.finalAmount,
+      @JsonKey(defaultValue: '') required this.serviceProvider,
+      @JsonKey(defaultValue: '') required this.bankAccName,
+      @JsonKey(defaultValue: '') required this.bankName,
+      @JsonKey(defaultValue: '') required this.formattedUniqueAmount,
+      @JsonKey(defaultValue: '') required this.bankAccNo,
+      @JsonKey(defaultValue: '') required this.uniqueAmount,
+      @JsonKey(includeIfNull: true) required this.transactionDate,
+      @JsonKey(includeIfNull: true) required this.formattedTransactionDate,
       required this.expires,
       required this.expiresAt,
-      required this.serviceProvider,
       required this.isCredit,
       required this.isDeeplink,
       required this.isWebView,
@@ -1664,17 +1848,51 @@ class _$_BillingDetail implements _BillingDetail {
       _$_$_BillingDetailFromJson(json);
 
   @override
+  @JsonKey(defaultValue: '')
+  final String orderId;
+  @override
+  @JsonKey(defaultValue: '')
   final String title;
   @override
-  final int amount;
-  @override
+  @JsonKey(defaultValue: '')
   final String vaNumber;
+  @override
+  @JsonKey(defaultValue: '')
+  final String amount;
+  @override
+  @JsonKey(defaultValue: '')
+  final String fee;
+  @override
+  @JsonKey(defaultValue: '')
+  final String finalAmount;
+  @override
+  @JsonKey(defaultValue: '')
+  final String serviceProvider;
+  @override
+  @JsonKey(defaultValue: '')
+  final String bankAccName;
+  @override
+  @JsonKey(defaultValue: '')
+  final String bankName;
+  @override
+  @JsonKey(defaultValue: '')
+  final String formattedUniqueAmount;
+  @override
+  @JsonKey(defaultValue: '')
+  final String bankAccNo;
+  @override
+  @JsonKey(defaultValue: '')
+  final String uniqueAmount;
+  @override
+  @JsonKey(includeIfNull: true)
+  final DateTime? transactionDate;
+  @override
+  @JsonKey(includeIfNull: true)
+  final DateTime? formattedTransactionDate;
   @override
   final int expires;
   @override
   final DateTime expiresAt;
-  @override
-  final String serviceProvider;
   @override
   final bool isCredit;
   @override
@@ -1686,29 +1904,60 @@ class _$_BillingDetail implements _BillingDetail {
 
   @override
   String toString() {
-    return 'BillingDetail(title: $title, amount: $amount, vaNumber: $vaNumber, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider, isCredit: $isCredit, isDeeplink: $isDeeplink, isWebView: $isWebView, isSingleBilling: $isSingleBilling)';
+    return 'BillingDetail(orderId: $orderId, title: $title, vaNumber: $vaNumber, amount: $amount, fee: $fee, finalAmount: $finalAmount, serviceProvider: $serviceProvider, bankAccName: $bankAccName, bankName: $bankName, formattedUniqueAmount: $formattedUniqueAmount, bankAccNo: $bankAccNo, uniqueAmount: $uniqueAmount, transactionDate: $transactionDate, formattedTransactionDate: $formattedTransactionDate, expires: $expires, expiresAt: $expiresAt, isCredit: $isCredit, isDeeplink: $isDeeplink, isWebView: $isWebView, isSingleBilling: $isSingleBilling)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _BillingDetail &&
+            (identical(other.orderId, orderId) ||
+                const DeepCollectionEquality()
+                    .equals(other.orderId, orderId)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
             (identical(other.vaNumber, vaNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.vaNumber, vaNumber)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.fee, fee) ||
+                const DeepCollectionEquality().equals(other.fee, fee)) &&
+            (identical(other.finalAmount, finalAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.finalAmount, finalAmount)) &&
+            (identical(other.serviceProvider, serviceProvider) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceProvider, serviceProvider)) &&
+            (identical(other.bankAccName, bankAccName) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankAccName, bankAccName)) &&
+            (identical(other.bankName, bankName) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankName, bankName)) &&
+            (identical(other.formattedUniqueAmount, formattedUniqueAmount) ||
+                const DeepCollectionEquality().equals(
+                    other.formattedUniqueAmount, formattedUniqueAmount)) &&
+            (identical(other.bankAccNo, bankAccNo) ||
+                const DeepCollectionEquality()
+                    .equals(other.bankAccNo, bankAccNo)) &&
+            (identical(other.uniqueAmount, uniqueAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.uniqueAmount, uniqueAmount)) &&
+            (identical(other.transactionDate, transactionDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.transactionDate, transactionDate)) &&
+            (identical(
+                    other.formattedTransactionDate, formattedTransactionDate) ||
+                const DeepCollectionEquality().equals(
+                    other.formattedTransactionDate,
+                    formattedTransactionDate)) &&
             (identical(other.expires, expires) ||
                 const DeepCollectionEquality()
                     .equals(other.expires, expires)) &&
             (identical(other.expiresAt, expiresAt) ||
                 const DeepCollectionEquality()
                     .equals(other.expiresAt, expiresAt)) &&
-            (identical(other.serviceProvider, serviceProvider) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceProvider, serviceProvider)) &&
             (identical(other.isCredit, isCredit) ||
                 const DeepCollectionEquality()
                     .equals(other.isCredit, isCredit)) &&
@@ -1726,12 +1975,22 @@ class _$_BillingDetail implements _BillingDetail {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(orderId) ^
       const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(vaNumber) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(fee) ^
+      const DeepCollectionEquality().hash(finalAmount) ^
+      const DeepCollectionEquality().hash(serviceProvider) ^
+      const DeepCollectionEquality().hash(bankAccName) ^
+      const DeepCollectionEquality().hash(bankName) ^
+      const DeepCollectionEquality().hash(formattedUniqueAmount) ^
+      const DeepCollectionEquality().hash(bankAccNo) ^
+      const DeepCollectionEquality().hash(uniqueAmount) ^
+      const DeepCollectionEquality().hash(transactionDate) ^
+      const DeepCollectionEquality().hash(formattedTransactionDate) ^
       const DeepCollectionEquality().hash(expires) ^
       const DeepCollectionEquality().hash(expiresAt) ^
-      const DeepCollectionEquality().hash(serviceProvider) ^
       const DeepCollectionEquality().hash(isCredit) ^
       const DeepCollectionEquality().hash(isDeeplink) ^
       const DeepCollectionEquality().hash(isWebView) ^
@@ -1750,12 +2009,22 @@ class _$_BillingDetail implements _BillingDetail {
 
 abstract class _BillingDetail implements BillingDetail {
   const factory _BillingDetail(
-      {required String title,
-      required int amount,
-      required String vaNumber,
+      {@JsonKey(defaultValue: '') required String orderId,
+      @JsonKey(defaultValue: '') required String title,
+      @JsonKey(defaultValue: '') required String vaNumber,
+      @JsonKey(defaultValue: '') required String amount,
+      @JsonKey(defaultValue: '') required String fee,
+      @JsonKey(defaultValue: '') required String finalAmount,
+      @JsonKey(defaultValue: '') required String serviceProvider,
+      @JsonKey(defaultValue: '') required String bankAccName,
+      @JsonKey(defaultValue: '') required String bankName,
+      @JsonKey(defaultValue: '') required String formattedUniqueAmount,
+      @JsonKey(defaultValue: '') required String bankAccNo,
+      @JsonKey(defaultValue: '') required String uniqueAmount,
+      @JsonKey(includeIfNull: true) required DateTime? transactionDate,
+      @JsonKey(includeIfNull: true) required DateTime? formattedTransactionDate,
       required int expires,
       required DateTime expiresAt,
-      required String serviceProvider,
       required bool isCredit,
       required bool isDeeplink,
       required bool isWebView,
@@ -1765,17 +2034,51 @@ abstract class _BillingDetail implements BillingDetail {
       _$_BillingDetail.fromJson;
 
   @override
+  @JsonKey(defaultValue: '')
+  String get orderId => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
   String get title => throw _privateConstructorUsedError;
   @override
-  int get amount => throw _privateConstructorUsedError;
-  @override
+  @JsonKey(defaultValue: '')
   String get vaNumber => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get amount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get fee => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get finalAmount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get serviceProvider => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get bankAccName => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get bankName => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get formattedUniqueAmount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get bankAccNo => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: '')
+  String get uniqueAmount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(includeIfNull: true)
+  DateTime? get transactionDate => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(includeIfNull: true)
+  DateTime? get formattedTransactionDate => throw _privateConstructorUsedError;
   @override
   int get expires => throw _privateConstructorUsedError;
   @override
   DateTime get expiresAt => throw _privateConstructorUsedError;
-  @override
-  String get serviceProvider => throw _privateConstructorUsedError;
   @override
   bool get isCredit => throw _privateConstructorUsedError;
   @override
@@ -1803,7 +2106,7 @@ class _$DeliveryTearOff {
       required int price,
       required String address,
       required String shipmentMethod,
-      required List<String> location}) {
+      required List<dynamic> location}) {
     return _Delivery(
       provider: provider,
       price: price,
@@ -1827,7 +2130,7 @@ mixin _$Delivery {
   int get price => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get shipmentMethod => throw _privateConstructorUsedError;
-  List<String> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1844,7 +2147,7 @@ abstract class $DeliveryCopyWith<$Res> {
       int price,
       String address,
       String shipmentMethod,
-      List<String> location});
+      List<dynamic> location});
 }
 
 /// @nodoc
@@ -1883,7 +2186,7 @@ class _$DeliveryCopyWithImpl<$Res> implements $DeliveryCopyWith<$Res> {
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<dynamic>,
     ));
   }
 }
@@ -1898,7 +2201,7 @@ abstract class _$DeliveryCopyWith<$Res> implements $DeliveryCopyWith<$Res> {
       int price,
       String address,
       String shipmentMethod,
-      List<String> location});
+      List<dynamic> location});
 }
 
 /// @nodoc
@@ -1938,7 +2241,7 @@ class __$DeliveryCopyWithImpl<$Res> extends _$DeliveryCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<dynamic>,
     ));
   }
 }
@@ -1965,7 +2268,7 @@ class _$_Delivery implements _Delivery {
   @override
   final String shipmentMethod;
   @override
-  final List<String> location;
+  final List<dynamic> location;
 
   @override
   String toString() {
@@ -2018,7 +2321,7 @@ abstract class _Delivery implements Delivery {
       required int price,
       required String address,
       required String shipmentMethod,
-      required List<String> location}) = _$_Delivery;
+      required List<dynamic> location}) = _$_Delivery;
 
   factory _Delivery.fromJson(Map<String, dynamic> json) = _$_Delivery.fromJson;
 
@@ -2031,7 +2334,7 @@ abstract class _Delivery implements Delivery {
   @override
   String get shipmentMethod => throw _privateConstructorUsedError;
   @override
-  List<String> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DeliveryCopyWith<_Delivery> get copyWith =>
@@ -2051,7 +2354,7 @@ class _$DeliveryDetailTearOff {
       required String distance,
       required String provider,
       required String shipmentMethod,
-      required int fee,
+      required String fee,
       required String bookingCode,
       required String bookingExpired,
       required String deliveryId,
@@ -2095,7 +2398,7 @@ mixin _$DeliveryDetail {
   String get distance => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
   String get shipmentMethod => throw _privateConstructorUsedError;
-  int get fee => throw _privateConstructorUsedError;
+  String get fee => throw _privateConstructorUsedError;
   String get bookingCode => throw _privateConstructorUsedError;
   String get bookingExpired => throw _privateConstructorUsedError;
   String get deliveryId => throw _privateConstructorUsedError;
@@ -2123,7 +2426,7 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       String distance,
       String provider,
       String shipmentMethod,
-      int fee,
+      String fee,
       String bookingCode,
       String bookingExpired,
       String deliveryId,
@@ -2186,7 +2489,7 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2257,7 +2560,7 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       String distance,
       String provider,
       String shipmentMethod,
-      int fee,
+      String fee,
       String bookingCode,
       String bookingExpired,
       String deliveryId,
@@ -2324,7 +2627,7 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2401,7 +2704,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   @override
   final String shipmentMethod;
   @override
-  final int fee;
+  final String fee;
   @override
   final String bookingCode;
   @override
@@ -2511,7 +2814,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
       required String distance,
       required String provider,
       required String shipmentMethod,
-      required int fee,
+      required String fee,
       required String bookingCode,
       required String bookingExpired,
       required String deliveryId,
@@ -2535,7 +2838,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @override
   String get shipmentMethod => throw _privateConstructorUsedError;
   @override
-  int get fee => throw _privateConstructorUsedError;
+  String get fee => throw _privateConstructorUsedError;
   @override
   String get bookingCode => throw _privateConstructorUsedError;
   @override
@@ -2571,7 +2874,7 @@ class _$DeliverFromTearOff {
   const _$DeliverFromTearOff();
 
   _DeliverFrom call(
-      {required List<double> location,
+      {required List<dynamic> location,
       required String name,
       required String address,
       required String phone}) {
@@ -2593,7 +2896,7 @@ const $DeliverFrom = _$DeliverFromTearOff();
 
 /// @nodoc
 mixin _$DeliverFrom {
-  List<double> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -2609,7 +2912,8 @@ abstract class $DeliverFromCopyWith<$Res> {
   factory $DeliverFromCopyWith(
           DeliverFrom value, $Res Function(DeliverFrom) then) =
       _$DeliverFromCopyWithImpl<$Res>;
-  $Res call({List<double> location, String name, String address, String phone});
+  $Res call(
+      {List<dynamic> location, String name, String address, String phone});
 }
 
 /// @nodoc
@@ -2631,7 +2935,7 @@ class _$DeliverFromCopyWithImpl<$Res> implements $DeliverFromCopyWith<$Res> {
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as List<dynamic>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2655,7 +2959,8 @@ abstract class _$DeliverFromCopyWith<$Res>
           _DeliverFrom value, $Res Function(_DeliverFrom) then) =
       __$DeliverFromCopyWithImpl<$Res>;
   @override
-  $Res call({List<double> location, String name, String address, String phone});
+  $Res call(
+      {List<dynamic> location, String name, String address, String phone});
 }
 
 /// @nodoc
@@ -2679,7 +2984,7 @@ class __$DeliverFromCopyWithImpl<$Res> extends _$DeliverFromCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as List<dynamic>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2709,7 +3014,7 @@ class _$_DeliverFrom implements _DeliverFrom {
       _$_$_DeliverFromFromJson(json);
 
   @override
-  final List<double> location;
+  final List<dynamic> location;
   @override
   final String name;
   @override
@@ -2759,7 +3064,7 @@ class _$_DeliverFrom implements _DeliverFrom {
 
 abstract class _DeliverFrom implements DeliverFrom {
   const factory _DeliverFrom(
-      {required List<double> location,
+      {required List<dynamic> location,
       required String name,
       required String address,
       required String phone}) = _$_DeliverFrom;
@@ -2768,7 +3073,7 @@ abstract class _DeliverFrom implements DeliverFrom {
       _$_DeliverFrom.fromJson;
 
   @override
-  List<double> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
@@ -2790,7 +3095,7 @@ class _$DeliverToTearOff {
   const _$DeliverToTearOff();
 
   _DeliverTo call(
-      {required List<String> location,
+      {required List<dynamic> location,
       required String name,
       required String address,
       required String phone}) {
@@ -2812,7 +3117,7 @@ const $DeliverTo = _$DeliverToTearOff();
 
 /// @nodoc
 mixin _$DeliverTo {
-  List<String> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -2827,7 +3132,8 @@ mixin _$DeliverTo {
 abstract class $DeliverToCopyWith<$Res> {
   factory $DeliverToCopyWith(DeliverTo value, $Res Function(DeliverTo) then) =
       _$DeliverToCopyWithImpl<$Res>;
-  $Res call({List<String> location, String name, String address, String phone});
+  $Res call(
+      {List<dynamic> location, String name, String address, String phone});
 }
 
 /// @nodoc
@@ -2849,7 +3155,7 @@ class _$DeliverToCopyWithImpl<$Res> implements $DeliverToCopyWith<$Res> {
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<dynamic>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2872,7 +3178,8 @@ abstract class _$DeliverToCopyWith<$Res> implements $DeliverToCopyWith<$Res> {
           _DeliverTo value, $Res Function(_DeliverTo) then) =
       __$DeliverToCopyWithImpl<$Res>;
   @override
-  $Res call({List<String> location, String name, String address, String phone});
+  $Res call(
+      {List<dynamic> location, String name, String address, String phone});
 }
 
 /// @nodoc
@@ -2895,7 +3202,7 @@ class __$DeliverToCopyWithImpl<$Res> extends _$DeliverToCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<dynamic>,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2925,7 +3232,7 @@ class _$_DeliverTo implements _DeliverTo {
       _$_$_DeliverToFromJson(json);
 
   @override
-  final List<String> location;
+  final List<dynamic> location;
   @override
   final String name;
   @override
@@ -2975,7 +3282,7 @@ class _$_DeliverTo implements _DeliverTo {
 
 abstract class _DeliverTo implements DeliverTo {
   const factory _DeliverTo(
-      {required List<String> location,
+      {required List<dynamic> location,
       required String name,
       required String address,
       required String phone}) = _$_DeliverTo;
@@ -2984,7 +3291,7 @@ abstract class _DeliverTo implements DeliverTo {
       _$_DeliverTo.fromJson;
 
   @override
-  List<String> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
@@ -4255,7 +4562,7 @@ class _$OutletDetailTearOff {
       {required String name,
       required String address,
       required List<dynamic> taxesAndServices,
-      required List<double> location,
+      required List<dynamic> location,
       required String phone,
       required String kurirPrice,
       required List<String> deliveryProvider,
@@ -4289,7 +4596,7 @@ mixin _$OutletDetail {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
-  List<double> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get kurirPrice => throw _privateConstructorUsedError;
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
@@ -4312,7 +4619,7 @@ abstract class $OutletDetailCopyWith<$Res> {
       {String name,
       String address,
       List<dynamic> taxesAndServices,
-      List<double> location,
+      List<dynamic> location,
       String phone,
       String kurirPrice,
       List<String> deliveryProvider,
@@ -4358,7 +4665,7 @@ class _$OutletDetailCopyWithImpl<$Res> implements $OutletDetailCopyWith<$Res> {
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as List<dynamic>,
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -4398,7 +4705,7 @@ abstract class _$OutletDetailCopyWith<$Res>
       {String name,
       String address,
       List<dynamic> taxesAndServices,
-      List<double> location,
+      List<dynamic> location,
       String phone,
       String kurirPrice,
       List<String> deliveryProvider,
@@ -4446,7 +4753,7 @@ class __$OutletDetailCopyWithImpl<$Res> extends _$OutletDetailCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as List<dynamic>,
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -4500,7 +4807,7 @@ class _$_OutletDetail implements _OutletDetail {
   @override
   final List<dynamic> taxesAndServices;
   @override
-  final List<double> location;
+  final List<dynamic> location;
   @override
   final String phone;
   @override
@@ -4582,7 +4889,7 @@ abstract class _OutletDetail implements OutletDetail {
       {required String name,
       required String address,
       required List<dynamic> taxesAndServices,
-      required List<double> location,
+      required List<dynamic> location,
       required String phone,
       required String kurirPrice,
       required List<String> deliveryProvider,
@@ -4600,7 +4907,7 @@ abstract class _OutletDetail implements OutletDetail {
   @override
   List<dynamic> get taxesAndServices => throw _privateConstructorUsedError;
   @override
-  List<double> get location => throw _privateConstructorUsedError;
+  List<dynamic> get location => throw _privateConstructorUsedError;
   @override
   String get phone => throw _privateConstructorUsedError;
   @override
