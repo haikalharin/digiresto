@@ -2,6 +2,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
@@ -18,6 +19,7 @@ class OrderPendingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     final isVa = orderPending.billingDetail.vaNumber.isNotEmpty;
     return CustomCard(
       blurRadius: 2,
@@ -304,7 +306,8 @@ class OrderPendingWidget extends StatelessWidget {
                         Text(
                           isVa
                               ? CommonUtils.currencyFormat(double.tryParse(
-                                      orderPending.billingDetail.amount) ??
+                                      orderPending.billingDetail.amount
+                                          .toString()) ??
                                   0)
                               : CommonUtils.currencyFormat(double.tryParse(
                                       orderPending
@@ -385,7 +388,37 @@ class OrderPendingWidget extends StatelessWidget {
                 ),
                 CustomButton(
                   label: 'Lakukan Pembayaran',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.dialog(CustomDialog(
+                      backgroundColor: Colors.white,
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Digiresto',
+                            style: Styles.dialogTitleStyle,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            i10n.history_pending_inquiry_pending,
+                            style: Styles.dialogSubtitleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          CustomButton(
+                            onPressed: () => Get.back(),
+                            color: AppColors.mainColor,
+                            fontColor: Colors.white,
+                            label: i10n.alert_ok,
+                          ),
+                        ],
+                      ),
+                    ));
+                  },
                   color: AppColors.mainColor,
                   fontColor: Colors.white,
                 )

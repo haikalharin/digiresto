@@ -1430,18 +1430,18 @@ class _$BillingDetailTearOff {
   const _$BillingDetailTearOff();
 
   _BillingDetail call(
-      {@JsonKey(defaultValue: '') required String orderId,
-      @JsonKey(defaultValue: '') required String title,
-      @JsonKey(defaultValue: '') required String vaNumber,
-      @JsonKey(defaultValue: '') required String amount,
-      @JsonKey(defaultValue: '') required String fee,
-      @JsonKey(defaultValue: '') required String finalAmount,
-      @JsonKey(defaultValue: '') required String serviceProvider,
-      @JsonKey(defaultValue: '') required String bankAccName,
-      @JsonKey(defaultValue: '') required String bankName,
-      @JsonKey(defaultValue: '') required String formattedUniqueAmount,
-      @JsonKey(defaultValue: '') required String bankAccNo,
-      @JsonKey(defaultValue: '') required String uniqueAmount,
+      {@JsonKey(defaultValue: '', includeIfNull: true) required String orderId,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String title,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String vaNumber,
+      @JsonKey(defaultValue: '', includeIfNull: true) required dynamic amount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String fee,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String finalAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String serviceProvider,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String bankAccName,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String bankName,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String formattedUniqueAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String bankAccNo,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String uniqueAmount,
       @JsonKey(includeIfNull: true) required DateTime? transactionDate,
       @JsonKey(includeIfNull: true) required DateTime? formattedTransactionDate,
       required int expires,
@@ -1484,29 +1484,29 @@ const $BillingDetail = _$BillingDetailTearOff();
 
 /// @nodoc
 mixin _$BillingDetail {
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get orderId => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get vaNumber => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
-  String get amount => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
+  dynamic get amount => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get fee => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get finalAmount => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get serviceProvider => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get bankAccName => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get bankName => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get formattedUniqueAmount => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get bankAccNo => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get uniqueAmount => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
   DateTime? get transactionDate => throw _privateConstructorUsedError;
@@ -1531,18 +1531,18 @@ abstract class $BillingDetailCopyWith<$Res> {
           BillingDetail value, $Res Function(BillingDetail) then) =
       _$BillingDetailCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(defaultValue: '') String orderId,
-      @JsonKey(defaultValue: '') String title,
-      @JsonKey(defaultValue: '') String vaNumber,
-      @JsonKey(defaultValue: '') String amount,
-      @JsonKey(defaultValue: '') String fee,
-      @JsonKey(defaultValue: '') String finalAmount,
-      @JsonKey(defaultValue: '') String serviceProvider,
-      @JsonKey(defaultValue: '') String bankAccName,
-      @JsonKey(defaultValue: '') String bankName,
-      @JsonKey(defaultValue: '') String formattedUniqueAmount,
-      @JsonKey(defaultValue: '') String bankAccNo,
-      @JsonKey(defaultValue: '') String uniqueAmount,
+      {@JsonKey(defaultValue: '', includeIfNull: true) String orderId,
+      @JsonKey(defaultValue: '', includeIfNull: true) String title,
+      @JsonKey(defaultValue: '', includeIfNull: true) String vaNumber,
+      @JsonKey(defaultValue: '', includeIfNull: true) dynamic amount,
+      @JsonKey(defaultValue: '', includeIfNull: true) String fee,
+      @JsonKey(defaultValue: '', includeIfNull: true) String finalAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) String serviceProvider,
+      @JsonKey(defaultValue: '', includeIfNull: true) String bankAccName,
+      @JsonKey(defaultValue: '', includeIfNull: true) String bankName,
+      @JsonKey(defaultValue: '', includeIfNull: true) String formattedUniqueAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) String bankAccNo,
+      @JsonKey(defaultValue: '', includeIfNull: true) String uniqueAmount,
       @JsonKey(includeIfNull: true) DateTime? transactionDate,
       @JsonKey(includeIfNull: true) DateTime? formattedTransactionDate,
       int expires,
@@ -1601,7 +1601,7 @@ class _$BillingDetailCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -1678,18 +1678,18 @@ abstract class _$BillingDetailCopyWith<$Res>
       __$BillingDetailCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(defaultValue: '') String orderId,
-      @JsonKey(defaultValue: '') String title,
-      @JsonKey(defaultValue: '') String vaNumber,
-      @JsonKey(defaultValue: '') String amount,
-      @JsonKey(defaultValue: '') String fee,
-      @JsonKey(defaultValue: '') String finalAmount,
-      @JsonKey(defaultValue: '') String serviceProvider,
-      @JsonKey(defaultValue: '') String bankAccName,
-      @JsonKey(defaultValue: '') String bankName,
-      @JsonKey(defaultValue: '') String formattedUniqueAmount,
-      @JsonKey(defaultValue: '') String bankAccNo,
-      @JsonKey(defaultValue: '') String uniqueAmount,
+      {@JsonKey(defaultValue: '', includeIfNull: true) String orderId,
+      @JsonKey(defaultValue: '', includeIfNull: true) String title,
+      @JsonKey(defaultValue: '', includeIfNull: true) String vaNumber,
+      @JsonKey(defaultValue: '', includeIfNull: true) dynamic amount,
+      @JsonKey(defaultValue: '', includeIfNull: true) String fee,
+      @JsonKey(defaultValue: '', includeIfNull: true) String finalAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) String serviceProvider,
+      @JsonKey(defaultValue: '', includeIfNull: true) String bankAccName,
+      @JsonKey(defaultValue: '', includeIfNull: true) String bankName,
+      @JsonKey(defaultValue: '', includeIfNull: true) String formattedUniqueAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) String bankAccNo,
+      @JsonKey(defaultValue: '', includeIfNull: true) String uniqueAmount,
       @JsonKey(includeIfNull: true) DateTime? transactionDate,
       @JsonKey(includeIfNull: true) DateTime? formattedTransactionDate,
       int expires,
@@ -1750,7 +1750,7 @@ class __$BillingDetailCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -1823,18 +1823,18 @@ class __$BillingDetailCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BillingDetail implements _BillingDetail {
   const _$_BillingDetail(
-      {@JsonKey(defaultValue: '') required this.orderId,
-      @JsonKey(defaultValue: '') required this.title,
-      @JsonKey(defaultValue: '') required this.vaNumber,
-      @JsonKey(defaultValue: '') required this.amount,
-      @JsonKey(defaultValue: '') required this.fee,
-      @JsonKey(defaultValue: '') required this.finalAmount,
-      @JsonKey(defaultValue: '') required this.serviceProvider,
-      @JsonKey(defaultValue: '') required this.bankAccName,
-      @JsonKey(defaultValue: '') required this.bankName,
-      @JsonKey(defaultValue: '') required this.formattedUniqueAmount,
-      @JsonKey(defaultValue: '') required this.bankAccNo,
-      @JsonKey(defaultValue: '') required this.uniqueAmount,
+      {@JsonKey(defaultValue: '', includeIfNull: true) required this.orderId,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.title,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.vaNumber,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.amount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.fee,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.finalAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.serviceProvider,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.bankAccName,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.bankName,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.formattedUniqueAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.bankAccNo,
+      @JsonKey(defaultValue: '', includeIfNull: true) required this.uniqueAmount,
       @JsonKey(includeIfNull: true) required this.transactionDate,
       @JsonKey(includeIfNull: true) required this.formattedTransactionDate,
       required this.expires,
@@ -1848,40 +1848,40 @@ class _$_BillingDetail implements _BillingDetail {
       _$_$_BillingDetailFromJson(json);
 
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String orderId;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String title;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String vaNumber;
   @override
-  @JsonKey(defaultValue: '')
-  final String amount;
+  @JsonKey(defaultValue: '', includeIfNull: true)
+  final dynamic amount;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String fee;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String finalAmount;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String serviceProvider;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String bankAccName;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String bankName;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String formattedUniqueAmount;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String bankAccNo;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   final String uniqueAmount;
   @override
   @JsonKey(includeIfNull: true)
@@ -2009,18 +2009,18 @@ class _$_BillingDetail implements _BillingDetail {
 
 abstract class _BillingDetail implements BillingDetail {
   const factory _BillingDetail(
-      {@JsonKey(defaultValue: '') required String orderId,
-      @JsonKey(defaultValue: '') required String title,
-      @JsonKey(defaultValue: '') required String vaNumber,
-      @JsonKey(defaultValue: '') required String amount,
-      @JsonKey(defaultValue: '') required String fee,
-      @JsonKey(defaultValue: '') required String finalAmount,
-      @JsonKey(defaultValue: '') required String serviceProvider,
-      @JsonKey(defaultValue: '') required String bankAccName,
-      @JsonKey(defaultValue: '') required String bankName,
-      @JsonKey(defaultValue: '') required String formattedUniqueAmount,
-      @JsonKey(defaultValue: '') required String bankAccNo,
-      @JsonKey(defaultValue: '') required String uniqueAmount,
+      {@JsonKey(defaultValue: '', includeIfNull: true) required String orderId,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String title,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String vaNumber,
+      @JsonKey(defaultValue: '', includeIfNull: true) required dynamic amount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String fee,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String finalAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String serviceProvider,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String bankAccName,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String bankName,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String formattedUniqueAmount,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String bankAccNo,
+      @JsonKey(defaultValue: '', includeIfNull: true) required String uniqueAmount,
       @JsonKey(includeIfNull: true) required DateTime? transactionDate,
       @JsonKey(includeIfNull: true) required DateTime? formattedTransactionDate,
       required int expires,
@@ -2034,40 +2034,40 @@ abstract class _BillingDetail implements BillingDetail {
       _$_BillingDetail.fromJson;
 
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get orderId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get title => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get vaNumber => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
-  String get amount => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '', includeIfNull: true)
+  dynamic get amount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get fee => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get finalAmount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get serviceProvider => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get bankAccName => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get bankName => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get formattedUniqueAmount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get bankAccNo => throw _privateConstructorUsedError;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: '', includeIfNull: true)
   String get uniqueAmount => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
