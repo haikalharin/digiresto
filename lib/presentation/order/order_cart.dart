@@ -25,63 +25,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import 'detail_product_dialog.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
-  final ScrollController _scrollController = new ScrollController();
-  final notesController = TextEditingController();
-  final placeInfoController = TextEditingController();
-  final voucherCodeController = TextEditingController();
-  final paxController = TextEditingController();
-  final selectedDateController = TextEditingController();
-
-  void getCartSession() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
-  }
-
-  void initDialogPlace() {
-    controller.useSchedule.value = false;
-    paxController.text = "1";
-    controller.selectedDate.value = DateTime.now();
-    controller.selectedValueClock.value = "13:00";
-    controller.selectedValueSmoking.value = "1";
-    selectedDateController.text =
-        new DateFormat("yyyy/MM/dd").format(DateTime.now());
-  }
-
-  String getValueSmoking(String key) {
-    for (int i = 0; i <= controller.dataSmoking.toList().length; i++) {
-      if (controller.dataSmoking.toList()[i].key == key) {
-        return controller.dataSmoking.toList()[i].value!;
-      }
-    }
-    return "";
-  }
-
-  _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: controller.selectedDate.value!, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2030),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-            //isMaterialAppTheme: true,
-            child: child!,
-            data: Theme.of(context).copyWith(
-              colorScheme: ColorScheme.light().copyWith(primary: AppColors.red),
-              primaryColor: AppColors.red,
-            ));
-      },
-    );
-    if (picked != null && picked != controller.selectedDate.value!) {
-      controller.selectedDate.value = picked;
-      selectedDateController.text = new DateFormat("yyyy/MM/dd").format(picked);
-    }
-  }
-
   Widget _notes() {
     return Theme(
       data: Theme.of(Get.context!).copyWith(
@@ -155,7 +102,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         onChanged: (text) {
                           controller.notesSubmited.value = false;
                         },
-                        controller: notesController,
+                        controller: controller.notesController,
                         readOnly: false,
                         style: TextStyle(
                           fontSize: 12.0,
@@ -897,12 +844,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
                             }
-                          } else if (placeInfoController.text == "" &&
+                          } else if (controller.placeInfoController.text ==
+                                  "" &&
                               controller.salesType.value == "dineIn") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Makan di Tempat tidak boleh kosong", () {
                               Get.back();
-                              _dialogPlace();
+                              _dialogDineIn();
                             });
                           } else {
                             ErrorPopupWidget.confirmation("Digiresto",
@@ -941,7 +889,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     );
   }
 
-  _dialogPlace() {
+  _dialogDineIn() {
     showDialog(
         context: Get.context!,
         builder: (BuildContext context) => new AlertDialog(
@@ -1009,10 +957,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                             textInputAction:
                                                 TextInputAction.search,
                                             onSubmitted: (value) {},
-                                            controller: selectedDateController,
+                                            controller: controller
+                                                .selectedDateController,
                                             readOnly: true,
                                             onTap: () {
-                                              _selectDate(context);
+                                              controller.selectDate(context);
                                             },
                                             style: TextStyle(
                                               fontSize: 12.0,
@@ -1098,7 +1047,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         child: TextField(
                             textInputAction: TextInputAction.search,
                             onSubmitted: (value) {},
-                            controller: paxController,
+                            controller: controller.paxController,
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
@@ -1173,8 +1122,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               width: MediaQuery.of(context).size.width - 260,
                               child: RaisedButton(
                                 onPressed: () {
-                                  placeInfoController.text = "";
-                                  initDialogPlace();
+                                  controller.placeInfoController.text = "";
+                                  controller.initDialogPlace();
                                   Navigator.of(context).pop();
                                 },
                                 color: Colors.white,
@@ -1214,7 +1163,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                   //       " pax, " +
                                   //       getValueSmoking(_selectedValueSmoking);
                                   // }
-                                  placeInfoController.text = txt;
+                                  controller.placeInfoController.text = txt;
                                   Navigator.of(context).pop();
                                 },
                                 color: AppColors.red,
@@ -1273,7 +1222,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         child: TextField(
                             textInputAction: TextInputAction.search,
                             onSubmitted: (value) {},
-                            controller: voucherCodeController,
+                            controller: controller.voucherCodeController,
                             readOnly: false,
                             onTap: () {},
                             style: TextStyle(
@@ -1342,7 +1291,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   void updateCartParam() {
     Get.context!
         .read<OrderBloc>()
-        .add(OrderEvent.updateCart(notesController.text));
+        .add(OrderEvent.updateCart(controller.notesController.text));
   }
 
   @override
@@ -1350,7 +1299,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     Get.put(OrderCartScreenViewController());
     controller.getCartCache();
     controller.getActiveAddress();
-    getCartSession();
+    controller.getCartSession();
     return MultiBlocListener(
         listeners: [
           BlocListener<OrderBloc, OrderState>(
@@ -1362,7 +1311,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   getCartSessionSuccess: (r) {
                     controller.cartSession.value = r.response;
-                    notesController.text =
+                    controller.notesController.text =
                         r.response.transactionData!.customerNote;
                     controller.getDetailOutlet();
                     controller.getListProduct();
@@ -1379,12 +1328,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   setSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
-                    controller.checkUseSchedule();
                     updateCartParam();
                   },
                   getSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
-                    controller.checkUseSchedule();
                     updateCartParam();
                   },
                   getPaymentMethodIDSuccess: (r) {
@@ -1476,7 +1423,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                   height: MediaQuery.of(context).size.height -
                                       MediaQuery.of(context).padding.top,
                                   child: SingleChildScrollView(
-                                    controller: _scrollController,
+                                    controller: controller.scrollController,
                                     child: Column(
                                       children: [
                                         _HeaderOrderCart(),

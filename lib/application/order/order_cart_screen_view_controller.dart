@@ -19,6 +19,7 @@ import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'bloc/order_bloc.dart';
@@ -51,12 +52,62 @@ class OrderCartScreenViewController extends GetxController {
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCartSession());
   }
 
-  void checkUseSchedule() {
-    if ((salesType.value ?? "") == "dineIn") {
-      useSchedule.value = true;
-    } else {
-      useSchedule.value = false;
+  void getCartSession() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+  }
+
+  String getValueSmoking(String key) {
+    for (int i = 0; i <= dataSmoking.toList().length; i++) {
+      if (dataSmoking.toList()[i].key == key) {
+        return dataSmoking.toList()[i].value!;
+      }
     }
+    return "";
+  }
+
+  final ScrollController scrollController = new ScrollController();
+  final notesController = TextEditingController();
+  final placeInfoController = TextEditingController();
+  final voucherCodeController = TextEditingController();
+  final paxController = TextEditingController();
+  final selectedDateController = TextEditingController();
+
+  void initDialogPlace() {
+    useSchedule.value = false;
+    paxController.text = "1";
+    selectedDate.value = DateTime.now();
+    selectedValueClock.value = "13:00";
+    selectedValueSmoking.value = "1";
+    selectedDateController.text =
+        new DateFormat("yyyy/MM/dd").format(DateTime.now());
+  }
+
+  selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate.value!, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2030),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+            //isMaterialAppTheme: true,
+            child: child!,
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light().copyWith(primary: AppColors.red),
+              primaryColor: AppColors.red,
+            ));
+      },
+    );
+    if (picked != null && picked != selectedDate.value!) {
+      selectedDate.value = picked;
+      selectedDateController.text = new DateFormat("yyyy/MM/dd").format(picked);
+    }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    useSchedule.value = false;
   }
 
   void checkCartSession() {
