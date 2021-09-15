@@ -1379,10 +1379,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   setSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
+                    controller.checkUseSchedule();
                     updateCartParam();
                   },
                   getSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
+                    controller.checkUseSchedule();
                     updateCartParam();
                   },
                   getPaymentMethodIDSuccess: (r) {

@@ -51,6 +51,14 @@ class OrderCartScreenViewController extends GetxController {
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCartSession());
   }
 
+  void checkUseSchedule() {
+    if ((salesType.value ?? "") == "dineIn") {
+      useSchedule.value = true;
+    } else {
+      useSchedule.value = false;
+    }
+  }
+
   void checkCartSession() {
     if (checkoutResponse.value?.receiptCode == "") {
       isLoading.value = false;
