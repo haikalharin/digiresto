@@ -274,67 +274,69 @@ class OrderDetailsDone extends StatelessWidget {
           thickness: 15,
           color: AppColors.dividerColor,
         ),
-        Padding(
-          padding: EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Alamat Pengiriman',
-                style: Styles.menuItemLabelStyle
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                orderDetails.delivery.address,
-                style: Styles.menuItemLabelStyle,
-              ),
-            ],
+        if (orderDetails.delivery != null)
+          Padding(
+            padding: EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Alamat Pengiriman',
+                  style: Styles.menuItemLabelStyle
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  orderDetails.delivery?.address ?? '',
+                  style: Styles.menuItemLabelStyle,
+                ),
+              ],
+            ),
           ),
-        ),
         Divider(
           height: 15,
           thickness: 15,
           color: AppColors.dividerColor,
         ),
-        Padding(
-          padding: EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Status Pengiriman',
-                style: Styles.menuItemLabelStyle
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              if (orderDetails.deliveryDetail.status.length == 0)
+        if (orderDetails.delivery != null)
+          Padding(
+            padding: EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
-                  'Menunggu driver',
-                  style: Styles.menuItemLabelStyle,
+                  'Status Pengiriman',
+                  style: Styles.menuItemLabelStyle
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
-              ...orderDetails.deliveryDetail.status
-                  .map((status) => DeliveryStatusWidget(status))
-                  .toList(),
-              SizedBox(
-                height: 30,
-              ),
-              if (orderDetails.status == 'done' ||
-                  orderDetails.status == 'auto_done')
-                CustomButton(
-                  onPressed: () {},
-                  borderRadius: BorderRadius.circular(30),
-                  color: AppColors.mainColor,
-                  label: 'Beli Lagi',
-                  fontColor: Colors.white,
-                )
-            ],
+                SizedBox(
+                  height: 10,
+                ),
+                if (orderDetails.deliveryDetail.status?.length == 0)
+                  Text(
+                    'Menunggu driver',
+                    style: Styles.menuItemLabelStyle,
+                  ),
+                ...orderDetails.deliveryDetail.status!
+                    .map((status) => DeliveryStatusWidget(status))
+                    .toList(),
+                SizedBox(
+                  height: 30,
+                ),
+                if (orderDetails.status == 'done' ||
+                    orderDetails.status == 'auto_done')
+                  CustomButton(
+                    onPressed: () {},
+                    borderRadius: BorderRadius.circular(30),
+                    color: AppColors.mainColor,
+                    label: 'Beli Lagi',
+                    fontColor: Colors.white,
+                  )
+              ],
+            ),
           ),
-        ),
       ],
     );
   }

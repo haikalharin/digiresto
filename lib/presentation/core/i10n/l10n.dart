@@ -1700,13 +1700,13 @@ class I10n {
     );
   }
 
-  /// `Top Up {param} Credit via %2$s`
-  String topup_credit_via(Object param) {
+  /// `Top Up Credit via `
+  String get topup_credit_via {
     return Intl.message(
-      'Top Up $param Credit via %2\$s',
+      'Top Up Credit via ',
       name: 'topup_credit_via',
       desc: '',
-      args: [param],
+      args: [],
     );
   }
 
@@ -2982,11 +2982,31 @@ class I10n {
     );
   }
 
-  /// `Email yang dimasukkan tidak valid`
-  String get errorValidEmail {
+  /// `Invalid Email`
+  String get errorInvalidEmail {
     return Intl.message(
-      'Email yang dimasukkan tidak valid',
-      name: 'errorValidEmail',
+      'Invalid Email',
+      name: 'errorInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Name`
+  String get errorInvalidName {
+    return Intl.message(
+      'Invalid Name',
+      name: 'errorInvalidName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Otp`
+  String get errorInvalidOtp {
+    return Intl.message(
+      'Invalid Otp',
+      name: 'errorInvalidOtp',
       desc: '',
       args: [],
     );
@@ -4004,13 +4024,23 @@ class I10n {
 
   // skipped getter for the '_Input OTP Screen' key
 
-  /// `Please enter 6 digits of verification code sent to your Whatsapp at {param}. Please enter the latest code to continue.`
-  String input_otp_desc(Object param) {
+  /// `Please enter 6 digits of verification code sent to your Whatsapp at`
+  String get input_otp_desc {
     return Intl.message(
-      'Please enter 6 digits of verification code sent to your Whatsapp at $param. Please enter the latest code to continue.',
+      'Please enter 6 digits of verification code sent to your Whatsapp at',
       name: 'input_otp_desc',
       desc: '',
-      args: [param],
+      args: [],
+    );
+  }
+
+  /// `Please enter the latest code to continue.`
+  String get input_otp_desc2 {
+    return Intl.message(
+      'Please enter the latest code to continue.',
+      name: 'input_otp_desc2',
+      desc: '',
+      args: [],
     );
   }
 
@@ -5270,13 +5300,13 @@ class I10n {
     );
   }
 
-  /// `This transaction will be subject to a fee of {param}`
-  String credit_note_value(Object param) {
+  /// `This transaction will be subject to a fee of`
+  String get credit_note_value {
     return Intl.message(
-      'This transaction will be subject to a fee of $param',
+      'This transaction will be subject to a fee of',
       name: 'credit_note_value',
       desc: '',
-      args: [param],
+      args: [],
     );
   }
 

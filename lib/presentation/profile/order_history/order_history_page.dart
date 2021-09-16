@@ -65,6 +65,7 @@ class OrderHistoryWidget extends StatelessWidget {
                   child: Text(
                     failure.maybeMap(
                       orElse: () => 'Error',
+                      serverError: (_) => 'Server Error',
                       noData: (_) => 'Belum ada transaksi',
                     ),
                   ),
@@ -87,6 +88,7 @@ class OrderHistoryWidget extends StatelessWidget {
                   child: Text(
                     failure.maybeMap(
                       orElse: () => 'Error',
+                      serverError: (_) => 'Server Error',
                       noData: (_) => 'Belum ada transaksi',
                     ),
                   ),
@@ -109,6 +111,7 @@ class OrderHistoryWidget extends StatelessWidget {
                   child: Text(
                     failure.maybeMap(
                       orElse: () => 'Error',
+                      serverError: (_) => 'Server Error',
                       noData: (_) => 'Belum ada transaksi',
                     ),
                   ),

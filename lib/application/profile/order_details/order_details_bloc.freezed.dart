@@ -28,6 +28,12 @@ class _$OrderDetailsEventTearOff {
     );
   }
 
+  _DoneTransaction doneTransaction(String receiptCode) {
+    return _DoneTransaction(
+      receiptCode,
+    );
+  }
+
   _CancelPageOpen cancelPageOpen(String receiptCode) {
     return _CancelPageOpen(
       receiptCode,
@@ -68,6 +74,7 @@ mixin _$OrderDetailsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String receiptCode) started,
     required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
     required TResult Function(String receiptCode) cancelPageOpen,
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
@@ -80,6 +87,7 @@ mixin _$OrderDetailsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
     TResult Function(String receiptCode)? cancelPageOpen,
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
@@ -93,6 +101,7 @@ mixin _$OrderDetailsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
@@ -103,6 +112,7 @@ mixin _$OrderDetailsEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
     TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
@@ -212,6 +222,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(String receiptCode) started,
     required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
     required TResult Function(String receiptCode) cancelPageOpen,
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
@@ -227,6 +238,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
     TResult Function(String receiptCode)? cancelPageOpen,
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
@@ -246,6 +258,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
@@ -259,6 +272,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
     TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
@@ -349,6 +363,7 @@ class _$_Refresh implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function(String receiptCode) started,
     required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
     required TResult Function(String receiptCode) cancelPageOpen,
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
@@ -364,6 +379,7 @@ class _$_Refresh implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
     TResult Function(String receiptCode)? cancelPageOpen,
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
@@ -383,6 +399,7 @@ class _$_Refresh implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
@@ -396,6 +413,7 @@ class _$_Refresh implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
     TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
@@ -416,6 +434,150 @@ abstract class _Refresh implements OrderDetailsEvent {
   @override
   @JsonKey(ignore: true)
   _$RefreshCopyWith<_Refresh> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$DoneTransactionCopyWith<$Res>
+    implements $OrderDetailsEventCopyWith<$Res> {
+  factory _$DoneTransactionCopyWith(
+          _DoneTransaction value, $Res Function(_DoneTransaction) then) =
+      __$DoneTransactionCopyWithImpl<$Res>;
+  @override
+  $Res call({String receiptCode});
+}
+
+/// @nodoc
+class __$DoneTransactionCopyWithImpl<$Res>
+    extends _$OrderDetailsEventCopyWithImpl<$Res>
+    implements _$DoneTransactionCopyWith<$Res> {
+  __$DoneTransactionCopyWithImpl(
+      _DoneTransaction _value, $Res Function(_DoneTransaction) _then)
+      : super(_value, (v) => _then(v as _DoneTransaction));
+
+  @override
+  _DoneTransaction get _value => super._value as _DoneTransaction;
+
+  @override
+  $Res call({
+    Object? receiptCode = freezed,
+  }) {
+    return _then(_DoneTransaction(
+      receiptCode == freezed
+          ? _value.receiptCode
+          : receiptCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DoneTransaction implements _DoneTransaction {
+  const _$_DoneTransaction(this.receiptCode);
+
+  @override
+  final String receiptCode;
+
+  @override
+  String toString() {
+    return 'OrderDetailsEvent.doneTransaction(receiptCode: $receiptCode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DoneTransaction &&
+            (identical(other.receiptCode, receiptCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.receiptCode, receiptCode)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(receiptCode);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DoneTransactionCopyWith<_DoneTransaction> get copyWith =>
+      __$DoneTransactionCopyWithImpl<_DoneTransaction>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String receiptCode) started,
+    required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
+    required TResult Function(String receiptCode) cancelPageOpen,
+    required TResult Function(
+            String receiptCode, String reason, IList<String> reasonList)
+        cancelSubmitted,
+    required TResult Function(String receiptCode, int rating, String review)
+        ratingReviewSubmitted,
+  }) {
+    return doneTransaction(receiptCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String receiptCode)? started,
+    TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
+    TResult Function(String receiptCode)? cancelPageOpen,
+    TResult Function(
+            String receiptCode, String reason, IList<String> reasonList)?
+        cancelSubmitted,
+    TResult Function(String receiptCode, int rating, String review)?
+        ratingReviewSubmitted,
+    required TResult orElse(),
+  }) {
+    if (doneTransaction != null) {
+      return doneTransaction(receiptCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
+    required TResult Function(_CancelPageOpen value) cancelPageOpen,
+    required TResult Function(_CancelSubmitted value) cancelSubmitted,
+    required TResult Function(_RatingReviewSubmitted value)
+        ratingReviewSubmitted,
+  }) {
+    return doneTransaction(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
+    TResult Function(_CancelPageOpen value)? cancelPageOpen,
+    TResult Function(_CancelSubmitted value)? cancelSubmitted,
+    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
+    required TResult orElse(),
+  }) {
+    if (doneTransaction != null) {
+      return doneTransaction(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DoneTransaction implements OrderDetailsEvent {
+  const factory _DoneTransaction(String receiptCode) = _$_DoneTransaction;
+
+  @override
+  String get receiptCode => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DoneTransactionCopyWith<_DoneTransaction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -489,6 +651,7 @@ class _$_CancelPageOpen implements _CancelPageOpen {
   TResult when<TResult extends Object?>({
     required TResult Function(String receiptCode) started,
     required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
     required TResult Function(String receiptCode) cancelPageOpen,
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
@@ -504,6 +667,7 @@ class _$_CancelPageOpen implements _CancelPageOpen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
     TResult Function(String receiptCode)? cancelPageOpen,
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
@@ -523,6 +687,7 @@ class _$_CancelPageOpen implements _CancelPageOpen {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
@@ -536,6 +701,7 @@ class _$_CancelPageOpen implements _CancelPageOpen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
     TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
@@ -654,6 +820,7 @@ class _$_CancelSubmitted implements _CancelSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function(String receiptCode) started,
     required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
     required TResult Function(String receiptCode) cancelPageOpen,
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
@@ -669,6 +836,7 @@ class _$_CancelSubmitted implements _CancelSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
     TResult Function(String receiptCode)? cancelPageOpen,
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
@@ -688,6 +856,7 @@ class _$_CancelSubmitted implements _CancelSubmitted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
@@ -701,6 +870,7 @@ class _$_CancelSubmitted implements _CancelSubmitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
     TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
@@ -822,6 +992,7 @@ class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function(String receiptCode) started,
     required TResult Function(String receiptCode) refresh,
+    required TResult Function(String receiptCode) doneTransaction,
     required TResult Function(String receiptCode) cancelPageOpen,
     required TResult Function(
             String receiptCode, String reason, IList<String> reasonList)
@@ -837,6 +1008,7 @@ class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
+    TResult Function(String receiptCode)? doneTransaction,
     TResult Function(String receiptCode)? cancelPageOpen,
     TResult Function(
             String receiptCode, String reason, IList<String> reasonList)?
@@ -856,6 +1028,7 @@ class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_DoneTransaction value) doneTransaction,
     required TResult Function(_CancelPageOpen value) cancelPageOpen,
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
@@ -869,6 +1042,7 @@ class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_DoneTransaction value)? doneTransaction,
     TResult Function(_CancelPageOpen value)? cancelPageOpen,
     TResult Function(_CancelSubmitted value)? cancelSubmitted,
     TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,

@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/credit/top_up_method.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/credit/widgets/choose_bank_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,10 @@ class CreditSubCategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return CustomScafold(
       showBackButton: true,
-      title: 'Isi saldo',
+      title: i10n.credit_title_1,
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -33,7 +35,7 @@ class CreditSubCategoryPage extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  'Pilih Bank yang dituju',
+                  i10n.pilih_bank,
                   style: Styles.creditMenuSubtitleStyle,
                 ),
                 SizedBox(

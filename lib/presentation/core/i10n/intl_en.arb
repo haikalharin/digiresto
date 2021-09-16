@@ -188,7 +188,7 @@
     "topup_title":"Top Up",
     "topup_choose_bank":"Choose Bank",
     "topup_alert_empty_bank":"No bank options",
-    "topup_credit_via":"Top Up {param} Credit via %2$s",
+    "topup_credit_via":"Top Up Credit via ",
     "topup_credit_denum":"Choose Amount",
     "topup_credit_input":"Or enter manually",
     "topup_credit_minimal":"minimal Rp 10.000",
@@ -325,7 +325,9 @@
     "order_confirmation_alert":"Are you sure with this order?",
 
     "user_not_choose_delivery":"You have not choose delivery method, please choose delivery method first to continue placing the order.",
-    "errorValidEmail":"Email yang dimasukkan tidak valid",
+    "errorInvalidEmail":"Invalid Email",
+    "errorInvalidName":"Invalid Name",
+    "errorInvalidOtp":"Invalid Otp",
     "errorValidPasscode":"Passcode tidak boleh kurang atau lebih dari 6 digit",
 
     "_Nota":"",
@@ -435,7 +437,8 @@
     "login_check_your_mobile_number":"Check your phone number",
 
     "_Input OTP Screen":"",
-    "input_otp_desc":"Please enter 6 digits of verification code sent to your Whatsapp at {param}. Please enter the latest code to continue.",
+    "input_otp_desc":"Please enter 6 digits of verification code sent to your Whatsapp at",
+    "input_otp_desc2":"Please enter the latest code to continue.",
     "input_otp_desc_whatsapp":"Whatsapp",
     "input_otp_resend_code":"Resend ({param})",
 
@@ -570,7 +573,7 @@
     "credit_recent_history":"Recent History",
     "credit_pending_topup":"Waiting for payment",
     "credit_note":"Note:",
-    "credit_note_value":"This transaction will be subject to a fee of {param}",
+    "credit_note_value":"This transaction will be subject to a fee of",
     "credit_fund_transfer":"Fund Transfer",
 
     "beranda_balance_inquiry":"Rp {param}",

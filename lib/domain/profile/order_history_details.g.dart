@@ -71,75 +71,68 @@ _$_OrderHistoryDetails _$_$_OrderHistoryDetailsFromJson(
     billingDetail: json['billingDetail'] == null
         ? null
         : BillingDetail.fromJson(json['billingDetail'] as Map<String, dynamic>),
-    delivery: Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
+    delivery: json['delivery'] == null
+        ? null
+        : Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$_$_OrderHistoryDetailsToJson(
-    _$_OrderHistoryDetails instance) {
-  final val = <String, dynamic>{
-    'outletName': instance.outletName,
-    'outletId': instance.outletId,
-    'customerName': instance.customerName,
-    'customerEmail': instance.customerEmail,
-    'customerPhone': instance.customerPhone,
-    'recipientName': instance.recipientName,
-    'recipientPhone': instance.recipientPhone,
-    'customerTableNumber': instance.customerTableNumber,
-    'customerSmoking': instance.customerSmoking,
-    'customerPax': instance.customerPax,
-    'customerNote': instance.customerNote,
-    'customerCarType': instance.customerCarType,
-    'customerCarColor': instance.customerCarColor,
-    'customerCarNumber': instance.customerCarNumber,
-    'eta': instance.eta,
-    'totalChange': instance.totalChange,
-    'discountAmount': instance.discountAmount,
-    'discountPercentage': instance.discountPercentage,
-    'finalAmount': instance.finalAmount,
-    'receiptTotalDiscount': instance.receiptTotalDiscount,
-    'roundAmount': instance.roundAmount,
-    'subtotal': instance.subtotal,
-    'totalDiscount': instance.totalDiscount,
-    'totalItemAmount': instance.totalItemAmount,
-    'totalItemCost': instance.totalItemCost,
-    'totalItemDiscount': instance.totalItemDiscount,
-    'totalService': instance.totalService,
-    'totalTax': instance.totalTax,
-    'voucherAmount': instance.voucherAmount,
-    'deliveryAmount': instance.deliveryAmount,
-    'totalPayment': instance.totalPayment,
-    'salesType': instance.salesType,
-    'items': instance.items,
-    'itemWeight': instance.itemWeight,
-    'isUseVoucher': instance.isUseVoucher,
-    'promos': instance.promos,
-    'paymentList': instance.paymentList,
-    'taxesAndServices': instance.taxesAndServices,
-    'itemTotalAmount': instance.itemTotalAmount,
-    'note': instance.note,
-    'grabpawoon': instance.grabpawoon,
-    'originalDeliveryAmount': instance.originalDeliveryAmount,
-    'deviceTimestamp': instance.deviceTimestamp.toIso8601String(),
-    'receiptCode': instance.receiptCode,
-    'payments': instance.payments,
-    'outlet': instance.outlet,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('orderId', instance.orderId);
-  val['status'] = instance.status;
-  val['deliveryDetail'] = instance.deliveryDetail;
-  val['rating'] = instance.rating;
-  val['billingDetail'] = instance.billingDetail;
-  val['delivery'] = instance.delivery;
-  return val;
-}
+        _$_OrderHistoryDetails instance) =>
+    <String, dynamic>{
+      'outletName': instance.outletName,
+      'outletId': instance.outletId,
+      'customerName': instance.customerName,
+      'customerEmail': instance.customerEmail,
+      'customerPhone': instance.customerPhone,
+      'recipientName': instance.recipientName,
+      'recipientPhone': instance.recipientPhone,
+      'customerTableNumber': instance.customerTableNumber,
+      'customerSmoking': instance.customerSmoking,
+      'customerPax': instance.customerPax,
+      'customerNote': instance.customerNote,
+      'customerCarType': instance.customerCarType,
+      'customerCarColor': instance.customerCarColor,
+      'customerCarNumber': instance.customerCarNumber,
+      'eta': instance.eta,
+      'totalChange': instance.totalChange,
+      'discountAmount': instance.discountAmount,
+      'discountPercentage': instance.discountPercentage,
+      'finalAmount': instance.finalAmount,
+      'receiptTotalDiscount': instance.receiptTotalDiscount,
+      'roundAmount': instance.roundAmount,
+      'subtotal': instance.subtotal,
+      'totalDiscount': instance.totalDiscount,
+      'totalItemAmount': instance.totalItemAmount,
+      'totalItemCost': instance.totalItemCost,
+      'totalItemDiscount': instance.totalItemDiscount,
+      'totalService': instance.totalService,
+      'totalTax': instance.totalTax,
+      'voucherAmount': instance.voucherAmount,
+      'deliveryAmount': instance.deliveryAmount,
+      'totalPayment': instance.totalPayment,
+      'salesType': instance.salesType,
+      'items': instance.items,
+      'itemWeight': instance.itemWeight,
+      'isUseVoucher': instance.isUseVoucher,
+      'promos': instance.promos,
+      'paymentList': instance.paymentList,
+      'taxesAndServices': instance.taxesAndServices,
+      'itemTotalAmount': instance.itemTotalAmount,
+      'note': instance.note,
+      'grabpawoon': instance.grabpawoon,
+      'originalDeliveryAmount': instance.originalDeliveryAmount,
+      'deviceTimestamp': instance.deviceTimestamp.toIso8601String(),
+      'receiptCode': instance.receiptCode,
+      'payments': instance.payments,
+      'outlet': instance.outlet,
+      'orderId': instance.orderId,
+      'status': instance.status,
+      'deliveryDetail': instance.deliveryDetail,
+      'rating': instance.rating,
+      'billingDetail': instance.billingDetail,
+      'delivery': instance.delivery,
+    };
 
 _$_BillingDetail _$_$_BillingDetailFromJson(Map<String, dynamic> json) {
   return _$_BillingDetail(
@@ -184,56 +177,53 @@ Map<String, dynamic> _$_$_DeliveryToJson(_$_Delivery instance) =>
 _$_DeliveryDetail _$_$_DeliveryDetailFromJson(Map<String, dynamic> json) {
   return _$_DeliveryDetail(
     orderId: json['orderId'] as String? ?? '',
-    distance: json['distance'] as String,
-    provider: json['provider'] as String,
+    distance: json['distance'] as String?,
+    provider: json['provider'] as String?,
     shipmentMethod: json['shipmentMethod'] as String?,
-    fee: json['fee'] as num,
-    bookingCode: json['bookingCode'] as String,
-    bookingExpired: json['bookingExpired'] as String,
-    deliveryId: json['deliveryId'] as String,
-    isDelivered: json['isDelivered'] as bool,
-    from: From.fromJson(json['from'] as Map<String, dynamic>),
-    to: To.fromJson(json['to'] as Map<String, dynamic>),
-    status: (json['status'] as List<dynamic>)
-        .map((e) => DeliveryStatus.fromJson(e as Map<String, dynamic>))
+    fee: json['fee'] as num?,
+    bookingCode: json['bookingCode'] as String?,
+    bookingExpired: json['bookingExpired'] as String?,
+    deliveryId: json['deliveryId'] as String?,
+    isDelivered: json['isDelivered'] as bool?,
+    from: json['from'] == null
+        ? null
+        : From.fromJson(json['from'] as Map<String, dynamic>),
+    to: json['to'] == null
+        ? null
+        : To.fromJson(json['to'] as Map<String, dynamic>),
+    status: (json['status'] as List<dynamic>?)
+        ?.map((e) => DeliveryStatus.fromJson(e as Map<String, dynamic>))
         .toList(),
-    isDelete: json['isDelete'] as bool,
-    createdDate: DateTime.parse(json['createdDate'] as String),
-    ownerPhone: json['ownerPhone'] as String,
-    driverName: json['driverName'] as String,
-    driverPhone: json['driverPhone'] as String,
+    isDelete: json['isDelete'] as bool?,
+    createdDate: json['createdDate'] == null
+        ? null
+        : DateTime.parse(json['createdDate'] as String),
+    ownerPhone: json['ownerPhone'] as String?,
+    driverName: json['driverName'] as String?,
+    driverPhone: json['driverPhone'] as String?,
   );
 }
 
-Map<String, dynamic> _$_$_DeliveryDetailToJson(_$_DeliveryDetail instance) {
-  final val = <String, dynamic>{
-    'orderId': instance.orderId,
-    'distance': instance.distance,
-    'provider': instance.provider,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('shipmentMethod', instance.shipmentMethod);
-  val['fee'] = instance.fee;
-  val['bookingCode'] = instance.bookingCode;
-  val['bookingExpired'] = instance.bookingExpired;
-  val['deliveryId'] = instance.deliveryId;
-  val['isDelivered'] = instance.isDelivered;
-  val['from'] = instance.from;
-  val['to'] = instance.to;
-  val['status'] = instance.status;
-  val['isDelete'] = instance.isDelete;
-  val['createdDate'] = instance.createdDate.toIso8601String();
-  val['ownerPhone'] = instance.ownerPhone;
-  val['driverName'] = instance.driverName;
-  val['driverPhone'] = instance.driverPhone;
-  return val;
-}
+Map<String, dynamic> _$_$_DeliveryDetailToJson(_$_DeliveryDetail instance) =>
+    <String, dynamic>{
+      'orderId': instance.orderId,
+      'distance': instance.distance,
+      'provider': instance.provider,
+      'shipmentMethod': instance.shipmentMethod,
+      'fee': instance.fee,
+      'bookingCode': instance.bookingCode,
+      'bookingExpired': instance.bookingExpired,
+      'deliveryId': instance.deliveryId,
+      'isDelivered': instance.isDelivered,
+      'from': instance.from,
+      'to': instance.to,
+      'status': instance.status,
+      'isDelete': instance.isDelete,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'ownerPhone': instance.ownerPhone,
+      'driverName': instance.driverName,
+      'driverPhone': instance.driverPhone,
+    };
 
 _$_From _$_$_FromFromJson(Map<String, dynamic> json) {
   return _$_From(

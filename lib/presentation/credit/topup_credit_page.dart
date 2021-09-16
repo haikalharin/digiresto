@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/core/utils/input_formatter.dart';
 import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
@@ -56,6 +57,8 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
+
     return BlocConsumer<TopUpCreditBloc, TopUpCreditState>(
       listener: (context, state) {
         widget.bankItem.destination;
@@ -102,7 +105,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
       },
       builder: (context, state) => CustomScafold(
         showBackButton: true,
-        title: 'Isi saldo',
+        title: i10n.credit_title_1,
         body: StackWithProgress(
           isLoading: state.isSubmitting,
           children: [
@@ -119,14 +122,14 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Top Up Digiresto Credit via ${widget.bankItem.title}',
+                        '${i10n.topup_credit_via} ${widget.bankItem.title}',
                         style: Styles.creditTopupTitleStyle,
                       ),
                       SizedBox(
                         height: 8,
                       ),
                       Text(
-                        'Pilih jumlah yang diinginkan ',
+                        i10n.topup_credit_denum,
                         style: Styles.creditMenuSubtitleStyle,
                       ),
                       SizedBox(
@@ -186,7 +189,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Atau masukkan jumlah secara manual minimal ',
+                        i10n.topup_credit_input,
                         style: Styles.creditMenuSubtitleStyle,
                       ),
                       SizedBox(
@@ -225,8 +228,9 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                         ),
                         validator: (_) => state.nominal.value.fold(
                           (failure) => failure.maybeMap(
-                            orElse: () => 'Invalid Nomina',
-                            lessThanMinimum: (_) => 'Minimum 10.000',
+                            orElse: () => 'Invalid Nominal',
+                            lessThanMinimum: (_) =>
+                                i10n.topup_credit_input_alert,
                           ),
                           (_) => null,
                         ),
@@ -245,14 +249,14 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Catatan :',
+                          i10n.credit_note,
                           style: Styles.creditMenuSubtitleStyle,
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Text(
-                          'Transaksi ini akan dikenakan biaya sebesar ${CommonUtils.currencyFormat(double.parse(widget.bankItem.param.fee ?? '0'))}',
+                          '${i10n.credit_note_value} ${CommonUtils.currencyFormat(double.parse(widget.bankItem.param.fee ?? '0'))}',
                           style: Styles.creditMenuSubtitleStyle
                               .copyWith(color: AppColors.redYoung),
                         ),
@@ -266,7 +270,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
               right: 0,
               left: 0,
               child: CustomButton(
-                label: 'Isi Saldo',
+                label: i10n.topup_title,
                 onPressed: () => _topUpBloc.add(
                   TopUpCreditEvent.topUpSubmitted(
                     widget.bankItem.param,

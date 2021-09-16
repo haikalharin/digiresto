@@ -56,70 +56,62 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m14(param) => "Rp ${param}";
 
-  static String m15(param) =>
-      "This transaction will be subject to a fee of ${param}";
+  static String m15(param) => "${param} Credit";
 
-  static String m16(param) => "${param} Credit";
+  static String m16(param) => "Outlet ${param}";
 
-  static String m17(param) => "Outlet ${param}";
-
-  static String m18(param) =>
+  static String m17(param) =>
       "Are you sure you want to cancel a transaction with a number ${param} ?";
 
-  static String m19(param) => "Pay before ${param}";
+  static String m18(param) => "Pay before ${param}";
 
-  static String m20(param) => "Receipt Code: ${param}";
+  static String m19(param) => "Receipt Code: ${param}";
 
-  static String m21(param) => "Find a variety of ${param} foods.";
+  static String m20(param) => "Find a variety of ${param} foods.";
 
-  static String m22(param) => "${param}/%2\$s";
+  static String m21(param) => "${param}/%2\$s";
+
+  static String m22(param) => "Resend (${param})";
 
   static String m23(param) =>
-      "Please enter 6 digits of verification code sent to your Whatsapp at ${param}. Please enter the latest code to continue.";
-
-  static String m24(param) => "Resend (${param})";
-
-  static String m25(param) =>
       "Welcome to ${param}, \nplease choose your location to start order.";
 
-  static String m26(url) => "Dev : ${url}";
+  static String m24(url) => "Dev : ${url}";
 
-  static String m27(url) => "Prod : ${url}";
+  static String m25(url) => "Prod : ${url}";
 
-  static String m28(param) => "Last update ${param}";
+  static String m26(param) => "Last update ${param}";
 
-  static String m29(param) => "View all ${param} outlets";
+  static String m27(param) => "View all ${param} outlets";
 
-  static String m30(param) => "Estimated delivery date: ${param}";
+  static String m28(param) => "Estimated delivery date: ${param}";
 
-  static String m31(param) =>
+  static String m29(param) =>
       "Deadline for ordering and payment is ${param} WIB. Orders and payments after ${param}, will be added 1 day for the delivery process.";
 
-  static String m32(param) => "Estimated delivery date : ${param}";
+  static String m30(param) => "Estimated delivery date : ${param}";
 
-  static String m33(param) => "${param} Day";
+  static String m31(param) => "${param} Day";
 
-  static String m34(param) => "More than ${param} Days";
+  static String m32(param) => "More than ${param} Days";
 
-  static String m35(param) =>
+  static String m33(param) =>
       "The deadline of order and payment maximum at ${param} WIB";
 
-  static String m36(param) =>
+  static String m34(param) =>
       "Order and payment after ${param} will be added 1 day for the delivery process";
 
-  static String m37(param) =>
+  static String m35(param) =>
       "The number of menus you ordered has reached the limit ${param} in one transaction.";
 
-  static String m38(param) =>
+  static String m36(param) =>
       "This product has reached its maximum purchase for ${param} items.";
 
-  static String m39(param) => "About ${param}";
+  static String m37(param) => "About ${param}";
 
-  static String m40(param) => "Join ${param}";
+  static String m38(param) => "Join ${param}";
 
-  static String m41(param) => "Please start your order with ${param}";
-
-  static String m42(param) => "Top Up ${param} Credit via %2\$s";
+  static String m39(param) => "Please start your order with ${param}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -380,12 +372,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "credit_me": MessageLookupByLibrary.simpleMessage("My Credit"),
         "credit_nominal": m14,
         "credit_note": MessageLookupByLibrary.simpleMessage("Note:"),
-        "credit_note_value": m15,
+        "credit_note_value": MessageLookupByLibrary.simpleMessage(
+            "This transaction will be subject to a fee of"),
         "credit_pending_topup":
             MessageLookupByLibrary.simpleMessage("Waiting for payment"),
         "credit_recent_history":
             MessageLookupByLibrary.simpleMessage("Recent History"),
-        "credit_title": m16,
+        "credit_title": m15,
         "credit_title_1": MessageLookupByLibrary.simpleMessage("Top Up Credit"),
         "credit_title_2":
             MessageLookupByLibrary.simpleMessage("Transaction History"),
@@ -398,8 +391,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("History Details"),
         "dev_mode_title": MessageLookupByLibrary.simpleMessage("Dev Mode"),
         "driver_info": MessageLookupByLibrary.simpleMessage("Driver Info"),
-        "errorValidEmail": MessageLookupByLibrary.simpleMessage(
-            "Email yang dimasukkan tidak valid"),
+        "errorInvalidEmail":
+            MessageLookupByLibrary.simpleMessage("Invalid Email"),
+        "errorInvalidName":
+            MessageLookupByLibrary.simpleMessage("Invalid Name"),
+        "errorInvalidOtp": MessageLookupByLibrary.simpleMessage("Invalid Otp"),
         "errorValidPasscode": MessageLookupByLibrary.simpleMessage(
             "Passcode tidak boleh kurang atau lebih dari 6 digit"),
         "error_input_address":
@@ -489,15 +485,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "The order is being sent by the outlet courier"),
         "history_order_type":
             MessageLookupByLibrary.simpleMessage("Order Type"),
-        "history_outlet_name": m17,
+        "history_outlet_name": m16,
         "history_pending_already_expired":
             MessageLookupByLibrary.simpleMessage("Time expired"),
         "history_pending_cancel":
             MessageLookupByLibrary.simpleMessage("Cancel"),
-        "history_pending_cancel_alert": m18,
+        "history_pending_cancel_alert": m17,
         "history_pending_detail":
             MessageLookupByLibrary.simpleMessage("Detail"),
-        "history_pending_expired": m19,
+        "history_pending_expired": m18,
         "history_pending_inquiry_expired": MessageLookupByLibrary.simpleMessage(
             "The transaction payment time has expired."),
         "history_pending_inquiry_pending": MessageLookupByLibrary.simpleMessage(
@@ -516,7 +512,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_process":
             MessageLookupByLibrary.simpleMessage("Purchase\nProcessed"),
         "history_receipt": MessageLookupByLibrary.simpleMessage("Receipt Code"),
-        "history_receipt_code": m20,
+        "history_receipt_code": m19,
         "history_reorder": MessageLookupByLibrary.simpleMessage("Reorder"),
         "history_reorder_address":
             MessageLookupByLibrary.simpleMessage("Select Location"),
@@ -541,7 +537,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Find interesting and latest info."),
         "home_beranda": MessageLookupByLibrary.simpleMessage("Home"),
         "home_cart": MessageLookupByLibrary.simpleMessage("Cart"),
-        "home_category_hint": m21,
+        "home_category_hint": m20,
         "home_credit": MessageLookupByLibrary.simpleMessage("Credit"),
         "home_digidiskon": MessageLookupByLibrary.simpleMessage("DigiDiskon"),
         "home_digidiskon_hint": MessageLookupByLibrary.simpleMessage(
@@ -587,12 +583,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "image_reload": MessageLookupByLibrary.simpleMessage("Reload image"),
         "img_action_back": MessageLookupByLibrary.simpleMessage("back icon"),
         "input_address": MessageLookupByLibrary.simpleMessage("Enter address"),
-        "input_count_limit": m22,
+        "input_count_limit": m21,
         "input_forgot_pin": MessageLookupByLibrary.simpleMessage("Forgot PIN"),
-        "input_otp_desc": m23,
+        "input_otp_desc": MessageLookupByLibrary.simpleMessage(
+            "Please enter 6 digits of verification code sent to your Whatsapp at"),
+        "input_otp_desc2": MessageLookupByLibrary.simpleMessage(
+            "Please enter the latest code to continue."),
         "input_otp_desc_whatsapp":
             MessageLookupByLibrary.simpleMessage("Whatsapp"),
-        "input_otp_resend_code": m24,
+        "input_otp_resend_code": m22,
         "input_pin_desc":
             MessageLookupByLibrary.simpleMessage("Insert 6 digit PIN"),
         "input_pin_new_desc":
@@ -616,7 +615,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "landing_select_location":
             MessageLookupByLibrary.simpleMessage("Select location"),
         "landing_take_away": MessageLookupByLibrary.simpleMessage("Take Away"),
-        "landing_welcome_to": m25,
+        "landing_welcome_to": m23,
         "lang": MessageLookupByLibrary.simpleMessage("en"),
         "lang_en": MessageLookupByLibrary.simpleMessage("English"),
         "lang_in": MessageLookupByLibrary.simpleMessage("Indonesia"),
@@ -637,9 +636,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_input_your_mobile_number_is_wrong":
             MessageLookupByLibrary.simpleMessage("Incorrect number"),
         "login_phone": MessageLookupByLibrary.simpleMessage("Phone number"),
-        "login_select_dev": m26,
+        "login_select_dev": m24,
         "login_select_other": MessageLookupByLibrary.simpleMessage("Other"),
-        "login_select_prod": m27,
+        "login_select_prod": m25,
         "login_title": MessageLookupByLibrary.simpleMessage("Login"),
         "logout_alert":
             MessageLookupByLibrary.simpleMessage("Are you sure want to quit?"),
@@ -719,8 +718,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sorry the outlet is closed."),
         "outlet_information":
             MessageLookupByLibrary.simpleMessage("Outlet Information"),
-        "outlet_last_update": m28,
-        "outlet_list_see_all_outlet": m29,
+        "outlet_last_update": m26,
+        "outlet_list_see_all_outlet": m27,
         "outlet_list_title":
             MessageLookupByLibrary.simpleMessage("List Outlet"),
         "outlet_location": MessageLookupByLibrary.simpleMessage("See Location"),
@@ -797,18 +796,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Rp"),
         "powered_by_digiresto":
             MessageLookupByLibrary.simpleMessage("Powered By Digiresto"),
-        "preorder_billing_desc": m30,
-        "preorder_detail_desc": m31,
-        "preorder_detail_estimate": m32,
-        "preorder_filter_a_day": m33,
+        "preorder_billing_desc": m28,
+        "preorder_detail_desc": m29,
+        "preorder_detail_estimate": m30,
+        "preorder_filter_a_day": m31,
         "preorder_filter_all": MessageLookupByLibrary.simpleMessage("All"),
-        "preorder_filter_else": m34,
+        "preorder_filter_else": m32,
         "preorder_filter_hint": MessageLookupByLibrary.simpleMessage(
             "Find your favorite restaurant"),
         "preorder_not_found": MessageLookupByLibrary.simpleMessage(
             "The Pre Order menu is not found."),
-        "preorder_tnc_desc_1": m35,
-        "preorder_tnc_desc_2": m36,
+        "preorder_tnc_desc_1": m33,
+        "preorder_tnc_desc_2": m34,
         "preorder_tnc_desc_2_bold":
             MessageLookupByLibrary.simpleMessage("added 1 day"),
         "preorder_tnc_ok": MessageLookupByLibrary.simpleMessage("Understand"),
@@ -821,7 +820,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "product_detail_alert_min_max_quantity":
             MessageLookupByLibrary.simpleMessage(
                 "Product selection is not in accordance with the provisions"),
-        "product_detail_alert_transaction_limit": m37,
+        "product_detail_alert_transaction_limit": m35,
         "product_detail_counter_alert":
             MessageLookupByLibrary.simpleMessage("Can not be empty"),
         "product_detail_counter_alert_0": MessageLookupByLibrary.simpleMessage(
@@ -832,10 +831,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have reached the maximum purchase for this product"),
         "product_detail_max_item_999": MessageLookupByLibrary.simpleMessage(
             "Max. purchase of this item 999 items, please reduce your purchase!"),
-        "product_detail_max_item_alert": m38,
+        "product_detail_max_item_alert": m36,
         "product_detail_sold_out":
             MessageLookupByLibrary.simpleMessage("Sold Out"),
-        "profile_about": m39,
+        "profile_about": m37,
         "profile_address": MessageLookupByLibrary.simpleMessage("Address"),
         "profile_change_pin":
             MessageLookupByLibrary.simpleMessage("Change PIN"),
@@ -852,7 +851,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_edit_title":
             MessageLookupByLibrary.simpleMessage("Edit Profil"),
         "profile_history": MessageLookupByLibrary.simpleMessage("History"),
-        "profile_join_digiresto": m40,
+        "profile_join_digiresto": m38,
         "profile_language":
             MessageLookupByLibrary.simpleMessage("Choose Language"),
         "profile_logout": MessageLookupByLibrary.simpleMessage("Log Out"),
@@ -913,7 +912,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_list_order": MessageLookupByLibrary.simpleMessage("List Order"),
         "text_menunggu": MessageLookupByLibrary.simpleMessage(
             "Waiting your order to be delivered"),
-        "text_mulai_pesan": m41,
+        "text_mulai_pesan": m39,
         "text_register": MessageLookupByLibrary.simpleMessage(
             "Be sure your phone number is correct for verification purposes"),
         "text_telp": MessageLookupByLibrary.simpleMessage("Phone"),
@@ -952,7 +951,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The total top up balance cannot be Rp. 0"),
         "topup_credit_minimal":
             MessageLookupByLibrary.simpleMessage("minimal Rp 10.000"),
-        "topup_credit_via": m42,
+        "topup_credit_via":
+            MessageLookupByLibrary.simpleMessage("Top Up Credit via "),
         "topup_desc": MessageLookupByLibrary.simpleMessage(
             "Please continue to payment process with details below :"),
         "topup_info_transfer":

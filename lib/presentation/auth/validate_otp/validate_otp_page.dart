@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -45,15 +46,46 @@ class ValidateOtpForm extends StatefulWidget {
 class _ValidateOtpFormState extends State<ValidateOtpForm> {
   late final _validateBloc = BlocProvider.of<ValidateOtpBloc>(context);
   late final errorController = StreamController<ErrorAnimationType>();
+  late Timer _timer;
+  int _start = 60;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      startTimer();
+    });
+  }
 
   @override
   void dispose() {
+    _timer.cancel();
+
     errorController.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return BlocConsumer<ValidateOtpBloc, ValidateOtpState>(
       bloc: _validateBloc
         ..add(
@@ -69,7 +101,7 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
                 title: 'Error',
                 middleText: l.maybeMap(
                   orElse: () => 'unknown',
-                  invalidOtp: (_) => 'Invalid Otp',
+                  invalidOtp: (_) => i10n.errorInvalidOtp,
                 )),
             // (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
             (login) => login.isMember
@@ -84,7 +116,7 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
           children: [
             AuthScafold(
               headerCurvedHeight: 250,
-              title: 'Verify phone',
+              title: i10n.verify_phone,
               suffixWidget: GestureDetector(
                 child: Icon(
                   Icons.help_outline,
@@ -104,9 +136,7 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
                       style: Styles.loginDescStyle.copyWith(height: 1.7),
                       children: <TextSpan>[
                         TextSpan(
-                          text: """Silakan masukkan 6 digit kode verifikasi
-yang kami kirim ke WhatsApp/SMS Anda
-di nomor """,
+                          text: i10n.input_otp_desc,
                         ),
                         TextSpan(
                           text: widget.phoneNumber,
@@ -116,11 +146,9 @@ di nomor """,
                           ),
                         ),
                         TextSpan(
-                          text:
-                              """. Harap masukkan kode terbaru untuk melanjutkan.
+                          text: """.${i10n.input_otp_desc2}
 
-Jika Anda tidak menerima kode,
-klik kirim ulang kode. """,
+${i10n.text_kirim_ulang}. """,
                         ),
                       ],
                     ),
@@ -172,11 +200,13 @@ klik kirim ulang kode. """,
                     height: 20,
                   ),
                   CustomButton(
-                    onPressed: () => _validateBloc.add(
-                      ValidateOtpEvent.resendOtp(widget.phoneNumber),
-                    ),
+                    onPressed: _start == 0
+                        ? () => _validateBloc.add(
+                              ValidateOtpEvent.resendOtp(widget.phoneNumber),
+                            )
+                        : () {},
                     margin: EdgeInsets.zero,
-                    label: 'Kirim Ulang',
+                    label: i10n.input_otp_resend_code('$_start'),
                   ),
                 ],
               ),

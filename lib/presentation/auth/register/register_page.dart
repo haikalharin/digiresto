@@ -4,9 +4,8 @@ import 'package:digiresto/application/auth/register/register_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
-import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
-import 'package:digiresto/presentation/auth/widgets/draw_circle.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_checkbox.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
@@ -104,6 +103,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return WillPopScope(
       onWillPop: backHandler,
       child: BlocConsumer<RegisterBloc, RegisterState>(
@@ -117,7 +117,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   content: Column(
                     children: [
                       Text(
-                        'Error',
+                        i10n.error_message_title,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
@@ -149,7 +149,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         height: 35,
                       ),
                       Text(
-                        'Selamat',
+                        i10n.register_success_title,
                         style: Styles.titleStyle,
                         textAlign: TextAlign.center,
                       ),
@@ -157,9 +157,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         height: 15,
                       ),
                       Text(
-                        """Account DigiApp Anda sudah aktif.
-Selamat menikmati kemudahan
-memesan makan dengan Digiresto.""",
+                        i10n.register_success_desc,
                         style: Styles.whiteFontStyle,
                         textAlign: TextAlign.center,
                       ),
@@ -170,7 +168,7 @@ memesan makan dengan Digiresto.""",
                         onPressed: () => Get.offAll(
                           LoginPage(),
                         ),
-                        label: 'Ok',
+                        label: i10n.register_success_ok,
                       ),
                     ],
                   ),
@@ -183,7 +181,7 @@ memesan makan dengan Digiresto.""",
         builder: (context, state) {
           return AuthScafold(
             onBackTap: backHandler,
-            title: 'Daftar',
+            title: i10n.register_title,
             // onNext: () => _registerBloc.add(
             //   RegisterEvent.onNext(
             //     phoneNumber: widget.phoneNumber,
@@ -302,12 +300,13 @@ memesan makan dengan Digiresto.""",
                                   validator: (_) => state.fullName.value.fold(
                                     (failure) => failure.maybeMap(
                                       orElse: () => '',
-                                      lengthTooShort: (_) => 'Invalid Name',
+                                      lengthTooShort: (_) =>
+                                          i10n.errorInvalidName,
                                     ),
                                     (_) => null,
                                   ),
                                   controller: _nameController,
-                                  hintText: 'Nama Pengguna',
+                                  hintText: i10n.register_username,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -319,12 +318,13 @@ memesan makan dengan Digiresto.""",
                                   validator: (_) => state.email.value.fold(
                                     (failure) => failure.maybeMap(
                                       orElse: () => '',
-                                      invalidEmail: (_) => 'Invalid Email',
+                                      invalidEmail: (_) =>
+                                          i10n.errorInvalidEmail,
                                     ),
                                     (_) => null,
                                   ),
                                   controller: _emailController,
-                                  hintText: 'Email',
+                                  hintText: i10n.errorInvalidEmail,
                                   keyboardType: TextInputType.emailAddress,
                                 ),
                                 SizedBox(
@@ -334,15 +334,14 @@ memesan makan dengan Digiresto.""",
                                   value: state.agreeTerms,
                                   onChanged: (value) => _registerBloc
                                       .add(RegisterEvent.toggleAgree()),
-                                  label:
-                                      'Dengan mengklik lanjutkan, Saya setuju dengan syarat dan ketentuan Digiresto.',
+                                  label: i10n.register_approval,
                                 ),
                                 SizedBox(height: 30),
                                 CustomButton(
                                   onPressed: () => _registerBloc.add(
                                       RegisterEvent.buttonSubmitted(
                                           phoneNumberStr: widget.phoneNumber)),
-                                  label: 'Lanjutkan',
+                                  label: i10n.register_action,
                                 )
                               ],
                             ),
