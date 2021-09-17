@@ -10,7 +10,6 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
-import 'package:digiresto/domain/entity/transaction/transaction_history_taxes_and_services.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
@@ -740,25 +739,31 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               .toString()))
                     ],
                   ),
-                  // for (var i = 0; i < transaction.taxesAndServices.length; i++)
-                  //   _buildTaxAndServiceList(transaction.taxesAndServices[i]),
-                  // if (_orderStore.orderSalesTypes == 'onlineDriver' &&
-                  //     _orderStore.selectedDeliveryMethod != null)
-                  //   SizedBox(
-                  //     height: 5,
-                  //   ),
-                  // if (_orderStore.orderSalesTypes == 'onlineDriver' &&
-                  //     _orderStore.selectedDeliveryMethod != null)
-                  //   Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //           'Delivery - ${_orderStore.selectedDeliveryMethod['name']}'),
-                  //       Text("Rp." +
-                  //           Utils.formatRupiah(
-                  //               transaction.deliveryAmount.toString()))
-                  //     ],
-                  //   ),
+                  for (var i = 0;
+                      i <
+                          controller.cartSession.value!.transactionData!
+                              .taxesAndServices.length;
+                      i++)
+                    _buildTaxAndServiceList(controller.cartSession.value!
+                        .transactionData!.taxesAndServices[i]),
+                  if (controller.salesType.value == 'onlineDriver' &&
+                      controller.deliveryMethod.value != null)
+                    SizedBox(
+                      height: 5,
+                    ),
+                  if (controller.salesType.value == 'onlineDriver' &&
+                      controller.deliveryMethod.value != null)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            'Delivery - ${controller.deliveryMethod.value!.name}'),
+                        Text("Rp." +
+                            Utils.formatRupiah(controller.cartSession.value!
+                                .transactionData!.deliveryAmount
+                                .toString()))
+                      ],
+                    ),
                   Divider(
                     color: Colors.black,
                   ),
@@ -1477,7 +1482,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         ));
   }
 
-  Widget _buildTaxAndServiceList(TransactionHistoryTaxesAndServices item) {
+  Widget _buildTaxAndServiceList(TaxesAndService item) {
     return Column(
       children: [
         SizedBox(height: 5),
