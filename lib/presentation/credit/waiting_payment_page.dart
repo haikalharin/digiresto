@@ -1,6 +1,7 @@
 import 'package:digiresto/application/credit/waiting_payment/waiting_payment_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
@@ -36,12 +37,13 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
   late final _bloc = BlocProvider.of<WaitingPaymentBloc>(context);
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return BlocConsumer<WaitingPaymentBloc, WaitingPaymentState>(
       listener: (context, state) {},
       builder: (context, state) {
         return CustomScafold(
           showBackButton: true,
-          title: 'Menunggu Pembayaran',
+          title: i10n.credit_pending_topup,
           body: StackWithProgress(
             isLoading: state.maybeMap(
               orElse: () => false,
@@ -58,14 +60,16 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                     data.failure.map(
                       noInternet: (_) => 'No Internet',
                       serverException: (e) => e.message ?? 'Server Error',
-                      noData: (_) => 'Belum ada transaksi',
+                      noData: (_) => i10n.history_pending_payment_empty,
                       unexpected: (_) => 'Unknown Error',
                     ),
                   ),
                 ),
                 loadSuccess: (data) => data.listTopUpPending.isEmpty
                     ? Center(
-                        child: Text('Belum ada transaksi'),
+                        child: Text(
+                          i10n.history_pending_payment_empty,
+                        ),
                       )
                     : ListView(
                         padding: EdgeInsets.zero,
@@ -92,14 +96,14 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Apakah anda yakin untuk membatalkan Top Up ini?',
+                                            i10n.history_topup_cancel_alert,
                                           ),
                                           Row(
                                             children: [
                                               Expanded(
                                                 child: CustomButton(
                                                   onPressed: () => Get.back(),
-                                                  label: 'Cancel',
+                                                  label: i10n.alert_cancel,
                                                   borderColor:
                                                       AppColors.mainColor,
                                                   color: Colors.white,
@@ -118,7 +122,7 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                                                                 billingId));
                                                     Get.back();
                                                   },
-                                                  label: 'Ok',
+                                                  label: i10n.alert_ok,
                                                   fontColor: Colors.white,
                                                   borderColor:
                                                       AppColors.mainColor,

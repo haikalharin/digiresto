@@ -9,7 +9,12 @@ import 'package:get/route_manager.dart';
 
 class OrderOnProcessWidget extends StatelessWidget {
   final OrderHistory orderOnProcess;
-  const OrderOnProcessWidget(this.orderOnProcess, {Key? key}) : super(key: key);
+  final Function refresh;
+  const OrderOnProcessWidget(
+    this.orderOnProcess, {
+    Key? key,
+    required this.refresh,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,8 @@ class OrderOnProcessWidget extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => Get.to(OrderDetailsPage(orderOnProcess.receiptCode)),
+          onTap: () => Get.to(OrderDetailsPage(orderOnProcess.receiptCode))
+              ?.then((value) => refresh()),
           borderRadius: BorderRadius.circular(4),
           child: Column(
             children: [

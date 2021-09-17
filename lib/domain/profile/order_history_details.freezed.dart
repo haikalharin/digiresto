@@ -67,12 +67,12 @@ class _$OrderHistoryDetailsTearOff {
       required String receiptCode,
       required List<Payment> payments,
       required Outlet outlet,
-      @JsonKey(includeIfNull: false) required String? orderId,
+      @JsonKey(includeIfNull: true) required String? orderId,
       required String status,
       required DeliveryDetail deliveryDetail,
       required Rating rating,
       @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
-      required Delivery delivery}) {
+      @JsonKey(includeIfNull: true) required Delivery? delivery}) {
     return _OrderHistoryDetails(
       outletName: outletName,
       outletId: outletId,
@@ -187,14 +187,15 @@ mixin _$OrderHistoryDetails {
   String get receiptCode => throw _privateConstructorUsedError;
   List<Payment> get payments => throw _privateConstructorUsedError;
   Outlet get outlet => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: true)
   String? get orderId => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   DeliveryDetail get deliveryDetail => throw _privateConstructorUsedError;
   Rating get rating => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
   BillingDetail? get billingDetail => throw _privateConstructorUsedError;
-  Delivery get delivery => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  Delivery? get delivery => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -254,19 +255,19 @@ abstract class $OrderHistoryDetailsCopyWith<$Res> {
       String receiptCode,
       List<Payment> payments,
       Outlet outlet,
-      @JsonKey(includeIfNull: false) String? orderId,
+      @JsonKey(includeIfNull: true) String? orderId,
       String status,
       DeliveryDetail deliveryDetail,
       Rating rating,
       @JsonKey(includeIfNull: true) BillingDetail? billingDetail,
-      Delivery delivery});
+      @JsonKey(includeIfNull: true) Delivery? delivery});
 
   $DeliveryCopyWith<$Res>? get grabpawoon;
   $OutletCopyWith<$Res> get outlet;
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
   $RatingCopyWith<$Res> get rating;
   $BillingDetailCopyWith<$Res>? get billingDetail;
-  $DeliveryCopyWith<$Res> get delivery;
+  $DeliveryCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -541,7 +542,7 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+              as Delivery?,
     ));
   }
 
@@ -589,8 +590,12 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
   }
 
   @override
-  $DeliveryCopyWith<$Res> get delivery {
-    return $DeliveryCopyWith<$Res>(_value.delivery, (value) {
+  $DeliveryCopyWith<$Res>? get delivery {
+    if (_value.delivery == null) {
+      return null;
+    }
+
+    return $DeliveryCopyWith<$Res>(_value.delivery!, (value) {
       return _then(_value.copyWith(delivery: value));
     });
   }
@@ -650,12 +655,12 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
       String receiptCode,
       List<Payment> payments,
       Outlet outlet,
-      @JsonKey(includeIfNull: false) String? orderId,
+      @JsonKey(includeIfNull: true) String? orderId,
       String status,
       DeliveryDetail deliveryDetail,
       Rating rating,
       @JsonKey(includeIfNull: true) BillingDetail? billingDetail,
-      Delivery delivery});
+      @JsonKey(includeIfNull: true) Delivery? delivery});
 
   @override
   $DeliveryCopyWith<$Res>? get grabpawoon;
@@ -668,7 +673,7 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
   @override
   $BillingDetailCopyWith<$Res>? get billingDetail;
   @override
-  $DeliveryCopyWith<$Res> get delivery;
+  $DeliveryCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -945,7 +950,7 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+              as Delivery?,
     ));
   }
 }
@@ -1000,12 +1005,12 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
       required this.receiptCode,
       required this.payments,
       required this.outlet,
-      @JsonKey(includeIfNull: false) required this.orderId,
+      @JsonKey(includeIfNull: true) required this.orderId,
       required this.status,
       required this.deliveryDetail,
       required this.rating,
       @JsonKey(includeIfNull: true) required this.billingDetail,
-      required this.delivery});
+      @JsonKey(includeIfNull: true) required this.delivery});
 
   factory _$_OrderHistoryDetails.fromJson(Map<String, dynamic> json) =>
       _$_$_OrderHistoryDetailsFromJson(json);
@@ -1104,7 +1109,7 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   @override
   final Outlet outlet;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: true)
   final String? orderId;
   @override
   final String status;
@@ -1116,7 +1121,8 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   @JsonKey(includeIfNull: true)
   final BillingDetail? billingDetail;
   @override
-  final Delivery delivery;
+  @JsonKey(includeIfNull: true)
+  final Delivery? delivery;
 
   @override
   String toString() {
@@ -1294,58 +1300,59 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
 
 abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   const factory _OrderHistoryDetails(
-      {required String outletName,
-      required num outletId,
-      required String customerName,
-      required String customerEmail,
-      required String customerPhone,
-      required String recipientName,
-      required String recipientPhone,
-      required String customerTableNumber,
-      required String customerSmoking,
-      required String customerPax,
-      required String customerNote,
-      required String customerCarType,
-      required String customerCarColor,
-      required String customerCarNumber,
-      required String eta,
-      required num totalChange,
-      required num discountAmount,
-      required num discountPercentage,
-      required num finalAmount,
-      required num receiptTotalDiscount,
-      required num roundAmount,
-      required num subtotal,
-      required num totalDiscount,
-      required num totalItemAmount,
-      required num totalItemCost,
-      required num totalItemDiscount,
-      required num totalService,
-      required num totalTax,
-      required num voucherAmount,
-      required num deliveryAmount,
-      required num totalPayment,
-      required String salesType,
-      required List<MenuItem> items,
-      required num itemWeight,
-      required bool isUseVoucher,
-      required List<dynamic> promos,
-      required List<dynamic> paymentList,
-      required List<TaxesAndService> taxesAndServices,
-      required num itemTotalAmount,
-      required String note,
-      @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
-      required num? originalDeliveryAmount,
-      required DateTime deviceTimestamp,
-      required String receiptCode,
-      required List<Payment> payments,
-      required Outlet outlet,
-      @JsonKey(includeIfNull: false) required String? orderId,
-      required String status,
-      required DeliveryDetail deliveryDetail,
-      required Rating rating,
-      @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
-      required Delivery delivery}) = _$_OrderHistoryDetails;
+          {required String outletName,
+          required num outletId,
+          required String customerName,
+          required String customerEmail,
+          required String customerPhone,
+          required String recipientName,
+          required String recipientPhone,
+          required String customerTableNumber,
+          required String customerSmoking,
+          required String customerPax,
+          required String customerNote,
+          required String customerCarType,
+          required String customerCarColor,
+          required String customerCarNumber,
+          required String eta,
+          required num totalChange,
+          required num discountAmount,
+          required num discountPercentage,
+          required num finalAmount,
+          required num receiptTotalDiscount,
+          required num roundAmount,
+          required num subtotal,
+          required num totalDiscount,
+          required num totalItemAmount,
+          required num totalItemCost,
+          required num totalItemDiscount,
+          required num totalService,
+          required num totalTax,
+          required num voucherAmount,
+          required num deliveryAmount,
+          required num totalPayment,
+          required String salesType,
+          required List<MenuItem> items,
+          required num itemWeight,
+          required bool isUseVoucher,
+          required List<dynamic> promos,
+          required List<dynamic> paymentList,
+          required List<TaxesAndService> taxesAndServices,
+          required num itemTotalAmount,
+          required String note,
+          @JsonKey(includeIfNull: true) required Delivery? grabpawoon,
+          required num? originalDeliveryAmount,
+          required DateTime deviceTimestamp,
+          required String receiptCode,
+          required List<Payment> payments,
+          required Outlet outlet,
+          @JsonKey(includeIfNull: true) required String? orderId,
+          required String status,
+          required DeliveryDetail deliveryDetail,
+          required Rating rating,
+          @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
+          @JsonKey(includeIfNull: true) required Delivery? delivery}) =
+      _$_OrderHistoryDetails;
 
   factory _OrderHistoryDetails.fromJson(Map<String, dynamic> json) =
       _$_OrderHistoryDetails.fromJson;
@@ -1445,7 +1452,7 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   @override
   Outlet get outlet => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: true)
   String? get orderId => throw _privateConstructorUsedError;
   @override
   String get status => throw _privateConstructorUsedError;
@@ -1457,7 +1464,8 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   @JsonKey(includeIfNull: true)
   BillingDetail? get billingDetail => throw _privateConstructorUsedError;
   @override
-  Delivery get delivery => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  Delivery? get delivery => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OrderHistoryDetailsCopyWith<_OrderHistoryDetails> get copyWith =>
@@ -2001,22 +2009,22 @@ class _$DeliveryDetailTearOff {
 
   _DeliveryDetail call(
       {@JsonKey(defaultValue: '', includeIfNull: true) required String orderId,
-      @JsonKey(includeIfNull: false) required String distance,
-      @JsonKey(includeIfNull: false) required String provider,
-      @JsonKey(includeIfNull: false) required String? shipmentMethod,
-      @JsonKey(includeIfNull: false) required num fee,
-      @JsonKey(includeIfNull: false) required String bookingCode,
-      @JsonKey(includeIfNull: false) required String bookingExpired,
-      @JsonKey(includeIfNull: false) required String deliveryId,
-      @JsonKey(includeIfNull: false) required bool isDelivered,
-      @JsonKey(includeIfNull: false) required From from,
-      @JsonKey(includeIfNull: false) required To to,
-      @JsonKey(includeIfNull: false) required List<DeliveryStatus> status,
-      @JsonKey(includeIfNull: false) required bool isDelete,
-      @JsonKey(includeIfNull: false) required DateTime createdDate,
-      @JsonKey(includeIfNull: false) required String ownerPhone,
-      @JsonKey(includeIfNull: false) required String driverName,
-      @JsonKey(includeIfNull: false) required String driverPhone}) {
+      @JsonKey(includeIfNull: true) required String? distance,
+      @JsonKey(includeIfNull: true) required String? provider,
+      @JsonKey(includeIfNull: true) required String? shipmentMethod,
+      @JsonKey(includeIfNull: true) required dynamic fee,
+      @JsonKey(includeIfNull: true) required String? bookingCode,
+      @JsonKey(includeIfNull: true) required String? bookingExpired,
+      @JsonKey(includeIfNull: true) required String? deliveryId,
+      @JsonKey(includeIfNull: true) required bool? isDelivered,
+      @JsonKey(includeIfNull: true) required From? from,
+      @JsonKey(includeIfNull: true) required To? to,
+      @JsonKey(includeIfNull: true) required List<DeliveryStatus>? status,
+      @JsonKey(includeIfNull: true) required bool? isDelete,
+      @JsonKey(includeIfNull: true) required DateTime? createdDate,
+      @JsonKey(includeIfNull: true) required String? ownerPhone,
+      @JsonKey(includeIfNull: true) required String? driverName,
+      @JsonKey(includeIfNull: true) required String? driverPhone}) {
     return _DeliveryDetail(
       orderId: orderId,
       distance: distance,
@@ -2050,38 +2058,38 @@ const $DeliveryDetail = _$DeliveryDetailTearOff();
 mixin _$DeliveryDetail {
   @JsonKey(defaultValue: '', includeIfNull: true)
   String get orderId => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get distance => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get provider => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: true)
+  String? get distance => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get provider => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
   String? get shipmentMethod => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  num get fee => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get bookingCode => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get bookingExpired => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get deliveryId => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  bool get isDelivered => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  From get from => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  To get to => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  List<DeliveryStatus> get status => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  bool get isDelete => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  DateTime get createdDate => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get ownerPhone => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get driverName => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String get driverPhone => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  dynamic get fee => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get bookingCode => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get bookingExpired => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get deliveryId => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  bool? get isDelivered => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  From? get from => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  To? get to => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  List<DeliveryStatus>? get status => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  bool? get isDelete => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get ownerPhone => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get driverName => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get driverPhone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2096,25 +2104,25 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       _$DeliveryDetailCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(defaultValue: '', includeIfNull: true) String orderId,
-      @JsonKey(includeIfNull: false) String distance,
-      @JsonKey(includeIfNull: false) String provider,
-      @JsonKey(includeIfNull: false) String? shipmentMethod,
-      @JsonKey(includeIfNull: false) num fee,
-      @JsonKey(includeIfNull: false) String bookingCode,
-      @JsonKey(includeIfNull: false) String bookingExpired,
-      @JsonKey(includeIfNull: false) String deliveryId,
-      @JsonKey(includeIfNull: false) bool isDelivered,
-      @JsonKey(includeIfNull: false) From from,
-      @JsonKey(includeIfNull: false) To to,
-      @JsonKey(includeIfNull: false) List<DeliveryStatus> status,
-      @JsonKey(includeIfNull: false) bool isDelete,
-      @JsonKey(includeIfNull: false) DateTime createdDate,
-      @JsonKey(includeIfNull: false) String ownerPhone,
-      @JsonKey(includeIfNull: false) String driverName,
-      @JsonKey(includeIfNull: false) String driverPhone});
+      @JsonKey(includeIfNull: true) String? distance,
+      @JsonKey(includeIfNull: true) String? provider,
+      @JsonKey(includeIfNull: true) String? shipmentMethod,
+      @JsonKey(includeIfNull: true) dynamic fee,
+      @JsonKey(includeIfNull: true) String? bookingCode,
+      @JsonKey(includeIfNull: true) String? bookingExpired,
+      @JsonKey(includeIfNull: true) String? deliveryId,
+      @JsonKey(includeIfNull: true) bool? isDelivered,
+      @JsonKey(includeIfNull: true) From? from,
+      @JsonKey(includeIfNull: true) To? to,
+      @JsonKey(includeIfNull: true) List<DeliveryStatus>? status,
+      @JsonKey(includeIfNull: true) bool? isDelete,
+      @JsonKey(includeIfNull: true) DateTime? createdDate,
+      @JsonKey(includeIfNull: true) String? ownerPhone,
+      @JsonKey(includeIfNull: true) String? driverName,
+      @JsonKey(includeIfNull: true) String? driverPhone});
 
-  $FromCopyWith<$Res> get from;
-  $ToCopyWith<$Res> get to;
+  $FromCopyWith<$Res>? get from;
+  $ToCopyWith<$Res>? get to;
 }
 
 /// @nodoc
@@ -2154,11 +2162,11 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
@@ -2166,68 +2174,76 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as num,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       bookingExpired: bookingExpired == freezed
           ? _value.bookingExpired
           : bookingExpired // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deliveryId: deliveryId == freezed
           ? _value.deliveryId
           : deliveryId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isDelivered: isDelivered == freezed
           ? _value.isDelivered
           : isDelivered // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as From,
+              as From?,
       to: to == freezed
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as To,
+              as To?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as List<DeliveryStatus>,
+              as List<DeliveryStatus>?,
       isDelete: isDelete == freezed
           ? _value.isDelete
           : isDelete // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdDate: createdDate == freezed
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       driverName: driverName == freezed
           ? _value.driverName
           : driverName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       driverPhone: driverPhone == freezed
           ? _value.driverPhone
           : driverPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
   @override
-  $FromCopyWith<$Res> get from {
-    return $FromCopyWith<$Res>(_value.from, (value) {
+  $FromCopyWith<$Res>? get from {
+    if (_value.from == null) {
+      return null;
+    }
+
+    return $FromCopyWith<$Res>(_value.from!, (value) {
       return _then(_value.copyWith(from: value));
     });
   }
 
   @override
-  $ToCopyWith<$Res> get to {
-    return $ToCopyWith<$Res>(_value.to, (value) {
+  $ToCopyWith<$Res>? get to {
+    if (_value.to == null) {
+      return null;
+    }
+
+    return $ToCopyWith<$Res>(_value.to!, (value) {
       return _then(_value.copyWith(to: value));
     });
   }
@@ -2242,27 +2258,27 @@ abstract class _$DeliveryDetailCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(defaultValue: '', includeIfNull: true) String orderId,
-      @JsonKey(includeIfNull: false) String distance,
-      @JsonKey(includeIfNull: false) String provider,
-      @JsonKey(includeIfNull: false) String? shipmentMethod,
-      @JsonKey(includeIfNull: false) num fee,
-      @JsonKey(includeIfNull: false) String bookingCode,
-      @JsonKey(includeIfNull: false) String bookingExpired,
-      @JsonKey(includeIfNull: false) String deliveryId,
-      @JsonKey(includeIfNull: false) bool isDelivered,
-      @JsonKey(includeIfNull: false) From from,
-      @JsonKey(includeIfNull: false) To to,
-      @JsonKey(includeIfNull: false) List<DeliveryStatus> status,
-      @JsonKey(includeIfNull: false) bool isDelete,
-      @JsonKey(includeIfNull: false) DateTime createdDate,
-      @JsonKey(includeIfNull: false) String ownerPhone,
-      @JsonKey(includeIfNull: false) String driverName,
-      @JsonKey(includeIfNull: false) String driverPhone});
+      @JsonKey(includeIfNull: true) String? distance,
+      @JsonKey(includeIfNull: true) String? provider,
+      @JsonKey(includeIfNull: true) String? shipmentMethod,
+      @JsonKey(includeIfNull: true) dynamic fee,
+      @JsonKey(includeIfNull: true) String? bookingCode,
+      @JsonKey(includeIfNull: true) String? bookingExpired,
+      @JsonKey(includeIfNull: true) String? deliveryId,
+      @JsonKey(includeIfNull: true) bool? isDelivered,
+      @JsonKey(includeIfNull: true) From? from,
+      @JsonKey(includeIfNull: true) To? to,
+      @JsonKey(includeIfNull: true) List<DeliveryStatus>? status,
+      @JsonKey(includeIfNull: true) bool? isDelete,
+      @JsonKey(includeIfNull: true) DateTime? createdDate,
+      @JsonKey(includeIfNull: true) String? ownerPhone,
+      @JsonKey(includeIfNull: true) String? driverName,
+      @JsonKey(includeIfNull: true) String? driverPhone});
 
   @override
-  $FromCopyWith<$Res> get from;
+  $FromCopyWith<$Res>? get from;
   @override
-  $ToCopyWith<$Res> get to;
+  $ToCopyWith<$Res>? get to;
 }
 
 /// @nodoc
@@ -2304,11 +2320,11 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
@@ -2316,55 +2332,55 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as num,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       bookingExpired: bookingExpired == freezed
           ? _value.bookingExpired
           : bookingExpired // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deliveryId: deliveryId == freezed
           ? _value.deliveryId
           : deliveryId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isDelivered: isDelivered == freezed
           ? _value.isDelivered
           : isDelivered // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as From,
+              as From?,
       to: to == freezed
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as To,
+              as To?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as List<DeliveryStatus>,
+              as List<DeliveryStatus>?,
       isDelete: isDelete == freezed
           ? _value.isDelete
           : isDelete // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdDate: createdDate == freezed
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       driverName: driverName == freezed
           ? _value.driverName
           : driverName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       driverPhone: driverPhone == freezed
           ? _value.driverPhone
           : driverPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -2374,22 +2390,22 @@ class __$DeliveryDetailCopyWithImpl<$Res>
 class _$_DeliveryDetail implements _DeliveryDetail {
   const _$_DeliveryDetail(
       {@JsonKey(defaultValue: '', includeIfNull: true) required this.orderId,
-      @JsonKey(includeIfNull: false) required this.distance,
-      @JsonKey(includeIfNull: false) required this.provider,
-      @JsonKey(includeIfNull: false) required this.shipmentMethod,
-      @JsonKey(includeIfNull: false) required this.fee,
-      @JsonKey(includeIfNull: false) required this.bookingCode,
-      @JsonKey(includeIfNull: false) required this.bookingExpired,
-      @JsonKey(includeIfNull: false) required this.deliveryId,
-      @JsonKey(includeIfNull: false) required this.isDelivered,
-      @JsonKey(includeIfNull: false) required this.from,
-      @JsonKey(includeIfNull: false) required this.to,
-      @JsonKey(includeIfNull: false) required this.status,
-      @JsonKey(includeIfNull: false) required this.isDelete,
-      @JsonKey(includeIfNull: false) required this.createdDate,
-      @JsonKey(includeIfNull: false) required this.ownerPhone,
-      @JsonKey(includeIfNull: false) required this.driverName,
-      @JsonKey(includeIfNull: false) required this.driverPhone});
+      @JsonKey(includeIfNull: true) required this.distance,
+      @JsonKey(includeIfNull: true) required this.provider,
+      @JsonKey(includeIfNull: true) required this.shipmentMethod,
+      @JsonKey(includeIfNull: true) required this.fee,
+      @JsonKey(includeIfNull: true) required this.bookingCode,
+      @JsonKey(includeIfNull: true) required this.bookingExpired,
+      @JsonKey(includeIfNull: true) required this.deliveryId,
+      @JsonKey(includeIfNull: true) required this.isDelivered,
+      @JsonKey(includeIfNull: true) required this.from,
+      @JsonKey(includeIfNull: true) required this.to,
+      @JsonKey(includeIfNull: true) required this.status,
+      @JsonKey(includeIfNull: true) required this.isDelete,
+      @JsonKey(includeIfNull: true) required this.createdDate,
+      @JsonKey(includeIfNull: true) required this.ownerPhone,
+      @JsonKey(includeIfNull: true) required this.driverName,
+      @JsonKey(includeIfNull: true) required this.driverPhone});
 
   factory _$_DeliveryDetail.fromJson(Map<String, dynamic> json) =>
       _$_$_DeliveryDetailFromJson(json);
@@ -2398,53 +2414,53 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   @JsonKey(defaultValue: '', includeIfNull: true)
   final String orderId;
   @override
-  @JsonKey(includeIfNull: false)
-  final String distance;
+  @JsonKey(includeIfNull: true)
+  final String? distance;
   @override
-  @JsonKey(includeIfNull: false)
-  final String provider;
+  @JsonKey(includeIfNull: true)
+  final String? provider;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: true)
   final String? shipmentMethod;
   @override
-  @JsonKey(includeIfNull: false)
-  final num fee;
+  @JsonKey(includeIfNull: true)
+  final dynamic fee;
   @override
-  @JsonKey(includeIfNull: false)
-  final String bookingCode;
+  @JsonKey(includeIfNull: true)
+  final String? bookingCode;
   @override
-  @JsonKey(includeIfNull: false)
-  final String bookingExpired;
+  @JsonKey(includeIfNull: true)
+  final String? bookingExpired;
   @override
-  @JsonKey(includeIfNull: false)
-  final String deliveryId;
+  @JsonKey(includeIfNull: true)
+  final String? deliveryId;
   @override
-  @JsonKey(includeIfNull: false)
-  final bool isDelivered;
+  @JsonKey(includeIfNull: true)
+  final bool? isDelivered;
   @override
-  @JsonKey(includeIfNull: false)
-  final From from;
+  @JsonKey(includeIfNull: true)
+  final From? from;
   @override
-  @JsonKey(includeIfNull: false)
-  final To to;
+  @JsonKey(includeIfNull: true)
+  final To? to;
   @override
-  @JsonKey(includeIfNull: false)
-  final List<DeliveryStatus> status;
+  @JsonKey(includeIfNull: true)
+  final List<DeliveryStatus>? status;
   @override
-  @JsonKey(includeIfNull: false)
-  final bool isDelete;
+  @JsonKey(includeIfNull: true)
+  final bool? isDelete;
   @override
-  @JsonKey(includeIfNull: false)
-  final DateTime createdDate;
+  @JsonKey(includeIfNull: true)
+  final DateTime? createdDate;
   @override
-  @JsonKey(includeIfNull: false)
-  final String ownerPhone;
+  @JsonKey(includeIfNull: true)
+  final String? ownerPhone;
   @override
-  @JsonKey(includeIfNull: false)
-  final String driverName;
+  @JsonKey(includeIfNull: true)
+  final String? driverName;
   @override
-  @JsonKey(includeIfNull: false)
-  final String driverPhone;
+  @JsonKey(includeIfNull: true)
+  final String? driverPhone;
 
   @override
   String toString() {
@@ -2540,38 +2556,38 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   const factory _DeliveryDetail(
       {@JsonKey(defaultValue: '', includeIfNull: true)
           required String orderId,
-      @JsonKey(includeIfNull: false)
-          required String distance,
-      @JsonKey(includeIfNull: false)
-          required String provider,
-      @JsonKey(includeIfNull: false)
+      @JsonKey(includeIfNull: true)
+          required String? distance,
+      @JsonKey(includeIfNull: true)
+          required String? provider,
+      @JsonKey(includeIfNull: true)
           required String? shipmentMethod,
-      @JsonKey(includeIfNull: false)
-          required num fee,
-      @JsonKey(includeIfNull: false)
-          required String bookingCode,
-      @JsonKey(includeIfNull: false)
-          required String bookingExpired,
-      @JsonKey(includeIfNull: false)
-          required String deliveryId,
-      @JsonKey(includeIfNull: false)
-          required bool isDelivered,
-      @JsonKey(includeIfNull: false)
-          required From from,
-      @JsonKey(includeIfNull: false)
-          required To to,
-      @JsonKey(includeIfNull: false)
-          required List<DeliveryStatus> status,
-      @JsonKey(includeIfNull: false)
-          required bool isDelete,
-      @JsonKey(includeIfNull: false)
-          required DateTime createdDate,
-      @JsonKey(includeIfNull: false)
-          required String ownerPhone,
-      @JsonKey(includeIfNull: false)
-          required String driverName,
-      @JsonKey(includeIfNull: false)
-          required String driverPhone}) = _$_DeliveryDetail;
+      @JsonKey(includeIfNull: true)
+          required dynamic fee,
+      @JsonKey(includeIfNull: true)
+          required String? bookingCode,
+      @JsonKey(includeIfNull: true)
+          required String? bookingExpired,
+      @JsonKey(includeIfNull: true)
+          required String? deliveryId,
+      @JsonKey(includeIfNull: true)
+          required bool? isDelivered,
+      @JsonKey(includeIfNull: true)
+          required From? from,
+      @JsonKey(includeIfNull: true)
+          required To? to,
+      @JsonKey(includeIfNull: true)
+          required List<DeliveryStatus>? status,
+      @JsonKey(includeIfNull: true)
+          required bool? isDelete,
+      @JsonKey(includeIfNull: true)
+          required DateTime? createdDate,
+      @JsonKey(includeIfNull: true)
+          required String? ownerPhone,
+      @JsonKey(includeIfNull: true)
+          required String? driverName,
+      @JsonKey(includeIfNull: true)
+          required String? driverPhone}) = _$_DeliveryDetail;
 
   factory _DeliveryDetail.fromJson(Map<String, dynamic> json) =
       _$_DeliveryDetail.fromJson;
@@ -2580,53 +2596,53 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   @JsonKey(defaultValue: '', includeIfNull: true)
   String get orderId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get distance => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get distance => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get provider => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get provider => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
+  @JsonKey(includeIfNull: true)
   String? get shipmentMethod => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  num get fee => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  dynamic get fee => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get bookingCode => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get bookingCode => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get bookingExpired => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get bookingExpired => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get deliveryId => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get deliveryId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  bool get isDelivered => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  bool? get isDelivered => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  From get from => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  From? get from => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  To get to => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  To? get to => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  List<DeliveryStatus> get status => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  List<DeliveryStatus>? get status => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  bool get isDelete => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  bool? get isDelete => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  DateTime get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  DateTime? get createdDate => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get ownerPhone => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get ownerPhone => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get driverName => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get driverName => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  String get driverPhone => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get driverPhone => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DeliveryDetailCopyWith<_DeliveryDetail> get copyWith =>

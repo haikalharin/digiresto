@@ -184,7 +184,7 @@
     "topup_title":"Isi Saldo",
     "topup_choose_bank":"Pilih bank yang ingin dituju",
     "topup_alert_empty_bank":"Tidak terdapat pilihan bank",
-    "topup_credit_via":"Isi Saldo {param} Credit via %2$s",
+    "topup_credit_via":"Isi Saldo Credit via ",
     "topup_credit_denum":"Pilih jumlah yang diinginkan",
     "topup_credit_input":"Atau masukkan jumlah secara manual",
     "topup_credit_minimal":"minimal Rp 10.000",
@@ -321,7 +321,9 @@
     "order_confirmation_alert":"Apakah Anda yakin dengan orderan ini?",
 
     "user_not_choose_delivery":"Anda belum memilih metode pengiriman, silahkan pilih metode pengiriman terlebih dahulu untuk melanjutkan pemesanan.",
-    "errorValidEmail":"Email yang dimasukkan tidak valid",
+    "errorInvalidEmail":"Email tidak valid",
+    "errorInvalidName":"Nama tidak valid",
+    "errorInvalidOtp":"Otp salah",
     "errorValidPasscode":"Passcode tidak boleh kurang atau lebih dari 6 digit",
 
     "_Nota":"",
@@ -431,7 +433,8 @@
     "login_check_your_mobile_number":"Periksa kembali nomor handphone Anda!",
 
     "_Input OTP Screen":"",
-    "input_otp_desc":"Silahkan masukkan enam digit kode verifikasi yang kami kirim ke WhatsApp Anda di nomor {param}. Harap masukkan kode terbaru untuk melanjutkan.",
+    "input_otp_desc":"Silahkan masukkan enam digit kode verifikasi yang kami kirim ke WhatsApp Anda di nomor",
+    "input_otp_desc2":"Harap masukkan kode terbaru untuk melanjutkan.",
     "input_otp_desc_whatsapp":"Whatsapp",
     "input_otp_resend_code":"Kirim Ulang ({param})",
 
@@ -566,7 +569,7 @@
     "credit_recent_history":"Riwayat Terakhir",
     "credit_pending_topup":"Menunggu Pembayaran",
     "credit_note":"Catatan:",
-    "credit_note_value":"Transaksi ini akan dikenakan biaya sebesar {param}",
+    "credit_note_value":"Transaksi ini akan dikenakan biaya sebesar",
     "credit_fund_transfer":"Transfer Rekening",
 
     "beranda_balance_inquiry":"Rp {param}",

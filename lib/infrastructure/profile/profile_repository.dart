@@ -310,4 +310,35 @@ class ProfileRepository implements IProfileRepository {
       return left(ProfileFailure.unexpected());
     }
   }
+
+  @override
+  Future<Either<ProfileFailure, Unit>> doneTransaction(
+      {required String receiptCode}) async {
+    final _apiUrl = Endpoints.urlAcceptTransaction;
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: _apiUrl,
+        useAuth: true,
+        content: {
+          "query_string": {
+            "receiptCode": receiptCode,
+          },
+          "body": {}
+        },
+      );
+      logger.d(apiResult);
+      final data = (apiResult as Map<String, dynamic>)['data'] as Map;
+      if (data.isEmpty) {
+        return left(ProfileFailure.noData());
+      }
+      return right(unit);
+    } on ServerException catch (_) {
+      return left(ProfileFailure.serverError());
+    } on NoInternetException catch (_) {
+      return left(ProfileFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d('coba ' + stactrace.toString());
+      return left(ProfileFailure.unexpected());
+    }
+  }
 }

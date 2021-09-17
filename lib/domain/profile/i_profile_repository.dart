@@ -30,4 +30,8 @@ abstract class IProfileRepository {
     required int rating,
     required String review,
   });
+
+  Future<Either<ProfileFailure, Unit>> doneTransaction({
+    required String receiptCode,
+  });
 }

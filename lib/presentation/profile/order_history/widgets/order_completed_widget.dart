@@ -9,7 +9,12 @@ import 'package:get/route_manager.dart';
 
 class OrderCompletedWidget extends StatelessWidget {
   final OrderHistory orderCompleted;
-  const OrderCompletedWidget(this.orderCompleted, {Key? key}) : super(key: key);
+  final Function refresh;
+  const OrderCompletedWidget(
+    this.orderCompleted, {
+    Key? key,
+    required this.refresh,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,9 @@ class OrderCompletedWidget extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => Get.to(OrderDetailsPage(orderCompleted.receiptCode)),
+          onTap: () => Get.to(
+            OrderDetailsPage(orderCompleted.receiptCode),
+          )?.then((value) => refresh()),
           borderRadius: BorderRadius.circular(4),
           child: Column(
             children: [

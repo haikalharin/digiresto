@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/credit/top_up_bank_details.dart';
 import 'package:digiresto/domain/credit/top_up_va_details.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/credit/widgets/bank_details_widget.dart';
 import 'package:digiresto/presentation/credit/widgets/va_details_widget.dart';
@@ -25,6 +26,8 @@ class TopUpDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
+
     return CustomScafold(
       suffixWidget: GestureDetector(
         onTap: () {
@@ -32,11 +35,11 @@ class TopUpDetailsPage extends StatelessWidget {
           Get.back();
         },
         child: Text(
-          'Selesai',
+          i10n.cart_done,
           style: Styles.creditLabelStyle,
         ),
       ),
-      title: 'Isi saldo',
+      title: i10n.topup_title,
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -50,14 +53,14 @@ class TopUpDetailsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Informasi Transfer',
+                  i10n.topup_info_transfer,
                   style: Styles.creditTopupTitleStyle,
                 ),
                 SizedBox(
                   height: 8,
                 ),
                 Text(
-                  'Silahkan lanjutkan proses Top Up dengan detail sebagai berikut:',
+                  i10n.billing_desc,
                   style: Styles.creditMenuSubtitleStyle,
                 ),
                 SizedBox(

@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/credit/top_up_bank_details.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class BankDetailWidget extends StatelessWidget {
@@ -9,6 +10,7 @@ class BankDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -38,7 +40,7 @@ class BankDetailWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Transaction Date',
+                    i10n.billing_transaction_date,
                     style: Styles.creditDetailsLabelStyle,
                   ),
                 ),
@@ -68,7 +70,7 @@ class BankDetailWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'No. Rekening',
+                    i10n.billing_rekening_number,
                     style: Styles.creditDetailsLabelStyle,
                   ),
                 ),
@@ -96,7 +98,7 @@ class BankDetailWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Bank Account Name',
+                    i10n.billing_bank_account_name,
                     style: Styles.creditDetailsLabelStyle,
                   ),
                 ),
@@ -123,7 +125,7 @@ class BankDetailWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Bank Name',
+                    i10n.billing_bank_name,
                     style: Styles.creditDetailsLabelStyle,
                   ),
                 ),
@@ -150,7 +152,7 @@ class BankDetailWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Amount',
+                    i10n.billing_amount,
                     style: Styles.creditDetailsLabelStyle,
                   ),
                 ),

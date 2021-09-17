@@ -59,12 +59,12 @@ class OrderHistoryDetails with _$OrderHistoryDetails {
     required String receiptCode,
     required List<Payment> payments,
     required Outlet outlet,
-    @JsonKey(includeIfNull: false) required String? orderId,
+    @JsonKey(includeIfNull: true) required String? orderId,
     required String status,
     required DeliveryDetail deliveryDetail,
     required Rating rating,
     @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
-    required Delivery delivery,
+    @JsonKey(includeIfNull: true) required Delivery? delivery,
   }) = _OrderHistoryDetails;
 
   factory OrderHistoryDetails.fromJson(Map<String, dynamic> json) =>
@@ -104,22 +104,22 @@ class Delivery with _$Delivery {
 class DeliveryDetail with _$DeliveryDetail {
   const factory DeliveryDetail({
     @JsonKey(defaultValue: '', includeIfNull: true) required String orderId,
-    @JsonKey(includeIfNull: false) required String distance,
-    @JsonKey(includeIfNull: false) required String provider,
-    @JsonKey(includeIfNull: false) required String? shipmentMethod,
-    @JsonKey(includeIfNull: false) required num fee,
-    @JsonKey(includeIfNull: false) required String bookingCode,
-    @JsonKey(includeIfNull: false) required String bookingExpired,
-    @JsonKey(includeIfNull: false) required String deliveryId,
-    @JsonKey(includeIfNull: false) required bool isDelivered,
-    @JsonKey(includeIfNull: false) required From from,
-    @JsonKey(includeIfNull: false) required To to,
-    @JsonKey(includeIfNull: false) required List<DeliveryStatus> status,
-    @JsonKey(includeIfNull: false) required bool isDelete,
-    @JsonKey(includeIfNull: false) required DateTime createdDate,
-    @JsonKey(includeIfNull: false) required String ownerPhone,
-    @JsonKey(includeIfNull: false) required String driverName,
-    @JsonKey(includeIfNull: false) required String driverPhone,
+    @JsonKey(includeIfNull: true) required String? distance,
+    @JsonKey(includeIfNull: true) required String? provider,
+    @JsonKey(includeIfNull: true) required String? shipmentMethod,
+    @JsonKey(includeIfNull: true) required dynamic fee,
+    @JsonKey(includeIfNull: true) required String? bookingCode,
+    @JsonKey(includeIfNull: true) required String? bookingExpired,
+    @JsonKey(includeIfNull: true) required String? deliveryId,
+    @JsonKey(includeIfNull: true) required bool? isDelivered,
+    @JsonKey(includeIfNull: true) required From? from,
+    @JsonKey(includeIfNull: true) required To? to,
+    @JsonKey(includeIfNull: true) required List<DeliveryStatus>? status,
+    @JsonKey(includeIfNull: true) required bool? isDelete,
+    @JsonKey(includeIfNull: true) required DateTime? createdDate,
+    @JsonKey(includeIfNull: true) required String? ownerPhone,
+    @JsonKey(includeIfNull: true) required String? driverName,
+    @JsonKey(includeIfNull: true) required String? driverPhone,
   }) = _DeliveryDetail;
 
   factory DeliveryDetail.fromJson(Map<String, dynamic> json) =>

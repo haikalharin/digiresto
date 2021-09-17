@@ -114,6 +114,27 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
           );
         }
       },
+      doneTransaction: (_event) async* {
+        yield _Loading();
+        final confirmFailureOrSuccess =
+            await _profileRepository.doneTransaction(
+          receiptCode: _event.receiptCode,
+        );
+        final failureOrSuccess =
+            await _profileRepository.getOrderHistoryDetails(
+          receiptCode: _event.receiptCode,
+        );
+        yield confirmFailureOrSuccess.fold(
+          (failure) => _LoadFailure(failure: failure),
+          (confirm) => failureOrSuccess.fold(
+            (failure) => _LoadFailure(failure: failure),
+            (orderHistoryDetails) => _LoadSuccess(
+              orderHistoryDetails: orderHistoryDetails,
+              optionSubmitRating: none(),
+            ),
+          ),
+        );
+      },
     );
   }
 }

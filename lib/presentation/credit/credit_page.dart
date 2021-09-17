@@ -3,6 +3,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:digiresto/presentation/credit/recent_history_page.dart';
 import 'package:digiresto/presentation/credit/waiting_payment_page.dart';
@@ -18,22 +19,24 @@ import 'package:get/get.dart';
 class CreditTabController extends GetxController
     with SingleGetTickerProviderMixin {
   RxInt tabIndex = 0.obs;
-  final List<Widget> myTabs = [
-    Container(
-      padding: EdgeInsets.all(15),
-      child: Text('Isi Saldo'),
-    ),
-    Container(
-      padding: EdgeInsets.all(15),
-      child: Text('Riwayat'),
-    ),
-  ];
+  I10n _i10n = I10n.current;
+  late List<Widget> myTabs;
 
   late TabController controller;
 
   @override
   void onInit() {
     super.onInit();
+    myTabs = [
+      Container(
+        padding: EdgeInsets.all(15),
+        child: Text(_i10n.credit_title_1),
+      ),
+      Container(
+        padding: EdgeInsets.all(15),
+        child: Text(_i10n.credit_title_2),
+      ),
+    ];
     controller = TabController(vsync: this, length: myTabs.length);
     controller.addListener(() {
       tabIndex.value = controller.index;
@@ -66,6 +69,7 @@ class CreditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     final CreditTabController _tabx = Get.put(CreditTabController());
 
     return BlocProvider<CreditBloc>(
@@ -103,7 +107,7 @@ class CreditPage extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Credit Saya',
+                              i10n.credit_me,
                               style: Styles.creditLabelStyle,
                               textAlign: TextAlign.center,
                             ),
@@ -182,8 +186,8 @@ class CreditPage extends StatelessWidget {
                           (data) => data.fold(
                             (failure) => _widgetError(),
                             (list) => CreditTabView(
-                              title: 'Isi Saldo',
-                              subtitle: 'Pilih metode yang diinginkan',
+                              title: i10n.credit_title_1,
+                              subtitle: i10n.credit_desc_1,
                               menus: list.unlock
                                   .map(
                                     (topupMethod) => topupMethod.isEnable
@@ -203,17 +207,17 @@ class CreditPage extends StatelessWidget {
                           ),
                         ),
                         CreditTabView(
-                          title: 'Riwayat Transaksi',
-                          subtitle: 'Lihat riwayat transaksi yang diinginkan',
+                          title: i10n.credit_title_2,
+                          subtitle: i10n.credit_desc_2,
                           menus: [
                             CreditMenu(
                               assetSvgIcon: 'assets/credit_waiting_payment.svg',
-                              label: 'Menunggu Pembayaran',
+                              label: i10n.credit_pending_topup,
                               onTap: () => Get.to(WaitingPaymentPage()),
                             ),
                             CreditMenu(
                               assetSvgIcon: 'assets/credit_history.svg',
-                              label: 'Riwayat Terakhir',
+                              label: i10n.credit_recent_history,
                               onTap: () => Get.to(RecentHistoryPage()),
                             ),
                           ],

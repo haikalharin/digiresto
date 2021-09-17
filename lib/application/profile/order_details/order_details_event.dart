@@ -4,6 +4,8 @@ part of 'order_details_bloc.dart';
 class OrderDetailsEvent with _$OrderDetailsEvent {
   const factory OrderDetailsEvent.started(String receiptCode) = _Started;
   const factory OrderDetailsEvent.refresh(String receiptCode) = _Refresh;
+  const factory OrderDetailsEvent.doneTransaction(String receiptCode) =
+      _DoneTransaction;
   const factory OrderDetailsEvent.cancelPageOpen(String receiptCode) =
       _CancelPageOpen;
   const factory OrderDetailsEvent.cancelSubmitted({
