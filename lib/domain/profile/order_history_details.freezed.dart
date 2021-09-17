@@ -2012,7 +2012,7 @@ class _$DeliveryDetailTearOff {
       @JsonKey(includeIfNull: true) required String? distance,
       @JsonKey(includeIfNull: true) required String? provider,
       @JsonKey(includeIfNull: true) required String? shipmentMethod,
-      @JsonKey(includeIfNull: true) required num? fee,
+      @JsonKey(includeIfNull: true) required dynamic fee,
       @JsonKey(includeIfNull: true) required String? bookingCode,
       @JsonKey(includeIfNull: true) required String? bookingExpired,
       @JsonKey(includeIfNull: true) required String? deliveryId,
@@ -2065,7 +2065,7 @@ mixin _$DeliveryDetail {
   @JsonKey(includeIfNull: true)
   String? get shipmentMethod => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
-  num? get fee => throw _privateConstructorUsedError;
+  dynamic get fee => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
   String? get bookingCode => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
@@ -2107,7 +2107,7 @@ abstract class $DeliveryDetailCopyWith<$Res> {
       @JsonKey(includeIfNull: true) String? distance,
       @JsonKey(includeIfNull: true) String? provider,
       @JsonKey(includeIfNull: true) String? shipmentMethod,
-      @JsonKey(includeIfNull: true) num? fee,
+      @JsonKey(includeIfNull: true) dynamic fee,
       @JsonKey(includeIfNull: true) String? bookingCode,
       @JsonKey(includeIfNull: true) String? bookingExpired,
       @JsonKey(includeIfNull: true) String? deliveryId,
@@ -2174,7 +2174,7 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2261,7 +2261,7 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       @JsonKey(includeIfNull: true) String? distance,
       @JsonKey(includeIfNull: true) String? provider,
       @JsonKey(includeIfNull: true) String? shipmentMethod,
-      @JsonKey(includeIfNull: true) num? fee,
+      @JsonKey(includeIfNull: true) dynamic fee,
       @JsonKey(includeIfNull: true) String? bookingCode,
       @JsonKey(includeIfNull: true) String? bookingExpired,
       @JsonKey(includeIfNull: true) String? deliveryId,
@@ -2332,7 +2332,7 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as dynamic,
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
@@ -2424,7 +2424,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
   final String? shipmentMethod;
   @override
   @JsonKey(includeIfNull: true)
-  final num? fee;
+  final dynamic fee;
   @override
   @JsonKey(includeIfNull: true)
   final String? bookingCode;
@@ -2563,7 +2563,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
       @JsonKey(includeIfNull: true)
           required String? shipmentMethod,
       @JsonKey(includeIfNull: true)
-          required num? fee,
+          required dynamic fee,
       @JsonKey(includeIfNull: true)
           required String? bookingCode,
       @JsonKey(includeIfNull: true)
@@ -2606,7 +2606,7 @@ abstract class _DeliveryDetail implements DeliveryDetail {
   String? get shipmentMethod => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
-  num? get fee => throw _privateConstructorUsedError;
+  dynamic get fee => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
   String? get bookingCode => throw _privateConstructorUsedError;

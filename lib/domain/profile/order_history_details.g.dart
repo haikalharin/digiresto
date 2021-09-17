@@ -180,7 +180,7 @@ _$_DeliveryDetail _$_$_DeliveryDetailFromJson(Map<String, dynamic> json) {
     distance: json['distance'] as String?,
     provider: json['provider'] as String?,
     shipmentMethod: json['shipmentMethod'] as String?,
-    fee: json['fee'] as num?,
+    fee: json['fee'],
     bookingCode: json['bookingCode'] as String?,
     bookingExpired: json['bookingExpired'] as String?,
     deliveryId: json['deliveryId'] as String?,

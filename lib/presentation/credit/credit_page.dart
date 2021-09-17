@@ -19,22 +19,24 @@ import 'package:get/get.dart';
 class CreditTabController extends GetxController
     with SingleGetTickerProviderMixin {
   RxInt tabIndex = 0.obs;
-  final List<Widget> myTabs = [
-    Container(
-      padding: EdgeInsets.all(15),
-      child: Text('Isi Saldo'),
-    ),
-    Container(
-      padding: EdgeInsets.all(15),
-      child: Text('Riwayat'),
-    ),
-  ];
+  I10n _i10n = I10n.current;
+  late List<Widget> myTabs;
 
   late TabController controller;
 
   @override
   void onInit() {
     super.onInit();
+    myTabs = [
+      Container(
+        padding: EdgeInsets.all(15),
+        child: Text(_i10n.credit_title_1),
+      ),
+      Container(
+        padding: EdgeInsets.all(15),
+        child: Text(_i10n.credit_title_2),
+      ),
+    ];
     controller = TabController(vsync: this, length: myTabs.length);
     controller.addListener(() {
       tabIndex.value = controller.index;

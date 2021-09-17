@@ -194,154 +194,158 @@ class OrderDetailsOnProcess extends StatelessWidget {
           thickness: 15,
           color: AppColors.dividerColor,
         ),
-        if (orderDetails.delivery != null)
-          Padding(
-            padding: EdgeInsets.all(30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Status Pengiriman',
-                  style: Styles.menuItemLabelStyle
-                      .copyWith(fontWeight: FontWeight.bold),
+        Padding(
+          padding: EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (orderDetails.delivery != null)
+                Column(
+                  children: [
+                    Text(
+                      'Status Pengiriman',
+                      style: Styles.menuItemLabelStyle
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    if (orderDetails.deliveryDetail.status?.length == 0)
+                      Text(
+                        'Menunggu konfirmasi',
+                        style: Styles.menuItemLabelStyle,
+                      ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                if (orderDetails.deliveryDetail.status?.length == 0)
-                  Text(
-                    'Menunggu konfirmasi',
-                    style: Styles.menuItemLabelStyle,
-                  ),
-                SizedBox(
-                  height: 30,
-                ),
-                if (orderDetails.status == 'waiting')
-                  CustomButton(
-                    onPressed: () => Get.dialog(
-                      CustomDialog(
-                        backgroundColor: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Batalkan Transaksi',
-                              style: Styles.dialogTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Apakah anda yakin ingin membatalkan transaksi ?',
-                              style: Styles.dialogSubtitleStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: CustomButton(
-                                    onPressed: () => Get.back(),
-                                    color: Colors.white,
-                                    borderColor: AppColors.mainColor,
-                                    label: 'Batal',
-                                  ),
+              if (orderDetails.status == 'waiting')
+                CustomButton(
+                  onPressed: () => Get.dialog(
+                    CustomDialog(
+                      backgroundColor: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Batalkan Transaksi',
+                            style: Styles.dialogTitleStyle,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            'Apakah anda yakin ingin membatalkan transaksi ?',
+                            style: Styles.dialogSubtitleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => Get.back(),
+                                  color: Colors.white,
+                                  borderColor: AppColors.mainColor,
+                                  label: 'Batal',
                                 ),
-                                SizedBox(
-                                  width: 15,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => Get.off(CancelOrderPage(
+                                          orderDetails.receiptCode))
+                                      ?.then((value) => _orderDetailBloc.add(
+                                          OrderDetailsEvent.refresh(
+                                              orderDetails.receiptCode))),
+                                  color: AppColors.mainColor,
+                                  fontColor: Colors.white,
+                                  label: 'Ok',
                                 ),
-                                Expanded(
-                                  child: CustomButton(
-                                    onPressed: () => Get.off(CancelOrderPage(
-                                            orderDetails.receiptCode))
-                                        ?.then((value) => _orderDetailBloc.add(
-                                            OrderDetailsEvent.refresh(
-                                                orderDetails.receiptCode))),
-                                    color: AppColors.mainColor,
-                                    fontColor: Colors.white,
-                                    label: 'Ok',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.mainColor,
-                    label: 'Batal',
-                    fontColor: Colors.white,
                   ),
-                if (orderDetails.status == 'ready' ||
-                    orderDetails.status == 'onprocess')
-                  CustomButton(
-                    onPressed: () => Get.dialog(
-                      CustomDialog(
-                        backgroundColor: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Konfirmasi selesai',
-                              style: Styles.dialogTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Apakah anda yakin ingin menyelesaikan transaksi ?',
-                              style: Styles.dialogSubtitleStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: CustomButton(
-                                    onPressed: () => Get.back(),
-                                    color: Colors.white,
-                                    borderColor: AppColors.mainColor,
-                                    label: 'Batal',
-                                  ),
+                  borderRadius: BorderRadius.circular(30),
+                  color: AppColors.mainColor,
+                  label: 'Batal',
+                  fontColor: Colors.white,
+                ),
+              if (orderDetails.status == 'ready' ||
+                  orderDetails.status == 'process')
+                CustomButton(
+                  onPressed: () => Get.dialog(
+                    CustomDialog(
+                      backgroundColor: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Konfirmasi selesai',
+                            style: Styles.dialogTitleStyle,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            'Apakah anda yakin ingin menyelesaikan transaksi ?',
+                            style: Styles.dialogSubtitleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => Get.back(),
+                                  color: Colors.white,
+                                  borderColor: AppColors.mainColor,
+                                  label: 'Batal',
                                 ),
-                                SizedBox(
-                                  width: 15,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () async {
+                                    Get.back();
+                                    _orderDetailBloc.add(
+                                      OrderDetailsEvent.doneTransaction(
+                                          orderDetails.receiptCode),
+                                    );
+                                  },
+                                  color: AppColors.mainColor,
+                                  fontColor: Colors.white,
+                                  label: 'Ok',
                                 ),
-                                Expanded(
-                                  child: CustomButton(
-                                    onPressed: () async {
-                                      Get.back();
-                                      _orderDetailBloc.add(
-                                        OrderDetailsEvent.doneTransaction(
-                                            orderDetails.receiptCode),
-                                      );
-                                    },
-                                    color: AppColors.mainColor,
-                                    fontColor: Colors.white,
-                                    label: 'Ok',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.mainColor,
-                    label: 'Konfirmasi Selesai',
-                    fontColor: Colors.white,
                   ),
-              ],
-            ),
+                  borderRadius: BorderRadius.circular(30),
+                  color: AppColors.mainColor,
+                  label: 'Konfirmasi Selesai',
+                  fontColor: Colors.white,
+                ),
+            ],
           ),
+        ),
       ],
     );
   }

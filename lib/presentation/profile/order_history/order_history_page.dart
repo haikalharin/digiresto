@@ -96,7 +96,9 @@ class OrderHistoryWidget extends StatelessWidget {
                 (orderOnProcess) => ListView.builder(
                   itemCount: orderOnProcess.length,
                   itemBuilder: (context, index) {
-                    return OrderOnProcessWidget(orderOnProcess[index]);
+                    return OrderOnProcessWidget(orderOnProcess[index],
+                        refresh: () =>
+                            _bloc.add(OrderHistoryEvent.orderOnProcessOpen()));
                   },
                 ),
               ),
@@ -119,7 +121,9 @@ class OrderHistoryWidget extends StatelessWidget {
                 (orderCompleted) => ListView.builder(
                   itemCount: orderCompleted.length,
                   itemBuilder: (context, index) {
-                    return OrderCompletedWidget(orderCompleted[index]);
+                    return OrderCompletedWidget(orderCompleted[index],
+                        refresh: () =>
+                            _bloc.add(OrderHistoryEvent.orderCompletedOpen()));
                   },
                 ),
               ),

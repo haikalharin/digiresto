@@ -107,7 +107,7 @@ class DeliveryDetail with _$DeliveryDetail {
     @JsonKey(includeIfNull: true) required String? distance,
     @JsonKey(includeIfNull: true) required String? provider,
     @JsonKey(includeIfNull: true) required String? shipmentMethod,
-    @JsonKey(includeIfNull: true) required num? fee,
+    @JsonKey(includeIfNull: true) required dynamic fee,
     @JsonKey(includeIfNull: true) required String? bookingCode,
     @JsonKey(includeIfNull: true) required String? bookingExpired,
     @JsonKey(includeIfNull: true) required String? deliveryId,
