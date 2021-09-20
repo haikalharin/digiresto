@@ -2,10 +2,9 @@ import 'package:digiresto/application/home/home_nearby_oulet_view_controller.dar
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
 import 'package:flutter/material.dart';
@@ -47,41 +46,9 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
 
   final searchController = TextEditingController();
 
-  void getOutletByLocation(String search, int pageParam) {
-    Loading.show();
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
-        GetOutletByLocationParam(
-            queryString: GetOutletByLocationQueryParam(
-                filter: search, location: "", page: controller.page.value),
-            body: GetOutletByLocationBodyParam())));
-    // _orderStore?.getOutletByLocation({
-    //   "location":
-    //       _userStore!.activeAddressLat! + "," + _userStore!.activeAddresslng!,
-    //   "page": pageParam,
-    //   "filter": search,
-    // }).then((res) {
-    //   print("sukses get outlet");
-    //   if (pageParam > page) {
-    //     setState(() {
-    //       page += 1;
-    //       listOutlet.addAll(res);
-    //     });
-    //   } else {
-    //     setState(() {
-    //       page = 1;
-    //       listOutlet = res;
-    //     });
-    //   }
-    //   Loading.dismiss();
-    // }).catchError((err) {
-    //   Loading.dismiss();
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
-  }
-
   void loadMoreOutletByLocation() {
-    getOutletByLocation(searchController.text, controller.page.value + 1);
+    controller.getOutletByLocation(
+        searchController.text, controller.page.value + 1);
   }
 
   Widget _search() {
@@ -94,7 +61,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
-              getOutletByLocation(searchController.text, 1);
+              controller.getOutletByLocation(searchController.text, 1);
             },
             controller: searchController,
             onTap: () {
@@ -128,13 +95,10 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
-        GetOutletByLocationParam(
-            queryString: GetOutletByLocationQueryParam(
-                filter: "", location: "", page: controller.page.value),
-            body: GetOutletByLocationBodyParam())));
+    controller.getOutletByLocation("", 1);
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
+        Loading.dismiss();
         state.maybeMap(
             getOutletByLocationSuccess: (r) {
               controller.listOutlet.value = r.response;

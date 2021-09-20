@@ -1,3 +1,4 @@
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
@@ -51,5 +52,11 @@ class HomeContentViewController extends GetxController {
   void getRefresh() {
     getStaticBanner();
     getActiveAddress();
+  }
+
+  void setLocalActiveAddress(UserAddress userAddress) {
+    Get.context!
+        .read<AddressListBloc>()
+        .add(AddressListEvent.setActiveAddress(userAddress));
   }
 }

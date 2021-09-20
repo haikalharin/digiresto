@@ -5,10 +5,10 @@ import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
+import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -82,7 +82,6 @@ class AddAddressScreenState extends State<AddAddressScreen> {
 
   @override
   void setState(fn) {
-    // TODO: implement setState
     super.setState(fn);
   }
 

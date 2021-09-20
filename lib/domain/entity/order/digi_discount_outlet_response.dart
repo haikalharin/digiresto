@@ -69,7 +69,7 @@ class DigiDiscountOutletDataDetailResponse
     required String driverPhone,
     required List<dynamic> area,
     required List<String> deliveryProvider,
-    required List<dynamic> deliveryLocation,
+    required List<dynamic>? deliveryLocation,
     required String city,
   }) = _DigiDiscountOutletDataDetailResponse;
 

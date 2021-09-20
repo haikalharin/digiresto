@@ -364,10 +364,6 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
     );
   }
 
-  void goToAddLocation() {
-    Get.toNamed(Routers.homeAllAddress);
-  }
-
   _getCurrentLocation() async {
     Get.find<HomeContentViewController>().setLoadingListAddress(true);
     print("get current location");
@@ -540,7 +536,9 @@ class _YourLocation extends GetView<HomeContentViewController> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routers.homeAllAddress);
+        Get.toNamed(Routers.homeAllAddress)!.then((value) {
+          controller.getActiveAddress();
+        });
       },
       child: Container(
         padding: EdgeInsets.only(left: 10, right: 10),

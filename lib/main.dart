@@ -16,6 +16,7 @@ import 'application/home/home_navigation_view_controller.dart';
 import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'application/order/bloc/order_bloc.dart';
 import 'injection.dart';
+import 'presentation/core/widgets/loading.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
 
@@ -30,6 +31,7 @@ Future<void> main() async {
   runApp(
     InitiateProvider(),
   );
+  Loading.configLoading();
 }
 
 class InitiateProvider extends StatelessWidget {

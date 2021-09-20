@@ -5,11 +5,11 @@ import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
+import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -82,7 +82,6 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
 
   @override
   void setState(fn) {
-    // TODO: implement setState
     super.setState(fn);
   }
 
