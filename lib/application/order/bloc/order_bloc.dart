@@ -202,6 +202,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+        final getDineInID = await _orderRepository.getDineInIDMethod();
+
+        String etaOrder = "now";
+
+        if (getDineInID?.useSchedule ?? false) {
+          etaOrder = OrderCartDineInModel.getEtaOrder(
+              selectedDate: getDineInID?.selectedDate,
+              selectedKeyClock: getDineInID?.selectedKeyClock);
+        }
 
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
         if (deliveryInq != null) {
@@ -218,10 +227,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     items: getProduct?.items ?? [],
                     customerNote: request.note,
                     paymentType: paymentType?.id ?? "",
-                    customerPax: '1',
+                    customerPax: (getDineInID?.pax ?? 1).toString(),
                     customerSmoking: false,
                     delivery: deliveryParam,
-                    eta: 'now',
+                    eta: etaOrder,
                     promos: getVoucherMethodID == null
                         ? []
                         : [getVoucherMethodID.code],
@@ -277,7 +286,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerName: userProfile.name!,
                       customerPhone: userProfile.mobilePhone!,
                       customerTableNumber: "",
-                      customerSmoking: 'false',
+                      customerSmoking: false,
                       customerPax: "1",
                       customerNote: "",
                       customerCarType: "",

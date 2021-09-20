@@ -29,7 +29,7 @@ class _$OrderPendingTearOff {
       required String recipientName,
       required String recipientPhone,
       required String customerTableNumber,
-      required String customerSmoking,
+      required bool customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -71,7 +71,7 @@ class _$OrderPendingTearOff {
       required String status,
       required DeliveryDetail deliveryDetail,
       required BillingDetail billingDetail,
-      required Delivery delivery}) {
+      required Delivery? delivery}) {
     return _OrderPending(
       outletName: outletName,
       outletId: outletId,
@@ -145,7 +145,7 @@ mixin _$OrderPending {
   String get recipientName => throw _privateConstructorUsedError;
   String get recipientPhone => throw _privateConstructorUsedError;
   String get customerTableNumber => throw _privateConstructorUsedError;
-  String get customerSmoking => throw _privateConstructorUsedError;
+  bool get customerSmoking => throw _privateConstructorUsedError;
   String get customerPax => throw _privateConstructorUsedError;
   String get customerNote => throw _privateConstructorUsedError;
   String get customerCarType => throw _privateConstructorUsedError;
@@ -190,7 +190,7 @@ mixin _$OrderPending {
   String get status => throw _privateConstructorUsedError;
   DeliveryDetail get deliveryDetail => throw _privateConstructorUsedError;
   BillingDetail get billingDetail => throw _privateConstructorUsedError;
-  Delivery get delivery => throw _privateConstructorUsedError;
+  Delivery? get delivery => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -212,7 +212,7 @@ abstract class $OrderPendingCopyWith<$Res> {
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      bool customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -254,13 +254,13 @@ abstract class $OrderPendingCopyWith<$Res> {
       String status,
       DeliveryDetail deliveryDetail,
       BillingDetail billingDetail,
-      Delivery delivery});
+      Delivery? delivery});
 
   $DeliveryCopyWith<$Res>? get gosend;
   $OutletCopyWith<$Res> get outlet;
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
   $BillingDetailCopyWith<$Res> get billingDetail;
-  $DeliveryCopyWith<$Res> get delivery;
+  $DeliveryCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -361,7 +361,7 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -529,7 +529,7 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+              as Delivery?,
     ));
   }
 
@@ -566,8 +566,12 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
   }
 
   @override
-  $DeliveryCopyWith<$Res> get delivery {
-    return $DeliveryCopyWith<$Res>(_value.delivery, (value) {
+  $DeliveryCopyWith<$Res>? get delivery {
+    if (_value.delivery == null) {
+      return null;
+    }
+
+    return $DeliveryCopyWith<$Res>(_value.delivery!, (value) {
       return _then(_value.copyWith(delivery: value));
     });
   }
@@ -589,7 +593,7 @@ abstract class _$OrderPendingCopyWith<$Res>
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      bool customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -631,7 +635,7 @@ abstract class _$OrderPendingCopyWith<$Res>
       String status,
       DeliveryDetail deliveryDetail,
       BillingDetail billingDetail,
-      Delivery delivery});
+      Delivery? delivery});
 
   @override
   $DeliveryCopyWith<$Res>? get gosend;
@@ -642,7 +646,7 @@ abstract class _$OrderPendingCopyWith<$Res>
   @override
   $BillingDetailCopyWith<$Res> get billingDetail;
   @override
-  $DeliveryCopyWith<$Res> get delivery;
+  $DeliveryCopyWith<$Res>? get delivery;
 }
 
 /// @nodoc
@@ -745,7 +749,7 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -913,7 +917,7 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
-              as Delivery,
+              as Delivery?,
     ));
   }
 }
@@ -994,7 +998,7 @@ class _$_OrderPending implements _OrderPending {
   @override
   final String customerTableNumber;
   @override
-  final String customerSmoking;
+  final bool customerSmoking;
   @override
   final String customerPax;
   @override
@@ -1080,7 +1084,7 @@ class _$_OrderPending implements _OrderPending {
   @override
   final BillingDetail billingDetail;
   @override
-  final Delivery delivery;
+  final Delivery? delivery;
 
   @override
   String toString() {
@@ -1263,7 +1267,7 @@ abstract class _OrderPending implements OrderPending {
       required String recipientName,
       required String recipientPhone,
       required String customerTableNumber,
-      required String customerSmoking,
+      required bool customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -1305,7 +1309,7 @@ abstract class _OrderPending implements OrderPending {
       required String status,
       required DeliveryDetail deliveryDetail,
       required BillingDetail billingDetail,
-      required Delivery delivery}) = _$_OrderPending;
+      required Delivery? delivery}) = _$_OrderPending;
 
   factory _OrderPending.fromJson(Map<String, dynamic> json) =
       _$_OrderPending.fromJson;
@@ -1327,7 +1331,7 @@ abstract class _OrderPending implements OrderPending {
   @override
   String get customerTableNumber => throw _privateConstructorUsedError;
   @override
-  String get customerSmoking => throw _privateConstructorUsedError;
+  bool get customerSmoking => throw _privateConstructorUsedError;
   @override
   String get customerPax => throw _privateConstructorUsedError;
   @override
@@ -1414,7 +1418,7 @@ abstract class _OrderPending implements OrderPending {
   @override
   BillingDetail get billingDetail => throw _privateConstructorUsedError;
   @override
-  Delivery get delivery => throw _privateConstructorUsedError;
+  Delivery? get delivery => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OrderPendingCopyWith<_OrderPending> get copyWith =>
@@ -2347,21 +2351,21 @@ class _$DeliveryDetailTearOff {
   const _$DeliveryDetailTearOff();
 
   _DeliveryDetail call(
-      {required String orderId,
-      required String distance,
-      required String provider,
-      required String shipmentMethod,
+      {required String? orderId,
+      required String? distance,
+      required String? provider,
+      required String? shipmentMethod,
       required dynamic fee,
-      required String bookingCode,
-      required String bookingExpired,
-      required String deliveryId,
-      required bool isDelivered,
-      required DeliverFrom from,
-      required DeliverTo to,
-      required List<dynamic> status,
-      required bool isDelete,
-      required DateTime createdDate,
-      required String ownerPhone}) {
+      required String? bookingCode,
+      required String? bookingExpired,
+      required String? deliveryId,
+      required bool? isDelivered,
+      required DeliverFrom? from,
+      required DeliverTo? to,
+      required List<dynamic>? status,
+      required bool? isDelete,
+      required DateTime? createdDate,
+      required String? ownerPhone}) {
     return _DeliveryDetail(
       orderId: orderId,
       distance: distance,
@@ -2391,21 +2395,21 @@ const $DeliveryDetail = _$DeliveryDetailTearOff();
 
 /// @nodoc
 mixin _$DeliveryDetail {
-  String get orderId => throw _privateConstructorUsedError;
-  String get distance => throw _privateConstructorUsedError;
-  String get provider => throw _privateConstructorUsedError;
-  String get shipmentMethod => throw _privateConstructorUsedError;
+  String? get orderId => throw _privateConstructorUsedError;
+  String? get distance => throw _privateConstructorUsedError;
+  String? get provider => throw _privateConstructorUsedError;
+  String? get shipmentMethod => throw _privateConstructorUsedError;
   dynamic get fee => throw _privateConstructorUsedError;
-  String get bookingCode => throw _privateConstructorUsedError;
-  String get bookingExpired => throw _privateConstructorUsedError;
-  String get deliveryId => throw _privateConstructorUsedError;
-  bool get isDelivered => throw _privateConstructorUsedError;
-  DeliverFrom get from => throw _privateConstructorUsedError;
-  DeliverTo get to => throw _privateConstructorUsedError;
-  List<dynamic> get status => throw _privateConstructorUsedError;
-  bool get isDelete => throw _privateConstructorUsedError;
-  DateTime get createdDate => throw _privateConstructorUsedError;
-  String get ownerPhone => throw _privateConstructorUsedError;
+  String? get bookingCode => throw _privateConstructorUsedError;
+  String? get bookingExpired => throw _privateConstructorUsedError;
+  String? get deliveryId => throw _privateConstructorUsedError;
+  bool? get isDelivered => throw _privateConstructorUsedError;
+  DeliverFrom? get from => throw _privateConstructorUsedError;
+  DeliverTo? get to => throw _privateConstructorUsedError;
+  List<dynamic>? get status => throw _privateConstructorUsedError;
+  bool? get isDelete => throw _privateConstructorUsedError;
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  String? get ownerPhone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2419,24 +2423,24 @@ abstract class $DeliveryDetailCopyWith<$Res> {
           DeliveryDetail value, $Res Function(DeliveryDetail) then) =
       _$DeliveryDetailCopyWithImpl<$Res>;
   $Res call(
-      {String orderId,
-      String distance,
-      String provider,
-      String shipmentMethod,
+      {String? orderId,
+      String? distance,
+      String? provider,
+      String? shipmentMethod,
       dynamic fee,
-      String bookingCode,
-      String bookingExpired,
-      String deliveryId,
-      bool isDelivered,
-      DeliverFrom from,
-      DeliverTo to,
-      List<dynamic> status,
-      bool isDelete,
-      DateTime createdDate,
-      String ownerPhone});
+      String? bookingCode,
+      String? bookingExpired,
+      String? deliveryId,
+      bool? isDelivered,
+      DeliverFrom? from,
+      DeliverTo? to,
+      List<dynamic>? status,
+      bool? isDelete,
+      DateTime? createdDate,
+      String? ownerPhone});
 
-  $DeliverFromCopyWith<$Res> get from;
-  $DeliverToCopyWith<$Res> get to;
+  $DeliverFromCopyWith<$Res>? get from;
+  $DeliverToCopyWith<$Res>? get to;
 }
 
 /// @nodoc
@@ -2470,19 +2474,19 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       orderId: orderId == freezed
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -2490,56 +2494,64 @@ class _$DeliveryDetailCopyWithImpl<$Res>
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       bookingExpired: bookingExpired == freezed
           ? _value.bookingExpired
           : bookingExpired // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deliveryId: deliveryId == freezed
           ? _value.deliveryId
           : deliveryId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isDelivered: isDelivered == freezed
           ? _value.isDelivered
           : isDelivered // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as DeliverFrom,
+              as DeliverFrom?,
       to: to == freezed
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as DeliverTo,
+              as DeliverTo?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       isDelete: isDelete == freezed
           ? _value.isDelete
           : isDelete // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdDate: createdDate == freezed
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
   @override
-  $DeliverFromCopyWith<$Res> get from {
-    return $DeliverFromCopyWith<$Res>(_value.from, (value) {
+  $DeliverFromCopyWith<$Res>? get from {
+    if (_value.from == null) {
+      return null;
+    }
+
+    return $DeliverFromCopyWith<$Res>(_value.from!, (value) {
       return _then(_value.copyWith(from: value));
     });
   }
 
   @override
-  $DeliverToCopyWith<$Res> get to {
-    return $DeliverToCopyWith<$Res>(_value.to, (value) {
+  $DeliverToCopyWith<$Res>? get to {
+    if (_value.to == null) {
+      return null;
+    }
+
+    return $DeliverToCopyWith<$Res>(_value.to!, (value) {
       return _then(_value.copyWith(to: value));
     });
   }
@@ -2553,26 +2565,26 @@ abstract class _$DeliveryDetailCopyWith<$Res>
       __$DeliveryDetailCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String orderId,
-      String distance,
-      String provider,
-      String shipmentMethod,
+      {String? orderId,
+      String? distance,
+      String? provider,
+      String? shipmentMethod,
       dynamic fee,
-      String bookingCode,
-      String bookingExpired,
-      String deliveryId,
-      bool isDelivered,
-      DeliverFrom from,
-      DeliverTo to,
-      List<dynamic> status,
-      bool isDelete,
-      DateTime createdDate,
-      String ownerPhone});
+      String? bookingCode,
+      String? bookingExpired,
+      String? deliveryId,
+      bool? isDelivered,
+      DeliverFrom? from,
+      DeliverTo? to,
+      List<dynamic>? status,
+      bool? isDelete,
+      DateTime? createdDate,
+      String? ownerPhone});
 
   @override
-  $DeliverFromCopyWith<$Res> get from;
+  $DeliverFromCopyWith<$Res>? get from;
   @override
-  $DeliverToCopyWith<$Res> get to;
+  $DeliverToCopyWith<$Res>? get to;
 }
 
 /// @nodoc
@@ -2608,19 +2620,19 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       orderId: orderId == freezed
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       shipmentMethod: shipmentMethod == freezed
           ? _value.shipmentMethod
           : shipmentMethod // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fee: fee == freezed
           ? _value.fee
           : fee // ignore: cast_nullable_to_non_nullable
@@ -2628,43 +2640,43 @@ class __$DeliveryDetailCopyWithImpl<$Res>
       bookingCode: bookingCode == freezed
           ? _value.bookingCode
           : bookingCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       bookingExpired: bookingExpired == freezed
           ? _value.bookingExpired
           : bookingExpired // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deliveryId: deliveryId == freezed
           ? _value.deliveryId
           : deliveryId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isDelivered: isDelivered == freezed
           ? _value.isDelivered
           : isDelivered // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as DeliverFrom,
+              as DeliverFrom?,
       to: to == freezed
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as DeliverTo,
+              as DeliverTo?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       isDelete: isDelete == freezed
           ? _value.isDelete
           : isDelete // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdDate: createdDate == freezed
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -2693,35 +2705,35 @@ class _$_DeliveryDetail implements _DeliveryDetail {
       _$_$_DeliveryDetailFromJson(json);
 
   @override
-  final String orderId;
+  final String? orderId;
   @override
-  final String distance;
+  final String? distance;
   @override
-  final String provider;
+  final String? provider;
   @override
-  final String shipmentMethod;
+  final String? shipmentMethod;
   @override
   final dynamic fee;
   @override
-  final String bookingCode;
+  final String? bookingCode;
   @override
-  final String bookingExpired;
+  final String? bookingExpired;
   @override
-  final String deliveryId;
+  final String? deliveryId;
   @override
-  final bool isDelivered;
+  final bool? isDelivered;
   @override
-  final DeliverFrom from;
+  final DeliverFrom? from;
   @override
-  final DeliverTo to;
+  final DeliverTo? to;
   @override
-  final List<dynamic> status;
+  final List<dynamic>? status;
   @override
-  final bool isDelete;
+  final bool? isDelete;
   @override
-  final DateTime createdDate;
+  final DateTime? createdDate;
   @override
-  final String ownerPhone;
+  final String? ownerPhone;
 
   @override
   String toString() {
@@ -2807,55 +2819,55 @@ class _$_DeliveryDetail implements _DeliveryDetail {
 
 abstract class _DeliveryDetail implements DeliveryDetail {
   const factory _DeliveryDetail(
-      {required String orderId,
-      required String distance,
-      required String provider,
-      required String shipmentMethod,
+      {required String? orderId,
+      required String? distance,
+      required String? provider,
+      required String? shipmentMethod,
       required dynamic fee,
-      required String bookingCode,
-      required String bookingExpired,
-      required String deliveryId,
-      required bool isDelivered,
-      required DeliverFrom from,
-      required DeliverTo to,
-      required List<dynamic> status,
-      required bool isDelete,
-      required DateTime createdDate,
-      required String ownerPhone}) = _$_DeliveryDetail;
+      required String? bookingCode,
+      required String? bookingExpired,
+      required String? deliveryId,
+      required bool? isDelivered,
+      required DeliverFrom? from,
+      required DeliverTo? to,
+      required List<dynamic>? status,
+      required bool? isDelete,
+      required DateTime? createdDate,
+      required String? ownerPhone}) = _$_DeliveryDetail;
 
   factory _DeliveryDetail.fromJson(Map<String, dynamic> json) =
       _$_DeliveryDetail.fromJson;
 
   @override
-  String get orderId => throw _privateConstructorUsedError;
+  String? get orderId => throw _privateConstructorUsedError;
   @override
-  String get distance => throw _privateConstructorUsedError;
+  String? get distance => throw _privateConstructorUsedError;
   @override
-  String get provider => throw _privateConstructorUsedError;
+  String? get provider => throw _privateConstructorUsedError;
   @override
-  String get shipmentMethod => throw _privateConstructorUsedError;
+  String? get shipmentMethod => throw _privateConstructorUsedError;
   @override
   dynamic get fee => throw _privateConstructorUsedError;
   @override
-  String get bookingCode => throw _privateConstructorUsedError;
+  String? get bookingCode => throw _privateConstructorUsedError;
   @override
-  String get bookingExpired => throw _privateConstructorUsedError;
+  String? get bookingExpired => throw _privateConstructorUsedError;
   @override
-  String get deliveryId => throw _privateConstructorUsedError;
+  String? get deliveryId => throw _privateConstructorUsedError;
   @override
-  bool get isDelivered => throw _privateConstructorUsedError;
+  bool? get isDelivered => throw _privateConstructorUsedError;
   @override
-  DeliverFrom get from => throw _privateConstructorUsedError;
+  DeliverFrom? get from => throw _privateConstructorUsedError;
   @override
-  DeliverTo get to => throw _privateConstructorUsedError;
+  DeliverTo? get to => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get status => throw _privateConstructorUsedError;
+  List<dynamic>? get status => throw _privateConstructorUsedError;
   @override
-  bool get isDelete => throw _privateConstructorUsedError;
+  bool? get isDelete => throw _privateConstructorUsedError;
   @override
-  DateTime get createdDate => throw _privateConstructorUsedError;
+  DateTime? get createdDate => throw _privateConstructorUsedError;
   @override
-  String get ownerPhone => throw _privateConstructorUsedError;
+  String? get ownerPhone => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DeliveryDetailCopyWith<_DeliveryDetail> get copyWith =>

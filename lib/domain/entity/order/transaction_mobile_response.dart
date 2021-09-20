@@ -37,7 +37,7 @@ class TransactionMobileDataResponse with _$TransactionMobileDataResponse {
     required String recipientName,
     required String recipientPhone,
     required String customerTableNumber,
-    required String customerSmoking,
+    required bool customerSmoking,
     required String customerPax,
     required String customerNote,
     required String customerCarType,

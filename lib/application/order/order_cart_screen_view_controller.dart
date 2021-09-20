@@ -12,6 +12,7 @@ import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
@@ -30,8 +31,9 @@ class OrderCartScreenViewController extends GetxController {
   var reloadCounter = 0.obs;
   var selectedDate = Rxn<DateTime>();
   var notesSubmited = true.obs;
-  var selectedValueClock = Rxn<String>();
-  var selectedValueSmoking = Rxn<String>();
+  var selectedKeyClock = Rxn<String>();
+  var selectedKeySmoking = Rxn<String>();
+  var dineInIDMethod = Rxn<OrderCartDineInModel>();
   Rxn<DetailOutletDataResponse> detailOutlet = Rxn<DetailOutletDataResponse>();
   Rxn<List<OutletListProductDataResponse>> listProduct =
       Rxn<List<OutletListProductDataResponse>>();
@@ -54,6 +56,33 @@ class OrderCartScreenViewController extends GetxController {
 
   void getCartSession() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+  }
+
+  void updateCartParam() {
+    Get.context!
+        .read<OrderBloc>()
+        .add(OrderEvent.updateCart(notesController.text));
+  }
+
+  void setDineInMethodID() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.setDineInIDMethod(
+        OrderCartDineInModel(
+            pax: int.parse(paxController.text),
+            selectedDate: selectedDate.value!,
+            selectedKeyClock: selectedKeyClock.value!,
+            selectedKeySmoking: selectedKeySmoking.value!,
+            useSchedule: useSchedule.value!)));
+  }
+
+  void parseDineInMethodID() {
+    final value = dineInIDMethod.value!;
+    useSchedule.value = value.useSchedule;
+    paxController.text = value.pax.toString();
+    selectedDate.value = value.selectedDate;
+    selectedKeyClock.value = value.selectedKeyClock;
+    selectedKeySmoking.value = value.selectedKeySmoking;
+    selectedDateController.text =
+        new DateFormat("yyyy/MM/dd").format(value.selectedDate);
   }
 
   String getValueSmoking(String key) {
@@ -82,8 +111,8 @@ class OrderCartScreenViewController extends GetxController {
     useSchedule.value = false;
     paxController.text = "1";
     selectedDate.value = DateTime.now();
-    selectedValueClock.value = "13:00";
-    selectedValueSmoking.value = "1";
+    selectedKeyClock.value = "13:00";
+    selectedKeySmoking.value = "1";
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(DateTime.now());
   }
@@ -174,6 +203,7 @@ class OrderCartScreenViewController extends GetxController {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDeliveryMethodID());
     Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
     Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDineInIDMethod());
   }
 
   void getActiveAddress() {

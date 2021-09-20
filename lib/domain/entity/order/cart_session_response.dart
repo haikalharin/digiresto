@@ -46,7 +46,7 @@ class TransactionData with _$TransactionData {
     required String recipientName,
     required String recipientPhone,
     required String customerTableNumber,
-    required String customerSmoking,
+    required bool customerSmoking,
     required String customerPax,
     required String customerNote,
     required String customerCarType,

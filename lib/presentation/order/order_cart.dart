@@ -10,6 +10,7 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
@@ -138,7 +139,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 child: RaisedButton(
                                   onPressed: () {
                                     controller.notesSubmited.value = true;
-                                    updateCartParam();
+                                    controller.updateCartParam();
                                   },
                                   color: AppColors.red,
                                   child: Text("Simpan",
@@ -1015,8 +1016,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                                 borderSide: BorderSide(
                                                     color: Colors.black),
                                               )),
-                                          value: controller
-                                              .selectedValueClock.value,
+                                          value:
+                                              controller.selectedKeyClock.value,
                                           items: controller.dataClock
                                               .toList()
                                               .map((data) =>
@@ -1027,7 +1028,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                               .toList(),
                                           onChanged: (String? value) {
                                             setState(() {
-                                              controller.selectedValueClock
+                                              controller.selectedKeyClock
                                                   .value = value;
                                             });
                                           },
@@ -1101,7 +1102,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
                               )),
-                          value: controller.selectedValueSmoking.value,
+                          value: controller.selectedKeySmoking.value,
                           items: controller.dataSmoking
                               .toList()
                               .map((data) => DropdownMenuItem<String>(
@@ -1111,7 +1112,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               .toList(),
                           onChanged: (String? value) {
                             setState(() {
-                              controller.selectedValueSmoking.value = value;
+                              controller.selectedKeySmoking.value = value;
                             });
                           },
                         ),
@@ -1153,23 +1154,30 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               child: RaisedButton(
                                 onPressed: () {
                                   String txt = "";
-                                  // if (useSchedule) {
-                                  //   txt = selectedDateController.text
-                                  //           .toString() +
-                                  //       " " +
-                                  //       _selectedValueClock +
-                                  //       " " +
-                                  //       paxController.text.toString() +
-                                  //       " pax, " +
-                                  //       getValueSmoking(_selectedValueSmoking);
-                                  // } else {
-                                  //   txt = "Now, " +
-                                  //       paxController.text.toString() +
-                                  //       " pax, " +
-                                  //       getValueSmoking(_selectedValueSmoking);
-                                  // }
+                                  if (controller.useSchedule.value!) {
+                                    txt = controller.selectedDateController.text
+                                            .toString() +
+                                        " " +
+                                        controller.selectedKeyClock.value! +
+                                        " " +
+                                        controller.paxController.text
+                                            .toString() +
+                                        " pax, " +
+                                        OrderCartDineInModel.getValueSmoking(
+                                            controller
+                                                .selectedKeySmoking.value!);
+                                  } else {
+                                    txt = "Now, " +
+                                        controller.paxController.text
+                                            .toString() +
+                                        " pax, " +
+                                        OrderCartDineInModel.getValueSmoking(
+                                            controller
+                                                .selectedKeySmoking.value!);
+                                  }
                                   controller.placeInfoController.text = txt;
-                                  Navigator.of(context).pop();
+                                  controller.setDineInMethodID();
+                                  Get.back(closeOverlays: true);
                                 },
                                 color: AppColors.red,
                                 child: Text("Ok",
@@ -1293,12 +1301,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     );
   }
 
-  void updateCartParam() {
-    Get.context!
-        .read<OrderBloc>()
-        .add(OrderEvent.updateCart(controller.notesController.text));
-  }
-
   @override
   Widget build(BuildContext context) {
     Get.put(OrderCartScreenViewController());
@@ -1333,23 +1335,33 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   },
                   setSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
-                    updateCartParam();
+                    controller.updateCartParam();
                   },
                   getSalesTypeCartSuccess: (r) {
                     controller.salesType.value = r.value;
-                    updateCartParam();
+                    controller.updateCartParam();
                   },
                   getPaymentMethodIDSuccess: (r) {
                     controller.paymentMethod.value = r.data;
-                    updateCartParam();
+                    controller.updateCartParam();
                   },
                   getDeliveryMethodIDSuccess: (r) {
                     controller.deliveryMethod.value = r.data;
-                    updateCartParam();
+                    controller.updateCartParam();
                   },
                   getVoucherMethodIDSuccess: (r) {
                     controller.voucherMethod.value = r.data;
-                    updateCartParam();
+                    controller.updateCartParam();
+                  },
+                  getDineInIDMethodSuccess: (r) {
+                    controller.dineInIDMethod.value = r.data;
+                    controller.parseDineInMethodID();
+                    controller.updateCartParam();
+                  },
+                  setDineInIDMethodSuccess: (r) {
+                    controller.dineInIDMethod.value = r.data;
+                    controller.parseDineInMethodID();
+                    controller.updateCartParam();
                   },
                   removeCartSessionSuccess: (r) {
                     controller.checkCartSession();

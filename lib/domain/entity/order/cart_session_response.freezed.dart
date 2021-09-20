@@ -480,7 +480,7 @@ class _$TransactionDataTearOff {
       required String recipientName,
       required String recipientPhone,
       required String customerTableNumber,
-      required String customerSmoking,
+      required bool customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -574,7 +574,7 @@ mixin _$TransactionData {
   String get recipientName => throw _privateConstructorUsedError;
   String get recipientPhone => throw _privateConstructorUsedError;
   String get customerTableNumber => throw _privateConstructorUsedError;
-  String get customerSmoking => throw _privateConstructorUsedError;
+  bool get customerSmoking => throw _privateConstructorUsedError;
   String get customerPax => throw _privateConstructorUsedError;
   String get customerNote => throw _privateConstructorUsedError;
   String get customerCarType => throw _privateConstructorUsedError;
@@ -629,7 +629,7 @@ abstract class $TransactionDataCopyWith<$Res> {
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      bool customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -751,7 +751,7 @@ class _$TransactionDataCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -896,7 +896,7 @@ abstract class _$TransactionDataCopyWith<$Res>
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      bool customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -1020,7 +1020,7 @@ class __$TransactionDataCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -1214,7 +1214,7 @@ class _$_TransactionData implements _TransactionData {
   @override
   final String customerTableNumber;
   @override
-  final String customerSmoking;
+  final bool customerSmoking;
   @override
   final String customerPax;
   @override
@@ -1437,7 +1437,7 @@ abstract class _TransactionData implements TransactionData {
       required String recipientName,
       required String recipientPhone,
       required String customerTableNumber,
-      required String customerSmoking,
+      required bool customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -1490,7 +1490,7 @@ abstract class _TransactionData implements TransactionData {
   @override
   String get customerTableNumber => throw _privateConstructorUsedError;
   @override
-  String get customerSmoking => throw _privateConstructorUsedError;
+  bool get customerSmoking => throw _privateConstructorUsedError;
   @override
   String get customerPax => throw _privateConstructorUsedError;
   @override
