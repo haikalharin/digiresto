@@ -30,7 +30,7 @@ class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
     required String? paymentType,
     required String? customerNote,
     required String? customerPax,
-    required String? customerSmoking,
+    required bool? customerSmoking,
     required UpdateCartSessionBodyDeliveryParam? delivery,
     required String? eta,
     required List<String>? promos,

@@ -87,6 +87,12 @@ class OrderState with _$OrderState {
   const factory OrderState.getDeliveryMethodIDSuccess(
       DeliveryMethodDataResponse data) = _GetDeliveryMethodIDSuccess;
 
+  const factory OrderState.setDineInIDMethodSuccess(OrderCartDineInModel data) =
+      _SetDineInIDMethodSuccess;
+
+  const factory OrderState.getDineInIDMethodSuccess(OrderCartDineInModel data) =
+      _GetDineInIDMethodSuccess;
+
   const factory OrderState.setVoucherMethodIDSuccess(
       GetListVoucherOutletDataResponse data) = _SetVoucherMethodIDSuccess;
 

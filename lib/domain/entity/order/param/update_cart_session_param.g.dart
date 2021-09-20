@@ -29,7 +29,7 @@ _$_UpdateCartSessionBodyParam _$_$_UpdateCartSessionBodyParamFromJson(
     paymentType: json['paymentType'] as String?,
     customerNote: json['customerNote'] as String?,
     customerPax: json['customerPax'] as String?,
-    customerSmoking: json['customerSmoking'] as String?,
+    customerSmoking: json['customerSmoking'] as bool?,
     delivery: json['delivery'] == null
         ? null
         : UpdateCartSessionBodyDeliveryParam.fromJson(

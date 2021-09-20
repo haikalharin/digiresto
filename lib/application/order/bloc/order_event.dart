@@ -71,6 +71,11 @@ class OrderEvent with _$OrderEvent {
 
   const factory OrderEvent.getDeliveryMethodID() = _GetDeliveryMethodID;
 
+  const factory OrderEvent.setDineInIDMethod(OrderCartDineInModel data) =
+      _SetDineInIDMethod;
+
+  const factory OrderEvent.getDineInIDMethod() = _GetDineInIDMethod;
+
   const factory OrderEvent.setVoucherMethodID(
       GetListVoucherOutletDataResponse data) = _SetVoucherMethodID;
 
