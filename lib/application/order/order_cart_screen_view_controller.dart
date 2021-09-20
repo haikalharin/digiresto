@@ -72,6 +72,12 @@ class OrderCartScreenViewController extends GetxController {
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
 
+  @override
+  onInit() {
+    super.onInit();
+    initDialogPlace();
+  }
+
   void initDialogPlace() {
     useSchedule.value = false;
     paxController.text = "1";
@@ -102,12 +108,6 @@ class OrderCartScreenViewController extends GetxController {
       selectedDate.value = picked;
       selectedDateController.text = new DateFormat("yyyy/MM/dd").format(picked);
     }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    useSchedule.value = false;
   }
 
   void checkCartSession() {
