@@ -5,7 +5,6 @@ import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:digiresto/simple_bloc_delegate.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -25,7 +24,6 @@ const env = Environment.dev;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Firebase.initializeApp();
   await configureInjection(env);
   Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(
