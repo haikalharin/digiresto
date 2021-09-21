@@ -43,7 +43,7 @@ class ProfileAddressWidget extends StatelessWidget {
     getAddress();
     return CustomScafold(
       showBackButton: true,
-      title: 'Semua Alamat',
+      title: i10n.address_all,
       body: BlocConsumer<HomeUserBloc, HomeUserState>(
         listener: (context, state) {
           state.maybeMap(

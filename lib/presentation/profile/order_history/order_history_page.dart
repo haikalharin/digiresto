@@ -2,6 +2,7 @@ import 'package:digiresto/application/profile/order_history/order_history_bloc.d
 import 'package:digiresto/application/profile/order_history/order_history_page_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/order_completed_widget.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/order_on_process_widget.dart';
@@ -27,6 +28,7 @@ class OrderHistoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final I10n i10n = I10n.of(context);
     late final _bloc = BlocProvider.of<OrderHistoryBloc>(context);
     void Function(int) tabListener = (int index) {
       final Map<int, OrderHistoryEvent> map = {
@@ -36,10 +38,13 @@ class OrderHistoryWidget extends StatelessWidget {
       };
       _bloc.add(map[index]!);
     };
-    final _controller = Get.put(OrderHistoryPageController(tabListener));
+    final _controller = Get.put(OrderHistoryPageController(
+      tabListener: tabListener,
+      i10n: i10n,
+    ));
     return CollapsedScafold(
       showBackButton: true,
-      title: 'Riwayat Pembelian',
+      title: i10n.profile_history,
       tabbar: TabBar(
         controller: _controller.controller,
         labelColor: AppColors.mainColor,
@@ -66,7 +71,7 @@ class OrderHistoryWidget extends StatelessWidget {
                     failure.maybeMap(
                       orElse: () => 'Error',
                       serverError: (_) => 'Server Error',
-                      noData: (_) => 'Belum ada transaksi',
+                      noData: (_) => i10n.history_empty_title,
                     ),
                   ),
                 ),
@@ -89,7 +94,7 @@ class OrderHistoryWidget extends StatelessWidget {
                     failure.maybeMap(
                       orElse: () => 'Error',
                       serverError: (_) => 'Server Error',
-                      noData: (_) => 'Belum ada transaksi',
+                      noData: (_) => i10n.history_empty_title,
                     ),
                   ),
                 ),
@@ -114,7 +119,7 @@ class OrderHistoryWidget extends StatelessWidget {
                     failure.maybeMap(
                       orElse: () => 'Error',
                       serverError: (_) => 'Server Error',
-                      noData: (_) => 'Belum ada transaksi',
+                      noData: (_) => i10n.history_empty_title,
                     ),
                   ),
                 ),
