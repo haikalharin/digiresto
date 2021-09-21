@@ -1,15 +1,21 @@
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderHistoryPageController extends GetxController
     with SingleGetTickerProviderMixin {
   final void Function(int tabIndex) tabListener;
-  OrderHistoryPageController(this.tabListener);
+  final I10n i10n;
+  OrderHistoryPageController({
+    required this.tabListener,
+    required this.i10n,
+  });
   RxInt tabIndex = 0.obs;
-  final List<Widget> myTabs = [
+
+  late final List<Widget> myTabs = [
     Tab(
       icon: Text(
-        'Menunggu Pembayaran',
+        i10n.history_pending_payment,
         textAlign: TextAlign.center,
       ),
       iconMargin: EdgeInsets.all(8),
@@ -19,7 +25,7 @@ class OrderHistoryPageController extends GetxController
     ),
     Tab(
       icon: Text(
-        'Pembelian Diproses',
+        i10n.history_process,
         textAlign: TextAlign.center,
       ),
       iconMargin: EdgeInsets.all(8),
@@ -29,7 +35,7 @@ class OrderHistoryPageController extends GetxController
     ),
     Tab(
       icon: Text(
-        'Pembelian Selesai',
+        i10n.history_done,
         textAlign: TextAlign.center,
       ),
       iconMargin: EdgeInsets.all(8),
