@@ -268,7 +268,7 @@ class _$TransactionMobileDataResponseTearOff {
       required String recipientName,
       required String recipientPhone,
       required String customerTableNumber,
-      required String customerSmoking,
+      required bool customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -384,7 +384,7 @@ mixin _$TransactionMobileDataResponse {
   String get recipientName => throw _privateConstructorUsedError;
   String get recipientPhone => throw _privateConstructorUsedError;
   String get customerTableNumber => throw _privateConstructorUsedError;
-  String get customerSmoking => throw _privateConstructorUsedError;
+  bool get customerSmoking => throw _privateConstructorUsedError;
   String get customerPax => throw _privateConstructorUsedError;
   String get customerNote => throw _privateConstructorUsedError;
   String get customerCarType => throw _privateConstructorUsedError;
@@ -459,7 +459,7 @@ abstract class $TransactionMobileDataResponseCopyWith<$Res> {
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      bool customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -610,7 +610,7 @@ class _$TransactionMobileDataResponseCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -861,7 +861,7 @@ abstract class _$TransactionMobileDataResponseCopyWith<$Res>
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      bool customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -1021,7 +1021,7 @@ class __$TransactionMobileDataResponseCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -1272,7 +1272,7 @@ class _$_TransactionMobileDataResponse
   @override
   final String customerTableNumber;
   @override
-  final String customerSmoking;
+  final bool customerSmoking;
   @override
   final String customerPax;
   @override
@@ -1541,7 +1541,7 @@ abstract class _TransactionMobileDataResponse
           required String recipientName,
           required String recipientPhone,
           required String customerTableNumber,
-          required String customerSmoking,
+          required bool customerSmoking,
           required String customerPax,
           required String customerNote,
           required String customerCarType,
@@ -1606,7 +1606,7 @@ abstract class _TransactionMobileDataResponse
   @override
   String get customerTableNumber => throw _privateConstructorUsedError;
   @override
-  String get customerSmoking => throw _privateConstructorUsedError;
+  bool get customerSmoking => throw _privateConstructorUsedError;
   @override
   String get customerPax => throw _privateConstructorUsedError;
   @override

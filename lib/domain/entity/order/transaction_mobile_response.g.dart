@@ -35,7 +35,7 @@ _$_TransactionMobileDataResponse _$_$_TransactionMobileDataResponseFromJson(
     recipientName: json['recipientName'] as String,
     recipientPhone: json['recipientPhone'] as String,
     customerTableNumber: json['customerTableNumber'] as String,
-    customerSmoking: json['customerSmoking'] as String,
+    customerSmoking: json['customerSmoking'] as bool,
     customerPax: json['customerPax'] as String,
     customerNote: json['customerNote'] as String,
     customerCarType: json['customerCarType'] as String,

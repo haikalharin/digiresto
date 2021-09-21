@@ -968,7 +968,7 @@ class _$DigiDiscountOutletDataDetailResponseTearOff {
       required String driverPhone,
       required List<dynamic> area,
       required List<String> deliveryProvider,
-      required List<dynamic> deliveryLocation,
+      required List<dynamic>? deliveryLocation,
       required String city}) {
     return _DigiDiscountOutletDataDetailResponse(
       name: name,
@@ -1009,7 +1009,7 @@ mixin _$DigiDiscountOutletDataDetailResponse {
   String get driverPhone => throw _privateConstructorUsedError;
   List<dynamic> get area => throw _privateConstructorUsedError;
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1037,7 +1037,7 @@ abstract class $DigiDiscountOutletDataDetailResponseCopyWith<$Res> {
       String driverPhone,
       List<dynamic> area,
       List<String> deliveryProvider,
-      List<dynamic> deliveryLocation,
+      List<dynamic>? deliveryLocation,
       String city});
 }
 
@@ -1114,7 +1114,7 @@ class _$DigiDiscountOutletDataDetailResponseCopyWithImpl<$Res>
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -1143,7 +1143,7 @@ abstract class _$DigiDiscountOutletDataDetailResponseCopyWith<$Res>
       String driverPhone,
       List<dynamic> area,
       List<String> deliveryProvider,
-      List<dynamic> deliveryLocation,
+      List<dynamic>? deliveryLocation,
       String city});
 }
 
@@ -1224,7 +1224,7 @@ class __$DigiDiscountOutletDataDetailResponseCopyWithImpl<$Res>
       deliveryLocation: deliveryLocation == freezed
           ? _value.deliveryLocation
           : deliveryLocation // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<dynamic>?,
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -1279,7 +1279,7 @@ class _$_DigiDiscountOutletDataDetailResponse
   @override
   final List<String> deliveryProvider;
   @override
-  final List<dynamic> deliveryLocation;
+  final List<dynamic>? deliveryLocation;
   @override
   final String city;
 
@@ -1373,7 +1373,7 @@ abstract class _DigiDiscountOutletDataDetailResponse
       required String driverPhone,
       required List<dynamic> area,
       required List<String> deliveryProvider,
-      required List<dynamic> deliveryLocation,
+      required List<dynamic>? deliveryLocation,
       required String city}) = _$_DigiDiscountOutletDataDetailResponse;
 
   factory _DigiDiscountOutletDataDetailResponse.fromJson(
@@ -1403,7 +1403,7 @@ abstract class _DigiDiscountOutletDataDetailResponse
   @override
   List<String> get deliveryProvider => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get deliveryLocation => throw _privateConstructorUsedError;
+  List<dynamic>? get deliveryLocation => throw _privateConstructorUsedError;
   @override
   String get city => throw _privateConstructorUsedError;
   @override

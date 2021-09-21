@@ -7,6 +7,7 @@ import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.d
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
+import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -17,6 +18,7 @@ class OrderLocal {
   final String _paymentMethodKey = "paymentMethod";
   final String _deliveryMethodKey = "deliveryMethodKey";
   final String _voucherMethodKey = "voucherMethodKey";
+  final String _dineInIdKey = "_dineInIdKey";
   OrderLocal(this._storage);
 
   Future<PaymentMethodDataResponse?> setPaymentMethod(
@@ -71,6 +73,32 @@ class OrderLocal {
     }
   }
 
+  Future<OrderCartDineInModel?> setDineInIDMethod(
+      OrderCartDineInModel data) async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(key: _dineInIdKey, object: data.toJson());
+      final object = _storage.getJson(key: _dineInIdKey);
+      final model = OrderCartDineInModel.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<OrderCartDineInModel?> getDineInIDMethod() async {
+    try {
+      await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(key: _dineInIdKey);
+      final model = OrderCartDineInModel.fromJson(object);
+      await _storage.close();
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<GetListVoucherOutletDataResponse?> setVoucherMethod(
       GetListVoucherOutletDataResponse data) async {
     try {
@@ -118,7 +146,7 @@ class OrderLocal {
           paymentType: "",
           items: [],
           customerPax: '',
-          customerSmoking: '',
+          customerSmoking: false,
           delivery: null,
           eta: '',
           promos: [],
@@ -139,7 +167,7 @@ class OrderLocal {
         paymentType: "",
         items: _listResult,
         customerPax: '',
-        customerSmoking: '',
+        customerSmoking: false,
         delivery: null,
         eta: '',
         promos: [],
@@ -181,7 +209,7 @@ class OrderLocal {
         paymentType: "",
         items: _listResult,
         customerPax: '',
-        customerSmoking: '',
+        customerSmoking: false,
         delivery: null,
         eta: '',
         promos: [],

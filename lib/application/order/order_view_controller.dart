@@ -87,6 +87,14 @@ class OrderViewController extends GetxController {
     // });
   }
 
+  void getRefresh() {
+    isLoading.value = true;
+    getListProduct();
+    getCartSession();
+    getDetailOutlet();
+    getCategoryProduct();
+  }
+
   void getListVoucher() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getListVoucherOutlet(
         GetListVoucherOutletParam(

@@ -26,9 +26,9 @@ class Loading {
       ..radius = 10.0
       ..progressColor = Colors.white
       ..backgroundColor = Colors.transparent
-      ..indicatorColor = Colors.red
+      ..indicatorColor = AppColors.mainColor
       ..textColor = Colors.yellow
-      ..maskColor = Colors.blue.withOpacity(0.5)
+      ..maskColor = Colors.grey.withOpacity(0.7)
       ..userInteractions = false
       ..dismissOnTap = false;
   }
@@ -36,7 +36,7 @@ class Loading {
   static void show() {
     EasyLoading.show(
       dismissOnTap: false,
-      maskType: EasyLoadingMaskType.clear,
+      maskType: EasyLoadingMaskType.custom,
     );
   }
 

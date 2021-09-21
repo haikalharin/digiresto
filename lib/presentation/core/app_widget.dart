@@ -6,11 +6,11 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
 
 @injectable
 class AppWidget extends HookWidget {
@@ -52,6 +52,7 @@ class AppWidget extends HookWidget {
         ),
         getPages: Routers().routers,
         initialRoute: Routers.splash,
+        builder: EasyLoading.init(),
       ),
     );
     // }

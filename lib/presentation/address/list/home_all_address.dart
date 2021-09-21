@@ -4,11 +4,11 @@ import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +70,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
     getAddress();
     return BlocConsumer<AddressListBloc, AddressListState>(
         listener: (context, state) {
+      Loading.dismiss();
       state.maybeMap(
           getGeoCodeSuccess: (value) {
             var response = value.response;
@@ -95,6 +96,12 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
           },
           addAddressSuccess: (value) {
             context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            final address = value.response;
+            controller.setLocalActiveAddress(UserAddress(
+                name: address.name,
+                address: address.address,
+                latitude: address.latitude.toString(),
+                longitude: address.longitude.toString()));
             Get.back(closeOverlays: true);
             Get.back();
           },
@@ -206,6 +213,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 title: new Text('Jadikan alamat utama',
                     style: AppFont.textBlack14Regular),
                 onTap: () {
+                  Loading.show();
                   Get.context!.read<AddressListBloc>().add(
                       AddressListEvent.setDefault(UserSetDefaultAddressParam(
                           wa_id: userAddress.wabaNo!,
@@ -224,6 +232,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 title:
                     new Text('Hapus Alamat', style: AppFont.textBlack14Regular),
                 onTap: () {
+                  Loading.show();
                   Get.context!.read<AddressListBloc>().add(
                       AddressListEvent.removeAddress(UserRemoveAddressParam(
                           id: userAddress.id!,
@@ -284,7 +293,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
       child: GestureDetector(
         onTap: () {
           print("set default");
-          setActiveAddress(controller.currentLocation.value);
+          controller.setLocalActiveAddress(controller.currentLocation.value);
         },
         child: Container(
           //height: 70,
@@ -362,7 +371,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
         child: GestureDetector(
           onTap: () {
             print("set default");
-            setActiveAddress(data);
+            controller.setLocalActiveAddress(data);
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 8),
@@ -449,12 +458,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
     } else {
       return Container();
     }
-  }
-
-  void setActiveAddress(UserAddress userAddress) {
-    Get.context!
-        .read<AddressListBloc>()
-        .add(AddressListEvent.setActiveAddress(userAddress));
   }
 
   void getAddress() async {

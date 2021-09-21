@@ -30,7 +30,7 @@ _$_CreateCartSessionBodyParam _$_$_CreateCartSessionBodyParamFromJson(
     customerName: json['customerName'] as String,
     customerPhone: json['customerPhone'] as String,
     customerTableNumber: json['customerTableNumber'] as String,
-    customerSmoking: json['customerSmoking'] as String,
+    customerSmoking: json['customerSmoking'] as bool,
     customerPax: json['customerPax'] as String,
     customerNote: json['customerNote'] as String,
     customerCarType: json['customerCarType'] as String,

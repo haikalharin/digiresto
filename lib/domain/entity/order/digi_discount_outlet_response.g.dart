@@ -104,7 +104,7 @@ _$_DigiDiscountOutletDataDetailResponse
     deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
-    deliveryLocation: json['deliveryLocation'] as List<dynamic>,
+    deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
     city: json['city'] as String,
   );
 }

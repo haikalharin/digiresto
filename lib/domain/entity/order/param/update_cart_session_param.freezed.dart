@@ -232,7 +232,7 @@ class _$UpdateCartSessionBodyParamTearOff {
       {required String? paymentType,
       required String? customerNote,
       required String? customerPax,
-      required String? customerSmoking,
+      required bool? customerSmoking,
       required UpdateCartSessionBodyDeliveryParam? delivery,
       required String? eta,
       required List<String>? promos,
@@ -264,7 +264,7 @@ mixin _$UpdateCartSessionBodyParam {
   String? get paymentType => throw _privateConstructorUsedError;
   String? get customerNote => throw _privateConstructorUsedError;
   String? get customerPax => throw _privateConstructorUsedError;
-  String? get customerSmoking => throw _privateConstructorUsedError;
+  bool? get customerSmoking => throw _privateConstructorUsedError;
   UpdateCartSessionBodyDeliveryParam? get delivery =>
       throw _privateConstructorUsedError;
   String? get eta => throw _privateConstructorUsedError;
@@ -288,7 +288,7 @@ abstract class $UpdateCartSessionBodyParamCopyWith<$Res> {
       {String? paymentType,
       String? customerNote,
       String? customerPax,
-      String? customerSmoking,
+      bool? customerSmoking,
       UpdateCartSessionBodyDeliveryParam? delivery,
       String? eta,
       List<String>? promos,
@@ -335,7 +335,7 @@ class _$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -384,7 +384,7 @@ abstract class _$UpdateCartSessionBodyParamCopyWith<$Res>
       {String? paymentType,
       String? customerNote,
       String? customerPax,
-      String? customerSmoking,
+      bool? customerSmoking,
       UpdateCartSessionBodyDeliveryParam? delivery,
       String? eta,
       List<String>? promos,
@@ -435,7 +435,7 @@ class __$UpdateCartSessionBodyParamCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -484,7 +484,7 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
   @override
   final String? customerPax;
   @override
-  final String? customerSmoking;
+  final bool? customerSmoking;
   @override
   final UpdateCartSessionBodyDeliveryParam? delivery;
   @override
@@ -562,7 +562,7 @@ abstract class _UpdateCartSessionBodyParam
           {required String? paymentType,
           required String? customerNote,
           required String? customerPax,
-          required String? customerSmoking,
+          required bool? customerSmoking,
           required UpdateCartSessionBodyDeliveryParam? delivery,
           required String? eta,
           required List<String>? promos,
@@ -580,7 +580,7 @@ abstract class _UpdateCartSessionBodyParam
   @override
   String? get customerPax => throw _privateConstructorUsedError;
   @override
-  String? get customerSmoking => throw _privateConstructorUsedError;
+  bool? get customerSmoking => throw _privateConstructorUsedError;
   @override
   UpdateCartSessionBodyDeliveryParam? get delivery =>
       throw _privateConstructorUsedError;

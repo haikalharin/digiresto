@@ -137,9 +137,8 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                             IconButton(
                               icon: new Icon(Icons.refresh,
                                   color: Colors.white, size: 24.0),
-                              onPressed: () => {
-                                // getDetailOutlet(_orderStore.orderOutletName,
-                                //   searchName, filterCategory, 1)
+                              onPressed: () {
+                                controller.getRefresh();
                               },
                             ),
                           ],
@@ -802,6 +801,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         controller.detailOutlet.value != null ? _search() : Container(),
         controller.listCategory.value != null

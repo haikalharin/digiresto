@@ -29,7 +29,7 @@ class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
     required String customerName,
     required String customerPhone,
     required String customerTableNumber,
-    required String customerSmoking,
+    required bool customerSmoking,
     required String customerPax,
     required String customerNote,
     required String customerCarType,

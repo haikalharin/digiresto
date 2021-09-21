@@ -27,6 +27,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_failure.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:digiresto/infrastructure/network/apis/user/user_repository.dart';
@@ -201,6 +202,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+        final getDineInID = await _orderRepository.getDineInIDMethod();
+
+        String etaOrder = "now";
+
+        if (getDineInID?.useSchedule ?? false) {
+          etaOrder = OrderCartDineInModel.getEtaOrder(
+              selectedDate: getDineInID?.selectedDate,
+              selectedKeyClock: getDineInID?.selectedKeyClock);
+        }
 
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
         if (deliveryInq != null) {
@@ -217,10 +227,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     items: getProduct?.items ?? [],
                     customerNote: request.note,
                     paymentType: paymentType?.id ?? "",
-                    customerPax: '1',
-                    customerSmoking: 'false',
+                    customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerSmoking: false,
                     delivery: deliveryParam,
-                    eta: 'now',
+                    eta: etaOrder,
                     promos: getVoucherMethodID == null
                         ? []
                         : [getVoucherMethodID.code],
@@ -248,7 +258,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+        final getDineInID = await _orderRepository.getDineInIDMethod();
 
+        String etaOrder = "now";
+
+        if (getDineInID?.useSchedule ?? false) {
+          etaOrder = OrderCartDineInModel.getEtaOrder(
+              selectedDate: getDineInID?.selectedDate,
+              selectedKeyClock: getDineInID?.selectedKeyClock);
+        }
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
         if (deliveryInq != null) {
           deliveryParam = UpdateCartSessionBodyDeliveryParam(
@@ -268,13 +286,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerName: userProfile.name!,
                       customerPhone: userProfile.mobilePhone!,
                       customerTableNumber: "",
-                      customerSmoking: 'false',
+                      customerSmoking: false,
                       customerPax: "1",
                       customerNote: "",
                       customerCarType: "",
                       customerCarColor: "",
                       customerCarNumber: "",
-                      eta: "now",
+                      eta: etaOrder,
                       salesType: getSalesTypeCart != null
                           ? getSalesTypeCart
                           : request.salesType,
@@ -299,10 +317,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       items: setProduct?.items ?? [],
                       customerNote: null,
                       paymentType: paymentType?.id ?? "",
-                      customerPax: '1',
-                      customerSmoking: 'false',
+                      customerPax: (getDineInID?.pax ?? 1).toString(),
+                      customerSmoking: OrderCartDineInModel.isSmoking(
+                          getDineInID?.selectedKeySmoking ?? "2"),
                       delivery: deliveryParam,
-                      eta: 'now',
+                      eta: etaOrder,
                       promos: getVoucherMethodID == null
                           ? []
                           : [getVoucherMethodID.code],
@@ -346,7 +365,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       customerNote: null,
                       paymentType: paymentType?.id ?? "",
                       customerPax: '1',
-                      customerSmoking: 'false',
+                      customerSmoking: false,
                       delivery: deliveryParam,
                       eta: 'now',
                       promos: getVoucherMethodID == null
@@ -478,6 +497,23 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           yield OrderState.setVoucherMethodIDSuccess(setVoucherMethodID);
         } else {
           yield OrderState.loadFailure(OrderFailure.setVoucherMethodIDFail());
+        }
+      },
+      getDineInIDMethod: (r) async* {
+        final getDineInIDMethod = await _orderRepository.getDineInIDMethod();
+        if (getDineInIDMethod != null) {
+          yield OrderState.getDineInIDMethodSuccess(getDineInIDMethod);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.getDineInIDMethodFail());
+        }
+      },
+      setDineInIDMethod: (r) async* {
+        final setDineInIDMethod =
+            await _orderRepository.setDineInIDMethod(r.data);
+        if (setDineInIDMethod != null) {
+          yield OrderState.setDineInIDMethodSuccess(setDineInIDMethod);
+        } else {
+          yield OrderState.loadFailure(OrderFailure.setDineInIDMethodFail());
         }
       },
     );

@@ -91,48 +91,53 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     ],
                   ),
                   Expanded(
-                      child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _StaticBanner(key: GuideKeys.banner),
-                        _trackOrder(),
-                        Container(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _FoodRowItem(
-                                key: GuideKeys.terdekat,
-                                imageAsset: AppAssets.iconHomeNearby,
-                                label: Strings.titleNearby,
-                              ),
-                              _FoodRowItem(
-                                  key: GuideKeys.digidiscount,
-                                  imageAsset: AppAssets.iconHomeDiscount,
-                                  label: Strings.titleDigidiscount),
-                            ],
+                      child: RefreshIndicator(
+                    onRefresh: () async {
+                      controller.getRefresh();
+                    },
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _StaticBanner(key: GuideKeys.banner),
+                          _trackOrder(),
+                          Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                _FoodRowItem(
+                                  key: GuideKeys.terdekat,
+                                  imageAsset: AppAssets.iconHomeNearby,
+                                  label: Strings.titleNearby,
+                                ),
+                                _FoodRowItem(
+                                    key: GuideKeys.digidiscount,
+                                    imageAsset: AppAssets.iconHomeDiscount,
+                                    label: Strings.titleDigidiscount),
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _FoodRowItem(
-                                key: GuideKeys.frozenfood,
-                                imageAsset: AppAssets.iconFrozenFood,
-                                label: Strings.titleFrozenFood,
-                              ),
-                              _FoodRowItem(
-                                key: GuideKeys.indonesiapastibisa,
-                                imageAsset: AppAssets.iconIndPastiBisa,
-                                label: Strings.titleIndonesiaPastiBisa,
-                              ),
-                            ],
+                          Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                _FoodRowItem(
+                                  key: GuideKeys.frozenfood,
+                                  imageAsset: AppAssets.iconFrozenFood,
+                                  label: Strings.titleFrozenFood,
+                                ),
+                                _FoodRowItem(
+                                  key: GuideKeys.indonesiapastibisa,
+                                  imageAsset: AppAssets.iconIndPastiBisa,
+                                  label: Strings.titleIndonesiaPastiBisa,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        _singleAdvertisement(),
-                      ],
+                          _singleAdvertisement(),
+                        ],
+                      ),
                     ),
                   )),
                 ],
@@ -359,10 +364,6 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
     );
   }
 
-  void goToAddLocation() {
-    Get.toNamed(Routers.homeAllAddress);
-  }
-
   _getCurrentLocation() async {
     Get.find<HomeContentViewController>().setLoadingListAddress(true);
     print("get current location");
@@ -535,7 +536,9 @@ class _YourLocation extends GetView<HomeContentViewController> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routers.homeAllAddress);
+        Get.toNamed(Routers.homeAllAddress)!.then((value) {
+          controller.getActiveAddress();
+        });
       },
       child: Container(
         padding: EdgeInsets.only(left: 10, right: 10),

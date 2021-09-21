@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_pending.freezed.dart';
 part 'order_pending.g.dart';
@@ -20,7 +21,7 @@ class OrderPending with _$OrderPending {
     required String recipientName,
     required String recipientPhone,
     required String customerTableNumber,
-    required String customerSmoking,
+    required bool customerSmoking,
     required String customerPax,
     required String customerNote,
     required String customerCarType,
@@ -62,7 +63,7 @@ class OrderPending with _$OrderPending {
     required String status,
     required DeliveryDetail deliveryDetail,
     required BillingDetail billingDetail,
-    required Delivery delivery,
+    required Delivery? delivery,
   }) = _OrderPending;
 
   factory OrderPending.fromJson(Map<String, dynamic> json) =>
@@ -75,7 +76,7 @@ class BillingDetail with _$BillingDetail {
     @JsonKey(defaultValue: '') required String orderId,
     @JsonKey(defaultValue: '') required String title,
     @JsonKey(defaultValue: '') required String vaNumber,
-    @JsonKey(defaultValue: '') required dynamic amount,
+    required dynamic amount,
     @JsonKey(defaultValue: '') required String fee,
     @JsonKey(defaultValue: '') required String finalAmount,
     @JsonKey(defaultValue: '') required String serviceProvider,
@@ -115,21 +116,21 @@ class Delivery with _$Delivery {
 @freezed
 class DeliveryDetail with _$DeliveryDetail {
   const factory DeliveryDetail({
-    required String orderId,
-    required String distance,
-    required String provider,
-    required String shipmentMethod,
+    required String? orderId,
+    required String? distance,
+    required String? provider,
+    required String? shipmentMethod,
     required dynamic fee,
-    required String bookingCode,
-    required String bookingExpired,
-    required String deliveryId,
-    required bool isDelivered,
-    required DeliverFrom from,
-    required DeliverTo to,
-    required List<dynamic> status,
-    required bool isDelete,
-    required DateTime createdDate,
-    required String ownerPhone,
+    required String? bookingCode,
+    required String? bookingExpired,
+    required String? deliveryId,
+    required bool? isDelivered,
+    required DeliverFrom? from,
+    required DeliverTo? to,
+    required List<dynamic>? status,
+    required bool? isDelete,
+    required DateTime? createdDate,
+    required String? ownerPhone,
   }) = _DeliveryDetail;
 
   factory DeliveryDetail.fromJson(Map<String, dynamic> json) =>

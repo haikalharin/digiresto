@@ -16,7 +16,7 @@ _$_OrderPending _$_$_OrderPendingFromJson(Map<String, dynamic> json) {
     recipientName: json['recipientName'] as String,
     recipientPhone: json['recipientPhone'] as String,
     customerTableNumber: json['customerTableNumber'] as String,
-    customerSmoking: json['customerSmoking'] as String,
+    customerSmoking: json['customerSmoking'] as bool,
     customerPax: json['customerPax'] as String,
     customerNote: json['customerNote'] as String,
     customerCarType: json['customerCarType'] as String,
@@ -68,7 +68,9 @@ _$_OrderPending _$_$_OrderPendingFromJson(Map<String, dynamic> json) {
         DeliveryDetail.fromJson(json['deliveryDetail'] as Map<String, dynamic>),
     billingDetail:
         BillingDetail.fromJson(json['billingDetail'] as Map<String, dynamic>),
-    delivery: Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
+    delivery: json['delivery'] == null
+        ? null
+        : Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
   );
 }
 
@@ -132,7 +134,7 @@ _$_BillingDetail _$_$_BillingDetailFromJson(Map<String, dynamic> json) {
     orderId: json['orderId'] as String? ?? '',
     title: json['title'] as String? ?? '',
     vaNumber: json['vaNumber'] as String? ?? '',
-    amount: json['amount'] ?? '',
+    amount: json['amount'],
     fee: json['fee'] as String? ?? '',
     finalAmount: json['finalAmount'] as String? ?? '',
     serviceProvider: json['serviceProvider'] as String? ?? '',
@@ -202,21 +204,27 @@ Map<String, dynamic> _$_$_DeliveryToJson(_$_Delivery instance) =>
 
 _$_DeliveryDetail _$_$_DeliveryDetailFromJson(Map<String, dynamic> json) {
   return _$_DeliveryDetail(
-    orderId: json['orderId'] as String,
-    distance: json['distance'] as String,
-    provider: json['provider'] as String,
-    shipmentMethod: json['shipmentMethod'] as String,
+    orderId: json['orderId'] as String?,
+    distance: json['distance'] as String?,
+    provider: json['provider'] as String?,
+    shipmentMethod: json['shipmentMethod'] as String?,
     fee: json['fee'],
-    bookingCode: json['bookingCode'] as String,
-    bookingExpired: json['bookingExpired'] as String,
-    deliveryId: json['deliveryId'] as String,
-    isDelivered: json['isDelivered'] as bool,
-    from: DeliverFrom.fromJson(json['from'] as Map<String, dynamic>),
-    to: DeliverTo.fromJson(json['to'] as Map<String, dynamic>),
-    status: json['status'] as List<dynamic>,
-    isDelete: json['isDelete'] as bool,
-    createdDate: DateTime.parse(json['createdDate'] as String),
-    ownerPhone: json['ownerPhone'] as String,
+    bookingCode: json['bookingCode'] as String?,
+    bookingExpired: json['bookingExpired'] as String?,
+    deliveryId: json['deliveryId'] as String?,
+    isDelivered: json['isDelivered'] as bool?,
+    from: json['from'] == null
+        ? null
+        : DeliverFrom.fromJson(json['from'] as Map<String, dynamic>),
+    to: json['to'] == null
+        ? null
+        : DeliverTo.fromJson(json['to'] as Map<String, dynamic>),
+    status: json['status'] as List<dynamic>?,
+    isDelete: json['isDelete'] as bool?,
+    createdDate: json['createdDate'] == null
+        ? null
+        : DateTime.parse(json['createdDate'] as String),
+    ownerPhone: json['ownerPhone'] as String?,
   );
 }
 
@@ -235,7 +243,7 @@ Map<String, dynamic> _$_$_DeliveryDetailToJson(_$_DeliveryDetail instance) =>
       'to': instance.to,
       'status': instance.status,
       'isDelete': instance.isDelete,
-      'createdDate': instance.createdDate.toIso8601String(),
+      'createdDate': instance.createdDate?.toIso8601String(),
       'ownerPhone': instance.ownerPhone,
     };
 

@@ -165,6 +165,16 @@ class _$OrderEventTearOff {
     return const _GetDeliveryMethodID();
   }
 
+  _SetDineInIDMethod setDineInIDMethod(OrderCartDineInModel data) {
+    return _SetDineInIDMethod(
+      data,
+    );
+  }
+
+  _GetDineInIDMethod getDineInIDMethod() {
+    return const _GetDineInIDMethod();
+  }
+
   _SetVoucherMethodID setVoucherMethodID(
       GetListVoucherOutletDataResponse data) {
     return _SetVoucherMethodID(
@@ -223,6 +233,8 @@ mixin _$OrderEvent {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -259,6 +271,8 @@ mixin _$OrderEvent {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -293,6 +307,8 @@ mixin _$OrderEvent {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) =>
@@ -325,6 +341,8 @@ mixin _$OrderEvent {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -462,6 +480,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -501,6 +521,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -541,6 +563,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -576,6 +600,8 @@ class _$_GetOutletByLocation implements _GetOutletByLocation {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -711,6 +737,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -750,6 +778,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -790,6 +820,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -825,6 +857,8 @@ class _$_GetOutletByCategory implements _GetOutletByCategory {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -960,6 +994,8 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -999,6 +1035,8 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -1039,6 +1077,8 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -1074,6 +1114,8 @@ class _$_GetOutletByMerchant implements _GetOutletByMerchant {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -1211,6 +1253,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -1250,6 +1294,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -1290,6 +1336,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -1325,6 +1373,8 @@ class _$_GetOutletProductCategory implements _GetOutletProductCategory {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -1460,6 +1510,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -1499,6 +1551,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -1539,6 +1593,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -1574,6 +1630,8 @@ class _$_GetListPromoOutlet implements _GetListPromoOutlet {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -1709,6 +1767,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -1748,6 +1808,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -1788,6 +1850,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -1823,6 +1887,8 @@ class _$_GetListVoucherOutlet implements _GetListVoucherOutlet {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -1958,6 +2024,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -1997,6 +2065,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -2037,6 +2107,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -2072,6 +2144,8 @@ class _$_GetOutletListProduct implements _GetOutletListProduct {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -2205,6 +2279,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -2244,6 +2320,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -2284,6 +2362,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -2319,6 +2399,8 @@ class _$_GetPromoOutlet implements _GetPromoOutlet {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -2443,6 +2525,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -2482,6 +2566,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -2522,6 +2608,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -2557,6 +2645,8 @@ class _$_GetHotPromo implements _GetHotPromo {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -2690,6 +2780,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -2729,6 +2821,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -2769,6 +2863,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -2804,6 +2900,8 @@ class _$_GetDetailOutlet implements _GetDetailOutlet {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -2938,6 +3036,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -2977,6 +3077,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -3017,6 +3119,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -3052,6 +3156,8 @@ class _$_GetPaymentMethod implements _GetPaymentMethod {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -3186,6 +3292,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -3225,6 +3333,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -3265,6 +3375,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -3300,6 +3412,8 @@ class _$_GeliveryInquiry implements _GeliveryInquiry {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -3434,6 +3548,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -3473,6 +3589,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -3513,6 +3631,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -3548,6 +3668,8 @@ class _$_CreateCartSession implements _CreateCartSession {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -3714,6 +3836,8 @@ class _$_AddCart implements _AddCart {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -3753,6 +3877,8 @@ class _$_AddCart implements _AddCart {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -3793,6 +3919,8 @@ class _$_AddCart implements _AddCart {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -3828,6 +3956,8 @@ class _$_AddCart implements _AddCart {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -3955,6 +4085,8 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -3994,6 +4126,8 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -4034,6 +4168,8 @@ class _$_UpdateCart implements _UpdateCart {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -4069,6 +4205,8 @@ class _$_UpdateCart implements _UpdateCart {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -4202,6 +4340,8 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -4241,6 +4381,8 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -4281,6 +4423,8 @@ class _$_RemoveCart implements _RemoveCart {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -4316,6 +4460,8 @@ class _$_RemoveCart implements _RemoveCart {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -4416,6 +4562,8 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -4455,6 +4603,8 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -4495,6 +4645,8 @@ class _$_GetCartSession implements _GetCartSession {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -4530,6 +4682,8 @@ class _$_GetCartSession implements _GetCartSession {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -4624,6 +4778,8 @@ class _$_RemoveCartSession implements _RemoveCartSession {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -4663,6 +4819,8 @@ class _$_RemoveCartSession implements _RemoveCartSession {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -4703,6 +4861,8 @@ class _$_RemoveCartSession implements _RemoveCartSession {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -4738,6 +4898,8 @@ class _$_RemoveCartSession implements _RemoveCartSession {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -4866,6 +5028,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -4905,6 +5069,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -4945,6 +5111,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -4980,6 +5148,8 @@ class _$_UpdateCartSession implements _UpdateCartSession {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -5079,6 +5249,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -5118,6 +5290,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -5158,6 +5332,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -5193,6 +5369,8 @@ class _$_CheckoutCart implements _CheckoutCart {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -5287,6 +5465,8 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -5326,6 +5506,8 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -5366,6 +5548,8 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -5401,6 +5585,8 @@ class _$_GetSalesTypeCart implements _GetSalesTypeCart {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -5520,6 +5706,8 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -5559,6 +5747,8 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -5599,6 +5789,8 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -5634,6 +5826,8 @@ class _$_SetSalesTypeCart implements _SetSalesTypeCart {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -5767,6 +5961,8 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -5806,6 +6002,8 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -5846,6 +6044,8 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -5881,6 +6081,8 @@ class _$_SetPaymentMethodID implements _SetPaymentMethodID {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -5981,6 +6183,8 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -6020,6 +6224,8 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -6060,6 +6266,8 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -6095,6 +6303,8 @@ class _$_GetPaymentMethodID implements _GetPaymentMethodID {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -6224,6 +6434,8 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -6263,6 +6475,8 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -6303,6 +6517,8 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -6338,6 +6554,8 @@ class _$_SetDeliveryMethodID implements _SetDeliveryMethodID {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -6438,6 +6656,8 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -6477,6 +6697,8 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -6517,6 +6739,8 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -6552,6 +6776,8 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -6565,6 +6791,478 @@ class _$_GetDeliveryMethodID implements _GetDeliveryMethodID {
 
 abstract class _GetDeliveryMethodID implements OrderEvent {
   const factory _GetDeliveryMethodID() = _$_GetDeliveryMethodID;
+}
+
+/// @nodoc
+abstract class _$SetDineInIDMethodCopyWith<$Res> {
+  factory _$SetDineInIDMethodCopyWith(
+          _SetDineInIDMethod value, $Res Function(_SetDineInIDMethod) then) =
+      __$SetDineInIDMethodCopyWithImpl<$Res>;
+  $Res call({OrderCartDineInModel data});
+
+  $OrderCartDineInModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$SetDineInIDMethodCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$SetDineInIDMethodCopyWith<$Res> {
+  __$SetDineInIDMethodCopyWithImpl(
+      _SetDineInIDMethod _value, $Res Function(_SetDineInIDMethod) _then)
+      : super(_value, (v) => _then(v as _SetDineInIDMethod));
+
+  @override
+  _SetDineInIDMethod get _value => super._value as _SetDineInIDMethod;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_SetDineInIDMethod(
+      data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as OrderCartDineInModel,
+    ));
+  }
+
+  @override
+  $OrderCartDineInModelCopyWith<$Res> get data {
+    return $OrderCartDineInModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_SetDineInIDMethod implements _SetDineInIDMethod {
+  const _$_SetDineInIDMethod(this.data);
+
+  @override
+  final OrderCartDineInModel data;
+
+  @override
+  String toString() {
+    return 'OrderEvent.setDineInIDMethod(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SetDineInIDMethod &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetDineInIDMethodCopyWith<_SetDineInIDMethod> get copyWith =>
+      __$SetDineInIDMethodCopyWithImpl<_SetDineInIDMethod>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletByMerchantParam request)
+        getOutletByMerchant,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)
+        addCart,
+    required TResult Function(String note) updateCart,
+    required TResult Function(CreateUpdateCartSessionItemParam request)
+        removeCart,
+    required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function() checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
+    required TResult Function(PaymentMethodDataResponse data)
+        setPaymentMethodID,
+    required TResult Function() getPaymentMethodID,
+    required TResult Function(DeliveryMethodDataResponse data)
+        setDeliveryMethodID,
+    required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        setVoucherMethodID,
+    required TResult Function() getVoucherMethodID,
+  }) {
+    return setDineInIDMethod(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletByMerchantParam request)? getOutletByMerchant,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)?
+        addCart,
+    TResult Function(String note)? updateCart,
+    TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
+    TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function()? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
+    TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
+    TResult Function()? getPaymentMethodID,
+    TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
+    TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
+    TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
+    TResult Function()? getVoucherMethodID,
+    required TResult orElse(),
+  }) {
+    if (setDineInIDMethod != null) {
+      return setDineInIDMethod(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletByMerchant value) getOutletByMerchant,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_AddCart value) addCart,
+    required TResult Function(_UpdateCart value) updateCart,
+    required TResult Function(_RemoveCart value) removeCart,
+    required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
+    required TResult Function(_SetPaymentMethodID value) setPaymentMethodID,
+    required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
+    required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
+    required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
+    required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
+    required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
+  }) {
+    return setDineInIDMethod(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletByMerchant value)? getOutletByMerchant,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_AddCart value)? addCart,
+    TResult Function(_UpdateCart value)? updateCart,
+    TResult Function(_RemoveCart value)? removeCart,
+    TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
+    TResult Function(_SetPaymentMethodID value)? setPaymentMethodID,
+    TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
+    TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
+    TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
+    TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
+    TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
+    required TResult orElse(),
+  }) {
+    if (setDineInIDMethod != null) {
+      return setDineInIDMethod(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetDineInIDMethod implements OrderEvent {
+  const factory _SetDineInIDMethod(OrderCartDineInModel data) =
+      _$_SetDineInIDMethod;
+
+  OrderCartDineInModel get data => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$SetDineInIDMethodCopyWith<_SetDineInIDMethod> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetDineInIDMethodCopyWith<$Res> {
+  factory _$GetDineInIDMethodCopyWith(
+          _GetDineInIDMethod value, $Res Function(_GetDineInIDMethod) then) =
+      __$GetDineInIDMethodCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetDineInIDMethodCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res>
+    implements _$GetDineInIDMethodCopyWith<$Res> {
+  __$GetDineInIDMethodCopyWithImpl(
+      _GetDineInIDMethod _value, $Res Function(_GetDineInIDMethod) _then)
+      : super(_value, (v) => _then(v as _GetDineInIDMethod));
+
+  @override
+  _GetDineInIDMethod get _value => super._value as _GetDineInIDMethod;
+}
+
+/// @nodoc
+
+class _$_GetDineInIDMethod implements _GetDineInIDMethod {
+  const _$_GetDineInIDMethod();
+
+  @override
+  String toString() {
+    return 'OrderEvent.getDineInIDMethod()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetDineInIDMethod);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(GetOutletByLocationParam request)
+        getOutletByLocation,
+    required TResult Function(GetOutletByCategoryParam request)
+        getOutletByCategory,
+    required TResult Function(GetOutletByMerchantParam request)
+        getOutletByMerchant,
+    required TResult Function(GetOutletProductCategoryParam request)
+        getOutletProductCategory,
+    required TResult Function(GetListPromoOutletParam request)
+        getListPromoOutlet,
+    required TResult Function(GetListVoucherOutletParam request)
+        getListVoucherOutlet,
+    required TResult Function(GetOutletProductParam request)
+        getOutletListProduct,
+    required TResult Function(GetDigiDiscountOutletParam request)
+        getDigiDiscountOutlet,
+    required TResult Function(GetHotPromoParam request) getHotPromo,
+    required TResult Function(GetDetailOutletParam request) getDetailOutlet,
+    required TResult Function(GetPaymentMethodParam request) getPaymentMethod,
+    required TResult Function(DeliveryInquiryParam request) deliveryInquiry,
+    required TResult Function(CreateCartSessionParam request) createCartSession,
+    required TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)
+        addCart,
+    required TResult Function(String note) updateCart,
+    required TResult Function(CreateUpdateCartSessionItemParam request)
+        removeCart,
+    required TResult Function() getCartSession,
+    required TResult Function() removeCartSession,
+    required TResult Function(UpdateCartSessionParam request) updateCartSession,
+    required TResult Function() checkoutCart,
+    required TResult Function() getSalesTypeCart,
+    required TResult Function(String value) setSalesTypeCart,
+    required TResult Function(PaymentMethodDataResponse data)
+        setPaymentMethodID,
+    required TResult Function() getPaymentMethodID,
+    required TResult Function(DeliveryMethodDataResponse data)
+        setDeliveryMethodID,
+    required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        setVoucherMethodID,
+    required TResult Function() getVoucherMethodID,
+  }) {
+    return getDineInIDMethod();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(GetOutletByLocationParam request)? getOutletByLocation,
+    TResult Function(GetOutletByCategoryParam request)? getOutletByCategory,
+    TResult Function(GetOutletByMerchantParam request)? getOutletByMerchant,
+    TResult Function(GetOutletProductCategoryParam request)?
+        getOutletProductCategory,
+    TResult Function(GetListPromoOutletParam request)? getListPromoOutlet,
+    TResult Function(GetListVoucherOutletParam request)? getListVoucherOutlet,
+    TResult Function(GetOutletProductParam request)? getOutletListProduct,
+    TResult Function(GetDigiDiscountOutletParam request)? getDigiDiscountOutlet,
+    TResult Function(GetHotPromoParam request)? getHotPromo,
+    TResult Function(GetDetailOutletParam request)? getDetailOutlet,
+    TResult Function(GetPaymentMethodParam request)? getPaymentMethod,
+    TResult Function(DeliveryInquiryParam request)? deliveryInquiry,
+    TResult Function(CreateCartSessionParam request)? createCartSession,
+    TResult Function(CreateUpdateCartSessionItemParam request,
+            DetailOutletDataResponse outlet, String salesType)?
+        addCart,
+    TResult Function(String note)? updateCart,
+    TResult Function(CreateUpdateCartSessionItemParam request)? removeCart,
+    TResult Function()? getCartSession,
+    TResult Function()? removeCartSession,
+    TResult Function(UpdateCartSessionParam request)? updateCartSession,
+    TResult Function()? checkoutCart,
+    TResult Function()? getSalesTypeCart,
+    TResult Function(String value)? setSalesTypeCart,
+    TResult Function(PaymentMethodDataResponse data)? setPaymentMethodID,
+    TResult Function()? getPaymentMethodID,
+    TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
+    TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
+    TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
+    TResult Function()? getVoucherMethodID,
+    required TResult orElse(),
+  }) {
+    if (getDineInIDMethod != null) {
+      return getDineInIDMethod();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOutletByLocation value) getOutletByLocation,
+    required TResult Function(_GetOutletByCategory value) getOutletByCategory,
+    required TResult Function(_GetOutletByMerchant value) getOutletByMerchant,
+    required TResult Function(_GetOutletProductCategory value)
+        getOutletProductCategory,
+    required TResult Function(_GetListPromoOutlet value) getListPromoOutlet,
+    required TResult Function(_GetListVoucherOutlet value) getListVoucherOutlet,
+    required TResult Function(_GetOutletListProduct value) getOutletListProduct,
+    required TResult Function(_GetPromoOutlet value) getDigiDiscountOutlet,
+    required TResult Function(_GetHotPromo value) getHotPromo,
+    required TResult Function(_GetDetailOutlet value) getDetailOutlet,
+    required TResult Function(_GetPaymentMethod value) getPaymentMethod,
+    required TResult Function(_GeliveryInquiry value) deliveryInquiry,
+    required TResult Function(_CreateCartSession value) createCartSession,
+    required TResult Function(_AddCart value) addCart,
+    required TResult Function(_UpdateCart value) updateCart,
+    required TResult Function(_RemoveCart value) removeCart,
+    required TResult Function(_GetCartSession value) getCartSession,
+    required TResult Function(_RemoveCartSession value) removeCartSession,
+    required TResult Function(_UpdateCartSession value) updateCartSession,
+    required TResult Function(_CheckoutCart value) checkoutCart,
+    required TResult Function(_GetSalesTypeCart value) getSalesTypeCart,
+    required TResult Function(_SetSalesTypeCart value) setSalesTypeCart,
+    required TResult Function(_SetPaymentMethodID value) setPaymentMethodID,
+    required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
+    required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
+    required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
+    required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
+    required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
+  }) {
+    return getDineInIDMethod(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOutletByLocation value)? getOutletByLocation,
+    TResult Function(_GetOutletByCategory value)? getOutletByCategory,
+    TResult Function(_GetOutletByMerchant value)? getOutletByMerchant,
+    TResult Function(_GetOutletProductCategory value)? getOutletProductCategory,
+    TResult Function(_GetListPromoOutlet value)? getListPromoOutlet,
+    TResult Function(_GetListVoucherOutlet value)? getListVoucherOutlet,
+    TResult Function(_GetOutletListProduct value)? getOutletListProduct,
+    TResult Function(_GetPromoOutlet value)? getDigiDiscountOutlet,
+    TResult Function(_GetHotPromo value)? getHotPromo,
+    TResult Function(_GetDetailOutlet value)? getDetailOutlet,
+    TResult Function(_GetPaymentMethod value)? getPaymentMethod,
+    TResult Function(_GeliveryInquiry value)? deliveryInquiry,
+    TResult Function(_CreateCartSession value)? createCartSession,
+    TResult Function(_AddCart value)? addCart,
+    TResult Function(_UpdateCart value)? updateCart,
+    TResult Function(_RemoveCart value)? removeCart,
+    TResult Function(_GetCartSession value)? getCartSession,
+    TResult Function(_RemoveCartSession value)? removeCartSession,
+    TResult Function(_UpdateCartSession value)? updateCartSession,
+    TResult Function(_CheckoutCart value)? checkoutCart,
+    TResult Function(_GetSalesTypeCart value)? getSalesTypeCart,
+    TResult Function(_SetSalesTypeCart value)? setSalesTypeCart,
+    TResult Function(_SetPaymentMethodID value)? setPaymentMethodID,
+    TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
+    TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
+    TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
+    TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
+    TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
+    required TResult orElse(),
+  }) {
+    if (getDineInIDMethod != null) {
+      return getDineInIDMethod(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDineInIDMethod implements OrderEvent {
+  const factory _GetDineInIDMethod() = _$_GetDineInIDMethod;
 }
 
 /// @nodoc
@@ -6681,6 +7379,8 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -6720,6 +7420,8 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -6760,6 +7462,8 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -6795,6 +7499,8 @@ class _$_SetVoucherMethodID implements _SetVoucherMethodID {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -6896,6 +7602,8 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     required TResult Function(DeliveryMethodDataResponse data)
         setDeliveryMethodID,
     required TResult Function() getDeliveryMethodID,
+    required TResult Function(OrderCartDineInModel data) setDineInIDMethod,
+    required TResult Function() getDineInIDMethod,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodID,
     required TResult Function() getVoucherMethodID,
@@ -6935,6 +7643,8 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function()? getPaymentMethodID,
     TResult Function(DeliveryMethodDataResponse data)? setDeliveryMethodID,
     TResult Function()? getDeliveryMethodID,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethod,
+    TResult Function()? getDineInIDMethod,
     TResult Function(GetListVoucherOutletDataResponse data)? setVoucherMethodID,
     TResult Function()? getVoucherMethodID,
     required TResult orElse(),
@@ -6975,6 +7685,8 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     required TResult Function(_GetPaymentMethodID value) getPaymentMethodID,
     required TResult Function(_SetDeliveryMethodID value) setDeliveryMethodID,
     required TResult Function(_GetDeliveryMethodID value) getDeliveryMethodID,
+    required TResult Function(_SetDineInIDMethod value) setDineInIDMethod,
+    required TResult Function(_GetDineInIDMethod value) getDineInIDMethod,
     required TResult Function(_SetVoucherMethodID value) setVoucherMethodID,
     required TResult Function(_GetVoucherMethodID value) getVoucherMethodID,
   }) {
@@ -7010,6 +7722,8 @@ class _$_GetVoucherMethodID implements _GetVoucherMethodID {
     TResult Function(_GetPaymentMethodID value)? getPaymentMethodID,
     TResult Function(_SetDeliveryMethodID value)? setDeliveryMethodID,
     TResult Function(_GetDeliveryMethodID value)? getDeliveryMethodID,
+    TResult Function(_SetDineInIDMethod value)? setDineInIDMethod,
+    TResult Function(_GetDineInIDMethod value)? getDineInIDMethod,
     TResult Function(_SetVoucherMethodID value)? setVoucherMethodID,
     TResult Function(_GetVoucherMethodID value)? getVoucherMethodID,
     required TResult orElse(),
@@ -7216,6 +7930,20 @@ class _$OrderStateTearOff {
     );
   }
 
+  _SetDineInIDMethodSuccess setDineInIDMethodSuccess(
+      OrderCartDineInModel data) {
+    return _SetDineInIDMethodSuccess(
+      data,
+    );
+  }
+
+  _GetDineInIDMethodSuccess getDineInIDMethodSuccess(
+      OrderCartDineInModel data) {
+    return _GetDineInIDMethodSuccess(
+      data,
+    );
+  }
+
   _SetVoucherMethodIDSuccess setVoucherMethodIDSuccess(
       GetListVoucherOutletDataResponse data) {
     return _SetVoucherMethodIDSuccess(
@@ -7286,6 +8014,10 @@ mixin _$OrderState {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -7336,6 +8068,8 @@ mixin _$OrderState {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -7396,6 +8130,10 @@ mixin _$OrderState {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -7446,6 +8184,8 @@ mixin _$OrderState {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -7556,6 +8296,10 @@ class _$_Initial implements _Initial {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -7609,6 +8353,8 @@ class _$_Initial implements _Initial {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -7675,6 +8421,10 @@ class _$_Initial implements _Initial {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -7728,6 +8478,8 @@ class _$_Initial implements _Initial {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -7832,6 +8584,10 @@ class _$_LoadInProgress implements _LoadInProgress {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -7885,6 +8641,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -7951,6 +8709,10 @@ class _$_LoadInProgress implements _LoadInProgress {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -8004,6 +8766,8 @@ class _$_LoadInProgress implements _LoadInProgress {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -8108,6 +8872,10 @@ class _$_LoadSuccess implements _LoadSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -8161,6 +8929,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -8227,6 +8997,10 @@ class _$_LoadSuccess implements _LoadSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -8280,6 +9054,8 @@ class _$_LoadSuccess implements _LoadSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -8418,6 +9194,10 @@ class _$_LoadFailure implements _LoadFailure {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -8471,6 +9251,8 @@ class _$_LoadFailure implements _LoadFailure {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -8537,6 +9319,10 @@ class _$_LoadFailure implements _LoadFailure {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -8590,6 +9376,8 @@ class _$_LoadFailure implements _LoadFailure {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -8729,6 +9517,10 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -8782,6 +9574,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -8848,6 +9642,10 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -8901,6 +9699,8 @@ class _$_GetOutletByLocationSucess implements _GetOutletByLocationSucess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -9042,6 +9842,10 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -9095,6 +9899,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -9161,6 +9967,10 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -9214,6 +10024,8 @@ class _$_GetOutletByCategorySucess implements _GetOutletByCategorySucess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -9355,6 +10167,10 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -9408,6 +10224,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -9474,6 +10292,10 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -9527,6 +10349,8 @@ class _$_GetOutletByMerchantSucess implements _GetOutletByMerchantSucess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -9666,6 +10490,10 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -9719,6 +10547,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -9785,6 +10615,10 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -9838,6 +10672,8 @@ class _$_GetPromoOutletSuccess implements _GetPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -9979,6 +10815,10 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -10032,6 +10872,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -10098,6 +10940,10 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -10151,6 +10997,8 @@ class _$_GetListPromoOutletSuccess implements _GetListPromoOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -10293,6 +11141,10 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -10346,6 +11198,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -10412,6 +11266,10 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -10465,6 +11323,8 @@ class _$_GetListVoucherOutletSuccess implements _GetListVoucherOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -10608,6 +11468,10 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -10661,6 +11525,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -10727,6 +11593,10 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -10780,6 +11650,8 @@ class _$_GetOutletListProductSuccess implements _GetOutletListProductSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -10924,6 +11796,10 @@ class _$_GetOutletProductCategorySuccess
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -10977,6 +11853,8 @@ class _$_GetOutletProductCategorySuccess
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -11043,6 +11921,10 @@ class _$_GetOutletProductCategorySuccess
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -11096,6 +11978,8 @@ class _$_GetOutletProductCategorySuccess
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -11235,6 +12119,10 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -11288,6 +12176,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -11354,6 +12244,10 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -11407,6 +12301,8 @@ class _$_GetHotPromoSuccess implements _GetHotPromoSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -11554,6 +12450,10 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -11607,6 +12507,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -11673,6 +12575,10 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -11726,6 +12632,8 @@ class _$_GetDetailOutletSuccess implements _GetDetailOutletSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -11865,6 +12773,10 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -11918,6 +12830,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -11984,6 +12898,10 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -12037,6 +12955,8 @@ class _$_GetPaymentMethodSuccess implements _GetPaymentMethodSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -12176,6 +13096,10 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -12229,6 +13153,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -12295,6 +13221,10 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -12348,6 +13278,8 @@ class _$_GeliveryInquirySuccess implements _GeliveryInquirySuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -12494,6 +13426,10 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -12547,6 +13483,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -12613,6 +13551,10 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -12666,6 +13608,8 @@ class _$_AddCartSuccess implements _AddCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -12777,6 +13721,10 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -12830,6 +13778,8 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -12896,6 +13846,10 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -12949,6 +13903,8 @@ class _$_UpdateCartSuccess implements _UpdateCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -13089,6 +14045,10 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -13142,6 +14102,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -13208,6 +14170,10 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -13261,6 +14227,8 @@ class _$_RemoveCartSuccess implements _RemoveCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -13409,6 +14377,10 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -13462,6 +14434,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -13528,6 +14502,10 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -13581,6 +14559,8 @@ class _$_CreateCartSessionSuccess implements _CreateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -13728,6 +14708,10 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -13781,6 +14765,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -13847,6 +14833,10 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -13900,6 +14890,8 @@ class _$_GetCartSessionSuccess implements _GetCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -14012,6 +15004,10 @@ class _$_RemoveCartSessionSuccess implements _RemoveCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -14065,6 +15061,8 @@ class _$_RemoveCartSessionSuccess implements _RemoveCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -14131,6 +15129,10 @@ class _$_RemoveCartSessionSuccess implements _RemoveCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -14184,6 +15186,8 @@ class _$_RemoveCartSessionSuccess implements _RemoveCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -14326,6 +15330,10 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -14379,6 +15387,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -14445,6 +15455,10 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -14498,6 +15512,8 @@ class _$_UpdateCartSessionSuccess implements _UpdateCartSessionSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -14645,6 +15661,10 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -14698,6 +15718,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -14764,6 +15786,10 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -14817,6 +15843,8 @@ class _$_CheckoutCartSuccess implements _CheckoutCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -14955,6 +15983,10 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -15008,6 +16040,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -15074,6 +16108,10 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -15127,6 +16165,8 @@ class _$_GetSalesTypeCartSuccess implements _GetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -15265,6 +16305,10 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -15318,6 +16362,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -15384,6 +16430,10 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -15437,6 +16487,8 @@ class _$_SetSalesTypeCartSuccess implements _SetSalesTypeCartSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -15585,6 +16637,10 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -15638,6 +16694,8 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -15704,6 +16762,10 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -15757,6 +16819,8 @@ class _$_SetPaymentMethodIDSuccess implements _SetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -15905,6 +16969,10 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -15958,6 +17026,8 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -16024,6 +17094,10 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -16077,6 +17151,8 @@ class _$_GetPaymentMethodIDSuccess implements _GetPaymentMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -16225,6 +17301,10 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -16278,6 +17358,8 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -16344,6 +17426,10 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -16397,6 +17483,8 @@ class _$_SetDeliveryMethodIDSuccess implements _SetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -16545,6 +17633,10 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -16598,6 +17690,8 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -16664,6 +17758,10 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -16717,6 +17815,8 @@ class _$_GetDeliveryMethodIDSuccess implements _GetDeliveryMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -16738,6 +17838,668 @@ abstract class _GetDeliveryMethodIDSuccess implements OrderState {
   @JsonKey(ignore: true)
   _$GetDeliveryMethodIDSuccessCopyWith<_GetDeliveryMethodIDSuccess>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SetDineInIDMethodSuccessCopyWith<$Res> {
+  factory _$SetDineInIDMethodSuccessCopyWith(_SetDineInIDMethodSuccess value,
+          $Res Function(_SetDineInIDMethodSuccess) then) =
+      __$SetDineInIDMethodSuccessCopyWithImpl<$Res>;
+  $Res call({OrderCartDineInModel data});
+
+  $OrderCartDineInModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$SetDineInIDMethodSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$SetDineInIDMethodSuccessCopyWith<$Res> {
+  __$SetDineInIDMethodSuccessCopyWithImpl(_SetDineInIDMethodSuccess _value,
+      $Res Function(_SetDineInIDMethodSuccess) _then)
+      : super(_value, (v) => _then(v as _SetDineInIDMethodSuccess));
+
+  @override
+  _SetDineInIDMethodSuccess get _value =>
+      super._value as _SetDineInIDMethodSuccess;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_SetDineInIDMethodSuccess(
+      data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as OrderCartDineInModel,
+    ));
+  }
+
+  @override
+  $OrderCartDineInModelCopyWith<$Res> get data {
+    return $OrderCartDineInModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_SetDineInIDMethodSuccess implements _SetDineInIDMethodSuccess {
+  const _$_SetDineInIDMethodSuccess(this.data);
+
+  @override
+  final OrderCartDineInModel data;
+
+  @override
+  String toString() {
+    return 'OrderState.setDineInIDMethodSuccess(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SetDineInIDMethodSuccess &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetDineInIDMethodSuccessCopyWith<_SetDineInIDMethodSuccess> get copyWith =>
+      __$SetDineInIDMethodSuccessCopyWithImpl<_SetDineInIDMethodSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(OrderFailure e) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByMerchantSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
+    required TResult Function(List<PromoOutletDataResponse> response)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> response)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> response)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductCategoryDataResponse> response)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethodDataResponse> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethodDataResponse> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response) addCartSuccess,
+    required TResult Function() updateCart,
+    required TResult Function(CartSessionResponse response) removeCartSuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
+    required TResult Function(PaymentMethodDataResponse data)
+        setPaymentMethodIDSuccess,
+    required TResult Function(PaymentMethodDataResponse data)
+        getPaymentMethodIDSuccess,
+    required TResult Function(DeliveryMethodDataResponse data)
+        setDeliveryMethodIDSuccess,
+    required TResult Function(DeliveryMethodDataResponse data)
+        getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        setVoucherMethodIDSuccess,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        getVoucherMethodIDSuccess,
+  }) {
+    return setDineInIDMethodSuccess(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(OrderFailure e)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByMerchantSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
+    TResult Function(List<PromoOutletDataResponse> response)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> response)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> response)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductCategoryDataResponse> response)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethodDataResponse> response)?
+        deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? addCartSuccess,
+    TResult Function()? updateCart,
+    TResult Function(CartSessionResponse response)? removeCartSuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
+    TResult Function(PaymentMethodDataResponse data)? setPaymentMethodIDSuccess,
+    TResult Function(PaymentMethodDataResponse data)? getPaymentMethodIDSuccess,
+    TResult Function(DeliveryMethodDataResponse data)?
+        setDeliveryMethodIDSuccess,
+    TResult Function(DeliveryMethodDataResponse data)?
+        getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
+    TResult Function(GetListVoucherOutletDataResponse data)?
+        setVoucherMethodIDSuccess,
+    TResult Function(GetListVoucherOutletDataResponse data)?
+        getVoucherMethodIDSuccess,
+    required TResult orElse(),
+  }) {
+    if (setDineInIDMethodSuccess != null) {
+      return setDineInIDMethodSuccess(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetOutletByMerchantSucess value)
+        getOutletByMerchantSuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getDigiDiscountOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_AddCartSuccess value) addCartSuccess,
+    required TResult Function(_UpdateCartSuccess value) updateCart,
+    required TResult Function(_RemoveCartSuccess value) removeCartSuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
+    required TResult Function(_SetPaymentMethodIDSuccess value)
+        setPaymentMethodIDSuccess,
+    required TResult Function(_GetPaymentMethodIDSuccess value)
+        getPaymentMethodIDSuccess,
+    required TResult Function(_SetDeliveryMethodIDSuccess value)
+        setDeliveryMethodIDSuccess,
+    required TResult Function(_GetDeliveryMethodIDSuccess value)
+        getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
+    required TResult Function(_SetVoucherMethodIDSuccess value)
+        setVoucherMethodIDSuccess,
+    required TResult Function(_GetVoucherMethodIDSuccess value)
+        getVoucherMethodIDSuccess,
+  }) {
+    return setDineInIDMethodSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetOutletByMerchantSucess value)?
+        getOutletByMerchantSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_AddCartSuccess value)? addCartSuccess,
+    TResult Function(_UpdateCartSuccess value)? updateCart,
+    TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
+    TResult Function(_SetPaymentMethodIDSuccess value)?
+        setPaymentMethodIDSuccess,
+    TResult Function(_GetPaymentMethodIDSuccess value)?
+        getPaymentMethodIDSuccess,
+    TResult Function(_SetDeliveryMethodIDSuccess value)?
+        setDeliveryMethodIDSuccess,
+    TResult Function(_GetDeliveryMethodIDSuccess value)?
+        getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
+    TResult Function(_SetVoucherMethodIDSuccess value)?
+        setVoucherMethodIDSuccess,
+    TResult Function(_GetVoucherMethodIDSuccess value)?
+        getVoucherMethodIDSuccess,
+    required TResult orElse(),
+  }) {
+    if (setDineInIDMethodSuccess != null) {
+      return setDineInIDMethodSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetDineInIDMethodSuccess implements OrderState {
+  const factory _SetDineInIDMethodSuccess(OrderCartDineInModel data) =
+      _$_SetDineInIDMethodSuccess;
+
+  OrderCartDineInModel get data => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$SetDineInIDMethodSuccessCopyWith<_SetDineInIDMethodSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetDineInIDMethodSuccessCopyWith<$Res> {
+  factory _$GetDineInIDMethodSuccessCopyWith(_GetDineInIDMethodSuccess value,
+          $Res Function(_GetDineInIDMethodSuccess) then) =
+      __$GetDineInIDMethodSuccessCopyWithImpl<$Res>;
+  $Res call({OrderCartDineInModel data});
+
+  $OrderCartDineInModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$GetDineInIDMethodSuccessCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res>
+    implements _$GetDineInIDMethodSuccessCopyWith<$Res> {
+  __$GetDineInIDMethodSuccessCopyWithImpl(_GetDineInIDMethodSuccess _value,
+      $Res Function(_GetDineInIDMethodSuccess) _then)
+      : super(_value, (v) => _then(v as _GetDineInIDMethodSuccess));
+
+  @override
+  _GetDineInIDMethodSuccess get _value =>
+      super._value as _GetDineInIDMethodSuccess;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_GetDineInIDMethodSuccess(
+      data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as OrderCartDineInModel,
+    ));
+  }
+
+  @override
+  $OrderCartDineInModelCopyWith<$Res> get data {
+    return $OrderCartDineInModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_GetDineInIDMethodSuccess implements _GetDineInIDMethodSuccess {
+  const _$_GetDineInIDMethodSuccess(this.data);
+
+  @override
+  final OrderCartDineInModel data;
+
+  @override
+  String toString() {
+    return 'OrderState.getDineInIDMethodSuccess(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetDineInIDMethodSuccess &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetDineInIDMethodSuccessCopyWith<_GetDineInIDMethodSuccess> get copyWith =>
+      __$GetDineInIDMethodSuccessCopyWithImpl<_GetDineInIDMethodSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function() loadSuccess,
+    required TResult Function(OrderFailure e) loadFailure,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByLocationSuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByCategorySuccess,
+    required TResult Function(List<OutletCategoryDataResponse> response)
+        getOutletByMerchantSuccess,
+    required TResult Function(List<DigiDiscountOutletDataResponse> response)
+        getDigiDiscountOutletSuccess,
+    required TResult Function(List<PromoOutletDataResponse> response)
+        getListPromoOutletSuccess,
+    required TResult Function(List<GetListVoucherOutletDataResponse> response)
+        getListVoucherOutletSuccess,
+    required TResult Function(List<OutletListProductDataResponse> response)
+        getOutletListProductSuccess,
+    required TResult Function(List<OutletProductCategoryDataResponse> response)
+        getOutletProductCategorySuccess,
+    required TResult Function(List<HotPromo> response) getHotPromoSuccess,
+    required TResult Function(DetailOutletDataResponse response)
+        getDetailOutletSuccess,
+    required TResult Function(List<PaymentMethodDataResponse> response)
+        getPaymentMethodSuccess,
+    required TResult Function(List<DeliveryMethodDataResponse> response)
+        deliveryInquirySuccess,
+    required TResult Function(CartSessionResponse response) addCartSuccess,
+    required TResult Function() updateCart,
+    required TResult Function(CartSessionResponse response) removeCartSuccess,
+    required TResult Function(CartSessionResponse response)
+        createCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        getCartSessionSuccess,
+    required TResult Function() removeCartSessionSuccess,
+    required TResult Function(CartSessionResponse response)
+        updateCartSessionSuccess,
+    required TResult Function(CheckoutResponse response) checkoutCartSuccess,
+    required TResult Function(String value) getSalesTypeCartSuccess,
+    required TResult Function(String value) setSalesTypeCartSuccess,
+    required TResult Function(PaymentMethodDataResponse data)
+        setPaymentMethodIDSuccess,
+    required TResult Function(PaymentMethodDataResponse data)
+        getPaymentMethodIDSuccess,
+    required TResult Function(DeliveryMethodDataResponse data)
+        setDeliveryMethodIDSuccess,
+    required TResult Function(DeliveryMethodDataResponse data)
+        getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        setVoucherMethodIDSuccess,
+    required TResult Function(GetListVoucherOutletDataResponse data)
+        getVoucherMethodIDSuccess,
+  }) {
+    return getDineInIDMethodSuccess(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function(OrderFailure e)? loadFailure,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByLocationSuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByCategorySuccess,
+    TResult Function(List<OutletCategoryDataResponse> response)?
+        getOutletByMerchantSuccess,
+    TResult Function(List<DigiDiscountOutletDataResponse> response)?
+        getDigiDiscountOutletSuccess,
+    TResult Function(List<PromoOutletDataResponse> response)?
+        getListPromoOutletSuccess,
+    TResult Function(List<GetListVoucherOutletDataResponse> response)?
+        getListVoucherOutletSuccess,
+    TResult Function(List<OutletListProductDataResponse> response)?
+        getOutletListProductSuccess,
+    TResult Function(List<OutletProductCategoryDataResponse> response)?
+        getOutletProductCategorySuccess,
+    TResult Function(List<HotPromo> response)? getHotPromoSuccess,
+    TResult Function(DetailOutletDataResponse response)? getDetailOutletSuccess,
+    TResult Function(List<PaymentMethodDataResponse> response)?
+        getPaymentMethodSuccess,
+    TResult Function(List<DeliveryMethodDataResponse> response)?
+        deliveryInquirySuccess,
+    TResult Function(CartSessionResponse response)? addCartSuccess,
+    TResult Function()? updateCart,
+    TResult Function(CartSessionResponse response)? removeCartSuccess,
+    TResult Function(CartSessionResponse response)? createCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? getCartSessionSuccess,
+    TResult Function()? removeCartSessionSuccess,
+    TResult Function(CartSessionResponse response)? updateCartSessionSuccess,
+    TResult Function(CheckoutResponse response)? checkoutCartSuccess,
+    TResult Function(String value)? getSalesTypeCartSuccess,
+    TResult Function(String value)? setSalesTypeCartSuccess,
+    TResult Function(PaymentMethodDataResponse data)? setPaymentMethodIDSuccess,
+    TResult Function(PaymentMethodDataResponse data)? getPaymentMethodIDSuccess,
+    TResult Function(DeliveryMethodDataResponse data)?
+        setDeliveryMethodIDSuccess,
+    TResult Function(DeliveryMethodDataResponse data)?
+        getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
+    TResult Function(GetListVoucherOutletDataResponse data)?
+        setVoucherMethodIDSuccess,
+    TResult Function(GetListVoucherOutletDataResponse data)?
+        getVoucherMethodIDSuccess,
+    required TResult orElse(),
+  }) {
+    if (getDineInIDMethodSuccess != null) {
+      return getDineInIDMethodSuccess(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_GetOutletByLocationSucess value)
+        getOutletByLocationSuccess,
+    required TResult Function(_GetOutletByCategorySucess value)
+        getOutletByCategorySuccess,
+    required TResult Function(_GetOutletByMerchantSucess value)
+        getOutletByMerchantSuccess,
+    required TResult Function(_GetPromoOutletSuccess value)
+        getDigiDiscountOutletSuccess,
+    required TResult Function(_GetListPromoOutletSuccess value)
+        getListPromoOutletSuccess,
+    required TResult Function(_GetListVoucherOutletSuccess value)
+        getListVoucherOutletSuccess,
+    required TResult Function(_GetOutletListProductSuccess value)
+        getOutletListProductSuccess,
+    required TResult Function(_GetOutletProductCategorySuccess value)
+        getOutletProductCategorySuccess,
+    required TResult Function(_GetHotPromoSuccess value) getHotPromoSuccess,
+    required TResult Function(_GetDetailOutletSuccess value)
+        getDetailOutletSuccess,
+    required TResult Function(_GetPaymentMethodSuccess value)
+        getPaymentMethodSuccess,
+    required TResult Function(_GeliveryInquirySuccess value)
+        deliveryInquirySuccess,
+    required TResult Function(_AddCartSuccess value) addCartSuccess,
+    required TResult Function(_UpdateCartSuccess value) updateCart,
+    required TResult Function(_RemoveCartSuccess value) removeCartSuccess,
+    required TResult Function(_CreateCartSessionSuccess value)
+        createCartSessionSuccess,
+    required TResult Function(_GetCartSessionSuccess value)
+        getCartSessionSuccess,
+    required TResult Function(_RemoveCartSessionSuccess value)
+        removeCartSessionSuccess,
+    required TResult Function(_UpdateCartSessionSuccess value)
+        updateCartSessionSuccess,
+    required TResult Function(_CheckoutCartSuccess value) checkoutCartSuccess,
+    required TResult Function(_GetSalesTypeCartSuccess value)
+        getSalesTypeCartSuccess,
+    required TResult Function(_SetSalesTypeCartSuccess value)
+        setSalesTypeCartSuccess,
+    required TResult Function(_SetPaymentMethodIDSuccess value)
+        setPaymentMethodIDSuccess,
+    required TResult Function(_GetPaymentMethodIDSuccess value)
+        getPaymentMethodIDSuccess,
+    required TResult Function(_SetDeliveryMethodIDSuccess value)
+        setDeliveryMethodIDSuccess,
+    required TResult Function(_GetDeliveryMethodIDSuccess value)
+        getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
+    required TResult Function(_SetVoucherMethodIDSuccess value)
+        setVoucherMethodIDSuccess,
+    required TResult Function(_GetVoucherMethodIDSuccess value)
+        getVoucherMethodIDSuccess,
+  }) {
+    return getDineInIDMethodSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_GetOutletByLocationSucess value)?
+        getOutletByLocationSuccess,
+    TResult Function(_GetOutletByCategorySucess value)?
+        getOutletByCategorySuccess,
+    TResult Function(_GetOutletByMerchantSucess value)?
+        getOutletByMerchantSuccess,
+    TResult Function(_GetPromoOutletSuccess value)?
+        getDigiDiscountOutletSuccess,
+    TResult Function(_GetListPromoOutletSuccess value)?
+        getListPromoOutletSuccess,
+    TResult Function(_GetListVoucherOutletSuccess value)?
+        getListVoucherOutletSuccess,
+    TResult Function(_GetOutletListProductSuccess value)?
+        getOutletListProductSuccess,
+    TResult Function(_GetOutletProductCategorySuccess value)?
+        getOutletProductCategorySuccess,
+    TResult Function(_GetHotPromoSuccess value)? getHotPromoSuccess,
+    TResult Function(_GetDetailOutletSuccess value)? getDetailOutletSuccess,
+    TResult Function(_GetPaymentMethodSuccess value)? getPaymentMethodSuccess,
+    TResult Function(_GeliveryInquirySuccess value)? deliveryInquirySuccess,
+    TResult Function(_AddCartSuccess value)? addCartSuccess,
+    TResult Function(_UpdateCartSuccess value)? updateCart,
+    TResult Function(_RemoveCartSuccess value)? removeCartSuccess,
+    TResult Function(_CreateCartSessionSuccess value)? createCartSessionSuccess,
+    TResult Function(_GetCartSessionSuccess value)? getCartSessionSuccess,
+    TResult Function(_RemoveCartSessionSuccess value)? removeCartSessionSuccess,
+    TResult Function(_UpdateCartSessionSuccess value)? updateCartSessionSuccess,
+    TResult Function(_CheckoutCartSuccess value)? checkoutCartSuccess,
+    TResult Function(_GetSalesTypeCartSuccess value)? getSalesTypeCartSuccess,
+    TResult Function(_SetSalesTypeCartSuccess value)? setSalesTypeCartSuccess,
+    TResult Function(_SetPaymentMethodIDSuccess value)?
+        setPaymentMethodIDSuccess,
+    TResult Function(_GetPaymentMethodIDSuccess value)?
+        getPaymentMethodIDSuccess,
+    TResult Function(_SetDeliveryMethodIDSuccess value)?
+        setDeliveryMethodIDSuccess,
+    TResult Function(_GetDeliveryMethodIDSuccess value)?
+        getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
+    TResult Function(_SetVoucherMethodIDSuccess value)?
+        setVoucherMethodIDSuccess,
+    TResult Function(_GetVoucherMethodIDSuccess value)?
+        getVoucherMethodIDSuccess,
+    required TResult orElse(),
+  }) {
+    if (getDineInIDMethodSuccess != null) {
+      return getDineInIDMethodSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDineInIDMethodSuccess implements OrderState {
+  const factory _GetDineInIDMethodSuccess(OrderCartDineInModel data) =
+      _$_GetDineInIDMethodSuccess;
+
+  OrderCartDineInModel get data => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetDineInIDMethodSuccessCopyWith<_GetDineInIDMethodSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -16866,6 +18628,10 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -16919,6 +18685,8 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -16985,6 +18753,10 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -17038,6 +18810,8 @@ class _$_SetVoucherMethodIDSuccess implements _SetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?
@@ -17188,6 +18962,10 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(DeliveryMethodDataResponse data)
         getDeliveryMethodIDSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        setDineInIDMethodSuccess,
+    required TResult Function(OrderCartDineInModel data)
+        getDineInIDMethodSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
         setVoucherMethodIDSuccess,
     required TResult Function(GetListVoucherOutletDataResponse data)
@@ -17241,6 +19019,8 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(DeliveryMethodDataResponse data)?
         getDeliveryMethodIDSuccess,
+    TResult Function(OrderCartDineInModel data)? setDineInIDMethodSuccess,
+    TResult Function(OrderCartDineInModel data)? getDineInIDMethodSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
         setVoucherMethodIDSuccess,
     TResult Function(GetListVoucherOutletDataResponse data)?
@@ -17307,6 +19087,10 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     required TResult Function(_GetDeliveryMethodIDSuccess value)
         getDeliveryMethodIDSuccess,
+    required TResult Function(_SetDineInIDMethodSuccess value)
+        setDineInIDMethodSuccess,
+    required TResult Function(_GetDineInIDMethodSuccess value)
+        getDineInIDMethodSuccess,
     required TResult Function(_SetVoucherMethodIDSuccess value)
         setVoucherMethodIDSuccess,
     required TResult Function(_GetVoucherMethodIDSuccess value)
@@ -17360,6 +19144,8 @@ class _$_GetVoucherMethodIDSuccess implements _GetVoucherMethodIDSuccess {
         setDeliveryMethodIDSuccess,
     TResult Function(_GetDeliveryMethodIDSuccess value)?
         getDeliveryMethodIDSuccess,
+    TResult Function(_SetDineInIDMethodSuccess value)? setDineInIDMethodSuccess,
+    TResult Function(_GetDineInIDMethodSuccess value)? getDineInIDMethodSuccess,
     TResult Function(_SetVoucherMethodIDSuccess value)?
         setVoucherMethodIDSuccess,
     TResult Function(_GetVoucherMethodIDSuccess value)?

@@ -1,7 +1,10 @@
+import 'package:digiresto/application/address/list/address_list_bloc.dart';
+import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class HomeContentViewController extends GetxController {
   RxBool loadingHistory = false.obs;
@@ -37,4 +40,23 @@ class HomeContentViewController extends GetxController {
   setCurrentPosition(Position value) => currentPosition.value = value;
   setStaticBanner(List<StaticBanner> value) => listStaticBanner.value = value;
   setCurrentLocation(UserAddress value) => currentLocation.value = value;
+
+  void getStaticBanner() {
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getStaticBanner());
+  }
+
+  void getActiveAddress() {
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
+  }
+
+  void getRefresh() {
+    getStaticBanner();
+    getActiveAddress();
+  }
+
+  void setLocalActiveAddress(UserAddress userAddress) {
+    Get.context!
+        .read<AddressListBloc>()
+        .add(AddressListEvent.setActiveAddress(userAddress));
+  }
 }

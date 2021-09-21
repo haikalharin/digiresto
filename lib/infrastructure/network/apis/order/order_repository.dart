@@ -23,6 +23,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:injectable/injectable.dart';
 
 import 'order_api.dart';
@@ -55,6 +56,15 @@ class OrderRepository {
 
   Future<DeliveryMethodDataResponse?> getDeliveryMethodID() async {
     return _orderLocal.getDeliveryMethod();
+  }
+
+  Future<OrderCartDineInModel?> setDineInIDMethod(
+      OrderCartDineInModel data) async {
+    return _orderLocal.setDineInIDMethod(data);
+  }
+
+  Future<OrderCartDineInModel?> getDineInIDMethod() async {
+    return _orderLocal.getDineInIDMethod();
   }
 
   Future<GetListVoucherOutletDataResponse?> setVoucherMethodID(
