@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Digiresto</string>
+	<string>$(APP_DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -40,6 +40,10 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Needed to access apple music</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Turning on bluetooth device allows us to connect external device</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Needed to access bluetooth device</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Needed to access calender</string>
 	<key>NSContactsUsageDescription</key>
