@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'get_detail_outlet_param.dart';
 
@@ -156,7 +157,7 @@ class _$_GetDetailOutletParam implements _GetDetailOutletParam {
       {required this.queryString, required this.body});
 
   factory _$_GetDetailOutletParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetDetailOutletParamFromJson(json);
+      _$$_GetDetailOutletParamFromJson(json);
 
   @override
   final GetDetailOutletQueryParam queryString;
@@ -193,7 +194,7 @@ class _$_GetDetailOutletParam implements _GetDetailOutletParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetDetailOutletParamToJson(this);
+    return _$$_GetDetailOutletParamToJson(this);
   }
 }
 
@@ -285,7 +286,7 @@ class _$_GetDetailOutletBodyParam implements _GetDetailOutletBodyParam {
   const _$_GetDetailOutletBodyParam();
 
   factory _$_GetDetailOutletBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetDetailOutletBodyParamFromJson(json);
+      _$$_GetDetailOutletBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -302,7 +303,7 @@ class _$_GetDetailOutletBodyParam implements _GetDetailOutletBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetDetailOutletBodyParamToJson(this);
+    return _$$_GetDetailOutletBodyParamToJson(this);
   }
 }
 
@@ -417,7 +418,7 @@ class _$_GetDetailOutletQueryParam implements _GetDetailOutletQueryParam {
   const _$_GetDetailOutletQueryParam({required this.outletId});
 
   factory _$_GetDetailOutletQueryParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetDetailOutletQueryParamFromJson(json);
+      _$$_GetDetailOutletQueryParamFromJson(json);
 
   @override
   final String outletId;
@@ -449,7 +450,7 @@ class _$_GetDetailOutletQueryParam implements _GetDetailOutletQueryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetDetailOutletQueryParamToJson(this);
+    return _$$_GetDetailOutletQueryParamToJson(this);
   }
 }
 

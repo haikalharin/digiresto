@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'get_list_voucher_outlet_param.dart';
 
@@ -160,7 +161,7 @@ class _$_GetListVoucherOutletParam implements _GetListVoucherOutletParam {
       {required this.queryString, required this.body});
 
   factory _$_GetListVoucherOutletParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetListVoucherOutletParamFromJson(json);
+      _$$_GetListVoucherOutletParamFromJson(json);
 
   @override
   final GetListVoucherOutletQueryParam queryString;
@@ -198,7 +199,7 @@ class _$_GetListVoucherOutletParam implements _GetListVoucherOutletParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetListVoucherOutletParamToJson(this);
+    return _$$_GetListVoucherOutletParamToJson(this);
   }
 }
 
@@ -297,7 +298,7 @@ class _$_GetListVoucherOutletBodyParam
 
   factory _$_GetListVoucherOutletBodyParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_GetListVoucherOutletBodyParamFromJson(json);
+      _$$_GetListVoucherOutletBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -314,7 +315,7 @@ class _$_GetListVoucherOutletBodyParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetListVoucherOutletBodyParamToJson(this);
+    return _$$_GetListVoucherOutletBodyParamToJson(this);
   }
 }
 
@@ -451,7 +452,7 @@ class _$_GetListVoucherOutletQueryParam
 
   factory _$_GetListVoucherOutletQueryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_GetListVoucherOutletQueryParamFromJson(json);
+      _$$_GetListVoucherOutletQueryParamFromJson(json);
 
   @override
   final String outletId;
@@ -489,7 +490,7 @@ class _$_GetListVoucherOutletQueryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetListVoucherOutletQueryParamToJson(this);
+    return _$$_GetListVoucherOutletQueryParamToJson(this);
   }
 }
 

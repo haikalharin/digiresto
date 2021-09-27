@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'order_history.dart';
 
@@ -240,7 +241,7 @@ class _$_OrderHistory implements _OrderHistory {
       required this.discountAmount});
 
   factory _$_OrderHistory.fromJson(Map<String, dynamic> json) =>
-      _$_$_OrderHistoryFromJson(json);
+      _$$_OrderHistoryFromJson(json);
 
   @override
   final DateTime deviceTimestamp;
@@ -311,7 +312,7 @@ class _$_OrderHistory implements _OrderHistory {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OrderHistoryToJson(this);
+    return _$$_OrderHistoryToJson(this);
   }
 }
 
@@ -470,7 +471,7 @@ class _$_Outlet implements _Outlet {
   const _$_Outlet({required this.detail, required this.poCutoff});
 
   factory _$_Outlet.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletFromJson(json);
+      _$$_OutletFromJson(json);
 
   @override
   final Detail detail;
@@ -506,7 +507,7 @@ class _$_Outlet implements _Outlet {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletToJson(this);
+    return _$$_OutletToJson(this);
   }
 }
 
@@ -620,7 +621,7 @@ class _$_Detail implements _Detail {
   const _$_Detail({required this.name});
 
   factory _$_Detail.fromJson(Map<String, dynamic> json) =>
-      _$_$_DetailFromJson(json);
+      _$$_DetailFromJson(json);
 
   @override
   final String name;
@@ -649,7 +650,7 @@ class _$_Detail implements _Detail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DetailToJson(this);
+    return _$$_DetailToJson(this);
   }
 }
 

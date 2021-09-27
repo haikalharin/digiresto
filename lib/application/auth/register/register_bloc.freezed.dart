@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'register_bloc.dart';
 
@@ -88,6 +89,20 @@ mixin _$RegisterEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -112,6 +127,18 @@ mixin _$RegisterEvent {
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_ToggleAgree value) toggleAgree,
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -199,6 +226,23 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -231,6 +275,21 @@ class _$_Started implements _Started {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return started?.call(this);
   }
 
   @override
@@ -337,6 +396,23 @@ class _$_NameChanged implements _NameChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return nameChanged?.call(nameStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -369,6 +445,21 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return nameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return nameChanged?.call(this);
   }
 
   @override
@@ -482,6 +573,23 @@ class _$_EmailChanged implements _EmailChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return emailChanged?.call(emailStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -514,6 +622,21 @@ class _$_EmailChanged implements _EmailChanged {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return emailChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return emailChanged?.call(this);
   }
 
   @override
@@ -625,6 +748,23 @@ class _$_PinChanged implements _PinChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return pinChanged?.call(pinStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -657,6 +797,21 @@ class _$_PinChanged implements _PinChanged {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return pinChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return pinChanged?.call(this);
   }
 
   @override
@@ -770,6 +925,23 @@ class _$_RetypePinChanged implements _RetypePinChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return retypePinChanged?.call(retypePinStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -802,6 +974,21 @@ class _$_RetypePinChanged implements _RetypePinChanged {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return retypePinChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return retypePinChanged?.call(this);
   }
 
   @override
@@ -954,6 +1141,24 @@ class _$_OnNext implements _OnNext {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return onNext?.call(
+        phoneNumber, pageController, onPinError, onRetypePinError);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -986,6 +1191,21 @@ class _$_OnNext implements _OnNext {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return onNext(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return onNext?.call(this);
   }
 
   @override
@@ -1078,6 +1298,23 @@ class _$_ToggleAgree implements _ToggleAgree {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return toggleAgree?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -1110,6 +1347,21 @@ class _$_ToggleAgree implements _ToggleAgree {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return toggleAgree(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return toggleAgree?.call(this);
   }
 
   @override
@@ -1219,6 +1471,23 @@ class _$_ButtonSubmitted implements _ButtonSubmitted {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function(String retypePinStr)? retypePinChanged,
+    TResult Function(String phoneNumber, PageController pageController,
+            Function onPinError, Function onRetypePinError)?
+        onNext,
+    TResult Function()? toggleAgree,
+    TResult Function(String phoneNumberStr)? buttonSubmitted,
+  }) {
+    return buttonSubmitted?.call(phoneNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String nameStr)? nameChanged,
@@ -1251,6 +1520,21 @@ class _$_ButtonSubmitted implements _ButtonSubmitted {
     required TResult Function(_ButtonSubmitted value) buttonSubmitted,
   }) {
     return buttonSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_RetypePinChanged value)? retypePinChanged,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_ToggleAgree value)? toggleAgree,
+    TResult Function(_ButtonSubmitted value)? buttonSubmitted,
+  }) {
+    return buttonSubmitted?.call(this);
   }
 
   @override

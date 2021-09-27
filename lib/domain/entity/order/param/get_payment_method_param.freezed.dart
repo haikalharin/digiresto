@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'get_payment_method_param.dart';
 
@@ -157,7 +158,7 @@ class _$_GetPaymentMethodParam implements _GetPaymentMethodParam {
       {required this.queryString, required this.body});
 
   factory _$_GetPaymentMethodParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetPaymentMethodParamFromJson(json);
+      _$$_GetPaymentMethodParamFromJson(json);
 
   @override
   final GetPaymentMethodQueryParam queryString;
@@ -194,7 +195,7 @@ class _$_GetPaymentMethodParam implements _GetPaymentMethodParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetPaymentMethodParamToJson(this);
+    return _$$_GetPaymentMethodParamToJson(this);
   }
 }
 
@@ -286,7 +287,7 @@ class _$_GetPaymentMethodBodyParam implements _GetPaymentMethodBodyParam {
   const _$_GetPaymentMethodBodyParam();
 
   factory _$_GetPaymentMethodBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetPaymentMethodBodyParamFromJson(json);
+      _$$_GetPaymentMethodBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -303,7 +304,7 @@ class _$_GetPaymentMethodBodyParam implements _GetPaymentMethodBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetPaymentMethodBodyParamToJson(this);
+    return _$$_GetPaymentMethodBodyParamToJson(this);
   }
 }
 
@@ -433,7 +434,7 @@ class _$_GetPaymentMethodQueryParam implements _GetPaymentMethodQueryParam {
       {required this.outletName, required this.salesType});
 
   factory _$_GetPaymentMethodQueryParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetPaymentMethodQueryParamFromJson(json);
+      _$$_GetPaymentMethodQueryParamFromJson(json);
 
   @override
   final String outletName;
@@ -471,7 +472,7 @@ class _$_GetPaymentMethodQueryParam implements _GetPaymentMethodQueryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetPaymentMethodQueryParamToJson(this);
+    return _$$_GetPaymentMethodQueryParamToJson(this);
   }
 }
 

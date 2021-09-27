@@ -6,19 +6,19 @@ part of 'digi_discount_outlet_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DigiDiscountOutletResponse _$_$_DigiDiscountOutletResponseFromJson(
-    Map<String, dynamic> json) {
-  return _$_DigiDiscountOutletResponse(
-    response: StatusResponse.fromJson(json['response'] as Map<String, dynamic>),
-    data: (json['data'] as List<dynamic>)
-        .map((e) =>
-            DigiDiscountOutletDataResponse.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    meta: MetaResponse.fromJson(json['meta'] as Map<String, dynamic>),
-  );
-}
+_$_DigiDiscountOutletResponse _$$_DigiDiscountOutletResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_DigiDiscountOutletResponse(
+      response:
+          StatusResponse.fromJson(json['response'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>)
+          .map((e) => DigiDiscountOutletDataResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      meta: MetaResponse.fromJson(json['meta'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$_DigiDiscountOutletResponseToJson(
+Map<String, dynamic> _$$_DigiDiscountOutletResponseToJson(
         _$_DigiDiscountOutletResponse instance) =>
     <String, dynamic>{
       'response': instance.response,
@@ -26,41 +26,40 @@ Map<String, dynamic> _$_$_DigiDiscountOutletResponseToJson(
       'meta': instance.meta,
     };
 
-_$_DigiDiscountOutletDataResponse _$_$_DigiDiscountOutletDataResponseFromJson(
-    Map<String, dynamic> json) {
-  return _$_DigiDiscountOutletDataResponse(
-    name: json['name'] as String,
-    outletId: json['outletId'] as String,
-    isLive: json['isLive'] as bool,
-    detail: DigiDiscountOutletDataDetailResponse.fromJson(
-        json['detail'] as Map<String, dynamic>),
-    roundingDigit: json['roundingDigit'] as int?,
-    roundingType: json['roundingType'] as String?,
-    orderMethod: DigiDiscountOutletDataOrderMethodResponse.fromJson(
-        json['orderMethod'] as Map<String, dynamic>),
-    isNonSku: json['isNonSku'] as bool,
-    merchantId: json['merchantId'] as String,
-    distance: DigiDiscountOutletDataDistanceResponse.fromJson(
-        json['distance'] as Map<String, dynamic>),
-    isOwnerLoggedIn: json['isOwnerLoggedIn'] as bool,
-    merchantName: json['merchantName'] as String,
-    category: json['category'] as String,
-    callbackUrl: json['callbackUrl'] as String,
-    merchantTags: (json['merchantTags'] as List<dynamic>)
-        .map((e) => e as String)
-        .toList(),
-    outletName: json['outletName'] as String,
-    merchantCategory: json['merchantCategory'] as String,
-    merchantKeywords: (json['merchantKeywords'] as List<dynamic>)
-        .map((e) => e as String)
-        .toList(),
-    merchantLogo: json['merchantLogo'] as String?,
-    searchWeight: json['searchWeight'] as int,
-    searchWeightDetail: json['searchWeightDetail'] as String,
-  );
-}
+_$_DigiDiscountOutletDataResponse _$$_DigiDiscountOutletDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_DigiDiscountOutletDataResponse(
+      name: json['name'] as String,
+      outletId: json['outletId'] as String,
+      isLive: json['isLive'] as bool,
+      detail: DigiDiscountOutletDataDetailResponse.fromJson(
+          json['detail'] as Map<String, dynamic>),
+      roundingDigit: json['roundingDigit'] as int?,
+      roundingType: json['roundingType'] as String?,
+      orderMethod: DigiDiscountOutletDataOrderMethodResponse.fromJson(
+          json['orderMethod'] as Map<String, dynamic>),
+      isNonSku: json['isNonSku'] as bool,
+      merchantId: json['merchantId'] as String,
+      distance: DigiDiscountOutletDataDistanceResponse.fromJson(
+          json['distance'] as Map<String, dynamic>),
+      isOwnerLoggedIn: json['isOwnerLoggedIn'] as bool,
+      merchantName: json['merchantName'] as String,
+      category: json['category'] as String,
+      callbackUrl: json['callbackUrl'] as String,
+      merchantTags: (json['merchantTags'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      outletName: json['outletName'] as String,
+      merchantCategory: json['merchantCategory'] as String,
+      merchantKeywords: (json['merchantKeywords'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      merchantLogo: json['merchantLogo'] as String?,
+      searchWeight: json['searchWeight'] as int,
+      searchWeightDetail: json['searchWeightDetail'] as String,
+    );
 
-Map<String, dynamic> _$_$_DigiDiscountOutletDataResponseToJson(
+Map<String, dynamic> _$$_DigiDiscountOutletDataResponseToJson(
         _$_DigiDiscountOutletDataResponse instance) =>
     <String, dynamic>{
       'name': instance.name,
@@ -87,29 +86,29 @@ Map<String, dynamic> _$_$_DigiDiscountOutletDataResponseToJson(
     };
 
 _$_DigiDiscountOutletDataDetailResponse
-    _$_$_DigiDiscountOutletDataDetailResponseFromJson(
-        Map<String, dynamic> json) {
-  return _$_DigiDiscountOutletDataDetailResponse(
-    name: json['name'] as String,
-    address: json['address'] as String,
-    taxesAndServices: json['taxesAndServices'] as List<dynamic>,
-    location:
-        (json['location'] as List<dynamic>).map((e) => e as String).toList(),
-    phone: json['phone'] as String,
-    kurirPrice: json['kurirPrice'] as String,
-    deliveryType: json['deliveryType'] as String,
-    maxRadius: json['maxRadius'] as String,
-    driverPhone: json['driverPhone'] as String,
-    area: json['area'] as List<dynamic>,
-    deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
-        .map((e) => e as String)
-        .toList(),
-    deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
-    city: json['city'] as String,
-  );
-}
+    _$$_DigiDiscountOutletDataDetailResponseFromJson(
+            Map<String, dynamic> json) =>
+        _$_DigiDiscountOutletDataDetailResponse(
+          name: json['name'] as String,
+          address: json['address'] as String,
+          taxesAndServices: json['taxesAndServices'] as List<dynamic>,
+          location: (json['location'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          phone: json['phone'] as String,
+          kurirPrice: json['kurirPrice'] as String,
+          deliveryType: json['deliveryType'] as String,
+          maxRadius: json['maxRadius'] as String,
+          driverPhone: json['driverPhone'] as String,
+          area: json['area'] as List<dynamic>,
+          deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
+          city: json['city'] as String,
+        );
 
-Map<String, dynamic> _$_$_DigiDiscountOutletDataDetailResponseToJson(
+Map<String, dynamic> _$$_DigiDiscountOutletDataDetailResponseToJson(
         _$_DigiDiscountOutletDataDetailResponse instance) =>
     <String, dynamic>{
       'name': instance.name,
@@ -128,15 +127,14 @@ Map<String, dynamic> _$_$_DigiDiscountOutletDataDetailResponseToJson(
     };
 
 _$_DigiDiscountOutletDataDistanceResponse
-    _$_$_DigiDiscountOutletDataDistanceResponseFromJson(
-        Map<String, dynamic> json) {
-  return _$_DigiDiscountOutletDataDistanceResponse(
-    text: json['text'] as String,
-    value: json['value'],
-  );
-}
+    _$$_DigiDiscountOutletDataDistanceResponseFromJson(
+            Map<String, dynamic> json) =>
+        _$_DigiDiscountOutletDataDistanceResponse(
+          text: json['text'] as String,
+          value: json['value'],
+        );
 
-Map<String, dynamic> _$_$_DigiDiscountOutletDataDistanceResponseToJson(
+Map<String, dynamic> _$$_DigiDiscountOutletDataDistanceResponseToJson(
         _$_DigiDiscountOutletDataDistanceResponse instance) =>
     <String, dynamic>{
       'text': instance.text,
@@ -144,16 +142,16 @@ Map<String, dynamic> _$_$_DigiDiscountOutletDataDistanceResponseToJson(
     };
 
 _$_DigiDiscountOutletDataOrderMethodResponse
-    _$_$_DigiDiscountOutletDataOrderMethodResponseFromJson(
-        Map<String, dynamic> json) {
-  return _$_DigiDiscountOutletDataOrderMethodResponse(
-    forceSelect: json['forceSelect'] as bool,
-    defaultList:
-        (json['defaultList'] as List<dynamic>).map((e) => e as String).toList(),
-  );
-}
+    _$$_DigiDiscountOutletDataOrderMethodResponseFromJson(
+            Map<String, dynamic> json) =>
+        _$_DigiDiscountOutletDataOrderMethodResponse(
+          forceSelect: json['forceSelect'] as bool,
+          defaultList: (json['defaultList'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+        );
 
-Map<String, dynamic> _$_$_DigiDiscountOutletDataOrderMethodResponseToJson(
+Map<String, dynamic> _$$_DigiDiscountOutletDataOrderMethodResponseToJson(
         _$_DigiDiscountOutletDataOrderMethodResponse instance) =>
     <String, dynamic>{
       'forceSelect': instance.forceSelect,

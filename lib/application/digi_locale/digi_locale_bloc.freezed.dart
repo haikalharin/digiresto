@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'digi_locale_bloc.dart';
 
@@ -39,6 +40,12 @@ mixin _$DigiLocaleEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Locale locale)? updateLocale,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Locale locale)? updateLocale,
@@ -49,6 +56,12 @@ mixin _$DigiLocaleEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_UpdateLocale value) updateLocale,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UpdateLocale value)? updateLocale,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,6 +135,15 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Locale locale)? updateLocale,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Locale locale)? updateLocale,
@@ -140,6 +162,15 @@ class _$_Started implements _Started {
     required TResult Function(_UpdateLocale value) updateLocale,
   }) {
     return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UpdateLocale value)? updateLocale,
+  }) {
+    return started?.call(this);
   }
 
   @override
@@ -233,6 +264,15 @@ class _$_UpdateLocale implements _UpdateLocale {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Locale locale)? updateLocale,
+  }) {
+    return updateLocale?.call(locale);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Locale locale)? updateLocale,
@@ -251,6 +291,15 @@ class _$_UpdateLocale implements _UpdateLocale {
     required TResult Function(_UpdateLocale value) updateLocale,
   }) {
     return updateLocale(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UpdateLocale value)? updateLocale,
+  }) {
+    return updateLocale?.call(this);
   }
 
   @override
@@ -303,6 +352,12 @@ mixin _$DigiLocaleState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Locale locale)? loadLocale,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Locale locale)? loadLocale,
@@ -313,6 +368,12 @@ mixin _$DigiLocaleState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadLocale value) loadLocale,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadLocale value)? loadLocale,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -386,6 +447,15 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Locale locale)? loadLocale,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Locale locale)? loadLocale,
@@ -404,6 +474,15 @@ class _$_Initial implements _Initial {
     required TResult Function(_LoadLocale value) loadLocale,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadLocale value)? loadLocale,
+  }) {
+    return initial?.call(this);
   }
 
   @override
@@ -497,6 +576,15 @@ class _$_LoadLocale implements _LoadLocale {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Locale locale)? loadLocale,
+  }) {
+    return loadLocale?.call(locale);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Locale locale)? loadLocale,
@@ -515,6 +603,15 @@ class _$_LoadLocale implements _LoadLocale {
     required TResult Function(_LoadLocale value) loadLocale,
   }) {
     return loadLocale(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadLocale value)? loadLocale,
+  }) {
+    return loadLocale?.call(this);
   }
 
   @override

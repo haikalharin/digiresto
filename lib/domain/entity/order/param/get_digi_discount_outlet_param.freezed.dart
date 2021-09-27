@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'get_digi_discount_outlet_param.dart';
 
@@ -161,7 +162,7 @@ class _$_GetDigiDiscountOutletParam implements _GetDigiDiscountOutletParam {
       {required this.queryString, required this.body});
 
   factory _$_GetDigiDiscountOutletParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetDigiDiscountOutletParamFromJson(json);
+      _$$_GetDigiDiscountOutletParamFromJson(json);
 
   @override
   final GetDigiDiscountOutletQueryParam queryString;
@@ -198,7 +199,7 @@ class _$_GetDigiDiscountOutletParam implements _GetDigiDiscountOutletParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetDigiDiscountOutletParamToJson(this);
+    return _$$_GetDigiDiscountOutletParamToJson(this);
   }
 }
 
@@ -298,7 +299,7 @@ class _$_GetDigiDiscountOutletBodyParam
 
   factory _$_GetDigiDiscountOutletBodyParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_GetDigiDiscountOutletBodyParamFromJson(json);
+      _$$_GetDigiDiscountOutletBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -315,7 +316,7 @@ class _$_GetDigiDiscountOutletBodyParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetDigiDiscountOutletBodyParamToJson(this);
+    return _$$_GetDigiDiscountOutletBodyParamToJson(this);
   }
 }
 
@@ -464,7 +465,7 @@ class _$_GetDigiDiscountOutletQueryParam
 
   factory _$_GetDigiDiscountOutletQueryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_GetDigiDiscountOutletQueryParamFromJson(json);
+      _$$_GetDigiDiscountOutletQueryParamFromJson(json);
 
   @override
   final String location;
@@ -506,7 +507,7 @@ class _$_GetDigiDiscountOutletQueryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetDigiDiscountOutletQueryParamToJson(this);
+    return _$$_GetDigiDiscountOutletQueryParamToJson(this);
   }
 }
 

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'order_pending.dart';
 
@@ -979,7 +980,7 @@ class _$_OrderPending implements _OrderPending {
       required this.delivery});
 
   factory _$_OrderPending.fromJson(Map<String, dynamic> json) =>
-      _$_$_OrderPendingFromJson(json);
+      _$$_OrderPendingFromJson(json);
 
   @override
   final String outletName;
@@ -1253,7 +1254,7 @@ class _$_OrderPending implements _OrderPending {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OrderPendingToJson(this);
+    return _$$_OrderPendingToJson(this);
   }
 }
 
@@ -1848,7 +1849,7 @@ class _$_BillingDetail implements _BillingDetail {
       required this.isSingleBilling});
 
   factory _$_BillingDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_BillingDetailFromJson(json);
+      _$$_BillingDetailFromJson(json);
 
   @override
   @JsonKey(defaultValue: '')
@@ -2005,7 +2006,7 @@ class _$_BillingDetail implements _BillingDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_BillingDetailToJson(this);
+    return _$$_BillingDetailToJson(this);
   }
 }
 
@@ -2258,7 +2259,7 @@ class _$_Delivery implements _Delivery {
       required this.location});
 
   factory _$_Delivery.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeliveryFromJson(json);
+      _$$_DeliveryFromJson(json);
 
   @override
   final String provider;
@@ -2312,7 +2313,7 @@ class _$_Delivery implements _Delivery {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeliveryToJson(this);
+    return _$$_DeliveryToJson(this);
   }
 }
 
@@ -2702,7 +2703,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
       required this.ownerPhone});
 
   factory _$_DeliveryDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeliveryDetailFromJson(json);
+      _$$_DeliveryDetailFromJson(json);
 
   @override
   final String? orderId;
@@ -2813,7 +2814,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeliveryDetailToJson(this);
+    return _$$_DeliveryDetailToJson(this);
   }
 }
 
@@ -3020,7 +3021,7 @@ class _$_DeliverFrom implements _DeliverFrom {
       required this.phone});
 
   factory _$_DeliverFrom.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeliverFromFromJson(json);
+      _$$_DeliverFromFromJson(json);
 
   @override
   final List<dynamic> location;
@@ -3067,7 +3068,7 @@ class _$_DeliverFrom implements _DeliverFrom {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeliverFromToJson(this);
+    return _$$_DeliverFromToJson(this);
   }
 }
 
@@ -3238,7 +3239,7 @@ class _$_DeliverTo implements _DeliverTo {
       required this.phone});
 
   factory _$_DeliverTo.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeliverToFromJson(json);
+      _$$_DeliverToFromJson(json);
 
   @override
   final List<dynamic> location;
@@ -3285,7 +3286,7 @@ class _$_DeliverTo implements _DeliverTo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeliverToToJson(this);
+    return _$$_DeliverToToJson(this);
   }
 }
 
@@ -3795,8 +3796,7 @@ class _$_Item implements _Item {
       required this.taxAmount,
       required this.isStock});
 
-  factory _$_Item.fromJson(Map<String, dynamic> json) =>
-      _$_$_ItemFromJson(json);
+  factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
   @override
   final int productId;
@@ -3961,7 +3961,7 @@ class _$_Item implements _Item {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ItemToJson(this);
+    return _$$_ItemToJson(this);
   }
 }
 
@@ -4399,7 +4399,7 @@ class _$_Outlet implements _Outlet {
       required this.createdDate});
 
   factory _$_Outlet.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletFromJson(json);
+      _$$_OutletFromJson(json);
 
   @override
   final String name;
@@ -4503,7 +4503,7 @@ class _$_Outlet implements _Outlet {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletToJson(this);
+    return _$$_OutletToJson(this);
   }
 }
 
@@ -4807,7 +4807,7 @@ class _$_OutletDetail implements _OutletDetail {
       required this.deliveryLocation});
 
   factory _$_OutletDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletDetailFromJson(json);
+      _$$_OutletDetailFromJson(json);
 
   @override
   final String name;
@@ -4889,7 +4889,7 @@ class _$_OutletDetail implements _OutletDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletDetailToJson(this);
+    return _$$_OutletDetailToJson(this);
   }
 }
 
@@ -4996,8 +4996,7 @@ class __$MokaCopyWithImpl<$Res> extends _$MokaCopyWithImpl<$Res>
 class _$_Moka implements _Moka {
   const _$_Moka();
 
-  factory _$_Moka.fromJson(Map<String, dynamic> json) =>
-      _$_$_MokaFromJson(json);
+  factory _$_Moka.fromJson(Map<String, dynamic> json) => _$$_MokaFromJson(json);
 
   @override
   String toString() {
@@ -5014,7 +5013,7 @@ class _$_Moka implements _Moka {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MokaToJson(this);
+    return _$$_MokaToJson(this);
   }
 }
 
@@ -5137,7 +5136,7 @@ class _$_OrderMethod implements _OrderMethod {
   const _$_OrderMethod({required this.forceSelect, required this.defaultList});
 
   factory _$_OrderMethod.fromJson(Map<String, dynamic> json) =>
-      _$_$_OrderMethodFromJson(json);
+      _$$_OrderMethodFromJson(json);
 
   @override
   final bool forceSelect;
@@ -5174,7 +5173,7 @@ class _$_OrderMethod implements _OrderMethod {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OrderMethodToJson(this);
+    return _$$_OrderMethodToJson(this);
   }
 }
 
@@ -5375,7 +5374,7 @@ class _$_Payment implements _Payment {
       required this.title});
 
   factory _$_Payment.fromJson(Map<String, dynamic> json) =>
-      _$_$_PaymentFromJson(json);
+      _$$_PaymentFromJson(json);
 
   @override
   final int amount;
@@ -5432,7 +5431,7 @@ class _$_Payment implements _Payment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PaymentToJson(this);
+    return _$$_PaymentToJson(this);
   }
 }
 
@@ -5683,7 +5682,7 @@ class _$_TaxesAndService implements _TaxesAndService {
       required this.title});
 
   factory _$_TaxesAndService.fromJson(Map<String, dynamic> json) =>
-      _$_$_TaxesAndServiceFromJson(json);
+      _$$_TaxesAndServiceFromJson(json);
 
   @override
   final int id;
@@ -5750,7 +5749,7 @@ class _$_TaxesAndService implements _TaxesAndService {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TaxesAndServiceToJson(this);
+    return _$$_TaxesAndServiceToJson(this);
   }
 }
 

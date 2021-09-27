@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'validate_otp_bloc.dart';
 
@@ -50,6 +51,13 @@ mixin _$ValidateOtpEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Function onInvalidOtp)? started,
+    TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
+    TResult Function(String phoneNumberStr)? resendOtp,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
@@ -62,6 +70,13 @@ mixin _$ValidateOtpEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_InputSubmitting value) inputSubmitting,
     required TResult Function(_ResendOtp value) resendOtp,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_InputSubmitting value)? inputSubmitting,
+    TResult Function(_ResendOtp value)? resendOtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -164,6 +179,16 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Function onInvalidOtp)? started,
+    TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
+    TResult Function(String phoneNumberStr)? resendOtp,
+  }) {
+    return started?.call(onInvalidOtp);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
@@ -184,6 +209,16 @@ class _$_Started implements _Started {
     required TResult Function(_ResendOtp value) resendOtp,
   }) {
     return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_InputSubmitting value)? inputSubmitting,
+    TResult Function(_ResendOtp value)? resendOtp,
+  }) {
+    return started?.call(this);
   }
 
   @override
@@ -297,6 +332,16 @@ class _$_InputSubmitting implements _InputSubmitting {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Function onInvalidOtp)? started,
+    TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
+    TResult Function(String phoneNumberStr)? resendOtp,
+  }) {
+    return inputSubmitting?.call(phoneNumberStr, otpStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
@@ -317,6 +362,16 @@ class _$_InputSubmitting implements _InputSubmitting {
     required TResult Function(_ResendOtp value) resendOtp,
   }) {
     return inputSubmitting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_InputSubmitting value)? inputSubmitting,
+    TResult Function(_ResendOtp value)? resendOtp,
+  }) {
+    return inputSubmitting?.call(this);
   }
 
   @override
@@ -421,6 +476,16 @@ class _$_ResendOtp implements _ResendOtp {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Function onInvalidOtp)? started,
+    TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
+    TResult Function(String phoneNumberStr)? resendOtp,
+  }) {
+    return resendOtp?.call(phoneNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Function onInvalidOtp)? started,
     TResult Function(String phoneNumberStr, String otpStr)? inputSubmitting,
@@ -441,6 +506,16 @@ class _$_ResendOtp implements _ResendOtp {
     required TResult Function(_ResendOtp value) resendOtp,
   }) {
     return resendOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_InputSubmitting value)? inputSubmitting,
+    TResult Function(_ResendOtp value)? resendOtp,
+  }) {
+    return resendOtp?.call(this);
   }
 
   @override

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'add_favorite_transaction_param.dart';
 
@@ -164,7 +165,7 @@ class _$_AddFavoriteTransactionParam implements _AddFavoriteTransactionParam {
       {required this.queryString, required this.body});
 
   factory _$_AddFavoriteTransactionParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_AddFavoriteTransactionParamFromJson(json);
+      _$$_AddFavoriteTransactionParamFromJson(json);
 
   @override
   final AddFavoriteTransactionQueryParam queryString;
@@ -201,7 +202,7 @@ class _$_AddFavoriteTransactionParam implements _AddFavoriteTransactionParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AddFavoriteTransactionParamToJson(this);
+    return _$$_AddFavoriteTransactionParamToJson(this);
   }
 }
 
@@ -337,7 +338,7 @@ class _$_AddFavoriteTransactionBodyParam
 
   factory _$_AddFavoriteTransactionBodyParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_AddFavoriteTransactionBodyParamFromJson(json);
+      _$$_AddFavoriteTransactionBodyParamFromJson(json);
 
   @override
   final String receiptCode;
@@ -368,7 +369,7 @@ class _$_AddFavoriteTransactionBodyParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AddFavoriteTransactionBodyParamToJson(this);
+    return _$$_AddFavoriteTransactionBodyParamToJson(this);
   }
 }
 
@@ -463,7 +464,7 @@ class _$_AddFavoriteTransactionQueryParam
 
   factory _$_AddFavoriteTransactionQueryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_AddFavoriteTransactionQueryParamFromJson(json);
+      _$$_AddFavoriteTransactionQueryParamFromJson(json);
 
   @override
   String toString() {
@@ -481,7 +482,7 @@ class _$_AddFavoriteTransactionQueryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AddFavoriteTransactionQueryParamToJson(this);
+    return _$$_AddFavoriteTransactionQueryParamToJson(this);
   }
 }
 

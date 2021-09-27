@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'login_bloc.dart';
 
@@ -75,6 +76,18 @@ mixin _$LoginEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -97,6 +110,18 @@ mixin _$LoginEvent {
     required TResult Function(_PinSubmitted value) pinSubmitted,
     required TResult Function(_OnShake value) onShake,
     required TResult Function(_OnChangeUrl value) onChangeUrl,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,6 +212,21 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -217,6 +257,21 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return started?.call(this);
   }
 
   @override
@@ -330,6 +385,21 @@ class _$_OnInvalidPin with DiagnosticableTreeMixin implements _OnInvalidPin {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return otpVerified?.call(onInvalidPin);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -360,6 +430,21 @@ class _$_OnInvalidPin with DiagnosticableTreeMixin implements _OnInvalidPin {
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return otpVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return otpVerified?.call(this);
   }
 
   @override
@@ -482,6 +567,21 @@ class _$_PhoneNumberChanged
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return phoneNumberChanged?.call(phoneNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -512,6 +612,21 @@ class _$_PhoneNumberChanged
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return phoneNumberChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return phoneNumberChanged?.call(this);
   }
 
   @override
@@ -630,6 +745,21 @@ class _$_PinChanged with DiagnosticableTreeMixin implements _PinChanged {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return pinChanged?.call(pinStr);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -660,6 +790,21 @@ class _$_PinChanged with DiagnosticableTreeMixin implements _PinChanged {
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return pinChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return pinChanged?.call(this);
   }
 
   @override
@@ -753,6 +898,21 @@ class _$_VerifOtpPressed
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return verifOtpPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -783,6 +943,21 @@ class _$_VerifOtpPressed
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return verifOtpPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return verifOtpPressed?.call(this);
   }
 
   @override
@@ -868,6 +1043,21 @@ class _$_PinSubmitted with DiagnosticableTreeMixin implements _PinSubmitted {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return pinSubmitted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -898,6 +1088,21 @@ class _$_PinSubmitted with DiagnosticableTreeMixin implements _PinSubmitted {
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return pinSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return pinSubmitted?.call(this);
   }
 
   @override
@@ -981,6 +1186,21 @@ class _$_OnShake with DiagnosticableTreeMixin implements _OnShake {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return onShake?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -1011,6 +1231,21 @@ class _$_OnShake with DiagnosticableTreeMixin implements _OnShake {
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return onShake(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return onShake?.call(this);
   }
 
   @override
@@ -1123,6 +1358,21 @@ class _$_OnChangeUrl with DiagnosticableTreeMixin implements _OnChangeUrl {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function onInvalidPin)? otpVerified,
+    TResult Function(String phoneNumberStr)? phoneNumberChanged,
+    TResult Function(String pinStr)? pinChanged,
+    TResult Function()? verifOtpPressed,
+    TResult Function()? pinSubmitted,
+    TResult Function()? onShake,
+    TResult Function(String url)? onChangeUrl,
+  }) {
+    return onChangeUrl?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(Function onInvalidPin)? otpVerified,
@@ -1153,6 +1403,21 @@ class _$_OnChangeUrl with DiagnosticableTreeMixin implements _OnChangeUrl {
     required TResult Function(_OnChangeUrl value) onChangeUrl,
   }) {
     return onChangeUrl(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnInvalidPin value)? otpVerified,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PinChanged value)? pinChanged,
+    TResult Function(_VerifOtpPressed value)? verifOtpPressed,
+    TResult Function(_PinSubmitted value)? pinSubmitted,
+    TResult Function(_OnShake value)? onShake,
+    TResult Function(_OnChangeUrl value)? onChangeUrl,
+  }) {
+    return onChangeUrl?.call(this);
   }
 
   @override

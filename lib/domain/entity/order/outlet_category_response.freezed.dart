@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'outlet_category_response.dart';
 
@@ -172,7 +173,7 @@ class _$_OutletCategoryResponse implements _OutletCategoryResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_OutletCategoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletCategoryResponseFromJson(json);
+      _$$_OutletCategoryResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -214,7 +215,7 @@ class _$_OutletCategoryResponse implements _OutletCategoryResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletCategoryResponseToJson(this);
+    return _$$_OutletCategoryResponseToJson(this);
   }
 }
 
@@ -555,7 +556,7 @@ class _$_OutletCategoryDataResponse implements _OutletCategoryDataResponse {
       required this.distance});
 
   factory _$_OutletCategoryDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletCategoryDataResponseFromJson(json);
+      _$$_OutletCategoryDataResponseFromJson(json);
 
   @override
   final String endpointName;
@@ -654,7 +655,7 @@ class _$_OutletCategoryDataResponse implements _OutletCategoryDataResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletCategoryDataResponseToJson(this);
+    return _$$_OutletCategoryDataResponseToJson(this);
   }
 }
 
@@ -853,7 +854,7 @@ class _$_OutletCategoryDataDistanceResponse
 
   factory _$_OutletCategoryDataDistanceResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_OutletCategoryDataDistanceResponseFromJson(json);
+      _$$_OutletCategoryDataDistanceResponseFromJson(json);
 
   @override
   final double realRadius;
@@ -898,7 +899,7 @@ class _$_OutletCategoryDataDistanceResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletCategoryDataDistanceResponseToJson(this);
+    return _$$_OutletCategoryDataDistanceResponseToJson(this);
   }
 }
 
