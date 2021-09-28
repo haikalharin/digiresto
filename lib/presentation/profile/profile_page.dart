@@ -276,7 +276,7 @@ class ProfileWidget extends StatelessWidget {
                           onPressed: () => Get.back(),
                           color: Colors.white,
                           borderColor: AppColors.mainColor,
-                          label: i10n.alert_back,
+                          label: i10n.alert_cancel,
                         ),
                       ],
                     ),

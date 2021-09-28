@@ -56,6 +56,12 @@
 	<string>Needed to access motion usage</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Needed to access speech recognition</string>
+	<key>OneSignal_app_groups_key</key>
+	<string>group.id.damcorp.digiresto.onesignal</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

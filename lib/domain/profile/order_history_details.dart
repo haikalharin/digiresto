@@ -21,7 +21,7 @@ class OrderHistoryDetails with _$OrderHistoryDetails {
     required String recipientName,
     required String recipientPhone,
     required String customerTableNumber,
-    required String customerSmoking,
+    required dynamic customerSmoking,
     required String customerPax,
     required String customerNote,
     required String customerCarType,
@@ -63,27 +63,11 @@ class OrderHistoryDetails with _$OrderHistoryDetails {
     required String status,
     required DeliveryDetail deliveryDetail,
     required Rating rating,
-    @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
     @JsonKey(includeIfNull: true) required Delivery? delivery,
   }) = _OrderHistoryDetails;
 
   factory OrderHistoryDetails.fromJson(Map<String, dynamic> json) =>
       _$OrderHistoryDetailsFromJson(json);
-}
-
-@freezed
-class BillingDetail with _$BillingDetail {
-  const factory BillingDetail({
-    required String title,
-    required num amount,
-    required String vaNumber,
-    required DateTime expires,
-    required DateTime expiresAt,
-    required String serviceProvider,
-  }) = _BillingDetail;
-
-  factory BillingDetail.fromJson(Map<String, dynamic> json) =>
-      _$BillingDetailFromJson(json);
 }
 
 @freezed
@@ -268,12 +252,12 @@ class Payment with _$Payment {
 class TaxesAndService with _$TaxesAndService {
   const factory TaxesAndService({
     required num id,
-    required String code,
+    @JsonKey(includeIfNull: true) required String? code,
     required String name,
-    required String type,
+    @JsonKey(includeIfNull: true) required String? type,
     required num amount,
-    required List<String> salesTypes,
-    required List<String> paymentTypes,
+    @JsonKey(includeIfNull: true) required List<String>? salesTypes,
+    @JsonKey(includeIfNull: true) required List<String>? paymentTypes,
     required String title,
   }) = _TaxesAndService;
 
