@@ -446,7 +446,13 @@ class PaymentReceiptScreen extends StatelessWidget {
                           ),
                         SizedBox(height: 5),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            Get.find<HomeNavigationViewController>()
+                                .selectedTabIndex
+                                .value = 3;
+                            Get.offNamedUntil(Routers.home, (route) => false);
+                            Get.toNamed(Routers.orderHistory);
+                          },
                           child: Container(
                             width: double.infinity,
                             height: 44,

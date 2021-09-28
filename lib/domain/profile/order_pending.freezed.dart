@@ -3346,8 +3346,7 @@ class _$ItemTearOff {
       required int singleModifiersAmount,
       required int subtotal,
       required int serviceAmount,
-      required int taxAmount,
-      required bool isStock}) {
+      required int taxAmount}) {
     return _Item(
       productId: productId,
       title: title,
@@ -3373,7 +3372,6 @@ class _$ItemTearOff {
       subtotal: subtotal,
       serviceAmount: serviceAmount,
       taxAmount: taxAmount,
-      isStock: isStock,
     );
   }
 
@@ -3411,7 +3409,6 @@ mixin _$Item {
   int get subtotal => throw _privateConstructorUsedError;
   int get serviceAmount => throw _privateConstructorUsedError;
   int get taxAmount => throw _privateConstructorUsedError;
-  bool get isStock => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3446,8 +3443,7 @@ abstract class $ItemCopyWith<$Res> {
       int singleModifiersAmount,
       int subtotal,
       int serviceAmount,
-      int taxAmount,
-      bool isStock});
+      int taxAmount});
 }
 
 /// @nodoc
@@ -3484,7 +3480,6 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
     Object? subtotal = freezed,
     Object? serviceAmount = freezed,
     Object? taxAmount = freezed,
-    Object? isStock = freezed,
   }) {
     return _then(_value.copyWith(
       productId: productId == freezed
@@ -3583,10 +3578,6 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
           ? _value.taxAmount
           : taxAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      isStock: isStock == freezed
-          ? _value.isStock
-          : isStock // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -3620,8 +3611,7 @@ abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       int singleModifiersAmount,
       int subtotal,
       int serviceAmount,
-      int taxAmount,
-      bool isStock});
+      int taxAmount});
 }
 
 /// @nodoc
@@ -3659,7 +3649,6 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
     Object? subtotal = freezed,
     Object? serviceAmount = freezed,
     Object? taxAmount = freezed,
-    Object? isStock = freezed,
   }) {
     return _then(_Item(
       productId: productId == freezed
@@ -3758,10 +3747,6 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
           ? _value.taxAmount
           : taxAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      isStock: isStock == freezed
-          ? _value.isStock
-          : isStock // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -3793,8 +3778,7 @@ class _$_Item implements _Item {
       required this.singleModifiersAmount,
       required this.subtotal,
       required this.serviceAmount,
-      required this.taxAmount,
-      required this.isStock});
+      required this.taxAmount});
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
@@ -3846,12 +3830,10 @@ class _$_Item implements _Item {
   final int serviceAmount;
   @override
   final int taxAmount;
-  @override
-  final bool isStock;
 
   @override
   String toString() {
-    return 'Item(productId: $productId, title: $title, price: $price, code: $code, cost: $cost, qty: $qty, basicWeight: $basicWeight, weight: $weight, category: $category, categoryId: $categoryId, categoryCode: $categoryCode, sku: $sku, note: $note, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, amount: $amount, modifiers: $modifiers, modifiersAmount: $modifiersAmount, modifiersCost: $modifiersCost, modifiersDiscount: $modifiersDiscount, singleModifiersAmount: $singleModifiersAmount, subtotal: $subtotal, serviceAmount: $serviceAmount, taxAmount: $taxAmount, isStock: $isStock)';
+    return 'Item(productId: $productId, title: $title, price: $price, code: $code, cost: $cost, qty: $qty, basicWeight: $basicWeight, weight: $weight, category: $category, categoryId: $categoryId, categoryCode: $categoryCode, sku: $sku, note: $note, isPreorder: $isPreorder, preorderPeriod: $preorderPeriod, amount: $amount, modifiers: $modifiers, modifiersAmount: $modifiersAmount, modifiersCost: $modifiersCost, modifiersDiscount: $modifiersDiscount, singleModifiersAmount: $singleModifiersAmount, subtotal: $subtotal, serviceAmount: $serviceAmount, taxAmount: $taxAmount)';
   }
 
   @override
@@ -3920,9 +3902,7 @@ class _$_Item implements _Item {
                     .equals(other.serviceAmount, serviceAmount)) &&
             (identical(other.taxAmount, taxAmount) ||
                 const DeepCollectionEquality()
-                    .equals(other.taxAmount, taxAmount)) &&
-            (identical(other.isStock, isStock) ||
-                const DeepCollectionEquality().equals(other.isStock, isStock)));
+                    .equals(other.taxAmount, taxAmount)));
   }
 
   @override
@@ -3951,8 +3931,7 @@ class _$_Item implements _Item {
       const DeepCollectionEquality().hash(singleModifiersAmount) ^
       const DeepCollectionEquality().hash(subtotal) ^
       const DeepCollectionEquality().hash(serviceAmount) ^
-      const DeepCollectionEquality().hash(taxAmount) ^
-      const DeepCollectionEquality().hash(isStock);
+      const DeepCollectionEquality().hash(taxAmount);
 
   @JsonKey(ignore: true)
   @override
@@ -3990,8 +3969,7 @@ abstract class _Item implements Item {
       required int singleModifiersAmount,
       required int subtotal,
       required int serviceAmount,
-      required int taxAmount,
-      required bool isStock}) = _$_Item;
+      required int taxAmount}) = _$_Item;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
@@ -4043,8 +4021,6 @@ abstract class _Item implements Item {
   int get serviceAmount => throw _privateConstructorUsedError;
   @override
   int get taxAmount => throw _privateConstructorUsedError;
-  @override
-  bool get isStock => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ItemCopyWith<_Item> get copyWith => throw _privateConstructorUsedError;

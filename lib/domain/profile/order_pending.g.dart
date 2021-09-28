@@ -298,7 +298,6 @@ _$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
       subtotal: json['subtotal'] as int,
       serviceAmount: json['serviceAmount'] as int,
       taxAmount: json['taxAmount'] as int,
-      isStock: json['isStock'] as bool,
     );
 
 Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
@@ -326,7 +325,6 @@ Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
       'subtotal': instance.subtotal,
       'serviceAmount': instance.serviceAmount,
       'taxAmount': instance.taxAmount,
-      'isStock': instance.isStock,
     };
 
 _$_Outlet _$$_OutletFromJson(Map<String, dynamic> json) => _$_Outlet(
