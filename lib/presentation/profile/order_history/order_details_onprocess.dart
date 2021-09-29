@@ -230,14 +230,14 @@ class OrderDetailsOnProcess extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Batalkan Transaksi',
+                            'Digiresto',
                             style: Styles.dialogTitleStyle,
                           ),
                           SizedBox(
                             height: 15,
                           ),
                           Text(
-                            'Apakah anda yakin ingin membatalkan transaksi ?',
+                            'Apakah anda yakin ingin membatalkan transaksi dengan nomor ${orderDetails.receiptCode} ?',
                             style: Styles.dialogSubtitleStyle,
                             textAlign: TextAlign.center,
                           ),

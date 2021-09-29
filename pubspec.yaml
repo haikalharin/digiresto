@@ -58,7 +58,7 @@ dependencies:
   path_provider: ^2.0.3
   pin_code_fields: ^7.3.0
   pinch_zoom: ^1.0.0
-  rxdart: ^0.26.0
+  rxdart: any
   screenshot: ^1.2.3
   shake: ^1.0.1
   share_plus: ^2.0.4

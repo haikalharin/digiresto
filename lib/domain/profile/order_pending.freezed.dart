@@ -59,7 +59,6 @@ class _$OrderPendingTearOff {
       required bool isUseVoucher,
       required List<dynamic> promos,
       required List<dynamic> paymentList,
-      required List<TaxesAndService> taxesAndServices,
       required int itemTotalAmount,
       required String note,
       @JsonKey(includeIfNull: true) required Delivery? gosend,
@@ -111,7 +110,6 @@ class _$OrderPendingTearOff {
       isUseVoucher: isUseVoucher,
       promos: promos,
       paymentList: paymentList,
-      taxesAndServices: taxesAndServices,
       itemTotalAmount: itemTotalAmount,
       note: note,
       gosend: gosend,
@@ -175,8 +173,6 @@ mixin _$OrderPending {
   bool get isUseVoucher => throw _privateConstructorUsedError;
   List<dynamic> get promos => throw _privateConstructorUsedError;
   List<dynamic> get paymentList => throw _privateConstructorUsedError;
-  List<TaxesAndService> get taxesAndServices =>
-      throw _privateConstructorUsedError;
   int get itemTotalAmount => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
@@ -242,7 +238,6 @@ abstract class $OrderPendingCopyWith<$Res> {
       bool isUseVoucher,
       List<dynamic> promos,
       List<dynamic> paymentList,
-      List<TaxesAndService> taxesAndServices,
       int itemTotalAmount,
       String note,
       @JsonKey(includeIfNull: true) Delivery? gosend,
@@ -311,7 +306,6 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
     Object? isUseVoucher = freezed,
     Object? promos = freezed,
     Object? paymentList = freezed,
-    Object? taxesAndServices = freezed,
     Object? itemTotalAmount = freezed,
     Object? note = freezed,
     Object? gosend = freezed,
@@ -475,10 +469,6 @@ class _$OrderPendingCopyWithImpl<$Res> implements $OrderPendingCopyWith<$Res> {
           ? _value.paymentList
           : paymentList // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      taxesAndServices: taxesAndServices == freezed
-          ? _value.taxesAndServices
-          : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<TaxesAndService>,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -623,7 +613,6 @@ abstract class _$OrderPendingCopyWith<$Res>
       bool isUseVoucher,
       List<dynamic> promos,
       List<dynamic> paymentList,
-      List<TaxesAndService> taxesAndServices,
       int itemTotalAmount,
       String note,
       @JsonKey(includeIfNull: true) Delivery? gosend,
@@ -699,7 +688,6 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
     Object? isUseVoucher = freezed,
     Object? promos = freezed,
     Object? paymentList = freezed,
-    Object? taxesAndServices = freezed,
     Object? itemTotalAmount = freezed,
     Object? note = freezed,
     Object? gosend = freezed,
@@ -863,10 +851,6 @@ class __$OrderPendingCopyWithImpl<$Res> extends _$OrderPendingCopyWithImpl<$Res>
           ? _value.paymentList
           : paymentList // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      taxesAndServices: taxesAndServices == freezed
-          ? _value.taxesAndServices
-          : taxesAndServices // ignore: cast_nullable_to_non_nullable
-              as List<TaxesAndService>,
       itemTotalAmount: itemTotalAmount == freezed
           ? _value.itemTotalAmount
           : itemTotalAmount // ignore: cast_nullable_to_non_nullable
@@ -964,7 +948,6 @@ class _$_OrderPending implements _OrderPending {
       required this.isUseVoucher,
       required this.promos,
       required this.paymentList,
-      required this.taxesAndServices,
       required this.itemTotalAmount,
       required this.note,
       @JsonKey(includeIfNull: true) required this.gosend,
@@ -1057,8 +1040,6 @@ class _$_OrderPending implements _OrderPending {
   @override
   final List<dynamic> paymentList;
   @override
-  final List<TaxesAndService> taxesAndServices;
-  @override
   final int itemTotalAmount;
   @override
   final String note;
@@ -1089,7 +1070,7 @@ class _$_OrderPending implements _OrderPending {
 
   @override
   String toString() {
-    return 'OrderPending(outletName: $outletName, outletId: $outletId, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, recipientName: $recipientName, recipientPhone: $recipientPhone, customerTableNumber: $customerTableNumber, customerSmoking: $customerSmoking, customerPax: $customerPax, customerNote: $customerNote, customerCarType: $customerCarType, customerCarColor: $customerCarColor, customerCarNumber: $customerCarNumber, eta: $eta, deliveryAmount: $deliveryAmount, totalChange: $totalChange, discountAmount: $discountAmount, discountPercentage: $discountPercentage, finalAmount: $finalAmount, receiptTotalDiscount: $receiptTotalDiscount, roundAmount: $roundAmount, subtotal: $subtotal, totalDiscount: $totalDiscount, totalItemAmount: $totalItemAmount, totalItemCost: $totalItemCost, totalItemDiscount: $totalItemDiscount, totalService: $totalService, totalTax: $totalTax, voucherAmount: $voucherAmount, totalPayment: $totalPayment, salesType: $salesType, items: $items, itemWeight: $itemWeight, isUseVoucher: $isUseVoucher, promos: $promos, paymentList: $paymentList, taxesAndServices: $taxesAndServices, itemTotalAmount: $itemTotalAmount, note: $note, gosend: $gosend, originalDeliveryAmount: $originalDeliveryAmount, deviceTimestamp: $deviceTimestamp, receiptCode: $receiptCode, payments: $payments, outlet: $outlet, orderId: $orderId, status: $status, deliveryDetail: $deliveryDetail, billingDetail: $billingDetail, delivery: $delivery)';
+    return 'OrderPending(outletName: $outletName, outletId: $outletId, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, recipientName: $recipientName, recipientPhone: $recipientPhone, customerTableNumber: $customerTableNumber, customerSmoking: $customerSmoking, customerPax: $customerPax, customerNote: $customerNote, customerCarType: $customerCarType, customerCarColor: $customerCarColor, customerCarNumber: $customerCarNumber, eta: $eta, deliveryAmount: $deliveryAmount, totalChange: $totalChange, discountAmount: $discountAmount, discountPercentage: $discountPercentage, finalAmount: $finalAmount, receiptTotalDiscount: $receiptTotalDiscount, roundAmount: $roundAmount, subtotal: $subtotal, totalDiscount: $totalDiscount, totalItemAmount: $totalItemAmount, totalItemCost: $totalItemCost, totalItemDiscount: $totalItemDiscount, totalService: $totalService, totalTax: $totalTax, voucherAmount: $voucherAmount, totalPayment: $totalPayment, salesType: $salesType, items: $items, itemWeight: $itemWeight, isUseVoucher: $isUseVoucher, promos: $promos, paymentList: $paymentList, itemTotalAmount: $itemTotalAmount, note: $note, gosend: $gosend, originalDeliveryAmount: $originalDeliveryAmount, deviceTimestamp: $deviceTimestamp, receiptCode: $receiptCode, payments: $payments, outlet: $outlet, orderId: $orderId, status: $status, deliveryDetail: $deliveryDetail, billingDetail: $billingDetail, delivery: $delivery)';
   }
 
   @override
@@ -1176,7 +1157,6 @@ class _$_OrderPending implements _OrderPending {
             (identical(other.isUseVoucher, isUseVoucher) || const DeepCollectionEquality().equals(other.isUseVoucher, isUseVoucher)) &&
             (identical(other.promos, promos) || const DeepCollectionEquality().equals(other.promos, promos)) &&
             (identical(other.paymentList, paymentList) || const DeepCollectionEquality().equals(other.paymentList, paymentList)) &&
-            (identical(other.taxesAndServices, taxesAndServices) || const DeepCollectionEquality().equals(other.taxesAndServices, taxesAndServices)) &&
             (identical(other.itemTotalAmount, itemTotalAmount) || const DeepCollectionEquality().equals(other.itemTotalAmount, itemTotalAmount)) &&
             (identical(other.note, note) || const DeepCollectionEquality().equals(other.note, note)) &&
             (identical(other.gosend, gosend) || const DeepCollectionEquality().equals(other.gosend, gosend)) &&
@@ -1232,7 +1212,6 @@ class _$_OrderPending implements _OrderPending {
       const DeepCollectionEquality().hash(isUseVoucher) ^
       const DeepCollectionEquality().hash(promos) ^
       const DeepCollectionEquality().hash(paymentList) ^
-      const DeepCollectionEquality().hash(taxesAndServices) ^
       const DeepCollectionEquality().hash(itemTotalAmount) ^
       const DeepCollectionEquality().hash(note) ^
       const DeepCollectionEquality().hash(gosend) ^
@@ -1297,7 +1276,6 @@ abstract class _OrderPending implements OrderPending {
       required bool isUseVoucher,
       required List<dynamic> promos,
       required List<dynamic> paymentList,
-      required List<TaxesAndService> taxesAndServices,
       required int itemTotalAmount,
       required String note,
       @JsonKey(includeIfNull: true) required Delivery? gosend,
@@ -1389,9 +1367,6 @@ abstract class _OrderPending implements OrderPending {
   List<dynamic> get promos => throw _privateConstructorUsedError;
   @override
   List<dynamic> get paymentList => throw _privateConstructorUsedError;
-  @override
-  List<TaxesAndService> get taxesAndServices =>
-      throw _privateConstructorUsedError;
   @override
   int get itemTotalAmount => throw _privateConstructorUsedError;
   @override
@@ -5437,330 +5412,5 @@ abstract class _Payment implements Payment {
   @override
   @JsonKey(ignore: true)
   _$PaymentCopyWith<_Payment> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TaxesAndService _$TaxesAndServiceFromJson(Map<String, dynamic> json) {
-  return _TaxesAndService.fromJson(json);
-}
-
-/// @nodoc
-class _$TaxesAndServiceTearOff {
-  const _$TaxesAndServiceTearOff();
-
-  _TaxesAndService call(
-      {required int id,
-      required String code,
-      required String name,
-      required String type,
-      required int amount,
-      required List<String> salesTypes,
-      required List<String> paymentTypes,
-      required String title}) {
-    return _TaxesAndService(
-      id: id,
-      code: code,
-      name: name,
-      type: type,
-      amount: amount,
-      salesTypes: salesTypes,
-      paymentTypes: paymentTypes,
-      title: title,
-    );
-  }
-
-  TaxesAndService fromJson(Map<String, Object> json) {
-    return TaxesAndService.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $TaxesAndService = _$TaxesAndServiceTearOff();
-
-/// @nodoc
-mixin _$TaxesAndService {
-  int get id => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
-  List<String> get salesTypes => throw _privateConstructorUsedError;
-  List<String> get paymentTypes => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $TaxesAndServiceCopyWith<TaxesAndService> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TaxesAndServiceCopyWith<$Res> {
-  factory $TaxesAndServiceCopyWith(
-          TaxesAndService value, $Res Function(TaxesAndService) then) =
-      _$TaxesAndServiceCopyWithImpl<$Res>;
-  $Res call(
-      {int id,
-      String code,
-      String name,
-      String type,
-      int amount,
-      List<String> salesTypes,
-      List<String> paymentTypes,
-      String title});
-}
-
-/// @nodoc
-class _$TaxesAndServiceCopyWithImpl<$Res>
-    implements $TaxesAndServiceCopyWith<$Res> {
-  _$TaxesAndServiceCopyWithImpl(this._value, this._then);
-
-  final TaxesAndService _value;
-  // ignore: unused_field
-  final $Res Function(TaxesAndService) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? code = freezed,
-    Object? name = freezed,
-    Object? type = freezed,
-    Object? amount = freezed,
-    Object? salesTypes = freezed,
-    Object? paymentTypes = freezed,
-    Object? title = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      salesTypes: salesTypes == freezed
-          ? _value.salesTypes
-          : salesTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      paymentTypes: paymentTypes == freezed
-          ? _value.paymentTypes
-          : paymentTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$TaxesAndServiceCopyWith<$Res>
-    implements $TaxesAndServiceCopyWith<$Res> {
-  factory _$TaxesAndServiceCopyWith(
-          _TaxesAndService value, $Res Function(_TaxesAndService) then) =
-      __$TaxesAndServiceCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {int id,
-      String code,
-      String name,
-      String type,
-      int amount,
-      List<String> salesTypes,
-      List<String> paymentTypes,
-      String title});
-}
-
-/// @nodoc
-class __$TaxesAndServiceCopyWithImpl<$Res>
-    extends _$TaxesAndServiceCopyWithImpl<$Res>
-    implements _$TaxesAndServiceCopyWith<$Res> {
-  __$TaxesAndServiceCopyWithImpl(
-      _TaxesAndService _value, $Res Function(_TaxesAndService) _then)
-      : super(_value, (v) => _then(v as _TaxesAndService));
-
-  @override
-  _TaxesAndService get _value => super._value as _TaxesAndService;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? code = freezed,
-    Object? name = freezed,
-    Object? type = freezed,
-    Object? amount = freezed,
-    Object? salesTypes = freezed,
-    Object? paymentTypes = freezed,
-    Object? title = freezed,
-  }) {
-    return _then(_TaxesAndService(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      salesTypes: salesTypes == freezed
-          ? _value.salesTypes
-          : salesTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      paymentTypes: paymentTypes == freezed
-          ? _value.paymentTypes
-          : paymentTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_TaxesAndService implements _TaxesAndService {
-  const _$_TaxesAndService(
-      {required this.id,
-      required this.code,
-      required this.name,
-      required this.type,
-      required this.amount,
-      required this.salesTypes,
-      required this.paymentTypes,
-      required this.title});
-
-  factory _$_TaxesAndService.fromJson(Map<String, dynamic> json) =>
-      _$$_TaxesAndServiceFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String code;
-  @override
-  final String name;
-  @override
-  final String type;
-  @override
-  final int amount;
-  @override
-  final List<String> salesTypes;
-  @override
-  final List<String> paymentTypes;
-  @override
-  final String title;
-
-  @override
-  String toString() {
-    return 'TaxesAndService(id: $id, code: $code, name: $name, type: $type, amount: $amount, salesTypes: $salesTypes, paymentTypes: $paymentTypes, title: $title)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _TaxesAndService &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.salesTypes, salesTypes) ||
-                const DeepCollectionEquality()
-                    .equals(other.salesTypes, salesTypes)) &&
-            (identical(other.paymentTypes, paymentTypes) ||
-                const DeepCollectionEquality()
-                    .equals(other.paymentTypes, paymentTypes)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(salesTypes) ^
-      const DeepCollectionEquality().hash(paymentTypes) ^
-      const DeepCollectionEquality().hash(title);
-
-  @JsonKey(ignore: true)
-  @override
-  _$TaxesAndServiceCopyWith<_TaxesAndService> get copyWith =>
-      __$TaxesAndServiceCopyWithImpl<_TaxesAndService>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_TaxesAndServiceToJson(this);
-  }
-}
-
-abstract class _TaxesAndService implements TaxesAndService {
-  const factory _TaxesAndService(
-      {required int id,
-      required String code,
-      required String name,
-      required String type,
-      required int amount,
-      required List<String> salesTypes,
-      required List<String> paymentTypes,
-      required String title}) = _$_TaxesAndService;
-
-  factory _TaxesAndService.fromJson(Map<String, dynamic> json) =
-      _$_TaxesAndService.fromJson;
-
-  @override
-  int get id => throw _privateConstructorUsedError;
-  @override
-  String get code => throw _privateConstructorUsedError;
-  @override
-  String get name => throw _privateConstructorUsedError;
-  @override
-  String get type => throw _privateConstructorUsedError;
-  @override
-  int get amount => throw _privateConstructorUsedError;
-  @override
-  List<String> get salesTypes => throw _privateConstructorUsedError;
-  @override
-  List<String> get paymentTypes => throw _privateConstructorUsedError;
-  @override
-  String get title => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$TaxesAndServiceCopyWith<_TaxesAndService> get copyWith =>
       throw _privateConstructorUsedError;
 }

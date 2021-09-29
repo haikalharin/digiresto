@@ -47,9 +47,6 @@ _$_OrderPending _$$_OrderPendingFromJson(Map<String, dynamic> json) =>
       isUseVoucher: json['isUseVoucher'] as bool,
       promos: json['promos'] as List<dynamic>,
       paymentList: json['paymentList'] as List<dynamic>,
-      taxesAndServices: (json['taxesAndServices'] as List<dynamic>)
-          .map((e) => TaxesAndService.fromJson(e as Map<String, dynamic>))
-          .toList(),
       itemTotalAmount: json['itemTotalAmount'] as int,
       note: json['note'] as String,
       gosend: json['gosend'] == null
@@ -112,7 +109,6 @@ Map<String, dynamic> _$$_OrderPendingToJson(_$_OrderPending instance) =>
       'isUseVoucher': instance.isUseVoucher,
       'promos': instance.promos,
       'paymentList': instance.paymentList,
-      'taxesAndServices': instance.taxesAndServices,
       'itemTotalAmount': instance.itemTotalAmount,
       'note': instance.note,
       'gosend': instance.gosend,
@@ -426,33 +422,5 @@ Map<String, dynamic> _$$_PaymentToJson(_$_Payment instance) =>
       'method': instance.method,
       'companyPaymentMethodId': instance.companyPaymentMethodId,
       'timestamp': instance.timestamp.toIso8601String(),
-      'title': instance.title,
-    };
-
-_$_TaxesAndService _$$_TaxesAndServiceFromJson(Map<String, dynamic> json) =>
-    _$_TaxesAndService(
-      id: json['id'] as int,
-      code: json['code'] as String,
-      name: json['name'] as String,
-      type: json['type'] as String,
-      amount: json['amount'] as int,
-      salesTypes: (json['salesTypes'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      paymentTypes: (json['paymentTypes'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      title: json['title'] as String,
-    );
-
-Map<String, dynamic> _$$_TaxesAndServiceToJson(_$_TaxesAndService instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'code': instance.code,
-      'name': instance.name,
-      'type': instance.type,
-      'amount': instance.amount,
-      'salesTypes': instance.salesTypes,
-      'paymentTypes': instance.paymentTypes,
       'title': instance.title,
     };

@@ -42,6 +42,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
             getOngoingTransaction);
       }
     }, getTransaction: (r) async* {
+      yield TransactionState.loadInProgress();
       final getTransaction =
           await _transactionRepository.getTransaction(r.receiptCode);
       if (getTransaction == null) {

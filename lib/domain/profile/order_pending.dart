@@ -50,7 +50,6 @@ class OrderPending with _$OrderPending {
     required bool isUseVoucher,
     required List<dynamic> promos,
     required List<dynamic> paymentList,
-    required List<TaxesAndService> taxesAndServices,
     required int itemTotalAmount,
     required String note,
     @JsonKey(includeIfNull: true) required Delivery? gosend,
@@ -267,21 +266,4 @@ class Payment with _$Payment {
 
   factory Payment.fromJson(Map<String, dynamic> json) =>
       _$PaymentFromJson(json);
-}
-
-@freezed
-class TaxesAndService with _$TaxesAndService {
-  const factory TaxesAndService({
-    required int id,
-    required String code,
-    required String name,
-    required String type,
-    required int amount,
-    required List<String> salesTypes,
-    required List<String> paymentTypes,
-    required String title,
-  }) = _TaxesAndService;
-
-  factory TaxesAndService.fromJson(Map<String, dynamic> json) =>
-      _$TaxesAndServiceFromJson(json);
 }

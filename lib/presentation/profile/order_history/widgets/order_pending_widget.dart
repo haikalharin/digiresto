@@ -71,10 +71,11 @@ class OrderPendingWidget extends StatelessWidget {
                   onSelected: (index) {
                     switch (index) {
                       case 1:
-                        Get.toNamed(Routers.paymentReceipt,
+                        Get.offNamedUntil(
+                            Routers.paymentReceipt, (route) => false,
                             arguments: PaymentReceiptViewArgument(
-                              receiptCode: orderPending.receiptCode,
-                            ));
+                                receiptCode: orderPending.receiptCode));
+
                         break;
                       case 2:
                         Get.dialog(
