@@ -57,7 +57,7 @@
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Needed to access speech recognition</string>
 	<key>OneSignal_app_groups_key</key>
-	<string>group.id.damcorp.digiresto.onesignal</string>
+	<string>group.id.damcorp.digiresto.dev.onesignal</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

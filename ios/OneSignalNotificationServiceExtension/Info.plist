@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>OneSignal_app_groups_key</key>
-	<string>group.id.damcorp.digiresto.onesignal</string>
+	<string>group.id.damcorp.digiresto.dev.onesignal</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
