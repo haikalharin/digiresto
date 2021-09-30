@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'credit_failure.dart';
 
@@ -51,14 +50,6 @@ mixin _$CreditFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? noInternet,
-    TResult Function(String? message, String? code)? serverException,
-    TResult Function()? noData,
-    TResult Function()? unexpected,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function(String? message, String? code)? serverException,
@@ -73,14 +64,6 @@ mixin _$CreditFailure {
     required TResult Function(_ServerException value) serverException,
     required TResult Function(_NoData value) noData,
     required TResult Function(_Unexpected value) unexpected,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NoInternet value)? noInternet,
-    TResult Function(_ServerException value)? serverException,
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Unexpected value)? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -160,17 +143,6 @@ class _$_NoInternet implements _NoInternet {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? noInternet,
-    TResult Function(String? message, String? code)? serverException,
-    TResult Function()? noData,
-    TResult Function()? unexpected,
-  }) {
-    return noInternet?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function(String? message, String? code)? serverException,
@@ -193,17 +165,6 @@ class _$_NoInternet implements _NoInternet {
     required TResult Function(_Unexpected value) unexpected,
   }) {
     return noInternet(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NoInternet value)? noInternet,
-    TResult Function(_ServerException value)? serverException,
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Unexpected value)? unexpected,
-  }) {
-    return noInternet?.call(this);
   }
 
   @override
@@ -313,17 +274,6 @@ class _$_ServerException implements _ServerException {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? noInternet,
-    TResult Function(String? message, String? code)? serverException,
-    TResult Function()? noData,
-    TResult Function()? unexpected,
-  }) {
-    return serverException?.call(message, code);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function(String? message, String? code)? serverException,
@@ -346,17 +296,6 @@ class _$_ServerException implements _ServerException {
     required TResult Function(_Unexpected value) unexpected,
   }) {
     return serverException(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NoInternet value)? noInternet,
-    TResult Function(_ServerException value)? serverException,
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Unexpected value)? unexpected,
-  }) {
-    return serverException?.call(this);
   }
 
   @override
@@ -433,17 +372,6 @@ class _$_NoData implements _NoData {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? noInternet,
-    TResult Function(String? message, String? code)? serverException,
-    TResult Function()? noData,
-    TResult Function()? unexpected,
-  }) {
-    return noData?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function(String? message, String? code)? serverException,
@@ -466,17 +394,6 @@ class _$_NoData implements _NoData {
     required TResult Function(_Unexpected value) unexpected,
   }) {
     return noData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NoInternet value)? noInternet,
-    TResult Function(_ServerException value)? serverException,
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Unexpected value)? unexpected,
-  }) {
-    return noData?.call(this);
   }
 
   @override
@@ -548,17 +465,6 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? noInternet,
-    TResult Function(String? message, String? code)? serverException,
-    TResult Function()? noData,
-    TResult Function()? unexpected,
-  }) {
-    return unexpected?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function(String? message, String? code)? serverException,
@@ -581,17 +487,6 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_Unexpected value) unexpected,
   }) {
     return unexpected(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NoInternet value)? noInternet,
-    TResult Function(_ServerException value)? serverException,
-    TResult Function(_NoData value)? noData,
-    TResult Function(_Unexpected value)? unexpected,
-  }) {
-    return unexpected?.call(this);
   }
 
   @override

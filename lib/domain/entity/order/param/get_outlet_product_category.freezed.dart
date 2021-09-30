@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'get_outlet_product_category.dart';
 
@@ -168,7 +167,7 @@ class _$_GetOutletProductCategoryParam
 
   factory _$_GetOutletProductCategoryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_GetOutletProductCategoryParamFromJson(json);
+      _$_$_GetOutletProductCategoryParamFromJson(json);
 
   @override
   final GetOutletProductCategoryQueryParam queryString;
@@ -205,7 +204,7 @@ class _$_GetOutletProductCategoryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletProductCategoryParamToJson(this);
+    return _$_$_GetOutletProductCategoryParamToJson(this);
   }
 }
 
@@ -306,7 +305,7 @@ class _$_GetOutletProductCategoryBodyParam
 
   factory _$_GetOutletProductCategoryBodyParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_GetOutletProductCategoryBodyParamFromJson(json);
+      _$_$_GetOutletProductCategoryBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -324,7 +323,7 @@ class _$_GetOutletProductCategoryBodyParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletProductCategoryBodyParamToJson(this);
+    return _$_$_GetOutletProductCategoryBodyParamToJson(this);
   }
 }
 
@@ -449,7 +448,7 @@ class _$_GetOutletProductCategoryQueryParam
 
   factory _$_GetOutletProductCategoryQueryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_GetOutletProductCategoryQueryParamFromJson(json);
+      _$_$_GetOutletProductCategoryQueryParamFromJson(json);
 
   @override
   final String outletId;
@@ -481,7 +480,7 @@ class _$_GetOutletProductCategoryQueryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletProductCategoryQueryParamToJson(this);
+    return _$_$_GetOutletProductCategoryQueryParamToJson(this);
   }
 }
 

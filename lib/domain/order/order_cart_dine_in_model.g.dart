@@ -6,17 +6,18 @@ part of 'order_cart_dine_in_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OrderCartDineInModel _$$_OrderCartDineInModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_OrderCartDineInModel(
-      useSchedule: json['useSchedule'] as bool,
-      selectedDate: DateTime.parse(json['selectedDate'] as String),
-      selectedKeyClock: json['selectedKeyClock'] as String,
-      selectedKeySmoking: json['selectedKeySmoking'] as String,
-      pax: json['pax'] as int,
-    );
+_$_OrderCartDineInModel _$_$_OrderCartDineInModelFromJson(
+    Map<String, dynamic> json) {
+  return _$_OrderCartDineInModel(
+    useSchedule: json['useSchedule'] as bool,
+    selectedDate: DateTime.parse(json['selectedDate'] as String),
+    selectedKeyClock: json['selectedKeyClock'] as String,
+    selectedKeySmoking: json['selectedKeySmoking'] as String,
+    pax: json['pax'] as int,
+  );
+}
 
-Map<String, dynamic> _$$_OrderCartDineInModelToJson(
+Map<String, dynamic> _$_$_OrderCartDineInModelToJson(
         _$_OrderCartDineInModel instance) =>
     <String, dynamic>{
       'useSchedule': instance.useSchedule,

@@ -6,41 +6,44 @@ part of 'get_outlet_product_param.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetOutletProductParam _$$_GetOutletProductParamFromJson(
-        Map<String, dynamic> json) =>
-    _$_GetOutletProductParam(
-      queryString: GetOutletProductQueryParam.fromJson(
-          json['query_string'] as Map<String, dynamic>),
-      body: GetOutletProductBodyParam.fromJson(
-          json['body'] as Map<String, dynamic>),
-    );
+_$_GetOutletProductParam _$_$_GetOutletProductParamFromJson(
+    Map<String, dynamic> json) {
+  return _$_GetOutletProductParam(
+    queryString: GetOutletProductQueryParam.fromJson(
+        json['query_string'] as Map<String, dynamic>),
+    body: GetOutletProductBodyParam.fromJson(
+        json['body'] as Map<String, dynamic>),
+  );
+}
 
-Map<String, dynamic> _$$_GetOutletProductParamToJson(
+Map<String, dynamic> _$_$_GetOutletProductParamToJson(
         _$_GetOutletProductParam instance) =>
     <String, dynamic>{
       'query_string': instance.queryString,
       'body': instance.body,
     };
 
-_$_GetOutletProductBodyParam _$$_GetOutletProductBodyParamFromJson(
-        Map<String, dynamic> json) =>
-    _$_GetOutletProductBodyParam();
+_$_GetOutletProductBodyParam _$_$_GetOutletProductBodyParamFromJson(
+    Map<String, dynamic> json) {
+  return _$_GetOutletProductBodyParam();
+}
 
-Map<String, dynamic> _$$_GetOutletProductBodyParamToJson(
+Map<String, dynamic> _$_$_GetOutletProductBodyParamToJson(
         _$_GetOutletProductBodyParam instance) =>
     <String, dynamic>{};
 
-_$_GetOutletProductQueryParam _$$_GetOutletProductQueryParamFromJson(
-        Map<String, dynamic> json) =>
-    _$_GetOutletProductQueryParam(
-      outletId: json['outletId'] as String,
-      categoryId: json['categoryId'] as String,
-      filter: json['filter'] as String,
-      page: json['page'] as int,
-      limit: json['limit'] as int,
-    );
+_$_GetOutletProductQueryParam _$_$_GetOutletProductQueryParamFromJson(
+    Map<String, dynamic> json) {
+  return _$_GetOutletProductQueryParam(
+    outletId: json['outletId'] as String,
+    categoryId: json['categoryId'] as String,
+    filter: json['filter'] as String,
+    page: json['page'] as int,
+    limit: json['limit'] as int,
+  );
+}
 
-Map<String, dynamic> _$$_GetOutletProductQueryParamToJson(
+Map<String, dynamic> _$_$_GetOutletProductQueryParamToJson(
         _$_GetOutletProductQueryParam instance) =>
     <String, dynamic>{
       'outletId': instance.outletId,

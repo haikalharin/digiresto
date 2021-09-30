@@ -23,7 +23,6 @@ class PaymentReceiptScreen extends StatelessWidget {
   final df = new DateFormat('dd MMM yyyy, hh:mm:ss');
   final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
   final ScreenshotController screenshotController = ScreenshotController();
-  TransactionMobileDataResponse? _transaction;
   Widget _lr(Widget left, Widget right) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,6 +32,7 @@ class PaymentReceiptScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TransactionMobileDataResponse? _transaction;
     PaymentReceiptViewArgument args =
         Get.arguments as PaymentReceiptViewArgument;
 
@@ -40,11 +40,6 @@ class PaymentReceiptScreen extends StatelessWidget {
     String? _receiptStatusDesc;
     bool isFavoriteDone = false;
     void checkStatus() {
-      //super.didChangeDependencies();
-      // _orderStore = Provider.of<OrderStore>(context);
-
-      // _transaction = _orderStore.transactionAfterPayment;
-
       String receiptStatus = _transaction!.status ?? "initial";
       _receiptStatusTitle = i10n.nota_title;
       _receiptStatusDesc = '';

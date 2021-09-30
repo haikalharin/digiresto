@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'user_balance.dart';
 
@@ -125,7 +124,7 @@ class _$_UserBalance implements _UserBalance {
   const _$_UserBalance({required this.username, required this.balance});
 
   factory _$_UserBalance.fromJson(Map<String, dynamic> json) =>
-      _$$_UserBalanceFromJson(json);
+      _$_$_UserBalanceFromJson(json);
 
   @override
   final String username;
@@ -161,7 +160,7 @@ class _$_UserBalance implements _UserBalance {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserBalanceToJson(this);
+    return _$_$_UserBalanceToJson(this);
   }
 }
 

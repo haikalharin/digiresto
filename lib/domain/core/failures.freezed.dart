@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'failures.dart';
 
@@ -150,26 +149,6 @@ mixin _$ValueFailure<T> {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -209,26 +188,6 @@ mixin _$ValueFailure<T> {
     required TResult Function(ConfirmationNotMatch<T> value)
         confirmationNotMatch,
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -372,29 +331,6 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return exceedingLength?.call(failedValue, max);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -442,29 +378,6 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return exceedingLength(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return exceedingLength?.call(this);
   }
 
   @override
@@ -606,29 +519,6 @@ class _$TooShort<T> implements TooShort<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return lengthTooShort?.call(failedValue, min);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -676,29 +566,6 @@ class _$TooShort<T> implements TooShort<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return lengthTooShort(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return lengthTooShort?.call(this);
   }
 
   @override
@@ -827,29 +694,6 @@ class _$Empty<T> implements Empty<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return empty?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -897,29 +741,6 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return empty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return empty?.call(this);
   }
 
   @override
@@ -1049,29 +870,6 @@ class _$Multiline<T> implements Multiline<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return multiline?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -1119,29 +917,6 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return multiline(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return multiline?.call(this);
   }
 
   @override
@@ -1282,29 +1057,6 @@ class _$ListTooLong<T> implements ListTooLong<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return listTooLong?.call(failedValue, max);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -1352,29 +1104,6 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return listTooLong(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return listTooLong?.call(this);
   }
 
   @override
@@ -1506,29 +1235,6 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return invalidPhone?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -1576,29 +1282,6 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidPhone(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return invalidPhone?.call(this);
   }
 
   @override
@@ -1728,29 +1411,6 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return invalidEmail?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -1798,29 +1458,6 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidEmail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return invalidEmail?.call(this);
   }
 
   @override
@@ -1951,29 +1588,6 @@ class _$UnregisteredPhone<T> implements UnregisteredPhone<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return unregisteredPhone?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -2021,29 +1635,6 @@ class _$UnregisteredPhone<T> implements UnregisteredPhone<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return unregisteredPhone(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return unregisteredPhone?.call(this);
   }
 
   @override
@@ -2174,29 +1765,6 @@ class _$InvalidObject<T> implements InvalidObject<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return invalidObject?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -2244,29 +1812,6 @@ class _$InvalidObject<T> implements InvalidObject<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidObject(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return invalidObject?.call(this);
   }
 
   @override
@@ -2370,29 +1915,6 @@ class _$EmptyObject<T> implements EmptyObject<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return emptyObject?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -2440,29 +1962,6 @@ class _$EmptyObject<T> implements EmptyObject<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return emptyObject(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return emptyObject?.call(this);
   }
 
   @override
@@ -2587,29 +2086,6 @@ class _$ShortToken<T> implements ShortToken<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return shortToken?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -2657,29 +2133,6 @@ class _$ShortToken<T> implements ShortToken<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return shortToken(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return shortToken?.call(this);
   }
 
   @override
@@ -2821,29 +2274,6 @@ class _$ExceedBalance<T> implements ExceedBalance<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return exceedingBalance?.call(failedValue, maxBalance);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -2891,29 +2321,6 @@ class _$ExceedBalance<T> implements ExceedBalance<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return exceedingBalance(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return exceedingBalance?.call(this);
   }
 
   @override
@@ -3057,29 +2464,6 @@ class _$InvalidDateTime<T> implements InvalidDateTime<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return invalidDateTime?.call(failedValue, pattern);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -3127,29 +2511,6 @@ class _$InvalidDateTime<T> implements InvalidDateTime<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return invalidDateTime(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return invalidDateTime?.call(this);
   }
 
   @override
@@ -3282,29 +2643,6 @@ class _$NoteExceed<T> implements NoteExceed<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return noteExceed?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -3352,29 +2690,6 @@ class _$NoteExceed<T> implements NoteExceed<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return noteExceed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return noteExceed?.call(this);
   }
 
   @override
@@ -3505,29 +2820,6 @@ class _$ConfirmationNotMatch<T> implements ConfirmationNotMatch<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return confirmationNotMatch?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -3575,29 +2867,6 @@ class _$ConfirmationNotMatch<T> implements ConfirmationNotMatch<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return confirmationNotMatch(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return confirmationNotMatch?.call(this);
   }
 
   @override
@@ -3739,29 +3008,6 @@ class _$LessThanMinimum<T> implements LessThanMinimum<T> {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T? failedValue, int max)? exceedingLength,
-    TResult Function(T? failedValue, int min)? lengthTooShort,
-    TResult Function(T? failedValue)? empty,
-    TResult Function(T? failedValue)? multiline,
-    TResult Function(T? failedValue, int max)? listTooLong,
-    TResult Function(T? failedValue)? invalidPhone,
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue)? unregisteredPhone,
-    TResult Function(T? failedValue)? invalidObject,
-    TResult Function()? emptyObject,
-    TResult Function(T? failedValue)? shortToken,
-    TResult Function(double failedValue, double maxBalance)? exceedingBalance,
-    TResult Function(DateTime failedValue, String pattern)? invalidDateTime,
-    TResult Function(T? failedValue)? noteExceed,
-    TResult Function(T? failedValue)? confirmationNotMatch,
-    TResult Function(T? failedValue, num min)? lessThanMinimum,
-  }) {
-    return lessThanMinimum?.call(failedValue, min);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T? failedValue, int max)? exceedingLength,
     TResult Function(T? failedValue, int min)? lengthTooShort,
@@ -3809,29 +3055,6 @@ class _$LessThanMinimum<T> implements LessThanMinimum<T> {
     required TResult Function(LessThanMinimum<T> value) lessThanMinimum,
   }) {
     return lessThanMinimum(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExceedingLength<T> value)? exceedingLength,
-    TResult Function(TooShort<T> value)? lengthTooShort,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(Multiline<T> value)? multiline,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(UnregisteredPhone<T> value)? unregisteredPhone,
-    TResult Function(InvalidObject<T> value)? invalidObject,
-    TResult Function(EmptyObject<T> value)? emptyObject,
-    TResult Function(ShortToken<T> value)? shortToken,
-    TResult Function(ExceedBalance<T> value)? exceedingBalance,
-    TResult Function(InvalidDateTime<T> value)? invalidDateTime,
-    TResult Function(NoteExceed<T> value)? noteExceed,
-    TResult Function(ConfirmationNotMatch<T> value)? confirmationNotMatch,
-    TResult Function(LessThanMinimum<T> value)? lessThanMinimum,
-  }) {
-    return lessThanMinimum?.call(this);
   }
 
   @override

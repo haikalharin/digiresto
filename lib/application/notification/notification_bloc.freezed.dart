@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'notification_bloc.dart';
 
@@ -47,13 +46,6 @@ mixin _$NotificationEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
-    TResult Function()? getListNotification,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(NotificationData notification)? newNotification,
     TResult Function(NotificationData notification)? notificationOpened,
@@ -66,13 +58,6 @@ mixin _$NotificationEvent {
     required TResult Function(_NewNotification value) newNotification,
     required TResult Function(_NotificationOpened value) notificationOpened,
     required TResult Function(_GetListNotification value) getListNotification,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NewNotification value)? newNotification,
-    TResult Function(_NotificationOpened value)? notificationOpened,
-    TResult Function(_GetListNotification value)? getListNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,16 +171,6 @@ class _$_NewNotification implements _NewNotification {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
-    TResult Function()? getListNotification,
-  }) {
-    return newNotification?.call(notification);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(NotificationData notification)? newNotification,
     TResult Function(NotificationData notification)? notificationOpened,
@@ -216,16 +191,6 @@ class _$_NewNotification implements _NewNotification {
     required TResult Function(_GetListNotification value) getListNotification,
   }) {
     return newNotification(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NewNotification value)? newNotification,
-    TResult Function(_NotificationOpened value)? notificationOpened,
-    TResult Function(_GetListNotification value)? getListNotification,
-  }) {
-    return newNotification?.call(this);
   }
 
   @override
@@ -337,16 +302,6 @@ class _$_NotificationOpened implements _NotificationOpened {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
-    TResult Function()? getListNotification,
-  }) {
-    return notificationOpened?.call(notification);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(NotificationData notification)? newNotification,
     TResult Function(NotificationData notification)? notificationOpened,
@@ -367,16 +322,6 @@ class _$_NotificationOpened implements _NotificationOpened {
     required TResult Function(_GetListNotification value) getListNotification,
   }) {
     return notificationOpened(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NewNotification value)? newNotification,
-    TResult Function(_NotificationOpened value)? notificationOpened,
-    TResult Function(_GetListNotification value)? getListNotification,
-  }) {
-    return notificationOpened?.call(this);
   }
 
   @override
@@ -453,16 +398,6 @@ class _$_GetListNotification implements _GetListNotification {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
-    TResult Function()? getListNotification,
-  }) {
-    return getListNotification?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(NotificationData notification)? newNotification,
     TResult Function(NotificationData notification)? notificationOpened,
@@ -483,16 +418,6 @@ class _$_GetListNotification implements _GetListNotification {
     required TResult Function(_GetListNotification value) getListNotification,
   }) {
     return getListNotification(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NewNotification value)? newNotification,
-    TResult Function(_NotificationOpened value)? notificationOpened,
-    TResult Function(_GetListNotification value)? getListNotification,
-  }) {
-    return getListNotification?.call(this);
   }
 
   @override

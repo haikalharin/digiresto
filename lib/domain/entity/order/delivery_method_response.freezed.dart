@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'delivery_method_response.dart';
 
@@ -173,7 +172,7 @@ class _$_DeliveryMethodResponse implements _DeliveryMethodResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_DeliveryMethodResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryMethodResponseFromJson(json);
+      _$_$_DeliveryMethodResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -215,7 +214,7 @@ class _$_DeliveryMethodResponse implements _DeliveryMethodResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryMethodResponseToJson(this);
+    return _$_$_DeliveryMethodResponseToJson(this);
   }
 }
 
@@ -413,7 +412,7 @@ class _$_DeliveryMethodDataResponse implements _DeliveryMethodDataResponse {
       required this.param});
 
   factory _$_DeliveryMethodDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryMethodDataResponseFromJson(json);
+      _$_$_DeliveryMethodDataResponseFromJson(json);
 
   @override
   final String provider;
@@ -461,7 +460,7 @@ class _$_DeliveryMethodDataResponse implements _DeliveryMethodDataResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryMethodDataResponseToJson(this);
+    return _$_$_DeliveryMethodDataResponseToJson(this);
   }
 }
 
@@ -671,7 +670,7 @@ class _$_DeliveryMethodDataParamResponse
 
   factory _$_DeliveryMethodDataParamResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DeliveryMethodDataParamResponseFromJson(json);
+      _$_$_DeliveryMethodDataParamResponseFromJson(json);
 
   @override
   final String? provider;
@@ -726,7 +725,7 @@ class _$_DeliveryMethodDataParamResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryMethodDataParamResponseToJson(this);
+    return _$_$_DeliveryMethodDataParamResponseToJson(this);
   }
 }
 
@@ -940,7 +939,7 @@ class _$_DeliveryMethodDataShipmentMethodResponse
 
   factory _$_DeliveryMethodDataShipmentMethodResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DeliveryMethodDataShipmentMethodResponseFromJson(json);
+      _$_$_DeliveryMethodDataShipmentMethodResponseFromJson(json);
 
   @override
   final String name;
@@ -994,7 +993,7 @@ class _$_DeliveryMethodDataShipmentMethodResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryMethodDataShipmentMethodResponseToJson(this);
+    return _$_$_DeliveryMethodDataShipmentMethodResponseToJson(this);
   }
 }
 

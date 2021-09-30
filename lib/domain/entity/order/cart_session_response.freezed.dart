@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'cart_session_response.dart';
 
@@ -178,7 +177,7 @@ class _$_CartSessionResponseApi implements _CartSessionResponseApi {
       {required this.response, required this.data, required this.meta});
 
   factory _$_CartSessionResponseApi.fromJson(Map<String, dynamic> json) =>
-      _$$_CartSessionResponseApiFromJson(json);
+      _$_$_CartSessionResponseApiFromJson(json);
 
   @override
   final StatusResponse response;
@@ -220,7 +219,7 @@ class _$_CartSessionResponseApi implements _CartSessionResponseApi {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CartSessionResponseApiToJson(this);
+    return _$_$_CartSessionResponseApiToJson(this);
   }
 }
 
@@ -395,7 +394,7 @@ class _$_CartSessionResponse implements _CartSessionResponse {
       required this.transactionData});
 
   factory _$_CartSessionResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CartSessionResponseFromJson(json);
+      _$_$_CartSessionResponseFromJson(json);
 
   @override
   final String? channel;
@@ -439,7 +438,7 @@ class _$_CartSessionResponse implements _CartSessionResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CartSessionResponseToJson(this);
+    return _$_$_CartSessionResponseToJson(this);
   }
 }
 
@@ -1196,7 +1195,7 @@ class _$_TransactionData implements _TransactionData {
       required this.itemTotalAmount});
 
   factory _$_TransactionData.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionDataFromJson(json);
+      _$_$_TransactionDataFromJson(json);
 
   @override
   final String outletName;
@@ -1424,7 +1423,7 @@ class _$_TransactionData implements _TransactionData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionDataToJson(this);
+    return _$_$_TransactionDataToJson(this);
   }
 }
 
@@ -2041,7 +2040,7 @@ class _$_TransactionDataItemResponse implements _TransactionDataItemResponse {
       required this.taxAmount});
 
   factory _$_TransactionDataItemResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionDataItemResponseFromJson(json);
+      _$_$_TransactionDataItemResponseFromJson(json);
 
   @override
   final int productId;
@@ -2202,7 +2201,7 @@ class _$_TransactionDataItemResponse implements _TransactionDataItemResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionDataItemResponseToJson(this);
+    return _$_$_TransactionDataItemResponseToJson(this);
   }
 }
 
@@ -2583,7 +2582,7 @@ class _$_Modifier implements _Modifier {
       required this.discountPercentage});
 
   factory _$_Modifier.fromJson(Map<String, dynamic> json) =>
-      _$$_ModifierFromJson(json);
+      _$_$_ModifierFromJson(json);
 
   @override
   final String modifierGroupId;
@@ -2681,7 +2680,7 @@ class _$_Modifier implements _Modifier {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ModifierToJson(this);
+    return _$_$_ModifierToJson(this);
   }
 }
 
@@ -2953,7 +2952,7 @@ class _$_TaxesAndService implements _TaxesAndService {
       required this.amount});
 
   factory _$_TaxesAndService.fromJson(Map<String, dynamic> json) =>
-      _$$_TaxesAndServiceFromJson(json);
+      _$_$_TaxesAndServiceFromJson(json);
 
   @override
   final int id;
@@ -3020,7 +3019,7 @@ class _$_TaxesAndService implements _TaxesAndService {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TaxesAndServiceToJson(this);
+    return _$_$_TaxesAndServiceToJson(this);
   }
 }
 

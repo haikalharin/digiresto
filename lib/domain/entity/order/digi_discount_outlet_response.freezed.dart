@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'digi_discount_outlet_response.dart';
 
@@ -175,7 +174,7 @@ class _$_DigiDiscountOutletResponse implements _DigiDiscountOutletResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_DigiDiscountOutletResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_DigiDiscountOutletResponseFromJson(json);
+      _$_$_DigiDiscountOutletResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -217,7 +216,7 @@ class _$_DigiDiscountOutletResponse implements _DigiDiscountOutletResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DigiDiscountOutletResponseToJson(this);
+    return _$_$_DigiDiscountOutletResponseToJson(this);
   }
 }
 
@@ -716,7 +715,7 @@ class _$_DigiDiscountOutletDataResponse
 
   factory _$_DigiDiscountOutletDataResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DigiDiscountOutletDataResponseFromJson(json);
+      _$_$_DigiDiscountOutletDataResponseFromJson(json);
 
   @override
   final String name;
@@ -865,7 +864,7 @@ class _$_DigiDiscountOutletDataResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DigiDiscountOutletDataResponseToJson(this);
+    return _$_$_DigiDiscountOutletDataResponseToJson(this);
   }
 }
 
@@ -1255,7 +1254,7 @@ class _$_DigiDiscountOutletDataDetailResponse
 
   factory _$_DigiDiscountOutletDataDetailResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DigiDiscountOutletDataDetailResponseFromJson(json);
+      _$_$_DigiDiscountOutletDataDetailResponseFromJson(json);
 
   @override
   final String name;
@@ -1356,7 +1355,7 @@ class _$_DigiDiscountOutletDataDetailResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DigiDiscountOutletDataDetailResponseToJson(this);
+    return _$_$_DigiDiscountOutletDataDetailResponseToJson(this);
   }
 }
 
@@ -1541,7 +1540,7 @@ class _$_DigiDiscountOutletDataDistanceResponse
 
   factory _$_DigiDiscountOutletDataDistanceResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DigiDiscountOutletDataDistanceResponseFromJson(json);
+      _$_$_DigiDiscountOutletDataDistanceResponseFromJson(json);
 
   @override
   final String text;
@@ -1578,7 +1577,7 @@ class _$_DigiDiscountOutletDataDistanceResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DigiDiscountOutletDataDistanceResponseToJson(this);
+    return _$_$_DigiDiscountOutletDataDistanceResponseToJson(this);
   }
 }
 
@@ -1731,7 +1730,7 @@ class _$_DigiDiscountOutletDataOrderMethodResponse
 
   factory _$_DigiDiscountOutletDataOrderMethodResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DigiDiscountOutletDataOrderMethodResponseFromJson(json);
+      _$_$_DigiDiscountOutletDataOrderMethodResponseFromJson(json);
 
   @override
   final bool forceSelect;
@@ -1770,7 +1769,7 @@ class _$_DigiDiscountOutletDataOrderMethodResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DigiDiscountOutletDataOrderMethodResponseToJson(this);
+    return _$_$_DigiDiscountOutletDataOrderMethodResponseToJson(this);
   }
 }
 

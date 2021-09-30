@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'get_outlet_by_location_param.dart';
 
@@ -161,7 +160,7 @@ class _$_GetOutletByLocationParam implements _GetOutletByLocationParam {
       {required this.queryString, required this.body});
 
   factory _$_GetOutletByLocationParam.fromJson(Map<String, dynamic> json) =>
-      _$$_GetOutletByLocationParamFromJson(json);
+      _$_$_GetOutletByLocationParamFromJson(json);
 
   @override
   final GetOutletByLocationQueryParam queryString;
@@ -198,7 +197,7 @@ class _$_GetOutletByLocationParam implements _GetOutletByLocationParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletByLocationParamToJson(this);
+    return _$_$_GetOutletByLocationParamToJson(this);
   }
 }
 
@@ -294,7 +293,7 @@ class _$_GetOutletByLocationBodyParam implements _GetOutletByLocationBodyParam {
   const _$_GetOutletByLocationBodyParam();
 
   factory _$_GetOutletByLocationBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$$_GetOutletByLocationBodyParamFromJson(json);
+      _$_$_GetOutletByLocationBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -311,7 +310,7 @@ class _$_GetOutletByLocationBodyParam implements _GetOutletByLocationBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletByLocationBodyParamToJson(this);
+    return _$_$_GetOutletByLocationBodyParamToJson(this);
   }
 }
 
@@ -459,7 +458,7 @@ class _$_GetOutletByLocationQueryParam
 
   factory _$_GetOutletByLocationQueryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_GetOutletByLocationQueryParamFromJson(json);
+      _$_$_GetOutletByLocationQueryParamFromJson(json);
 
   @override
   final String location;
@@ -501,7 +500,7 @@ class _$_GetOutletByLocationQueryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletByLocationQueryParamToJson(this);
+    return _$_$_GetOutletByLocationQueryParamToJson(this);
   }
 }
 

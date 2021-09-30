@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'get_outlet_by_merchant_param.dart';
 
@@ -161,7 +160,7 @@ class _$_GetOutletByMerchantParam implements _GetOutletByMerchantParam {
       {required this.queryString, required this.body});
 
   factory _$_GetOutletByMerchantParam.fromJson(Map<String, dynamic> json) =>
-      _$$_GetOutletByMerchantParamFromJson(json);
+      _$_$_GetOutletByMerchantParamFromJson(json);
 
   @override
   final GetOutletByMerchantQueryParam queryString;
@@ -198,7 +197,7 @@ class _$_GetOutletByMerchantParam implements _GetOutletByMerchantParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletByMerchantParamToJson(this);
+    return _$_$_GetOutletByMerchantParamToJson(this);
   }
 }
 
@@ -294,7 +293,7 @@ class _$_GetOutletByMerchantBodyParam implements _GetOutletByMerchantBodyParam {
   const _$_GetOutletByMerchantBodyParam();
 
   factory _$_GetOutletByMerchantBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$$_GetOutletByMerchantBodyParamFromJson(json);
+      _$_$_GetOutletByMerchantBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -311,7 +310,7 @@ class _$_GetOutletByMerchantBodyParam implements _GetOutletByMerchantBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletByMerchantBodyParamToJson(this);
+    return _$_$_GetOutletByMerchantBodyParamToJson(this);
   }
 }
 
@@ -477,7 +476,7 @@ class _$_GetOutletByMerchantQueryParam
 
   factory _$_GetOutletByMerchantQueryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_GetOutletByMerchantQueryParamFromJson(json);
+      _$_$_GetOutletByMerchantQueryParamFromJson(json);
 
   @override
   final String location;
@@ -525,7 +524,7 @@ class _$_GetOutletByMerchantQueryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOutletByMerchantQueryParamToJson(this);
+    return _$_$_GetOutletByMerchantQueryParamToJson(this);
   }
 }
 

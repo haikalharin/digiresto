@@ -6,16 +6,17 @@ part of 'user_add_address_param.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserAddAddressParam _$UserAddAddressParamFromJson(Map<String, dynamic> json) =>
-    UserAddAddressParam(
-      wa_id: json['wa_id'] as String,
-      waba_no: json['waba_no'] as String,
-      name: json['name'] as String,
-      address: json['address'] as String,
-      latitude: json['latitude'] as String,
-      longitude: json['longitude'] as String,
-      is_default: json['is_default'] as bool,
-    );
+UserAddAddressParam _$UserAddAddressParamFromJson(Map<String, dynamic> json) {
+  return UserAddAddressParam(
+    wa_id: json['wa_id'] as String,
+    waba_no: json['waba_no'] as String,
+    name: json['name'] as String,
+    address: json['address'] as String,
+    latitude: json['latitude'] as String,
+    longitude: json['longitude'] as String,
+    is_default: json['is_default'] as bool,
+  );
+}
 
 Map<String, dynamic> _$UserAddAddressParamToJson(
         UserAddAddressParam instance) =>

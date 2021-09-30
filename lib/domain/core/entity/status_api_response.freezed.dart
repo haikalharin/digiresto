@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'status_api_response.dart';
 
@@ -113,7 +112,7 @@ class _$_MetaResponse implements _MetaResponse {
   const _$_MetaResponse({required this.version});
 
   factory _$_MetaResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_MetaResponseFromJson(json);
+      _$_$_MetaResponseFromJson(json);
 
   @override
   final String version;
@@ -142,7 +141,7 @@ class _$_MetaResponse implements _MetaResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MetaResponseToJson(this);
+    return _$_$_MetaResponseToJson(this);
   }
 }
 
@@ -332,7 +331,7 @@ class _$_StatusResponse implements _StatusResponse {
       required this.messageDisplay});
 
   factory _$_StatusResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_StatusResponseFromJson(json);
+      _$_$_StatusResponseFromJson(json);
 
   @override
   final String code;
@@ -379,7 +378,7 @@ class _$_StatusResponse implements _StatusResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StatusResponseToJson(this);
+    return _$_$_StatusResponseToJson(this);
   }
 }
 
@@ -528,7 +527,7 @@ class _$_StatusMessageDisplayResponse implements _StatusMessageDisplayResponse {
   const _$_StatusMessageDisplayResponse({required this.id, required this.en});
 
   factory _$_StatusMessageDisplayResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_StatusMessageDisplayResponseFromJson(json);
+      _$_$_StatusMessageDisplayResponseFromJson(json);
 
   @override
   final String id;
@@ -564,7 +563,7 @@ class _$_StatusMessageDisplayResponse implements _StatusMessageDisplayResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StatusMessageDisplayResponseToJson(this);
+    return _$_$_StatusMessageDisplayResponseToJson(this);
   }
 }
 

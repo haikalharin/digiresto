@@ -6,21 +6,22 @@ part of 'payment_history.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PaymentHistory _$$_PaymentHistoryFromJson(Map<String, dynamic> json) =>
-    _$_PaymentHistory(
-      pageSize: json['pageSize'] as int,
-      onPage: json['onPage'] as int,
-      status: json['status'] as String,
-      totalCount: json['totalCount'] as int,
-      creditLimit: json['creditLimit'] as String,
-      accountBalance: json['accountBalance'] as String,
-      listAccountHistoryDetails: (json['listAccountHistoryDetails']
-              as List<dynamic>)
-          .map((e) => PaymentHistoryDetail.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_$_PaymentHistory _$_$_PaymentHistoryFromJson(Map<String, dynamic> json) {
+  return _$_PaymentHistory(
+    pageSize: json['pageSize'] as int,
+    onPage: json['onPage'] as int,
+    status: json['status'] as String,
+    totalCount: json['totalCount'] as int,
+    creditLimit: json['creditLimit'] as String,
+    accountBalance: json['accountBalance'] as String,
+    listAccountHistoryDetails: (json['listAccountHistoryDetails']
+            as List<dynamic>)
+        .map((e) => PaymentHistoryDetail.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
-Map<String, dynamic> _$$_PaymentHistoryToJson(_$_PaymentHistory instance) =>
+Map<String, dynamic> _$_$_PaymentHistoryToJson(_$_PaymentHistory instance) =>
     <String, dynamic>{
       'pageSize': instance.pageSize,
       'onPage': instance.onPage,
@@ -31,25 +32,26 @@ Map<String, dynamic> _$$_PaymentHistoryToJson(_$_PaymentHistory instance) =>
       'listAccountHistoryDetails': instance.listAccountHistoryDetails,
     };
 
-_$_PaymentHistoryDetail _$$_PaymentHistoryDetailFromJson(
-        Map<String, dynamic> json) =>
-    _$_PaymentHistoryDetail(
-      transferId: json['transferId'] as int,
-      description: json['description'] as String,
-      amount: json['amount'] as String,
-      status: json['status'] as String,
-      transactionNumber: json['transactionNumber'] as String,
-      transferType: json['transferType'] as String,
-      transactionDate: json['transactionDate'] as String,
-      fee: json['fee'] as String,
-      transferTypeName: json['transferTypeName'] as String,
-      transferTypeDescription: json['transferTypeDescription'] as String,
-      type: json['type'] as String,
-      groupPayment: json['groupPayment'] as String,
-      needReceiptInquiry: json['needReceiptInquiry'] as bool,
-    );
+_$_PaymentHistoryDetail _$_$_PaymentHistoryDetailFromJson(
+    Map<String, dynamic> json) {
+  return _$_PaymentHistoryDetail(
+    transferId: json['transferId'] as int,
+    description: json['description'] as String,
+    amount: json['amount'] as String,
+    status: json['status'] as String,
+    transactionNumber: json['transactionNumber'] as String,
+    transferType: json['transferType'] as String,
+    transactionDate: json['transactionDate'] as String,
+    fee: json['fee'] as String,
+    transferTypeName: json['transferTypeName'] as String,
+    transferTypeDescription: json['transferTypeDescription'] as String,
+    type: json['type'] as String,
+    groupPayment: json['groupPayment'] as String,
+    needReceiptInquiry: json['needReceiptInquiry'] as bool,
+  );
+}
 
-Map<String, dynamic> _$$_PaymentHistoryDetailToJson(
+Map<String, dynamic> _$_$_PaymentHistoryDetailToJson(
         _$_PaymentHistoryDetail instance) =>
     <String, dynamic>{
       'transferId': instance.transferId,

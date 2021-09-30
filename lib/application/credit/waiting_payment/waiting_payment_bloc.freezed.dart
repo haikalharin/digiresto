@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'waiting_payment_bloc.dart';
 
@@ -40,12 +39,6 @@ mixin _$WaitingPaymentEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String billingId)? cancelTopup,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String billingId)? cancelTopup,
@@ -56,12 +49,6 @@ mixin _$WaitingPaymentEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_CancelTopup value) cancelTopup,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_CancelTopup value)? cancelTopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -136,15 +123,6 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String billingId)? cancelTopup,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String billingId)? cancelTopup,
@@ -163,15 +141,6 @@ class _$_Started implements _Started {
     required TResult Function(_CancelTopup value) cancelTopup,
   }) {
     return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_CancelTopup value)? cancelTopup,
-  }) {
-    return started?.call(this);
   }
 
   @override
@@ -266,15 +235,6 @@ class _$_CancelTopup implements _CancelTopup {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String billingId)? cancelTopup,
-  }) {
-    return cancelTopup?.call(billingId);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String billingId)? cancelTopup,
@@ -293,15 +253,6 @@ class _$_CancelTopup implements _CancelTopup {
     required TResult Function(_CancelTopup value) cancelTopup,
   }) {
     return cancelTopup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_CancelTopup value)? cancelTopup,
-  }) {
-    return cancelTopup?.call(this);
   }
 
   @override
@@ -366,14 +317,6 @@ mixin _$WaitingPaymentState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(IList<TopUpPending> listTopUpPending)? loadSuccess,
-    TResult Function(CreditFailure failure)? loadFailure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -388,14 +331,6 @@ mixin _$WaitingPaymentState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_LoadSucces value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSucces value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -474,17 +409,6 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(IList<TopUpPending> listTopUpPending)? loadSuccess,
-    TResult Function(CreditFailure failure)? loadFailure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -507,17 +431,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSucces value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-  }) {
-    return initial?.call(this);
   }
 
   @override
@@ -588,17 +501,6 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(IList<TopUpPending> listTopUpPending)? loadSuccess,
-    TResult Function(CreditFailure failure)? loadFailure,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -621,17 +523,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSucces value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-  }) {
-    return loading?.call(this);
   }
 
   @override
@@ -731,17 +622,6 @@ class _$_LoadSucces implements _LoadSucces {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(IList<TopUpPending> listTopUpPending)? loadSuccess,
-    TResult Function(CreditFailure failure)? loadFailure,
-  }) {
-    return loadSuccess?.call(listTopUpPending);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -764,17 +644,6 @@ class _$_LoadSucces implements _LoadSucces {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return loadSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSucces value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-  }) {
-    return loadSuccess?.call(this);
   }
 
   @override
@@ -888,17 +757,6 @@ class _$_LoadFailure implements _LoadFailure {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(IList<TopUpPending> listTopUpPending)? loadSuccess,
-    TResult Function(CreditFailure failure)? loadFailure,
-  }) {
-    return loadFailure?.call(failure);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -921,17 +779,6 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSucces value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-  }) {
-    return loadFailure?.call(this);
   }
 
   @override

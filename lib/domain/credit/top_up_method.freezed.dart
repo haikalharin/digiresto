@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'top_up_method.dart';
 
@@ -246,7 +245,7 @@ class _$_TopUpMethod implements _TopUpMethod {
       required this.subCategory});
 
   factory _$_TopUpMethod.fromJson(Map<String, dynamic> json) =>
-      _$$_TopUpMethodFromJson(json);
+      _$_$_TopUpMethodFromJson(json);
 
   @override
   final String description;
@@ -322,7 +321,7 @@ class _$_TopUpMethod implements _TopUpMethod {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopUpMethodToJson(this);
+    return _$_$_TopUpMethodToJson(this);
   }
 }
 
@@ -580,7 +579,7 @@ class _$_TopUpSubCategory implements _TopUpSubCategory {
       required this.param});
 
   factory _$_TopUpSubCategory.fromJson(Map<String, dynamic> json) =>
-      _$$_TopUpSubCategoryFromJson(json);
+      _$_$_TopUpSubCategoryFromJson(json);
 
   @override
   final String description;
@@ -644,7 +643,7 @@ class _$_TopUpSubCategory implements _TopUpSubCategory {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopUpSubCategoryToJson(this);
+    return _$_$_TopUpSubCategoryToJson(this);
   }
 }
 
@@ -813,7 +812,7 @@ class _$_TopUpSubCategoryParam implements _TopUpSubCategoryParam {
       {required this.bankCode, required this.customerPhone, required this.fee});
 
   factory _$_TopUpSubCategoryParam.fromJson(Map<String, dynamic> json) =>
-      _$$_TopUpSubCategoryParamFromJson(json);
+      _$_$_TopUpSubCategoryParamFromJson(json);
 
   @override
   final String bankCode;
@@ -856,7 +855,7 @@ class _$_TopUpSubCategoryParam implements _TopUpSubCategoryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopUpSubCategoryParamToJson(this);
+    return _$_$_TopUpSubCategoryParamToJson(this);
   }
 }
 

@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'checkout_response.dart';
 
@@ -181,7 +180,7 @@ class _$_CheckoutResponse implements _CheckoutResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_CheckoutResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CheckoutResponseFromJson(json);
+      _$_$_CheckoutResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -222,7 +221,7 @@ class _$_CheckoutResponse implements _CheckoutResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckoutResponseToJson(this);
+    return _$_$_CheckoutResponseToJson(this);
   }
 }
 
@@ -429,7 +428,7 @@ class _$_CheckoutDataResponse implements _CheckoutDataResponse {
       required this.payment});
 
   factory _$_CheckoutDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CheckoutDataResponseFromJson(json);
+      _$_$_CheckoutDataResponseFromJson(json);
 
   @override
   final String orderId;
@@ -483,7 +482,7 @@ class _$_CheckoutDataResponse implements _CheckoutDataResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckoutDataResponseToJson(this);
+    return _$_$_CheckoutDataResponseToJson(this);
   }
 }
 
@@ -739,7 +738,7 @@ class _$_CheckoutDataPaymentResponse implements _CheckoutDataPaymentResponse {
       required this.isSingleBilling});
 
   factory _$_CheckoutDataPaymentResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CheckoutDataPaymentResponseFromJson(json);
+      _$_$_CheckoutDataPaymentResponseFromJson(json);
 
   @override
   final String? url;
@@ -806,7 +805,7 @@ class _$_CheckoutDataPaymentResponse implements _CheckoutDataPaymentResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckoutDataPaymentResponseToJson(this);
+    return _$_$_CheckoutDataPaymentResponseToJson(this);
   }
 }
 
@@ -1135,7 +1134,7 @@ class _$_CheckoutDataPaymentCodeResponse
 
   factory _$_CheckoutDataPaymentCodeResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_CheckoutDataPaymentCodeResponseFromJson(json);
+      _$_$_CheckoutDataPaymentCodeResponseFromJson(json);
 
   @override
   final String? title;
@@ -1233,7 +1232,7 @@ class _$_CheckoutDataPaymentCodeResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckoutDataPaymentCodeResponseToJson(this);
+    return _$_$_CheckoutDataPaymentCodeResponseToJson(this);
   }
 }
 

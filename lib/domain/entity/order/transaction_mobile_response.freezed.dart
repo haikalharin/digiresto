@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'transaction_mobile_response.dart';
 
@@ -183,7 +182,7 @@ class _$_TransactionMobileResponse implements _TransactionMobileResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_TransactionMobileResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionMobileResponseFromJson(json);
+      _$_$_TransactionMobileResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -226,7 +225,7 @@ class _$_TransactionMobileResponse implements _TransactionMobileResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileResponseToJson(this);
+    return _$_$_TransactionMobileResponseToJson(this);
   }
 }
 
@@ -1254,7 +1253,7 @@ class _$_TransactionMobileDataResponse
 
   factory _$_TransactionMobileDataResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataResponseFromJson(json);
+      _$_$_TransactionMobileDataResponseFromJson(json);
 
   @override
   final String outletName;
@@ -1527,7 +1526,7 @@ class _$_TransactionMobileDataResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataResponseToJson(this);
+    return _$_$_TransactionMobileDataResponseToJson(this);
   }
 }
 
@@ -1891,7 +1890,7 @@ class _$_TransactionMobileDataBillingDetailResponse
 
   factory _$_TransactionMobileDataBillingDetailResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataBillingDetailResponseFromJson(json);
+      _$_$_TransactionMobileDataBillingDetailResponseFromJson(json);
 
   @override
   final String? title;
@@ -1946,7 +1945,7 @@ class _$_TransactionMobileDataBillingDetailResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataBillingDetailResponseToJson(this);
+    return _$_$_TransactionMobileDataBillingDetailResponseToJson(this);
   }
 }
 
@@ -2161,7 +2160,7 @@ class _$_TransactionMobileDataDeliveryResponse
 
   factory _$_TransactionMobileDataDeliveryResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataDeliveryResponseFromJson(json);
+      _$_$_TransactionMobileDataDeliveryResponseFromJson(json);
 
   @override
   final String provider;
@@ -2217,7 +2216,7 @@ class _$_TransactionMobileDataDeliveryResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataDeliveryResponseToJson(this);
+    return _$_$_TransactionMobileDataDeliveryResponseToJson(this);
   }
 }
 
@@ -2661,7 +2660,7 @@ class _$_TransactionMobileDataDeliveryDetailResponse
 
   factory _$_TransactionMobileDataDeliveryDetailResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataDeliveryDetailResponseFromJson(json);
+      _$_$_TransactionMobileDataDeliveryDetailResponseFromJson(json);
 
   @override
   final String? orderId;
@@ -2787,7 +2786,7 @@ class _$_TransactionMobileDataDeliveryDetailResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataDeliveryDetailResponseToJson(this);
+    return _$_$_TransactionMobileDataDeliveryDetailResponseToJson(this);
   }
 }
 
@@ -3028,7 +3027,7 @@ class _$_TransactionMobileDataDeliveryDetailFromToResponse
 
   factory _$_TransactionMobileDataDeliveryDetailFromToResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataDeliveryDetailFromToResponseFromJson(json);
+      _$_$_TransactionMobileDataDeliveryDetailFromToResponseFromJson(json);
 
   @override
   final List<String> location;
@@ -3079,7 +3078,7 @@ class _$_TransactionMobileDataDeliveryDetailFromToResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataDeliveryDetailFromToResponseToJson(this);
+    return _$_$_TransactionMobileDataDeliveryDetailFromToResponseToJson(this);
   }
 }
 
@@ -3526,7 +3525,7 @@ class _$_TransactionMobileDataOutletResponse
 
   factory _$_TransactionMobileDataOutletResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataOutletResponseFromJson(json);
+      _$_$_TransactionMobileDataOutletResponseFromJson(json);
 
   @override
   final String name;
@@ -3650,7 +3649,7 @@ class _$_TransactionMobileDataOutletResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataOutletResponseToJson(this);
+    return _$_$_TransactionMobileDataOutletResponseToJson(this);
   }
 }
 
@@ -4016,7 +4015,7 @@ class _$_TransactionMobileDataOutletDetailResponse
 
   factory _$_TransactionMobileDataOutletDetailResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataOutletDetailResponseFromJson(json);
+      _$_$_TransactionMobileDataOutletDetailResponseFromJson(json);
 
   @override
   final String name;
@@ -4112,7 +4111,7 @@ class _$_TransactionMobileDataOutletDetailResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataOutletDetailResponseToJson(this);
+    return _$_$_TransactionMobileDataOutletDetailResponseToJson(this);
   }
 }
 
@@ -4332,7 +4331,7 @@ class _$_TransactionTaxesAndService implements _TransactionTaxesAndService {
       required this.type});
 
   factory _$_TransactionTaxesAndService.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionTaxesAndServiceFromJson(json);
+      _$_$_TransactionTaxesAndServiceFromJson(json);
 
   @override
   final int id;
@@ -4383,7 +4382,7 @@ class _$_TransactionTaxesAndService implements _TransactionTaxesAndService {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionTaxesAndServiceToJson(this);
+    return _$_$_TransactionTaxesAndServiceToJson(this);
   }
 }
 
@@ -4509,7 +4508,8 @@ class __$MokaCopyWithImpl<$Res> extends _$MokaCopyWithImpl<$Res>
 class _$_Moka implements _Moka {
   const _$_Moka({required this.outletId});
 
-  factory _$_Moka.fromJson(Map<String, dynamic> json) => _$$_MokaFromJson(json);
+  factory _$_Moka.fromJson(Map<String, dynamic> json) =>
+      _$_$_MokaFromJson(json);
 
   @override
   final dynamic outletId;
@@ -4539,7 +4539,7 @@ class _$_Moka implements _Moka {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MokaToJson(this);
+    return _$_$_MokaToJson(this);
   }
 }
 
@@ -4668,7 +4668,7 @@ class _$_OrderMethod implements _OrderMethod {
   const _$_OrderMethod({required this.forceSelect, required this.defaultList});
 
   factory _$_OrderMethod.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderMethodFromJson(json);
+      _$_$_OrderMethodFromJson(json);
 
   @override
   final bool forceSelect;
@@ -4705,7 +4705,7 @@ class _$_OrderMethod implements _OrderMethod {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderMethodToJson(this);
+    return _$_$_OrderMethodToJson(this);
   }
 }
 
@@ -4871,7 +4871,7 @@ class _$_TransactionMobileDataPaymentListResponse
 
   factory _$_TransactionMobileDataPaymentListResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataPaymentListResponseFromJson(json);
+      _$_$_TransactionMobileDataPaymentListResponseFromJson(json);
 
   @override
   final int? amount;
@@ -4914,7 +4914,7 @@ class _$_TransactionMobileDataPaymentListResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataPaymentListResponseToJson(this);
+    return _$_$_TransactionMobileDataPaymentListResponseToJson(this);
   }
 }
 
@@ -5154,7 +5154,7 @@ class _$_TransactionMobileDataPaymentResponse
 
   factory _$_TransactionMobileDataPaymentResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataPaymentResponseFromJson(json);
+      _$_$_TransactionMobileDataPaymentResponseFromJson(json);
 
   @override
   final int amount;
@@ -5218,7 +5218,7 @@ class _$_TransactionMobileDataPaymentResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataPaymentResponseToJson(this);
+    return _$_$_TransactionMobileDataPaymentResponseToJson(this);
   }
 }
 
@@ -5517,7 +5517,7 @@ class _$_TransactionMobileDataPromoResponse
 
   factory _$_TransactionMobileDataPromoResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataPromoResponseFromJson(json);
+      _$_$_TransactionMobileDataPromoResponseFromJson(json);
 
   @override
   final List<String>? paymentTypes;
@@ -5601,7 +5601,7 @@ class _$_TransactionMobileDataPromoResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataPromoResponseToJson(this);
+    return _$_$_TransactionMobileDataPromoResponseToJson(this);
   }
 }
 
@@ -5725,7 +5725,7 @@ class _$_TransactionMobileDataRatingResponse
 
   factory _$_TransactionMobileDataRatingResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TransactionMobileDataRatingResponseFromJson(json);
+      _$_$_TransactionMobileDataRatingResponseFromJson(json);
 
   @override
   String toString() {
@@ -5743,7 +5743,7 @@ class _$_TransactionMobileDataRatingResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionMobileDataRatingResponseToJson(this);
+    return _$_$_TransactionMobileDataRatingResponseToJson(this);
   }
 }
 

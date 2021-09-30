@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'outlet_product_category_response.dart';
 
@@ -181,7 +180,7 @@ class _$_OutletProductCategoryResponse
 
   factory _$_OutletProductCategoryResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletProductCategoryResponseFromJson(json);
+      _$_$_OutletProductCategoryResponseFromJson(json);
 
   @override
   final OutletProductCategoryStatusResponse response;
@@ -223,7 +222,7 @@ class _$_OutletProductCategoryResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletProductCategoryResponseToJson(this);
+    return _$_$_OutletProductCategoryResponseToJson(this);
   }
 }
 
@@ -406,7 +405,7 @@ class _$_OutletProductCategoryDataResponse
 
   factory _$_OutletProductCategoryDataResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletProductCategoryDataResponseFromJson(json);
+      _$_$_OutletProductCategoryDataResponseFromJson(json);
 
   @override
   final int id;
@@ -453,7 +452,7 @@ class _$_OutletProductCategoryDataResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletProductCategoryDataResponseToJson(this);
+    return _$_$_OutletProductCategoryDataResponseToJson(this);
   }
 }
 
@@ -588,7 +587,7 @@ class _$_OutletProductMetaResponse implements _OutletProductMetaResponse {
   const _$_OutletProductMetaResponse({required this.version});
 
   factory _$_OutletProductMetaResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_OutletProductMetaResponseFromJson(json);
+      _$_$_OutletProductMetaResponseFromJson(json);
 
   @override
   final String version;
@@ -619,7 +618,7 @@ class _$_OutletProductMetaResponse implements _OutletProductMetaResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletProductMetaResponseToJson(this);
+    return _$_$_OutletProductMetaResponseToJson(this);
   }
 }
 
@@ -775,7 +774,7 @@ class _$_OutletProductCategoryStatusResponse
 
   factory _$_OutletProductCategoryStatusResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletProductCategoryStatusResponseFromJson(json);
+      _$_$_OutletProductCategoryStatusResponseFromJson(json);
 
   @override
   final String code;
@@ -817,7 +816,7 @@ class _$_OutletProductCategoryStatusResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletProductCategoryStatusResponseToJson(this);
+    return _$_$_OutletProductCategoryStatusResponseToJson(this);
   }
 }
 

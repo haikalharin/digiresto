@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'order_pending.dart';
 
@@ -963,7 +962,7 @@ class _$_OrderPending implements _OrderPending {
       required this.delivery});
 
   factory _$_OrderPending.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderPendingFromJson(json);
+      _$_$_OrderPendingFromJson(json);
 
   @override
   final String outletName;
@@ -1233,7 +1232,7 @@ class _$_OrderPending implements _OrderPending {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderPendingToJson(this);
+    return _$_$_OrderPendingToJson(this);
   }
 }
 
@@ -1824,7 +1823,7 @@ class _$_BillingDetail implements _BillingDetail {
       required this.isSingleBilling});
 
   factory _$_BillingDetail.fromJson(Map<String, dynamic> json) =>
-      _$$_BillingDetailFromJson(json);
+      _$_$_BillingDetailFromJson(json);
 
   @override
   @JsonKey(defaultValue: '')
@@ -1981,7 +1980,7 @@ class _$_BillingDetail implements _BillingDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BillingDetailToJson(this);
+    return _$_$_BillingDetailToJson(this);
   }
 }
 
@@ -2234,7 +2233,7 @@ class _$_Delivery implements _Delivery {
       required this.location});
 
   factory _$_Delivery.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryFromJson(json);
+      _$_$_DeliveryFromJson(json);
 
   @override
   final String provider;
@@ -2288,7 +2287,7 @@ class _$_Delivery implements _Delivery {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryToJson(this);
+    return _$_$_DeliveryToJson(this);
   }
 }
 
@@ -2678,7 +2677,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
       required this.ownerPhone});
 
   factory _$_DeliveryDetail.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryDetailFromJson(json);
+      _$_$_DeliveryDetailFromJson(json);
 
   @override
   final String? orderId;
@@ -2789,7 +2788,7 @@ class _$_DeliveryDetail implements _DeliveryDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryDetailToJson(this);
+    return _$_$_DeliveryDetailToJson(this);
   }
 }
 
@@ -2996,7 +2995,7 @@ class _$_DeliverFrom implements _DeliverFrom {
       required this.phone});
 
   factory _$_DeliverFrom.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliverFromFromJson(json);
+      _$_$_DeliverFromFromJson(json);
 
   @override
   final List<dynamic> location;
@@ -3043,7 +3042,7 @@ class _$_DeliverFrom implements _DeliverFrom {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliverFromToJson(this);
+    return _$_$_DeliverFromToJson(this);
   }
 }
 
@@ -3214,7 +3213,7 @@ class _$_DeliverTo implements _DeliverTo {
       required this.phone});
 
   factory _$_DeliverTo.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliverToFromJson(json);
+      _$_$_DeliverToFromJson(json);
 
   @override
   final List<dynamic> location;
@@ -3261,7 +3260,7 @@ class _$_DeliverTo implements _DeliverTo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliverToToJson(this);
+    return _$_$_DeliverToToJson(this);
   }
 }
 
@@ -3755,7 +3754,8 @@ class _$_Item implements _Item {
       required this.serviceAmount,
       required this.taxAmount});
 
-  factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
+  factory _$_Item.fromJson(Map<String, dynamic> json) =>
+      _$_$_ItemFromJson(json);
 
   @override
   final int productId;
@@ -3915,7 +3915,7 @@ class _$_Item implements _Item {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ItemToJson(this);
+    return _$_$_ItemToJson(this);
   }
 }
 
@@ -4350,7 +4350,7 @@ class _$_Outlet implements _Outlet {
       required this.createdDate});
 
   factory _$_Outlet.fromJson(Map<String, dynamic> json) =>
-      _$$_OutletFromJson(json);
+      _$_$_OutletFromJson(json);
 
   @override
   final String name;
@@ -4454,7 +4454,7 @@ class _$_Outlet implements _Outlet {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletToJson(this);
+    return _$_$_OutletToJson(this);
   }
 }
 
@@ -4758,7 +4758,7 @@ class _$_OutletDetail implements _OutletDetail {
       required this.deliveryLocation});
 
   factory _$_OutletDetail.fromJson(Map<String, dynamic> json) =>
-      _$$_OutletDetailFromJson(json);
+      _$_$_OutletDetailFromJson(json);
 
   @override
   final String name;
@@ -4840,7 +4840,7 @@ class _$_OutletDetail implements _OutletDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletDetailToJson(this);
+    return _$_$_OutletDetailToJson(this);
   }
 }
 
@@ -4947,7 +4947,8 @@ class __$MokaCopyWithImpl<$Res> extends _$MokaCopyWithImpl<$Res>
 class _$_Moka implements _Moka {
   const _$_Moka();
 
-  factory _$_Moka.fromJson(Map<String, dynamic> json) => _$$_MokaFromJson(json);
+  factory _$_Moka.fromJson(Map<String, dynamic> json) =>
+      _$_$_MokaFromJson(json);
 
   @override
   String toString() {
@@ -4964,7 +4965,7 @@ class _$_Moka implements _Moka {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MokaToJson(this);
+    return _$_$_MokaToJson(this);
   }
 }
 
@@ -5087,7 +5088,7 @@ class _$_OrderMethod implements _OrderMethod {
   const _$_OrderMethod({required this.forceSelect, required this.defaultList});
 
   factory _$_OrderMethod.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderMethodFromJson(json);
+      _$_$_OrderMethodFromJson(json);
 
   @override
   final bool forceSelect;
@@ -5124,7 +5125,7 @@ class _$_OrderMethod implements _OrderMethod {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderMethodToJson(this);
+    return _$_$_OrderMethodToJson(this);
   }
 }
 
@@ -5325,7 +5326,7 @@ class _$_Payment implements _Payment {
       required this.title});
 
   factory _$_Payment.fromJson(Map<String, dynamic> json) =>
-      _$$_PaymentFromJson(json);
+      _$_$_PaymentFromJson(json);
 
   @override
   final int amount;
@@ -5382,7 +5383,7 @@ class _$_Payment implements _Payment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PaymentToJson(this);
+    return _$_$_PaymentToJson(this);
   }
 }
 
@@ -5414,3 +5415,331 @@ abstract class _Payment implements Payment {
   _$PaymentCopyWith<_Payment> get copyWith =>
       throw _privateConstructorUsedError;
 }
+<<<<<<< HEAD
+=======
+
+TaxesAndService _$TaxesAndServiceFromJson(Map<String, dynamic> json) {
+  return _TaxesAndService.fromJson(json);
+}
+
+/// @nodoc
+class _$TaxesAndServiceTearOff {
+  const _$TaxesAndServiceTearOff();
+
+  _TaxesAndService call(
+      {required int id,
+      required String code,
+      required String name,
+      required String type,
+      required int amount,
+      required List<String> salesTypes,
+      required List<String> paymentTypes,
+      required String title}) {
+    return _TaxesAndService(
+      id: id,
+      code: code,
+      name: name,
+      type: type,
+      amount: amount,
+      salesTypes: salesTypes,
+      paymentTypes: paymentTypes,
+      title: title,
+    );
+  }
+
+  TaxesAndService fromJson(Map<String, Object> json) {
+    return TaxesAndService.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $TaxesAndService = _$TaxesAndServiceTearOff();
+
+/// @nodoc
+mixin _$TaxesAndService {
+  int get id => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
+  List<String> get salesTypes => throw _privateConstructorUsedError;
+  List<String> get paymentTypes => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TaxesAndServiceCopyWith<TaxesAndService> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TaxesAndServiceCopyWith<$Res> {
+  factory $TaxesAndServiceCopyWith(
+          TaxesAndService value, $Res Function(TaxesAndService) then) =
+      _$TaxesAndServiceCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      String code,
+      String name,
+      String type,
+      int amount,
+      List<String> salesTypes,
+      List<String> paymentTypes,
+      String title});
+}
+
+/// @nodoc
+class _$TaxesAndServiceCopyWithImpl<$Res>
+    implements $TaxesAndServiceCopyWith<$Res> {
+  _$TaxesAndServiceCopyWithImpl(this._value, this._then);
+
+  final TaxesAndService _value;
+  // ignore: unused_field
+  final $Res Function(TaxesAndService) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? type = freezed,
+    Object? amount = freezed,
+    Object? salesTypes = freezed,
+    Object? paymentTypes = freezed,
+    Object? title = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      salesTypes: salesTypes == freezed
+          ? _value.salesTypes
+          : salesTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      paymentTypes: paymentTypes == freezed
+          ? _value.paymentTypes
+          : paymentTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$TaxesAndServiceCopyWith<$Res>
+    implements $TaxesAndServiceCopyWith<$Res> {
+  factory _$TaxesAndServiceCopyWith(
+          _TaxesAndService value, $Res Function(_TaxesAndService) then) =
+      __$TaxesAndServiceCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int id,
+      String code,
+      String name,
+      String type,
+      int amount,
+      List<String> salesTypes,
+      List<String> paymentTypes,
+      String title});
+}
+
+/// @nodoc
+class __$TaxesAndServiceCopyWithImpl<$Res>
+    extends _$TaxesAndServiceCopyWithImpl<$Res>
+    implements _$TaxesAndServiceCopyWith<$Res> {
+  __$TaxesAndServiceCopyWithImpl(
+      _TaxesAndService _value, $Res Function(_TaxesAndService) _then)
+      : super(_value, (v) => _then(v as _TaxesAndService));
+
+  @override
+  _TaxesAndService get _value => super._value as _TaxesAndService;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? type = freezed,
+    Object? amount = freezed,
+    Object? salesTypes = freezed,
+    Object? paymentTypes = freezed,
+    Object? title = freezed,
+  }) {
+    return _then(_TaxesAndService(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      salesTypes: salesTypes == freezed
+          ? _value.salesTypes
+          : salesTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      paymentTypes: paymentTypes == freezed
+          ? _value.paymentTypes
+          : paymentTypes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TaxesAndService implements _TaxesAndService {
+  const _$_TaxesAndService(
+      {required this.id,
+      required this.code,
+      required this.name,
+      required this.type,
+      required this.amount,
+      required this.salesTypes,
+      required this.paymentTypes,
+      required this.title});
+
+  factory _$_TaxesAndService.fromJson(Map<String, dynamic> json) =>
+      _$_$_TaxesAndServiceFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String code;
+  @override
+  final String name;
+  @override
+  final String type;
+  @override
+  final int amount;
+  @override
+  final List<String> salesTypes;
+  @override
+  final List<String> paymentTypes;
+  @override
+  final String title;
+
+  @override
+  String toString() {
+    return 'TaxesAndService(id: $id, code: $code, name: $name, type: $type, amount: $amount, salesTypes: $salesTypes, paymentTypes: $paymentTypes, title: $title)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TaxesAndService &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.salesTypes, salesTypes) ||
+                const DeepCollectionEquality()
+                    .equals(other.salesTypes, salesTypes)) &&
+            (identical(other.paymentTypes, paymentTypes) ||
+                const DeepCollectionEquality()
+                    .equals(other.paymentTypes, paymentTypes)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(salesTypes) ^
+      const DeepCollectionEquality().hash(paymentTypes) ^
+      const DeepCollectionEquality().hash(title);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TaxesAndServiceCopyWith<_TaxesAndService> get copyWith =>
+      __$TaxesAndServiceCopyWithImpl<_TaxesAndService>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_TaxesAndServiceToJson(this);
+  }
+}
+
+abstract class _TaxesAndService implements TaxesAndService {
+  const factory _TaxesAndService(
+      {required int id,
+      required String code,
+      required String name,
+      required String type,
+      required int amount,
+      required List<String> salesTypes,
+      required List<String> paymentTypes,
+      required String title}) = _$_TaxesAndService;
+
+  factory _TaxesAndService.fromJson(Map<String, dynamic> json) =
+      _$_TaxesAndService.fromJson;
+
+  @override
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get code => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  String get type => throw _privateConstructorUsedError;
+  @override
+  int get amount => throw _privateConstructorUsedError;
+  @override
+  List<String> get salesTypes => throw _privateConstructorUsedError;
+  @override
+  List<String> get paymentTypes => throw _privateConstructorUsedError;
+  @override
+  String get title => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$TaxesAndServiceCopyWith<_TaxesAndService> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+>>>>>>> 62a7a7f6a2806b15c3b061dcdacc6dabeea336f7

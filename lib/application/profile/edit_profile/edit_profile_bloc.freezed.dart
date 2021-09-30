@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'edit_profile_bloc.dart';
 
@@ -47,13 +46,6 @@ mixin _$EditProfileEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? saveButtonPressed,
-    TResult Function(String nameStr)? fullNameChanged,
-    TResult Function(String emailStr)? emailChanged,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? saveButtonPressed,
     TResult Function(String nameStr)? fullNameChanged,
@@ -66,13 +58,6 @@ mixin _$EditProfileEvent {
     required TResult Function(_SaveButtonPressed value) saveButtonPressed,
     required TResult Function(_FullNameChanged value) fullNameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SaveButtonPressed value)? saveButtonPressed,
-    TResult Function(_FullNameChanged value)? fullNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -160,16 +145,6 @@ class _$_SaveButtonPressed
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? saveButtonPressed,
-    TResult Function(String nameStr)? fullNameChanged,
-    TResult Function(String emailStr)? emailChanged,
-  }) {
-    return saveButtonPressed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? saveButtonPressed,
     TResult Function(String nameStr)? fullNameChanged,
@@ -190,16 +165,6 @@ class _$_SaveButtonPressed
     required TResult Function(_EmailChanged value) emailChanged,
   }) {
     return saveButtonPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SaveButtonPressed value)? saveButtonPressed,
-    TResult Function(_FullNameChanged value)? fullNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-  }) {
-    return saveButtonPressed?.call(this);
   }
 
   @override
@@ -305,16 +270,6 @@ class _$_FullNameChanged
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? saveButtonPressed,
-    TResult Function(String nameStr)? fullNameChanged,
-    TResult Function(String emailStr)? emailChanged,
-  }) {
-    return fullNameChanged?.call(nameStr);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? saveButtonPressed,
     TResult Function(String nameStr)? fullNameChanged,
@@ -335,16 +290,6 @@ class _$_FullNameChanged
     required TResult Function(_EmailChanged value) emailChanged,
   }) {
     return fullNameChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SaveButtonPressed value)? saveButtonPressed,
-    TResult Function(_FullNameChanged value)? fullNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-  }) {
-    return fullNameChanged?.call(this);
   }
 
   @override
@@ -454,16 +399,6 @@ class _$_EmailChanged with DiagnosticableTreeMixin implements _EmailChanged {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? saveButtonPressed,
-    TResult Function(String nameStr)? fullNameChanged,
-    TResult Function(String emailStr)? emailChanged,
-  }) {
-    return emailChanged?.call(emailStr);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? saveButtonPressed,
     TResult Function(String nameStr)? fullNameChanged,
@@ -484,16 +419,6 @@ class _$_EmailChanged with DiagnosticableTreeMixin implements _EmailChanged {
     required TResult Function(_EmailChanged value) emailChanged,
   }) {
     return emailChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SaveButtonPressed value)? saveButtonPressed,
-    TResult Function(_FullNameChanged value)? fullNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-  }) {
-    return emailChanged?.call(this);
   }
 
   @override

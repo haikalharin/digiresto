@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'top_up_credit_bloc.dart';
 
@@ -49,13 +48,6 @@ mixin _$TopUpCreditEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
-    TResult Function(String destination)? changeDestination,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
     TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
@@ -68,13 +60,6 @@ mixin _$TopUpCreditEvent {
     required TResult Function(_NominalChanged value) nominalChanged,
     required TResult Function(_TopUpSubmitted value) topUpSubmitted,
     required TResult Function(_ChangeDestination value) changeDestination,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NominalChanged value)? nominalChanged,
-    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
-    TResult Function(_ChangeDestination value)? changeDestination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,16 +164,6 @@ class _$_NominalChanged implements _NominalChanged {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
-    TResult Function(String destination)? changeDestination,
-  }) {
-    return nominalChanged?.call(nominalStr);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
     TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
@@ -209,16 +184,6 @@ class _$_NominalChanged implements _NominalChanged {
     required TResult Function(_ChangeDestination value) changeDestination,
   }) {
     return nominalChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NominalChanged value)? nominalChanged,
-    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
-    TResult Function(_ChangeDestination value)? changeDestination,
-  }) {
-    return nominalChanged?.call(this);
   }
 
   @override
@@ -328,16 +293,6 @@ class _$_TopUpSubmitted implements _TopUpSubmitted {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
-    TResult Function(String destination)? changeDestination,
-  }) {
-    return topUpSubmitted?.call(param);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
     TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
@@ -358,16 +313,6 @@ class _$_TopUpSubmitted implements _TopUpSubmitted {
     required TResult Function(_ChangeDestination value) changeDestination,
   }) {
     return topUpSubmitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NominalChanged value)? nominalChanged,
-    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
-    TResult Function(_ChangeDestination value)? changeDestination,
-  }) {
-    return topUpSubmitted?.call(this);
   }
 
   @override
@@ -470,16 +415,6 @@ class _$_ChangeDestination implements _ChangeDestination {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String nominalStr)? nominalChanged,
-    TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
-    TResult Function(String destination)? changeDestination,
-  }) {
-    return changeDestination?.call(destination);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nominalStr)? nominalChanged,
     TResult Function(TopUpSubCategoryParam param)? topUpSubmitted,
@@ -500,16 +435,6 @@ class _$_ChangeDestination implements _ChangeDestination {
     required TResult Function(_ChangeDestination value) changeDestination,
   }) {
     return changeDestination(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NominalChanged value)? nominalChanged,
-    TResult Function(_TopUpSubmitted value)? topUpSubmitted,
-    TResult Function(_ChangeDestination value)? changeDestination,
-  }) {
-    return changeDestination?.call(this);
   }
 
   @override

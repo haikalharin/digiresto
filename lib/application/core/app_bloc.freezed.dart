@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'app_bloc.dart';
 
@@ -43,13 +42,6 @@ mixin _$AppEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? skipIntro,
-    TResult Function()? skipGuide,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? skipIntro,
@@ -62,13 +54,6 @@ mixin _$AppEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_SkipIntro value) skipIntro,
     required TResult Function(_SkipGuide value) skipGuide,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SkipIntro value)? skipIntro,
-    TResult Function(_SkipGuide value)? skipGuide,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -142,16 +127,6 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? skipIntro,
-    TResult Function()? skipGuide,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? skipIntro,
@@ -172,16 +147,6 @@ class _$_Started implements _Started {
     required TResult Function(_SkipGuide value) skipGuide,
   }) {
     return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SkipIntro value)? skipIntro,
-    TResult Function(_SkipGuide value)? skipGuide,
-  }) {
-    return started?.call(this);
   }
 
   @override
@@ -250,16 +215,6 @@ class _$_SkipIntro implements _SkipIntro {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? skipIntro,
-    TResult Function()? skipGuide,
-  }) {
-    return skipIntro?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? skipIntro,
@@ -280,16 +235,6 @@ class _$_SkipIntro implements _SkipIntro {
     required TResult Function(_SkipGuide value) skipGuide,
   }) {
     return skipIntro(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SkipIntro value)? skipIntro,
-    TResult Function(_SkipGuide value)? skipGuide,
-  }) {
-    return skipIntro?.call(this);
   }
 
   @override
@@ -358,16 +303,6 @@ class _$_SkipGuide implements _SkipGuide {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? skipIntro,
-    TResult Function()? skipGuide,
-  }) {
-    return skipGuide?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? skipIntro,
@@ -388,16 +323,6 @@ class _$_SkipGuide implements _SkipGuide {
     required TResult Function(_SkipGuide value) skipGuide,
   }) {
     return skipGuide(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SkipIntro value)? skipIntro,
-    TResult Function(_SkipGuide value)? skipGuide,
-  }) {
-    return skipGuide?.call(this);
   }
 
   @override

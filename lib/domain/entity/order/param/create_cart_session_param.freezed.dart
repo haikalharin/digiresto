@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'create_cart_session_param.dart';
 
@@ -160,7 +159,7 @@ class _$_CreateCartSessionParam implements _CreateCartSessionParam {
       {required this.queryString, required this.body});
 
   factory _$_CreateCartSessionParam.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateCartSessionParamFromJson(json);
+      _$_$_CreateCartSessionParamFromJson(json);
 
   @override
   final CreateCartSessionQueryParam queryString;
@@ -197,7 +196,7 @@ class _$_CreateCartSessionParam implements _CreateCartSessionParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateCartSessionParamToJson(this);
+    return _$_$_CreateCartSessionParamToJson(this);
   }
 }
 
@@ -538,7 +537,7 @@ class _$_CreateCartSessionBodyParam implements _CreateCartSessionBodyParam {
       required this.items});
 
   factory _$_CreateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateCartSessionBodyParamFromJson(json);
+      _$_$_CreateCartSessionBodyParamFromJson(json);
 
   @override
   final String outletName;
@@ -646,7 +645,7 @@ class _$_CreateCartSessionBodyParam implements _CreateCartSessionBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateCartSessionBodyParamToJson(this);
+    return _$_$_CreateCartSessionBodyParamToJson(this);
   }
 }
 
@@ -870,7 +869,7 @@ class _$_CreateUpdateCartSessionItemParam
 
   factory _$_CreateUpdateCartSessionItemParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_CreateUpdateCartSessionItemParamFromJson(json);
+      _$_$_CreateUpdateCartSessionItemParamFromJson(json);
 
   @override
   final int productId;
@@ -918,7 +917,7 @@ class _$_CreateUpdateCartSessionItemParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateUpdateCartSessionItemParamToJson(this);
+    return _$_$_CreateUpdateCartSessionItemParamToJson(this);
   }
 }
 
@@ -1089,7 +1088,7 @@ class _$_CreateCartSessionItemModifierParam
 
   factory _$_CreateCartSessionItemModifierParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_CreateCartSessionItemModifierParamFromJson(json);
+      _$_$_CreateCartSessionItemModifierParamFromJson(json);
 
   @override
   final int modifierId;
@@ -1133,7 +1132,7 @@ class _$_CreateCartSessionItemModifierParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateCartSessionItemModifierParamToJson(this);
+    return _$_$_CreateCartSessionItemModifierParamToJson(this);
   }
 }
 
@@ -1233,7 +1232,7 @@ class _$_CreateCartSessionQueryParam implements _CreateCartSessionQueryParam {
   const _$_CreateCartSessionQueryParam();
 
   factory _$_CreateCartSessionQueryParam.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateCartSessionQueryParamFromJson(json);
+      _$_$_CreateCartSessionQueryParamFromJson(json);
 
   @override
   String toString() {
@@ -1250,7 +1249,7 @@ class _$_CreateCartSessionQueryParam implements _CreateCartSessionQueryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateCartSessionQueryParamToJson(this);
+    return _$_$_CreateCartSessionQueryParamToJson(this);
   }
 }
 

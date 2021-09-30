@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'promo_outlet_response.dart';
 
@@ -171,7 +170,7 @@ class _$_PromoOutletResponse implements _PromoOutletResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_PromoOutletResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_PromoOutletResponseFromJson(json);
+      _$_$_PromoOutletResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -213,7 +212,7 @@ class _$_PromoOutletResponse implements _PromoOutletResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PromoOutletResponseToJson(this);
+    return _$_$_PromoOutletResponseToJson(this);
   }
 }
 
@@ -492,7 +491,7 @@ class _$_PromoOutletDataResponse implements _PromoOutletDataResponse {
       required this.name});
 
   factory _$_PromoOutletDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_PromoOutletDataResponseFromJson(json);
+      _$_$_PromoOutletDataResponseFromJson(json);
 
   @override
   final String id;
@@ -567,7 +566,7 @@ class _$_PromoOutletDataResponse implements _PromoOutletDataResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PromoOutletDataResponseToJson(this);
+    return _$_$_PromoOutletDataResponseToJson(this);
   }
 }
 
@@ -721,7 +720,7 @@ class _$_PromoOutletDataVoucherResponse
 
   factory _$_PromoOutletDataVoucherResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PromoOutletDataVoucherResponseFromJson(json);
+      _$_$_PromoOutletDataVoucherResponseFromJson(json);
 
   @override
   final String code;
@@ -751,7 +750,7 @@ class _$_PromoOutletDataVoucherResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PromoOutletDataVoucherResponseToJson(this);
+    return _$_$_PromoOutletDataVoucherResponseToJson(this);
   }
 }
 

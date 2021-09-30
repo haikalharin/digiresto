@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'order_details_bloc.dart';
 
@@ -85,19 +84,6 @@ mixin _$OrderDetailsEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -120,16 +106,6 @@ mixin _$OrderDetailsEvent {
     required TResult Function(_CancelSubmitted value) cancelSubmitted,
     required TResult Function(_RatingReviewSubmitted value)
         ratingReviewSubmitted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -259,22 +235,6 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) {
-    return started?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -305,19 +265,6 @@ class _$_Started implements _Started {
         ratingReviewSubmitted,
   }) {
     return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
-  }) {
-    return started?.call(this);
   }
 
   @override
@@ -429,22 +376,6 @@ class _$_Refresh implements _Refresh {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) {
-    return refresh?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -475,19 +406,6 @@ class _$_Refresh implements _Refresh {
         ratingReviewSubmitted,
   }) {
     return refresh(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
-  }) {
-    return refresh?.call(this);
   }
 
   @override
@@ -602,22 +520,6 @@ class _$_DoneTransaction implements _DoneTransaction {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) {
-    return doneTransaction?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -648,19 +550,6 @@ class _$_DoneTransaction implements _DoneTransaction {
         ratingReviewSubmitted,
   }) {
     return doneTransaction(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
-  }) {
-    return doneTransaction?.call(this);
   }
 
   @override
@@ -775,22 +664,6 @@ class _$_CancelPageOpen implements _CancelPageOpen {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) {
-    return cancelPageOpen?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -821,19 +694,6 @@ class _$_CancelPageOpen implements _CancelPageOpen {
         ratingReviewSubmitted,
   }) {
     return cancelPageOpen(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
-  }) {
-    return cancelPageOpen?.call(this);
   }
 
   @override
@@ -973,22 +833,6 @@ class _$_CancelSubmitted implements _CancelSubmitted {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) {
-    return cancelSubmitted?.call(receiptCode, reason, reasonList);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -1019,19 +863,6 @@ class _$_CancelSubmitted implements _CancelSubmitted {
         ratingReviewSubmitted,
   }) {
     return cancelSubmitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
-  }) {
-    return cancelSubmitted?.call(this);
   }
 
   @override
@@ -1174,22 +1005,6 @@ class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String receiptCode)? started,
-    TResult Function(String receiptCode)? refresh,
-    TResult Function(String receiptCode)? doneTransaction,
-    TResult Function(String receiptCode)? cancelPageOpen,
-    TResult Function(
-            String receiptCode, String reason, IList<String> reasonList)?
-        cancelSubmitted,
-    TResult Function(String receiptCode, int rating, String review)?
-        ratingReviewSubmitted,
-  }) {
-    return ratingReviewSubmitted?.call(receiptCode, rating, review);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String receiptCode)? started,
     TResult Function(String receiptCode)? refresh,
@@ -1220,19 +1035,6 @@ class _$_RatingReviewSubmitted implements _RatingReviewSubmitted {
         ratingReviewSubmitted,
   }) {
     return ratingReviewSubmitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_DoneTransaction value)? doneTransaction,
-    TResult Function(_CancelPageOpen value)? cancelPageOpen,
-    TResult Function(_CancelSubmitted value)? cancelSubmitted,
-    TResult Function(_RatingReviewSubmitted value)? ratingReviewSubmitted,
-  }) {
-    return ratingReviewSubmitted?.call(this);
   }
 
   @override
@@ -1327,19 +1129,6 @@ mixin _$OrderDetailsState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails,
-            Option<Unit> optionSubmitRating)?
-        loadSuccess,
-    TResult Function(ProfileFailure failure)? loadFailure,
-    TResult Function(IList<String> cancelReasons, bool isSubmitting,
-            Option<Unit> submitOption)?
-        loadCancelPage,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -1360,15 +1149,6 @@ mixin _$OrderDetailsState {
     required TResult Function(_LoadSuccess value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
     required TResult Function(_LoadCancelPage value) loadCancelPage,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_LoadCancelPage value)? loadCancelPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1452,22 +1232,6 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails,
-            Option<Unit> optionSubmitRating)?
-        loadSuccess,
-    TResult Function(ProfileFailure failure)? loadFailure,
-    TResult Function(IList<String> cancelReasons, bool isSubmitting,
-            Option<Unit> submitOption)?
-        loadCancelPage,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -1496,18 +1260,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_LoadCancelPage value) loadCancelPage,
   }) {
     return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_LoadCancelPage value)? loadCancelPage,
-  }) {
-    return initial?.call(this);
   }
 
   @override
@@ -1583,22 +1335,6 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails,
-            Option<Unit> optionSubmitRating)?
-        loadSuccess,
-    TResult Function(ProfileFailure failure)? loadFailure,
-    TResult Function(IList<String> cancelReasons, bool isSubmitting,
-            Option<Unit> submitOption)?
-        loadCancelPage,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -1627,18 +1363,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_LoadCancelPage value) loadCancelPage,
   }) {
     return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_LoadCancelPage value)? loadCancelPage,
-  }) {
-    return loading?.call(this);
   }
 
   @override
@@ -1768,22 +1492,6 @@ class _$_LoadSuccess implements _LoadSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails,
-            Option<Unit> optionSubmitRating)?
-        loadSuccess,
-    TResult Function(ProfileFailure failure)? loadFailure,
-    TResult Function(IList<String> cancelReasons, bool isSubmitting,
-            Option<Unit> submitOption)?
-        loadCancelPage,
-  }) {
-    return loadSuccess?.call(orderHistoryDetails, optionSubmitRating);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -1812,18 +1520,6 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_LoadCancelPage value) loadCancelPage,
   }) {
     return loadSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_LoadCancelPage value)? loadCancelPage,
-  }) {
-    return loadSuccess?.call(this);
   }
 
   @override
@@ -1945,22 +1641,6 @@ class _$_LoadFailure implements _LoadFailure {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails,
-            Option<Unit> optionSubmitRating)?
-        loadSuccess,
-    TResult Function(ProfileFailure failure)? loadFailure,
-    TResult Function(IList<String> cancelReasons, bool isSubmitting,
-            Option<Unit> submitOption)?
-        loadCancelPage,
-  }) {
-    return loadFailure?.call(failure);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -1989,18 +1669,6 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_LoadCancelPage value) loadCancelPage,
   }) {
     return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_LoadCancelPage value)? loadCancelPage,
-  }) {
-    return loadFailure?.call(this);
   }
 
   @override
@@ -2140,22 +1808,6 @@ class _$_LoadCancelPage implements _LoadCancelPage {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(OrderHistoryDetails orderHistoryDetails,
-            Option<Unit> optionSubmitRating)?
-        loadSuccess,
-    TResult Function(ProfileFailure failure)? loadFailure,
-    TResult Function(IList<String> cancelReasons, bool isSubmitting,
-            Option<Unit> submitOption)?
-        loadCancelPage,
-  }) {
-    return loadCancelPage?.call(cancelReasons, isSubmitting, submitOption);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -2184,18 +1836,6 @@ class _$_LoadCancelPage implements _LoadCancelPage {
     required TResult Function(_LoadCancelPage value) loadCancelPage,
   }) {
     return loadCancelPage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_LoadCancelPage value)? loadCancelPage,
-  }) {
-    return loadCancelPage?.call(this);
   }
 
   @override

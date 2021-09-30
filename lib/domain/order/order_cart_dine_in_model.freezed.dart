@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'order_cart_dine_in_model.dart';
 
@@ -183,7 +182,7 @@ class _$_OrderCartDineInModel implements _OrderCartDineInModel {
       required this.pax});
 
   factory _$_OrderCartDineInModel.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderCartDineInModelFromJson(json);
+      _$_$_OrderCartDineInModelFromJson(json);
 
   @override
   final bool useSchedule;
@@ -238,7 +237,7 @@ class _$_OrderCartDineInModel implements _OrderCartDineInModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderCartDineInModelToJson(this);
+    return _$_$_OrderCartDineInModelToJson(this);
   }
 }
 

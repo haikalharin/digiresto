@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'recent_history_bloc.dart';
 
@@ -38,12 +37,6 @@ mixin _$RecentHistoryEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? fetchNext,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? fetchNext,
@@ -54,12 +47,6 @@ mixin _$RecentHistoryEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_FecthNext value) fetchNext,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_FecthNext value)? fetchNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -134,15 +121,6 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? fetchNext,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? fetchNext,
@@ -161,15 +139,6 @@ class _$_Started implements _Started {
     required TResult Function(_FecthNext value) fetchNext,
   }) {
     return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_FecthNext value)? fetchNext,
-  }) {
-    return started?.call(this);
   }
 
   @override
@@ -237,15 +206,6 @@ class _$_FecthNext implements _FecthNext {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? fetchNext,
-  }) {
-    return fetchNext?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? fetchNext,
@@ -264,15 +224,6 @@ class _$_FecthNext implements _FecthNext {
     required TResult Function(_FecthNext value) fetchNext,
   }) {
     return fetchNext(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_FecthNext value)? fetchNext,
-  }) {
-    return fetchNext?.call(this);
   }
 
   @override

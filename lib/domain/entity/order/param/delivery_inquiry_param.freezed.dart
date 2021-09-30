@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'delivery_inquiry_param.dart';
 
@@ -157,7 +156,7 @@ class _$_DeliveryInquiryParam implements _DeliveryInquiryParam {
       {required this.queryString, required this.body});
 
   factory _$_DeliveryInquiryParam.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryInquiryParamFromJson(json);
+      _$_$_DeliveryInquiryParamFromJson(json);
 
   @override
   final DeliveryInquiryQueryParam queryString;
@@ -194,7 +193,7 @@ class _$_DeliveryInquiryParam implements _DeliveryInquiryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryInquiryParamToJson(this);
+    return _$_$_DeliveryInquiryParamToJson(this);
   }
 }
 
@@ -351,7 +350,7 @@ class _$_DeliveryInquiryBodyParam implements _DeliveryInquiryBodyParam {
       {required this.customer, required this.weight});
 
   factory _$_DeliveryInquiryBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryInquiryBodyParamFromJson(json);
+      _$_$_DeliveryInquiryBodyParamFromJson(json);
 
   @override
   final DeliveryInquiryBodyCustomerParam customer;
@@ -388,7 +387,7 @@ class _$_DeliveryInquiryBodyParam implements _DeliveryInquiryBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryInquiryBodyParamToJson(this);
+    return _$_$_DeliveryInquiryBodyParamToJson(this);
   }
 }
 
@@ -521,7 +520,7 @@ class _$_DeliveryInquiryBodyCustomerParam
 
   factory _$_DeliveryInquiryBodyCustomerParam.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DeliveryInquiryBodyCustomerParamFromJson(json);
+      _$_$_DeliveryInquiryBodyCustomerParamFromJson(json);
 
   @override
   final List<String> location;
@@ -552,7 +551,7 @@ class _$_DeliveryInquiryBodyCustomerParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryInquiryBodyCustomerParamToJson(this);
+    return _$_$_DeliveryInquiryBodyCustomerParamToJson(this);
   }
 }
 
@@ -676,7 +675,7 @@ class _$_DeliveryInquiryQueryParam implements _DeliveryInquiryQueryParam {
   const _$_DeliveryInquiryQueryParam({required this.outletName});
 
   factory _$_DeliveryInquiryQueryParam.fromJson(Map<String, dynamic> json) =>
-      _$$_DeliveryInquiryQueryParamFromJson(json);
+      _$_$_DeliveryInquiryQueryParamFromJson(json);
 
   @override
   final String outletName;
@@ -708,7 +707,7 @@ class _$_DeliveryInquiryQueryParam implements _DeliveryInquiryQueryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeliveryInquiryQueryParamToJson(this);
+    return _$_$_DeliveryInquiryQueryParamToJson(this);
   }
 }
 

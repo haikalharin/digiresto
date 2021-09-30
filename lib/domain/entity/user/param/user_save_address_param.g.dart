@@ -6,17 +6,17 @@ part of 'user_save_address_param.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserSaveAddressParam _$UserSaveAddressParamFromJson(
-        Map<String, dynamic> json) =>
-    UserSaveAddressParam()
-      ..wa_Id = json['wa_Id'] as int?
-      ..name = json['name'] as String?
-      ..address = json['address'] as String?
-      ..latitude = json['latitude'] as String?
-      ..longitude = json['longitude'] as String?
-      ..isDefault = json['isDefault'] as bool?
-      ..wabaNo = json['wabaNo'] as String?
-      ..isDelete = json['isDelete'] as bool?;
+UserSaveAddressParam _$UserSaveAddressParamFromJson(Map<String, dynamic> json) {
+  return UserSaveAddressParam()
+    ..wa_Id = json['wa_Id'] as int?
+    ..name = json['name'] as String?
+    ..address = json['address'] as String?
+    ..latitude = json['latitude'] as String?
+    ..longitude = json['longitude'] as String?
+    ..isDefault = json['isDefault'] as bool?
+    ..wabaNo = json['wabaNo'] as String?
+    ..isDelete = json['isDelete'] as bool?;
+}
 
 Map<String, dynamic> _$UserSaveAddressParamToJson(
         UserSaveAddressParam instance) =>

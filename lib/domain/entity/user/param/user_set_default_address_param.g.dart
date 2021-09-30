@@ -7,12 +7,13 @@ part of 'user_set_default_address_param.dart';
 // **************************************************************************
 
 UserSetDefaultAddressParam _$UserSetDefaultAddressParamFromJson(
-        Map<String, dynamic> json) =>
-    UserSetDefaultAddressParam(
-      wa_id: json['wa_id'] as String,
-      waba_no: json['waba_no'] as String,
-      id: json['id'] as int,
-    );
+    Map<String, dynamic> json) {
+  return UserSetDefaultAddressParam(
+    wa_id: json['wa_id'] as String,
+    waba_no: json['waba_no'] as String,
+    id: json['id'] as int,
+  );
+}
 
 Map<String, dynamic> _$UserSetDefaultAddressParamToJson(
         UserSetDefaultAddressParam instance) =>

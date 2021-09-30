@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'outlet_list_product_response.dart';
 
@@ -174,7 +173,7 @@ class _$_OutletListProductResponse implements _OutletListProductResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_OutletListProductResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_OutletListProductResponseFromJson(json);
+      _$_$_OutletListProductResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -217,7 +216,7 @@ class _$_OutletListProductResponse implements _OutletListProductResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletListProductResponseToJson(this);
+    return _$_$_OutletListProductResponseToJson(this);
   }
 }
 
@@ -475,7 +474,7 @@ class _$_OutletListProductDataModifierGroupResponse
 
   factory _$_OutletListProductDataModifierGroupResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletListProductDataModifierGroupResponseFromJson(json);
+      _$_$_OutletListProductDataModifierGroupResponseFromJson(json);
 
   @override
   final String name;
@@ -547,7 +546,7 @@ class _$_OutletListProductDataModifierGroupResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletListProductDataModifierGroupResponseToJson(this);
+    return _$_$_OutletListProductDataModifierGroupResponseToJson(this);
   }
 }
 
@@ -951,7 +950,7 @@ class _$_OutletListProductDataSubModifierGroupResponse
 
   factory _$_OutletListProductDataSubModifierGroupResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletListProductDataSubModifierGroupResponseFromJson(json);
+      _$_$_OutletListProductDataSubModifierGroupResponseFromJson(json);
 
   @override
   final String code;
@@ -1066,7 +1065,7 @@ class _$_OutletListProductDataSubModifierGroupResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletListProductDataSubModifierGroupResponseToJson(this);
+    return _$_$_OutletListProductDataSubModifierGroupResponseToJson(this);
   }
 }
 
@@ -1522,7 +1521,7 @@ class _$_OutletListProductDataResponse
 
   factory _$_OutletListProductDataResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletListProductDataResponseFromJson(json);
+      _$_$_OutletListProductDataResponseFromJson(json);
 
   @override
   final String code;
@@ -1647,7 +1646,7 @@ class _$_OutletListProductDataResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletListProductDataResponseToJson(this);
+    return _$_$_OutletListProductDataResponseToJson(this);
   }
 }
 
@@ -2094,7 +2093,7 @@ class _$_OutletListProductDataVariantResponse
 
   factory _$_OutletListProductDataVariantResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$$_OutletListProductDataVariantResponseFromJson(json);
+      _$_$_OutletListProductDataVariantResponseFromJson(json);
 
   @override
   final String code;
@@ -2214,7 +2213,7 @@ class _$_OutletListProductDataVariantResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OutletListProductDataVariantResponseToJson(this);
+    return _$_$_OutletListProductDataVariantResponseToJson(this);
   }
 }
 
