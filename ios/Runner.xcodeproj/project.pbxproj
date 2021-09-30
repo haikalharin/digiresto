@@ -885,8 +885,6 @@
 			};
 			name = "Profile-dev";
 		};
-<<<<<<< HEAD
-=======
 		FAC98D3D2701C1E00053078F /* Debug-prod */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 05557ACDBF2E5789E43D3660 /* Pods-OneSignalNotificationServiceExtension.debug-prod.xcconfig */;
@@ -1343,7 +1341,6 @@
 			};
 			name = "Profile-dev";
 		};
->>>>>>> 62a7a7f6a2806b15c3b061dcdacc6dabeea336f7
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
