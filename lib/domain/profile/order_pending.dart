@@ -221,7 +221,6 @@ class OutletDetail with _$OutletDetail {
   const factory OutletDetail({
     required String name,
     required String address,
-    required List<dynamic> taxesAndServices,
     required List<dynamic> location,
     required String phone,
     required dynamic kurirPrice,
