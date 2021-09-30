@@ -125,8 +125,7 @@ class PaymentReceiptScreen extends StatelessWidget {
             leading: IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                //_orderStore.clearCart();
-                Navigator.of(context).pushReplacementNamed(Routers.home);
+                Get.offNamedUntil(Routers.home, (route) => false);
               },
             ),
             title: Text(
