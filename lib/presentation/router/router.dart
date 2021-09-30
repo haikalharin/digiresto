@@ -53,7 +53,7 @@ class Routers {
   static const String loginPin = '/login_pin';
   static const String about = '/about';
   static const String privacyPolicy = '/privacy_policy';
-  static const String setAddressAdd = '/add_address';
+  static const String homeAddAddress = '/home_add_address';
   static const String history = '/history';
   static const String historyDetail = '/history_detail';
   static const String register = '/register';
@@ -125,7 +125,7 @@ class Routers {
     ),
     GetPage(
       name: Routers.homeAddLocation,
-      page: () => HomeAddLocationScreen(),
+      page: () => AddLocationScreen(),
     ),
     GetPage(
       name: Routers.homeNearbyOutlet,
@@ -135,7 +135,7 @@ class Routers {
       name: Routers.homeDigiDiscount,
       page: () => HomeDigidiscountScreen(),
     ),
-    GetPage(name: Routers.setAddressAdd, page: () => AddAddressScreen()),
+    GetPage(name: Routers.homeAddAddress, page: () => AddAddressScreen()),
     GetPage(name: Routers.orderDetailOutlet, page: () => DetailOutletScreen()),
     GetPage(
         name: Routers.homeOutletCategory,

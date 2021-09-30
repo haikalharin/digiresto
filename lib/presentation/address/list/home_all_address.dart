@@ -263,7 +263,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
               borderRadius: BorderRadius.circular(10)),
           child: GestureDetector(
             onTap: () {
-              Get.toNamed(Routers.setAddressAdd);
+              Get.toNamed(Routers.homeAddAddress);
             },
             child: Container(
               child: Row(

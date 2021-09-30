@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:digiresto/application/address/address_location_screen_controller.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
-import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
@@ -16,44 +16,22 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomeAddLocationScreenController extends GetxController {}
-
-class HomeAddLocationScreen extends StatefulWidget {
-  @override
-  State<HomeAddLocationScreen> createState() => HomeAddLocationScreenState();
-}
-
-class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
-  final profileCancel = 'Cancel';
-  GoogleMapController? mapController;
-  LatLng? _lastMapPosition;
-  ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
-      size: 36, color: AppColors.red);
-  ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
-      size: 36, color: AppColors.red);
-  bool isMarkerMove = false;
-  bool isMarkerClicked = false;
-  Geocode? _geocode;
-
+class AddLocationScreen extends GetView<AddressLocationScreenController> {
   final LatLng _center = const LatLng(-6.175483, 106.826852);
   final _addressController = TextEditingController();
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  void _onMapCreated(GoogleMapController mapController) {
+    controller.mapController.value = mapController;
   }
 
   void _onCameraMove(CameraPosition position) {
-    setState(() {
-      _lastMapPosition = position.target;
-      isMarkerMove = true;
-      isMarkerClicked = false;
-    });
+    controller.lastMapPosition.value = position.target;
+    controller.isMarkerMove.value = true;
+    controller.isMarkerClicked.value = false;
   }
 
   void _onCameraMoveEnd() {
-    setState(() {
-      isMarkerMove = false;
-    });
+    controller.isMarkerMove.value = false;
   }
 
   void _onClickSetDestination() {
@@ -68,7 +46,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
             forceAndroidLocationManager: true)
         .then((Position position) {
       Loading.dismiss();
-      mapController!.animateCamera(
+      controller.mapController.value!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
               target: LatLng(position.latitude, position.longitude), zoom: 15),
@@ -80,31 +58,22 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
     });
   }
 
-  @override
-  void setState(fn) {
-    super.setState(fn);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _getCurrentLocation();
-  }
-
   void getGeocode() {
     Loading.show();
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.getGeoCode(
         GetGeoCodeParam(
-            latitude: _lastMapPosition!.latitude.toString(),
-            longitude: _lastMapPosition!.longitude.toString())));
+            latitude: controller.lastMapPosition.value!.latitude.toString(),
+            longitude:
+                controller.lastMapPosition.value!.longitude.toString())));
   }
 
   void addAddress() {
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.setActiveAddress(
         UserAddress(
             address: _addressController.text.toString(),
-            latitude: _lastMapPosition!.latitude.toString(),
-            longitude: _lastMapPosition!.longitude.toString())));
+            latitude: controller.lastMapPosition.value!.latitude.toString(),
+            longitude:
+                controller.lastMapPosition.value!.longitude.toString())));
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -172,45 +141,49 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                       SizedBox(
                         width: 120,
                         height: 40,
-                        child: RaisedButton(
+                        child: ElevatedButton(
                           onPressed: () {
                             Get.back();
                           },
-                          color: Colors.white,
-                          child: Text(profileCancel,
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
+                            ),
+                          ),
+                          child: Text(controller.profileCancel,
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.red)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
-                            ),
-                          ),
                         ),
                       ),
                       SizedBox(
                         width: 120,
                         height: 40,
-                        child: RaisedButton(
+                        child: ElevatedButton(
                           onPressed: () {
                             addAddress();
                           },
-                          color: AppColors.red,
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
+                            ),
+                          ),
                           child: Text("Save",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
-                            ),
-                          ),
                         ),
                       ),
                     ],
@@ -233,7 +206,10 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back_outlined,
                 color: Colors.black, size: 28.0),
-            onPressed: () => Get.back(),
+            onPressed: () {
+              controller.dispose();
+              Get.back();
+            },
           ),
           title: Container(
             transform: Matrix4.translationValues(-24, 0, 0),
@@ -258,18 +234,21 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
               },
               getGeoCodeSuccess: (response) {
                 Loading.dismiss();
-                setState(() {
-                  _geocode = response.response;
-                  isMarkerClicked = true;
-                });
-                _addressController.text = _geocode!.formattedAddress!;
+                controller.geocode.value = response.response;
+                controller.isMarkerClicked.value = true;
+                _addressController.text =
+                    controller.geocode.value!.formattedAddress!;
               },
               setActiveAddressSuccess: (_) {
-                Get.until((route) => route.isFirst);
+                controller.dispose();
+                Get.back(closeOverlays: true);
+                int count = 0;
+                Get.until((route) => count++ == 2);
               },
               orElse: () {});
         },
         builder: (context, state) {
+          Get.put(AddressLocationScreenController());
           return Stack(children: [
             GoogleMap(
               onMapCreated: _onMapCreated,
@@ -288,7 +267,8 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    isMarkerMove || isMarkerClicked == true
+                    controller.isMarkerMove.value ||
+                            controller.isMarkerClicked.value == true
                         ? Container(
                             padding: EdgeInsets.all(7),
                             decoration: BoxDecoration(
@@ -326,7 +306,9 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                                   textAlign: TextAlign.center),
                             ),
                           ),
-                    isMarkerMove ? markerMove : marker,
+                    controller.isMarkerMove.value
+                        ? controller.markerMove
+                        : controller.marker,
                   ],
                 ),
               ),
@@ -364,7 +346,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                     ),
                   ),
                 ),
-                isMarkerClicked
+                controller.isMarkerClicked.value
                     ? Container(
                         alignment: Alignment.bottomCenter,
                         height: 180,
@@ -393,8 +375,10 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                               ),
                               alignment: Alignment.topLeft,
                               child: Text(
-                                _geocode?.formattedAddress != null
-                                    ? _geocode!.formattedAddress.toString()
+                                controller.geocode.value?.formattedAddress !=
+                                        null
+                                    ? controller.geocode.value!.formattedAddress
+                                        .toString()
                                     : "-",
                                 style: TextStyle(
                                   fontFamily: "roboto",
@@ -412,20 +396,28 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                               child: SizedBox(
                                 width: double.infinity,
                                 height: 44,
-                                child: RaisedButton(
-                                    onPressed: () {
-                                      print("i use this location");
-                                      _showMyDialog(Get.context!);
-                                    },
-                                    color: AppColors.red,
-                                    child: Text("Use This Location",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    print("i use this location");
+                                    _showMyDialog(Get.context!);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: AppColors.red,
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(30.0))),
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text("Use This Location",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                ),
                               ),
                             ),
                           ],
@@ -452,7 +444,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                       width: MediaQuery.of(Get.context!).size.width * 0.8,
                       child: AutoCompleteAddress().defaultWidget(
                           onSuccess: (place) {
-                        mapController!.animateCamera(
+                        controller.mapController.value!.animateCamera(
                           CameraUpdate.newCameraPosition(
                             CameraPosition(
                                 target: LatLng(place.geometry!.location.lat,
