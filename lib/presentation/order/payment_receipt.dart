@@ -22,7 +22,6 @@ class PaymentReceiptScreen extends StatelessWidget {
   final df = new DateFormat('dd MMM yyyy, hh:mm:ss');
   final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
   final ScreenshotController screenshotController = ScreenshotController();
-  TransactionMobileDataResponse? _transaction;
   Widget _lr(Widget left, Widget right) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,6 +31,7 @@ class PaymentReceiptScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TransactionMobileDataResponse? _transaction;
     PaymentReceiptViewArgument args =
         Get.arguments as PaymentReceiptViewArgument;
 
