@@ -1,9 +1,9 @@
 import 'package:digiresto/application/profile/edit_profile/edit_profile_bloc.dart';
 import 'package:digiresto/application/profile/edit_profile/edit_profile_controller.dart';
-import 'package:digiresto/application/profile/profile_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
@@ -37,10 +37,11 @@ class EditProfileWidget extends StatelessWidget {
     late final _bloc = BlocProvider.of<EditProfileBloc>(context);
     final EditProfileController _controller =
         Get.put(EditProfileController(_profile, _bloc));
+    I10n i10n = I10n.of(context);
 
     return CustomScafold(
       showBackButton: true,
-      title: 'Edit Profile',
+      title: i10n.profile_edit_title,
       body: Obx(
         () {
           final _isEditing = _controller.isEditing.value;
@@ -50,10 +51,12 @@ class EditProfileWidget extends StatelessWidget {
                 () => {},
                 (failureOrSuccess) => failureOrSuccess.fold(
                   (failure) => Get.defaultDialog(
-                      middleText: failure.maybeMap(
-                    orElse: () => 'Unexpected Error',
-                    unableToUpdate: (_) => 'Unable to Update',
-                  )),
+                    middleText: failure.maybeMap(
+                      orElse: () => 'Unexpected Error',
+                      unableToUpdate: (_) =>
+                          i10n.error_message_failed_get_response,
+                    ),
+                  ),
                   (success) {
                     _controller.setEditting(false);
                     Get.dialog(
@@ -63,7 +66,7 @@ class EditProfileWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Berhasil update profile",
+                              i10n.profile_edit_success,
                               style: Styles.dialogTitleStyle,
                               textAlign: TextAlign.center,
                             ),
@@ -74,7 +77,7 @@ class EditProfileWidget extends StatelessWidget {
                               color: AppColors.mainColor,
                               fontColor: Colors.white,
                               onPressed: () => Get.back(),
-                              label: 'Ok',
+                              label: i10n.alert_ok,
                             ),
                           ],
                         ),
@@ -114,7 +117,7 @@ class EditProfileWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Nama',
+                              i10n.profile_edit_name,
                             ),
                             SizedBox(
                               height: 8,
@@ -132,7 +135,7 @@ class EditProfileWidget extends StatelessWidget {
                               height: 15,
                             ),
                             Text(
-                              'Email',
+                              i10n.profile_edit_email,
                             ),
                             SizedBox(
                               height: 8,
@@ -150,7 +153,7 @@ class EditProfileWidget extends StatelessWidget {
                               height: 15,
                             ),
                             Text(
-                              'Nomor Handphone',
+                              i10n.profile_edit_phone,
                             ),
                             SizedBox(
                               height: 8,
@@ -167,7 +170,9 @@ class EditProfileWidget extends StatelessWidget {
                                   ? () => _bloc
                                       .add(EditProfileEvent.saveButtonPressed())
                                   : () => _controller.setEditting(true),
-                              label: _isEditing ? 'Simpan' : 'Ubah',
+                              label: _isEditing
+                                  ? i10n.profile_edit_save
+                                  : i10n.profile_edit_action,
                               fontStyle: Styles.buttonLabelStyle.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,

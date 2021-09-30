@@ -17,7 +17,7 @@ _$_OrderHistoryDetails _$_$_OrderHistoryDetailsFromJson(
     recipientName: json['recipientName'] as String,
     recipientPhone: json['recipientPhone'] as String,
     customerTableNumber: json['customerTableNumber'] as String,
-    customerSmoking: json['customerSmoking'] as String,
+    customerSmoking: json['customerSmoking'],
     customerPax: json['customerPax'] as String,
     customerNote: json['customerNote'] as String,
     customerCarType: json['customerCarType'] as String,
@@ -68,9 +68,6 @@ _$_OrderHistoryDetails _$_$_OrderHistoryDetailsFromJson(
     deliveryDetail:
         DeliveryDetail.fromJson(json['deliveryDetail'] as Map<String, dynamic>),
     rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
-    billingDetail: json['billingDetail'] == null
-        ? null
-        : BillingDetail.fromJson(json['billingDetail'] as Map<String, dynamic>),
     delivery: json['delivery'] == null
         ? null
         : Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
@@ -130,29 +127,7 @@ Map<String, dynamic> _$_$_OrderHistoryDetailsToJson(
       'status': instance.status,
       'deliveryDetail': instance.deliveryDetail,
       'rating': instance.rating,
-      'billingDetail': instance.billingDetail,
       'delivery': instance.delivery,
-    };
-
-_$_BillingDetail _$_$_BillingDetailFromJson(Map<String, dynamic> json) {
-  return _$_BillingDetail(
-    title: json['title'] as String,
-    amount: json['amount'] as num,
-    vaNumber: json['vaNumber'] as String,
-    expires: DateTime.parse(json['expires'] as String),
-    expiresAt: DateTime.parse(json['expiresAt'] as String),
-    serviceProvider: json['serviceProvider'] as String,
-  );
-}
-
-Map<String, dynamic> _$_$_BillingDetailToJson(_$_BillingDetail instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'amount': instance.amount,
-      'vaNumber': instance.vaNumber,
-      'expires': instance.expires.toIso8601String(),
-      'expiresAt': instance.expiresAt.toIso8601String(),
-      'serviceProvider': instance.serviceProvider,
     };
 
 _$_Delivery _$_$_DeliveryFromJson(Map<String, dynamic> json) {
@@ -441,14 +416,15 @@ Map<String, dynamic> _$_$_PaymentToJson(_$_Payment instance) =>
 _$_TaxesAndService _$_$_TaxesAndServiceFromJson(Map<String, dynamic> json) {
   return _$_TaxesAndService(
     id: json['id'] as num,
-    code: json['code'] as String,
+    code: json['code'] as String?,
     name: json['name'] as String,
-    type: json['type'] as String,
+    type: json['type'] as String?,
     amount: json['amount'] as num,
-    salesTypes:
-        (json['salesTypes'] as List<dynamic>).map((e) => e as String).toList(),
-    paymentTypes: (json['paymentTypes'] as List<dynamic>)
-        .map((e) => e as String)
+    salesTypes: (json['salesTypes'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    paymentTypes: (json['paymentTypes'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
     title: json['title'] as String,
   );

@@ -17,6 +17,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:alice/alice.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'logger_interceptor.dart';
 
@@ -91,4 +92,7 @@ abstract class RegisterModule {
 
   @lazySingleton
   GeolocatorPlatform get goelocatorPlatform => GeolocatorPlatform.instance;
+
+  @lazySingleton
+  OneSignal get oneSignal => OneSignal.shared;
 }

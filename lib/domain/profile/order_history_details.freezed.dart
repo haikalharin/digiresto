@@ -29,7 +29,7 @@ class _$OrderHistoryDetailsTearOff {
       required String recipientName,
       required String recipientPhone,
       required String customerTableNumber,
-      required String customerSmoking,
+      required dynamic customerSmoking,
       required String customerPax,
       required String customerNote,
       required String customerCarType,
@@ -71,7 +71,6 @@ class _$OrderHistoryDetailsTearOff {
       required String status,
       required DeliveryDetail deliveryDetail,
       required Rating rating,
-      @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
       @JsonKey(includeIfNull: true) required Delivery? delivery}) {
     return _OrderHistoryDetails(
       outletName: outletName,
@@ -124,7 +123,6 @@ class _$OrderHistoryDetailsTearOff {
       status: status,
       deliveryDetail: deliveryDetail,
       rating: rating,
-      billingDetail: billingDetail,
       delivery: delivery,
     );
   }
@@ -147,7 +145,7 @@ mixin _$OrderHistoryDetails {
   String get recipientName => throw _privateConstructorUsedError;
   String get recipientPhone => throw _privateConstructorUsedError;
   String get customerTableNumber => throw _privateConstructorUsedError;
-  String get customerSmoking => throw _privateConstructorUsedError;
+  dynamic get customerSmoking => throw _privateConstructorUsedError;
   String get customerPax => throw _privateConstructorUsedError;
   String get customerNote => throw _privateConstructorUsedError;
   String get customerCarType => throw _privateConstructorUsedError;
@@ -193,8 +191,6 @@ mixin _$OrderHistoryDetails {
   DeliveryDetail get deliveryDetail => throw _privateConstructorUsedError;
   Rating get rating => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true)
-  BillingDetail? get billingDetail => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: true)
   Delivery? get delivery => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -217,7 +213,7 @@ abstract class $OrderHistoryDetailsCopyWith<$Res> {
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      dynamic customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -259,14 +255,12 @@ abstract class $OrderHistoryDetailsCopyWith<$Res> {
       String status,
       DeliveryDetail deliveryDetail,
       Rating rating,
-      @JsonKey(includeIfNull: true) BillingDetail? billingDetail,
       @JsonKey(includeIfNull: true) Delivery? delivery});
 
   $DeliveryCopyWith<$Res>? get grabpawoon;
   $OutletCopyWith<$Res> get outlet;
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
   $RatingCopyWith<$Res> get rating;
-  $BillingDetailCopyWith<$Res>? get billingDetail;
   $DeliveryCopyWith<$Res>? get delivery;
 }
 
@@ -331,7 +325,6 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
     Object? status = freezed,
     Object? deliveryDetail = freezed,
     Object? rating = freezed,
-    Object? billingDetail = freezed,
     Object? delivery = freezed,
   }) {
     return _then(_value.copyWith(
@@ -370,7 +363,7 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -535,10 +528,6 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as Rating,
-      billingDetail: billingDetail == freezed
-          ? _value.billingDetail
-          : billingDetail // ignore: cast_nullable_to_non_nullable
-              as BillingDetail?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -579,17 +568,6 @@ class _$OrderHistoryDetailsCopyWithImpl<$Res>
   }
 
   @override
-  $BillingDetailCopyWith<$Res>? get billingDetail {
-    if (_value.billingDetail == null) {
-      return null;
-    }
-
-    return $BillingDetailCopyWith<$Res>(_value.billingDetail!, (value) {
-      return _then(_value.copyWith(billingDetail: value));
-    });
-  }
-
-  @override
   $DeliveryCopyWith<$Res>? get delivery {
     if (_value.delivery == null) {
       return null;
@@ -617,7 +595,7 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
       String recipientName,
       String recipientPhone,
       String customerTableNumber,
-      String customerSmoking,
+      dynamic customerSmoking,
       String customerPax,
       String customerNote,
       String customerCarType,
@@ -659,7 +637,6 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
       String status,
       DeliveryDetail deliveryDetail,
       Rating rating,
-      @JsonKey(includeIfNull: true) BillingDetail? billingDetail,
       @JsonKey(includeIfNull: true) Delivery? delivery});
 
   @override
@@ -670,8 +647,6 @@ abstract class _$OrderHistoryDetailsCopyWith<$Res>
   $DeliveryDetailCopyWith<$Res> get deliveryDetail;
   @override
   $RatingCopyWith<$Res> get rating;
-  @override
-  $BillingDetailCopyWith<$Res>? get billingDetail;
   @override
   $DeliveryCopyWith<$Res>? get delivery;
 }
@@ -739,7 +714,6 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
     Object? status = freezed,
     Object? deliveryDetail = freezed,
     Object? rating = freezed,
-    Object? billingDetail = freezed,
     Object? delivery = freezed,
   }) {
     return _then(_OrderHistoryDetails(
@@ -778,7 +752,7 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
       customerSmoking: customerSmoking == freezed
           ? _value.customerSmoking
           : customerSmoking // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       customerPax: customerPax == freezed
           ? _value.customerPax
           : customerPax // ignore: cast_nullable_to_non_nullable
@@ -943,10 +917,6 @@ class __$OrderHistoryDetailsCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as Rating,
-      billingDetail: billingDetail == freezed
-          ? _value.billingDetail
-          : billingDetail // ignore: cast_nullable_to_non_nullable
-              as BillingDetail?,
       delivery: delivery == freezed
           ? _value.delivery
           : delivery // ignore: cast_nullable_to_non_nullable
@@ -1009,7 +979,6 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
       required this.status,
       required this.deliveryDetail,
       required this.rating,
-      @JsonKey(includeIfNull: true) required this.billingDetail,
       @JsonKey(includeIfNull: true) required this.delivery});
 
   factory _$_OrderHistoryDetails.fromJson(Map<String, dynamic> json) =>
@@ -1032,7 +1001,7 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   @override
   final String customerTableNumber;
   @override
-  final String customerSmoking;
+  final dynamic customerSmoking;
   @override
   final String customerPax;
   @override
@@ -1119,14 +1088,11 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
   final Rating rating;
   @override
   @JsonKey(includeIfNull: true)
-  final BillingDetail? billingDetail;
-  @override
-  @JsonKey(includeIfNull: true)
   final Delivery? delivery;
 
   @override
   String toString() {
-    return 'OrderHistoryDetails(outletName: $outletName, outletId: $outletId, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, recipientName: $recipientName, recipientPhone: $recipientPhone, customerTableNumber: $customerTableNumber, customerSmoking: $customerSmoking, customerPax: $customerPax, customerNote: $customerNote, customerCarType: $customerCarType, customerCarColor: $customerCarColor, customerCarNumber: $customerCarNumber, eta: $eta, totalChange: $totalChange, discountAmount: $discountAmount, discountPercentage: $discountPercentage, finalAmount: $finalAmount, receiptTotalDiscount: $receiptTotalDiscount, roundAmount: $roundAmount, subtotal: $subtotal, totalDiscount: $totalDiscount, totalItemAmount: $totalItemAmount, totalItemCost: $totalItemCost, totalItemDiscount: $totalItemDiscount, totalService: $totalService, totalTax: $totalTax, voucherAmount: $voucherAmount, deliveryAmount: $deliveryAmount, totalPayment: $totalPayment, salesType: $salesType, items: $items, itemWeight: $itemWeight, isUseVoucher: $isUseVoucher, promos: $promos, paymentList: $paymentList, taxesAndServices: $taxesAndServices, itemTotalAmount: $itemTotalAmount, note: $note, grabpawoon: $grabpawoon, originalDeliveryAmount: $originalDeliveryAmount, deviceTimestamp: $deviceTimestamp, receiptCode: $receiptCode, payments: $payments, outlet: $outlet, orderId: $orderId, status: $status, deliveryDetail: $deliveryDetail, rating: $rating, billingDetail: $billingDetail, delivery: $delivery)';
+    return 'OrderHistoryDetails(outletName: $outletName, outletId: $outletId, customerName: $customerName, customerEmail: $customerEmail, customerPhone: $customerPhone, recipientName: $recipientName, recipientPhone: $recipientPhone, customerTableNumber: $customerTableNumber, customerSmoking: $customerSmoking, customerPax: $customerPax, customerNote: $customerNote, customerCarType: $customerCarType, customerCarColor: $customerCarColor, customerCarNumber: $customerCarNumber, eta: $eta, totalChange: $totalChange, discountAmount: $discountAmount, discountPercentage: $discountPercentage, finalAmount: $finalAmount, receiptTotalDiscount: $receiptTotalDiscount, roundAmount: $roundAmount, subtotal: $subtotal, totalDiscount: $totalDiscount, totalItemAmount: $totalItemAmount, totalItemCost: $totalItemCost, totalItemDiscount: $totalItemDiscount, totalService: $totalService, totalTax: $totalTax, voucherAmount: $voucherAmount, deliveryAmount: $deliveryAmount, totalPayment: $totalPayment, salesType: $salesType, items: $items, itemWeight: $itemWeight, isUseVoucher: $isUseVoucher, promos: $promos, paymentList: $paymentList, taxesAndServices: $taxesAndServices, itemTotalAmount: $itemTotalAmount, note: $note, grabpawoon: $grabpawoon, originalDeliveryAmount: $originalDeliveryAmount, deviceTimestamp: $deviceTimestamp, receiptCode: $receiptCode, payments: $payments, outlet: $outlet, orderId: $orderId, status: $status, deliveryDetail: $deliveryDetail, rating: $rating, delivery: $delivery)';
   }
 
   @override
@@ -1226,7 +1192,6 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
             (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.deliveryDetail, deliveryDetail) || const DeepCollectionEquality().equals(other.deliveryDetail, deliveryDetail)) &&
             (identical(other.rating, rating) || const DeepCollectionEquality().equals(other.rating, rating)) &&
-            (identical(other.billingDetail, billingDetail) || const DeepCollectionEquality().equals(other.billingDetail, billingDetail)) &&
             (identical(other.delivery, delivery) || const DeepCollectionEquality().equals(other.delivery, delivery)));
   }
 
@@ -1283,7 +1248,6 @@ class _$_OrderHistoryDetails implements _OrderHistoryDetails {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(deliveryDetail) ^
       const DeepCollectionEquality().hash(rating) ^
-      const DeepCollectionEquality().hash(billingDetail) ^
       const DeepCollectionEquality().hash(delivery);
 
   @JsonKey(ignore: true)
@@ -1308,7 +1272,7 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
           required String recipientName,
           required String recipientPhone,
           required String customerTableNumber,
-          required String customerSmoking,
+          required dynamic customerSmoking,
           required String customerPax,
           required String customerNote,
           required String customerCarType,
@@ -1350,7 +1314,6 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
           required String status,
           required DeliveryDetail deliveryDetail,
           required Rating rating,
-          @JsonKey(includeIfNull: true) required BillingDetail? billingDetail,
           @JsonKey(includeIfNull: true) required Delivery? delivery}) =
       _$_OrderHistoryDetails;
 
@@ -1374,7 +1337,7 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   @override
   String get customerTableNumber => throw _privateConstructorUsedError;
   @override
-  String get customerSmoking => throw _privateConstructorUsedError;
+  dynamic get customerSmoking => throw _privateConstructorUsedError;
   @override
   String get customerPax => throw _privateConstructorUsedError;
   @override
@@ -1462,292 +1425,10 @@ abstract class _OrderHistoryDetails implements OrderHistoryDetails {
   Rating get rating => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: true)
-  BillingDetail? get billingDetail => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(includeIfNull: true)
   Delivery? get delivery => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OrderHistoryDetailsCopyWith<_OrderHistoryDetails> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-BillingDetail _$BillingDetailFromJson(Map<String, dynamic> json) {
-  return _BillingDetail.fromJson(json);
-}
-
-/// @nodoc
-class _$BillingDetailTearOff {
-  const _$BillingDetailTearOff();
-
-  _BillingDetail call(
-      {required String title,
-      required num amount,
-      required String vaNumber,
-      required DateTime expires,
-      required DateTime expiresAt,
-      required String serviceProvider}) {
-    return _BillingDetail(
-      title: title,
-      amount: amount,
-      vaNumber: vaNumber,
-      expires: expires,
-      expiresAt: expiresAt,
-      serviceProvider: serviceProvider,
-    );
-  }
-
-  BillingDetail fromJson(Map<String, Object> json) {
-    return BillingDetail.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $BillingDetail = _$BillingDetailTearOff();
-
-/// @nodoc
-mixin _$BillingDetail {
-  String get title => throw _privateConstructorUsedError;
-  num get amount => throw _privateConstructorUsedError;
-  String get vaNumber => throw _privateConstructorUsedError;
-  DateTime get expires => throw _privateConstructorUsedError;
-  DateTime get expiresAt => throw _privateConstructorUsedError;
-  String get serviceProvider => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $BillingDetailCopyWith<BillingDetail> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BillingDetailCopyWith<$Res> {
-  factory $BillingDetailCopyWith(
-          BillingDetail value, $Res Function(BillingDetail) then) =
-      _$BillingDetailCopyWithImpl<$Res>;
-  $Res call(
-      {String title,
-      num amount,
-      String vaNumber,
-      DateTime expires,
-      DateTime expiresAt,
-      String serviceProvider});
-}
-
-/// @nodoc
-class _$BillingDetailCopyWithImpl<$Res>
-    implements $BillingDetailCopyWith<$Res> {
-  _$BillingDetailCopyWithImpl(this._value, this._then);
-
-  final BillingDetail _value;
-  // ignore: unused_field
-  final $Res Function(BillingDetail) _then;
-
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? amount = freezed,
-    Object? vaNumber = freezed,
-    Object? expires = freezed,
-    Object? expiresAt = freezed,
-    Object? serviceProvider = freezed,
-  }) {
-    return _then(_value.copyWith(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as num,
-      vaNumber: vaNumber == freezed
-          ? _value.vaNumber
-          : vaNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      expires: expires == freezed
-          ? _value.expires
-          : expires // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      expiresAt: expiresAt == freezed
-          ? _value.expiresAt
-          : expiresAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      serviceProvider: serviceProvider == freezed
-          ? _value.serviceProvider
-          : serviceProvider // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$BillingDetailCopyWith<$Res>
-    implements $BillingDetailCopyWith<$Res> {
-  factory _$BillingDetailCopyWith(
-          _BillingDetail value, $Res Function(_BillingDetail) then) =
-      __$BillingDetailCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String title,
-      num amount,
-      String vaNumber,
-      DateTime expires,
-      DateTime expiresAt,
-      String serviceProvider});
-}
-
-/// @nodoc
-class __$BillingDetailCopyWithImpl<$Res>
-    extends _$BillingDetailCopyWithImpl<$Res>
-    implements _$BillingDetailCopyWith<$Res> {
-  __$BillingDetailCopyWithImpl(
-      _BillingDetail _value, $Res Function(_BillingDetail) _then)
-      : super(_value, (v) => _then(v as _BillingDetail));
-
-  @override
-  _BillingDetail get _value => super._value as _BillingDetail;
-
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? amount = freezed,
-    Object? vaNumber = freezed,
-    Object? expires = freezed,
-    Object? expiresAt = freezed,
-    Object? serviceProvider = freezed,
-  }) {
-    return _then(_BillingDetail(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as num,
-      vaNumber: vaNumber == freezed
-          ? _value.vaNumber
-          : vaNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      expires: expires == freezed
-          ? _value.expires
-          : expires // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      expiresAt: expiresAt == freezed
-          ? _value.expiresAt
-          : expiresAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      serviceProvider: serviceProvider == freezed
-          ? _value.serviceProvider
-          : serviceProvider // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_BillingDetail implements _BillingDetail {
-  const _$_BillingDetail(
-      {required this.title,
-      required this.amount,
-      required this.vaNumber,
-      required this.expires,
-      required this.expiresAt,
-      required this.serviceProvider});
-
-  factory _$_BillingDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_BillingDetailFromJson(json);
-
-  @override
-  final String title;
-  @override
-  final num amount;
-  @override
-  final String vaNumber;
-  @override
-  final DateTime expires;
-  @override
-  final DateTime expiresAt;
-  @override
-  final String serviceProvider;
-
-  @override
-  String toString() {
-    return 'BillingDetail(title: $title, amount: $amount, vaNumber: $vaNumber, expires: $expires, expiresAt: $expiresAt, serviceProvider: $serviceProvider)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _BillingDetail &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.vaNumber, vaNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.vaNumber, vaNumber)) &&
-            (identical(other.expires, expires) ||
-                const DeepCollectionEquality()
-                    .equals(other.expires, expires)) &&
-            (identical(other.expiresAt, expiresAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.expiresAt, expiresAt)) &&
-            (identical(other.serviceProvider, serviceProvider) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceProvider, serviceProvider)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(vaNumber) ^
-      const DeepCollectionEquality().hash(expires) ^
-      const DeepCollectionEquality().hash(expiresAt) ^
-      const DeepCollectionEquality().hash(serviceProvider);
-
-  @JsonKey(ignore: true)
-  @override
-  _$BillingDetailCopyWith<_BillingDetail> get copyWith =>
-      __$BillingDetailCopyWithImpl<_BillingDetail>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_BillingDetailToJson(this);
-  }
-}
-
-abstract class _BillingDetail implements BillingDetail {
-  const factory _BillingDetail(
-      {required String title,
-      required num amount,
-      required String vaNumber,
-      required DateTime expires,
-      required DateTime expiresAt,
-      required String serviceProvider}) = _$_BillingDetail;
-
-  factory _BillingDetail.fromJson(Map<String, dynamic> json) =
-      _$_BillingDetail.fromJson;
-
-  @override
-  String get title => throw _privateConstructorUsedError;
-  @override
-  num get amount => throw _privateConstructorUsedError;
-  @override
-  String get vaNumber => throw _privateConstructorUsedError;
-  @override
-  DateTime get expires => throw _privateConstructorUsedError;
-  @override
-  DateTime get expiresAt => throw _privateConstructorUsedError;
-  @override
-  String get serviceProvider => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$BillingDetailCopyWith<_BillingDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -5422,12 +5103,12 @@ class _$TaxesAndServiceTearOff {
 
   _TaxesAndService call(
       {required num id,
-      required String code,
+      @JsonKey(includeIfNull: true) required String? code,
       required String name,
-      required String type,
+      @JsonKey(includeIfNull: true) required String? type,
       required num amount,
-      required List<String> salesTypes,
-      required List<String> paymentTypes,
+      @JsonKey(includeIfNull: true) required List<String>? salesTypes,
+      @JsonKey(includeIfNull: true) required List<String>? paymentTypes,
       required String title}) {
     return _TaxesAndService(
       id: id,
@@ -5452,12 +5133,16 @@ const $TaxesAndService = _$TaxesAndServiceTearOff();
 /// @nodoc
 mixin _$TaxesAndService {
   num get id => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get type => throw _privateConstructorUsedError;
   num get amount => throw _privateConstructorUsedError;
-  List<String> get salesTypes => throw _privateConstructorUsedError;
-  List<String> get paymentTypes => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  List<String>? get salesTypes => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  List<String>? get paymentTypes => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -5473,12 +5158,12 @@ abstract class $TaxesAndServiceCopyWith<$Res> {
       _$TaxesAndServiceCopyWithImpl<$Res>;
   $Res call(
       {num id,
-      String code,
+      @JsonKey(includeIfNull: true) String? code,
       String name,
-      String type,
+      @JsonKey(includeIfNull: true) String? type,
       num amount,
-      List<String> salesTypes,
-      List<String> paymentTypes,
+      @JsonKey(includeIfNull: true) List<String>? salesTypes,
+      @JsonKey(includeIfNull: true) List<String>? paymentTypes,
       String title});
 }
 
@@ -5510,7 +5195,7 @@ class _$TaxesAndServiceCopyWithImpl<$Res>
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -5518,7 +5203,7 @@ class _$TaxesAndServiceCopyWithImpl<$Res>
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -5526,11 +5211,11 @@ class _$TaxesAndServiceCopyWithImpl<$Res>
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       paymentTypes: paymentTypes == freezed
           ? _value.paymentTypes
           : paymentTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -5548,12 +5233,12 @@ abstract class _$TaxesAndServiceCopyWith<$Res>
   @override
   $Res call(
       {num id,
-      String code,
+      @JsonKey(includeIfNull: true) String? code,
       String name,
-      String type,
+      @JsonKey(includeIfNull: true) String? type,
       num amount,
-      List<String> salesTypes,
-      List<String> paymentTypes,
+      @JsonKey(includeIfNull: true) List<String>? salesTypes,
+      @JsonKey(includeIfNull: true) List<String>? paymentTypes,
       String title});
 }
 
@@ -5587,7 +5272,7 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -5595,7 +5280,7 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -5603,11 +5288,11 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       paymentTypes: paymentTypes == freezed
           ? _value.paymentTypes
           : paymentTypes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -5621,12 +5306,12 @@ class __$TaxesAndServiceCopyWithImpl<$Res>
 class _$_TaxesAndService implements _TaxesAndService {
   const _$_TaxesAndService(
       {required this.id,
-      required this.code,
+      @JsonKey(includeIfNull: true) required this.code,
       required this.name,
-      required this.type,
+      @JsonKey(includeIfNull: true) required this.type,
       required this.amount,
-      required this.salesTypes,
-      required this.paymentTypes,
+      @JsonKey(includeIfNull: true) required this.salesTypes,
+      @JsonKey(includeIfNull: true) required this.paymentTypes,
       required this.title});
 
   factory _$_TaxesAndService.fromJson(Map<String, dynamic> json) =>
@@ -5635,17 +5320,21 @@ class _$_TaxesAndService implements _TaxesAndService {
   @override
   final num id;
   @override
-  final String code;
+  @JsonKey(includeIfNull: true)
+  final String? code;
   @override
   final String name;
   @override
-  final String type;
+  @JsonKey(includeIfNull: true)
+  final String? type;
   @override
   final num amount;
   @override
-  final List<String> salesTypes;
+  @JsonKey(includeIfNull: true)
+  final List<String>? salesTypes;
   @override
-  final List<String> paymentTypes;
+  @JsonKey(includeIfNull: true)
+  final List<String>? paymentTypes;
   @override
   final String title;
 
@@ -5704,12 +5393,12 @@ class _$_TaxesAndService implements _TaxesAndService {
 abstract class _TaxesAndService implements TaxesAndService {
   const factory _TaxesAndService(
       {required num id,
-      required String code,
+      @JsonKey(includeIfNull: true) required String? code,
       required String name,
-      required String type,
+      @JsonKey(includeIfNull: true) required String? type,
       required num amount,
-      required List<String> salesTypes,
-      required List<String> paymentTypes,
+      @JsonKey(includeIfNull: true) required List<String>? salesTypes,
+      @JsonKey(includeIfNull: true) required List<String>? paymentTypes,
       required String title}) = _$_TaxesAndService;
 
   factory _TaxesAndService.fromJson(Map<String, dynamic> json) =
@@ -5718,17 +5407,21 @@ abstract class _TaxesAndService implements TaxesAndService {
   @override
   num get id => throw _privateConstructorUsedError;
   @override
-  String get code => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get code => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  String get type => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  String? get type => throw _privateConstructorUsedError;
   @override
   num get amount => throw _privateConstructorUsedError;
   @override
-  List<String> get salesTypes => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  List<String>? get salesTypes => throw _privateConstructorUsedError;
   @override
-  List<String> get paymentTypes => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: true)
+  List<String>? get paymentTypes => throw _privateConstructorUsedError;
   @override
   String get title => throw _privateConstructorUsedError;
   @override

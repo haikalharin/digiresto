@@ -162,8 +162,8 @@ class PaymentVAScreen extends StatelessWidget {
                             ElevatedButton(
                                 onPressed: () {
                                   Clipboard.setData(
-                                      ClipboardData(text: vaPayment.vaNumber));
-                                  Ctoast.show('VA Number Copied');
+                                      ClipboardData(text: vaPayment.bankAccNo));
+                                  Ctoast.show('Bank Acc Number Copied');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.white,

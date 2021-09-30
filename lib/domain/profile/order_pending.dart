@@ -190,7 +190,6 @@ class Item with _$Item {
     required int subtotal,
     required int serviceAmount,
     required int taxAmount,
-    required bool isStock,
   }) = _Item;
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

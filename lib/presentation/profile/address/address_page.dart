@@ -158,6 +158,7 @@ class ProfileAddressWidget extends StatelessWidget {
   }
 
   Widget _btnNewAddress() {
+    final i10n = I10n.current;
     return Column(
       children: [
         SizedBox(
@@ -178,7 +179,7 @@ class ProfileAddressWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("+ Tambah Alamat Tersimpan",
+                  Text(i10n.address_saved,
                       style: AppFont.textRed14Bold,
                       textAlign: TextAlign.center),
                 ],
@@ -311,6 +312,7 @@ class ProfileAddressWidget extends StatelessWidget {
   }
 
   Future<void> _showDialogAddress(UserAddress userAddress) async {
+    final i10n = I10n.current;
     return showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
@@ -338,8 +340,8 @@ class ProfileAddressWidget extends StatelessWidget {
                   //make title to center
                   transform: Matrix4.translationValues(-24, 0, 0),
                   child: Center(
-                    child: new Text(
-                      'Pilihan Alamat',
+                    child: Text(
+                      i10n.address_search_address,
                       style: AppFont.textBlack17Bold,
                     ),
                   ),
@@ -348,7 +350,7 @@ class ProfileAddressWidget extends StatelessWidget {
               ),
               AppDivider.normal,
               ListTile(
-                title: new Text('Jadikan alamat utama',
+                title: new Text(i10n.address_default_flag,
                     style: AppFont.textBlack14Regular),
                 onTap: () {
                   Get.context!.read<AddressListBloc>().add(
@@ -360,14 +362,8 @@ class ProfileAddressWidget extends StatelessWidget {
               ),
               AppDivider.normal,
               ListTile(
-                title:
-                    new Text('Ubah Alamat', style: AppFont.textBlack14Regular),
-                onTap: () {},
-              ),
-              AppDivider.normal,
-              ListTile(
-                title:
-                    new Text('Hapus Alamat', style: AppFont.textBlack14Regular),
+                title: new Text(i10n.address_delete_action,
+                    style: AppFont.textBlack14Regular),
                 onTap: () {
                   Get.context!.read<AddressListBloc>().add(
                       AddressListEvent.removeAddress(UserRemoveAddressParam(
