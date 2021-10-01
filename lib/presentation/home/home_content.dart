@@ -31,7 +31,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
           initialPage: 0,
         ),
         tag: "home");
-    Get.put(HomeContentViewController());
+    Get.lazyPut(() => HomeContentViewController());
     showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {

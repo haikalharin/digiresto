@@ -343,9 +343,9 @@ class ProfileWidget extends StatelessWidget {
                             ),
                             Expanded(
                               child: CustomButton(
-                                onPressed: () {
-                                  _authBloc.add(AuthEvent.signedOut());
-                                  Get.offAllNamed(Routers.auth);
+                                onPressed: () async {
+                                  getIt<AuthBloc>().add(AuthEvent.signedOut());
+                                  Get.offAllNamed(Routers.login);
                                 },
                                 color: AppColors.mainColor,
                                 fontColor: Colors.white,

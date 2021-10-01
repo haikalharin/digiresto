@@ -41,6 +41,7 @@ class ProfileAddressWidget extends StatelessWidget {
 
     final controller = Get.put(HomeContentViewController(), permanent: false);
     getAddress();
+    Loading.dismiss();
     return CustomScafold(
       showBackButton: true,
       title: i10n.address_all,
@@ -63,10 +64,14 @@ class ProfileAddressWidget extends StatelessWidget {
                         address: response.formattedAddress,
                         latitude: response.latitude,
                         longitude: response.longitute));
+
+                    Loading.dismiss();
                   },
                   setActiveAddressSuccess: (content) {
                     controller.setActiveAddress(content.response.address!);
                     Get.back();
+
+                    Loading.dismiss();
                   },
                   setDefaultFail: (content) {
                     print(content);
@@ -80,6 +85,8 @@ class ProfileAddressWidget extends StatelessWidget {
                         .read<HomeUserBloc>()
                         .add(HomeUserEvent.getListAddress());
                     Get.back(closeOverlays: true);
+
+                    Loading.dismiss();
                   },
                   addAddressSuccess: (value) {
                     context
@@ -87,6 +94,8 @@ class ProfileAddressWidget extends StatelessWidget {
                         .add(HomeUserEvent.getListAddress());
                     Get.back(closeOverlays: true);
                     Get.back();
+
+                    Loading.dismiss();
                   },
                   orElse: () {});
             },
@@ -179,7 +188,7 @@ class ProfileAddressWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(i10n.address_saved,
+                  Text(i10n.address_add,
                       style: AppFont.textRed14Bold,
                       textAlign: TextAlign.center),
                 ],

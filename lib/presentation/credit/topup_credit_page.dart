@@ -6,6 +6,7 @@ import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
@@ -61,7 +62,6 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
 
     return BlocConsumer<TopUpCreditBloc, TopUpCreditState>(
       listener: (context, state) {
-        widget.bankItem.destination;
         state.topUpVAfailureOrSuccess.fold(
           () => null,
           (data) => data.fold(
@@ -271,11 +271,49 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
               left: 0,
               child: CustomButton(
                 label: i10n.topup_title,
-                onPressed: () => _topUpBloc.add(
-                  TopUpCreditEvent.topUpSubmitted(
-                    widget.bankItem.param,
-                  ),
-                ),
+                onPressed: () => state.destination == 'TOP_UP_BANK'
+                    ? Get.dialog(
+                        CustomDialog(
+                          backgroundColor: Colors.white,
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                i10n.credit_topup,
+                                style: Styles.dialogTitleStyle,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                i10n.topup_confirmation,
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              CustomButton(
+                                onPressed: () {
+                                  Get.back();
+                                  _topUpBloc.add(
+                                    TopUpCreditEvent.topUpSubmitted(
+                                      widget.bankItem.param,
+                                    ),
+                                  );
+                                },
+                                label: i10n.alert_ok,
+                                fontColor: Colors.white,
+                                borderColor: AppColors.mainColor,
+                                color: AppColors.mainColor,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : _topUpBloc.add(
+                        TopUpCreditEvent.topUpSubmitted(
+                          widget.bankItem.param,
+                        ),
+                      ),
                 color: AppColors.mainColor,
                 fontColor: Colors.white,
                 borderRadius: BorderRadius.circular(22),
