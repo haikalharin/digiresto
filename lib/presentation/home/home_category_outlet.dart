@@ -59,6 +59,7 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
+              controller.page.value = 1;
               controller.getOutletByLocation(
                   controller.searchController.text, 1);
             },
@@ -101,7 +102,9 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
         state.maybeMap(
             getOutletByCategorySuccess: (r) {
               print(r.response);
-              controller.listOutlet.value = r.response;
+              if (r.response.isNotEmpty) {
+                controller.listOutlet.addAll(r.response);
+              }
             },
             loadFailure: (e) {},
             orElse: () {});
