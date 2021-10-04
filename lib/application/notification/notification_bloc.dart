@@ -23,23 +23,23 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
 
   NotificationBloc(this._notificationRepository)
       : super(NotificationState.init()) {
-    // _notificationSubscription =
-    //     this._notificationRepository.notification().listen((event) {
-    //   event.fold((l) {
-    //     print("Error waktu format notif");
-    //   }, (notif) {
-    //     add(NotificationEvent.newNotification(notif));
-    //   });
-    // });
+    _notificationSubscription =
+        this._notificationRepository.notification().listen((event) {
+      event.fold((l) {
+        print("Error waktu format notif");
+      }, (notif) {
+        add(NotificationEvent.newNotification(notif));
+      });
+    });
 
-    // _notificationOpenedSubscription =
-    //     this._notificationRepository.notificationOpened().listen((event) {
-    //   event.fold((l) {
-    //     print("Error waktu format notif opened");
-    //   }, (notif) {
-    //     add(NotificationEvent.notificationOpened(notif));
-    //   });
-    // });
+    _notificationOpenedSubscription =
+        this._notificationRepository.notificationOpened().listen((event) {
+      event.fold((l) {
+        print("Error waktu format notif opened");
+      }, (notif) {
+        add(NotificationEvent.notificationOpened(notif));
+      });
+    });
   }
 
   @override

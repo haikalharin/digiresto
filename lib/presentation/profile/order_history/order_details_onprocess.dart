@@ -201,6 +201,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
             children: [
               if (orderDetails.delivery != null)
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Status Pengiriman',

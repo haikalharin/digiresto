@@ -99,6 +99,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                   widget.detailOutlet,
                   widget.orderType),
             );
+        Get.back();
       });
       return;
     }

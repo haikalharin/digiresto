@@ -300,7 +300,9 @@ class OrderDetailsDone extends StatelessWidget {
           thickness: 15,
           color: AppColors.dividerColor,
         ),
-        if (orderDetails.delivery != null)
+        if (orderDetails.delivery != null &&
+            (orderDetails.status != 'done' &&
+                orderDetails.status != 'auto_done'))
           Padding(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -319,24 +321,28 @@ class OrderDetailsDone extends StatelessWidget {
                     'Menunggu driver',
                     style: Styles.menuItemLabelStyle,
                   ),
+                Text(orderDetails.deliveryDetail.driverName ?? ''),
                 ...orderDetails.deliveryDetail.status!
                     .map((status) => DeliveryStatusWidget(status))
                     .toList(),
                 SizedBox(
                   height: 30,
                 ),
-                if (orderDetails.status == 'done' ||
-                    orderDetails.status == 'auto_done')
-                  CustomButton(
-                    onPressed: () {},
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.mainColor,
-                    label: 'Beli Lagi',
-                    fontColor: Colors.white,
-                  )
               ],
             ),
           ),
+        if (orderDetails.status == 'done' || orderDetails.status == 'auto_done')
+          CustomButton(
+            onPressed: () {},
+            margin: EdgeInsets.symmetric(
+              horizontal: Dimens.defaultMargin,
+              vertical: 30,
+            ),
+            borderRadius: BorderRadius.circular(30),
+            color: AppColors.mainColor,
+            label: 'Beli Lagi',
+            fontColor: Colors.white,
+          )
       ],
     );
   }

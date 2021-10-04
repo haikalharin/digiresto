@@ -40,6 +40,10 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 android {
     compileSdkVersion 30
 
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
     signingConfigs {
         debug {
             keyAlias keystoreProperties['keyAlias']
