@@ -1,3 +1,4 @@
+import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -129,7 +130,9 @@ class PaymentReceiptScreen extends StatelessWidget {
                 icon: Icon(Icons.close),
                 onPressed: () {
                   // _orderStore.clearCart();
+
                   Get.offAllNamed(Routers.home);
+                  Get.find<HomeContentViewController>().getRefresh();
                 },
               ),
               title: Text(
@@ -454,6 +457,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                   .selectedTabIndex
                                   .value = 3;
                               Get.offAllNamed(Routers.home);
+                              Get.find<HomeContentViewController>()
+                                  .getRefresh();
                               Get.toNamed(Routers.orderHistory);
                             },
                             child: Container(
@@ -497,6 +502,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                       .selectedTabIndex
                       .value = 0;
                   Get.offAllNamed(Routers.home);
+                  Get.find<HomeContentViewController>().getRefresh();
                 },
               ),
               title: Text(

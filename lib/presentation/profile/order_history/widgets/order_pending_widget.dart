@@ -93,7 +93,7 @@ class OrderPendingWidget extends StatelessWidget {
                                   height: 15,
                                 ),
                                 Text(
-                                  'Apakah anda yakin ingin membatalkan transaksi ?',
+                                  'Apakah anda yakin ingin membatalkan transaksi dengan nomor ${orderPending.receiptCode} ?',
                                   style: Styles.dialogSubtitleStyle,
                                   textAlign: TextAlign.center,
                                 ),

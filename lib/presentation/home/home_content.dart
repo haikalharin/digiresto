@@ -470,6 +470,7 @@ class _StaticBanner extends GetView<HomeContentViewController> {
   @override
   Widget build(BuildContext context) {
     PageController _controller = Get.find<PageController>(tag: "home");
+    Get.lazyPut(() => HomeContentViewController());
     return Column(
       children: [
         Container(
