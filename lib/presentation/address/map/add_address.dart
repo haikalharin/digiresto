@@ -234,23 +234,25 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                           SizedBox(
                             width: 120,
                             height: 40,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 Get.back();
                               },
-                              color: Colors.white,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.red,
+                                  ),
+                                ),
+                              ),
                               child: Text(controller.profileCancel,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.red)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.red,
-                                ),
-                              ),
                             ),
                           ),
                           SizedBox(

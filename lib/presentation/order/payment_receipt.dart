@@ -6,6 +6,7 @@ import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -87,6 +88,7 @@ class PaymentReceiptScreen extends StatelessWidget {
         .add(TransactionEvent.getTransaction(args.receiptCode));
     return BlocConsumer<TransactionBloc, TransactionState>(
         listener: (context, state) {
+      Loading.dismiss();
       state.maybeMap(
           getTransactionSuccess: (r) {
             _transaction = r.response.data;
@@ -116,6 +118,7 @@ class PaymentReceiptScreen extends StatelessWidget {
           orElse: () {});
     }, builder: (context, state) {
       if (_transaction != null) {
+        Loading.dismiss();
         checkStatus();
         return Scaffold(
           appBar: AppBar(
@@ -423,6 +426,35 @@ class PaymentReceiptScreen extends StatelessWidget {
                               height: 44,
                               child: Center(
                                 child: Text("Simpan Sebagai Favorit",
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white)),
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColors.redD12B34,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(22.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                            ),
+                          ),
+                        if ((_receiptStatusDesc != i10n.nota_process_desc ||
+                            _receiptStatusDesc != i10n.nota_waiting_desc))
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.context!.read<TransactionBloc>().add(
+                                  TransactionEvent.getTransaction(
+                                      args.receiptCode));
+                              //Loading.show();
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 44,
+                              child: Center(
+                                child: Text("Cek Status Pembayaran",
                                     style: AppFont.textBlack14Bold
                                         .copyWith(color: AppColors.white)),
                               ),

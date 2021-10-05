@@ -24,6 +24,7 @@ class HomeAllAddressScreen extends GetView<HomeContentViewController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeContentViewController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

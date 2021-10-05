@@ -167,32 +167,33 @@ class OrderCartScreenViewController extends GetxController {
       isLoading.value = false;
       print("error response cheeckout 2:");
     } else if (checkoutResponse.value?.payment.isCredit ?? false) {
-      Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+      Get.offNamed(Routers.paymentReceipt,
           arguments: PaymentReceiptViewArgument(
               receiptCode: checkoutResponse.value!.receiptCode));
       isLoading.value = false;
     } else if (checkoutResponse.value?.payment.isWebView ?? false) {
       isLoading.value = false;
-      Get.offNamedUntil(Routers.paymentWebView, (route) => false,
+      Get.offNamed(Routers.paymentWebView,
           arguments: PaymentWebViewArgument(
               checkoutDataResponse: checkoutResponse.value!));
     } else if (checkoutResponse.value?.payment.isDeeplink ?? false) {
       isLoading.value = false;
-      LaunchUrl.run(checkoutResponse.value!.payment.deeplink, onError: () {
+      LaunchUrl.runDeeplink(checkoutResponse.value!.payment.deeplink,
+          onError: () {
         ErrorPopupWidget.show("Error", "App Launch Error", () {
-          Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+          Get.offNamed(Routers.paymentReceipt,
               arguments: PaymentReceiptViewArgument(
                   receiptCode: checkoutResponse.value!.receiptCode));
         });
       }, onSuccess: () {
-        Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+        Get.offNamed(Routers.paymentReceipt,
             arguments: PaymentReceiptViewArgument(
                 receiptCode: checkoutResponse.value!.receiptCode));
       });
     } else {
       isLoading.value = false;
       if (checkoutResponse.value?.payment.paymentCode != null) {
-        Get.offNamedUntil(Routers.paymentVa, (route) => false,
+        Get.offNamed(Routers.paymentVa,
             arguments: PaymentVAViewArgument(
                 checkoutDataResponse: checkoutResponse.value!));
       }
