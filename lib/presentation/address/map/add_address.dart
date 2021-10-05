@@ -8,6 +8,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,7 +93,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(14.0))),
             title: Text(
-              "Detail Location",
+              I10n.current.address_location_detail,
               style: AppFont.textBlack15Bold,
               textAlign: TextAlign.center,
             ),
@@ -106,7 +107,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                         decoration: new InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: "Nama Lokasi",
+                          hintText: I10n.current.address_name,
                           border: new OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               borderSide: BorderSide(
@@ -152,7 +153,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                         decoration: new InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: "address",
+                          hintText: I10n.current.address_edit_title,
                           border: new OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               borderSide: BorderSide(
@@ -218,7 +219,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                               Container(
                                 constraints: BoxConstraints(
                                     minWidth: 200, maxWidth: 300),
-                                child: Text("Jadikan alamat utama",
+                                child: Text(I10n.current.address_default_flag,
                                     style: AppFont.textBlack12Regular),
                               ),
                             ],
@@ -248,7 +249,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                                   ),
                                 ),
                               ),
-                              child: Text(controller.profileCancel,
+                              child: Text(controller.cancelText,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -277,7 +278,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                                   ),
                                 ),
                               ),
-                              child: Text("Save",
+                              child: Text(I10n.current.address_save,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -322,7 +323,8 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                   child: ImageIcon(AssetImage(AppAssets.iconGps),
                       size: 20, color: AppColors.red),
                 ),
-                Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
+                Text(I10n.current.address_use_current_location,
+                    style: AppFont.textBlack15Bold),
               ],
             ),
           )),
@@ -392,19 +394,15 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                               _onClickSetDestination();
                             },
                             child: Container(
-                              padding: EdgeInsets.all(7),
+                              padding: EdgeInsets.all(14),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(37),
                                   color: AppColors.red,
                                   border:
                                       Border.all(color: AppColors.greyStroke)),
-                              child: Text("Click To Set Destination",
-                                  style: TextStyle(
-                                    fontFamily: "roboto",
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                              child: Text(I10n.current.address_set_destionation,
+                                  style: AppFont.textBlack14Bold
+                                      .copyWith(color: AppColors.white),
                                   textAlign: TextAlign.center),
                             ),
                           ),
@@ -460,7 +458,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                               padding: EdgeInsets.all(20),
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "Set Destination Location",
+                                I10n.current.address_set_destionation_location,
                                 style: AppFont.textBlack15Bold,
                                 textAlign: TextAlign.start,
                               ),
@@ -485,30 +483,29 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                               padding:
                                   EdgeInsets.only(top: 10, left: 30, right: 30),
                               child: SizedBox(
-                                width: double.infinity,
-                                height: 44,
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      print("i use this location");
-                                      _showMyDialog(context);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      primary: AppColors.red,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(30.0),
-                                        side: BorderSide(
-                                          width: 1,
-                                          color: AppColors.red,
+                                  width: double.infinity,
+                                  height: 44,
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        _showMyDialog(context);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.red,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(30.0),
+                                          side: BorderSide(
+                                            width: 1,
+                                            color: AppColors.red,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    child: Text("Use This Location",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white))),
-                              ),
+                                      child: Text(
+                                          I10n.current
+                                              .address_use_this_location,
+                                          style: AppFont.textBlack14Bold
+                                              .copyWith(
+                                                  color: AppColors.white)))),
                             ),
                           ],
                         ),

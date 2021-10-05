@@ -8,6 +8,7 @@ import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
@@ -36,7 +37,7 @@ class HomeAllAddressScreen extends GetView<HomeContentViewController> {
               Get.back();
             }),
         title: Text(
-          "Pilih Alamat",
+          I10n.current.address_select_location,
           style: AppFont.textBlack15Bold,
           textAlign: TextAlign.center,
         ),
@@ -136,7 +137,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                                   children: <Widget>[
                                     Container(
                                       padding: EdgeInsets.only(left: 10),
-                                      child: Text("Alamat Tersimpan",
+                                      child: Text(I10n.current.address_saved,
                                           style: AppFont.textBlack15Bold,
                                           textAlign: TextAlign.center),
                                     ),
@@ -211,7 +212,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
               ),
               AppDivider.normal,
               ListTile(
-                title: new Text('Jadikan alamat utama',
+                title: new Text(I10n.current.address_set_main,
                     style: AppFont.textBlack14Regular),
                 onTap: () {
                   Loading.show();
@@ -223,15 +224,15 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 },
               ),
               AppDivider.normal,
+              // ListTile(
+              //   title:
+              //       new Text('Ubah Alamat', style: AppFont.textBlack14Regular),
+              //   onTap: () {},
+              // ),
+              // AppDivider.normal,
               ListTile(
-                title:
-                    new Text('Ubah Alamat', style: AppFont.textBlack14Regular),
-                onTap: () {},
-              ),
-              AppDivider.normal,
-              ListTile(
-                title:
-                    new Text('Hapus Alamat', style: AppFont.textBlack14Regular),
+                title: new Text(I10n.current.address_delete_action,
+                    style: AppFont.textBlack14Regular),
                 onTap: () {
                   Loading.show();
                   Get.context!.read<AddressListBloc>().add(
@@ -270,7 +271,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("+ Tambah Alamat Tersimpan",
+                  Text("+ ${I10n.current.address_add}",
                       style: AppFont.textRed14Bold,
                       textAlign: TextAlign.center),
                 ],
@@ -326,7 +327,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
                       child: Text(
-                        "Lokasi sekarang",
+                        I10n.current.address_use_current_location,
                         style: AppFont.textRed14SemiBold,
                       ),
                     ),
@@ -371,7 +372,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
         ),
         child: GestureDetector(
           onTap: () {
-            print("set default");
             controller.setLocalActiveAddress(data);
           },
           child: Padding(

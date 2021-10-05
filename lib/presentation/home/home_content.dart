@@ -11,6 +11,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -108,12 +109,12 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                                 _FoodRowItem(
                                   key: GuideKeys.terdekat,
                                   imageAsset: AppAssets.iconHomeNearby,
-                                  label: Strings.titleNearby,
+                                  label: I10n.current.home_nearby_outlet,
                                 ),
                                 _FoodRowItem(
                                     key: GuideKeys.digidiscount,
                                     imageAsset: AppAssets.iconHomeDiscount,
-                                    label: Strings.titleDigidiscount),
+                                    label: I10n.current.home_digidiskon),
                               ],
                             ),
                           ),
@@ -123,10 +124,9 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 _FoodRowItem(
-                                  key: GuideKeys.frozenfood,
-                                  imageAsset: AppAssets.iconFrozenFood,
-                                  label: Strings.titleFrozenFood,
-                                ),
+                                    key: GuideKeys.frozenfood,
+                                    imageAsset: AppAssets.iconFrozenFood,
+                                    label: I10n.current.home_frozen_food),
                                 _FoodRowItem(
                                   key: GuideKeys.indonesiapastibisa,
                                   imageAsset: AppAssets.iconIndPastiBisa,
@@ -545,7 +545,7 @@ class _YourLocation extends GetView<HomeContentViewController> {
         child: Row(
           children: [
             ImageIcon(AssetImage(AppAssets.iconMarkerMove),
-                size: 24, color: AppColors.red),
+                size: 28, color: AppColors.red),
             Container(
               width: MediaQuery.of(Get.context!).size.width - 50,
               padding: EdgeInsets.only(left: 10),
@@ -554,12 +554,8 @@ class _YourLocation extends GetView<HomeContentViewController> {
                   Container(
                     child: Row(
                       children: [
-                        Text("Lokasi Kamu",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                            )),
+                        Text(I10n.current.home_address,
+                            style: AppFont.textBlack13Regular),
                         new Icon(Icons.keyboard_arrow_down,
                             color: AppColors.red, size: 28.0),
                         controller.loadingListAddress.value == true
@@ -575,11 +571,7 @@ class _YourLocation extends GetView<HomeContentViewController> {
                         controller.activeAddress.value,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: "roboto",
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppFont.textBlack14Bold,
                       ),
                     );
                   })
@@ -600,7 +592,9 @@ class _SearchBox extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.toNamed(Routers.homeNearbyOutlet,
-            arguments: HomeOrderViewArgument(title: Strings.titleNearby));
+            arguments: HomeOrderViewArgument(
+                title: I10n.current.home_nearby_outlet,
+                param: Strings.titleNearby));
       },
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
@@ -618,12 +612,9 @@ class _SearchBox extends StatelessWidget {
                   color: AppColors.grey[100],
                   size: 18,
                 )),
-            Text("Temukan makanan favorit anda",
-                style: TextStyle(
-                  fontFamily: "roboto",
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                )),
+            Text(I10n.current.home_search_food_hint,
+                style: AppFont.textBlack12Regular
+                    .copyWith(color: AppColors.greyField)),
           ],
         ),
       ),
@@ -646,14 +637,14 @@ class _FoodRowItem extends GetView<HomeContentViewController> {
       onTap: () {
         if (label == Strings.titleDigidiscount) {
           Get.toNamed(Routers.homeDigiDiscount,
-              arguments: HomeOrderViewArgument(title: label));
+              arguments: HomeOrderViewArgument(title: label, param: label));
         } else if (label == Strings.titleFrozenFood ||
             label == Strings.titleIndonesiaPastiBisa) {
           Get.toNamed(Routers.homeOutletCategory,
-              arguments: HomeOrderViewArgument(title: label));
+              arguments: HomeOrderViewArgument(title: label, param: label));
         } else {
           Get.toNamed(Routers.homeNearbyOutlet,
-              arguments: HomeOrderViewArgument(title: label));
+              arguments: HomeOrderViewArgument(title: label, param: label));
         }
       },
       child: Container(

@@ -131,13 +131,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                 Get.offNamedUntil(Routers.home, (route) => false);
               },
             ),
-            title: Text(
-              'Status Transaksi',
-              style: TextStyle(
-                fontFamily: "roboto",
-                color: Colors.white,
-              ),
-            ),
+            title:
+                Text(I10n.current.nota_title, style: AppFont.textBlack17Bold),
             actions: [
               IconButton(
                 icon: Icon(
@@ -379,12 +374,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                               height: 1, color: Colors.black),
                                           SizedBox(height: 15),
                                           Text(
-                                            'Terima kasih telah melakukan pemesanan, kami akan segera memproses pesanan anda.',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          SizedBox(height: 15),
-                                          Text(
-                                            'Silahkan simpan bukti pesanan ini untuk ditunjukkan pada pihak resto.',
+                                            I10n.current.nota_thanks_order,
+                                            style: AppFont.textBlack13Light,
                                             textAlign: TextAlign.center,
                                           ),
                                         ],
@@ -425,7 +416,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                               width: double.infinity,
                               height: 44,
                               child: Center(
-                                child: Text("Simpan Sebagai Favorit",
+                                child: Text(I10n.current.nota_add_to_favourite,
                                     style: AppFont.textBlack14Bold
                                         .copyWith(color: AppColors.white)),
                               ),
@@ -454,7 +445,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                               width: double.infinity,
                               height: 44,
                               child: Center(
-                                child: Text("Cek Status Pembayaran",
+                                child: Text(
+                                    I10n.current.nota_check_status_payment,
                                     style: AppFont.textBlack14Bold
                                         .copyWith(color: AppColors.white)),
                               ),
@@ -476,14 +468,14 @@ class PaymentReceiptScreen extends StatelessWidget {
                             Get.find<HomeNavigationViewController>()
                                 .selectedTabIndex
                                 .value = 3;
-                            Get.offNamedUntil(Routers.home, (route) => false);
+                            Get.offNamedUntil(Routers.splash, (route) => false);
                             Get.toNamed(Routers.orderHistory);
                           },
                           child: Container(
                             width: double.infinity,
                             height: 44,
                             child: Center(
-                              child: Text("Ke Riwayat Pembelian",
+                              child: Text(I10n.current.nota_history_payment,
                                   style: AppFont.textBlack14Bold
                                       .copyWith(color: AppColors.white)),
                             ),
@@ -522,13 +514,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                 Get.offNamedUntil(Routers.splash, (route) => false);
               },
             ),
-            title: Text(
-              'Status Transaksi',
-              style: TextStyle(
-                fontFamily: "roboto",
-                color: Colors.white,
-              ),
-            ),
+            title:
+                Text(I10n.current.nota_title, style: AppFont.textBlack17Bold),
             centerTitle: true,
             backgroundColor: AppColors.red,
           ),

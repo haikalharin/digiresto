@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class PaymentWebViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WebViewController? _controller;
-    String _title = "Payment";
+    String _title = I10n.current.cart_billing_payment;
     PaymentWebViewArgument args = Get.arguments as PaymentWebViewArgument;
     return Scaffold(
       appBar: AppBar(
@@ -26,10 +27,7 @@ class PaymentWebViewScreen extends StatelessWidget {
         ),
         title: Text(
           _title,
-          style: TextStyle(
-            fontFamily: "roboto",
-            color: Colors.white,
-          ),
+          style: AppFont.textBlack19Bold.copyWith(color: AppColors.white),
         ),
         centerTitle: true,
         backgroundColor: AppColors.red,

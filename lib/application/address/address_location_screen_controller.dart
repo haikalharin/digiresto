@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddressLocationScreenController extends GetxController {
-  final profileCancel = 'Cancel';
+  final cancelText = 'Cancel';
   Rxn<GoogleMapController> mapController = Rxn<GoogleMapController>();
   Rxn<LatLng> lastMapPosition = Rxn<LatLng>();
   ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),

@@ -2580,6 +2580,16 @@ class I10n {
     );
   }
 
+  /// `Make the primary address`
+  String get address_set_main {
+    return Intl.message(
+      'Make the primary address',
+      name: 'address_set_main',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Address`
   String get address_search_address {
     return Intl.message(

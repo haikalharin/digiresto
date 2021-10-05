@@ -10,6 +10,7 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
@@ -151,7 +152,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
         builder: (_) => new AlertDialog(
               title: Center(
                   child: Text(
-                "PILIHAN VARIAN MENU",
+                I10n.current.product_choose_variant,
                 style: TextStyle(
                   fontFamily: "roboto",
                   color: AppColors.red,
@@ -169,24 +170,26 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width - 190,
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
                         },
-                        color: Colors.white,
-                        child: Text("Kembali",
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
+                          ),
+                        ),
+                        child: Text(I10n.current.alert_back,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.red)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppColors.red,
-                          ),
-                        ),
                       ),
                     ),
                   ],
@@ -293,12 +296,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             softWrap: true,
                             maxLines: 3,
                             //overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppFont.textBlack16Bold,
                             textAlign: TextAlign.left),
                       ),
                       Column(
@@ -312,12 +310,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 softWrap: false,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: AppFont.textBlack16Bold,
                                 textAlign: TextAlign.left),
                           ),
                           beforePrice != null
@@ -332,11 +325,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                       softWrap: false,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontFamily: "roboto",
-                                          color: Colors.black38,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
+                                      style: AppFont.textBlack16Bold.copyWith(
                                           decoration:
                                               TextDecoration.lineThrough),
                                       textAlign: TextAlign.left),
@@ -364,10 +353,11 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     children: [
                       Row(
                         children: [
-                          Text("Catatan", style: AppFont.textBlack14Bold),
+                          Text(I10n.current.cart_notes,
+                              style: AppFont.textBlack14Bold),
                           Container(
                             padding: EdgeInsets.only(left: 5),
-                            child: Text("opsional",
+                            child: Text(I10n.current.cart_optional,
                                 style: AppFont.textBlack8Light),
                           ),
                         ],
@@ -393,7 +383,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               fillColor: AppColors.greyFill,
                               contentPadding: EdgeInsets.only(
                                   top: 12, bottom: 12, left: 10, right: 10),
-                              hintText: "Contoh, tidak pakai bawang",
+                              hintText: I10n.current.placeholder_hint_notes,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.black, width: 32.0),
@@ -417,27 +407,29 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               child: Container(
                                 padding: EdgeInsets.all(5),
                                 height: 55,
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () {
                                     setState(() {
                                       notes = notesController.text;
                                       noteIsSubmitted = true;
                                     });
                                   },
-                                  color: AppColors.red,
-                                  child: Text("Simpan",
+                                  style: ElevatedButton.styleFrom(
+                                    primary: AppColors.red,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(5.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.redYoung,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text(I10n.current.cart_notes_apply,
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(5.0),
-                                    side: BorderSide(
-                                      width: 1,
-                                      color: AppColors.redYoung,
-                                    ),
-                                  ),
                                 ),
                               ),
                             ),
@@ -469,12 +461,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 softWrap: false,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: AppFont.textBlack16Bold,
                                 textAlign: TextAlign.left),
                           ),
                           Row(
@@ -493,12 +480,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               Container(
                                 padding: EdgeInsets.only(left: 5, right: 5),
                                 child: Text(totalqty.toString(),
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: AppFont.textBlack16Bold,
                                     textAlign: TextAlign.left),
                               ),
                               GestureDetector(
@@ -551,7 +533,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                       // }
                                     },
                                     color: AppColors.red,
-                                    child: Text("+keranjang",
+                                    child: Text("${I10n.current.add_to_cart}",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -571,44 +553,44 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                   height: 50,
                                   width:
                                       MediaQuery.of(context).size.width / 2 - 5,
-                                  child: RaisedButton(
-                                    onPressed: () {
-                                      setProduct();
-                                      // if (_userStore.skipAndContinue ?? false) {
-                                      //   ErrorPopupWidget.showLoginRequired(context,
-                                      //       () {
-                                      //     Navigator.of(context).pop();
-                                      //   }, () {
-                                      //     _userStore.removeSkipAndContinue();
-                                      //     _userStore.removeAuthToken();
-                                      //     Navigator.of(context)
-                                      //         .pushNamed(Routes.input_phone);
-                                      //   });
-                                      // } else {
-                                      //   _orderStore.setProduct(
-                                      //       dataProductState["id"],
-                                      //       totalqty,
-                                      //       price,
-                                      //       dataProductState);
-                                      //   Navigator.of(context)
-                                      //       .popAndPushNamed(Routes.order_cart);
-                                      // }
-                                    },
-                                    color: Colors.white,
-                                    child: Text("Beli sekarang",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.red)),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(25.0),
-                                      side: BorderSide(
-                                        width: 1,
-                                        color: AppColors.red,
-                                      ),
-                                    ),
-                                  ),
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        setProduct();
+                                        // if (_userStore.skipAndContinue ?? false) {
+                                        //   ErrorPopupWidget.showLoginRequired(context,
+                                        //       () {
+                                        //     Navigator.of(context).pop();
+                                        //   }, () {
+                                        //     _userStore.removeSkipAndContinue();
+                                        //     _userStore.removeAuthToken();
+                                        //     Navigator.of(context)
+                                        //         .pushNamed(Routes.input_phone);
+                                        //   });
+                                        // } else {
+                                        //   _orderStore.setProduct(
+                                        //       dataProductState["id"],
+                                        //       totalqty,
+                                        //       price,
+                                        //       dataProductState);
+                                        //   Navigator.of(context)
+                                        //       .popAndPushNamed(Routes.order_cart);
+                                        // }
+                                      },
+                                      child: Text(I10n.current.buy_now,
+                                          style: AppFont.textBlack14Bold
+                                              .copyWith(
+                                                  color: AppColors.redD12B34)),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(25.0),
+                                          side: BorderSide(
+                                            width: 1,
+                                            color: AppColors.red,
+                                          ),
+                                        ),
+                                      )),
                                 ),
                               ],
                             ),
@@ -619,26 +601,27 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               padding: EdgeInsets.all(5),
                               height: 50,
                               width: double.infinity,
-                              child: RaisedButton(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   setProduct();
                                   // _orderStore.setProduct(dataProductState["id"],
                                   //     totalqty, price, dataProductState);
                                   Get.back(closeOverlays: true);
                                 },
-                                color: AppColors.red,
-                                child: Text("Perbaharui Keranjang",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(25.0),
-                                  side: BorderSide(
-                                    width: 1,
-                                    color: AppColors.red,
+                                style: ElevatedButton.styleFrom(
+                                  primary: AppColors.redD12B34,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(25.0),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color: AppColors.red,
+                                    ),
                                   ),
                                 ),
+                                child: Text(I10n.current.update_to_cart,
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white)),
                               ),
                             ),
                           )

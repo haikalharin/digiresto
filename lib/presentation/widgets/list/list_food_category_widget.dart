@@ -8,7 +8,7 @@ class ListFoodCategory extends StatelessWidget {
   final List<OutletProductCategoryDataResponse> data;
   final Axis scrollDirection;
   final String? selected;
-  final void Function(String?) runAction;
+  final void Function(OutletProductCategoryDataResponse?) runAction;
   const ListFoodCategory(
       {Key? key,
       required this.data,
@@ -45,7 +45,7 @@ class ListFoodCategory extends StatelessWidget {
                   if (data[index].id == 0) {
                     runAction(null);
                   } else {
-                    runAction(data[index].id.toString());
+                    runAction(data[index]);
                   }
                 },
                 child: Container(

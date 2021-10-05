@@ -279,6 +279,7 @@
     "voucher_already_used":"Voucher code is already used",
 
     "_address":"",
+    "address_set_main": "Make the primary address",
     "address_search_address":"Select Address",
     "address_use_current_location":"Current location",
     "address_select_location":"Select location",

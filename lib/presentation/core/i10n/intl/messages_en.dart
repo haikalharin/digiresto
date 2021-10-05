@@ -161,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Click to set destination"),
         "address_set_destionation_location":
             MessageLookupByLibrary.simpleMessage("Set destination location"),
+        "address_set_main":
+            MessageLookupByLibrary.simpleMessage("Make the primary address"),
         "address_use_current_location":
             MessageLookupByLibrary.simpleMessage("Current location"),
         "address_use_this_location":
