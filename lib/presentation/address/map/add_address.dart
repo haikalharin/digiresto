@@ -92,10 +92,24 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                 EdgeInsets.only(top: 10, bottom: 10, left: 18, right: 18),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(14.0))),
-            title: Text(
-              I10n.current.address_location_detail,
-              style: AppFont.textBlack15Bold,
-              textAlign: TextAlign.center,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Text(I10n.current.address_location_detail,
+                      textAlign: TextAlign.center,
+                      style: AppFont.textBlack17Bold),
+                ),
+                GestureDetector(
+                    onTap: () {
+                      Get.back(closeOverlays: true);
+                    },
+                    child: Icon(
+                      Icons.close,
+                      size: 24,
+                      color: AppColors.black,
+                    ))
+              ],
             ),
             content: SingleChildScrollView(
               child: Container(
@@ -368,48 +382,51 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
             Center(
               child: Container(
                 padding: EdgeInsets.only(bottom: 50),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    controller.isMarkerMove.value ||
-                            controller.isMarkerClicked.value == true
-                        ? Container(
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.transparent,
-                                border:
-                                    Border.all(color: AppColors.greyStroke)),
-                            child: Text("",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                textAlign: TextAlign.center),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              _onClickSetDestination();
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(14),
+                child: Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      controller.isMarkerMove.value ||
+                              controller.isMarkerClicked.value == true
+                          ? Container(
+                              padding: EdgeInsets.all(7),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(37),
-                                  color: AppColors.red,
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.transparent,
                                   border:
                                       Border.all(color: AppColors.greyStroke)),
-                              child: Text(I10n.current.address_set_destionation,
-                                  style: AppFont.textBlack14Bold
-                                      .copyWith(color: AppColors.white),
+                              child: Text("",
+                                  style: TextStyle(
+                                    fontFamily: "roboto",
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                   textAlign: TextAlign.center),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                _onClickSetDestination();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(14),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(37),
+                                    color: AppColors.red,
+                                    border: Border.all(
+                                        color: AppColors.greyStroke)),
+                                child: Text(
+                                    I10n.current.address_set_destionation,
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white),
+                                    textAlign: TextAlign.center),
+                              ),
                             ),
-                          ),
-                    controller.isMarkerMove.value
-                        ? controller.markerMove
-                        : controller.marker,
-                  ],
+                      controller.isMarkerMove.value
+                          ? controller.markerMove
+                          : controller.marker,
+                    ],
+                  ),
                 ),
               ),
             ),
