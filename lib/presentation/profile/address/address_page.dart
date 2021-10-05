@@ -182,7 +182,7 @@ class ProfileAddressWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)),
           child: GestureDetector(
             onTap: () {
-              Get.toNamed(Routers.setAddressAdd);
+              Get.toNamed(Routers.homeAddAddress);
             },
             child: Container(
               child: Row(

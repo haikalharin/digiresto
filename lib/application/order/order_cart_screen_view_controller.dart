@@ -1,4 +1,5 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
@@ -8,6 +9,7 @@ import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
@@ -117,6 +119,22 @@ class OrderCartScreenViewController extends GetxController {
         new DateFormat("yyyy/MM/dd").format(DateTime.now());
   }
 
+  void addCart(
+    int productId,
+    int qty,
+  ) {
+    var productParam = CreateUpdateCartSessionItemParam(
+        modifiers: [], note: '', productId: productId, qty: qty);
+    Get.context!.read<OrderBloc>().add(OrderEvent.addCart(
+        productParam, detailOutlet.value!, salesType.value!));
+  }
+
+  void removeCart(int productId) {
+    var productParam = CreateUpdateCartSessionItemParam(
+        modifiers: [], note: '', productId: productId, qty: 0);
+    Get.context!.read<OrderBloc>().add(OrderEvent.removeCart(productParam));
+  }
+
   selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -140,36 +158,42 @@ class OrderCartScreenViewController extends GetxController {
   }
 
   void checkCartSession() {
+    if (cartSession.value!.transactionData!.items.length <= 1) {
+      isLoading.value = false;
+      Get.find<HomeNavigationViewController>().selectedTabIndex.value = 0;
+      Get.offNamedUntil(Routers.home, (route) => false);
+    }
     if (checkoutResponse.value?.receiptCode == "") {
       isLoading.value = false;
       print("error response cheeckout 2:");
     } else if (checkoutResponse.value?.payment.isCredit ?? false) {
-      Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+      Get.offNamed(Routers.paymentReceipt,
           arguments: PaymentReceiptViewArgument(
               receiptCode: checkoutResponse.value!.receiptCode));
       isLoading.value = false;
     } else if (checkoutResponse.value?.payment.isWebView ?? false) {
       isLoading.value = false;
-      Get.offNamedUntil(Routers.paymentWebView, (route) => false,
+      Get.offNamed(Routers.paymentWebView,
           arguments: PaymentWebViewArgument(
               checkoutDataResponse: checkoutResponse.value!));
     } else if (checkoutResponse.value?.payment.isDeeplink ?? false) {
       isLoading.value = false;
-      LaunchUrl.run(checkoutResponse.value!.payment.deeplink, onError: () {
+      LaunchUrl.runDeeplink(checkoutResponse.value!.payment.deeplink,
+          onError: () {
         ErrorPopupWidget.show("Error", "App Launch Error", () {
-          Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+          Get.offNamed(Routers.paymentReceipt,
               arguments: PaymentReceiptViewArgument(
                   receiptCode: checkoutResponse.value!.receiptCode));
         });
       }, onSuccess: () {
-        Get.offNamedUntil(Routers.paymentReceipt, (route) => false,
+        Get.offNamed(Routers.paymentReceipt,
             arguments: PaymentReceiptViewArgument(
                 receiptCode: checkoutResponse.value!.receiptCode));
       });
     } else {
       isLoading.value = false;
       if (checkoutResponse.value?.payment.paymentCode != null) {
-        Get.offNamedUntil(Routers.paymentVa, (route) => false,
+        Get.offNamed(Routers.paymentVa,
             arguments: PaymentVAViewArgument(
                 checkoutDataResponse: checkoutResponse.value!));
       }

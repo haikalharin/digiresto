@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:digiresto/application/address/address_location_screen_controller.dart';
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
-import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
@@ -18,46 +18,24 @@ import 'package:provider/provider.dart';
 
 import 'autocomplete_address.dart';
 
-class AddAddressScreen extends StatefulWidget {
-  @override
-  State<AddAddressScreen> createState() => AddAddressScreenState();
-}
-
-class AddAddressScreenState extends State<AddAddressScreen> {
-  final profileCancel = 'Cancel';
-  late GoogleMapController mapController;
-  late LatLng _lastMapPosition;
-  ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
-      size: 36, color: AppColors.red);
-  ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
-      size: 36, color: AppColors.red);
-  bool isMarkerMove = false;
-  bool isMarkerClicked = false;
-  late Geocode _geocode;
-
+class AddAddressScreen extends GetView<AddressLocationScreenController> {
   final Geolocator geolocator = Geolocator();
   final LatLng _center = const LatLng(-6.175483, 106.826852);
   final _nameController = TextEditingController();
   final _addressController = TextEditingController();
-  RxBool isDefault = false.obs;
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  void _onMapCreated(GoogleMapController mapController) {
+    controller.mapController.value = mapController;
   }
 
   void _onCameraMove(CameraPosition position) {
-    setState(() {
-      _lastMapPosition = position.target;
-      isMarkerMove = true;
-      isMarkerClicked = false;
-    });
-    //print(_lastMapPosition);
+    controller.lastMapPosition.value = position.target;
+    controller.isMarkerMove.value = true;
+    controller.isMarkerClicked.value = false;
   }
 
   void _onCameraMoveEnd() {
-    setState(() {
-      isMarkerMove = false;
-    });
+    controller.isMarkerMove.value = false;
   }
 
   void _onClickSetDestination() {
@@ -69,7 +47,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
             desiredAccuracy: LocationAccuracy.best,
             forceAndroidLocationManager: true)
         .then((Position position) {
-      mapController.animateCamera(
+      controller.mapController.value!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
               target: LatLng(position.latitude, position.longitude), zoom: 15),
@@ -80,22 +58,13 @@ class AddAddressScreenState extends State<AddAddressScreen> {
     });
   }
 
-  @override
-  void setState(fn) {
-    super.setState(fn);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
   void getGeocode() {
     Loading.show();
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.getGeoCode(
         GetGeoCodeParam(
-            latitude: _lastMapPosition.latitude.toString(),
-            longitude: _lastMapPosition.longitude.toString())));
+            latitude: controller.lastMapPosition.value!.latitude.toString(),
+            longitude:
+                controller.lastMapPosition.value!.longitude.toString())));
   }
 
   void addAddress() {
@@ -106,9 +75,9 @@ class AddAddressScreenState extends State<AddAddressScreen> {
             waba_no: "",
             name: _nameController.text.toString(),
             address: _addressController.text.toString(),
-            latitude: _lastMapPosition.latitude.toString(),
-            longitude: _lastMapPosition.longitude.toString(),
-            is_default: isDefault.value)));
+            latitude: controller.lastMapPosition.value!.latitude.toString(),
+            longitude: controller.lastMapPosition.value!.longitude.toString(),
+            is_default: controller.isDefault.value)));
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
@@ -230,10 +199,10 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  var intial = isDefault.value;
-                                  isDefault.value = !intial;
+                                  var intial = controller.isDefault.value;
+                                  controller.isDefault.value = !intial;
                                 },
-                                child: isDefault.value
+                                child: controller.isDefault.value
                                     ? Icon(
                                         Icons.check_box_rounded,
                                         color: Colors.green,
@@ -265,29 +234,31 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                           SizedBox(
                             width: 120,
                             height: 40,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 Get.back();
                               },
-                              color: Colors.white,
-                              child: Text(profileCancel,
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.red,
+                                  ),
+                                ),
+                              ),
+                              child: Text(controller.profileCancel,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.red)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.red,
-                                ),
-                              ),
                             ),
                           ),
                           SizedBox(
                             width: 120,
                             height: 40,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 if (_nameController.text.toString().length ==
                                     0) {
@@ -296,19 +267,21 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                                   addAddress();
                                 }
                               },
-                              color: AppColors.red,
+                              style: ElevatedButton.styleFrom(
+                                primary: AppColors.red,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.red,
+                                  ),
+                                ),
+                              ),
                               child: Text("Save",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white)),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.red,
-                                ),
-                              ),
                             ),
                           ),
                         ],
@@ -327,13 +300,17 @@ class AddAddressScreenState extends State<AddAddressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(AddressLocationScreenController());
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back_outlined,
                 color: Colors.black, size: 28.0),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              controller.dispose();
+              Get.back();
+            },
           ),
           title: Container(
             transform: Matrix4.translationValues(-24, 0, 0),
@@ -358,14 +335,18 @@ class AddAddressScreenState extends State<AddAddressScreen> {
               },
               getGeoCodeSuccess: (response) {
                 Loading.dismiss();
-                setState(() {
-                  _geocode = response.response;
-                  isMarkerClicked = true;
-                });
-                _addressController.text = _geocode.formattedAddress!;
+
+                controller.geocode.value = response.response;
+                controller.isMarkerClicked.value = true;
+
+                _addressController.text =
+                    controller.geocode.value!.formattedAddress!;
               },
               setActiveAddressSuccess: (_) {
-                Get.until((route) => route.isFirst);
+                controller.dispose();
+                Get.back(closeOverlays: true);
+                int count = 0;
+                Get.until((route) => count++ == 2);
               },
               orElse: () {});
         },
@@ -388,7 +369,8 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    isMarkerMove || isMarkerClicked == true
+                    controller.isMarkerMove.value ||
+                            controller.isMarkerClicked.value == true
                         ? Container(
                             padding: EdgeInsets.all(7),
                             decoration: BoxDecoration(
@@ -426,7 +408,9 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                                   textAlign: TextAlign.center),
                             ),
                           ),
-                    isMarkerMove ? markerMove : marker,
+                    controller.isMarkerMove.value
+                        ? controller.markerMove
+                        : controller.marker,
                   ],
                 ),
               ),
@@ -464,7 +448,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                     ),
                   ),
                 ),
-                isMarkerClicked
+                controller.isMarkerClicked.value
                     ? Container(
                         alignment: Alignment.bottomCenter,
                         height: 200,
@@ -503,20 +487,27 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                               child: SizedBox(
                                 width: double.infinity,
                                 height: 44,
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                     onPressed: () {
                                       print("i use this location");
                                       _showMyDialog(context);
                                     },
-                                    color: AppColors.red,
+                                    style: ElevatedButton.styleFrom(
+                                      primary: AppColors.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(30.0),
+                                        side: BorderSide(
+                                          width: 1,
+                                          color: AppColors.red,
+                                        ),
+                                      ),
+                                    ),
                                     child: Text("Use This Location",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(30.0))),
+                                            color: Colors.white))),
                               ),
                             ),
                           ],
@@ -543,7 +534,7 @@ class AddAddressScreenState extends State<AddAddressScreen> {
                       width: MediaQuery.of(Get.context!).size.width * 0.8,
                       child: AutoCompleteAddress().defaultWidget(
                           onSuccess: (place) {
-                        mapController.animateCamera(
+                        controller.mapController.value!.animateCamera(
                           CameraUpdate.newCameraPosition(
                             CameraPosition(
                                 target: LatLng(place.geometry!.location.lat,

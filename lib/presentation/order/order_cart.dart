@@ -9,7 +9,6 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
-import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
@@ -136,25 +135,27 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               child: Container(
                                 padding: EdgeInsets.all(5),
                                 height: 55,
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () {
                                     controller.notesSubmited.value = true;
                                     controller.updateCartParam();
                                   },
-                                  color: AppColors.red,
+                                  style: ElevatedButton.styleFrom(
+                                    primary: AppColors.red,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(5.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.redYoung,
+                                      ),
+                                    ),
+                                  ),
                                   child: Text("Simpan",
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(5.0),
-                                    side: BorderSide(
-                                      width: 1,
-                                      color: AppColors.redYoung,
-                                    ),
-                                  ),
                                 ),
                               ),
                             ),
@@ -304,16 +305,18 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       ],
                     ),
                     if (controller.salesType.value != null)
-                      FlatButton(
+                      ElevatedButton(
                           onPressed: () {
                             _showDialogSalesType();
                           },
-                          color: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
                             ),
                           ),
                           child: Text('Ubah',
@@ -322,16 +325,18 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 fontWeight: FontWeight.bold,
                               )))
                     else
-                      FlatButton(
+                      ElevatedButton(
                           onPressed: () {
                             _showDialogSalesType();
                           },
-                          color: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
                             ),
                           ),
                           child: Text('Pilih',
@@ -1126,32 +1131,35 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               padding: EdgeInsets.all(5),
                               height: 50,
                               width: MediaQuery.of(context).size.width - 260,
-                              child: RaisedButton(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   controller.placeInfoController.text = "";
                                   controller.initDialogPlace();
                                   Navigator.of(context).pop();
                                 },
-                                color: Colors.white,
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(5.0),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color: AppColors.redYoung,
+                                    ),
+                                  ),
+                                ),
                                 child: Text("Batal",
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.redYoung)),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(5.0),
-                                  side: BorderSide(
-                                    width: 1,
-                                    color: AppColors.redYoung,
-                                  ),
-                                ),
                               ),
                             ),
                             Container(
                               padding: EdgeInsets.all(5),
                               height: 50,
                               width: MediaQuery.of(context).size.width - 260,
-                              child: RaisedButton(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   String txt = "";
                                   if (controller.useSchedule.value!) {
@@ -1179,17 +1187,20 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                   controller.setDineInMethodID();
                                   Get.back(closeOverlays: true);
                                 },
-                                color: AppColors.red,
                                 child: Text("Ok",
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(5.0),
-                                  side: BorderSide(
-                                    width: 1,
-                                    color: AppColors.redYoung,
+                                style: ElevatedButton.styleFrom(
+                                  primary: AppColors.red,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(5.0),
+                                    side: BorderSide(
+                                      width: 1,
+                                      color: AppColors.redYoung,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1267,21 +1278,23 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         child: Container(
                           padding: EdgeInsets.all(5),
                           height: 50,
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             onPressed: () {},
-                            color: AppColors.red,
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColors.red,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(5.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.redYoung,
+                                ),
+                              ),
+                            ),
                             child: Text("Gunakan",
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(5.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.redYoung,
-                              ),
-                            ),
                           ),
                         ),
                       ),
@@ -1314,6 +1327,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               state.maybeMap(
                   addCartSuccess: (r) {
                     controller.cartSession.value = r.response;
+                    controller.checkAllLoaded();
+                  },
+                  removeCartSuccess: (r) {
                     controller.checkAllLoaded();
                   },
                   getCartSessionSuccess: (r) {
@@ -1524,10 +1540,19 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
     controller.reloadCounter.value++;
     if (qty != 0) {
       controller.isLoading.value = true;
-      var productParam = CreateUpdateCartSessionItemParam(
-          modifiers: [], note: '', productId: productId, qty: qty);
-      Get.context!.read<OrderBloc>().add(OrderEvent.addCart(productParam,
-          controller.detailOutlet.value!, controller.salesType.value!));
+
+      controller.addCart(productId, qty);
+    } else {
+      ErrorPopupWidget.confirmation(Strings.appName,
+          "Apakah ingin menghapus produk ${detailProduct.title}", () {
+        Get.back(closeOverlays: true);
+        controller.isLoading.value = true;
+        if (controller.cartSession.value!.transactionData!.items.length == 1) {
+          controller.removeCartSession();
+        } else {
+          controller.removeCart(productId);
+        }
+      });
     }
   }
 
@@ -1587,7 +1612,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
               Container(
                 padding: EdgeInsets.only(right: 10),
                 height: 35,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(Get.context!).pushNamed(
                         Routers.orderDetailOutlet,
@@ -1595,19 +1620,21 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                             controller.detailOutlet.value!.id,
                             controller.detailOutlet.value!.merchantId));
                   },
-                  color: Colors.white,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(5.0),
+                      side: BorderSide(
+                        width: 1,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ),
                   child: Text("Tambah",
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: AppColors.red)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(5.0),
-                    side: BorderSide(
-                      width: 1,
-                      color: AppColors.red,
-                    ),
-                  ),
                 ),
               ),
             ],
