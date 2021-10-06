@@ -7,13 +7,12 @@ part of 'user_remove_address_param.dart';
 // **************************************************************************
 
 UserRemoveAddressParam _$UserRemoveAddressParamFromJson(
-    Map<String, dynamic> json) {
-  return UserRemoveAddressParam(
-    wa_id: json['wa_id'] as String,
-    waba_no: json['waba_no'] as String,
-    id: json['id'] as int,
-  );
-}
+        Map<String, dynamic> json) =>
+    UserRemoveAddressParam(
+      wa_id: json['wa_id'] as String,
+      waba_no: json['waba_no'] as String,
+      id: json['id'] as int,
+    );
 
 Map<String, dynamic> _$UserRemoveAddressParamToJson(
         UserRemoveAddressParam instance) =>

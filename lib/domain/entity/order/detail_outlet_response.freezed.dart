@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'detail_outlet_response.dart';
 
@@ -180,7 +181,7 @@ class _$_DetailOutletResponse implements _DetailOutletResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_DetailOutletResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_DetailOutletResponseFromJson(json);
+      _$$_DetailOutletResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -222,7 +223,7 @@ class _$_DetailOutletResponse implements _DetailOutletResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DetailOutletResponseToJson(this);
+    return _$$_DetailOutletResponseToJson(this);
   }
 }
 
@@ -673,7 +674,7 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
       required this.merchantCategory});
 
   factory _$_DetailOutletDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_DetailOutletDataResponseFromJson(json);
+      _$$_DetailOutletDataResponseFromJson(json);
 
   @override
   final String endpointName;
@@ -813,7 +814,7 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DetailOutletDataResponseToJson(this);
+    return _$$_DetailOutletDataResponseToJson(this);
   }
 }
 
@@ -1015,7 +1016,7 @@ class _$_DetailOutletDataLastUpdateResponse
 
   factory _$_DetailOutletDataLastUpdateResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_DetailOutletDataLastUpdateResponseFromJson(json);
+      _$$_DetailOutletDataLastUpdateResponseFromJson(json);
 
   @override
   final String time;
@@ -1052,7 +1053,7 @@ class _$_DetailOutletDataLastUpdateResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DetailOutletDataLastUpdateResponseToJson(this);
+    return _$$_DetailOutletDataLastUpdateResponseToJson(this);
   }
 }
 

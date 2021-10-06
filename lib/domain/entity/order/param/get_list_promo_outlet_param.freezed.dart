@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'get_list_promo_outlet_param.dart';
 
@@ -160,7 +161,7 @@ class _$_GetListPromoOutletParam implements _GetListPromoOutletParam {
       {required this.queryString, required this.body});
 
   factory _$_GetListPromoOutletParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetListPromoOutletParamFromJson(json);
+      _$$_GetListPromoOutletParamFromJson(json);
 
   @override
   final GetListPromoOutletQueryParam queryString;
@@ -197,7 +198,7 @@ class _$_GetListPromoOutletParam implements _GetListPromoOutletParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetListPromoOutletParamToJson(this);
+    return _$$_GetListPromoOutletParamToJson(this);
   }
 }
 
@@ -292,7 +293,7 @@ class _$_GetListPromoOutletBodyParam implements _GetListPromoOutletBodyParam {
   const _$_GetListPromoOutletBodyParam();
 
   factory _$_GetListPromoOutletBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetListPromoOutletBodyParamFromJson(json);
+      _$$_GetListPromoOutletBodyParamFromJson(json);
 
   @override
   String toString() {
@@ -309,7 +310,7 @@ class _$_GetListPromoOutletBodyParam implements _GetListPromoOutletBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetListPromoOutletBodyParamToJson(this);
+    return _$$_GetListPromoOutletBodyParamToJson(this);
   }
 }
 
@@ -442,7 +443,7 @@ class _$_GetListPromoOutletQueryParam implements _GetListPromoOutletQueryParam {
       {required this.outletId, required this.merchantId});
 
   factory _$_GetListPromoOutletQueryParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetListPromoOutletQueryParamFromJson(json);
+      _$$_GetListPromoOutletQueryParamFromJson(json);
 
   @override
   final String outletId;
@@ -480,7 +481,7 @@ class _$_GetListPromoOutletQueryParam implements _GetListPromoOutletQueryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetListPromoOutletQueryParamToJson(this);
+    return _$$_GetListPromoOutletQueryParamToJson(this);
   }
 }
 

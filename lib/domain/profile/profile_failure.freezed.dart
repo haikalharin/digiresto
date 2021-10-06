@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'profile_failure.dart';
 
@@ -59,6 +60,16 @@ mixin _$ProfileFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -77,6 +88,16 @@ mixin _$ProfileFailure {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_InvalidToken value) invalidToken,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -160,6 +181,19 @@ class _$_NoInternet implements _NoInternet {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return noInternet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -186,6 +220,19 @@ class _$_NoInternet implements _NoInternet {
     required TResult Function(_InvalidToken value) invalidToken,
   }) {
     return noInternet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
+  }) {
+    return noInternet?.call(this);
   }
 
   @override
@@ -259,6 +306,19 @@ class _$_NoData implements _NoData {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return noData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -285,6 +345,19 @@ class _$_NoData implements _NoData {
     required TResult Function(_InvalidToken value) invalidToken,
   }) {
     return noData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
+  }) {
+    return noData?.call(this);
   }
 
   @override
@@ -361,6 +434,19 @@ class _$_ServerError implements _ServerError {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return serverError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -387,6 +473,19 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_InvalidToken value) invalidToken,
   }) {
     return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
+  }) {
+    return serverError?.call(this);
   }
 
   @override
@@ -463,6 +562,19 @@ class _$_UnableToUpdate implements _UnableToUpdate {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return unableToUpdate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -489,6 +601,19 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_InvalidToken value) invalidToken,
   }) {
     return unableToUpdate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
+  }) {
+    return unableToUpdate?.call(this);
   }
 
   @override
@@ -564,6 +689,19 @@ class _$_Unexpected implements _Unexpected {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -590,6 +728,19 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_InvalidToken value) invalidToken,
   }) {
     return unexpected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
+  }) {
+    return unexpected?.call(this);
   }
 
   @override
@@ -691,6 +842,19 @@ class _$_InvalidToken implements _InvalidToken {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? noData,
+    TResult Function()? serverError,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unexpected,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return invalidToken?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noInternet,
     TResult Function()? noData,
@@ -717,6 +881,19 @@ class _$_InvalidToken implements _InvalidToken {
     required TResult Function(_InvalidToken value) invalidToken,
   }) {
     return invalidToken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_NoData value)? noData,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidToken value)? invalidToken,
+  }) {
+    return invalidToken?.call(this);
   }
 
   @override

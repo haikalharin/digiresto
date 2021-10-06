@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_failure.dart';
 
@@ -68,6 +69,17 @@ mixin _$AuthFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -88,6 +100,17 @@ mixin _$AuthFailure {
     required TResult Function(InvalidPin value) invalidPin,
     required TResult Function(InvalidOtp value) invalidOtp,
     required TResult Function(InvalidToken value) invalidToken,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -173,6 +196,20 @@ class _$CancelledByUser implements CancelledByUser {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return cancelledByUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -201,6 +238,20 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return cancelledByUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return cancelledByUser?.call(this);
   }
 
   @override
@@ -277,6 +328,20 @@ class _$NoInternet implements NoInternet {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return noInternet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -305,6 +370,20 @@ class _$NoInternet implements NoInternet {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return noInternet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return noInternet?.call(this);
   }
 
   @override
@@ -382,6 +461,20 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return serverError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -410,6 +503,20 @@ class _$ServerError implements ServerError {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return serverError?.call(this);
   }
 
   @override
@@ -487,6 +594,20 @@ class _$UnknownError implements UnknownError {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return unknownError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -515,6 +636,20 @@ class _$UnknownError implements UnknownError {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return unknownError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return unknownError?.call(this);
   }
 
   @override
@@ -616,6 +751,20 @@ class _$InvalidPin implements InvalidPin {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return invalidPin?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -644,6 +793,20 @@ class _$InvalidPin implements InvalidPin {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return invalidPin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return invalidPin?.call(this);
   }
 
   @override
@@ -750,6 +913,20 @@ class _$InvalidOtp implements InvalidOtp {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return invalidOtp?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -778,6 +955,20 @@ class _$InvalidOtp implements InvalidOtp {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return invalidOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return invalidOtp?.call(this);
   }
 
   @override
@@ -885,6 +1076,20 @@ class _$InvalidToken implements InvalidToken {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unknownError,
+    TResult Function(String? message)? invalidPin,
+    TResult Function(String? message)? invalidOtp,
+    TResult Function(String? message)? invalidToken,
+  }) {
+    return invalidToken?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
     TResult Function()? noInternet,
@@ -913,6 +1118,20 @@ class _$InvalidToken implements InvalidToken {
     required TResult Function(InvalidToken value) invalidToken,
   }) {
     return invalidToken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidPin value)? invalidPin,
+    TResult Function(InvalidOtp value)? invalidOtp,
+    TResult Function(InvalidToken value)? invalidToken,
+  }) {
+    return invalidToken?.call(this);
   }
 
   @override

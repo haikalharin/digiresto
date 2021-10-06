@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'outlet_type_category_response.dart';
 
@@ -183,7 +184,7 @@ class _$_OutletTypeCategoryResponse implements _OutletTypeCategoryResponse {
       {required this.response, required this.data, required this.meta});
 
   factory _$_OutletTypeCategoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_OutletTypeCategoryResponseFromJson(json);
+      _$$_OutletTypeCategoryResponseFromJson(json);
 
   @override
   final StatusResponse response;
@@ -225,7 +226,7 @@ class _$_OutletTypeCategoryResponse implements _OutletTypeCategoryResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletTypeCategoryResponseToJson(this);
+    return _$$_OutletTypeCategoryResponseToJson(this);
   }
 }
 
@@ -363,7 +364,7 @@ class _$_OutletTypeCategoryDataResponse
 
   factory _$_OutletTypeCategoryDataResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_OutletTypeCategoryDataResponseFromJson(json);
+      _$$_OutletTypeCategoryDataResponseFromJson(json);
 
   @override
   final List<PromoOutletDataMenuCategoryResponse> menuCategory;
@@ -394,7 +395,7 @@ class _$_OutletTypeCategoryDataResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OutletTypeCategoryDataResponseToJson(this);
+    return _$$_OutletTypeCategoryDataResponseToJson(this);
   }
 }
 
@@ -625,7 +626,7 @@ class _$_PromoOutletDataMenuCategoryResponse
 
   factory _$_PromoOutletDataMenuCategoryResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_PromoOutletDataMenuCategoryResponseFromJson(json);
+      _$$_PromoOutletDataMenuCategoryResponseFromJson(json);
 
   @override
   final String id;
@@ -684,7 +685,7 @@ class _$_PromoOutletDataMenuCategoryResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PromoOutletDataMenuCategoryResponseToJson(this);
+    return _$$_PromoOutletDataMenuCategoryResponseToJson(this);
   }
 }
 
@@ -836,7 +837,7 @@ class _$_PromoOutletDataMenuCategoryParamResponse
 
   factory _$_PromoOutletDataMenuCategoryParamResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_PromoOutletDataMenuCategoryParamResponseFromJson(json);
+      _$$_PromoOutletDataMenuCategoryParamResponseFromJson(json);
 
   @override
   final String category;
@@ -868,7 +869,7 @@ class _$_PromoOutletDataMenuCategoryParamResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PromoOutletDataMenuCategoryParamResponseToJson(this);
+    return _$$_PromoOutletDataMenuCategoryParamResponseToJson(this);
   }
 }
 

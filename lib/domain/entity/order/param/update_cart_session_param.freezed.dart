@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'update_cart_session_param.dart';
 
@@ -159,7 +160,7 @@ class _$_UpdateCartSessionParam implements _UpdateCartSessionParam {
       {required this.queryString, required this.body});
 
   factory _$_UpdateCartSessionParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateCartSessionParamFromJson(json);
+      _$$_UpdateCartSessionParamFromJson(json);
 
   @override
   final UpdateCartSessionQueryParam queryString;
@@ -196,7 +197,7 @@ class _$_UpdateCartSessionParam implements _UpdateCartSessionParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateCartSessionParamToJson(this);
+    return _$$_UpdateCartSessionParamToJson(this);
   }
 }
 
@@ -475,7 +476,7 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
       required this.items});
 
   factory _$_UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateCartSessionBodyParamFromJson(json);
+      _$$_UpdateCartSessionBodyParamFromJson(json);
 
   @override
   final String? paymentType;
@@ -552,7 +553,7 @@ class _$_UpdateCartSessionBodyParam implements _UpdateCartSessionBodyParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateCartSessionBodyParamToJson(this);
+    return _$$_UpdateCartSessionBodyParamToJson(this);
   }
 }
 
@@ -778,7 +779,7 @@ class _$_UpdateCartSessionBodyDeliveryParam
 
   factory _$_UpdateCartSessionBodyDeliveryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_UpdateCartSessionBodyDeliveryParamFromJson(json);
+      _$$_UpdateCartSessionBodyDeliveryParamFromJson(json);
 
   @override
   final String provider;
@@ -834,7 +835,7 @@ class _$_UpdateCartSessionBodyDeliveryParam
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateCartSessionBodyDeliveryParamToJson(this);
+    return _$$_UpdateCartSessionBodyDeliveryParamToJson(this);
   }
 }
 
@@ -975,7 +976,7 @@ class _$_UpdateCartSessionQueryParam implements _UpdateCartSessionQueryParam {
   const _$_UpdateCartSessionQueryParam({required this.sessionId});
 
   factory _$_UpdateCartSessionQueryParam.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateCartSessionQueryParamFromJson(json);
+      _$$_UpdateCartSessionQueryParamFromJson(json);
 
   @override
   final String sessionId;
@@ -1006,7 +1007,7 @@ class _$_UpdateCartSessionQueryParam implements _UpdateCartSessionQueryParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateCartSessionQueryParamToJson(this);
+    return _$$_UpdateCartSessionQueryParamToJson(this);
   }
 }
 

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'payment_history.dart';
 
@@ -215,7 +216,7 @@ class _$_PaymentHistory implements _PaymentHistory {
       required this.listAccountHistoryDetails});
 
   factory _$_PaymentHistory.fromJson(Map<String, dynamic> json) =>
-      _$_$_PaymentHistoryFromJson(json);
+      _$$_PaymentHistoryFromJson(json);
 
   @override
   final int pageSize;
@@ -282,7 +283,7 @@ class _$_PaymentHistory implements _PaymentHistory {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PaymentHistoryToJson(this);
+    return _$$_PaymentHistoryToJson(this);
   }
 }
 
@@ -619,7 +620,7 @@ class _$_PaymentHistoryDetail implements _PaymentHistoryDetail {
       required this.needReceiptInquiry});
 
   factory _$_PaymentHistoryDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_PaymentHistoryDetailFromJson(json);
+      _$$_PaymentHistoryDetailFromJson(json);
 
   @override
   final int transferId;
@@ -720,7 +721,7 @@ class _$_PaymentHistoryDetail implements _PaymentHistoryDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PaymentHistoryDetailToJson(this);
+    return _$$_PaymentHistoryDetailToJson(this);
   }
 }
 

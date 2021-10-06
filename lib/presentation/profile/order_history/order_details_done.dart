@@ -336,31 +336,72 @@ class OrderDetailsDone extends StatelessWidget {
             ),
           ),
         if (orderDetails.status == 'done' || orderDetails.status == 'auto_done')
-          CustomButton(
-            onPressed: () {
-              // orderDetails.items.map((menuItem) {
-              //   Get.context!.read<OrderBloc>().add(
-              //         OrderEvent.addCart(
-              //             CreateUpdateCartSessionItemParam(
-              //                 modifiers: [],
-              //                 note: menuItem.note,
-              //                 productId: menuItem.productId.toInt(),
-              //                 qty: menuItem.qty.toInt()),
-              //             DetailOutletDataResponse(),
-              //             orderDetails.salesType),
-              //       );
-              // });
-              Get.to(OrderCartScreen());
+          BlocListener<OrderBloc, OrderState>(
+            listener: (context, state) {
+              state.maybeMap(
+                  orElse: () {},
+                  reorderCartSuccess: (_state) {
+                    Get.to(OrderCartScreen());
+                  });
             },
-            margin: EdgeInsets.symmetric(
-              horizontal: Dimens.defaultMargin,
-              vertical: 30,
+            child: CustomButton(
+              onPressed: () {
+                final List<CreateUpdateCartSessionItemParam> items =
+                    orderDetails.items
+                        .map((i) => CreateUpdateCartSessionItemParam(
+                            modifiers: [],
+                            note: i.note,
+                            productId: i.productId.toInt(),
+                            qty: i.qty.toInt()))
+                        .toList();
+                Get.context!.read<OrderBloc>().add(
+                      OrderEvent.reorderCart(
+                        CreateCartSessionParam(
+                          queryString: CreateCartSessionQueryParam(),
+                          body: CreateCartSessionBodyParam(
+                            customerCarColor: orderDetails.customerCarColor,
+                            customerCarType: orderDetails.customerCarType,
+                            customerCarNumber: orderDetails.customerCarNumber,
+                            customerName: orderDetails.customerName,
+                            customerNote: orderDetails.customerNote,
+                            customerPax: orderDetails.customerPax,
+                            customerPhone: orderDetails.customerPhone,
+                            customerSmoking: orderDetails.customerSmoking,
+                            customerTableNumber:
+                                orderDetails.customerTableNumber,
+                            eta: orderDetails.eta,
+                            outletName: orderDetails.outletName,
+                            receiptCode: orderDetails.receiptCode,
+                            salesType: orderDetails.salesType,
+                            items: items,
+                          ),
+                        ),
+                        int.parse(orderDetails.outlet.outletId),
+                      ),
+                    );
+                // orderDetails.items.map((menuItem) {
+                //   Get.context!.read<OrderBloc>().add(
+                //         OrderEvent.addCart(
+                //             CreateUpdateCartSessionItemParam(
+                //                 modifiers: [],
+                //                 note: menuItem.note,
+                //                 productId: menuItem.productId.toInt(),
+                //                 qty: menuItem.qty.toInt()),
+                //             DetailOutletDataResponse(),
+                //             orderDetails.salesType),
+                //       );
+                // });
+              },
+              margin: EdgeInsets.symmetric(
+                horizontal: Dimens.defaultMargin,
+                vertical: 30,
+              ),
+              borderRadius: BorderRadius.circular(30),
+              color: AppColors.mainColor,
+              label: 'Beli Lagi',
+              fontColor: Colors.white,
             ),
-            borderRadius: BorderRadius.circular(30),
-            color: AppColors.mainColor,
-            label: 'Beli Lagi',
-            fontColor: Colors.white,
-          )
+          ),
       ],
     );
   }

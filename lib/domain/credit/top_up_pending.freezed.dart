@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'top_up_pending.dart';
 
@@ -226,7 +227,7 @@ class _$_TopUpPending implements _TopUpPending {
       required this.billingId});
 
   factory _$_TopUpPending.fromJson(Map<String, dynamic> json) =>
-      _$_$_TopUpPendingFromJson(json);
+      _$$_TopUpPendingFromJson(json);
 
   @override
   final String customerPhone;
@@ -293,7 +294,7 @@ class _$_TopUpPending implements _TopUpPending {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TopUpPendingToJson(this);
+    return _$$_TopUpPendingToJson(this);
   }
 }
 
@@ -690,7 +691,7 @@ class _$_TopUpDetail implements _TopUpDetail {
       required this.expiresAt});
 
   factory _$_TopUpDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_TopUpDetailFromJson(json);
+      _$$_TopUpDetailFromJson(json);
 
   @override
   @JsonKey(includeIfNull: true)
@@ -824,7 +825,7 @@ class _$_TopUpDetail implements _TopUpDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TopUpDetailToJson(this);
+    return _$$_TopUpDetailToJson(this);
   }
 }
 
