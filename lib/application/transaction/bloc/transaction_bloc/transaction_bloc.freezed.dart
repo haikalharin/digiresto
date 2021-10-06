@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'transaction_bloc.dart';
 
@@ -68,17 +67,6 @@ mixin _$TransactionEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -101,16 +89,6 @@ mixin _$TransactionEvent {
     required TResult Function(_AcceptTransaction value) acceptTransaction,
     required TResult Function(_AddFavoriteTransaction value)
         addFavoriteTransaction,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -196,20 +174,6 @@ class _$_GetTransactionHistory implements _GetTransactionHistory {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) {
-    return getTransactionHistory?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -240,19 +204,6 @@ class _$_GetTransactionHistory implements _GetTransactionHistory {
         addFavoriteTransaction,
   }) {
     return getTransactionHistory(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
-  }) {
-    return getTransactionHistory?.call(this);
   }
 
   @override
@@ -330,20 +281,6 @@ class _$_GetOngoingTransaction implements _GetOngoingTransaction {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) {
-    return getOngoingTransaction?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -374,19 +311,6 @@ class _$_GetOngoingTransaction implements _GetOngoingTransaction {
         addFavoriteTransaction,
   }) {
     return getOngoingTransaction(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
-  }) {
-    return getOngoingTransaction?.call(this);
   }
 
   @override
@@ -490,20 +414,6 @@ class _$_GetTransaction implements _GetTransaction {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) {
-    return getTransaction?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -534,19 +444,6 @@ class _$_GetTransaction implements _GetTransaction {
         addFavoriteTransaction,
   }) {
     return getTransaction(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
-  }) {
-    return getTransaction?.call(this);
   }
 
   @override
@@ -655,20 +552,6 @@ class _$_CancelTransaction implements _CancelTransaction {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) {
-    return cancelTransaction?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -699,19 +582,6 @@ class _$_CancelTransaction implements _CancelTransaction {
         addFavoriteTransaction,
   }) {
     return cancelTransaction(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
-  }) {
-    return cancelTransaction?.call(this);
   }
 
   @override
@@ -820,20 +690,6 @@ class _$_AcceptTransaction implements _AcceptTransaction {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) {
-    return acceptTransaction?.call(receiptCode);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -864,19 +720,6 @@ class _$_AcceptTransaction implements _AcceptTransaction {
         addFavoriteTransaction,
   }) {
     return acceptTransaction(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
-  }) {
-    return acceptTransaction?.call(this);
   }
 
   @override
@@ -994,20 +837,6 @@ class _$_AddFavoriteTransaction implements _AddFavoriteTransaction {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getTransactionHistory,
-    TResult Function()? getOngoingTransaction,
-    TResult Function(String receiptCode)? getTransaction,
-    TResult Function(String receiptCode)? cancelTransaction,
-    TResult Function(String receiptCode)? acceptTransaction,
-    TResult Function(AddFavoriteTransactionParam request)?
-        addFavoriteTransaction,
-  }) {
-    return addFavoriteTransaction?.call(request);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTransactionHistory,
     TResult Function()? getOngoingTransaction,
@@ -1038,19 +867,6 @@ class _$_AddFavoriteTransaction implements _AddFavoriteTransaction {
         addFavoriteTransaction,
   }) {
     return addFavoriteTransaction(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetTransactionHistory value)? getTransactionHistory,
-    TResult Function(_GetOngoingTransaction value)? getOngoingTransaction,
-    TResult Function(_GetTransaction value)? getTransaction,
-    TResult Function(_CancelTransaction value)? cancelTransaction,
-    TResult Function(_AcceptTransaction value)? acceptTransaction,
-    TResult Function(_AddFavoriteTransaction value)? addFavoriteTransaction,
-  }) {
-    return addFavoriteTransaction?.call(this);
   }
 
   @override
@@ -1168,23 +984,6 @@ mixin _$TransactionState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1219,23 +1018,6 @@ mixin _$TransactionState {
     required TResult Function(_AcceptTransactionSuccess value)
         acceptTransactionSuccess,
     required TResult Function(_AddFavoriteTransactionSuccess value)
-        addFavoriteTransactionSuccess,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
         addFavoriteTransactionSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -1333,26 +1115,6 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1396,26 +1158,6 @@ class _$_Initial implements _Initial {
         addFavoriteTransactionSuccess,
   }) {
     return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return initial?.call(this);
   }
 
   @override
@@ -1507,26 +1249,6 @@ class _$_LoadInProgress implements _LoadInProgress {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return loadInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1570,26 +1292,6 @@ class _$_LoadInProgress implements _LoadInProgress {
         addFavoriteTransactionSuccess,
   }) {
     return loadInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return loadInProgress?.call(this);
   }
 
   @override
@@ -1681,26 +1383,6 @@ class _$_LoadSuccess implements _LoadSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return loadSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1744,26 +1426,6 @@ class _$_LoadSuccess implements _LoadSuccess {
         addFavoriteTransactionSuccess,
   }) {
     return loadSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return loadSuccess?.call(this);
   }
 
   @override
@@ -1889,26 +1551,6 @@ class _$_LoadFailure implements _LoadFailure {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return loadFailure?.call(error);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1952,26 +1594,6 @@ class _$_LoadFailure implements _LoadFailure {
         addFavoriteTransactionSuccess,
   }) {
     return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return loadFailure?.call(this);
   }
 
   @override
@@ -2098,26 +1720,6 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return getTransactionHistorySuccess?.call(response);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2161,26 +1763,6 @@ class _$_GetTransactionHistorySuccess implements _GetTransactionHistorySuccess {
         addFavoriteTransactionSuccess,
   }) {
     return getTransactionHistorySuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return getTransactionHistorySuccess?.call(this);
   }
 
   @override
@@ -2308,26 +1890,6 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return getOngoingTransactionSuccess?.call(response);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2371,26 +1933,6 @@ class _$_GetOngoingTransactionSuccess implements _GetOngoingTransactionSuccess {
         addFavoriteTransactionSuccess,
   }) {
     return getOngoingTransactionSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return getOngoingTransactionSuccess?.call(this);
   }
 
   @override
@@ -2524,26 +2066,6 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return getTransactionSuccess?.call(response);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2587,26 +2109,6 @@ class _$_GetTransactionSuccess implements _GetTransactionSuccess {
         addFavoriteTransactionSuccess,
   }) {
     return getTransactionSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return getTransactionSuccess?.call(this);
   }
 
   @override
@@ -2741,26 +2243,6 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return cancelTransactionSuccess?.call(response);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2804,26 +2286,6 @@ class _$_CancelTransactionSuccess implements _CancelTransactionSuccess {
         addFavoriteTransactionSuccess,
   }) {
     return cancelTransactionSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return cancelTransactionSuccess?.call(this);
   }
 
   @override
@@ -2958,26 +2420,6 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return acceptTransactionSuccess?.call(response);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -3021,26 +2463,6 @@ class _$_AcceptTransactionSuccess implements _AcceptTransactionSuccess {
         addFavoriteTransactionSuccess,
   }) {
     return acceptTransactionSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return acceptTransactionSuccess?.call(this);
   }
 
   @override
@@ -3169,26 +2591,6 @@ class _$_AddFavoriteTransactionSuccess
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function(TransactionFailure error)? loadFailure,
-    TResult Function(List<TransactionHistory> response)?
-        getTransactionHistorySuccess,
-    TResult Function(List<TransactionHistory> response)?
-        getOngoingTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)? getTransactionSuccess,
-    TResult Function(TransactionMobileResponse response)?
-        cancelTransactionSuccess,
-    TResult Function(StatusResponse response)? acceptTransactionSuccess,
-    TResult Function(bool isSuccess)? addFavoriteTransactionSuccess,
-  }) {
-    return addFavoriteTransactionSuccess?.call(isSuccess);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -3232,26 +2634,6 @@ class _$_AddFavoriteTransactionSuccess
         addFavoriteTransactionSuccess,
   }) {
     return addFavoriteTransactionSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_GetTransactionHistorySuccess value)?
-        getTransactionHistorySuccess,
-    TResult Function(_GetOngoingTransactionSuccess value)?
-        getOngoingTransactionSuccess,
-    TResult Function(_GetTransactionSuccess value)? getTransactionSuccess,
-    TResult Function(_CancelTransactionSuccess value)? cancelTransactionSuccess,
-    TResult Function(_AcceptTransactionSuccess value)? acceptTransactionSuccess,
-    TResult Function(_AddFavoriteTransactionSuccess value)?
-        addFavoriteTransactionSuccess,
-  }) {
-    return addFavoriteTransactionSuccess?.call(this);
   }
 
   @override
