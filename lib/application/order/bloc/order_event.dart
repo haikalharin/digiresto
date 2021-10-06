@@ -40,6 +40,11 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.createCartSession(CreateCartSessionParam request) =
       _CreateCartSession;
 
+  const factory OrderEvent.reorderCart(
+    CreateCartSessionParam request,
+    int outletId,
+  ) = _ReorderCart;
+
   const factory OrderEvent.addCart(CreateUpdateCartSessionItemParam request,
       DetailOutletDataResponse outlet, String salesType) = _AddCart;
 

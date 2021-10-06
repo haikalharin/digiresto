@@ -180,6 +180,38 @@ class OrderLocal {
     return productModel;
   }
 
+  Future<UpdateCartSessionBodyParam?> reorderCart(
+      CreateCartSessionParam object, int outletId) async {
+    final _outletModel = await getOutletDetailID();
+    if (_outletModel?.id != outletId.toString()) {
+      await _storage.openBox(StorageConstants.orderProduct);
+      await _storage.deleteData();
+      await _storage.openBox(StorageConstants.cart);
+      await _storage.deleteData();
+    }
+    try {
+      await _storage.openBox(StorageConstants.orderProduct);
+      var list = UpdateCartSessionBodyParam(
+          customerNote: object.body.customerNote,
+          paymentType: "",
+          items: object.body.items,
+          customerPax: object.body.customerPax,
+          customerSmoking: object.body.customerSmoking,
+          delivery: null,
+          eta: '',
+          promos: [],
+          salesType: object.body.salesType);
+      await _storage.setJson(key: _sessionIdKey, object: list.toJson());
+
+      final productJson = _storage.getJson(key: _sessionIdKey);
+      final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
+      await _storage.close();
+      return productModel;
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<UpdateCartSessionBodyParam?> getProduct() async {
     await _storage.openBox(StorageConstants.orderProduct);
     try {
