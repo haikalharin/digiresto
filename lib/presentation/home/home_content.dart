@@ -98,7 +98,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          _StaticBanner(key: GuideKeys.banner),
+                          StaticBannerWidget(key: GuideKeys.banner),
                           _trackOrder(),
                           Container(
                             padding: EdgeInsets.only(top: 10),
@@ -417,8 +417,8 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
   }
 }
 
-class _StaticBanner extends GetView<HomeContentViewController> {
-  _StaticBanner({Key? key}) : super(key: key);
+class StaticBannerWidget extends StatelessWidget {
+  const StaticBannerWidget({Key? key}) : super(key: key);
   _showDetailImage(String imageUrl) {
     Navigator.of(Get.context!).push(TransparentRoute(
         builder: (BuildContext context) =>
@@ -470,7 +470,7 @@ class _StaticBanner extends GetView<HomeContentViewController> {
   @override
   Widget build(BuildContext context) {
     PageController _controller = Get.find<PageController>(tag: "home");
-    Get.lazyPut(() => HomeContentViewController());
+    final controller = Get.put(HomeContentViewController());
     return Column(
       children: [
         Container(

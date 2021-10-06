@@ -1,10 +1,14 @@
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/profile/order_details/order_details_bloc.dart';
 import 'package:digiresto/application/profile/order_details/rating_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
+import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
+import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/delivery_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -333,7 +337,21 @@ class OrderDetailsDone extends StatelessWidget {
           ),
         if (orderDetails.status == 'done' || orderDetails.status == 'auto_done')
           CustomButton(
-            onPressed: () {},
+            onPressed: () {
+              // orderDetails.items.map((menuItem) {
+              //   Get.context!.read<OrderBloc>().add(
+              //         OrderEvent.addCart(
+              //             CreateUpdateCartSessionItemParam(
+              //                 modifiers: [],
+              //                 note: menuItem.note,
+              //                 productId: menuItem.productId.toInt(),
+              //                 qty: menuItem.qty.toInt()),
+              //             DetailOutletDataResponse(),
+              //             orderDetails.salesType),
+              //       );
+              // });
+              Get.to(OrderCartScreen());
+            },
             margin: EdgeInsets.symmetric(
               horizontal: Dimens.defaultMargin,
               vertical: 30,

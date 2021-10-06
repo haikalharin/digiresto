@@ -442,7 +442,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                 .selectedTabIndex
                                 .value = 3;
                             Get.offAllNamed(Routers.home);
-                            Get.find<HomeContentViewController>().getRefresh();
+                            Get.find<HomeNavigationViewController>().update();
                             Get.toNamed(Routers.orderHistory);
                           },
                           child: Container(
@@ -465,8 +465,9 @@ class PaymentReceiptScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if ((_receiptStatusDesc != i10n.nota_process_desc ||
-                            _receiptStatusDesc != i10n.nota_waiting_desc))
+                        SizedBox(height: 15),
+                        if (_receiptStatusDesc != i10n.nota_process_desc &&
+                            _receiptStatusDesc != i10n.nota_waiting_desc)
                           ElevatedButton(
                             onPressed: () {
                               Get.context!.read<TransactionBloc>().add(
@@ -494,35 +495,6 @@ class PaymentReceiptScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                        SizedBox(height: 5),
-                        ElevatedButton(
-                          onPressed: () async {
-                            Get.find<HomeNavigationViewController>()
-                                .selectedTabIndex
-                                .value = 3;
-                            Get.offNamedUntil(Routers.home, (route) => false);
-                            Get.toNamed(Routers.orderHistory);
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 44,
-                            child: Center(
-                              child: Text("Ke Riwayat Pembelian",
-                                  style: AppFont.textBlack14Bold
-                                      .copyWith(color: AppColors.white)),
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.redD12B34,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(22.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
-                              ),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
