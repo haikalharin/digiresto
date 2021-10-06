@@ -9,6 +9,7 @@ import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,13 +80,30 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
   Future<void> _showMyDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding:
               EdgeInsets.only(top: 10, bottom: 10, right: 18, left: 18),
-          title: Text("Detail Location",
-              textAlign: TextAlign.center, style: AppFont.textBlack17Bold),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Text(I10n.current.address_location_detail,
+                    textAlign: TextAlign.center,
+                    style: AppFont.textBlack17Bold),
+              ),
+              GestureDetector(
+                  onTap: () {
+                    Get.back(closeOverlays: true);
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: 24,
+                    color: AppColors.black,
+                  ))
+            ],
+          ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(14.0))),
           content: SingleChildScrollView(
@@ -99,7 +117,7 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                     decoration: new InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: "address",
+                      hintText: I10n.current.address_name,
                       border: new OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: BorderSide(
@@ -138,52 +156,55 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 120,
-                        height: 40,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
+                      // SizedBox(
+                      //   width: 120,
+                      //   height: 40,
+                      //   child: ElevatedButton(
+                      //     onPressed: () {
+                      //       Get.back();
+                      //     },
+                      //     style: ElevatedButton.styleFrom(
+                      //       primary: AppColors.white,
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: new BorderRadius.circular(10.0),
+                      //         side: BorderSide(
+                      //           width: 1,
+                      //           color: AppColors.red,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     child: Text(controller.cancelText,
+                      //         style: TextStyle(
+                      //             fontSize: 14,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: AppColors.red)),
+                      //   ),
+                      // ),
+                      Expanded(
+                        child: SizedBox(
+                          //width: 120,
+                          height: 49,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              addAddress();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size.infinite,
+                              primary: AppColors.red,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
                               ),
                             ),
+                            child: Text(I10n.current.address_add,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
                           ),
-                          child: Text(controller.profileCancel,
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.red)),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 120,
-                        height: 40,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            addAddress();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.red,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
-                              ),
-                            ),
-                          ),
-                          child: Text("Save",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
                         ),
                       ),
                     ],
@@ -200,6 +221,7 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(AddressLocationScreenController());
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -221,7 +243,8 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                   child: ImageIcon(AssetImage(AppAssets.iconGps),
                       size: 20, color: AppColors.red),
                 ),
-                Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
+                Text(I10n.current.address_use_current_location,
+                    style: AppFont.textBlack15Bold),
               ],
             ),
           )),
@@ -248,7 +271,6 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
               orElse: () {});
         },
         builder: (context, state) {
-          Get.put(AddressLocationScreenController());
           return Stack(children: [
             GoogleMap(
               onMapCreated: _onMapCreated,
@@ -264,39 +286,20 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
             Center(
               child: Container(
                 padding: EdgeInsets.only(bottom: 50),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    controller.isMarkerMove.value ||
-                            controller.isMarkerClicked.value == true
-                        ? Container(
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.transparent,
-                                border:
-                                    Border.all(color: AppColors.greyStroke)),
-                            child: Text("",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                textAlign: TextAlign.center),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              _onClickSetDestination();
-                            },
-                            child: Container(
+                child: Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      controller.isMarkerMove.value ||
+                              controller.isMarkerClicked.value == true
+                          ? Container(
                               padding: EdgeInsets.all(7),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: AppColors.red,
+                                  color: Colors.transparent,
                                   border:
                                       Border.all(color: AppColors.greyStroke)),
-                              child: Text("Click To Set Destination",
+                              child: Text("",
                                   style: TextStyle(
                                     fontFamily: "roboto",
                                     color: Colors.white,
@@ -304,12 +307,30 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                                     fontWeight: FontWeight.normal,
                                   ),
                                   textAlign: TextAlign.center),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                _onClickSetDestination();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(14),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(37),
+                                    color: AppColors.red,
+                                    border: Border.all(
+                                        color: AppColors.greyStroke)),
+                                child: Text(
+                                    I10n.current.address_set_destionation,
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white),
+                                    textAlign: TextAlign.center),
+                              ),
                             ),
-                          ),
-                    controller.isMarkerMove.value
-                        ? controller.markerMove
-                        : controller.marker,
-                  ],
+                      controller.isMarkerMove.value
+                          ? controller.markerMove
+                          : controller.marker,
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -358,13 +379,8 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                               padding: EdgeInsets.all(20),
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "Set Destination Location",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                I10n.current.address_set_destionation_location,
+                                style: AppFont.textBlack15Bold,
                                 textAlign: TextAlign.start,
                               ),
                             ),
@@ -412,11 +428,10 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                                       ),
                                     ),
                                   ),
-                                  child: Text("Use This Location",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
+                                  child: Text(
+                                      I10n.current.address_use_this_location,
+                                      style: AppFont.textBlack14Bold
+                                          .copyWith(color: AppColors.white)),
                                 ),
                               ),
                             ),

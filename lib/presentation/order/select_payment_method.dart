@@ -8,6 +8,7 @@ import 'package:digiresto/domain/entity/order/param/get_payment_method_param.dar
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -39,13 +40,23 @@ class SelectPaymentMethodScreen extends StatelessWidget {
               icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            title: Text(
-              'Metode Pembayaran',
-              style: TextStyle(
-                fontFamily: "roboto",
-                color: Colors.black,
+            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              ImageIcon(
+                AssetImage(
+                  AppAssets.iconTransfeer,
+                ),
+                size: 24,
+                color: AppColors.redD12B34,
               ),
-            ),
+              SizedBox(
+                width: 12,
+              ),
+              Text(I10n.current.cart_payment_method,
+                  style: AppFont.textBlack15Bold),
+              SizedBox(
+                width: 48,
+              ),
+            ]),
             centerTitle: true,
             backgroundColor: Colors.white,
           ),

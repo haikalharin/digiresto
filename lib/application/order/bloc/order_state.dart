@@ -57,6 +57,9 @@ class OrderState with _$OrderState {
   const factory OrderState.createCartSessionSuccess(
       CartSessionResponse response) = _CreateCartSessionSuccess;
 
+  const factory OrderState.reorderCartSuccess(CartSessionResponse response) =
+      _ReorderCartSuccess;
+
   const factory OrderState.getCartSessionSuccess(CartSessionResponse response) =
       _GetCartSessionSuccess;
 

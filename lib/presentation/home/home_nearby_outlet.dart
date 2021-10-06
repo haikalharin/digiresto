@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
@@ -75,7 +76,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
               fillColor: AppColors.greyInput,
               contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
               prefixIcon: Icon(Icons.search),
-              hintText: "Temukan resto favorit anda",
+              hintText: I10n.current.home_nearby_outlet_hint,
               border: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: AppColors.greyInput, width: 32.0),

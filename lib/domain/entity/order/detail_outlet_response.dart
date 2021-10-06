@@ -48,6 +48,29 @@ class DetailOutletDataResponse with _$DetailOutletDataResponse {
     required String merchantCategory,
   }) = _DetailOutletDataResponse;
 
+  static DetailOutletDataResponse emptyWithID(String id) =>
+      DetailOutletDataResponse(
+          address: '',
+          callbackUrl: '',
+          city: '',
+          description: '',
+          endpointName: '',
+          totalReview: 0,
+          id: id,
+          isOpen: true,
+          lastUpdate: DetailOutletDataLastUpdateResponse(literal: '', time: ''),
+          location: [],
+          logo: null,
+          merchantCategory: '',
+          merchantId: '',
+          merchantLogo: null,
+          merchantName: '',
+          name: '',
+          ownerPhone: '',
+          poCutoff: '',
+          rating: 0,
+          salesTypes: []);
+
   factory DetailOutletDataResponse.fromJson(Map<String, dynamic> json) =>
       _$DetailOutletDataResponseFromJson(json);
 }

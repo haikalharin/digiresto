@@ -86,6 +86,11 @@ class OrderRepository {
     return _orderLocal.setProduct(object, outlet);
   }
 
+  Future<UpdateCartSessionBodyParam?> reorderCart(
+      CreateCartSessionParam object, int outletId) async {
+    return _orderLocal.reorderCart(object, outletId);
+  }
+
   Future<UpdateCartSessionBodyParam?> removeProduct(
       CreateUpdateCartSessionItemParam object) async {
     return _orderLocal.removeProduct(object);

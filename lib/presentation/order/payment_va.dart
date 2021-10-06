@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
 import 'package:digiresto/domain/entity/user/user_profile_model.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,13 +24,8 @@ class PaymentVAScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(
-          'Pembayaran',
-          style: TextStyle(
-            fontFamily: 'roboto',
-            color: Colors.white,
-          ),
-        ),
+        title: Text(I10n.current.cart_billing_payment,
+            style: AppFont.textBlack19Bold.copyWith(color: AppColors.white)),
         centerTitle: true,
         backgroundColor: AppColors.red,
       ),
@@ -49,8 +45,8 @@ class PaymentVAScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
-                  Text(
-                      'Silahkan lanjutkan proses pembayaran dengan detail sebagai berikut'),
+                  Text(I10n.current.billing_desc,
+                      style: AppFont.textBlack12Regular),
                 ],
               ),
             ),
@@ -62,13 +58,12 @@ class PaymentVAScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Batas akhir pembayaran'),
+                  Text(I10n.current.billing_expired,
+                      style: AppFont.textBlack15Regular),
                   SizedBox(height: 5),
                   Text(
                     df.format(vaPayment!.expiresAt),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppFont.textBlack15Bold,
                   ),
                   SizedBox(height: 10),
                   Divider(
@@ -80,7 +75,8 @@ class PaymentVAScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 10),
-                        Text('Transfer ke nomor Virtual Account'),
+                        Text(I10n.current.billing_va,
+                            style: AppFont.textBlack15Regular),
                         SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,17 +86,13 @@ class PaymentVAScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   vaPayment.title ?? "",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: AppFont.textBlack15Bold,
                                 ),
                                 SizedBox(height: 5),
                                 Text(
                                   vaPayment.vaNumber ?? "",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.red,
-                                  ),
+                                  style: AppFont.textBlack15Bold
+                                      .copyWith(color: AppColors.red),
                                 ),
                               ],
                             ),
@@ -121,7 +113,7 @@ class PaymentVAScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                child: Text('Salin',
+                                child: Text(I10n.current.topup_copy_action,
                                     style: TextStyle(
                                       color: AppColors.red,
                                       fontWeight: FontWeight.bold,
@@ -135,7 +127,10 @@ class PaymentVAScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 10),
-                        Text('Transfer ke nomor'),
+                        Text(
+                            I10n.current.billing_va
+                                .replaceAll("Virtual Account", ""),
+                            style: AppFont.textBlack15Regular),
                         SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,17 +140,13 @@ class PaymentVAScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   vaPayment.bankName ?? "",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: AppFont.textBlack15Bold,
                                 ),
                                 SizedBox(height: 5),
                                 Text(
                                   vaPayment.bankAccNo ?? "",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.red,
-                                  ),
+                                  style: AppFont.textBlack15Bold
+                                      .copyWith(color: AppColors.red),
                                 ),
                               ],
                             ),
@@ -176,7 +167,7 @@ class PaymentVAScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                child: Text('Salin',
+                                child: Text(I10n.current.topup_copy_action,
                                     style: TextStyle(
                                       color: AppColors.red,
                                       fontWeight: FontWeight.bold,
@@ -195,13 +186,12 @@ class PaymentVAScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 10),
-                        Text('Pemilik Rekening'),
+                        Text(I10n.current.billing_bank_account_name,
+                            style: AppFont.textBlack15Regular),
                         SizedBox(height: 5),
                         Text(
                           vaPayment.bankAccName ?? "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: AppFont.textBlack15Bold,
                         ),
                         SizedBox(height: 10),
                         Divider(
@@ -217,31 +207,33 @@ class PaymentVAScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Total pembayaran'),
+                          Text(I10n.current.billing_total_payment,
+                              style: AppFont.textBlack15Regular),
                           SizedBox(height: 5),
                           Text(
                             Rupiah.format(vaAmount.toString()),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppFont.textBlack15Bold
+                                .copyWith(color: AppColors.red),
                           ),
                         ],
                       ),
-                      FlatButton(
+                      ElevatedButton(
                           onPressed: () {
                             Clipboard.setData(
                                 ClipboardData(text: vaAmount.toString()));
                             Ctoast.show('Amount Copied');
                           },
-                          color: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
+                              ),
                             ),
                           ),
-                          child: Text('Salin',
+                          child: Text(I10n.current.topup_copy_action,
                               style: TextStyle(
                                 color: AppColors.red,
                                 fontWeight: FontWeight.bold,
@@ -262,19 +254,26 @@ class PaymentVAScreen extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 width: double.infinity,
                 color: Colors.white,
-                child: FlatButton(
-                    minWidth: double.infinity,
+                child: ElevatedButton(
                     onPressed: () async {
                       Get.offNamed(Routers.paymentReceipt,
                           arguments: PaymentReceiptViewArgument(
                               receiptCode:
                                   args.checkoutDataResponse.receiptCode));
                     },
-                    color: AppColors.red,
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                      minimumSize: Size.infinite,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0),
+                        side: BorderSide(
+                          width: 1,
+                          color: AppColors.red,
+                        ),
+                      ),
+                    ),
                     child: Text(
-                      'Selesai',
+                      I10n.current.tvselesai,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

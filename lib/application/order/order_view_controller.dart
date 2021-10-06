@@ -23,6 +23,7 @@ class OrderViewController extends GetxController {
   var isLoading = true.obs;
   var page = 1.obs;
   var categoryId = "".obs;
+  var categoryName = "".obs;
   var search = "".obs;
   var orderProductLength = 0.obs;
   var detailOutletLoading = false.obs;

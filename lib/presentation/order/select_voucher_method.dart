@@ -3,6 +3,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -34,13 +35,23 @@ class SelectVouchertMethodScreen extends StatelessWidget {
               icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            title: Text(
-              'Voucher Saya',
-              style: TextStyle(
-                fontFamily: "roboto",
-                color: Colors.black,
+            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              ImageIcon(
+                AssetImage(
+                  AppAssets.iconVoucher,
+                ),
+                size: 24,
+                color: AppColors.redD12B34,
               ),
-            ),
+              SizedBox(
+                width: 12,
+              ),
+              Text(I10n.current.cart_my_voucher,
+                  style: AppFont.textBlack15Bold),
+              SizedBox(
+                width: 48,
+              ),
+            ]),
             centerTitle: true,
             backgroundColor: Colors.white,
           ),

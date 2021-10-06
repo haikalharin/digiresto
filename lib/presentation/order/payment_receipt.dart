@@ -86,6 +86,7 @@ class PaymentReceiptScreen extends StatelessWidget {
     }
 
     return BlocConsumer<TransactionBloc, TransactionState>(
+<<<<<<< HEAD
       bloc: Get.context!.read<TransactionBloc>()
         ..add(TransactionEvent.getTransaction(args.receiptCode)),
       listener: (context, state) {
@@ -140,6 +141,58 @@ class PaymentReceiptScreen extends StatelessWidget {
                 'Status Transaksi',
                 style: TextStyle(
                   fontFamily: "roboto",
+=======
+        listener: (context, state) {
+      Loading.dismiss();
+      state.maybeMap(
+          getTransactionSuccess: (r) {
+            _transaction = r.response.data;
+          },
+          addFavoriteTransactionSuccess: (r) {
+            if (r.isSuccess) {
+              ErrorPopupWidget.show("Digiresto", "Tambah Favorit Berhasil", () {
+                Get.back();
+              });
+              isFavoriteDone = true;
+            } else {
+              ErrorPopupWidget.show("Digiresto", "Tambah Favorit Error", () {
+                Get.back();
+              });
+            }
+          },
+          loadFailure: (e) {
+            e.error.maybeMap(
+                addFavoriteTransactionFail: (e) {
+                  ErrorPopupWidget.show("Digiresto", "Tambah Favorit Error",
+                      () {
+                    Get.back();
+                  });
+                },
+                orElse: () {});
+          },
+          orElse: () {});
+    }, builder: (context, state) {
+      if (_transaction != null) {
+        Loading.dismiss();
+        checkStatus();
+        return Scaffold(
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
+            leading: IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Get.offNamedUntil(Routers.home, (route) => false);
+              },
+            ),
+            title:
+                Text(I10n.current.nota_title, style: AppFont.textBlack17Bold),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.share,
+>>>>>>> 30b1a8f03b8e412be10adabb9246345dcdff9802
                   color: Colors.white,
                 ),
               ),
@@ -350,6 +403,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                         SizedBox(height: 5),
                                         _lr(
                                           Text(
+<<<<<<< HEAD
                                             'Total Payment',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
@@ -362,6 +416,11 @@ class PaymentReceiptScreen extends StatelessWidget {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             ),
+=======
+                                            I10n.current.nota_thanks_order,
+                                            style: AppFont.textBlack13Light,
+                                            textAlign: TextAlign.center,
+>>>>>>> 30b1a8f03b8e412be10adabb9246345dcdff9802
                                           ),
                                         ),
                                         SizedBox(height: 5),
@@ -419,7 +478,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                               width: double.infinity,
                               height: 44,
                               child: Center(
-                                child: Text("Simpan Sebagai Favorit",
+                                child: Text(I10n.current.nota_add_to_favourite,
                                     style: AppFont.textBlack14Bold
                                         .copyWith(color: AppColors.white)),
                               ),
@@ -435,21 +494,58 @@ class PaymentReceiptScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+<<<<<<< HEAD
+=======
+                        if ((_receiptStatusDesc != i10n.nota_process_desc ||
+                            _receiptStatusDesc != i10n.nota_waiting_desc))
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.context!.read<TransactionBloc>().add(
+                                  TransactionEvent.getTransaction(
+                                      args.receiptCode));
+                              //Loading.show();
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 44,
+                              child: Center(
+                                child: Text(
+                                    I10n.current.nota_check_status_payment,
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white)),
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColors.redD12B34,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(22.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
+                            ),
+                          ),
+>>>>>>> 30b1a8f03b8e412be10adabb9246345dcdff9802
                         SizedBox(height: 5),
                         ElevatedButton(
                           onPressed: () async {
                             Get.find<HomeNavigationViewController>()
                                 .selectedTabIndex
                                 .value = 3;
+<<<<<<< HEAD
                             Get.offAllNamed(Routers.home);
                             Get.find<HomeNavigationViewController>().update();
+=======
+                            Get.offNamedUntil(Routers.splash, (route) => false);
+>>>>>>> 30b1a8f03b8e412be10adabb9246345dcdff9802
                             Get.toNamed(Routers.orderHistory);
                           },
                           child: Container(
                             width: double.infinity,
                             height: 44,
                             child: Center(
-                              child: Text("Ke Riwayat Pembelian",
+                              child: Text(I10n.current.nota_history_payment,
                                   style: AppFont.textBlack14Bold
                                       .copyWith(color: AppColors.white)),
                             ),
@@ -500,6 +596,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                   ),
                 ),
               ),
+<<<<<<< HEAD
             ]),
           );
         }, orElse: () {
@@ -537,5 +634,36 @@ class PaymentReceiptScreen extends StatelessWidget {
         });
       },
     );
+=======
+            ],
+          ),
+        );
+      } else {
+        return Scaffold(
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
+            leading: IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Get.find<HomeNavigationViewController>()
+                    .selectedTabIndex
+                    .value = 0;
+                Get.offNamedUntil(Routers.splash, (route) => false);
+              },
+            ),
+            title:
+                Text(I10n.current.nota_title, style: AppFont.textBlack17Bold),
+            centerTitle: true,
+            backgroundColor: AppColors.red,
+          ),
+          body: StackWithProgress(
+              isLoading: true,
+              children: [Expanded(child: Container(color: Colors.grey[200]))]),
+        );
+      }
+    });
+>>>>>>> 30b1a8f03b8e412be10adabb9246345dcdff9802
   }
 }

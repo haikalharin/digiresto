@@ -75,7 +75,7 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
               fillColor: AppColors.greyInput,
               contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
               prefixIcon: Icon(Icons.search),
-              hintText: "Temukan resto favorit anda",
+              hintText: controller.getLabelSearchHint(),
               border: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: AppColors.greyInput, width: 32.0),

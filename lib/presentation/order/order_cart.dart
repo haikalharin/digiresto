@@ -14,6 +14,7 @@ import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -195,7 +196,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Outlet", style: AppFont.textBlack14Regular),
+                      Text(I10n.current.cart_outlet,
+                          style: AppFont.textBlack14Regular),
                       Row(
                         children: [
                           Text(controller.detailOutlet.value!.name,
@@ -290,7 +292,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Tipe Order", style: AppFont.textBlack14Regular),
+                        Text(I10n.current.cart_order_type,
+                            style: AppFont.textBlack14Regular),
                         Row(
                           children: [
                             controller.generateSalesTypeIcon(
@@ -319,7 +322,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               ),
                             ),
                           ),
-                          child: Text('Ubah',
+                          child: Text(I10n.current.cart_edit,
                               style: TextStyle(
                                 color: AppColors.red,
                                 fontWeight: FontWeight.bold,
@@ -339,7 +342,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               ),
                             ),
                           ),
-                          child: Text('Pilih',
+                          child: Text(I10n.current.cart_choose,
                               style: TextStyle(
                                 color: AppColors.red,
                                 fontWeight: FontWeight.bold,
@@ -391,7 +394,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Metode Pembayaran",
+                          Text(I10n.current.cart_payment_method,
                               style: AppFont.textBlack14Bold),
                           if (title != null)
                             Text(title, style: AppFont.textBlack12Light),
@@ -427,7 +430,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               ),
                             ),
                           ),
-                          child: Text('Ubah',
+                          child: Text(I10n.current.cart_edit,
                               style: AppFont.textBlack10SemiBold
                                   .copyWith(color: AppColors.white))),
                     )
@@ -457,7 +460,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             ),
                           ),
                         ),
-                        child: Text('Pilih',
+                        child: Text(I10n.current.cart_choose,
                             style: TextStyle(
                               color: AppColors.red,
                               fontWeight: FontWeight.bold,
@@ -506,7 +509,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Voucher Saya", style: AppFont.textBlack14Bold),
+                          Text(I10n.current.cart_my_voucher,
+                              style: AppFont.textBlack14Bold),
                           if (controller.voucherMethod.value != null)
                             Text(controller.voucherMethod.value?.name ?? "",
                                 style: AppFont.textBlack12Light),
@@ -540,7 +544,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               ),
                             ),
                           ),
-                          child: Text('Ubah',
+                          child: Text(I10n.current.cart_edit,
                               style: AppFont.textBlack10SemiBold
                                   .copyWith(color: AppColors.white))),
                     )
@@ -569,7 +573,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             ),
                           ),
                         ),
-                        child: Text('Pilih',
+                        child: Text(I10n.current.cart_choose,
                             style: TextStyle(
                               color: AppColors.red,
                               fontWeight: FontWeight.bold,
@@ -616,7 +620,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Pengiriman", style: AppFont.textBlack14Bold),
+                          Text(I10n.current.cart_delivery,
+                              style: AppFont.textBlack14Bold),
                           if (controller.deliveryMethod.value != null)
                             Text(
                                 controller.deliveryMethod.value?.provider ?? "",
@@ -656,7 +661,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               ),
                             ),
                           ),
-                          child: Text('Ubah',
+                          child: Text(I10n.current.cart_edit,
                               style: AppFont.textBlack10SemiBold
                                   .copyWith(color: AppColors.white))),
                     )
@@ -690,7 +695,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             ),
                           ),
                         ),
-                        child: Text('Pilih',
+                        child: Text(I10n.current.cart_choose,
                             style: TextStyle(
                               color: AppColors.red,
                               fontWeight: FontWeight.bold,
@@ -949,7 +954,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  child: Text("Jadwal",
+                                  child: Text(I10n.current.cart_schedule,
                                       style: TextStyle(
                                         fontFamily: "roboto",
                                         fontSize: 14,
@@ -1230,12 +1235,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Kode Voucher",
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Text(I10n.current.cart_voucher_code,
+                      style: AppFont.textBlack14Bold),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -1279,23 +1280,20 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           padding: EdgeInsets.all(5),
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              primary: AppColors.red,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.redYoung,
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                primary: AppColors.red,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(5.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: Text("Gunakan",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                          ),
+                              child: Text(I10n.current.cart_voucher_code_use,
+                                  style: AppFont.textBlack12Bold
+                                      .copyWith(color: AppColors.white))),
                         ),
                       ),
                     ],
@@ -1599,11 +1597,11 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Mau pesan yang lain ? ",
+                    Text(I10n.current.cart_add_other_title,
                         style: AppFont.textBlack14Bold),
                     Container(
                       padding: EdgeInsets.only(top: 5, bottom: 10),
-                      child: Text("Tambahkan pesanan lainnya ",
+                      child: Text(I10n.current.cart_add_other_desc,
                           style: AppFont.textBlack14Regular),
                     ),
                   ],
@@ -1630,7 +1628,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                       ),
                     ),
                   ),
-                  child: Text("Tambah",
+                  child: Text(I10n.current.cart_add_other_action,
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -1663,7 +1661,8 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                child: Text("Pesanan", style: AppFont.textBlack14Regular),
+                child: Text(I10n.current.cart_order_title,
+                    style: AppFont.textBlack14Regular),
               ),
               Container(
                 width: double.infinity,
@@ -1708,7 +1707,7 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Lokasi Pengiriman",
+                          Text(I10n.current.cart_address,
                               style: AppFont.textBlack14Regular),
                           Row(
                             children: [
@@ -1742,7 +1741,7 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                                 ),
                               ),
                             ),
-                            child: Text('Ubah',
+                            child: Text(I10n.current.cart_edit,
                                 style: TextStyle(
                                   color: AppColors.red,
                                   fontWeight: FontWeight.bold,
@@ -1765,7 +1764,7 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                                 ),
                               ),
                             ),
-                            child: Text('Pilih',
+                            child: Text(I10n.current.cart_choose,
                                 style: TextStyle(
                                   color: AppColors.red,
                                   fontWeight: FontWeight.bold,
@@ -1844,14 +1843,10 @@ class _HeaderOrderCart extends GetView<OrderCartScreenViewController> {
                   },
                 ),
                 Container(
-                  child: Text("Detail Order",
+                  child: Text(I10n.current.cart_title,
                       //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppFont.textBlack24Bold
+                          .copyWith(color: AppColors.white),
                       textAlign: TextAlign.center),
                 ),
                 Container(

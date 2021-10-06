@@ -11,8 +11,10 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
+import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -148,7 +150,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                     Text(
-                                      "Order type:",
+                                      "${I10n.current.cart_order_type}:",
                                       style: AppFont.textBlack10SemiBold
                                           .copyWith(color: AppColors.white),
                                     ),
@@ -217,6 +219,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
+        Loading.dismiss();
         state.maybeMap(
             getDetailOutletSuccess: (r) {
               if (controller.salesType.value == null) {
@@ -297,7 +300,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                                       width: 5,
                                     ),
                                     Text(
-                                      "Overview",
+                                      I10n.current.outlet_overview,
                                       style: controller.indexTabBar.value == 0
                                           ? AppFont.textRed14Bold
                                           : AppFont.textGrey14Bold,
@@ -319,7 +322,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                                       width: 5,
                                     ),
                                     Text(
-                                      "Menu",
+                                      I10n.current.outlet_menu,
                                       style: controller.indexTabBar.value == 1
                                           ? AppFont.textRed14Bold
                                           : AppFont.textGrey14Bold,
@@ -599,9 +602,13 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
         .then((value) {});
   }
 
-  void searchActionCategory(String? category) {
+  void searchActionCategory(OutletProductCategoryDataResponse? category) {
+    Loading.show();
     controller.page.value = 1;
-    controller.categoryId.value = category ?? "";
+    controller.categoryId.value =
+        (category?.id != null ? category?.id.toString() : "")!;
+    controller.categoryName.value =
+        (category?.name != null ? category?.name.toString() : "")!;
     getListProduct();
   }
 
@@ -643,7 +650,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 Icons.search,
                 color: Colors.black,
               ),
-              hintText: "Cari",
+              hintText: I10n.current.txt_search,
               border: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: AppColors.greyInput, width: 32.0),
@@ -689,7 +696,9 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
           ),
           alignment: Alignment.topLeft,
           child: Text(
-            "Semua",
+            controller.categoryName.value == ""
+                ? I10n.current.preorder_filter_all
+                : controller.categoryName.value,
             style: TextStyle(
               fontFamily: "roboto",
               color: Colors.black,

@@ -137,12 +137,12 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
               ),
               activeIcon: new Image.asset(AppAssets.iconMenuHomeActive,
                   width: 28, height: 28),
-              label: 'Home'),
+              label: I10n.current.home_beranda),
           BottomNavigationBarItem(
               //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
               icon: controller.cartBadge(false),
               activeIcon: controller.cartBadge(true),
-              label: 'Cart'),
+              label: I10n.current.home_cart),
           BottomNavigationBarItem(
               icon: new Image.asset(
                 AppAssets.iconMenuCredit,
@@ -151,7 +151,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
               ),
               activeIcon: new Image.asset(AppAssets.iconMenuCreditActive,
                   width: 30, height: 30),
-              label: 'Credit'),
+              label: I10n.current.home_credit),
           BottomNavigationBarItem(
               icon: new Image.asset(
                 AppAssets.iconMenuProfile,
@@ -160,7 +160,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
               ),
               activeIcon: new Image.asset(AppAssets.iconMenuProfileActive,
                   width: 28, height: 28),
-              label: 'Profile'),
+              label: I10n.current.home_profile),
         ];
 
         final _buttomNavBar = BottomNavigationBar(

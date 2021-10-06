@@ -335,6 +335,51 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           );
         }
       },
+      reorderCart: (r) async* {
+        final userProfile = (await _orderRepository.getLocalUserProfile())!;
+        final setProduct =
+            await _orderRepository.reorderCart(r.request, r.outletId);
+        final paymentType = await _orderRepository.getPaymentMethodID();
+        final address = await _userRepository.getActiveAddress();
+        final activeAddr = address.getOrElse(() => UserAddress());
+        final deliveryInq = await _orderRepository.getDeliveryMethodID();
+        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
+        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+
+        String etaOrder = "now";
+
+        //create new cart session, if add cart in the different outlet
+        final createCartSession = await _orderRepository.createCartSession(
+            CreateCartSessionParam(
+                body: CreateCartSessionBodyParam(
+                    outletName: r.request.body.outletName,
+                    customerName: userProfile.name!,
+                    customerPhone: userProfile.mobilePhone!,
+                    customerTableNumber: "",
+                    customerSmoking: false,
+                    customerPax: "1",
+                    customerNote: "",
+                    customerCarType: "",
+                    customerCarColor: "",
+                    customerCarNumber: "",
+                    eta: etaOrder,
+                    salesType: r.request.body.salesType,
+                    receiptCode: "",
+                    items: setProduct?.items ?? []),
+                queryString: CreateCartSessionQueryParam()));
+
+        var dataCart = createCartSession.getOrElse(() => null);
+        if (dataCart != null) {
+          await _orderRepository.setSalesTypeCartID(r.request.body.salesType);
+          await _orderRepository.setCartOutletDetailID(
+              DetailOutletDataResponse.emptyWithID(r.outletId.toString()));
+          await _orderRepository.setSessionId(dataCart.data.sessionId!);
+        }
+        yield createCartSession.fold(
+          (error) => OrderState.loadFailure(OrderFailure.reorderCartFail()),
+          (list) => OrderState.reorderCartSuccess(list!.data),
+        );
+      },
       removeCart: (r) async* {
         final removeCart = await _orderRepository.removeProduct(r.request);
         final paymentType = await _orderRepository.getPaymentMethodID();

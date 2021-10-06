@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -32,13 +33,24 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
                   icon: Icon(Icons.arrow_back),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
-                title: Text(
-                  'Pesan Antar',
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    color: Colors.black,
+                title:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  ImageIcon(
+                    AssetImage(
+                      AppAssets.iconOutletOrderDelivery,
+                    ),
+                    size: 24,
+                    color: AppColors.redD12B34,
                   ),
-                ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text(I10n.current.cart_delivery,
+                      style: AppFont.textBlack15Bold),
+                  SizedBox(
+                    width: 48,
+                  ),
+                ]),
                 centerTitle: true,
                 backgroundColor: Colors.white,
               ),
