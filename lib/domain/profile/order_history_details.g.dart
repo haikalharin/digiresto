@@ -6,74 +6,75 @@ part of 'order_history_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OrderHistoryDetails _$$_OrderHistoryDetailsFromJson(
-        Map<String, dynamic> json) =>
-    _$_OrderHistoryDetails(
-      outletName: json['outletName'] as String,
-      outletId: json['outletId'] as num,
-      customerName: json['customerName'] as String,
-      customerEmail: json['customerEmail'] as String,
-      customerPhone: json['customerPhone'] as String,
-      recipientName: json['recipientName'] as String,
-      recipientPhone: json['recipientPhone'] as String,
-      customerTableNumber: json['customerTableNumber'] as String,
-      customerSmoking: json['customerSmoking'],
-      customerPax: json['customerPax'] as String,
-      customerNote: json['customerNote'] as String,
-      customerCarType: json['customerCarType'] as String,
-      customerCarColor: json['customerCarColor'] as String,
-      customerCarNumber: json['customerCarNumber'] as String,
-      eta: json['eta'] as String,
-      totalChange: json['totalChange'] as num,
-      discountAmount: json['discountAmount'] as num,
-      discountPercentage: json['discountPercentage'] as num,
-      finalAmount: json['finalAmount'] as num,
-      receiptTotalDiscount: json['receiptTotalDiscount'] as num,
-      roundAmount: json['roundAmount'] as num,
-      subtotal: json['subtotal'] as num,
-      totalDiscount: json['totalDiscount'] as num,
-      totalItemAmount: json['totalItemAmount'] as num,
-      totalItemCost: json['totalItemCost'] as num,
-      totalItemDiscount: json['totalItemDiscount'] as num,
-      totalService: json['totalService'] as num,
-      totalTax: json['totalTax'] as num,
-      voucherAmount: json['voucherAmount'] as num,
-      deliveryAmount: json['deliveryAmount'] as num,
-      totalPayment: json['totalPayment'] as num,
-      salesType: json['salesType'] as String,
-      items: (json['items'] as List<dynamic>)
-          .map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      itemWeight: json['itemWeight'] as num,
-      isUseVoucher: json['isUseVoucher'] as bool,
-      promos: json['promos'] as List<dynamic>,
-      paymentList: json['paymentList'] as List<dynamic>,
-      taxesAndServices: (json['taxesAndServices'] as List<dynamic>)
-          .map((e) => TaxesAndService.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      itemTotalAmount: json['itemTotalAmount'] as num,
-      note: json['note'] as String,
-      grabpawoon: json['grabpawoon'] == null
-          ? null
-          : Delivery.fromJson(json['grabpawoon'] as Map<String, dynamic>),
-      originalDeliveryAmount: json['originalDeliveryAmount'] as num?,
-      deviceTimestamp: DateTime.parse(json['deviceTimestamp'] as String),
-      receiptCode: json['receiptCode'] as String,
-      payments: (json['payments'] as List<dynamic>)
-          .map((e) => Payment.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      outlet: Outlet.fromJson(json['outlet'] as Map<String, dynamic>),
-      orderId: json['orderId'] as String?,
-      status: json['status'] as String,
-      deliveryDetail: DeliveryDetail.fromJson(
-          json['deliveryDetail'] as Map<String, dynamic>),
-      rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
-      delivery: json['delivery'] == null
-          ? null
-          : Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
-    );
+_$_OrderHistoryDetails _$_$_OrderHistoryDetailsFromJson(
+    Map<String, dynamic> json) {
+  return _$_OrderHistoryDetails(
+    outletName: json['outletName'] as String,
+    outletId: json['outletId'] as num,
+    customerName: json['customerName'] as String,
+    customerEmail: json['customerEmail'] as String,
+    customerPhone: json['customerPhone'] as String,
+    recipientName: json['recipientName'] as String,
+    recipientPhone: json['recipientPhone'] as String,
+    customerTableNumber: json['customerTableNumber'] as String,
+    customerSmoking: json['customerSmoking'],
+    customerPax: json['customerPax'] as String,
+    customerNote: json['customerNote'] as String,
+    customerCarType: json['customerCarType'] as String,
+    customerCarColor: json['customerCarColor'] as String,
+    customerCarNumber: json['customerCarNumber'] as String,
+    eta: json['eta'] as String,
+    totalChange: json['totalChange'] as num,
+    discountAmount: json['discountAmount'] as num,
+    discountPercentage: json['discountPercentage'] as num,
+    finalAmount: json['finalAmount'] as num,
+    receiptTotalDiscount: json['receiptTotalDiscount'] as num,
+    roundAmount: json['roundAmount'] as num,
+    subtotal: json['subtotal'] as num,
+    totalDiscount: json['totalDiscount'] as num,
+    totalItemAmount: json['totalItemAmount'] as num,
+    totalItemCost: json['totalItemCost'] as num,
+    totalItemDiscount: json['totalItemDiscount'] as num,
+    totalService: json['totalService'] as num,
+    totalTax: json['totalTax'] as num,
+    voucherAmount: json['voucherAmount'] as num,
+    deliveryAmount: json['deliveryAmount'] as num,
+    totalPayment: json['totalPayment'] as num,
+    salesType: json['salesType'] as String,
+    items: (json['items'] as List<dynamic>)
+        .map((e) => MenuItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    itemWeight: json['itemWeight'] as num,
+    isUseVoucher: json['isUseVoucher'] as bool,
+    promos: json['promos'] as List<dynamic>,
+    paymentList: json['paymentList'] as List<dynamic>,
+    taxesAndServices: (json['taxesAndServices'] as List<dynamic>)
+        .map((e) => TaxesAndService.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    itemTotalAmount: json['itemTotalAmount'] as num,
+    note: json['note'] as String,
+    grabpawoon: json['grabpawoon'] == null
+        ? null
+        : Delivery.fromJson(json['grabpawoon'] as Map<String, dynamic>),
+    originalDeliveryAmount: json['originalDeliveryAmount'] as num?,
+    deviceTimestamp: DateTime.parse(json['deviceTimestamp'] as String),
+    receiptCode: json['receiptCode'] as String,
+    payments: (json['payments'] as List<dynamic>)
+        .map((e) => Payment.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    outlet: Outlet.fromJson(json['outlet'] as Map<String, dynamic>),
+    orderId: json['orderId'] as String?,
+    status: json['status'] as String,
+    deliveryDetail:
+        DeliveryDetail.fromJson(json['deliveryDetail'] as Map<String, dynamic>),
+    rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
+    delivery: json['delivery'] == null
+        ? null
+        : Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
+  );
+}
 
-Map<String, dynamic> _$$_OrderHistoryDetailsToJson(
+Map<String, dynamic> _$_$_OrderHistoryDetailsToJson(
         _$_OrderHistoryDetails instance) =>
     <String, dynamic>{
       'outletName': instance.outletName,
@@ -129,15 +130,17 @@ Map<String, dynamic> _$$_OrderHistoryDetailsToJson(
       'delivery': instance.delivery,
     };
 
-_$_Delivery _$$_DeliveryFromJson(Map<String, dynamic> json) => _$_Delivery(
-      provider: json['provider'] as String,
-      price: json['price'] as num,
-      address: json['address'] as String,
-      shipmentMethod: json['shipmentMethod'] as String?,
-      location: json['location'] as List<dynamic>,
-    );
+_$_Delivery _$_$_DeliveryFromJson(Map<String, dynamic> json) {
+  return _$_Delivery(
+    provider: json['provider'] as String,
+    price: json['price'] as num,
+    address: json['address'] as String,
+    shipmentMethod: json['shipmentMethod'] as String?,
+    location: json['location'] as List<dynamic>,
+  );
+}
 
-Map<String, dynamic> _$$_DeliveryToJson(_$_Delivery instance) =>
+Map<String, dynamic> _$_$_DeliveryToJson(_$_Delivery instance) =>
     <String, dynamic>{
       'provider': instance.provider,
       'price': instance.price,
@@ -146,36 +149,37 @@ Map<String, dynamic> _$$_DeliveryToJson(_$_Delivery instance) =>
       'location': instance.location,
     };
 
-_$_DeliveryDetail _$$_DeliveryDetailFromJson(Map<String, dynamic> json) =>
-    _$_DeliveryDetail(
-      orderId: json['orderId'] as String? ?? '',
-      distance: json['distance'] as String?,
-      provider: json['provider'] as String?,
-      shipmentMethod: json['shipmentMethod'] as String?,
-      fee: json['fee'],
-      bookingCode: json['bookingCode'] as String?,
-      bookingExpired: json['bookingExpired'] as String?,
-      deliveryId: json['deliveryId'] as String?,
-      isDelivered: json['isDelivered'] as bool?,
-      from: json['from'] == null
-          ? null
-          : From.fromJson(json['from'] as Map<String, dynamic>),
-      to: json['to'] == null
-          ? null
-          : To.fromJson(json['to'] as Map<String, dynamic>),
-      status: (json['status'] as List<dynamic>?)
-          ?.map((e) => DeliveryStatus.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      isDelete: json['isDelete'] as bool?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-      ownerPhone: json['ownerPhone'] as String?,
-      driverName: json['driverName'] as String?,
-      driverPhone: json['driverPhone'] as String?,
-    );
+_$_DeliveryDetail _$_$_DeliveryDetailFromJson(Map<String, dynamic> json) {
+  return _$_DeliveryDetail(
+    orderId: json['orderId'] as String? ?? '',
+    distance: json['distance'] as String?,
+    provider: json['provider'] as String?,
+    shipmentMethod: json['shipmentMethod'] as String?,
+    fee: json['fee'],
+    bookingCode: json['bookingCode'] as String?,
+    bookingExpired: json['bookingExpired'] as String?,
+    deliveryId: json['deliveryId'] as String?,
+    isDelivered: json['isDelivered'] as bool?,
+    from: json['from'] == null
+        ? null
+        : From.fromJson(json['from'] as Map<String, dynamic>),
+    to: json['to'] == null
+        ? null
+        : To.fromJson(json['to'] as Map<String, dynamic>),
+    status: (json['status'] as List<dynamic>?)
+        ?.map((e) => DeliveryStatus.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    isDelete: json['isDelete'] as bool?,
+    createdDate: json['createdDate'] == null
+        ? null
+        : DateTime.parse(json['createdDate'] as String),
+    ownerPhone: json['ownerPhone'] as String?,
+    driverName: json['driverName'] as String?,
+    driverPhone: json['driverPhone'] as String?,
+  );
+}
 
-Map<String, dynamic> _$$_DeliveryDetailToJson(_$_DeliveryDetail instance) =>
+Map<String, dynamic> _$_$_DeliveryDetailToJson(_$_DeliveryDetail instance) =>
     <String, dynamic>{
       'orderId': instance.orderId,
       'distance': instance.distance,
@@ -196,66 +200,72 @@ Map<String, dynamic> _$$_DeliveryDetailToJson(_$_DeliveryDetail instance) =>
       'driverPhone': instance.driverPhone,
     };
 
-_$_From _$$_FromFromJson(Map<String, dynamic> json) => _$_From(
-      location: json['location'] as List<dynamic>,
-      name: json['name'] as String,
-      address: json['address'] as String,
-      phone: json['phone'] as String,
-    );
+_$_From _$_$_FromFromJson(Map<String, dynamic> json) {
+  return _$_From(
+    location: json['location'] as List<dynamic>,
+    name: json['name'] as String,
+    address: json['address'] as String,
+    phone: json['phone'] as String,
+  );
+}
 
-Map<String, dynamic> _$$_FromToJson(_$_From instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_FromToJson(_$_From instance) => <String, dynamic>{
       'location': instance.location,
       'name': instance.name,
       'address': instance.address,
       'phone': instance.phone,
     };
 
-_$_To _$$_ToFromJson(Map<String, dynamic> json) => _$_To(
-      location: json['location'] as List<dynamic>,
-      name: json['name'] as String,
-      address: json['address'] as String,
-      phone: json['phone'] as String,
-    );
+_$_To _$_$_ToFromJson(Map<String, dynamic> json) {
+  return _$_To(
+    location: json['location'] as List<dynamic>,
+    name: json['name'] as String,
+    address: json['address'] as String,
+    phone: json['phone'] as String,
+  );
+}
 
-Map<String, dynamic> _$$_ToToJson(_$_To instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_ToToJson(_$_To instance) => <String, dynamic>{
       'location': instance.location,
       'name': instance.name,
       'address': instance.address,
       'phone': instance.phone,
     };
 
-_$_MenuItem _$$_MenuItemFromJson(Map<String, dynamic> json) => _$_MenuItem(
-      productId: json['productId'] as num,
-      title: json['title'] as String,
-      price: json['price'] as num,
-      code: json['code'] as String,
-      cost: json['cost'] as num,
-      qty: json['qty'] as num,
-      basicWeight: json['basicWeight'] as num,
-      weight: json['weight'] as num,
-      category: json['category'] as String,
-      categoryId: json['categoryId'] as num,
-      categoryCode: json['categoryCode'] as String,
-      sku: json['sku'] as String?,
-      note: json['note'] as String,
-      isPreorder: json['isPreorder'] as bool,
-      preorderPeriod: json['preorderPeriod'] as num,
-      amount: json['amount'] as num,
-      modifiers: json['modifiers'] as List<dynamic>,
-      modifiersAmount: json['modifiersAmount'] as num,
-      modifiersCost: json['modifiersCost'] as num,
-      modifiersDiscount: json['modifiersDiscount'] as num,
-      singleModifiersAmount: json['singleModifiersAmount'] as num,
-      subtotal: json['subtotal'] as num,
-      serviceAmount: json['serviceAmount'] as num,
-      taxAmount: json['taxAmount'] as num,
-      isStock: json['isStock'] as bool?,
-      img: json['img'] as String,
-      image: json['image'] as String,
-      transactionLimit: json['transactionLimit'] as num?,
-    );
+_$_MenuItem _$_$_MenuItemFromJson(Map<String, dynamic> json) {
+  return _$_MenuItem(
+    productId: json['productId'] as num,
+    title: json['title'] as String,
+    price: json['price'] as num,
+    code: json['code'] as String,
+    cost: json['cost'] as num,
+    qty: json['qty'] as num,
+    basicWeight: json['basicWeight'] as num,
+    weight: json['weight'] as num,
+    category: json['category'] as String,
+    categoryId: json['categoryId'] as num,
+    categoryCode: json['categoryCode'] as String,
+    sku: json['sku'] as String?,
+    note: json['note'] as String,
+    isPreorder: json['isPreorder'] as bool,
+    preorderPeriod: json['preorderPeriod'] as num,
+    amount: json['amount'] as num,
+    modifiers: json['modifiers'] as List<dynamic>,
+    modifiersAmount: json['modifiersAmount'] as num,
+    modifiersCost: json['modifiersCost'] as num,
+    modifiersDiscount: json['modifiersDiscount'] as num,
+    singleModifiersAmount: json['singleModifiersAmount'] as num,
+    subtotal: json['subtotal'] as num,
+    serviceAmount: json['serviceAmount'] as num,
+    taxAmount: json['taxAmount'] as num,
+    isStock: json['isStock'] as bool?,
+    img: json['img'] as String,
+    image: json['image'] as String,
+    transactionLimit: json['transactionLimit'] as num?,
+  );
+}
 
-Map<String, dynamic> _$$_MenuItemToJson(_$_MenuItem instance) =>
+Map<String, dynamic> _$_$_MenuItemToJson(_$_MenuItem instance) =>
     <String, dynamic>{
       'productId': instance.productId,
       'title': instance.title,
@@ -287,26 +297,28 @@ Map<String, dynamic> _$$_MenuItemToJson(_$_MenuItem instance) =>
       'transactionLimit': instance.transactionLimit,
     };
 
-_$_Outlet _$$_OutletFromJson(Map<String, dynamic> json) => _$_Outlet(
-      name: json['name'] as String,
-      outletId: json['outletId'] as String,
-      merchantId: json['merchantId'] as String,
-      cashierId: json['cashierId'] as String,
-      deviceId: json['deviceId'] as String,
-      assignId: json['assignId'] as String,
-      quinos: Rating.fromJson(json['quinos'] as Map<String, dynamic>),
-      isNonSku: json['isNonSku'] as bool,
-      moka: Rating.fromJson(json['moka'] as Map<String, dynamic>),
-      detail: Detail.fromJson(json['detail'] as Map<String, dynamic>),
-      isLive: json['isLive'] as bool,
-      orderMethod:
-          OrderMethod.fromJson(json['orderMethod'] as Map<String, dynamic>),
-      isDelete: json['isDelete'] as bool,
-      createdDate: DateTime.parse(json['createdDate'] as String),
-      poCutoff: json['poCutoff'] as String,
-    );
+_$_Outlet _$_$_OutletFromJson(Map<String, dynamic> json) {
+  return _$_Outlet(
+    name: json['name'] as String,
+    outletId: json['outletId'] as String,
+    merchantId: json['merchantId'] as String,
+    cashierId: json['cashierId'] as String,
+    deviceId: json['deviceId'] as String,
+    assignId: json['assignId'] as String,
+    quinos: Rating.fromJson(json['quinos'] as Map<String, dynamic>),
+    isNonSku: json['isNonSku'] as bool,
+    moka: Rating.fromJson(json['moka'] as Map<String, dynamic>),
+    detail: Detail.fromJson(json['detail'] as Map<String, dynamic>),
+    isLive: json['isLive'] as bool,
+    orderMethod:
+        OrderMethod.fromJson(json['orderMethod'] as Map<String, dynamic>),
+    isDelete: json['isDelete'] as bool,
+    createdDate: DateTime.parse(json['createdDate'] as String),
+    poCutoff: json['poCutoff'] as String,
+  );
+}
 
-Map<String, dynamic> _$$_OutletToJson(_$_Outlet instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_OutletToJson(_$_Outlet instance) => <String, dynamic>{
       'name': instance.name,
       'outletId': instance.outletId,
       'merchantId': instance.merchantId,
@@ -324,22 +336,24 @@ Map<String, dynamic> _$$_OutletToJson(_$_Outlet instance) => <String, dynamic>{
       'poCutoff': instance.poCutoff,
     };
 
-_$_Detail _$$_DetailFromJson(Map<String, dynamic> json) => _$_Detail(
-      name: json['name'] as String,
-      address: json['address'] as String,
-      taxesAndServices: json['taxesAndServices'] as List<dynamic>,
-      location: json['location'] as List<dynamic>,
-      phone: json['phone'] as String?,
-      kurirPrice: json['kurirPrice'],
-      deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      driverPhone: json['driverPhone'] as String,
-      area: json['area'] as List<dynamic>,
-      deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
-    );
+_$_Detail _$_$_DetailFromJson(Map<String, dynamic> json) {
+  return _$_Detail(
+    name: json['name'] as String,
+    address: json['address'] as String,
+    taxesAndServices: json['taxesAndServices'] as List<dynamic>,
+    location: json['location'] as List<dynamic>,
+    phone: json['phone'] as String?,
+    kurirPrice: json['kurirPrice'],
+    deliveryProvider: (json['deliveryProvider'] as List<dynamic>)
+        .map((e) => e as String)
+        .toList(),
+    driverPhone: json['driverPhone'] as String,
+    area: json['area'] as List<dynamic>,
+    deliveryLocation: json['deliveryLocation'] as List<dynamic>?,
+  );
+}
 
-Map<String, dynamic> _$$_DetailToJson(_$_Detail instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_DetailToJson(_$_Detail instance) => <String, dynamic>{
       'name': instance.name,
       'address': instance.address,
       'taxesAndServices': instance.taxesAndServices,
@@ -352,40 +366,44 @@ Map<String, dynamic> _$$_DetailToJson(_$_Detail instance) => <String, dynamic>{
       'deliveryLocation': instance.deliveryLocation,
     };
 
-_$_Rating _$$_RatingFromJson(Map<String, dynamic> json) => _$_Rating(
-      rating: json['rating'] as num?,
-      review: json['review'] as String?,
-    );
+_$_Rating _$_$_RatingFromJson(Map<String, dynamic> json) {
+  return _$_Rating(
+    rating: json['rating'] as num?,
+    review: json['review'] as String?,
+  );
+}
 
-Map<String, dynamic> _$$_RatingToJson(_$_Rating instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_RatingToJson(_$_Rating instance) => <String, dynamic>{
       'rating': instance.rating,
       'review': instance.review,
     };
 
-_$_OrderMethod _$$_OrderMethodFromJson(Map<String, dynamic> json) =>
-    _$_OrderMethod(
-      forceSelect: json['forceSelect'] as bool,
-      defaultList: (json['defaultList'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-    );
+_$_OrderMethod _$_$_OrderMethodFromJson(Map<String, dynamic> json) {
+  return _$_OrderMethod(
+    forceSelect: json['forceSelect'] as bool,
+    defaultList:
+        (json['defaultList'] as List<dynamic>).map((e) => e as String).toList(),
+  );
+}
 
-Map<String, dynamic> _$$_OrderMethodToJson(_$_OrderMethod instance) =>
+Map<String, dynamic> _$_$_OrderMethodToJson(_$_OrderMethod instance) =>
     <String, dynamic>{
       'forceSelect': instance.forceSelect,
       'defaultList': instance.defaultList,
     };
 
-_$_Payment _$$_PaymentFromJson(Map<String, dynamic> json) => _$_Payment(
-      amount: json['amount'] as num,
-      change: json['change'] as num,
-      method: json['method'] as String,
-      companyPaymentMethodId: json['companyPaymentMethodId'] as String,
-      timestamp: DateTime.parse(json['timestamp'] as String),
-      title: json['title'] as String,
-    );
+_$_Payment _$_$_PaymentFromJson(Map<String, dynamic> json) {
+  return _$_Payment(
+    amount: json['amount'] as num,
+    change: json['change'] as num,
+    method: json['method'] as String,
+    companyPaymentMethodId: json['companyPaymentMethodId'] as String,
+    timestamp: DateTime.parse(json['timestamp'] as String),
+    title: json['title'] as String,
+  );
+}
 
-Map<String, dynamic> _$$_PaymentToJson(_$_Payment instance) =>
+Map<String, dynamic> _$_$_PaymentToJson(_$_Payment instance) =>
     <String, dynamic>{
       'amount': instance.amount,
       'change': instance.change,
@@ -395,23 +413,24 @@ Map<String, dynamic> _$$_PaymentToJson(_$_Payment instance) =>
       'title': instance.title,
     };
 
-_$_TaxesAndService _$$_TaxesAndServiceFromJson(Map<String, dynamic> json) =>
-    _$_TaxesAndService(
-      id: json['id'] as num,
-      code: json['code'] as String?,
-      name: json['name'] as String,
-      type: json['type'] as String?,
-      amount: json['amount'] as num,
-      salesTypes: (json['salesTypes'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      paymentTypes: (json['paymentTypes'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      title: json['title'] as String,
-    );
+_$_TaxesAndService _$_$_TaxesAndServiceFromJson(Map<String, dynamic> json) {
+  return _$_TaxesAndService(
+    id: json['id'] as num,
+    code: json['code'] as String?,
+    name: json['name'] as String,
+    type: json['type'] as String?,
+    amount: json['amount'] as num,
+    salesTypes: (json['salesTypes'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    paymentTypes: (json['paymentTypes'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    title: json['title'] as String,
+  );
+}
 
-Map<String, dynamic> _$$_TaxesAndServiceToJson(_$_TaxesAndService instance) =>
+Map<String, dynamic> _$_$_TaxesAndServiceToJson(_$_TaxesAndService instance) =>
     <String, dynamic>{
       'id': instance.id,
       'code': instance.code,
@@ -423,15 +442,16 @@ Map<String, dynamic> _$$_TaxesAndServiceToJson(_$_TaxesAndService instance) =>
       'title': instance.title,
     };
 
-_$_DeliveryStatus _$$_DeliveryStatusFromJson(Map<String, dynamic> json) =>
-    _$_DeliveryStatus(
-      state: json['state'] as String,
-      updatedDate: DateTime.parse(json['updatedDate'] as String),
-      description: json['description'] as String,
-      statusDescription: json['statusDescription'] as String,
-    );
+_$_DeliveryStatus _$_$_DeliveryStatusFromJson(Map<String, dynamic> json) {
+  return _$_DeliveryStatus(
+    state: json['state'] as String,
+    updatedDate: DateTime.parse(json['updatedDate'] as String),
+    description: json['description'] as String,
+    statusDescription: json['statusDescription'] as String,
+  );
+}
 
-Map<String, dynamic> _$$_DeliveryStatusToJson(_$_DeliveryStatus instance) =>
+Map<String, dynamic> _$_$_DeliveryStatusToJson(_$_DeliveryStatus instance) =>
     <String, dynamic>{
       'state': instance.state,
       'updatedDate': instance.updatedDate.toIso8601String(),
