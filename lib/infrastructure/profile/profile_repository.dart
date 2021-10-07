@@ -42,8 +42,9 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<ProfileFailure, IList<OrderHistory>>>
-      getOrderOnProcess() async {
+  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderOnProcess({
+    required int page,
+  }) async {
     final _apiUrl = Endpoints.urlGetTransactionHistory;
     try {
       final apiResult = await _networkService.postHttp(
@@ -52,7 +53,7 @@ class ProfileRepository implements IProfileRepository {
         content: {
           "query_string": {
             "outletName": "",
-            "page": 1,
+            "page": page,
             "limit": 10,
             "status": "waiting,process,ready,delivered",
           },
@@ -147,8 +148,9 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<ProfileFailure, IList<OrderHistory>>>
-      getOrderCompleted() async {
+  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderCompleted({
+    required int page,
+  }) async {
     final _apiUrl = Endpoints.urlGetTransactionHistory;
     try {
       final apiResult = await _networkService.postHttp(
@@ -157,7 +159,7 @@ class ProfileRepository implements IProfileRepository {
         content: {
           "query_string": {
             "outletName": "",
-            "page": 1,
+            "page": page,
             "limit": 10,
             "status":
                 "cancelled,reject,auto_reject,done,auto_done,failed,refund"

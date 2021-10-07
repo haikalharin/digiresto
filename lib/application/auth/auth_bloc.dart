@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
+import 'package:digiresto/domain/notification/i_notification_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,8 +14,10 @@ part 'auth_bloc.freezed.dart';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthFacade _authFacade;
+  final INotificationRepository _notificationRepository;
 
-  AuthBloc(this._authFacade) : super(const AuthState.initial());
+  AuthBloc(this._authFacade, this._notificationRepository)
+      : super(const AuthState.initial());
 
   @override
   Stream<AuthState> mapEventToState(
@@ -32,7 +35,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               }),
           (user) => user.fold(
             () => const AuthState.unauthenticated(),
-            (a) => AuthState.authenticated(),
+            (a) {
+              _notificationRepository.postUserTokenToAPI();
+              return AuthState.authenticated();
+            },
           ),
         );
       },

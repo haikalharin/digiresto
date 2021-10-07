@@ -51,6 +51,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   Stream<OrderState> mapEventToState(OrderEvent gEvent) async* {
     yield* gEvent.map(
       getOutletByLocation: (request) async* {
+        yield OrderState.loadInProgress();
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final queryString = request.request.queryString.copyWith(

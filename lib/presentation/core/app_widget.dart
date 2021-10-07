@@ -26,13 +26,7 @@ class AppWidget extends HookWidget {
           loadLocale: (value) => Get.updateLocale(value.locale),
         );
       },
-      child:
-          //  (context, state) {
-          // return state.maybeMap(
-          //     orElse: () => SizedBox.shrink(),
-          //     loadLocale: (lcl) {
-          // return
-          GetMaterialApp(
+      child: GetMaterialApp(
         title: 'Digiresto',
         navigatorKey: alice.getNavigatorKey(),
         enableLog: false,
@@ -55,9 +49,5 @@ class AppWidget extends HookWidget {
         builder: EasyLoading.init(),
       ),
     );
-    // }
-    // );
-    //   },
-    // );
   }
 }

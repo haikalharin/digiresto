@@ -14,8 +14,12 @@ abstract class IProfileRepository {
     required FullName fullName,
     required EmailAddress emailAddress,
   });
-  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderOnProcess();
-  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderCompleted();
+  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderOnProcess({
+    required int page,
+  });
+  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderCompleted({
+    required int page,
+  });
   Future<Either<ProfileFailure, IList<OrderPending>>> getOrderPending();
   Future<Either<ProfileFailure, OrderHistoryDetails>> getOrderHistoryDetails({
     required String receiptCode,

@@ -17,13 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$NotificationEventTearOff {
   const _$NotificationEventTearOff();
 
-  _NewNotification newNotification(NotificationData notification) {
+  _NewNotification newNotification(OSNotificationReceivedEvent notification) {
     return _NewNotification(
       notification,
     );
   }
 
-  _NotificationOpened notificationOpened(NotificationData notification) {
+  _NotificationOpened notificationOpened(
+      OSNotificationOpenedResult notification) {
     return _NotificationOpened(
       notification,
     );
@@ -31,6 +32,10 @@ class _$NotificationEventTearOff {
 
   _GetListNotification getListNotification() {
     return const _GetListNotification();
+  }
+
+  _Started started() {
+    return const _Started();
   }
 }
 
@@ -41,23 +46,30 @@ const $NotificationEvent = _$NotificationEventTearOff();
 mixin _$NotificationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(NotificationData notification) newNotification,
-    required TResult Function(NotificationData notification) notificationOpened,
+    required TResult Function(OSNotificationReceivedEvent notification)
+        newNotification,
+    required TResult Function(OSNotificationOpenedResult notification)
+        notificationOpened,
     required TResult Function() getListNotification,
+    required TResult Function() started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,6 +78,7 @@ mixin _$NotificationEvent {
     required TResult Function(_NewNotification value) newNotification,
     required TResult Function(_NotificationOpened value) notificationOpened,
     required TResult Function(_GetListNotification value) getListNotification,
+    required TResult Function(_Started value) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +86,7 @@ mixin _$NotificationEvent {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +94,7 @@ mixin _$NotificationEvent {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,9 +122,7 @@ abstract class _$NewNotificationCopyWith<$Res> {
   factory _$NewNotificationCopyWith(
           _NewNotification value, $Res Function(_NewNotification) then) =
       __$NewNotificationCopyWithImpl<$Res>;
-  $Res call({NotificationData notification});
-
-  $NotificationDataCopyWith<$Res> get notification;
+  $Res call({OSNotificationReceivedEvent notification});
 }
 
 /// @nodoc
@@ -131,15 +144,8 @@ class __$NewNotificationCopyWithImpl<$Res>
       notification == freezed
           ? _value.notification
           : notification // ignore: cast_nullable_to_non_nullable
-              as NotificationData,
+              as OSNotificationReceivedEvent,
     ));
-  }
-
-  @override
-  $NotificationDataCopyWith<$Res> get notification {
-    return $NotificationDataCopyWith<$Res>(_value.notification, (value) {
-      return _then(_value.copyWith(notification: value));
-    });
   }
 }
 
@@ -149,7 +155,7 @@ class _$_NewNotification implements _NewNotification {
   const _$_NewNotification(this.notification);
 
   @override
-  final NotificationData notification;
+  final OSNotificationReceivedEvent notification;
 
   @override
   String toString() {
@@ -177,9 +183,12 @@ class _$_NewNotification implements _NewNotification {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(NotificationData notification) newNotification,
-    required TResult Function(NotificationData notification) notificationOpened,
+    required TResult Function(OSNotificationReceivedEvent notification)
+        newNotification,
+    required TResult Function(OSNotificationOpenedResult notification)
+        notificationOpened,
     required TResult Function() getListNotification,
+    required TResult Function() started,
   }) {
     return newNotification(notification);
   }
@@ -187,9 +196,11 @@ class _$_NewNotification implements _NewNotification {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
   }) {
     return newNotification?.call(notification);
   }
@@ -197,9 +208,11 @@ class _$_NewNotification implements _NewNotification {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
     required TResult orElse(),
   }) {
     if (newNotification != null) {
@@ -214,6 +227,7 @@ class _$_NewNotification implements _NewNotification {
     required TResult Function(_NewNotification value) newNotification,
     required TResult Function(_NotificationOpened value) notificationOpened,
     required TResult Function(_GetListNotification value) getListNotification,
+    required TResult Function(_Started value) started,
   }) {
     return newNotification(this);
   }
@@ -224,6 +238,7 @@ class _$_NewNotification implements _NewNotification {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
   }) {
     return newNotification?.call(this);
   }
@@ -234,6 +249,7 @@ class _$_NewNotification implements _NewNotification {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
     if (newNotification != null) {
@@ -244,10 +260,11 @@ class _$_NewNotification implements _NewNotification {
 }
 
 abstract class _NewNotification implements NotificationEvent {
-  const factory _NewNotification(NotificationData notification) =
+  const factory _NewNotification(OSNotificationReceivedEvent notification) =
       _$_NewNotification;
 
-  NotificationData get notification => throw _privateConstructorUsedError;
+  OSNotificationReceivedEvent get notification =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$NewNotificationCopyWith<_NewNotification> get copyWith =>
       throw _privateConstructorUsedError;
@@ -258,9 +275,7 @@ abstract class _$NotificationOpenedCopyWith<$Res> {
   factory _$NotificationOpenedCopyWith(
           _NotificationOpened value, $Res Function(_NotificationOpened) then) =
       __$NotificationOpenedCopyWithImpl<$Res>;
-  $Res call({NotificationData notification});
-
-  $NotificationDataCopyWith<$Res> get notification;
+  $Res call({OSNotificationOpenedResult notification});
 }
 
 /// @nodoc
@@ -282,15 +297,8 @@ class __$NotificationOpenedCopyWithImpl<$Res>
       notification == freezed
           ? _value.notification
           : notification // ignore: cast_nullable_to_non_nullable
-              as NotificationData,
+              as OSNotificationOpenedResult,
     ));
-  }
-
-  @override
-  $NotificationDataCopyWith<$Res> get notification {
-    return $NotificationDataCopyWith<$Res>(_value.notification, (value) {
-      return _then(_value.copyWith(notification: value));
-    });
   }
 }
 
@@ -300,7 +308,7 @@ class _$_NotificationOpened implements _NotificationOpened {
   const _$_NotificationOpened(this.notification);
 
   @override
-  final NotificationData notification;
+  final OSNotificationOpenedResult notification;
 
   @override
   String toString() {
@@ -328,9 +336,12 @@ class _$_NotificationOpened implements _NotificationOpened {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(NotificationData notification) newNotification,
-    required TResult Function(NotificationData notification) notificationOpened,
+    required TResult Function(OSNotificationReceivedEvent notification)
+        newNotification,
+    required TResult Function(OSNotificationOpenedResult notification)
+        notificationOpened,
     required TResult Function() getListNotification,
+    required TResult Function() started,
   }) {
     return notificationOpened(notification);
   }
@@ -338,9 +349,11 @@ class _$_NotificationOpened implements _NotificationOpened {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
   }) {
     return notificationOpened?.call(notification);
   }
@@ -348,9 +361,11 @@ class _$_NotificationOpened implements _NotificationOpened {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
     required TResult orElse(),
   }) {
     if (notificationOpened != null) {
@@ -365,6 +380,7 @@ class _$_NotificationOpened implements _NotificationOpened {
     required TResult Function(_NewNotification value) newNotification,
     required TResult Function(_NotificationOpened value) notificationOpened,
     required TResult Function(_GetListNotification value) getListNotification,
+    required TResult Function(_Started value) started,
   }) {
     return notificationOpened(this);
   }
@@ -375,6 +391,7 @@ class _$_NotificationOpened implements _NotificationOpened {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
   }) {
     return notificationOpened?.call(this);
   }
@@ -385,6 +402,7 @@ class _$_NotificationOpened implements _NotificationOpened {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
     if (notificationOpened != null) {
@@ -395,10 +413,11 @@ class _$_NotificationOpened implements _NotificationOpened {
 }
 
 abstract class _NotificationOpened implements NotificationEvent {
-  const factory _NotificationOpened(NotificationData notification) =
+  const factory _NotificationOpened(OSNotificationOpenedResult notification) =
       _$_NotificationOpened;
 
-  NotificationData get notification => throw _privateConstructorUsedError;
+  OSNotificationOpenedResult get notification =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$NotificationOpenedCopyWith<_NotificationOpened> get copyWith =>
       throw _privateConstructorUsedError;
@@ -444,9 +463,12 @@ class _$_GetListNotification implements _GetListNotification {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(NotificationData notification) newNotification,
-    required TResult Function(NotificationData notification) notificationOpened,
+    required TResult Function(OSNotificationReceivedEvent notification)
+        newNotification,
+    required TResult Function(OSNotificationOpenedResult notification)
+        notificationOpened,
     required TResult Function() getListNotification,
+    required TResult Function() started,
   }) {
     return getListNotification();
   }
@@ -454,9 +476,11 @@ class _$_GetListNotification implements _GetListNotification {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
   }) {
     return getListNotification?.call();
   }
@@ -464,9 +488,11 @@ class _$_GetListNotification implements _GetListNotification {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(NotificationData notification)? newNotification,
-    TResult Function(NotificationData notification)? notificationOpened,
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
     TResult Function()? getListNotification,
+    TResult Function()? started,
     required TResult orElse(),
   }) {
     if (getListNotification != null) {
@@ -481,6 +507,7 @@ class _$_GetListNotification implements _GetListNotification {
     required TResult Function(_NewNotification value) newNotification,
     required TResult Function(_NotificationOpened value) notificationOpened,
     required TResult Function(_GetListNotification value) getListNotification,
+    required TResult Function(_Started value) started,
   }) {
     return getListNotification(this);
   }
@@ -491,6 +518,7 @@ class _$_GetListNotification implements _GetListNotification {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
   }) {
     return getListNotification?.call(this);
   }
@@ -501,6 +529,7 @@ class _$_GetListNotification implements _GetListNotification {
     TResult Function(_NewNotification value)? newNotification,
     TResult Function(_NotificationOpened value)? notificationOpened,
     TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
     required TResult orElse(),
   }) {
     if (getListNotification != null) {
@@ -515,12 +544,129 @@ abstract class _GetListNotification implements NotificationEvent {
 }
 
 /// @nodoc
+abstract class _$StartedCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
+      __$StartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StartedCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
+      : super(_value, (v) => _then(v as _Started));
+
+  @override
+  _Started get _value => super._value as _Started;
+}
+
+/// @nodoc
+
+class _$_Started implements _Started {
+  const _$_Started();
+
+  @override
+  String toString() {
+    return 'NotificationEvent.started()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Started);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OSNotificationReceivedEvent notification)
+        newNotification,
+    required TResult Function(OSNotificationOpenedResult notification)
+        notificationOpened,
+    required TResult Function() getListNotification,
+    required TResult Function() started,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
+    TResult Function()? getListNotification,
+    TResult Function()? started,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OSNotificationReceivedEvent notification)? newNotification,
+    TResult Function(OSNotificationOpenedResult notification)?
+        notificationOpened,
+    TResult Function()? getListNotification,
+    TResult Function()? started,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NewNotification value) newNotification,
+    required TResult Function(_NotificationOpened value) notificationOpened,
+    required TResult Function(_GetListNotification value) getListNotification,
+    required TResult Function(_Started value) started,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NewNotification value)? newNotification,
+    TResult Function(_NotificationOpened value)? notificationOpened,
+    TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NewNotification value)? newNotification,
+    TResult Function(_NotificationOpened value)? notificationOpened,
+    TResult Function(_GetListNotification value)? getListNotification,
+    TResult Function(_Started value)? started,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Started implements NotificationEvent {
+  const factory _Started() = _$_Started;
+}
+
+/// @nodoc
 class _$NotificationStateTearOff {
   const _$NotificationStateTearOff();
 
   _NotificationState call(
       {required IList<NotificationData> notifications,
-      required Option<NotificationData> notificationOpenedOption,
+      required Option<OSNotificationOpenedResult> notificationOpenedOption,
       required Option<Either<NotificationFailure, Unit>>
           fetchFailureOrUnitOption,
       required bool isLoading}) {
@@ -540,7 +686,7 @@ const $NotificationState = _$NotificationStateTearOff();
 mixin _$NotificationState {
   IList<NotificationData> get notifications =>
       throw _privateConstructorUsedError;
-  Option<NotificationData> get notificationOpenedOption =>
+  Option<OSNotificationOpenedResult> get notificationOpenedOption =>
       throw _privateConstructorUsedError;
   Option<Either<NotificationFailure, Unit>> get fetchFailureOrUnitOption =>
       throw _privateConstructorUsedError;
@@ -558,7 +704,7 @@ abstract class $NotificationStateCopyWith<$Res> {
       _$NotificationStateCopyWithImpl<$Res>;
   $Res call(
       {IList<NotificationData> notifications,
-      Option<NotificationData> notificationOpenedOption,
+      Option<OSNotificationOpenedResult> notificationOpenedOption,
       Option<Either<NotificationFailure, Unit>> fetchFailureOrUnitOption,
       bool isLoading});
 }
@@ -587,7 +733,7 @@ class _$NotificationStateCopyWithImpl<$Res>
       notificationOpenedOption: notificationOpenedOption == freezed
           ? _value.notificationOpenedOption
           : notificationOpenedOption // ignore: cast_nullable_to_non_nullable
-              as Option<NotificationData>,
+              as Option<OSNotificationOpenedResult>,
       fetchFailureOrUnitOption: fetchFailureOrUnitOption == freezed
           ? _value.fetchFailureOrUnitOption
           : fetchFailureOrUnitOption // ignore: cast_nullable_to_non_nullable
@@ -609,7 +755,7 @@ abstract class _$NotificationStateCopyWith<$Res>
   @override
   $Res call(
       {IList<NotificationData> notifications,
-      Option<NotificationData> notificationOpenedOption,
+      Option<OSNotificationOpenedResult> notificationOpenedOption,
       Option<Either<NotificationFailure, Unit>> fetchFailureOrUnitOption,
       bool isLoading});
 }
@@ -640,7 +786,7 @@ class __$NotificationStateCopyWithImpl<$Res>
       notificationOpenedOption: notificationOpenedOption == freezed
           ? _value.notificationOpenedOption
           : notificationOpenedOption // ignore: cast_nullable_to_non_nullable
-              as Option<NotificationData>,
+              as Option<OSNotificationOpenedResult>,
       fetchFailureOrUnitOption: fetchFailureOrUnitOption == freezed
           ? _value.fetchFailureOrUnitOption
           : fetchFailureOrUnitOption // ignore: cast_nullable_to_non_nullable
@@ -666,7 +812,7 @@ class _$_NotificationState extends _NotificationState {
   @override
   final IList<NotificationData> notifications;
   @override
-  final Option<NotificationData> notificationOpenedOption;
+  final Option<OSNotificationOpenedResult> notificationOpenedOption;
   @override
   final Option<Either<NotificationFailure, Unit>> fetchFailureOrUnitOption;
   @override
@@ -716,7 +862,7 @@ class _$_NotificationState extends _NotificationState {
 abstract class _NotificationState extends NotificationState {
   const factory _NotificationState(
       {required IList<NotificationData> notifications,
-      required Option<NotificationData> notificationOpenedOption,
+      required Option<OSNotificationOpenedResult> notificationOpenedOption,
       required Option<Either<NotificationFailure, Unit>>
           fetchFailureOrUnitOption,
       required bool isLoading}) = _$_NotificationState;
@@ -726,7 +872,7 @@ abstract class _NotificationState extends NotificationState {
   IList<NotificationData> get notifications =>
       throw _privateConstructorUsedError;
   @override
-  Option<NotificationData> get notificationOpenedOption =>
+  Option<OSNotificationOpenedResult> get notificationOpenedOption =>
       throw _privateConstructorUsedError;
   @override
   Option<Either<NotificationFailure, Unit>> get fetchFailureOrUnitOption =>

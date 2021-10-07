@@ -38,7 +38,8 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
         yield state.copyWith(
           orderOnProccessFailureOrSuccess: none(),
         );
-        final failureOrSuccess = await _profileRepository.getOrderOnProcess();
+        final failureOrSuccess =
+            await _profileRepository.getOrderOnProcess(page: 1);
         yield state.copyWith(
           orderOnProccessFailureOrSuccess: optionOf(failureOrSuccess),
         );
@@ -47,7 +48,8 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
         yield state.copyWith(
           orderCompletedFailureOrSuccess: none(),
         );
-        final failureOrSuccess = await _profileRepository.getOrderCompleted();
+        final failureOrSuccess =
+            await _profileRepository.getOrderCompleted(page: 1);
         yield state.copyWith(
           orderCompletedFailureOrSuccess: optionOf(failureOrSuccess),
         );

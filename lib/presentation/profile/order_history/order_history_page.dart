@@ -10,6 +10,7 @@ import 'package:digiresto/presentation/profile/order_history/widgets/order_pendi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class OrderHistoryPage extends StatelessWidget {
   const OrderHistoryPage({Key? key}) : super(key: key);
@@ -61,76 +62,106 @@ class OrderHistoryWidget extends StatelessWidget {
           controller: _controller.controller,
           children: [
             //waiting payment
-            state.orderPendingFailureOrSuccess.fold(
-              () => Center(
-                child: CircularProgressIndicator(),
-              ),
-              (data) => data.fold(
-                (failure) => Center(
-                  child: Text(
-                    failure.maybeMap(
-                      orElse: () => 'Error',
-                      serverError: (_) => 'Server Error',
-                      noData: (_) => i10n.history_empty_title,
+            RefreshIndicator(
+              onRefresh: () async {
+                _bloc.add(OrderHistoryEvent.orderPendingOpen());
+              },
+              child: Stack(
+                children: <Widget>[
+                  ListView(),
+                  state.orderPendingFailureOrSuccess.fold(
+                    () => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    (data) => data.fold(
+                      (failure) => Center(
+                        child: Text(
+                          failure.maybeMap(
+                            orElse: () => 'Error',
+                            serverError: (_) => 'Server Error',
+                            noData: (_) => i10n.history_empty_title,
+                          ),
+                        ),
+                      ),
+                      (orderPendingList) => ListView.builder(
+                        itemCount: orderPendingList.length,
+                        itemBuilder: (context, index) {
+                          return OrderPendingWidget(orderPendingList[index]);
+                        },
+                      ),
                     ),
                   ),
-                ),
-                (orderPendingList) => ListView.builder(
-                  itemCount: orderPendingList.length,
-                  itemBuilder: (context, index) {
-                    return OrderPendingWidget(orderPendingList[index]);
-                  },
-                ),
+                ],
               ),
             ),
             //purchase processed
-            state.orderOnProccessFailureOrSuccess.fold(
-              () => Center(
-                child: CircularProgressIndicator(),
-              ),
-              (data) => data.fold(
-                (failure) => Center(
-                  child: Text(
-                    failure.maybeMap(
-                      orElse: () => 'Error',
-                      serverError: (_) => 'Server Error',
-                      noData: (_) => i10n.history_empty_title,
+            RefreshIndicator(
+              onRefresh: () async {
+                _bloc.add(OrderHistoryEvent.orderOnProcessOpen());
+              },
+              child: Stack(
+                children: <Widget>[
+                  ListView(),
+                  state.orderOnProccessFailureOrSuccess.fold(
+                    () => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    (data) => data.fold(
+                      (failure) => Center(
+                        child: Text(
+                          failure.maybeMap(
+                            orElse: () => 'Error',
+                            serverError: (_) => 'Server Error',
+                            noData: (_) => i10n.history_empty_title,
+                          ),
+                        ),
+                      ),
+                      (orderOnProcess) => ListView.builder(
+                        itemCount: orderOnProcess.length,
+                        itemBuilder: (context, index) {
+                          return OrderOnProcessWidget(orderOnProcess[index],
+                              refresh: () => _bloc
+                                  .add(OrderHistoryEvent.orderOnProcessOpen()));
+                        },
+                      ),
                     ),
                   ),
-                ),
-                (orderOnProcess) => ListView.builder(
-                  itemCount: orderOnProcess.length,
-                  itemBuilder: (context, index) {
-                    return OrderOnProcessWidget(orderOnProcess[index],
-                        refresh: () =>
-                            _bloc.add(OrderHistoryEvent.orderOnProcessOpen()));
-                  },
-                ),
+                ],
               ),
             ),
             //purchase completed
-            state.orderCompletedFailureOrSuccess.fold(
-              () => Center(
-                child: CircularProgressIndicator(),
-              ),
-              (data) => data.fold(
-                (failure) => Center(
-                  child: Text(
-                    failure.maybeMap(
-                      orElse: () => 'Error',
-                      serverError: (_) => 'Server Error',
-                      noData: (_) => i10n.history_empty_title,
+            RefreshIndicator(
+              onRefresh: () async {
+                _bloc.add(OrderHistoryEvent.orderCompletedOpen());
+              },
+              child: Stack(
+                children: <Widget>[
+                  ListView(),
+                  state.orderCompletedFailureOrSuccess.fold(
+                    () => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    (data) => data.fold(
+                      (failure) => Center(
+                        child: Text(
+                          failure.maybeMap(
+                            orElse: () => 'Error',
+                            serverError: (_) => 'Server Error',
+                            noData: (_) => i10n.history_empty_title,
+                          ),
+                        ),
+                      ),
+                      (orderCompleted) => ListView.builder(
+                        itemCount: orderCompleted.length,
+                        itemBuilder: (context, index) {
+                          return OrderCompletedWidget(orderCompleted[index],
+                              refresh: () => _bloc
+                                  .add(OrderHistoryEvent.orderCompletedOpen()));
+                        },
+                      ),
                     ),
                   ),
-                ),
-                (orderCompleted) => ListView.builder(
-                  itemCount: orderCompleted.length,
-                  itemBuilder: (context, index) {
-                    return OrderCompletedWidget(orderCompleted[index],
-                        refresh: () =>
-                            _bloc.add(OrderHistoryEvent.orderCompletedOpen()));
-                  },
-                ),
+                ],
               ),
             ),
           ],

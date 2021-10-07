@@ -5,7 +5,7 @@ class NotificationState with _$NotificationState {
   const NotificationState._();
   const factory NotificationState({
     required IList<NotificationData> notifications,
-    required Option<NotificationData> notificationOpenedOption,
+    required Option<OSNotificationOpenedResult> notificationOpenedOption,
     required Option<Either<NotificationFailure, Unit>> fetchFailureOrUnitOption,
     required bool isLoading,
   }) = _NotificationState;
