@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'home_user_bloc.dart';
 
@@ -48,14 +47,6 @@ mixin _$HomeUserEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getStaticBanner,
-    TResult Function()? getListAddress,
-    TResult Function()? getActiveAddress,
-    TResult Function()? getCartSessionID,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
@@ -70,14 +61,6 @@ mixin _$HomeUserEvent {
     required TResult Function(_GetListAddress value) getListAddress,
     required TResult Function(_GetActiveAddress value) getActiveAddress,
     required TResult Function(_GetCartSessionID value) getCartSessionID,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetStaticBanner value)? getStaticBanner,
-    TResult Function(_GetListAddress value)? getListAddress,
-    TResult Function(_GetActiveAddress value)? getActiveAddress,
-    TResult Function(_GetCartSessionID value)? getCartSessionID,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -158,17 +141,6 @@ class _$_GetStaticBanner implements _GetStaticBanner {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getStaticBanner,
-    TResult Function()? getListAddress,
-    TResult Function()? getActiveAddress,
-    TResult Function()? getCartSessionID,
-  }) {
-    return getStaticBanner?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
@@ -191,17 +163,6 @@ class _$_GetStaticBanner implements _GetStaticBanner {
     required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getStaticBanner(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetStaticBanner value)? getStaticBanner,
-    TResult Function(_GetListAddress value)? getListAddress,
-    TResult Function(_GetActiveAddress value)? getActiveAddress,
-    TResult Function(_GetCartSessionID value)? getCartSessionID,
-  }) {
-    return getStaticBanner?.call(this);
   }
 
   @override
@@ -274,17 +235,6 @@ class _$_GetListAddress implements _GetListAddress {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getStaticBanner,
-    TResult Function()? getListAddress,
-    TResult Function()? getActiveAddress,
-    TResult Function()? getCartSessionID,
-  }) {
-    return getListAddress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
@@ -307,17 +257,6 @@ class _$_GetListAddress implements _GetListAddress {
     required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getListAddress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetStaticBanner value)? getStaticBanner,
-    TResult Function(_GetListAddress value)? getListAddress,
-    TResult Function(_GetActiveAddress value)? getActiveAddress,
-    TResult Function(_GetCartSessionID value)? getCartSessionID,
-  }) {
-    return getListAddress?.call(this);
   }
 
   @override
@@ -390,17 +329,6 @@ class _$_GetActiveAddress implements _GetActiveAddress {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getStaticBanner,
-    TResult Function()? getListAddress,
-    TResult Function()? getActiveAddress,
-    TResult Function()? getCartSessionID,
-  }) {
-    return getActiveAddress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
@@ -423,17 +351,6 @@ class _$_GetActiveAddress implements _GetActiveAddress {
     required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getActiveAddress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetStaticBanner value)? getStaticBanner,
-    TResult Function(_GetListAddress value)? getListAddress,
-    TResult Function(_GetActiveAddress value)? getActiveAddress,
-    TResult Function(_GetCartSessionID value)? getCartSessionID,
-  }) {
-    return getActiveAddress?.call(this);
   }
 
   @override
@@ -506,17 +423,6 @@ class _$_GetCartSessionID implements _GetCartSessionID {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getStaticBanner,
-    TResult Function()? getListAddress,
-    TResult Function()? getActiveAddress,
-    TResult Function()? getCartSessionID,
-  }) {
-    return getCartSessionID?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getStaticBanner,
     TResult Function()? getListAddress,
@@ -539,17 +445,6 @@ class _$_GetCartSessionID implements _GetCartSessionID {
     required TResult Function(_GetCartSessionID value) getCartSessionID,
   }) {
     return getCartSessionID(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetStaticBanner value)? getStaticBanner,
-    TResult Function(_GetListAddress value)? getListAddress,
-    TResult Function(_GetActiveAddress value)? getActiveAddress,
-    TResult Function(_GetCartSessionID value)? getCartSessionID,
-  }) {
-    return getCartSessionID?.call(this);
   }
 
   @override
@@ -663,22 +558,6 @@ mixin _$HomeUserState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -711,22 +590,6 @@ mixin _$HomeUserState {
     required TResult Function(_GetCartSessionIDSuccess value)
         getCartSessionIDSuccess,
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -820,25 +683,6 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -879,25 +723,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return initial?.call(this);
   }
 
   @override
@@ -986,25 +811,6 @@ class _$_LoadInProgress implements _LoadInProgress {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return loadInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1045,25 +851,6 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return loadInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return loadInProgress?.call(this);
   }
 
   @override
@@ -1151,25 +938,6 @@ class _$_LoadSuccess implements _LoadSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return loadSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1210,25 +978,6 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return loadSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return loadSuccess?.call(this);
   }
 
   @override
@@ -1316,25 +1065,6 @@ class _$_LoadFailure implements _LoadFailure {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return loadFailure?.call();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1375,25 +1105,6 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return loadFailure?.call(this);
   }
 
   @override
@@ -1507,25 +1218,6 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return bannerLoadSuccess?.call(list);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1566,25 +1258,6 @@ class _$_BannerLoadSuccess implements _BannerLoadSuccess {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return bannerLoadSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return bannerLoadSuccess?.call(this);
   }
 
   @override
@@ -1704,25 +1377,6 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return bannerLoadFailed?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1763,25 +1417,6 @@ class _$_BannerLoadFailed implements _BannerLoadFailed {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return bannerLoadFailed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return bannerLoadFailed?.call(this);
   }
 
   @override
@@ -1900,25 +1535,6 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return addressListSuccess?.call(list);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1959,25 +1575,6 @@ class _$_AddressLoadSuccess implements _AddressLoadSuccess {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return addressListSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return addressListSuccess?.call(this);
   }
 
   @override
@@ -2097,25 +1694,6 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return addressListFailed?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2156,25 +1734,6 @@ class _$_AddressLoadFailed implements _AddressLoadFailed {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return addressListFailed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return addressListFailed?.call(this);
   }
 
   @override
@@ -2305,25 +1864,6 @@ class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return getActiveAddressSuccess?.call(response);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2364,25 +1904,6 @@ class _$_GetActiveAddressSuccess implements _GetActiveAddressSuccess {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return getActiveAddressSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return getActiveAddressSuccess?.call(this);
   }
 
   @override
@@ -2503,25 +2024,6 @@ class _$_GetActiveAddressFail implements _GetActiveAddressFail {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return getActiveAddressFail?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2562,25 +2064,6 @@ class _$_GetActiveAddressFail implements _GetActiveAddressFail {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return getActiveAddressFail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return getActiveAddressFail?.call(this);
   }
 
   @override
@@ -2702,25 +2185,6 @@ class _$_GetCartSessionIDSuccess implements _GetCartSessionIDSuccess {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return getCartSessionIDSuccess?.call(sessionID);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2761,25 +2225,6 @@ class _$_GetCartSessionIDSuccess implements _GetCartSessionIDSuccess {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return getCartSessionIDSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return getCartSessionIDSuccess?.call(this);
   }
 
   @override
@@ -2900,25 +2345,6 @@ class _$_GetCartSessionIDFail implements _GetCartSessionIDFail {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function()? loadSuccess,
-    TResult Function()? loadFailure,
-    TResult Function(List<StaticBanner> list)? bannerLoadSuccess,
-    TResult Function(String message)? bannerLoadFailed,
-    TResult Function(List<UserAddress> list)? addressListSuccess,
-    TResult Function(String message)? addressListFailed,
-    TResult Function(UserAddress response)? getActiveAddressSuccess,
-    TResult Function(String message)? getActiveAddressFail,
-    TResult Function(String? sessionID)? getCartSessionIDSuccess,
-    TResult Function(String message)? getCartSessionIDFail,
-  }) {
-    return getCartSessionIDFail?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2959,25 +2385,6 @@ class _$_GetCartSessionIDFail implements _GetCartSessionIDFail {
     required TResult Function(_GetCartSessionIDFail value) getCartSessionIDFail,
   }) {
     return getCartSessionIDFail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    TResult Function(_BannerLoadSuccess value)? bannerLoadSuccess,
-    TResult Function(_BannerLoadFailed value)? bannerLoadFailed,
-    TResult Function(_AddressLoadSuccess value)? addressListSuccess,
-    TResult Function(_AddressLoadFailed value)? addressListFailed,
-    TResult Function(_GetActiveAddressSuccess value)? getActiveAddressSuccess,
-    TResult Function(_GetActiveAddressFail value)? getActiveAddressFail,
-    TResult Function(_GetCartSessionIDSuccess value)? getCartSessionIDSuccess,
-    TResult Function(_GetCartSessionIDFail value)? getCartSessionIDFail,
-  }) {
-    return getCartSessionIDFail?.call(this);
   }
 
   @override

@@ -66,6 +66,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getOutletByCategory: (request) async* {
+        yield OrderState.loadInProgress();
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final queryString = request.request.queryString.copyWith(
@@ -80,6 +81,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getOutletByMerchant: (r) async* {
+        yield OrderState.loadInProgress();
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final queryString = r.request.queryString.copyWith(
@@ -94,6 +96,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getListPromoOutlet: (request) async* {
+        yield OrderState.loadInProgress();
         final getListPromoOutlet =
             await _orderRepository.getListPromoOutlet(request.request);
         yield getListPromoOutlet.fold(
@@ -130,6 +133,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getDigiDiscountOutlet: (request) async* {
+        yield OrderState.loadInProgress();
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final queryString = request.request.queryString.copyWith(
