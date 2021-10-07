@@ -3,7 +3,6 @@ import 'package:digiresto/application/profile/order_details/order_details_bloc.d
 import 'package:digiresto/application/profile/order_details/rating_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
-import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
@@ -372,7 +371,8 @@ class OrderDetailsDone extends StatelessWidget {
                             eta: orderDetails.eta,
                             outletName: orderDetails.outletName,
                             receiptCode: orderDetails.receiptCode,
-                            salesType: orderDetails.salesType,
+                            salesType:
+                                orderDetails.outlet.orderMethod.defaultList[0],
                             items: items,
                           ),
                         ),

@@ -31,7 +31,6 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
           // Will be called whenever a notification is received in foreground
           // Display Notification, pass null param for not displaying the notification
           add(NotificationEvent.newNotification(event));
-
           event.complete(event.notification);
         });
 
