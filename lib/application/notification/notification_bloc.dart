@@ -26,15 +26,15 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   ) async* {
     yield* event.map(
       started: (event) async* {
-        _notificationRepository.init();
-        _notificationRepository.setNotificationForeground((event) {
+        await _notificationRepository.init();
+        await _notificationRepository.setNotificationForeground((event) {
           // Will be called whenever a notification is received in foreground
           // Display Notification, pass null param for not displaying the notification
           add(NotificationEvent.newNotification(event));
           event.complete(event.notification);
         });
 
-        _notificationRepository.setNotificationOpened((event) {
+        await _notificationRepository.setNotificationOpened((event) {
           add(NotificationEvent.notificationOpened(event));
         });
       },

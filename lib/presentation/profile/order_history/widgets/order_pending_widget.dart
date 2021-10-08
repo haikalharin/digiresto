@@ -390,35 +390,40 @@ class OrderPendingWidget extends StatelessWidget {
                 CustomButton(
                   label: 'Lakukan Pembayaran',
                   onPressed: () {
-                    Get.dialog(CustomDialog(
-                      backgroundColor: Colors.white,
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'Digiresto',
-                            style: Styles.dialogTitleStyle,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            i10n.history_pending_inquiry_pending,
-                            style: Styles.dialogSubtitleStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          CustomButton(
-                            onPressed: () => Get.back(),
-                            color: AppColors.mainColor,
-                            fontColor: Colors.white,
-                            label: i10n.alert_ok,
-                          ),
-                        ],
+                    Get.dialog(
+                      CustomDialog(
+                        backgroundColor: Colors.white,
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Digiresto',
+                              style: Styles.dialogTitleStyle,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              orderPending.billingDetail.expiresAt
+                                      .isAfter(DateTime.now())
+                                  ? i10n.history_pending_inquiry_pending
+                                  : i10n.history_pending_inquiry_expired,
+                              style: Styles.dialogSubtitleStyle,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            CustomButton(
+                              onPressed: () => Get.back(),
+                              color: AppColors.mainColor,
+                              fontColor: Colors.white,
+                              label: i10n.alert_ok,
+                            ),
+                          ],
+                        ),
                       ),
-                    ));
+                    );
                   },
                   color: AppColors.mainColor,
                   fontColor: Colors.white,
