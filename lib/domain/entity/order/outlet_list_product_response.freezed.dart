@@ -614,8 +614,8 @@ class _$OutletListProductDataSubModifierGroupResponseTearOff {
       required String name,
       required int price,
       required int weight,
-      required String description,
-      required String image,
+      required String? description,
+      required String? image,
       required String categoryId,
       required String categoryCode,
       required String categoryName}) {
@@ -662,8 +662,8 @@ mixin _$OutletListProductDataSubModifierGroupResponse {
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
   String get categoryName => throw _privateConstructorUsedError;
@@ -693,8 +693,8 @@ abstract class $OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
       String name,
       int price,
       int weight,
-      String description,
-      String image,
+      String? description,
+      String? image,
       String categoryId,
       String categoryCode,
       String categoryName});
@@ -777,11 +777,11 @@ class _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -818,8 +818,8 @@ abstract class _$OutletListProductDataSubModifierGroupResponseCopyWith<$Res>
       String name,
       int price,
       int weight,
-      String description,
-      String image,
+      String? description,
+      String? image,
       String categoryId,
       String categoryCode,
       String categoryName});
@@ -906,11 +906,11 @@ class __$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -976,9 +976,9 @@ class _$_OutletListProductDataSubModifierGroupResponse
   @override
   final int weight;
   @override
-  final String description;
+  final String? description;
   @override
-  final String image;
+  final String? image;
   @override
   final String categoryId;
   @override
@@ -1084,8 +1084,8 @@ abstract class _OutletListProductDataSubModifierGroupResponse
           required String name,
           required int price,
           required int weight,
-          required String description,
-          required String image,
+          required String? description,
+          required String? image,
           required String categoryId,
           required String categoryCode,
           required String categoryName}) =
@@ -1118,9 +1118,9 @@ abstract class _OutletListProductDataSubModifierGroupResponse
   @override
   int get weight => throw _privateConstructorUsedError;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  String get image => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   @override
   String get categoryId => throw _privateConstructorUsedError;
   @override
@@ -1155,8 +1155,8 @@ class _$OutletListProductDataResponseTearOff {
       required String name,
       required int price,
       required int weight,
-      required String description,
-      required String image,
+      required String? description,
+      required String? image,
       required String categoryId,
       required String categoryCode,
       required String categoryName,
@@ -1206,8 +1206,8 @@ mixin _$OutletListProductDataResponse {
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
   String get categoryName => throw _privateConstructorUsedError;
@@ -1240,8 +1240,8 @@ abstract class $OutletListProductDataResponseCopyWith<$Res> {
       String name,
       int price,
       int weight,
-      String description,
-      String image,
+      String? description,
+      String? image,
       String categoryId,
       String categoryCode,
       String categoryName,
@@ -1327,11 +1327,11 @@ class _$OutletListProductDataResponseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -1376,8 +1376,8 @@ abstract class _$OutletListProductDataResponseCopyWith<$Res>
       String name,
       int price,
       int weight,
-      String description,
-      String image,
+      String? description,
+      String? image,
       String categoryId,
       String categoryCode,
       String categoryName,
@@ -1467,11 +1467,11 @@ class __$OutletListProductDataResponseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -1547,9 +1547,9 @@ class _$_OutletListProductDataResponse
   @override
   final int weight;
   @override
-  final String description;
+  final String? description;
   @override
-  final String image;
+  final String? image;
   @override
   final String categoryId;
   @override
@@ -1665,8 +1665,8 @@ abstract class _OutletListProductDataResponse
       required String name,
       required int price,
       required int weight,
-      required String description,
-      required String image,
+      required String? description,
+      required String? image,
       required String categoryId,
       required String categoryCode,
       required String categoryName,
@@ -1700,9 +1700,9 @@ abstract class _OutletListProductDataResponse
   @override
   int get weight => throw _privateConstructorUsedError;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  String get image => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   @override
   String get categoryId => throw _privateConstructorUsedError;
   @override
@@ -1742,8 +1742,8 @@ class _$OutletListProductDataVariantResponseTearOff {
       required String name,
       required int price,
       required int weight,
-      required String description,
-      required String image,
+      required String? description,
+      required String? image,
       required String categoryId,
       required String categoryCode,
       required String categoryName,
@@ -1792,8 +1792,8 @@ mixin _$OutletListProductDataVariantResponse {
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   String get categoryCode => throw _privateConstructorUsedError;
   String get categoryName => throw _privateConstructorUsedError;
@@ -1825,8 +1825,8 @@ abstract class $OutletListProductDataVariantResponseCopyWith<$Res> {
       String name,
       int price,
       int weight,
-      String description,
-      String image,
+      String? description,
+      String? image,
       String categoryId,
       String categoryCode,
       String categoryName,
@@ -1910,11 +1910,11 @@ class _$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -1955,8 +1955,8 @@ abstract class _$OutletListProductDataVariantResponseCopyWith<$Res>
       String name,
       int price,
       int weight,
-      String description,
-      String image,
+      String? description,
+      String? image,
       String categoryId,
       String categoryCode,
       String categoryName,
@@ -2044,11 +2044,11 @@ class __$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       categoryId: categoryId == freezed
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -2119,9 +2119,9 @@ class _$_OutletListProductDataVariantResponse
   @override
   final int weight;
   @override
-  final String description;
+  final String? description;
   @override
-  final String image;
+  final String? image;
   @override
   final String categoryId;
   @override
@@ -2232,8 +2232,8 @@ abstract class _OutletListProductDataVariantResponse
       required String name,
       required int price,
       required int weight,
-      required String description,
-      required String image,
+      required String? description,
+      required String? image,
       required String categoryId,
       required String categoryCode,
       required String categoryName,
@@ -2267,9 +2267,9 @@ abstract class _OutletListProductDataVariantResponse
   @override
   int get weight => throw _privateConstructorUsedError;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  String get image => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   @override
   String get categoryId => throw _privateConstructorUsedError;
   @override

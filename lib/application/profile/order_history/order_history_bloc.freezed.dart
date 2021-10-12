@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'order_history_bloc.dart';
 
@@ -42,6 +43,13 @@ mixin _$OrderHistoryEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? orderPendingOpen,
+    TResult Function()? orderOnProcessOpen,
+    TResult Function()? orderCompletedOpen,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? orderPendingOpen,
     TResult Function()? orderOnProcessOpen,
@@ -54,6 +62,13 @@ mixin _$OrderHistoryEvent {
     required TResult Function(_OrderPendingOpen value) orderPendingOpen,
     required TResult Function(_OrderOnProcessOpen value) orderOnProcessOpen,
     required TResult Function(_OrderCompletedOpen value) orderCompletedOpen,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OrderPendingOpen value)? orderPendingOpen,
+    TResult Function(_OrderOnProcessOpen value)? orderOnProcessOpen,
+    TResult Function(_OrderCompletedOpen value)? orderCompletedOpen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -132,6 +147,16 @@ class _$_OrderPendingOpen implements _OrderPendingOpen {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? orderPendingOpen,
+    TResult Function()? orderOnProcessOpen,
+    TResult Function()? orderCompletedOpen,
+  }) {
+    return orderPendingOpen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? orderPendingOpen,
     TResult Function()? orderOnProcessOpen,
@@ -152,6 +177,16 @@ class _$_OrderPendingOpen implements _OrderPendingOpen {
     required TResult Function(_OrderCompletedOpen value) orderCompletedOpen,
   }) {
     return orderPendingOpen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OrderPendingOpen value)? orderPendingOpen,
+    TResult Function(_OrderOnProcessOpen value)? orderOnProcessOpen,
+    TResult Function(_OrderCompletedOpen value)? orderCompletedOpen,
+  }) {
+    return orderPendingOpen?.call(this);
   }
 
   @override
@@ -222,6 +257,16 @@ class _$_OrderOnProcessOpen implements _OrderOnProcessOpen {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? orderPendingOpen,
+    TResult Function()? orderOnProcessOpen,
+    TResult Function()? orderCompletedOpen,
+  }) {
+    return orderOnProcessOpen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? orderPendingOpen,
     TResult Function()? orderOnProcessOpen,
@@ -242,6 +287,16 @@ class _$_OrderOnProcessOpen implements _OrderOnProcessOpen {
     required TResult Function(_OrderCompletedOpen value) orderCompletedOpen,
   }) {
     return orderOnProcessOpen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OrderPendingOpen value)? orderPendingOpen,
+    TResult Function(_OrderOnProcessOpen value)? orderOnProcessOpen,
+    TResult Function(_OrderCompletedOpen value)? orderCompletedOpen,
+  }) {
+    return orderOnProcessOpen?.call(this);
   }
 
   @override
@@ -312,6 +367,16 @@ class _$_OrderCompletedOpen implements _OrderCompletedOpen {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? orderPendingOpen,
+    TResult Function()? orderOnProcessOpen,
+    TResult Function()? orderCompletedOpen,
+  }) {
+    return orderCompletedOpen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? orderPendingOpen,
     TResult Function()? orderOnProcessOpen,
@@ -332,6 +397,16 @@ class _$_OrderCompletedOpen implements _OrderCompletedOpen {
     required TResult Function(_OrderCompletedOpen value) orderCompletedOpen,
   }) {
     return orderCompletedOpen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OrderPendingOpen value)? orderPendingOpen,
+    TResult Function(_OrderOnProcessOpen value)? orderOnProcessOpen,
+    TResult Function(_OrderCompletedOpen value)? orderCompletedOpen,
+  }) {
+    return orderCompletedOpen?.call(this);
   }
 
   @override

@@ -261,23 +261,23 @@ class _$DetailOutletDataResponseTearOff {
       {required String endpointName,
       required String id,
       required String name,
-      required String city,
+      required String? city,
       required List<String> salesTypes,
       required bool isOpen,
       required dynamic logo,
-      required String merchantId,
-      required String merchantName,
+      required String? merchantId,
+      required String? merchantName,
       required dynamic merchantLogo,
-      required String callbackUrl,
-      required String description,
-      required String address,
+      required String? callbackUrl,
+      required String? description,
+      required String? address,
       required List<String> location,
-      required String ownerPhone,
-      required String poCutoff,
+      required String? ownerPhone,
+      required String? poCutoff,
       required int rating,
       required int totalReview,
       required DetailOutletDataLastUpdateResponse lastUpdate,
-      required String merchantCategory}) {
+      required String? merchantCategory}) {
     return _DetailOutletDataResponse(
       endpointName: endpointName,
       id: id,
@@ -315,24 +315,24 @@ mixin _$DetailOutletDataResponse {
   String get endpointName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
   List<String> get salesTypes => throw _privateConstructorUsedError;
   bool get isOpen => throw _privateConstructorUsedError;
   dynamic get logo => throw _privateConstructorUsedError;
-  String get merchantId => throw _privateConstructorUsedError;
-  String get merchantName => throw _privateConstructorUsedError;
+  String? get merchantId => throw _privateConstructorUsedError;
+  String? get merchantName => throw _privateConstructorUsedError;
   dynamic get merchantLogo => throw _privateConstructorUsedError;
-  String get callbackUrl => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  String? get callbackUrl => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
   List<String> get location => throw _privateConstructorUsedError;
-  String get ownerPhone => throw _privateConstructorUsedError;
-  String get poCutoff => throw _privateConstructorUsedError;
+  String? get ownerPhone => throw _privateConstructorUsedError;
+  String? get poCutoff => throw _privateConstructorUsedError;
   int get rating => throw _privateConstructorUsedError;
   int get totalReview => throw _privateConstructorUsedError;
   DetailOutletDataLastUpdateResponse get lastUpdate =>
       throw _privateConstructorUsedError;
-  String get merchantCategory => throw _privateConstructorUsedError;
+  String? get merchantCategory => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -349,23 +349,23 @@ abstract class $DetailOutletDataResponseCopyWith<$Res> {
       {String endpointName,
       String id,
       String name,
-      String city,
+      String? city,
       List<String> salesTypes,
       bool isOpen,
       dynamic logo,
-      String merchantId,
-      String merchantName,
+      String? merchantId,
+      String? merchantName,
       dynamic merchantLogo,
-      String callbackUrl,
-      String description,
-      String address,
+      String? callbackUrl,
+      String? description,
+      String? address,
       List<String> location,
-      String ownerPhone,
-      String poCutoff,
+      String? ownerPhone,
+      String? poCutoff,
       int rating,
       int totalReview,
       DetailOutletDataLastUpdateResponse lastUpdate,
-      String merchantCategory});
+      String? merchantCategory});
 
   $DetailOutletDataLastUpdateResponseCopyWith<$Res> get lastUpdate;
 }
@@ -418,7 +418,7 @@ class _$DetailOutletDataResponseCopyWithImpl<$Res>
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
@@ -434,11 +434,11 @@ class _$DetailOutletDataResponseCopyWithImpl<$Res>
       merchantId: merchantId == freezed
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       merchantName: merchantName == freezed
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       merchantLogo: merchantLogo == freezed
           ? _value.merchantLogo
           : merchantLogo // ignore: cast_nullable_to_non_nullable
@@ -446,15 +446,15 @@ class _$DetailOutletDataResponseCopyWithImpl<$Res>
       callbackUrl: callbackUrl == freezed
           ? _value.callbackUrl
           : callbackUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -462,11 +462,11 @@ class _$DetailOutletDataResponseCopyWithImpl<$Res>
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       poCutoff: poCutoff == freezed
           ? _value.poCutoff
           : poCutoff // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -482,7 +482,7 @@ class _$DetailOutletDataResponseCopyWithImpl<$Res>
       merchantCategory: merchantCategory == freezed
           ? _value.merchantCategory
           : merchantCategory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -506,23 +506,23 @@ abstract class _$DetailOutletDataResponseCopyWith<$Res>
       {String endpointName,
       String id,
       String name,
-      String city,
+      String? city,
       List<String> salesTypes,
       bool isOpen,
       dynamic logo,
-      String merchantId,
-      String merchantName,
+      String? merchantId,
+      String? merchantName,
       dynamic merchantLogo,
-      String callbackUrl,
-      String description,
-      String address,
+      String? callbackUrl,
+      String? description,
+      String? address,
       List<String> location,
-      String ownerPhone,
-      String poCutoff,
+      String? ownerPhone,
+      String? poCutoff,
       int rating,
       int totalReview,
       DetailOutletDataLastUpdateResponse lastUpdate,
-      String merchantCategory});
+      String? merchantCategory});
 
   @override
   $DetailOutletDataLastUpdateResponseCopyWith<$Res> get lastUpdate;
@@ -579,7 +579,7 @@ class __$DetailOutletDataResponseCopyWithImpl<$Res>
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       salesTypes: salesTypes == freezed
           ? _value.salesTypes
           : salesTypes // ignore: cast_nullable_to_non_nullable
@@ -595,11 +595,11 @@ class __$DetailOutletDataResponseCopyWithImpl<$Res>
       merchantId: merchantId == freezed
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       merchantName: merchantName == freezed
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       merchantLogo: merchantLogo == freezed
           ? _value.merchantLogo
           : merchantLogo // ignore: cast_nullable_to_non_nullable
@@ -607,15 +607,15 @@ class __$DetailOutletDataResponseCopyWithImpl<$Res>
       callbackUrl: callbackUrl == freezed
           ? _value.callbackUrl
           : callbackUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -623,11 +623,11 @@ class __$DetailOutletDataResponseCopyWithImpl<$Res>
       ownerPhone: ownerPhone == freezed
           ? _value.ownerPhone
           : ownerPhone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       poCutoff: poCutoff == freezed
           ? _value.poCutoff
           : poCutoff // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -643,7 +643,7 @@ class __$DetailOutletDataResponseCopyWithImpl<$Res>
       merchantCategory: merchantCategory == freezed
           ? _value.merchantCategory
           : merchantCategory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -683,7 +683,7 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
   @override
   final String name;
   @override
-  final String city;
+  final String? city;
   @override
   final List<String> salesTypes;
   @override
@@ -691,23 +691,23 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
   @override
   final dynamic logo;
   @override
-  final String merchantId;
+  final String? merchantId;
   @override
-  final String merchantName;
+  final String? merchantName;
   @override
   final dynamic merchantLogo;
   @override
-  final String callbackUrl;
+  final String? callbackUrl;
   @override
-  final String description;
+  final String? description;
   @override
-  final String address;
+  final String? address;
   @override
   final List<String> location;
   @override
-  final String ownerPhone;
+  final String? ownerPhone;
   @override
-  final String poCutoff;
+  final String? poCutoff;
   @override
   final int rating;
   @override
@@ -715,7 +715,7 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
   @override
   final DetailOutletDataLastUpdateResponse lastUpdate;
   @override
-  final String merchantCategory;
+  final String? merchantCategory;
 
   @override
   String toString() {
@@ -823,23 +823,23 @@ abstract class _DetailOutletDataResponse implements DetailOutletDataResponse {
       {required String endpointName,
       required String id,
       required String name,
-      required String city,
+      required String? city,
       required List<String> salesTypes,
       required bool isOpen,
       required dynamic logo,
-      required String merchantId,
-      required String merchantName,
+      required String? merchantId,
+      required String? merchantName,
       required dynamic merchantLogo,
-      required String callbackUrl,
-      required String description,
-      required String address,
+      required String? callbackUrl,
+      required String? description,
+      required String? address,
       required List<String> location,
-      required String ownerPhone,
-      required String poCutoff,
+      required String? ownerPhone,
+      required String? poCutoff,
       required int rating,
       required int totalReview,
       required DetailOutletDataLastUpdateResponse lastUpdate,
-      required String merchantCategory}) = _$_DetailOutletDataResponse;
+      required String? merchantCategory}) = _$_DetailOutletDataResponse;
 
   factory _DetailOutletDataResponse.fromJson(Map<String, dynamic> json) =
       _$_DetailOutletDataResponse.fromJson;
@@ -851,7 +851,7 @@ abstract class _DetailOutletDataResponse implements DetailOutletDataResponse {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  String get city => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
   @override
   List<String> get salesTypes => throw _privateConstructorUsedError;
   @override
@@ -859,23 +859,23 @@ abstract class _DetailOutletDataResponse implements DetailOutletDataResponse {
   @override
   dynamic get logo => throw _privateConstructorUsedError;
   @override
-  String get merchantId => throw _privateConstructorUsedError;
+  String? get merchantId => throw _privateConstructorUsedError;
   @override
-  String get merchantName => throw _privateConstructorUsedError;
+  String? get merchantName => throw _privateConstructorUsedError;
   @override
   dynamic get merchantLogo => throw _privateConstructorUsedError;
   @override
-  String get callbackUrl => throw _privateConstructorUsedError;
+  String? get callbackUrl => throw _privateConstructorUsedError;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
   @override
   List<String> get location => throw _privateConstructorUsedError;
   @override
-  String get ownerPhone => throw _privateConstructorUsedError;
+  String? get ownerPhone => throw _privateConstructorUsedError;
   @override
-  String get poCutoff => throw _privateConstructorUsedError;
+  String? get poCutoff => throw _privateConstructorUsedError;
   @override
   int get rating => throw _privateConstructorUsedError;
   @override
@@ -884,7 +884,7 @@ abstract class _DetailOutletDataResponse implements DetailOutletDataResponse {
   DetailOutletDataLastUpdateResponse get lastUpdate =>
       throw _privateConstructorUsedError;
   @override
-  String get merchantCategory => throw _privateConstructorUsedError;
+  String? get merchantCategory => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DetailOutletDataResponseCopyWith<_DetailOutletDataResponse> get copyWith =>

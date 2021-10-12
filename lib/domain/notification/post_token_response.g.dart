@@ -6,15 +6,14 @@ part of 'post_token_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostTokenResponse _$_$_PostTokenResponseFromJson(Map<String, dynamic> json) {
-  return _$_PostTokenResponse(
-    code: json['code'] as String,
-    status: json['status'] as String,
-    message: json['message'] as String,
-  );
-}
+_$_PostTokenResponse _$$_PostTokenResponseFromJson(Map<String, dynamic> json) =>
+    _$_PostTokenResponse(
+      code: json['code'] as String,
+      status: json['status'] as String,
+      message: json['message'] as String,
+    );
 
-Map<String, dynamic> _$_$_PostTokenResponseToJson(
+Map<String, dynamic> _$$_PostTokenResponseToJson(
         _$_PostTokenResponse instance) =>
     <String, dynamic>{
       'code': instance.code,

@@ -52,7 +52,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
     String url = "";
     widget.product.forEach((element) {
       if (widget.productCart[index].productId.toString() == element.id) {
-        url = element.image;
+        url = element.image ?? '';
       }
     });
     return url;

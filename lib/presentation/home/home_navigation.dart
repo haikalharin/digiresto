@@ -18,6 +18,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
   void _onNavBarTapped(int index) {
     controller.indexOnTap.value = index;
     controller.getCartSession();
+    selectTab();
   }
 
   void selectTab() {
@@ -57,17 +58,18 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
                       ),
                     )),
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      "Keranjang pesananmu kosong, silahkan pilih menu",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    )),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    "Keranjang pesananmu kosong, silahkan pilih menu",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "roboto",
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
                 Container(
                   padding: EdgeInsets.all(5),
                   width: MediaQuery.of(context).size.width - 100,
@@ -113,19 +115,23 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
     controller.getCartSession();
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
-        state.maybeMap(getCartSessionIDSuccess: (r) {
-          if (r.sessionID == null || r.sessionID == "") {
+        state.maybeMap(
+          getCartSessionIDSuccess: (r) {
+            if (r.sessionID == null || r.sessionID == "") {
+              controller.isHaveCart.value = false;
+            } else {
+              controller.isHaveCart.value = true;
+            }
+            // selectTab();
+          },
+          getCartSessionIDFail: (e) {
             controller.isHaveCart.value = false;
-          } else {
-            controller.isHaveCart.value = true;
-          }
-          selectTab();
-        }, getCartSessionIDFail: (e) {
-          controller.isHaveCart.value = false;
-          selectTab();
-        }, orElse: () {
-          //selectTab();
-        });
+            // selectTab();
+          },
+          orElse: () {
+            //selectTab();
+          },
+        );
       },
       builder: (context, state) {
         final _bottomNavBarItems = <BottomNavigationBarItem>[
@@ -177,10 +183,11 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
 
         return Obx(() {
           return Scaffold(
-              body: Container(
-                child: _listPage[controller.selectedTabIndex.value],
-              ),
-              bottomNavigationBar: _buttomNavBar);
+            body: Container(
+              child: _listPage[controller.selectedTabIndex.value],
+            ),
+            bottomNavigationBar: _buttomNavBar,
+          );
         });
       },
     );

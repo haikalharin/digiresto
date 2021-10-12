@@ -341,7 +341,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Container(
                       color: AppColors.white,
-                      child: Text(variantProductSelected.description,
+                      child: Text(variantProductSelected.description ?? '',
                           style: AppFont.textBlack12Regular),
                     )),
                 Divider(

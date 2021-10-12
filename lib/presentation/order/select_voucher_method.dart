@@ -17,7 +17,7 @@ class SelectVouchertMethodScreen extends StatelessWidget {
         GetListVoucherOutletParam(
             body: GetListVoucherOutletBodyParam(),
             queryString: GetListVoucherOutletQueryParam(
-                merchantId: args.outlet.merchantId,
+                merchantId: args.outlet.merchantId!,
                 outletId: args.outlet.id))));
     return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
       state.maybeMap(

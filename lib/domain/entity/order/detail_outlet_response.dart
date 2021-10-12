@@ -9,7 +9,7 @@ part 'detail_outlet_response.g.dart';
 DetailOutletResponse emptyFromJson(String str) =>
     DetailOutletResponse.fromJson(json.decode(str));
 
-String emptyToJson(DetailOutletResponse data) => json.encode(data.toJson());
+String? emptyToJson(DetailOutletResponse data) => json.encode(data.toJson());
 
 @freezed
 class DetailOutletResponse with _$DetailOutletResponse {
@@ -29,23 +29,23 @@ class DetailOutletDataResponse with _$DetailOutletDataResponse {
     required String endpointName,
     required String id,
     required String name,
-    required String city,
+    required String? city,
     required List<String> salesTypes,
     required bool isOpen,
     required dynamic logo,
-    required String merchantId,
-    required String merchantName,
+    required String? merchantId,
+    required String? merchantName,
     required dynamic merchantLogo,
-    required String callbackUrl,
-    required String description,
-    required String address,
+    required String? callbackUrl,
+    required String? description,
+    required String? address,
     required List<String> location,
-    required String ownerPhone,
-    required String poCutoff,
+    required String? ownerPhone,
+    required String? poCutoff,
     required int rating,
     required int totalReview,
     required DetailOutletDataLastUpdateResponse lastUpdate,
-    required String merchantCategory,
+    required String? merchantCategory,
   }) = _DetailOutletDataResponse;
 
   static DetailOutletDataResponse emptyWithID(String id) =>

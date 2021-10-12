@@ -30,27 +30,27 @@ _$_DetailOutletDataResponse _$$_DetailOutletDataResponseFromJson(
       endpointName: json['endpointName'] as String,
       id: json['id'] as String,
       name: json['name'] as String,
-      city: json['city'] as String,
+      city: json['city'] as String?,
       salesTypes: (json['salesTypes'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
       isOpen: json['isOpen'] as bool,
       logo: json['logo'],
-      merchantId: json['merchantId'] as String,
-      merchantName: json['merchantName'] as String,
+      merchantId: json['merchantId'] as String?,
+      merchantName: json['merchantName'] as String?,
       merchantLogo: json['merchantLogo'],
-      callbackUrl: json['callbackUrl'] as String,
-      description: json['description'] as String,
-      address: json['address'] as String,
+      callbackUrl: json['callbackUrl'] as String?,
+      description: json['description'] as String?,
+      address: json['address'] as String?,
       location:
           (json['location'] as List<dynamic>).map((e) => e as String).toList(),
-      ownerPhone: json['ownerPhone'] as String,
-      poCutoff: json['poCutoff'] as String,
+      ownerPhone: json['ownerPhone'] as String?,
+      poCutoff: json['poCutoff'] as String?,
       rating: json['rating'] as int,
       totalReview: json['totalReview'] as int,
       lastUpdate: DetailOutletDataLastUpdateResponse.fromJson(
           json['lastUpdate'] as Map<String, dynamic>),
-      merchantCategory: json['merchantCategory'] as String,
+      merchantCategory: json['merchantCategory'] as String?,
     );
 
 Map<String, dynamic> _$$_DetailOutletDataResponseToJson(

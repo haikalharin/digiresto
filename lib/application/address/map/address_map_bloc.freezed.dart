@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'address_map_bloc.dart';
 
@@ -53,6 +54,14 @@ mixin _$AddressMapEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(UserSaveAddressParam request)? saveAddress,
+    TResult Function(GetGeoCodeParam request)? getGeoCode,
+    TResult Function(UserAddress model)? setActiveAddress,
+    TResult Function()? changeAddress,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserSaveAddressParam request)? saveAddress,
     TResult Function(GetGeoCodeParam request)? getGeoCode,
@@ -67,6 +76,14 @@ mixin _$AddressMapEvent {
     required TResult Function(_GetGeoCode value) getGeoCode,
     required TResult Function(_SetActiveAddress value) setActiveAddress,
     required TResult Function(_ChangeAddress value) changeAddress,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SaveAddress value)? saveAddress,
+    TResult Function(_GetGeoCode value)? getGeoCode,
+    TResult Function(_SetActiveAddress value)? setActiveAddress,
+    TResult Function(_ChangeAddress value)? changeAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -172,6 +189,17 @@ class _$_SaveAddress implements _SaveAddress {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(UserSaveAddressParam request)? saveAddress,
+    TResult Function(GetGeoCodeParam request)? getGeoCode,
+    TResult Function(UserAddress model)? setActiveAddress,
+    TResult Function()? changeAddress,
+  }) {
+    return saveAddress?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserSaveAddressParam request)? saveAddress,
     TResult Function(GetGeoCodeParam request)? getGeoCode,
@@ -194,6 +222,17 @@ class _$_SaveAddress implements _SaveAddress {
     required TResult Function(_ChangeAddress value) changeAddress,
   }) {
     return saveAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SaveAddress value)? saveAddress,
+    TResult Function(_GetGeoCode value)? getGeoCode,
+    TResult Function(_SetActiveAddress value)? setActiveAddress,
+    TResult Function(_ChangeAddress value)? changeAddress,
+  }) {
+    return saveAddress?.call(this);
   }
 
   @override
@@ -296,6 +335,17 @@ class _$_GetGeoCode implements _GetGeoCode {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(UserSaveAddressParam request)? saveAddress,
+    TResult Function(GetGeoCodeParam request)? getGeoCode,
+    TResult Function(UserAddress model)? setActiveAddress,
+    TResult Function()? changeAddress,
+  }) {
+    return getGeoCode?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserSaveAddressParam request)? saveAddress,
     TResult Function(GetGeoCodeParam request)? getGeoCode,
@@ -318,6 +368,17 @@ class _$_GetGeoCode implements _GetGeoCode {
     required TResult Function(_ChangeAddress value) changeAddress,
   }) {
     return getGeoCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SaveAddress value)? saveAddress,
+    TResult Function(_GetGeoCode value)? getGeoCode,
+    TResult Function(_SetActiveAddress value)? setActiveAddress,
+    TResult Function(_ChangeAddress value)? changeAddress,
+  }) {
+    return getGeoCode?.call(this);
   }
 
   @override
@@ -429,6 +490,17 @@ class _$_SetActiveAddress implements _SetActiveAddress {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(UserSaveAddressParam request)? saveAddress,
+    TResult Function(GetGeoCodeParam request)? getGeoCode,
+    TResult Function(UserAddress model)? setActiveAddress,
+    TResult Function()? changeAddress,
+  }) {
+    return setActiveAddress?.call(model);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserSaveAddressParam request)? saveAddress,
     TResult Function(GetGeoCodeParam request)? getGeoCode,
@@ -451,6 +523,17 @@ class _$_SetActiveAddress implements _SetActiveAddress {
     required TResult Function(_ChangeAddress value) changeAddress,
   }) {
     return setActiveAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SaveAddress value)? saveAddress,
+    TResult Function(_GetGeoCode value)? getGeoCode,
+    TResult Function(_SetActiveAddress value)? setActiveAddress,
+    TResult Function(_ChangeAddress value)? changeAddress,
+  }) {
+    return setActiveAddress?.call(this);
   }
 
   @override
@@ -528,6 +611,17 @@ class _$_ChangeAddress implements _ChangeAddress {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(UserSaveAddressParam request)? saveAddress,
+    TResult Function(GetGeoCodeParam request)? getGeoCode,
+    TResult Function(UserAddress model)? setActiveAddress,
+    TResult Function()? changeAddress,
+  }) {
+    return changeAddress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserSaveAddressParam request)? saveAddress,
     TResult Function(GetGeoCodeParam request)? getGeoCode,
@@ -550,6 +644,17 @@ class _$_ChangeAddress implements _ChangeAddress {
     required TResult Function(_ChangeAddress value) changeAddress,
   }) {
     return changeAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SaveAddress value)? saveAddress,
+    TResult Function(_GetGeoCode value)? getGeoCode,
+    TResult Function(_SetActiveAddress value)? setActiveAddress,
+    TResult Function(_ChangeAddress value)? changeAddress,
+  }) {
+    return changeAddress?.call(this);
   }
 
   @override
@@ -649,6 +754,20 @@ mixin _$AddressMapState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -676,6 +795,20 @@ mixin _$AddressMapState {
     required TResult Function(_SetActiveAddressSuccess value)
         setActiveAddressSuccess,
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -765,6 +898,23 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -800,6 +950,23 @@ class _$_Initial implements _Initial {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return initial?.call(this);
   }
 
   @override
@@ -884,6 +1051,23 @@ class _$_LoadInProgress implements _LoadInProgress {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return loadInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -919,6 +1103,23 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return loadInProgress?.call(this);
   }
 
   @override
@@ -1003,6 +1204,23 @@ class _$_LoadSuccess implements _LoadSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return loadSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1038,6 +1256,23 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return loadSuccess?.call(this);
   }
 
   @override
@@ -1122,6 +1357,23 @@ class _$_LoadFailure implements _LoadFailure {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return loadFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1157,6 +1409,23 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return loadFailure?.call(this);
   }
 
   @override
@@ -1267,6 +1536,23 @@ class _$_SaveAddressSuccess implements _SaveAddressSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return saveAddressSuccess?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1302,6 +1588,23 @@ class _$_SaveAddressSuccess implements _SaveAddressSuccess {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return saveAddressSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return saveAddressSuccess?.call(this);
   }
 
   @override
@@ -1417,6 +1720,23 @@ class _$_SaveAddressFail implements _SaveAddressFail {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return saveAddressFail?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1452,6 +1772,23 @@ class _$_SaveAddressFail implements _SaveAddressFail {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return saveAddressFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return saveAddressFail?.call(this);
   }
 
   @override
@@ -1567,6 +1904,23 @@ class _$_GetGeoCodeSuccess implements _GetGeoCodeSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return getGeoCodeSuccess?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1602,6 +1956,23 @@ class _$_GetGeoCodeSuccess implements _GetGeoCodeSuccess {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return getGeoCodeSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return getGeoCodeSuccess?.call(this);
   }
 
   @override
@@ -1716,6 +2087,23 @@ class _$_GetGeoCodeFail implements _GetGeoCodeFail {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return getGeoCodeFail?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1751,6 +2139,23 @@ class _$_GetGeoCodeFail implements _GetGeoCodeFail {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return getGeoCodeFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return getGeoCodeFail?.call(this);
   }
 
   @override
@@ -1877,6 +2282,23 @@ class _$_SetActiveAddressSuccess implements _SetActiveAddressSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return setActiveAddressSuccess?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -1912,6 +2334,23 @@ class _$_SetActiveAddressSuccess implements _SetActiveAddressSuccess {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return setActiveAddressSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return setActiveAddressSuccess?.call(this);
   }
 
   @override
@@ -2028,6 +2467,23 @@ class _$_SetActiveAddressFail implements _SetActiveAddressFail {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function()? loadSuccess,
+    TResult Function()? loadFailure,
+    TResult Function(UserAddAddress response)? saveAddressSuccess,
+    TResult Function(String message)? saveAddressFail,
+    TResult Function(Geocode response)? getGeoCodeSuccess,
+    TResult Function(String message)? getGeoCodeFail,
+    TResult Function(UserAddress response)? setActiveAddressSuccess,
+    TResult Function(String message)? setActiveAddressFail,
+  }) {
+    return setActiveAddressFail?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
@@ -2063,6 +2519,23 @@ class _$_SetActiveAddressFail implements _SetActiveAddressFail {
     required TResult Function(_SetActiveAddressFail value) setActiveAddressFail,
   }) {
     return setActiveAddressFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_SaveAddressSuccess value)? saveAddressSuccess,
+    TResult Function(_SaveAddressFail value)? saveAddressFail,
+    TResult Function(_GetGeoCodeSuccess value)? getGeoCodeSuccess,
+    TResult Function(_GetGeoCodeFail value)? getGeoCodeFail,
+    TResult Function(_SetActiveAddressSuccess value)? setActiveAddressSuccess,
+    TResult Function(_SetActiveAddressFail value)? setActiveAddressFail,
+  }) {
+    return setActiveAddressFail?.call(this);
   }
 
   @override

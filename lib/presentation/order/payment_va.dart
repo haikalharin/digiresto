@@ -1,7 +1,6 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
-import 'package:digiresto/domain/entity/user/user_profile_model.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
@@ -15,12 +14,12 @@ import 'package:intl/intl.dart';
 class PaymentVAScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserProfile? _userProfile;
     PaymentVAViewArgument args = Get.arguments as PaymentVAViewArgument;
 
     final vaPayment = args.checkoutDataResponse.payment.paymentCode;
     final vaAmount = vaPayment?.amount ?? vaPayment?.uniqueAmount ?? "0";
     final df = new DateFormat('EEEE, dd MMMM yyyy, hh:mm');
+    final _userProfile = args.userProfile;
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -40,7 +39,7 @@ class PaymentVAScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hi ${_userProfile?.name ?? ""},',
+                  'Hi ${_userProfile.name ?? ""},',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5),
@@ -57,11 +56,23 @@ class PaymentVAScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(I10n.current.billing_transaction_date,
+                    style: AppFont.textBlack15Regular),
+                SizedBox(height: 5),
+                Text(
+                  df.format(vaPayment!.transactionDate ?? DateTime.now()),
+                  style: AppFont.textBlack15Bold,
+                ),
+                SizedBox(height: 10),
+                Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
                 Text(I10n.current.billing_expired,
                     style: AppFont.textBlack15Regular),
                 SizedBox(height: 5),
                 Text(
-                  df.format(vaPayment!.expiresAt),
+                  df.format(vaPayment.expiresAt),
                   style: AppFont.textBlack15Bold,
                 ),
                 SizedBox(height: 10),
@@ -248,7 +259,7 @@ class PaymentVAScreen extends StatelessWidget {
           ),
           SizedBox(height: 10),
           CustomButton(
-            label: I10n.current.tvselesai,
+            label: I10n.current.billing_action_done,
             color: AppColors.mainColor,
             fontColor: Colors.white,
             borderRadius: BorderRadius.circular(30),

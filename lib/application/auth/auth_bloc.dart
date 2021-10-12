@@ -26,6 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield* event.map(
       authCheckRequested: (e) async* {
         final userOption = await _authFacade.getSignedInUser();
+        await _notificationRepository.init();
         yield userOption.fold(
           (failure) => failure.maybeMap(
               orElse: () => AuthState.authFailure(failure),

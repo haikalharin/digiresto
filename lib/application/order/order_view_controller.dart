@@ -101,7 +101,7 @@ class OrderViewController extends GetxController {
         GetListVoucherOutletParam(
             body: GetListVoucherOutletBodyParam(),
             queryString: GetListVoucherOutletQueryParam(
-                merchantId: detailOutlet.value!.merchantId,
+                merchantId: detailOutlet.value!.merchantId!,
                 outletId: detailOutlet.value!.id))));
   }
 

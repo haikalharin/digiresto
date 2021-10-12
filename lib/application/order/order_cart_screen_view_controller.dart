@@ -18,16 +18,21 @@ import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'bloc/order_bloc.dart';
 
+@injectable
 class OrderCartScreenViewController extends GetxController {
+  final OrderRepository _orderRepository;
+  OrderCartScreenViewController(this._orderRepository);
   var isLoading = true.obs;
   var useSchedule = Rxn<bool>();
   var reloadCounter = 0.obs;
@@ -157,7 +162,7 @@ class OrderCartScreenViewController extends GetxController {
     }
   }
 
-  void checkCartSession() {
+  void checkCartSession() async {
     if (cartSession.value!.transactionData!.items.length <= 1) {
       isLoading.value = false;
       Get.find<HomeNavigationViewController>().selectedTabIndex.value = 0;
@@ -193,8 +198,10 @@ class OrderCartScreenViewController extends GetxController {
     } else {
       isLoading.value = false;
       if (checkoutResponse.value?.payment.paymentCode != null) {
+        final userProfile = (await _orderRepository.getLocalUserProfile())!;
         Get.offNamed(Routers.paymentVa,
             arguments: PaymentVAViewArgument(
+                userProfile: userProfile,
                 checkoutDataResponse: checkoutResponse.value!));
       }
     }

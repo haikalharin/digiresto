@@ -14,6 +14,7 @@ import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -1314,7 +1315,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OrderCartScreenViewController());
+    Get.put(getIt<OrderCartScreenViewController>());
     controller.getCartCache();
     controller.getActiveAddress();
     controller.getCartSession();
@@ -1515,7 +1516,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("item.name"),
+            Text("${item.name}"),
             Text('Rp.' + Utils.formatRupiah(item.amount.toString())),
           ],
         ),
@@ -1616,7 +1617,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                         Routers.orderDetailOutlet,
                         arguments: OrderDetailViewArgument(
                             controller.detailOutlet.value!.id,
-                            controller.detailOutlet.value!.merchantId));
+                            controller.detailOutlet.value!.merchantId!));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,

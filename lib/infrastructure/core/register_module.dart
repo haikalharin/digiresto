@@ -36,6 +36,7 @@ abstract class RegisterModule {
         showNotification: true,
         navigatorKey: GlobalKey<NavigatorState>(),
         maxCallsCount: 1000,
+        showInspectorOnShake: true,
       );
 
   @lazySingleton

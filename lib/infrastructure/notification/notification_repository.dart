@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/notification/i_notification_repository.dart';
 import 'package:digiresto/domain/notification/notification_failure.dart';
 import 'package:digiresto/domain/notification/post_token_response.dart';
@@ -15,18 +16,25 @@ import 'package:logger/logger.dart';
 @LazySingleton(as: INotificationRepository)
 class NotificationRepository implements INotificationRepository {
   final OneSignal _oneSignal;
+  final IStorage _storage;
   final INetworkService _networkService;
   final Logger logger;
-  NotificationRepository(this._oneSignal, this._networkService, this.logger);
+  NotificationRepository(
+      this._oneSignal, this._networkService, this._storage, this.logger);
 
   @override
   Future<Unit> init() async {
-    _oneSignal.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+    await _oneSignal.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
     final appIdMap = {
       Environment.prod: "f0e09d72-7f33-4de6-8d15-89c5f86e8e27",
       Environment.dev: "541caaad-06c6-44d4-a129-31358391b306"
     };
-    _oneSignal.setAppId(appIdMap[env]!);
+    await _oneSignal.setAppId(appIdMap[env]!);
+    final status = await _oneSignal.getDeviceState();
+    final String? osUserID = status?.userId;
+    await _storage.openBox(StorageConstants.base);
+    await _storage.putString(key: 'playerId', value: osUserID!);
+    await _storage.close();
 
     _oneSignal.promptUserForPushNotificationPermission().then((accepted) {
       print("Accepted permission: $accepted");
@@ -47,8 +55,10 @@ class NotificationRepository implements INotificationRepository {
 
   @override
   Future<String> getPushToken() async {
-    final deviceState = await _oneSignal.getDeviceState();
-    return deviceState?.pushToken ?? '';
+    await _storage.openBox(StorageConstants.base);
+    final result = _storage.getString(key: 'playerId');
+    await _storage.close();
+    return result ?? '';
   }
 
   @override

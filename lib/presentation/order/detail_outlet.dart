@@ -366,7 +366,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                     height: 8,
                   ),
                   Text(
-                    controller.detailOutlet.value!.address,
+                    controller.detailOutlet.value!.address ?? '',
                     style: AppFont.textBlack12Regular,
                   ),
                   SizedBox(
@@ -486,7 +486,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                               //     phone +
                               //     "&text=hi%20Digiresto";
                               String callBackUrl =
-                                  controller.detailOutlet.value!.callbackUrl;
+                                  controller.detailOutlet.value!.callbackUrl!;
                               String url = callBackUrl;
                               LaunchUrl.run(
                                 url,
