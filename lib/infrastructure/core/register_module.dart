@@ -110,6 +110,6 @@ abstract class RegisterModule {
   @lazySingleton
   GeolocatorPlatform get goelocatorPlatform => GeolocatorPlatform.instance;
 
-  // @lazySingleton
-  // OneSignal get oneSignal => OneSignal.shared;
+  @lazySingleton
+  OneSignal get oneSignal => OneSignal.shared;
 }

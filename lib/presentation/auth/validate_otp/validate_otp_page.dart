@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
@@ -111,107 +112,125 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
         );
       },
       builder: (context, state) {
-        return StackWithProgress(
-          isLoading: state.isSubmitting,
-          children: [
-            AuthScafold(
-              headerCurvedHeight: 250,
-              title: i10n.verify_phone,
-              suffixWidget: GestureDetector(
-                child: Icon(
-                  Icons.help_outline,
-                  color: Colors.white,
-                  size: 30,
-                ),
+        return WillPopScope(
+          onWillPop: () async {
+            Get.offAll(
+              LoginPage(
+                phoneNumber: widget.phoneNumber,
               ),
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                children: [
-                  SizedBox(
-                    height: 30,
+            );
+            return true;
+          },
+          child: StackWithProgress(
+            isLoading: state.isSubmitting,
+            children: [
+              AuthScafold(
+                onBackTap: () {
+                  Get.offAll(
+                    LoginPage(
+                      phoneNumber: widget.phoneNumber,
+                    ),
+                  );
+                },
+                headerCurvedHeight: 250,
+                title: i10n.verify_phone,
+                suffixWidget: GestureDetector(
+                  child: Icon(
+                    Icons.help_outline,
+                    color: Colors.white,
+                    size: 30,
                   ),
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: Styles.loginDescStyle.copyWith(height: 1.7),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: i10n.input_otp_desc,
-                        ),
-                        TextSpan(
-                          text: ' ${widget.phoneNumber}',
-                          style: Styles.loginDescStyle.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.yellow,
+                ),
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  children: [
+                    SizedBox(
+                      height: 30,
+                    ),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: Styles.loginDescStyle.copyWith(height: 1.7),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: i10n.input_otp_desc,
                           ),
-                        ),
-                        TextSpan(
-                          text: """. ${i10n.input_otp_desc2}
+                          TextSpan(
+                            text: ' ${widget.phoneNumber}',
+                            style: Styles.loginDescStyle.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.yellow,
+                            ),
+                          ),
+                          TextSpan(
+                            text: """. ${i10n.input_otp_desc2}
 
 ${i10n.text_kirim_ulang}. """,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  PinCodeTextField(
-                    errorAnimationController: errorController,
-                    autovalidateMode: state.showErrorMessages
-                        ? AutovalidateMode.always
-                        : AutovalidateMode.disabled,
-                    validator: (_) => state.validateFailureOrSuccess.fold(
-                      () => null,
-                      (a) => a.fold(
-                        (failure) => failure.maybeMap(
-                          orElse: () => 'Unknown Error',
-                          invalidOtp: (e) => e.message,
-                        ),
-                        (r) => null,
+                          ),
+                        ],
                       ),
                     ),
-                    enableActiveFill: true,
-                    keyboardType: TextInputType.number,
-                    pinTheme: PinTheme(
-                      borderWidth: 0,
-                      shape: PinCodeFieldShape.box,
-                      borderRadius: BorderRadius.circular(6),
-                      fieldHeight: 55,
-                      fieldWidth: 45,
-                      activeFillColor: Colors.white,
-                      inactiveFillColor: Colors.white,
-                      selectedFillColor: Colors.white,
+                    SizedBox(
+                      height: 40,
                     ),
-                    hintCharacter: '●',
-                    hintStyle: Styles.hintStyle.copyWith(
-                      fontSize: 42,
-                      color: AppColors.greyColor,
-                      height: 1,
+                    PinCodeTextField(
+                      errorAnimationController: errorController,
+                      autovalidateMode: state.showErrorMessages
+                          ? AutovalidateMode.always
+                          : AutovalidateMode.disabled,
+                      validator: (_) => state.validateFailureOrSuccess.fold(
+                        () => null,
+                        (a) => a.fold(
+                          (failure) => failure.maybeMap(
+                            orElse: () => 'Unknown Error',
+                            invalidOtp: (e) => e.message,
+                          ),
+                          (r) => null,
+                        ),
+                      ),
+                      enableActiveFill: true,
+                      keyboardType: TextInputType.number,
+                      pinTheme: PinTheme(
+                        borderWidth: 0,
+                        shape: PinCodeFieldShape.box,
+                        borderRadius: BorderRadius.circular(6),
+                        fieldHeight: 55,
+                        fieldWidth: 45,
+                        activeFillColor: Colors.white,
+                        inactiveFillColor: Colors.white,
+                        selectedFillColor: Colors.white,
+                      ),
+                      hintCharacter: '●',
+                      hintStyle: Styles.hintStyle.copyWith(
+                        fontSize: 42,
+                        color: AppColors.greyColor,
+                        height: 1,
+                      ),
+                      appContext: context,
+                      length: 6,
+                      onChanged: (text) {},
+                      onCompleted: (otp) => _validateBloc.add(
+                        ValidateOtpEvent.inputSubmitting(
+                            widget.phoneNumber, otp),
+                      ),
                     ),
-                    appContext: context,
-                    length: 6,
-                    onChanged: (text) {},
-                    onCompleted: (otp) => _validateBloc.add(
-                      ValidateOtpEvent.inputSubmitting(widget.phoneNumber, otp),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomButton(
-                    onPressed: _start == 0
-                        ? () => _validateBloc.add(
-                              ValidateOtpEvent.resendOtp(widget.phoneNumber),
-                            )
-                        : () {},
-                    margin: EdgeInsets.zero,
-                    label: i10n.input_otp_resend_code('$_start'),
-                  ),
-                ],
+                    CustomButton(
+                      onPressed: _start == 0
+                          ? () => _validateBloc.add(
+                                ValidateOtpEvent.resendOtp(widget.phoneNumber),
+                              )
+                          : () {},
+                      margin: EdgeInsets.zero,
+                      label: i10n.input_otp_resend_code('$_start'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

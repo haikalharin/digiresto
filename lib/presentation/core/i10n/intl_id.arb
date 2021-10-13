@@ -430,7 +430,7 @@
     "img_action_back":"icon kembali",
     "text_register":"Pastikan nomor handphone anda valid untuk proses verifikasi",
     "login_input_your_mobile_number":"Masukkan nomor handphone Anda",
-    "login_input_your_mobile_number_is_wrong":"Nomor handphone yang Anda masukan salah!",
+    "login_input_your_mobile_number_is_wrong":"Nomor handphone salah!",
     "login_check_your_mobile_number":"Periksa kembali nomor handphone Anda!",
 
     "_Input OTP Screen":"",

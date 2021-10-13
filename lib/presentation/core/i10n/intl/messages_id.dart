@@ -641,8 +641,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_input_your_mobile_number": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor handphone Anda"),
         "login_input_your_mobile_number_is_wrong":
-            MessageLookupByLibrary.simpleMessage(
-                "Nomor handphone yang Anda masukan salah!"),
+            MessageLookupByLibrary.simpleMessage("Nomor handphone salah!"),
         "login_phone": MessageLookupByLibrary.simpleMessage("Nomor Handphone"),
         "login_title": MessageLookupByLibrary.simpleMessage("Masuk"),
         "logout_alert": MessageLookupByLibrary.simpleMessage(

@@ -15,7 +15,11 @@ import 'package:get/route_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final String? phoneNumber;
+  const LoginPage({
+    Key? key,
+    this.phoneNumber,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,30 +27,50 @@ class LoginPage extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       body: BlocProvider<LoginBloc>(
         create: (context) => getIt<LoginBloc>()..add(LoginEvent.started()),
-        child: const LoginForm(),
+        child: LoginForm(
+          phoneNumber: phoneNumber,
+        ),
       ),
     );
   }
 }
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget {
+  final String? phoneNumber;
+  const LoginForm({
+    Key? key,
+    this.phoneNumber,
+  }) : super(key: key);
 
-  // TextEditingController _phoneController = TextEditingController();
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _phoneController.addListener(() {
-  //     _loginBloc.add(
-  //       LoginEvent.phoneNumberChanged(_phoneController.text),
-  //     );
-  //   });
-  // }
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  TextEditingController _phoneController = TextEditingController();
+  late LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      setState(() {
+        _phoneController.text = widget.phoneNumber ?? '';
+        _loginBloc.add(
+          LoginEvent.phoneNumberChanged(widget.phoneNumber ?? ''),
+        );
+      });
+
+      _phoneController.addListener(() {
+        _loginBloc.add(
+          LoginEvent.phoneNumberChanged(_phoneController.text),
+        );
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    late LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
-    final _formKey = GlobalKey<FormState>();
     final I10n i10n = I10n.of(context);
 
     String _baseUrl = Endpoints.baseUrlDigiresto;
@@ -99,11 +123,8 @@ class LoginForm extends StatelessWidget {
           (either) => either.fold(
             (l) {},
             (url) async {
-              Get.toNamed(Routers.verifyOtp,
-                      arguments: state.phoneNumber.getOrNull()!)
-                  ?.then((value) {
-                _formKey.currentState?.reset();
-              });
+              Get.offAllNamed(Routers.verifyOtp,
+                  arguments: state.phoneNumber.getOrNull()!);
 
               List<String> encodedUrl = url.split("?text=");
               // url
@@ -142,61 +163,57 @@ class LoginForm extends StatelessWidget {
                 ),
               ],
             ),
-            Form(
-              key: _formKey,
-              child: ListView(
-                padding: EdgeInsets.only(
-                  top: 190,
-                  right: 40,
-                  left: 40,
-                ),
-                children: [
-                  Text(
-                    i10n.login_title,
-                    style: Styles.loginTitleStyle,
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    i10n.text_register,
-                    style: Styles.loginDescStyle,
-                  ),
-                  SizedBox(
-                    height: 35,
-                  ),
-                  CustomTextField(
-                    enabled: true,
-
-                    autovalidateMode: state.showErrorMessages
-                        ? AutovalidateMode.always
-                        : AutovalidateMode.disabled,
-                    // controller: _phoneController,
-                    onChange: (value) {
-                      _loginBloc.add(
-                        LoginEvent.phoneNumberChanged(value),
-                      );
-                    },
-                    validator: (_) => state.phoneNumber.value.fold(
-                      (failure) => failure.maybeMap(
-                        orElse: () => '',
-                        invalidPhone: (_) =>
-                            i10n.login_input_your_mobile_number_is_wrong,
-                      ),
-                      (_) => null,
-                    ),
-                    hintText: i10n.login_phone,
-                    keyboardType: TextInputType.phone,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomButton(
-                    onPressed: _onFormSubmitted,
-                    label: i10n.login_btn,
-                  ),
-                ],
+            ListView(
+              padding: EdgeInsets.only(
+                top: 190,
+                right: 40,
+                left: 40,
               ),
+              children: [
+                Text(
+                  i10n.login_title,
+                  style: Styles.loginTitleStyle,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  i10n.text_register,
+                  style: Styles.loginDescStyle,
+                ),
+                SizedBox(
+                  height: 35,
+                ),
+                CustomTextField(
+                  enabled: true,
+                  autovalidateMode: state.showErrorMessages
+                      ? AutovalidateMode.always
+                      : AutovalidateMode.disabled,
+                  controller: _phoneController,
+                  // onChange: (value) {
+                  //   _loginBloc.add(
+                  //     LoginEvent.phoneNumberChanged(value),
+                  //   );
+                  // },
+                  validator: (_) => state.phoneNumber.value.fold(
+                    (failure) => failure.maybeMap(
+                      orElse: () => '',
+                      invalidPhone: (_) =>
+                          i10n.login_input_your_mobile_number_is_wrong,
+                    ),
+                    (_) => null,
+                  ),
+                  hintText: i10n.login_phone,
+                  keyboardType: TextInputType.phone,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomButton(
+                  onPressed: _onFormSubmitted,
+                  label: i10n.login_btn,
+                ),
+              ],
             ),
           ],
         );
