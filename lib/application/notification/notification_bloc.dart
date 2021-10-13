@@ -6,7 +6,7 @@ import 'package:digiresto/domain/notification/i_notification_repository.dart';
 import 'package:digiresto/domain/notification/notification_data.dart';
 import 'package:digiresto/domain/notification/notification_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 part 'notification_event.dart';
 part 'notification_state.dart';
@@ -46,7 +46,31 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   Stream<NotificationState> mapEventToState(
     NotificationEvent event,
   ) async* {
-    yield* event.map(newNotification: (event) async* {
+    yield* event.map(started: (event) async* {
+      OneSignal.shared.setNotificationWillShowInForegroundHandler(
+          (OSNotificationReceivedEvent event) {
+        // Will be called whenever a notification is received in foreground
+        // Display Notification, pass null param for not displaying the notification
+        event.complete(event.notification);
+      });
+
+      OneSignal.shared
+          .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+        // Will be called whenever a notification is opened/button pressed.
+      });
+
+      OneSignal.shared
+          .setPermissionObserver((OSPermissionStateChanges changes) {
+        // Will be called whenever the permission changes
+        // (ie. user taps Allow on the permission prompt in iOS)
+      });
+
+      OneSignal.shared
+          .setSubscriptionObserver((OSSubscriptionStateChanges changes) {
+        // Will be called whenever the subscription changes
+        // (ie. user gets registered with OneSignal and gets a user ID)
+      });
+    }, newNotification: (event) async* {
       yield state.copyWith(
         notifications: state.notifications.appendElement(event.notification),
         notificationOpenedOption: none(),

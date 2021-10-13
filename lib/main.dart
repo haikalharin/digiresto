@@ -2,7 +2,9 @@ import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
+import 'package:digiresto/application/notification/notification_bloc.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
+import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:digiresto/simple_bloc_delegate.dart';
 import 'package:flutter/material.dart';
@@ -19,17 +21,14 @@ import 'presentation/core/widgets/loading.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
 
-//TODO: Importance Jgn lupa ganti environment ini ketika di publish ke store
-const env = Environment.dev;
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> mainProgram() async {
   await Hive.initFlutter();
-  await configureInjection(env);
+  await configureInjection(Globals.env);
   Bloc.observer = getIt<SimpleBlocObserver>();
+  Loading.configLoading();
   runApp(
     InitiateProvider(),
   );
-  Loading.configLoading();
 }
 
 class InitiateProvider extends StatelessWidget {
@@ -43,6 +42,10 @@ class InitiateProvider extends StatelessWidget {
           ..add(HomeUserEvent.getStaticBanner())
           ..add(HomeUserEvent.getCartSessionID()),
       ),
+      // BlocProvider<NotificationBloc>(
+      //   create: (context) =>
+      //       getIt<NotificationBloc>(),
+      // ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),
       BlocProvider<AddressMapBloc>(

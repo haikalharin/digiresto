@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
+import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
@@ -31,7 +32,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEvent event,
   ) async* {
     yield* event.map(started: (_) async* {
-      if (env == Environment.dev) {
+      if (Globals.env == Environment.dev) {
         detector = ShakeDetector.autoStart(
           onPhoneShake: () {
             add(LoginEvent.onShake());
@@ -139,11 +140,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     yield state.copyWith(
       loginFailureOrSuccessOption: none(),
     );
-  }
-
-  @override
-  Future<void> close() {
-    detector?.stopListening();
-    return super.close();
   }
 }
