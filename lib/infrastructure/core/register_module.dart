@@ -2,17 +2,11 @@ import 'dart:io';
 
 import 'package:code_id_flutter/code_services/alice/alice.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:digiresto/domain/auth/entity/user_auth.dart';
-import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+// import 'package:digiresto/infrastructure/core/alice_interceptor.dart';
 import 'package:digiresto/infrastructure/core/auth_interceptor.dart';
-import 'package:digiresto/infrastructure/core/storage.dart';
-import 'package:digiresto/injection.dart';
-import 'package:digiresto/main.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -30,13 +24,13 @@ abstract class RegisterModule {
   // @preResolve
   // await Hive.initFlutter();
 
+  @Environment(Environment.prod)
+  @lazySingleton
+  Alice get alice => Alice();
+
   @Environment(Environment.dev)
   @lazySingleton
-  Alice get alice => Alice(
-        showNotification: true,
-        navigatorKey: GlobalKey<NavigatorState>(),
-        maxCallsCount: 1000,
-      );
+  Alice get aliceDev => Alice(showNotification: false);
 
   @lazySingleton
   HiveInterface get hive => Hive;
@@ -47,15 +41,50 @@ abstract class RegisterModule {
   // @lazySingleton
   // Storage get storage =>
 
+  @Environment(Environment.dev)
   @preResolve
   @lazySingleton
-  Future<Dio> dio(Alice alice, IStorage _storage) async {
+  Future<Dio> dioDev(Alice alice, IStorage _storage) async {
     Dio _dio = Dio();
     BaseOptions baseOptions = BaseOptions(
       connectTimeout: 120000,
       receiveTimeout: 60000,
       sendTimeout: 60000,
-      followRedirects: false,
+    );
+    _dio.options = baseOptions;
+
+    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) {
+        return true;
+      };
+      return client;
+    };
+
+    // _dio.interceptors.add(AuthInterceptor(_storage));
+
+    _dio.interceptors.add(LoggerInterceptor(
+        requestBody: true,
+        request: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true));
+
+    _dio.interceptors.add(alice.getDioInterceptor());
+
+    return _dio;
+  }
+
+  @Environment(Environment.prod)
+  @preResolve
+  @lazySingleton
+  Future<Dio> dio(IStorage _storage) async {
+    Dio _dio = Dio();
+    BaseOptions baseOptions = BaseOptions(
+      connectTimeout: 120000,
+      receiveTimeout: 60000,
+      sendTimeout: 60000,
     );
     _dio.options = baseOptions;
 
@@ -72,18 +101,6 @@ abstract class RegisterModule {
 
     _dio.interceptors.add(AuthInterceptor(_storage));
 
-    if (kDebugMode) {
-      _dio.interceptors.add(LoggerInterceptor(
-          requestBody: true,
-          request: true,
-          requestHeader: true,
-          responseBody: true,
-          responseHeader: true));
-    }
-    if (env == Environment.dev) {
-      _dio.interceptors.add(alice.getDioInterceptor());
-    }
-
     return _dio;
   }
 
@@ -93,6 +110,6 @@ abstract class RegisterModule {
   @lazySingleton
   GeolocatorPlatform get goelocatorPlatform => GeolocatorPlatform.instance;
 
-  @lazySingleton
-  OneSignal get oneSignal => OneSignal.shared;
+  // @lazySingleton
+  // OneSignal get oneSignal => OneSignal.shared;
 }

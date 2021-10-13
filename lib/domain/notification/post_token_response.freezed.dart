@@ -30,7 +30,7 @@ class _$PostTokenResponseTearOff {
     );
   }
 
-  PostTokenResponse fromJson(Map<String, Object> json) {
+  PostTokenResponse fromJson(Map<String, Object?> json) {
     return PostTokenResponse.fromJson(json);
   }
 }
@@ -158,21 +158,15 @@ class _$_PostTokenResponse implements _PostTokenResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PostTokenResponse &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _PostTokenResponse &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, code, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -195,11 +189,11 @@ abstract class _PostTokenResponse implements PostTokenResponse {
       _$_PostTokenResponse.fromJson;
 
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$PostTokenResponseCopyWith<_PostTokenResponse> get copyWith =>

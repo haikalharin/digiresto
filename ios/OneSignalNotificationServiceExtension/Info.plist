@@ -8,8 +8,11 @@
 		<string>com.apple.usernotifications.service</string>
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).NotificationService</string>
+<<<<<<< HEAD
 		<key>OneSignal_app_groups_key</key>
 		<string>group.id.damcorp.digiresto.dev.onesignal</string>
+=======
+>>>>>>> 46a97a85c3ba48ba397d98bc50fba12f6fae853a
 	</dict>
 </dict>
 </plist>

@@ -8,6 +8,7 @@ import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/notification/i_notification_repository.dart';
 import 'package:digiresto/domain/notification/notification_failure.dart';
 import 'package:digiresto/domain/notification/post_token_response.dart';
+import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:digiresto/main.dart';
 import 'package:injectable/injectable.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -29,7 +30,7 @@ class NotificationRepository implements INotificationRepository {
       Environment.prod: "f0e09d72-7f33-4de6-8d15-89c5f86e8e27",
       Environment.dev: "541caaad-06c6-44d4-a129-31358391b306"
     };
-    await _oneSignal.setAppId(appIdMap[env]!);
+    await _oneSignal.setAppId(appIdMap[Globals.env]!);
     final status = await _oneSignal.getDeviceState();
     final String? osUserID = status?.userId;
     await _storage.openBox(StorageConstants.base);

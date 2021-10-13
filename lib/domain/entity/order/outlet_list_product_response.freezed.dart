@@ -33,7 +33,7 @@ class _$OutletListProductResponseTearOff {
     );
   }
 
-  OutletListProductResponse fromJson(Map<String, Object> json) {
+  OutletListProductResponse fromJson(Map<String, Object?> json) {
     return OutletListProductResponse.fromJson(json);
   }
 }
@@ -191,22 +191,17 @@ class _$_OutletListProductResponse implements _OutletListProductResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletListProductResponse &&
+        (other.runtimeType == runtimeType &&
+            other is _OutletListProductResponse &&
             (identical(other.response, response) ||
-                const DeepCollectionEquality()
-                    .equals(other.response, response)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.meta, meta) ||
-                const DeepCollectionEquality().equals(other.meta, meta)));
+                other.response == response) &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            (identical(other.meta, meta) || other.meta == meta));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(response) ^
-      const DeepCollectionEquality().hash(data) ^
-      const DeepCollectionEquality().hash(meta);
+  int get hashCode => Object.hash(
+      runtimeType, response, const DeepCollectionEquality().hash(data), meta);
 
   @JsonKey(ignore: true)
   @override
@@ -231,12 +226,11 @@ abstract class _OutletListProductResponse implements OutletListProductResponse {
       _$_OutletListProductResponse.fromJson;
 
   @override
-  StatusResponse get response => throw _privateConstructorUsedError;
+  StatusResponse get response;
   @override
-  List<OutletListProductDataResponse> get data =>
-      throw _privateConstructorUsedError;
+  List<OutletListProductDataResponse> get data;
   @override
-  MetaResponse get meta => throw _privateConstructorUsedError;
+  MetaResponse get meta;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductResponseCopyWith<_OutletListProductResponse>
@@ -275,7 +269,7 @@ class _$OutletListProductDataModifierGroupResponseTearOff {
   }
 
   OutletListProductDataModifierGroupResponse fromJson(
-      Map<String, Object> json) {
+      Map<String, Object?> json) {
     return OutletListProductDataModifierGroupResponse.fromJson(json);
   }
 }
@@ -502,41 +496,33 @@ class _$_OutletListProductDataModifierGroupResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletListProductDataModifierGroupResponse &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OutletListProductDataModifierGroupResponse &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.allowMultiple, allowMultiple) ||
-                const DeepCollectionEquality()
-                    .equals(other.allowMultiple, allowMultiple)) &&
+                other.allowMultiple == allowMultiple) &&
             (identical(other.allowQuantity, allowQuantity) ||
-                const DeepCollectionEquality()
-                    .equals(other.allowQuantity, allowQuantity)) &&
+                other.allowQuantity == allowQuantity) &&
             (identical(other.minQuantity, minQuantity) ||
-                const DeepCollectionEquality()
-                    .equals(other.minQuantity, minQuantity)) &&
+                other.minQuantity == minQuantity) &&
             (identical(other.maxQuantity, maxQuantity) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxQuantity, maxQuantity)) &&
-            (identical(other.modifiers, modifiers) ||
-                const DeepCollectionEquality()
-                    .equals(other.modifiers, modifiers)));
+                other.maxQuantity == maxQuantity) &&
+            const DeepCollectionEquality().equals(other.modifiers, modifiers));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(allowMultiple) ^
-      const DeepCollectionEquality().hash(allowQuantity) ^
-      const DeepCollectionEquality().hash(minQuantity) ^
-      const DeepCollectionEquality().hash(maxQuantity) ^
-      const DeepCollectionEquality().hash(modifiers);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      id,
+      code,
+      allowMultiple,
+      allowQuantity,
+      minQuantity,
+      maxQuantity,
+      const DeepCollectionEquality().hash(modifiers));
 
   @JsonKey(ignore: true)
   @override
@@ -569,22 +555,21 @@ abstract class _OutletListProductDataModifierGroupResponse
       _$_OutletListProductDataModifierGroupResponse.fromJson;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  int get allowMultiple => throw _privateConstructorUsedError;
+  int get allowMultiple;
   @override
-  int get allowQuantity => throw _privateConstructorUsedError;
+  int get allowQuantity;
   @override
-  int get minQuantity => throw _privateConstructorUsedError;
+  int get minQuantity;
   @override
-  int get maxQuantity => throw _privateConstructorUsedError;
+  int get maxQuantity;
   @override
-  List<OutletListProductDataSubModifierGroupResponse> get modifiers =>
-      throw _privateConstructorUsedError;
+  List<OutletListProductDataSubModifierGroupResponse> get modifiers;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductDataModifierGroupResponseCopyWith<
@@ -640,7 +625,7 @@ class _$OutletListProductDataSubModifierGroupResponseTearOff {
   }
 
   OutletListProductDataSubModifierGroupResponse fromJson(
-      Map<String, Object> json) {
+      Map<String, Object?> json) {
     return OutletListProductDataSubModifierGroupResponse.fromJson(json);
   }
 }
@@ -994,67 +979,52 @@ class _$_OutletListProductDataSubModifierGroupResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletListProductDataSubModifierGroupResponse &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.sku, sku) ||
-                const DeepCollectionEquality().equals(other.sku, sku)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OutletListProductDataSubModifierGroupResponse &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.sku, sku) || other.sku == sku) &&
             (identical(other.isPreorder, isPreorder) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPreorder, isPreorder)) &&
+                other.isPreorder == isPreorder) &&
             (identical(other.preorderPeriod, preorderPeriod) ||
-                const DeepCollectionEquality()
-                    .equals(other.preorderPeriod, preorderPeriod)) &&
+                other.preorderPeriod == preorderPeriod) &&
             (identical(other.crossoutPrice, crossoutPrice) ||
-                const DeepCollectionEquality()
-                    .equals(other.crossoutPrice, crossoutPrice)) &&
-            (identical(other.stock, stock) ||
-                const DeepCollectionEquality().equals(other.stock, stock)) &&
-            (identical(other.limit, limit) ||
-                const DeepCollectionEquality().equals(other.limit, limit)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)) &&
+                other.crossoutPrice == crossoutPrice) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
+                other.description == description) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.categoryId, categoryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryId, categoryId)) &&
+                other.categoryId == categoryId) &&
             (identical(other.categoryCode, categoryCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryCode, categoryCode)) &&
+                other.categoryCode == categoryCode) &&
             (identical(other.categoryName, categoryName) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryName, categoryName)));
+                other.categoryName == categoryName));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(sku) ^
-      const DeepCollectionEquality().hash(isPreorder) ^
-      const DeepCollectionEquality().hash(preorderPeriod) ^
-      const DeepCollectionEquality().hash(crossoutPrice) ^
-      const DeepCollectionEquality().hash(stock) ^
-      const DeepCollectionEquality().hash(limit) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(categoryId) ^
-      const DeepCollectionEquality().hash(categoryCode) ^
-      const DeepCollectionEquality().hash(categoryName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      code,
+      sku,
+      isPreorder,
+      preorderPeriod,
+      crossoutPrice,
+      stock,
+      limit,
+      id,
+      name,
+      price,
+      weight,
+      description,
+      image,
+      categoryId,
+      categoryCode,
+      categoryName);
 
   @JsonKey(ignore: true)
   @override
@@ -1096,37 +1066,37 @@ abstract class _OutletListProductDataSubModifierGroupResponse
       _$_OutletListProductDataSubModifierGroupResponse.fromJson;
 
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  String? get sku => throw _privateConstructorUsedError;
+  String? get sku;
   @override
-  bool get isPreorder => throw _privateConstructorUsedError;
+  bool get isPreorder;
   @override
-  int? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod;
   @override
-  int? get crossoutPrice => throw _privateConstructorUsedError;
+  int? get crossoutPrice;
   @override
-  int? get stock => throw _privateConstructorUsedError;
+  int? get stock;
   @override
-  int? get limit => throw _privateConstructorUsedError;
+  int? get limit;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  int get price => throw _privateConstructorUsedError;
+  int get price;
   @override
-  int get weight => throw _privateConstructorUsedError;
+  int get weight;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  String? get image => throw _privateConstructorUsedError;
+  String? get image;
   @override
-  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryId;
   @override
-  String get categoryCode => throw _privateConstructorUsedError;
+  String get categoryCode;
   @override
-  String get categoryName => throw _privateConstructorUsedError;
+  String get categoryName;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductDataSubModifierGroupResponseCopyWith<
@@ -1185,7 +1155,7 @@ class _$OutletListProductDataResponseTearOff {
     );
   }
 
-  OutletListProductDataResponse fromJson(Map<String, Object> json) {
+  OutletListProductDataResponse fromJson(Map<String, Object?> json) {
     return OutletListProductDataResponse.fromJson(json);
   }
 }
@@ -1569,75 +1539,57 @@ class _$_OutletListProductDataResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletListProductDataResponse &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.sku, sku) ||
-                const DeepCollectionEquality().equals(other.sku, sku)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OutletListProductDataResponse &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.sku, sku) || other.sku == sku) &&
             (identical(other.isPreorder, isPreorder) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPreorder, isPreorder)) &&
+                other.isPreorder == isPreorder) &&
             (identical(other.preorderPeriod, preorderPeriod) ||
-                const DeepCollectionEquality()
-                    .equals(other.preorderPeriod, preorderPeriod)) &&
+                other.preorderPeriod == preorderPeriod) &&
             (identical(other.crossoutPrice, crossoutPrice) ||
-                const DeepCollectionEquality()
-                    .equals(other.crossoutPrice, crossoutPrice)) &&
-            (identical(other.stock, stock) ||
-                const DeepCollectionEquality().equals(other.stock, stock)) &&
-            (identical(other.limit, limit) ||
-                const DeepCollectionEquality().equals(other.limit, limit)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)) &&
+                other.crossoutPrice == crossoutPrice) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
+                other.description == description) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.categoryId, categoryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryId, categoryId)) &&
+                other.categoryId == categoryId) &&
             (identical(other.categoryCode, categoryCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryCode, categoryCode)) &&
+                other.categoryCode == categoryCode) &&
             (identical(other.categoryName, categoryName) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryName, categoryName)) &&
-            (identical(other.variants, variants) ||
-                const DeepCollectionEquality()
-                    .equals(other.variants, variants)) &&
-            (identical(other.modifierGroups, modifierGroups) ||
-                const DeepCollectionEquality()
-                    .equals(other.modifierGroups, modifierGroups)));
+                other.categoryName == categoryName) &&
+            const DeepCollectionEquality().equals(other.variants, variants) &&
+            const DeepCollectionEquality()
+                .equals(other.modifierGroups, modifierGroups));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(sku) ^
-      const DeepCollectionEquality().hash(isPreorder) ^
-      const DeepCollectionEquality().hash(preorderPeriod) ^
-      const DeepCollectionEquality().hash(crossoutPrice) ^
-      const DeepCollectionEquality().hash(stock) ^
-      const DeepCollectionEquality().hash(limit) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(categoryId) ^
-      const DeepCollectionEquality().hash(categoryCode) ^
-      const DeepCollectionEquality().hash(categoryName) ^
-      const DeepCollectionEquality().hash(variants) ^
-      const DeepCollectionEquality().hash(modifierGroups);
+  int get hashCode => Object.hash(
+      runtimeType,
+      code,
+      sku,
+      isPreorder,
+      preorderPeriod,
+      crossoutPrice,
+      stock,
+      limit,
+      id,
+      name,
+      price,
+      weight,
+      description,
+      image,
+      categoryId,
+      categoryCode,
+      categoryName,
+      const DeepCollectionEquality().hash(variants),
+      const DeepCollectionEquality().hash(modifierGroups));
 
   @JsonKey(ignore: true)
   @override
@@ -1678,43 +1630,41 @@ abstract class _OutletListProductDataResponse
       _$_OutletListProductDataResponse.fromJson;
 
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  String? get sku => throw _privateConstructorUsedError;
+  String? get sku;
   @override
-  bool get isPreorder => throw _privateConstructorUsedError;
+  bool get isPreorder;
   @override
-  int? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod;
   @override
-  int? get crossoutPrice => throw _privateConstructorUsedError;
+  int? get crossoutPrice;
   @override
-  int? get stock => throw _privateConstructorUsedError;
+  int? get stock;
   @override
-  int? get limit => throw _privateConstructorUsedError;
+  int? get limit;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  int get price => throw _privateConstructorUsedError;
+  int get price;
   @override
-  int get weight => throw _privateConstructorUsedError;
+  int get weight;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  String? get image => throw _privateConstructorUsedError;
+  String? get image;
   @override
-  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryId;
   @override
-  String get categoryCode => throw _privateConstructorUsedError;
+  String get categoryCode;
   @override
-  String get categoryName => throw _privateConstructorUsedError;
+  String get categoryName;
   @override
-  List<OutletListProductDataVariantResponse> get variants =>
-      throw _privateConstructorUsedError;
+  List<OutletListProductDataVariantResponse> get variants;
   @override
-  List<OutletListProductDataModifierGroupResponse> get modifierGroups =>
-      throw _privateConstructorUsedError;
+  List<OutletListProductDataModifierGroupResponse> get modifierGroups;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductDataResponseCopyWith<_OutletListProductDataResponse>
@@ -1770,7 +1720,7 @@ class _$OutletListProductDataVariantResponseTearOff {
     );
   }
 
-  OutletListProductDataVariantResponse fromJson(Map<String, Object> json) {
+  OutletListProductDataVariantResponse fromJson(Map<String, Object?> json) {
     return OutletListProductDataVariantResponse.fromJson(json);
   }
 }
@@ -2139,71 +2089,55 @@ class _$_OutletListProductDataVariantResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OutletListProductDataVariantResponse &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.sku, sku) ||
-                const DeepCollectionEquality().equals(other.sku, sku)) &&
+        (other.runtimeType == runtimeType &&
+            other is _OutletListProductDataVariantResponse &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.sku, sku) || other.sku == sku) &&
             (identical(other.isPreorder, isPreorder) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPreorder, isPreorder)) &&
+                other.isPreorder == isPreorder) &&
             (identical(other.preorderPeriod, preorderPeriod) ||
-                const DeepCollectionEquality()
-                    .equals(other.preorderPeriod, preorderPeriod)) &&
+                other.preorderPeriod == preorderPeriod) &&
             (identical(other.crossoutPrice, crossoutPrice) ||
-                const DeepCollectionEquality()
-                    .equals(other.crossoutPrice, crossoutPrice)) &&
-            (identical(other.stock, stock) ||
-                const DeepCollectionEquality().equals(other.stock, stock)) &&
-            (identical(other.limit, limit) ||
-                const DeepCollectionEquality().equals(other.limit, limit)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)) &&
+                other.crossoutPrice == crossoutPrice) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
+                other.description == description) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.categoryId, categoryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryId, categoryId)) &&
+                other.categoryId == categoryId) &&
             (identical(other.categoryCode, categoryCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryCode, categoryCode)) &&
+                other.categoryCode == categoryCode) &&
             (identical(other.categoryName, categoryName) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryName, categoryName)) &&
-            (identical(other.modifierGroups, modifierGroups) ||
-                const DeepCollectionEquality()
-                    .equals(other.modifierGroups, modifierGroups)));
+                other.categoryName == categoryName) &&
+            const DeepCollectionEquality()
+                .equals(other.modifierGroups, modifierGroups));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(sku) ^
-      const DeepCollectionEquality().hash(isPreorder) ^
-      const DeepCollectionEquality().hash(preorderPeriod) ^
-      const DeepCollectionEquality().hash(crossoutPrice) ^
-      const DeepCollectionEquality().hash(stock) ^
-      const DeepCollectionEquality().hash(limit) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(categoryId) ^
-      const DeepCollectionEquality().hash(categoryCode) ^
-      const DeepCollectionEquality().hash(categoryName) ^
-      const DeepCollectionEquality().hash(modifierGroups);
+  int get hashCode => Object.hash(
+      runtimeType,
+      code,
+      sku,
+      isPreorder,
+      preorderPeriod,
+      crossoutPrice,
+      stock,
+      limit,
+      id,
+      name,
+      price,
+      weight,
+      description,
+      image,
+      categoryId,
+      categoryCode,
+      categoryName,
+      const DeepCollectionEquality().hash(modifierGroups));
 
   @JsonKey(ignore: true)
   @override
@@ -2245,40 +2179,39 @@ abstract class _OutletListProductDataVariantResponse
       _$_OutletListProductDataVariantResponse.fromJson;
 
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  String? get sku => throw _privateConstructorUsedError;
+  String? get sku;
   @override
-  bool get isPreorder => throw _privateConstructorUsedError;
+  bool get isPreorder;
   @override
-  int? get preorderPeriod => throw _privateConstructorUsedError;
+  int? get preorderPeriod;
   @override
-  int? get crossoutPrice => throw _privateConstructorUsedError;
+  int? get crossoutPrice;
   @override
-  int? get stock => throw _privateConstructorUsedError;
+  int? get stock;
   @override
-  int? get limit => throw _privateConstructorUsedError;
+  int? get limit;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  int get price => throw _privateConstructorUsedError;
+  int get price;
   @override
-  int get weight => throw _privateConstructorUsedError;
+  int get weight;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  String? get image => throw _privateConstructorUsedError;
+  String? get image;
   @override
-  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryId;
   @override
-  String get categoryCode => throw _privateConstructorUsedError;
+  String get categoryCode;
   @override
-  String get categoryName => throw _privateConstructorUsedError;
+  String get categoryName;
   @override
-  List<OutletListProductDataModifierGroupResponse> get modifierGroups =>
-      throw _privateConstructorUsedError;
+  List<OutletListProductDataModifierGroupResponse> get modifierGroups;
   @override
   @JsonKey(ignore: true)
   _$OutletListProductDataVariantResponseCopyWith<

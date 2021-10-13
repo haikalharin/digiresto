@@ -1,5 +1,9 @@
 # Uncomment this line to define a global platform for your project
+<<<<<<< HEAD
 platform :ios, '12.0'
+=======
+platform :ios, '12.0' 
+>>>>>>> 46a97a85c3ba48ba397d98bc50fba12f6fae853a
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -32,6 +36,11 @@ target 'Runner' do
   use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  use_frameworks!
+  pod 'OneSignalXCFramework', '>= 3.4.3', '< 4.0'
 end
 
 post_install do |installer|

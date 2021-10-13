@@ -39,4 +39,8 @@ class NotificationService: UNNotificationServiceExtension {
         }
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 46a97a85c3ba48ba397d98bc50fba12f6fae853a
