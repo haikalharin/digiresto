@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:code_id_flutter/code_services/alice/alice.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
@@ -16,8 +17,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:alice/alice.dart';
-// import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'logger_interceptor.dart';
 
@@ -93,6 +93,6 @@ abstract class RegisterModule {
   @lazySingleton
   GeolocatorPlatform get goelocatorPlatform => GeolocatorPlatform.instance;
 
-  // @lazySingleton
-  // OneSignal get oneSignal => OneSignal.shared;
+  @lazySingleton
+  OneSignal get oneSignal => OneSignal.shared;
 }

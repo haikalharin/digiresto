@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   final bool? enabled;
   final int? minLines;
   final int? maxLines;
+  final FocusNode? focusNode;
   final Function(String)? onChange;
   final List<TextInputFormatter>? inputFormatters;
   const CustomTextField({
@@ -37,6 +38,7 @@ class CustomTextField extends StatelessWidget {
     this.enabled,
     this.minLines,
     this.maxLines,
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -49,6 +51,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       minLines: minLines,
       maxLines: maxLines,
+      focusNode: focusNode,
       style: inputStyle ?? Styles.inputStyle,
       decoration: InputDecoration(
         prefixIcon: prefix,

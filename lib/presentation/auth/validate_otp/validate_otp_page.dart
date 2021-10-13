@@ -139,14 +139,14 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
                           text: i10n.input_otp_desc,
                         ),
                         TextSpan(
-                          text: widget.phoneNumber,
+                          text: ' ${widget.phoneNumber}',
                           style: Styles.loginDescStyle.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.yellow,
                           ),
                         ),
                         TextSpan(
-                          text: """.${i10n.input_otp_desc2}
+                          text: """. ${i10n.input_otp_desc2}
 
 ${i10n.text_kirim_ulang}. """,
                         ),

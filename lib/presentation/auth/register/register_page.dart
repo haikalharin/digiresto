@@ -324,7 +324,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                     (_) => null,
                                   ),
                                   controller: _emailController,
-                                  hintText: i10n.errorInvalidEmail,
+                                  hintText: i10n.register_email,
                                   keyboardType: TextInputType.emailAddress,
                                 ),
                                 SizedBox(

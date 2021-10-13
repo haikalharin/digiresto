@@ -12,6 +12,7 @@ import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -31,9 +32,21 @@ class LoginPage extends StatelessWidget {
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
 
+  // TextEditingController _phoneController = TextEditingController();
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _phoneController.addListener(() {
+  //     _loginBloc.add(
+  //       LoginEvent.phoneNumberChanged(_phoneController.text),
+  //     );
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
-    final LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
+    late LoginBloc _loginBloc = BlocProvider.of<LoginBloc>(context);
+    final _formKey = GlobalKey<FormState>();
     final I10n i10n = I10n.of(context);
 
     String _baseUrl = Endpoints.baseUrlDigiresto;
@@ -82,11 +95,26 @@ class LoginForm extends StatelessWidget {
           }
         }
         state.otpFailureOrSuccessOption.fold(
-          () => null,
+          () {},
           (either) => either.fold(
-            (l) => null,
-            (r) => Get.toNamed(Routers.verifyOtp,
-                arguments: state.phoneNumber.getOrCrash()),
+            (l) {},
+            (url) async {
+              Get.toNamed(Routers.verifyOtp,
+                      arguments: state.phoneNumber.getOrNull()!)
+                  ?.then((value) {
+                _formKey.currentState?.reset();
+              });
+
+              List<String> encodedUrl = url.split("?text=");
+              // url
+              String encode =
+                  encodedUrl[0] + "?text=" + Uri.encodeComponent(encodedUrl[1]);
+              if (await canLaunch(encode)) {
+                launch(
+                  encode,
+                );
+              }
+            },
           ),
         );
       },
@@ -94,78 +122,82 @@ class LoginForm extends StatelessWidget {
         return StackWithProgress(
           isLoading: state.isSubmitting,
           children: [
-            Stack(
+            HeaderCurvedWidget(
+              height: 210,
+              color: AppColors.mainColor.withOpacity(0.7),
+            ),
+            Column(
               children: [
-                HeaderCurvedWidget(
-                  height: 210,
-                  color: AppColors.mainColor.withOpacity(0.7),
+                SizedBox(
+                  height: MediaQuery.of(context).padding.top,
                 ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).padding.top,
-                    ),
-                    SizedBox(
-                      height: 35,
-                    ),
-                    Center(
-                      child: Image.asset(
-                        'assets/logo_digiresto.png',
-                        width: 155,
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  height: 35,
                 ),
-                ListView(
-                  padding: EdgeInsets.only(
-                    top: 190,
-                    right: 40,
-                    left: 40,
+                Center(
+                  child: Image.asset(
+                    'assets/logo_digiresto.png',
+                    width: 155,
                   ),
-                  children: [
-                    Text(
-                      i10n.login_title,
-                      style: Styles.loginTitleStyle,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      i10n.text_register,
-                      style: Styles.loginDescStyle,
-                    ),
-                    SizedBox(
-                      height: 35,
-                    ),
-                    CustomTextField(
-                      autovalidateMode: state.showErrorMessages
-                          ? AutovalidateMode.always
-                          : AutovalidateMode.disabled,
-                      onChange: (value) => _loginBloc.add(
-                        LoginEvent.phoneNumberChanged(value),
-                      ),
-                      validator: (_) => state.phoneNumber.value.fold(
-                        (failure) => failure.maybeMap(
-                          orElse: () => '',
-                          invalidPhone: (_) =>
-                              i10n.login_input_your_mobile_number_is_wrong,
-                        ),
-                        (_) => null,
-                      ),
-                      hintText: i10n.login_phone,
-                      keyboardType: TextInputType.phone,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomButton(
-                      onPressed: _onFormSubmitted,
-                      label: i10n.login_btn,
-                    ),
-                  ],
-                )
+                ),
               ],
-            )
+            ),
+            Form(
+              key: _formKey,
+              child: ListView(
+                padding: EdgeInsets.only(
+                  top: 190,
+                  right: 40,
+                  left: 40,
+                ),
+                children: [
+                  Text(
+                    i10n.login_title,
+                    style: Styles.loginTitleStyle,
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    i10n.text_register,
+                    style: Styles.loginDescStyle,
+                  ),
+                  SizedBox(
+                    height: 35,
+                  ),
+                  CustomTextField(
+                    enabled: true,
+
+                    autovalidateMode: state.showErrorMessages
+                        ? AutovalidateMode.always
+                        : AutovalidateMode.disabled,
+                    // controller: _phoneController,
+                    onChange: (value) {
+                      _loginBloc.add(
+                        LoginEvent.phoneNumberChanged(value),
+                      );
+                    },
+                    validator: (_) => state.phoneNumber.value.fold(
+                      (failure) => failure.maybeMap(
+                        orElse: () => '',
+                        invalidPhone: (_) =>
+                            i10n.login_input_your_mobile_number_is_wrong,
+                      ),
+                      (_) => null,
+                    ),
+                    hintText: i10n.login_phone,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                    onPressed: _onFormSubmitted,
+                    label: i10n.login_btn,
+                  ),
+                ],
+              ),
+            ),
           ],
         );
       },

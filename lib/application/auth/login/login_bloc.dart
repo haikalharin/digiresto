@@ -30,43 +30,54 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    yield* event.map(started: (_) async* {
-      if (env == Environment.dev) {
-        detector = ShakeDetector.autoStart(
-          onPhoneShake: () {
-            add(LoginEvent.onShake());
-          },
+    yield* event.map(
+      started: (_) async* {
+        if (env == Environment.dev) {
+          detector = ShakeDetector.autoStart(
+            onPhoneShake: () {
+              add(LoginEvent.onShake());
+            },
+          );
+        }
+      },
+      phoneNumberChanged: (_event) async* {
+        yield state.copyWith(
+          isShowDialogShake: false,
+          phoneNumber: PhoneNumber(_event.phoneNumberStr),
+          loginFailureOrSuccessOption: none(),
+          otpFailureOrSuccessOption: none(),
         );
-      }
-    }, phoneNumberChanged: (_event) async* {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        phoneNumber: PhoneNumber(_event.phoneNumberStr),
-        loginFailureOrSuccessOption: none(),
-      );
-    }, pinChanged: (_event) async* {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        pin: Pin(_event.pinStr),
-        loginFailureOrSuccessOption: none(),
-      );
-    }, verifOtpPressed: (_event) async* {
-      yield* _performActionOnAuthFacadeVerifOtp();
-    }, otpVerified: (_event) async* {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        onInvalidPin: optionOf(_event.onInvalidPin),
-      );
-    }, pinSubmitted: (_event) async* {
-      yield* _performActionOnAuthFacadeLoginPin();
-    }, onChangeUrl: (e) async* {
-      yield state.copyWith(isShowDialogShake: false);
-      _authFacade.changeUrl(url: e.url);
-    }, onShake: (e) async* {
-      yield state.copyWith(isShowDialogShake: false);
+      },
+      pinChanged: (_event) async* {
+        yield state.copyWith(
+          isShowDialogShake: false,
+          pin: Pin(_event.pinStr),
+          loginFailureOrSuccessOption: none(),
+          otpFailureOrSuccessOption: none(),
+        );
+      },
+      verifOtpPressed: (_event) async* {
+        yield* _performActionOnAuthFacadeVerifOtp();
+      },
+      otpVerified: (_event) async* {
+        yield state.copyWith(
+          isShowDialogShake: false,
+          onInvalidPin: optionOf(_event.onInvalidPin),
+        );
+      },
+      pinSubmitted: (_event) async* {
+        yield* _performActionOnAuthFacadeLoginPin();
+      },
+      onChangeUrl: (e) async* {
+        yield state.copyWith(isShowDialogShake: false);
+        _authFacade.changeUrl(url: e.url);
+      },
+      onShake: (e) async* {
+        yield state.copyWith(isShowDialogShake: false);
 
-      yield state.copyWith(isShowDialogShake: true);
-    });
+        yield state.copyWith(isShowDialogShake: true);
+      },
+    );
   }
 
   Stream<LoginState> _performActionOnAuthFacadeVerifOtp() async* {
@@ -84,33 +95,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       failureOrSuccess = await _authFacade.getOtp(
         phoneNumber: state.phoneNumber,
       );
-
-      String? url = failureOrSuccess.fold(
-        (f) => null,
-        (url) => url,
-      );
-      if (url != null) {
-        List<String> encodedUrl = url.split("?text=");
-        // url
-        String encode =
-            encodedUrl[0] + "?text=" + Uri.encodeComponent(encodedUrl[1]);
-        if (await canLaunch(encode)) {
-          await launch(
-            encode,
-          );
-        }
-      }
     }
 
     yield state.copyWith(
       isSubmitting: false,
       showErrorMessages: true,
       otpFailureOrSuccessOption: optionOf(failureOrSuccess),
-    );
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      otpFailureOrSuccessOption: none(),
     );
   }
 
