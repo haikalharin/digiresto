@@ -140,4 +140,7 @@ class Styles {
 
   static TextStyle ratingLabelStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 13, fontWeight: FontWeight.w600);
+
+  static TextStyle badgeContentStyle = GoogleFonts.openSans(
+      color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600);
 }

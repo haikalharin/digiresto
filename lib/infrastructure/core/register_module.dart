@@ -26,11 +26,11 @@ abstract class RegisterModule {
 
   @Environment(Environment.prod)
   @lazySingleton
-  Alice get alice => Alice();
+  Alice get alice => Alice(showNotification: false);
 
   @Environment(Environment.dev)
   @lazySingleton
-  Alice get aliceDev => Alice(showNotification: false);
+  Alice get aliceDev => Alice(showNotification: true);
 
   @lazySingleton
   HiveInterface get hive => Hive;

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
@@ -10,6 +12,7 @@ class MenuItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final random = Random();
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
@@ -19,11 +22,11 @@ class MenuItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          menuItem.img.isNotEmpty
+          menuItem.img != null || (menuItem.img?.isEmpty ?? false)
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: CachedNetworkImage(
-                    imageUrl: menuItem.img,
+                    imageUrl: menuItem.img!,
                     height: 70,
                     width: 70,
                   ),
@@ -31,7 +34,7 @@ class MenuItemWidget extends StatelessWidget {
               : ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
-                    'assets/images/0.png',
+                    'assets/images/${random.nextInt(10)}.png',
                     height: 70,
                     width: 70,
                   ),

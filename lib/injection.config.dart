@@ -129,8 +129,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
           get<_i24.INetworkService>(),
           get<_i15.IStorage>(),
           get<_i11.Logger>()));
-  gh.lazySingleton<_i28.IProfileRepository>(() =>
-      _i29.ProfileRepository(get<_i24.INetworkService>(), get<_i11.Logger>()));
+  gh.lazySingleton<_i28.IProfileRepository>(() => _i29.ProfileRepository(
+      get<_i24.INetworkService>(), get<_i15.IStorage>(), get<_i11.Logger>()));
   gh.factory<_i30.MapApi>(() => _i30.MapApi(get<_i24.INetworkService>()));
   gh.factory<_i31.MapRepository>(() => _i31.MapRepository(get<_i30.MapApi>()));
   gh.factory<_i32.NotificationBloc>(

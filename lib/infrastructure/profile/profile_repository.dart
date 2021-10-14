@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/auth/auth_failure.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/profile/i_profile_repository.dart';
 import 'package:digiresto/domain/profile/order_history.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
@@ -16,9 +18,11 @@ import 'package:logger/logger.dart';
 
 @LazySingleton(as: IProfileRepository)
 class ProfileRepository implements IProfileRepository {
+  final IStorage _storage;
   final INetworkService _networkService;
   final Logger logger;
-  const ProfileRepository(this._networkService, this.logger) : super();
+  const ProfileRepository(this._networkService, this._storage, this.logger)
+      : super();
   @override
   Future<Either<AuthFailure, UserProfile>> getProfile() async {
     try {
@@ -71,6 +75,42 @@ class ProfileRepository implements IProfileRepository {
           .map((item) => OrderHistory.fromJson(Map<String, dynamic>.from(item)))
           .toIList();
       return right(orderPendingList);
+    } on ServerException catch (_) {
+      return left(ProfileFailure.serverError());
+    } on NoInternetException catch (_) {
+      return left(ProfileFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(ProfileFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<ProfileFailure, int>> getOrderOnProcessCount() async {
+    final _apiUrl = Endpoints.urlGetOrderProcessCount;
+    try {
+      await _storage.openBox(StorageConstants.user);
+
+      final _userInStorage = await _storage.getData();
+      await _storage.close();
+
+      final user = UserAuth.fromJson(_userInStorage);
+      final apiResult = await _networkService.postHttp(
+        path: _apiUrl,
+        useAuth: true,
+        content: {
+          "query_string": {
+            "outletName": "",
+            "customerPhone": user.mobilePhone,
+            "status": "waiting,process,ready,delivered"
+          },
+          "body": {}
+        },
+      );
+      logger.d(apiResult);
+      final data = (apiResult as Map<String, dynamic>)['data'] as int;
+
+      return right(data);
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {

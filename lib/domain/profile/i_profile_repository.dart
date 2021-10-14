@@ -21,6 +21,7 @@ abstract class IProfileRepository {
     required int page,
   });
   Future<Either<ProfileFailure, IList<OrderPending>>> getOrderPending();
+  Future<Either<ProfileFailure, int>> getOrderOnProcessCount();
   Future<Either<ProfileFailure, OrderHistoryDetails>> getOrderHistoryDetails({
     required String receiptCode,
   });

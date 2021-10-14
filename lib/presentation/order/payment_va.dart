@@ -267,6 +267,7 @@ class PaymentVAScreen extends StatelessWidget {
             onPressed: () {
               Get.offNamed(Routers.paymentReceipt,
                   arguments: PaymentReceiptViewArgument(
+                      fromOrder: true,
                       receiptCode: args.checkoutDataResponse.receiptCode));
             },
           ),

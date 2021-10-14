@@ -42,10 +42,6 @@ class InitiateProvider extends StatelessWidget {
           ..add(HomeUserEvent.getStaticBanner())
           ..add(HomeUserEvent.getCartSessionID()),
       ),
-      // BlocProvider<NotificationBloc>(
-      //   create: (context) =>
-      //       getIt<NotificationBloc>(),
-      // ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),
       BlocProvider<AddressMapBloc>(
@@ -56,9 +52,9 @@ class InitiateProvider extends StatelessWidget {
       BlocProvider<AppBloc>(
         create: (context) => getIt<AppBloc>()..add(AppEvent.started()),
       ),
-      // BlocProvider<NotificationBloc>(
-      //     create: (context) =>
-      //         getIt<NotificationBloc>()..add(NotificationEvent.started())),
+      BlocProvider<NotificationBloc>(
+          create: (context) =>
+              getIt<NotificationBloc>()..add(NotificationEvent.started())),
       BlocProvider<DigiLocaleBloc>(
           create: (_) =>
               getIt<DigiLocaleBloc>()..add(DigiLocaleEvent.started()))

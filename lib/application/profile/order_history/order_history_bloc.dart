@@ -30,8 +30,10 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
           orderPendingFailureOrSuccess: none(),
         );
         final failureOrSuccess = await _profileRepository.getOrderPending();
+        final count = failureOrSuccess.fold((l) => 0, (r) => r.length);
         yield state.copyWith(
           orderPendingFailureOrSuccess: optionOf(failureOrSuccess),
+          orderPendingCountOption: optionOf(count),
         );
       },
       orderOnProcessOpen: (_event) async* {
@@ -52,6 +54,13 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             await _profileRepository.getOrderCompleted(page: 1);
         yield state.copyWith(
           orderCompletedFailureOrSuccess: optionOf(failureOrSuccess),
+        );
+      },
+      getOrderOnProcessCount: (value) async* {
+        final failureOrSuccess =
+            await _profileRepository.getOrderOnProcessCount();
+        yield state.copyWith(
+          orderOnProccessCountFailureOrSuccess: optionOf(failureOrSuccess),
         );
       },
     );

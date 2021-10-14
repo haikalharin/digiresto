@@ -163,8 +163,8 @@ class MenuItem with _$MenuItem {
     required num serviceAmount,
     required num taxAmount,
     required bool? isStock,
-    required String img,
-    required String image,
+    @JsonKey(includeIfNull: true) required String? img,
+    @JsonKey(includeIfNull: true) required String? image,
     @JsonKey(includeIfNull: true) required num? transactionLimit,
   }) = _MenuItem;
 

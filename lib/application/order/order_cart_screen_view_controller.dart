@@ -174,6 +174,7 @@ class OrderCartScreenViewController extends GetxController {
     } else if (checkoutResponse.value?.payment.isCredit ?? false) {
       Get.offNamed(Routers.paymentReceipt,
           arguments: PaymentReceiptViewArgument(
+              fromOrder: true,
               receiptCode: checkoutResponse.value!.receiptCode));
       isLoading.value = false;
     } else if (checkoutResponse.value?.payment.isWebView ?? false) {
@@ -188,11 +189,13 @@ class OrderCartScreenViewController extends GetxController {
         ErrorPopupWidget.show("Error", "App Launch Error", () {
           Get.offNamed(Routers.paymentReceipt,
               arguments: PaymentReceiptViewArgument(
+                  fromOrder: true,
                   receiptCode: checkoutResponse.value!.receiptCode));
         });
       }, onSuccess: () {
         Get.offNamed(Routers.paymentReceipt,
             arguments: PaymentReceiptViewArgument(
+                fromOrder: true,
                 receiptCode: checkoutResponse.value!.receiptCode));
       });
     } else {

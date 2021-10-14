@@ -56,8 +56,26 @@ class OrderHistoryWidget extends StatelessWidget {
         tabs: _controller.myTabs,
       ),
       body: BlocConsumer<OrderHistoryBloc, OrderHistoryState>(
-        bloc: _bloc..add(OrderHistoryEvent.orderPendingOpen()),
-        listener: (context, state) {},
+        bloc: _bloc
+          ..add(OrderHistoryEvent.orderPendingOpen())
+          ..add(OrderHistoryEvent.getOrderOnProcessCount()),
+        listener: (context, state) {
+          state.orderOnProccessCountFailureOrSuccess.fold(
+            () {},
+            (failureOrSuccess) => failureOrSuccess.fold(
+              (failure) {},
+              (count) {
+                _controller.orderProcessedCount.value = count;
+              },
+            ),
+          );
+          state.orderPendingCountOption.fold(
+            () {},
+            (count) {
+              _controller.waitingPaymentCount.value = count;
+            },
+          );
+        },
         builder: (context, state) => TabBarView(
           controller: _controller.controller,
           children: [
@@ -98,6 +116,7 @@ class OrderHistoryWidget extends StatelessWidget {
             RefreshIndicator(
               onRefresh: () async {
                 _bloc.add(OrderHistoryEvent.orderOnProcessOpen());
+                _bloc.add(OrderHistoryEvent.getOrderOnProcessCount());
               },
               child: Stack(
                 children: <Widget>[
@@ -120,8 +139,11 @@ class OrderHistoryWidget extends StatelessWidget {
                         itemCount: orderOnProcess.length,
                         itemBuilder: (context, index) {
                           return OrderOnProcessWidget(orderOnProcess[index],
-                              refresh: () => _bloc
-                                  .add(OrderHistoryEvent.orderOnProcessOpen()));
+                              refresh: () {
+                            _bloc.add(OrderHistoryEvent.orderOnProcessOpen());
+                            _bloc.add(
+                                OrderHistoryEvent.getOrderOnProcessCount());
+                          });
                         },
                       ),
                     ),
