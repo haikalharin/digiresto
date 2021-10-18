@@ -65,15 +65,16 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
         state.topUpVAfailureOrSuccess.fold(
           () => null,
           (data) => data.fold(
-            (failure) => Get.defaultDialog(
-              title: 'Error',
-              middleText: failure.map(
-                noInternet: (_) => 'No Internet',
-                serverException: (e) => e.message ?? 'Server Error',
-                noData: (_) => 'Failed',
-                unexpected: (_) => 'Error unexpected',
-              ),
-            ),
+            (failure) {},
+            // => Get.defaultDialog(
+            //   title: 'Error',
+            //   middleText: failure.map(
+            //     noInternet: (_) => 'No Internet',
+            //     serverError: (e) => e.message ?? 'Server Error',
+            //     noData: (_) => 'Failed',
+            //     unexpected: (_) => 'Error unexpected',
+            //   ),
+            // ),
             (va) => Get.off(
               TopUpDetailsPage(
                 TopUpDetailsType.TOP_UP_VA,
@@ -85,15 +86,16 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
         state.topUpBankfailureOrSuccess.fold(
           () => null,
           (data) => data.fold(
-            (failure) => Get.defaultDialog(
-              title: 'Error',
-              middleText: failure.map(
-                noInternet: (_) => 'No Internet',
-                serverException: (e) => e.message ?? 'Server Error',
-                noData: (_) => 'Failed',
-                unexpected: (_) => 'Error unexpected',
-              ),
-            ),
+            (failure) {},
+            // => Get.defaultDialog(
+            //   title: 'Error',
+            //   middleText: failure.map(
+            //     noInternet: (_) => 'No Internet',
+            //     serverException: (e) => e.message ?? 'Server Error',
+            //     noData: (_) => 'Failed',
+            //     unexpected: (_) => 'Error unexpected',
+            //   ),
+            // ),
             (bank) => Get.off(
               TopUpDetailsPage(
                 TopUpDetailsType.TOP_UP_BANK,

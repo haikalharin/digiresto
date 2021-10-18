@@ -9,5 +9,7 @@ class ProfileFailure with _$ProfileFailure {
   const factory ProfileFailure.serverError() = _ServerError;
   const factory ProfileFailure.unableToUpdate() = _UnableToUpdate;
   const factory ProfileFailure.unexpected() = _Unexpected;
-  const factory ProfileFailure.invalidToken(String? message) = _InvalidToken;
+  const factory ProfileFailure.invalidToken() = _InvalidToken;
+  const factory ProfileFailure.sessionExpired() = _SessionExpired;
+  const factory ProfileFailure.generalError() = _GeneralError;
 }

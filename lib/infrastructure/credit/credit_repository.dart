@@ -10,6 +10,7 @@ import 'package:digiresto/domain/credit/top_up_pending.dart';
 import 'package:digiresto/domain/credit/top_up_va_details.dart';
 import 'package:digiresto/domain/credit/top_up_method.dart';
 import 'package:digiresto/domain/credit/user_balance.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -32,12 +33,14 @@ class CreditRepository implements ICreditRepository {
       final result = topUpData.map((a) => TopUpMethod.fromJson(a)).toIList();
       logger.d(data);
       return right(result);
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
@@ -58,12 +61,14 @@ class CreditRepository implements ICreditRepository {
       final userBalanceData = Map<String, dynamic>.from(data);
 
       return right(UserBalance.fromJson(userBalanceData));
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
@@ -93,12 +98,14 @@ class CreditRepository implements ICreditRepository {
       final data = (apiResult as Map<String, dynamic>)['data'];
       final topUpDetails = Map<String, dynamic>.from(data);
       return right(TopUpVADetails.fromJson(topUpDetails));
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
@@ -126,12 +133,14 @@ class CreditRepository implements ICreditRepository {
       final data = (apiResult as Map<String, dynamic>)['data'];
       final topUpDetails = Map<String, dynamic>.from(data);
       return right(TopUpBankDetails.fromJson(topUpDetails));
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
@@ -153,12 +162,14 @@ class CreditRepository implements ICreditRepository {
       final listTopUp =
           listData.map((json) => TopUpPending.fromJson(json)).toIList();
       return right(listTopUp);
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
@@ -183,12 +194,14 @@ class CreditRepository implements ICreditRepository {
       );
       final data = (apiResult as Map<String, dynamic>)['response']["code"];
       return right(data);
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
@@ -215,12 +228,14 @@ class CreditRepository implements ICreditRepository {
       final result = PaymentHistory.fromJson(json);
       logger.d(data);
       return right(result);
-    } on ServerException catch (e) {
-      logger.d(e.message);
-      return left(CreditFailure.serverException(
-        code: e.code,
-        message: e.message,
-      ));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {

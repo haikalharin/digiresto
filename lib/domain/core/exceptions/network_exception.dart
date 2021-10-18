@@ -6,8 +6,3 @@ class NetworkException implements Exception {
     this.statusCode = statusCode;
   }
 }
-
-class AuthException extends NetworkException {
-  AuthException({message, statusCode})
-      : super(message: message, statusCode: statusCode);
-}

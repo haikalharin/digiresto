@@ -98,22 +98,6 @@ flutter:
     - assets/lang/
     - assets/
 
-  fonts:
-    - family: ProductSans
-      fonts:
-        - asset: assets/fonts/Product-Sans-Regular.ttf
-        - asset: assets/fonts/Product-Sans-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Product-Sans-Bold.ttf
-          weight: 700
-
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppins_regular.ttf
-        - asset: assets/fonts/poppins_italic.ttf
-        - asset: assets/fonts/poppins_bold.ttf
-        - asset: assets/fonts/poppins_semibold.ttf
-
 flutter_intl:
   enabled: true
   class_name: I10n

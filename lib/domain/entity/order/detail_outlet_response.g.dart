@@ -46,7 +46,7 @@ _$_DetailOutletDataResponse _$$_DetailOutletDataResponseFromJson(
           (json['location'] as List<dynamic>).map((e) => e as String).toList(),
       ownerPhone: json['ownerPhone'] as String?,
       poCutoff: json['poCutoff'] as String?,
-      rating: json['rating'] as int,
+      rating: json['rating'] as num,
       totalReview: json['totalReview'] as int,
       lastUpdate: DetailOutletDataLastUpdateResponse.fromJson(
           json['lastUpdate'] as Map<String, dynamic>),

@@ -41,4 +41,5 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.getDineInIDMethodFail() = _GetDineInIDMethodFail;
   const factory OrderFailure.setVoucherMethodIDFail() = _SetVoucherMethodIDFail;
   const factory OrderFailure.getVoucherMethodIDFail() = _GetVoucherMethodIDFail;
+  const factory OrderFailure.sessionExpired() = _SessionExpired;
 }

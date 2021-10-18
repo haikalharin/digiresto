@@ -28,6 +28,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()
@@ -55,6 +56,12 @@ class OrderApi {
               // }
               );
       return right(OutletCategoryResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -80,6 +87,12 @@ class OrderApi {
               // }
               );
       return right(OutletCategoryResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -107,6 +120,12 @@ class OrderApi {
               // }
               );
       return right(OutletCategoryResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -141,6 +160,12 @@ class OrderApi {
         listUserData.add(DigiDiscountOutletDataResponse.fromJson(userData[i]));
       }
       return right(listUserData);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -173,6 +198,12 @@ class OrderApi {
         promos.add(HotPromo.createHotPromo(listUserData[i]));
       }
       return right(promos);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -205,6 +236,12 @@ class OrderApi {
         staticBanner.add(StaticBanner.createStaticBanner(listUserData[i]));
       }
       return right(staticBanner);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -233,6 +270,12 @@ class OrderApi {
               // }
               );
       return right(DetailOutletResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -261,6 +304,12 @@ class OrderApi {
               // }
               );
       return right(OutletProductCategoryResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -288,6 +337,12 @@ class OrderApi {
 // 	}
 // }
       return right(OutletListProductResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -315,6 +370,12 @@ class OrderApi {
 // 	}
 // }
       return right(PromoOutletResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -340,6 +401,12 @@ class OrderApi {
 // 	}
 // }
       return right(GetListVoucherOutletResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -356,6 +423,12 @@ class OrderApi {
       final apiResult = await _networkService.postHttp(
           path: apiUrl, content: object.toJson());
       return right(CartSessionResponseApi.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -376,6 +449,12 @@ class OrderApi {
         "body": {}
       });
       return right(CartSessionResponseApi.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -392,6 +471,12 @@ class OrderApi {
       final apiResult = await _networkService.postHttp(
           path: apiUrl, content: object.toJson());
       return right(CartSessionResponseApi.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -411,6 +496,12 @@ class OrderApi {
         "body": {}
       });
       return right(CheckoutResponse.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -437,6 +528,12 @@ class OrderApi {
       var methods = (apiResult as Map<String, dynamic>)['data'];
       return right(List<PaymentMethodDataResponse>.from(
           methods.map((data) => PaymentMethodDataResponse.fromJson(data))));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {
@@ -467,6 +564,12 @@ class OrderApi {
       var methods = (apiResult as Map<String, dynamic>)['data'];
       return right(List<DeliveryMethodDataResponse>.from(
           methods.map((data) => DeliveryMethodDataResponse.fromJson(data))));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
     } on ServerException catch (e) {
       return left(e);
     } on TimeOutException catch (_) {

@@ -404,8 +404,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Address Required"),
         "error_message_failed_get_response":
             MessageLookupByLibrary.simpleMessage("Connection issue."),
-        "error_message_title":
-            MessageLookupByLibrary.simpleMessage("Sorry..&#8230;"),
+        "error_message_title": MessageLookupByLibrary.simpleMessage("Sorry.."),
         "failed_add_normal": MessageLookupByLibrary.simpleMessage(
             "Unable to add product when another pre-order product is at your cart."),
         "failed_add_preorder": MessageLookupByLibrary.simpleMessage(
@@ -707,7 +706,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter destination address"),
         "onboarding_title_3":
             MessageLookupByLibrary.simpleMessage("Fast and Safe Delivery"),
-        "oops_title": MessageLookupByLibrary.simpleMessage("Oops sorry&#8230;"),
+        "oops_title": MessageLookupByLibrary.simpleMessage("Oops sorry"),
         "order_confirmation_alert": MessageLookupByLibrary.simpleMessage(
             "Are you sure with this order?"),
         "outlet_call": MessageLookupByLibrary.simpleMessage("Call CS"),

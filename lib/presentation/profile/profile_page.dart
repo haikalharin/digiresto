@@ -97,7 +97,6 @@ class ProfileWidget extends StatelessWidget {
                       _state.failure.maybeMap(
                         orElse: () => 'Unknown Error',
                         noInternet: (_) => 'No Internet',
-                        invalidToken: (_) => 'Invalid Token',
                       ),
                     ),
                   ),

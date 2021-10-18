@@ -12,6 +12,7 @@ import 'package:digiresto/domain/profile/order_history_details.dart';
 import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/domain/profile/profile_failure.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -35,8 +36,14 @@ class ProfileRepository implements IProfileRepository {
       final userData = Map<String, dynamic>.from(data);
       logger.d(data);
       return right(UserProfile.fromJson(userData));
-    } on ServerException catch (e) {
-      return left(AuthFailure.invalidToken(e.message));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
       return left(AuthFailure.noInternet());
     } catch (e, stactrace) {
@@ -75,6 +82,12 @@ class ProfileRepository implements IProfileRepository {
           .map((item) => OrderHistory.fromJson(Map<String, dynamic>.from(item)))
           .toIList();
       return right(orderPendingList);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -111,6 +124,12 @@ class ProfileRepository implements IProfileRepository {
       final data = (apiResult as Map<String, dynamic>)['data'] as int;
 
       return right(data);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -144,6 +163,12 @@ class ProfileRepository implements IProfileRepository {
           .map((item) => OrderPending.fromJson(Map<String, dynamic>.from(item)))
           .toIList();
       return right(orderPendingList);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -177,6 +202,12 @@ class ProfileRepository implements IProfileRepository {
         return left(ProfileFailure.unableToUpdate());
       }
       return right(unit);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -218,6 +249,12 @@ class ProfileRepository implements IProfileRepository {
           .map((item) => OrderHistory.fromJson(Map<String, dynamic>.from(item)))
           .toIList();
       return right(orderPendingList);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -249,6 +286,12 @@ class ProfileRepository implements IProfileRepository {
       final orderHistoryDetails =
           OrderHistoryDetails.fromJson(Map<String, dynamic>.from(data));
       return right(orderHistoryDetails);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -271,7 +314,13 @@ class ProfileRepository implements IProfileRepository {
       final data = (apiResult as Map<String, dynamic>)['data']['cancelReason'];
       final list = List<String>.from(data).toIList();
       return right(list);
-    } on ServerException catch (e) {
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
       return left(ProfileFailure.noInternet());
@@ -305,6 +354,12 @@ class ProfileRepository implements IProfileRepository {
         return left(ProfileFailure.serverError());
       }
       return right(unit);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -343,6 +398,12 @@ class ProfileRepository implements IProfileRepository {
         return left(ProfileFailure.serverError());
       }
       return right(unit);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
@@ -374,6 +435,12 @@ class ProfileRepository implements IProfileRepository {
         return left(ProfileFailure.noData());
       }
       return right(unit);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {

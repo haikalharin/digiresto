@@ -160,10 +160,10 @@ class I10n {
     );
   }
 
-  /// `Sorry..&#8230;`
+  /// `Sorry..`
   String get error_message_title {
     return Intl.message(
-      'Sorry..&#8230;',
+      'Sorry..',
       name: 'error_message_title',
       desc: '',
       args: [],
@@ -240,10 +240,10 @@ class I10n {
     );
   }
 
-  /// `Oops sorry&#8230;`
+  /// `Oops sorry`
   String get oops_title {
     return Intl.message(
-      'Oops sorry&#8230;',
+      'Oops sorry',
       name: 'oops_title',
       desc: '',
       args: [],

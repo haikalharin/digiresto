@@ -13,7 +13,7 @@
     "dev_mode_title":"Dev Mode",
 
     "error_message_failed_get_response":"Terjadi gangguan koneksi",
-    "error_message_title":"Maaf&#8230;",
+    "error_message_title":"Maaf",
     "alert_cancel":"Batal",
     "alert_ok":"Ok",
     "alert_save":"Simpan",
@@ -23,7 +23,7 @@
     "input_count_limit":"{param}/%2$s",
 
     "user_not_login_alert":"Anda belum login, silahkan login terlebih dahulu untuk mengakses halaman ini.",
-    "oops_title":"Maaf&#8230;",
+    "oops_title":"Maaf",
     "alert_out_of_session":"Session login Anda telah selesai silakan login kembali!",
     "webview_close":"Tutup",
 

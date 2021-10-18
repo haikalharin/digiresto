@@ -20,4 +20,6 @@ class TransactionFailure with _$TransactionFailure implements Exception {
 
   const factory TransactionFailure.addFavoriteTransactionFail() =
       _AddFavoriteTransactionFail;
+
+  const factory TransactionFailure.sessionExpired() = _SessionExpired;
 }

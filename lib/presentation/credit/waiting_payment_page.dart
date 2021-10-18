@@ -59,9 +59,12 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                   child: Text(
                     data.failure.map(
                       noInternet: (_) => 'No Internet',
-                      serverException: (e) => e.message ?? 'Server Error',
+                      serverError: (e) => 'Server Error',
                       noData: (_) => i10n.history_pending_payment_empty,
                       unexpected: (_) => 'Unknown Error',
+                      generalError: (_) =>
+                          i10n.error_message_failed_get_response,
+                      sessionExpired: (_) => 'Session Expired',
                     ),
                   ),
                 ),

@@ -268,7 +268,7 @@ class _$DetailOutletDataResponseTearOff {
       required List<String> location,
       required String? ownerPhone,
       required String? poCutoff,
-      required int rating,
+      required num rating,
       required int totalReview,
       required DetailOutletDataLastUpdateResponse lastUpdate,
       required String? merchantCategory}) {
@@ -322,7 +322,7 @@ mixin _$DetailOutletDataResponse {
   List<String> get location => throw _privateConstructorUsedError;
   String? get ownerPhone => throw _privateConstructorUsedError;
   String? get poCutoff => throw _privateConstructorUsedError;
-  int get rating => throw _privateConstructorUsedError;
+  num get rating => throw _privateConstructorUsedError;
   int get totalReview => throw _privateConstructorUsedError;
   DetailOutletDataLastUpdateResponse get lastUpdate =>
       throw _privateConstructorUsedError;
@@ -356,7 +356,7 @@ abstract class $DetailOutletDataResponseCopyWith<$Res> {
       List<String> location,
       String? ownerPhone,
       String? poCutoff,
-      int rating,
+      num rating,
       int totalReview,
       DetailOutletDataLastUpdateResponse lastUpdate,
       String? merchantCategory});
@@ -464,7 +464,7 @@ class _$DetailOutletDataResponseCopyWithImpl<$Res>
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalReview: totalReview == freezed
           ? _value.totalReview
           : totalReview // ignore: cast_nullable_to_non_nullable
@@ -513,7 +513,7 @@ abstract class _$DetailOutletDataResponseCopyWith<$Res>
       List<String> location,
       String? ownerPhone,
       String? poCutoff,
-      int rating,
+      num rating,
       int totalReview,
       DetailOutletDataLastUpdateResponse lastUpdate,
       String? merchantCategory});
@@ -625,7 +625,7 @@ class __$DetailOutletDataResponseCopyWithImpl<$Res>
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       totalReview: totalReview == freezed
           ? _value.totalReview
           : totalReview // ignore: cast_nullable_to_non_nullable
@@ -703,7 +703,7 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
   @override
   final String? poCutoff;
   @override
-  final int rating;
+  final num rating;
   @override
   final int totalReview;
   @override
@@ -810,7 +810,7 @@ abstract class _DetailOutletDataResponse implements DetailOutletDataResponse {
       required List<String> location,
       required String? ownerPhone,
       required String? poCutoff,
-      required int rating,
+      required num rating,
       required int totalReview,
       required DetailOutletDataLastUpdateResponse lastUpdate,
       required String? merchantCategory}) = _$_DetailOutletDataResponse;
@@ -851,7 +851,7 @@ abstract class _DetailOutletDataResponse implements DetailOutletDataResponse {
   @override
   String? get poCutoff;
   @override
-  int get rating;
+  num get rating;
   @override
   int get totalReview;
   @override

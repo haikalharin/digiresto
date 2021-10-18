@@ -49,7 +49,7 @@ class _RegisterFormState extends State<RegisterForm> {
   late final _retypePinErrorController =
       StreamController<ErrorAnimationType>.broadcast();
 
-  int _page = 0;
+  // int _page = 0;
 
   Future<bool> backHandler() async {
     if (_pageController.page!.floor() > 0) {
@@ -67,9 +67,9 @@ class _RegisterFormState extends State<RegisterForm> {
   initState() {
     super.initState();
     _pageController.addListener(() {
-      setState(() {
-        _page = _pageController.page!.floor();
-      });
+      // setState(() {
+      //   _page = _pageController.page!.floor();
+      // });
     });
     _nameController.addListener(_onNameChange);
     _emailController.addListener(_onEmailChange);

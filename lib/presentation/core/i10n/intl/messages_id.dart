@@ -409,8 +409,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Alamat harus diisi"),
         "error_message_failed_get_response":
             MessageLookupByLibrary.simpleMessage("Terjadi gangguan koneksi"),
-        "error_message_title":
-            MessageLookupByLibrary.simpleMessage("Maaf&#8230;"),
+        "error_message_title": MessageLookupByLibrary.simpleMessage("Maaf"),
         "failed_add_normal": MessageLookupByLibrary.simpleMessage(
             "Tidak dapat menambahkan pesanan saat terdapat pesanan preorder di cart."),
         "failed_add_preorder": MessageLookupByLibrary.simpleMessage(
@@ -708,7 +707,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Masukkan Alamat Tujuan"),
         "onboarding_title_3":
             MessageLookupByLibrary.simpleMessage("Pengiriman Cepat dan Aman"),
-        "oops_title": MessageLookupByLibrary.simpleMessage("Maaf&#8230;"),
+        "oops_title": MessageLookupByLibrary.simpleMessage("Maaf"),
         "order_confirmation_alert": MessageLookupByLibrary.simpleMessage(
             "Apakah Anda yakin dengan orderan ini?"),
         "outlet_call": MessageLookupByLibrary.simpleMessage("Telepon CS"),

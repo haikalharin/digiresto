@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
@@ -12,7 +13,7 @@ import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class ValidateOtpPage extends StatelessWidget {
@@ -52,6 +53,9 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
+    setState(() {
+      _start = 60;
+    });
     _timer = new Timer.periodic(
       oneSec,
       (Timer timer) {
@@ -97,18 +101,15 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
       listener: (context, state) {
         state.validateFailureOrSuccess.fold(
           () => null,
-          (success) => success.fold(
-            (l) => Get.defaultDialog(
-                title: 'Error',
-                middleText: l.maybeMap(
-                  orElse: () => 'unknown',
-                  invalidOtp: (_) => i10n.errorInvalidOtp,
-                )),
-            // (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
-            (login) => login.isMember
+          (success) => success.fold((l) {}, (login) {
+            if (!Get.find<HomeNavigationViewController>().isClosed) {
+              Get.find<HomeNavigationViewController>().selectedTabIndex.value =
+                  0;
+            }
+            login.isMember
                 ? Get.offAllNamed(Routers.auth)
-                : Get.to(RegisterPage(widget.phoneNumber)),
-          ),
+                : Get.to(RegisterPage(widget.phoneNumber));
+          }),
         );
       },
       builder: (context, state) {
@@ -183,7 +184,7 @@ ${i10n.text_kirim_ulang}. """,
                         (a) => a.fold(
                           (failure) => failure.maybeMap(
                             orElse: () => 'Unknown Error',
-                            invalidOtp: (e) => e.message,
+                            invalidOtp: (e) => i10n.errorInvalidOtp,
                           ),
                           (r) => null,
                         ),
@@ -219,9 +220,12 @@ ${i10n.text_kirim_ulang}. """,
                     ),
                     CustomButton(
                       onPressed: _start == 0
-                          ? () => _validateBloc.add(
+                          ? () {
+                              startTimer();
+                              _validateBloc.add(
                                 ValidateOtpEvent.resendOtp(widget.phoneNumber),
-                              )
+                              );
+                            }
                           : () {},
                       margin: EdgeInsets.zero,
                       label: i10n.input_otp_resend_code('$_start'),

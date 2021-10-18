@@ -65,7 +65,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
               title: 'Invalid',
               middleText: failure.maybeMap(
                 orElse: () => 'Error',
-                invalidPin: (e) => e.message ?? 'Invalid Pin',
+                invalidPin: (e) => 'Invalid Pin',
               ),
             ),
             (user) {
@@ -125,7 +125,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
                         (a) => a.fold(
                           (failure) => failure.maybeMap(
                             orElse: () => 'Unknown Error',
-                            invalidPin: (e) => e.message,
+                            invalidPin: (e) => 'Invalid Pin',
                           ),
                           (r) => null,
                         ),

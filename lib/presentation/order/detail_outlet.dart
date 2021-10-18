@@ -375,7 +375,8 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                   Row(
                     children: [
                       CustomRating(
-                        currentRating: controller.detailOutlet.value!.rating,
+                        currentRating:
+                            controller.detailOutlet.value!.rating.floor(),
                         onRatingSelected: (int) {},
                         isEnable: false,
                       ),

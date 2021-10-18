@@ -1,5 +1,6 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
+import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/application/notification/notification_bloc.dart';
@@ -52,6 +53,9 @@ class InitiateProvider extends StatelessWidget {
       BlocProvider<AppBloc>(
         create: (context) => getIt<AppBloc>()..add(AppEvent.started()),
       ),
+      BlocProvider<AuthBloc>(
+          create: (context) =>
+              getIt<AuthBloc>()..add(AuthEvent.authCheckRequested())),
       BlocProvider<NotificationBloc>(
           create: (context) =>
               getIt<NotificationBloc>()..add(NotificationEvent.started())),

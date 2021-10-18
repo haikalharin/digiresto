@@ -1,0 +1,120 @@
+import 'package:digiresto/application/auth/auth_bloc.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/router/router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+
+class ErrorDialog {
+  showError({
+    String title = "Digiresto",
+    required StatusMessageDisplayResponse error,
+  }) async {
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    Get.dialog(
+      BaseDialogError(error: error),
+    );
+  }
+
+  showAuthError() async {
+    final statusError = StatusMessageDisplayResponse(
+      id: I10n.current.alert_out_of_session,
+      en: I10n.current.alert_out_of_session,
+    );
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    Get.dialog(
+      BaseDialogError(
+        title: I10n.current.oops_title,
+        error: statusError,
+        onClose: () {
+          final _authBloc = BlocProvider.of<AuthBloc>(Get.context!);
+          _authBloc.add(AuthEvent.signedOut());
+          Get.offAllNamed(Routers.login);
+        },
+      ),
+    );
+  }
+}
+
+class BaseDialogError extends StatelessWidget {
+  final StatusMessageDisplayResponse error;
+  final String title;
+  final Function? onClose;
+  const BaseDialogError({
+    Key? key,
+    required this.error,
+    this.title = 'Digiresto',
+    this.onClose,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final i10n = I10n.of(context);
+    final errorMessages = <String, String>{
+      'en': error.en,
+      'id': error.id,
+    };
+
+    return WillPopScope(
+      onWillPop: () async {
+        if (onClose != null) {
+          onClose!();
+        }
+        Get.back();
+        return true;
+      },
+      child: Center(
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8), color: Colors.white),
+          padding: EdgeInsets.all(Dimens.dialogPadding),
+          margin: EdgeInsets.all(Dimens.dialogMargin),
+          child: Material(
+            color: Colors.transparent,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: Styles.dialogTitleStyle,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  errorMessages[i10n.lang] ??
+                      i10n.error_message_failed_get_response,
+                  style: Styles.dialogSubtitleStyle,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomButton(
+                  label: i10n.alert_ok,
+                  color: AppColors.mainColor,
+                  fontColor: Colors.white,
+                  onPressed: () {
+                    if (onClose != null) {
+                      onClose!();
+                    }
+                    Get.back();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

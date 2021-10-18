@@ -32,7 +32,8 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
           initialPage: 0,
         ),
         tag: "home");
-    Get.lazyPut(() => HomeContentViewController());
+    Get.put(HomeContentViewController());
+    controller.getRefresh();
     showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
@@ -99,7 +100,10 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          StaticBannerWidget(key: GuideKeys.banner),
+                          StaticBannerWidget(
+                            key: GuideKeys.banner,
+                            controller: controller,
+                          ),
                           _trackOrder(),
                           Container(
                             padding: EdgeInsets.only(top: 10),
@@ -152,53 +156,50 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
   Widget _hotPromo() {
     var _loadingHotPromo =
         Get.find<HomeContentViewController>().loadingHotPromo;
-    return //_orderStore?.listHotPromo != null || _loSadingHotPromo == true
-        true
-            ? Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(left: 10),
-                                child: GestureDetector(
-                                    child: Text(
-                                      "Hot promo",
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                    ),
-                                    onTap: () {}),
-                              ),
-                              _loadingHotPromo.value == true
-                                  ? CustomProgressIndicatorWidget(size: 20)
-                                  : Container(),
-                            ],
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(right: 10),
-                            child: GestureDetector(
-                                child: Text(
-                                  "See all",
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.red),
-                                ),
-                                onTap: () {
-                                  Get.toNamed(Routers.homeAllHotPromo);
-                                }),
-                          )
-                        ]),
-                  ],
-                ))
-            : Container();
+    return Container(
+        padding: EdgeInsets.only(top: 10),
+        child: Column(
+          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: GestureDetector(
+                            child: Text(
+                              "Hot promo",
+                              style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            onTap: () {}),
+                      ),
+                      _loadingHotPromo.value == true
+                          ? CustomProgressIndicatorWidget(size: 20)
+                          : Container(),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                        child: Text(
+                          "See all",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.red),
+                        ),
+                        onTap: () {
+                          Get.toNamed(Routers.homeAllHotPromo);
+                        }),
+                  )
+                ]),
+          ],
+        ));
   }
 
   Widget _historyOrder() {
@@ -296,6 +297,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding: const EdgeInsets.only(top: 5, left: 10),
@@ -418,7 +420,12 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
 }
 
 class StaticBannerWidget extends StatelessWidget {
-  const StaticBannerWidget({Key? key}) : super(key: key);
+  final HomeContentViewController controller;
+
+  const StaticBannerWidget({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
   _showDetailImage(String imageUrl) {
     Navigator.of(Get.context!).push(TransparentRoute(
         builder: (BuildContext context) =>
@@ -470,7 +477,6 @@ class StaticBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PageController _controller = Get.find<PageController>(tag: "home");
-    final controller = Get.put(HomeContentViewController());
     return Column(
       children: [
         Container(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/constants/network/env.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -63,7 +64,18 @@ class NetworkService implements INetworkService {
         final Response response = await _dio.get(
             '$baseUrl$path${parameter ?? ""}',
             queryParameters: queryParameter);
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -71,10 +83,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       } catch (e) {
         print(e.toString());
@@ -122,7 +143,18 @@ class NetworkService implements INetworkService {
           queryParameters: queryParameter,
           data: content,
         );
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -130,10 +162,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       }
     } else {
@@ -179,7 +220,18 @@ class NetworkService implements INetworkService {
           queryParameters: queryParameter,
           data: content,
         );
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -187,10 +239,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       }
     } else {
@@ -230,7 +291,18 @@ class NetworkService implements INetworkService {
         _dio.options.headers = headers;
         await baseStorage.close();
         final Response response = await _dio.download(url, downloadPath);
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -238,10 +310,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       }
     } else {

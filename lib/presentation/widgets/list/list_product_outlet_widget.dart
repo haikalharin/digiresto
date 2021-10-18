@@ -88,49 +88,68 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
           // String defaultImage = _userStore!
           //     .getRandomCacheImage(widget.data[index]["id"].toString());
           //return widget.data[index]["category"] == "HIDDEN"
-          return false
-              ? Container()
-              : GestureDetector(
-                  onTap: () => {
-                    //print(widget.data[index]),
-                    widget.runDetailAction(widget.data[index], widget.orderType)
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      //color: Colors.amber[100],
-                      borderRadius: BorderRadius.circular(7.0),
-                    ),
-                    height: 96,
-                    width: 96,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 5, left: 5),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
-                                child: Image(
-                                  image: RandomImages.getImageUrlDefault(
-                                      widget.data[index].image, ""),
-                                  fit: BoxFit.fill,
-                                  height: 96,
-                                  width: 96,
-                                  alignment: Alignment.center,
-                                ),
-                              ),
+          return GestureDetector(
+            onTap: () => {
+              //print(widget.data[index]),
+              widget.runDetailAction(widget.data[index], widget.orderType)
+            },
+            child: Container(
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                //color: Colors.amber[100],
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+              height: 96,
+              width: 96,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(right: 5, left: 5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          child: Image(
+                            image: RandomImages.getImageUrlDefault(
+                                widget.data[index].image, ""),
+                            fit: BoxFit.fill,
+                            height: 96,
+                            width: 96,
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: const EdgeInsets.only(top: 5),
+                        width: MediaQuery.of(context).size.width - 210,
+                        child: Text(widget.data[index].name,
+                            softWrap: false,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: "roboto",
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
                             ),
+                            textAlign: TextAlign.left),
+                      ),
+                    ],
+                  ),
+                  (widget.data[index].variants.length == 0)
+                      ? Column(
+                          children: [
                             Container(
                               alignment: Alignment.topLeft,
                               padding: const EdgeInsets.only(top: 5),
-                              width: MediaQuery.of(context).size.width - 210,
-                              child: Text(widget.data[index].name,
+                              //width: 10,
+                              child: Text(
+                                  "Rp." + Utils.formatRupiah(price.toString()),
                                   softWrap: false,
-                                  maxLines: 3,
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontFamily: "roboto",
@@ -140,59 +159,33 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                                   ),
                                   textAlign: TextAlign.left),
                             ),
-                          ],
-                        ),
-                        (widget.data[index].variants.length == 0)
-                            ? Column(
-                                children: [
-                                  Container(
+                            beforePrice != null
+                                ? Container(
                                     alignment: Alignment.topLeft,
                                     padding: const EdgeInsets.only(top: 5),
                                     //width: 10,
-                                    child: Text(
-                                        "Rp." +
-                                            Utils.formatRupiah(
-                                                price.toString()),
+                                    child: Text("Rp." + beforePrice.toString(),
                                         softWrap: false,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                          fontFamily: "roboto",
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontFamily: "roboto",
+                                            color: Colors.black38,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            decoration:
+                                                TextDecoration.lineThrough),
                                         textAlign: TextAlign.left),
-                                  ),
-                                  beforePrice != null
-                                      ? Container(
-                                          alignment: Alignment.topLeft,
-                                          padding:
-                                              const EdgeInsets.only(top: 5),
-                                          //width: 10,
-                                          child: Text(
-                                              "Rp." + beforePrice.toString(),
-                                              softWrap: false,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  fontFamily: "roboto",
-                                                  color: Colors.black38,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                  decoration: TextDecoration
-                                                      .lineThrough),
-                                              textAlign: TextAlign.left),
-                                        )
-                                      : Container(),
-                                ],
-                              )
-                            : Column(),
-                      ],
-                    ),
-                    //child: Center(child: Text('Entry ${data[index].id.toString()}')),
-                  ),
-                );
+                                  )
+                                : Container(),
+                          ],
+                        )
+                      : Column(),
+                ],
+              ),
+              //child: Center(child: Text('Entry ${data[index].id.toString()}')),
+            ),
+          );
         });
   }
 }

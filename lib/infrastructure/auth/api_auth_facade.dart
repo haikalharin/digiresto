@@ -14,6 +14,7 @@ import 'package:digiresto/domain/core/exceptions/server_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/profile/i_profile_repository.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
@@ -59,16 +60,19 @@ class ApiAuthFacade implements IAuthFacade {
       var userData = (apiResult as Map<String, dynamic>)['data'];
 
       return right(userData['isMember']);
-    } on ServerException catch (e) {
-      logger.d(e.code);
-      if (e.code == '22') {
-        return left(AuthFailure.invalidOtp(e.message));
-      }
+    } on FailureException catch (e) {
+      // TODO: implement Failure Exception
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.unknownError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
       return left(AuthFailure.noInternet());
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.unknownError());
     }
   }
 
@@ -87,13 +91,18 @@ class ApiAuthFacade implements IAuthFacade {
       final registerStatus = RegisterStatus.fromJson(data);
 
       return right(registerStatus);
-    } on ServerException catch (e) {
-      logger.d(e.code);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
       return left(AuthFailure.noInternet());
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.unknownError());
     }
   }
 
@@ -120,13 +129,17 @@ class ApiAuthFacade implements IAuthFacade {
       final _userInStorage = await _storage.getData();
       logger.d('user in storage :' + _userInStorage.toString());
       await _storage.close();
-
       return right(_user);
-    } on ServerException catch (e) {
-      logger.d(e.code);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
       if (e.code == '999') {
-        return left(AuthFailure.invalidPin(e.message));
+        return left(AuthFailure.invalidPin());
       }
+      return left(AuthFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
       return left(AuthFailure.noInternet());
@@ -210,16 +223,22 @@ class ApiAuthFacade implements IAuthFacade {
         await _storage.close();
       }
       return right(_login);
-    } on ServerException catch (e) {
-      logger.d(e.code);
+    } on FailureException catch (e) {
+      // TODO: implement Failure Exception
+      ErrorDialog().showError(error: e.message!);
       if (e.code == '22') {
-        return left(AuthFailure.invalidOtp(e.message));
+        return left(AuthFailure.invalidOtp());
       }
+      return left(AuthFailure.unknownError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
       return left(AuthFailure.noInternet());
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.unknownError());
     }
   }
 }

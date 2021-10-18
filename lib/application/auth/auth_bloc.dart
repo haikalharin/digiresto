@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield userOption.fold(
           (failure) => failure.maybeMap(
               orElse: () => AuthState.authFailure(failure),
-              invalidToken: (e) {
+              sessionExpired: (e) {
                 _authFacade.signOut();
                 return AuthState.unauthenticated();
               }),

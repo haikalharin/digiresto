@@ -13,7 +13,7 @@
     "dev_mode_title":"Dev Mode",
 
     "error_message_failed_get_response":"Connection issue.",
-    "error_message_title":"Sorry..&#8230;",
+    "error_message_title":"Sorry..",
     "alert_cancel":"Cancel",
     "alert_ok":"Ok",
     "alert_save":"Save",
@@ -23,7 +23,7 @@
     "input_count_limit":"{param}/%2$s",
 
     "user_not_login_alert":"You haven not login yet, please login first.",
-    "oops_title":"Oops sorry&#8230;",
+    "oops_title":"Oops sorry",
     "alert_out_of_session":"Your login session has ended, please login again.",
     "webview_close":"Close",
 

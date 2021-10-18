@@ -42,7 +42,7 @@ class DetailOutletDataResponse with _$DetailOutletDataResponse {
     required List<String> location,
     required String? ownerPhone,
     required String? poCutoff,
-    required int rating,
+    required num rating,
     required int totalReview,
     required DetailOutletDataLastUpdateResponse lastUpdate,
     required String? merchantCategory,
