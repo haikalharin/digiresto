@@ -45,6 +45,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -56,7 +57,8 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderOnProcess({
     required int page,
   }) async {
-    final _apiUrl = Endpoints.urlGetTransactionHistory;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetTransactionHistory;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -70,6 +72,7 @@ class ProfileRepository implements IProfileRepository {
           },
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'];
@@ -91,6 +94,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d(stactrace);
@@ -100,7 +104,8 @@ class ProfileRepository implements IProfileRepository {
 
   @override
   Future<Either<ProfileFailure, int>> getOrderOnProcessCount() async {
-    final _apiUrl = Endpoints.urlGetOrderProcessCount;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetOrderProcessCount;
     try {
       await _storage.openBox(StorageConstants.user);
 
@@ -119,6 +124,7 @@ class ProfileRepository implements IProfileRepository {
           },
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'] as int;
@@ -133,6 +139,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d(stactrace);
@@ -142,7 +149,8 @@ class ProfileRepository implements IProfileRepository {
 
   @override
   Future<Either<ProfileFailure, IList<OrderPending>>> getOrderPending() async {
-    final _apiUrl = Endpoints.urlGetTransactionPending;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetTransactionPending;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -151,6 +159,7 @@ class ProfileRepository implements IProfileRepository {
           "query_string": {"outletName": ""},
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'];
@@ -172,6 +181,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -211,6 +221,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -222,7 +233,8 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderCompleted({
     required int page,
   }) async {
-    final _apiUrl = Endpoints.urlGetTransactionHistory;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetTransactionHistory;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -237,6 +249,7 @@ class ProfileRepository implements IProfileRepository {
           },
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'];
@@ -258,6 +271,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -269,7 +283,8 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<ProfileFailure, OrderHistoryDetails>> getOrderHistoryDetails({
     required String receiptCode,
   }) async {
-    final _apiUrl = Endpoints.urlGetTransaction;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetTransaction;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -280,6 +295,7 @@ class ProfileRepository implements IProfileRepository {
           },
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'];
@@ -295,6 +311,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -323,6 +340,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -333,7 +351,8 @@ class ProfileRepository implements IProfileRepository {
   @override
   Future<Either<ProfileFailure, Unit>> cancelTransaction(
       {required String receiptCode, required String reason}) async {
-    final _apiUrl = Endpoints.urlCancelTransaction;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlCancelTransaction;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -346,6 +365,7 @@ class ProfileRepository implements IProfileRepository {
             "reason": reason,
           }
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data =
@@ -363,6 +383,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -376,7 +397,8 @@ class ProfileRepository implements IProfileRepository {
     required int rating,
     required String review,
   }) async {
-    final _apiUrl = Endpoints.urlTransactionRating;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlTransactionRating;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -390,6 +412,7 @@ class ProfileRepository implements IProfileRepository {
             "review": review,
           }
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data =
@@ -407,6 +430,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());
@@ -417,7 +441,8 @@ class ProfileRepository implements IProfileRepository {
   @override
   Future<Either<ProfileFailure, Unit>> doneTransaction(
       {required String receiptCode}) async {
-    final _apiUrl = Endpoints.urlAcceptTransaction;
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlAcceptTransaction;
     try {
       final apiResult = await _networkService.postHttp(
         path: _apiUrl,
@@ -428,6 +453,7 @@ class ProfileRepository implements IProfileRepository {
           },
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       logger.d(apiResult);
       final data = (apiResult as Map<String, dynamic>)['data'] as Map;
@@ -444,6 +470,7 @@ class ProfileRepository implements IProfileRepository {
     } on ServerException catch (_) {
       return left(ProfileFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(ProfileFailure.noInternet());
     } catch (e, stactrace) {
       logger.d('coba ' + stactrace.toString());

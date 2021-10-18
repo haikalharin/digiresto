@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_see_all_outlet_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
@@ -14,6 +15,7 @@ import 'package:get/get.dart';
 class HomeSeeAllOutlet extends GetView<HomeSeeAllOutletViewController> {
   @override
   Widget build(BuildContext context) {
+    final i10n = I10n.of(context);
     HomeSeeAllOutletViewArgument args =
         Get.arguments as HomeSeeAllOutletViewArgument;
     Get.put(HomeSeeAllOutletViewController());
@@ -31,7 +33,7 @@ class HomeSeeAllOutlet extends GetView<HomeSeeAllOutletViewController> {
             }),
         title: Column(
           children: [
-            Text("List Outlet",
+            Text(i10n.outlet_list_title,
                 style: AppFont.textBlack15Bold, textAlign: TextAlign.center),
             Text(controller.args.value!.data.merchantName,
                 style: AppFont.textBlack13Regular, textAlign: TextAlign.center)

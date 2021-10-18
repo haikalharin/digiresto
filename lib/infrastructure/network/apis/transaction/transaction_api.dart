@@ -17,11 +17,16 @@ class TransactionApi {
 
   Future<List<TransactionHistory>?> getTransactionHistory() async {
     try {
-      String apiUrl = Endpoints.urlGetTransactionHistory;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {"outletName": ""},
-        "body": {}
-      });
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetTransactionHistory;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"outletName": ""},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
 
       var transactionHistory = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
@@ -39,11 +44,16 @@ class TransactionApi {
 
   Future<TransactionMobileResponse?> getTransaction(String receiptCode) async {
     try {
-      String apiUrl = Endpoints.urlGetTransaction;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {"receiptCode": receiptCode},
-        "body": {}
-      });
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"receiptCode": receiptCode},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
 
       return TransactionMobileResponse.fromJson(apiResult);
     } catch (e) {
@@ -55,11 +65,16 @@ class TransactionApi {
   Future<TransactionMobileResponse?> cancelTransaction(
       String receiptCode) async {
     try {
-      String apiUrl = Endpoints.urlCancelTransaction;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {"receiptCode": receiptCode},
-        "body": {}
-      });
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlCancelTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"receiptCode": receiptCode},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
       return TransactionMobileResponse.fromJson(apiResult);
     } catch (e) {
       print(e.toString());
@@ -69,11 +84,16 @@ class TransactionApi {
 
   Future<StatusResponse?> acceptTransaction(String receiptCode) async {
     try {
-      String apiUrl = Endpoints.urlAcceptTransaction;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {"receiptCode": receiptCode},
-        "body": {}
-      });
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlAcceptTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"receiptCode": receiptCode},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
 
       var data = (apiResult
           as Map<String, dynamic>)['response']; //mengambil data data didalam
@@ -86,9 +106,13 @@ class TransactionApi {
 
   Future<List<TransactionHistory>?> getOngoingTransaction() async {
     try {
-      String apiUrl = Endpoints.urlOngoingTransaction;
-      final apiResult = await _networkService
-          .postHttp(path: apiUrl, content: {"query_string": {}, "body": {}});
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlOngoingTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {"query_string": {}, "body": {}},
+        queryParameter: queryParameter,
+      );
 
       var ongoingTransaction = (apiResult as Map<String, dynamic>)['data'];
       List<TransactionHistory> listTransactionHistory = [];
@@ -106,9 +130,13 @@ class TransactionApi {
   Future<bool> addFavoriteTransaction(
       AddFavoriteTransactionParam request) async {
     try {
-      String apiUrl = Endpoints.urlAddFavoriteTransaction;
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlAddFavoriteTransaction;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: request.toJson());
+        path: apiUrl,
+        content: request.toJson(),
+        queryParameter: queryParameter,
+      );
       var favoriteTransaction =
           (apiResult as Map<String, dynamic>)['response']['code'] as String;
       if (favoriteTransaction != "00") {

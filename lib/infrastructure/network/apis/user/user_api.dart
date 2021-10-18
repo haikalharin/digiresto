@@ -56,11 +56,16 @@ class UserApi {
   Future<Either<Exception, List<UserAddress>>> getAddress(String waId) async {
     try {
       final _userAuth = await _getUserProfile();
-      String apiUrl = Endpoints.urlGetAllAddress;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {},
-        "body": {"wa_id": _userAuth.mobilePhone}
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlGetAllAddress;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {},
+          "body": {"wa_id": _userAuth.mobilePhone},
+        },
+        queryParameter: queryParameters,
+      );
 
       List<dynamic> listUserData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
@@ -78,19 +83,24 @@ class UserApi {
       Map<String, dynamic> object) async {
     try {
       final _userAuth = await _getUserProfile();
-      String apiUrl = Endpoints.urlAddAddress;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {},
-        "body": {
-          "wa_id": _userAuth.mobilePhone,
-          "waba_no": _userAuth.mobilePhone,
-          "name": object["name"].toString(),
-          "address": object["address"].toString(),
-          "latitude": object["latitude"].toString(),
-          "longitude": object["longitude"].toString(),
-          "is_default": object["is_default"],
-        }
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlAddAddress;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {},
+          "body": {
+            "wa_id": _userAuth.mobilePhone,
+            "waba_no": _userAuth.mobilePhone,
+            "name": object["name"].toString(),
+            "address": object["address"].toString(),
+            "latitude": object["latitude"].toString(),
+            "longitude": object["longitude"].toString(),
+            "is_default": object["is_default"],
+          }
+        },
+        queryParameter: queryParameters,
+      );
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
       return right(UserAddAddress.createAddAddress(userData));
@@ -103,15 +113,20 @@ class UserApi {
       Map<String, dynamic> object) async {
     try {
       final _userAuth = await _getUserProfile();
-      String apiUrl = Endpoints.urlRemoveAddress;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {},
-        "body": {
-          "wa_id": _userAuth.mobilePhone,
-          "waba_no": _userAuth.mobilePhone,
-          "id": object["id"],
-        }
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlRemoveAddress;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {},
+          "body": {
+            "wa_id": _userAuth.mobilePhone,
+            "waba_no": _userAuth.mobilePhone,
+            "id": object["id"],
+          }
+        },
+        queryParameter: queryParameters,
+      );
       var userData = (apiResult as Map<String, dynamic>)[
           'response']; //mengambil data data didalam jsonObject
       return right(UserRemoveAddress.createUserRemoveAddress(userData));
@@ -125,15 +140,20 @@ class UserApi {
     try {
       final _userAuth = await _getUserProfile();
       await _storage.close();
-      String apiUrl = Endpoints.urlSetDefaultAddress;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {},
-        "body": {
-          "wa_id": _userAuth.mobilePhone,
-          "waba_no": _userAuth.mobilePhone,
-          "id": object["id"],
-        }
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlSetDefaultAddress;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {},
+          "body": {
+            "wa_id": _userAuth.mobilePhone,
+            "waba_no": _userAuth.mobilePhone,
+            "id": object["id"],
+          }
+        },
+        queryParameter: queryParameters,
+      );
 
       List<dynamic> listUserData = (apiResult as Map<String, dynamic>)['data']
           ['list_address']; //mengambil data data didalam jsonObject
@@ -150,15 +170,20 @@ class UserApi {
   Future<Either<Exception, List<UserPromo>>> getPromo(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetPromo;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {
-          "location": object["location"],
-          "page": object["page"],
-          "filter": object["filter"],
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlGetPromo;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {
+            "location": object["location"],
+            "page": object["page"],
+            "filter": object["filter"],
+          },
+          "body": {}
         },
-        "body": {}
-      });
+        queryParameter: queryParameters,
+      );
 
       List<dynamic> listUserData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
@@ -206,11 +231,16 @@ class UserApi {
   Future<Either<Exception, Topup>> topup(
       Map<String, dynamic> object, String paymentType) async {
     try {
-      String apiUrl = Endpoints.urlTopup;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {},
-        "body": object,
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlTopup;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {},
+          "body": object,
+        },
+        queryParameter: queryParameters,
+      );
 
       var userData = (apiResult as Map<String, dynamic>)["data"];
       return right(Topup.fromJson(userData));
@@ -222,11 +252,16 @@ class UserApi {
   Future<Either<Exception, responseModel.Response>> cancelBilling(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlCancelBilling;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {"billingId": object["billingId"]},
-        "body": {},
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlCancelBilling;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"billingId": object["billingId"]},
+          "body": {},
+        },
+        queryParameter: queryParameters,
+      );
 
       var userData = (apiResult as Map<String, dynamic>)["response"];
       return right(responseModel.Response.createResponse(userData));
@@ -251,11 +286,16 @@ class UserApi {
 
   Future<Either<Exception, List<TopupPending>>> getPendingPopup() async {
     try {
-      String apiUrl = Endpoints.urlTopupPending;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {},
-        "body": {},
-      });
+      String apiUrl = Endpoints.urlForward;
+      final queryParameters = Endpoints.urlTopupPending;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {},
+          "body": {},
+        },
+        queryParameter: queryParameters,
+      );
       var userData = (apiResult as Map<String, dynamic>)['data'];
       List<TopupPending> topupPending = [];
       for (int i = 0; i < userData.length; i++) {

@@ -3,9 +3,6 @@ import 'package:hive/hive.dart';
 class Endpoints {
   Endpoints._();
 
-  // base url
-  static const String baseUrl = "http://jsonplaceholder.typicode.com";
-
   // receiveTimeout
   //static const int receiveTimeout = 5000;
   static const int receiveTimeout = 30000;
@@ -13,9 +10,6 @@ class Endpoints {
   // connectTimeout
   //static const int connectionTimeout = 3000;
   static const int connectionTimeout = 30000;
-
-  // booking endpoints
-  static const String getPosts = baseUrl + "/posts";
   static const String nonUserClientSecret = ":d1g1M0b1l3!#";
   static const String baseUrlDigiresto =
       "https://dev-mobileapi.digiresto.co.id";
@@ -31,60 +25,11 @@ class Endpoints {
   static const String urlBalance = "/user/balance";
   static const String urlCreditHistory = "/user/account/history";
   static const String urlProfile = "/user";
-  static const String urlGetAllAddress = "/forward?r=getalladdress";
-  static const String urlRemoveAddress = "/forward?r=removeaddress";
-  static const String urlAddAddress = "/forward?r=addaddress";
-  static const String urlSetDefaultAddress = "/forward?r=setdefaultaddress";
-  static const String urlGetGeocode = "/forward?r=getgeocode";
   static const String urlUpdateProfile = "/user/updateProfile";
   static const String urlTopupList = "/user/topup/list";
-  static const String urlTopup = "/forward?r=topup";
-  static const String urlTopupPending = "/forward?r=topuppending";
-  static const String urlCancelBilling = "/forward?r=cancelbilling";
   static const String urlPaymentHistory = "/user/account/history";
-
-  //home
-  static const String urlGetPromo = "/forward?r=getpromo";
-  static const String urlGetHotPromo = "/forward?r=gethotpromo";
-  static const String urlGetStaticBanner = "/forward?r=getstaticbanner";
-  static const String urlGetPromoOutlet = "/forward?r=getpromooutlet";
-  static const String urlGetOutletByLocation =
-      "/forward?r=v2/getoutletbylocation";
-  static const String urlGetOutletByCategory =
-      "/forward?r=v2/getoutletbycategory";
-  static const String urlGetOutletByMerchant =
-      "/forward?r=v2/getoutletbymerchant";
-
-  //order
-  static const String urlGetDetailOutlet = "/forward?r=v2/getdetailoutlet";
-  static const String urlGetOutletProductCategory =
-      "/forward?r=v2/getproductcategory";
-  static const String urlGetListPromoOutlet = "/forward?r=v2/getpromooutlet";
-  static const String urlGetListVoucherOutlet =
-      "/forward?r=v2/getvoucheroutlet";
-  static const String urlGetProduct = "/forward?r=v2/getproduct";
-  static const String urlGetCartSession = "/forward?r=getcartsession";
-  static const String urlCreateCartSession = "/forward?r=createcartsession";
-  static const String urlUpdateCartSession = "/forward?r=updatecartsession";
-  static const String urlGetPaymentMethod = "/forward?r=getpaymentmethods";
-  static const String urlCheckoutCartSession = "/forward?r=checkoutv2";
-  static const String urlDeliveryInquiry = "/forward?r=deliveryinquiryv2";
-
-  // transaction
-  static const String urlGetTransactionPending =
-      "/forward?r=transactionpending";
-  static const String urlGetTransactionHistory =
-      "/forward?r=transactionhistory";
-  static const String urlGetTransaction = "/forward?r=transactionmobile";
-  static const String urlCancelTransaction = "/forward?r=canceltransaction";
-  static const String urlAcceptTransaction = "/forward?r=donetransaction";
-  static const String urlOngoingTransaction = "/forward?r=ongoingtransaction";
-  static const String urlAddFavoriteTransaction = "/forward?r=addFavorite";
   static const String urlGetCancelReasons = "/user/cancel/reasons?lang=";
-  static const String urlTransactionRating = "/forward?r=transactionrating";
   static const String urlPostPushToken = '/user/notification/register';
-  static const String urlGetOrderProcessCount =
-      "/forward?r=transactionhistorycount";
 
   static String get devUrl {
     Box box = Hive.box('settings');
@@ -95,4 +40,90 @@ class Endpoints {
       return devUrl;
     }
   }
+
+  static const String urlForward = '/forward';
+  static const Map<String, dynamic> urlGetAllAddress = {"r": "getalladdress"};
+  static const Map<String, dynamic> urlRemoveAddress = {"r": "removeaddress"};
+  static const Map<String, dynamic> urlAddAddress = {"r": "addaddress"};
+  static const Map<String, dynamic> urlSetDefaultAddress = {
+    "r": "setdefaultaddress"
+  };
+  static const Map<String, dynamic> urlGetGeocode = {"r": "getgeocode"};
+  static const Map<String, dynamic> urlTopup = {"r": "topup"};
+  static const Map<String, dynamic> urlTopupPending = {"r": "topuppending"};
+  static const Map<String, dynamic> urlCancelBilling = {"r": "cancelbilling"};
+  //home
+  static const Map<String, dynamic> urlGetPromo = {"r": "getpromo"};
+  static const Map<String, dynamic> urlGetHotPromo = {"r": "gethotpromo"};
+  static const Map<String, dynamic> urlGetStaticBanner = {
+    "r": "getstaticbanner"
+  };
+  static const Map<String, dynamic> urlGetPromoOutlet = {"r": "getpromooutlet"};
+  static const Map<String, dynamic> urlGetOutletByLocation = {
+    "r": "v2/getoutletbylocation"
+  };
+  static const Map<String, dynamic> urlGetOutletByCategory = {
+    "r": "v2/getoutletbycategory"
+  };
+  static const Map<String, dynamic> urlGetOutletByMerchant = {
+    "r": "v2/getoutletbymerchant"
+  };
+  //order
+  static const Map<String, dynamic> urlGetDetailOutlet = {
+    "r": "v2/getdetailoutlet"
+  };
+  static const Map<String, dynamic> urlGetOutletProductCategory = {
+    "r": "v2/getproductcategory"
+  };
+  static const Map<String, dynamic> urlGetListPromoOutlet = {
+    "r": "v2/getpromooutlet"
+  };
+  static const Map<String, dynamic> urlGetListVoucherOutlet = {
+    "r": "v2/getvoucheroutlet"
+  };
+  static const Map<String, dynamic> urlGetProduct = {"r": "v2/getproduct"};
+  static const Map<String, dynamic> urlGetCartSession = {"r": "getcartsession"};
+  static const Map<String, dynamic> urlCreateCartSession = {
+    "r": "createcartsession"
+  };
+  static const Map<String, dynamic> urlUpdateCartSession = {
+    "r": "updatecartsession"
+  };
+  static const Map<String, dynamic> urlGetPaymentMethod = {
+    "r": "getpaymentmethods"
+  };
+  static const Map<String, dynamic> urlCheckoutCartSession = {
+    "r": "checkoutv2"
+  };
+  static const Map<String, dynamic> urlDeliveryInquiry = {
+    "r": "deliveryinquiryv2"
+  };
+  //transaction
+  static const Map<String, dynamic> urlGetTransactionPending = {
+    "r": "transactionpending"
+  };
+  static const Map<String, dynamic> urlGetTransactionHistory = {
+    "r": "transactionhistory"
+  };
+  static const Map<String, dynamic> urlGetTransaction = {
+    "r": "transactionmobile"
+  };
+  static const Map<String, dynamic> urlCancelTransaction = {
+    "r": "canceltransaction"
+  };
+  static const Map<String, dynamic> urlAcceptTransaction = {
+    "r": "donetransaction"
+  };
+  static const Map<String, dynamic> urlOngoingTransaction = {
+    "r": "ongoingtransaction"
+  };
+  static const Map<String, dynamic> urlAddFavoriteTransaction = {
+    "r": "addFavorite"
+  };
+  static const Map<String, dynamic> urlTransactionRating = {
+    "r": "transactionrating"
+  };
+  static const Map<String, dynamic> urlGetOrderProcessCount = {
+    "r": "transactionhistorycount"
+  };
 }

@@ -21,6 +21,20 @@ class ErrorDialog {
     );
   }
 
+  showNoInternetError() async {
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    Get.dialog(
+      BaseDialogError(
+        error: StatusMessageDisplayResponse(
+          id: I10n.current.error_message_failed_get_response,
+          en: I10n.current.error_message_failed_get_response,
+        ),
+      ),
+    );
+  }
+
   showAuthError() async {
     final statusError = StatusMessageDisplayResponse(
       id: I10n.current.alert_out_of_session,

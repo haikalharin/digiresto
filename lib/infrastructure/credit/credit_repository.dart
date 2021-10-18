@@ -42,6 +42,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -70,6 +71,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -84,17 +86,22 @@ class CreditRepository implements ICreditRepository {
     required String amount,
     required String fee,
   }) async {
-    String apiUrl = Endpoints.urlTopup;
+    final apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlTopup;
     try {
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, useAuth: true, content: {
-        "body": {
-          "bankCode": bankCode,
-          "customerPhone": customerPhone,
-          "amount": amount,
-          "fee": fee,
-        }
-      });
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        useAuth: true,
+        content: {
+          "body": {
+            "bankCode": bankCode,
+            "customerPhone": customerPhone,
+            "amount": amount,
+            "fee": fee,
+          }
+        },
+        queryParameter: queryParameter,
+      );
       final data = (apiResult as Map<String, dynamic>)['data'];
       final topUpDetails = Map<String, dynamic>.from(data);
       return right(TopUpVADetails.fromJson(topUpDetails));
@@ -107,6 +114,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -120,16 +128,21 @@ class CreditRepository implements ICreditRepository {
     required String customerPhone,
     required String finalAmount,
   }) async {
-    String apiUrl = Endpoints.urlTopup;
+    final apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlTopup;
     try {
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, useAuth: true, content: {
-        "body": {
-          "bankCode": bankCode,
-          "customerPhone": customerPhone,
-          "finalAmount": finalAmount,
-        }
-      });
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        useAuth: true,
+        content: {
+          "body": {
+            "bankCode": bankCode,
+            "customerPhone": customerPhone,
+            "finalAmount": finalAmount,
+          }
+        },
+        queryParameter: queryParameter,
+      );
       final data = (apiResult as Map<String, dynamic>)['data'];
       final topUpDetails = Map<String, dynamic>.from(data);
       return right(TopUpBankDetails.fromJson(topUpDetails));
@@ -142,6 +155,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -151,11 +165,13 @@ class CreditRepository implements ICreditRepository {
 
   @override
   Future<Either<CreditFailure, IList<TopUpPending>>> getTopUpPending() async {
-    String apiUrl = Endpoints.urlTopupPending;
+    final apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlTopupPending;
     try {
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
         useAuth: true,
+        queryParameter: queryParameter,
       );
       final data = (apiResult as Map<String, dynamic>)['data'];
       final listData = List.from(data);
@@ -171,6 +187,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -180,7 +197,8 @@ class CreditRepository implements ICreditRepository {
 
   @override
   Future<Either<CreditFailure, String>> cancelTopup(String billingId) async {
-    String apiUrl = Endpoints.urlCancelBilling;
+    final apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlCancelBilling;
     try {
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
@@ -191,6 +209,7 @@ class CreditRepository implements ICreditRepository {
           },
           "body": {}
         },
+        queryParameter: queryParameter,
       );
       final data = (apiResult as Map<String, dynamic>)['response']["code"];
       return right(data);
@@ -203,6 +222,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -237,6 +257,7 @@ class CreditRepository implements ICreditRepository {
     } on ServerException catch (_) {
       return left(CreditFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(CreditFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);

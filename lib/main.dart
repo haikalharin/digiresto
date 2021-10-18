@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:injectable/injectable.dart';
 
 import 'application/home/home_navigation_view_controller.dart';
 import 'application/home/home_user_bloc/home_user_bloc.dart';

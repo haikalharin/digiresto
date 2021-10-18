@@ -9,7 +9,6 @@ import 'package:digiresto/domain/notification/i_notification_repository.dart';
 import 'package:digiresto/domain/notification/notification_failure.dart';
 import 'package:digiresto/domain/notification/post_token_response.dart';
 import 'package:digiresto/infrastructure/core/globals.dart';
-import 'package:digiresto/main.dart';
 import 'package:injectable/injectable.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:logger/logger.dart';

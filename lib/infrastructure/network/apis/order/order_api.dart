@@ -43,18 +43,19 @@ class OrderApi {
   Future<Either<Exception, OutletCategoryResponse>> getOutletByLocation(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetOutletByLocation;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "location": object["location"].toString(),
-              //     "page": object["page"],
-              //     "filter": object["filter"].toString(),
-              //     "body": {}
-              //   }
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetOutletByLocation;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "location": object["location"].toString(),
+          //     "page": object["page"],
+          //     "filter": object["filter"].toString(),
+          //     "body": {}
+          //   }
+          // }
+          );
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -66,6 +67,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -74,18 +78,19 @@ class OrderApi {
   Future<Either<Exception, OutletCategoryResponse>> getOutletByCategory(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetOutletByCategory;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "location": object["location"].toString(),
-              //     "page": object["page"],
-              //     "filter": object["filter"].toString(),
-              //     "body": {}
-              //   }
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetOutletByCategory;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "location": object["location"].toString(),
+          //     "page": object["page"],
+          //     "filter": object["filter"].toString(),
+          //     "body": {}
+          //   }
+          // }
+          );
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -97,6 +102,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       print(e.toString());
       print(stactrace.toString());
@@ -107,18 +115,19 @@ class OrderApi {
   Future<Either<Exception, OutletCategoryResponse>> getOutletByMerchant(
       GetOutletByMerchantParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetOutletByMerchant;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object.toJson()
-              // {
-              //   "query_string": {
-              //     "location": object["location"].toString(),
-              //     "page": object["page"],
-              //     "filter": object["filter"].toString(),
-              //     "body": {}
-              //   }
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetOutletByMerchant;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object.toJson()
+          // {
+          //   "query_string": {
+          //     "location": object["location"].toString(),
+          //     "page": object["page"],
+          //     "filter": object["filter"].toString(),
+          //     "body": {}
+          //   }
+          // }
+          );
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -130,6 +139,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       print(e.toString());
       print(stactrace.toString());
@@ -140,18 +152,19 @@ class OrderApi {
   Future<Either<Exception, List<DigiDiscountOutletDataResponse>>>
       getPromoOutlet(Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetPromoOutlet;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "location": object["location"].toString(),
-              //     "page": object["page"],
-              //     "filter": object["filter"].toString(),
-              //     "body": {}
-              //   }
-              //}
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetPromoOutlet;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "location": object["location"].toString(),
+          //     "page": object["page"],
+          //     "filter": object["filter"].toString(),
+          //     "body": {}
+          //   }
+          //}
+          );
 
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
@@ -170,6 +183,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -178,18 +194,19 @@ class OrderApi {
   Future<Either<Exception, List<HotPromo>>> getHotPromo(
       GetHotPromoParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetHotPromo;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "location": object.location,
-              //     "page": object.page,
-              //     "filter": object.filter,
-              //   },
-              //   "body": {}
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetHotPromo;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "location": object.location,
+          //     "page": object.page,
+          //     "filter": object.filter,
+          //   },
+          //   "body": {}
+          // }
+          );
 
       List<dynamic> listUserData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
@@ -208,6 +225,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -216,18 +236,19 @@ class OrderApi {
   Future<Either<Exception, List<StaticBanner>>> getStaticBanner(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetStaticBanner;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "location": object["location"],
-              //     "page": object["page"],
-              //     "filter": object["filter"],
-              //   },
-              //   "body": {}
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetStaticBanner;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "location": object["location"],
+          //     "page": object["page"],
+          //     "filter": object["filter"],
+          //   },
+          //   "body": {}
+          // }
+          );
 
       List<dynamic> listUserData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
@@ -246,6 +267,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -254,21 +278,22 @@ class OrderApi {
   Future<Either<Exception, DetailOutletResponse>> getDetailOutlet(
       GetDetailOutletParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetDetailOutlet;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object.toJson()
-              // {
-              //   "query_string": {
-              //     "outletName": object["outletName"],
-              //     "page": object["page"],
-              //     "limit": object["limit"],
-              //     "produclds": object["produclds"],
-              //     "filter": object["filter"],
-              //     "category": object["category"]
-              //   },
-              //   "body": {}
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetDetailOutlet;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object.toJson()
+          // {
+          //   "query_string": {
+          //     "outletName": object["outletName"],
+          //     "page": object["page"],
+          //     "limit": object["limit"],
+          //     "produclds": object["produclds"],
+          //     "filter": object["filter"],
+          //     "category": object["category"]
+          //   },
+          //   "body": {}
+          // }
+          );
       return right(DetailOutletResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -280,6 +305,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -288,21 +316,22 @@ class OrderApi {
   Future<Either<Exception, OutletProductCategoryResponse>>
       getOutletProductCategory(GetOutletProductCategoryParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetOutletProductCategory;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object.toJson()
-              // {
-              //   "query_string": {
-              //     "outletName": object["outletName"],
-              //     "page": object["page"],
-              //     "limit": object["limit"],
-              //     "produclds": object["produclds"],
-              //     "filter": object["filter"],
-              //     "category": object["category"]
-              //   },
-              //   "body": {}
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetOutletProductCategory;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object.toJson()
+          // {
+          //   "query_string": {
+          //     "outletName": object["outletName"],
+          //     "page": object["page"],
+          //     "limit": object["limit"],
+          //     "produclds": object["produclds"],
+          //     "filter": object["filter"],
+          //     "category": object["category"]
+          //   },
+          //   "body": {}
+          // }
+          );
       return right(OutletProductCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -314,6 +343,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -322,9 +354,12 @@ class OrderApi {
   Future<Either<Exception, OutletListProductResponse>> getOutletListProduct(
       GetOutletProductParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetProduct;
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetProduct;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: object.toJson());
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object.toJson());
 //           {
 // 	"query_string": {
 //         "outletId": "822",
@@ -347,6 +382,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       print("$e error");
       print(stactrace.toString());
@@ -357,9 +395,12 @@ class OrderApi {
   Future<Either<Exception, PromoOutletResponse>> getListPromoOutlet(
       GetListPromoOutletParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetListPromoOutlet;
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetListPromoOutlet;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: object.toJson());
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object.toJson());
       // {
 // 	"query_string": {
 //         "outletId": "254",
@@ -380,6 +421,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -388,9 +432,12 @@ class OrderApi {
   Future<Either<Exception, GetListVoucherOutletResponse>> getListVoucherOutlet(
       GetListVoucherOutletParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetListVoucherOutlet;
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetListVoucherOutlet;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: object.toJson());
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object.toJson());
       // {
 // 	"query_string": {
 //         "outletId": "254",
@@ -411,6 +458,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -419,9 +469,12 @@ class OrderApi {
   Future<Either<Exception, CartSessionResponseApi?>> createCartSession(
       CreateCartSessionParam object) async {
     try {
-      String apiUrl = Endpoints.urlCreateCartSession;
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlCreateCartSession;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: object.toJson());
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object.toJson());
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -433,6 +486,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -441,8 +497,10 @@ class OrderApi {
   Future<Either<Exception, CartSessionResponseApi?>> getCartSession(
       GetCartSessionParam object) async {
     try {
-      String apiUrl = Endpoints.urlGetCartSession;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetCartSession;
+      final apiResult = await _networkService
+          .postHttp(path: apiUrl, queryParameter: queryParameter, content: {
         "query_string": {
           "sessionId": object.sessionId,
         },
@@ -459,6 +517,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -467,9 +528,12 @@ class OrderApi {
   Future<Either<Exception, CartSessionResponseApi?>> updateCartSession(
       UpdateCartSessionParam object) async {
     try {
-      String apiUrl = Endpoints.urlUpdateCartSession;
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlUpdateCartSession;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, content: object.toJson());
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object.toJson());
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -481,6 +545,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -488,8 +555,10 @@ class OrderApi {
 
   Future<Either<Exception, CheckoutResponse>> checkout(String sessionId) async {
     try {
-      String apiUrl = Endpoints.urlCheckoutCartSession;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlCheckoutCartSession;
+      final apiResult = await _networkService
+          .postHttp(path: apiUrl, queryParameter: queryParameter, content: {
         "query_string": {
           "sessionId": sessionId,
         },
@@ -506,6 +575,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -514,17 +586,18 @@ class OrderApi {
   Future<Either<Exception, List<PaymentMethodDataResponse>>> getPaymentMethod(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetPaymentMethod;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "outletName": object['outlet'],
-              //     "salesType": object['salesType']
-              //   },
-              //   "body": {},
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetPaymentMethod;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "outletName": object['outlet'],
+          //     "salesType": object['salesType']
+          //   },
+          //   "body": {},
+          // }
+          );
       var methods = (apiResult as Map<String, dynamic>)['data'];
       return right(List<PaymentMethodDataResponse>.from(
           methods.map((data) => PaymentMethodDataResponse.fromJson(data))));
@@ -538,6 +611,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }
@@ -546,21 +622,22 @@ class OrderApi {
   Future<Either<Exception, List<DeliveryMethodDataResponse>>> deliveryInquiry(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlDeliveryInquiry;
-      final apiResult =
-          await _networkService.postHttp(path: apiUrl, content: object
-              // {
-              //   "query_string": {
-              //     "outletName": object['outlet'],
-              //   },
-              //   "body": {
-              //     "customer": {
-              //       "location": object['location'],
-              //       "weight": object['weight'],
-              //     }
-              //   },
-              // }
-              );
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlDeliveryInquiry;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl, queryParameter: queryParameter, content: object
+          // {
+          //   "query_string": {
+          //     "outletName": object['outlet'],
+          //   },
+          //   "body": {
+          //     "customer": {
+          //       "location": object['location'],
+          //       "weight": object['weight'],
+          //     }
+          //   },
+          // }
+          );
       var methods = (apiResult as Map<String, dynamic>)['data'];
       return right(List<DeliveryMethodDataResponse>.from(
           methods.map((data) => DeliveryMethodDataResponse.fromJson(data))));
@@ -574,6 +651,9 @@ class OrderApi {
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
     } catch (e, stactrace) {
       return left(NetworkException(message: stactrace));
     }

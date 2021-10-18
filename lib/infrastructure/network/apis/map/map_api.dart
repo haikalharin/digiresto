@@ -16,14 +16,19 @@ class MapApi {
   Future<Either<Exception, Geocode>> geocode(
       Map<String, dynamic> object) async {
     try {
-      String apiUrl = Endpoints.urlGetGeocode;
-      final apiResult = await _networkService.postHttp(path: apiUrl, content: {
-        "query_string": {
-          "lat": object["latitude"].toString(),
-          "lng": object["longitude"].toString(),
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetGeocode;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {
+            "lat": object["latitude"].toString(),
+            "lng": object["longitude"].toString(),
+          },
+          "body": {}
         },
-        "body": {}
-      });
+        queryParameter: queryParameter,
+      );
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
       userData["latitude"] = object["latitude"].toString();

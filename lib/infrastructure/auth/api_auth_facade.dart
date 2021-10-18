@@ -70,6 +70,7 @@ class ApiAuthFacade implements IAuthFacade {
     } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e) {
       return left(AuthFailure.unknownError());
@@ -100,6 +101,7 @@ class ApiAuthFacade implements IAuthFacade {
     } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e) {
       return left(AuthFailure.unknownError());
@@ -142,6 +144,7 @@ class ApiAuthFacade implements IAuthFacade {
     } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -236,6 +239,7 @@ class ApiAuthFacade implements IAuthFacade {
     } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e) {
       return left(AuthFailure.unknownError());
