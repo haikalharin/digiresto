@@ -12,10 +12,12 @@ class HomeNearbyOutletViewController extends GetxController {
 
   void getOutletByLocation(String search, int pageParam) {
     Loading.show();
+    page.value = pageParam;
     Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
         GetOutletByLocationParam(
             queryString: GetOutletByLocationQueryParam(
                 filter: search, location: "", page: page.value),
             body: GetOutletByLocationBodyParam())));
+    update();
   }
 }

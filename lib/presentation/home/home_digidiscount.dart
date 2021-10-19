@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
@@ -94,40 +95,48 @@ class HomeDigidiscountScreen
               orElse: () {});
         },
         builder: (context, state) {
-          return Container(
-            color: Colors.white,
-            //padding: EdgeInsets.only(top:25),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey[50],
-                    borderRadius: BorderRadius.circular(0),
-                    border: Border.all(
-                      color: Colors.black12,
-                      width: 0.5,
-                    ),
-                  ),
-                ),
-                //_search(),
-                Expanded(
-                  child: ListDigidiscountWidget(
-                    runAction: (param) {
-                      //merchant id set to empty, cause in response api not have valid merchant id
-                      Get.toNamed(Routers.orderDetailOutlet,
-                          arguments:
-                              OrderDetailViewArgument(param.outletId, ""));
-                    },
-                    height: MediaQuery.of(context).size.height / 1.2,
-                    data: controller.listPromoOutlet,
-                    scrollDirection: Axis.vertical,
-                    loadMoreAction: () {},
-                  ),
-                ),
-              ],
+          return StackWithProgress(
+            isLoading: state.maybeMap(
+              orElse: () => false,
+              loadInProgress: (_) => true,
             ),
+            children: [
+              Container(
+                color: Colors.white,
+                //padding: EdgeInsets.only(top:25),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey[50],
+                        borderRadius: BorderRadius.circular(0),
+                        border: Border.all(
+                          color: Colors.black12,
+                          width: 0.5,
+                        ),
+                      ),
+                    ),
+                    //_search(),
+                    Expanded(
+                      child: ListDigidiscountWidget(
+                        runAction: (param) {
+                          //merchant id set to empty, cause in response api not have valid merchant id
+                          Get.toNamed(Routers.orderDetailOutlet,
+                              arguments:
+                                  OrderDetailViewArgument(param.outletId, ""));
+                        },
+                        height: MediaQuery.of(context).size.height / 1.2,
+                        data: controller.listPromoOutlet,
+                        scrollDirection: Axis.vertical,
+                        loadMoreAction: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           );
         },
       ),

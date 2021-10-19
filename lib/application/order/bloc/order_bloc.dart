@@ -115,6 +115,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getOutletListProduct: (request) async* {
+        yield OrderState.loadInProgress();
         final getOutletListProduct =
             await _orderRepository.getOutletListProduct(request.request);
         yield getOutletListProduct.fold(
@@ -124,6 +125,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getOutletProductCategory: (request) async* {
+        yield OrderState.loadInProgress();
         final getOutletProductCategory =
             await _orderRepository.getOutletProductCategory(request.request);
         yield getOutletProductCategory.fold(
@@ -147,6 +149,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getHotPromo: (request) async* {
+        yield OrderState.loadInProgress();
         final getHotPromo = await _orderRepository.getHotPromo(request.request);
         yield getHotPromo.fold(
           (error) => OrderState.loadFailure(OrderFailure.getHotPromoFail()),
@@ -154,6 +157,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getDetailOutlet: (request) async* {
+        yield OrderState.loadInProgress();
         final getDetailOutlet =
             await _orderRepository.getDetailOutlet(request.request);
         yield getDetailOutlet.fold(
@@ -162,6 +166,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getPaymentMethod: (request) async* {
+        yield OrderState.loadInProgress();
         final getPaymentMethod =
             await _orderRepository.getPaymentMethod(request.request.toJson());
         yield getPaymentMethod.fold(
@@ -171,6 +176,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       deliveryInquiry: (r) async* {
+        yield OrderState.loadInProgress();
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final customerParam = r.request.body.copyWith(
@@ -184,6 +190,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       createCartSession: (request) async* {
+        yield OrderState.loadInProgress();
         final createCartSession =
             await _orderRepository.createCartSession(request.request);
         var dataCart = createCartSession.getOrElse(() => null);
@@ -198,6 +205,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       updateCart: (request) async* {
+        yield OrderState.loadInProgress();
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final getProduct = await _orderRepository.getProduct();
@@ -249,6 +257,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       addCart: (request) async* {
+        yield OrderState.loadInProgress();
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final userProfile = (await _orderRepository.getLocalUserProfile())!;
@@ -341,6 +350,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       reorderCart: (r) async* {
+        yield OrderState.loadInProgress();
         final userProfile = (await _orderRepository.getLocalUserProfile())!;
         final setProduct =
             await _orderRepository.reorderCart(r.request, r.outletId);
@@ -386,6 +396,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       removeCart: (r) async* {
+        yield OrderState.loadInProgress();
         final removeCart = await _orderRepository.removeProduct(r.request);
         final paymentType = await _orderRepository.getPaymentMethodID();
         final address = await _userRepository.getActiveAddress();
@@ -432,6 +443,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       getCartSession: (_) async* {
+        yield OrderState.loadInProgress();
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final getCartSession = await _orderRepository
@@ -443,6 +455,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       removeCartSession: (value) async* {
+        yield OrderState.loadInProgress();
         final cartSession = (await _orderRepository.removeCartSesion());
         if (cartSession != null) {
           yield OrderState.removeCartSessionSuccess();
@@ -451,6 +464,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       getSalesTypeCart: (_) async* {
+        yield OrderState.loadInProgress();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         if (getSalesTypeCart != null) {
           yield OrderState.getSalesTypeCartSuccess(getSalesTypeCart);
@@ -459,6 +473,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       setSalesTypeCart: (r) async* {
+        yield OrderState.loadInProgress();
         final setSalesTypeCart =
             await _orderRepository.setSalesTypeCartID(r.value);
         if (setSalesTypeCart != null) {
@@ -468,6 +483,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       updateCartSession: (request) async* {
+        yield OrderState.loadInProgress();
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final param = request.request.copyWith(
@@ -485,6 +501,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       checkoutCart: (request) async* {
+        yield OrderState.loadInProgress();
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         if (sessionId != null) {
@@ -498,6 +515,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       getDeliveryMethodID: (r) async* {
+        yield OrderState.loadInProgress();
         final getDeliveryMethodID =
             await _orderRepository.getDeliveryMethodID();
         if (getDeliveryMethodID != null) {
@@ -507,6 +525,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       setDeliveryMethodID: (r) async* {
+        yield OrderState.loadInProgress();
         final setDeliveryMethodID =
             await _orderRepository.setDeliveryMethodID(r.data);
         if (setDeliveryMethodID != null) {
@@ -516,6 +535,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       getPaymentMethodID: (r) async* {
+        yield OrderState.loadInProgress();
         final getPaymentMethodID = await _orderRepository.getPaymentMethodID();
         if (getPaymentMethodID != null) {
           yield OrderState.getPaymentMethodIDSuccess(getPaymentMethodID);
@@ -524,6 +544,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       setPaymentMethodID: (r) async* {
+        yield OrderState.loadInProgress();
         final setPaymentMethodID =
             await _orderRepository.setPaymentMethodID(r.data);
         if (setPaymentMethodID != null) {
@@ -533,6 +554,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       getVoucherMethodID: (r) async* {
+        yield OrderState.loadInProgress();
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         if (getVoucherMethodID != null) {
           yield OrderState.getVoucherMethodIDSuccess(getVoucherMethodID);
@@ -541,6 +563,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       setVoucherMethodID: (r) async* {
+        yield OrderState.loadInProgress();
         final setVoucherMethodID =
             await _orderRepository.setVoucherMethodID(r.data);
         if (setVoucherMethodID != null) {
@@ -550,6 +573,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       getDineInIDMethod: (r) async* {
+        yield OrderState.loadInProgress();
         final getDineInIDMethod = await _orderRepository.getDineInIDMethod();
         if (getDineInIDMethod != null) {
           yield OrderState.getDineInIDMethodSuccess(getDineInIDMethod);
@@ -558,6 +582,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         }
       },
       setDineInIDMethod: (r) async* {
+        yield OrderState.loadInProgress();
         final setDineInIDMethod =
             await _orderRepository.setDineInIDMethod(r.data);
         if (setDineInIDMethod != null) {
