@@ -43,7 +43,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: Dimens.defaultMargin / 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -90,10 +92,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   // ),
                   Row(
                     children: [
-                      Text("Catatan", style: AppFont.textBlack14Bold),
+                      Text(I10n.current.cart_notes,
+                          style: AppFont.textBlack14Bold),
                       Container(
                         padding: EdgeInsets.only(left: 5),
-                        child: Text("opsional", style: AppFont.textBlack8Light),
+                        child: Text(I10n.current.cart_optional,
+                            style: AppFont.textBlack8Light),
                       ),
                     ],
                   ),
@@ -116,7 +120,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           fillColor: AppColors.greyFill,
                           contentPadding: EdgeInsets.only(
                               top: 12, bottom: 12, left: 10, right: 10),
-                          hintText: "Contoh, tidak pakai bawang",
+                          hintText: I10n.current.placeholder_hint_notes,
                           border: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.black, width: 32.0),
@@ -185,40 +189,40 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
       data: Theme.of(Get.context!).copyWith(
         primaryColor: Colors.black,
       ),
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(I10n.current.cart_outlet,
-                          style: AppFont.textBlack14Regular),
-                      Row(
-                        children: [
-                          Text(controller.detailOutlet.value!.name,
-                              style: AppFont.textBlack14Bold),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: Dimens.defaultMargin,
+                vertical: Dimens.defaultMargin / 2),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(I10n.current.cart_outlet,
+                        style: AppFont.textBlack14Regular),
+                    Row(
+                      children: [
+                        Text(controller.detailOutlet.value!.name,
+                            style: AppFont.textBlack14Bold),
+                      ],
+                    )
+                  ],
+                ),
+              ],
             ),
-            Container(
-              color: AppColors.greyStroke,
-              height: 10,
-              width: double.infinity,
-            ),
-          ],
-        ),
+          ),
+          Container(
+            color: AppColors.greyStroke,
+            height: 10,
+            width: double.infinity,
+          ),
+        ],
       ),
     );
   }
@@ -281,177 +285,60 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         data: Theme.of(Get.context!).copyWith(
           primaryColor: Colors.black,
         ),
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(I10n.current.cart_order_type,
-                            style: AppFont.textBlack14Regular),
-                        Row(
-                          children: [
-                            controller.generateSalesTypeIcon(
-                                color: AppColors.redD42C35),
-                            SizedBox(width: 8),
-                            Text(
-                                Utils.formatSalesType(
-                                    controller.salesType.value ?? ""),
-                                style: AppFont.textBlack14Bold),
-                          ],
-                        )
-                      ],
-                    ),
-                    if (controller.salesType.value != null)
-                      ElevatedButton(
-                          onPressed: () {
-                            _showDialogSalesType();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(5.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
-                              ),
-                            ),
-                          ),
-                          child: Text(I10n.current.cart_edit,
-                              style: TextStyle(
-                                color: AppColors.red,
-                                fontWeight: FontWeight.bold,
-                              )))
-                    else
-                      ElevatedButton(
-                          onPressed: () {
-                            _showDialogSalesType();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(5.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
-                              ),
-                            ),
-                          ),
-                          child: Text(I10n.current.cart_choose,
-                              style: TextStyle(
-                                color: AppColors.red,
-                                fontWeight: FontWeight.bold,
-                              )))
-                  ],
-                ),
-              ),
-              Container(
-                color: AppColors.greyStroke,
-                height: 10,
-                width: double.infinity,
-              ),
-            ],
-          ),
-        ),
-      );
-    });
-  }
-
-  Widget _paymentMethod() {
-    String? title = controller.paymentMethod.value?.title
-        .replaceAll('%1\$s', Strings.appName);
-    return Theme(
-      data: Theme.of(Get.context!).copyWith(
-        primaryColor: Colors.black,
-      ),
-      child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: Dimens.defaultMargin / 2),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ImageIcon(
-                        AssetImage(
-                          AppAssets.iconTransfeer,
-                        ),
-                        size: 24,
-                        color: AppColors.redD12B34,
-                      ),
-                      SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Text(I10n.current.cart_order_type,
+                          style: AppFont.textBlack14Regular),
+                      Row(
                         children: [
-                          Text(I10n.current.cart_payment_method,
+                          controller.generateSalesTypeIcon(
+                              color: AppColors.redD42C35),
+                          SizedBox(width: 8),
+                          Text(
+                              Utils.formatSalesType(
+                                  controller.salesType.value ?? ""),
                               style: AppFont.textBlack14Bold),
-                          if (title != null)
-                            Text(title, style: AppFont.textBlack12Light),
                         ],
-                      ),
+                      )
                     ],
                   ),
-                  if (controller.paymentMethod.value != null)
-                    SizedBox(
-                      height: 20,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Get.toNamed(Routers.selectPaymentMethod,
-                                    arguments:
-                                        OrderSelectPaymentMethodViewArgument(
-                                            outlet:
-                                                controller.detailOutlet.value!,
-                                            salestype:
-                                                controller.salesType.value!))!
-                                .then((value) {
-                              Get.context!
-                                  .read<OrderBloc>()
-                                  .add(OrderEvent.getPaymentMethodID());
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.redD12B34,
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(17.0),
-                              side: BorderSide(
-                                width: 1,
-                                color: AppColors.red,
-                              ),
+                  if (controller.salesType.value != null)
+                    ElevatedButton(
+                        onPressed: () {
+                          _showDialogSalesType();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
                             ),
                           ),
-                          child: Text(I10n.current.cart_edit,
-                              style: AppFont.textBlack10SemiBold
-                                  .copyWith(color: AppColors.white))),
-                    )
+                        ),
+                        child: Text(I10n.current.cart_edit,
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontWeight: FontWeight.bold,
+                            )))
                   else
                     ElevatedButton(
                         onPressed: () {
-                          Get.toNamed(Routers.selectPaymentMethod,
-                                  arguments:
-                                      OrderSelectPaymentMethodViewArgument(
-                                          outlet:
-                                              controller.detailOutlet.value!,
-                                          salestype:
-                                              controller.salesType.value!))!
-                              .then((value) {
-                            Get.context!
-                                .read<OrderBloc>()
-                                .add(OrderEvent.getPaymentMethodID());
-                          });
+                          _showDialogSalesType();
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -478,6 +365,120 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             ),
           ],
         ),
+      );
+    });
+  }
+
+  Widget _paymentMethod() {
+    String? title = controller.paymentMethod.value?.title
+        .replaceAll('%1\$s', Strings.appName);
+    return Theme(
+      data: Theme.of(Get.context!).copyWith(
+        primaryColor: Colors.black,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: Dimens.defaultMargin,
+                vertical: Dimens.defaultMargin / 2),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ImageIcon(
+                      AssetImage(
+                        AppAssets.iconTransfeer,
+                      ),
+                      size: 24,
+                      color: AppColors.redD12B34,
+                    ),
+                    SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(I10n.current.cart_payment_method,
+                            style: AppFont.textBlack14Bold),
+                        if (title != null)
+                          Text(title, style: AppFont.textBlack12Light),
+                      ],
+                    ),
+                  ],
+                ),
+                if (controller.paymentMethod.value != null)
+                  SizedBox(
+                    height: 20,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Get.toNamed(Routers.selectPaymentMethod,
+                                  arguments:
+                                      OrderSelectPaymentMethodViewArgument(
+                                          outlet:
+                                              controller.detailOutlet.value!,
+                                          salestype:
+                                              controller.salesType.value!))!
+                              .then((value) {
+                            Get.context!
+                                .read<OrderBloc>()
+                                .add(OrderEvent.getPaymentMethodID());
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: AppColors.redD12B34,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(17.0),
+                            side: BorderSide(
+                              width: 1,
+                              color: AppColors.red,
+                            ),
+                          ),
+                        ),
+                        child: Text(I10n.current.cart_edit,
+                            style: AppFont.textBlack10SemiBold
+                                .copyWith(color: AppColors.white))),
+                  )
+                else
+                  ElevatedButton(
+                      onPressed: () {
+                        Get.toNamed(Routers.selectPaymentMethod,
+                                arguments: OrderSelectPaymentMethodViewArgument(
+                                    outlet: controller.detailOutlet.value!,
+                                    salestype: controller.salesType.value!))!
+                            .then((value) {
+                          Get.context!
+                              .read<OrderBloc>()
+                              .add(OrderEvent.getPaymentMethodID());
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(5.0),
+                          side: BorderSide(
+                            width: 1,
+                            color: AppColors.red,
+                          ),
+                        ),
+                      ),
+                      child: Text(I10n.current.cart_choose,
+                          style: TextStyle(
+                            color: AppColors.red,
+                            fontWeight: FontWeight.bold,
+                          )))
+              ],
+            ),
+          ),
+          Container(
+            color: AppColors.greyStroke,
+            height: 10,
+            width: double.infinity,
+          ),
+        ],
       ),
     );
   }
@@ -493,7 +494,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: Dimens.defaultMargin / 2),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -605,7 +608,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: Dimens.defaultMargin / 2),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -727,7 +732,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: Dimens.defaultMargin / 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1232,7 +1239,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: Dimens.defaultMargin / 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1260,7 +1269,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               fillColor: AppColors.greyFill,
                               contentPadding: EdgeInsets.only(
                                   top: 12, bottom: 12, left: 10, right: 10),
-                              hintText: "Masukkan Kode Voucher",
+                              hintText: I10n.current.cart_voucher_code_hint,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.black, width: 32.0),
@@ -1568,6 +1577,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
 
   Widget _addNew() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           color: AppColors.greyStroke,
@@ -1575,13 +1585,15 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
           width: double.infinity,
         ),
         Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: Dimens.defaultMargin, vertical: 5),
           color: Colors.white,
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(left: 10, top: 10),
+                padding: EdgeInsets.only(top: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -1596,7 +1608,6 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(right: 10),
                 height: 35,
                 child: ElevatedButton(
                   onPressed: () {
@@ -1638,36 +1649,40 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 10),
         Container(
-          color: Colors.white,
-          width: double.infinity,
-          padding: EdgeInsets.only(top: 10, left: 10, right: 5),
-          margin: EdgeInsets.only(top: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                child: Text(I10n.current.cart_order_title,
-                    style: AppFont.textBlack14Regular),
-              ),
-              Container(
-                width: double.infinity,
-                child: ListProductCartWidget(
-                    addOrRemove: _plusProduct,
-                    orderType: controller
-                        .cartSession.value!.transactionData!.salesType,
-                    productCart:
-                        controller.cartSession.value!.transactionData!.items,
-                    runDetailAction: _showDetailProduct,
-                    runEditAction: _editCart,
-                    scrollDirection: Axis.vertical,
-                    product: controller.listProduct.value!),
-              ),
-            ],
-          ),
+          padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
+          child: Text(I10n.current.cart_order_title,
+              style: AppFont.textBlack14Regular),
         ),
+        SizedBox(height: 15),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
+          width: double.infinity,
+          child: ListProductCartWidget(
+              addOrRemove: _plusProduct,
+              orderType:
+                  controller.cartSession.value!.transactionData!.salesType,
+              productCart: controller.cartSession.value!.transactionData!.items,
+              runDetailAction: _showDetailProduct,
+              runEditAction: _editCart,
+              scrollDirection: Axis.vertical,
+              product: controller.listProduct.value!),
+        ),
+        // Container(
+        //   color: Colors.white,
+        //   width: double.infinity,
+        //   padding: EdgeInsets.only(top: 10),
+        //   margin: EdgeInsets.only(top: 10),
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.end,
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: <Widget>[
+        //     ],
+        //   ),
+        // ),
         _addNew(),
       ],
     );
@@ -1687,7 +1702,9 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Dimens.defaultMargin,
+                      vertical: Dimens.defaultMargin / 2),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
