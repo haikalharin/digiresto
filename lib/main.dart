@@ -25,7 +25,6 @@ Future<void> mainProgram() async {
   await Hive.initFlutter();
   await configureInjection(Globals.env);
   Bloc.observer = getIt<SimpleBlocObserver>();
-  Loading.configLoading();
   runApp(
     InitiateProvider(),
   );

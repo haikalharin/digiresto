@@ -13,7 +13,6 @@ class HomeDigidiscountOutletViewController extends GetxController {
   final searchController = TextEditingController();
 
   void getPromoOutlet(String search, int pageParam) {
-    Loading.show();
     Get.context!.read<OrderBloc>().add(OrderEvent.getDigiDiscountOutlet(
         GetDigiDiscountOutletParam(
             body: GetDigiDiscountOutletBodyParam(),

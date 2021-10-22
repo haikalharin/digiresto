@@ -219,7 +219,6 @@ class DetailOutletScreen extends GetView<OrderViewController> {
     controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
-        Loading.dismiss();
         state.maybeMap(
             getDetailOutletSuccess: (r) {
               if (controller.salesType.value == null) {
@@ -270,7 +269,11 @@ class DetailOutletScreen extends GetView<OrderViewController> {
       },
       builder: (context, state) {
         return StackWithProgress(
-          isLoading: controller.isLoading.value,
+          isLoading: controller.isLoading.value ||
+              state.maybeMap(
+                orElse: () => false,
+                loadInProgress: (_) => true,
+              ),
           children: [
             DefaultTabController(
               length: 2,
@@ -604,7 +607,6 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   void searchActionCategory(OutletProductCategoryDataResponse? category) {
-    Loading.show();
     controller.page.value = 1;
     controller.categoryId.value =
         (category?.id != null ? category?.id.toString() : "")!;

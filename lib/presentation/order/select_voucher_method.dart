@@ -78,20 +78,22 @@ class SelectVouchertMethodScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  )),
-              Text(response.code,
-                  style: TextStyle(
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: TextStyle(
                       color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 14))
-            ],
+                      fontWeight: FontWeight.bold,
+                    )),
+                Text(response.code,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14))
+              ],
+            ),
           ),
           ElevatedButton(
               onPressed: () {

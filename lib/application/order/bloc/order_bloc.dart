@@ -106,6 +106,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         );
       },
       getListVoucherOutlet: (request) async* {
+        yield OrderState.loadInProgress();
         final getListVoucherOutlet =
             await _orderRepository.getListVoucherOutlet(request.request);
         yield getListVoucherOutlet.fold(

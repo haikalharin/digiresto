@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -18,27 +19,34 @@ class HomeNearbyOutletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
     Get.put(HomeNearbyOutletViewController());
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: new Icon(Icons.arrow_back_outlined,
-                color: Colors.black, size: 28.0),
-            onPressed: () {
-              //getOutletByLocation();
-              Get.back();
-            }),
-        title: Text(args.title,
-            style: AppFont.textBlack15Bold, textAlign: TextAlign.center),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [Expanded(child: _BodyNearbyWidget(args: args))],
-        ),
-      ),
+    return CustomScafold(
+      title: args.title,
+      showBackButton: true,
+      appBarColor: Colors.white,
+      iconBackColor: Colors.black,
+      body: _BodyNearbyWidget(args: args),
     );
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     backgroundColor: Colors.white,
+    //     leading: IconButton(
+    //         icon: new Icon(Icons.arrow_back_outlined,
+    //             color: Colors.black, size: 28.0),
+    //         onPressed: () {
+    //           //getOutletByLocation();
+    //           Get.back();
+    //         }),
+    //     title: Text(args.title,
+    //         style: AppFont.textBlack15Bold, textAlign: TextAlign.center),
+    //   ),
+    //   body: Container(
+    //     color: Colors.white,
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.start,
+    //       children: [Expanded(child: _BodyNearbyWidget(args: args))],
+    //     ),
+    //   ),
+    // );
   }
 }
 
@@ -63,8 +71,11 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
+              controller.listOutlet.clear();
+              controller.page.value = 1;
               controller.getOutletByLocation(searchController.text, 1);
             },
+            autocorrect: false,
             controller: searchController,
             onTap: () {
               print("open popup");
@@ -100,7 +111,6 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
     controller.getOutletByLocation("", 1);
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
-        Loading.dismiss();
         state.maybeMap(
             getOutletByLocationSuccess: (r) {
               if (r.response.isNotEmpty) {

@@ -35,7 +35,6 @@ class HomeCategoryOutletViewController extends GetxController {
   }
 
   void getOutletByLocation(String search, int pageParam) {
-    Loading.show();
     page.value = pageParam;
     Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByCategory(
         GetOutletByCategoryParam(

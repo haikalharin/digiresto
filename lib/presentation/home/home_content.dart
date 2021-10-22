@@ -108,7 +108,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                           Container(
                             padding: EdgeInsets.only(top: 10),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 _FoodRowItem(
                                   key: GuideKeys.terdekat,
@@ -125,7 +125,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                           Container(
                             padding: EdgeInsets.only(top: 10),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 _FoodRowItem(
                                     key: GuideKeys.frozenfood,
@@ -640,7 +640,7 @@ class _FoodRowItem extends GetView<HomeContentViewController> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         if (label == Strings.titleDigidiscount) {
           Get.toNamed(Routers.homeDigiDiscount,
@@ -654,30 +654,35 @@ class _FoodRowItem extends GetView<HomeContentViewController> {
               arguments: HomeOrderViewArgument(title: label, param: label));
         }
       },
-      child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image(
-                image: new AssetImage(imageAsset),
-                height: 72,
-              ),
-              Text(
-                label,
-                style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.red),
-              )
-            ],
-          ),
-          margin: EdgeInsets.only(left: 10, right: 5),
-          height: 100,
-          width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-          decoration: BoxDecoration(
-            //color: Colors.white,
-            borderRadius: BorderRadius.circular(7.0),
-          )),
+      child: Ink(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image(
+              image: new AssetImage(imageAsset),
+              height: 72,
+              width: 72,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.red),
+            )
+          ],
+        ),
+        width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+        decoration: BoxDecoration(
+          // color: Colors.amber,
+          borderRadius: BorderRadius.circular(7.0),
+        ),
+      ),
     );
   }
 }

@@ -72,7 +72,7 @@ class TopUpDetailsPage extends StatelessWidget {
             },
             color: AppColors.mainColor,
             fontColor: Colors.white,
-            label: 'Sudah Melakukan Pembayaran',
+            label: i10n.billing_action_done,
           )
         ],
       ),

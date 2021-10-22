@@ -72,7 +72,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
     getAddress();
     return BlocConsumer<AddressListBloc, AddressListState>(
         listener: (context, state) {
-      Loading.dismiss();
       state.maybeMap(
           getGeoCodeSuccess: (value) {
             var response = value.response;
@@ -119,54 +118,47 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 width: double.infinity,
                 height: 12,
               ),
-              // _userStore?.skipAndContinue ?? false
-              false
-                  ? Container()
-                  : Expanded(
-                      child: Container(
-                        color: AppColors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, top: 16, right: 20),
-                          child: Column(
-                            children: [
+              Expanded(
+                child: Container(
+                  color: AppColors.white,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 20, top: 16, right: 20),
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
                               Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(I10n.current.address_saved,
-                                          style: AppFont.textBlack15Bold,
-                                          textAlign: TextAlign.center),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true, // new line
-                                    padding: const EdgeInsets.all(8),
-                                    itemCount:
-                                        controller.listAddress.length + 1,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      if (index ==
-                                          controller.listAddress.length) {
-                                        return _btnNewAddress();
-                                      } else {
-                                        return _listAddress(
-                                            controller.listAddress[index]);
-                                      }
-                                    }),
+                                padding: EdgeInsets.only(left: 10),
+                                child: Text(I10n.current.address_saved,
+                                    style: AppFont.textBlack15Bold,
+                                    textAlign: TextAlign.center),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    )
+                        Expanded(
+                          child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true, // new line
+                              padding: const EdgeInsets.all(8),
+                              itemCount: controller.listAddress.length + 1,
+                              itemBuilder: (BuildContext context, int index) {
+                                if (index == controller.listAddress.length) {
+                                  return _btnNewAddress();
+                                } else {
+                                  return _listAddress(
+                                      controller.listAddress[index]);
+                                }
+                              }),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         );
@@ -215,7 +207,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 title: new Text(I10n.current.address_set_main,
                     style: AppFont.textBlack14Regular),
                 onTap: () {
-                  Loading.show();
                   Get.context!.read<AddressListBloc>().add(
                       AddressListEvent.setDefault(UserSetDefaultAddressParam(
                           wa_id: userAddress.wabaNo!,
@@ -234,7 +225,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 title: new Text(I10n.current.address_delete_action,
                     style: AppFont.textBlack14Regular),
                 onTap: () {
-                  Loading.show();
                   Get.context!.read<AddressListBloc>().add(
                       AddressListEvent.removeAddress(UserRemoveAddressParam(
                           id: userAddress.id!,
@@ -462,7 +452,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
   }
 
   void getAddress() async {
-    Loading.show();
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(

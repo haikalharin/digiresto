@@ -37,52 +37,57 @@ class CustomScafold extends StatelessWidget {
         statusBarColor: AppColors.mainColor,
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).padding.top,
-            ),
-            Container(
-              color: appBarColor,
-              padding: const EdgeInsets.all(
-                Dimens.defaultMargin,
+        body: MediaQuery.removePadding(
+          removeTop: true,
+          context: context,
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).padding.top,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  showBackButton
-                      ? Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: GestureDetector(
-                            onTap: () => Get.back(),
-                            child: SvgPicture.asset(
-                              'assets/arrow_back_icon.svg',
-                              color: iconBackColor,
+              Container(
+                color: appBarColor,
+                padding: const EdgeInsets.all(
+                  Dimens.defaultMargin,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    showBackButton
+                        ? Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            child: GestureDetector(
+                              onTap: () => Get.back(),
+                              child: SvgPicture.asset(
+                                'assets/arrow_back_icon.svg',
+                                color: iconBackColor,
+                              ),
                             ),
+                          )
+                        : SizedBox(
+                            width: 35,
                           ),
-                        )
-                      : SizedBox(
-                          width: 35,
-                        ),
-                  Expanded(
-                    child: titleWidget ??
-                        Text(
-                          title,
-                          style: Styles.appBarTitleStyle
-                              .copyWith(color: titleFontColor),
-                          textAlign:
-                              centerTitle ? TextAlign.center : TextAlign.left,
-                        ),
-                  ),
-                  suffixWidget,
-                ],
+                    Expanded(
+                      child: titleWidget ??
+                          Text(
+                            title,
+                            style: Styles.appBarTitleStyle
+                                .copyWith(color: titleFontColor),
+                            textAlign:
+                                centerTitle ? TextAlign.center : TextAlign.left,
+                          ),
+                    ),
+                    suffixWidget,
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: body,
-            ),
-          ],
+              Expanded(
+                child: body,
+              ),
+            ],
+          ),
         ),
       ),
     );

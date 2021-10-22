@@ -19,7 +19,7 @@ class BankDetailWidget extends StatelessWidget {
           title: 'Tanggal Transaksi',
           value: CommonUtils.dateFormat(
             'EEEE dd MMMM yyyy hh:mm',
-            bankDetails.transactionDate,
+            bankDetails.formattedTransactionDate,
           ).toString(),
         ),
         DetailFieldItem(

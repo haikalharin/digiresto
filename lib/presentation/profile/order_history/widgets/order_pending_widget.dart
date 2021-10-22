@@ -170,8 +170,8 @@ class OrderPendingWidget extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: Text(
-                'Bayar sebelum ${CommonUtils.dateFormat('dd MMMM yyyy, HH:mm', orderPending.billingDetail.expiresAt)}'),
+            child: Text(i10n.history_pending_expired(
+                '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', orderPending.billingDetail.formattedTransactionDate)} ${DateTime.now().timeZoneName}')),
           ),
           Padding(
             padding: EdgeInsets.all(
@@ -388,7 +388,7 @@ class OrderPendingWidget extends StatelessWidget {
                   height: 15,
                 ),
                 CustomButton(
-                  label: 'Lakukan Pembayaran',
+                  label: i10n.history_pending_make_payment,
                   onPressed: () {
                     Get.dialog(
                       CustomDialog(

@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,9 +40,7 @@ class ErrorPopupWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: 40,
-                            width: Get.width / 3 - 10,
+                          Expanded(
                             child: ElevatedButton(
                               onPressed: () {
                                 Get.back();
@@ -56,16 +55,17 @@ class ErrorPopupWidget {
                                   ),
                                 ),
                               ),
-                              child: Text("Batal",
+                              child: Text(I10n.current.alert_cancel,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.redYoung)),
                             ),
                           ),
-                          Container(
-                            height: 40,
-                            width: Get.width / 3 - 10,
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
                             child: ElevatedButton(
                               onPressed: () {
                                 runAction();
@@ -80,7 +80,7 @@ class ErrorPopupWidget {
                                   ),
                                 ),
                               ),
-                              child: Text("Ok",
+                              child: Text(I10n.current.alert_ok,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,

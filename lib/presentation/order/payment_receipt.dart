@@ -509,7 +509,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                 Get.context!.read<TransactionBloc>().add(
                                     TransactionEvent.getTransaction(
                                         args.receiptCode));
-                                //Loading.show();
+                                //
                               },
                               child: Container(
                                 width: double.infinity,

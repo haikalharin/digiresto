@@ -57,21 +57,24 @@ class OrderCartScreenViewController extends GetxController {
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
 
-  void removeCartSession() {
+  void removeCartSession() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCartSession());
+    update();
   }
 
-  void getCartSession() {
+  void getCartSession() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
+    update();
   }
 
-  void updateCartParam() {
+  void updateCartParam() async {
     Get.context!
         .read<OrderBloc>()
         .add(OrderEvent.updateCart(notesController.text));
+    update();
   }
 
-  void setDineInMethodID() {
+  void setDineInMethodID() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.setDineInIDMethod(
         OrderCartDineInModel(
             pax: int.parse(paxController.text),
@@ -79,9 +82,10 @@ class OrderCartScreenViewController extends GetxController {
             selectedKeyClock: selectedKeyClock.value!,
             selectedKeySmoking: selectedKeySmoking.value!,
             useSchedule: useSchedule.value!)));
+    update();
   }
 
-  void parseDineInMethodID() {
+  void parseDineInMethodID() async {
     final value = dineInIDMethod.value!;
     useSchedule.value = value.useSchedule;
     paxController.text = value.pax.toString();
@@ -90,6 +94,7 @@ class OrderCartScreenViewController extends GetxController {
     selectedKeySmoking.value = value.selectedKeySmoking;
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(value.selectedDate);
+    update();
   }
 
   String getValueSmoking(String key) {
@@ -114,7 +119,7 @@ class OrderCartScreenViewController extends GetxController {
     initDialogPlace();
   }
 
-  void initDialogPlace() {
+  void initDialogPlace() async {
     useSchedule.value = false;
     paxController.text = "1";
     selectedDate.value = DateTime.now();
@@ -122,22 +127,25 @@ class OrderCartScreenViewController extends GetxController {
     selectedKeySmoking.value = "1";
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(DateTime.now());
+    update();
   }
 
   void addCart(
     int productId,
     int qty,
-  ) {
+  ) async {
     var productParam = CreateUpdateCartSessionItemParam(
         modifiers: [], note: '', productId: productId, qty: qty);
     Get.context!.read<OrderBloc>().add(OrderEvent.addCart(
         productParam, detailOutlet.value!, salesType.value!));
+    update();
   }
 
-  void removeCart(int productId) {
+  void removeCart(int productId) async {
     var productParam = CreateUpdateCartSessionItemParam(
         modifiers: [], note: '', productId: productId, qty: 0);
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCart(productParam));
+    update();
   }
 
   selectDate(BuildContext context) async {
@@ -208,18 +216,20 @@ class OrderCartScreenViewController extends GetxController {
                 checkoutDataResponse: checkoutResponse.value!));
       }
     }
+    update();
   }
 
-  void getDetailOutlet() {
+  void getDetailOutlet() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
         GetDetailOutletParam(
             body: GetDetailOutletBodyParam(),
             queryString: GetDetailOutletQueryParam(
                 outletId:
                     cartSession.value!.transactionData!.outletId.toString()))));
+    update();
   }
 
-  void getListProduct() {
+  void getListProduct() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
         GetOutletProductParam(
             body: GetOutletProductBodyParam(),
@@ -230,6 +240,7 @@ class OrderCartScreenViewController extends GetxController {
                 outletId:
                     cartSession.value!.transactionData!.outletId.toString(),
                 page: 1))));
+    update();
   }
 
   void getCartCache() {
@@ -238,12 +249,14 @@ class OrderCartScreenViewController extends GetxController {
     Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
     Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
     Get.context!.read<OrderBloc>().add(OrderEvent.getDineInIDMethod());
+    update();
   }
 
   void getActiveAddress() {
     Get.context!
         .read<AddressListBloc>()
         .add(AddressListEvent.getActiveAddress());
+    update();
   }
 
   void checkAllLoaded() {
@@ -252,6 +265,7 @@ class OrderCartScreenViewController extends GetxController {
         listProduct.value != null) {
       isLoading.value = false;
     }
+    update();
   }
 
   Widget generateSalesTypeIcon({Color color = Colors.black, double size = 16}) {
