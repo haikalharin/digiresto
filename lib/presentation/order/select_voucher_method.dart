@@ -81,11 +81,14 @@ class SelectVouchertMethodScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  )),
+              SizedBox(
+                width: Get.width * 0.66,
+                child: Text(title,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
               Text(response.code,
                   style: TextStyle(
                       color: Colors.black,
@@ -111,7 +114,7 @@ class SelectVouchertMethodScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Text('Pilih',
+              child: Text(I10n.current.cart_choose,
                   style: TextStyle(
                     color: AppColors.red,
                     fontWeight: FontWeight.bold,
