@@ -19,6 +19,7 @@ import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart'
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
@@ -304,7 +305,7 @@ class OrderCartScreenViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -343,7 +344,7 @@ class OrderCartScreenViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -382,7 +383,7 @@ class OrderCartScreenViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -421,7 +422,7 @@ class OrderCartScreenViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),

@@ -13,6 +13,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -208,7 +209,7 @@ class OrderViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -247,7 +248,7 @@ class OrderViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -286,7 +287,7 @@ class OrderViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -325,7 +326,7 @@ class OrderViewController extends GetxController {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
