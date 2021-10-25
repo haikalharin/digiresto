@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
-import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -476,13 +475,7 @@ class OrderApi {
           path: apiUrl,
           queryParameter: queryParameter,
           content: object.toJson());
-      final statusResponse = StatusResponse.fromJson(apiResult["response"]);
-      if (statusResponse.code == "00") {
-        return right(CartSessionResponseApi.fromJson(apiResult));
-      } else {
-        return left(FailureException(
-            code: statusResponse.code, message: statusResponse.messageDisplay));
-      }
+      return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
       return left(FailureException());

@@ -8,6 +8,7 @@ import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
@@ -1289,7 +1290,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           padding: EdgeInsets.all(5),
                           height: 50,
                           child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.isLoading.value = true;
+                                Get.context!.read<OrderBloc>().add(
+                                    OrderEvent.checkVoucherOutlet(
+                                        controller.voucherCodeController.text));
+                              },
                               style: ElevatedButton.styleFrom(
                                 primary: AppColors.red,
                                 shape: RoundedRectangleBorder(
@@ -1332,94 +1338,86 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         listeners: [
           BlocListener<OrderBloc, OrderState>(
             listener: (context, state) {
-              state.maybeMap(
-                  addCartSuccess: (r) {
-                    controller.cartSession.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  removeCartSuccess: (r) {
-                    controller.cartSession.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  getCartSessionSuccess: (r) {
-                    controller.cartSession.value = r.response;
-                    controller.notesController.text =
-                        r.response.transactionData!.customerNote;
-                    controller.getDetailOutlet();
-                    controller.getListProduct();
-                    print("data diterima");
-                    controller.checkAllLoaded();
-                  },
-                  getDetailOutletSuccess: (r) {
-                    controller.detailOutlet.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  getOutletListProductSuccess: (r) {
-                    controller.listProduct.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  setSalesTypeCartSuccess: (r) {
-                    controller.salesType.value = r.value;
-                    controller.updateCartParam();
-                  },
-                  getSalesTypeCartSuccess: (r) {
-                    controller.salesType.value = r.value;
-                    controller.updateCartParam();
-                  },
-                  getPaymentMethodIDSuccess: (r) {
-                    controller.paymentMethod.value = r.data;
-                    controller.updateCartParam();
-                  },
-                  getDeliveryMethodIDSuccess: (r) {
-                    controller.deliveryMethod.value = r.data;
-                    controller.updateCartParam();
-                  },
-                  getVoucherMethodIDSuccess: (r) {
-                    controller.voucherMethod.value = r.data;
-                    controller.updateCartParam();
-                  },
-                  getDineInIDMethodSuccess: (r) {
-                    controller.dineInIDMethod.value = r.data;
-                    controller.parseDineInMethodID();
-                    controller.updateCartParam();
-                  },
-                  setDineInIDMethodSuccess: (r) {
-                    controller.dineInIDMethod.value = r.data;
-                    controller.parseDineInMethodID();
-                    controller.updateCartParam();
-                  },
-                  removeCartSessionSuccess: (r) {
-                    controller.checkCartSession();
-                  },
-                  checkoutCartSuccess: (r) {
-                    var checkoutResponse = r.response.data;
-                    controller.checkoutResponse.value = checkoutResponse;
-                    if (r.response.response.messageDisplay != null &&
-                        r.response.response.code != "00") {
-                      final message = r.response.response.messageDisplay;
-                      print("error response checkout 1:");
+              state.maybeMap(addCartSuccess: (r) {
+                controller.cartSession.value = r.response;
+                controller.checkAllLoaded();
+              }, removeCartSuccess: (r) {
+                controller.cartSession.value = r.response;
+                controller.checkAllLoaded();
+              }, getCartSessionSuccess: (r) {
+                controller.cartSession.value = r.response;
+                controller.notesController.text =
+                    r.response.transactionData!.customerNote;
+                controller.getDetailOutlet();
+                controller.getListProduct();
+                print("data diterima");
+                controller.checkAllLoaded();
+              }, getDetailOutletSuccess: (r) {
+                controller.detailOutlet.value = r.response;
+                controller.checkAllLoaded();
+              }, getOutletListProductSuccess: (r) {
+                controller.listProduct.value = r.response;
+                controller.checkAllLoaded();
+              }, setSalesTypeCartSuccess: (r) {
+                controller.salesType.value = r.value;
+                controller.updateCartParam();
+              }, getSalesTypeCartSuccess: (r) {
+                controller.salesType.value = r.value;
+                controller.updateCartParam();
+              }, getPaymentMethodIDSuccess: (r) {
+                controller.paymentMethod.value = r.data;
+                controller.updateCartParam();
+              }, getDeliveryMethodIDSuccess: (r) {
+                controller.deliveryMethod.value = r.data;
+                controller.updateCartParam();
+              }, checkVoucherOutletSuccess: (r) {
+                controller.checkAllLoaded();
+                Get.context!.read<OrderBloc>().add(
+                    OrderEvent.setVoucherMethodID(
+                        GetListVoucherOutletDataResponse(
+                            code: controller.voucherCodeController.text
+                                .toUpperCase(),
+                            name: controller.voucherCodeController.text
+                                .toUpperCase())));
+              }, getVoucherMethodIDSuccess: (r) {
+                controller.voucherMethod.value = r.data;
+                controller.updateCartParam();
+              }, getDineInIDMethodSuccess: (r) {
+                controller.dineInIDMethod.value = r.data;
+                controller.parseDineInMethodID();
+                controller.updateCartParam();
+              }, setDineInIDMethodSuccess: (r) {
+                controller.dineInIDMethod.value = r.data;
+                controller.parseDineInMethodID();
+                controller.updateCartParam();
+              }, removeCartSessionSuccess: (r) {
+                controller.checkCartSession();
+              }, checkoutCartSuccess: (r) {
+                var checkoutResponse = r.response.data;
+                controller.checkoutResponse.value = checkoutResponse;
+                if (r.response.response.messageDisplay != null &&
+                    r.response.response.code != "00") {
+                  final message = r.response.response.messageDisplay;
+                  print("error response checkout 1:");
 
-                      controller.isLoading.value = false;
-                      ErrorPopupWidget.show("Digiresto", message!.id, () {
-                        Get.back();
-                      });
-                      return;
-                    }
-                    controller.removeCartSession();
-                  },
-                  loadFailure: (e) {
-                    e.e.maybeMap(
-                        checkoutCartFail: (e) {
-                          print("error response checkout 1:");
-                          controller.isLoading.value = false;
-                          ErrorPopupWidget.show("Digiresto", "Transaksi gagal",
-                              () {
-                            Get.back();
-                          });
-                        },
-                        orElse: () {});
-                  },
-                  orElse: () {});
+                  controller.isLoading.value = false;
+                  ErrorPopupWidget.show("Digiresto", message!.id, () {
+                    Get.back();
+                  });
+                  return;
+                }
+                controller.removeCartSession();
+              }, loadFailure: (e) {
+                e.e.maybeMap(checkoutCartFail: (e) {
+                  controller.isLoading.value = false;
+                }, checkVoucherOutletFail: (e) {
+                  controller.isLoading.value = false;
+                }, orElse: () {
+                  controller.isLoading.value = false;
+                });
+              }, orElse: () {
+                controller.isLoading.value = false;
+              });
             },
           ),
           BlocListener<TransactionBloc, TransactionState>(
