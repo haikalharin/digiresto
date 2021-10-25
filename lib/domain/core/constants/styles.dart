@@ -143,4 +143,7 @@ class Styles {
 
   static TextStyle badgeContentStyle = GoogleFonts.openSans(
       color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600);
+
+  static TextStyle errorStyle = GoogleFonts.poppins(
+      color: AppColors.red, fontSize: 12, fontWeight: FontWeight.w400);
 }

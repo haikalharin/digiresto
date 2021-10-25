@@ -24,10 +24,9 @@ class BankDetailWidget extends StatelessWidget {
         ),
         DetailFieldItem(
           title: 'Batas Akhir Pembayaran',
-          value: CommonUtils.dateFormat(
-            'EEEE dd MMMM yyyy hh:mm',
-            bankDetails.expiresAt,
-          ).toString(),
+          value: CommonUtils.dateFormat('EEEE dd MMMM yyyy hh:mm',
+                  (bankDetails.expiresAt.add(DateTime.now().timeZoneOffset)))
+              .toString(),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

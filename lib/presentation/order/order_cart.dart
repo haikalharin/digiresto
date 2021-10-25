@@ -50,7 +50,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //if (_orderStore.orderSalesTypes == 'dineIn')
-
                   // Text("Info Makan di Tempat",
                   //     style: TextStyle(
                   //       fontFamily: "roboto",
@@ -878,7 +877,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             });
                           } else {
                             ErrorPopupWidget.confirmation("Digiresto",
-                                "Apakah Anda yakin dengan orderan ini?",
+                                I10n.current.order_confirmation_alert,
                                 () async {
                               Get.back();
                               controller.isLoading.value = true;

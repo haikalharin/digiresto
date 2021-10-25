@@ -144,7 +144,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Text('Pilih',
+              child: Text(I10n.current.cart_choose,
                   style: TextStyle(
                     color: AppColors.red,
                     fontWeight: FontWeight.bold,

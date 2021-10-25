@@ -11,6 +11,7 @@ import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
@@ -87,7 +88,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     }
   }
 
-  void setProduct() {
+  void setProduct({bool isBuyNow = false}) {
     if (widget.isDifferentOutlet) {
       ErrorPopupWidget.confirmation("Digiresto", "outlet yang berbeda", () {
         Get.context!.read<OrderBloc>().add(
@@ -511,7 +512,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                   height: 50,
                                   width:
                                       MediaQuery.of(context).size.width / 2 - 5,
-                                  child: RaisedButton(
+                                  child: ElevatedButton(
                                     onPressed: () {
                                       setProduct();
                                       // if (_userStore.skipAndContinue ?? false) {
@@ -533,18 +534,20 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                       //   Navigator.of(context).pop();
                                       // }
                                     },
-                                    color: AppColors.red,
                                     child: Text("${I10n.current.add_to_cart}",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white)),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(25.0),
-                                      side: BorderSide(
-                                        width: 1,
-                                        color: AppColors.red,
+                                    style: ElevatedButton.styleFrom(
+                                      primary: AppColors.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(25.0),
+                                        side: BorderSide(
+                                          width: 1,
+                                          color: AppColors.red,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -556,7 +559,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                       MediaQuery.of(context).size.width / 2 - 5,
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        setProduct();
+                                        setProduct(isBuyNow: true);
                                         // if (_userStore.skipAndContinue ?? false) {
                                         //   ErrorPopupWidget.showLoginRequired(context,
                                         //       () {

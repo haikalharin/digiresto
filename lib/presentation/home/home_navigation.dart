@@ -49,7 +49,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(5),
                     child: Text(
-                      "Keranjang",
+                      I10n.current.home_cart,
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         fontFamily: "roboto",
@@ -61,7 +61,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
                   alignment: Alignment.center,
                   padding: EdgeInsets.all(5),
                   child: Text(
-                    "Keranjang pesananmu kosong, silahkan pilih menu",
+                    I10n.current.beranda_cart_empty,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "roboto",

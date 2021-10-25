@@ -73,6 +73,8 @@ class OrderPending with _$OrderPending {
 class BillingDetail with _$BillingDetail {
   const factory BillingDetail({
     @JsonKey(defaultValue: '') required String orderId,
+    @JsonKey(defaultValue: '') required String link,
+    @JsonKey(defaultValue: '') required String paymentType,
     @JsonKey(defaultValue: '') required String title,
     @JsonKey(defaultValue: '') required String vaNumber,
     required dynamic amount,
@@ -225,7 +227,7 @@ class OutletDetail with _$OutletDetail {
     required String phone,
     required dynamic kurirPrice,
     required List<String> deliveryProvider,
-    required String driverPhone,
+    required dynamic driverPhone,
     required List<dynamic> area,
     required List<dynamic>? deliveryLocation,
   }) = _OutletDetail;

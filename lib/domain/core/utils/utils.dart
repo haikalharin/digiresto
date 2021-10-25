@@ -1,16 +1,17 @@
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
   static String formatSalesType(String type) {
     switch (type) {
       case "dineIn":
-        return "Makan di Tempat";
+        return I10n.current.landing_dine_in;
       case "takeAway":
-        return "Bawa Pulang";
+        return I10n.current.landing_take_away;
       case "onlineDriver":
-        return "Pesan Antar";
+        return I10n.current.landing_delivery;
       case "driveThru":
-        return "Drive Thru";
+        return I10n.current.landing_drive_thru;
       default:
         return "";
     }

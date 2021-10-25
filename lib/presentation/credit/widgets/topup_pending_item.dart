@@ -103,7 +103,7 @@ class TopUpPendingItem extends StatelessWidget {
             ),
             child: Text(
               i10n.history_pending_expired(
-                  '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', topUp.detail.formattedTransactionDate)} ${DateTime.now().timeZoneName}'),
+                  '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', (topUp.detail.expiresAt))} ${DateTime.now().timeZoneName}'),
             ),
           ),
           Padding(

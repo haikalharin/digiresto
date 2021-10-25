@@ -303,7 +303,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     padding: const EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Bergabung menjadi Mitra",
+                      I10n.current.home_join_digimitra,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -318,7 +318,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     width: MediaQuery.of(Get.context!).size.width / 2,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Terima pembayaran nontunai dan melakukan pengiriman instant menjadi lebih mudah",
+                      I10n.current.home_join_digimitra_desc,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
@@ -347,7 +347,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                           primary: AppColors.redYoung,
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(25.0))),
-                      child: Text("Selengkapnya",
+                      child: Text(I10n.current.home_join_digimitra_action,
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,

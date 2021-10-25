@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextStyle? hintStyle;
   final TextStyle? inputStyle;
+  final TextStyle? errorStyle;
   final Color? focusBorderColor;
   final Color? borderColor;
   final Color? fillColor;
@@ -29,6 +30,7 @@ class CustomTextField extends StatelessWidget {
     this.hintText = '',
     this.hintStyle,
     this.inputStyle,
+    this.errorStyle,
     this.focusBorderColor,
     this.keyboardType,
     this.onChange,
@@ -76,7 +78,8 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide(
               color: borderColor ?? AppColors.inputFillColor, width: 0.7),
         ),
-        errorStyle: Styles.hintStyle.copyWith(color: AppColors.yellow),
+        errorStyle:
+            errorStyle ?? Styles.hintStyle.copyWith(color: AppColors.yellow),
         hintText: hintText,
         hintStyle: hintStyle ?? Styles.hintStyle,
         fillColor: fillColor,

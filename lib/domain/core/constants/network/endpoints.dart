@@ -20,7 +20,7 @@ class Endpoints {
   static const String urlValidateOtp = "/auth/register/validateOtp";
   static const String urlLoginOtp = "/auth/register/loginOtp";
   static const String urlLogin = "/auth/login";
-  static const String urlLogout = "/auth/logout";
+  static const String urlLogout = "/user/logout";
   static const String urlRegister = "/auth/register";
   static const String urlBalance = "/user/balance";
   static const String urlCreditHistory = "/user/account/history";

@@ -362,7 +362,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Informasi Outlet",
+                    I10n.current.outlet_information,
                     style: AppFont.textBlack14Bold,
                   ),
                   SizedBox(
@@ -504,7 +504,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                                 ImageIcon(AssetImage(AppAssets.iconSendMessage),
                                     color: AppColors.white),
                                 SizedBox(width: 8),
-                                Text("Kirim Pesan",
+                                Text(I10n.current.outlet_message,
                                     style: AppFont.textBlack12SemiBold
                                         .copyWith(color: Colors.white)),
                               ],
@@ -541,7 +541,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                                 ImageIcon(AssetImage(AppAssets.iconMapRed),
                                     color: AppColors.white),
                                 SizedBox(width: 8),
-                                Text("Lihat Lokasi",
+                                Text(I10n.current.outlet_location,
                                     style: AppFont.textBlack12SemiBold
                                         .copyWith(color: Colors.white)),
                               ],
@@ -675,7 +675,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
       List<OutletProductCategoryDataResponse> data, String selected) {
     List<OutletProductCategoryDataResponse> paramCategory = [];
     paramCategory.add(OutletProductCategoryDataResponse(
-        code: '0', id: 0, name: 'Semua', order: null));
+        code: '0', id: 0, name: I10n.current.beranda_all_product, order: null));
     paramCategory.addAll(data);
     return ListFoodCategory(
         data: paramCategory,
@@ -774,7 +774,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    "Lihat Keranjang",
+                                    I10n.current.beranda_view_cart,
                                     style: TextStyle(
                                       fontFamily: "roboto",
                                       color: Colors.white,

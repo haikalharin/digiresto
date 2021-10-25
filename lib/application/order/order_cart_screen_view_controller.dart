@@ -19,6 +19,7 @@ import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart'
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
@@ -311,14 +312,15 @@ class OrderCartScreenViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Makan di Tempat', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_dine_in,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -350,14 +352,15 @@ class OrderCartScreenViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Bawa Pulang', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_take_away,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -389,14 +392,15 @@ class OrderCartScreenViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Pesan Antar', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_delivery,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
@@ -428,14 +432,15 @@ class OrderCartScreenViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Drive Thru', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_drive_thru,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
                     onTap(element);
                   },
                   child: Text(
-                    "Pilih",
+                    I10n.current.cart_choose,
                     style: AppFont.textBlack12Bold
                         .copyWith(color: AppColors.redD12B34),
                   ),
