@@ -625,7 +625,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               style: AppFont.textBlack14Bold),
                           if (controller.deliveryMethod.value != null)
                             Text(
-                                controller.deliveryMethod.value?.provider ?? "",
+                                "${controller.deliveryMethod.value?.name} - ${controller.deliveryMethod.value?.shipmentMethods.first.name ?? ""}",
                                 style: AppFont.textBlack12Light),
                         ],
                       ),
