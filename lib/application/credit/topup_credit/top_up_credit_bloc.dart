@@ -72,6 +72,7 @@ class TopUpCreditBloc extends Bloc<TopUpCreditEvent, TopUpCreditState> {
           }
         }
         yield state.copyWith(
+          showError: true,
           isSubmitting: false,
           topUpVAfailureOrSuccess: optionOf(vaFailureOrSuccess),
           topUpBankfailureOrSuccess: optionOf(bankFailureOrSuccess),

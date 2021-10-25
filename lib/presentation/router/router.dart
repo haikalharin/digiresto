@@ -6,7 +6,6 @@ import 'package:digiresto/presentation/address/map/add_location.dart';
 import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
-import 'package:digiresto/presentation/cart/cart.dart';
 // import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
@@ -18,6 +17,7 @@ import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/order/detail_outlet.dart';
+import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/order/payment_receipt.dart';
 import 'package:digiresto/presentation/order/payment_va.dart';
 import 'package:digiresto/presentation/order/payment_web_view.dart';
@@ -145,7 +145,7 @@ class Routers {
     GetPage(
         name: Routers.homeOutletCategory,
         page: () => HomeCategoryOutletScreen()),
-    GetPage(name: Routers.orderCart, page: () => CartScreen()),
+    GetPage(name: Routers.orderCart, page: () => OrderCartScreen()),
     GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet()),
     GetPage(
         name: Routers.selectPaymentMethod,

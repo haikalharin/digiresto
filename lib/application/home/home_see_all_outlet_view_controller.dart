@@ -16,7 +16,6 @@ class HomeSeeAllOutletViewController extends GetxController {
   final searchController = TextEditingController();
 
   void getOutletByLocation(String search, int pageParam) {
-    Loading.show();
     Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByMerchant(
         GetOutletByMerchantParam(
             queryString: GetOutletByMerchantQueryParam(

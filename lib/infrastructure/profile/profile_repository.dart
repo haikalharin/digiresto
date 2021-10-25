@@ -156,7 +156,10 @@ class ProfileRepository implements IProfileRepository {
         path: _apiUrl,
         useAuth: true,
         content: {
-          "query_string": {"outletName": ""},
+          "query_string": {
+            "outletName": "",
+            "filter": "all",
+          },
           "body": {}
         },
         queryParameter: queryParameter,

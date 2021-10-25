@@ -134,15 +134,13 @@ class PaymentReceiptScreen extends StatelessWidget {
                 ),
                 leading: IconButton(
                   icon: Icon(Icons.close),
-                  onPressed: () {
+                  onPressed: () async {
                     // _orderStore.clearCart();
                     if (args.fromOrder) {
                       Get.offAllNamed(Routers.home);
                       Get.find<HomeNavigationViewController>()
                           .selectedTabIndex
                           .value = 3;
-                      Get.find<HomeContentViewController>().getRefresh();
-                      Get.find<HomeNavigationViewController>().update();
                       Get.toNamed(Routers.orderHistory);
                     } else {
                       Get.back();
@@ -472,10 +470,6 @@ class PaymentReceiptScreen extends StatelessWidget {
                                 Get.find<HomeNavigationViewController>()
                                     .selectedTabIndex
                                     .value = 3;
-                                Get.find<HomeContentViewController>()
-                                    .getRefresh();
-                                Get.find<HomeNavigationViewController>()
-                                    .update();
                                 Get.toNamed(Routers.orderHistory);
                               } else {
                                 Get.back();
@@ -509,7 +503,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                 Get.context!.read<TransactionBloc>().add(
                                     TransactionEvent.getTransaction(
                                         args.receiptCode));
-                                //Loading.show();
+                                //
                               },
                               child: Container(
                                 width: double.infinity,
@@ -546,14 +540,12 @@ class PaymentReceiptScreen extends StatelessWidget {
                 ),
                 leading: IconButton(
                   icon: Icon(Icons.close),
-                  onPressed: () {
+                  onPressed: () async {
                     if (args.fromOrder) {
                       Get.offAllNamed(Routers.home);
                       Get.find<HomeNavigationViewController>()
                           .selectedTabIndex
                           .value = 0;
-                      Get.find<HomeContentViewController>().getRefresh();
-                      Get.find<HomeNavigationViewController>().update();
                       Get.toNamed(Routers.orderHistory);
                     } else {
                       Get.back();

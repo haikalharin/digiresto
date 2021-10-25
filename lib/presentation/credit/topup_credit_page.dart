@@ -111,220 +111,224 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
         body: StackWithProgress(
           isLoading: state.isSubmitting,
           children: [
-            ListView(
-              padding: EdgeInsets.zero,
+            Column(
               children: [
-                Divider(
-                  thickness: 12,
-                  color: AppColors.dividerColor,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(Dimens.defaultMargin),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
                     children: [
-                      Text(
-                        '${i10n.topup_credit_via} ${widget.bankItem.title}',
-                        style: Styles.creditTopupTitleStyle,
+                      Divider(
+                        thickness: 12,
+                        color: AppColors.dividerColor,
                       ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        i10n.topup_credit_denum,
-                        style: Styles.creditMenuSubtitleStyle,
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: NominalWidget(
-                              nominal: '25.000',
-                              onTap: () => controller.text = '25.000',
+                      Padding(
+                        padding: EdgeInsets.all(Dimens.defaultMargin),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${i10n.topup_credit_via} ${widget.bankItem.title}',
+                              style: Styles.creditTopupTitleStyle,
                             ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: NominalWidget(
-                              nominal: '50.000',
-                              onTap: () => controller.text = '50.000',
+                            SizedBox(
+                              height: 8,
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: NominalWidget(
-                              nominal: '100.000',
-                              onTap: () => controller.text = '100.000',
+                            Text(
+                              i10n.topup_credit_denum,
+                              style: Styles.creditMenuSubtitleStyle,
                             ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: NominalWidget(
-                              nominal: '150.000',
-                              onTap: () => controller.text = '150.000',
+                            SizedBox(
+                              height: 30,
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(
-                  thickness: 12,
-                  color: AppColors.dividerColor,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(Dimens.defaultMargin),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        i10n.topup_credit_input,
-                        style: Styles.creditMenuSubtitleStyle,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CustomTextField(
-                        controller: controller,
-                        autovalidateMode: state.showError
-                            ? AutovalidateMode.always
-                            : AutovalidateMode.disabled,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          CurrencyTextFormatter(),
-                        ],
-                        keyboardType: TextInputType.number,
-                        prefix: Padding(
-                          padding: EdgeInsets.only(
-                            left: 15,
-                            right: 2,
-                            top: 2,
-                          ),
-                          child: Text(
-                            'Rp ',
-                            style: Styles.creditNominalSmallStyle.copyWith(
-                              color: controller.text == ''
-                                  ? AppColors.greyColor
-                                  : AppColors.black,
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: NominalWidget(
+                                    nominal: '25.000',
+                                    onTap: () => controller.text = '25.000',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Expanded(
+                                  child: NominalWidget(
+                                    nominal: '50.000',
+                                    onTap: () => controller.text = '50.000',
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: NominalWidget(
+                                    nominal: '100.000',
+                                    onTap: () => controller.text = '100.000',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Expanded(
+                                  child: NominalWidget(
+                                    nominal: '150.000',
+                                    onTap: () => controller.text = '150.000',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        hintText: '0',
-                        hintStyle: Styles.creditNominalSmallStyle
-                            .copyWith(color: AppColors.greyColor),
-                        inputStyle: Styles.creditNominalSmallStyle.copyWith(
-                          color: AppColors.black,
+                      ),
+                      Divider(
+                        thickness: 12,
+                        color: AppColors.dividerColor,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(Dimens.defaultMargin),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              i10n.topup_credit_input,
+                              style: Styles.creditMenuSubtitleStyle,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            CustomTextField(
+                              controller: controller,
+                              autovalidateMode: state.showError
+                                  ? AutovalidateMode.always
+                                  : AutovalidateMode.disabled,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                                CurrencyTextFormatter(),
+                              ],
+                              keyboardType: TextInputType.number,
+                              prefix: Padding(
+                                padding: EdgeInsets.only(
+                                  left: 15,
+                                  right: 2,
+                                  top: 2,
+                                ),
+                                child: Text(
+                                  'Rp ',
+                                  style:
+                                      Styles.creditNominalSmallStyle.copyWith(
+                                    color: controller.text == ''
+                                        ? AppColors.greyColor
+                                        : AppColors.black,
+                                  ),
+                                ),
+                              ),
+                              hintText: '0',
+                              hintStyle: Styles.creditNominalSmallStyle
+                                  .copyWith(color: AppColors.greyColor),
+                              inputStyle:
+                                  Styles.creditNominalSmallStyle.copyWith(
+                                color: AppColors.black,
+                              ),
+                              errorStyle: Styles.errorStyle,
+                              validator: (_) => state.nominal.value.fold(
+                                (failure) => failure.maybeMap(
+                                  orElse: () => 'Invalid Nominal',
+                                  lessThanMinimum: (_) =>
+                                      i10n.topup_credit_input_alert,
+                                ),
+                                (_) => null,
+                              ),
+                            )
+                          ],
                         ),
-                        validator: (_) => state.nominal.value.fold(
-                          (failure) => failure.maybeMap(
-                            orElse: () => 'Invalid Nominal',
-                            lessThanMinimum: (_) =>
-                                i10n.topup_credit_input_alert,
-                          ),
-                          (_) => null,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Divider(
-                  thickness: 12,
-                  color: AppColors.dividerColor,
-                ),
-                if (widget.bankItem.param.fee != null)
-                  Padding(
-                    padding: EdgeInsets.all(Dimens.defaultMargin),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          i10n.credit_note,
-                          style: Styles.creditMenuSubtitleStyle,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '${i10n.credit_note_value} ${CommonUtils.currencyFormat(double.parse(widget.bankItem.param.fee ?? '0'))}',
-                          style: Styles.creditMenuSubtitleStyle
-                              .copyWith(color: AppColors.redYoung),
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              left: 0,
-              child: CustomButton(
-                label: i10n.topup_title,
-                onPressed: () => state.destination == 'TOP_UP_BANK'
-                    ? Get.dialog(
-                        CustomDialog(
-                          backgroundColor: Colors.white,
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
+                      ),
+                      Divider(
+                        thickness: 12,
+                        color: AppColors.dividerColor,
+                      ),
+                      if (widget.bankItem.param.fee != null)
+                        Padding(
+                          padding: EdgeInsets.all(Dimens.defaultMargin),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                i10n.credit_topup,
-                                style: Styles.dialogTitleStyle,
+                                i10n.credit_note,
+                                style: Styles.creditMenuSubtitleStyle,
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Text(
-                                i10n.topup_confirmation,
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              CustomButton(
-                                onPressed: () {
-                                  Get.back();
-                                  _topUpBloc.add(
-                                    TopUpCreditEvent.topUpSubmitted(
-                                      widget.bankItem.param,
-                                    ),
-                                  );
-                                },
-                                label: i10n.alert_ok,
-                                fontColor: Colors.white,
-                                borderColor: AppColors.mainColor,
-                                color: AppColors.mainColor,
+                                '${i10n.credit_note_value} ${CommonUtils.currencyFormat(double.parse(widget.bankItem.param.fee ?? '0'))}',
+                                style: Styles.creditMenuSubtitleStyle
+                                    .copyWith(color: AppColors.redYoung),
                               ),
                             ],
                           ),
                         ),
-                      )
-                    : _topUpBloc.add(
-                        TopUpCreditEvent.topUpSubmitted(
-                          widget.bankItem.param,
-                        ),
-                      ),
-                color: AppColors.mainColor,
-                fontColor: Colors.white,
-                borderRadius: BorderRadius.circular(22),
-                margin: EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: Dimens.defaultMargin,
+                    ],
+                  ),
                 ),
-              ),
-            )
+                CustomButton(
+                  label: i10n.topup_title,
+                  onPressed: () => state.destination == 'TOP_UP_BANK'
+                      ? Get.dialog(
+                          CustomDialog(
+                            backgroundColor: Colors.white,
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  i10n.credit_topup,
+                                  style: Styles.dialogTitleStyle,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text(
+                                  i10n.topup_confirmation,
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                CustomButton(
+                                  onPressed: () {
+                                    Get.back();
+                                    _topUpBloc.add(
+                                      TopUpCreditEvent.topUpSubmitted(
+                                        widget.bankItem.param,
+                                      ),
+                                    );
+                                  },
+                                  label: i10n.alert_ok,
+                                  fontColor: Colors.white,
+                                  borderColor: AppColors.mainColor,
+                                  color: AppColors.mainColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : _topUpBloc.add(
+                          TopUpCreditEvent.topUpSubmitted(
+                            widget.bankItem.param,
+                          ),
+                        ),
+                  color: AppColors.mainColor,
+                  fontColor: Colors.white,
+                  borderRadius: BorderRadius.circular(22),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: Dimens.defaultMargin,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -60,7 +60,6 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
   }
 
   void getGeocode() {
-    Loading.show();
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.getGeoCode(
         GetGeoCodeParam(
             latitude: controller.lastMapPosition.value!.latitude.toString(),
@@ -69,7 +68,6 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
   }
 
   void addAddress() {
-    Loading.show();
     Get.context!.read<AddressListBloc>().add(AddressListEvent.addAddress(
         UserAddAddressParam(
             wa_id: "",
@@ -347,11 +345,8 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
           state.maybeMap(
               getGeoCodeFail: (value) {
                 Ctoast.show("failed get addrress");
-                Loading.dismiss();
               },
               getGeoCodeSuccess: (response) {
-                Loading.dismiss();
-
                 controller.geocode.value = response.response;
                 controller.isMarkerClicked.value = true;
 

@@ -11,7 +11,6 @@ class HomeNearbyOutletViewController extends GetxController {
   var page = 1.obs;
 
   void getOutletByLocation(String search, int pageParam) {
-    Loading.show();
     page.value = pageParam;
     Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
         GetOutletByLocationParam(

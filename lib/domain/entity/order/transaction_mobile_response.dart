@@ -138,7 +138,7 @@ class TransactionMobileDataDeliveryDetailResponse
     required String? createdDate,
     required String? ownerPhone,
     required String? driverName,
-    required String? driverPhone,
+    required dynamic driverPhone,
   }) = _TransactionMobileDataDeliveryDetailResponse;
 
   factory TransactionMobileDataDeliveryDetailResponse.fromJson(

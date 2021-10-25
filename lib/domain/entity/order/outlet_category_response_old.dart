@@ -63,7 +63,7 @@ class Detail with _$Detail {
     required List<dynamic> taxesAndServices,
     required List<dynamic> location,
     required String phone,
-    required String kurirPrice,
+    required dynamic kurirPrice,
     required String deliveryType,
     required String maxRadius,
     required String driverPhone,

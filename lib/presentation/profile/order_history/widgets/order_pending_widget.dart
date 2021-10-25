@@ -6,12 +6,14 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
+import 'package:digiresto/presentation/core/widgets/custom_webview.dart';
 import 'package:digiresto/presentation/profile/order_history/cancel_order_page.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrderPendingWidget extends StatelessWidget {
   final OrderPending orderPending;
@@ -21,6 +23,327 @@ class OrderPendingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
     final isVa = orderPending.billingDetail.vaNumber.isNotEmpty;
+    final isWebview = orderPending.billingDetail.isWebView;
+    final isDeeplink = orderPending.billingDetail.isDeeplink;
+    final isEwallet = isWebview || isDeeplink;
+    // final isVa = orderPending.billingDetail..isNotEmpty;
+
+    Widget ewallet() => Padding(
+          padding: EdgeInsets.all(
+            15,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    i10n.history_pending_payment_method,
+                    style: Styles.topUpDetailsStyle.copyWith(
+                      color: AppColors.greyColor1,
+                    ),
+                  ),
+                  Text(
+                    orderPending.billingDetail.serviceProvider,
+                    style: Styles.topUpDetailsStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        i10n.billing_total_payment,
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          color: AppColors.greyColor1,
+                        ),
+                      ),
+                      Text(
+                        CommonUtils.currencyFormat(double.tryParse(
+                                orderPending.billingDetail.amount.toString()) ??
+                            0),
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        Clipboard.setData(
+                          ClipboardData(
+                            text: '${orderPending.billingDetail.amount}',
+                          ),
+                        );
+                        Get.snackbar(
+                          'Success',
+                          'Copied to clipboard !',
+                          snackPosition: SnackPosition.BOTTOM,
+                          duration: Duration(seconds: 2),
+                        );
+                      },
+                      child: Ink(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 30,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
+                            color: AppColors.mainColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          i10n.topup_copy_action,
+                          style: Styles.topUpDetailsStyle.copyWith(
+                            color: AppColors.mainColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+
+    Widget bankOrVA() => Padding(
+          padding: EdgeInsets.all(
+            15,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (!isVa)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      i10n.billing_bank_name,
+                      style: Styles.topUpDetailsStyle.copyWith(
+                        color: AppColors.greyColor1,
+                      ),
+                    ),
+                    Text(
+                      orderPending.billingDetail.bankName,
+                      style: Styles.topUpDetailsStyle.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isVa ? 'Virtual Account' : i10n.billing_bank_account_name,
+                    style: Styles.topUpDetailsStyle.copyWith(
+                      color: AppColors.greyColor1,
+                    ),
+                  ),
+                  Text(
+                    isVa
+                        ? orderPending.billingDetail.title
+                        : orderPending.billingDetail.bankAccName,
+                    style: Styles.topUpDetailsStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isVa
+                            ? i10n.history_pending_va_number
+                            : i10n.billing_rekening_number,
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          color: AppColors.greyColor1,
+                        ),
+                      ),
+                      Text(
+                        isVa
+                            ? orderPending.billingDetail.vaNumber
+                            : orderPending.billingDetail.bankAccNo,
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          color: AppColors.mainColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        Clipboard.setData(
+                          ClipboardData(
+                            text: orderPending.billingDetail.vaNumber,
+                          ),
+                        );
+                        Get.snackbar(
+                          'Success',
+                          'Copied to clipboard !',
+                          snackPosition: SnackPosition.BOTTOM,
+                          duration: Duration(seconds: 2),
+                        );
+                      },
+                      child: Ink(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 30,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
+                            color: AppColors.mainColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          i10n.topup_copy_action,
+                          style: Styles.topUpDetailsStyle.copyWith(
+                            color: AppColors.mainColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        i10n.billing_total_payment,
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          color: AppColors.greyColor1,
+                        ),
+                      ),
+                      Text(
+                        isVa
+                            ? CommonUtils.currencyFormat(double.tryParse(
+                                    orderPending.billingDetail.amount
+                                        .toString()) ??
+                                0)
+                            : CommonUtils.currencyFormat(double.tryParse(
+                                    orderPending.billingDetail.uniqueAmount) ??
+                                0),
+                        style: Styles.topUpDetailsStyle.copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        Clipboard.setData(
+                          ClipboardData(
+                            text: isVa
+                                ? '${orderPending.billingDetail.amount}'
+                                : orderPending.billingDetail.uniqueAmount,
+                          ),
+                        );
+                        Get.snackbar(
+                          'Success',
+                          'Copied to clipboard !',
+                          snackPosition: SnackPosition.BOTTOM,
+                          duration: Duration(seconds: 2),
+                        );
+                      },
+                      child: Ink(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 30,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
+                            color: AppColors.mainColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          i10n.topup_copy_action,
+                          style: Styles.topUpDetailsStyle.copyWith(
+                            color: AppColors.mainColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              if (!isVa)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.warning_rounded,
+                      color: AppColors.mainColor,
+                      size: 27,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      i10n.billing_alert_nominal,
+                      style: Styles.topUpDetailsStyle.copyWith(
+                        color: AppColors.mainColor,
+                      ),
+                    )
+                  ],
+                ),
+              SizedBox(
+                height: 15,
+              ),
+            ],
+          ),
+        );
+
     return CustomCard(
       blurRadius: 2,
       spreadRadius: 2,
@@ -86,14 +409,15 @@ class OrderPendingWidget extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'Batalkan Transaksi',
+                                  i10n.history_pending_cancel,
                                   style: Styles.dialogTitleStyle,
                                 ),
                                 SizedBox(
                                   height: 15,
                                 ),
                                 Text(
-                                  'Apakah anda yakin ingin membatalkan transaksi dengan nomor ${orderPending.receiptCode} ?',
+                                  i10n.history_pending_cancel_alert(
+                                      orderPending.receiptCode),
                                   style: Styles.dialogSubtitleStyle,
                                   textAlign: TextAlign.center,
                                 ),
@@ -107,7 +431,7 @@ class OrderPendingWidget extends StatelessWidget {
                                         onPressed: () => Get.back(),
                                         color: Colors.white,
                                         borderColor: AppColors.mainColor,
-                                        label: 'Batal',
+                                        label: i10n.alert_cancel,
                                       ),
                                     ),
                                     SizedBox(
@@ -123,7 +447,7 @@ class OrderPendingWidget extends StatelessWidget {
                                         ),
                                         color: AppColors.mainColor,
                                         fontColor: Colors.white,
-                                        label: 'Ok',
+                                        label: i10n.alert_ok,
                                       ),
                                     ),
                                   ],
@@ -140,11 +464,11 @@ class OrderPendingWidget extends StatelessWidget {
                     return [
                       PopupMenuItem(
                         value: 1,
-                        child: Text('Detail'),
+                        child: Text(i10n.history_pending_detail),
                       ),
                       PopupMenuItem(
                         value: 2,
-                        child: Text('Batalkan'),
+                        child: Text(i10n.history_pending_cancel),
                       ),
                     ];
                   },
@@ -170,266 +494,60 @@ class OrderPendingWidget extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: Text(
-                'Bayar sebelum ${CommonUtils.dateFormat('dd MMMM yyyy, HH:mm', orderPending.billingDetail.expiresAt)}'),
+            child: Text(i10n.history_pending_expired(
+                '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', (orderPending.billingDetail.expiresAt.add(DateTime.now().timeZoneOffset)))} ${DateTime.now().timeZoneName}')),
           ),
-          Padding(
-            padding: EdgeInsets.all(
-              15,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!isVa)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          isEwallet ? ewallet() : bankOrVA(),
+          CustomButton(
+            margin: EdgeInsets.all(15),
+            label: i10n.history_pending_make_payment,
+            onPressed: () {
+              Get.dialog(
+                CustomDialog(
+                  backgroundColor: Colors.white,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Nama Bank',
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          color: AppColors.greyColor1,
-                        ),
-                      ),
-                      Text(
-                        orderPending.billingDetail.bankName,
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        'Digiresto',
+                        style: Styles.dialogTitleStyle,
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 20,
                       ),
-                    ],
-                  ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isVa ? 'Virtual Account' : 'Nama Pemilik Rekening',
-                      style: Styles.topUpDetailsStyle.copyWith(
-                        color: AppColors.greyColor1,
+                      Text(
+                        (orderPending.billingDetail.expiresAt
+                                    .add(DateTime.now().timeZoneOffset))
+                                .isAfter(DateTime.now())
+                            ? i10n.history_pending_inquiry_pending
+                            : i10n.history_pending_inquiry_expired,
+                        style: Styles.dialogSubtitleStyle,
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    Text(
-                      isVa
-                          ? orderPending.billingDetail.title
-                          : orderPending.billingDetail.bankAccName,
-                      style: Styles.topUpDetailsStyle.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          isVa ? 'No Virtual Account' : 'No Rekening',
-                          style: Styles.topUpDetailsStyle.copyWith(
-                            color: AppColors.greyColor1,
-                          ),
-                        ),
-                        Text(
-                          isVa
-                              ? orderPending.billingDetail.vaNumber
-                              : orderPending.billingDetail.bankAccNo,
-                          style: Styles.topUpDetailsStyle.copyWith(
-                            color: AppColors.mainColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          Clipboard.setData(
-                            ClipboardData(
-                              text: orderPending.billingDetail.vaNumber,
-                            ),
-                          );
-                          Get.snackbar(
-                            'Success',
-                            'Copied to clipboard !',
-                            snackPosition: SnackPosition.BOTTOM,
-                            duration: Duration(seconds: 2),
-                          );
+                      CustomButton(
+                        onPressed: () async {
+                          final url = orderPending.billingDetail.link;
+                          Get.back();
+                          if (url.isNotEmpty && url.isURL) {
+                            isDeeplink
+                                ? Get.to(CustomWebView(url: url))
+                                : launch(url);
+                          }
                         },
-                        child: Ink(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 30,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                              color: AppColors.mainColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Text(
-                            'Salin',
-                            style: Styles.topUpDetailsStyle.copyWith(
-                              color: AppColors.mainColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total Pembayaran',
-                          style: Styles.topUpDetailsStyle.copyWith(
-                            color: AppColors.greyColor1,
-                          ),
-                        ),
-                        Text(
-                          isVa
-                              ? CommonUtils.currencyFormat(double.tryParse(
-                                      orderPending.billingDetail.amount
-                                          .toString()) ??
-                                  0)
-                              : CommonUtils.currencyFormat(double.tryParse(
-                                      orderPending
-                                          .billingDetail.uniqueAmount) ??
-                                  0),
-                          style: Styles.topUpDetailsStyle.copyWith(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          Clipboard.setData(
-                            ClipboardData(
-                              text: '${orderPending.billingDetail.amount}',
-                            ),
-                          );
-                          Get.snackbar(
-                            'Success',
-                            'Copied to clipboard !',
-                            snackPosition: SnackPosition.BOTTOM,
-                            duration: Duration(seconds: 2),
-                          );
-                        },
-                        child: Ink(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 30,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                              color: AppColors.mainColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Text(
-                            'Salin',
-                            style: Styles.topUpDetailsStyle.copyWith(
-                              color: AppColors.mainColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                if (!isVa)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.warning_rounded,
                         color: AppColors.mainColor,
-                        size: 27,
+                        fontColor: Colors.white,
+                        label: i10n.alert_ok,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Pastikan nominal sesuai hingga 3 digit terakhir',
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          color: AppColors.mainColor,
-                        ),
-                      )
                     ],
                   ),
-                SizedBox(
-                  height: 15,
                 ),
-                CustomButton(
-                  label: 'Lakukan Pembayaran',
-                  onPressed: () {
-                    Get.dialog(
-                      CustomDialog(
-                        backgroundColor: Colors.white,
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Digiresto',
-                              style: Styles.dialogTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              orderPending.billingDetail.expiresAt
-                                      .isAfter(DateTime.now())
-                                  ? i10n.history_pending_inquiry_pending
-                                  : i10n.history_pending_inquiry_expired,
-                              style: Styles.dialogSubtitleStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            CustomButton(
-                              onPressed: () => Get.back(),
-                              color: AppColors.mainColor,
-                              fontColor: Colors.white,
-                              label: i10n.alert_ok,
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  color: AppColors.mainColor,
-                  fontColor: Colors.white,
-                )
-              ],
-            ),
+              );
+            },
+            color: AppColors.mainColor,
+            fontColor: Colors.white,
           ),
         ],
       ),

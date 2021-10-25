@@ -115,6 +115,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 CustomDialog(
                   backgroundColor: Colors.white,
                   content: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         i10n.error_message_title,
@@ -125,7 +126,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                       Text(
                         failure.maybeMap(
-                          orElse: () => 'Unknown Error',
+                          orElse: () => i10n.error_message_failed_get_response,
                           noInternet: (_) => 'No Internet',
                         ),
                         textAlign: TextAlign.center,

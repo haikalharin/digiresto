@@ -112,6 +112,13 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           child: Image(
+                            errorBuilder: (context, obj, stacktrace) {
+                              return Image(
+                                height: 96,
+                                width: 96,
+                                image: RandomImages.getImage(),
+                              );
+                            },
                             image: RandomImages.getImageUrlDefault(
                                 widget.data[index].image, ""),
                             fit: BoxFit.fill,

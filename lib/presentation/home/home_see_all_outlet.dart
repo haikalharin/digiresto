@@ -104,7 +104,6 @@ class _BodyCategoryWidget extends GetView<HomeSeeAllOutletViewController> {
     loadMoreOutletByLocation();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
-        Loading.dismiss();
         state.maybeMap(
             getOutletByMerchantSuccess: (r) {
               print(r.response);

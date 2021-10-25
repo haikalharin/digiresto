@@ -3,6 +3,7 @@ import 'package:digiresto/domain/core/constants/dimens.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/credit/top_up_pending.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,7 @@ class TopUpPendingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final i10n = I10n.of(context);
     final isVa = topUp.detail.vaNumber != null;
     return CustomCard(
       blurRadius: 2,
@@ -100,7 +102,9 @@ class TopUpPendingItem extends StatelessWidget {
               ),
             ),
             child: Text(
-                'Bayar sebelum ${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', topUp.detail.expiresAt)}'),
+              i10n.history_pending_expired(
+                  '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', (topUp.detail.expiresAt))} ${DateTime.now().timeZoneName}'),
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(

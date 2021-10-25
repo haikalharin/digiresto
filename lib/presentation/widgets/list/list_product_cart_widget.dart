@@ -75,7 +75,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
         physics: const NeverScrollableScrollPhysics(),
         scrollDirection: widget.scrollDirection,
         shrinkWrap: true, // new line
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.zero,
         itemCount: widget.productCart.length,
         itemBuilder: (BuildContext context, int index) {
           int? price;
@@ -133,8 +133,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                       //color: Colors.amber[100],
                       borderRadius: BorderRadius.circular(7.0),
                     ),
-                    height: 96,
-                    width: 96,
+                    padding: EdgeInsets.only(bottom: 15),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[

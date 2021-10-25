@@ -19,7 +19,7 @@ class VADetailsWidget extends StatelessWidget {
           title: 'Batas Akhir Pembayaran',
           value: CommonUtils.dateFormat(
             'EEEE dd MMMM yyyy hh:mm',
-            vaDetails.expiresAt,
+            (vaDetails.expiresAt.add(DateTime.now().timeZoneOffset)),
           ).toString(),
         ),
         Text(

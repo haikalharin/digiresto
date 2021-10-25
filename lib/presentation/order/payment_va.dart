@@ -60,7 +60,8 @@ class PaymentVAScreen extends StatelessWidget {
                     style: AppFont.textBlack15Regular),
                 SizedBox(height: 5),
                 Text(
-                  df.format(vaPayment!.transactionDate ?? DateTime.now()),
+                  df.format(
+                      vaPayment!.formattedTransactionDate ?? DateTime.now()),
                   style: AppFont.textBlack15Bold,
                 ),
                 SizedBox(height: 10),
@@ -72,7 +73,8 @@ class PaymentVAScreen extends StatelessWidget {
                     style: AppFont.textBlack15Regular),
                 SizedBox(height: 5),
                 Text(
-                  df.format(vaPayment.expiresAt),
+                  df.format(
+                      vaPayment.expiresAt.add(DateTime.now().timeZoneOffset)),
                   style: AppFont.textBlack15Bold,
                 ),
                 SizedBox(height: 10),

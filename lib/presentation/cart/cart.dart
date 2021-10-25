@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OrderCartScreen();
+    return OrderCartScreen(
+      hideBackButton: true,
+    );
   }
 }

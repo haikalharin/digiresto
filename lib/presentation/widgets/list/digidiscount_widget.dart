@@ -3,6 +3,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -55,7 +56,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                 width: 4,
               ),
               Text(
-                "Makan di tempat",
+                I10n.current.landing_dine_in,
                 style: AppFont.textBlack11Light,
               ),
             ],
@@ -72,7 +73,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                 width: 4,
               ),
               Text(
-                "Bawa Pulang",
+                I10n.current.landing_take_away,
                 style: AppFont.textBlack11Light,
               ),
             ],
@@ -89,7 +90,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                 width: 4,
               ),
               Text(
-                "Pesan Antar",
+                I10n.current.landing_delivery,
                 style: AppFont.textBlack11Light,
               ),
             ],
@@ -106,7 +107,7 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                 width: 4,
               ),
               Text(
-                "Drive Thru",
+                I10n.current.landing_drive_thru,
                 style: AppFont.textBlack11Light,
               ),
             ],
@@ -152,6 +153,13 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                     child: Image(
+                                      errorBuilder: (context, obj, stacktrace) {
+                                        return Image(
+                                          height: 96,
+                                          width: 96,
+                                          image: RandomImages.getImage(),
+                                        );
+                                      },
                                       image: RandomImages.getImageUrlDefault(
                                           widget.data[index].merchantLogo, ""),
                                       fit: BoxFit.cover,

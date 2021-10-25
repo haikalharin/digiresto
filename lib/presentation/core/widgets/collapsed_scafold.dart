@@ -36,7 +36,7 @@ class CollapsedScafold extends StatelessWidget {
                       child: Container(),
                     ),
                     Flexible(
-                      flex: 2,
+                      flex: 3,
                       child: Row(
                         children: [
                           Expanded(
@@ -70,10 +70,12 @@ class CollapsedScafold extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(),
-                    ),
+                    // Flexible(
+                    //   flex: 1,
+                    //   child: Container(
+                    //     color: Colors.white,
+                    //   ),
+                    // ),
                   ],
                 ),
                 background: SvgPicture.asset(

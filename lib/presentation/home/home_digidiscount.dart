@@ -30,6 +30,8 @@ class HomeDigidiscountScreen
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
+              controller.listPromoOutlet.clear();
+              controller.page.value = 1;
               controller.getPromoOutlet(controller.searchController.text, 1);
             },
             controller: controller.searchController,
@@ -86,7 +88,6 @@ class HomeDigidiscountScreen
       ),
       body: BlocConsumer<OrderBloc, OrderState>(
         listener: (context, state) {
-          Loading.dismiss();
           state.maybeMap(
               getDigiDiscountOutletSuccess: (r) {
                 controller.listPromoOutlet.value = r.response;

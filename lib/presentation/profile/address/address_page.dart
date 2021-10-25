@@ -11,6 +11,7 @@ import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,6 @@ class ProfileAddressWidget extends StatelessWidget {
 
     final controller = Get.put(HomeContentViewController(), permanent: false);
     getAddress();
-    Loading.dismiss();
     return CustomScafold(
       showBackButton: true,
       title: i10n.address_all,
@@ -64,14 +64,10 @@ class ProfileAddressWidget extends StatelessWidget {
                         address: response.formattedAddress,
                         latitude: response.latitude,
                         longitude: response.longitute));
-
-                    Loading.dismiss();
                   },
                   setActiveAddressSuccess: (content) {
                     controller.setActiveAddress(content.response.address!);
                     Get.back();
-
-                    Loading.dismiss();
                   },
                   setDefaultFail: (content) {
                     print(content);
@@ -85,8 +81,6 @@ class ProfileAddressWidget extends StatelessWidget {
                         .read<HomeUserBloc>()
                         .add(HomeUserEvent.getListAddress());
                     Get.back(closeOverlays: true);
-
-                    Loading.dismiss();
                   },
                   addAddressSuccess: (value) {
                     context
@@ -94,71 +88,75 @@ class ProfileAddressWidget extends StatelessWidget {
                         .add(HomeUserEvent.getListAddress());
                     Get.back(closeOverlays: true);
                     Get.back();
-
-                    Loading.dismiss();
                   },
                   orElse: () {});
             },
             builder: (context, state) {
-              return Obx(() {
-                return Expanded(
-                  child: Column(
-                    children: [
-                      Container(
-                        color: AppColors.greyFill,
-                        width: double.infinity,
-                        height: 12,
-                      ),
-                      // _userStore?.skipAndContinue ?? false
-                      Expanded(
-                        child: Container(
-                          color: AppColors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20, top: 16, right: 20),
-                            child: Column(
-                              children: [
-                                Container(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: Text("Alamat Tersimpan",
-                                            style: AppFont.textBlack15Bold,
-                                            textAlign: TextAlign.center),
+              return StackWithProgress(
+                isLoading: state.maybeMap(
+                    orElse: () => false, loadInProgress: (_) => true),
+                children: [
+                  Obx(
+                    () {
+                      return Column(
+                        children: [
+                          Container(
+                            color: AppColors.greyFill,
+                            width: double.infinity,
+                            height: 12,
+                          ),
+                          // _userStore?.skipAndContinue ?? false
+                          Expanded(
+                            child: Container(
+                              color: AppColors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, top: 16, right: 20),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            padding: EdgeInsets.only(left: 10),
+                                            child: Text("Alamat Tersimpan",
+                                                style: AppFont.textBlack15Bold,
+                                                textAlign: TextAlign.center),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Expanded(
+                                      child: ListView.builder(
+                                          scrollDirection: Axis.vertical,
+                                          shrinkWrap: true, // new line
+                                          padding: const EdgeInsets.all(8),
+                                          itemCount:
+                                              controller.listAddress.length + 1,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            if (index ==
+                                                controller.listAddress.length) {
+                                              return _btnNewAddress();
+                                            } else {
+                                              return _listAddress(controller
+                                                  .listAddress[index]);
+                                            }
+                                          }),
+                                    ),
+                                  ],
                                 ),
-                                Expanded(
-                                  child: ListView.builder(
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true, // new line
-                                      padding: const EdgeInsets.all(8),
-                                      itemCount:
-                                          controller.listAddress.length + 1,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        if (index ==
-                                            controller.listAddress.length) {
-                                          return _btnNewAddress();
-                                        } else {
-                                          return _listAddress(
-                                              controller.listAddress[index]);
-                                        }
-                                      }),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
+                        ],
+                      );
+                    },
                   ),
-                );
-              });
+                ],
+              );
             },
           );
         },
@@ -312,7 +310,6 @@ class ProfileAddressWidget extends StatelessWidget {
   }
 
   void getAddress() async {
-    Loading.show();
     final position = await _locationService.determinePosition();
     Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(
         GetGeoCodeParam(

@@ -60,6 +60,7 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
+              controller.listOutlet.clear();
               controller.page.value = 1;
               controller.getOutletByLocation(
                   controller.searchController.text, 1);
@@ -99,7 +100,6 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
     controller.getOutletByLocation("", 1);
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
-        Loading.dismiss();
         state.maybeMap(
             getOutletByCategorySuccess: (r) {
               print(r.response);

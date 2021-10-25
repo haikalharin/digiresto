@@ -202,7 +202,8 @@ class OrderViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Makan di Tempat', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_dine_in,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
@@ -241,7 +242,8 @@ class OrderViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Bawa Pulang', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_take_away,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
@@ -280,7 +282,8 @@ class OrderViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Pesan Antar', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_delivery,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
@@ -319,7 +322,8 @@ class OrderViewController extends GetxController {
               SizedBox(
                 width: 16,
               ),
-              Text('Drive Thru', style: AppFont.textBlack14Bold),
+              Text(I10n.current.landing_drive_thru,
+                  style: AppFont.textBlack14Bold),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
@@ -359,7 +363,7 @@ class OrderViewController extends GetxController {
                 width: 4,
               ),
               Text(
-                "Makan di tempat",
+                I10n.current.landing_dine_in,
                 style: AppFont.textBlack11Light,
               ),
             ],

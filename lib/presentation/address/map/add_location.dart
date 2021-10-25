@@ -40,13 +40,11 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
   }
 
   _getCurrentLocation() {
-    Loading.show();
     print("get current location deefault gps");
     Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.best,
             forceAndroidLocationManager: true)
         .then((Position position) {
-      Loading.dismiss();
       controller.mapController.value!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
@@ -54,13 +52,11 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
         ),
       );
     }).catchError((e) {
-      Loading.dismiss();
       print(e);
     });
   }
 
   void getGeocode() {
-    Loading.show();
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.getGeoCode(
         GetGeoCodeParam(
             latitude: controller.lastMapPosition.value!.latitude.toString(),
@@ -253,10 +249,8 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
           state.maybeMap(
               getGeoCodeFail: (value) {
                 Ctoast.show("failed get addrress");
-                Loading.dismiss();
               },
               getGeoCodeSuccess: (response) {
-                Loading.dismiss();
                 controller.geocode.value = response.response;
                 controller.isMarkerClicked.value = true;
                 _addressController.text =

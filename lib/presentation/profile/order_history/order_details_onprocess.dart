@@ -2,6 +2,7 @@ import 'package:digiresto/application/profile/order_details/order_details_bloc.d
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/profile/order_history/cancel_order_page.dart';
@@ -73,7 +74,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Kirim pesan',
+                  I10n.current.chat_outlet,
                   style: Styles.buttonLabelStyle.copyWith(
                     color: AppColors.mainColor,
                   ),
@@ -238,7 +239,8 @@ class OrderDetailsOnProcess extends StatelessWidget {
                             height: 15,
                           ),
                           Text(
-                            'Apakah anda yakin ingin membatalkan transaksi dengan nomor ${orderDetails.receiptCode} ?',
+                            I10n.current.history_pending_cancel_alert(
+                                orderDetails.receiptCode),
                             style: Styles.dialogSubtitleStyle,
                             textAlign: TextAlign.center,
                           ),
@@ -278,7 +280,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(30),
                   color: AppColors.mainColor,
-                  label: 'Batal',
+                  label: I10n.current.alert_cancel,
                   fontColor: Colors.white,
                 ),
               if (orderDetails.status == 'ready' ||
