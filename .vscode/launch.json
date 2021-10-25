@@ -22,7 +22,7 @@
             "program": "lib/main_prod.dart",
             "args": [
                 "--flavor",
-                "dev"
+                "prod"
             ]
         },
         {

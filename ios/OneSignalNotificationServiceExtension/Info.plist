@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>NSExtension</key>
+	<key>OneSignal_app_groups_key</key>
+	<string>$(ONE_SIGNAL_ID)</string>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.usernotifications.service</string>
