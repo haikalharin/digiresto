@@ -548,6 +548,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.4;
+				ONE_SIGNAL_ID = group.id.damcorp.digiresto.onesignal;
 				PRODUCT_BUNDLE_IDENTIFIER = id.damcorp.digiresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -691,6 +692,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.4;
+				ONE_SIGNAL_ID = group.id.damcorp.digiresto.onesignal;
 				PRODUCT_BUNDLE_IDENTIFIER = id.damcorp.digiresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -722,6 +724,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.4;
+				ONE_SIGNAL_ID = group.id.damcorp.digiresto.onesignal;
 				PRODUCT_BUNDLE_IDENTIFIER = id.damcorp.digiresto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -810,6 +813,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.4;
+				ONE_SIGNAL_ID = group.id.damcorp.digiresto.dev.onesignal;
 				PRODUCT_BUNDLE_IDENTIFIER = id.damcorp.digiresto.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -896,6 +900,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.4;
+				ONE_SIGNAL_ID = group.id.damcorp.digiresto.dev.onesignal;
 				PRODUCT_BUNDLE_IDENTIFIER = id.damcorp.digiresto.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -979,6 +984,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.4;
+				ONE_SIGNAL_ID = group.id.damcorp.digiresto.dev.onesignal;
 				PRODUCT_BUNDLE_IDENTIFIER = id.damcorp.digiresto.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
