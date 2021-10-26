@@ -1535,7 +1535,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
     if (qty != 0) {
       controller.isLoading.value = true;
 
-      controller.addCart(productId, qty);
+      controller.addCart(productId, qty, false);
     } else {
       ErrorPopupWidget.confirmation(Strings.appName,
           "Apakah ingin menghapus produk ${detailProduct.title}", () {

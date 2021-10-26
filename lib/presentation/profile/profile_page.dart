@@ -74,296 +74,306 @@ class ProfileWidget extends StatelessWidget {
             ChangeLanguageController(),
             permanent: false,
           );
-          return ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              state.map(
-                initial: (_state) => SizedBox(
-                  height: 120,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                loading: (_state) => SizedBox(
-                  height: 120,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                loadFailure: (_state) => SizedBox(
-                  height: 120,
-                  child: Center(
-                    child: Text(
-                      _state.failure.maybeMap(
-                        orElse: () => 'Unknown Error',
-                        noInternet: (_) => 'No Internet',
-                      ),
+          return RefreshIndicator(
+            onRefresh: () async {
+              _profileBloc.add(ProfileEvent.started());
+              return;
+            },
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                state.map(
+                  initial: (_state) => SizedBox(
+                    height: 120,
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
                   ),
-                ),
-                loadSuccess: (_state) => Padding(
-                  padding: EdgeInsets.all(Dimens.defaultMargin),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              _state.userProfile.name,
-                              style: Styles.profileNameStyle,
-                            ),
-                          ),
-                          CustomButton(
-                            onPressed: () => Get.toNamed(
-                              Routers.editProfile,
-                              arguments: _state.userProfile,
-                            )?.then((value) =>
-                                _profileBloc.add(ProfileEvent.started())),
-                            color: AppColors.mainColor,
-                            fontColor: Colors.white,
-                            label: i10n.profile_edit_action,
-                            padding: EdgeInsets.zero,
-                            borderRadius: BorderRadius.circular(17),
-                            height: 35,
-                            width: 80,
-                          )
-                        ],
-                      ),
-                      Text(_state.userProfile.email),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(_state.userProfile.mobilePhone),
-                    ],
+                  loading: (_state) => SizedBox(
+                    height: 120,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
-                ),
-              ),
-              Divider(
-                thickness: 12,
-                color: AppColors.dividerColor,
-              ),
-              ProfileMenuWidget(
-                onTap: () {
-                  _langController.loadCurrent();
-                  Get.dialog(
-                    Obx(
-                      () => CustomDialog(
-                        backgroundColor: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              i10n.pilih_bahasa,
-                              style: Styles.dialogTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              i10n.txt_pilih_bahasa,
-                              style: Styles.dialogSubtitleStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            GestureDetector(
-                              onTap: () => _langController.switchLang(0),
-                              child: CheckList(
-                                value: 0,
-                                groupValue: _langController.languageIndex.value,
-                                label: i10n.lang_in,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => _langController.switchLang(1),
-                              child: CheckList(
-                                value: 1,
-                                groupValue: _langController.languageIndex.value,
-                                label: i10n.lang_en,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: CustomButton(
-                                    onPressed: () => Get.back(),
-                                    color: Colors.white,
-                                    borderColor: AppColors.mainColor,
-                                    label: i10n.alert_cancel,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Expanded(
-                                  child: CustomButton(
-                                    onPressed: () async {
-                                      Get.updateLocale(
-                                          _langController.getLocale());
-                                      context.read<DigiLocaleBloc>().add(
-                                          DigiLocaleEvent.updateLocale(
-                                              locale:
-                                                  _langController.getLocale()));
-                                      Get.back();
-                                    },
-                                    color: AppColors.mainColor,
-                                    fontColor: Colors.white,
-                                    label: i10n.alert_ok,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                  loadFailure: (_state) => SizedBox(
+                    height: 120,
+                    child: Center(
+                      child: Text(
+                        _state.failure.maybeMap(
+                          orElse: () => 'Unknown Error',
+                          noInternet: (_) => 'No Internet',
                         ),
                       ),
                     ),
-                  );
-                },
-                label: i10n.profile_language,
-                assetFile: 'assets/profile_language.svg',
-              ),
-              ProfileMenuWidget(
-                onTap: () => Get.toNamed(Routers.orderHistory),
-                label: i10n.profile_history,
-                assetFile: 'assets/profile_history.svg',
-              ),
-              ProfileMenuWidget(
-                onTap: () => Get.to(ProfileAddressPage()),
-                label: i10n.profile_address,
-                assetFile: 'assets/profile_address.svg',
-              ),
-              ProfileMenuWidget(
-                onTap: () => Get.dialog(
-                  CustomDialog(
-                    backgroundColor: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
+                  ),
+                  loadSuccess: (_state) => Padding(
+                    padding: EdgeInsets.all(Dimens.defaultMargin),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          i10n.login_customer_service,
-                          style: Styles.dialogTitleStyle,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          i10n.login_customer_service_desc,
-                          style: Styles.dialogSubtitleStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        CustomButton(
-                          onPressed: () =>
-                              launch('https://wa.me/6281110652777'),
-                          color: AppColors.mainColor,
-                          fontColor: Colors.white,
-                          label: 'Whatsapp',
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        CustomButton(
-                          onPressed: () => Get.back(),
-                          color: Colors.white,
-                          borderColor: AppColors.mainColor,
-                          label: i10n.alert_cancel,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                label: i10n.profile_customer_service,
-                assetFile: 'assets/profile_customer_service.svg',
-              ),
-              ProfileMenuWidget(
-                onTap: () => Get.to(AboutDigiresto()),
-                label: i10n.profile_about('Digiresto'),
-                assetFile: 'assets/profile_about_digiresto.svg',
-              ),
-              ProfileMenuWidget(
-                onTap: () => Get.to(PrivacyPolicy()),
-                label: i10n.profile_privacy_policy,
-                assetFile: 'assets/profile_privacy_policy.svg',
-              ),
-              ProfileMenuWidget(
-                onTap: () => launch(
-                    'https://play.google.com/store/apps/details?id=id.damcorp.digimitra'),
-                label: i10n.profile_join_digiresto('Digiresto'),
-                assetFile: 'assets/profile_join_us.svg',
-              ),
-              ProfileMenuWidget(
-                label: i10n.profile_version,
-                suffixWidget: Text('1.01.01'),
-              ),
-              SizedBox(
-                height: Dimens.dialogMargin,
-              ),
-              CustomButton(
-                // onPressed: () => _authBloc.add(AuthEvent.signedOut()),
-                onPressed: () => Get.dialog(
-                  CustomDialog(
-                    backgroundColor: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          i10n.logout_alert,
-                          style: Styles.dialogSubtitleStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
                         Row(
                           children: [
                             Expanded(
-                              child: CustomButton(
-                                onPressed: () => Get.back(),
-                                color: Colors.white,
-                                borderColor: AppColors.mainColor,
-                                label: i10n.alert_cancel,
+                              child: Text(
+                                _state.userProfile.name,
+                                style: Styles.profileNameStyle,
                               ),
                             ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              child: CustomButton(
-                                onPressed: () async {
-                                  getIt<AuthBloc>().add(AuthEvent.signedOut());
-                                  Get.offAllNamed(Routers.login);
-                                },
-                                color: AppColors.mainColor,
-                                fontColor: Colors.white,
-                                label: i10n.alert_ok,
-                              ),
-                            ),
+                            CustomButton(
+                              onPressed: () => Get.toNamed(
+                                Routers.editProfile,
+                                arguments: _state.userProfile,
+                              )?.then((value) =>
+                                  _profileBloc.add(ProfileEvent.started())),
+                              color: AppColors.mainColor,
+                              fontColor: Colors.white,
+                              label: i10n.profile_edit_action,
+                              padding: EdgeInsets.zero,
+                              borderRadius: BorderRadius.circular(17),
+                              height: 35,
+                              width: 80,
+                            )
                           ],
                         ),
+                        Text(_state.userProfile.email),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(_state.userProfile.mobilePhone),
                       ],
                     ),
                   ),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
-                borderRadius: BorderRadius.circular(22),
-                color: AppColors.mainColor,
-                fontColor: Colors.white,
-                label: i10n.profile_logout,
-              ),
-            ],
+                Divider(
+                  thickness: 12,
+                  color: AppColors.dividerColor,
+                ),
+                ProfileMenuWidget(
+                  onTap: () {
+                    _langController.loadCurrent();
+                    Get.dialog(
+                      Obx(
+                        () => CustomDialog(
+                          backgroundColor: Colors.white,
+                          borderRadius: BorderRadius.circular(14),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                i10n.pilih_bahasa,
+                                style: Styles.dialogTitleStyle,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                i10n.txt_pilih_bahasa,
+                                style: Styles.dialogSubtitleStyle,
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              GestureDetector(
+                                onTap: () => _langController.switchLang(0),
+                                child: CheckList(
+                                  value: 0,
+                                  groupValue:
+                                      _langController.languageIndex.value,
+                                  label: i10n.lang_in,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => _langController.switchLang(1),
+                                child: CheckList(
+                                  value: 1,
+                                  groupValue:
+                                      _langController.languageIndex.value,
+                                  label: i10n.lang_en,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: CustomButton(
+                                      onPressed: () => Get.back(),
+                                      color: Colors.white,
+                                      borderColor: AppColors.mainColor,
+                                      label: i10n.alert_cancel,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Expanded(
+                                    child: CustomButton(
+                                      onPressed: () async {
+                                        Get.updateLocale(
+                                            _langController.getLocale());
+                                        context.read<DigiLocaleBloc>().add(
+                                            DigiLocaleEvent.updateLocale(
+                                                locale: _langController
+                                                    .getLocale()));
+                                        Get.back();
+                                      },
+                                      color: AppColors.mainColor,
+                                      fontColor: Colors.white,
+                                      label: i10n.alert_ok,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  label: i10n.profile_language,
+                  assetFile: 'assets/profile_language.svg',
+                ),
+                ProfileMenuWidget(
+                  onTap: () => Get.toNamed(Routers.orderHistory),
+                  label: i10n.profile_history,
+                  assetFile: 'assets/profile_history.svg',
+                ),
+                ProfileMenuWidget(
+                  onTap: () => Get.to(ProfileAddressPage()),
+                  label: i10n.profile_address,
+                  assetFile: 'assets/profile_address.svg',
+                ),
+                ProfileMenuWidget(
+                  onTap: () => Get.dialog(
+                    CustomDialog(
+                      backgroundColor: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            i10n.login_customer_service,
+                            style: Styles.dialogTitleStyle,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            i10n.login_customer_service_desc,
+                            style: Styles.dialogSubtitleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          CustomButton(
+                            onPressed: () =>
+                                launch('https://wa.me/6281110652777'),
+                            color: AppColors.mainColor,
+                            fontColor: Colors.white,
+                            label: 'Whatsapp',
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          CustomButton(
+                            onPressed: () => Get.back(),
+                            color: Colors.white,
+                            borderColor: AppColors.mainColor,
+                            label: i10n.alert_cancel,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  label: i10n.profile_customer_service,
+                  assetFile: 'assets/profile_customer_service.svg',
+                ),
+                ProfileMenuWidget(
+                  onTap: () => Get.to(AboutDigiresto()),
+                  label: i10n.profile_about('Digiresto'),
+                  assetFile: 'assets/profile_about_digiresto.svg',
+                ),
+                ProfileMenuWidget(
+                  onTap: () => Get.to(PrivacyPolicy()),
+                  label: i10n.profile_privacy_policy,
+                  assetFile: 'assets/profile_privacy_policy.svg',
+                ),
+                ProfileMenuWidget(
+                  onTap: () => launch(
+                      'https://play.google.com/store/apps/details?id=id.damcorp.digimitra'),
+                  label: i10n.profile_join_digiresto('Digiresto'),
+                  assetFile: 'assets/profile_join_us.svg',
+                ),
+                ProfileMenuWidget(
+                  label: i10n.profile_version,
+                  suffixWidget: Text('1.01.01'),
+                ),
+                SizedBox(
+                  height: Dimens.dialogMargin,
+                ),
+                CustomButton(
+                  // onPressed: () => _authBloc.add(AuthEvent.signedOut()),
+                  onPressed: () => Get.dialog(
+                    CustomDialog(
+                      backgroundColor: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            i10n.logout_alert,
+                            style: Styles.dialogSubtitleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => Get.back(),
+                                  color: Colors.white,
+                                  borderColor: AppColors.mainColor,
+                                  label: i10n.alert_cancel,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () async {
+                                    getIt<AuthBloc>()
+                                        .add(AuthEvent.signedOut());
+                                    Get.offAllNamed(Routers.login);
+                                  },
+                                  color: AppColors.mainColor,
+                                  fontColor: Colors.white,
+                                  label: i10n.alert_ok,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  margin:
+                      EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
+                  borderRadius: BorderRadius.circular(22),
+                  color: AppColors.mainColor,
+                  fontColor: Colors.white,
+                  label: i10n.profile_logout,
+                ),
+              ],
+            ),
           );
         },
       ),

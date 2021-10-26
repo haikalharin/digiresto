@@ -49,8 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m11(param) =>
       "Product ${param} yang anda pesan tidak tersedia atau habis.";
 
-  static String m12(param) =>
-      "Anda memiliki transaksi ${param} yang belum Anda bayarkan sebesar %2\$s. Jika Anda melanjutkan pembayaran ini, Transaksi tersebut akan dibatalkan.";
+  static String m12(param1, param2) =>
+      "Anda memiliki transaksi ${param1} yang belum Anda bayarkan sebesar ${param2}. Jika Anda melanjutkan pembayaran ini, Transaksi tersebut akan dibatalkan.";
 
   static String m13(param) => "Voucher dengan kode ${param} tidak valid.";
 

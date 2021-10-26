@@ -45,8 +45,12 @@ class OrderEvent with _$OrderEvent {
     int outletId,
   ) = _ReorderCart;
 
-  const factory OrderEvent.addCart(CreateUpdateCartSessionItemParam request,
-      DetailOutletDataResponse outlet, String salesType) = _AddCart;
+  const factory OrderEvent.addCart(
+    CreateUpdateCartSessionItemParam request,
+    DetailOutletDataResponse outlet,
+    String salesType,
+    bool isBuyNow,
+  ) = _AddCart;
 
   const factory OrderEvent.updateCart(String note) = _UpdateCart;
 

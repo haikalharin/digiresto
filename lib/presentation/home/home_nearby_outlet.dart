@@ -22,6 +22,7 @@ class HomeNearbyOutletScreen extends StatelessWidget {
     return CustomScafold(
       title: args.title,
       showBackButton: true,
+      resizeToAvoidBottomInset: false,
       appBarColor: Colors.white,
       iconBackColor: Colors.black,
       body: _BodyNearbyWidget(args: args),

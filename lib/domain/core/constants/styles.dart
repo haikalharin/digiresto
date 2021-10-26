@@ -58,10 +58,10 @@ class Styles {
       color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w700);
 
   static TextStyle creditLabelStyle = GoogleFonts.poppins(
-      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w600);
+      color: AppColors.mainColor, fontSize: 15, fontWeight: FontWeight.w600);
 
   static TextStyle creditNominalStyle = GoogleFonts.poppins(
-      color: AppColors.mainColor, fontSize: 40, fontWeight: FontWeight.w700);
+      color: AppColors.mainColor, fontSize: 42, fontWeight: FontWeight.w700);
 
   static TextStyle creditNominalSmallStyle = GoogleFonts.poppins(
       color: AppColors.mainColor, fontSize: 25, fontWeight: FontWeight.w700);

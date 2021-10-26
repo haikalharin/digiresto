@@ -77,6 +77,13 @@ class _DetailOutletHotPromoWidgetState
                           topLeft: Radius.circular(8.0),
                           topRight: Radius.circular(8.0)),
                       child: Image(
+                        errorBuilder: (context, obj, stacktrace) {
+                          return Image(
+                            height: 150,
+                            width: 96,
+                            image: RandomImages.getImage(),
+                          );
+                        },
                         image: RandomImages.getImageUrlDefault(
                             widget.data[index].icon, ""),
                         fit: BoxFit.fill,

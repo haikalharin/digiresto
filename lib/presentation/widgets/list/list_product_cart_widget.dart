@@ -143,6 +143,13 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(8.0)),
                             child: Image(
+                              errorBuilder: (context, obj, stacktrace) {
+                                return Image(
+                                  height: 64,
+                                  width: 64,
+                                  image: RandomImages.getImage(),
+                                );
+                              },
                               //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
                               image: RandomImages.getImageUrlDefault(
                                   getImageUrl(index), ""),

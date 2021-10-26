@@ -61,6 +61,7 @@ class TopUpCreditBloc extends Bloc<TopUpCreditEvent, TopUpCreditState> {
                   fee: _event.param.fee ?? '0');
               break;
             case 'TOP_UP_BANK':
+              await _event.showDialog();
               bankFailureOrSuccess = await _creditRepository.topUpBank(
                 bankCode: _event.param.bankCode,
                 customerPhone: _userAuth.mobilePhone!,

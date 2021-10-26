@@ -37,11 +37,12 @@ class CreditBloc extends Bloc<CreditEvent, CreditState> {
         yield state.copyWith(
           userBalance: none(),
         );
-
+        final listTopUpMethod = await _creditRepository.getTopUpMethod();
         final userBalance = await _creditRepository.getUserBalance();
 
         yield state.copyWith(
           userBalance: optionOf(userBalance),
+          listTopUpMethod: optionOf(listTopUpMethod),
         );
       },
     );

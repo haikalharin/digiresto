@@ -261,7 +261,7 @@
     "cart_delivery_address":"Lokasi Pengantaran",
     "cart_order_title":"Pesanan",
     "cart_transaction_pending_title":"Lanjutkan Pembayaran?",
-    "cart_transaction_pending_alert":"Anda memiliki transaksi {param} yang belum Anda bayarkan sebesar %2$s. Jika Anda melanjutkan pembayaran ini, Transaksi tersebut akan dibatalkan.",
+    "cart_transaction_pending_alert":"Anda memiliki transaksi {param1} yang belum Anda bayarkan sebesar {param2}. Jika Anda melanjutkan pembayaran ini, Transaksi tersebut akan dibatalkan.",
     "cart_transaction_pending_next":"Lanjut Pembayaran",
     "cart_transaction_change_payment":"Ganti Metode Pembayaran",
     "cart_address_not_valid_title":"Titik Lokasi Tidak Ditemukan!",

@@ -14,6 +14,7 @@ class CustomScafold extends StatelessWidget {
   final Color appBarColor;
   final Color iconBackColor;
   final Color titleFontColor;
+  final bool resizeToAvoidBottomInset;
 
   const CustomScafold({
     Key? key,
@@ -28,6 +29,7 @@ class CustomScafold extends StatelessWidget {
     this.appBarColor = Colors.white,
     this.iconBackColor = Colors.black,
     this.titleFontColor = Colors.black,
+    this.resizeToAvoidBottomInset = true,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class CustomScafold extends StatelessWidget {
         statusBarColor: AppColors.mainColor,
       ),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         backgroundColor: Colors.white,
         body: MediaQuery.removePadding(
           removeTop: true,

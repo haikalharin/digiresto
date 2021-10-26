@@ -88,18 +88,20 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     }
   }
 
-  void setProduct({bool isBuyNow = false}) {
+  void setProduct({bool isBuyNow = false}) async {
     if (widget.isDifferentOutlet) {
       ErrorPopupWidget.confirmation("Digiresto", "outlet yang berbeda", () {
         Get.context!.read<OrderBloc>().add(
               OrderEvent.addCart(
-                  CreateUpdateCartSessionItemParam(
-                      modifiers: [],
-                      note: notes,
-                      productId: int.parse(variantProductSelected.id),
-                      qty: totalqty),
-                  widget.detailOutlet,
-                  widget.orderType),
+                CreateUpdateCartSessionItemParam(
+                    modifiers: [],
+                    note: notes,
+                    productId: int.parse(variantProductSelected.id),
+                    qty: totalqty),
+                widget.detailOutlet,
+                widget.orderType,
+                isBuyNow,
+              ),
             );
         Get.back();
       });
@@ -113,13 +115,15 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     }
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
-              CreateUpdateCartSessionItemParam(
-                  modifiers: [],
-                  note: notes,
-                  productId: int.parse(variantProductSelected.id),
-                  qty: totalqty),
-              widget.detailOutlet,
-              widget.orderType),
+            CreateUpdateCartSessionItemParam(
+                modifiers: [],
+                note: notes,
+                productId: int.parse(variantProductSelected.id),
+                qty: totalqty),
+            widget.detailOutlet,
+            widget.orderType,
+            isBuyNow,
+          ),
         );
   }
 
@@ -235,12 +239,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     String defaultImage = "";
     return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
       var controller = Get.find<OrderViewController>();
-      state.maybeMap(addCartSuccess: (r) {
-        controller.cartSession.value = r.response;
-        Get.back();
-      }, orElse: () {
-        //
-      });
+      state.maybeMap(
+        addCartSuccess: (r) {
+          controller.cartSession.value = r.response;
+          Get.back();
+          if (r.isBuyNow) {
+            Get.to(OrderCartScreen());
+          }
+        },
+        orElse: () {
+          //
+        },
+      );
     }, builder: (context, state) {
       return Scaffold(
         body: Column(
@@ -259,6 +269,11 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(2.0)),
                           child: Image(
+                            errorBuilder: (context, obj, stacktrace) {
+                              return Image(
+                                image: RandomImages.getImage(),
+                              );
+                            },
                             image: RandomImages.getImageUrlDefault(
                                 variantProductSelected.image, defaultImage),
                             fit: BoxFit.cover,

@@ -134,11 +134,16 @@ class OrderCartScreenViewController extends GetxController {
   void addCart(
     int productId,
     int qty,
+    bool isBuyNow,
   ) async {
     var productParam = CreateUpdateCartSessionItemParam(
         modifiers: [], note: '', productId: productId, qty: qty);
     Get.context!.read<OrderBloc>().add(OrderEvent.addCart(
-        productParam, detailOutlet.value!, salesType.value!));
+          productParam,
+          detailOutlet.value!,
+          salesType.value!,
+          isBuyNow,
+        ));
     update();
   }
 

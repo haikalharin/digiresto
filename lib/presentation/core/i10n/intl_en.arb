@@ -265,7 +265,7 @@
     "cart_delivery_address":"Delivery location",
     "cart_order_title":"Order",
     "cart_transaction_pending_title":"Continue Payment?",
-    "cart_transaction_pending_alert":"You have transaction {param} which you have not paid for %2$s. If you continue this payment, that transaction will be cancelled.",
+    "cart_transaction_pending_alert":"You have transaction {param1} which you have not paid for {param2}. If you continue this payment, that transaction will be cancelled.",
     "cart_transaction_pending_next":"Continue Payment",
     "cart_transaction_change_payment":"Change Payment Method",
     "cart_address_not_valid_title":"Location Point Not Found!",

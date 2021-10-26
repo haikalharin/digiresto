@@ -98,60 +98,72 @@ class CreditPage extends StatelessWidget {
                     children: [
                       CustomCard(
                         shadowColor: AppColors.red,
+                        padding: EdgeInsets.all(20),
                         margin: EdgeInsets.only(
                           top: 200,
                           left: 25,
                           right: 25,
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                        child: Stack(
                           children: [
-                            Text(
-                              i10n.credit_me,
-                              style: Styles.creditLabelStyle,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            state.userBalance.fold(
-                              () => _widgetLoading(),
-                              (data) => data.fold(
-                                (l) => _widgetError(),
-                                (userBalance) => Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Rp',
-                                      style: Styles.creditCurrencyStyle,
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  i10n.credit_me,
+                                  style: Styles.creditLabelStyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                state.userBalance.fold(
+                                  () => _widgetLoading(),
+                                  (data) => data.fold(
+                                    (l) => _widgetError(),
+                                    (userBalance) => Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Rp',
+                                          style: Styles.creditCurrencyStyle,
+                                        ),
+                                        Text(
+                                          CommonUtils.currencyFormatOnlyNominal(
+                                              double.parse(
+                                                  userBalance.balance)),
+                                          style: Styles.creditNominalStyle
+                                              .copyWith(height: 1.2),
+                                        ),
+                                        SizedBox(
+                                          width: 15,
+                                        )
+                                      ],
                                     ),
-                                    Text(
-                                      CommonUtils.currencyFormatOnlyNominal(
-                                          double.parse(userBalance.balance)),
-                                      style: Styles.creditNominalStyle
-                                          .copyWith(height: 1.2),
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    )
-                                  ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Positioned.fill(
+                              child: Container(
+                                alignment: Alignment.bottomRight,
+                                child: GestureDetector(
+                                  onTap: state.userBalance.fold(
+                                      () => null,
+                                      (_) => () => _bloc
+                                          .add(CreditEvent.refreshBalance())),
+                                  child: SvgPicture.asset(
+                                    'assets/refresh.svg',
+                                    color: AppColors.mainColor,
+                                    height: 20,
+                                    width: 20,
+                                  ),
                                 ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.bottomRight,
-                              child: GestureDetector(
-                                onTap: state.userBalance.fold(
-                                    () => null,
-                                    (_) => () => _bloc
-                                        .add(CreditEvent.refreshBalance())),
-                                child: Icon(
-                                  Icons.refresh,
-                                  color: AppColors.mainColor,
-                                ),
-                              ),
-                            )
                           ],
                         ),
                       ),

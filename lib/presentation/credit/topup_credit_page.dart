@@ -60,6 +60,42 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
 
+    Future<bool> showDialog() async {
+      await Get.dialog(
+        CustomDialog(
+          backgroundColor: Colors.white,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                i10n.credit_topup,
+                style: Styles.dialogTitleStyle,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                i10n.topup_confirmation,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              CustomButton(
+                onPressed: () {
+                  Get.back();
+                },
+                label: i10n.alert_ok,
+                fontColor: Colors.white,
+                borderColor: AppColors.mainColor,
+                color: AppColors.mainColor,
+              ),
+            ],
+          ),
+        ),
+      );
+      return true;
+    }
+
     return BlocConsumer<TopUpCreditBloc, TopUpCreditState>(
       listener: (context, state) {
         state.topUpVAfailureOrSuccess.fold(
@@ -111,11 +147,12 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
         body: StackWithProgress(
           isLoading: state.isSubmitting,
           children: [
-            Column(
+            ListView(
+              padding: EdgeInsets.zero,
               children: [
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
+                Container(
+                  height: Get.height - Get.statusBarHeight,
+                  child: Column(
                     children: [
                       Divider(
                         thickness: 12,
@@ -271,64 +308,29 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                             ],
                           ),
                         ),
+                      CustomButton(
+                        label: i10n.topup_title,
+                        onPressed: () {
+                          _topUpBloc.add(
+                            TopUpCreditEvent.topUpSubmitted(
+                              param: widget.bankItem.param,
+                              showDialog: showDialog,
+                            ),
+                          );
+                        },
+                        color: AppColors.mainColor,
+                        fontColor: Colors.white,
+                        borderRadius: BorderRadius.circular(22),
+                        margin: EdgeInsets.symmetric(
+                          vertical: 40,
+                          horizontal: Dimens.defaultMargin,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                CustomButton(
-                  label: i10n.topup_title,
-                  onPressed: () => state.destination == 'TOP_UP_BANK'
-                      ? Get.dialog(
-                          CustomDialog(
-                            backgroundColor: Colors.white,
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  i10n.credit_topup,
-                                  style: Styles.dialogTitleStyle,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  i10n.topup_confirmation,
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                CustomButton(
-                                  onPressed: () {
-                                    Get.back();
-                                    _topUpBloc.add(
-                                      TopUpCreditEvent.topUpSubmitted(
-                                        widget.bankItem.param,
-                                      ),
-                                    );
-                                  },
-                                  label: i10n.alert_ok,
-                                  fontColor: Colors.white,
-                                  borderColor: AppColors.mainColor,
-                                  color: AppColors.mainColor,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      : _topUpBloc.add(
-                          TopUpCreditEvent.topUpSubmitted(
-                            widget.bankItem.param,
-                          ),
-                        ),
-                  color: AppColors.mainColor,
-                  fontColor: Colors.white,
-                  borderRadius: BorderRadius.circular(22),
-                  margin: EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: Dimens.defaultMargin,
-                  ),
-                ),
               ],
-            ),
+            )
           ],
         ),
       ),

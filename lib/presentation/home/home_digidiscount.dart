@@ -4,6 +4,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -70,22 +71,12 @@ class HomeDigidiscountScreen
     Get.put(HomeDigidiscountOutletViewController());
     controller.getPromoOutlet("", 1);
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: new Icon(Icons.arrow_back_outlined,
-                color: Colors.black, size: 28.0),
-            onPressed: () {
-              //getOutletByLocation();
-              Get.back();
-            }),
-        title: Text(
-          args.title,
-          style: AppFont.textBlack15Bold,
-          textAlign: TextAlign.center,
-        ),
-      ),
+    return CustomScafold(
+      title: args.title,
+      showBackButton: true,
+      resizeToAvoidBottomInset: false,
+      appBarColor: Colors.white,
+      iconBackColor: Colors.black,
       body: BlocConsumer<OrderBloc, OrderState>(
         listener: (context, state) {
           state.maybeMap(

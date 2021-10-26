@@ -116,7 +116,6 @@ class OrderHistoryWidget extends StatelessWidget {
             RefreshIndicator(
               onRefresh: () async {
                 _bloc.add(OrderHistoryEvent.orderOnProcessOpen());
-                _bloc.add(OrderHistoryEvent.getOrderOnProcessCount());
               },
               child: Stack(
                 children: <Widget>[
@@ -141,8 +140,6 @@ class OrderHistoryWidget extends StatelessWidget {
                           return OrderOnProcessWidget(orderOnProcess[index],
                               refresh: () {
                             _bloc.add(OrderHistoryEvent.orderOnProcessOpen());
-                            _bloc.add(
-                                OrderHistoryEvent.getOrderOnProcessCount());
                           });
                         },
                       ),

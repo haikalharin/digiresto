@@ -373,8 +373,10 @@ class OrderPendingWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        CommonUtils.dateFormat('dd MMMM yyyy, HH:mm',
-                            orderPending.deviceTimestamp)!,
+                        CommonUtils.dateFormat(
+                            'dd MMMM yyyy, HH:mm',
+                            orderPending
+                                .billingDetail.formattedTransactionDate)!,
                         style: Styles.topUpDateStyle,
                       ),
                       Text(

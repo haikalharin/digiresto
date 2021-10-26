@@ -2460,13 +2460,13 @@ class I10n {
     );
   }
 
-  /// `You have transaction {param} which you have not paid for %2$s. If you continue this payment, that transaction will be cancelled.`
-  String cart_transaction_pending_alert(Object param) {
+  /// `You have transaction {param1} which you have not paid for {param2}. If you continue this payment, that transaction will be cancelled.`
+  String cart_transaction_pending_alert(Object param1, Object param2) {
     return Intl.message(
-      'You have transaction $param which you have not paid for %2\$s. If you continue this payment, that transaction will be cancelled.',
+      'You have transaction $param1 which you have not paid for $param2. If you continue this payment, that transaction will be cancelled.',
       name: 'cart_transaction_pending_alert',
       desc: '',
-      args: [param],
+      args: [param1, param2],
     );
   }
 
