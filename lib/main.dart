@@ -17,7 +17,6 @@ import 'application/home/home_navigation_view_controller.dart';
 import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'application/order/bloc/order_bloc.dart';
 import 'injection.dart';
-import 'presentation/core/widgets/loading.dart';
 
 export 'package:digiresto/presentation/core/app_widget.dart';
 
@@ -61,11 +60,5 @@ class InitiateProvider extends StatelessWidget {
           create: (_) =>
               getIt<DigiLocaleBloc>()..add(DigiLocaleEvent.started()))
     ], child: getIt<AppWidget>());
-  }
-}
-
-class InitiateHive {
-  static initial() async {
-    //..registerAdapter(UserAddressAdapter());
   }
 }
