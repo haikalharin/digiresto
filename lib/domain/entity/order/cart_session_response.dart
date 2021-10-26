@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_session_response.freezed.dart';
@@ -74,7 +75,7 @@ class TransactionData with _$TransactionData {
     required List<TransactionDataItemResponse> items,
     required int itemWeight,
     required bool isUseVoucher,
-    required List<dynamic> promos,
+    required List<TransactionMobileDataPromoResponse> promos,
     required List<dynamic> paymentList,
     required List<TaxesAndService> taxesAndServices,
     required int itemTotalAmount,

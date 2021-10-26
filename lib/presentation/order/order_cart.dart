@@ -738,24 +738,22 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Detail Payment",
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        //color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Text(I10n.current.cart_payment_details,
+                      style: AppFont.textBlack15Bold),
                   SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Subtotal'),
-                      Text("Rp." +
-                          Utils.formatRupiah(controller
-                              .cartSession.value!.transactionData!.subtotal
-                              .toString()))
+                      Text('Subtotal', style: AppFont.textBlack12Light),
+                      Text(
+                        "Rp." +
+                            Utils.formatRupiah(controller
+                                .cartSession.value!.transactionData!.subtotal
+                                .toString()),
+                        style: AppFont.textBlack12Bold,
+                      )
                     ],
                   ),
                   for (var i = 0;
@@ -776,12 +774,43 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            'Delivery - ${controller.deliveryMethod.value!.name}'),
-                        Text("Rp." +
-                            Utils.formatRupiah(controller.cartSession.value!
-                                .transactionData!.deliveryAmount
-                                .toString()))
+                            'Delivery - ${controller.deliveryMethod.value!.name}',
+                            style: AppFont.textBlack12Light),
+                        Text(
+                            "Rp." +
+                                Utils.formatRupiah(controller.cartSession.value!
+                                    .transactionData!.deliveryAmount
+                                    .toString()),
+                            style: AppFont.textBlack12Bold)
                       ],
+                    ),
+                  if (controller
+                          .cartSession.value?.transactionData?.promos.length !=
+                      0)
+                    ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: controller.cartSession.value?.transactionData
+                              ?.promos.length ??
+                          0,
+                      itemBuilder: (context, index) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                              '${controller.cartSession.value?.transactionData?.promos[index].title}',
+                              style: AppFont.textBlack12Light),
+                          Text(
+                              "- Rp." +
+                                  Utils.formatRupiah(controller
+                                      .cartSession
+                                      .value
+                                      ?.transactionData
+                                      ?.promos[index]
+                                      .amount
+                                      .toString()),
+                              style: AppFont.textBlack12Bold),
+                        ],
+                      ),
+                      separatorBuilder: (context, index) => SizedBox(height: 5),
                     ),
                   Divider(
                     color: Colors.black,
@@ -789,11 +818,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Total'),
-                      Text("Rp." +
-                          Utils.formatRupiah(controller
-                              .cartSession.value!.transactionData!.totalPayment
-                              .toString()))
+                      Text('Total', style: AppFont.textBlack12SemiBold),
+                      Text(
+                          "Rp." +
+                              Utils.formatRupiah(controller.cartSession.value!
+                                  .transactionData!.totalPayment
+                                  .toString()),
+                          style: AppFont.textBlack12Bold)
                     ],
                   ),
                   SizedBox(
