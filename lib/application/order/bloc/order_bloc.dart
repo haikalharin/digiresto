@@ -308,7 +308,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     UpdateCartSessionQueryParam(sessionId: sessionId!)));
 
         yield createCartSession.fold(
-          (error) => OrderState.loadFailure(OrderFailure.addCartFail()),
+          (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
           (list) => OrderState.addCartSuccess(list!.data, false),
         );
       },
@@ -377,7 +377,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             await _orderRepository.setSessionId(dataCart.data.sessionId!);
           }
           yield createCartSession.fold(
-            (error) => OrderState.loadFailure(OrderFailure.addCartFail()),
+            (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
             (list) => OrderState.addCartSuccess(list!.data, request.isBuyNow),
           );
         } else {
@@ -400,7 +400,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
           yield createCartSession.fold(
-            (error) => OrderState.loadFailure(OrderFailure.addCartFail()),
+            (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
             (list) => OrderState.addCartSuccess(list!.data, request.isBuyNow),
           );
         }

@@ -16,25 +16,26 @@ import 'package:onesignal_flutter/onesignal_flutter.dart' as _i12;
 
 import 'application/address/list/address_list_bloc.dart' as _i42;
 import 'application/address/map/address_map_bloc.dart' as _i43;
-import 'application/auth/auth_bloc.dart' as _i61;
+import 'application/auth/auth_bloc.dart' as _i62;
 import 'application/auth/login/login_bloc.dart' as _i53;
-import 'application/auth/register/register_bloc.dart' as _i56;
-import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i59;
+import 'application/auth/register/register_bloc.dart' as _i57;
+import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i60;
 import 'application/core/app_bloc.dart' as _i19;
-import 'application/credit/credit_bloc.dart' as _i62;
-import 'application/credit/recent_history/recent_history_bloc.dart' as _i55;
-import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i57;
-import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i60;
+import 'application/credit/credit_bloc.dart' as _i63;
+import 'application/credit/recent_history/recent_history_bloc.dart' as _i56;
+import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i58;
+import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i61;
 import 'application/digi_locale/digi_locale_bloc.dart' as _i46;
 import 'application/home/home_user_bloc/home_user_bloc.dart' as _i48;
 import 'application/notification/notification_bloc.dart' as _i32;
-import 'application/order/order_cart_screen_view_controller.dart' as _i54;
+import 'application/order/bloc/order_bloc.dart' as _i54;
+import 'application/order/order_cart_screen_view_controller.dart' as _i55;
 import 'application/profile/edit_profile/edit_profile_bloc.dart' as _i47;
 import 'application/profile/order_details/order_details_bloc.dart' as _i34;
 import 'application/profile/order_history/order_history_bloc.dart' as _i35;
 import 'application/profile/profile_bloc.dart' as _i37;
 import 'application/transaction/bloc/transaction_bloc/transaction_bloc.dart'
-    as _i58;
+    as _i59;
 import 'domain/auth/i_auth_facade.dart' as _i49;
 import 'domain/core/constants/network/env.dart' as _i6;
 import 'domain/core/interfaces/i_location_service.dart' as _i9;
@@ -48,7 +49,7 @@ import 'infrastructure/auth/api_auth_facade.dart' as _i50;
 import 'infrastructure/core/auth_interceptor.dart' as _i20;
 import 'infrastructure/core/location_service.dart' as _i10;
 import 'infrastructure/core/network_service.dart' as _i25;
-import 'infrastructure/core/register_module.dart' as _i63;
+import 'infrastructure/core/register_module.dart' as _i64;
 import 'infrastructure/core/storage.dart' as _i16;
 import 'infrastructure/credit/credit_repository.dart' as _i52;
 import 'infrastructure/digi_locale/digi_locale_repository.dart' as _i23;
@@ -71,8 +72,8 @@ import 'presentation/core/app_widget.dart' as _i4;
 import 'presentation/profile/address/address_page.dart' as _i13;
 import 'simple_bloc_delegate.dart' as _i14;
 
-const String _prod = 'prod';
 const String _dev = 'dev';
+const String _prod = 'prod';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -80,9 +81,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
-  gh.lazySingleton<_i3.Alice>(() => registerModule.alice, registerFor: {_prod});
   gh.lazySingleton<_i3.Alice>(() => registerModule.aliceDev,
       registerFor: {_dev});
+  gh.lazySingleton<_i3.Alice>(() => registerModule.alice, registerFor: {_prod});
   gh.factory<_i4.AppWidget>(() => _i4.AppWidget(alice: get<_i3.Alice>()));
   gh.lazySingleton<_i5.Connectivity>(() => registerModule.connectivity);
   gh.factory<_i6.Env>(() => _i6.EnvProd(), registerFor: {_prod});
@@ -172,25 +173,27 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i51.ICreditRepository>(() =>
       _i52.CreditRepository(get<_i24.INetworkService>(), get<_i11.Logger>()));
   gh.factory<_i53.LoginBloc>(() => _i53.LoginBloc(get<_i49.IAuthFacade>()));
-  gh.factory<_i54.OrderCartScreenViewController>(
-      () => _i54.OrderCartScreenViewController(get<_i36.OrderRepository>()));
-  gh.factory<_i55.RecentHistoryBloc>(
-      () => _i55.RecentHistoryBloc(get<_i51.ICreditRepository>()));
-  gh.factory<_i56.RegisterBloc>(
-      () => _i56.RegisterBloc(get<_i49.IAuthFacade>()));
-  gh.factory<_i57.TopUpCreditBloc>(() => _i57.TopUpCreditBloc(
+  gh.factory<_i54.OrderBloc>(() =>
+      _i54.OrderBloc(get<_i36.OrderRepository>(), get<_i41.UserRepository>()));
+  gh.factory<_i55.OrderCartScreenViewController>(
+      () => _i55.OrderCartScreenViewController(get<_i36.OrderRepository>()));
+  gh.factory<_i56.RecentHistoryBloc>(
+      () => _i56.RecentHistoryBloc(get<_i51.ICreditRepository>()));
+  gh.factory<_i57.RegisterBloc>(
+      () => _i57.RegisterBloc(get<_i49.IAuthFacade>()));
+  gh.factory<_i58.TopUpCreditBloc>(() => _i58.TopUpCreditBloc(
       get<_i51.ICreditRepository>(), get<_i15.IStorage>()));
-  gh.factory<_i58.TransactionBloc>(
-      () => _i58.TransactionBloc(get<_i39.TransactionRepository>()));
-  gh.factory<_i59.ValidateOtpBloc>(
-      () => _i59.ValidateOtpBloc(get<_i49.IAuthFacade>(), get<_i11.Logger>()));
-  gh.factory<_i60.WaitingPaymentBloc>(
-      () => _i60.WaitingPaymentBloc(get<_i51.ICreditRepository>()));
-  gh.factory<_i61.AuthBloc>(() => _i61.AuthBloc(
+  gh.factory<_i59.TransactionBloc>(
+      () => _i59.TransactionBloc(get<_i39.TransactionRepository>()));
+  gh.factory<_i60.ValidateOtpBloc>(
+      () => _i60.ValidateOtpBloc(get<_i49.IAuthFacade>(), get<_i11.Logger>()));
+  gh.factory<_i61.WaitingPaymentBloc>(
+      () => _i61.WaitingPaymentBloc(get<_i51.ICreditRepository>()));
+  gh.factory<_i62.AuthBloc>(() => _i62.AuthBloc(
       get<_i49.IAuthFacade>(), get<_i26.INotificationRepository>()));
-  gh.factory<_i62.CreditBloc>(
-      () => _i62.CreditBloc(get<_i51.ICreditRepository>()));
+  gh.factory<_i63.CreditBloc>(
+      () => _i63.CreditBloc(get<_i51.ICreditRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i63.RegisterModule {}
+class _$RegisterModule extends _i64.RegisterModule {}
