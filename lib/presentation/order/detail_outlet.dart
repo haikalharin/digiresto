@@ -14,7 +14,6 @@ import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
-import 'package:digiresto/presentation/core/widgets/loading.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -222,7 +221,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
         state.maybeMap(
             getDetailOutletSuccess: (r) {
               if (controller.salesType.value == null) {
-                controller.setSalesType(r.response.salesTypes[0]);
+                //controller.setSalesType(r.response.salesTypes[0]);
+                //set default delivery
+                controller.setSalesType("onlineDriver");
               }
               controller.detailOutlet.value = r.response;
               controller.getPromoProduct();
