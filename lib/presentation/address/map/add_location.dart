@@ -10,7 +10,7 @@ import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/core/widgets/loading.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';

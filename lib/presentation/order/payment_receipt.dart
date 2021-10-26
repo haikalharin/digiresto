@@ -8,7 +8,7 @@ import 'package:digiresto/domain/entity/transaction/param/add_favorite_transacti
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/core/widgets/loading.dart';
+
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';

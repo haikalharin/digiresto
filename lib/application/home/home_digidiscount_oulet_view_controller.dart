@@ -1,7 +1,7 @@
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/param/get_digi_discount_outlet_param.dart';
-import 'package:digiresto/presentation/core/widgets/loading.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';

@@ -375,8 +375,8 @@ class OrderPendingWidget extends StatelessWidget {
                       Text(
                         CommonUtils.dateFormat(
                             'dd MMMM yyyy, HH:mm',
-                            orderPending
-                                .billingDetail.formattedTransactionDate)!,
+                            orderPending.deviceTimestamp
+                                .add(DateTime.now().timeZoneOffset))!,
                         style: Styles.topUpDateStyle,
                       ),
                       Text(

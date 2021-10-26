@@ -9,7 +9,7 @@ import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/core/widgets/loading.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';

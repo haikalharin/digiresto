@@ -9,7 +9,7 @@ import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dar
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/core/widgets/loading.dart';
+
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
 import 'package:flutter/material.dart';

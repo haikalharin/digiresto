@@ -110,7 +110,7 @@ class TransactionMobileDataDeliveryResponse
     required int price,
     required String address,
     required String shipmentMethod,
-    required List<String> location,
+    required List<dynamic> location,
   }) = _TransactionMobileDataDeliveryResponse;
 
   factory TransactionMobileDataDeliveryResponse.fromJson(
@@ -150,7 +150,7 @@ class TransactionMobileDataDeliveryDetailResponse
 class TransactionMobileDataDeliveryDetailFromToResponse
     with _$TransactionMobileDataDeliveryDetailFromToResponse {
   const factory TransactionMobileDataDeliveryDetailFromToResponse({
-    required List<String> location,
+    required List<dynamic> location,
     required String name,
     required String address,
     required String phone,
@@ -196,7 +196,7 @@ class TransactionMobileDataOutletDetailResponse
     required String name,
     required String address,
     required List<TransactionTaxesAndService> taxesAndServices,
-    required List<String> location,
+    required List<dynamic> location,
     required String phone,
     required dynamic kurirPrice,
     required String deliveryType,
