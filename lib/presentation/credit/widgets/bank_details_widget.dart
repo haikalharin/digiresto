@@ -169,6 +169,7 @@ class BankDetailWidget extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
               Icons.warning_rounded,
@@ -178,12 +179,14 @@ class BankDetailWidget extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            Text(
-              'Pastikan nominal sesuai hingga 3 digit terakhir',
-              style: Styles.topUpDetailsStyle.copyWith(
-                color: AppColors.mainColor,
+            Expanded(
+              child: Text(
+                I10n.current.billing_alert_nominal,
+                style: Styles.topUpDetailsStyle.copyWith(
+                  color: AppColors.mainColor,
+                ),
               ),
-            )
+            ),
           ],
         )
       ],

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -64,6 +65,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -99,6 +103,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -136,6 +143,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -180,6 +190,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -222,6 +235,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -264,6 +280,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -302,6 +321,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -340,6 +362,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -379,6 +404,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -418,6 +446,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -455,6 +486,40 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, CartSessionResponseApi>> checkVoucherOutlet(
+      UpdateCartSessionParam object) async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlUpdateCartSession;
+      final apiResult = await _networkService.postHttp(
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object.toJson());
+      return right(CartSessionResponseApi.fromJson(apiResult));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
+    } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -483,6 +548,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -542,6 +610,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -572,6 +643,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -608,6 +682,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -648,6 +725,9 @@ class OrderApi {
       ErrorDialog().showAuthError();
       return left(AuthException());
     } on ServerException catch (e) {
+      ErrorDialog().showError(
+          error: StatusMessageDisplayResponse(
+              en: "Server error", id: "erver error"));
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());

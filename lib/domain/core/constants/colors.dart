@@ -29,6 +29,7 @@ class AppColors {
   static final Color greyInput = Color(0xFFF3F3F3);
   static final Color greyF6F6F6 = Color(0xFFF6F6F6);
   static final Color grey747474 = Color(0xFF747474);
+  static final Color grey7B7B7B = Color(0xFF7B7B7B);
   static final Color greyField = Color(0xFF7A7A7A);
   static final Color greyCOC0C0 = Color(0xFFC0C0C0);
   static final Color greyBorder = Color(0xFFE3E3E3);

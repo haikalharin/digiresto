@@ -186,6 +186,10 @@ class ApiAuthFacade implements IAuthFacade {
     } catch (e) {}
     await _storage.openBox(StorageConstants.user);
     await _storage.deleteData();
+    await _storage.openBox(StorageConstants.cart);
+    await _storage.deleteData();
+    await _storage.openBox(StorageConstants.address);
+    await _storage.deleteData();
     await _storage.close();
     return right(unit);
   }

@@ -4,8 +4,10 @@ import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 
 class ListProductCartWidget extends StatefulWidget {
   final List<TransactionDataItemResponse> productCart;
@@ -168,18 +170,12 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                 Container(
                                   alignment: Alignment.topLeft,
                                   padding: const EdgeInsets.only(top: 5),
-                                  width:
-                                      MediaQuery.of(context).size.width - 200,
+                                  width: Get.width * 0.50,
                                   child: Text(productCart.title,
                                       softWrap: false,
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: AppFont.textBlack14SemiBold,
                                       textAlign: TextAlign.left),
                                 ),
                                 Column(
@@ -196,16 +192,74 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                           softWrap: false,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                          style: AppFont.textBlack16Bold,
                                           textAlign: TextAlign.left),
                                     ),
                                   ],
                                 ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                    alignment: Alignment.topLeft,
+                                    //padding: const EdgeInsets.only(top: 5),
+                                    width: Get.width * 0.53,
+                                    child: Text(
+                                      widget.productCart[index].desc,
+                                      style: AppFont.textBlack10Regular
+                                          .copyWith(
+                                              color: AppColors.grey7B7B7B),
+                                    )),
+                                Container(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          widget.addOrRemove(
+                                              productCart.productId,
+                                              productCart.qty - 1,
+                                              price!,
+                                              productCart);
+                                          //minus();
+                                        },
+                                        child: CircleAvatar(
+                                          radius: 14,
+                                          backgroundColor: AppColors.greyStroke,
+                                          child: new Icon(Icons.remove,
+                                              color: AppColors.redYoung,
+                                              size: 20.0),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding:
+                                            EdgeInsets.only(left: 5, right: 5),
+                                        child: Text(productCart.qty.toString(),
+                                            style: AppFont.textBlack16Bold,
+                                            textAlign: TextAlign.left),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          widget.addOrRemove(
+                                              productCart.productId,
+                                              productCart.qty + 1,
+                                              price!,
+                                              productCart);
+                                          //plus();
+                                        },
+                                        child: CircleAvatar(
+                                          radius: 14,
+                                          backgroundColor: AppColors.greyStroke,
+                                          child: new Icon(Icons.add,
+                                              color: AppColors.redYoung,
+                                              size: 20.0),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                             Row(
@@ -239,63 +293,13 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                           ),
                                         ),
                                       ),
-                                      child: Text('Ubah',
+                                      child: Text(I10n.current.cart_edit,
                                           style: AppFont.textBlack10SemiBold
                                               .copyWith(
                                                   color: AppColors.white)),
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        widget.addOrRemove(
-                                            productCart.productId,
-                                            productCart.qty - 1,
-                                            price!,
-                                            productCart);
-                                        //minus();
-                                      },
-                                      child: CircleAvatar(
-                                        radius: 14,
-                                        backgroundColor: AppColors.greyStroke,
-                                        child: new Icon(Icons.remove,
-                                            color: AppColors.redYoung,
-                                            size: 20.0),
-                                      ),
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.only(left: 5, right: 5),
-                                      child: Text(productCart.qty.toString(),
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.left),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        widget.addOrRemove(
-                                            productCart.productId,
-                                            productCart.qty + 1,
-                                            price!,
-                                            productCart);
-                                        //plus();
-                                      },
-                                      child: CircleAvatar(
-                                        radius: 14,
-                                        backgroundColor: AppColors.greyStroke,
-                                        child: new Icon(Icons.add,
-                                            color: AppColors.redYoung,
-                                            size: 20.0),
-                                      ),
-                                    )
-                                  ],
-                                )
                               ],
                             ),
                           ],

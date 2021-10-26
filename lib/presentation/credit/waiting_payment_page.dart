@@ -74,74 +74,85 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                           i10n.history_pending_payment_empty,
                         ),
                       )
-                    : ListView(
-                        padding: EdgeInsets.zero,
-                        children: [
-                          Divider(
-                            thickness: 12,
-                            color: AppColors.dividerColor,
-                          ),
-                          ...data.listTopUpPending
-                              .map(
-                                (pending) => TopUpPendingItem(
-                                  pending,
-                                  onTapDelete: (billingId) => Get.dialog(
-                                    CustomDialog(
-                                      backgroundColor: Colors.white,
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            'Digiresto',
-                                            style: Styles.dialogTitleStyle,
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            i10n.history_topup_cancel_alert,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: CustomButton(
-                                                  onPressed: () => Get.back(),
-                                                  label: i10n.alert_cancel,
-                                                  borderColor:
-                                                      AppColors.mainColor,
-                                                  color: Colors.white,
+                    : RefreshIndicator(
+                        onRefresh: () async {
+                          context
+                              .read<WaitingPaymentBloc>()
+                              .add(WaitingPaymentEvent.started());
+                          return;
+                        },
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          children: [
+                            Divider(
+                              thickness: 12,
+                              color: AppColors.dividerColor,
+                            ),
+                            ...data.listTopUpPending
+                                .map(
+                                  (pending) => TopUpPendingItem(
+                                    pending,
+                                    onTapDelete: (billingId) => Get.dialog(
+                                      CustomDialog(
+                                        backgroundColor: Colors.white,
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Digiresto',
+                                              style: Styles.dialogTitleStyle,
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Text(
+                                              i10n.history_topup_cancel_alert,
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: CustomButton(
+                                                    onPressed: () => Get.back(),
+                                                    label: i10n.alert_cancel,
+                                                    borderColor:
+                                                        AppColors.mainColor,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
-                                              Expanded(
-                                                child: CustomButton(
-                                                  width: 100,
-                                                  onPressed: () {
-                                                    _bloc.add(
-                                                        WaitingPaymentEvent
-                                                            .cancelTopup(
-                                                                billingId));
-                                                    Get.back();
-                                                  },
-                                                  label: i10n.alert_ok,
-                                                  fontColor: Colors.white,
-                                                  borderColor:
-                                                      AppColors.mainColor,
-                                                  color: AppColors.mainColor,
+                                                SizedBox(
+                                                  width: 15,
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                                Expanded(
+                                                  child: CustomButton(
+                                                    width: 100,
+                                                    onPressed: () {
+                                                      _bloc.add(
+                                                          WaitingPaymentEvent
+                                                              .cancelTopup(
+                                                                  billingId));
+                                                      Get.back();
+                                                    },
+                                                    label: i10n.alert_ok,
+                                                    fontColor: Colors.white,
+                                                    borderColor:
+                                                        AppColors.mainColor,
+                                                    color: AppColors.mainColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              )
-                              .toList()
-                        ],
+                                )
+                                .toList()
+                          ],
+                        ),
                       ),
               ),
             ],

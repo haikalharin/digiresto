@@ -8,6 +8,7 @@ import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
@@ -630,7 +631,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               style: AppFont.textBlack14Bold),
                           if (controller.deliveryMethod.value != null)
                             Text(
-                                controller.deliveryMethod.value?.provider ?? "",
+                                "${controller.deliveryMethod.value?.name} - ${controller.deliveryMethod.value?.shipmentMethods.first.name ?? ""}",
                                 style: AppFont.textBlack12Light),
                         ],
                       ),
@@ -737,24 +738,22 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Detail Payment",
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        //color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Text(I10n.current.cart_payment_details,
+                      style: AppFont.textBlack15Bold),
                   SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Subtotal'),
-                      Text("Rp." +
-                          Utils.formatRupiah(controller
-                              .cartSession.value!.transactionData!.subtotal
-                              .toString()))
+                      Text('Subtotal', style: AppFont.textBlack12Light),
+                      Text(
+                        "Rp." +
+                            Utils.formatRupiah(controller
+                                .cartSession.value!.transactionData!.subtotal
+                                .toString()),
+                        style: AppFont.textBlack12Bold,
+                      )
                     ],
                   ),
                   for (var i = 0;
@@ -775,12 +774,43 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            'Delivery - ${controller.deliveryMethod.value!.name}'),
-                        Text("Rp." +
-                            Utils.formatRupiah(controller.cartSession.value!
-                                .transactionData!.deliveryAmount
-                                .toString()))
+                            'Delivery - ${controller.deliveryMethod.value!.name}',
+                            style: AppFont.textBlack12Light),
+                        Text(
+                            "Rp." +
+                                Utils.formatRupiah(controller.cartSession.value!
+                                    .transactionData!.deliveryAmount
+                                    .toString()),
+                            style: AppFont.textBlack12Bold)
                       ],
+                    ),
+                  if (controller
+                          .cartSession.value?.transactionData?.promos.length !=
+                      0)
+                    ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: controller.cartSession.value?.transactionData
+                              ?.promos.length ??
+                          0,
+                      itemBuilder: (context, index) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                              '${controller.cartSession.value?.transactionData?.promos[index].title}',
+                              style: AppFont.textBlack12Light),
+                          Text(
+                              "- Rp." +
+                                  Utils.formatRupiah(controller
+                                      .cartSession
+                                      .value
+                                      ?.transactionData
+                                      ?.promos[index]
+                                      .amount
+                                      .toString()),
+                              style: AppFont.textBlack12Bold),
+                        ],
+                      ),
+                      separatorBuilder: (context, index) => SizedBox(height: 5),
                     ),
                   Divider(
                     color: Colors.black,
@@ -788,11 +818,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Total'),
-                      Text("Rp." +
-                          Utils.formatRupiah(controller
-                              .cartSession.value!.transactionData!.totalPayment
-                              .toString()))
+                      Text('Total', style: AppFont.textBlack12SemiBold),
+                      Text(
+                          "Rp." +
+                              Utils.formatRupiah(controller.cartSession.value!
+                                  .transactionData!.totalPayment
+                                  .toString()),
+                          style: AppFont.textBlack12Bold)
                     ],
                   ),
                   SizedBox(
@@ -1289,7 +1321,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           padding: EdgeInsets.all(5),
                           height: 50,
                           child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.isLoading.value = true;
+                                Get.context!.read<OrderBloc>().add(
+                                    OrderEvent.checkVoucherOutlet(
+                                        controller.voucherCodeController.text));
+                              },
                               style: ElevatedButton.styleFrom(
                                 primary: AppColors.red,
                                 shape: RoundedRectangleBorder(
@@ -1332,94 +1369,86 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         listeners: [
           BlocListener<OrderBloc, OrderState>(
             listener: (context, state) {
-              state.maybeMap(
-                  addCartSuccess: (r) {
-                    controller.cartSession.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  removeCartSuccess: (r) {
-                    controller.cartSession.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  getCartSessionSuccess: (r) {
-                    controller.cartSession.value = r.response;
-                    controller.notesController.text =
-                        r.response.transactionData!.customerNote;
-                    controller.getDetailOutlet();
-                    controller.getListProduct();
-                    print("data diterima");
-                    controller.checkAllLoaded();
-                  },
-                  getDetailOutletSuccess: (r) {
-                    controller.detailOutlet.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  getOutletListProductSuccess: (r) {
-                    controller.listProduct.value = r.response;
-                    controller.checkAllLoaded();
-                  },
-                  setSalesTypeCartSuccess: (r) {
-                    controller.salesType.value = r.value;
-                    controller.updateCartParam();
-                  },
-                  getSalesTypeCartSuccess: (r) {
-                    controller.salesType.value = r.value;
-                    controller.updateCartParam();
-                  },
-                  getPaymentMethodIDSuccess: (r) {
-                    controller.paymentMethod.value = r.data;
-                    controller.updateCartParam();
-                  },
-                  getDeliveryMethodIDSuccess: (r) {
-                    controller.deliveryMethod.value = r.data;
-                    controller.updateCartParam();
-                  },
-                  getVoucherMethodIDSuccess: (r) {
-                    controller.voucherMethod.value = r.data;
-                    controller.updateCartParam();
-                  },
-                  getDineInIDMethodSuccess: (r) {
-                    controller.dineInIDMethod.value = r.data;
-                    controller.parseDineInMethodID();
-                    controller.updateCartParam();
-                  },
-                  setDineInIDMethodSuccess: (r) {
-                    controller.dineInIDMethod.value = r.data;
-                    controller.parseDineInMethodID();
-                    controller.updateCartParam();
-                  },
-                  removeCartSessionSuccess: (r) {
-                    controller.checkCartSession();
-                  },
-                  checkoutCartSuccess: (r) {
-                    var checkoutResponse = r.response.data;
-                    controller.checkoutResponse.value = checkoutResponse;
-                    if (r.response.response.messageDisplay != null &&
-                        r.response.response.code != "00") {
-                      final message = r.response.response.messageDisplay;
-                      print("error response checkout 1:");
+              state.maybeMap(addCartSuccess: (r) {
+                controller.cartSession.value = r.response;
+                controller.checkAllLoaded();
+              }, removeCartSuccess: (r) {
+                controller.cartSession.value = r.response;
+                controller.checkAllLoaded();
+              }, getCartSessionSuccess: (r) {
+                controller.cartSession.value = r.response;
+                controller.notesController.text =
+                    r.response.transactionData!.customerNote;
+                controller.getDetailOutlet();
+                controller.getListProduct();
+                print("data diterima");
+                controller.checkAllLoaded();
+              }, getDetailOutletSuccess: (r) {
+                controller.detailOutlet.value = r.response;
+                controller.checkAllLoaded();
+              }, getOutletListProductSuccess: (r) {
+                controller.listProduct.value = r.response;
+                controller.checkAllLoaded();
+              }, setSalesTypeCartSuccess: (r) {
+                controller.salesType.value = r.value;
+                controller.updateCartParam();
+              }, getSalesTypeCartSuccess: (r) {
+                controller.salesType.value = r.value;
+                controller.updateCartParam();
+              }, getPaymentMethodIDSuccess: (r) {
+                controller.paymentMethod.value = r.data;
+                controller.updateCartParam();
+              }, getDeliveryMethodIDSuccess: (r) {
+                controller.deliveryMethod.value = r.data;
+                controller.updateCartParam();
+              }, checkVoucherOutletSuccess: (r) {
+                controller.checkAllLoaded();
+                Get.context!.read<OrderBloc>().add(
+                    OrderEvent.setVoucherMethodID(
+                        GetListVoucherOutletDataResponse(
+                            code: controller.voucherCodeController.text
+                                .toUpperCase(),
+                            name: controller.voucherCodeController.text
+                                .toUpperCase())));
+              }, getVoucherMethodIDSuccess: (r) {
+                controller.voucherMethod.value = r.data;
+                controller.updateCartParam();
+              }, getDineInIDMethodSuccess: (r) {
+                controller.dineInIDMethod.value = r.data;
+                controller.parseDineInMethodID();
+                controller.updateCartParam();
+              }, setDineInIDMethodSuccess: (r) {
+                controller.dineInIDMethod.value = r.data;
+                controller.parseDineInMethodID();
+                controller.updateCartParam();
+              }, removeCartSessionSuccess: (r) {
+                controller.checkCartSession();
+              }, checkoutCartSuccess: (r) {
+                var checkoutResponse = r.response.data;
+                controller.checkoutResponse.value = checkoutResponse;
+                if (r.response.response.messageDisplay != null &&
+                    r.response.response.code != "00") {
+                  final message = r.response.response.messageDisplay;
+                  print("error response checkout 1:");
 
-                      controller.isLoading.value = false;
-                      ErrorPopupWidget.show("Digiresto", message!.id, () {
-                        Get.back();
-                      });
-                      return;
-                    }
-                    controller.removeCartSession();
-                  },
-                  loadFailure: (e) {
-                    e.e.maybeMap(
-                        checkoutCartFail: (e) {
-                          print("error response checkout 1:");
-                          controller.isLoading.value = false;
-                          ErrorPopupWidget.show("Digiresto", "Transaksi gagal",
-                              () {
-                            Get.back();
-                          });
-                        },
-                        orElse: () {});
-                  },
-                  orElse: () {});
+                  controller.isLoading.value = false;
+                  ErrorPopupWidget.show("Digiresto", message!.id, () {
+                    Get.back();
+                  });
+                  return;
+                }
+                controller.removeCartSession();
+              }, loadFailure: (e) {
+                e.e.maybeMap(checkoutCartFail: (e) {
+                  controller.isLoading.value = false;
+                }, checkVoucherOutletFail: (e) {
+                  controller.isLoading.value = false;
+                }, orElse: () {
+                  controller.isLoading.value = false;
+                });
+              }, orElse: () {
+                controller.isLoading.value = false;
+              });
             },
           ),
           BlocListener<TransactionBloc, TransactionState>(

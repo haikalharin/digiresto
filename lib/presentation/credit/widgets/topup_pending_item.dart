@@ -300,6 +300,7 @@ class TopUpPendingItem extends StatelessWidget {
                 if (!isVa)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
                         Icons.warning_rounded,
@@ -309,12 +310,14 @@ class TopUpPendingItem extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        'Pastikan nominal sesuai hingga 3 digit terakhir',
-                        style: Styles.topUpDetailsStyle.copyWith(
-                          color: AppColors.mainColor,
+                      Expanded(
+                        child: Text(
+                          i10n.billing_alert_nominal,
+                          style: Styles.topUpDetailsStyle.copyWith(
+                            color: AppColors.mainColor,
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   )
               ],

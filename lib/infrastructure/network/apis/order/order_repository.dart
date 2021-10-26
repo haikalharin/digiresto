@@ -178,6 +178,13 @@ class OrderRepository {
     });
   }
 
+  Future<Either<Exception, CartSessionResponseApi>> checkVoucherOutlet(
+      UpdateCartSessionParam object) async {
+    return await _orderApi.checkVoucherOutlet(object).then((value) {
+      return value;
+    });
+  }
+
   Future<Either<Exception, List<DigiDiscountOutletDataResponse>>>
       getPromoOutlet(Map<String, dynamic> object) async {
     return await _orderApi.getPromoOutlet(object).then((value) {

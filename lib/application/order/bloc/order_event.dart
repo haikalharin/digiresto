@@ -20,6 +20,9 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getListVoucherOutlet(
       GetListVoucherOutletParam request) = _GetListVoucherOutlet;
 
+  const factory OrderEvent.checkVoucherOutlet(String code) =
+      _CheckVoucherOutlet;
+
   const factory OrderEvent.getOutletListProduct(GetOutletProductParam request) =
       _GetOutletListProduct;
 

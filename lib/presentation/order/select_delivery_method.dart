@@ -72,7 +72,7 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          _buildProviderTitle(response.provider),
+          _buildProviderTitle(response.name),
           SizedBox(height: 5),
           ListView.separated(
             shrinkWrap: true,
@@ -115,7 +115,7 @@ class SelectDeliveryMethodScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(response.name,
+              Text(shipment.name,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

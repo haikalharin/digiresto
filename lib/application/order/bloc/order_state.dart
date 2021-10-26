@@ -26,6 +26,9 @@ class OrderState with _$OrderState {
           List<GetListVoucherOutletDataResponse> response) =
       _GetListVoucherOutletSuccess;
 
+  const factory OrderState.checkVoucherOutletSuccess() =
+      _CheckVoucherOutletSuccess;
+
   const factory OrderState.getOutletListProductSuccess(
           List<OutletListProductDataResponse> response) =
       _GetOutletListProductSuccess;
