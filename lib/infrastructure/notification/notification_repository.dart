@@ -33,7 +33,7 @@ class NotificationRepository implements INotificationRepository {
     final status = await _oneSignal.getDeviceState();
     final String? osUserID = status?.userId;
     await _storage.openBox(StorageConstants.base);
-    await _storage.putString(key: 'playerId', value: osUserID!);
+    await _storage.putString(key: 'playerId', value: osUserID ?? '');
     await _storage.close();
 
     _oneSignal.promptUserForPushNotificationPermission().then((accepted) {

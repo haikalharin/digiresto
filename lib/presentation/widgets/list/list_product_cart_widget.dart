@@ -16,7 +16,7 @@ class ListProductCartWidget extends StatefulWidget {
   final Axis scrollDirection;
   final height;
   final void Function(TransactionDataItemResponse, String) runEditAction;
-  final void Function(int, int, int, TransactionDataItemResponse) addOrRemove;
+  final void Function(int, int, num, TransactionDataItemResponse) addOrRemove;
   final void Function(
           TransactionDataItemResponse, OutletListProductDataResponse, String)
       runDetailAction;
@@ -80,7 +80,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
         padding: EdgeInsets.zero,
         itemCount: widget.productCart.length,
         itemBuilder: (BuildContext context, int index) {
-          int? price;
+          num? price;
           var productCart = widget.productCart[index];
 
           void minus() {
@@ -207,7 +207,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                     //padding: const EdgeInsets.only(top: 5),
                                     width: Get.width * 0.53,
                                     child: Text(
-                                      widget.productCart[index].desc,
+                                      widget.productCart[index].desc ?? '',
                                       style: AppFont.textBlack10Regular
                                           .copyWith(
                                               color: AppColors.grey7B7B7B),

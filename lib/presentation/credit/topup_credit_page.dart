@@ -246,6 +246,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                                 FilteringTextInputFormatter.digitsOnly,
                                 CurrencyTextFormatter(),
                               ],
+                              maxLength: 17,
                               keyboardType: TextInputType.number,
                               prefix: Padding(
                                 padding: EdgeInsets.only(

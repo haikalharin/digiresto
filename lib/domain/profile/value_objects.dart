@@ -22,7 +22,7 @@ class Review extends ValueObject<String> {
 
   factory Review(String input) {
     return Review._(
-      ValueValidators.validateMinStringLength(input, 10),
+      ValueValidators.validateMinStringLength(input, 0),
     );
   }
 

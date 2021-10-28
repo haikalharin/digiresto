@@ -1,3 +1,4 @@
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_failure.freezed.dart';
@@ -11,5 +12,6 @@ class ProfileFailure with _$ProfileFailure {
   const factory ProfileFailure.unexpected() = _Unexpected;
   const factory ProfileFailure.invalidToken() = _InvalidToken;
   const factory ProfileFailure.sessionExpired() = _SessionExpired;
-  const factory ProfileFailure.generalError() = _GeneralError;
+  const factory ProfileFailure.generalError(
+      StatusMessageDisplayResponse? message) = _GeneralError;
 }

@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final Function(String)? onChange;
   final List<TextInputFormatter>? inputFormatters;
+  final int? maxLength;
   const CustomTextField({
     Key? key,
     this.controller,
@@ -41,6 +42,7 @@ class CustomTextField extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.focusNode,
+    this.maxLength,
   }) : super(key: key);
 
   @override
@@ -54,9 +56,11 @@ class CustomTextField extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines,
       focusNode: focusNode,
+      maxLength: maxLength,
       style: inputStyle ?? Styles.inputStyle,
       decoration: InputDecoration(
         prefixIcon: prefix,
+        counterText: "",
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         focusedBorder: OutlineInputBorder(

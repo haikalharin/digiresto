@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
@@ -75,7 +76,7 @@ class OrderDetailsDone extends StatelessWidget {
                     vertical: 15,
                   ),
                   child: Text(
-                    'Tulis review kamu',
+                    I10n.current.review_title,
                     style: Styles.ratingLabelStyle,
                     textAlign: TextAlign.left,
                   ),
@@ -90,8 +91,7 @@ class OrderDetailsDone extends StatelessWidget {
                     maxLines: 3,
                     borderColor: Colors.grey,
                     fillColor: Colors.white,
-                    hintText:
-                        'Tulis review kamu tentang makanan atau minuman yang kamu pesan.',
+                    hintText: I10n.current.review_hint,
                   ),
                 ),
                 SizedBox(
@@ -232,6 +232,28 @@ class OrderDetailsDone extends StatelessWidget {
                   ),
                 ],
               ),
+              ...orderDetails.promos
+                  .map((promo) => Column(
+                        children: [
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                promo.title,
+                                style: Styles.menuItemLabelStyle,
+                              ),
+                              Text(
+                                '- ${CommonUtils.currencyFormat(promo.amount.toDouble())}',
+                                style: Styles.menuItemPriceStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ))
+                  .toList(),
               SizedBox(
                 height: 8,
               ),
@@ -258,13 +280,13 @@ class OrderDetailsDone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total Payment',
+                    I10n.current.billing_total_payment,
                     style: Styles.menuItemLabelStyle
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   Text(
                     CommonUtils.currencyFormat(
-                        orderDetails.finalAmount.toDouble()),
+                        orderDetails.totalPayment.toDouble()),
                     style: Styles.menuItemPriceStyle,
                   ),
                 ],

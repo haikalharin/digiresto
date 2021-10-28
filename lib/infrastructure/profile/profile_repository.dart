@@ -87,7 +87,7 @@ class ProfileRepository implements IProfileRepository {
       return right(orderPendingList);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -132,7 +132,7 @@ class ProfileRepository implements IProfileRepository {
       return right(data);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -177,7 +177,7 @@ class ProfileRepository implements IProfileRepository {
       return right(orderPendingList);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -217,7 +217,7 @@ class ProfileRepository implements IProfileRepository {
       return right(unit);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -267,7 +267,7 @@ class ProfileRepository implements IProfileRepository {
       return right(orderPendingList);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -307,7 +307,7 @@ class ProfileRepository implements IProfileRepository {
       return right(orderHistoryDetails);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -336,7 +336,7 @@ class ProfileRepository implements IProfileRepository {
       return right(list);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -378,8 +378,8 @@ class ProfileRepository implements IProfileRepository {
       }
       return right(unit);
     } on FailureException catch (e) {
-      ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      // ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -426,7 +426,7 @@ class ProfileRepository implements IProfileRepository {
       return right(unit);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());
@@ -466,7 +466,7 @@ class ProfileRepository implements IProfileRepository {
       return right(unit);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(ProfileFailure.generalError());
+      return left(ProfileFailure.generalError(e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(ProfileFailure.sessionExpired());

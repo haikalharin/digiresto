@@ -12,12 +12,16 @@ class ErrorDialog {
   showError({
     String title = "Digiresto",
     required StatusMessageDisplayResponse error,
+    final Function? onClose,
   }) async {
     if (Get.isDialogOpen ?? false) {
       Get.back();
     }
     Get.dialog(
-      BaseDialogError(error: error),
+      BaseDialogError(
+        error: error,
+        onClose: onClose,
+      ),
     );
   }
 

@@ -90,7 +90,7 @@ class TransactionDataItemResponse with _$TransactionDataItemResponse {
   const factory TransactionDataItemResponse(
       {required int productId,
       required String title,
-      required int price,
+      required num price,
       required String? code,
       required int cost,
       required int qty,
@@ -103,17 +103,17 @@ class TransactionDataItemResponse with _$TransactionDataItemResponse {
       required String note,
       required bool isPreorder,
       required int preorderPeriod,
-      required int amount,
+      required num amount,
       required List<Modifier>? modifiers,
       required int? modifiersAmount,
       required int? modifiersCost,
       required int? modifiersDiscount,
       required int? singleModifiersAmount,
-      required int subtotal,
-      required int serviceAmount,
-      required int taxAmount,
-      required String desc,
-      required String img}) = _TransactionDataItemResponse;
+      required num subtotal,
+      required num serviceAmount,
+      required num taxAmount,
+      required String? desc,
+      required String? img}) = _TransactionDataItemResponse;
 
   factory TransactionDataItemResponse.fromJson(Map<String, dynamic> json) =>
       _$TransactionDataItemResponseFromJson(json);
@@ -130,11 +130,11 @@ class Modifier with _$Modifier {
     required String modifierCode,
     required String title,
     required int basicWeight,
-    required int price,
+    required num price,
     required int qty,
-    required int amount,
-    required int discountAmount,
-    required int discountPercentage,
+    required num amount,
+    required num discountAmount,
+    required num discountPercentage,
   }) = _Modifier;
 
   factory Modifier.fromJson(Map<String, dynamic> json) =>
@@ -148,10 +148,10 @@ class TaxesAndService with _$TaxesAndService {
     required String? code,
     required String? name,
     required String? type,
-    required int? percentage,
+    required num? percentage,
     required List<String>? salesTypes,
     required String? title,
-    required int? amount,
+    required num? amount,
   }) = _TaxesAndService;
 
   factory TaxesAndService.fromJson(Map<String, dynamic> json) =>

@@ -49,8 +49,8 @@ class OrderHistoryDetails with _$OrderHistoryDetails {
     required List<MenuItem> items,
     required num itemWeight,
     required bool isUseVoucher,
-    required List<dynamic> promos,
-    required List<dynamic> paymentList,
+    required List<Promos> promos,
+    required List<PaymentListItem> paymentList,
     required List<TaxesAndService> taxesAndServices,
     required num itemTotalAmount,
     required String note,
@@ -277,4 +277,34 @@ class DeliveryStatus with _$DeliveryStatus {
 
   factory DeliveryStatus.fromJson(Map<String, dynamic> json) =>
       _$DeliveryStatusFromJson(json);
+}
+
+@freezed
+abstract class Promos with _$Promos {
+  const factory Promos({
+    required List<String> paymentTypes,
+    required String title,
+    required String? promoType,
+    required String? type,
+    required num? discount,
+    required num? minPurchase,
+    required int promoId,
+    required String? voucherRefNumber,
+    required String? voucherCode,
+    required num amount,
+  }) = _Promos;
+
+  factory Promos.fromJson(Map<String, dynamic> json) => _$PromosFromJson(json);
+}
+
+@freezed
+abstract class PaymentListItem with _$PaymentListItem {
+  const factory PaymentListItem({
+    required num amount,
+    required String method,
+    required String? voucherRefNumber,
+  }) = _PaymentListItem;
+
+  factory PaymentListItem.fromJson(Map<String, dynamic> json) =>
+      _$PaymentListItemFromJson(json);
 }

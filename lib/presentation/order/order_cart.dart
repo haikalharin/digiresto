@@ -17,6 +17,7 @@ import 'package:digiresto/domain/order/order_select_payment_method_view_argument
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -1432,9 +1433,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   print("error response checkout 1:");
 
                   controller.isLoading.value = false;
-                  ErrorPopupWidget.show("Digiresto", message!.id, () {
+                  if (Get.isDialogOpen!) {
                     Get.back();
-                  });
+                  }
+                  ErrorDialog().showError(error: message!);
                   return;
                 }
                 controller.removeCartSession();
@@ -1558,7 +1560,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
     print("editcart");
   }
 
-  void _plusProduct(int productId, int qty, int price,
+  void _plusProduct(int productId, int qty, num price,
       TransactionDataItemResponse detailProduct) {
     controller.reloadCounter.value++;
     if (qty != 0) {

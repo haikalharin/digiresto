@@ -2,6 +2,7 @@ import 'package:digiresto/application/profile/order_details/cancel_page_controll
 import 'package:digiresto/application/profile/order_details/order_details_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
@@ -62,6 +63,18 @@ class CancelOrderWidget extends StatelessWidget {
         listener: (context, state) {
           state.maybeMap(
             orElse: () {},
+            loadFailure: (_state) {
+              _state.failure.maybeMap(
+                orElse: () {},
+                generalError: (error) {
+                  ErrorDialog().showError(
+                      error: error.message!,
+                      onClose: () {
+                        Get.back();
+                      });
+                },
+              );
+            },
             loadCancelPage: (_state) => _state.submitOption.fold(
               () {},
               (a) => Get.dialog(

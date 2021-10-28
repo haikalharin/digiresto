@@ -131,7 +131,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Delivery',
+                    I10n.current.cart_delivery,
                     style: Styles.menuItemLabelStyle,
                   ),
                   Text(
@@ -141,6 +141,28 @@ class OrderDetailsOnProcess extends StatelessWidget {
                   ),
                 ],
               ),
+              ...orderDetails.promos
+                  .map((promo) => Column(
+                        children: [
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                promo.title,
+                                style: Styles.menuItemLabelStyle,
+                              ),
+                              Text(
+                                '- ${CommonUtils.currencyFormat(promo.amount.toDouble())}',
+                                style: Styles.menuItemPriceStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ))
+                  .toList(),
               Divider(
                 color: AppColors.greyColor,
                 thickness: 1,
@@ -150,13 +172,13 @@ class OrderDetailsOnProcess extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total Payment',
+                    I10n.current.billing_total_payment,
                     style: Styles.menuItemLabelStyle
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   Text(
                     CommonUtils.currencyFormat(
-                        orderDetails.finalAmount.toDouble()),
+                        orderDetails.totalPayment.toDouble()),
                     style: Styles.menuItemPriceStyle,
                   ),
                 ],
@@ -176,7 +198,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Alamat Pengiriman',
+                  I10n.current.cart_address,
                   style: Styles.menuItemLabelStyle
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -205,7 +227,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Status Pengiriman',
+                      I10n.current.delivery_status,
                       style: Styles.menuItemLabelStyle
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
@@ -214,7 +236,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                     ),
                     if (orderDetails.deliveryDetail.status?.length == 0)
                       Text(
-                        'Menunggu konfirmasi',
+                        I10n.current.text_menunggu,
                         style: Styles.menuItemLabelStyle,
                       ),
                     SizedBox(
