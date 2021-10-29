@@ -234,7 +234,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     customerSmoking: false,
                     delivery: deliveryParam,
                     eta: etaOrder,
-                    promos: [request.code],
+                    promos: getVoucherMethodID == null
+                        ? []
+                        : [getVoucherMethodID.code],
                     salesType: getSalesTypeCart ?? ""),
                 queryString:
                     UpdateCartSessionQueryParam(sessionId: sessionId!)));

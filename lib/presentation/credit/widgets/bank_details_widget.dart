@@ -13,17 +13,18 @@ class BankDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final i10n = I10n.of(context);
     return Column(
       children: [
         DetailFieldItem(
-          title: 'Tanggal Transaksi',
+          title: i10n.billing_transaction_date,
           value: CommonUtils.dateFormat(
             'EEEE dd MMMM yyyy hh:mm',
             bankDetails.formattedTransactionDate,
           ).toString(),
         ),
         DetailFieldItem(
-          title: 'Batas Akhir Pembayaran',
+          title: i10n.billing_expired,
           value: CommonUtils.dateFormat('EEEE dd MMMM yyyy hh:mm',
                   (bankDetails.expiresAt.add(DateTime.now().timeZoneOffset)))
               .toString(),
@@ -35,7 +36,7 @@ class BankDetailWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'No Rekening',
+                  i10n.billing_rekening_number,
                   style: Styles.creditDetailsLabelStyle,
                 ),
                 Text(
@@ -59,7 +60,7 @@ class BankDetailWidget extends StatelessWidget {
                   );
                   Get.snackbar(
                     'Success',
-                    'Copied to clipboard !',
+                    i10n.billing_success_copy(bankDetails.bankAccNo),
                     snackPosition: SnackPosition.BOTTOM,
                     duration: Duration(seconds: 2),
                   );
@@ -77,7 +78,7 @@ class BankDetailWidget extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Salin',
+                    i10n.topup_copy_action,
                     style: Styles.creditDetailsStyle.copyWith(
                       color: AppColors.mainColor,
                       fontWeight: FontWeight.bold,
@@ -94,11 +95,11 @@ class BankDetailWidget extends StatelessWidget {
           color: AppColors.greyColor,
         ),
         DetailFieldItem(
-          title: 'Nama Pemilik Rekening',
+          title: i10n.cart_bank_acc_name,
           value: bankDetails.bankAccName,
         ),
         DetailFieldItem(
-          title: 'Nama Bank',
+          title: i10n.cart_bank_name,
           value: bankDetails.bankName,
         ),
         Row(
@@ -108,7 +109,7 @@ class BankDetailWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Total Pembayaran',
+                  i10n.billing_total_payment,
                   style: Styles.creditDetailsLabelStyle,
                 ),
                 Text(
@@ -135,7 +136,7 @@ class BankDetailWidget extends StatelessWidget {
                   );
                   Get.snackbar(
                     'Success',
-                    'Copied to clipboard !',
+                    i10n.billing_success_copy(bankDetails.uniqueAmount),
                     snackPosition: SnackPosition.BOTTOM,
                     duration: Duration(seconds: 2),
                   );
@@ -153,7 +154,7 @@ class BankDetailWidget extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Salin',
+                    i10n.topup_copy_action,
                     style: Styles.creditDetailsStyle.copyWith(
                       color: AppColors.mainColor,
                       fontWeight: FontWeight.bold,

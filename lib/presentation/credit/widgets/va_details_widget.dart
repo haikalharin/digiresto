@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/credit/top_up_va_details.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/credit/widgets/detail_field_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,18 +13,19 @@ class VADetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final i10n = I10n.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DetailFieldItem(
-          title: 'Batas Akhir Pembayaran',
+          title: i10n.billing_expired,
           value: CommonUtils.dateFormat(
             'EEEE dd MMMM yyyy hh:mm',
             (vaDetails.expiresAt.add(DateTime.now().timeZoneOffset)),
           ).toString(),
         ),
         Text(
-          'Transfer ke nomor virtual account',
+          i10n.billing_va,
           style: Styles.creditDetailsLabelStyle,
         ),
         SizedBox(
@@ -60,7 +62,7 @@ class VADetailsWidget extends StatelessWidget {
                   );
                   Get.snackbar(
                     'Success',
-                    'Copied to clipboard !',
+                    i10n.billing_success_copy(vaDetails.vaNumber),
                     snackPosition: SnackPosition.BOTTOM,
                     duration: Duration(seconds: 2),
                   );
@@ -78,7 +80,7 @@ class VADetailsWidget extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Salin',
+                    i10n.topup_copy_action,
                     style: Styles.creditDetailsStyle.copyWith(
                       color: AppColors.mainColor,
                       fontWeight: FontWeight.bold,
@@ -95,7 +97,7 @@ class VADetailsWidget extends StatelessWidget {
           color: AppColors.greyColor,
         ),
         DetailFieldItem(
-          title: 'Nominal',
+          title: i10n.billing_nominal,
           value: CommonUtils.currencyFormat(
             double.parse(
               vaDetails.amount,
@@ -103,7 +105,7 @@ class VADetailsWidget extends StatelessWidget {
           ),
         ),
         DetailFieldItem(
-          title: 'Biaya Layanan',
+          title: i10n.billing_fee,
           value: CommonUtils.currencyFormat(
             double.parse(
               vaDetails.fee,
@@ -117,7 +119,7 @@ class VADetailsWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Total Pembayaran',
+                  i10n.billing_total_payment,
                   style: Styles.creditDetailsLabelStyle,
                 ),
                 Text(
@@ -144,7 +146,7 @@ class VADetailsWidget extends StatelessWidget {
                   );
                   Get.snackbar(
                     'Success',
-                    'Copied to clipboard !',
+                    i10n.billing_success_copy(vaDetails.finalAmount),
                     snackPosition: SnackPosition.BOTTOM,
                     duration: Duration(seconds: 2),
                   );
@@ -162,7 +164,7 @@ class VADetailsWidget extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Salin',
+                    i10n.topup_copy_action,
                     style: Styles.creditDetailsStyle.copyWith(
                       color: AppColors.mainColor,
                       fontWeight: FontWeight.bold,
@@ -177,145 +179,3 @@ class VADetailsWidget extends StatelessWidget {
     );
   }
 }
-
-// class VADetailsWidget extends StatelessWidget {
-//   final TopUpVADetails vaDetails;
-//   const VADetailsWidget(this.vaDetails, {Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: double.infinity,
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(4),
-//         boxShadow: [
-//           BoxShadow(
-//             color: AppColors.mainColor.withOpacity(0.2),
-//             spreadRadius: 3,
-//             blurRadius: 5,
-//             offset: Offset(0, 4),
-//           ),
-//         ],
-//         color: Colors.white,
-//         border: Border.all(
-//           color: AppColors.mainColor,
-//           width: 1,
-//         ),
-//       ),
-//       child: Column(
-//         children: [
-//           Padding(
-//             padding: EdgeInsets.symmetric(
-//               horizontal: 20,
-//               vertical: 15,
-//             ),
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: Text(
-//                     'No. Virtual Account',
-//                     style: Styles.creditDetailsLabelStyle,
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: SelectableText(
-//                     vaDetails.vaNumber,
-//                     style: Styles.creditDetailsStyle
-//                         .copyWith(color: AppColors.redYoung),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Divider(
-//             thickness: 1,
-//             color: AppColors.dividerColor,
-//             height: 0,
-//           ),
-//           Padding(
-//             padding: EdgeInsets.symmetric(
-//               horizontal: 20,
-//               vertical: 15,
-//             ),
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: Text(
-//                     'Account Name',
-//                     style: Styles.creditDetailsLabelStyle,
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: SelectableText(
-//                     vaDetails.title,
-//                     style: Styles.creditDetailsStyle,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Divider(
-//             thickness: 1,
-//             color: AppColors.dividerColor,
-//             height: 0,
-//           ),
-//           Padding(
-//             padding: EdgeInsets.symmetric(
-//               horizontal: 20,
-//               vertical: 15,
-//             ),
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: Text(
-//                     'Expired at',
-//                     style: Styles.creditDetailsLabelStyle,
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: SelectableText(
-//                     CommonUtils.dateFormat(
-//                       'dd/MM/yyyy hh:mm',
-//                       vaDetails.expiresAt,
-//                     ).toString(),
-//                     style: Styles.creditDetailsStyle,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Divider(
-//             thickness: 1,
-//             color: AppColors.dividerColor,
-//             height: 0,
-//           ),
-//           Padding(
-//             padding: EdgeInsets.symmetric(
-//               horizontal: 20,
-//               vertical: 15,
-//             ),
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: Text(
-//                     'Amount',
-//                     style: Styles.creditDetailsLabelStyle,
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: SelectableText(
-//                     CommonUtils.currencyFormat(
-//                       double.parse(vaDetails.finalAmount),
-//                     ),
-//                     style: Styles.creditDetailsStyle
-//                         .copyWith(color: AppColors.redYoung),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

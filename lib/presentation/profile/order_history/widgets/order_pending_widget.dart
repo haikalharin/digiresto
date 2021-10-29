@@ -90,7 +90,8 @@ class OrderPendingWidget extends StatelessWidget {
                         );
                         Get.snackbar(
                           'Success',
-                          'Copied to clipboard !',
+                          i10n.billing_success_copy(
+                              '${orderPending.billingDetail.amount}'),
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
                         );
@@ -212,7 +213,8 @@ class OrderPendingWidget extends StatelessWidget {
                         );
                         Get.snackbar(
                           'Success',
-                          'Copied to clipboard !',
+                          i10n.billing_success_copy(
+                              orderPending.billingDetail.vaNumber),
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
                         );
@@ -285,7 +287,11 @@ class OrderPendingWidget extends StatelessWidget {
                         );
                         Get.snackbar(
                           'Success',
-                          'Copied to clipboard !',
+                          i10n.billing_success_copy(
+                            isVa
+                                ? '${orderPending.billingDetail.amount}'
+                                : orderPending.billingDetail.uniqueAmount,
+                          ),
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
                         );

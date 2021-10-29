@@ -132,12 +132,16 @@ class OrderLocal {
     if (_outletModel?.id != outlet.id) {
       await _storage.openBox(StorageConstants.orderProduct);
       await _storage.deleteData();
+      await _storage.close();
+
       await _storage.openBox(StorageConstants.cart);
       await _storage.deleteData();
+      await _storage.close();
     }
 
     await _storage.openBox(StorageConstants.orderProduct);
     var _productJson = _storage.getJson(key: _sessionIdKey);
+    await _storage.close();
 
     if (_productJson == null) {
       await _storage.openBox(StorageConstants.orderProduct);
@@ -153,6 +157,8 @@ class OrderLocal {
           salesType: '');
       await _storage.setJson(key: _sessionIdKey, object: list.toJson());
       _productJson = _storage.getJson(key: _sessionIdKey);
+      await _storage.close();
+
       //_productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
     }
     var _productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
@@ -172,11 +178,12 @@ class OrderLocal {
         eta: '',
         promos: [],
         salesType: '');
+    await _storage.openBox(StorageConstants.orderProduct);
     await _storage.setJson(key: _sessionIdKey, object: list.toJson());
+    await _storage.close();
 
     final productJson = _storage.getJson(key: _sessionIdKey);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
-    await _storage.close();
     return productModel;
   }
 
@@ -186,8 +193,11 @@ class OrderLocal {
     if (_outletModel?.id != outletId.toString()) {
       await _storage.openBox(StorageConstants.orderProduct);
       await _storage.deleteData();
+      await _storage.close();
+
       await _storage.openBox(StorageConstants.cart);
       await _storage.deleteData();
+      await _storage.close();
     }
     try {
       await _storage.openBox(StorageConstants.orderProduct);
@@ -213,8 +223,8 @@ class OrderLocal {
   }
 
   Future<UpdateCartSessionBodyParam?> getProduct() async {
-    await _storage.openBox(StorageConstants.orderProduct);
     try {
+      await _storage.openBox(StorageConstants.orderProduct);
       var _productJson = _storage.getJson(key: _sessionIdKey);
       final productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
       await _storage.close();
@@ -228,6 +238,8 @@ class OrderLocal {
       CreateUpdateCartSessionItemParam object) async {
     await _storage.openBox(StorageConstants.orderProduct);
     var _productJson = _storage.getJson(key: _sessionIdKey);
+    await _storage.close();
+
     var _productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
 
     //parse to map
@@ -250,7 +262,6 @@ class OrderLocal {
 
     final productJson = _storage.getJson(key: _sessionIdKey);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
-    await _storage.close();
     return productModel;
   }
 
@@ -295,11 +306,11 @@ class OrderLocal {
   Future<DetailOutletDataResponse?> getOutletDetailID() async {
     await _storage.openBox(StorageConstants.outletDetail);
     final _outletJson = _storage.getJson(key: _sessionIdKey);
+    await _storage.close();
     if (_outletJson == null) {
       return null;
     }
     final _outletModel = DetailOutletDataResponse.fromJson(_outletJson);
-    await _storage.close();
     return _outletModel;
   }
 
@@ -342,6 +353,7 @@ class OrderLocal {
     try {
       await _storage.openBox(StorageConstants.orderProduct);
       await _storage.deleteData();
+      await _storage.close();
       await _storage.openBox(StorageConstants.cart);
       await _storage.deleteData();
       await _storage.close();

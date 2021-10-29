@@ -1,7 +1,7 @@
 import 'package:digiresto/application/profile/edit_profile/edit_profile_bloc.dart';
 import 'package:digiresto/application/profile/edit_profile/edit_profile_controller.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class EditProfilePage extends StatelessWidget {
-  final UserProfile _profile;
+  final UserAuth _profile;
 
   const EditProfilePage(this._profile, {Key? key}) : super(key: key);
 
@@ -29,7 +29,7 @@ class EditProfilePage extends StatelessWidget {
 }
 
 class EditProfileWidget extends StatelessWidget {
-  final UserProfile _profile;
+  final UserAuth _profile;
   const EditProfileWidget(this._profile, {Key? key}) : super(key: key);
 
   @override

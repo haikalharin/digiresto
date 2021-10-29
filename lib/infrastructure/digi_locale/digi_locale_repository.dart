@@ -12,11 +12,11 @@ class DigiLocaleRepository implements IDigiLocaleRepository {
     try {
       await _storage.openBox(StorageConstants.locale);
       String? locale = _storage.getString(key: 'locale');
-      // print()
       print('locale $locale');
       if (locale == null) {
         return 'en_US';
       }
+      await _storage.close();
       return locale;
     } catch (e) {
       return 'en_US';
@@ -27,6 +27,7 @@ class DigiLocaleRepository implements IDigiLocaleRepository {
   Future<void> setNewLocale({required String newLocale}) async {
     await _storage.openBox(StorageConstants.locale);
     await _storage.putString(key: 'locale', value: newLocale);
+    await _storage.close();
     return;
   }
 }

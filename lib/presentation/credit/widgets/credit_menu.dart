@@ -1,19 +1,27 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/dimens.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-class CreditAssetIcon {
+class CreditByDestination {
   final String destination;
-  CreditAssetIcon(this.destination);
+  CreditByDestination(this.destination);
   Map<String, String> assetsByDestination = {
     "TOP_UP_BANK": 'assets/credit_transfer.svg',
     "TOP_UP_VA": 'assets/credit_virtual_acc.svg'
   };
 
+  Map<String, String> titleByDestination = {
+    "TOP_UP_BANK": I10n.current.credit_fund_transfer,
+    "TOP_UP_VA": 'Virtual Account',
+  };
+
   String get asset =>
       assetsByDestination[destination] ?? 'assets/credit_transfer.svg';
+  String get title => titleByDestination[destination] ?? '';
 }
 
 class CreditMenu extends StatelessWidget {

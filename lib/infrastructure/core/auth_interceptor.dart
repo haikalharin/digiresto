@@ -17,6 +17,8 @@ class AuthInterceptor extends Interceptor {
     final _userInStorage = await _storage.getData();
     final _userAuth = UserAuth.fromJson(_userInStorage);
     final String? security = _userAuth.token;
+    await _storage.close();
+
     Map<String, dynamic> headers = options.headers;
 
     if (security != null) {
@@ -29,7 +31,6 @@ class AuthInterceptor extends Interceptor {
     //   headers.addAll({"Authorization": "Bearer $_token"});
     // }
     options.headers = headers;
-    await _storage.close();
 
     super.onRequest(options, handler);
   }

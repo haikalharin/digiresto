@@ -57,7 +57,6 @@ class NetworkService implements INetworkService {
         _dio.options.headers = headers;
         logger.d(_dio.options.headers);
 
-        await baseStorage.close();
         String baseUrl = await _env.getBaseUrl;
         logger.d('dio base url : $baseUrl');
 
@@ -65,6 +64,7 @@ class NetworkService implements INetworkService {
             '$baseUrl$path${parameter ?? ""}',
             queryParameters: queryParameter);
         final responseCode = response.data['response']['code'] as String;
+        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {
@@ -97,9 +97,6 @@ class NetworkService implements INetworkService {
               );
             }
         }
-      } catch (e) {
-        print(e.toString());
-        throw e;
       }
     } else {
       throw NoInternetException();
@@ -144,6 +141,7 @@ class NetworkService implements INetworkService {
           data: content,
         );
         final responseCode = response.data['response']['code'] as String;
+        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {
@@ -214,13 +212,14 @@ class NetworkService implements INetworkService {
         }
 
         _dio.options.headers = headers;
-        await baseStorage.close();
+
         final Response response = await _dio.put(
           '$path${parameter ?? ""}',
           queryParameters: queryParameter,
           data: content,
         );
         final responseCode = response.data['response']['code'] as String;
+        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {
@@ -289,9 +288,9 @@ class NetworkService implements INetworkService {
           logger.d('directory created');
         }
         _dio.options.headers = headers;
-        await baseStorage.close();
         final Response response = await _dio.download(url, downloadPath);
         final responseCode = response.data['response']['code'] as String;
+        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {

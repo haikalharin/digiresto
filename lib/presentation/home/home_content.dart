@@ -170,7 +170,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                         padding: EdgeInsets.only(left: 10),
                         child: GestureDetector(
                             child: Text(
-                              "Hot promo",
+                              I10n.current.home_hot_promo,
                               style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
@@ -187,7 +187,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     padding: EdgeInsets.only(right: 10),
                     child: GestureDetector(
                         child: Text(
-                          "See all",
+                          I10n.current.home_see_all,
                           style: TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
@@ -217,7 +217,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                             padding: EdgeInsets.only(left: 10),
                             child: GestureDetector(
                                 child: Text(
-                                  "Pesan Lagi ",
+                                  I10n.current.beranda_recent_order,
                                   style: TextStyle(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.bold,
@@ -252,7 +252,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                         padding: EdgeInsets.only(left: 10),
                         child: GestureDetector(
                           child: Text(
-                            "Lacak orderan anda",
+                            I10n.current.tv_track_your_order,
                             style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold,
@@ -381,8 +381,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
       Get.find<HomeContentViewController>().setLoadingListAddress(false);
     }).catchError((e) {
       Get.find<HomeContentViewController>().setLoadingListAddress(false);
-      ErrorPopupWidget.show("Digiresto",
-          "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
+      ErrorPopupWidget.show("Digiresto", I10n.current.cart_address_not_valid,
           () {
         {
           Get.back();

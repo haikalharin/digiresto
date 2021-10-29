@@ -1,4 +1,5 @@
 import 'package:digiresto/application/credit/credit_bloc.dart';
+import 'package:digiresto/application/credit/credit_tab_controller.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
@@ -16,40 +17,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class CreditTabController extends GetxController
-    with SingleGetTickerProviderMixin {
-  RxInt tabIndex = 0.obs;
-  I10n _i10n = I10n.current;
-  late List<Widget> myTabs;
-
-  late TabController controller;
-
-  @override
-  void onInit() {
-    super.onInit();
-    myTabs = [
-      Container(
-        padding: EdgeInsets.all(15),
-        child: Text(_i10n.credit_title_1),
-      ),
-      Container(
-        padding: EdgeInsets.all(15),
-        child: Text(_i10n.credit_title_2),
-      ),
-    ];
-    controller = TabController(vsync: this, length: myTabs.length);
-    controller.addListener(() {
-      tabIndex.value = controller.index;
-    });
-  }
-
-  @override
-  void onClose() {
-    controller.dispose();
-    super.onClose();
-  }
-}
-
 class CreditPage extends StatelessWidget {
   const CreditPage({Key? key}) : super(key: key);
 
@@ -63,14 +30,25 @@ class CreditPage extends StatelessWidget {
 
   Widget _widgetError() {
     return Center(
-      child: Text('Error, please try again'),
+      child: Text(I10n.current.error_message_failed_get_response),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
-    final CreditTabController _tabx = Get.put(CreditTabController());
+    final myTabs = <Widget>[
+      Container(
+        padding: EdgeInsets.all(15),
+        child: Text(i10n.credit_title_1),
+      ),
+      Container(
+        padding: EdgeInsets.all(15),
+        child: Text(i10n.credit_title_2),
+      ),
+    ];
+    final CreditTabController _tabx =
+        Get.put(CreditTabController(myTabs), permanent: false);
 
     return BlocProvider<CreditBloc>(
       create: (context) => getIt<CreditBloc>()..add(CreditEvent.started()),
@@ -187,7 +165,7 @@ class CreditPage extends StatelessWidget {
                     labelColor: AppColors.mainColor,
                     unselectedLabelColor: AppColors.greyColor,
                     labelStyle: Styles.creditTabStyle,
-                    tabs: _tabx.myTabs,
+                    tabs: myTabs,
                   ),
                   Obx(
                     () => SizedBox(
@@ -204,10 +182,12 @@ class CreditPage extends StatelessWidget {
                                   .map(
                                     (topupMethod) => topupMethod.isEnable
                                         ? CreditMenu(
-                                            assetSvgIcon: CreditAssetIcon(
+                                            assetSvgIcon: CreditByDestination(
                                                     topupMethod.destination)
                                                 .asset,
-                                            label: topupMethod.title,
+                                            label: CreditByDestination(
+                                                    topupMethod.destination)
+                                                .title,
                                             onTap: () => Get.to(
                                                 CreditSubCategoryPage(
                                                     topupMethod)),

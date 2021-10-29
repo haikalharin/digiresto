@@ -31,11 +31,11 @@ class UserLocal {
     try {
       await _storage.openBox(StorageConstants.address);
       final data = await _storage.getJson(key: addressKey);
+      await _storage.close();
       final model = UserAddress.fromJson(data);
       if (model.address == null) {
         return left(Exception());
       }
-      await _storage.close();
       return right(model);
     } catch (e) {
       return left(Exception(e.toString()));

@@ -306,7 +306,7 @@ class OrderDetailsDone extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Alamat Pengiriman',
+                  I10n.current.history_detail_delivery_address,
                   style: Styles.menuItemLabelStyle
                       .copyWith(fontWeight: FontWeight.bold),
                 ),

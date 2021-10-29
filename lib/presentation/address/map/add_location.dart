@@ -141,7 +141,7 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                     // Only numbers can be entered
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter your address';
+                        return I10n.current.error_input_address;
                       }
                       return null;
                     },

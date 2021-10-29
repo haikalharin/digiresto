@@ -1,5 +1,6 @@
 import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/profile/profile_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
@@ -63,16 +64,14 @@ class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
-
-    late final _authBloc = BlocProvider.of<AuthBloc>(context);
     late final _profileBloc = BlocProvider.of<ProfileBloc>(context);
     return CollapsedScafold(
       title: 'Profile',
       body: BlocBuilder<ProfileBloc, ProfileState>(
+        bloc: _profileBloc..add(ProfileEvent.started()),
         builder: (context, state) {
           final _langController = Get.put(
             ChangeLanguageController(),
-            permanent: false,
           );
           return RefreshIndicator(
             onRefresh: () async {
@@ -115,14 +114,14 @@ class ProfileWidget extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                _state.userProfile.name,
+                                _state.user.name ?? '',
                                 style: Styles.profileNameStyle,
                               ),
                             ),
                             CustomButton(
                               onPressed: () => Get.toNamed(
                                 Routers.editProfile,
-                                arguments: _state.userProfile,
+                                arguments: _state.user,
                               )?.then((value) =>
                                   _profileBloc.add(ProfileEvent.started())),
                               color: AppColors.mainColor,
@@ -135,11 +134,11 @@ class ProfileWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        Text(_state.userProfile.email),
+                        Text(_state.user.email ?? ''),
                         SizedBox(
                           height: 5,
                         ),
-                        Text(_state.userProfile.mobilePhone),
+                        Text(_state.user.mobilePhone ?? ''),
                       ],
                     ),
                   ),
@@ -150,7 +149,6 @@ class ProfileWidget extends StatelessWidget {
                 ),
                 ProfileMenuWidget(
                   onTap: () {
-                    _langController.loadCurrent();
                     Get.dialog(
                       Obx(
                         () => CustomDialog(
@@ -211,13 +209,11 @@ class ProfileWidget extends StatelessWidget {
                                   Expanded(
                                     child: CustomButton(
                                       onPressed: () async {
-                                        Get.updateLocale(
-                                            _langController.getLocale());
+                                        Get.back();
                                         context.read<DigiLocaleBloc>().add(
                                             DigiLocaleEvent.updateLocale(
                                                 locale: _langController
                                                     .getLocale()));
-                                        Get.back();
                                       },
                                       color: AppColors.mainColor,
                                       fontColor: Colors.white,

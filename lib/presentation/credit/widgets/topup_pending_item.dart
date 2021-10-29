@@ -55,7 +55,7 @@ class TopUpPendingItem extends StatelessWidget {
                         style: Styles.topUpDateStyle,
                       ),
                       Text(
-                        'Isi Saldo',
+                        i10n.credit_topup,
                         style: Styles.topUpDetailsStyle.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -75,7 +75,7 @@ class TopUpPendingItem extends StatelessWidget {
                     return [
                       PopupMenuItem(
                         value: 1,
-                        child: Text('Batalkan'),
+                        child: Text(i10n.history_pending_cancel),
                       ),
                     ];
                   },
@@ -120,7 +120,9 @@ class TopUpPendingItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isVa ? 'No Virtual Account' : 'No Rekening',
+                          isVa
+                              ? i10n.history_pending_va_number
+                              : i10n.billing_rekening_number,
                           style: Styles.topUpDetailsStyle.copyWith(
                             color: AppColors.greyColor1,
                           ),
@@ -150,7 +152,9 @@ class TopUpPendingItem extends StatelessWidget {
                           );
                           Get.snackbar(
                             'Success',
-                            'Copied to clipboard !',
+                            i10n.billing_success_copy(isVa
+                                ? topUp.detail.vaNumber!
+                                : topUp.detail.bankAccNo!),
                             snackPosition: SnackPosition.BOTTOM,
                             duration: Duration(seconds: 2),
                           );
@@ -168,7 +172,7 @@ class TopUpPendingItem extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            'Salin',
+                            i10n.topup_copy_action,
                             style: Styles.topUpDetailsStyle.copyWith(
                               color: AppColors.mainColor,
                               fontWeight: FontWeight.bold,
@@ -186,7 +190,7 @@ class TopUpPendingItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isVa ? 'Virtual Account' : 'Nama Pemilik Rekening',
+                      isVa ? 'Virtual Account' : i10n.billing_bank_account_name,
                       style: Styles.topUpDetailsStyle.copyWith(
                         color: AppColors.greyColor1,
                       ),
@@ -208,7 +212,7 @@ class TopUpPendingItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Nama Bank',
+                        i10n.billing_bank_name,
                         style: Styles.topUpDetailsStyle.copyWith(
                           color: AppColors.greyColor1,
                         ),
@@ -232,7 +236,7 @@ class TopUpPendingItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Total Pembayaran',
+                          i10n.billing_total_payment,
                           style: Styles.topUpDetailsStyle.copyWith(
                             color: AppColors.greyColor1,
                           ),
@@ -265,7 +269,9 @@ class TopUpPendingItem extends StatelessWidget {
                           );
                           Get.snackbar(
                             'Success',
-                            'Copied to clipboard !',
+                            i10n.billing_success_copy(isVa
+                                ? topUp.detail.finalAmount!
+                                : topUp.detail.uniqueAmount!),
                             snackPosition: SnackPosition.BOTTOM,
                             duration: Duration(seconds: 2),
                           );
@@ -283,7 +289,7 @@ class TopUpPendingItem extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            'Salin',
+                            i10n.topup_copy_action,
                             style: Styles.topUpDetailsStyle.copyWith(
                               color: AppColors.mainColor,
                               fontWeight: FontWeight.bold,

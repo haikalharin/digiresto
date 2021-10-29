@@ -195,7 +195,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                   transform: Matrix4.translationValues(-24, 0, 0),
                   child: Center(
                     child: new Text(
-                      'Pilihan Alamat',
+                      I10n.current.address_search_address,
                       style: AppFont.textBlack17Bold,
                     ),
                   ),
@@ -284,7 +284,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
       ),
       child: GestureDetector(
         onTap: () {
-          print("set default");
           controller.setLocalActiveAddress(controller.currentLocation.value);
         },
         child: Container(
@@ -408,7 +407,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                                     padding: const EdgeInsets.only(
                                         left: 16.0, right: 16.0),
                                     child: Text(
-                                      "Utama",
+                                      I10n.current.address_default,
                                       style: AppFont.textRed10Regular,
                                     ),
                                   ),

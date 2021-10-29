@@ -154,14 +154,12 @@ class ApiAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Option<UserAuth>>> getSignedInUser() async {
-    await _storage.openBox(StorageConstants.user);
     Either<AuthFailure, Option<UserAuth>> failureOrSuccess = right(none());
+    await _storage.openBox(StorageConstants.user);
     final _userInStorage = await _storage.getData();
     if (_userInStorage.isNotEmpty) {
       final _user = UserAuth.fromJson(_userInStorage);
-      await _storage.openBox(StorageConstants.user);
       await _storage.putData(json: _user.toJson());
-      await _storage.close();
       final _userAuth = UserAuth.fromJson(_userInStorage);
       final _userProfile = await _profileRepository.getProfile();
       logger.d(_userProfile);
@@ -186,8 +184,10 @@ class ApiAuthFacade implements IAuthFacade {
     } catch (e) {}
     await _storage.openBox(StorageConstants.user);
     await _storage.deleteData();
+    await _storage.close();
     await _storage.openBox(StorageConstants.cart);
     await _storage.deleteData();
+    await _storage.close();
     await _storage.openBox(StorageConstants.address);
     await _storage.deleteData();
     await _storage.close();
@@ -198,6 +198,7 @@ class ApiAuthFacade implements IAuthFacade {
   Future<void> changeUrl({required String url}) async {
     await _storage.openBox(StorageConstants.base);
     await _storage.putString(key: 'devUrl', value: url);
+    await _storage.close();
   }
 
   @override

@@ -1,10 +1,10 @@
 import 'package:digiresto/application/profile/edit_profile/edit_profile_bloc.dart';
-import 'package:digiresto/domain/profile/user_profile.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EditProfileController extends GetxController {
-  final UserProfile userProfile;
+  final UserAuth userProfile;
   final EditProfileBloc profileBloc;
   EditProfileController(this.userProfile, this.profileBloc);
   RxBool isEditing = false.obs;
@@ -27,9 +27,9 @@ class EditProfileController extends GetxController {
 
   @override
   void onReady() {
-    nameCtrl.text = userProfile.name;
-    emailCtrl.text = userProfile.email;
-    phoneCtrl.text = userProfile.mobilePhone;
+    nameCtrl.text = userProfile.name ?? '';
+    emailCtrl.text = userProfile.email ?? '';
+    phoneCtrl.text = userProfile.mobilePhone ?? '';
     super.onReady();
   }
 }

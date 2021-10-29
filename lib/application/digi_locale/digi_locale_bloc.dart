@@ -24,13 +24,12 @@ class DigiLocaleBloc extends Bloc<DigiLocaleEvent, DigiLocaleState> {
     yield* event.map(
       started: (_) async* {
         String locale = await _repo.getAppLocale();
-
         yield DigiLocaleState.loadLocale(locale: Locale(locale));
       },
       updateLocale: (event) async* {
         print('update Locale');
         await _repo.setNewLocale(newLocale: event.locale.languageCode);
-        // yield DigiLocaleState.loadLocale(locale: event.locale);
+        yield DigiLocaleState.loadLocale(locale: event.locale);
       },
     );
   }

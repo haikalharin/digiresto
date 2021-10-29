@@ -275,7 +275,7 @@ class AddAddressScreen extends GetView<AddressLocationScreenController> {
                               onPressed: () {
                                 if (_nameController.text.toString().length ==
                                     0) {
-                                  Ctoast.show("Required name");
+                                  Ctoast.show(I10n.current.error_input_address);
                                 } else {
                                   addAddress();
                                 }

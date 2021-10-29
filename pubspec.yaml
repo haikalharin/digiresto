@@ -34,7 +34,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^7.3.0
-  flutter_easyloading: ^3.0.3
   flutter_google_places_hoc081098: ^1.0.0-nullsafety.5
   flutter_hooks: ^0.18.0
   flutter_image: ^4.1.0
@@ -97,7 +96,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/lang/
     - assets/
 
 flutter_intl:

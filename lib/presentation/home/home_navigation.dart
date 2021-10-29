@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'home_content.dart';
 
 class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
-  final I10n lang = I10n.of(Get.context!);
+  final I10n lang = I10n.current;
   void _onNavBarTapped(int index) {
     controller.indexOnTap.value = index;
     controller.getCartSession();

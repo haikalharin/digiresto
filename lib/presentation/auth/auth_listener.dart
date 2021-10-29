@@ -1,11 +1,12 @@
 import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class AuthListener extends StatelessWidget {
   const AuthListener({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class AuthListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
-      bloc: getIt<AuthBloc>()..add(AuthEvent.authCheckRequested()),
       builder: (context, state) {
         final _authBloc = BlocProvider.of<AuthBloc>(context);
         return state.map(
@@ -31,7 +31,8 @@ class AuthListener extends StatelessWidget {
                 children: [
                   Center(
                     child: failure.e.maybeMap(
-                      noInternet: (_) => Text('No internet connection'),
+                      noInternet: (_) =>
+                          Text(I10n.current.error_message_failed_get_response),
                       orElse: () => CircularProgressIndicator(),
                     ),
                   ),

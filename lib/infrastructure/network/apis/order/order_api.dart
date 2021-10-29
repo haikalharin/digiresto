@@ -29,7 +29,9 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
+import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()
@@ -66,8 +68,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -104,8 +109,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -144,8 +152,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -191,8 +202,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -236,8 +250,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -281,8 +298,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -322,8 +342,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -363,8 +386,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -405,8 +431,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -447,8 +476,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -487,8 +519,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -518,8 +553,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -549,8 +587,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -611,8 +652,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -644,8 +688,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -683,8 +730,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());
@@ -726,8 +776,11 @@ class OrderApi {
       return left(AuthException());
     } on ServerException catch (e) {
       ErrorDialog().showError(
-          error: StatusMessageDisplayResponse(
-              en: "Server error", id: "erver error"));
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
       return left(e);
     } on TimeOutException catch (_) {
       return left(TimeOutException());

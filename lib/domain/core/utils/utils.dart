@@ -1,4 +1,5 @@
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Utils {

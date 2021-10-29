@@ -21,7 +21,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PaymentReceiptScreen extends StatelessWidget {
-  final I10n i10n = I10n.of(Get.context!);
+  final I10n i10n = I10n.current;
   final df = new DateFormat('dd MMM yyyy, hh:mm:ss');
   final isoParser = new DateFormat('yyyy-MM-ddTHH:mm:ssZ');
   final ScreenshotController screenshotController = ScreenshotController();

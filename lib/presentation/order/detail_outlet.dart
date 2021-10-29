@@ -405,8 +405,8 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
                           onPressed: null,
                           child: Text(
                               controller.detailOutlet.value!.isOpen
-                                  ? "Open"
-                                  : "Closed",
+                                  ? I10n.current.outlet_open
+                                  : I10n.current.outlet_closed,
                               style: AppFont.textBlack12Bold
                                   .copyWith(color: Colors.white)),
                           style: ButtonStyle(

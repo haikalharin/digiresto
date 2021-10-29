@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "address_search_address":
             MessageLookupByLibrary.simpleMessage("Pilih Alamat"),
         "address_select_location":
-            MessageLookupByLibrary.simpleMessage("Select location"),
+            MessageLookupByLibrary.simpleMessage("Pilih Lokasi"),
         "address_set_destionation":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengatur tujuan"),
         "address_set_destionation_location":

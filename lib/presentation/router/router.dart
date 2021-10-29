@@ -1,4 +1,5 @@
 // import 'package:digiresto/presentation/home/add_location.dart';
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
@@ -101,7 +102,7 @@ class Routers {
     ),
     GetPage(
       name: Routers.editProfile,
-      page: () => EditProfilePage(Get.arguments as UserProfile),
+      page: () => EditProfilePage(Get.arguments as UserAuth),
     ),
     GetPage(
       name: Routers.orderHistory,
