@@ -203,7 +203,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
-        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         final getDineInID = await _orderRepository.getDineInIDMethod();
 
@@ -234,9 +233,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     customerSmoking: false,
                     delivery: deliveryParam,
                     eta: etaOrder,
-                    promos: getVoucherMethodID == null
-                        ? []
-                        : [getVoucherMethodID.code],
+                    promos: [request.code],
                     salesType: getSalesTypeCart ?? ""),
                 queryString:
                     UpdateCartSessionQueryParam(sessionId: sessionId!)));

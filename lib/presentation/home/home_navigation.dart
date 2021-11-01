@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
@@ -146,8 +147,30 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
               label: I10n.current.home_beranda),
           BottomNavigationBarItem(
               //icon: new Image.asset(Assets.iconMenuCart,width: 24,height: 24,),
-              icon: controller.cartBadge(false),
-              activeIcon: controller.cartBadge(true),
+              icon: Badge(
+                showBadge: controller.isHaveCart.value,
+                badgeColor: AppColors.red,
+                padding: EdgeInsets.all(7),
+                badgeContent: Text(
+                  '1',
+                  style: Styles.badgeContentStyle.copyWith(
+                    fontSize: 14,
+                  ),
+                ),
+                child: controller.cartBadge(false),
+              ),
+              activeIcon: Badge(
+                showBadge: controller.isHaveCart.value,
+                badgeColor: AppColors.red,
+                padding: EdgeInsets.all(7),
+                badgeContent: Text(
+                  '1',
+                  style: Styles.badgeContentStyle.copyWith(
+                    fontSize: 14,
+                  ),
+                ),
+                child: controller.cartBadge(true),
+              ),
               label: I10n.current.home_cart),
           BottomNavigationBarItem(
               icon: new Image.asset(

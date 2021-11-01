@@ -180,9 +180,8 @@ class OrderLocal {
         salesType: '');
     await _storage.openBox(StorageConstants.orderProduct);
     await _storage.setJson(key: _sessionIdKey, object: list.toJson());
-    await _storage.close();
-
     final productJson = _storage.getJson(key: _sessionIdKey);
+    await _storage.close();
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
     return productModel;
   }

@@ -1283,40 +1283,41 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        width: MediaQuery.of(Get.context!).size.width / 1.5,
-                        padding: const EdgeInsets.only(top: 15, bottom: 10),
-                        child: TextField(
-                            textInputAction: TextInputAction.search,
-                            onSubmitted: (value) {},
-                            controller: controller.voucherCodeController,
-                            readOnly: false,
-                            onTap: () {},
-                            style: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: AppColors.greyFill,
-                              contentPadding: EdgeInsets.only(
-                                  top: 12, bottom: 12, left: 10, right: 10),
-                              hintText: I10n.current.cart_voucher_code_hint,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.black, width: 32.0),
-                                  borderRadius: BorderRadius.circular(5)),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.black),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 15, bottom: 10),
+                          child: TextField(
+                              textInputAction: TextInputAction.search,
+                              onSubmitted: (value) {},
+                              controller: controller.voucherCodeController,
+                              readOnly: false,
+                              onTap: () {},
+                              style: TextStyle(
+                                fontSize: 14.0,
                               ),
-                            )),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: AppColors.greyFill,
+                                contentPadding: EdgeInsets.only(
+                                    top: 12, bottom: 12, left: 10, right: 10),
+                                hintText: I10n.current.cart_voucher_code_hint,
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.black, width: 32.0),
+                                    borderRadius: BorderRadius.circular(5)),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide:
+                                      BorderSide(width: 1, color: Colors.black),
+                                ),
+                              )),
+                        ),
                       ),
                       Container(
                         alignment: Alignment.topCenter,
-                        padding: const EdgeInsets.only(top: 5),
+                        padding: const EdgeInsets.only(top: 5, left: 10),
                         //width: MediaQuery. of(context). size. width-200,
                         child: Container(
                           padding: EdgeInsets.all(5),
@@ -1431,7 +1432,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     r.response.response.code != "00") {
                   final message = r.response.response.messageDisplay;
                   print("error response checkout 1:");
-
                   controller.isLoading.value = false;
                   if (Get.isDialogOpen!) {
                     Get.back();
@@ -1445,6 +1445,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   controller.isLoading.value = false;
                 }, checkVoucherOutletFail: (e) {
                   controller.isLoading.value = false;
+                  controller.voucherMethod.value = null;
                 }, orElse: () {
                   controller.isLoading.value = false;
                 });
@@ -1488,7 +1489,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               title: i10n.cart_title,
               body: Obx(
                 () => StackWithProgress(
-                  isLoading: controller.isLoading.value,
+                  isLoading: controller.isLoading.value ||
+                      state.maybeMap(
+                        orElse: () => false,
+                        loadInProgress: (_) => true,
+                      ),
                   children: [
                     ListView(
                       children: [

@@ -546,6 +546,12 @@ class OrderApi {
           content: object.toJson());
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
+      if (e.code == '12') {
+        final String _voucherMethodKey = "voucherMethodKey";
+        await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(key: _voucherMethodKey, object: {});
+        await _storage.close();
+      }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException());
     } on AuthException catch (_) {
@@ -645,6 +651,12 @@ class OrderApi {
           content: object.toJson());
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
+      if (e.code == '12') {
+        final String _voucherMethodKey = "voucherMethodKey";
+        await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(key: _voucherMethodKey, object: {});
+        await _storage.close();
+      }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException());
     } on AuthException catch (_) {
