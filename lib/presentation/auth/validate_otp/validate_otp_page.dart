@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
 import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -46,6 +47,7 @@ class ValidateOtpForm extends StatefulWidget {
 }
 
 class _ValidateOtpFormState extends State<ValidateOtpForm> {
+  late final _authBloc = BlocProvider.of<AuthBloc>(context);
   late final _validateBloc = BlocProvider.of<ValidateOtpBloc>(context);
   late final errorController = StreamController<ErrorAnimationType>();
   late Timer _timer;
@@ -106,6 +108,7 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
               Get.find<HomeNavigationViewController>().selectedTabIndex.value =
                   0;
             }
+            _authBloc.add(AuthEvent.authCheckRequested());
             login.isMember
                 ? Get.offAllNamed(Routers.auth)
                 : Get.to(RegisterPage(widget.phoneNumber));
