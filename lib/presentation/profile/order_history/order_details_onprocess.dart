@@ -276,7 +276,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                                   onPressed: () => Get.back(),
                                   color: Colors.white,
                                   borderColor: AppColors.mainColor,
-                                  label: 'Batal',
+                                  label: I10n.current.alert_cancel,
                                 ),
                               ),
                               SizedBox(
@@ -291,7 +291,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                                               orderDetails.receiptCode))),
                                   color: AppColors.mainColor,
                                   fontColor: Colors.white,
-                                  label: 'Ok',
+                                  label: I10n.current.alert_ok,
                                 ),
                               ),
                             ],
@@ -316,14 +316,14 @@ class OrderDetailsOnProcess extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Konfirmasi selesai',
+                            I10n.current.tvselesai,
                             style: Styles.dialogTitleStyle,
                           ),
                           SizedBox(
                             height: 15,
                           ),
                           Text(
-                            'Apakah anda yakin ingin menyelesaikan transaksi ?',
+                            I10n.current.history_order_asking_done,
                             style: Styles.dialogSubtitleStyle,
                             textAlign: TextAlign.center,
                           ),
@@ -337,7 +337,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                                   onPressed: () => Get.back(),
                                   color: Colors.white,
                                   borderColor: AppColors.mainColor,
-                                  label: 'Batal',
+                                  label: I10n.current.alert_cancel,
                                 ),
                               ),
                               SizedBox(
@@ -354,7 +354,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                                   },
                                   color: AppColors.mainColor,
                                   fontColor: Colors.white,
-                                  label: 'Ok',
+                                  label: I10n.current.alert_ok,
                                 ),
                               ),
                             ],
@@ -365,7 +365,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(30),
                   color: AppColors.mainColor,
-                  label: 'Konfirmasi Selesai',
+                  label: I10n.current.tvselesai,
                   fontColor: Colors.white,
                 ),
             ],

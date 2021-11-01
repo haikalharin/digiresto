@@ -121,7 +121,8 @@ class ProfileAddressWidget extends StatelessWidget {
                                         children: <Widget>[
                                           Container(
                                             padding: EdgeInsets.only(left: 10),
-                                            child: Text("Alamat Tersimpan",
+                                            child: Text(
+                                                I10n.current.address_saved,
                                                 style: AppFont.textBlack15Bold,
                                                 textAlign: TextAlign.center),
                                           ),
@@ -266,7 +267,7 @@ class ProfileAddressWidget extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         left: 16.0, right: 16.0),
                                     child: Text(
-                                      "Utama",
+                                      I10n.current.address_default,
                                       style: AppFont.textRed10Regular,
                                     ),
                                   ),

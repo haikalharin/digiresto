@@ -42,7 +42,7 @@ class OrderDetailsDone extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: Text(
-                      'Kasih rating untuk pesananmu!',
+                      I10n.current.rating_desc,
                       style: Styles.ratingLabelStyle,
                       textAlign: TextAlign.center,
                     ),
@@ -118,7 +118,7 @@ class OrderDetailsDone extends StatelessWidget {
                         fontColor: Colors.white,
                         width: 100,
                         height: 40,
-                        label: 'Kirim',
+                        label: I10n.current.review_send,
                       ),
                     ],
                   ),
@@ -176,7 +176,7 @@ class OrderDetailsDone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Tipe Order',
+                    I10n.current.history_order_type,
                     style: Styles.menuItemLabelStyle,
                   ),
                   Text(
@@ -192,7 +192,7 @@ class OrderDetailsDone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Status Transaksi',
+                    I10n.current.history_status,
                     style: Styles.menuItemLabelStyle,
                   ),
                   Text(
@@ -208,7 +208,7 @@ class OrderDetailsDone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Daftar Order',
+                    I10n.current.text_list_order,
                     style: Styles.menuItemLabelStyle,
                   ),
                 ],
@@ -261,7 +261,7 @@ class OrderDetailsDone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Delivery',
+                    I10n.current.cart_delivery,
                     style: Styles.menuItemLabelStyle,
                   ),
                   Text(
@@ -334,7 +334,7 @@ class OrderDetailsDone extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Status Pengiriman',
+                  I10n.current.delivery_status,
                   style: Styles.menuItemLabelStyle
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -343,7 +343,7 @@ class OrderDetailsDone extends StatelessWidget {
                 ),
                 if (orderDetails.deliveryDetail.status?.length == 0)
                   Text(
-                    'Menunggu driver',
+                    I10n.current.text_menunggu,
                     style: Styles.menuItemLabelStyle,
                   ),
                 Text(orderDetails.deliveryDetail.driverName ?? ''),
@@ -420,7 +420,7 @@ class OrderDetailsDone extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(30),
               color: AppColors.mainColor,
-              label: 'Beli Lagi',
+              label: I10n.current.history_reorder,
               fontColor: Colors.white,
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:digiresto/application/profile/order_details/cancel_page_controll
 import 'package:digiresto/application/profile/order_details/order_details_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
@@ -42,7 +43,7 @@ class CancelOrderWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Batalkan Transaksi',
+            I10n.current.history_order_cancel,
             style: Styles.appBarTitleStyle.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w400,
@@ -50,7 +51,7 @@ class CancelOrderWidget extends StatelessWidget {
             ),
           ),
           Text(
-            'Saya membatalkan pesanan saya karena...',
+            I10n.current.history_order_cancel_desc,
             style: Styles.appBarTitleStyle.copyWith(
               color: Colors.white,
             ),
@@ -85,7 +86,7 @@ class CancelOrderWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Transaksi dibatalkan',
+                        I10n.current.history_order_already_canceled,
                         style: Styles.dialogTitleStyle,
                       ),
                       SizedBox(
@@ -95,7 +96,7 @@ class CancelOrderWidget extends StatelessWidget {
                         onPressed: () => Get.back(),
                         color: Colors.white,
                         borderColor: AppColors.mainColor,
-                        label: 'Ok',
+                        label: I10n.current.alert_ok,
                       ),
                     ],
                   ),
@@ -175,7 +176,7 @@ class CancelOrderWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       color: AppColors.mainColor,
                       fontColor: Colors.white,
-                      label: 'Kirim',
+                      label: I10n.current.history_order_cancel_action,
                     ),
                   )
                 ],
