@@ -19,7 +19,6 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
   void _onNavBarTapped(int index) {
     controller.indexOnTap.value = index;
     controller.getCartSession();
-    selectTab();
   }
 
   void selectTab() {
@@ -113,7 +112,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getCartSession();
+    //controller.getCartSession();
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         state.maybeMap(
@@ -123,11 +122,11 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
             } else {
               controller.isHaveCart.value = true;
             }
-            // selectTab();
+            selectTab();
           },
           getCartSessionIDFail: (e) {
             controller.isHaveCart.value = false;
-            // selectTab();
+            selectTab();
           },
           orElse: () {
             //selectTab();
