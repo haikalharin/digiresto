@@ -53,7 +53,7 @@ class UserApi {
     }
   }
 
-  Future<Either<Exception, List<UserAddress>>> getAddress(String waId) async {
+  Future<Either<Exception, List<UserAddress>>> getAddress() async {
     try {
       final _userAuth = await _getUserProfile();
       String apiUrl = Endpoints.urlForward;

@@ -82,7 +82,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
           },
           setActiveAddressSuccess: (content) {
             controller.setActiveAddress(content.response.address!);
-            Get.back();
           },
           setDefaultFail: (content) {
             print(content);
@@ -285,6 +284,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
       child: GestureDetector(
         onTap: () {
           controller.setLocalActiveAddress(controller.currentLocation.value);
+          Get.back();
         },
         child: Container(
           //height: 70,
@@ -362,6 +362,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
         child: GestureDetector(
           onTap: () {
             controller.setLocalActiveAddress(data);
+            Get.back();
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 8),

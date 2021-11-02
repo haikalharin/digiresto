@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
@@ -1573,12 +1574,14 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
 
       controller.addCart(productId, qty, false);
     } else {
-      ErrorPopupWidget.confirmation(Strings.appName,
-          "Apakah ingin menghapus produk ${detailProduct.title}", () {
+      ErrorPopupWidget.confirmation(
+          Strings.appName, I10n.current.cart_delete_item(detailProduct.title),
+          () {
         Get.back(closeOverlays: true);
         controller.isLoading.value = true;
         if (controller.cartSession.value!.transactionData!.items.length == 1) {
           controller.removeCartSession();
+          Get.find<HomeNavigationViewController>().setHaveCart(false);
         } else {
           controller.removeCart(productId);
         }

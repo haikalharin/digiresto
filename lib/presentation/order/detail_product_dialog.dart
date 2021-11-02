@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -105,6 +106,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             );
         Get.back();
       });
+      Get.find<HomeNavigationViewController>().setHaveCart(true);
+
       return;
     }
     if (totalqty > (variantProductSelected.stock ?? 999)) {
@@ -113,6 +116,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       });
       return;
     }
+    Get.find<HomeNavigationViewController>().setHaveCart(true);
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
             CreateUpdateCartSessionItemParam(

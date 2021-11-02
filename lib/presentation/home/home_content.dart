@@ -7,11 +7,14 @@ import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -63,6 +66,8 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     controller.setActiveAddress(data.list[0].address!);
                   }
                 }
+              } else {
+                controller.getAddress();
               }
               controller.setListAddress(data.list);
             },
@@ -540,51 +545,75 @@ class _YourLocation extends GetView<HomeContentViewController> {
   _YourLocation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.toNamed(Routers.homeAllAddress)!.then((value) {
-          controller.getActiveAddress();
-        });
+    return BlocListener<AddressListBloc, AddressListState>(
+      listener: (context, state) {
+        state.maybeMap(
+            orElse: () {},
+            getGeoCodeSuccess: (_state) {
+              var response = _state.response;
+              final userAddress = UserAddress(
+                  address: response.formattedAddress,
+                  latitude: response.latitude,
+                  longitude: response.longitute);
+              controller.setCurrentLocation(userAddress);
+              controller.setActiveAddress(userAddress.address ?? '');
+              controller.setLocalActiveAddress(userAddress);
+            },
+            getGeoCodeFail: (_state) {
+              ErrorDialog().showError(
+                error: StatusMessageDisplayResponse(
+                  id: I10n.current.cart_address_not_valid,
+                  en: I10n.current.cart_address_not_valid,
+                ),
+              );
+            });
       },
-      child: Container(
-        padding: EdgeInsets.only(left: 10, right: 10),
-        child: Row(
-          children: [
-            ImageIcon(AssetImage(AppAssets.iconMarkerMove),
-                size: 28, color: AppColors.red),
-            Container(
-              width: MediaQuery.of(Get.context!).size.width - 50,
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Text(I10n.current.home_address,
-                            style: AppFont.textBlack13Regular),
-                        new Icon(Icons.keyboard_arrow_down,
-                            color: AppColors.red, size: 28.0),
-                        controller.loadingListAddress.value == true
-                            ? CustomProgressIndicatorWidget(size: 15)
-                            : Container(),
-                      ],
-                    ),
-                  ),
-                  Obx(() {
-                    return Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        controller.activeAddress.value,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppFont.textBlack14Bold,
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed(Routers.homeAllAddress)!.then((value) {
+            controller.getActiveAddress();
+          });
+        },
+        child: Container(
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconMarkerMove),
+                  size: 28, color: AppColors.red),
+              Container(
+                width: MediaQuery.of(Get.context!).size.width - 50,
+                padding: EdgeInsets.only(left: 10),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          Text(I10n.current.home_address,
+                              style: AppFont.textBlack13Regular),
+                          new Icon(Icons.keyboard_arrow_down,
+                              color: AppColors.red, size: 28.0),
+                          controller.loadingListAddress.value == true
+                              ? CustomProgressIndicatorWidget(size: 15)
+                              : Container(),
+                        ],
                       ),
-                    );
-                  })
-                ],
+                    ),
+                    Obx(() {
+                      return Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          controller.activeAddress.value,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppFont.textBlack14Bold,
+                        ),
+                      );
+                    })
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

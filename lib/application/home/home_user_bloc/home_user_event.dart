@@ -6,4 +6,6 @@ class HomeUserEvent with _$HomeUserEvent {
   const factory HomeUserEvent.getListAddress() = _GetListAddress;
   const factory HomeUserEvent.getActiveAddress() = _GetActiveAddress;
   const factory HomeUserEvent.getCartSessionID() = _GetCartSessionID;
+  const factory HomeUserEvent.setActiveAddressFromCurrentLocation() =
+      _SetActiveAddressFromCurrentLocation;
 }

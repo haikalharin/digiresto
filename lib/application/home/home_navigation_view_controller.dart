@@ -13,6 +13,11 @@ class HomeNavigationViewController extends GetxController {
     Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
   }
 
+  void setHaveCart(bool value) {
+    isHaveCart.value = value;
+    update();
+  }
+
   Widget cartBadge(bool isActive) {
     if (isActive) {
       return new Stack(children: <Widget>[

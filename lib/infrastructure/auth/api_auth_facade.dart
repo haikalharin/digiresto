@@ -61,7 +61,6 @@ class ApiAuthFacade implements IAuthFacade {
 
       return right(userData['isMember']);
     } on FailureException catch (e) {
-      // TODO: implement Failure Exception
       ErrorDialog().showError(error: e.message!);
       return left(AuthFailure.unknownError());
     } on AuthException catch (_) {
@@ -176,12 +175,6 @@ class ApiAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> signOut() async {
-    try {
-      await _networkService.getHttp(
-        path: Endpoints.urlLogout,
-        useAuth: true,
-      );
-    } catch (e) {}
     await _storage.openBox(StorageConstants.user);
     await _storage.deleteData();
     await _storage.close();
@@ -191,6 +184,15 @@ class ApiAuthFacade implements IAuthFacade {
     await _storage.openBox(StorageConstants.address);
     await _storage.deleteData();
     await _storage.close();
+    await _storage.openBox(StorageConstants.orderProduct);
+    await _storage.deleteData();
+    await _storage.close();
+    try {
+      await _networkService.getHttp(
+        path: Endpoints.urlLogout,
+        useAuth: true,
+      );
+    } catch (e) {}
     return right(unit);
   }
 
