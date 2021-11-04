@@ -271,7 +271,9 @@ class DeliveryStatus with _$DeliveryStatus {
   const factory DeliveryStatus({
     required String state,
     required DateTime updatedDate,
-    required String description,
+    @JsonKey(includeIfNull: true) required String? driverName,
+    @JsonKey(includeIfNull: true) required String? driverPhone,
+    @JsonKey(includeIfNull: true) required String? description,
     required String statusDescription,
   }) = _DeliveryStatus;
 

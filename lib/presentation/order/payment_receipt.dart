@@ -1,4 +1,3 @@
-import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_navigation_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -6,7 +5,6 @@ import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
-import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
@@ -38,13 +36,29 @@ class PaymentReceiptScreen extends StatelessWidget {
     PaymentReceiptViewArgument args =
         Get.arguments as PaymentReceiptViewArgument;
 
-    String? _receiptStatusTitle;
-    String? _receiptStatusDesc;
+    String _receiptStatusTitle = '';
+    String _receiptStatusDesc = '';
     bool isFavoriteDone = false;
     void checkStatus() {
       String receiptStatus = _transaction!.status ?? "initial";
-      _receiptStatusTitle = i10n.nota_title;
-      _receiptStatusDesc = '';
+
+      final mappingTitle = {
+        "initial": i10n.nota_pending_payment,
+        "failed": i10n.nota_failed,
+        "reject": i10n.error_message_title,
+        "cancelled": i10n.error_message_title,
+        "orElse": i10n.nota_success
+      };
+      final mappingDesc = {
+        "waiting": i10n.nota_waiting_desc,
+        "process": i10n.nota_process_desc,
+        "reject": i10n.nota_reject_desc,
+        "cancelled": i10n.nota_cancel_desc,
+        "ready": i10n.nota_ready_desc,
+        "done": i10n.nota_done_desc,
+        "auto_done": i10n.nota_auto_done_desc,
+        "orElse": ""
+      };
 
       // initial = pending payment
       // waiting = udah di bayar, tunggu response toko
@@ -54,35 +68,11 @@ class PaymentReceiptScreen extends StatelessWidget {
       // done = pesanan selesai
       // auto_done = pesanan selesai otomatis by system
       // failed = pembayaran gagal
-      switch (receiptStatus) {
-        case 'initial':
-          _receiptStatusTitle = i10n.nota_pending_payment;
-          break;
-        case 'waiting':
-          _receiptStatusDesc = i10n.nota_waiting_desc;
-          break;
-        case 'process':
-          _receiptStatusDesc = i10n.nota_process_desc;
-          break;
-        case 'reject':
-          _receiptStatusDesc = i10n.nota_reject_desc;
-          break;
-        case 'cancelled':
-          _receiptStatusDesc = i10n.nota_cancel_desc;
-          break;
-        case 'ready':
-          _receiptStatusDesc = i10n.nota_ready_desc;
-          break;
-        case 'done':
-          _receiptStatusDesc = i10n.nota_done_desc;
-          break;
-        case 'auto_done':
-          _receiptStatusDesc = i10n.nota_auto_done_desc;
-          break;
-        case 'failed':
-          _receiptStatusTitle = i10n.nota_failed;
-          break;
-      }
+      // cancelled = pembayaran dibatalkan
+
+      _receiptStatusTitle =
+          mappingTitle[receiptStatus] ?? mappingTitle["orElse"]!;
+      _receiptStatusDesc = mappingDesc[receiptStatus] ?? mappingDesc["orElse"]!;
     }
 
     return WillPopScope(
@@ -192,18 +182,18 @@ class PaymentReceiptScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  _receiptStatusTitle ?? '',
+                                  _receiptStatusTitle,
                                   style: TextStyle(
                                     color: AppColors.red,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                   ),
                                 ),
-                                if (_receiptStatusDesc!.isNotEmpty)
+                                if (_receiptStatusDesc.isNotEmpty)
                                   SizedBox(height: 5),
-                                if (_receiptStatusDesc!.isNotEmpty)
+                                if (_receiptStatusDesc.isNotEmpty)
                                   Text(
-                                    _receiptStatusDesc!,
+                                    _receiptStatusDesc,
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),

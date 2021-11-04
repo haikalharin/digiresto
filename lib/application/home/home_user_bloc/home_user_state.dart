@@ -26,4 +26,8 @@ class HomeUserState with _$HomeUserState {
       _GetCartSessionIDSuccess;
   const factory HomeUserState.getCartSessionIDFail(String message) =
       _GetCartSessionIDFail;
+  const factory HomeUserState.getCreditCountSuccess(int count) =
+      _GetCreditCountSuccess;
+  const factory HomeUserState.getCreditCountFail(String message) =
+      _GetCreditCountFail;
 }

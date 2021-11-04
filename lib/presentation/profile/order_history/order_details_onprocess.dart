@@ -6,6 +6,7 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/profile/order_history/cancel_order_page.dart';
+import 'package:digiresto/presentation/profile/order_history/widgets/delivery_status_widget.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -234,11 +235,29 @@ class OrderDetailsOnProcess extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    if (orderDetails.deliveryDetail.status?.length == 0)
-                      Text(
-                        I10n.current.text_menunggu,
-                        style: Styles.menuItemLabelStyle,
-                      ),
+                    orderDetails.deliveryDetail.status?.length == 0
+                        ? Text(
+                            I10n.current.text_menunggu,
+                            style: Styles.menuItemLabelStyle,
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ...orderDetails.deliveryDetail.status
+                                      ?.map((status) {
+                                    final index = orderDetails
+                                        .deliveryDetail.status
+                                        ?.indexOf(status);
+                                    return DeliveryStatusWidget(
+                                      status: status,
+                                      index: index!,
+                                      length: orderDetails
+                                          .deliveryDetail.status!.length,
+                                    );
+                                  }).toList() ??
+                                  [],
+                            ],
+                          ),
                     SizedBox(
                       height: 30,
                     ),

@@ -8,6 +8,7 @@ import 'home_user_bloc/home_user_bloc.dart';
 class HomeNavigationViewController extends GetxController {
   var selectedTabIndex = 0.obs;
   var isHaveCart = false.obs;
+  var creditTopupPending = 0.obs;
   var indexOnTap = 0.obs;
   void getCartSession() {
     Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
@@ -16,6 +17,15 @@ class HomeNavigationViewController extends GetxController {
   void setHaveCart(bool value) {
     isHaveCart.value = value;
     update();
+  }
+
+  void setCreditTopupPending(int value) {
+    creditTopupPending.value = value;
+    update();
+  }
+
+  void getCountCredit() {
+    Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCountCredit());
   }
 
   Widget cartBadge(bool isActive) {

@@ -326,8 +326,7 @@ class OrderDetailsDone extends StatelessWidget {
           color: AppColors.dividerColor,
         ),
         if (orderDetails.delivery != null &&
-            (orderDetails.status != 'done' &&
-                orderDetails.status != 'auto_done'))
+            orderDetails.deliveryDetail.status != null)
           Padding(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -341,15 +340,27 @@ class OrderDetailsDone extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                if (orderDetails.deliveryDetail.status?.length == 0)
-                  Text(
-                    I10n.current.text_menunggu,
-                    style: Styles.menuItemLabelStyle,
-                  ),
-                Text(orderDetails.deliveryDetail.driverName ?? ''),
-                ...orderDetails.deliveryDetail.status!
-                    .map((status) => DeliveryStatusWidget(status))
-                    .toList(),
+                orderDetails.deliveryDetail.status?.length == 0
+                    ? Text(
+                        I10n.current.text_menunggu,
+                        style: Styles.menuItemLabelStyle,
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...orderDetails.deliveryDetail.status?.map((status) {
+                                final index = orderDetails.deliveryDetail.status
+                                    ?.indexOf(status);
+                                return DeliveryStatusWidget(
+                                  status: status,
+                                  index: index!,
+                                  length: orderDetails
+                                      .deliveryDetail.status!.length,
+                                );
+                              }).toList() ??
+                              [],
+                        ],
+                      ),
                 SizedBox(
                   height: 30,
                 ),

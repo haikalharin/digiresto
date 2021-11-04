@@ -1405,14 +1405,15 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 controller.deliveryMethod.value = r.data;
                 controller.updateCartParam();
               }, checkVoucherOutletSuccess: (r) {
+                final voucher = GetListVoucherOutletDataResponse(
+                    code: controller.voucherCodeController.text.toUpperCase(),
+                    name: controller.voucherCodeController.text.toUpperCase());
+                Get.context!
+                    .read<OrderBloc>()
+                    .add(OrderEvent.setVoucherMethodID(voucher));
+                controller.voucherMethod.value = voucher;
+                controller.updateCartParam();
                 controller.checkAllLoaded();
-                Get.context!.read<OrderBloc>().add(
-                    OrderEvent.setVoucherMethodID(
-                        GetListVoucherOutletDataResponse(
-                            code: controller.voucherCodeController.text
-                                .toUpperCase(),
-                            name: controller.voucherCodeController.text
-                                .toUpperCase())));
               }, getVoucherMethodIDSuccess: (r) {
                 controller.voucherMethod.value = r.data;
                 controller.updateCartParam();
@@ -1548,8 +1549,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("${item.name}"),
-            Text('Rp.' + Utils.formatRupiah(item.amount.toString())),
+            Text("${item.name}", style: AppFont.textBlack12Light,),
+            Text(
+              'Rp.' + Utils.formatRupiah(item.amount.toString()),
+              style: AppFont.textBlack12Bold,
+            ),
           ],
         ),
       ],

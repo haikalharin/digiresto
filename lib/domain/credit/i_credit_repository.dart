@@ -28,4 +28,5 @@ abstract class ICreditRepository {
     required int onPage,
     required int pageSize,
   });
+  Future<Either<CreditFailure, int>> getCountTopupPending();
 }

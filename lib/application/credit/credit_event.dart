@@ -4,4 +4,5 @@ part of 'credit_bloc.dart';
 class CreditEvent with _$CreditEvent {
   const factory CreditEvent.started() = _Started;
   const factory CreditEvent.refreshBalance() = _RefreshBalance;
+  const factory CreditEvent.getCountTopupPending() = _GetCountTopupPending;
 }

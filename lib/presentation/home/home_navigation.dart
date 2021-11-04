@@ -113,6 +113,7 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
   @override
   Widget build(BuildContext context) {
     //controller.getCartSession();
+    controller.getCountCredit();
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
         state.maybeMap(
@@ -127,6 +128,9 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
           getCartSessionIDFail: (e) {
             controller.isHaveCart.value = false;
             selectTab();
+          },
+          getCreditCountSuccess: (_state) {
+            controller.setCreditTopupPending(_state.count);
           },
           orElse: () {
             //selectTab();
@@ -176,13 +180,42 @@ class HomeNavigationScreen extends GetView<HomeNavigationViewController> {
               ),
               label: I10n.current.home_cart),
           BottomNavigationBarItem(
-              icon: new Image.asset(
-                AppAssets.iconMenuCredit,
-                width: 30,
-                height: 30,
+              icon: Obx(
+                () => Badge(
+                  showBadge: controller.creditTopupPending.value > 0,
+                  badgeColor: AppColors.red,
+                  padding: EdgeInsets.all(7),
+                  badgeContent: Text(
+                    controller.creditTopupPending.value.toString(),
+                    style: Styles.badgeContentStyle.copyWith(
+                      fontSize: 14,
+                    ),
+                  ),
+                  child: Image.asset(
+                    AppAssets.iconMenuCredit,
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
               ),
-              activeIcon: new Image.asset(AppAssets.iconMenuCreditActive,
-                  width: 30, height: 30),
+              activeIcon: Obx(
+                () => Badge(
+                  showBadge: controller.creditTopupPending.value > 0,
+                  badgeColor: AppColors.red,
+                  padding: EdgeInsets.all(7),
+                  badgeContent: Text(
+                    controller.creditTopupPending.value.toString(),
+                    style: Styles.badgeContentStyle.copyWith(
+                      fontSize: 14,
+                    ),
+                  ),
+                  child: Image.asset(
+                    AppAssets.iconMenuCreditActive,
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+              ),
               label: I10n.current.home_credit),
           BottomNavigationBarItem(
               icon: new Image.asset(

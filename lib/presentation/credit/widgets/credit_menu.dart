@@ -28,11 +28,13 @@ class CreditMenu extends StatelessWidget {
   final void Function()? onTap;
   final String assetSvgIcon;
   final String label;
+  final int badgeCount;
   const CreditMenu({
     Key? key,
     this.onTap,
     required this.assetSvgIcon,
     required this.label,
+    this.badgeCount = 0,
   }) : super(key: key);
 
   @override
@@ -54,21 +56,37 @@ class CreditMenu extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 40,
-                      child: SvgPicture.asset(assetSvgIcon),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      label,
-                      style: Styles.creditMenuTitleStyle,
-                    )
-                  ],
+                Expanded(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
+                        child: SvgPicture.asset(assetSvgIcon),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        label,
+                        style: Styles.creditMenuTitleStyle,
+                      )
+                    ],
+                  ),
                 ),
+                if (badgeCount > 0)
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.red,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      badgeCount.toString(),
+                      style: Styles.badgeContentStyle.copyWith(
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
                 Icon(
                   Icons.arrow_forward,
                   size: 30,

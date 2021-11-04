@@ -264,4 +264,41 @@ class CreditRepository implements ICreditRepository {
       return left(CreditFailure.unexpected());
     }
   }
+
+  @override
+  Future<Either<CreditFailure, int>> getCountTopupPending() async {
+    final apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlTopupPending;
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        useAuth: true,
+        queryParameter: queryParameter,
+        content: {
+          "query_string": {
+            "outletName": "",
+          },
+          "body": {},
+        },
+      );
+      final data = (apiResult as Map<String, dynamic>)['data'];
+      final list = List.from(data);
+      final count = list.length;
+      return right(count);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(CreditFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(CreditFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(CreditFailure.serverError());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(CreditFailure.noInternet());
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(CreditFailure.unexpected());
+    }
+  }
 }

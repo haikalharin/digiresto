@@ -27,10 +27,12 @@ class CreditBloc extends Bloc<CreditEvent, CreditState> {
       started: (_event) async* {
         final listTopUpMethod = await _creditRepository.getTopUpMethod();
         final userBalance = await _creditRepository.getUserBalance();
-
+        final countTopupPending =
+            await _creditRepository.getCountTopupPending();
         yield state.copyWith(
           userBalance: optionOf(userBalance),
           listTopUpMethod: optionOf(listTopUpMethod),
+          countTopupPending: optionOf(countTopupPending),
         );
       },
       refreshBalance: (_event) async* {
@@ -43,6 +45,13 @@ class CreditBloc extends Bloc<CreditEvent, CreditState> {
         yield state.copyWith(
           userBalance: optionOf(userBalance),
           listTopUpMethod: optionOf(listTopUpMethod),
+        );
+      },
+      getCountTopupPending: (_event) async* {
+        final countTopupPending =
+            await _creditRepository.getCountTopupPending();
+        yield state.copyWith(
+          countTopupPending: optionOf(countTopupPending),
         );
       },
     );
