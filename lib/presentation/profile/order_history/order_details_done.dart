@@ -10,6 +10,7 @@ import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/delivery_status_widget.dart';
+import 'package:digiresto/presentation/profile/order_history/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -166,7 +167,7 @@ class OrderDetailsDone extends StatelessWidget {
           color: AppColors.dividerColor,
         ),
         Padding(
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.all(Dimens.defaultMargin),
           child: Column(
             children: [
               SizedBox(
@@ -202,7 +203,7 @@ class OrderDetailsDone extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 8,
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,10 +214,19 @@ class OrderDetailsDone extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 15,
+              ),
+              ...orderDetails.items
+                  .map((item) => MenuItemWidget(item))
+                  .toList(),
+              SizedBox(
+                height: 10,
+              ),
               Divider(
                 color: AppColors.greyColor,
                 thickness: 1,
-                height: 40,
+                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -301,7 +311,7 @@ class OrderDetailsDone extends StatelessWidget {
         ),
         if (orderDetails.delivery != null)
           Padding(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.all(Dimens.defaultMargin),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -328,7 +338,7 @@ class OrderDetailsDone extends StatelessWidget {
         if (orderDetails.delivery != null &&
             orderDetails.deliveryDetail.status != null)
           Padding(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.all(Dimens.defaultMargin),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -338,13 +348,27 @@ class OrderDetailsDone extends StatelessWidget {
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 orderDetails.deliveryDetail.status?.length == 0
-                    ? Text(
-                        I10n.current.text_menunggu,
-                        style: Styles.menuItemLabelStyle,
-                      )
+                    ? Padding(
+                        padding: EdgeInsets.only(top: 30),
+                        child: Center(
+                          child: Text(
+                            (orderDetails.status == 'done' ||
+                                    orderDetails.status == 'auto_done')
+                                ? I10n.current.history_order_already_done
+                                : (orderDetails.status == 'cancelled' ||
+                                        orderDetails.status == 'reject')
+                                    ? I10n
+                                        .current.history_order_already_canceled
+                                    : I10n.current.text_menunggu,
+                            style: Styles.menuItemLabelStyle.copyWith(
+                              color: AppColors.grey747474,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ))
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -362,7 +386,7 @@ class OrderDetailsDone extends StatelessWidget {
                         ],
                       ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
               ],
             ),
@@ -425,9 +449,11 @@ class OrderDetailsDone extends StatelessWidget {
                 //       );
                 // });
               },
-              margin: EdgeInsets.symmetric(
-                horizontal: Dimens.defaultMargin,
-                vertical: 30,
+              margin: EdgeInsets.only(
+                left: Dimens.defaultMargin,
+                right: Dimens.defaultMargin,
+                bottom: 40,
+                top: 10,
               ),
               borderRadius: BorderRadius.circular(30),
               color: AppColors.mainColor,

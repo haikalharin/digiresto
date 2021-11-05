@@ -94,7 +94,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
           color: AppColors.dividerColor,
         ),
         Padding(
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.all(Dimens.defaultMargin),
           child: Column(
             children: [
               ...orderDetails.items
@@ -194,7 +194,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
         ),
         if (orderDetails.delivery != null)
           Padding(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.all(Dimens.defaultMargin),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -219,7 +219,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
           color: AppColors.dividerColor,
         ),
         Padding(
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.all(Dimens.defaultMargin),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -236,10 +236,24 @@ class OrderDetailsOnProcess extends StatelessWidget {
                       height: 10,
                     ),
                     orderDetails.deliveryDetail.status?.length == 0
-                        ? Text(
-                            I10n.current.text_menunggu,
-                            style: Styles.menuItemLabelStyle,
-                          )
+                        ? Padding(
+                            padding: EdgeInsets.only(top: 30),
+                            child: Center(
+                              child: Text(
+                                (orderDetails.status == 'done' ||
+                                        orderDetails.status == 'auto_done')
+                                    ? I10n.current.history_order_already_done
+                                    : (orderDetails.status == 'cancelled' ||
+                                            orderDetails.status == 'reject')
+                                        ? I10n.current
+                                            .history_order_already_canceled
+                                        : I10n.current.text_menunggu,
+                                style: Styles.menuItemLabelStyle.copyWith(
+                                  color: AppColors.grey747474,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ))
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -259,7 +273,7 @@ class OrderDetailsOnProcess extends StatelessWidget {
                             ],
                           ),
                     SizedBox(
-                      height: 30,
+                      height: 40,
                     ),
                   ],
                 ),

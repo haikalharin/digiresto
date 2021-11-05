@@ -532,15 +532,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       child: ElevatedButton(
                           onPressed: () {
                             Get.toNamed(Routers.selectVoucherVoucher,
-                                    arguments:
-                                        OrderSelectVoucherMethodViewArgument(
-                                            outlet: controller
-                                                .detailOutlet.value!))!
-                                .then((value) {
-                              Get.context!
-                                  .read<OrderBloc>()
-                                  .add(OrderEvent.getVoucherMethodID());
-                            });
+                                arguments: OrderSelectVoucherMethodViewArgument(
+                                    outlet: controller.detailOutlet.value!));
                           },
                           style: ElevatedButton.styleFrom(
                             primary: AppColors.redD12B34,
@@ -1292,6 +1285,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               onSubmitted: (value) {},
                               controller: controller.voucherCodeController,
                               readOnly: false,
+                              autocorrect: false,
+                              enabled: (controller.voucherMethod.value == null),
                               onTap: () {},
                               style: TextStyle(
                                 fontSize: 14.0,
@@ -1324,20 +1319,21 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           padding: EdgeInsets.all(5),
                           height: 50,
                           child: ElevatedButton(
-                              onPressed: () {
-                                controller.isLoading.value = true;
-                                Get.context!.read<OrderBloc>().add(
-                                    OrderEvent.checkVoucherOutlet(
-                                        controller.voucherCodeController.text));
-                              },
+                              onPressed:
+                                  (controller.voucherMethod.value == null)
+                                      ? () {
+                                          controller.isLoading.value = true;
+                                          Get.context!.read<OrderBloc>().add(
+                                              OrderEvent.checkVoucherOutlet(
+                                                  controller
+                                                      .voucherCodeController
+                                                      .text));
+                                        }
+                                      : null,
                               style: ElevatedButton.styleFrom(
                                 primary: AppColors.red,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(5.0),
-                                  side: BorderSide(
-                                    width: 1,
-                                    color: AppColors.redYoung,
-                                  ),
                                 ),
                               ),
                               child: Text(I10n.current.cart_voucher_code_use,
@@ -1406,8 +1402,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 controller.updateCartParam();
               }, checkVoucherOutletSuccess: (r) {
                 final voucher = GetListVoucherOutletDataResponse(
-                    code: controller.voucherCodeController.text.toUpperCase(),
-                    name: controller.voucherCodeController.text.toUpperCase());
+                  code: r.code.toUpperCase(),
+                  name: r.code.toUpperCase(),
+                );
                 Get.context!
                     .read<OrderBloc>()
                     .add(OrderEvent.setVoucherMethodID(voucher));
@@ -1549,7 +1546,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("${item.name}", style: AppFont.textBlack12Light,),
+            Text(
+              "${item.name}",
+              style: AppFont.textBlack12Light,
+            ),
             Text(
               'Rp.' + Utils.formatRupiah(item.amount.toString()),
               style: AppFont.textBlack12Bold,

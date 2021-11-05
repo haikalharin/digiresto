@@ -58,6 +58,7 @@ class SelectVouchertMethodScreen extends StatelessWidget {
           body: state.maybeMap(getListVoucherOutletSuccess: (r) {
             return ListView.separated(
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: r.response.length,
               itemBuilder: (context, index) =>
                   _buildItemList(r.response[index]),
@@ -97,10 +98,10 @@ class SelectVouchertMethodScreen extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                //save to local
+                //check voucher
                 Get.context!
                     .read<OrderBloc>()
-                    .add(OrderEvent.setVoucherMethodID(response));
+                    .add(OrderEvent.checkVoucherOutlet(response.code));
                 Get.back();
               },
               style: ElevatedButton.styleFrom(

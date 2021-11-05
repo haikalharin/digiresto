@@ -241,7 +241,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         yield createCartSession.fold(
           (error) => OrderState.loadFailure(
               OrderFailure.checkVoucherOutletFail(error)),
-          (list) => OrderState.checkVoucherOutletSuccess(),
+          (list) => OrderState.checkVoucherOutletSuccess(request.code),
         );
       },
       createCartSession: (request) async* {
