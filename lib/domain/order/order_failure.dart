@@ -60,4 +60,7 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.sessionExpired() = _SessionExpired;
   const factory OrderFailure.checkVoucherOutletFail(Exception? e) =
       _CheckVoucherOutletFail;
+  const factory OrderFailure.getTransactionPendingFail() =
+      _GetTransactionPendingFail;
+  const factory OrderFailure.cancelTransactionFail() = _CancelTransactionFail;
 }

@@ -15,6 +15,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
+import 'package:digiresto/domain/profile/order_pending.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
@@ -22,6 +23,7 @@ import 'package:digiresto/infrastructure/network/apis/order/order_repository.dar
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
@@ -52,11 +54,23 @@ class OrderCartScreenViewController extends GetxController {
   var deliveryMethod = Rxn<DeliveryMethodDataResponse>();
   var voucherMethod = Rxn<GetListVoucherOutletDataResponse>();
   var checkoutResponse = Rxn<CheckoutDataResponse>();
+  var listOrderPending = RxList<OrderPending>();
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
+
+  void getTransactionPending() async {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getTransactionPending());
+    update();
+  }
+
+  void setTransactionPending(IList<OrderPending> list) {
+    listOrderPending.value = list.toList();
+    print('list : ${list.toString()}');
+    update();
+  }
 
   void removeCartSession() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCartSession());

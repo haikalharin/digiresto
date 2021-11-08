@@ -92,4 +92,9 @@ class OrderEvent with _$OrderEvent {
       GetListVoucherOutletDataResponse data) = _SetVoucherMethodID;
 
   const factory OrderEvent.getVoucherMethodID() = _GetVoucherMethodID;
+
+  const factory OrderEvent.getTransactionPending() = _GetTransactionPending;
+
+  const factory OrderEvent.cancelTransaction(String receiptCode) =
+      _CancelTransaction;
 }

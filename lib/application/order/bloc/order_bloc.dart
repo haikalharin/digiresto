@@ -29,8 +29,11 @@ import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_failure.dart';
+import 'package:digiresto/domain/profile/i_profile_repository.dart';
+import 'package:digiresto/domain/profile/order_pending.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:digiresto/infrastructure/network/apis/user/user_repository.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -42,9 +45,11 @@ part 'order_state.dart';
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   final OrderRepository _orderRepository;
   final UserRepository _userRepository;
+  final IProfileRepository _profileRepository;
   OrderBloc(
     this._orderRepository,
     this._userRepository,
+    this._profileRepository,
   ) : super(_Initial());
 
   @override
@@ -658,6 +663,29 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           yield OrderState.loadFailure(
               OrderFailure.setDineInIDMethodFail(null));
         }
+      },
+      getTransactionPending: (_event) async* {
+        yield OrderState.loadInProgress();
+        final getTransactionPending =
+            await _profileRepository.getOrderPending();
+
+        yield getTransactionPending.fold(
+          (error) =>
+              OrderState.loadFailure(OrderFailure.getTransactionPendingFail()),
+          (list) => OrderState.getTransactionPendingSuccess(list),
+        );
+      },
+      cancelTransaction: (r) async* {
+        yield OrderState.loadInProgress();
+        final cancelTransaction = await _profileRepository.cancelTransaction(
+          reason: 'Cancel payment method',
+          receiptCode: r.receiptCode,
+        );
+        yield cancelTransaction.fold(
+          (error) =>
+              OrderState.loadFailure(OrderFailure.cancelTransactionFail()),
+          (unit) => OrderState.cancelTransactionSuccess(),
+        );
       },
     );
   }

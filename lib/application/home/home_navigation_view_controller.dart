@@ -10,8 +10,10 @@ class HomeNavigationViewController extends GetxController {
   var isHaveCart = false.obs;
   var creditTopupPending = 0.obs;
   var indexOnTap = 0.obs;
+
   void getCartSession() {
     Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getCartSessionID());
+    update();
   }
 
   void setHaveCart(bool value) {

@@ -170,8 +170,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i49.ICreditRepository>(() =>
       _i50.CreditRepository(get<_i24.INetworkService>(), get<_i11.Logger>()));
   gh.factory<_i51.LoginBloc>(() => _i51.LoginBloc(get<_i47.IAuthFacade>()));
-  gh.factory<_i52.OrderBloc>(() =>
-      _i52.OrderBloc(get<_i36.OrderRepository>(), get<_i40.UserRepository>()));
+  gh.factory<_i52.OrderBloc>(() => _i52.OrderBloc(get<_i36.OrderRepository>(),
+      get<_i40.UserRepository>(), get<_i28.IProfileRepository>()));
   gh.factory<_i53.OrderCartScreenViewController>(
       () => _i53.OrderCartScreenViewController(get<_i36.OrderRepository>()));
   gh.factory<_i54.ProfileBloc>(() => _i54.ProfileBloc(get<_i47.IAuthFacade>()));

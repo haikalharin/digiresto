@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
@@ -15,16 +17,79 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class OrderPendingWidget extends StatelessWidget {
+class OrderPendingWidget extends StatefulWidget {
   final OrderPending orderPending;
   const OrderPendingWidget(this.orderPending, {Key? key}) : super(key: key);
 
   @override
+  State<OrderPendingWidget> createState() => _OrderPendingWidgetState();
+}
+
+class _OrderPendingWidgetState extends State<OrderPendingWidget> {
+  late Timer _timer;
+  late int _start;
+  String _timeString = '';
+
+  void startTimer() {
+    final deviceTimestamp = DateTime.now().toLocal();
+    final expiresAt = widget.orderPending.billingDetail.expiresAt.toLocal();
+    final diff = expiresAt.difference(deviceTimestamp).inSeconds;
+    const oneSec = const Duration(seconds: 1);
+    setState(() {
+      _start = diff;
+    });
+    _timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+            _timeString = formatedTime(_start);
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      startTimer();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  String formatedTime(int secTime) {
+    String getParsedTime(String time) {
+      if (time.length <= 1) return "0$time";
+      return time;
+    }
+
+    int min = secTime ~/ 60;
+    int sec = secTime % 60;
+
+    String parsedTime =
+        getParsedTime(min.toString()) + ":" + getParsedTime(sec.toString());
+
+    return parsedTime;
+  }
+
+  @override
   Widget build(BuildContext context) {
     I10n i10n = I10n.of(context);
-    final isVa = orderPending.billingDetail.vaNumber.isNotEmpty;
-    final isWebview = orderPending.billingDetail.isWebView;
-    final isDeeplink = orderPending.billingDetail.isDeeplink;
+    final isVa = widget.orderPending.billingDetail.vaNumber.isNotEmpty;
+    final isWebview = widget.orderPending.billingDetail.isWebView;
+    final isDeeplink = widget.orderPending.billingDetail.isDeeplink;
     final isEwallet = isWebview || isDeeplink;
     // final isVa = orderPending.billingDetail..isNotEmpty;
 
@@ -45,7 +110,7 @@ class OrderPendingWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    orderPending.billingDetail.serviceProvider,
+                    widget.orderPending.billingDetail.serviceProvider,
                     style: Styles.topUpDetailsStyle.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -69,8 +134,9 @@ class OrderPendingWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        CommonUtils.currencyFormat(double.tryParse(
-                                orderPending.billingDetail.amount.toString()) ??
+                        CommonUtils.currencyFormat(double.tryParse(widget
+                                .orderPending.billingDetail.amount
+                                .toString()) ??
                             0),
                         style: Styles.topUpDetailsStyle.copyWith(
                           fontSize: 15,
@@ -85,13 +151,13 @@ class OrderPendingWidget extends StatelessWidget {
                       onTap: () {
                         Clipboard.setData(
                           ClipboardData(
-                            text: '${orderPending.billingDetail.amount}',
+                            text: '${widget.orderPending.billingDetail.amount}',
                           ),
                         );
                         Get.snackbar(
                           'Success',
                           i10n.billing_success_copy(
-                              '${orderPending.billingDetail.amount}'),
+                              '${widget.orderPending.billingDetail.amount}'),
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
                         );
@@ -142,7 +208,7 @@ class OrderPendingWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      orderPending.billingDetail.bankName,
+                      widget.orderPending.billingDetail.bankName,
                       style: Styles.topUpDetailsStyle.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -164,8 +230,8 @@ class OrderPendingWidget extends StatelessWidget {
                   ),
                   Text(
                     isVa
-                        ? orderPending.billingDetail.title
-                        : orderPending.billingDetail.bankAccName,
+                        ? widget.orderPending.billingDetail.title
+                        : widget.orderPending.billingDetail.bankAccName,
                     style: Styles.topUpDetailsStyle.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -192,8 +258,8 @@ class OrderPendingWidget extends StatelessWidget {
                       ),
                       Text(
                         isVa
-                            ? orderPending.billingDetail.vaNumber
-                            : orderPending.billingDetail.bankAccNo,
+                            ? widget.orderPending.billingDetail.vaNumber
+                            : widget.orderPending.billingDetail.bankAccNo,
                         style: Styles.topUpDetailsStyle.copyWith(
                           color: AppColors.mainColor,
                           fontSize: 15,
@@ -208,13 +274,13 @@ class OrderPendingWidget extends StatelessWidget {
                       onTap: () {
                         Clipboard.setData(
                           ClipboardData(
-                            text: orderPending.billingDetail.vaNumber,
+                            text: widget.orderPending.billingDetail.vaNumber,
                           ),
                         );
                         Get.snackbar(
                           'Success',
                           i10n.billing_success_copy(
-                              orderPending.billingDetail.vaNumber),
+                              widget.orderPending.billingDetail.vaNumber),
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
                         );
@@ -260,12 +326,12 @@ class OrderPendingWidget extends StatelessWidget {
                       ),
                       Text(
                         isVa
-                            ? CommonUtils.currencyFormat(double.tryParse(
-                                    orderPending.billingDetail.amount
-                                        .toString()) ??
+                            ? CommonUtils.currencyFormat(double.tryParse(widget
+                                    .orderPending.billingDetail.amount
+                                    .toString()) ??
                                 0)
-                            : CommonUtils.currencyFormat(double.tryParse(
-                                    orderPending.billingDetail.uniqueAmount) ??
+                            : CommonUtils.currencyFormat(double.tryParse(widget
+                                    .orderPending.billingDetail.uniqueAmount) ??
                                 0),
                         style: Styles.topUpDetailsStyle.copyWith(
                           fontSize: 15,
@@ -281,16 +347,18 @@ class OrderPendingWidget extends StatelessWidget {
                         Clipboard.setData(
                           ClipboardData(
                             text: isVa
-                                ? '${orderPending.billingDetail.amount}'
-                                : orderPending.billingDetail.uniqueAmount,
+                                ? '${widget.orderPending.billingDetail.amount}'
+                                : widget
+                                    .orderPending.billingDetail.uniqueAmount,
                           ),
                         );
                         Get.snackbar(
                           'Success',
                           i10n.billing_success_copy(
                             isVa
-                                ? '${orderPending.billingDetail.amount}'
-                                : orderPending.billingDetail.uniqueAmount,
+                                ? '${widget.orderPending.billingDetail.amount}'
+                                : widget
+                                    .orderPending.billingDetail.uniqueAmount,
                           ),
                           snackPosition: SnackPosition.BOTTOM,
                           duration: Duration(seconds: 2),
@@ -381,12 +449,12 @@ class OrderPendingWidget extends StatelessWidget {
                       Text(
                         CommonUtils.dateFormat(
                             'dd MMMM yyyy, HH:mm',
-                            orderPending.deviceTimestamp
+                            widget.orderPending.deviceTimestamp
                                 .add(DateTime.now().timeZoneOffset))!,
                         style: Styles.topUpDateStyle,
                       ),
                       Text(
-                        orderPending.outlet.detail.name,
+                        widget.orderPending.outlet.detail.name,
                         style: Styles.topUpDetailsStyle.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -405,7 +473,7 @@ class OrderPendingWidget extends StatelessWidget {
                         Get.toNamed(Routers.paymentReceipt,
                             arguments: PaymentReceiptViewArgument(
                                 fromOrder: false,
-                                receiptCode: orderPending.receiptCode));
+                                receiptCode: widget.orderPending.receiptCode));
 
                         break;
                       case 2:
@@ -425,7 +493,7 @@ class OrderPendingWidget extends StatelessWidget {
                                 ),
                                 Text(
                                   i10n.history_pending_cancel_alert(
-                                      orderPending.receiptCode),
+                                      widget.orderPending.receiptCode),
                                   style: Styles.dialogSubtitleStyle,
                                   textAlign: TextAlign.center,
                                 ),
@@ -448,8 +516,8 @@ class OrderPendingWidget extends StatelessWidget {
                                     Expanded(
                                       child: CustomButton(
                                         onPressed: () => Get.off(
-                                                CancelOrderPage(
-                                                    orderPending.receiptCode))
+                                                CancelOrderPage(widget
+                                                    .orderPending.receiptCode))
                                             ?.then(
                                           (value) => Get.back(),
                                         ),
@@ -502,8 +570,26 @@ class OrderPendingWidget extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: Text(i10n.history_pending_expired(
-                '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', (orderPending.billingDetail.expiresAt.add(DateTime.now().timeZoneOffset)))} ${DateTime.now().timeZoneName}')),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  i10n.history_pending_expired(
+                    '${CommonUtils.dateFormat('dd MMM yyyy, HH:mm', (widget.orderPending.billingDetail.expiresAt.add(DateTime.now().timeZoneOffset)))} ${DateTime.now().timeZoneName}',
+                  ),
+                  style: Styles.topUpDateStyle,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  _timeString,
+                  style: Styles.topUpDateStyle.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
           isEwallet ? ewallet() : bankOrVA(),
           CustomButton(
@@ -524,7 +610,7 @@ class OrderPendingWidget extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        (orderPending.billingDetail.expiresAt
+                        (widget.orderPending.billingDetail.expiresAt
                                     .add(DateTime.now().timeZoneOffset))
                                 .isAfter(DateTime.now())
                             ? i10n.history_pending_inquiry_pending
@@ -537,7 +623,7 @@ class OrderPendingWidget extends StatelessWidget {
                       ),
                       CustomButton(
                         onPressed: () async {
-                          final url = orderPending.billingDetail.link;
+                          final url = widget.orderPending.billingDetail.link;
                           Get.back();
                           if (url.isNotEmpty && url.isURL) {
                             isDeeplink

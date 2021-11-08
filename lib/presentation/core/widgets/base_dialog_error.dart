@@ -121,11 +121,11 @@ class BaseDialogError extends StatelessWidget {
                   label: i10n.alert_ok,
                   color: AppColors.mainColor,
                   fontColor: Colors.white,
-                  onPressed: () {
+                  onPressed: () async {
+                    Get.back();
                     if (onClose != null) {
                       onClose!();
                     }
-                    Get.back();
                   },
                 ),
               ],

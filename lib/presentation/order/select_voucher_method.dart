@@ -19,55 +19,59 @@ class SelectVouchertMethodScreen extends StatelessWidget {
             queryString: GetListVoucherOutletQueryParam(
                 merchantId: args.outlet.merchantId!,
                 outletId: args.outlet.id))));
-    return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
-      state.maybeMap(
-          getPaymentMethodSuccess: (r) {
-            print(r.response);
-          },
-          orElse: () {});
-    }, builder: (context, state) {
-      return Scaffold(
-          appBar: AppBar(
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              ImageIcon(
-                AssetImage(
-                  AppAssets.iconVoucher,
+    return BlocConsumer<OrderBloc, OrderState>(
+      listener: (context, state) {
+        state.maybeMap(
+            getPaymentMethodSuccess: (r) {
+              print(r.response);
+            },
+            orElse: () {});
+      },
+      builder: (context, state) {
+        return Scaffold(
+            appBar: AppBar(
+              iconTheme: IconThemeData(
+                color: Colors.black,
+              ),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              title:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                ImageIcon(
+                  AssetImage(
+                    AppAssets.iconVoucher,
+                  ),
+                  size: 24,
+                  color: AppColors.redD12B34,
                 ),
-                size: 24,
-                color: AppColors.redD12B34,
-              ),
-              SizedBox(
-                width: 12,
-              ),
-              Text(I10n.current.cart_my_voucher,
-                  style: AppFont.textBlack15Bold),
-              SizedBox(
-                width: 48,
-              ),
-            ]),
-            centerTitle: true,
-            backgroundColor: Colors.white,
-          ),
-          body: state.maybeMap(getListVoucherOutletSuccess: (r) {
-            return ListView.separated(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: r.response.length,
-              itemBuilder: (context, index) =>
-                  _buildItemList(r.response[index]),
-              separatorBuilder: (context, index) => SizedBox(height: 5),
-            );
-          }, orElse: () {
-            return Container();
-          }));
-    });
+                SizedBox(
+                  width: 12,
+                ),
+                Text(I10n.current.cart_my_voucher,
+                    style: AppFont.textBlack15Bold),
+                SizedBox(
+                  width: 48,
+                ),
+              ]),
+              centerTitle: true,
+              backgroundColor: Colors.white,
+            ),
+            body: state.maybeMap(getListVoucherOutletSuccess: (r) {
+              return ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: r.response.length,
+                itemBuilder: (context, index) =>
+                    _buildItemList(r.response[index]),
+                separatorBuilder: (context, index) => SizedBox(height: 5),
+              );
+            }, orElse: () {
+              return Container();
+            }));
+      },
+    );
   }
 
   Widget _buildItemList(GetListVoucherOutletDataResponse response) {

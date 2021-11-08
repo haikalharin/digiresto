@@ -26,7 +26,15 @@ class PaymentReceiptScreen extends StatelessWidget {
   Widget _lr(Widget left, Widget right) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [left, right],
+      children: [
+        Expanded(
+          child: left,
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        right,
+      ],
     );
   }
 
@@ -247,6 +255,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                           SizedBox(height: 5),
                                           ListView.separated(
                                             shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
                                             itemCount:
                                                 _transaction!.items.length,
                                             itemBuilder: (context, index) =>
@@ -284,6 +294,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                           SizedBox(height: 5),
                                           ListView.separated(
                                             shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
                                             itemCount: _transaction!
                                                     .taxesAndServices?.length ??
                                                 0,
@@ -337,6 +349,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                             SizedBox(height: 5),
                                           ListView.separated(
                                             shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
                                             itemCount:
                                                 _transaction!.promos.length,
                                             itemBuilder: (context, index) =>
@@ -383,12 +397,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                               height: 1, color: Colors.black),
                                           SizedBox(height: 15),
                                           Text(
-                                            'Terima kasih telah melakukan pemesanan, kami akan segera memproses pesanan anda.',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          SizedBox(height: 15),
-                                          Text(
-                                            'Silahkan simpan bukti pesanan ini untuk ditunjukkan pada pihak resto.',
+                                            i10n.nota_thanks_order,
                                             textAlign: TextAlign.center,
                                           ),
                                         ],

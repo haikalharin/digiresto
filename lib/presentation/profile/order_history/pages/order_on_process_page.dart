@@ -3,7 +3,6 @@ import 'package:digiresto/domain/profile/order_history.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/order_on_process_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class OrderOnProcessPage extends StatefulWidget {

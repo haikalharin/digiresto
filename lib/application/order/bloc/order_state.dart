@@ -106,4 +106,10 @@ class OrderState with _$OrderState {
 
   const factory OrderState.getVoucherMethodIDSuccess(
       GetListVoucherOutletDataResponse data) = _GetVoucherMethodIDSuccess;
+
+  const factory OrderState.getTransactionPendingSuccess(
+      IList<OrderPending> data) = _GetTransactionPendingSuccess;
+
+  const factory OrderState.cancelTransactionSuccess() =
+      _CancelTransactionSuccess;
 }

@@ -6,6 +6,7 @@ import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -20,6 +21,8 @@ import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -35,6 +38,7 @@ import 'detail_product_dialog.dart';
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final bool? hideBackButton;
   OrderCartScreen({this.hideBackButton});
+
   Widget _notes() {
     return Theme(
       data: Theme.of(Get.context!).copyWith(
@@ -552,16 +556,40 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   else
                     ElevatedButton(
                         onPressed: () {
-                          Get.toNamed(Routers.selectVoucherVoucher,
-                                  arguments:
-                                      OrderSelectVoucherMethodViewArgument(
-                                          outlet:
-                                              controller.detailOutlet.value!))!
-                              .then((value) {
-                            Get.context!
-                                .read<OrderBloc>()
-                                .add(OrderEvent.getVoucherMethodID());
-                          });
+                          if (controller.paymentMethod.value == null) {
+                            final errorMessage = StatusMessageDisplayResponse(
+                              id: I10n.current.user_not_choose_payment,
+                              en: I10n.current.user_not_choose_payment,
+                            );
+                            ErrorDialog().showError(
+                              error: errorMessage,
+                              onClose: () {
+                                Get.toNamed(Routers.selectPaymentMethod,
+                                        arguments:
+                                            OrderSelectPaymentMethodViewArgument(
+                                                outlet: controller
+                                                    .detailOutlet.value!,
+                                                salestype: controller
+                                                    .salesType.value!))
+                                    ?.then((value) {
+                                  Get.context!
+                                      .read<OrderBloc>()
+                                      .add(OrderEvent.getPaymentMethodID());
+                                });
+                              },
+                            );
+                          } else {
+                            Get.toNamed(Routers.selectVoucherVoucher,
+                                    arguments:
+                                        OrderSelectVoucherMethodViewArgument(
+                                            outlet: controller
+                                                .detailOutlet.value!))!
+                                .then((value) {
+                              Get.context!
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.getVoucherMethodID());
+                            });
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -829,6 +857,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     width: double.infinity,
                     child: ElevatedButton(
                         onPressed: () {
+                          //list order pending dengan metode pembayaran va yang sama
+                          final isThereAnyPendingVA =
+                              controller.listOrderPending.any((orderPending) =>
+                                  orderPending.billingDetail.paymentType ==
+                                  controller.paymentMethod.value?.id);
+                          final isSingleBilling =
+                              controller.paymentMethod.value?.isSingleBilling;
                           //validation
                           if (controller.paymentMethod.value == null) {
                             ErrorPopupWidget.show("Digiresto",
@@ -893,6 +928,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.context!
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
+                              Get.find<HomeNavigationViewController>()
+                                  .setHaveCart(false);
                             }
                           } else if (controller.placeInfoController.text ==
                                   "" &&
@@ -902,6 +939,86 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.back();
                               _dialogDineIn();
                             });
+                          } else if (isThereAnyPendingVA &&
+                              (isSingleBilling ?? false)) {
+                            final orderPending = controller.listOrderPending
+                                .firstWhere((orderPending) =>
+                                    orderPending.billingDetail.paymentType ==
+                                    controller.paymentMethod.value?.id);
+                            final errorMessage = I10n.current
+                                .cart_transaction_pending_alert(
+                                    controller.paymentMethod.value!.title,
+                                    orderPending.billingDetail.finalAmount);
+                            Get.dialog(
+                              CustomDialog(
+                                backgroundColor: Colors.white,
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      I10n.current
+                                          .cart_transaction_pending_title,
+                                      style: Styles.dialogTitleStyle,
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      errorMessage,
+                                      style: Styles.dialogSubtitleStyle,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    CustomButton(
+                                      label: I10n.current
+                                          .cart_transaction_pending_next,
+                                      color: AppColors.mainColor,
+                                      fontColor: Colors.white,
+                                      onPressed: () async {
+                                        Get.back();
+                                        Get.context!.read<OrderBloc>().add(
+                                            OrderEvent.cancelTransaction(
+                                                orderPending.receiptCode));
+                                        Get.context!
+                                            .read<OrderBloc>()
+                                            .add(OrderEvent.checkoutCart());
+                                        Get.find<HomeNavigationViewController>()
+                                            .setHaveCart(false);
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    CustomButton(
+                                      label: I10n.current
+                                          .cart_transaction_change_payment,
+                                      color: AppColors.white,
+                                      fontColor: AppColors.mainColor,
+                                      borderColor: AppColors.mainColor,
+                                      onPressed: () async {
+                                        Get.back();
+                                        Get.toNamed(Routers.selectPaymentMethod,
+                                                arguments:
+                                                    OrderSelectPaymentMethodViewArgument(
+                                                        outlet: controller
+                                                            .detailOutlet
+                                                            .value!,
+                                                        salestype: controller
+                                                            .salesType.value!))!
+                                            .then((value) {
+                                          Get.context!.read<OrderBloc>().add(
+                                              OrderEvent.getPaymentMethodID());
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
                           } else {
                             ErrorPopupWidget.confirmation("Digiresto",
                                 I10n.current.order_confirmation_alert,
@@ -912,6 +1029,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.context!
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
+                              Get.find<HomeNavigationViewController>()
+                                  .setHaveCart(false);
                             });
                           }
                         },
@@ -1343,6 +1462,22 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       ),
                     ],
                   ),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
+                  // if (controller.voucherMethod.value != null)
+                  //   InputChip(
+                  //     label: Text(
+                  //       controller.voucherMethod.value?.name ?? "",
+                  //       style: AppFont.textBlack12Light,
+                  //     ),
+                  //     onPressed: () {
+                  //       debugPrint('input chip tapped');
+                  //     },
+                  //     onDeleted: () {
+                  //       debugPrint('input chip when onDeleted');
+                  //     },
+                  //   ),
                 ],
               ),
             ),
@@ -1364,93 +1499,115 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
     controller.getCartCache();
     controller.getActiveAddress();
     controller.getCartSession();
+    controller.getTransactionPending();
     return MultiBlocListener(
         listeners: [
           BlocListener<OrderBloc, OrderState>(
             listener: (context, state) {
-              state.maybeMap(addCartSuccess: (r) {
-                controller.cartSession.value = r.response;
-                controller.checkAllLoaded();
-              }, removeCartSuccess: (r) {
-                controller.cartSession.value = r.response;
-                controller.checkAllLoaded();
-              }, getCartSessionSuccess: (r) {
-                controller.cartSession.value = r.response;
-                controller.notesController.text =
-                    r.response.transactionData!.customerNote;
-                controller.getDetailOutlet();
-                controller.getListProduct();
-                print("data diterima");
-                controller.checkAllLoaded();
-              }, getDetailOutletSuccess: (r) {
-                controller.detailOutlet.value = r.response;
-                controller.checkAllLoaded();
-              }, getOutletListProductSuccess: (r) {
-                controller.listProduct.value = r.response;
-                controller.checkAllLoaded();
-              }, setSalesTypeCartSuccess: (r) {
-                controller.salesType.value = r.value;
-                controller.updateCartParam();
-              }, getSalesTypeCartSuccess: (r) {
-                controller.salesType.value = r.value;
-                controller.updateCartParam();
-              }, getPaymentMethodIDSuccess: (r) {
-                controller.paymentMethod.value = r.data;
-                controller.updateCartParam();
-              }, getDeliveryMethodIDSuccess: (r) {
-                controller.deliveryMethod.value = r.data;
-                controller.updateCartParam();
-              }, checkVoucherOutletSuccess: (r) {
-                final voucher = GetListVoucherOutletDataResponse(
-                  code: r.code.toUpperCase(),
-                  name: r.code.toUpperCase(),
-                );
-                Get.context!
-                    .read<OrderBloc>()
-                    .add(OrderEvent.setVoucherMethodID(voucher));
-                controller.voucherMethod.value = voucher;
-                controller.updateCartParam();
-                controller.checkAllLoaded();
-              }, getVoucherMethodIDSuccess: (r) {
-                controller.voucherMethod.value = r.data;
-                controller.updateCartParam();
-              }, getDineInIDMethodSuccess: (r) {
-                controller.dineInIDMethod.value = r.data;
-                controller.parseDineInMethodID();
-                controller.updateCartParam();
-              }, setDineInIDMethodSuccess: (r) {
-                controller.dineInIDMethod.value = r.data;
-                controller.parseDineInMethodID();
-                controller.updateCartParam();
-              }, removeCartSessionSuccess: (r) {
-                controller.checkCartSession();
-              }, checkoutCartSuccess: (r) {
-                var checkoutResponse = r.response.data;
-                controller.checkoutResponse.value = checkoutResponse;
-                if (r.response.response.messageDisplay != null &&
-                    r.response.response.code != "00") {
-                  final message = r.response.response.messageDisplay;
-                  print("error response checkout 1:");
-                  controller.isLoading.value = false;
-                  if (Get.isDialogOpen!) {
-                    Get.back();
+              state.maybeMap(
+                addCartSuccess: (r) {
+                  controller.cartSession.value = r.response;
+                  controller.checkAllLoaded();
+                },
+                removeCartSuccess: (r) {
+                  controller.cartSession.value = r.response;
+                  controller.checkAllLoaded();
+                },
+                getCartSessionSuccess: (r) {
+                  controller.cartSession.value = r.response;
+                  controller.notesController.text =
+                      r.response.transactionData!.customerNote;
+                  controller.getDetailOutlet();
+                  controller.getListProduct();
+                  print("data diterima");
+                  controller.checkAllLoaded();
+                },
+                getDetailOutletSuccess: (r) {
+                  controller.detailOutlet.value = r.response;
+                  controller.checkAllLoaded();
+                },
+                getOutletListProductSuccess: (r) {
+                  controller.listProduct.value = r.response;
+                  controller.checkAllLoaded();
+                },
+                setSalesTypeCartSuccess: (r) {
+                  controller.salesType.value = r.value;
+                  controller.updateCartParam();
+                },
+                getSalesTypeCartSuccess: (r) {
+                  controller.salesType.value = r.value;
+                  controller.updateCartParam();
+                },
+                getPaymentMethodIDSuccess: (r) {
+                  controller.paymentMethod.value = r.data;
+                  controller.updateCartParam();
+                },
+                getDeliveryMethodIDSuccess: (r) {
+                  controller.deliveryMethod.value = r.data;
+                  controller.updateCartParam();
+                },
+                checkVoucherOutletSuccess: (r) {
+                  final voucher = GetListVoucherOutletDataResponse(
+                    code: r.code.toUpperCase(),
+                    name: r.code.toUpperCase(),
+                  );
+                  Get.context!
+                      .read<OrderBloc>()
+                      .add(OrderEvent.setVoucherMethodID(voucher));
+                  controller.voucherMethod.value = voucher;
+                  controller.updateCartParam();
+                  controller.checkAllLoaded();
+                },
+                getVoucherMethodIDSuccess: (r) {
+                  controller.voucherMethod.value = r.data;
+                  controller.updateCartParam();
+                },
+                getDineInIDMethodSuccess: (r) {
+                  controller.dineInIDMethod.value = r.data;
+                  controller.parseDineInMethodID();
+                  controller.updateCartParam();
+                },
+                setDineInIDMethodSuccess: (r) {
+                  controller.dineInIDMethod.value = r.data;
+                  controller.parseDineInMethodID();
+                  controller.updateCartParam();
+                },
+                removeCartSessionSuccess: (r) {
+                  controller.checkCartSession();
+                },
+                checkoutCartSuccess: (r) {
+                  var checkoutResponse = r.response.data;
+                  controller.checkoutResponse.value = checkoutResponse;
+                  if (r.response.response.messageDisplay != null &&
+                      r.response.response.code != "00") {
+                    final message = r.response.response.messageDisplay;
+                    print("error response checkout 1:");
+                    controller.isLoading.value = false;
+                    if (Get.isDialogOpen!) {
+                      Get.back();
+                    }
+                    ErrorDialog().showError(error: message!);
+                    return;
                   }
-                  ErrorDialog().showError(error: message!);
-                  return;
-                }
-                controller.removeCartSession();
-              }, loadFailure: (e) {
-                e.e.maybeMap(checkoutCartFail: (e) {
+                  controller.removeCartSession();
+                },
+                getTransactionPendingSuccess: (_state) {
+                  controller.setTransactionPending(_state.data);
+                },
+                loadFailure: (e) {
+                  e.e.maybeMap(checkoutCartFail: (e) {
+                    controller.isLoading.value = false;
+                  }, checkVoucherOutletFail: (e) {
+                    controller.isLoading.value = false;
+                    controller.voucherMethod.value = null;
+                  }, orElse: () {
+                    controller.isLoading.value = false;
+                  });
+                },
+                orElse: () {
                   controller.isLoading.value = false;
-                }, checkVoucherOutletFail: (e) {
-                  controller.isLoading.value = false;
-                  controller.voucherMethod.value = null;
-                }, orElse: () {
-                  controller.isLoading.value = false;
-                });
-              }, orElse: () {
-                controller.isLoading.value = false;
-              });
+                },
+              );
             },
           ),
           BlocListener<TransactionBloc, TransactionState>(

@@ -53,7 +53,10 @@ class DeliveryStatusWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      '${CommonUtils.dateFormat('dd MMM yyyy', status.updatedDate)}',
+                      CommonUtils.dateFormat(
+                          'dd MMM yyyy',
+                          status.updatedDate
+                              .add(DateTime.now().timeZoneOffset))!,
                       style: Styles.menuItemLabelStyle.copyWith(
                         color: AppColors.green54C30F,
                         fontWeight: FontWeight.w700,
@@ -61,7 +64,7 @@ class DeliveryStatusWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${CommonUtils.dateFormat('HH:mm', status.updatedDate)}',
+                    '${CommonUtils.dateFormat('HH:mm', status.updatedDate.add(DateTime.now().timeZoneOffset))!}',
                     style: Styles.menuItemLabelStyle.copyWith(
                       color: AppColors.black,
                       fontWeight: FontWeight.w700,
