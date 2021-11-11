@@ -1,6 +1,6 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
-import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
@@ -86,16 +86,25 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
           setDefaultFail: (content) {
             print(content);
           },
+          getAllAddressSuccess: (value) {
+            controller.setListAddress(value.response);
+          },
           setDefaultSuccess: (value) {
             controller.setListAddress(value.response);
             Get.back(closeOverlays: true);
           },
           removeAddressSuccess: (value) {
-            context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            Get.context!
+                .read<AddressListBloc>()
+                .add(AddressListEvent.getAllAddress());
+            context.read<HomeBloc>().add(HomeEvent.getUserAddress());
             Get.back(closeOverlays: true);
           },
           addAddressSuccess: (value) {
-            context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            Get.context!
+                .read<AddressListBloc>()
+                .add(AddressListEvent.getAllAddress());
+            context.read<HomeBloc>().add(HomeEvent.getUserAddress());
             final address = value.response;
             controller.setLocalActiveAddress(UserAddress(
                 name: address.name,
@@ -139,19 +148,24 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                           ),
                         ),
                         Expanded(
-                          child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true, // new line
-                              padding: const EdgeInsets.all(8),
-                              itemCount: controller.listAddress.length + 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                if (index == controller.listAddress.length) {
-                                  return _btnNewAddress();
-                                } else {
-                                  return _listAddress(
-                                      controller.listAddress[index]);
-                                }
-                              }),
+                          child: RefreshIndicator(
+                            onRefresh: () async => Get.context!
+                                .read<AddressListBloc>()
+                                .add(AddressListEvent.getAllAddress()),
+                            child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true, // new line
+                                padding: const EdgeInsets.all(8),
+                                itemCount: controller.listAddress.length + 1,
+                                itemBuilder: (BuildContext context, int index) {
+                                  if (index == controller.listAddress.length) {
+                                    return _btnNewAddress();
+                                  } else {
+                                    return _listAddress(
+                                        controller.listAddress[index]);
+                                  }
+                                }),
+                          ),
                         ),
                       ],
                     ),
@@ -452,6 +466,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
   }
 
   void getAddress() async {
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getAllAddress());
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(

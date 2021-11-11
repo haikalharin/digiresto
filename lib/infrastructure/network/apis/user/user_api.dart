@@ -139,7 +139,6 @@ class UserApi {
       Map<String, dynamic> object) async {
     try {
       final _userAuth = await _getUserProfile();
-      await _storage.close();
       String apiUrl = Endpoints.urlForward;
       final queryParameters = Endpoints.urlSetDefaultAddress;
       final apiResult = await _networkService.postHttp(
@@ -308,10 +307,12 @@ class UserApi {
   }
 
   Future<UserAuth> _getUserProfile() async {
-    await _storage.openBox(StorageConstants.user);
-    final _userInStorage = await _storage.getData();
+    final _box = await _storage.openBox(StorageConstants.user);
+    final _userInStorage = await _storage.getData(
+      _box,
+    );
     final _userAuth = UserAuth.fromJson(_userInStorage);
-    await _storage.close();
+    await _storage.close(_box);
     return _userAuth;
   }
 }

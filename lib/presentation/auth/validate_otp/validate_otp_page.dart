@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
-import 'package:digiresto/application/home/home_navigation_view_controller.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
@@ -104,10 +104,7 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
         state.validateFailureOrSuccess.fold(
           () => null,
           (success) => success.fold((l) {}, (login) {
-            if (!Get.find<HomeNavigationViewController>().isClosed) {
-              Get.find<HomeNavigationViewController>().selectedTabIndex.value =
-                  0;
-            }
+            Get.find<BottomTabCubit>().changeTab(0);
             _authBloc.add(AuthEvent.authCheckRequested());
             login.isMember
                 ? Get.offAllNamed(Routers.auth)

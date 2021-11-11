@@ -48,6 +48,9 @@ class Styles {
   static TextStyle whiteFontStyle = GoogleFonts.poppins(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
+  static TextStyle blackFontStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
   static TextStyle guideTitleStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 15, fontWeight: FontWeight.w600);
 

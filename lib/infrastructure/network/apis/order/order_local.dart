@@ -24,11 +24,12 @@ class OrderLocal {
   Future<PaymentMethodDataResponse?> setPaymentMethod(
       PaymentMethodDataResponse data) async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.setJson(key: _paymentMethodKey, object: data.toJson());
-      final object = _storage.getJson(key: _paymentMethodKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(_box,
+          key: _paymentMethodKey, object: data.toJson());
+      final object = _storage.getJson(_box, key: _paymentMethodKey);
       final model = PaymentMethodDataResponse.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -37,10 +38,10 @@ class OrderLocal {
 
   Future<PaymentMethodDataResponse?> getPaymentMethod() async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      final object = _storage.getJson(key: _paymentMethodKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(_box, key: _paymentMethodKey);
       final model = PaymentMethodDataResponse.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -50,11 +51,12 @@ class OrderLocal {
   Future<DeliveryMethodDataResponse?> setDeliveryMethod(
       DeliveryMethodDataResponse data) async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.setJson(key: _deliveryMethodKey, object: data.toJson());
-      final object = _storage.getJson(key: _deliveryMethodKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(_box,
+          key: _deliveryMethodKey, object: data.toJson());
+      final object = _storage.getJson(_box, key: _deliveryMethodKey);
       final model = DeliveryMethodDataResponse.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -63,10 +65,10 @@ class OrderLocal {
 
   Future<DeliveryMethodDataResponse?> getDeliveryMethod() async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      final object = _storage.getJson(key: _deliveryMethodKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(_box, key: _deliveryMethodKey);
       final model = DeliveryMethodDataResponse.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -76,11 +78,11 @@ class OrderLocal {
   Future<OrderCartDineInModel?> setDineInIDMethod(
       OrderCartDineInModel data) async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.setJson(key: _dineInIdKey, object: data.toJson());
-      final object = _storage.getJson(key: _dineInIdKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(_box, key: _dineInIdKey, object: data.toJson());
+      final object = _storage.getJson(_box, key: _dineInIdKey);
       final model = OrderCartDineInModel.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -89,10 +91,10 @@ class OrderLocal {
 
   Future<OrderCartDineInModel?> getDineInIDMethod() async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      final object = _storage.getJson(key: _dineInIdKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(_box, key: _dineInIdKey);
       final model = OrderCartDineInModel.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -102,11 +104,12 @@ class OrderLocal {
   Future<GetListVoucherOutletDataResponse?> setVoucherMethod(
       GetListVoucherOutletDataResponse data) async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.setJson(key: _voucherMethodKey, object: data.toJson());
-      final object = _storage.getJson(key: _voucherMethodKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(_box,
+          key: _voucherMethodKey, object: data.toJson());
+      final object = _storage.getJson(_box, key: _voucherMethodKey);
       final model = GetListVoucherOutletDataResponse.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -115,10 +118,10 @@ class OrderLocal {
 
   Future<GetListVoucherOutletDataResponse?> getVoucherMethod() async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      final object = _storage.getJson(key: _voucherMethodKey);
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(_box, key: _voucherMethodKey);
       final model = GetListVoucherOutletDataResponse.fromJson(object);
-      await _storage.close();
+      await _storage.close(_box);
       return model;
     } catch (e) {
       return null;
@@ -130,21 +133,25 @@ class OrderLocal {
       DetailOutletDataResponse outlet) async {
     final _outletModel = await getOutletDetailID();
     if (_outletModel?.id != outlet.id) {
-      await _storage.openBox(StorageConstants.orderProduct);
-      await _storage.deleteData();
-      await _storage.close();
+      final _boxProduct = await _storage.openBox(StorageConstants.orderProduct);
+      await _storage.deleteData(
+        _boxProduct,
+      );
+      await _storage.close(_boxProduct);
 
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.deleteData();
-      await _storage.close();
+      final _boxCart = await _storage.openBox(StorageConstants.cart);
+      await _storage.deleteData(
+        _boxCart,
+      );
+      await _storage.close(_boxProduct);
     }
 
-    await _storage.openBox(StorageConstants.orderProduct);
-    var _productJson = _storage.getJson(key: _sessionIdKey);
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.orderProduct);
+    var _productJson = _storage.getJson(_box, key: _sessionIdKey);
+    await _storage.close(_box);
 
     if (_productJson == null) {
-      await _storage.openBox(StorageConstants.orderProduct);
+      final _box = await _storage.openBox(StorageConstants.orderProduct);
       var list = UpdateCartSessionBodyParam(
           customerNote: "",
           paymentType: "",
@@ -155,9 +162,9 @@ class OrderLocal {
           eta: '',
           promos: [],
           salesType: '');
-      await _storage.setJson(key: _sessionIdKey, object: list.toJson());
-      _productJson = _storage.getJson(key: _sessionIdKey);
-      await _storage.close();
+      await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
+      _productJson = _storage.getJson(_box, key: _sessionIdKey);
+      await _storage.close(_box);
 
       //_productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
     }
@@ -178,10 +185,11 @@ class OrderLocal {
         eta: '',
         promos: [],
         salesType: '');
-    await _storage.openBox(StorageConstants.orderProduct);
-    await _storage.setJson(key: _sessionIdKey, object: list.toJson());
-    final productJson = _storage.getJson(key: _sessionIdKey);
-    await _storage.close();
+    final _boxProduct = await _storage.openBox(StorageConstants.orderProduct);
+    await _storage.setJson(_boxProduct,
+        key: _sessionIdKey, object: list.toJson());
+    final productJson = _storage.getJson(_boxProduct, key: _sessionIdKey);
+    await _storage.close(_boxProduct);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
     return productModel;
   }
@@ -190,16 +198,20 @@ class OrderLocal {
       CreateCartSessionParam object, int outletId) async {
     final _outletModel = await getOutletDetailID();
     if (_outletModel?.id != outletId.toString()) {
-      await _storage.openBox(StorageConstants.orderProduct);
-      await _storage.deleteData();
-      await _storage.close();
+      final _box = await _storage.openBox(StorageConstants.orderProduct);
+      await _storage.deleteData(
+        _box,
+      );
+      await _storage.close(_box);
 
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.deleteData();
-      await _storage.close();
+      final _boxCart = await _storage.openBox(StorageConstants.cart);
+      await _storage.deleteData(
+        _boxCart,
+      );
+      await _storage.close(_boxCart);
     }
     try {
-      await _storage.openBox(StorageConstants.orderProduct);
+      final _box = await _storage.openBox(StorageConstants.orderProduct);
       var list = UpdateCartSessionBodyParam(
           customerNote: object.body.customerNote,
           paymentType: "",
@@ -210,11 +222,11 @@ class OrderLocal {
           eta: '',
           promos: [],
           salesType: object.body.salesType);
-      await _storage.setJson(key: _sessionIdKey, object: list.toJson());
+      await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
 
-      final productJson = _storage.getJson(key: _sessionIdKey);
+      final productJson = _storage.getJson(_box, key: _sessionIdKey);
       final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
-      await _storage.close();
+      await _storage.close(_box);
       return productModel;
     } catch (e) {
       return null;
@@ -223,10 +235,10 @@ class OrderLocal {
 
   Future<UpdateCartSessionBodyParam?> getProduct() async {
     try {
-      await _storage.openBox(StorageConstants.orderProduct);
-      var _productJson = _storage.getJson(key: _sessionIdKey);
+      final _box = await _storage.openBox(StorageConstants.orderProduct);
+      var _productJson = _storage.getJson(_box, key: _sessionIdKey);
       final productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
-      await _storage.close();
+      await _storage.close(_box);
       return productModel;
     } catch (e) {
       return null;
@@ -235,9 +247,9 @@ class OrderLocal {
 
   Future<UpdateCartSessionBodyParam?> removeProduct(
       CreateUpdateCartSessionItemParam object) async {
-    await _storage.openBox(StorageConstants.orderProduct);
-    var _productJson = _storage.getJson(key: _sessionIdKey);
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.orderProduct);
+    var _productJson = _storage.getJson(_box, key: _sessionIdKey);
+    await _storage.close(_box);
 
     var _productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
 
@@ -257,18 +269,18 @@ class OrderLocal {
         eta: '',
         promos: [],
         salesType: '');
-    await _storage.setJson(key: _sessionIdKey, object: list.toJson());
+    await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
 
-    final productJson = _storage.getJson(key: _sessionIdKey);
+    final productJson = _storage.getJson(_box, key: _sessionIdKey);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
     return productModel;
   }
 
   Future<String?> getSalesTypeCart() async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      final sessionId = _storage.getString(key: _salesTypeIdKey);
-      await _storage.close();
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final sessionId = _storage.getString(_box, key: _salesTypeIdKey);
+      await _storage.close(_box);
       return sessionId;
     } catch (e) {
       return null;
@@ -277,10 +289,10 @@ class OrderLocal {
 
   Future<String?> setSalesTypeCart(String value) async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.putString(key: _salesTypeIdKey, value: value);
-      final sessionId = _storage.getString(key: _salesTypeIdKey);
-      await _storage.close();
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.putString(_box, key: _salesTypeIdKey, value: value);
+      final sessionId = _storage.getString(_box, key: _salesTypeIdKey);
+      await _storage.close(_box);
       return sessionId;
     } catch (e) {
       return null;
@@ -290,11 +302,11 @@ class OrderLocal {
   Future<DetailOutletDataResponse?> setOutletDetailID(
       DetailOutletDataResponse object) async {
     try {
-      await _storage.openBox(StorageConstants.outletDetail);
-      await _storage.setJson(key: _sessionIdKey, object: object.toJson());
-      final _outletJson = _storage.getJson(key: _sessionIdKey);
+      final _box = await _storage.openBox(StorageConstants.outletDetail);
+      await _storage.setJson(_box, key: _sessionIdKey, object: object.toJson());
+      final _outletJson = _storage.getJson(_box, key: _sessionIdKey);
       final _outletModel = DetailOutletDataResponse.fromJson(_outletJson);
-      await _storage.close();
+      await _storage.close(_box);
       return _outletModel;
     } catch (e) {
       print(e);
@@ -303,9 +315,9 @@ class OrderLocal {
   }
 
   Future<DetailOutletDataResponse?> getOutletDetailID() async {
-    await _storage.openBox(StorageConstants.outletDetail);
-    final _outletJson = _storage.getJson(key: _sessionIdKey);
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.outletDetail);
+    final _outletJson = _storage.getJson(_box, key: _sessionIdKey);
+    await _storage.close(_box);
     if (_outletJson == null) {
       return null;
     }
@@ -314,18 +326,20 @@ class OrderLocal {
   }
 
   Future<UserAuth?> getLocalUserProfile() async {
-    await _storage.openBox(StorageConstants.user);
-    final _userInStorage = await _storage.getData();
+    final _box = await _storage.openBox(StorageConstants.user);
+    final _userInStorage = await _storage.getData(
+      _box,
+    );
     final _userAuth = UserAuth.fromJson(_userInStorage);
-    await _storage.close();
+    await _storage.close(_box);
     return _userAuth;
   }
 
   Future<Either<Exception, String?>> getSessionId() async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      final sessionId = _storage.getString(key: _sessionIdKey);
-      await _storage.close();
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final sessionId = _storage.getString(_box, key: _sessionIdKey);
+      await _storage.close(_box);
       return sessionId == null
           ? left(Exception("session is null"))
           : right(sessionId);
@@ -336,10 +350,10 @@ class OrderLocal {
 
   Future<Either<Exception, String>> setSessionId(String value) async {
     try {
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.putString(key: _sessionIdKey, value: value);
-      final sessionId = _storage.getString(key: _sessionIdKey);
-      await _storage.close();
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.putString(_box, key: _sessionIdKey, value: value);
+      final sessionId = _storage.getString(_box, key: _sessionIdKey);
+      await _storage.close(_box);
       return sessionId == null
           ? left(Exception("session is null"))
           : right(sessionId);
@@ -350,12 +364,16 @@ class OrderLocal {
 
   Future<String?> removeCartSesion() async {
     try {
-      await _storage.openBox(StorageConstants.orderProduct);
-      await _storage.deleteData();
-      await _storage.close();
-      await _storage.openBox(StorageConstants.cart);
-      await _storage.deleteData();
-      await _storage.close();
+      final _box = await _storage.openBox(StorageConstants.orderProduct);
+      await _storage.deleteData(
+        _box,
+      );
+      await _storage.close(_box);
+      final _boxCart = await _storage.openBox(StorageConstants.cart);
+      await _storage.deleteData(
+        _boxCart,
+      );
+      await _storage.close(_boxCart);
       return "";
     } catch (e) {
       return null;

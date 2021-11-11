@@ -92,22 +92,25 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m32(param) => "Lebih dari ${param} Hari";
 
   static String m33(param) =>
-      "Batas waktu pemesanan dan pembayaran maksimal pukul ${param} WIB";
+      "Dikirim dalam ${param} hari setelah konfirmasi pemesanan";
 
   static String m34(param) =>
-      "Pemesanan dan pembayaran diatas pukul ${param}, akan ditambah 1 hari untuk proses pengirimannya";
+      "Batas waktu pemesanan dan pembayaran maksimal pukul ${param} WIB";
 
   static String m35(param) =>
-      "Jumlah menu yang Anda pesan telah mencapai batas ${param} dalam 1x transaksi.";
+      "Pemesanan dan pembayaran diatas pukul ${param}, akan ditambah 1 hari untuk proses pengirimannya";
 
   static String m36(param) =>
+      "Jumlah menu yang Anda pesan telah mencapai batas ${param} dalam 1x transaksi.";
+
+  static String m37(param) =>
       "Product ini pada keranjang belanja Anda telah mencapai maksimal pembelian, yaitu sejumlah ${param} item.";
 
-  static String m37(param) => "Tentang ${param}";
+  static String m38(param) => "Tentang ${param}";
 
-  static String m38(param) => "Bergabung dengan ${param}";
+  static String m39(param) => "Bergabung dengan ${param}";
 
-  static String m39(param) =>
+  static String m40(param) =>
       "Silahkan mulai melakukan pemesanan \nbersama ${param}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -806,8 +809,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Temukan resto favorit Anda"),
         "preorder_not_found": MessageLookupByLibrary.simpleMessage(
             "Menu Pre Order tidak ditemukan."),
-        "preorder_tnc_desc_1": m33,
-        "preorder_tnc_desc_2": m34,
+        "preorder_shipped": m33,
+        "preorder_tnc_desc_1": m34,
+        "preorder_tnc_desc_2": m35,
         "preorder_tnc_desc_2_bold":
             MessageLookupByLibrary.simpleMessage("ditambah 1 hari"),
         "preorder_tnc_ok": MessageLookupByLibrary.simpleMessage("Mengerti"),
@@ -820,7 +824,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "product_detail_alert_min_max_quantity":
             MessageLookupByLibrary.simpleMessage(
                 "Pemilihan produk belum sesuai ketentuan"),
-        "product_detail_alert_transaction_limit": m35,
+        "product_detail_alert_transaction_limit": m36,
         "product_detail_counter_alert":
             MessageLookupByLibrary.simpleMessage("Jumlah tidak boleh kosong"),
         "product_detail_counter_alert_0":
@@ -831,10 +835,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Anda telah mencapai maksimal pembelian product ini!"),
         "product_detail_max_item_999": MessageLookupByLibrary.simpleMessage(
             "Maks. pembelian barang ini 999 item, kurangi pembelianmu, ya!"),
-        "product_detail_max_item_alert": m36,
+        "product_detail_max_item_alert": m37,
         "product_detail_sold_out":
             MessageLookupByLibrary.simpleMessage("Habis"),
-        "profile_about": m37,
+        "profile_about": m38,
         "profile_address": MessageLookupByLibrary.simpleMessage("Alamat"),
         "profile_change_pin": MessageLookupByLibrary.simpleMessage("Ubah PIN"),
         "profile_customer_service":
@@ -850,7 +854,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_edit_title":
             MessageLookupByLibrary.simpleMessage("Ubah Profil"),
         "profile_history": MessageLookupByLibrary.simpleMessage("Riwayat"),
-        "profile_join_digiresto": m38,
+        "profile_join_digiresto": m39,
         "profile_language":
             MessageLookupByLibrary.simpleMessage("Pilih Bahasa"),
         "profile_logout": MessageLookupByLibrary.simpleMessage("Keluar"),
@@ -917,7 +921,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_list_order": MessageLookupByLibrary.simpleMessage("Daftar Order"),
         "text_menunggu": MessageLookupByLibrary.simpleMessage(
             "Menunggu Pesananmu Siap Diantar"),
-        "text_mulai_pesan": m39,
+        "text_mulai_pesan": m40,
         "text_register": MessageLookupByLibrary.simpleMessage(
             "Pastikan nomor handphone anda valid untuk proses verifikasi"),
         "text_telp": MessageLookupByLibrary.simpleMessage("Telp."),

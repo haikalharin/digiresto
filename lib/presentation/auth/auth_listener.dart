@@ -3,10 +3,9 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
-import 'package:digiresto/presentation/home/home.dart';
+import 'package:digiresto/presentation/landing/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 class AuthListener extends StatelessWidget {
   const AuthListener({Key? key}) : super(key: key);
@@ -22,7 +21,7 @@ class AuthListener extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-          authenticated: (_) => HomeScreen(),
+          authenticated: (_) => LandingPage(),
           unauthenticated: (_) => LoginPage(),
           authFailure: (failure) {
             return Material(

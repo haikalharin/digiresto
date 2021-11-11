@@ -20,8 +20,8 @@ class EnvDev extends Env {
   EnvDev(this._storage);
   @override
   Future<String> get getBaseUrl async {
-    await _storage.openBox(StorageConstants.base);
-    String? devUrl = _storage.getString(key: 'devUrl');
+    final _box = await _storage.openBox(StorageConstants.base);
+    String? devUrl = _storage.getString(_box, key: 'devUrl');
     if (devUrl == null) {
       return Endpoints.baseUrlDigiresto;
     } else {

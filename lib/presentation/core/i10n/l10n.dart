@@ -910,6 +910,16 @@ class I10n {
     );
   }
 
+  /// `Shipped in {param} day after order confirmation`
+  String preorder_shipped(Object param) {
+    return Intl.message(
+      'Shipped in $param day after order confirmation',
+      name: 'preorder_shipped',
+      desc: '',
+      args: [param],
+    );
+  }
+
   /// `{param} Day`
   String preorder_filter_a_day(Object param) {
     return Intl.message(

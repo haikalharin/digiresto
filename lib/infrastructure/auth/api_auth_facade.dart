@@ -125,11 +125,13 @@ class ApiAuthFacade implements IAuthFacade {
       final userData = Map<String, dynamic>.from(data);
       logger.d(userData);
       final _user = UserAuth.fromJson(userData);
-      await _storage.openBox(StorageConstants.user);
-      await _storage.putData(json: _user.toJson());
-      final _userInStorage = await _storage.getData();
+      final _box = await _storage.openBox(StorageConstants.user);
+      await _storage.putData(_box, json: _user.toJson());
+      final _userInStorage = await _storage.getData(
+        _box,
+      );
       logger.d('user in storage :' + _userInStorage.toString());
-      await _storage.close();
+      await _storage.close(_box);
       return right(_user);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -154,11 +156,13 @@ class ApiAuthFacade implements IAuthFacade {
   @override
   Future<Either<AuthFailure, Option<UserAuth>>> getSignedInUser() async {
     Either<AuthFailure, Option<UserAuth>> failureOrSuccess = right(none());
-    await _storage.openBox(StorageConstants.user);
-    final _userInStorage = await _storage.getData();
+    final _box = await _storage.openBox(StorageConstants.user);
+    final _userInStorage = await _storage.getData(
+      _box,
+    );
     if (_userInStorage.isNotEmpty) {
       final _user = UserAuth.fromJson(_userInStorage);
-      await _storage.putData(json: _user.toJson());
+      await _storage.putData(_box, json: _user.toJson());
       final _userAuth = UserAuth.fromJson(_userInStorage);
       final _userProfile = await _profileRepository.getProfile();
       logger.d(_userProfile);
@@ -169,24 +173,24 @@ class ApiAuthFacade implements IAuthFacade {
         ),
       );
     }
-    await _storage.close();
+    await _storage.close(_box);
     return failureOrSuccess;
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signOut() async {
-    await _storage.openBox(StorageConstants.user);
-    await _storage.deleteData();
-    await _storage.close();
-    await _storage.openBox(StorageConstants.cart);
-    await _storage.deleteData();
-    await _storage.close();
-    await _storage.openBox(StorageConstants.address);
-    await _storage.deleteData();
-    await _storage.close();
-    await _storage.openBox(StorageConstants.orderProduct);
-    await _storage.deleteData();
-    await _storage.close();
+    final _box1 = await _storage.openBox(StorageConstants.user);
+    await _storage.deleteData(_box1);
+    await _storage.close(_box1);
+    final _box2 = await _storage.openBox(StorageConstants.cart);
+    await _storage.deleteData(_box2);
+    await _storage.close(_box2);
+    final _box3 = await _storage.openBox(StorageConstants.address);
+    await _storage.deleteData(_box3);
+    await _storage.close(_box3);
+    final _box4 = await _storage.openBox(StorageConstants.orderProduct);
+    await _storage.deleteData(_box4);
+    await _storage.close(_box4);
     try {
       await _networkService.getHttp(
         path: Endpoints.urlLogout,
@@ -198,9 +202,9 @@ class ApiAuthFacade implements IAuthFacade {
 
   @override
   Future<void> changeUrl({required String url}) async {
-    await _storage.openBox(StorageConstants.base);
-    await _storage.putString(key: 'devUrl', value: url);
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.base);
+    await _storage.putString(_box, key: 'devUrl', value: url);
+    await _storage.close(_box);
   }
 
   @override
@@ -226,11 +230,13 @@ class ApiAuthFacade implements IAuthFacade {
 
       if (_login.isMember) {
         final _user = UserAuth.fromJson(userData);
-        await _storage.openBox(StorageConstants.user);
-        await _storage.putData(json: _user.toJson());
-        final _userInStorage = await _storage.getData();
+        final _box = await _storage.openBox(StorageConstants.user);
+        await _storage.putData(_box, json: _user.toJson());
+        final _userInStorage = await _storage.getData(
+          _box,
+        );
         logger.d('user in storage :' + _userInStorage.toString());
-        await _storage.close();
+        await _storage.close(_box);
       }
       return right(_login);
     } on FailureException catch (e) {

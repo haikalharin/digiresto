@@ -1,7 +1,6 @@
 import 'dart:core';
-
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
-import 'package:digiresto/application/home/home_navigation_view_controller.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
@@ -928,8 +927,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.context!
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
-                              Get.find<HomeNavigationViewController>()
-                                  .setHaveCart(false);
+                              Get.find<BottomTabCubit>().checkCartFromOutside();
                             }
                           } else if (controller.placeInfoController.text ==
                                   "" &&
@@ -986,8 +984,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                         Get.context!
                                             .read<OrderBloc>()
                                             .add(OrderEvent.checkoutCart());
-                                        Get.find<HomeNavigationViewController>()
-                                            .setHaveCart(false);
+                                        Get.find<BottomTabCubit>()
+                                            .checkCartFromOutside();
                                       },
                                     ),
                                     SizedBox(
@@ -1029,8 +1027,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.context!
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
-                              Get.find<HomeNavigationViewController>()
-                                  .setHaveCart(false);
+                              Get.find<BottomTabCubit>().checkCartFromOutside();
                             });
                           }
                         },
@@ -1742,7 +1739,7 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
         controller.isLoading.value = true;
         if (controller.cartSession.value!.transactionData!.items.length == 1) {
           controller.removeCartSession();
-          Get.find<HomeNavigationViewController>().setHaveCart(false);
+          Get.find<BottomTabCubit>().checkCartFromOutside();
         } else {
           controller.removeCart(productId);
         }

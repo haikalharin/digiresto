@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
   final BorderRadius borderRadius;
   final Widget? child;
   final TextStyle? fontStyle;
+  final double borderWidth;
 
   const CustomButton({
     Key? key,
@@ -33,6 +34,7 @@ class CustomButton extends StatelessWidget {
       Radius.circular(8),
     ),
     this.fontStyle,
+    this.borderWidth = 1,
   }) : super(key: key);
 
   @override
@@ -44,6 +46,7 @@ class CustomButton extends StatelessWidget {
         borderRadius: borderRadius,
         border: Border.all(
           color: borderColor,
+          width: borderWidth,
         ),
       ),
       height: height,

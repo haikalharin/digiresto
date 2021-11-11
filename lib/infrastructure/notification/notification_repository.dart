@@ -32,9 +32,9 @@ class NotificationRepository implements INotificationRepository {
     await _oneSignal.setAppId(appIdMap[Globals.env]!);
     final status = await _oneSignal.getDeviceState();
     final String? osUserID = status?.userId;
-    await _storage.openBox(StorageConstants.base);
-    await _storage.putString(key: 'playerId', value: osUserID ?? '');
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.base);
+    await _storage.putString(_box, key: 'playerId', value: osUserID ?? '');
+    await _storage.close(_box);
 
     _oneSignal.promptUserForPushNotificationPermission().then((accepted) {
       print("Accepted permission: $accepted");
@@ -55,9 +55,9 @@ class NotificationRepository implements INotificationRepository {
 
   @override
   Future<String> getPushToken() async {
-    await _storage.openBox(StorageConstants.base);
-    final result = _storage.getString(key: 'playerId');
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.base);
+    final result = _storage.getString(_box, key: 'playerId');
+    await _storage.close(_box);
     return result ?? '';
   }
 
@@ -81,14 +81,11 @@ class NotificationRepository implements INotificationRepository {
     String apiUrl = Endpoints.urlPostPushToken;
 
     try {
-      logger.d({
-        "token": await getPushToken(),
-        "platform": await getPlatform(),
-      });
+      final token = await getPushToken();
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
         content: {
-          "token": await getPushToken(),
+          "token": token,
           "platform": await getPlatform(),
         },
       );

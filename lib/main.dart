@@ -3,6 +3,7 @@ import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/notification/notification_bloc.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/infrastructure/core/globals.dart';
@@ -13,8 +14,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'application/home/home_navigation_view_controller.dart';
-import 'application/home/home_user_bloc/home_user_bloc.dart';
+// import 'application/home/home_user_bloc/home_user_bloc.dart';
+import 'application/landing/bottom_tab_cubit.dart';
 import 'application/order/bloc/order_bloc.dart';
 import 'injection.dart';
 
@@ -32,13 +33,19 @@ Future<void> mainProgram() async {
 class InitiateProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeNavigationViewController());
+    Get.lazyPut(() => getIt<BottomTabCubit>());
     return MultiBlocProvider(providers: [
-      BlocProvider<HomeUserBloc>(
-        create: (context) => getIt<HomeUserBloc>()
-          ..add(HomeUserEvent.getActiveAddress())
-          ..add(HomeUserEvent.getStaticBanner())
-          ..add(HomeUserEvent.getCartSessionID()),
+      // BlocProvider<HomeUserBloc>(
+      //   create: (context) => getIt<HomeUserBloc>()
+      //     ..add(HomeUserEvent.getActiveAddress())
+      //     ..add(HomeUserEvent.getStaticBanner())
+      //     ..add(HomeUserEvent.getCartSessionID()),
+      // ),
+      BlocProvider<HomeBloc>(
+        create: (context) => getIt<HomeBloc>(),
+      ),
+      BlocProvider<BottomTabCubit>(
+        create: (context) => getIt<BottomTabCubit>(),
       ),
       BlocProvider<AddressListBloc>(
           create: (context) => getIt<AddressListBloc>()),

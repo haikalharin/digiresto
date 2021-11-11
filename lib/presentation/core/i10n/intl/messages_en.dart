@@ -96,22 +96,25 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m32(param) => "More than ${param} Days";
 
   static String m33(param) =>
-      "The deadline of order and payment maximum at ${param} WIB";
+      "Shipped in ${param} day after order confirmation";
 
   static String m34(param) =>
-      "Order and payment after ${param} will be added 1 day for the delivery process";
+      "The deadline of order and payment maximum at ${param} WIB";
 
   static String m35(param) =>
-      "The number of menus you ordered has reached the limit ${param} in one transaction.";
+      "Order and payment after ${param} will be added 1 day for the delivery process";
 
   static String m36(param) =>
+      "The number of menus you ordered has reached the limit ${param} in one transaction.";
+
+  static String m37(param) =>
       "This product has reached its maximum purchase for ${param} items.";
 
-  static String m37(param) => "About ${param}";
+  static String m38(param) => "About ${param}";
 
-  static String m38(param) => "Join ${param}";
+  static String m39(param) => "Join ${param}";
 
-  static String m39(param) => "Please start your order with ${param}";
+  static String m40(param) => "Please start your order with ${param}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -807,8 +810,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Find your favorite restaurant"),
         "preorder_not_found": MessageLookupByLibrary.simpleMessage(
             "The Pre Order menu is not found."),
-        "preorder_tnc_desc_1": m33,
-        "preorder_tnc_desc_2": m34,
+        "preorder_shipped": m33,
+        "preorder_tnc_desc_1": m34,
+        "preorder_tnc_desc_2": m35,
         "preorder_tnc_desc_2_bold":
             MessageLookupByLibrary.simpleMessage("added 1 day"),
         "preorder_tnc_ok": MessageLookupByLibrary.simpleMessage("Understand"),
@@ -821,7 +825,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "product_detail_alert_min_max_quantity":
             MessageLookupByLibrary.simpleMessage(
                 "Product selection is not in accordance with the provisions"),
-        "product_detail_alert_transaction_limit": m35,
+        "product_detail_alert_transaction_limit": m36,
         "product_detail_counter_alert":
             MessageLookupByLibrary.simpleMessage("Can not be empty"),
         "product_detail_counter_alert_0": MessageLookupByLibrary.simpleMessage(
@@ -832,10 +836,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have reached the maximum purchase for this product"),
         "product_detail_max_item_999": MessageLookupByLibrary.simpleMessage(
             "Max. purchase of this item 999 items, please reduce your purchase!"),
-        "product_detail_max_item_alert": m36,
+        "product_detail_max_item_alert": m37,
         "product_detail_sold_out":
             MessageLookupByLibrary.simpleMessage("Sold Out"),
-        "profile_about": m37,
+        "profile_about": m38,
         "profile_address": MessageLookupByLibrary.simpleMessage("Address"),
         "profile_change_pin":
             MessageLookupByLibrary.simpleMessage("Change PIN"),
@@ -852,7 +856,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_edit_title":
             MessageLookupByLibrary.simpleMessage("Edit Profil"),
         "profile_history": MessageLookupByLibrary.simpleMessage("History"),
-        "profile_join_digiresto": m38,
+        "profile_join_digiresto": m39,
         "profile_language":
             MessageLookupByLibrary.simpleMessage("Choose Language"),
         "profile_logout": MessageLookupByLibrary.simpleMessage("Log Out"),
@@ -913,7 +917,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_list_order": MessageLookupByLibrary.simpleMessage("List Order"),
         "text_menunggu": MessageLookupByLibrary.simpleMessage(
             "Waiting your order to be delivered"),
-        "text_mulai_pesan": m39,
+        "text_mulai_pesan": m40,
         "text_register": MessageLookupByLibrary.simpleMessage(
             "Be sure your phone number is correct for verification purposes"),
         "text_telp": MessageLookupByLibrary.simpleMessage("Phone"),

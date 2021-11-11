@@ -99,6 +99,7 @@
     "_pre order":"",
     "preorder_filter_hint":"Temukan resto favorit Anda",
     "preorder_filter_all":"Semua",
+    "preorder_shipped": "Dikirim dalam {param} hari setelah konfirmasi pemesanan",
     "preorder_filter_a_day":"{param} Hari",
     "preorder_filter_else":"Lebih dari {param} Hari",
     "preorder_not_found":"Menu Pre Order tidak ditemukan.",

@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:digiresto/application/credit/credit_bloc.dart';
 import 'package:digiresto/application/credit/credit_tab_controller.dart';
-import 'package:digiresto/application/home/home_navigation_view_controller.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
@@ -94,7 +94,7 @@ class CreditWidget extends StatelessWidget {
             (count) => count,
           ),
         );
-        Get.find<HomeNavigationViewController>().setCreditTopupPending(count);
+        Get.find<BottomTabCubit>().checkCreditTab();
       },
       builder: (context, state) {
         late final _bloc = BlocProvider.of<CreditBloc>(context);

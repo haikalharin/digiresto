@@ -107,10 +107,12 @@ class ProfileRepository implements IProfileRepository {
     final _apiUrl = Endpoints.urlForward;
     final queryParameter = Endpoints.urlGetOrderProcessCount;
     try {
-      await _storage.openBox(StorageConstants.user);
+      final _box = await _storage.openBox(StorageConstants.user);
 
-      final _userInStorage = await _storage.getData();
-      await _storage.close();
+      final _userInStorage = await _storage.getData(
+        _box,
+      );
+      await _storage.close(_box);
 
       final user = UserAuth.fromJson(_userInStorage);
       final apiResult = await _networkService.postHttp(

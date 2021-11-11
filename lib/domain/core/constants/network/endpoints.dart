@@ -31,6 +31,8 @@ class Endpoints {
   static const String urlGetCancelReasons = "/user/cancel/reasons?lang=";
   static const String urlPostPushToken = '/user/notification/register';
 
+  static const String urlMenuCategory = '/menu/category';
+
   static String get devUrl {
     Box box = Hive.box('settings');
     String? devUrl = box.get('devUrl');

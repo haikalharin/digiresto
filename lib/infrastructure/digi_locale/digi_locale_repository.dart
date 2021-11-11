@@ -10,13 +10,13 @@ class DigiLocaleRepository implements IDigiLocaleRepository {
   @override
   Future<String> getAppLocale() async {
     try {
-      await _storage.openBox(StorageConstants.locale);
-      String? locale = _storage.getString(key: 'locale');
+      final _box = await _storage.openBox(StorageConstants.locale);
+      String? locale = _storage.getString(_box, key: 'locale');
       print('locale $locale');
       if (locale == null) {
         return 'en_US';
       }
-      await _storage.close();
+      await _storage.close(_box);
       return locale;
     } catch (e) {
       return 'en_US';
@@ -25,9 +25,9 @@ class DigiLocaleRepository implements IDigiLocaleRepository {
 
   @override
   Future<void> setNewLocale({required String newLocale}) async {
-    await _storage.openBox(StorageConstants.locale);
-    await _storage.putString(key: 'locale', value: newLocale);
-    await _storage.close();
+    final _box = await _storage.openBox(StorageConstants.locale);
+    await _storage.putString(_box, key: 'locale', value: newLocale);
+    await _storage.close(_box);
     return;
   }
 }

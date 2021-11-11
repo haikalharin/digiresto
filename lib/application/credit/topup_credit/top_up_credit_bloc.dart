@@ -47,11 +47,13 @@ class TopUpCreditBloc extends Bloc<TopUpCreditEvent, TopUpCreditState> {
         Either<CreditFailure, TopUpVADetails>? vaFailureOrSuccess;
         Either<CreditFailure, TopUpBankDetails>? bankFailureOrSuccess;
         if (isNominalValid) {
-          await _storage.openBox(StorageConstants.user);
-          final _userInStorage = await _storage.getData();
+          final _box = await _storage.openBox(StorageConstants.user);
+          final _userInStorage = await _storage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final _nominal = state.nominal.getOrCrash();
-          await _storage.close();
+          await _storage.close(_box);
           switch (state.destination) {
             case 'TOP_UP_VA':
               vaFailureOrSuccess = await _creditRepository.topUpVA(

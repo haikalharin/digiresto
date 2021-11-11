@@ -10,7 +10,6 @@ import 'package:logger/logger.dart';
 
 @LazySingleton(as: IStorage)
 class Storage implements IStorage {
-  late Box box;
   final HiveInterface hive;
   final Logger logger;
 
@@ -19,23 +18,26 @@ class Storage implements IStorage {
     this.logger,
   );
 
-  Future<void> openBox(
+  Future<Box> openBox(
     StorageConstants boxName,
   ) async {
     List<int>? hiveKey = await hiveKeys;
 
-    box = await hive.openBox(
+    final _box = await hive.openBox(
       describeEnum(boxName),
       encryptionCipher: HiveAesCipher(hiveKey),
     );
+    return _box;
   }
 
-  Future close() async {
+  Future close(
+    Box box,
+  ) async {
     await box.close();
     return;
   }
 
-  Future<void> putData({required Map<String, dynamic> json}) async {
+  Future<void> putData(Box box, {required Map<String, dynamic> json}) async {
     try {
       logger.d('check box is open ${box.isOpen}');
       await box.putAll(json);
@@ -45,11 +47,12 @@ class Storage implements IStorage {
     }
   }
 
-  Future putDynamicData({required String key, required dynamic value}) async {
+  Future putDynamicData(Box box,
+      {required String key, required dynamic value}) async {
     await box.put(key, value);
   }
 
-  Future<void> putListData({required List dataList}) async {
+  Future<void> putListData(Box box, {required List dataList}) async {
     try {
       dataList.map((e) async {
         await box.add(e);
@@ -61,23 +64,25 @@ class Storage implements IStorage {
     return;
   }
 
-  Future<void> putString({required String key, required String value}) async {
+  Future<void> putString(Box box,
+      {required String key, required String value}) async {
     await box.put(key, value);
     return;
   }
 
-  Future<void> putBool({required String key, required bool value}) async {
+  Future<void> putBool(Box box,
+      {required String key, required bool value}) async {
     await box.put(key, value);
     return;
   }
 
-  String? getString({required String key}) {
+  String? getString(Box box, {required String key}) {
     String? value = box.get(key);
     return value;
   }
 
   @override
-  getJson({required String key}) {
+  getJson(Box box, {required String key}) {
     try {
       dynamic value = box.get(key) != null ? jsonDecode(box.get(key)) : null;
       return value;
@@ -87,24 +92,24 @@ class Storage implements IStorage {
   }
 
   @override
-  Future<void> setJson(
+  Future<void> setJson(Box box,
       {required String key, required Map<String, dynamic> object}) async {
     await box.put(key, jsonEncode(object));
     return;
   }
 
-  Future<DateTime?> getDate({required String key}) async {
+  Future<DateTime?> getDate(Box box, {required String key}) async {
     DateTime? date = box.get(key);
     // box.close();
     return date;
   }
 
-  Future<int?> getInt({required String key}) async {
+  Future<int?> getInt(Box box, {required String key}) async {
     int? value = box.get(key);
     return value;
   }
 
-  Future<bool> getBool({required String key}) async {
+  Future<bool> getBool(Box box, {required String key}) async {
     bool? value = box.get(key);
     if (value == null) {
       value = false;
@@ -113,23 +118,27 @@ class Storage implements IStorage {
     return value;
   }
 
-  Future<double?> getDouble({required String key}) async {
+  Future<double?> getDouble(Box box, {required String key}) async {
     double? value = box.get(key);
     // box.close();
     return value;
   }
 
-  Future<Map<String, dynamic>> getData() async {
+  Future<Map<String, dynamic>> getData(
+    Box box,
+  ) async {
     Map<String, dynamic>? value = Map<String, dynamic>.from(box.toMap());
     logger.d(value);
     return value;
   }
 
-  Future<dynamic> getDynamicData({required String key}) async {
+  Future<dynamic> getDynamicData(Box box, {required String key}) async {
     return box.get(key);
   }
 
-  Future<List?> getListData() async {
+  Future<List?> getListData(
+    Box box,
+  ) async {
     final value = box.toMap();
     logger.d(value);
     List datas = [];
@@ -140,12 +149,14 @@ class Storage implements IStorage {
     return datas;
   }
 
-  Future<void> deleteData() async {
+  Future<void> deleteData(
+    Box box,
+  ) async {
     await box.deleteFromDisk();
     return;
   }
 
-  Future<void> deleteString({required String key}) async {
+  Future<void> deleteString(Box box, {required String key}) async {
     await box.delete(key);
     // box.close();
     return;

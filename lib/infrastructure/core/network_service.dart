@@ -31,9 +31,9 @@ class NetworkService implements INetworkService {
       bool useAuth = true}) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
-      await baseStorage.openBox(StorageConstants.user);
-
       try {
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
         logger.d('get Http : $path');
 
         final Map<String, dynamic> headers = _dio.options.headers;
@@ -42,12 +42,18 @@ class NetworkService implements INetworkService {
           'accept': ContentType.json.mimeType
         });
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
 
         if (header != null) {
@@ -57,14 +63,10 @@ class NetworkService implements INetworkService {
         _dio.options.headers = headers;
         logger.d(_dio.options.headers);
 
-        String baseUrl = await _env.getBaseUrl;
-        logger.d('dio base url : $baseUrl');
-
         final Response response = await _dio.get(
             '$baseUrl$path${parameter ?? ""}',
             queryParameters: queryParameter);
         final responseCode = response.data['response']['code'] as String;
-        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {
@@ -115,7 +117,8 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.user);
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
         final Map<String, dynamic> headers = {
           'content-type': ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -124,16 +127,20 @@ class NetworkService implements INetworkService {
           headers.addAll(header);
         }
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
-
-        String baseUrl = await _env.getBaseUrl;
-        logger.d('dio base url : $baseUrl');
 
         final Response response = await _dio.post(
           '$baseUrl$path${parameter ?? ""}',
@@ -141,7 +148,6 @@ class NetworkService implements INetworkService {
           data: content,
         );
         final responseCode = response.data['response']['code'] as String;
-        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {
@@ -193,7 +199,6 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'content-type': contentType ?? ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -203,12 +208,18 @@ class NetworkService implements INetworkService {
         }
 
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
 
         _dio.options.headers = headers;
@@ -219,7 +230,6 @@ class NetworkService implements INetworkService {
           data: content,
         );
         final responseCode = response.data['response']['code'] as String;
-        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {
@@ -268,17 +278,22 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'Accept': ContentType.binary.mimeType,
         };
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
         final savedDir = Directory(downloadPath);
         final bool hasExisted = await savedDir.exists();
@@ -290,7 +305,6 @@ class NetworkService implements INetworkService {
         _dio.options.headers = headers;
         final Response response = await _dio.download(url, downloadPath);
         final responseCode = response.data['response']['code'] as String;
-        await baseStorage.close();
         if (responseCode == '00' || responseCode == '000') {
           return response.data;
         } else {

@@ -1,0 +1,175 @@
+import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/core/exceptions/exceptions.dart';
+import 'package:digiresto/domain/core/exceptions/location_exception.dart';
+import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
+import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/domain/home/entity/static_banner.dart';
+import 'package:digiresto/domain/home/home_failure.dart';
+import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:dartz/dartz.dart' hide IList;
+import 'package:digiresto/domain/home/i_home_repository.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
+
+@LazySingleton(as: IHomeRepository)
+class HomeRepository implements IHomeRepository {
+  final INetworkService _networkService;
+  final Logger logger;
+  final IStorage _storage;
+  final ILocationService _locationService;
+
+  HomeRepository(
+    this.logger,
+    this._networkService,
+    this._storage,
+    this._locationService,
+  );
+  @override
+  Future<Either<HomeFailure, IList<MenuCategory>>> getMenuCategory() async {
+    try {
+      final apiUrl = Endpoints.urlMenuCategory;
+      final apiResult = await _networkService.getHttp(
+        useAuth: true,
+        path: apiUrl,
+      );
+
+      final listUserData = List.from(
+          (apiResult as Map<String, dynamic>)['data']['menuCategory']);
+
+      final listMenuCategory =
+          listUserData.map((e) => MenuCategory.fromJson(e)).toIList();
+      return right(listMenuCategory);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(HomeFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(HomeFailure.sessionExpired());
+    } on ServerException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.serverError());
+    } on TimeOutException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.unableToUpdate());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(HomeFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(HomeFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<HomeFailure, IList<StaticBanner>>> getStaticBanner() async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetStaticBanner;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        queryParameter: queryParameter,
+        content: {
+          "query_string": {},
+          "body": {},
+        },
+      );
+
+      final listUserData =
+          List.from((apiResult as Map<String, dynamic>)['data']);
+
+      final listStaticBanner =
+          listUserData.map((e) => StaticBanner.fromJson(e)).toIList();
+      return right(listStaticBanner);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(HomeFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(HomeFailure.sessionExpired());
+    } on ServerException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.serverError());
+    } on TimeOutException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.unableToUpdate());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(HomeFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(HomeFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<HomeFailure, UserAddress>> getUserAddress() async {
+    try {
+      final _box = await _storage.openBox(StorageConstants.address);
+      final data = await _storage.getJson(_box, key: "address");
+      await _storage.close(_box);
+      if (data == null) {
+        final _currentLocation = await _locationService.determinePosition();
+        final apiUrl = Endpoints.urlForward;
+        final queryParameter = Endpoints.urlGetGeocode;
+        final apiResult = await _networkService.postHttp(
+          path: apiUrl,
+          content: {
+            "query_string": {
+              "lat": _currentLocation.latitude.toString(),
+              "lng": _currentLocation.longitude.toString(),
+            },
+            "body": {}
+          },
+          queryParameter: queryParameter,
+        );
+        final formattedAddress = (apiResult as Map<String, dynamic>)['data']
+            ['formatted_address'] as String;
+        final userAddress = UserAddress(
+          address: formattedAddress,
+          latitude: _currentLocation.latitude.toString(),
+          longitude: _currentLocation.longitude.toString(),
+        );
+        final _box = await _storage.openBox(StorageConstants.address);
+        print("Create Active Address");
+        await _storage.setJson(_box,
+            key: "address", object: userAddress.toJson());
+        await _storage.close(_box);
+        return right(userAddress);
+      }
+      final model = UserAddress.fromJson(data);
+      return right(model);
+    } on LocationPermissionDenied catch (_) {
+      ErrorDialog().showLocationError();
+      return left(HomeFailure.locationError());
+    } on LocationServiceDisabled catch (_) {
+      ErrorDialog().showLocationError();
+      return left(HomeFailure.locationError());
+    } on LocationPermissionDeniedForever catch (_) {
+      ErrorDialog().showLocationError();
+      return left(HomeFailure.locationError());
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(HomeFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(HomeFailure.sessionExpired());
+    } on ServerException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.serverError());
+    } on TimeOutException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.unableToUpdate());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(HomeFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(HomeFailure.unexpected());
+    }
+  }
+}

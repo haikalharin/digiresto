@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:core';
-
-import 'package:digiresto/application/home/home_navigation_view_controller.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -12,6 +12,7 @@ import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
@@ -19,6 +20,7 @@ import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class DetailProductDialog extends StatefulWidget {
@@ -56,6 +58,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   final notesController = TextEditingController();
   String notes = '';
   bool noteIsSubmitted = true;
+  bool isLimitReached = false;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -91,7 +94,9 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
 
   void setProduct({bool isBuyNow = false}) async {
     if (widget.isDifferentOutlet) {
-      ErrorPopupWidget.confirmation("Digiresto", "outlet yang berbeda", () {
+      ErrorPopupWidget.confirmation("Digiresto",
+          '${I10n.current.beranda_outlet_change}${I10n.current.beranda_all_product_deleted}',
+          () {
         Get.context!.read<OrderBloc>().add(
               OrderEvent.addCart(
                 CreateUpdateCartSessionItemParam(
@@ -106,7 +111,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             );
         Get.back();
       });
-      Get.find<HomeNavigationViewController>().setHaveCart(true);
+      Get.find<BottomTabCubit>().checkCartFromOutside();
 
       return;
     }
@@ -116,7 +121,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       });
       return;
     }
-    Get.find<HomeNavigationViewController>().setHaveCart(true);
+    Get.find<BottomTabCubit>().checkCartFromOutside();
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
             CreateUpdateCartSessionItemParam(
@@ -165,7 +170,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                 I10n.current.product_choose_variant,
                 style: TextStyle(
                   fontFamily: "roboto",
-                  color: AppColors.red,
+                  color: AppColors.mainColor,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -191,7 +196,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             borderRadius: new BorderRadius.circular(10.0),
                             side: BorderSide(
                               width: 1,
-                              color: AppColors.red,
+                              color: AppColors.mainColor,
                             ),
                           ),
                         ),
@@ -260,15 +265,15 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TopBackgound(backgroundColor: AppColors.red),
-                Container(
-                  height: MediaQuery.of(context).size.width,
-                  child: Stack(
+            TopBackgound(backgroundColor: AppColors.red),
+            Expanded(
+              child: Stack(
+                children: [
+                  ListView(
+                    padding: EdgeInsets.zero,
                     children: [
                       Container(
+                        height: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(2.0)),
@@ -287,371 +292,536 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(7),
-                        child: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.black54,
-                          child: new IconButton(
-                              icon: new Icon(Icons.close,
-                                  color: Colors.white, size: 30.0),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              }),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        alignment: Alignment.topLeft,
                         color: Colors.white,
-                        width: MediaQuery.of(context).size.width / 2 + 50,
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Text(variantProductSelected.name,
-                            softWrap: true,
-                            maxLines: 3,
-                            //overflow: TextOverflow.ellipsis,
-                            style: AppFont.textBlack16Bold,
-                            textAlign: TextAlign.left),
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.topLeft,
-                            padding: const EdgeInsets.only(top: 5),
-                            //width: 10,
-                            child: Text(
-                                "Rp." + Utils.formatRupiah(price.toString()),
-                                softWrap: false,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppFont.textBlack16Bold,
-                                textAlign: TextAlign.left),
-                          ),
-                          beforePrice != null
-                              ? Container(
-                                  alignment: Alignment.topLeft,
-                                  padding: const EdgeInsets.only(top: 5),
-                                  //width: 10,
-                                  child: Text(
-                                      "Rp." +
-                                          Utils.formatRupiah(
-                                              beforePrice.toString()),
-                                      softWrap: false,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: AppFont.textBlack16Bold.copyWith(
-                                          decoration:
-                                              TextDecoration.lineThrough),
-                                      textAlign: TextAlign.left),
-                                )
-                              : Container(),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: Container(
-                      color: AppColors.white,
-                      child: Text(variantProductSelected.description ?? '',
-                          style: AppFont.textBlack12Regular),
-                    )),
-                Divider(
-                  thickness: 12,
-                  color: AppColors.dividerColor,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(I10n.current.cart_notes,
-                              style: AppFont.textBlack14Bold),
-                          Container(
-                            padding: EdgeInsets.only(left: 5),
-                            child: Text(I10n.current.cart_optional,
-                                style: AppFont.textBlack8Light),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: TextField(
-                            textInputAction: TextInputAction.search,
-                            onSubmitted: (value) {},
-                            onChanged: (text) {
-                              setState(() {
-                                noteIsSubmitted = false;
-                              });
-                            },
-                            controller: notesController,
-                            readOnly: false,
-                            style: TextStyle(
-                              fontSize: 12.0,
-                            ),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: AppColors.greyFill,
-                              contentPadding: EdgeInsets.only(
-                                  top: 12, bottom: 12, left: 10, right: 10),
-                              hintText: I10n.current.placeholder_hint_notes,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.black, width: 32.0),
-                                  borderRadius: BorderRadius.circular(5)),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.black),
-                              ),
-                            )),
-                      ),
-                      if (noteIsSubmitted == false)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: Dimens.defaultMargin,
+                          vertical: 15,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              alignment: Alignment.topCenter,
-                              padding: const EdgeInsets.only(top: 5),
-                              //width: MediaQuery. of(context). size. width-200,
-                              child: Container(
-                                padding: EdgeInsets.all(5),
-                                height: 55,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      notes = notesController.text;
-                                      noteIsSubmitted = true;
-                                    });
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: AppColors.red,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(5.0),
-                                      side: BorderSide(
-                                        width: 1,
-                                        color: AppColors.redYoung,
-                                      ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(variantProductSelected.name,
+                                      softWrap: true,
+                                      maxLines: 3,
+                                      //overflow: TextOverflow.ellipsis,
+                                      style: AppFont.textBlack16Bold,
+                                      textAlign: TextAlign.left),
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      padding: const EdgeInsets.only(top: 5),
+                                      //width: 10,
+                                      child: Text(
+                                          "Rp " +
+                                              Utils.formatRupiah(
+                                                  price.toString()),
+                                          softWrap: false,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: AppFont.textBlack16Bold,
+                                          textAlign: TextAlign.left),
                                     ),
+                                    beforePrice != null
+                                        ? Container(
+                                            alignment: Alignment.topLeft,
+                                            padding:
+                                                const EdgeInsets.only(top: 5),
+                                            //width: 10,
+                                            child: Text(
+                                                "Rp " +
+                                                    Utils.formatRupiah(
+                                                        beforePrice.toString()),
+                                                softWrap: false,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: AppFont.textBlack16Bold
+                                                    .copyWith(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .lineThrough),
+                                                textAlign: TextAlign.left),
+                                          )
+                                        : Container(),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              color: AppColors.white,
+                              child: Text(
+                                '${widget.detailOutlet.name} - ${widget.detailOutlet.city}',
+                                style: AppFont.textBlack14Regular,
+                              ),
+                            ),
+                            if (variantProductSelected.isPreorder)
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: AppColors.mainColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Text(
+                                  'PRE-ORDER',
+                                  style: Styles.whiteFontStyle.copyWith(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  child: Text(I10n.current.cart_notes_apply,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      if (variantProductSelected.isPreorder)
+                        Column(
+                          children: [
+                            Divider(
+                              thickness: 12,
+                              color: AppColors.dividerColor,
+                            ),
+                            Container(
+                              color: AppColors.mainMaterialColor.shade100,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: Dimens.defaultMargin,
+                                  vertical: 15,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SvgPicture.asset(
+                                            'assets/preorder_ship.svg'),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                I10n.current.preorder_shipped(
+                                                  variantProductSelected
+                                                          .preorderPeriod ??
+                                                      1,
+                                                ),
+                                                style: AppFont.textBlack12Bold
+                                                    .copyWith(
+                                                  color: AppColors.red,
+                                                ),
+                                              ),
+                                              Text(
+                                                '${I10n.current.preorder_tnc_desc_1(widget.detailOutlet.poCutoff ?? '')}. ${I10n.current.preorder_tnc_desc_2(widget.detailOutlet.poCutoff ?? '')}',
+                                                style: AppFont
+                                                    .textBlack12Regular
+                                                    .copyWith(
+                                                  color: AppColors.red,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SvgPicture.asset(
+                                            'assets/preorder_estimate.svg'),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              //estimasi preorder
+                                              Text(
+                                                I10n.current
+                                                    .preorder_detail_estimate(
+                                                  CommonUtils.dateFormat(
+                                                        'dd MMMM yyyy',
+                                                        DateTime.now().add(
+                                                          Duration(
+                                                            days: DateTime.now()
+                                                                        .hour <
+                                                                    int.parse(widget.detailOutlet.poCutoff?.substring(
+                                                                            0,
+                                                                            widget.detailOutlet.poCutoff?.indexOf(':') ??
+                                                                                1) ??
+                                                                        '0')
+                                                                ? variantProductSelected
+                                                                        .preorderPeriod ??
+                                                                    1
+                                                                : (variantProductSelected
+                                                                            .preorderPeriod ??
+                                                                        1) +
+                                                                    1,
+                                                          ),
+                                                        ),
+                                                      ) ??
+                                                      '',
+                                                ),
+                                                style: AppFont.textBlack12Bold
+                                                    .copyWith(
+                                                  color: AppColors.red,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ],
-                        )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            SafeArea(
-              child: Container(
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.topLeft,
-                            padding: const EdgeInsets.all(5),
-                            //width: 10,
-                            child: Text(
-                                "Rp." +
-                                    Utils.formatRupiah(
-                                        ((price ?? 0) * totalqty).toString()),
-                                softWrap: false,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppFont.textBlack16Bold,
-                                textAlign: TextAlign.left),
-                          ),
-                          Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  minus();
-                                },
-                                child: CircleAvatar(
-                                  radius: 14,
-                                  backgroundColor: AppColors.greyStroke,
-                                  child: new Icon(Icons.remove,
-                                      color: AppColors.redYoung, size: 20.0),
-                                ),
+                        ),
+                      if (variantProductSelected.description != null &&
+                          (variantProductSelected.description?.isNotEmpty ??
+                              false))
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Divider(
+                              thickness: 12,
+                              color: AppColors.dividerColor,
+                            ),
+                            Container(
+                              color: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Dimens.defaultMargin,
+                                vertical: 15,
                               ),
-                              Container(
-                                padding: EdgeInsets.only(left: 5, right: 5),
-                                child: Text(totalqty.toString(),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    I10n.current
+                                        .product_detail_description_title,
                                     style: AppFont.textBlack16Bold,
-                                    textAlign: TextAlign.left),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  plus();
-                                },
-                                child: CircleAvatar(
-                                  radius: 14,
-                                  backgroundColor: AppColors.greyStroke,
-                                  child: new Icon(Icons.add,
-                                      color: AppColors.redYoung, size: 20.0),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    (widget.mode == "new")
-                        ? Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(5),
-                                  height: 50,
-                                  width:
-                                      MediaQuery.of(context).size.width / 2 - 5,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      setProduct();
-                                      // if (_userStore.skipAndContinue ?? false) {
-                                      //   ErrorPopupWidget.showLoginRequired(context,
-                                      //       () {
-                                      //     Navigator.of(context).pop();
-                                      //   }, () {
-                                      //     _userStore.removeSkipAndContinue();
-                                      //     _userStore.removeAuthToken();
-                                      //     Navigator.of(context)
-                                      //         .pushNamed(Routes.input_phone);
-                                      //   });
-                                      // } else {
-                                      //   // _orderStore.setProduct(
-                                      //   //     dataProductState["id"],
-                                      //   //     totalqty,
-                                      //   //     price,
-                                      //   //     dataProductState);
-                                      //   Navigator.of(context).pop();
-                                      // }
-                                    },
-                                    child: Text("${I10n.current.add_to_cart}",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: AppColors.red,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(25.0),
-                                        side: BorderSide(
-                                          width: 1,
-                                          color: AppColors.red,
-                                        ),
-                                      ),
-                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    variantProductSelected.description ?? '',
+                                    style: AppFont.textBlack14Regular,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      Divider(
+                        thickness: 12,
+                        color: AppColors.dividerColor,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Dimens.defaultMargin,
+                          vertical: 15,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(I10n.current.cart_notes,
+                                    style: AppFont.textBlack14Bold),
                                 Container(
-                                  padding: EdgeInsets.all(5),
-                                  height: 50,
-                                  width:
-                                      MediaQuery.of(context).size.width / 2 - 5,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        setProduct(isBuyNow: true);
-                                        // if (_userStore.skipAndContinue ?? false) {
-                                        //   ErrorPopupWidget.showLoginRequired(context,
-                                        //       () {
-                                        //     Navigator.of(context).pop();
-                                        //   }, () {
-                                        //     _userStore.removeSkipAndContinue();
-                                        //     _userStore.removeAuthToken();
-                                        //     Navigator.of(context)
-                                        //         .pushNamed(Routes.input_phone);
-                                        //   });
-                                        // } else {
-                                        //   _orderStore.setProduct(
-                                        //       dataProductState["id"],
-                                        //       totalqty,
-                                        //       price,
-                                        //       dataProductState);
-                                        //   Navigator.of(context)
-                                        //       .popAndPushNamed(Routes.order_cart);
-                                        // }
-                                      },
-                                      child: Text(I10n.current.buy_now,
-                                          style: AppFont.textBlack14Bold
-                                              .copyWith(
-                                                  color: AppColors.redD12B34)),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(25.0),
-                                          side: BorderSide(
-                                            width: 1,
-                                            color: AppColors.red,
-                                          ),
-                                        ),
-                                      )),
+                                  padding: EdgeInsets.only(left: 5),
+                                  child: Text(I10n.current.cart_optional,
+                                      style: AppFont.textBlack8Light),
                                 ),
                               ],
                             ),
-                          )
-                        : Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              height: 50,
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setProduct();
-                                  // _orderStore.setProduct(dataProductState["id"],
-                                  //     totalqty, price, dataProductState);
-                                  Get.back(closeOverlays: true);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: AppColors.redD12B34,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(25.0),
-                                    side: BorderSide(
-                                      width: 1,
-                                      color: AppColors.red,
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(top: 5, bottom: 10),
+                              child: TextField(
+                                  textInputAction: TextInputAction.search,
+                                  onSubmitted: (value) {},
+                                  onChanged: (text) {
+                                    setState(() {
+                                      noteIsSubmitted = false;
+                                    });
+                                  },
+                                  controller: notesController,
+                                  readOnly: false,
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                  ),
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    filled: true,
+                                    fillColor: AppColors.greyFill,
+                                    contentPadding: EdgeInsets.only(
+                                        top: 12,
+                                        bottom: 12,
+                                        left: 10,
+                                        right: 10),
+                                    hintText:
+                                        I10n.current.placeholder_hint_notes,
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.black, width: 32.0),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      borderSide: BorderSide(
+                                          width: 1, color: Colors.black),
+                                    ),
+                                  )),
+                            ),
+                            if (noteIsSubmitted == false)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.topCenter,
+                                    padding: const EdgeInsets.only(top: 5),
+                                    //width: MediaQuery. of(context). size. width-200,
+                                    child: Container(
+                                      padding: EdgeInsets.all(5),
+                                      height: 55,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            notes = notesController.text;
+                                            noteIsSubmitted = true;
+                                          });
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          primary: AppColors.mainColor,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(5.0),
+                                            side: BorderSide(
+                                              width: 1,
+                                              color: AppColors.redYoung,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Text(
+                                            I10n.current.cart_notes_apply,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                child: Text(I10n.current.update_to_cart,
-                                    style: AppFont.textBlack14Bold
-                                        .copyWith(color: AppColors.white)),
-                              ),
+                                ],
+                              )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(7),
+                    child: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.black54,
+                      child: new IconButton(
+                        icon: new Icon(Icons.close,
+                            color: Colors.white, size: 30.0),
+                        onPressed: () => Get.back(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                left: Dimens.defaultMargin,
+                right: Dimens.defaultMargin,
+                top: 10,
+                bottom: 30,
+              ),
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: const EdgeInsets.all(5),
+                        //width: 10,
+                        child: Text(
+                            "Rp " +
+                                Utils.formatRupiah(
+                                    ((price ?? 0) * totalqty).toString()),
+                            softWrap: false,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppFont.textBlack16Bold,
+                            textAlign: TextAlign.left),
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              minus();
+                            },
+                            child: CircleAvatar(
+                              radius: 14,
+                              backgroundColor: AppColors.greyStroke,
+                              child: new Icon(Icons.remove,
+                                  color: AppColors.redYoung, size: 20.0),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 5, right: 5),
+                            child: Text(totalqty.toString(),
+                                style: AppFont.textBlack16Bold,
+                                textAlign: TextAlign.left),
+                          ),
+                          GestureDetector(
+                            onTap: (variantProductSelected.limit == totalqty)
+                                ? () => setState(() {
+                                      isLimitReached = true;
+                                    })
+                                : () {
+                                    plus();
+                                  },
+                            child: CircleAvatar(
+                              radius: 14,
+                              backgroundColor: AppColors.greyStroke,
+                              child: new Icon(Icons.add,
+                                  color: AppColors.redYoung, size: 20.0),
                             ),
                           )
-                  ],
-                ),
+                        ],
+                      )
+                    ],
+                  ),
+                  if (variantProductSelected.limit == totalqty &&
+                      isLimitReached)
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(5),
+                      child: Text(
+                        I10n.current.product_detail_max_item,
+                        style: AppFont.textBlack12Regular.copyWith(
+                          color: AppColors.mainColor,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  (widget.mode == "new")
+                      ?
+                      // variantProductSelected.isPreorder
+                      //     ? Container(
+                      //         padding: EdgeInsets.only(bottom: 10),
+                      //         child: Row(
+                      //           mainAxisAlignment:
+                      //               MainAxisAlignment.spaceEvenly,
+                      //           children: [
+                      //             Expanded(
+                      //               child: CustomButton(
+                      //                 onPressed: () =>
+                      //                     setProduct(isBuyNow: true),
+                      //                 borderRadius: BorderRadius.circular(25),
+                      //                 label: I10n.current.home_preorder,
+                      //                 fontColor: Colors.white,
+                      //                 color: AppColors.mainColor,
+                      //               ),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       )
+                      //     :
+                      Container(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => setProduct(),
+                                  borderRadius: BorderRadius.circular(25),
+                                  label: I10n.current.add_to_cart,
+                                  fontColor: Colors.white,
+                                  color: AppColors.mainColor,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () => setProduct(isBuyNow: true),
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderColor: AppColors.mainColor,
+                                  label: I10n.current.buy_now,
+                                  fontColor: AppColors.mainColor,
+                                  color: Colors.white,
+                                  borderWidth: 2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            height: 50,
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setProduct();
+                                // _orderStore.setProduct(dataProductState["id"],
+                                //     totalqty, price, dataProductState);
+                                Get.back(closeOverlays: true);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: AppColors.redD12B34,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(25.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.mainColor,
+                                  ),
+                                ),
+                              ),
+                              child: Text(I10n.current.update_to_cart,
+                                  style: AppFont.textBlack14Bold
+                                      .copyWith(color: AppColors.white)),
+                            ),
+                          ),
+                        )
+                ],
               ),
-            )
+            ),
           ],
         ),
       );

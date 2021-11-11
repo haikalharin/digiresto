@@ -19,6 +19,47 @@ class ErrorDialog {
     }
     Get.dialog(
       BaseDialogError(
+        title: title,
+        error: error,
+        onClose: onClose,
+      ),
+    );
+  }
+
+  showServerError({
+    String? title,
+    final Function? onClose,
+  }) async {
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    final error = StatusMessageDisplayResponse(
+      en: I10n.current.error_message_failed_get_response,
+      id: I10n.current.error_message_failed_get_response,
+    );
+    Get.dialog(
+      BaseDialogError(
+        title: title ?? I10n.current.oops_title,
+        error: error,
+        onClose: onClose,
+      ),
+    );
+  }
+
+  showLocationError({
+    String? title,
+    final Function? onClose,
+  }) async {
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    final error = StatusMessageDisplayResponse(
+      id: I10n.current.cart_address_not_valid,
+      en: I10n.current.cart_address_not_valid,
+    );
+    Get.dialog(
+      BaseDialogError(
+        title: title ?? I10n.current.oops_title,
         error: error,
         onClose: onClose,
       ),

@@ -548,9 +548,9 @@ class OrderApi {
     } on FailureException catch (e) {
       if (e.code == '12') {
         final String _voucherMethodKey = "voucherMethodKey";
-        await _storage.openBox(StorageConstants.cart);
-        await _storage.setJson(key: _voucherMethodKey, object: {});
-        await _storage.close();
+        final _box = await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(_box, key: _voucherMethodKey, object: {});
+        await _storage.close(_box);
       }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException());
@@ -588,9 +588,9 @@ class OrderApi {
     } on FailureException catch (e) {
       if (e.code == '12') {
         final String _voucherMethodKey = "voucherMethodKey";
-        await _storage.openBox(StorageConstants.cart);
-        await _storage.setJson(key: _voucherMethodKey, object: {});
-        await _storage.close();
+        final _box = await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(_box, key: _voucherMethodKey, object: {});
+        await _storage.close(_box);
       }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException());
@@ -659,9 +659,9 @@ class OrderApi {
     } on FailureException catch (e) {
       if (e.code == '12') {
         final String _voucherMethodKey = "voucherMethodKey";
-        await _storage.openBox(StorageConstants.cart);
-        await _storage.setJson(key: _voucherMethodKey, object: {});
-        await _storage.close();
+        final _box = await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(_box, key: _voucherMethodKey, object: {});
+        await _storage.close(_box);
       }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException());

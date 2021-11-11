@@ -1,5 +1,5 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
-import 'package:digiresto/application/home/home_navigation_view_controller.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
@@ -193,7 +193,7 @@ class OrderCartScreenViewController extends GetxController {
   void checkCartSession() async {
     if (cartSession.value!.transactionData!.items.length <= 1) {
       isLoading.value = false;
-      Get.find<HomeNavigationViewController>().selectedTabIndex.value = 0;
+      Get.find<BottomTabCubit>().changeTab(0);
       Get.offNamedUntil(Routers.home, (route) => false);
     }
     if (checkoutResponse.value?.receiptCode == "") {

@@ -82,6 +82,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
         itemBuilder: (BuildContext context, int index) {
           num? price;
           var productCart = widget.productCart[index];
+          var productItem = widget.product[index];
 
           void minus() {
             final initialQty = productCart.qty;
@@ -162,147 +163,168 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                             ),
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  padding: const EdgeInsets.only(top: 5),
-                                  width: Get.width * 0.50,
-                                  child: Text(productCart.title,
-                                      softWrap: false,
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: AppFont.textBlack14SemiBold,
-                                      textAlign: TextAlign.left),
-                                ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.topLeft,
-                                      padding: const EdgeInsets.only(top: 5),
-                                      //width: 10,
-                                      child: Text(
-                                          "Rp." +
-                                              Utils.formatRupiah(widget
-                                                  .productCart[index].amount
-                                                  .toString()),
-                                          softWrap: false,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: AppFont.textBlack16Bold,
-                                          textAlign: TextAlign.left),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
                                     alignment: Alignment.topLeft,
-                                    //padding: const EdgeInsets.only(top: 5),
-                                    width: Get.width * 0.53,
-                                    child: Text(
-                                      widget.productCart[index].desc ?? '',
-                                      style: AppFont.textBlack10Regular
-                                          .copyWith(
-                                              color: AppColors.grey7B7B7B),
-                                    )),
-                                Container(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Row(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    width: Get.width * 0.50,
+                                    child: Text(productCart.title,
+                                        softWrap: false,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppFont.textBlack14SemiBold,
+                                        textAlign: TextAlign.left),
+                                  ),
+                                  Column(
                                     children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          widget.addOrRemove(
-                                              productCart.productId,
-                                              productCart.qty - 1,
-                                              price!,
-                                              productCart);
-                                          //minus();
-                                        },
-                                        child: CircleAvatar(
-                                          radius: 14,
-                                          backgroundColor: AppColors.greyStroke,
-                                          child: new Icon(Icons.remove,
-                                              color: AppColors.redYoung,
-                                              size: 20.0),
-                                        ),
-                                      ),
                                       Container(
-                                        padding:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                        child: Text(productCart.qty.toString(),
+                                        alignment: Alignment.topLeft,
+                                        padding: const EdgeInsets.only(top: 5),
+                                        //width: 10,
+                                        child: Text(
+                                            "Rp." +
+                                                Utils.formatRupiah(widget
+                                                    .productCart[index].amount
+                                                    .toString()),
+                                            softWrap: false,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
                                             style: AppFont.textBlack16Bold,
                                             textAlign: TextAlign.left),
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          widget.addOrRemove(
-                                              productCart.productId,
-                                              productCart.qty + 1,
-                                              price!,
-                                              productCart);
-                                          //plus();
-                                        },
-                                        child: CircleAvatar(
-                                          radius: 14,
-                                          backgroundColor: AppColors.greyStroke,
-                                          child: new Icon(Icons.add,
-                                              color: AppColors.redYoung,
-                                              size: 20.0),
-                                        ),
-                                      )
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  padding: const EdgeInsets.only(top: 5),
-                                  width:
-                                      MediaQuery.of(context).size.width - 200,
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    height: 35,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        print(productCart);
-                                        print(widget.orderType);
-                                        widget.runDetailAction(
-                                          productCart,
-                                          getMetaProduct(index)!,
-                                          widget.orderType,
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: AppColors.redD12B34,
-                                        shape: new RoundedRectangleBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(17.0),
-                                          side: BorderSide(
-                                            width: 1,
-                                            color: AppColors.red,
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                      alignment: Alignment.topLeft,
+                                      //padding: const EdgeInsets.only(top: 5),
+                                      width: Get.width * 0.53,
+                                      child: Text(
+                                        widget.productCart[index].desc ?? '',
+                                        style: AppFont.textBlack10Regular
+                                            .copyWith(
+                                                color: AppColors.grey7B7B7B),
+                                      )),
+                                  Container(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            widget.addOrRemove(
+                                                productCart.productId,
+                                                productCart.qty - 1,
+                                                price!,
+                                                productCart);
+                                            //minus();
+                                          },
+                                          child: CircleAvatar(
+                                            radius: 14,
+                                            backgroundColor:
+                                                AppColors.greyStroke,
+                                            child: new Icon(Icons.remove,
+                                                color: AppColors.redYoung,
+                                                size: 20.0),
                                           ),
                                         ),
-                                      ),
-                                      child: Text(I10n.current.cart_edit,
-                                          style: AppFont.textBlack10SemiBold
-                                              .copyWith(
-                                                  color: AppColors.white)),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 5, right: 5),
+                                          child: Text(
+                                              productCart.qty.toString(),
+                                              style: AppFont.textBlack16Bold,
+                                              textAlign: TextAlign.left),
+                                        ),
+                                        GestureDetector(
+                                          onTap: productItem.limit ==
+                                                  productCart.qty
+                                              ? null
+                                              : () {
+                                                  widget.addOrRemove(
+                                                      productCart.productId,
+                                                      productCart.qty + 1,
+                                                      price!,
+                                                      productCart);
+                                                  //plus();
+                                                },
+                                          child: CircleAvatar(
+                                            radius: 14,
+                                            backgroundColor:
+                                                AppColors.greyStroke,
+                                            child: new Icon(Icons.add,
+                                                color: AppColors.redYoung,
+                                                size: 20.0),
+                                          ),
+                                        )
+                                      ],
                                     ),
+                                  )
+                                ],
+                              ),
+                              if (productItem.limit == productCart.qty)
+                                Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.all(5),
+                                  child: Text(
+                                    I10n.current.product_detail_max_item,
+                                    style: AppFont.textBlack10Regular.copyWith(
+                                      color: AppColors.mainColor,
+                                    ),
+                                    textAlign: TextAlign.right,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
+                              Row(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.topLeft,
+                                    padding: const EdgeInsets.only(top: 5),
+                                    width:
+                                        MediaQuery.of(context).size.width - 200,
+                                    child: Container(
+                                      padding: EdgeInsets.all(5),
+                                      height: 35,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          print(productCart);
+                                          print(widget.orderType);
+                                          widget.runDetailAction(
+                                            productCart,
+                                            getMetaProduct(index)!,
+                                            widget.orderType,
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          primary: AppColors.redD12B34,
+                                          shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(17.0),
+                                            side: BorderSide(
+                                              width: 1,
+                                              color: AppColors.red,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Text(I10n.current.cart_edit,
+                                            style: AppFont.textBlack10SemiBold
+                                                .copyWith(
+                                                    color: AppColors.white)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

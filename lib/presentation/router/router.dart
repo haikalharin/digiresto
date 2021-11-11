@@ -17,6 +17,7 @@ import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
 import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
+import 'package:digiresto/presentation/landing/landing_page.dart';
 import 'package:digiresto/presentation/order/detail_outlet.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/order/payment_receipt.dart';
@@ -94,7 +95,7 @@ class Routers {
     ),
     GetPage(
       name: Routers.home,
-      page: () => HomeScreen(),
+      page: () => LandingPage(),
     ),
     GetPage(
       name: Routers.profile,
