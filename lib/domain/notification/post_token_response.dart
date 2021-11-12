@@ -11,7 +11,7 @@ String postTokenResponseToJson(PostTokenResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class PostTokenResponse with _$PostTokenResponse {
+class PostTokenResponse with _$PostTokenResponse {
   const factory PostTokenResponse({
     required String code,
     required String status,

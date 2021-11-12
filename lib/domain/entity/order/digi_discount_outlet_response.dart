@@ -92,7 +92,7 @@ class DigiDiscountOutletDataDistanceResponse
 }
 
 @freezed
-abstract class DigiDiscountOutletDataOrderMethodResponse
+class DigiDiscountOutletDataOrderMethodResponse
     with _$DigiDiscountOutletDataOrderMethodResponse {
   const factory DigiDiscountOutletDataOrderMethodResponse({
     required bool forceSelect,

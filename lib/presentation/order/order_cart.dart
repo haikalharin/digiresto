@@ -561,6 +561,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               en: I10n.current.user_not_choose_payment,
                             );
                             ErrorDialog().showError(
+                              twoButtons: true,
                               error: errorMessage,
                               onClose: () {
                                 Get.toNamed(Routers.selectPaymentMethod,

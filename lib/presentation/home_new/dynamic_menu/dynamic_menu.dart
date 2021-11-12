@@ -16,9 +16,7 @@ class DynamicMenu extends StatelessWidget {
           (data) => data.fold((l) => <MenuCategory>[], (r) => r.unlock),
         );
         return state.isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
+            ? Container()
             : Container(
                 padding: EdgeInsets.only(top: 15),
                 width: double.infinity,

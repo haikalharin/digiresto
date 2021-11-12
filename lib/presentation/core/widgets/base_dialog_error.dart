@@ -12,7 +12,8 @@ class ErrorDialog {
   showError({
     String title = "Digiresto",
     required StatusMessageDisplayResponse error,
-    final Function? onClose,
+    Function? onClose,
+    bool twoButtons = false,
   }) async {
     if (Get.isDialogOpen ?? false) {
       Get.back();
@@ -22,6 +23,7 @@ class ErrorDialog {
         title: title,
         error: error,
         onClose: onClose,
+        twoButtons: twoButtons,
       ),
     );
   }
@@ -106,11 +108,13 @@ class BaseDialogError extends StatelessWidget {
   final StatusMessageDisplayResponse error;
   final String title;
   final Function? onClose;
+  final bool twoButtons;
   const BaseDialogError({
     Key? key,
     required this.error,
     this.title = 'Digiresto',
     this.onClose,
+    this.twoButtons = false,
   }) : super(key: key);
 
   @override
@@ -158,17 +162,49 @@ class BaseDialogError extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                CustomButton(
-                  label: i10n.alert_ok,
-                  color: AppColors.mainColor,
-                  fontColor: Colors.white,
-                  onPressed: () async {
-                    Get.back();
-                    if (onClose != null) {
-                      onClose!();
-                    }
-                  },
-                ),
+                twoButtons
+                    ? Row(
+                        children: [
+                          Expanded(
+                            child: CustomButton(
+                              label: i10n.alert_cancel,
+                              color: Colors.white,
+                              fontColor: AppColors.mainColor,
+                              borderColor: AppColors.mainColor,
+                              onPressed: () async {
+                                Get.back();
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: CustomButton(
+                              label: i10n.alert_ok,
+                              color: AppColors.mainColor,
+                              fontColor: Colors.white,
+                              onPressed: () async {
+                                Get.back();
+                                if (onClose != null) {
+                                  onClose!();
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      )
+                    : CustomButton(
+                        label: i10n.alert_ok,
+                        color: AppColors.mainColor,
+                        fontColor: Colors.white,
+                        onPressed: () async {
+                          Get.back();
+                          if (onClose != null) {
+                            onClose!();
+                          }
+                        },
+                      ),
               ],
             ),
           ),

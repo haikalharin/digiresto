@@ -1,6 +1,5 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
-import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
@@ -24,10 +23,7 @@ class ProfileAddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeUserBloc>(
-      create: (context) => getIt<HomeUserBloc>(),
-      child: getIt<ProfileAddressWidget>(),
-    );
+    return getIt<ProfileAddressWidget>();
   }
 }
 
@@ -45,12 +41,14 @@ class ProfileAddressWidget extends StatelessWidget {
     return CustomScafold(
       showBackButton: true,
       title: i10n.address_all,
-      body: BlocConsumer<HomeUserBloc, HomeUserState>(
+      body: BlocConsumer<AddressListBloc, AddressListState>(
+        bloc: BlocProvider.of<AddressListBloc>(context)
+          ..add(AddressListEvent.getAllAddress()),
         listener: (context, state) {
           state.maybeMap(
             orElse: () => null,
-            addressListSuccess: (_state) {
-              controller.setListAddress(_state.list);
+            getAllAddressSuccess: (_state) {
+              controller.setListAddress(_state.response);
             },
           );
         },
@@ -78,14 +76,14 @@ class ProfileAddressWidget extends StatelessWidget {
                   },
                   removeAddressSuccess: (value) {
                     context
-                        .read<HomeUserBloc>()
-                        .add(HomeUserEvent.getListAddress());
+                        .read<AddressListBloc>()
+                        .add(AddressListEvent.getAllAddress());
                     Get.back(closeOverlays: true);
                   },
                   addAddressSuccess: (value) {
                     context
-                        .read<HomeUserBloc>()
-                        .add(HomeUserEvent.getListAddress());
+                        .read<AddressListBloc>()
+                        .add(AddressListEvent.getAllAddress());
                     Get.back(closeOverlays: true);
                     Get.back();
                   },

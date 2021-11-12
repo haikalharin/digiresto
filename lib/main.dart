@@ -4,6 +4,7 @@ import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
+import 'package:digiresto/application/home_new/outlet/outlet_bloc.dart';
 import 'package:digiresto/application/notification/notification_bloc.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/infrastructure/core/globals.dart';
@@ -65,7 +66,10 @@ class InitiateProvider extends StatelessWidget {
               getIt<NotificationBloc>()..add(NotificationEvent.started())),
       BlocProvider<DigiLocaleBloc>(
           create: (_) =>
-              getIt<DigiLocaleBloc>()..add(DigiLocaleEvent.started()))
+              getIt<DigiLocaleBloc>()..add(DigiLocaleEvent.started())),
+      BlocProvider<OutletBloc>(
+        create: (context) => getIt<OutletBloc>(),
+      ),
     ], child: getIt<AppWidget>());
   }
 }

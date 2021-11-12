@@ -5,6 +5,8 @@ import 'package:digiresto/domain/core/exceptions/location_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
+import 'package:digiresto/domain/home/entity/outlet_list_item.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
@@ -15,6 +17,7 @@ import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 @LazySingleton(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
@@ -143,6 +146,68 @@ class HomeRepository implements IHomeRepository {
       }
       final model = UserAddress.fromJson(data);
       return right(model);
+    } on LocationPermissionDenied catch (_) {
+      ErrorDialog().showLocationError();
+      return left(HomeFailure.locationError());
+    } on LocationServiceDisabled catch (_) {
+      ErrorDialog().showLocationError();
+      return left(HomeFailure.locationError());
+    } on LocationPermissionDeniedForever catch (_) {
+      ErrorDialog().showLocationError();
+      return left(HomeFailure.locationError());
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(HomeFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(HomeFailure.sessionExpired());
+    } on ServerException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.serverError());
+    } on TimeOutException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.unableToUpdate());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(HomeFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(HomeFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<HomeFailure, IList<OutletCategoryDataResponse>>> getOutlets({
+    required MenuCategory menuCategory,
+    required int page,
+    required String location,
+    String? search,
+  }) async {
+    try {
+      final userAddress = await getUserAddress();
+      userAddress.getOrElse(() => UserAddress());
+      final apiUrl = '/${menuCategory.endpoint}';
+      // final apiUrl = Endpoints.urlForward;
+      // final queryParameter =
+      //     Uri.splitQueryString(Uri.decodeQueryComponent());
+      // logger.d(queryParameter);
+      final queryString = {
+        "page": page.toString(),
+        "filter": search ?? "",
+        "location": location,
+        "excludeMerchantIds": [],
+        "isHideOpen": false,
+        ...menuCategory.param
+      };
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        // queryParameter: queryParameter,
+        content: {
+          "query_string": queryString,
+          "body": {},
+        },
+      );
+      return right(OutletCategoryResponse.fromJson(apiResult).data.toIList());
     } on LocationPermissionDenied catch (_) {
       ErrorDialog().showLocationError();
       return left(HomeFailure.locationError());

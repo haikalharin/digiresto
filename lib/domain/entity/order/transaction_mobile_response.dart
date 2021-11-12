@@ -227,7 +227,7 @@ class TransactionTaxesAndService with _$TransactionTaxesAndService {
 }
 
 @freezed
-abstract class Moka with _$Moka {
+class Moka with _$Moka {
   const factory Moka({
     required dynamic outletId,
   }) = _Moka;

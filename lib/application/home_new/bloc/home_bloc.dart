@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart' hide IList;
-import 'package:digiresto/domain/credit/i_credit_repository.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';

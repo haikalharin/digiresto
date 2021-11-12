@@ -16,28 +16,29 @@ import 'package:onesignal_flutter/onesignal_flutter.dart' as _i13;
 
 import 'application/address/list/address_list_bloc.dart' as _i42;
 import 'application/address/map/address_map_bloc.dart' as _i43;
-import 'application/auth/auth_bloc.dart' as _i64;
+import 'application/auth/auth_bloc.dart' as _i65;
 import 'application/auth/login/login_bloc.dart' as _i54;
-import 'application/auth/register/register_bloc.dart' as _i59;
-import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i62;
+import 'application/auth/register/register_bloc.dart' as _i60;
+import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i63;
 import 'application/core/app_bloc.dart' as _i20;
-import 'application/credit/credit_bloc.dart' as _i66;
-import 'application/credit/recent_history/recent_history_bloc.dart' as _i58;
-import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i60;
-import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i63;
+import 'application/credit/credit_bloc.dart' as _i67;
+import 'application/credit/recent_history/recent_history_bloc.dart' as _i59;
+import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i61;
+import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i64;
 import 'application/digi_locale/digi_locale_bloc.dart' as _i46;
-import 'application/home/home_user_bloc/home_user_bloc.dart' as _i68;
-import 'application/home_new/bloc/home_bloc.dart' as _i67;
-import 'application/landing/bottom_tab_cubit.dart' as _i65;
+import 'application/home/home_user_bloc/home_user_bloc.dart' as _i69;
+import 'application/home_new/bloc/home_bloc.dart' as _i68;
+import 'application/home_new/outlet/outlet_bloc.dart' as _i57;
+import 'application/landing/bottom_tab_cubit.dart' as _i66;
 import 'application/notification/notification_bloc.dart' as _i33;
 import 'application/order/bloc/order_bloc.dart' as _i55;
 import 'application/order/order_cart_screen_view_controller.dart' as _i56;
 import 'application/profile/edit_profile/edit_profile_bloc.dart' as _i47;
 import 'application/profile/order_details/order_details_bloc.dart' as _i35;
 import 'application/profile/order_history/order_history_bloc.dart' as _i36;
-import 'application/profile/profile_bloc.dart' as _i57;
+import 'application/profile/profile_bloc.dart' as _i58;
 import 'application/transaction/bloc/transaction_bloc/transaction_bloc.dart'
-    as _i61;
+    as _i62;
 import 'domain/auth/i_auth_facade.dart' as _i48;
 import 'domain/core/constants/network/env.dart' as _i7;
 import 'domain/core/interfaces/i_location_service.dart' as _i10;
@@ -52,7 +53,7 @@ import 'infrastructure/auth/api_auth_facade.dart' as _i49;
 import 'infrastructure/core/auth_interceptor.dart' as _i21;
 import 'infrastructure/core/location_service.dart' as _i11;
 import 'infrastructure/core/network_service.dart' as _i26;
-import 'infrastructure/core/register_module.dart' as _i69;
+import 'infrastructure/core/register_module.dart' as _i70;
 import 'infrastructure/core/storage.dart' as _i17;
 import 'infrastructure/credit/credit_repository.dart' as _i51;
 import 'infrastructure/digi_locale/digi_locale_repository.dart' as _i24;
@@ -185,32 +186,34 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i41.UserRepository>(), get<_i29.IProfileRepository>()));
   gh.factory<_i56.OrderCartScreenViewController>(
       () => _i56.OrderCartScreenViewController(get<_i37.OrderRepository>()));
-  gh.factory<_i57.ProfileBloc>(() => _i57.ProfileBloc(get<_i48.IAuthFacade>()));
-  gh.factory<_i58.RecentHistoryBloc>(
-      () => _i58.RecentHistoryBloc(get<_i50.ICreditRepository>()));
-  gh.factory<_i59.RegisterBloc>(
-      () => _i59.RegisterBloc(get<_i48.IAuthFacade>()));
-  gh.factory<_i60.TopUpCreditBloc>(() => _i60.TopUpCreditBloc(
+  gh.lazySingleton<_i57.OutletBloc>(
+      () => _i57.OutletBloc(get<_i52.IHomeRepository>()));
+  gh.factory<_i58.ProfileBloc>(() => _i58.ProfileBloc(get<_i48.IAuthFacade>()));
+  gh.factory<_i59.RecentHistoryBloc>(
+      () => _i59.RecentHistoryBloc(get<_i50.ICreditRepository>()));
+  gh.factory<_i60.RegisterBloc>(
+      () => _i60.RegisterBloc(get<_i48.IAuthFacade>()));
+  gh.factory<_i61.TopUpCreditBloc>(() => _i61.TopUpCreditBloc(
       get<_i50.ICreditRepository>(), get<_i16.IStorage>()));
-  gh.factory<_i61.TransactionBloc>(
-      () => _i61.TransactionBloc(get<_i39.TransactionRepository>()));
-  gh.factory<_i62.ValidateOtpBloc>(
-      () => _i62.ValidateOtpBloc(get<_i48.IAuthFacade>(), get<_i12.Logger>()));
-  gh.factory<_i63.WaitingPaymentBloc>(
-      () => _i63.WaitingPaymentBloc(get<_i50.ICreditRepository>()));
-  gh.factory<_i64.AuthBloc>(() => _i64.AuthBloc(
+  gh.factory<_i62.TransactionBloc>(
+      () => _i62.TransactionBloc(get<_i39.TransactionRepository>()));
+  gh.factory<_i63.ValidateOtpBloc>(
+      () => _i63.ValidateOtpBloc(get<_i48.IAuthFacade>(), get<_i12.Logger>()));
+  gh.factory<_i64.WaitingPaymentBloc>(
+      () => _i64.WaitingPaymentBloc(get<_i50.ICreditRepository>()));
+  gh.factory<_i65.AuthBloc>(() => _i65.AuthBloc(
       get<_i48.IAuthFacade>(), get<_i27.INotificationRepository>()));
-  gh.lazySingleton<_i65.BottomTabCubit>(() => _i65.BottomTabCubit(
+  gh.lazySingleton<_i66.BottomTabCubit>(() => _i66.BottomTabCubit(
       get<_i37.OrderRepository>(), get<_i50.ICreditRepository>()));
-  gh.factory<_i66.CreditBloc>(
-      () => _i66.CreditBloc(get<_i50.ICreditRepository>()));
-  gh.lazySingleton<_i67.HomeBloc>(() =>
-      _i67.HomeBloc(get<_i52.IHomeRepository>(), get<_i37.OrderRepository>()));
-  gh.factory<_i68.HomeUserBloc>(() => _i68.HomeUserBloc(
+  gh.factory<_i67.CreditBloc>(
+      () => _i67.CreditBloc(get<_i50.ICreditRepository>()));
+  gh.lazySingleton<_i68.HomeBloc>(() =>
+      _i68.HomeBloc(get<_i52.IHomeRepository>(), get<_i37.OrderRepository>()));
+  gh.factory<_i69.HomeUserBloc>(() => _i69.HomeUserBloc(
       get<_i41.UserRepository>(),
       get<_i37.OrderRepository>(),
       get<_i50.ICreditRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i69.RegisterModule {}
+class _$RegisterModule extends _i70.RegisterModule {}

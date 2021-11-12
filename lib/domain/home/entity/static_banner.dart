@@ -10,7 +10,7 @@ StaticBanner staticBannerFromJson(String str) =>
 String staticBannerToJson(StaticBanner data) => json.encode(data.toJson());
 
 @freezed
-abstract class StaticBanner with _$StaticBanner {
+class StaticBanner with _$StaticBanner {
   const factory StaticBanner({
     required String? promoName,
     required String? promoDescription,

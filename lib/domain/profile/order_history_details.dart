@@ -282,7 +282,7 @@ class DeliveryStatus with _$DeliveryStatus {
 }
 
 @freezed
-abstract class Promos with _$Promos {
+class Promos with _$Promos {
   const factory Promos({
     required List<String> paymentTypes,
     required String title,
@@ -300,7 +300,7 @@ abstract class Promos with _$Promos {
 }
 
 @freezed
-abstract class PaymentListItem with _$PaymentListItem {
+class PaymentListItem with _$PaymentListItem {
   const factory PaymentListItem({
     required num amount,
     required String method,
