@@ -28,18 +28,14 @@ class RandomImages {
   static ImageProvider getImageUrlDefault(String? img, String? defaultImg) {
     if (img == null || img == "") {
       if (defaultImg == null || defaultImg == "") {
-        print('case 1');
         return getImage();
       } else {
-        print('case 2');
         return AssetImage(AppAssets.food + defaultImg.toString() + ".png");
       }
     } else {
       if (img.contains('http') || img.contains('https')) {
-        print('case 3');
         return NetworkImageWithRetry(img);
       } else {
-        print('case 4');
         return NetworkImageWithRetry("http://" + img);
       }
     }

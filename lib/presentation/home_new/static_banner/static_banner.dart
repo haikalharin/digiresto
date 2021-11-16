@@ -1,12 +1,15 @@
 import 'dart:convert';
 
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/home_new/static_banner_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
 import 'package:digiresto/presentation/widgets/transparent_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class StaticBannerWidget extends GetView<StaticBannerController> {
@@ -66,27 +69,40 @@ class StaticBannerWidget extends GetView<StaticBannerController> {
     PageController _controller =
         Get.put(PageController(initialPage: 0), tag: "home");
 
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(
-            bottom: 10,
+    return BlocConsumer<HomeBloc, HomeState>(
+      listener: (context, state) {
+        state.optionBanners.fold(
+          () {},
+          (data) => data.fold(
+            (l) {},
+            (ilist) => controller.setListStaticBanner(
+              ilist.unlock,
+            ),
           ),
-          height: Get.height * 0.25,
-          width: double.infinity,
-          child: PageView(
-            scrollDirection: Axis.horizontal,
-            onPageChanged: (index) {
-              controller.setSlideIndex(index);
-            },
-            controller: _controller,
-            children: [
-              for (int i = 0; i < controller.listStaticBanner.length; i++)
-                _promoList(controller.listStaticBanner[i]),
-            ],
+        );
+      },
+      builder: (context, state) => Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(
+              bottom: 10,
+            ),
+            height: Get.height * 0.25,
+            width: double.infinity,
+            child: PageView(
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (index) {
+                controller.setSlideIndex(index);
+              },
+              controller: _controller,
+              children: [
+                for (int i = 0; i < controller.listStaticBanner.length; i++)
+                  _promoList(controller.listStaticBanner[i]),
+              ],
+            ),
           ),
-        ),
-        Obx(() => Container(
+          Obx(
+            () => Container(
               padding: EdgeInsets.only(left: 10, top: 5, right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,8 +136,10 @@ class StaticBannerWidget extends GetView<StaticBannerController> {
                   // )
                 ],
               ),
-            ))
-      ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

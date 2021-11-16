@@ -50,8 +50,8 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
         padding: const EdgeInsets.all(8),
         itemCount: widget.data.length,
         itemBuilder: (BuildContext context, int index) {
-          int? price;
-          int? beforePrice;
+          num? price;
+          num? beforePrice;
 
           final item = widget.data[index];
 

@@ -47,7 +47,7 @@ class CommonUtils {
 
   static String currencyFormat(double amount) {
     NumberFormat format = NumberFormat("#,##0", "id_ID");
-    return 'Rp. ' + format.format(amount);
+    return 'Rp ' + format.format(amount);
   }
 
   static String currencyFormatOnlyNominal(double amount) {

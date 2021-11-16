@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/profile/order_history_details.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,13 @@ class MenuItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    num price;
+    num modifierTotalPrice = 0;
+    menuItem.modifiers.forEach((modifier) {
+      modifierTotalPrice += modifier.price * modifier.qty;
+    });
+    price = menuItem.price + modifierTotalPrice;
+
     final random = Random();
     return Container(
       width: double.infinity,
@@ -29,6 +37,11 @@ class MenuItemWidget extends StatelessWidget {
                     imageUrl: menuItem.img!,
                     height: 70,
                     width: 70,
+                    errorWidget: (context, obj, stacktrace) {
+                      return Image(
+                        image: RandomImages.getImage(),
+                      );
+                    },
                   ),
                 )
               : ClipRRect(
@@ -55,11 +68,25 @@ class MenuItemWidget extends StatelessWidget {
                       style: Styles.menuItemTitleStyle,
                     ),
                     Text(
-                      CommonUtils.currencyFormat(menuItem.amount.toDouble()),
+                      CommonUtils.currencyFormat(price.toDouble()),
                       style: Styles.menuItemPriceStyle,
                     )
                   ],
                 ),
+                if (menuItem.modifiers.isNotEmpty)
+                  Text(
+                      menuItem.modifiers
+                          .map((e) => '${e.title} (${e.qty})')
+                          .toList()
+                          .join(', '),
+                      softWrap: false,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppFont.textBlack12Regular.copyWith(
+                        color: AppColors.grey747474,
+                        height: 2,
+                      ),
+                      textAlign: TextAlign.left),
                 Text(
                   '(${menuItem.qty}x)',
                   style: Styles.menuItemQtyStyle,

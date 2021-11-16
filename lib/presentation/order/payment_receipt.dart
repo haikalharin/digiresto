@@ -1,3 +1,4 @@
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -5,6 +6,7 @@ import 'package:digiresto/domain/core/utils/formatting/rupiah.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
@@ -136,7 +138,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                     // _orderStore.clearCart();
                     if (args.fromOrder) {
                       Get.offAllNamed(Routers.home);
-                      Get.find<BottomTabCubit>().changeTab(3);
+                      getIt<HomeBloc>().add(HomeEvent.refresh());
+                      getIt<BottomTabCubit>().changeTab(3);
                       Get.toNamed(Routers.orderHistory);
                     } else {
                       Get.back();
@@ -464,7 +467,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                             onPressed: () async {
                               if (args.fromOrder) {
                                 Get.offAllNamed(Routers.home);
-                                Get.find<BottomTabCubit>().changeTab(3);
+                                getIt<HomeBloc>().add(HomeEvent.refresh());
+                                getIt<BottomTabCubit>().changeTab(3);
                                 Get.toNamed(Routers.orderHistory);
                               } else {
                                 Get.back();
@@ -538,7 +542,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                   onPressed: () async {
                     if (args.fromOrder) {
                       Get.offAllNamed(Routers.home);
-                      Get.find<BottomTabCubit>().changeTab(0);
+                      getIt<HomeBloc>().add(HomeEvent.refresh());
+                      getIt<BottomTabCubit>().changeTab(0);
                       Get.toNamed(Routers.orderHistory);
                     } else {
                       Get.back();

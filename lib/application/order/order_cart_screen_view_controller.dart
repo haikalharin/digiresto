@@ -1,4 +1,5 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
@@ -20,6 +21,7 @@ import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart'
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -149,9 +151,25 @@ class OrderCartScreenViewController extends GetxController {
     int productId,
     int qty,
     bool isBuyNow,
+    TransactionDataItemResponse detailProduct,
   ) async {
     var productParam = CreateUpdateCartSessionItemParam(
-        modifiers: [], note: '', productId: productId, qty: qty);
+      modifiers: [
+        ...detailProduct.modifiers
+                ?.map(
+                  (e) => CreateCartSessionItemModifierParam(
+                    modifierGroupId: e.modifierGroupId,
+                    qty: e.qty,
+                    modifierId: e.modifierId,
+                  ),
+                )
+                .toList() ??
+            [],
+      ],
+      note: '',
+      productId: productId,
+      qty: qty,
+    );
     Get.context!.read<OrderBloc>().add(OrderEvent.addCart(
           productParam,
           detailOutlet.value!,
@@ -161,9 +179,22 @@ class OrderCartScreenViewController extends GetxController {
     update();
   }
 
-  void removeCart(int productId) async {
-    var productParam = CreateUpdateCartSessionItemParam(
-        modifiers: [], note: '', productId: productId, qty: 0);
+  void removeCart(
+    int productId,
+    TransactionDataItemResponse detailProduct,
+  ) async {
+    var productParam = CreateUpdateCartSessionItemParam(modifiers: [
+      ...detailProduct.modifiers
+              ?.map(
+                (e) => CreateCartSessionItemModifierParam(
+                  modifierGroupId: e.modifierGroupId,
+                  qty: e.qty,
+                  modifierId: e.modifierId,
+                ),
+              )
+              .toList() ??
+          [],
+    ], note: '', productId: productId, qty: 0);
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCart(productParam));
     update();
   }
@@ -193,8 +224,9 @@ class OrderCartScreenViewController extends GetxController {
   void checkCartSession() async {
     if (cartSession.value!.transactionData!.items.length <= 1) {
       isLoading.value = false;
-      Get.find<BottomTabCubit>().changeTab(0);
-      Get.offNamedUntil(Routers.home, (route) => false);
+      getIt<BottomTabCubit>().changeTab(0);
+      Get.offAllNamed(Routers.auth);
+      getIt<HomeBloc>().add(HomeEvent.refresh());
     }
     if (checkoutResponse.value?.receiptCode == "") {
       isLoading.value = false;

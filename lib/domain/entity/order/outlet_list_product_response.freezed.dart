@@ -597,7 +597,7 @@ class _$OutletListProductDataSubModifierGroupResponseTearOff {
       required int? limit,
       required String id,
       required String name,
-      required int price,
+      required num price,
       required int weight,
       required String? description,
       required String? image,
@@ -645,7 +645,7 @@ mixin _$OutletListProductDataSubModifierGroupResponse {
   int? get limit => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
@@ -676,7 +676,7 @@ abstract class $OutletListProductDataSubModifierGroupResponseCopyWith<$Res> {
       int? limit,
       String id,
       String name,
-      int price,
+      num price,
       int weight,
       String? description,
       String? image,
@@ -754,7 +754,7 @@ class _$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -801,7 +801,7 @@ abstract class _$OutletListProductDataSubModifierGroupResponseCopyWith<$Res>
       int? limit,
       String id,
       String name,
-      int price,
+      num price,
       int weight,
       String? description,
       String? image,
@@ -883,7 +883,7 @@ class __$OutletListProductDataSubModifierGroupResponseCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -957,7 +957,7 @@ class _$_OutletListProductDataSubModifierGroupResponse
   @override
   final String name;
   @override
-  final int price;
+  final num price;
   @override
   final int weight;
   @override
@@ -1052,7 +1052,7 @@ abstract class _OutletListProductDataSubModifierGroupResponse
           required int? limit,
           required String id,
           required String name,
-          required int price,
+          required num price,
           required int weight,
           required String? description,
           required String? image,
@@ -1084,7 +1084,7 @@ abstract class _OutletListProductDataSubModifierGroupResponse
   @override
   String get name;
   @override
-  int get price;
+  num get price;
   @override
   int get weight;
   @override
@@ -1123,7 +1123,7 @@ class _$OutletListProductDataResponseTearOff {
       required int? limit,
       required String id,
       required String name,
-      required int price,
+      required num price,
       required int weight,
       required String? description,
       required String? image,
@@ -1174,7 +1174,7 @@ mixin _$OutletListProductDataResponse {
   int? get limit => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
@@ -1208,7 +1208,7 @@ abstract class $OutletListProductDataResponseCopyWith<$Res> {
       int? limit,
       String id,
       String name,
-      int price,
+      num price,
       int weight,
       String? description,
       String? image,
@@ -1289,7 +1289,7 @@ class _$OutletListProductDataResponseCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -1344,7 +1344,7 @@ abstract class _$OutletListProductDataResponseCopyWith<$Res>
       int? limit,
       String id,
       String name,
-      int price,
+      num price,
       int weight,
       String? description,
       String? image,
@@ -1429,7 +1429,7 @@ class __$OutletListProductDataResponseCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -1513,7 +1513,7 @@ class _$_OutletListProductDataResponse
   @override
   final String name;
   @override
-  final int price;
+  final num price;
   @override
   final int weight;
   @override
@@ -1615,7 +1615,7 @@ abstract class _OutletListProductDataResponse
       required int? limit,
       required String id,
       required String name,
-      required int price,
+      required num price,
       required int weight,
       required String? description,
       required String? image,
@@ -1648,7 +1648,7 @@ abstract class _OutletListProductDataResponse
   @override
   String get name;
   @override
-  int get price;
+  num get price;
   @override
   int get weight;
   @override
@@ -1690,7 +1690,7 @@ class _$OutletListProductDataVariantResponseTearOff {
       required int? limit,
       required String id,
       required String name,
-      required int price,
+      required num price,
       required int weight,
       required String? description,
       required String? image,
@@ -1740,7 +1740,7 @@ mixin _$OutletListProductDataVariantResponse {
   int? get limit => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
@@ -1773,7 +1773,7 @@ abstract class $OutletListProductDataVariantResponseCopyWith<$Res> {
       int? limit,
       String id,
       String name,
-      int price,
+      num price,
       int weight,
       String? description,
       String? image,
@@ -1852,7 +1852,7 @@ class _$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -1903,7 +1903,7 @@ abstract class _$OutletListProductDataVariantResponseCopyWith<$Res>
       int? limit,
       String id,
       String name,
-      int price,
+      num price,
       int weight,
       String? description,
       String? image,
@@ -1986,7 +1986,7 @@ class __$OutletListProductDataVariantResponseCopyWithImpl<$Res>
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -2065,7 +2065,7 @@ class _$_OutletListProductDataVariantResponse
   @override
   final String name;
   @override
-  final int price;
+  final num price;
   @override
   final int weight;
   @override
@@ -2164,7 +2164,7 @@ abstract class _OutletListProductDataVariantResponse
       required int? limit,
       required String id,
       required String name,
-      required int price,
+      required num price,
       required int weight,
       required String? description,
       required String? image,
@@ -2197,7 +2197,7 @@ abstract class _OutletListProductDataVariantResponse
   @override
   String get name;
   @override
-  int get price;
+  num get price;
   @override
   int get weight;
   @override

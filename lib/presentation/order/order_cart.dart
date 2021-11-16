@@ -11,6 +11,7 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
+import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
@@ -23,9 +24,9 @@ import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/order/widgets/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
-import 'package:digiresto/presentation/widgets/list/list_product_cart_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,46 +56,42 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //if (_orderStore.orderSalesTypes == 'dineIn')
-                  // Text("Info Makan di Tempat",
-                  //     style: TextStyle(
-                  //       fontFamily: "roboto",
-                  //       //color: Colors.white,
-                  //       fontSize: 14,
-                  //       fontWeight: FontWeight.bold,
-                  //     )),
-                  // //if (_orderStore.orderSalesTypes == 'dineIn')
-                  // Container(
-                  //   padding: const EdgeInsets.only(top: 5, bottom: 10),
-                  //   child: TextField(
-                  //       textInputAction: TextInputAction.search,
-                  //       onSubmitted: (value) {},
-                  //       controller: placeInfoController,
-                  //       readOnly: true,
-                  //       onTap: () {
-                  //         _dialogPlace(Get.context!);
-                  //       },
-                  //       style: TextStyle(
-                  //         fontSize: 14.0,
-                  //       ),
-                  //       decoration: InputDecoration(
-                  //         isDense: true,
-                  //         filled: true,
-                  //         fillColor: AppColors.greyFill,
-                  //         contentPadding: EdgeInsets.only(
-                  //             top: 12, bottom: 12, left: 10, right: 10),
-                  //         hintText: "",
-                  //         border: OutlineInputBorder(
-                  //             borderSide:
-                  //                 BorderSide(color: Colors.black, width: 32.0),
-                  //             borderRadius: BorderRadius.circular(5)),
-                  //         enabledBorder: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.all(Radius.circular(5)),
-                  //           borderSide:
-                  //               BorderSide(width: 1, color: Colors.black),
-                  //         ),
-                  //       )),
-                  // ),
+                  if (controller.salesType.value == "dineIn")
+                    Text(I10n.current.cart_info_dine_in,
+                        style: AppFont.textBlack14Bold),
+                  if (controller.salesType.value == "dineIn")
+                    Container(
+                      padding: const EdgeInsets.only(top: 5, bottom: 10),
+                      child: TextField(
+                          textInputAction: TextInputAction.search,
+                          onSubmitted: (value) {},
+                          controller: controller.placeInfoController,
+                          readOnly: true,
+                          onTap: () {
+                            _dialogDineIn();
+                          },
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: AppColors.greyFill,
+                            contentPadding: EdgeInsets.only(
+                                top: 12, bottom: 12, left: 10, right: 10),
+                            hintText: "",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.black, width: 32.0),
+                                borderRadius: BorderRadius.circular(5)),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.black),
+                            ),
+                          )),
+                    ),
                   Row(
                     children: [
                       Text(I10n.current.cart_notes,
@@ -812,6 +809,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       0)
                     ListView.separated(
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: controller.cartSession.value?.transactionData
                               ?.promos.length ??
                           0,
@@ -928,7 +926,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.context!
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
-                              Get.find<BottomTabCubit>().checkCartFromOutside();
+                              getIt<BottomTabCubit>().checkCartFromOutside();
                             }
                           } else if (controller.placeInfoController.text ==
                                   "" &&
@@ -985,7 +983,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                         Get.context!
                                             .read<OrderBloc>()
                                             .add(OrderEvent.checkoutCart());
-                                        Get.find<BottomTabCubit>()
+                                        getIt<BottomTabCubit>()
                                             .checkCartFromOutside();
                                       },
                                     ),
@@ -1028,7 +1026,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.context!
                                   .read<OrderBloc>()
                                   .add(OrderEvent.checkoutCart());
-                              Get.find<BottomTabCubit>().checkCartFromOutside();
+                              getIt<BottomTabCubit>().checkCartFromOutside();
                             });
                           }
                         },
@@ -1070,13 +1068,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                     children: [
                       Container(
                         alignment: Alignment.topCenter,
-                        child: Text("Info Makan di Tempat",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              //color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            )),
+                        child: Text(I10n.current.cart_info_dine_in,
+                            style: AppFont.textBlack14Bold),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1283,79 +1276,82 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              height: 50,
-                              width: MediaQuery.of(context).size.width - 260,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  controller.placeInfoController.text = "";
-                                  controller.initDialogPlace();
-                                  Navigator.of(context).pop();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(5.0),
-                                    side: BorderSide(
-                                      width: 1,
-                                      color: AppColors.redYoung,
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    controller.placeInfoController.text = "";
+                                    controller.initDialogPlace();
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(5.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.redYoung,
+                                      ),
                                     ),
                                   ),
+                                  child: Text(I10n.current.alert_cancel,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.redYoung)),
                                 ),
-                                child: Text("Batal",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.redYoung)),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              height: 50,
-                              width: MediaQuery.of(context).size.width - 260,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  String txt = "";
-                                  if (controller.useSchedule.value!) {
-                                    txt = controller.selectedDateController.text
-                                            .toString() +
-                                        " " +
-                                        controller.selectedKeyClock.value! +
-                                        " " +
-                                        controller.paxController.text
-                                            .toString() +
-                                        " pax, " +
-                                        OrderCartDineInModel.getValueSmoking(
-                                            controller
-                                                .selectedKeySmoking.value!);
-                                  } else {
-                                    txt = "Now, " +
-                                        controller.paxController.text
-                                            .toString() +
-                                        " pax, " +
-                                        OrderCartDineInModel.getValueSmoking(
-                                            controller
-                                                .selectedKeySmoking.value!);
-                                  }
-                                  controller.placeInfoController.text = txt;
-                                  controller.setDineInMethodID();
-                                  Get.back(closeOverlays: true);
-                                },
-                                child: Text("Ok",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                                style: ElevatedButton.styleFrom(
-                                  primary: AppColors.red,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(5.0),
-                                    side: BorderSide(
-                                      width: 1,
-                                      color: AppColors.redYoung,
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    String txt = "";
+                                    if (controller.useSchedule.value!) {
+                                      txt = controller
+                                              .selectedDateController.text
+                                              .toString() +
+                                          " " +
+                                          controller.selectedKeyClock.value! +
+                                          " " +
+                                          controller.paxController.text
+                                              .toString() +
+                                          " pax, " +
+                                          OrderCartDineInModel.getValueSmoking(
+                                              controller
+                                                  .selectedKeySmoking.value!);
+                                    } else {
+                                      txt = "Now, " +
+                                          controller.paxController.text
+                                              .toString() +
+                                          " pax, " +
+                                          OrderCartDineInModel.getValueSmoking(
+                                              controller
+                                                  .selectedKeySmoking.value!);
+                                    }
+                                    controller.placeInfoController.text = txt;
+                                    controller.setDineInMethodID();
+                                    Get.back(closeOverlays: true);
+                                  },
+                                  child: Text(I10n.current.alert_ok,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: AppColors.red,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(5.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.redYoung,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1702,7 +1698,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "${item.name}",
+              "${item.title}",
               style: AppFont.textBlack12Light,
             ),
             Text(
@@ -1731,7 +1727,12 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
     if (qty != 0) {
       controller.isLoading.value = true;
 
-      controller.addCart(productId, qty, false);
+      controller.addCart(
+        productId,
+        qty,
+        false,
+        detailProduct,
+      );
     } else {
       ErrorPopupWidget.confirmation(
           Strings.appName, I10n.current.cart_delete_item(detailProduct.title),
@@ -1740,22 +1741,27 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
         controller.isLoading.value = true;
         if (controller.cartSession.value!.transactionData!.items.length == 1) {
           controller.removeCartSession();
-          Get.find<BottomTabCubit>().checkCartFromOutside();
+          getIt<BottomTabCubit>().checkCartFromOutside();
         } else {
-          controller.removeCart(productId);
+          controller.removeCart(productId, detailProduct);
         }
       });
     }
   }
 
-  _showDetailProduct(TransactionDataItemResponse cartProduct,
-      OutletListProductDataResponse product, String orderType) {
+  _showDetailProduct(
+    TransactionDataItemResponse cartProduct,
+    OutletListProductDataResponse product,
+    String orderType,
+    List<CreateCartSessionItemModifierParam> listSelectedModifier,
+  ) {
     //Navigator.push(context,MaterialPageRoute(builder: (context) => Page2())).then((value) { setState(() {});
     Navigator.push(
             Get.context!,
             MaterialPageRoute<void>(
                 builder: (BuildContext context) {
                   return DetailProductDialog(
+                    listSelectedModifier: listSelectedModifier,
                     cartSession: controller.cartSession.value!,
                     dataProduct: product,
                     orderType: orderType,
@@ -2006,59 +2012,5 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
             ),
           ),
         ));
-  }
-}
-
-class _HeaderOrderCart extends GetView<OrderCartScreenViewController> {
-  void goBack() {
-    Get.delete<OrderCartScreenViewController>();
-    Get.back();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        height: 120,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssets.bgHome),
-            fit: BoxFit.fill,
-          ),
-          shape: BoxShape.rectangle,
-        ),
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                new IconButton(
-                  icon: new Icon(Icons.arrow_back_outlined,
-                      color: Colors.white, size: 24.0),
-                  onPressed: () {
-                    goBack();
-                  },
-                ),
-                Container(
-                  child: Text(I10n.current.cart_title,
-                      //controller.detailOutlet.value != null ? data.outlet["detail"]["name"] : ""
-                      style: AppFont.textBlack24Bold
-                          .copyWith(color: AppColors.white),
-                      textAlign: TextAlign.center),
-                ),
-                Container(
-                  width: 50,
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    ]);
   }
 }

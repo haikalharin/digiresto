@@ -104,7 +104,7 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
         state.validateFailureOrSuccess.fold(
           () => null,
           (success) => success.fold((l) {}, (login) {
-            Get.find<BottomTabCubit>().changeTab(0);
+            getIt<BottomTabCubit>().changeTab(0);
             _authBloc.add(AuthEvent.authCheckRequested());
             login.isMember
                 ? Get.offAllNamed(Routers.auth)

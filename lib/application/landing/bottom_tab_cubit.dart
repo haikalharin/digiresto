@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/credit/i_credit_repository.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -43,7 +45,10 @@ class BottomTabCubit extends Cubit<BottomTabState> {
   }
 
   void changeTab(int index) async {
-    if (index == 1) {
+    if (index == 0) {
+      if (state.currentIndex != 0) getIt<HomeBloc>().add(HomeEvent.refresh());
+      emit(state.copyWith(currentIndex: index));
+    } else if (index == 1) {
       checkCart(index);
     } else if (index == 2) {
       checkCreditTab();
@@ -182,6 +187,8 @@ class BottomTabCubit extends Cubit<BottomTabState> {
           ),
         );
       },
-    );
+    ).then((value) {
+      getIt<HomeBloc>().add(HomeEvent.refresh());
+    });
   }
 }

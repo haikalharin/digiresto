@@ -94,7 +94,7 @@ class CreditWidget extends StatelessWidget {
             (count) => count,
           ),
         );
-        Get.find<BottomTabCubit>().checkCreditTab();
+        getIt<BottomTabCubit>().checkCreditTab();
       },
       builder: (context, state) {
         late final _bloc = BlocProvider.of<CreditBloc>(context);

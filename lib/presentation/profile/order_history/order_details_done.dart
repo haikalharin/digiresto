@@ -242,6 +242,28 @@ class OrderDetailsDone extends StatelessWidget {
                   ),
                 ],
               ),
+              ...orderDetails.taxesAndServices
+                  .map((taxAndService) => Column(
+                        children: [
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                taxAndService.title,
+                                style: Styles.menuItemLabelStyle,
+                              ),
+                              Text(
+                                '${CommonUtils.currencyFormat(taxAndService.amount.toDouble())}',
+                                style: Styles.menuItemPriceStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ))
+                  .toList(),
               ...orderDetails.promos
                   .map((promo) => Column(
                         children: [

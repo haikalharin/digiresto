@@ -20,22 +20,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final staticBannerController = Get.put(StaticBannerController());
+    Get.put(StaticBannerController(), permanent: false);
+    getIt<HomeBloc>()..add(HomeEvent.started());
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<HomeBloc, HomeState>(
-          bloc: getIt<HomeBloc>()..add(HomeEvent.started()),
-          listener: (context, state) {
-            state.optionBanners.fold(
-              () {},
-              (data) => data.fold(
-                (l) {},
-                (ilist) => staticBannerController.setListStaticBanner(
-                  ilist.unlock,
-                ),
-              ),
-            );
-          },
+          // bloc: getIt<HomeBloc>()..add(HomeEvent.started()),
+          listener: (context, state) {},
           builder: (context, state) {
             return StackWithProgress(
               isLoading: (state.optionBanners.isNone() ||

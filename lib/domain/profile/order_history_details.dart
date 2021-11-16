@@ -154,7 +154,7 @@ class MenuItem with _$MenuItem {
     required bool isPreorder,
     required num preorderPeriod,
     required num amount,
-    required List<dynamic> modifiers,
+    required List<Modifier> modifiers,
     required num modifiersAmount,
     required num modifiersCost,
     required num modifiersDiscount,
@@ -309,4 +309,26 @@ class PaymentListItem with _$PaymentListItem {
 
   factory PaymentListItem.fromJson(Map<String, dynamic> json) =>
       _$PaymentListItemFromJson(json);
+}
+
+@freezed
+class Modifier with _$Modifier {
+  const factory Modifier({
+    required String modifierGroupId,
+    required String modifierGroupName,
+    required String modifierGroupCode,
+    required int id,
+    required int modifierId,
+    required String modifierCode,
+    required String title,
+    required int basicWeight,
+    required num price,
+    required int qty,
+    required num amount,
+    required num discountAmount,
+    required num discountPercentage,
+  }) = _Modifier;
+
+  factory Modifier.fromJson(Map<String, dynamic> json) =>
+      _$ModifierFromJson(json);
 }

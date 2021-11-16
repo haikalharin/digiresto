@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:core';
+import 'package:collection/collection.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
@@ -11,8 +12,10 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:digiresto/presentation/order/modifier_group_widget.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
@@ -32,18 +35,20 @@ class DetailProductDialog extends StatefulWidget {
   final mode;
   final bool isDifferentOutlet;
   final DetailOutletDataResponse detailOutlet;
+  final List<CreateCartSessionItemModifierParam> listSelectedModifier;
   @override
-  DetailProductDialog(
-      {Key? key,
-      required this.dataProduct,
-      required this.orderType,
-      required this.cartSession,
-      this.isDifferentOutlet = false,
-      required this.detailOutlet,
-      required this.note,
-      this.mode = "new",
-      this.qtyProduct = 1})
-      : super(key: key);
+  DetailProductDialog({
+    Key? key,
+    required this.dataProduct,
+    required this.orderType,
+    required this.cartSession,
+    this.isDifferentOutlet = false,
+    required this.detailOutlet,
+    required this.note,
+    this.mode = "new",
+    this.qtyProduct = 1,
+    this.listSelectedModifier = const [],
+  }) : super(key: key);
 
   @override
   _DetailProductDialogState createState() => _DetailProductDialogState();
@@ -59,6 +64,27 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   String notes = '';
   bool noteIsSubmitted = true;
   bool isLimitReached = false;
+  List<CreateCartSessionItemModifierParam> listModifier = [];
+  num? price;
+  num? beforePrice;
+  num subtotalModifiers = 0;
+
+  void calculateModifiers() async {
+    setState(() {
+      subtotalModifiers = 0;
+    });
+    listModifier.forEach((element) {
+      setState(() {
+        subtotalModifiers += element.qty *
+            dataProductState.modifierGroups
+                .firstWhere((g) => g.id == element.modifierGroupId)
+                .modifiers
+                .firstWhere((m) => m.id == element.modifierId.toString())
+                .price;
+      });
+    });
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -67,6 +93,24 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     setState(() {
       dataProductState = widget.dataProduct;
       variantProductSelected = dataProductState;
+      if (dataProductState.modifierGroups.isNotEmpty && widget.mode == "new") {
+        final selected = dataProductState.modifierGroups
+            .where((element) => element.minQuantity > 0)
+            .map(
+              (modifier) => CreateCartSessionItemModifierParam(
+                modifierGroupId: modifier.id,
+                modifierId: int.parse(modifier.modifiers.first.id),
+                qty: modifier.minQuantity,
+              ),
+            )
+            .toList();
+
+        listModifier.addAll(selected);
+      }
+      if (widget.listSelectedModifier.isNotEmpty && widget.mode == "edit") {
+        listModifier.addAll(widget.listSelectedModifier);
+      }
+      calculateModifiers();
       totalqty = widget.qtyProduct;
       _setTotalQtyFromExistCart();
       notesController.text = widget.note;
@@ -100,10 +144,11 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
         Get.context!.read<OrderBloc>().add(
               OrderEvent.addCart(
                 CreateUpdateCartSessionItemParam(
-                    modifiers: [],
-                    note: notes,
-                    productId: int.parse(variantProductSelected.id),
-                    qty: totalqty),
+                  modifiers: listModifier,
+                  note: notes,
+                  productId: int.parse(variantProductSelected.id),
+                  qty: totalqty,
+                ),
                 widget.detailOutlet,
                 widget.orderType,
                 isBuyNow,
@@ -111,7 +156,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             );
         Get.back();
       });
-      Get.find<BottomTabCubit>().checkCartFromOutside();
+      getIt<BottomTabCubit>().checkCartFromOutside();
 
       return;
     }
@@ -121,11 +166,11 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       });
       return;
     }
-    Get.find<BottomTabCubit>().checkCartFromOutside();
+    getIt<BottomTabCubit>().checkCartFromOutside();
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
             CreateUpdateCartSessionItemParam(
-                modifiers: [],
+                modifiers: listModifier,
                 note: notes,
                 productId: int.parse(variantProductSelected.id),
                 qty: totalqty),
@@ -215,8 +260,6 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
 
   @override
   Widget build(BuildContext context) {
-    int? price;
-    int? beforePrice;
     // if (dataProductState["isUseSalesType"] == true) {
     //   for (int i = 0; i < dataProductState["salesTypes"].length; i++) {
     //     if (dataProductState["salesTypes"][i]["code"] == widget.orderType) {
@@ -230,21 +273,21 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     //   }
     // }
 
-    if (variantProductSelected.crossoutPrice != null) {
-      if ((variantProductSelected.crossoutPrice ?? 0) <
-          variantProductSelected.price) {
-        price = variantProductSelected.crossoutPrice;
-        beforePrice = variantProductSelected.price;
+    setState(() {
+      if (widget.dataProduct.modifierGroups.isNotEmpty) {}
+      if (variantProductSelected.crossoutPrice != null) {
+        if ((variantProductSelected.crossoutPrice ?? 0) <
+            variantProductSelected.price) {
+          price = variantProductSelected.crossoutPrice;
+          beforePrice = variantProductSelected.price;
+        } else {
+          price = variantProductSelected.crossoutPrice;
+        }
       } else {
-        price = variantProductSelected.crossoutPrice;
+        price = variantProductSelected.price;
       }
-    } else {
-      price = variantProductSelected.price;
-    }
+    });
 
-    // _userStore.setRandomCacheImage(
-    //     dataProductState["img"], dataProductState["id"].toString());
-    //String defaultImage = _userStore.getRandomCacheImage(dataProductState["id"].toString());
     String defaultImage = "";
     return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
       var controller = Get.find<OrderViewController>();
@@ -534,6 +577,51 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             ),
                           ],
                         ),
+                      if (variantProductSelected.modifierGroups.isNotEmpty)
+                        Divider(
+                          thickness: 12,
+                          color: AppColors.dividerColor,
+                        ),
+                      if (variantProductSelected.modifierGroups.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: Dimens.defaultMargin,
+                            vertical: 15,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ...variantProductSelected.modifierGroups
+                                  .map(
+                                    (modifierGroup) => ModifierGroupWidget(
+                                      modifierGroup: modifierGroup,
+                                      selectedModifier: modifierGroup.modifiers
+                                          .firstWhereOrNull(
+                                        (modifier) => listModifier.any(
+                                            (element) =>
+                                                element.modifierId ==
+                                                int.parse(modifier.id)),
+                                      ),
+                                      onModifierSelected:
+                                          (CreateCartSessionItemModifierParam
+                                              modifier) async {
+                                        setState(
+                                          () {
+                                            listModifier.removeWhere(
+                                                (element) =>
+                                                    element.modifierGroupId ==
+                                                    modifierGroup.id);
+                                            listModifier.add(modifier);
+                                          },
+                                        );
+                                        calculateModifiers();
+                                      },
+                                    ),
+                                  )
+                                  .toList(),
+                            ],
+                          ),
+                        ),
                       Divider(
                         thickness: 12,
                         color: AppColors.dividerColor,
@@ -675,7 +763,9 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         child: Text(
                             "Rp " +
                                 Utils.formatRupiah(
-                                    ((price ?? 0) * totalqty).toString()),
+                                    (((price ?? 0) + subtotalModifiers) *
+                                            totalqty)
+                                        .toString()),
                             softWrap: false,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
