@@ -215,20 +215,23 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                          productCart.modifiers
-                                                  ?.map((e) =>
-                                                      '${e.title} (${e.qty})')
-                                                  .toList()
-                                                  .join(', ') ??
-                                              '',
-                                          softWrap: false,
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: AppFont.textBlack12Regular
-                                              .copyWith(
-                                                  color: AppColors.grey747474),
-                                          textAlign: TextAlign.left),
+                                      if (productCart.modifiers?.isNotEmpty ??
+                                          false)
+                                        Text(
+                                            productCart.modifiers
+                                                    ?.map((e) =>
+                                                        '${e.title} (${e.qty})')
+                                                    .toList()
+                                                    .join(', ') ??
+                                                '',
+                                            softWrap: false,
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: AppFont.textBlack12Regular
+                                                .copyWith(
+                                                    color:
+                                                        AppColors.grey747474),
+                                            textAlign: TextAlign.left),
                                       if (widget.productCart[index].desc
                                               ?.isNotEmpty ??
                                           false)
