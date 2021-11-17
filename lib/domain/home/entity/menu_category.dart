@@ -34,7 +34,8 @@ class MenuCategory with _$MenuCategory {
   }) = _MenuCategory;
 
   String get getTitle => I10n.current.lang == 'en' ? title.en : title.id;
-  String get getDescription => I10n.current.lang == 'en' ? title.en : title.id;
+  String get getDescription =>
+      I10n.current.lang == 'en' ? description.en : description.id;
 
   factory MenuCategory.fromJson(Map<String, dynamic> json) =>
       _$MenuCategoryFromJson(json);

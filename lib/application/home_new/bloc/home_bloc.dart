@@ -5,7 +5,6 @@ import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:digiresto/domain/home/i_home_repository.dart';
-import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -17,11 +16,9 @@ part 'home_bloc.freezed.dart';
 @lazySingleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IHomeRepository _homeRepository;
-  final OrderRepository _orderRepository;
 
   HomeBloc(
     this._homeRepository,
-    this._orderRepository,
   ) : super(HomeState.initial()) {
     on<HomeEvent>((event, emit) async {
       await event.map(

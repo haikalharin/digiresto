@@ -207,8 +207,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i37.OrderRepository>(), get<_i50.ICreditRepository>()));
   gh.factory<_i67.CreditBloc>(
       () => _i67.CreditBloc(get<_i50.ICreditRepository>()));
-  gh.lazySingleton<_i68.HomeBloc>(() =>
-      _i68.HomeBloc(get<_i52.IHomeRepository>(), get<_i37.OrderRepository>()));
+  gh.lazySingleton<_i68.HomeBloc>(
+      () => _i68.HomeBloc(get<_i52.IHomeRepository>()));
   gh.factory<_i69.HomeUserBloc>(() => _i69.HomeUserBloc(
       get<_i41.UserRepository>(),
       get<_i37.OrderRepository>(),
