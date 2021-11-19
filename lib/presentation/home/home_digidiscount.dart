@@ -9,6 +9,7 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,7 +83,9 @@ class HomeDigidiscountScreen
         listener: (context, state) {
           state.maybeMap(
               getDigiDiscountOutletSuccess: (r) {
-                controller.listPromoOutlet.value = r.response;
+                if (r.response.isNotEmpty) {
+                  controller.listPromoOutlet.value = r.response;
+                }
               },
               loadFailure: (e) {},
               orElse: () {});
@@ -112,19 +115,26 @@ class HomeDigidiscountScreen
                       ),
                     ),
                     //_search(),
-                    Expanded(
-                      child: ListDigidiscountWidget(
-                        runAction: (param) {
-                          //merchant id set to empty, cause in response api not have valid merchant id
-                          Get.toNamed(Routers.orderDetailOutlet,
-                              arguments:
-                                  OrderDetailViewArgument(param.outletId, ""));
-                        },
-                        height: MediaQuery.of(context).size.height / 1.2,
-                        data: controller.listPromoOutlet,
-                        scrollDirection: Axis.vertical,
-                        loadMoreAction: () {},
-                      ),
+                    Obx(
+                      () {
+                        return (controller.listPromoOutlet.length > 0)
+                            ? Expanded(
+                                child: ListDigidiscountWidget(
+                                  runAction: (param) {
+                                    //merchant id set to empty, cause in response api not have valid merchant id
+                                    Get.toNamed(Routers.orderDetailOutlet,
+                                        arguments: OrderDetailViewArgument(
+                                            param.outletId, ""));
+                                  },
+                                  height:
+                                      MediaQuery.of(context).size.height / 1.2,
+                                  data: controller.listPromoOutlet,
+                                  scrollDirection: Axis.vertical,
+                                  loadMoreAction: () {},
+                                ),
+                              )
+                            : EmptyOutletWidget();
+                      },
                     ),
                   ],
                 ),

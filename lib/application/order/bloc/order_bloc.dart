@@ -235,6 +235,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     customerNote: "",
                     paymentType: paymentType?.id ?? "",
                     customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerCarType: "",
+                    customerCarColor: "",
+                    customerCarNumber: "",
                     customerSmoking: false,
                     delivery: deliveryParam,
                     eta: etaOrder,
@@ -301,6 +304,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     customerNote: request.note,
                     paymentType: paymentType?.id ?? "",
                     customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerCarType: "",
+                    customerCarColor: "",
+                    customerCarNumber: "",
                     customerSmoking: false,
                     delivery: deliveryParam,
                     eta: etaOrder,
@@ -388,18 +394,22 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           final createCartSession = await _orderRepository.updateCartSession(
               UpdateCartSessionParam(
                   body: UpdateCartSessionBodyParam(
-                      items: setProduct?.items ?? [],
-                      customerNote: null,
-                      paymentType: paymentType?.id ?? "",
-                      customerPax: (getDineInID?.pax ?? 1).toString(),
-                      customerSmoking: OrderCartDineInModel.isSmoking(
-                          getDineInID?.selectedKeySmoking ?? "2"),
-                      delivery: deliveryParam,
-                      eta: etaOrder,
-                      promos: getVoucherMethodID == null
-                          ? []
-                          : [getVoucherMethodID.code],
-                      salesType: getSalesTypeCart ?? ""),
+                    items: setProduct?.items ?? [],
+                    customerNote: null,
+                    paymentType: paymentType?.id ?? "",
+                    customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerCarType: "",
+                    customerCarColor: "",
+                    customerCarNumber: "",
+                    customerSmoking: OrderCartDineInModel.isSmoking(
+                        getDineInID?.selectedKeySmoking ?? "2"),
+                    delivery: deliveryParam,
+                    eta: etaOrder,
+                    promos: getVoucherMethodID == null
+                        ? []
+                        : [getVoucherMethodID.code],
+                    salesType: getSalesTypeCart ?? "",
+                  ),
                   queryString:
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
@@ -425,23 +435,25 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         //create new cart session, if add cart in the different outlet
         final createCartSession = await _orderRepository.createCartSession(
-            CreateCartSessionParam(
-                body: CreateCartSessionBodyParam(
-                    outletName: r.request.body.outletName,
-                    customerName: userProfile.name!,
-                    customerPhone: userProfile.mobilePhone!,
-                    customerTableNumber: "",
-                    customerSmoking: false,
-                    customerPax: "1",
-                    customerNote: "",
-                    customerCarType: "",
-                    customerCarColor: "",
-                    customerCarNumber: "",
-                    eta: etaOrder,
-                    salesType: r.request.body.salesType,
-                    receiptCode: "",
-                    items: setProduct?.items ?? []),
-                queryString: CreateCartSessionQueryParam()));
+          CreateCartSessionParam(
+            body: CreateCartSessionBodyParam(
+                outletName: r.request.body.outletName,
+                customerName: userProfile.name!,
+                customerPhone: userProfile.mobilePhone!,
+                customerTableNumber: "",
+                customerSmoking: false,
+                customerPax: "1",
+                customerNote: "",
+                customerCarType: "",
+                customerCarColor: "",
+                customerCarNumber: "",
+                eta: etaOrder,
+                salesType: r.request.body.salesType,
+                receiptCode: "",
+                items: setProduct?.items ?? []),
+            queryString: CreateCartSessionQueryParam(),
+          ),
+        );
 
         var dataCart = createCartSession.getOrElse(() => null);
         if (dataCart != null) {
@@ -481,21 +493,27 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           yield OrderState.loadFailure(OrderFailure.removeCartFail(null));
         } else {
           final createCartSession = await _orderRepository.updateCartSession(
-              UpdateCartSessionParam(
-                  body: UpdateCartSessionBodyParam(
-                      items: removeCart.items ?? [],
-                      customerNote: null,
-                      paymentType: paymentType?.id ?? "",
-                      customerPax: '1',
-                      customerSmoking: false,
-                      delivery: deliveryParam,
-                      eta: 'now',
-                      promos: getVoucherMethodID == null
-                          ? []
-                          : [getVoucherMethodID.code],
-                      salesType: getSalesTypeCart ?? ""),
-                  queryString:
-                      UpdateCartSessionQueryParam(sessionId: sessionId)));
+            UpdateCartSessionParam(
+              body: UpdateCartSessionBodyParam(
+                items: removeCart.items ?? [],
+                customerNote: null,
+                paymentType: paymentType?.id ?? "",
+                customerPax: '1',
+                customerSmoking: false,
+                customerCarColor: '',
+                customerCarNumber: '',
+                customerCarType: '',
+                delivery: deliveryParam,
+                eta: 'now',
+                promos:
+                    getVoucherMethodID == null ? [] : [getVoucherMethodID.code],
+                salesType: getSalesTypeCart ?? "",
+              ),
+              queryString: UpdateCartSessionQueryParam(
+                sessionId: sessionId,
+              ),
+            ),
+          );
 
           yield createCartSession.fold(
             (error) =>

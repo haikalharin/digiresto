@@ -161,6 +161,9 @@ class OrderLocal {
           delivery: null,
           eta: '',
           promos: [],
+          customerCarType: "",
+          customerCarColor: "",
+          customerCarNumber: "",
           salesType: '');
       await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
       _productJson = _storage.getJson(_box, key: _sessionIdKey);
@@ -176,15 +179,19 @@ class OrderLocal {
     //parse to list
     var _listResult = _result.entries.map((e) => e.value).toList();
     var list = UpdateCartSessionBodyParam(
-        customerNote: "",
-        paymentType: "",
-        items: _listResult,
-        customerPax: '',
-        customerSmoking: false,
-        delivery: null,
-        eta: '',
-        promos: [],
-        salesType: '');
+      customerNote: "",
+      paymentType: "",
+      items: _listResult,
+      customerPax: '',
+      customerSmoking: false,
+      delivery: null,
+      eta: '',
+      promos: [],
+      customerCarType: "",
+      customerCarColor: "",
+      customerCarNumber: "",
+      salesType: '',
+    );
     final _boxProduct = await _storage.openBox(StorageConstants.orderProduct);
     await _storage.setJson(_boxProduct,
         key: _sessionIdKey, object: list.toJson());
@@ -221,6 +228,9 @@ class OrderLocal {
           delivery: null,
           eta: '',
           promos: [],
+          customerCarType: "",
+          customerCarColor: "",
+          customerCarNumber: "",
           salesType: object.body.salesType);
       await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
 
@@ -267,6 +277,9 @@ class OrderLocal {
         customerSmoking: false,
         delivery: null,
         eta: '',
+        customerCarType: "",
+        customerCarColor: "",
+        customerCarNumber: "",
         promos: [],
         salesType: '');
     await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());

@@ -8,6 +8,7 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
 import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -149,7 +150,7 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : Container();
+                      : EmptyOutletWidget();
                 })
               ],
             ),

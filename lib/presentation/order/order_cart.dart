@@ -34,6 +34,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'detail_product_dialog.dart';
+import 'widgets/dialog_order_widget.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final bool? hideBackButton;
@@ -59,7 +60,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   if (controller.salesType.value == "dineIn")
                     Text(I10n.current.cart_info_dine_in,
                         style: AppFont.textBlack14Bold),
-                  if (controller.salesType.value == "dineIn")
+                  if (controller.salesType.value == "driveThru")
+                    Text(I10n.current.cart_info_drive_thru,
+                        style: AppFont.textBlack14Bold),
+                  if (controller.salesType.value == "dineIn" ||
+                      controller.salesType.value == "driveThru")
                     Container(
                       padding: const EdgeInsets.only(top: 5, bottom: 10),
                       child: TextField(
@@ -68,7 +73,20 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           controller: controller.placeInfoController,
                           readOnly: true,
                           onTap: () {
-                            _dialogDineIn();
+                            if (controller.salesType.value == "dineIn")
+                              _dialogDineIn();
+                            if (controller.salesType.value == "driveThru")
+                              DialogOrder().dialogDriveThru(
+                                useSchedule: controller.useSchedule.value,
+                                selectedDateController:
+                                    controller.selectedDateController,
+                                onTapSelectDate: () {
+                                  controller.selectDate(Get.context!);
+                                },
+                                selectedKeyClock:
+                                    controller.selectedKeyClock.value!,
+                                dataClock: controller.dataClock,
+                              );
                           },
                           style: TextStyle(
                             fontSize: 14.0,
