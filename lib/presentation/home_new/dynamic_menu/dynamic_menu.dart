@@ -1,8 +1,6 @@
-import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/menu_category_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DynamicMenu extends StatelessWidget {
   final List<MenuCategory> menuCategories;
@@ -21,8 +19,8 @@ class DynamicMenu extends StatelessWidget {
       child: GridView.count(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        crossAxisCount: 3,
-        childAspectRatio: 7 / 6,
+        crossAxisCount: menuCategories.length > 4 ? 3 : 2,
+        childAspectRatio: menuCategories.length > 4 ? (7 / 6) : (16 / 9),
         children: [
           ...menuCategories.map((menuCategory) {
             var index = menuCategories.indexOf(menuCategory);

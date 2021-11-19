@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _appBloc = getIt<AppBloc>();
 
-    Get.put(StaticBannerController(), permanent: false);
+    Get.put(StaticBannerController());
     getIt<HomeBloc>()..add(HomeEvent.started());
     return Scaffold(
       body: SafeArea(

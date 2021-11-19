@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:core';
-import 'package:collection/collection.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
@@ -14,11 +14,12 @@ import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart'
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/order/modifier_group_widget.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
-import 'package:digiresto/presentation/widgets/list/list_product_variant_widget.dart';
+import 'package:digiresto/presentation/order/widgets/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,34 +69,53 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   num? price;
   num? beforePrice;
   num subtotalModifiers = 0;
+  Map<String, bool> isModifierValid = {};
+  Map<String, int> _mapQuantity = {};
 
   void calculateModifiers() async {
     setState(() {
       subtotalModifiers = 0;
     });
+    print('listModifier: $listModifier');
+
     listModifier.forEach((element) {
       setState(() {
+        print(
+            'element.modifierId.toString() : ${element.modifierId.toString()}');
+        print('modifierGroup: ${widget.dataProduct.modifierGroups}');
         subtotalModifiers += element.qty *
             dataProductState.modifierGroups
-                .firstWhere((g) => g.id == element.modifierGroupId)
+                .firstWhere((g) {
+                  print('g.id = ${g.id}');
+                  print('element.modifierGroupId = ${element.modifierGroupId}');
+                  return g.id == element.modifierGroupId;
+                })
                 .modifiers
-                .firstWhere((m) => m.id == element.modifierId.toString())
+                .firstWhere((m) {
+                  print('m.id = ${m.id}');
+                  print('element.modifierId = ${element.modifierId}');
+                  return m.id == element.modifierId.toString();
+                })
                 .price;
       });
     });
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // _orderStore = Provider.of<OrderStore>(context);
-    // _userStore = Provider.of<UserStore>(context);
+  void initState() {
+    super.initState();
     setState(() {
       dataProductState = widget.dataProduct;
       variantProductSelected = dataProductState;
+      isModifierValid =
+          Map.fromEntries(dataProductState.modifierGroups.map((element) {
+        return MapEntry(element.id.toString(), false);
+      }));
+      print('init isModifierValid $isModifierValid');
       if (dataProductState.modifierGroups.isNotEmpty && widget.mode == "new") {
         final selected = dataProductState.modifierGroups
-            .where((element) => element.minQuantity > 0)
+            .where((element) =>
+                element.minQuantity > 0 && element.allowMultiple == 1)
             .map(
               (modifier) => CreateCartSessionItemModifierParam(
                 modifierGroupId: modifier.id,
@@ -109,7 +129,16 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       }
       if (widget.listSelectedModifier.isNotEmpty && widget.mode == "edit") {
         listModifier.addAll(widget.listSelectedModifier);
+        _mapQuantity = Map.fromEntries(listModifier.map((element) {
+          return MapEntry(element.modifierId.toString(), element.qty);
+        }));
+        listModifier.forEach((element) {
+          setState(() {
+            isModifierValid[element.modifierGroupId.toString()] = true;
+          });
+        });
       }
+
       calculateModifiers();
       totalqty = widget.qtyProduct;
       _setTotalQtyFromExistCart();
@@ -183,11 +212,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
 
   _chooseVariants(OutletListProductDataVariantResponse data) {
     //print("choose variant"+data.toString());
+    final varianData =
+        OutletListProductDataVariantResponse.variantToDetailProductResponse(
+            data);
     setState(() {
-      variantProductSelected =
-          OutletListProductDataVariantResponse.variantToDetailProductResponse(
-              data);
+      variantProductSelected = varianData;
+      dataProductState = varianData;
     });
+    isModifierValid =
+        Map.fromEntries(dataProductState.modifierGroups.map((element) {
+      return MapEntry(element.id.toString(), false);
+    }));
+    print('init isModifierValid $isModifierValid');
     _setTotalQtyFromExistCart();
     Navigator.of(context).pop();
   }
@@ -224,9 +260,11 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                 height: height,
                 child: Column(
                   children: [
-                    ListProductVariant(
-                        runAction: _chooseVariants,
-                        data: dataProductState.variants),
+                    Expanded(
+                      child: ListProductVariant(
+                          runAction: _chooseVariants,
+                          data: dataProductState.variants),
+                    ),
                     Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width - 190,
@@ -595,26 +633,34 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                   .map(
                                     (modifierGroup) => ModifierGroupWidget(
                                       modifierGroup: modifierGroup,
+                                      mapQuantity: _mapQuantity,
                                       selectedModifier: modifierGroup.modifiers
-                                          .firstWhereOrNull(
-                                        (modifier) => listModifier.any(
-                                            (element) =>
-                                                element.modifierId ==
-                                                int.parse(modifier.id)),
-                                      ),
-                                      onModifierSelected:
-                                          (CreateCartSessionItemModifierParam
-                                              modifier) async {
+                                          .where(
+                                            (modifier) => listModifier.any(
+                                                (element) =>
+                                                    element.modifierId ==
+                                                    int.parse(modifier.id)),
+                                          )
+                                          .toList(),
+                                      onModifierSelected: (listSelected,
+                                          isValid, isMultiple) async {
                                         setState(
                                           () {
                                             listModifier.removeWhere(
-                                                (element) =>
-                                                    element.modifierGroupId ==
-                                                    modifierGroup.id);
-                                            listModifier.add(modifier);
+                                              (element) =>
+                                                  element.modifierGroupId ==
+                                                  modifierGroup.id,
+                                            );
+                                            listSelected
+                                                .forEach((modifier) async {
+                                              listModifier.add(modifier);
+                                            });
+                                            isModifierValid[modifierGroup.id
+                                                .toString()] = isValid;
                                           },
                                         );
                                         calculateModifiers();
+                                        print('listModifier: $listModifier');
                                       },
                                     ),
                                   )
@@ -786,7 +832,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 5, right: 5),
+                            padding: EdgeInsets.only(left: 8, right: 8),
                             child: Text(totalqty.toString(),
                                 style: AppFont.textBlack16Bold,
                                 textAlign: TextAlign.left),
@@ -856,7 +902,23 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             children: [
                               Expanded(
                                 child: CustomButton(
-                                  onPressed: () => setProduct(),
+                                  onPressed: () {
+                                    print('isModifierValid : $isModifierValid');
+                                    if (isModifierValid.values.every(
+                                            (element) => element == true) &&
+                                        dataProductState
+                                            .modifierGroups.isNotEmpty) {
+                                      setProduct();
+                                      Get.back(closeOverlays: true);
+                                    } else {
+                                      ErrorDialog().showError(
+                                          error: StatusMessageDisplayResponse(
+                                              id: I10n.current
+                                                  .product_detail_alert_min_max_quantity,
+                                              en: I10n.current
+                                                  .product_detail_alert_min_max_quantity));
+                                    }
+                                  },
                                   borderRadius: BorderRadius.circular(25),
                                   label: I10n.current.add_to_cart,
                                   fontColor: Colors.white,
@@ -868,7 +930,23 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               ),
                               Expanded(
                                 child: CustomButton(
-                                  onPressed: () => setProduct(isBuyNow: true),
+                                  onPressed: () {
+                                    print('isModifierValid : $isModifierValid');
+                                    if (isModifierValid.values.every(
+                                            (element) => element == true) &&
+                                        dataProductState
+                                            .modifierGroups.isNotEmpty) {
+                                      setProduct(isBuyNow: true);
+                                      Get.back(closeOverlays: true);
+                                    } else {
+                                      ErrorDialog().showError(
+                                          error: StatusMessageDisplayResponse(
+                                              id: I10n.current
+                                                  .product_detail_alert_min_max_quantity,
+                                              en: I10n.current
+                                                  .product_detail_alert_min_max_quantity));
+                                    }
+                                  },
                                   borderRadius: BorderRadius.circular(25),
                                   borderColor: AppColors.mainColor,
                                   label: I10n.current.buy_now,
@@ -888,10 +966,23 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                setProduct();
+                                print('isModifierValid : $isModifierValid');
+                                if (isModifierValid.values
+                                        .every((element) => element == true) &&
+                                    dataProductState
+                                        .modifierGroups.isNotEmpty) {
+                                  setProduct();
+                                  Get.back(closeOverlays: true);
+                                } else {
+                                  ErrorDialog().showError(
+                                      error: StatusMessageDisplayResponse(
+                                          id: I10n.current
+                                              .product_detail_alert_min_max_quantity,
+                                          en: I10n.current
+                                              .product_detail_alert_min_max_quantity));
+                                }
                                 // _orderStore.setProduct(dataProductState["id"],
                                 //     totalqty, price, dataProductState);
-                                Get.back(closeOverlays: true);
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: AppColors.redD12B34,

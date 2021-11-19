@@ -3,16 +3,28 @@ import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
+
+/*"allowMultiple": "1", (max count multiple count modifier) (0 = unlimited)
+        "allowQuantity": "1", (max count allowed per modifier) (0 = unlimited)
+        "minQuantity": "1", (min selected modifier per group)
+        "maxQuantity": "1", (max selected modifier per group)*/
 
 class ModifierGroupWidget extends StatefulWidget {
   final OutletListProductDataModifierGroupResponse modifierGroup;
-  final OutletListProductDataSubModifierGroupResponse? selectedModifier;
-  final void Function(CreateCartSessionItemModifierParam) onModifierSelected;
+  final List<OutletListProductDataSubModifierGroupResponse> selectedModifier;
+  final Map<String, int> mapQuantity;
+  final void Function(
+    List<CreateCartSessionItemModifierParam> listSelected,
+    bool isValid,
+    bool isMultiple,
+  ) onModifierSelected;
   const ModifierGroupWidget({
     Key? key,
     required this.modifierGroup,
     required this.onModifierSelected,
     required this.selectedModifier,
+    required this.mapQuantity,
   }) : super(key: key);
 
   @override
@@ -20,12 +32,54 @@ class ModifierGroupWidget extends StatefulWidget {
 }
 
 class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
-  OutletListProductDataSubModifierGroupResponse? selectedModifier;
+  late List<OutletListProductDataSubModifierGroupResponse> _selectedModifier;
+  late int _groupQuantity;
+  late int _minQuantity;
+  late int _maxQuantity;
+  late int _allowMultiple;
+  late int _allowQuantity;
+  late Map<String, int> _mapQuantity;
+
+  void updateList() {
+    final list = _selectedModifier
+        .map(
+          (e) => CreateCartSessionItemModifierParam(
+            modifierGroupId: widget.modifierGroup.id,
+            modifierId: int.parse(e.id),
+            qty: _mapQuantity[e.id] ?? 1,
+          ),
+        )
+        .toList();
+    print('list: $list');
+    widget.onModifierSelected(
+      list,
+      _groupQuantity >= _minQuantity,
+      true,
+    );
+    print('_groupQuantity : $_groupQuantity');
+    print('_selectedModifier : $_selectedModifier');
+  }
 
   @override
   void initState() {
     super.initState();
-    selectedModifier = widget.selectedModifier;
+    _selectedModifier = widget.selectedModifier;
+    print('_selectedModifier: $_selectedModifier');
+    print('widget.mapQuantity: ${widget.mapQuantity}');
+    _minQuantity = widget.modifierGroup.minQuantity;
+    _maxQuantity = widget.modifierGroup.maxQuantity;
+    _allowMultiple = widget.modifierGroup.allowMultiple;
+    _allowQuantity = widget.modifierGroup.allowQuantity;
+    final map = widget.selectedModifier.asMap().map((key, value) =>
+        MapEntry(value.id, (widget.mapQuantity[value.id] ?? 1)));
+    _mapQuantity = Map<String, int>.from(map);
+    print('_mapQuantity : $_mapQuantity');
+    if (_mapQuantity.values.isNotEmpty) {
+      _groupQuantity = _mapQuantity.values.reduce((a, b) => a + b);
+      print('init _groupQty : $_groupQuantity');
+    } else {
+      _groupQuantity = 0;
+    }
   }
 
   @override
@@ -41,7 +95,7 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
         SizedBox(
           height: 5,
         ),
-        if (modifierGroup.minQuantity > 0)
+        if (_minQuantity > 0)
           Text(
             '*min ${modifierGroup.minQuantity} item',
             style: AppFont.textBlack12Regular.copyWith(
@@ -55,22 +109,86 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
           ),
         ),
         ...modifierGroup.modifiers.map((modifier) {
-          return ModifierItemWidget(
+          if (modifierGroup.allowMultiple == 1 ||
+              modifierGroup.allowMultiple == 1) {
+            return ModifierItemRadioWidget(
+              modifier: modifier,
+              toggleable: _minQuantity <= 0,
+              onModifierSelected: (selectModifier) {
+                print('_groupQuantity : $_groupQuantity');
+                if (selectModifier != null) {
+                  widget.onModifierSelected(
+                    [
+                      CreateCartSessionItemModifierParam(
+                        modifierGroupId: modifierGroup.id,
+                        modifierId: int.parse(selectModifier.id),
+                        qty: 1,
+                      ),
+                    ],
+                    _groupQuantity >= _minQuantity,
+                    false,
+                  );
+                  setState(() {
+                    _selectedModifier.clear();
+                    _selectedModifier.add(selectModifier);
+                  });
+                }
+              },
+              selectedModifier: _selectedModifier.firstWhereOrNull(
+                (selected) => selected.id == modifier.id,
+              ),
+            );
+          }
+          return ModifierItemCheckboxWidget(
             modifier: modifier,
-            toggleable: modifierGroup.minQuantity <= 0,
-            onModifierSelected: (selectedModifier) {
-              widget.onModifierSelected(
-                CreateCartSessionItemModifierParam(
-                  modifierGroupId: modifierGroup.id,
-                  modifierId: int.parse(selectedModifier!.id),
-                  qty: 1,
-                ),
-              );
+            isSelected:
+                _selectedModifier.any((selected) => selected.id == modifier.id),
+            onChanged: (value) {
+              print('value : ${value!}');
               setState(() {
-                this.selectedModifier = selectedModifier;
+                if (value &&
+                    (_allowMultiple == 0
+                        ? true
+                        : (_selectedModifier.length < _maxQuantity &&
+                            _groupQuantity < _allowMultiple))) {
+                  print('kondisi 1');
+                  _groupQuantity++;
+                  _mapQuantity.addAll({modifier.id: 1});
+                  _selectedModifier.add(modifier);
+                } else {
+                  print('kondisi 2');
+                  if (_selectedModifier
+                      .any((element) => element.id == modifier.id)) {
+                    _groupQuantity -= _mapQuantity[modifier.id] ?? 1;
+                  }
+                  _mapQuantity.removeWhere((key, value) => key == modifier.id);
+                  _selectedModifier
+                      .removeWhere((selected) => selected.id == modifier.id);
+                }
               });
+              updateList();
             },
-            selectedModifier: selectedModifier,
+            itemQty: _mapQuantity[modifier.id] ?? 1,
+            onPlus: () {
+              final qty = _mapQuantity[modifier.id] ?? 1;
+              if (qty <= _maxQuantity && _groupQuantity < _maxQuantity) {
+                setState(() {
+                  _groupQuantity++;
+                  _mapQuantity[modifier.id] = qty + 1;
+                });
+              }
+              updateList();
+            },
+            onMinus: () {
+              final qty = _mapQuantity[modifier.id] ?? 1;
+              if (qty > 1) {
+                setState(() {
+                  _groupQuantity--;
+                  _mapQuantity[modifier.id] = qty - 1;
+                });
+              }
+              updateList();
+            },
           );
         }),
         SizedBox(
@@ -81,14 +199,14 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
   }
 }
 
-class ModifierItemWidget extends StatelessWidget {
+class ModifierItemRadioWidget extends StatelessWidget {
   final bool toggleable;
   final OutletListProductDataSubModifierGroupResponse modifier;
   final OutletListProductDataSubModifierGroupResponse? selectedModifier;
   final void Function(OutletListProductDataSubModifierGroupResponse?)?
       onModifierSelected;
 
-  const ModifierItemWidget({
+  const ModifierItemRadioWidget({
     Key? key,
     required this.modifier,
     required this.selectedModifier,
@@ -105,6 +223,82 @@ class ModifierItemWidget extends StatelessWidget {
       groupValue: selectedModifier,
       value: modifier,
       toggleable: toggleable,
+      title: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            modifier.name,
+            style: AppFont.textBlack14Regular,
+          ),
+          Text(
+            '+ ${CommonUtils.currencyFormat(modifier.price.toDouble())}',
+            style: AppFont.textBlack14Regular,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ModifierItemCheckboxWidget extends StatelessWidget {
+  final OutletListProductDataSubModifierGroupResponse modifier;
+  final void Function(bool?)? onChanged;
+  final bool isSelected;
+  final int itemQty;
+  final void Function() onMinus;
+  final void Function() onPlus;
+  const ModifierItemCheckboxWidget({
+    Key? key,
+    required this.onChanged,
+    required this.isSelected,
+    required this.modifier,
+    required this.itemQty,
+    required this.onMinus,
+    required this.onPlus,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxListTile(
+      onChanged: onChanged,
+      controlAffinity: ListTileControlAffinity.leading,
+      value: isSelected,
+      dense: true,
+      contentPadding: EdgeInsets.zero,
+      secondary: isSelected
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onTap: onMinus,
+                  child: CircleAvatar(
+                    radius: 14,
+                    backgroundColor: AppColors.greyStroke,
+                    child: new Icon(Icons.remove,
+                        color: AppColors.redYoung, size: 20.0),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Text(itemQty.toString(),
+                      style: AppFont.textBlack16Bold,
+                      textAlign: TextAlign.left),
+                ),
+                GestureDetector(
+                  onTap: onPlus,
+                  child: CircleAvatar(
+                    radius: 14,
+                    backgroundColor: AppColors.greyStroke,
+                    child: new Icon(Icons.add,
+                        color: AppColors.redYoung, size: 20.0),
+                  ),
+                )
+              ],
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+            ),
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
-import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _ListProductVariantState extends State<ListProductVariant> {
         child: ListView.builder(
             scrollDirection: widget.scrollDirection,
             shrinkWrap: true, // new line
-            padding: const EdgeInsets.all(5),
+            padding: EdgeInsets.zero,
             itemCount: widget.data.length,
             itemBuilder: (BuildContext context, int index) {
               // _userStore?.setRandomCacheImage(widget.data[index]["img"],
@@ -45,7 +46,7 @@ class _ListProductVariantState extends State<ListProductVariant> {
                 },
                 child: Container(
                   padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                  margin: EdgeInsets.all(5),
+                  margin: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5.0),
@@ -61,6 +62,25 @@ class _ListProductVariantState extends State<ListProductVariant> {
                   child: Column(
                     children: [
                       Container(
+                        height: 150,
+                        width: 150,
+                        child: Image(
+                          errorBuilder: (context, obj, stacktrace) {
+                            return Image(
+                              image: RandomImages.getImage(),
+                            );
+                          },
+                          image: RandomImages.getImageUrlDefault(
+                              widget.data[index].image, ''),
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.only(top: 5),
                         width: MediaQuery.of(context).size.width - 100,
@@ -68,11 +88,8 @@ class _ListProductVariantState extends State<ListProductVariant> {
                             softWrap: false,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              color: AppColors.red,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                            style: AppFont.textBlack15Bold.copyWith(
+                              color: AppColors.mainColor,
                             ),
                             textAlign: TextAlign.left),
                       ),
@@ -88,6 +105,9 @@ class _ListProductVariantState extends State<ListProductVariant> {
                             style:
                                 TextStyle(fontFamily: "roboto", fontSize: 14),
                             textAlign: TextAlign.left),
+                      ),
+                      SizedBox(
+                        height: 15,
                       ),
                     ],
                   ),
