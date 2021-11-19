@@ -55,6 +55,8 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
 
           final item = widget.data[index];
 
+          final isSoldOut = item.stock == 0 && item.variants.isEmpty;
+
           // bool randomImg;
           // if (item["img"]==null){
           //   randomImg=true;
@@ -96,7 +98,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
           return InkWell(
             onTap: () => {
               //print(item),
-              if (item.stock == 0)
+              if (isSoldOut)
                 {}
               else
                 {widget.runDetailAction(item, widget.orderType)}
@@ -161,7 +163,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                                   ),
                                 ),
                               ),
-                            if (item.stock == 0)
+                            if (isSoldOut)
                               Positioned.fill(
                                 child: Container(
                                   width: double.infinity,

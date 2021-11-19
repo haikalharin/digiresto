@@ -38,7 +38,7 @@ class MenuCategoryWidget extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 5,
+              height: 15,
             ),
             Expanded(
               flex: 5,
@@ -48,6 +48,9 @@ class MenuCategoryWidget extends StatelessWidget {
                   imageUrl: menuCategory.icon,
                 ),
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Padding(
               padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),

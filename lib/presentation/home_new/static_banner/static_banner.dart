@@ -4,7 +4,6 @@ import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/home_new/static_banner_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
-import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
 import 'package:digiresto/presentation/widgets/transparent_route.dart';

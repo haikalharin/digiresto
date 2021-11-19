@@ -226,7 +226,7 @@ class OrderCartScreenViewController extends GetxController {
       isLoading.value = false;
       getIt<BottomTabCubit>().changeTab(0);
       Get.offAllNamed(Routers.auth);
-      getIt<HomeBloc>().add(HomeEvent.refresh());
+      // getIt<HomeBloc>().add(HomeEvent.refresh());
     }
     if (checkoutResponse.value?.receiptCode == "") {
       isLoading.value = false;

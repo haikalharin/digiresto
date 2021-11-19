@@ -70,6 +70,13 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
       if (widget.productCart[index].productId.toString() == element.id) {
         product = element;
       }
+      element.variants.forEach((element) {
+        if (widget.productCart[index].productId.toString() == element.id) {
+          final varianData = OutletListProductDataVariantResponse
+              .variantToDetailProductResponse(element);
+          product = varianData;
+        }
+      });
     });
     return product;
   }

@@ -97,6 +97,53 @@ class OrderDetailsOnProcess extends StatelessWidget {
           padding: EdgeInsets.all(Dimens.defaultMargin),
           child: Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    I10n.current.history_order_type,
+                    style: Styles.menuItemLabelStyle,
+                  ),
+                  Text(
+                    orderDetails.salesType,
+                    style: Styles.menuItemPriceStyle,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    I10n.current.history_status,
+                    style: Styles.menuItemLabelStyle,
+                  ),
+                  Text(
+                    orderDetails.status,
+                    style: Styles.menuItemPriceStyle,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    I10n.current.text_list_order,
+                    style: Styles.menuItemLabelStyle,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
               ...orderDetails.items
                   .map((item) => MenuItemWidget(item))
                   .toList(),
