@@ -8,6 +8,11 @@ class DialogOrder {
   Future<void> dialogDriveThru({
     required bool? useSchedule,
     required TextEditingController? selectedDateController,
+    required TextEditingController customerCarColorController,
+    required TextEditingController customerCarNumberController,
+    required TextEditingController customerCarTypeController,
+    required Function() onTapCancel,
+    required Function() onTapOk,
     required Function() onTapSelectDate,
     required String selectedKeyClock,
     required RxList dataClock,
@@ -161,7 +166,10 @@ class DialogOrder {
                       ),
                     ),
                   ),
-                  _textFieldDialogOrder(hintText: 'Motor / Mobil'),
+                  _textFieldDialogOrder(
+                    hintText: 'Motor / Mobil',
+                    controller: customerCarTypeController,
+                  ),
                   Container(
                     child: Text(
                       "Warna Kendaraan",
@@ -172,7 +180,10 @@ class DialogOrder {
                       ),
                     ),
                   ),
-                  _textFieldDialogOrder(hintText: 'Warna Kendaraan Anda'),
+                  _textFieldDialogOrder(
+                    hintText: 'Warna Kendaraan Anda',
+                    controller: customerCarColorController,
+                  ),
                   Container(
                     child: Text(
                       "Nomor Kendaraan",
@@ -183,7 +194,10 @@ class DialogOrder {
                       ),
                     ),
                   ),
-                  _textFieldDialogOrder(hintText: 'B **** XXX'),
+                  _textFieldDialogOrder(
+                    hintText: 'B **** XXX',
+                    controller: customerCarNumberController,
+                  ),
                   Container(
                     padding: EdgeInsets.only(top: 15),
                     child: Row(
@@ -194,9 +208,7 @@ class DialogOrder {
                             padding: EdgeInsets.all(5),
                             height: 50,
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
+                              onPressed: onTapCancel,
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.white,
                                 shape: RoundedRectangleBorder(
@@ -223,9 +235,10 @@ class DialogOrder {
                             padding: EdgeInsets.all(5),
                             height: 50,
                             child: ElevatedButton(
-                              onPressed: () {
-                                Get.back(closeOverlays: true);
-                              },
+                              onPressed: onTapOk,
+                              // onPressed: () {
+                              //   Get.back(closeOverlays: true);
+                              // },
                               child: Text(I10n.current.alert_ok,
                                   style: TextStyle(
                                       fontSize: 14,
@@ -258,17 +271,15 @@ class DialogOrder {
 
   Widget _textFieldDialogOrder({
     required String? hintText,
+    required TextEditingController controller,
   }) {
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 10),
       child: TextField(
           textInputAction: TextInputAction.search,
           onSubmitted: (value) {},
-          // controller: controller,
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ], // Only numbers can be entered,
+          controller: controller,
+          keyboardType: TextInputType.text,
           readOnly: false,
           onTap: () {},
           style: TextStyle(

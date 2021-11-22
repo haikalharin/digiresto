@@ -8,6 +8,7 @@ import 'package:digiresto/domain/entity/order/param/create_cart_session_param.da
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
+import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -94,6 +95,32 @@ class OrderLocal {
       final _box = await _storage.openBox(StorageConstants.cart);
       final object = _storage.getJson(_box, key: _dineInIdKey);
       final model = OrderCartDineInModel.fromJson(object);
+      await _storage.close(_box);
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<OrderCartDriveThruModel?> setDriveThruIDMethod(
+      OrderCartDriveThruModel data) async {
+    try {
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(_box, key: _dineInIdKey, object: data.toJson());
+      final object = _storage.getJson(_box, key: _dineInIdKey);
+      final model = OrderCartDriveThruModel.fromJson(object);
+      await _storage.close(_box);
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<OrderCartDriveThruModel?> getDriveThruIDMethod() async {
+    try {
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(_box, key: _dineInIdKey);
+      final model = OrderCartDriveThruModel.fromJson(object);
       await _storage.close(_box);
       return model;
     } catch (e) {

@@ -903,21 +903,22 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               Expanded(
                                 child: CustomButton(
                                   onPressed: () {
-                                    print('isModifierValid : $isModifierValid');
-                                    if (isModifierValid.values.every(
-                                            (element) => element == true) &&
-                                        dataProductState
-                                            .modifierGroups.isNotEmpty) {
-                                      setProduct();
-                                      Get.back(closeOverlays: true);
-                                    } else {
-                                      ErrorDialog().showError(
-                                          error: StatusMessageDisplayResponse(
-                                              id: I10n.current
-                                                  .product_detail_alert_min_max_quantity,
-                                              en: I10n.current
-                                                  .product_detail_alert_min_max_quantity));
-                                    }
+                                    setProduct();
+                                    // print('isModifierValid : $isModifierValid');
+                                    // if (isModifierValid.values.every(
+                                    //         (element) => element == true) &&
+                                    //     dataProductState
+                                    //         .modifierGroups.isNotEmpty) {
+                                    //   setProduct();
+                                    //   Get.back(closeOverlays: true);
+                                    // } else {
+                                    //   ErrorDialog().showError(
+                                    //       error: StatusMessageDisplayResponse(
+                                    //           id: I10n.current
+                                    //               .product_detail_alert_min_max_quantity,
+                                    //           en: I10n.current
+                                    //               .product_detail_alert_min_max_quantity));
+                                    // }
                                   },
                                   borderRadius: BorderRadius.circular(25),
                                   label: I10n.current.add_to_cart,
@@ -931,21 +932,22 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               Expanded(
                                 child: CustomButton(
                                   onPressed: () {
-                                    print('isModifierValid : $isModifierValid');
-                                    if (isModifierValid.values.every(
-                                            (element) => element == true) &&
-                                        dataProductState
-                                            .modifierGroups.isNotEmpty) {
-                                      setProduct(isBuyNow: true);
-                                      Get.back(closeOverlays: true);
-                                    } else {
-                                      ErrorDialog().showError(
-                                          error: StatusMessageDisplayResponse(
-                                              id: I10n.current
-                                                  .product_detail_alert_min_max_quantity,
-                                              en: I10n.current
-                                                  .product_detail_alert_min_max_quantity));
-                                    }
+                                    setProduct();
+                                    // print('isModifierValid : $isModifierValid');
+                                    // if (isModifierValid.values.every(
+                                    //         (element) => element == true) &&
+                                    //     dataProductState
+                                    //         .modifierGroups.isNotEmpty) {
+                                    //   setProduct(isBuyNow: true);
+                                    //   Get.back(closeOverlays: true);
+                                    // } else {
+                                    //   ErrorDialog().showError(
+                                    //       error: StatusMessageDisplayResponse(
+                                    //           id: I10n.current
+                                    //               .product_detail_alert_min_max_quantity,
+                                    //           en: I10n.current
+                                    //               .product_detail_alert_min_max_quantity));
+                                    // }
                                   },
                                   borderRadius: BorderRadius.circular(25),
                                   borderColor: AppColors.mainColor,
@@ -966,21 +968,22 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                print('isModifierValid : $isModifierValid');
-                                if (isModifierValid.values
-                                        .every((element) => element == true) &&
-                                    dataProductState
-                                        .modifierGroups.isNotEmpty) {
-                                  setProduct();
-                                  Get.back(closeOverlays: true);
-                                } else {
-                                  ErrorDialog().showError(
-                                      error: StatusMessageDisplayResponse(
-                                          id: I10n.current
-                                              .product_detail_alert_min_max_quantity,
-                                          en: I10n.current
-                                              .product_detail_alert_min_max_quantity));
-                                }
+                                setProduct();
+                                // print('isModifierValid : $isModifierValid');
+                                // if (isModifierValid.values
+                                //         .every((element) => element == true) &&
+                                //     dataProductState
+                                //         .modifierGroups.isNotEmpty) {
+                                //   setProduct();
+                                //   Get.back(closeOverlays: true);
+                                // } else {
+                                //   ErrorDialog().showError(
+                                //       error: StatusMessageDisplayResponse(
+                                //           id: I10n.current
+                                //               .product_detail_alert_min_max_quantity,
+                                //           en: I10n.current
+                                //               .product_detail_alert_min_max_quantity));
+                                // }
                                 // _orderStore.setProduct(dataProductState["id"],
                                 //     totalqty, price, dataProductState);
                               },

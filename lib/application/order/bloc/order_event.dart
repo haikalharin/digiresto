@@ -88,6 +88,11 @@ class OrderEvent with _$OrderEvent {
 
   const factory OrderEvent.getDineInIDMethod() = _GetDineInIDMethod;
 
+  const factory OrderEvent.setDriveThruIDMethod(OrderCartDriveThruModel data) =
+      _SetDriveThruIDMethod;
+
+  const factory OrderEvent.getDriveThruIDMethod() = _GetDriveThruIDMethod;
+
   const factory OrderEvent.setVoucherMethodID(
       GetListVoucherOutletDataResponse data) = _SetVoucherMethodID;
 
