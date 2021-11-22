@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:core';
-import 'package:collection/collection.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
@@ -217,7 +216,6 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     }
 
     getIt<BottomTabCubit>().checkCartFromOutside();
-    print('nyampe sini 210');
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
             CreateUpdateCartSessionItemParam(
@@ -230,7 +228,6 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             isBuyNow,
           ),
         );
-    print('nyampe sini ga');
   }
 
   _chooseVariants(OutletListProductDataVariantResponse data) async {
@@ -913,7 +910,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               Expanded(
                                 child: CustomButton(
                                   onPressed: () {
-                                    setProduct();
+                                    setProduct(isBuyNow: true);
                                   },
                                   borderRadius: BorderRadius.circular(25),
                                   borderColor: AppColors.mainColor,
