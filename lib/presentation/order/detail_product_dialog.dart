@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:core';
+import 'package:collection/collection.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
@@ -101,53 +102,63 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     });
   }
 
+  void initFunc() async {
+    isModifierValid =
+        Map.fromEntries(dataProductState.modifierGroups.map((element) {
+      return MapEntry(
+          element.id.toString(), element.minQuantity == 0 ? true : false);
+    }));
+    print('init isModifierValid $isModifierValid');
+    if (dataProductState.modifierGroups.isNotEmpty && widget.mode == "new") {
+      final selected = dataProductState.modifierGroups
+          .where((element) =>
+              element.minQuantity > 0 && element.allowMultiple == 1)
+          .map(
+        (modifier) {
+          isModifierValid[modifier.id.toString()] = true;
+          return CreateCartSessionItemModifierParam(
+            modifierGroupId: modifier.id,
+            modifierId: int.parse(modifier.modifiers.first.id),
+            qty: modifier.minQuantity,
+          );
+        },
+      ).toList();
+
+      listModifier.addAll(selected);
+    }
+    if (widget.listSelectedModifier.isNotEmpty && widget.mode == "edit") {
+      listModifier.addAll(widget.listSelectedModifier);
+      _mapQuantity = Map.fromEntries(listModifier.map((element) {
+        return MapEntry(element.modifierId.toString(), element.qty);
+      }));
+      listModifier.forEach((element) {
+        setState(() {
+          isModifierValid[element.modifierGroupId.toString()] = true;
+        });
+      });
+    }
+    calculateModifiers();
+    totalqty = widget.qtyProduct;
+    _setTotalQtyFromExistCart();
+    notesController.text = widget.note;
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
-    setState(() {
-      dataProductState = widget.dataProduct;
-      variantProductSelected = dataProductState;
-      isModifierValid =
-          Map.fromEntries(dataProductState.modifierGroups.map((element) {
-        return MapEntry(element.id.toString(), false);
-      }));
-      print('init isModifierValid $isModifierValid');
-      if (dataProductState.modifierGroups.isNotEmpty && widget.mode == "new") {
-        final selected = dataProductState.modifierGroups
-            .where((element) =>
-                element.minQuantity > 0 && element.allowMultiple == 1)
-            .map(
-              (modifier) => CreateCartSessionItemModifierParam(
-                modifierGroupId: modifier.id,
-                modifierId: int.parse(modifier.modifiers.first.id),
-                qty: modifier.minQuantity,
-              ),
-            )
-            .toList();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      setState(() {
+        dataProductState = widget.dataProduct;
+        variantProductSelected = dataProductState;
+      });
+      initFunc();
 
-        listModifier.addAll(selected);
-      }
-      if (widget.listSelectedModifier.isNotEmpty && widget.mode == "edit") {
-        listModifier.addAll(widget.listSelectedModifier);
-        _mapQuantity = Map.fromEntries(listModifier.map((element) {
-          return MapEntry(element.modifierId.toString(), element.qty);
-        }));
-        listModifier.forEach((element) {
-          setState(() {
-            isModifierValid[element.modifierGroupId.toString()] = true;
-          });
-        });
-      }
-
-      calculateModifiers();
-      totalqty = widget.qtyProduct;
-      _setTotalQtyFromExistCart();
-      notesController.text = widget.note;
-    });
-    Timer.run(() {
-      if (dataProductState.variants.length > 0) {
-        _showMaterialDialog();
-      } else {}
+      Timer.run(() {
+        if (dataProductState.variants.length > 0) {
+          _showMaterialDialog();
+        }
+      });
     });
   }
 
@@ -166,6 +177,15 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   }
 
   void setProduct({bool isBuyNow = false}) async {
+    if (dataProductState.modifierGroups.isNotEmpty) {
+      if (isModifierValid.values.contains(false)) {
+        ErrorDialog().showError(
+            error: StatusMessageDisplayResponse(
+                id: I10n.current.product_detail_alert_min_max_quantity,
+                en: I10n.current.product_detail_alert_min_max_quantity));
+        return;
+      }
+    }
     if (widget.isDifferentOutlet) {
       ErrorPopupWidget.confirmation("Digiresto",
           '${I10n.current.beranda_outlet_change}${I10n.current.beranda_all_product_deleted}',
@@ -195,7 +215,9 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       });
       return;
     }
+
     getIt<BottomTabCubit>().checkCartFromOutside();
+    print('nyampe sini 210');
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
             CreateUpdateCartSessionItemParam(
@@ -208,9 +230,10 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             isBuyNow,
           ),
         );
+    print('nyampe sini ga');
   }
 
-  _chooseVariants(OutletListProductDataVariantResponse data) {
+  _chooseVariants(OutletListProductDataVariantResponse data) async {
     //print("choose variant"+data.toString());
     final varianData =
         OutletListProductDataVariantResponse.variantToDetailProductResponse(
@@ -219,12 +242,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
       variantProductSelected = varianData;
       dataProductState = varianData;
     });
-    isModifierValid =
-        Map.fromEntries(dataProductState.modifierGroups.map((element) {
-      return MapEntry(element.id.toString(), false);
-    }));
-    print('init isModifierValid $isModifierValid');
-    _setTotalQtyFromExistCart();
+    initFunc();
     Navigator.of(context).pop();
   }
 
@@ -873,29 +891,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                     height: 10,
                   ),
                   (widget.mode == "new")
-                      ?
-                      // variantProductSelected.isPreorder
-                      //     ? Container(
-                      //         padding: EdgeInsets.only(bottom: 10),
-                      //         child: Row(
-                      //           mainAxisAlignment:
-                      //               MainAxisAlignment.spaceEvenly,
-                      //           children: [
-                      //             Expanded(
-                      //               child: CustomButton(
-                      //                 onPressed: () =>
-                      //                     setProduct(isBuyNow: true),
-                      //                 borderRadius: BorderRadius.circular(25),
-                      //                 label: I10n.current.home_preorder,
-                      //                 fontColor: Colors.white,
-                      //                 color: AppColors.mainColor,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       )
-                      //     :
-                      Container(
+                      ? Container(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -903,21 +899,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               Expanded(
                                 child: CustomButton(
                                   onPressed: () {
-                                    print('isModifierValid : $isModifierValid');
-                                    if (isModifierValid.values.every(
-                                            (element) => element == true) &&
-                                        dataProductState
-                                            .modifierGroups.isNotEmpty) {
-                                      setProduct();
-                                      Get.back(closeOverlays: true);
-                                    } else {
-                                      ErrorDialog().showError(
-                                          error: StatusMessageDisplayResponse(
-                                              id: I10n.current
-                                                  .product_detail_alert_min_max_quantity,
-                                              en: I10n.current
-                                                  .product_detail_alert_min_max_quantity));
-                                    }
+                                    setProduct();
                                   },
                                   borderRadius: BorderRadius.circular(25),
                                   label: I10n.current.add_to_cart,
@@ -931,21 +913,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                               Expanded(
                                 child: CustomButton(
                                   onPressed: () {
-                                    print('isModifierValid : $isModifierValid');
-                                    if (isModifierValid.values.every(
-                                            (element) => element == true) &&
-                                        dataProductState
-                                            .modifierGroups.isNotEmpty) {
-                                      setProduct(isBuyNow: true);
-                                      Get.back(closeOverlays: true);
-                                    } else {
-                                      ErrorDialog().showError(
-                                          error: StatusMessageDisplayResponse(
-                                              id: I10n.current
-                                                  .product_detail_alert_min_max_quantity,
-                                              en: I10n.current
-                                                  .product_detail_alert_min_max_quantity));
-                                    }
+                                    setProduct();
                                   },
                                   borderRadius: BorderRadius.circular(25),
                                   borderColor: AppColors.mainColor,
@@ -966,23 +934,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                print('isModifierValid : $isModifierValid');
-                                if (isModifierValid.values
-                                        .every((element) => element == true) &&
-                                    dataProductState
-                                        .modifierGroups.isNotEmpty) {
-                                  setProduct();
-                                  Get.back(closeOverlays: true);
-                                } else {
-                                  ErrorDialog().showError(
-                                      error: StatusMessageDisplayResponse(
-                                          id: I10n.current
-                                              .product_detail_alert_min_max_quantity,
-                                          en: I10n.current
-                                              .product_detail_alert_min_max_quantity));
-                                }
-                                // _orderStore.setProduct(dataProductState["id"],
-                                //     totalqty, price, dataProductState);
+                                setProduct();
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: AppColors.redD12B34,
