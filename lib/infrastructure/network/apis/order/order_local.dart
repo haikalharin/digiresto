@@ -138,12 +138,6 @@ class OrderLocal {
         _boxProduct,
       );
       await _storage.close(_boxProduct);
-
-      final _boxCart = await _storage.openBox(StorageConstants.cart);
-      await _storage.deleteData(
-        _boxCart,
-      );
-      await _storage.close(_boxProduct);
     }
 
     final _box = await _storage.openBox(StorageConstants.orderProduct);
@@ -336,9 +330,9 @@ class OrderLocal {
 
   Future<Either<Exception, String?>> getSessionId() async {
     try {
-      final _box = await _storage.openBox(StorageConstants.cart);
-      final sessionId = _storage.getString(_box, key: _sessionIdKey);
-      await _storage.close(_box);
+      final _boxCart = await _storage.openBox(StorageConstants.cart);
+      final sessionId = _storage.getString(_boxCart, key: _sessionIdKey);
+      await _storage.close(_boxCart);
       return sessionId == null
           ? left(Exception("session is null"))
           : right(sessionId);

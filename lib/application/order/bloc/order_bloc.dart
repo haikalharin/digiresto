@@ -414,12 +414,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final userProfile = (await _orderRepository.getLocalUserProfile())!;
         final setProduct =
             await _orderRepository.reorderCart(r.request, r.outletId);
-        final paymentType = await _orderRepository.getPaymentMethodID();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final deliveryInq = await _orderRepository.getDeliveryMethodID();
-        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
 
         String etaOrder = "now";
 
@@ -566,8 +560,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       },
       checkoutCart: (request) async* {
         yield OrderState.loadInProgress();
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
+        final sessionId = (await _orderRepository.getSessionId())
+            .getOrElse(() => request.sessionId);
         if (sessionId != null) {
           final checkoutCart = await _orderRepository.checkout(sessionId);
           yield checkoutCart.fold(

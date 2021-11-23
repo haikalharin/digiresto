@@ -67,7 +67,7 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.updateCartSession(UpdateCartSessionParam request) =
       _UpdateCartSession;
 
-  const factory OrderEvent.checkoutCart() = _CheckoutCart;
+  const factory OrderEvent.checkoutCart(String? sessionId) = _CheckoutCart;
 
   const factory OrderEvent.getSalesTypeCart() = _GetSalesTypeCart;
 

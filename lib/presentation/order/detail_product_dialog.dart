@@ -146,13 +146,10 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
   @override
   void initState() {
     super.initState();
+    dataProductState = widget.dataProduct;
+    variantProductSelected = dataProductState;
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      setState(() {
-        dataProductState = widget.dataProduct;
-        variantProductSelected = dataProductState;
-      });
       initFunc();
-
       Timer.run(() {
         if (dataProductState.variants.length > 0) {
           _showMaterialDialog();
