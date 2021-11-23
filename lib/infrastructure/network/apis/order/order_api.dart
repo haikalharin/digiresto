@@ -30,6 +30,7 @@ import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
+import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()
@@ -697,7 +698,14 @@ class OrderApi {
       });
       return right(CheckoutResponse.fromJson(apiResult));
     } on FailureException catch (e) {
-      ErrorDialog().showError(error: e.message!);
+      ErrorDialog().showError(
+          error: e.message!,
+          onClose: () {
+            if (e.code == '14') {
+              Get.back();
+              Get.back();
+            }
+          });
       return left(FailureException());
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
