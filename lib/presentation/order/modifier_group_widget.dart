@@ -53,7 +53,7 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
     print('list: $list');
     widget.onModifierSelected(
       list,
-      _groupQuantity >= _minQuantity,
+      _minQuantity == 0 ? true : (_groupQuantity >= _minQuantity),
       true,
     );
     print('_groupQuantity : $_groupQuantity');
@@ -125,7 +125,7 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
                         qty: 1,
                       ),
                     ],
-                    _groupQuantity >= _minQuantity,
+                    _minQuantity == 0 ? true : (_groupQuantity >= _minQuantity),
                     false,
                   );
                   setState(() {

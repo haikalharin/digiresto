@@ -602,11 +602,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         yield OrderState.loadInProgress();
         final sessionId =
             (await _orderRepository.getSessionId()).getOrElse(() => null);
+        print('aa');
         if (sessionId != null) {
           final checkoutCart = await _orderRepository.checkout(sessionId);
           yield checkoutCart.fold(
             (error) {
-              print('haii $error');
              return OrderState.loadFailure(
                 OrderFailure.checkoutCartFail(error),
               );

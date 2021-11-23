@@ -223,8 +223,8 @@ class OrderLocal {
     await _storage.setJson(_boxProduct,
         key: _sessionIdKey, object: list.toJson());
     final productJson = _storage.getJson(_boxProduct, key: _sessionIdKey);
-    await _storage.close(_boxProduct);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
+    await _storage.close(_boxProduct);
     return productModel;
   }
 
@@ -286,8 +286,6 @@ class OrderLocal {
       CreateUpdateCartSessionItemParam object) async {
     final _box = await _storage.openBox(StorageConstants.orderProduct);
     var _productJson = _storage.getJson(_box, key: _sessionIdKey);
-    await _storage.close(_box);
-
     var _productModel = UpdateCartSessionBodyParam.fromJson(_productJson);
 
     //parse to map
@@ -313,6 +311,7 @@ class OrderLocal {
 
     final productJson = _storage.getJson(_box, key: _sessionIdKey);
     final productModel = UpdateCartSessionBodyParam.fromJson(productJson);
+    await _storage.close(_box);
     return productModel;
   }
 
