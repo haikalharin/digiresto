@@ -144,7 +144,7 @@ class OrderCartScreenViewController extends GetxController {
           " pax, " +
           OrderCartDineInModel.getValueSmoking(selectedKeySmoking.value!);
     }
-    infoController.text = txt;
+    infoControllerDineIn.text = txt;
     update();
   }
 
@@ -176,7 +176,7 @@ class OrderCartScreenViewController extends GetxController {
           ", " +
           customerCarNumberController.text;
     }
-    infoController.text = txt;
+    infoControllerDriveThru.text = txt;
     update();
   }
 
@@ -191,7 +191,8 @@ class OrderCartScreenViewController extends GetxController {
 
   final ScrollController scrollController = new ScrollController();
   final notesController = TextEditingController();
-  final infoController = TextEditingController();
+  final infoControllerDineIn = TextEditingController();
+  final infoControllerDriveThru = TextEditingController();
   final voucherCodeController = TextEditingController();
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
