@@ -78,8 +78,14 @@ class OrderLocal {
   }
 
   Future<OrderCartDineInModel?> setDineInIDMethod(
-      OrderCartDineInModel data) async {
+      OrderCartDineInModel? data) async {
     try {
+      if (data == null) {
+        final _box = await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(_box, key: _dineInIdKey, object: {});
+        await _storage.close(_box);
+        return null;
+      }
       final _box = await _storage.openBox(StorageConstants.cart);
       await _storage.setJson(_box, key: _dineInIdKey, object: data.toJson());
       final object = _storage.getJson(_box, key: _dineInIdKey);
@@ -97,6 +103,9 @@ class OrderLocal {
       final object = _storage.getJson(_box, key: _dineInIdKey);
       final model = OrderCartDineInModel.fromJson(object);
       await _storage.close(_box);
+      if (object.isEmpty) {
+        return null;
+      }
       return model;
     } catch (e) {
       return null;
@@ -104,8 +113,14 @@ class OrderLocal {
   }
 
   Future<OrderCartDriveThruModel?> setDriveThruIDMethod(
-      OrderCartDriveThruModel data) async {
+      OrderCartDriveThruModel? data) async {
     try {
+      if (data == null) {
+        final _box = await _storage.openBox(StorageConstants.cart);
+        await _storage.setJson(_box, key: _driveThru, object: {});
+        await _storage.close(_box);
+        return null;
+      }
       final _box = await _storage.openBox(StorageConstants.cart);
       await _storage.setJson(_box, key: _driveThru, object: data.toJson());
       final object = _storage.getJson(_box, key: _driveThru);
@@ -123,6 +138,9 @@ class OrderLocal {
       final object = _storage.getJson(_box, key: _driveThru);
       final model = OrderCartDriveThruModel.fromJson(object);
       await _storage.close(_box);
+      if (object.isEmpty) {
+        return null;
+      }
       return model;
     } catch (e) {
       return null;
@@ -413,6 +431,4 @@ class OrderLocal {
       return null;
     }
   }
-
-
 }

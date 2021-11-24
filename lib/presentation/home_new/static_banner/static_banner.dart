@@ -65,6 +65,7 @@ class StaticBannerWidget extends GetView<StaticBannerController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(StaticBannerController());
     PageController _controller =
         Get.put(PageController(initialPage: 0), tag: "home");
 

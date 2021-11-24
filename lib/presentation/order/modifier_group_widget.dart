@@ -64,7 +64,7 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
   void initState() {
     super.initState();
     _selectedModifier = widget.selectedModifier;
-    print('_selectedModifier: $_selectedModifier');
+    print('widget.selectedModifier: ${widget.selectedModifier}');
     print('widget.mapQuantity: ${widget.mapQuantity}');
     _minQuantity = widget.modifierGroup.minQuantity;
     _maxQuantity = widget.modifierGroup.maxQuantity;

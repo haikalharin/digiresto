@@ -349,8 +349,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
-        final getDineInID = await _orderRepository.getDineInIDMethod();
-        final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
+        final getDineInID = await _orderRepository.setDineInIDMethod(null);
+        final getDriveThruID =
+            await _orderRepository.setDriveThruIDMethod(null);
 
         String etaOrder = "now";
 

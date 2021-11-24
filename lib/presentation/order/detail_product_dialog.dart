@@ -646,14 +646,17 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                     (modifierGroup) => ModifierGroupWidget(
                                       modifierGroup: modifierGroup,
                                       mapQuantity: _mapQuantity,
-                                      selectedModifier: modifierGroup.modifiers
-                                          .where(
-                                            (modifier) => listModifier.any(
-                                                (element) =>
-                                                    element.modifierId ==
-                                                    int.parse(modifier.id)),
-                                          )
-                                          .toList(),
+                                      selectedModifier:
+                                          modifierGroup.modifiers.where(
+                                        (modifier) {
+                                          print(
+                                              'coba listModifier: $listModifier');
+                                          print('coba modifier $modifier');
+                                          return listModifier.any((element) =>
+                                              element.modifierId ==
+                                              int.parse(modifier.id));
+                                        },
+                                      ).toList(),
                                       onModifierSelected: (listSelected,
                                           isValid, isMultiple) async {
                                         setState(

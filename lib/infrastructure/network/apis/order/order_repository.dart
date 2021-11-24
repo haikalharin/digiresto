@@ -60,7 +60,7 @@ class OrderRepository {
   }
 
   Future<OrderCartDineInModel?> setDineInIDMethod(
-      OrderCartDineInModel data) async {
+      OrderCartDineInModel? data) async {
     return _orderLocal.setDineInIDMethod(data);
   }
 
@@ -69,7 +69,7 @@ class OrderRepository {
   }
 
   Future<OrderCartDriveThruModel?> setDriveThruIDMethod(
-      OrderCartDriveThruModel data) async {
+      OrderCartDriveThruModel? data) async {
     return _orderLocal.setDriveThruIDMethod(data);
   }
 
