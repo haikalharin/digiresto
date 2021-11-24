@@ -129,6 +129,22 @@ class OrderCartScreenViewController extends GetxController {
     selectedKeySmoking.value = value.selectedKeySmoking;
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(value.selectedDate);
+    String txt = "";
+    if (useSchedule.value!) {
+      txt = selectedDateController.text.toString() +
+          " " +
+          selectedKeyClock.value! +
+          " " +
+          paxController.text.toString() +
+          " pax, " +
+          OrderCartDineInModel.getValueSmoking(selectedKeySmoking.value!);
+    } else {
+      txt = "Now, " +
+          paxController.text.toString() +
+          " pax, " +
+          OrderCartDineInModel.getValueSmoking(selectedKeySmoking.value!);
+    }
+    infoController.text = txt;
     update();
   }
 
@@ -141,6 +157,26 @@ class OrderCartScreenViewController extends GetxController {
     selectedKeyClock.value = value.selectedKeyClock;
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(value.selectedDate);
+    String txt = "";
+    if (useSchedule.value!) {
+      txt = selectedDateController.text.toString() +
+          " " +
+          selectedKeyClock.value! +
+          ", " +
+          customerCarTypeController.text +
+          ", " +
+          customerCarColorController.text +
+          ", " +
+          customerCarNumberController.text;
+    } else {
+      txt = "Now, " +
+          customerCarTypeController.text +
+          ", " +
+          customerCarColorController.text +
+          ", " +
+          customerCarNumberController.text;
+    }
+    infoController.text = txt;
     update();
   }
 
@@ -155,7 +191,7 @@ class OrderCartScreenViewController extends GetxController {
 
   final ScrollController scrollController = new ScrollController();
   final notesController = TextEditingController();
-  final placeInfoController = TextEditingController();
+  final infoController = TextEditingController();
   final voucherCodeController = TextEditingController();
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();

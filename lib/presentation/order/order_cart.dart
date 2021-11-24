@@ -72,7 +72,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       child: TextField(
                           textInputAction: TextInputAction.search,
                           onSubmitted: (value) {},
-                          controller: controller.placeInfoController,
+                          controller: controller.infoController,
                           readOnly: true,
                           onTap: () {
                             if (controller.salesType.value == "dineIn")
@@ -942,16 +942,14 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                       controller.cartSession.value?.sessionId));
                               getIt<BottomTabCubit>().checkCartFromOutside();
                             }
-                          } else if (controller.placeInfoController.text ==
-                                  "" &&
+                          } else if (controller.infoController.text == "" &&
                               controller.salesType.value == "dineIn") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Makan di Tempat tidak boleh kosong", () {
                               Get.back();
                               _dialogDineIn();
                             });
-                          } else if (controller.placeInfoController.text ==
-                                  "" &&
+                          } else if (controller.infoController.text == "" &&
                               controller.salesType.value == "driveThru") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Drive Thru tidak boleh kosong", () {
@@ -1326,7 +1324,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 height: 50,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    controller.placeInfoController.text = "";
+                                    controller.infoController.text = "";
                                     controller.initDialogPlace();
                                     Navigator.of(context).pop();
                                   },
@@ -1378,7 +1376,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                               controller
                                                   .selectedKeySmoking.value!);
                                     }
-                                    controller.placeInfoController.text = txt;
+                                    controller.infoController.text = txt;
                                     controller.setDineInMethodID();
                                     Get.back(closeOverlays: true);
                                   },
@@ -1459,88 +1457,104 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              child: Text(
-                                I10n.current.cart_schedule,
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              child: Text(I10n.current.cart_schedule,
+                                  style: AppFont.textBlack14Bold),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Flexible(
+                                Expanded(
                                   child: Container(
                                     padding: const EdgeInsets.only(
                                         top: 5, bottom: 10),
                                     child: TextField(
-                                      textInputAction: TextInputAction.search,
-                                      onSubmitted: (value) {},
-                                      controller:
-                                          controller.selectedDateController,
-                                      readOnly: true,
-                                      onTap: () {
-                                        controller.selectDate(context);
-                                      },
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                      ),
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        filled: true,
-                                        fillColor: AppColors.greyFill,
-                                        contentPadding: EdgeInsets.only(
-                                            top: 12,
-                                            bottom: 12,
-                                            left: 10,
-                                            right: 10),
-                                        hintText: "Contoh, tidak pakai bawang",
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black, width: 32.0),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          borderSide: BorderSide(
-                                            width: 1,
-                                            color: Colors.black,
+                                        textInputAction: TextInputAction.search,
+                                        onSubmitted: (value) {},
+                                        controller:
+                                            controller.selectedDateController,
+                                        readOnly: true,
+                                        onTap: () {
+                                          controller.selectDate(context);
+                                        },
+                                        style: AppFont.textBlack12Regular,
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          filled: true,
+                                          fillColor: AppColors.greyFill,
+                                          contentPadding: EdgeInsets.only(
+                                              top: 12,
+                                              bottom: 12,
+                                              left: 10,
+                                              right: 10),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 32.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            borderSide: BorderSide(
+                                                width: 1, color: Colors.black),
                                           ),
-                                        ),
-                                      ),
-                                    ),
+                                        )),
                                   ),
                                 ),
-                                Flexible(
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
                                   child: Container(
-                                    width: 80,
+                                    padding: const EdgeInsets.only(
+                                        top: 6, bottom: 10),
                                     child: DropdownButtonFormField<String>(
                                       decoration: InputDecoration(
                                           isDense: true,
                                           filled: true,
                                           fillColor: AppColors.greyFill,
                                           contentPadding: EdgeInsets.only(
-                                              top: 8,
+                                              top: 10,
                                               bottom: 8,
-                                              left: 5,
-                                              right: 5),
+                                              left: 8,
+                                              right: 8),
                                           border: OutlineInputBorder(
-                                            borderSide:
-                                                BorderSide(color: Colors.black),
+                                            borderSide: BorderSide(
+                                              color: Colors.black,
+                                            ),
                                           )),
+                                      style: AppFont.textBlack12Regular,
                                       value: controller.selectedKeyClock.value,
-                                      items: controller.dataClock
-                                          .toList()
-                                          .map((data) =>
-                                              DropdownMenuItem<String>(
-                                                child: Text(data.value!),
-                                                value: data.key,
-                                              ))
-                                          .toList(),
+                                      items: DateTime.now()
+                                                  .difference(
+                                                    controller.selectedDate
+                                                            .value ??
+                                                        DateTime.now(),
+                                                  )
+                                                  .inDays ==
+                                              0
+                                          ? controller.dataClock
+                                              .where((p) =>
+                                                  int.parse(
+                                                      p.key!.substring(0, 2)) >
+                                                  (controller.selectedDate.value
+                                                          ?.hour ??
+                                                      1))
+                                              .toList()
+                                              .map((data) =>
+                                                  DropdownMenuItem<String>(
+                                                    child: Text(data.value!),
+                                                    value: data.key,
+                                                  ))
+                                              .toList()
+                                          : controller.dataClock
+                                              .toList()
+                                              .map((data) =>
+                                                  DropdownMenuItem<String>(
+                                                    child: Text(data.value!),
+                                                    value: data.key,
+                                                  ))
+                                              .toList(),
                                       onChanged: (String? value) {
                                         setState(() {
                                           controller.selectedKeyClock.value =
@@ -1608,7 +1622,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                controller.placeInfoController.text = "";
+                                controller.infoController.text = "";
                                 controller.initDialogDriveThruPlace();
                                 Navigator.of(Get.context!).pop();
                               },
@@ -1665,7 +1679,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                       controller
                                           .customerCarNumberController.text;
                                 }
-                                controller.placeInfoController.text = txt;
+                                controller.infoController.text = txt;
                                 controller.setDriveThruMethodID();
                                 Get.back(closeOverlays: true);
                               },
@@ -1892,6 +1906,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 },
                 setSalesTypeCartSuccess: (r) {
                   controller.salesType.value = r.value;
+                  if (r.value == 'dineIn') {
+                    controller.parseDineInMethodID();
+                  }
+                  if (r.value == 'driveThru') {
+                    controller.parseDriveThruMethodID();
+                  }
                   controller.updateCartParam();
                 },
                 getSalesTypeCartSuccess: (r) {
