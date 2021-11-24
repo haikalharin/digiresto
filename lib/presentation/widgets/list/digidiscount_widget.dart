@@ -121,83 +121,83 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: widget.height,
-        child: ListView.builder(
-            controller: _scrollController,
-            scrollDirection: widget.scrollDirection,
-            shrinkWrap: true,
-            itemCount: widget.data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => {
-                  if (widget.data[index].isLive)
-                    {widget.runAction(widget.data[index])}
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      padding: const EdgeInsets.only(left: 8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7.0),
-                      ),
-                      //height: 96,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Stack(children: [
-                            Align(
-                              child: Container(
-                                  padding: EdgeInsets.only(right: 5),
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0)),
-                                    child: Image(
-                                      errorBuilder: (context, obj, stacktrace) {
-                                        return Image(
-                                          height: 96,
-                                          width: 96,
-                                          image: RandomImages.getImage(),
-                                        );
-                                      },
-                                      image: RandomImages.getImageUrlDefault(
-                                          widget.data[index].merchantLogo, ""),
-                                      fit: BoxFit.cover,
+      height: widget.height,
+      child: ListView.builder(
+        controller: _scrollController,
+        scrollDirection: widget.scrollDirection,
+        shrinkWrap: true,
+        itemCount: widget.data.length,
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () => {
+              if (widget.data[index].isLive)
+                {widget.runAction(widget.data[index])}
+            },
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(5),
+                  padding: const EdgeInsets.only(left: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7.0),
+                  ),
+                  //height: 96,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Stack(children: [
+                        Align(
+                          child: Container(
+                              padding: EdgeInsets.only(right: 5),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                child: Image(
+                                  errorBuilder: (context, obj, stacktrace) {
+                                    return Image(
                                       height: 96,
                                       width: 96,
-                                      alignment: Alignment.center,
-                                    ),
-                                  )),
-                            ),
-                            !widget.data[index].isLive
-                                ? ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0)),
-                                    child: Container(
-                                      width: 96,
-                                      color: Colors.black54,
-                                      child: Center(
-                                          child: Text("Tutup",
-                                              style: TextStyle(
-                                                fontFamily: "roboto",
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              textAlign: TextAlign.left)),
-                                    ),
-                                  )
-                                : Container(),
-                          ]),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                padding: const EdgeInsets.only(top: 5),
-                                width: MediaQuery.of(context).size.width - 160,
-                                child: Text(
-                                    widget.data[index].detail.name.toString(),
+                                      image: RandomImages.getImage(),
+                                    );
+                                  },
+                                  image: RandomImages.getImageUrlDefault(
+                                      widget.data[index].merchantLogo, ""),
+                                  fit: BoxFit.cover,
+                                  height: 96,
+                                  width: 96,
+                                  alignment: Alignment.center,
+                                ),
+                              )),
+                        ),
+                        !widget.data[index].isLive
+                            ? ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                child: Container(
+                                  width: 96,
+                                  color: Colors.black54,
+                                  child: Center(
+                                      child: Text("Tutup",
+                                          style: TextStyle(
+                                            fontFamily: "roboto",
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          textAlign: TextAlign.left)),
+                                ),
+                              )
+                            : Container(),
+                      ]),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            width: MediaQuery.of(context).size.width - 160,
+                            child:
+                                Text(widget.data[index].detail.name.toString(),
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -207,45 +207,47 @@ class _ListDigidiscountWidgetState extends State<ListDigidiscountWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.left),
-                              ),
-                              // ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Text(widget.data[index].distance.text,
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.left),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(Get.context!).size.width *
-                                    0.65,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 16, bottom: 16),
-                                  child: Wrap(
-                                      children: generateListSalesType(
-                                          widget.data[index])),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              )
-                            ],
                           ),
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text(widget.data[index].distance.text,
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                                textAlign: TextAlign.left),
+                          ),
+                          SizedBox(
+                            width:
+                                MediaQuery.of(Get.context!).size.width * 0.65,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 16, bottom: 16),
+                              child: Wrap(
+                                  children: generateListSalesType(
+                                      widget.data[index])),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          )
                         ],
                       ),
-                    ),
-                    Container(
-                        height: 1,
-                        width: double.infinity,
-                        color: AppColors.greyStroke)
-                  ],
+                    ],
+                  ),
                 ),
-              );
-            }));
+                Container(
+                    height: 1,
+                    width: double.infinity,
+                    color: AppColors.greyStroke)
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }

@@ -56,8 +56,10 @@ class MenuCategoryWidget extends StatelessWidget {
               padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
               child: Text(
                 menuCategory.getTitle,
-                style: AppFont.textBlack14SemiBold
-                    .copyWith(color: AppColors.red, height: 1.2),
+                style: AppFont.textBlack14SemiBold.copyWith(
+                  color: AppColors.red,
+                  height: 1.2,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

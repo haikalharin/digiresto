@@ -24,6 +24,7 @@ import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
+import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:injectable/injectable.dart';
 
 import 'order_api.dart';
@@ -65,6 +66,15 @@ class OrderRepository {
 
   Future<OrderCartDineInModel?> getDineInIDMethod() async {
     return _orderLocal.getDineInIDMethod();
+  }
+
+  Future<OrderCartDriveThruModel?> setDriveThruIDMethod(
+      OrderCartDriveThruModel data) async {
+    return _orderLocal.setDriveThruIDMethod(data);
+  }
+
+  Future<OrderCartDriveThruModel?> getDriveThruIDMethod() async {
+    return _orderLocal.getDriveThruIDMethod();
   }
 
   Future<GetListVoucherOutletDataResponse?> setVoucherMethodID(

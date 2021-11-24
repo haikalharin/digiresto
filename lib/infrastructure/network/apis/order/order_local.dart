@@ -8,6 +8,7 @@ import 'package:digiresto/domain/entity/order/param/create_cart_session_param.da
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
+import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -19,6 +20,7 @@ class OrderLocal {
   final String _deliveryMethodKey = "deliveryMethodKey";
   final String _voucherMethodKey = "voucherMethodKey";
   final String _dineInIdKey = "_dineInIdKey";
+  final String _driveThru = "_driveThru";
   OrderLocal(this._storage);
 
   Future<PaymentMethodDataResponse?> setPaymentMethod(
@@ -101,6 +103,32 @@ class OrderLocal {
     }
   }
 
+  Future<OrderCartDriveThruModel?> setDriveThruIDMethod(
+      OrderCartDriveThruModel data) async {
+    try {
+      final _box = await _storage.openBox(StorageConstants.cart);
+      await _storage.setJson(_box, key: _driveThru, object: data.toJson());
+      final object = _storage.getJson(_box, key: _driveThru);
+      final model = OrderCartDriveThruModel.fromJson(object);
+      await _storage.close(_box);
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<OrderCartDriveThruModel?> getDriveThruIDMethod() async {
+    try {
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final object = _storage.getJson(_box, key: _driveThru);
+      final model = OrderCartDriveThruModel.fromJson(object);
+      await _storage.close(_box);
+      return model;
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<GetListVoucherOutletDataResponse?> setVoucherMethod(
       GetListVoucherOutletDataResponse data) async {
     try {
@@ -155,6 +183,9 @@ class OrderLocal {
           delivery: null,
           eta: '',
           promos: [],
+          customerCarType: "",
+          customerCarColor: "",
+          customerCarNumber: "",
           salesType: '');
       await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
       _productJson = _storage.getJson(_box, key: _sessionIdKey);
@@ -170,15 +201,19 @@ class OrderLocal {
     //parse to list
     var _listResult = _result.entries.map((e) => e.value).toList();
     var list = UpdateCartSessionBodyParam(
-        customerNote: "",
-        paymentType: "",
-        items: _listResult,
-        customerPax: '',
-        customerSmoking: false,
-        delivery: null,
-        eta: '',
-        promos: [],
-        salesType: '');
+      customerNote: "",
+      paymentType: "",
+      items: _listResult,
+      customerPax: '',
+      customerSmoking: false,
+      delivery: null,
+      eta: '',
+      promos: [],
+      customerCarType: "",
+      customerCarColor: "",
+      customerCarNumber: "",
+      salesType: '',
+    );
     final _boxProduct = await _storage.openBox(StorageConstants.orderProduct);
     await _storage.setJson(_boxProduct,
         key: _sessionIdKey, object: list.toJson());
@@ -215,6 +250,9 @@ class OrderLocal {
           delivery: null,
           eta: '',
           promos: [],
+          customerCarType: "",
+          customerCarColor: "",
+          customerCarNumber: "",
           salesType: object.body.salesType);
       await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
 
@@ -259,6 +297,9 @@ class OrderLocal {
         customerSmoking: false,
         delivery: null,
         eta: '',
+        customerCarType: "",
+        customerCarColor: "",
+        customerCarNumber: "",
         promos: [],
         salesType: '');
     await _storage.setJson(_box, key: _sessionIdKey, object: list.toJson());
@@ -372,4 +413,6 @@ class OrderLocal {
       return null;
     }
   }
+
+
 }

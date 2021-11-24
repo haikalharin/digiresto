@@ -16,6 +16,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
+import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
@@ -46,6 +47,7 @@ class OrderCartScreenViewController extends GetxController {
   var selectedKeyClock = Rxn<String>();
   var selectedKeySmoking = Rxn<String>();
   var dineInIDMethod = Rxn<OrderCartDineInModel>();
+  var driveThruIDMethod = Rxn<OrderCartDriveThruModel>();
   Rxn<DetailOutletDataResponse> detailOutlet = Rxn<DetailOutletDataResponse>();
   Rxn<List<OutletListProductDataResponse>> listProduct =
       Rxn<List<OutletListProductDataResponse>>();
@@ -102,6 +104,22 @@ class OrderCartScreenViewController extends GetxController {
     update();
   }
 
+  void setDriveThruMethodID() async {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.setDriveThruIDMethod(
+            OrderCartDriveThruModel(
+              customerCarType: customerCarTypeController.text,
+              customerCarNumber: customerCarNumberController.text,
+              customerCarColor: customerCarColorController.text,
+              selectedKeyClock: selectedKeyClock.value!,
+              selectedDate: selectedDate.value!,
+              useSchedule: useSchedule.value!,
+            ),
+          ),
+        );
+    update();
+  }
+
   void parseDineInMethodID() async {
     final value = dineInIDMethod.value!;
     useSchedule.value = value.useSchedule;
@@ -109,6 +127,18 @@ class OrderCartScreenViewController extends GetxController {
     selectedDate.value = value.selectedDate;
     selectedKeyClock.value = value.selectedKeyClock;
     selectedKeySmoking.value = value.selectedKeySmoking;
+    selectedDateController.text =
+        new DateFormat("yyyy/MM/dd").format(value.selectedDate);
+    update();
+  }
+
+  void parseDriveThruMethodID() async {
+    final value = driveThruIDMethod.value!;
+    useSchedule.value = value.useSchedule;
+    customerCarColorController.text = value.customerCarColor;
+    customerCarNumberController.text = value.customerCarNumber;
+    customerCarTypeController.text = value.customerCarType;
+    selectedKeyClock.value = value.selectedKeyClock;
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(value.selectedDate);
     update();
@@ -129,11 +159,15 @@ class OrderCartScreenViewController extends GetxController {
   final voucherCodeController = TextEditingController();
   final paxController = TextEditingController();
   final selectedDateController = TextEditingController();
+  final customerCarColorController = TextEditingController();
+  final customerCarNumberController = TextEditingController();
+  final customerCarTypeController = TextEditingController();
 
   @override
   onInit() {
     super.onInit();
     initDialogPlace();
+    initDialogDriveThruPlace();
   }
 
   void initDialogPlace() async {
@@ -142,6 +176,15 @@ class OrderCartScreenViewController extends GetxController {
     selectedDate.value = DateTime.now();
     selectedKeyClock.value = "13:00";
     selectedKeySmoking.value = "1";
+    selectedDateController.text =
+        new DateFormat("yyyy/MM/dd").format(DateTime.now());
+    update();
+  }
+
+  void initDialogDriveThruPlace() async {
+    useSchedule.value = false;
+    selectedDate.value = DateTime.now();
+    selectedKeyClock.value = "13:00";
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(DateTime.now());
     update();
@@ -302,6 +345,7 @@ class OrderCartScreenViewController extends GetxController {
     Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
     Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
     Get.context!.read<OrderBloc>().add(OrderEvent.getDineInIDMethod());
+    Get.context!.read<OrderBloc>().add(OrderEvent.getDriveThruIDMethod());
     update();
   }
 

@@ -36,6 +36,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'detail_product_dialog.dart';
+import 'widgets/dialog_order_widget.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final bool? hideBackButton;
@@ -61,7 +62,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   if (controller.salesType.value == "dineIn")
                     Text(I10n.current.cart_info_dine_in,
                         style: AppFont.textBlack14Bold),
-                  if (controller.salesType.value == "dineIn")
+                  if (controller.salesType.value == "driveThru")
+                    Text(I10n.current.cart_info_drive_thru,
+                        style: AppFont.textBlack14Bold),
+                  if (controller.salesType.value == "dineIn" ||
+                      controller.salesType.value == "driveThru")
                     Container(
                       padding: const EdgeInsets.only(top: 5, bottom: 10),
                       child: TextField(
@@ -70,7 +75,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           controller: controller.placeInfoController,
                           readOnly: true,
                           onTap: () {
-                            _dialogDineIn();
+                            if (controller.salesType.value == "dineIn")
+                              _dialogDineIn();
+                            if (controller.salesType.value == "driveThru")
+                              _dialogDriveThru();
                           },
                           style: TextStyle(
                             fontSize: 14.0,
@@ -208,12 +216,16 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(I10n.current.cart_outlet,
-                        style: AppFont.textBlack14Regular),
+                    Text(
+                      I10n.current.cart_outlet,
+                      style: AppFont.textBlack14Regular,
+                    ),
                     Row(
                       children: [
-                        Text(controller.detailOutlet.value!.name,
-                            style: AppFont.textBlack14Bold),
+                        Text(
+                          controller.detailOutlet.value!.name,
+                          style: AppFont.textBlack14Bold,
+                        ),
                       ],
                     )
                   ],
@@ -938,6 +950,14 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.back();
                               _dialogDineIn();
                             });
+                          } else if (controller.placeInfoController.text ==
+                                  "" &&
+                              controller.salesType.value == "driveThru") {
+                            ErrorPopupWidget.show("Digiresto",
+                                "Info Drive Thru tidak boleh kosong", () {
+                              Get.back();
+                              _dialogDriveThru();
+                            });
                           } else if (isThereAnyPendingVA &&
                               (isSingleBilling ?? false)) {
                             final orderPending = controller.listOrderPending
@@ -1391,6 +1411,328 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             ));
   }
 
+  _dialogDriveThru() {
+    return showDialog(
+      context: Get.context!,
+      builder: (BuildContext context) => new AlertDialog(
+        content: StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              height: (controller.useSchedule.value ?? false) ? 423 : 350,
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      I10n.current.cart_info_drive_thru,
+                      style: AppFont.textBlack14Bold,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Gunakan Jadwal",
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          //color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Switch(
+                        value: controller.useSchedule.value!,
+                        onChanged: (value) {
+                          setState(() {
+                            controller.useSchedule.value = value;
+                          });
+                        },
+                        activeTrackColor: Colors.redAccent,
+                        activeColor: AppColors.redYoung,
+                      )
+                    ],
+                  ),
+                  controller.useSchedule.value!
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                I10n.current.cart_schedule,
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, bottom: 10),
+                                    child: TextField(
+                                      textInputAction: TextInputAction.search,
+                                      onSubmitted: (value) {},
+                                      controller:
+                                          controller.selectedDateController,
+                                      readOnly: true,
+                                      onTap: () {
+                                        controller.selectDate(context);
+                                      },
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                      decoration: InputDecoration(
+                                        isDense: true,
+                                        filled: true,
+                                        fillColor: AppColors.greyFill,
+                                        contentPadding: EdgeInsets.only(
+                                            top: 12,
+                                            bottom: 12,
+                                            left: 10,
+                                            right: 10),
+                                        hintText: "Contoh, tidak pakai bawang",
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 32.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Container(
+                                    width: 80,
+                                    child: DropdownButtonFormField<String>(
+                                      decoration: InputDecoration(
+                                          isDense: true,
+                                          filled: true,
+                                          fillColor: AppColors.greyFill,
+                                          contentPadding: EdgeInsets.only(
+                                              top: 8,
+                                              bottom: 8,
+                                              left: 5,
+                                              right: 5),
+                                          border: OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          )),
+                                      value: controller.selectedKeyClock.value,
+                                      items: controller.dataClock
+                                          .toList()
+                                          .map((data) =>
+                                              DropdownMenuItem<String>(
+                                                child: Text(data.value!),
+                                                value: data.key,
+                                              ))
+                                          .toList(),
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          controller.selectedKeyClock.value =
+                                              value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  Container(
+                    child: Text(
+                      "Tipe Kendaraan",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _textFieldDialogOrder(
+                    hintText: 'Motor / Mobil',
+                    controller: controller.customerCarTypeController,
+                  ),
+                  Container(
+                    child: Text(
+                      "Warna Kendaraan",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _textFieldDialogOrder(
+                    hintText: 'Warna Kendaraan Anda',
+                    controller: controller.customerCarColorController,
+                  ),
+                  Container(
+                    child: Text(
+                      "Nomor Kendaraan",
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _textFieldDialogOrder(
+                    hintText: 'B **** XXX',
+                    controller: controller.customerCarNumberController,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                controller.placeInfoController.text = "";
+                                controller.initDialogDriveThruPlace();
+                                Navigator.of(Get.context!).pop();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(5.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
+                              child: Text(
+                                I10n.current.alert_cancel,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.redYoung,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                String txt = "";
+                                if (controller.useSchedule.value!) {
+                                  txt = controller.selectedDateController.text
+                                          .toString() +
+                                      " " +
+                                      controller.selectedKeyClock.value! +
+                                      ", " +
+                                      controller
+                                          .customerCarTypeController.text +
+                                      ", " +
+                                      controller
+                                          .customerCarColorController.text +
+                                      ", " +
+                                      controller
+                                          .customerCarNumberController.text;
+                                } else {
+                                  txt = "Now, " +
+                                      controller
+                                          .customerCarTypeController.text +
+                                      ", " +
+                                      controller
+                                          .customerCarColorController.text +
+                                      ", " +
+                                      controller
+                                          .customerCarNumberController.text;
+                                }
+                                controller.placeInfoController.text = txt;
+                                controller.setDriveThruMethodID();
+                                Get.back(closeOverlays: true);
+                              },
+                              child: Text(I10n.current.alert_ok,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              style: ElevatedButton.styleFrom(
+                                primary: AppColors.red,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(5.0),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: AppColors.redYoung,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _textFieldDialogOrder({
+    required String? hintText,
+    required TextEditingController controller,
+  }) {
+    return Container(
+      padding: const EdgeInsets.only(top: 5, bottom: 10),
+      child: TextField(
+          textInputAction: TextInputAction.search,
+          onSubmitted: (value) {},
+          controller: controller,
+          keyboardType: TextInputType.text,
+          readOnly: false,
+          onTap: () {},
+          style: TextStyle(
+            fontSize: 12.0,
+          ),
+          decoration: InputDecoration(
+            isDense: true,
+            filled: true,
+            fillColor: AppColors.greyFill,
+            contentPadding:
+                EdgeInsets.only(top: 12, bottom: 12, left: 10, right: 10),
+            hintText: hintText ?? "",
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black, width: 32.0),
+                borderRadius: BorderRadius.circular(5)),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              borderSide: BorderSide(width: 1, color: Colors.black),
+            ),
+          )),
+    );
+  }
+
   Widget _useVoucherCode() {
     return Theme(
       data: Theme.of(Get.context!).copyWith(
@@ -1588,6 +1930,16 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 setDineInIDMethodSuccess: (r) {
                   controller.dineInIDMethod.value = r.data;
                   controller.parseDineInMethodID();
+                  controller.updateCartParam();
+                },
+                getDriveThruIDMethodSucess: (r) {
+                  controller.driveThruIDMethod.value = r.data;
+                  controller.parseDriveThruMethodID();
+                  controller.updateCartParam();
+                },
+                setDriveThruIDMethodSuccess: (r) {
+                  controller.driveThruIDMethod.value = r.data;
+                  controller.parseDriveThruMethodID();
                   controller.updateCartParam();
                 },
                 removeCartSessionSuccess: (r) {

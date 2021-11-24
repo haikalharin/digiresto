@@ -74,4 +74,7 @@ class AppAssets {
 
   static const String imageTransactionReceipt =
       "assets/images/transaction_receipt.png";
+
+  static const String emptyOutlet =
+      "assets/images/empty_outlet.png";
 }

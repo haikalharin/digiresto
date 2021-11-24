@@ -9,9 +9,11 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
 import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeNearbyOutletScreen extends StatelessWidget {
@@ -155,7 +157,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : Container();
+                      : EmptyOutletWidget();
                 })
               ],
             ),

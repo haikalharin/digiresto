@@ -53,6 +53,10 @@ class OrderFailure with _$OrderFailure implements Exception {
       _SetDineInIDMethodFail;
   const factory OrderFailure.getDineInIDMethodFail(Exception? e) =
       _GetDineInIDMethodFail;
+  const factory OrderFailure.setDriveThruIDMethodFail(Exception? e) =
+  _SetDriveThruIDMethodFail;
+  const factory OrderFailure.getDriveThruIDMethodFail(Exception? e) =
+  _GetDriveThruIDMethodFail;
   const factory OrderFailure.setVoucherMethodIDFail(Exception? e) =
       _SetVoucherMethodIDFail;
   const factory OrderFailure.getVoucherMethodIDFail(Exception? e) =

@@ -101,6 +101,12 @@ class OrderState with _$OrderState {
   const factory OrderState.getDineInIDMethodSuccess(OrderCartDineInModel data) =
       _GetDineInIDMethodSuccess;
 
+  const factory OrderState.setDriveThruIDMethodSuccess(
+      OrderCartDriveThruModel data) = _SetDriveThruIDMethodSucess;
+
+  const factory OrderState.getDriveThruIDMethodSucess(
+      OrderCartDriveThruModel data) = _GetDriveThruIDMethodSucess;
+
   const factory OrderState.setVoucherMethodIDSuccess(
       GetListVoucherOutletDataResponse data) = _SetVoucherMethodIDSuccess;
 

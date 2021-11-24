@@ -28,6 +28,7 @@ import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
+import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:digiresto/domain/order/order_failure.dart';
 import 'package:digiresto/domain/profile/i_profile_repository.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
@@ -210,6 +211,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         final getDineInID = await _orderRepository.getDineInIDMethod();
+        final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
 
         String etaOrder = "now";
 
@@ -217,6 +219,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           etaOrder = OrderCartDineInModel.getEtaOrder(
               selectedDate: getDineInID?.selectedDate,
               selectedKeyClock: getDineInID?.selectedKeyClock);
+        } else if (getDriveThruID?.useSchedule ?? false) {
+          etaOrder = OrderCartDineInModel.getEtaOrder(
+              selectedDate: getDriveThruID?.selectedDate,
+              selectedKeyClock: getDriveThruID?.selectedKeyClock);
         }
 
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
@@ -235,6 +241,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     customerNote: "",
                     paymentType: paymentType?.id ?? "",
                     customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerCarType: "",
+                    customerCarColor: "",
+                    customerCarNumber: "",
                     customerSmoking: false,
                     delivery: deliveryParam,
                     eta: etaOrder,
@@ -276,6 +285,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         final getDineInID = await _orderRepository.getDineInIDMethod();
+        final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
 
         String etaOrder = "now";
 
@@ -283,6 +293,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           etaOrder = OrderCartDineInModel.getEtaOrder(
               selectedDate: getDineInID?.selectedDate,
               selectedKeyClock: getDineInID?.selectedKeyClock);
+        } else if (getDriveThruID?.useSchedule ?? false) {
+          etaOrder = OrderCartDineInModel.getEtaOrder(
+              selectedDate: getDriveThruID?.selectedDate,
+              selectedKeyClock: getDriveThruID?.selectedKeyClock);
         }
 
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
@@ -301,6 +315,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                     customerNote: request.note,
                     paymentType: paymentType?.id ?? "",
                     customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerCarType: getDriveThruID?.customerCarType ?? "",
+                    customerCarColor: getDriveThruID?.customerCarColor ?? "",
+                    customerCarNumber: getDriveThruID?.customerCarNumber ?? "",
                     customerSmoking: false,
                     delivery: deliveryParam,
                     eta: etaOrder,
@@ -333,6 +350,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         final getDineInID = await _orderRepository.getDineInIDMethod();
+        final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
 
         String etaOrder = "now";
 
@@ -340,6 +358,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           etaOrder = OrderCartDineInModel.getEtaOrder(
               selectedDate: getDineInID?.selectedDate,
               selectedKeyClock: getDineInID?.selectedKeyClock);
+        } else if (getDriveThruID?.useSchedule ?? false) {
+          etaOrder = OrderCartDineInModel.getEtaOrder(
+              selectedDate: getDriveThruID?.selectedDate,
+              selectedKeyClock: getDriveThruID?.selectedKeyClock);
         }
         UpdateCartSessionBodyDeliveryParam? deliveryParam;
         if (deliveryInq != null) {
@@ -388,18 +410,22 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           final createCartSession = await _orderRepository.updateCartSession(
               UpdateCartSessionParam(
                   body: UpdateCartSessionBodyParam(
-                      items: setProduct?.items ?? [],
-                      customerNote: null,
-                      paymentType: paymentType?.id ?? "",
-                      customerPax: (getDineInID?.pax ?? 1).toString(),
-                      customerSmoking: OrderCartDineInModel.isSmoking(
-                          getDineInID?.selectedKeySmoking ?? "2"),
-                      delivery: deliveryParam,
-                      eta: etaOrder,
-                      promos: getVoucherMethodID == null
-                          ? []
-                          : [getVoucherMethodID.code],
-                      salesType: getSalesTypeCart ?? ""),
+                    items: setProduct?.items ?? [],
+                    customerNote: null,
+                    paymentType: paymentType?.id ?? "",
+                    customerPax: (getDineInID?.pax ?? 1).toString(),
+                    customerCarType: getDriveThruID?.customerCarType ?? "",
+                    customerCarColor: getDriveThruID?.customerCarColor ?? "",
+                    customerCarNumber: getDriveThruID?.customerCarNumber ?? "",
+                    customerSmoking: OrderCartDineInModel.isSmoking(
+                        getDineInID?.selectedKeySmoking ?? "2"),
+                    delivery: deliveryParam,
+                    eta: etaOrder,
+                    promos: getVoucherMethodID == null
+                        ? []
+                        : [getVoucherMethodID.code],
+                    salesType: getSalesTypeCart ?? "",
+                  ),
                   queryString:
                       UpdateCartSessionQueryParam(sessionId: sessionId)));
 
@@ -419,23 +445,25 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         //create new cart session, if add cart in the different outlet
         final createCartSession = await _orderRepository.createCartSession(
-            CreateCartSessionParam(
-                body: CreateCartSessionBodyParam(
-                    outletName: r.request.body.outletName,
-                    customerName: userProfile.name!,
-                    customerPhone: userProfile.mobilePhone!,
-                    customerTableNumber: "",
-                    customerSmoking: false,
-                    customerPax: "1",
-                    customerNote: "",
-                    customerCarType: "",
-                    customerCarColor: "",
-                    customerCarNumber: "",
-                    eta: etaOrder,
-                    salesType: r.request.body.salesType,
-                    receiptCode: "",
-                    items: setProduct?.items ?? []),
-                queryString: CreateCartSessionQueryParam()));
+          CreateCartSessionParam(
+            body: CreateCartSessionBodyParam(
+                outletName: r.request.body.outletName,
+                customerName: userProfile.name!,
+                customerPhone: userProfile.mobilePhone!,
+                customerTableNumber: "",
+                customerSmoking: false,
+                customerPax: "1",
+                customerNote: "",
+                customerCarType: "",
+                customerCarColor: "",
+                customerCarNumber: "",
+                eta: etaOrder,
+                salesType: r.request.body.salesType,
+                receiptCode: "",
+                items: setProduct?.items ?? []),
+            queryString: CreateCartSessionQueryParam(),
+          ),
+        );
 
         var dataCart = createCartSession.getOrElse(() => null);
         if (dataCart != null) {
@@ -475,21 +503,27 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           yield OrderState.loadFailure(OrderFailure.removeCartFail(null));
         } else {
           final createCartSession = await _orderRepository.updateCartSession(
-              UpdateCartSessionParam(
-                  body: UpdateCartSessionBodyParam(
-                      items: removeCart.items ?? [],
-                      customerNote: null,
-                      paymentType: paymentType?.id ?? "",
-                      customerPax: '1',
-                      customerSmoking: false,
-                      delivery: deliveryParam,
-                      eta: 'now',
-                      promos: getVoucherMethodID == null
-                          ? []
-                          : [getVoucherMethodID.code],
-                      salesType: getSalesTypeCart ?? ""),
-                  queryString:
-                      UpdateCartSessionQueryParam(sessionId: sessionId)));
+            UpdateCartSessionParam(
+              body: UpdateCartSessionBodyParam(
+                items: removeCart.items ?? [],
+                customerNote: null,
+                paymentType: paymentType?.id ?? "",
+                customerPax: '1',
+                customerSmoking: false,
+                customerCarColor: '',
+                customerCarNumber: '',
+                customerCarType: '',
+                delivery: deliveryParam,
+                eta: 'now',
+                promos:
+                    getVoucherMethodID == null ? [] : [getVoucherMethodID.code],
+                salesType: getSalesTypeCart ?? "",
+              ),
+              queryString: UpdateCartSessionQueryParam(
+                sessionId: sessionId,
+              ),
+            ),
+          );
 
           yield createCartSession.fold(
             (error) =>
@@ -565,8 +599,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         if (sessionId != null) {
           final checkoutCart = await _orderRepository.checkout(sessionId);
           yield checkoutCart.fold(
-            (error) =>
-                OrderState.loadFailure(OrderFailure.checkoutCartFail(error)),
+            (error) {
+              return OrderState.loadFailure(
+                OrderFailure.checkoutCartFail(error),
+              );
+            },
             (list) => OrderState.checkoutCartSuccess(list),
           );
         } else {
@@ -656,6 +693,27 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         } else {
           yield OrderState.loadFailure(
               OrderFailure.setDineInIDMethodFail(null));
+        }
+      },
+      setDriveThruIDMethod: (r) async* {
+        yield OrderState.loadInProgress();
+        final setDriveThruIDMethod =
+            await _orderRepository.setDriveThruIDMethod(r.data);
+        if (setDriveThruIDMethod != null) {
+          yield OrderState.setDriveThruIDMethodSuccess(setDriveThruIDMethod);
+        } else {
+          yield OrderState.loadFailure(
+              OrderFailure.setDriveThruIDMethodFail(null));
+        }
+      },
+      getDriveThruIDMethod: (r) async* {
+        yield OrderState.loadInProgress();
+        final getDriveThru = await _orderRepository.getDriveThruIDMethod();
+        if (getDriveThru != null) {
+          yield OrderState.getDriveThruIDMethodSucess(getDriveThru);
+        } else {
+          yield OrderState.loadFailure(
+              OrderFailure.getDriveThruIDMethodFail(null));
         }
       },
       getTransactionPending: (_event) async* {
