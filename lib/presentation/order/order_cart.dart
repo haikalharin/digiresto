@@ -1101,17 +1101,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               children: [
                                 Container(
                                   child: Text(I10n.current.cart_schedule,
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      )),
+                                      style: AppFont.textBlack14Bold),
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Flexible(
+                                    Expanded(
                                       child: Container(
                                         padding: const EdgeInsets.only(
                                             top: 5, bottom: 10),
@@ -1125,9 +1121,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                             onTap: () {
                                               controller.selectDate(context);
                                             },
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                            ),
+                                            style: AppFont.textBlack12Regular,
                                             decoration: InputDecoration(
                                               isDense: true,
                                               filled: true,
@@ -1137,8 +1131,6 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                                   bottom: 12,
                                                   left: 10,
                                                   right: 10),
-                                              hintText:
-                                                  "Contoh, tidak pakai bawang",
                                               border: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black,
@@ -1155,33 +1147,63 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                             )),
                                       ),
                                     ),
-                                    Flexible(
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
                                       child: Container(
-                                        width: 80,
+                                        padding: const EdgeInsets.only(
+                                            top: 6, bottom: 10),
                                         child: DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
                                               isDense: true,
                                               filled: true,
                                               fillColor: AppColors.greyFill,
                                               contentPadding: EdgeInsets.only(
-                                                  top: 8,
+                                                  top: 10,
                                                   bottom: 8,
-                                                  left: 5,
-                                                  right: 5),
+                                                  left: 8,
+                                                  right: 8),
                                               border: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: Colors.black),
+                                                  color: Colors.black,
+                                                ),
                                               )),
+                                          style: AppFont.textBlack12Regular,
                                           value:
                                               controller.selectedKeyClock.value,
-                                          items: controller.dataClock
-                                              .toList()
-                                              .map((data) =>
-                                                  DropdownMenuItem<String>(
-                                                    child: Text(data.value!),
-                                                    value: data.key,
-                                                  ))
-                                              .toList(),
+                                          items: DateTime.now()
+                                                      .difference(
+                                                        controller.selectedDate
+                                                                .value ??
+                                                            DateTime.now(),
+                                                      )
+                                                      .inDays ==
+                                                  0
+                                              ? controller.dataClock
+                                                  .where((p) =>
+                                                      int.parse(p.key!
+                                                          .substring(0, 2)) >
+                                                      (controller.selectedDate
+                                                              .value?.hour ??
+                                                          1))
+                                                  .toList()
+                                                  .map((data) =>
+                                                      DropdownMenuItem<String>(
+                                                        child:
+                                                            Text(data.value!),
+                                                        value: data.key,
+                                                      ))
+                                                  .toList()
+                                              : controller.dataClock
+                                                  .toList()
+                                                  .map((data) =>
+                                                      DropdownMenuItem<String>(
+                                                        child:
+                                                            Text(data.value!),
+                                                        value: data.key,
+                                                      ))
+                                                  .toList(),
                                           onChanged: (String? value) {
                                             setState(() {
                                               controller.selectedKeyClock

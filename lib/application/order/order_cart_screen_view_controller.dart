@@ -200,11 +200,12 @@ class OrderCartScreenViewController extends GetxController {
   }
 
   selectDate(BuildContext context) async {
+    final now = DateTime.now();
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate.value!, // Refer step 1
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2030),
+      firstDate: now,
+      lastDate: now.add(Duration(days: 365)),
       builder: (BuildContext context, Widget? child) {
         return Theme(
             //isMaterialAppTheme: true,
@@ -225,7 +226,7 @@ class OrderCartScreenViewController extends GetxController {
     if (cartSession.value!.transactionData!.items.length <= 1) {
       isLoading.value = false;
       getIt<BottomTabCubit>().changeTab(0);
-      Get.offAllNamed(Routers.auth);
+      Get.offAllNamed(Routers.home);
       getIt<HomeBloc>().add(HomeEvent.refresh());
     }
     if (checkoutResponse.value?.receiptCode == "") {
@@ -511,6 +512,11 @@ class OrderCartScreenViewController extends GetxController {
   }
 
   RxList<KeyValueModel> dataClock = [
+    KeyValueModel(key: "08:00", value: "08:00"),
+    KeyValueModel(key: "09:00", value: "09:00"),
+    KeyValueModel(key: "10:00", value: "10:00"),
+    KeyValueModel(key: "11:00", value: "11:00"),
+    KeyValueModel(key: "12:00", value: "12:00"),
     KeyValueModel(key: "13:00", value: "13:00"),
     KeyValueModel(key: "14:00", value: "14:00"),
     KeyValueModel(key: "15:00", value: "15:00"),

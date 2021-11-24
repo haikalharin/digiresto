@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/home_new/static_banner_controller.dart';
@@ -28,11 +27,10 @@ class HomePage extends StatelessWidget {
     final _appBloc = getIt<AppBloc>();
 
     Get.put(StaticBannerController());
-    getIt<HomeBloc>()..add(HomeEvent.started());
     return Scaffold(
       body: SafeArea(
         child: BlocBuilder<HomeBloc, HomeState>(
-          // bloc: getIt<HomeBloc>()..add(HomeEvent.started()),
+          bloc: getIt<HomeBloc>()..add(HomeEvent.started()),
           builder: (context, state) {
             final IList<MenuCategory> menuCategoryGuide =
                 state.optionMenuCategory
