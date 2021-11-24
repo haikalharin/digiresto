@@ -72,7 +72,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       child: TextField(
                           textInputAction: TextInputAction.search,
                           onSubmitted: (value) {},
-                          controller: controller.infoController,
+                          controller: controller.salesType.value == "dineIn"
+                              ? controller.infoControllerDineIn
+                              : controller.infoControllerDriveThru,
                           readOnly: true,
                           onTap: () {
                             if (controller.salesType.value == "dineIn")
@@ -942,14 +944,14 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                       controller.cartSession.value?.sessionId));
                               getIt<BottomTabCubit>().checkCartFromOutside();
                             }
-                          } else if (controller.infoController.text == "" &&
+                          } else if (controller.infoControllerDineIn.text == "" &&
                               controller.salesType.value == "dineIn") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Makan di Tempat tidak boleh kosong", () {
                               Get.back();
                               _dialogDineIn();
                             });
-                          } else if (controller.infoController.text == "" &&
+                          } else if (controller.infoControllerDriveThru.text == "" &&
                               controller.salesType.value == "driveThru") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Drive Thru tidak boleh kosong", () {
@@ -1324,7 +1326,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 height: 50,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    controller.infoController.text = "";
+                                    controller.infoControllerDineIn.text = "";
                                     controller.initDialogPlace();
                                     Navigator.of(context).pop();
                                   },
@@ -1376,7 +1378,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                               controller
                                                   .selectedKeySmoking.value!);
                                     }
-                                    controller.infoController.text = txt;
+                                    controller.infoControllerDineIn.text = txt;
                                     controller.setDineInMethodID();
                                     Get.back(closeOverlays: true);
                                   },
@@ -1622,7 +1624,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                controller.infoController.text = "";
+                                controller.infoControllerDriveThru.text = "";
                                 controller.initDialogDriveThruPlace();
                                 Navigator.of(Get.context!).pop();
                               },
@@ -1679,7 +1681,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                       controller
                                           .customerCarNumberController.text;
                                 }
-                                controller.infoController.text = txt;
+                                controller.infoControllerDriveThru.text = txt;
                                 controller.setDriveThruMethodID();
                                 Get.back(closeOverlays: true);
                               },
@@ -1729,6 +1731,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           style: TextStyle(
             fontSize: 12.0,
           ),
+          onChanged: (value) {
+
+          },
           decoration: InputDecoration(
             isDense: true,
             filled: true,
