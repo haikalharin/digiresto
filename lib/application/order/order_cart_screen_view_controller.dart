@@ -211,7 +211,8 @@ class OrderCartScreenViewController extends GetxController {
     useSchedule.value = false;
     paxController.text = "1";
     selectedDate.value = DateTime.now();
-    selectedKeyClock.value = "13:00";
+    selectedKeyClock.value =
+        '${(DateTime.now().hour + 1).toString().padLeft(2, "0")}:00';
     selectedKeySmoking.value = "1";
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(DateTime.now());
@@ -221,7 +222,8 @@ class OrderCartScreenViewController extends GetxController {
   void initDialogDriveThruPlace() async {
     useSchedule.value = false;
     selectedDate.value = DateTime.now();
-    selectedKeyClock.value = "13:00";
+    selectedKeyClock.value =
+        '${(DateTime.now().hour + 1).toString().padLeft(2, "0")}:00';
     selectedDateController.text =
         new DateFormat("yyyy/MM/dd").format(DateTime.now());
     update();

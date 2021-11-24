@@ -944,14 +944,16 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                       controller.cartSession.value?.sessionId));
                               getIt<BottomTabCubit>().checkCartFromOutside();
                             }
-                          } else if (controller.infoControllerDineIn.text == "" &&
+                          } else if (controller.infoControllerDineIn.text ==
+                                  "" &&
                               controller.salesType.value == "dineIn") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Makan di Tempat tidak boleh kosong", () {
                               Get.back();
                               _dialogDineIn();
                             });
-                          } else if (controller.infoControllerDriveThru.text == "" &&
+                          } else if (controller.infoControllerDriveThru.text ==
+                                  "" &&
                               controller.salesType.value == "driveThru") {
                             ErrorPopupWidget.show("Digiresto",
                                 "Info Drive Thru tidak boleh kosong", () {
@@ -1731,9 +1733,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           style: TextStyle(
             fontSize: 12.0,
           ),
-          onChanged: (value) {
-
-          },
+          onChanged: (value) {},
           decoration: InputDecoration(
             isDense: true,
             filled: true,
