@@ -20,6 +20,7 @@ class OrderLocal {
   final String _deliveryMethodKey = "deliveryMethodKey";
   final String _voucherMethodKey = "voucherMethodKey";
   final String _dineInIdKey = "_dineInIdKey";
+  final String _driveThru = "_driveThru";
   OrderLocal(this._storage);
 
   Future<PaymentMethodDataResponse?> setPaymentMethod(
@@ -106,8 +107,8 @@ class OrderLocal {
       OrderCartDriveThruModel data) async {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
-      await _storage.setJson(_box, key: _dineInIdKey, object: data.toJson());
-      final object = _storage.getJson(_box, key: _dineInIdKey);
+      await _storage.setJson(_box, key: _driveThru, object: data.toJson());
+      final object = _storage.getJson(_box, key: _driveThru);
       final model = OrderCartDriveThruModel.fromJson(object);
       await _storage.close(_box);
       return model;
@@ -119,7 +120,7 @@ class OrderLocal {
   Future<OrderCartDriveThruModel?> getDriveThruIDMethod() async {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
-      final object = _storage.getJson(_box, key: _dineInIdKey);
+      final object = _storage.getJson(_box, key: _driveThru);
       final model = OrderCartDriveThruModel.fromJson(object);
       await _storage.close(_box);
       return model;
@@ -163,12 +164,6 @@ class OrderLocal {
       final _boxProduct = await _storage.openBox(StorageConstants.orderProduct);
       await _storage.deleteData(
         _boxProduct,
-      );
-      await _storage.close(_boxProduct);
-
-      final _boxCart = await _storage.openBox(StorageConstants.cart);
-      await _storage.deleteData(
-        _boxCart,
       );
       await _storage.close(_boxProduct);
     }
@@ -376,9 +371,9 @@ class OrderLocal {
 
   Future<Either<Exception, String?>> getSessionId() async {
     try {
-      final _box = await _storage.openBox(StorageConstants.cart);
-      final sessionId = _storage.getString(_box, key: _sessionIdKey);
-      await _storage.close(_box);
+      final _boxCart = await _storage.openBox(StorageConstants.cart);
+      final sessionId = _storage.getString(_boxCart, key: _sessionIdKey);
+      await _storage.close(_boxCart);
       return sessionId == null
           ? left(Exception("session is null"))
           : right(sessionId);
@@ -418,4 +413,6 @@ class OrderLocal {
       return null;
     }
   }
+
+
 }

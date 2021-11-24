@@ -7,6 +7,7 @@ import 'package:digiresto/application/order/order_cart_screen_view_controller.da
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -936,9 +937,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               });
                             } else {
                               controller.isLoading.value = true;
-                              Get.context!
-                                  .read<OrderBloc>()
-                                  .add(OrderEvent.checkoutCart());
+                              Get.context!.read<OrderBloc>().add(
+                                  OrderEvent.checkoutCart(
+                                      controller.cartSession.value?.sessionId));
                               getIt<BottomTabCubit>().checkCartFromOutside();
                             }
                           } else if (controller.placeInfoController.text ==
@@ -1001,9 +1002,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                         Get.context!.read<OrderBloc>().add(
                                             OrderEvent.cancelTransaction(
                                                 orderPending.receiptCode));
-                                        Get.context!
-                                            .read<OrderBloc>()
-                                            .add(OrderEvent.checkoutCart());
+                                        Get.context!.read<OrderBloc>().add(
+                                            OrderEvent.checkoutCart(controller
+                                                .cartSession.value?.sessionId));
                                         getIt<BottomTabCubit>()
                                             .checkCartFromOutside();
                                       },
@@ -1044,9 +1045,9 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               Get.back();
                               controller.isLoading.value = true;
                               print('DEBUG >> do checkout');
-                              Get.context!
-                                  .read<OrderBloc>()
-                                  .add(OrderEvent.checkoutCart());
+                              Get.context!.read<OrderBloc>().add(
+                                  OrderEvent.checkoutCart(
+                                      controller.cartSession.value?.sessionId));
                               getIt<BottomTabCubit>().checkCartFromOutside();
                             });
                           }
@@ -1944,6 +1945,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 loadFailure: (e) {
                   e.e.maybeMap(checkoutCartFail: (e) {
                     controller.isLoading.value = false;
+                    final exception = e.e;
+                    if (exception == null) {
+                      controller.removeCartSession();
+                    }
                   }, checkVoucherOutletFail: (e) {
                     controller.isLoading.value = false;
                     controller.voucherMethod.value = null;

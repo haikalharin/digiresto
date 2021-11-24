@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
@@ -699,7 +698,14 @@ class OrderApi {
       });
       return right(CheckoutResponse.fromJson(apiResult));
     } on FailureException catch (e) {
-      ErrorDialog().showError(error: e.message!);
+      ErrorDialog().showError(
+          error: e.message!,
+          onClose: () {
+            if (e.code == '14') {
+              Get.back();
+              Get.back();
+            }
+          });
       return left(FailureException());
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
