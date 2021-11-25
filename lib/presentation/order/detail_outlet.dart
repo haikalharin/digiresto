@@ -211,7 +211,8 @@ class DetailOutletScreen extends GetView<OrderViewController> {
   Widget build(BuildContext context) {
     Get.put(OrderViewController());
     controller.outlet.value = args;
-    controller.getSalesTypeOrder();
+    // controller.getSalesTypeOrder();
+    controller.setSalesType("onlineDriver");
     controller.getDetailOutlet();
     controller.getListProduct();
     controller.getCategoryProduct();
