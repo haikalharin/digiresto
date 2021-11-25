@@ -150,8 +150,14 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
                           loadMoreAction: loadMoreOutletByLocation,
                           runAction: (param) {
                             Get.toNamed(Routers.orderDetailOutlet,
-                                arguments: OrderDetailViewArgument(
-                                    param.id, param.merchantId));
+                                    arguments: OrderDetailViewArgument(
+                                        param.id, param.merchantId))
+                                ?.then((value) {
+                              controller.page.value = 1;
+                              controller.listOutlet.clear();
+                              controller.getOutletByLocation(
+                                  searchController.text, 1);
+                            });
                           },
                           height: MediaQuery.of(context).size.height / 1.3,
                           data: controller.listOutlet,

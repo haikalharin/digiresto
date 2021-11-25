@@ -117,6 +117,10 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
               onModifierSelected: (selectModifier) {
                 print('_groupQuantity : $_groupQuantity');
                 if (selectModifier != null) {
+                  setState(() {
+                    _selectedModifier.clear();
+                    _selectedModifier.add(selectModifier);
+                  });
                   widget.onModifierSelected(
                     [
                       CreateCartSessionItemModifierParam(
@@ -128,10 +132,6 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
                     _minQuantity == 0 ? true : (_groupQuantity >= _minQuantity),
                     false,
                   );
-                  setState(() {
-                    _selectedModifier.clear();
-                    _selectedModifier.add(selectModifier);
-                  });
                 }
               },
               selectedModifier: _selectedModifier.firstWhereOrNull(

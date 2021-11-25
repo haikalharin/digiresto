@@ -27,15 +27,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               await _homeRepository.getUserAddress();
           final categoryFailureOrSuccess =
               await _homeRepository.getMenuCategory();
-          final bannerFailureOrSuccess =
-              await _homeRepository.getStaticBanner();
 
           emit(
             state.copyWith(
               isLoading: false,
               optionUserAddress: optionOf(addressFailureOrSuccess),
               optionMenuCategory: optionOf(categoryFailureOrSuccess),
-              optionBanners: optionOf(bannerFailureOrSuccess),
             ),
           );
         },
@@ -62,6 +59,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             state.copyWith(
               optionUserAddress:
                   optionOf(await _homeRepository.getUserAddress()),
+            ),
+          );
+        },
+        getStaticBanner: (_event) async {
+          final bannerFailureOrSuccess =
+              await _homeRepository.getStaticBanner();
+          emit(
+            state.copyWith(
+              optionBanners: optionOf(bannerFailureOrSuccess),
             ),
           );
         },

@@ -256,6 +256,8 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                           onPressed: () {
                                             print(productCart);
                                             print(widget.orderType);
+                                            print(
+                                                'productCart.modifiers : ${productCart.modifiers}');
                                             widget.runDetailAction(
                                               productCart,
                                               getMetaProduct(index)!,

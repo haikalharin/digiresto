@@ -143,8 +143,17 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                           loadMoreAction: loadMoreOutlet,
                           runAction: (param) {
                             Get.toNamed(Routers.orderDetailOutlet,
-                                arguments: OrderDetailViewArgument(
-                                    param.id, param.merchantId));
+                                    arguments: OrderDetailViewArgument(
+                                        param.id, param.merchantId))
+                                ?.then((value) {
+                              controller.page.value = 1;
+                              controller.listOutlet.clear();
+                              controller.getOutlets(
+                                menuCategory: menuCategory,
+                                search: searchController.text,
+                                pageParam: 1,
+                              );
+                            });
                           },
                           height: MediaQuery.of(context).size.height / 1.3,
                           data: controller.listOutlet,

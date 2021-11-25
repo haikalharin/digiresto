@@ -28,7 +28,7 @@ class OrderViewController extends GetxController {
   var search = "".obs;
   var orderProductLength = 0.obs;
   var detailOutletLoading = false.obs;
-  var indexTabBar = 0.obs;
+  var indexTabBar = 1.obs;
   var salesType = Rxn<String>();
   bool isSameOutlet() {
     return (cartSession.value?.transactionData!.outletName ==

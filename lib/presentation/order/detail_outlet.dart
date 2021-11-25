@@ -278,6 +278,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
           children: [
             DefaultTabController(
               length: 2,
+              initialIndex: 1,
               child: Scaffold(
                 body: Column(
                   children: [

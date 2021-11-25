@@ -127,7 +127,12 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
                             Get.toNamed(Routers.orderDetailOutlet,
                                     arguments: OrderDetailViewArgument(
                                         param.id, param.merchantId))
-                                ?.then((value) => loadMoreOutletByLocation());
+                                ?.then((value) {
+                              controller.page.value = 1;
+                              controller.listOutlet.clear();
+                              controller.getOutletByLocation(
+                                  controller.searchController.text, 1);
+                            });
                           },
                           height: MediaQuery.of(context).size.height / 1.3,
                           data: controller.listOutlet,

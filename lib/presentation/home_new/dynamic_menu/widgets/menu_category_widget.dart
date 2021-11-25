@@ -18,7 +18,6 @@ class MenuCategoryWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // Get.to(ListOutletPage(menuCategory));
-
           final label = menuCategory.getTitle;
           if (label == Strings.titleDigidiscount) {
             Get.toNamed(Routers.homeDigiDiscount,

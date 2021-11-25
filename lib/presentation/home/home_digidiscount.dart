@@ -123,8 +123,13 @@ class HomeDigidiscountScreen
                                   runAction: (param) {
                                     //merchant id set to empty, cause in response api not have valid merchant id
                                     Get.toNamed(Routers.orderDetailOutlet,
-                                        arguments: OrderDetailViewArgument(
-                                            param.outletId, ""));
+                                            arguments: OrderDetailViewArgument(
+                                                param.outletId, ""))
+                                        ?.then((value) {
+                                      controller.page.value = 1;
+                                      controller.listPromoOutlet.clear();
+                                      controller.getPromoOutlet("", 1);
+                                    });
                                   },
                                   height:
                                       MediaQuery.of(context).size.height / 1.2,

@@ -148,13 +148,11 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     super.initState();
     dataProductState = widget.dataProduct;
     variantProductSelected = dataProductState;
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      initFunc();
-      Timer.run(() {
-        if (dataProductState.variants.length > 0) {
-          _showMaterialDialog();
-        }
-      });
+    initFunc();
+    Timer.run(() {
+      if (dataProductState.variants.length > 0) {
+        _showMaterialDialog();
+      }
     });
   }
 
@@ -652,9 +650,12 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                           print(
                                               'coba listModifier: $listModifier');
                                           print('coba modifier $modifier');
-                                          return listModifier.any((element) =>
-                                              element.modifierId ==
-                                              int.parse(modifier.id));
+                                          final any = listModifier.any(
+                                              (element) =>
+                                                  element.modifierId ==
+                                                  int.parse(modifier.id));
+                                          print('any is :$any');
+                                          return any;
                                         },
                                       ).toList(),
                                       onModifierSelected: (listSelected,
