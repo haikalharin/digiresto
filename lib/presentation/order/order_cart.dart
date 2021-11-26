@@ -1414,13 +1414,23 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   }
 
   _dialogDriveThru() {
+    bool _isEmptyCarNumber = false;
     return showDialog(
       context: Get.context!,
       builder: (BuildContext context) => new AlertDialog(
         content: StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
-              height: (controller.useSchedule.value ?? false) ? 423 : 350,
+              height: _isEmptyCarNumber == true &&
+                      controller.useSchedule.value == false
+                  ? 423
+                  : controller.useSchedule.value == true &&
+                          _isEmptyCarNumber == false
+                      ? 423
+                      : controller.useSchedule.value == true &&
+                              _isEmptyCarNumber == true
+                          ? 500
+                          : 350,
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1586,6 +1596,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   _textFieldDialogOrder(
                     hintText: 'Motor / Mobil',
                     controller: controller.customerCarTypeController,
+                    isEmpty: _isEmptyCarNumber,
                   ),
                   Container(
                     child: Text(
@@ -1600,6 +1611,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   _textFieldDialogOrder(
                     hintText: 'Warna Kendaraan Anda',
                     controller: controller.customerCarColorController,
+                    isEmpty: _isEmptyCarNumber,
                   ),
                   Container(
                     child: Text(
@@ -1614,6 +1626,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   _textFieldDialogOrder(
                     hintText: 'B **** XXX',
                     controller: controller.customerCarNumberController,
+                    isEmpty: _isEmptyCarNumber,
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 15),
@@ -1657,35 +1670,46 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                String txt = "";
-                                if (controller.useSchedule.value!) {
-                                  txt = controller.selectedDateController.text
-                                          .toString() +
-                                      " " +
-                                      controller.selectedKeyClock.value! +
-                                      ", " +
-                                      controller
-                                          .customerCarTypeController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarColorController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarNumberController.text;
+                                if (controller.customerCarNumberController.text
+                                        .isNotEmpty &&
+                                    controller.customerCarColorController.text
+                                        .isNotEmpty &&
+                                    controller.customerCarTypeController.text
+                                        .isNotEmpty) {
+                                  String txt = "";
+                                  if (controller.useSchedule.value!) {
+                                    txt = controller.selectedDateController.text
+                                            .toString() +
+                                        " " +
+                                        controller.selectedKeyClock.value! +
+                                        ", " +
+                                        controller
+                                            .customerCarTypeController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarColorController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarNumberController.text;
+                                  } else {
+                                    txt = "Now, " +
+                                        controller
+                                            .customerCarTypeController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarColorController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarNumberController.text;
+                                  }
+                                  controller.infoControllerDriveThru.text = txt;
+                                  controller.setDriveThruMethodID();
+                                  Get.back(closeOverlays: true);
                                 } else {
-                                  txt = "Now, " +
-                                      controller
-                                          .customerCarTypeController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarColorController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarNumberController.text;
+                                  setState(() {
+                                    _isEmptyCarNumber = true;
+                                  });
                                 }
-                                controller.infoControllerDriveThru.text = txt;
-                                controller.setDriveThruMethodID();
-                                Get.back(closeOverlays: true);
                               },
                               child: Text(I10n.current.alert_ok,
                                   style: TextStyle(
@@ -1720,12 +1744,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   Widget _textFieldDialogOrder({
     required String? hintText,
     required TextEditingController controller,
+    required bool isEmpty,
   }) {
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 10),
-      child: TextField(
+      child: TextFormField(
           textInputAction: TextInputAction.search,
-          onSubmitted: (value) {},
+          // onSubmitted: (value) {},
           controller: controller,
           keyboardType: TextInputType.text,
           readOnly: false,
@@ -1735,6 +1760,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           ),
           onChanged: (value) {},
           decoration: InputDecoration(
+            errorText: isEmpty ? 'Info Drive Thru Tidak Boleh Kosong' : null,
             isDense: true,
             filled: true,
             fillColor: AppColors.greyFill,

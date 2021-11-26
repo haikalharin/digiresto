@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:code_id_flutter/code_services/alice/alice.dart';
+import 'package:alice/alice.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 // import 'package:digiresto/infrastructure/core/alice_interceptor.dart';
