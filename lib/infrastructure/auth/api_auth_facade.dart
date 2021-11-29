@@ -33,11 +33,26 @@ class ApiAuthFacade implements IAuthFacade {
   @override
   Future<Either<AuthFailure, String>> getOtp(
       {required PhoneNumber phoneNumber}) async {
-    String apiUrl = Endpoints.urlGetOtp + phoneNumber.getOrCrash();
-    final apiResult = await _networkService.getHttp(path: apiUrl);
-    var userData = (apiResult as Map<String, dynamic>)['data'];
-    final _data = HashMap.from(userData);
-    return right(_data.values.first);
+    try {
+      String apiUrl = Endpoints.urlGetOtp + phoneNumber.getOrCrash();
+      final apiResult = await _networkService.getHttp(path: apiUrl);
+      var userData = (apiResult as Map<String, dynamic>)['data'];
+      final _data = HashMap.from(userData);
+      return right(_data.values.first);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.unknownError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(AuthFailure.serverError());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(AuthFailure.noInternet());
+    } catch (e) {
+      return left(AuthFailure.unknownError());
+    }
   }
 
   @override
@@ -240,7 +255,6 @@ class ApiAuthFacade implements IAuthFacade {
       }
       return right(_login);
     } on FailureException catch (e) {
-      // TODO: implement Failure Exception
       ErrorDialog().showError(error: e.message!);
       if (e.code == '22') {
         return left(AuthFailure.invalidOtp());

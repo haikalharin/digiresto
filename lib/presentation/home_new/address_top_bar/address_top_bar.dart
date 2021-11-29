@@ -20,13 +20,13 @@ class AddressTopBar extends StatelessWidget {
             context.read<HomeBloc>().add(HomeEvent.getUserAddress());
           },
           setActiveAddressFail: (_state) {
-            ErrorDialog().showLocationError();
+            // ErrorDialog().showLocationError(onClose: askPermission);
           },
           getGeoCodeSuccess: (_state) {
             context.read<HomeBloc>().add(HomeEvent.getUserAddress());
           },
           getGeoCodeFail: (_state) {
-            ErrorDialog().showLocationError();
+            // ErrorDialog().showLocationError(onClose: askPermission);
           },
         );
       },

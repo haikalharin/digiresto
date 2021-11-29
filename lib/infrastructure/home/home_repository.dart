@@ -18,6 +18,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 @LazySingleton(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
@@ -147,13 +148,13 @@ class HomeRepository implements IHomeRepository {
       final model = UserAddress.fromJson(data);
       return right(model);
     } on LocationPermissionDenied catch (_) {
-      ErrorDialog().showLocationError();
+      ErrorDialog().showLocationError(onClose: askPermission);
       return left(HomeFailure.locationError());
     } on LocationServiceDisabled catch (_) {
-      ErrorDialog().showLocationError();
+      ErrorDialog().showLocationError(onClose: askPermission);
       return left(HomeFailure.locationError());
     } on LocationPermissionDeniedForever catch (_) {
-      ErrorDialog().showLocationError();
+      ErrorDialog().showLocationError(onClose: askPermission);
       return left(HomeFailure.locationError());
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -209,13 +210,13 @@ class HomeRepository implements IHomeRepository {
       );
       return right(OutletCategoryResponse.fromJson(apiResult).data.toIList());
     } on LocationPermissionDenied catch (_) {
-      ErrorDialog().showLocationError();
+      ErrorDialog().showLocationError(onClose: askPermission);
       return left(HomeFailure.locationError());
     } on LocationServiceDisabled catch (_) {
-      ErrorDialog().showLocationError();
+      ErrorDialog().showLocationError(onClose: askPermission);
       return left(HomeFailure.locationError());
     } on LocationPermissionDeniedForever catch (_) {
-      ErrorDialog().showLocationError();
+      ErrorDialog().showLocationError(onClose: askPermission);
       return left(HomeFailure.locationError());
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
@@ -235,6 +236,14 @@ class HomeRepository implements IHomeRepository {
     } catch (e, stactrace) {
       logger.d(stactrace);
       return left(HomeFailure.unexpected());
+    }
+  }
+
+  void askPermission() async {
+    if (await Permission.location.isPermanentlyDenied) {
+      openAppSettings();
+    } else {
+      Permission.location.request();
     }
   }
 }

@@ -87,13 +87,6 @@ class CreditWidget extends StatelessWidget {
 
     return BlocConsumer<CreditBloc, CreditState>(
       listener: (context, state) {
-        final count = state.countTopupPending.fold(
-          () => 0,
-          (failureOrSuccess) => failureOrSuccess.fold(
-            (l) => 0,
-            (count) => count,
-          ),
-        );
         getIt<BottomTabCubit>().checkCreditTab();
       },
       builder: (context, state) {
