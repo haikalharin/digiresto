@@ -2,7 +2,6 @@ import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
@@ -29,8 +28,7 @@ class ProfileAddressPage extends StatelessWidget {
 
 @injectable
 class ProfileAddressWidget extends StatelessWidget {
-  final ILocationService _locationService;
-  const ProfileAddressWidget(this._locationService) : super();
+  const ProfileAddressWidget() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -309,11 +307,7 @@ class ProfileAddressWidget extends StatelessWidget {
   }
 
   void getAddress() async {
-    final position = await _locationService.determinePosition();
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(
-        GetGeoCodeParam(
-            latitude: position.latitude.toString(),
-            longitude: position.longitude.toString())));
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode());
   }
 
   Future<void> _showDialogAddress(UserAddress userAddress) async {

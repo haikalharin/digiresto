@@ -33,8 +33,7 @@ class AddressMapBloc extends Bloc<AddressMapEvent, AddressMapState> {
               (data) => AddressMapState.saveAddressSuccess(data));
         },
         getGeoCode: (request) async* {
-          final getGeoCode =
-              await _mapRepository.geocode(request.request.toMap());
+          final getGeoCode = await _mapRepository.geocode();
           yield getGeoCode.fold(
               (error) => AddressMapState.getGeoCodeFail(error.toString()),
               (data) => AddressMapState.getGeoCodeSuccess(data));

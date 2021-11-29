@@ -3,27 +3,38 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
+import 'package:digiresto/domain/core/exceptions/location_exception.dart';
+import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 @Injectable()
 class MapApi {
   final INetworkService _networkService;
+  final ILocationService _locationService;
+  final Logger logger;
 
-  MapApi(this._networkService);
+  MapApi(
+    this._networkService,
+    this._locationService,
+    this.logger,
+  );
 
-  Future<Either<Exception, Geocode>> geocode(
-      Map<String, dynamic> object) async {
+  Future<Either<Exception, Geocode>> geocode() async {
     try {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetGeocode;
+      final _currentLocation = await _locationService.determinePosition();
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
         content: {
           "query_string": {
-            "lat": object["latitude"].toString(),
-            "lng": object["longitude"].toString(),
+            "lat": _currentLocation.latitude.toString(),
+            "lng": _currentLocation.longitude.toString(),
           },
           "body": {}
         },
@@ -31,11 +42,44 @@ class MapApi {
       );
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      userData["latitude"] = object["latitude"].toString();
-      userData["longitude"] = object["longitude"].toString();
+      userData["latitude"] = _currentLocation.latitude.toString();
+      userData["longitude"] = _currentLocation.longitude.toString();
       return right(Geocode.createGeocode(userData));
-    } catch (e) {
-      return left(NetworkException(message: e.toString()));
+    } on LocationPermissionDenied catch (e) {
+      ErrorDialog().showLocationError(onClose: askPermission);
+      return left(e);
+    } on LocationServiceDisabled catch (e) {
+      ErrorDialog().showLocationError(onClose: askPermission);
+      return left(e);
+    } on LocationPermissionDeniedForever catch (e) {
+      ErrorDialog().showLocationError(onClose: askPermission);
+      return left(e);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(e);
+    } on AuthException catch (e) {
+      ErrorDialog().showAuthError();
+      return left(e);
+    } on ServerException catch (e) {
+      ErrorDialog().showServerError();
+      return left(e);
+    } on TimeOutException catch (e) {
+      ErrorDialog().showServerError();
+      return left(e);
+    } on NoInternetException catch (e) {
+      ErrorDialog().showNoInternetError();
+      return left(e);
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(NetworkException());
+    }
+  }
+
+  void askPermission() async {
+    if (await Permission.location.isPermanentlyDenied) {
+      openAppSettings();
+    } else {
+      Permission.location.request();
     }
   }
 }

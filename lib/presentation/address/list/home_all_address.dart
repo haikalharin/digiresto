@@ -4,65 +4,50 @@ import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
-import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomeAllAddressScreen extends GetView<HomeContentViewController> {
-  goBack(BuildContext context) {
-    Get.back();
-  }
-
   @override
   Widget build(BuildContext context) {
     Get.put(HomeContentViewController());
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: new Icon(Icons.arrow_back_outlined,
-                color: Colors.black, size: 28.0),
-            onPressed: () {
-              //getOutletByLocation();
-              Get.back();
-            }),
-        title: Text(
-          I10n.current.address_select_location,
-          style: AppFont.textBlack15Bold,
-          textAlign: TextAlign.center,
-        ),
-        actions: [
-          IconButton(
-              icon: ImageIcon(
-                AssetImage(AppAssets.iconMapRed),
-                color: AppColors.redYoung,
-              ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+              icon: new Icon(Icons.arrow_back_outlined,
+                  color: Colors.black, size: 28.0),
               onPressed: () {
-                Get.toNamed(Routers.homeAddLocation);
-              })
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: AppColors.greyFill,
-            width: double.infinity,
-            height: 12,
+                //getOutletByLocation();
+                Get.back();
+              }),
+          title: Text(
+            I10n.current.address_select_location,
+            style: AppFont.textBlack15Bold,
+            textAlign: TextAlign.center,
           ),
-          _AllAddressViewBody()
-        ],
-      ),
-    );
+          actions: [
+            IconButton(
+                icon: ImageIcon(
+                  AssetImage(AppAssets.iconMapRed),
+                  color: AppColors.redYoung,
+                ),
+                onPressed: () {
+                  Get.toNamed(Routers.homeAddLocation);
+                })
+          ],
+        ),
+        body: _AllAddressViewBody());
   }
 }
 
@@ -117,63 +102,76 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
           orElse: () {});
     }, builder: (context, state) {
       return Obx(() {
-        return Expanded(
-          child: Column(
-            children: [
-              _locationActive(),
-              Container(
-                color: AppColors.greyFill,
-                width: double.infinity,
-                height: 12,
-              ),
-              Expanded(
-                child: Container(
-                  color: AppColors.white,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, top: 16, right: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Text(I10n.current.address_saved,
-                                    style: AppFont.textBlack15Bold,
-                                    textAlign: TextAlign.center),
-                              ),
-                            ],
+        return StackWithProgress(
+          isLoading: state.maybeMap(
+            orElse: () => false,
+            loadInProgress: (_) => true,
+          ),
+          children: [
+            Column(
+              children: [
+                Container(
+                  color: AppColors.greyFill,
+                  width: double.infinity,
+                  height: 12,
+                ),
+                _locationActive(),
+                Container(
+                  color: AppColors.greyFill,
+                  width: double.infinity,
+                  height: 12,
+                ),
+                Expanded(
+                  child: Container(
+                    color: AppColors.white,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, top: 16, right: 20),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(I10n.current.address_saved,
+                                      style: AppFont.textBlack15Bold,
+                                      textAlign: TextAlign.center),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: RefreshIndicator(
-                            onRefresh: () async => Get.context!
-                                .read<AddressListBloc>()
-                                .add(AddressListEvent.getAllAddress()),
-                            child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true, // new line
-                                padding: const EdgeInsets.all(8),
-                                itemCount: controller.listAddress.length + 1,
-                                itemBuilder: (BuildContext context, int index) {
-                                  if (index == controller.listAddress.length) {
-                                    return _btnNewAddress();
-                                  } else {
-                                    return _listAddress(
-                                        controller.listAddress[index]);
-                                  }
-                                }),
+                          Expanded(
+                            child: RefreshIndicator(
+                              onRefresh: () async => Get.context!
+                                  .read<AddressListBloc>()
+                                  .add(AddressListEvent.getAllAddress()),
+                              child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true, // new line
+                                  padding: const EdgeInsets.all(8),
+                                  itemCount: controller.listAddress.length + 1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (index ==
+                                        controller.listAddress.length) {
+                                      return _btnNewAddress();
+                                    } else {
+                                      return _listAddress(
+                                          controller.listAddress[index]);
+                                    }
+                                  }),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
+                )
+              ],
+            ),
+          ],
         );
       });
     });
@@ -467,11 +465,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
 
   void getAddress() async {
     Get.context!.read<AddressListBloc>().add(AddressListEvent.getAllAddress());
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(
-        GetGeoCodeParam(
-            latitude: position.latitude.toString(),
-            longitude: position.longitude.toString())));
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode());
   }
 }

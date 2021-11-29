@@ -101,8 +101,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i11.LocationService(get<_i8.GeolocatorPlatform>()));
   gh.lazySingleton<_i12.Logger>(() => registerModule.logger);
   gh.lazySingleton<_i13.OneSignal>(() => registerModule.oneSignal);
-  gh.factory<_i14.ProfileAddressWidget>(
-      () => _i14.ProfileAddressWidget(get<_i10.ILocationService>()));
+  gh.factory<_i14.ProfileAddressWidget>(() => _i14.ProfileAddressWidget());
   gh.factory<_i15.SimpleBlocObserver>(
       () => _i15.SimpleBlocObserver(get<_i12.Logger>()));
   gh.lazySingleton<_i16.IStorage>(
@@ -138,7 +137,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
           get<_i12.Logger>()));
   gh.lazySingleton<_i29.IProfileRepository>(() => _i30.ProfileRepository(
       get<_i25.INetworkService>(), get<_i16.IStorage>(), get<_i12.Logger>()));
-  gh.factory<_i31.MapApi>(() => _i31.MapApi(get<_i25.INetworkService>()));
+  gh.factory<_i31.MapApi>(() => _i31.MapApi(get<_i25.INetworkService>(),
+      get<_i10.ILocationService>(), get<_i12.Logger>()));
   gh.factory<_i32.MapRepository>(() => _i32.MapRepository(get<_i31.MapApi>()));
   gh.factory<_i33.NotificationBloc>(
       () => _i33.NotificationBloc(get<_i27.INotificationRepository>()));

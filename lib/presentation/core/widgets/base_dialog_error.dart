@@ -64,7 +64,6 @@ class ErrorDialog {
         title: title ?? I10n.current.oops_title,
         error: error,
         onClose: onClose,
-        twoButtons: true,
       ),
     );
   }

@@ -9,9 +9,8 @@ class MapRepository {
   final MapApi _mapApi;
 
   MapRepository(this._mapApi);
-  Future<Either<Exception, Geocode>> geocode(
-      Map<String, dynamic> object) async {
-    return await _mapApi.geocode(object).then((value) {
+  Future<Either<Exception, Geocode>> geocode() async {
+    return await _mapApi.geocode().then((value) {
       return value;
     }).catchError((error) => throw error);
   }
