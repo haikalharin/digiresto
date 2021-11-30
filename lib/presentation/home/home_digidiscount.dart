@@ -138,7 +138,8 @@ class HomeDigidiscountScreen
                                   loadMoreAction: () {},
                                 ),
                               )
-                            : EmptyOutletWidget();
+                            : Container();
+                        // : EmptyOutletWidget(onRefresh: onRefresh);
                       },
                     ),
                   ],

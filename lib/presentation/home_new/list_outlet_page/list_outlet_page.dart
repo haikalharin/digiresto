@@ -1,4 +1,3 @@
-import 'package:digiresto/application/home/home_nearby_oulet_view_controller.dart';
 import 'package:digiresto/application/home_new/outlet/list_outlet_page_controller.dart';
 import 'package:digiresto/application/home_new/outlet/outlet_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -9,7 +8,7 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
-import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
+import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/listview_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -46,6 +45,16 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
       menuCategory: menuCategory,
       search: searchController.text,
       pageParam: controller.page.value + 1,
+    );
+  }
+
+  void onRefresh() async {
+    controller.page.value = 1;
+    controller.listOutlet.clear();
+    controller.getOutlets(
+      menuCategory: menuCategory,
+      search: searchController.text,
+      pageParam: 1,
     );
   }
 
@@ -139,8 +148,9 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                 if (menuCategory.isSearchable) _search(),
                 Obx(() {
                   return (controller.listOutlet.length > 0)
-                      ? ListCategoryOutletWidget(
+                      ? ListviewOutletWidget(
                           loadMoreAction: loadMoreOutlet,
+                          onRefresh: onRefresh,
                           runAction: (param) {
                             Get.toNamed(Routers.orderDetailOutlet,
                                     arguments: OrderDetailViewArgument(
@@ -159,7 +169,7 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : EmptyOutletWidget();
+                      : EmptyOutletWidget(onRefresh: onRefresh);
                 })
               ],
             ),

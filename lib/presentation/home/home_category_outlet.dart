@@ -8,7 +8,7 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
+import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/listview_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -36,6 +36,12 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
   void loadMoreOutletByLocation() {
     controller.getOutletByLocation(
         controller.searchController.text, controller.page.value + 1);
+  }
+
+  void onRefresh() async {
+    controller.page.value = 1;
+    controller.listOutlet.clear();
+    controller.getOutletByLocation(controller.searchController.text, 1);
   }
 
   Widget _search() {
@@ -121,8 +127,9 @@ class _BodyCategoryWidget extends GetView<HomeCategoryOutletViewController> {
                 _search(),
                 Obx(() {
                   return (controller.listOutlet.length > 0)
-                      ? ListCategoryOutletWidget(
+                      ? ListviewOutletWidget(
                           loadMoreAction: loadMoreOutletByLocation,
+                          onRefresh: onRefresh,
                           runAction: (param) {
                             Get.toNamed(Routers.orderDetailOutlet,
                                     arguments: OrderDetailViewArgument(

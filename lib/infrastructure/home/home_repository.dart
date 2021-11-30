@@ -1,12 +1,11 @@
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
-import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/core/constants/network/env.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/exceptions/location_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
-import 'package:digiresto/domain/home/entity/outlet_list_item.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
@@ -26,12 +25,14 @@ class HomeRepository implements IHomeRepository {
   final Logger logger;
   final IStorage _storage;
   final ILocationService _locationService;
+  final Env _env;
 
   HomeRepository(
     this.logger,
     this._networkService,
     this._storage,
     this._locationService,
+    this._env,
   );
   @override
   Future<Either<HomeFailure, IList<MenuCategory>>> getMenuCategory() async {
@@ -187,7 +188,11 @@ class HomeRepository implements IHomeRepository {
     try {
       final userAddress = await getUserAddress();
       userAddress.getOrElse(() => UserAddress());
-      final apiUrl = '/${menuCategory.endpoint}';
+      final apiUrl = Endpoints.urlForward;
+      final endpoint = '/${menuCategory.endpoint}';
+      final baseUrl = await _env.getBaseUrl;
+      final fullUrl = '$baseUrl$endpoint';
+      final queryParameter = Uri.parse(fullUrl).queryParameters;
       // final apiUrl = Endpoints.urlForward;
       // final queryParameter =
       //     Uri.splitQueryString(Uri.decodeQueryComponent());
@@ -202,7 +207,7 @@ class HomeRepository implements IHomeRepository {
       };
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
-        // queryParameter: queryParameter,
+        queryParameter: queryParameter,
         content: {
           "query_string": queryString,
           "body": {},

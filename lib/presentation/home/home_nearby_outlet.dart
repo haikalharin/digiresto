@@ -10,7 +10,7 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
-import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
+import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/listview_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -62,6 +62,12 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
   void loadMoreOutletByLocation() {
     controller.getOutletByLocation(
         searchController.text, controller.page.value + 1);
+  }
+
+  void onRefresh() {
+    controller.page.value = 1;
+    controller.listOutlet.clear();
+    controller.getOutletByLocation(searchController.text, 1);
   }
 
   Widget _search() {
@@ -146,8 +152,9 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
                 _search(),
                 Obx(() {
                   return (controller.listOutlet.length > 0)
-                      ? ListCategoryOutletWidget(
+                      ? ListviewOutletWidget(
                           loadMoreAction: loadMoreOutletByLocation,
+                          onRefresh: onRefresh,
                           runAction: (param) {
                             Get.toNamed(Routers.orderDetailOutlet,
                                     arguments: OrderDetailViewArgument(
@@ -163,7 +170,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : EmptyOutletWidget();
+                      : EmptyOutletWidget(onRefresh: onRefresh);
                 })
               ],
             ),

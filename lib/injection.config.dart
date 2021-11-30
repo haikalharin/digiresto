@@ -180,7 +180,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i12.Logger>(),
       get<_i25.INetworkService>(),
       get<_i16.IStorage>(),
-      get<_i10.ILocationService>()));
+      get<_i10.ILocationService>(),
+      get<_i7.Env>()));
   gh.factory<_i54.LoginBloc>(() => _i54.LoginBloc(get<_i48.IAuthFacade>()));
   gh.factory<_i55.OrderBloc>(() => _i55.OrderBloc(get<_i37.OrderRepository>(),
       get<_i41.UserRepository>(), get<_i29.IProfileRepository>()));
