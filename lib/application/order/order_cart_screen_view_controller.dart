@@ -298,10 +298,41 @@ class OrderCartScreenViewController extends GetxController {
             ));
       },
     );
-    if (picked != null && picked != selectedDate.value!) {
+    if (picked != null) {
       selectedDate.value = picked;
       selectedDateController.text = new DateFormat("yyyy/MM/dd").format(picked);
+      selectedKeyClock.value =
+          '${(DateTime.now().hour + 1).toString().padLeft(2, "0")}:00';
     }
+
+    update();
+    print('selectedDate.value${selectedDate.value}');
+    print(
+        'selected :${((selectedDate.value?.add(Duration(days: 1)) ?? DateTime.now().add(Duration(days: 1))).difference(DateTime.now()).inDays) == 0}');
+  }
+
+  List<DropdownMenuItem<String>>? getItemsHoursDropdown() {
+    return ((selectedDate.value?.add(Duration(days: 1)) ??
+                    DateTime.now().add(Duration(days: 1)))
+                .difference(DateTime.now())
+                .inDays) ==
+            0
+        ? dataClock
+            .where((p) =>
+                int.parse(p.key!.substring(0, 2)) > (DateTime.now().hour))
+            .toList()
+            .map((data) => DropdownMenuItem<String>(
+                  child: Text(data.value!),
+                  value: data.key,
+                ))
+            .toList()
+        : dataClock
+            .toList()
+            .map((data) => DropdownMenuItem<String>(
+                  child: Text(data.value!),
+                  value: data.key,
+                ))
+            .toList();
   }
 
   void checkCartSession() async {

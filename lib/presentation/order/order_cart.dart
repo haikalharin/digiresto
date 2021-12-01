@@ -1,13 +1,11 @@
 import 'dart:core';
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
-import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
-import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -36,7 +34,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'detail_product_dialog.dart';
-import 'widgets/dialog_order_widget.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final bool? hideBackButton;
@@ -1079,6 +1076,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   }
 
   _dialogDineIn() {
+    //mencegah user memilih jam sebelum jam sekarang
+    if (int.parse(
+            (controller.selectedKeyClock.value?.substring(0, 2)) ?? '0') <=
+        DateTime.now().hour) {
+      controller.selectedKeyClock.value =
+          '${(DateTime.now().hour + 1).toString().padLeft(2, "0")}:00';
+    }
     showDialog(
         context: Get.context!,
         builder: (BuildContext context) => new AlertDialog(
@@ -1172,66 +1176,39 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    Expanded(
-                                      child: Container(
-                                        padding: const EdgeInsets.only(
-                                            top: 6, bottom: 10),
-                                        child: DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                              isDense: true,
-                                              filled: true,
-                                              fillColor: AppColors.greyFill,
-                                              contentPadding: EdgeInsets.only(
-                                                  top: 10,
-                                                  bottom: 8,
-                                                  left: 8,
-                                                  right: 8),
-                                              border: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Colors.black,
-                                                ),
-                                              )),
-                                          style: AppFont.textBlack12Regular,
-                                          value:
-                                              controller.selectedKeyClock.value,
-                                          items: DateTime.now()
-                                                      .difference(
-                                                        controller.selectedDate
-                                                                .value ??
-                                                            DateTime.now(),
-                                                      )
-                                                      .inDays ==
-                                                  0
-                                              ? controller.dataClock
-                                                  .where((p) =>
-                                                      int.parse(p.key!
-                                                          .substring(0, 2)) >
-                                                      (controller.selectedDate
-                                                              .value?.hour ??
-                                                          1))
-                                                  .toList()
-                                                  .map((data) =>
-                                                      DropdownMenuItem<String>(
-                                                        child:
-                                                            Text(data.value!),
-                                                        value: data.key,
-                                                      ))
-                                                  .toList()
-                                              : controller.dataClock
-                                                  .toList()
-                                                  .map((data) =>
-                                                      DropdownMenuItem<String>(
-                                                        child:
-                                                            Text(data.value!),
-                                                        value: data.key,
-                                                      ))
-                                                  .toList(),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              controller.selectedKeyClock
-                                                  .value = value;
-                                            });
-                                          },
+                                    Obx(
+                                      () => Expanded(
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              top: 6, bottom: 10),
+                                          child:
+                                              DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                                isDense: true,
+                                                filled: true,
+                                                fillColor: AppColors.greyFill,
+                                                contentPadding: EdgeInsets.only(
+                                                    top: 10,
+                                                    bottom: 8,
+                                                    left: 8,
+                                                    right: 8),
+                                                border: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Colors.black,
+                                                  ),
+                                                )),
+                                            style: AppFont.textBlack12Regular,
+                                            value: controller
+                                                .selectedKeyClock.value,
+                                            items: controller
+                                                .getItemsHoursDropdown(),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                controller.selectedKeyClock
+                                                    .value = value;
+                                              });
+                                            },
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -1414,6 +1391,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   }
 
   _dialogDriveThru() {
+    //mencegah user memilih jam sebelum jam sekarang
+    if (int.parse(
+            (controller.selectedKeyClock.value?.substring(0, 2)) ?? '0') <=
+        DateTime.now().hour) {
+      controller.selectedKeyClock.value =
+          '${(DateTime.now().hour + 1).toString().padLeft(2, "0")}:00';
+    }
     return showDialog(
       context: Get.context!,
       builder: (BuildContext context) => new AlertDialog(
@@ -1508,63 +1492,38 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        top: 6, bottom: 10),
-                                    child: DropdownButtonFormField<String>(
-                                      decoration: InputDecoration(
-                                          isDense: true,
-                                          filled: true,
-                                          fillColor: AppColors.greyFill,
-                                          contentPadding: EdgeInsets.only(
-                                              top: 10,
-                                              bottom: 8,
-                                              left: 8,
-                                              right: 8),
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.black,
-                                            ),
-                                          )),
-                                      style: AppFont.textBlack12Regular,
-                                      value: controller.selectedKeyClock.value,
-                                      items: DateTime.now()
-                                                  .difference(
-                                                    controller.selectedDate
-                                                            .value ??
-                                                        DateTime.now(),
-                                                  )
-                                                  .inDays ==
-                                              0
-                                          ? controller.dataClock
-                                              .where((p) =>
-                                                  int.parse(
-                                                      p.key!.substring(0, 2)) >
-                                                  (controller.selectedDate.value
-                                                          ?.hour ??
-                                                      1))
-                                              .toList()
-                                              .map((data) =>
-                                                  DropdownMenuItem<String>(
-                                                    child: Text(data.value!),
-                                                    value: data.key,
-                                                  ))
-                                              .toList()
-                                          : controller.dataClock
-                                              .toList()
-                                              .map((data) =>
-                                                  DropdownMenuItem<String>(
-                                                    child: Text(data.value!),
-                                                    value: data.key,
-                                                  ))
-                                              .toList(),
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          controller.selectedKeyClock.value =
-                                              value;
-                                        });
-                                      },
+                                Obx(
+                                  () => Expanded(
+                                    child: Container(
+                                      padding: const EdgeInsets.only(
+                                          top: 6, bottom: 10),
+                                      child: DropdownButtonFormField<String>(
+                                        decoration: InputDecoration(
+                                            isDense: true,
+                                            filled: true,
+                                            fillColor: AppColors.greyFill,
+                                            contentPadding: EdgeInsets.only(
+                                                top: 10,
+                                                bottom: 8,
+                                                left: 8,
+                                                right: 8),
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                              ),
+                                            )),
+                                        style: AppFont.textBlack12Regular,
+                                        value:
+                                            controller.selectedKeyClock.value,
+                                        items:
+                                            controller.getItemsHoursDropdown(),
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            controller.selectedKeyClock.value =
+                                                value;
+                                          });
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
