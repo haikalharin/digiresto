@@ -78,7 +78,7 @@ class OrderRepository {
   }
 
   Future<GetListVoucherOutletDataResponse?> setVoucherMethodID(
-      GetListVoucherOutletDataResponse data) async {
+      GetListVoucherOutletDataResponse? data) async {
     return _orderLocal.setVoucherMethod(data);
   }
 

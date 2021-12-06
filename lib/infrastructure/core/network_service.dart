@@ -106,14 +106,15 @@ class NetworkService implements INetworkService {
   }
 
   @override
-  Future<dynamic> postHttp(
-      {required String path,
-      String? parameter,
-      Map<String, dynamic>? queryParameter,
-      dynamic content,
-      String? contentType,
-      Map<String, dynamic>? header,
-      bool useAuth = true}) async {
+  Future<dynamic> postHttp({
+    required String path,
+    String? parameter,
+    Map<String, dynamic>? queryParameter,
+    dynamic content,
+    String? contentType,
+    Map<String, dynamic>? header,
+    bool useAuth = true,
+  }) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {

@@ -61,7 +61,7 @@ class OrderApi {
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -102,7 +102,7 @@ class OrderApi {
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -145,7 +145,7 @@ class OrderApi {
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -195,7 +195,7 @@ class OrderApi {
       return right(listUserData);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -243,7 +243,7 @@ class OrderApi {
       return right(promos);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -271,7 +271,10 @@ class OrderApi {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetStaticBanner;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, queryParameter: queryParameter, content: object
+          useAuth: false,
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object
           // {
           //   "query_string": {
           //     "location": object["location"],
@@ -291,7 +294,7 @@ class OrderApi {
       return right(staticBanner);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -335,7 +338,7 @@ class OrderApi {
       return right(DetailOutletResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -379,7 +382,7 @@ class OrderApi {
       return right(OutletProductCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -424,7 +427,7 @@ class OrderApi {
       return right(OutletListProductResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -469,7 +472,7 @@ class OrderApi {
       return right(PromoOutletResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -512,7 +515,7 @@ class OrderApi {
       return right(GetListVoucherOutletResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -552,7 +555,7 @@ class OrderApi {
         await _storage.close(_box);
       }
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -592,7 +595,7 @@ class OrderApi {
         await _storage.close(_box);
       }
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -629,7 +632,7 @@ class OrderApi {
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -663,7 +666,7 @@ class OrderApi {
         await _storage.close(_box);
       }
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -706,7 +709,7 @@ class OrderApi {
               Get.back();
             }
           });
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -748,7 +751,7 @@ class OrderApi {
           methods.map((data) => PaymentMethodDataResponse.fromJson(data))));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());
@@ -794,7 +797,7 @@ class OrderApi {
           methods.map((data) => DeliveryMethodDataResponse.fromJson(data))));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
-      return left(FailureException());
+      return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(AuthException());

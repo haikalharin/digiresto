@@ -18,10 +18,11 @@ class UserLocal {
       print("Create Active Address");
       await _storage.setJson(_box, key: addressKey, object: model.toJson());
 
-      final data = await _storage.getJson(_box, key: addressKey);
-      final parsedData = UserAddress.fromJson(data);
+      // final data = await _storage.getJson(_box, key: addressKey);
+      // final parsedData = UserAddress.fromJson(data);
+
       await _storage.close(_box);
-      return right(parsedData);
+      return right(model);
     } catch (e) {
       return left(Exception(e.toString()));
     }

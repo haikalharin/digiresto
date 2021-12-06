@@ -854,7 +854,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 textAlign: TextAlign.left),
                           ),
                           GestureDetector(
-                            onTap: (variantProductSelected.limit == totalqty)
+                            onTap: ((variantProductSelected.limit ?? 999) >=
+                                    totalqty)
                                 ? () => setState(() {
                                       isLimitReached = true;
                                     })
@@ -872,7 +873,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       )
                     ],
                   ),
-                  if (variantProductSelected.limit == totalqty &&
+                  if ((variantProductSelected.limit ?? 999) >= totalqty &&
                       isLimitReached)
                     Container(
                       width: double.infinity,

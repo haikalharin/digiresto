@@ -99,8 +99,8 @@ class PaymentReceiptScreen extends StatelessWidget {
               },
               addFavoriteTransactionSuccess: (r) {
                 if (r.isSuccess) {
-                  ErrorPopupWidget.show("Digiresto", "Tambah Favorit Berhasil",
-                      () {
+                  ErrorPopupWidget.show(
+                      "Digiresto", I10n.current.add_favorite_success, () {
                     Get.back();
                   });
                   isFavoriteDone = true;
@@ -147,7 +147,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                   },
                 ),
                 title: Text(
-                  'Status Transaksi',
+                  I10n.current.nota_title,
                   style: TextStyle(
                     fontFamily: "roboto",
                     color: Colors.white,
@@ -234,7 +234,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                             ),
                                           ),
                                           SizedBox(height: 5),
-                                          Text('Kode Struk:'),
+                                          Text(I10n.current.nota_receipt_code),
                                           SizedBox(height: 5),
                                           Text(
                                             _transaction!.receiptCode,
@@ -245,7 +245,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                             ),
                                           ),
                                           SizedBox(height: 5),
-                                          Text('Waktu:'),
+                                          Text(I10n
+                                              .current.nota_transaction_date),
                                           SizedBox(height: 5),
                                           Text(df.format(isoParser.parse(
                                               _transaction!.deviceTimestamp
@@ -379,7 +380,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                                           SizedBox(height: 5),
                                           _lr(
                                             Text(
-                                              'Total Payment',
+                                              I10n.current.nota_total_payment,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -508,7 +509,8 @@ class PaymentReceiptScreen extends StatelessWidget {
                                 width: double.infinity,
                                 height: 44,
                                 child: Center(
-                                  child: Text("Cek Status Pembayaran",
+                                  child: Text(
+                                      I10n.current.nota_check_status_payment,
                                       style: AppFont.textBlack14Bold
                                           .copyWith(color: AppColors.white)),
                                 ),
@@ -551,7 +553,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                   },
                 ),
                 title: Text(
-                  'Status Transaksi',
+                  I10n.current.nota_title,
                   style: TextStyle(
                     fontFamily: "roboto",
                     color: Colors.white,

@@ -6,6 +6,7 @@ import 'package:digiresto/application/order/order_cart_screen_view_controller.da
 import 'package:digiresto/application/transaction/bloc/transaction_bloc/transaction_bloc.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
@@ -170,7 +171,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                                       ),
                                     ),
                                   ),
-                                  child: Text("Simpan",
+                                  child: Text(I10n.current.alert_save,
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
@@ -271,7 +272,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   //transform: Matrix4.translationValues(-24, 0, 0),
                   child: Center(
                     child: new Text(
-                      'Silahkan pilih tipe order',
+                      I10n.current.outlet_choose_order_type,
                       style: AppFont.textBlack17Bold,
                     ),
                   ),
@@ -876,10 +877,14 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                           final isSingleBilling =
                               controller.paymentMethod.value?.isSingleBilling;
                           //validation
-                          if (controller.paymentMethod.value == null) {
+                          print(
+                              'controller.cartFailMessage.value : ${controller.cartFailMessage.value}');
+                          if (controller.cartFailMessage.value != null) {
+                            ErrorDialog().showError(
+                                error: controller.cartFailMessage.value!);
+                          } else if (controller.paymentMethod.value == null) {
                             ErrorPopupWidget.show("Digiresto",
-                                "Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini",
-                                () {
+                                I10n.current.user_not_choose_delivery, () {
                               Get.back();
                               Get.toNamed(Routers.selectPaymentMethod,
                                       arguments:
@@ -1057,10 +1062,10 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                               borderRadius: new BorderRadius.circular(30.0)),
                         ),
                         child: Text(
-                          'Order',
+                          I10n.current.cart_order,
                           style: TextStyle(color: Colors.white),
                         )),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -1398,13 +1403,23 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
       controller.selectedKeyClock.value =
           '${(DateTime.now().hour + 1).toString().padLeft(2, "0")}:00';
     }
+    bool _isEmptyCarNumber = false;
     return showDialog(
       context: Get.context!,
       builder: (BuildContext context) => new AlertDialog(
         content: StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
-              height: (controller.useSchedule.value ?? false) ? 423 : 350,
+              height: _isEmptyCarNumber == true &&
+                      controller.useSchedule.value == false
+                  ? 423
+                  : controller.useSchedule.value == true &&
+                          _isEmptyCarNumber == false
+                      ? 423
+                      : controller.useSchedule.value == true &&
+                              _isEmptyCarNumber == true
+                          ? 500
+                          : 350,
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1545,6 +1560,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   _textFieldDialogOrder(
                     hintText: 'Motor / Mobil',
                     controller: controller.customerCarTypeController,
+                    isEmpty: _isEmptyCarNumber,
                   ),
                   Container(
                     child: Text(
@@ -1559,6 +1575,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   _textFieldDialogOrder(
                     hintText: 'Warna Kendaraan Anda',
                     controller: controller.customerCarColorController,
+                    isEmpty: _isEmptyCarNumber,
                   ),
                   Container(
                     child: Text(
@@ -1573,6 +1590,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   _textFieldDialogOrder(
                     hintText: 'B **** XXX',
                     controller: controller.customerCarNumberController,
+                    isEmpty: _isEmptyCarNumber,
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 15),
@@ -1616,35 +1634,46 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                String txt = "";
-                                if (controller.useSchedule.value!) {
-                                  txt = controller.selectedDateController.text
-                                          .toString() +
-                                      " " +
-                                      controller.selectedKeyClock.value! +
-                                      ", " +
-                                      controller
-                                          .customerCarTypeController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarColorController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarNumberController.text;
+                                if (controller.customerCarNumberController.text
+                                        .isNotEmpty &&
+                                    controller.customerCarColorController.text
+                                        .isNotEmpty &&
+                                    controller.customerCarTypeController.text
+                                        .isNotEmpty) {
+                                  String txt = "";
+                                  if (controller.useSchedule.value!) {
+                                    txt = controller.selectedDateController.text
+                                            .toString() +
+                                        " " +
+                                        controller.selectedKeyClock.value! +
+                                        ", " +
+                                        controller
+                                            .customerCarTypeController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarColorController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarNumberController.text;
+                                  } else {
+                                    txt = "Now, " +
+                                        controller
+                                            .customerCarTypeController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarColorController.text +
+                                        ", " +
+                                        controller
+                                            .customerCarNumberController.text;
+                                  }
+                                  controller.infoControllerDriveThru.text = txt;
+                                  controller.setDriveThruMethodID();
+                                  Get.back(closeOverlays: true);
                                 } else {
-                                  txt = "Now, " +
-                                      controller
-                                          .customerCarTypeController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarColorController.text +
-                                      ", " +
-                                      controller
-                                          .customerCarNumberController.text;
+                                  setState(() {
+                                    _isEmptyCarNumber = true;
+                                  });
                                 }
-                                controller.infoControllerDriveThru.text = txt;
-                                controller.setDriveThruMethodID();
-                                Get.back(closeOverlays: true);
                               },
                               child: Text(I10n.current.alert_ok,
                                   style: TextStyle(
@@ -1679,12 +1708,13 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   Widget _textFieldDialogOrder({
     required String? hintText,
     required TextEditingController controller,
+    required bool isEmpty,
   }) {
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 10),
-      child: TextField(
+      child: TextFormField(
           textInputAction: TextInputAction.search,
-          onSubmitted: (value) {},
+          // onSubmitted: (value) {},
           controller: controller,
           keyboardType: TextInputType.text,
           readOnly: false,
@@ -1694,6 +1724,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           ),
           onChanged: (value) {},
           decoration: InputDecoration(
+            errorText: isEmpty ? 'Info Drive Thru Tidak Boleh Kosong' : null,
             isDense: true,
             filled: true,
             fillColor: AppColors.greyFill,
@@ -1800,22 +1831,23 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       ),
                     ],
                   ),
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-                  // if (controller.voucherMethod.value != null)
-                  //   InputChip(
-                  //     label: Text(
-                  //       controller.voucherMethod.value?.name ?? "",
-                  //       style: AppFont.textBlack12Light,
-                  //     ),
-                  //     onPressed: () {
-                  //       debugPrint('input chip tapped');
-                  //     },
-                  //     onDeleted: () {
-                  //       debugPrint('input chip when onDeleted');
-                  //     },
-                  //   ),
+                  if (controller.voucherMethod.value != null)
+                    InputChip(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      backgroundColor: AppColors.mainColor.withOpacity(0.5),
+                      label: Text(
+                        controller.voucherMethod.value?.name ?? "",
+                        style: AppFont.textBlack12Light,
+                      ),
+                      onPressed: () {},
+                      onDeleted: () {
+                        Get.context!
+                            .read<OrderBloc>()
+                            .add(OrderEvent.setVoucherMethodID(null));
+                        controller.voucherMethod.value = null;
+                        controller.updateCartParam();
+                      },
+                    ),
                 ],
               ),
             ),
@@ -1844,6 +1876,12 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
             listener: (context, state) {
               state.maybeMap(
                 addCartSuccess: (r) {
+                  controller.cartSession.value = r.response;
+                  controller.voucherMethod.value = null;
+                  controller.cartFailMessage.value = null;
+                  controller.checkAllLoaded();
+                },
+                updateCartSuccess: (r) {
                   controller.cartSession.value = r.response;
                   controller.checkAllLoaded();
                 },
@@ -1949,18 +1987,29 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   controller.setTransactionPending(_state.data);
                 },
                 loadFailure: (e) {
-                  e.e.maybeMap(checkoutCartFail: (e) {
-                    controller.isLoading.value = false;
-                    final exception = e.e;
-                    if (exception == null) {
-                      controller.removeCartSession();
-                    }
-                  }, checkVoucherOutletFail: (e) {
-                    controller.isLoading.value = false;
-                    controller.voucherMethod.value = null;
-                  }, orElse: () {
-                    controller.isLoading.value = false;
-                  });
+                  e.e.maybeMap(
+                    checkoutCartFail: (e) {
+                      controller.isLoading.value = false;
+                      final exception = e.e;
+                      if (exception == null) {
+                        controller.removeCartSession();
+                      }
+                    },
+                    checkVoucherOutletFail: (e) {
+                      controller.isLoading.value = false;
+                      controller.voucherMethod.value = null;
+                    },
+                    addCartFail: (e) {
+                      controller.isLoading.value = false;
+                      final error = e.e;
+                      if (error is FailureException) {
+                        controller.cartFailMessage.value = error.message;
+                      }
+                    },
+                    orElse: () {
+                      controller.isLoading.value = false;
+                    },
+                  );
                 },
                 orElse: () {
                   controller.isLoading.value = false;

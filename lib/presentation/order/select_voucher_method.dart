@@ -5,7 +5,7 @@ import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_para
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
-import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';

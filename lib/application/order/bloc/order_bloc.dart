@@ -335,7 +335,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         yield createCartSession.fold(
           (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
-          (list) => OrderState.addCartSuccess(list!.data, false),
+          (list) => OrderState.updateCartSuccess(
+            list!.data,
+          ),
         );
       },
       addCart: (request) async* {
@@ -352,7 +354,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
         final deliveryInq = await _orderRepository.getDeliveryMethodID();
-        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
+        final getVoucherMethodID =
+            await _orderRepository.setVoucherMethodID(null);
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
         final getDineInID = await _orderRepository.setDineInIDMethod(null);
         final getDriveThruID =

@@ -153,6 +153,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                 Container(
                   height: Get.height - Get.statusBarHeight,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Divider(
                         thickness: 12,
@@ -293,6 +294,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                           padding: EdgeInsets.all(Dimens.defaultMargin),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 i10n.credit_note,
@@ -323,7 +325,7 @@ class _TopUpCreditWidgetState extends State<TopUpCreditWidget> {
                         fontColor: Colors.white,
                         borderRadius: BorderRadius.circular(22),
                         margin: EdgeInsets.symmetric(
-                          vertical: 40,
+                          vertical: 30,
                           horizontal: Dimens.defaultMargin,
                         ),
                       ),

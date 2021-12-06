@@ -14,7 +14,6 @@ class AuthListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        final _authBloc = BlocProvider.of<AuthBloc>(context);
         return state.map(
           initial: (_) => const Scaffold(
             body: Center(
@@ -41,8 +40,9 @@ class AuthListener extends StatelessWidget {
                     left: 0,
                     child: CustomButton(
                       margin: EdgeInsets.all(Dimens.defaultMargin),
-                      onPressed: () =>
-                          _authBloc.add(AuthEvent.authCheckRequested()),
+                      onPressed: () => context
+                          .read<AuthBloc>()
+                          .add(AuthEvent.authCheckRequested()),
                       label: 'Retry',
                     ),
                   ),

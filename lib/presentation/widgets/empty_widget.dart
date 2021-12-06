@@ -11,7 +11,7 @@ class EmptyWidget extends StatelessWidget {
   const EmptyWidget({
     Key? key,
     required this.onRefresh,
-    required this.imageAsset,
+    this.imageAsset,
     this.isSvg = false,
   }) : super(key: key);
 

@@ -1,5 +1,6 @@
 import 'package:digiresto/application/profile/order_details/order_details_bloc.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_done.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_onprocess.dart';
@@ -31,7 +32,7 @@ class OrderDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CollapsedScafold(
       showBackButton: true,
-      title: 'Detail Riwayat',
+      title: I10n.current.detail_history,
       body: BlocConsumer<OrderDetailsBloc, OrderDetailsState>(
         listener: (context, state) {
           state.maybeMap(

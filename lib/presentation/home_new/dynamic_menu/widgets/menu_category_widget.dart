@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/src/provider.dart';
 
 class MenuCategoryWidget extends StatelessWidget {
   final MenuCategory menuCategory;
@@ -16,7 +18,9 @@ class MenuCategoryWidget extends StatelessWidget {
         onTap: () {
           Get.to(
             ListOutletPage(menuCategory),
-          );
+          )?.then((value) {
+            Get.context!.read<BottomTabCubit>().checkAllCounter();
+          });
           // // Get.to(ListOutletPage(menuCategory));
           // final label = menuCategory.getTitle;
           // // if (label == Strings.titleDigidiscount) {

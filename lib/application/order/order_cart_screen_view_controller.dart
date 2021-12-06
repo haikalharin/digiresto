@@ -1,6 +1,7 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
@@ -59,6 +60,7 @@ class OrderCartScreenViewController extends GetxController {
   var voucherMethod = Rxn<GetListVoucherOutletDataResponse>();
   var checkoutResponse = Rxn<CheckoutDataResponse>();
   var listOrderPending = RxList<OrderPending>();
+  var cartFailMessage = Rxn<StatusMessageDisplayResponse>();
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
@@ -423,6 +425,11 @@ class OrderCartScreenViewController extends GetxController {
     Get.context!
         .read<AddressListBloc>()
         .add(AddressListEvent.getActiveAddress());
+    update();
+  }
+
+  void getVoucherMethod() {
+    Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
     update();
   }
 

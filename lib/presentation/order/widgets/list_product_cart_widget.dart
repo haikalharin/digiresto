@@ -91,18 +91,19 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
       itemCount: widget.productCart.length,
       itemBuilder: (BuildContext context, int index) {
         num? price;
-        var productCart = widget.productCart[index];
-        var productItem = widget.product[index];
+        final productCart = widget.productCart[index];
+        final productItem = widget.product.firstWhere(
+            (element) => element.id == productCart.productId.toString());
 
-        void minus() {
-          final initialQty = productCart.qty;
-          productCart = productCart.copyWith(qty: initialQty - 1);
-        }
+        // void minus() {
+        //   final initialQty = productCart.qty;
+        //   productCart = productCart.copyWith(qty: initialQty - 1);
+        // }
 
-        void plus() {
-          final initialQty = productCart.qty;
-          productCart = productCart.copyWith(qty: initialQty + 1);
-        }
+        // void plus() {
+        //   final initialQty = productCart.qty;
+        //   productCart = productCart.copyWith(qty: initialQty + 1);
+        // }
         //int beforePrice;
         // if (widget.data[index]["detail"]["isUseSalesType"] == true) {
         //   for (int i = 0;
@@ -331,17 +332,17 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                             textAlign: TextAlign.left),
                                       ),
                                       GestureDetector(
-                                        onTap:
-                                            productItem.limit == productCart.qty
-                                                ? null
-                                                : () {
-                                                    widget.addOrRemove(
-                                                        productCart.productId,
-                                                        productCart.qty + 1,
-                                                        price!,
-                                                        productCart);
-                                                    //plus();
-                                                  },
+                                        onTap: (productItem.limit ?? 999) >=
+                                                productCart.qty
+                                            ? null
+                                            : () {
+                                                widget.addOrRemove(
+                                                    productCart.productId,
+                                                    productCart.qty + 1,
+                                                    price!,
+                                                    productCart);
+                                                //plus();
+                                              },
                                         child: CircleAvatar(
                                           radius: 14,
                                           backgroundColor: AppColors.greyStroke,
