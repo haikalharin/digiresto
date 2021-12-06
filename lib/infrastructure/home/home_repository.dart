@@ -1,3 +1,4 @@
+import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/constants/network/env.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
@@ -16,7 +17,6 @@ import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 @LazySingleton(as: IHomeRepository)
@@ -78,6 +78,7 @@ class HomeRepository implements IHomeRepository {
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
         queryParameter: queryParameter,
+        useAuth: false,
         content: {
           "query_string": {},
           "body": {},
@@ -116,36 +117,66 @@ class HomeRepository implements IHomeRepository {
     try {
       final _box = await _storage.openBox(StorageConstants.address);
       final data = await _storage.getJson(_box, key: "address");
-
       await _storage.close(_box);
+
       if (data == null || data.isEmpty) {
-        final _currentLocation = await _locationService.determinePosition();
-        final apiUrl = Endpoints.urlForward;
-        final queryParameter = Endpoints.urlGetGeocode;
+        final _boxUser = await _storage.openBox(StorageConstants.user);
+        final _userInStorage = await _storage.getData(
+          _boxUser,
+        );
+        final _userAuth = UserAuth.fromJson(_userInStorage);
+        await _storage.close(_boxUser);
+
+        String apiUrl = Endpoints.urlForward;
+        final queryParameters = Endpoints.urlGetAllAddress;
         final apiResult = await _networkService.postHttp(
           path: apiUrl,
           content: {
-            "query_string": {
-              "lat": _currentLocation.latitude.toString(),
-              "lng": _currentLocation.longitude.toString(),
-            },
-            "body": {}
+            "query_string": {},
+            "body": {"wa_id": _userAuth.mobilePhone},
           },
-          queryParameter: queryParameter,
+          queryParameter: queryParameters,
         );
-        final formattedAddress = (apiResult as Map<String, dynamic>)['data']
-            ['formatted_address'] as String;
-        final userAddress = UserAddress(
-          address: formattedAddress,
-          latitude: _currentLocation.latitude.toString(),
-          longitude: _currentLocation.longitude.toString(),
-        );
-        final _box = await _storage.openBox(StorageConstants.address);
-        print("Create Active Address");
-        await _storage.setJson(_box,
-            key: "address", object: userAddress.toJson());
-        await _storage.close(_box);
-        return right(userAddress);
+
+        List<dynamic> listUserData = (apiResult as Map<String, dynamic>)[
+            'data']; //mengambil data data didalam jsonObject
+        List<UserAddress> address = [];
+        for (int i = 0; i < listUserData.length; i++) {
+          address.add(UserAddress.createAddress(listUserData[i]));
+        }
+
+        if (address.any((element) => element.isDefault ?? false)) {
+          return right(
+              address.firstWhere((element) => element.isDefault ?? false));
+        } else {
+          final _currentLocation = await _locationService.determinePosition();
+          final apiUrl = Endpoints.urlForward;
+          final queryParameter = Endpoints.urlGetGeocode;
+          final apiResult = await _networkService.postHttp(
+            path: apiUrl,
+            content: {
+              "query_string": {
+                "lat": _currentLocation.latitude.toString(),
+                "lng": _currentLocation.longitude.toString(),
+              },
+              "body": {}
+            },
+            queryParameter: queryParameter,
+          );
+          final formattedAddress = (apiResult as Map<String, dynamic>)['data']
+              ['formatted_address'] as String;
+          final userAddress = UserAddress(
+            address: formattedAddress,
+            latitude: _currentLocation.latitude.toString(),
+            longitude: _currentLocation.longitude.toString(),
+          );
+          final _box = await _storage.openBox(StorageConstants.address);
+          print("Create Active Address");
+          await _storage.setJson(_box,
+              key: "address", object: userAddress.toJson());
+          await _storage.close(_box);
+          return right(userAddress);
+        }
       }
       final model = UserAddress.fromJson(data);
       print('object');

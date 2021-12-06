@@ -271,7 +271,10 @@ class OrderApi {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetStaticBanner;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, queryParameter: queryParameter, content: object
+          useAuth: false,
+          path: apiUrl,
+          queryParameter: queryParameter,
+          content: object
           // {
           //   "query_string": {
           //     "location": object["location"],

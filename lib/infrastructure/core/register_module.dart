@@ -99,7 +99,7 @@ abstract class RegisterModule {
     // options.
     // Storage _storage = Storage(Hive, Logger());
 
-    _dio.interceptors.add(AuthInterceptor(_storage));
+    // _dio.interceptors.add(AuthInterceptor(_storage));
 
     return _dio;
   }

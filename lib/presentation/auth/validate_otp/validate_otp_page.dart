@@ -103,13 +103,15 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
       listener: (context, state) {
         state.validateFailureOrSuccess.fold(
           () => null,
-          (success) => success.fold((l) {}, (login) {
-            getIt<BottomTabCubit>().changeTab(0);
-            _authBloc.add(AuthEvent.authCheckRequested());
-            login.isMember
-                ? Get.offAllNamed(Routers.auth)
-                : Get.to(RegisterPage(widget.phoneNumber));
-          }),
+          (success) => success.fold(
+            (l) {},
+            (login) async {
+              _authBloc.add(AuthEvent.authCheckRequested());
+              login.isMember
+                  ? Get.offAllNamed(Routers.auth)
+                  : Get.to(RegisterPage(widget.phoneNumber));
+            },
+          ),
         );
       },
       builder: (context, state) {
