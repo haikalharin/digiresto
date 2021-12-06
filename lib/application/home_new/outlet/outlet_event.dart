@@ -6,5 +6,6 @@ class OutletEvent with _$OutletEvent {
     required MenuCategory menuCategory,
     required int page,
     required String? search,
+    required bool isHideOpen,
   }) = _GetOutlets;
 }

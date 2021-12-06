@@ -28,6 +28,7 @@ class OutletBloc extends Bloc<OutletEvent, OutletState> {
             location: location,
             menuCategory: _event.menuCategory,
             search: _event.search,
+            isHideOpen: _event.isHideOpen,
           );
           getOutlets.fold(
             (failure) => emit(OutletState.getListOutletFailure(failure)),

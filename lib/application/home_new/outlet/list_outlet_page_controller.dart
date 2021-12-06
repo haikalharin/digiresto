@@ -9,18 +9,19 @@ class ListOutletPageController extends GetxController {
   RxList<OutletCategoryDataResponse> listOutlet =
       List<OutletCategoryDataResponse>.empty().obs;
   var page = 1.obs;
+  RxBool isHideOpen = false.obs;
 
   void getOutlets({
     required String search,
     required MenuCategory menuCategory,
     required int pageParam,
   }) {
-    page.value = pageParam;
     Get.context!.read<OutletBloc>().add(
           OutletEvent.getOutlets(
             menuCategory: menuCategory,
             page: page.value,
             search: search,
+            isHideOpen: isHideOpen.value,
           ),
         );
     update();

@@ -120,6 +120,13 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
           getListOutletSuccess: (r) {
             if (r.outlets.isNotEmpty) {
               controller.listOutlet.addAll(r.outlets);
+              controller.page.value = controller.page.value + 1;
+            } else {
+              if (!controller.isHideOpen.value) {
+                controller.isHideOpen.value = true;
+                controller.page.value = 1;
+                loadMoreOutlet();
+              }
             }
           },
           orElse: () {},
@@ -157,6 +164,7 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                                         param.id, param.merchantId))
                                 ?.then((value) {
                               controller.page.value = 1;
+                              controller.isHideOpen.value = false;
                               controller.listOutlet.clear();
                               controller.getOutlets(
                                 menuCategory: menuCategory,

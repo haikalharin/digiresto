@@ -122,7 +122,7 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
   Widget build(BuildContext context) {
     return Expanded(
       child: RefreshIndicator(
-          onRefresh: () async => widget.onRefresh,
+          onRefresh: () async => widget.onRefresh(),
           child: Stack(
             children: [
               ListView(),
@@ -187,7 +187,8 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                           height: 96,
                                           color: Colors.black26,
                                           child: Center(
-                                              child: Text("Tutup",
+                                              child: Text(
+                                                  I10n.current.outlet_closed,
                                                   style: TextStyle(
                                                     fontFamily: "roboto",
                                                     color: Colors.white,

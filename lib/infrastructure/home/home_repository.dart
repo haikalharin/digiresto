@@ -217,6 +217,7 @@ class HomeRepository implements IHomeRepository {
     required int page,
     required String location,
     String? search,
+    required bool isHideOpen,
   }) async {
     try {
       final userAddress = await getUserAddress();
@@ -235,7 +236,7 @@ class HomeRepository implements IHomeRepository {
         "filter": search ?? "",
         "location": location,
         "excludeMerchantIds": [],
-        "isHideOpen": true,
+        "isHideOpen": isHideOpen,
         ...menuCategory.param
       };
       final apiResult = await _networkService.postHttp(
