@@ -2,12 +2,17 @@ import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class EmptyOutletWidget extends StatelessWidget {
+class EmptyWidget extends StatelessWidget {
   final void Function() onRefresh;
-  const EmptyOutletWidget({
+  final String? imageAsset;
+  final bool? isSvg;
+  const EmptyWidget({
     Key? key,
     required this.onRefresh,
+    required this.imageAsset,
+    this.isSvg = false,
   }) : super(key: key);
 
   @override
@@ -22,23 +27,29 @@ class EmptyOutletWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                AppAssets.emptyOutlet,
-                height: 80,
-                width: 80,
-              ),
+              isSvg == true
+                  ? SvgPicture.asset(
+                      imageAsset ?? "-",
+                    )
+                  : Image.asset(
+                      imageAsset ?? "-",
+                      height: 80,
+                      width: 80,
+                    ),
               SizedBox(height: 13),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  "We can't find nearby restaurant you're looking for",
-                  style: AppFont.textBlack13Regular.copyWith(
-                    color: AppColors.black,
-                    height: 1.2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              )
+              isSvg == true
+                  ? Container()
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        "We can't find nearby restaurant you're looking for",
+                        style: AppFont.textBlack13Regular.copyWith(
+                          color: AppColors.black,
+                          height: 1.2,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
             ],
           ),
         ],

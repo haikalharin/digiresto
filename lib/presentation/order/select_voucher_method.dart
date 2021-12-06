@@ -4,6 +4,8 @@ import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.d
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -29,47 +31,95 @@ class SelectVouchertMethodScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(
-              iconTheme: IconThemeData(
-                color: Colors.black,
-              ),
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              title:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                ImageIcon(
-                  AssetImage(
-                    AppAssets.iconVoucher,
-                  ),
-                  size: 24,
-                  color: AppColors.redD12B34,
-                ),
-                SizedBox(
-                  width: 12,
-                ),
-                Text(I10n.current.cart_my_voucher,
-                    style: AppFont.textBlack15Bold),
-                SizedBox(
-                  width: 48,
-                ),
-              ]),
-              centerTitle: true,
-              backgroundColor: Colors.white,
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.black,
             ),
-            body: state.maybeMap(getListVoucherOutletSuccess: (r) {
-              return ListView.separated(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: r.response.length,
-                itemBuilder: (context, index) =>
-                    _buildItemList(r.response[index]),
-                separatorBuilder: (context, index) => SizedBox(height: 5),
-              );
-            }, orElse: () {
-              return Container();
-            }));
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              ImageIcon(
+                AssetImage(
+                  AppAssets.iconVoucher,
+                ),
+                size: 24,
+                color: AppColors.redD12B34,
+              ),
+              SizedBox(
+                width: 12,
+              ),
+              Text(I10n.current.cart_my_voucher,
+                  style: AppFont.textBlack15Bold),
+              SizedBox(
+                width: 48,
+              ),
+            ]),
+            centerTitle: true,
+            backgroundColor: Colors.white,
+          ),
+          body: StackWithProgress(
+            isLoading: state.maybeMap(
+              orElse: () => false,
+              loadInProgress: (_) => true,
+            ),
+            children: [
+              Column(
+                children: [
+                  Container(
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: AppColors.grey[50],
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(
+                        color: Colors.black12,
+                        width: 0.5,
+                      ),
+                    ),
+                  ),
+                  state.maybeMap(
+                    getListVoucherOutletSuccess: (r) {
+                      return r.response.isEmpty
+                          ? EmptyWidget(
+                              onRefresh: () {},
+                              imageAsset: AppAssets.emptyVoucher,
+                              isSvg: true,
+                            )
+                          : ListView.separated(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: r.response.length,
+                              itemBuilder: (context, index) =>
+                                  _buildItemList(r.response[index]),
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: 5),
+                            );
+                    },
+                    orElse: () {
+                      return Container();
+                    },
+                  ),
+                ],
+              )
+            ],
+          ),
+          // body: state.maybeMap(
+          //   getListVoucherOutletSuccess: (r) {
+          //     return ListView.separated(
+          //       shrinkWrap: true,
+          //       physics: NeverScrollableScrollPhysics(),
+          //       itemCount: r.response.length,
+          //       itemBuilder: (context, index) =>
+          //           _buildItemList(r.response[index]),
+          //       separatorBuilder: (context, index) => SizedBox(height: 5),
+          //     );
+          //   },
+          //   orElse: () {
+          //     return Container();
+          //   },
+          // ),
+        );
       },
     );
   }

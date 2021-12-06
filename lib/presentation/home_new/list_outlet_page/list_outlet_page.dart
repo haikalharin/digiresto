@@ -126,10 +126,11 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
         );
       },
       builder: (context, state) {
+        bool isLoading = false;
         return StackWithProgress(
           isLoading: state.maybeMap(
             orElse: () => false,
-            loadInProgress: (_) => true,
+            loadInProgress: (_) => isLoading = true,
           ),
           children: [
             Column(
@@ -169,7 +170,12 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : EmptyOutletWidget(onRefresh: onRefresh);
+                      : isLoading
+                          ? Container()
+                          : EmptyWidget(
+                              onRefresh: onRefresh,
+                              imageAsset: AppAssets.emptyOutlet,
+                            );
                 })
               ],
             ),

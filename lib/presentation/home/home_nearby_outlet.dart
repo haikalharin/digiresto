@@ -130,10 +130,12 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
             orElse: () {});
       },
       builder: (context, state) {
+        bool isLoading = false;
+
         return StackWithProgress(
           isLoading: state.maybeMap(
             orElse: () => false,
-            loadInProgress: (_) => true,
+            loadInProgress: (_) => isLoading = true,
           ),
           children: [
             Column(
@@ -170,7 +172,12 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : EmptyOutletWidget(onRefresh: onRefresh);
+                      : isLoading
+                          ? Container()
+                          : EmptyWidget(
+                              onRefresh: onRefresh,
+                              imageAsset: AppAssets.emptyOutlet,
+                            );
                 })
               ],
             ),
