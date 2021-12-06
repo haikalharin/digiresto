@@ -179,25 +179,22 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                       )),
                                 ),
                                 !widget.data[index].isOpen
-                                    ? Positioned.fill(
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(8.0)),
-                                          child: Container(
-                                            width: 96,
-                                            height: 96,
-                                            color: Colors.black26,
-                                            child: Center(
-                                                child: Text("Tutup",
-                                                    style: TextStyle(
-                                                      fontFamily: "roboto",
-                                                      color: Colors.white,
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                    textAlign: TextAlign.left)),
-                                          ),
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(8.0)),
+                                        child: Container(
+                                          width: 96,
+                                          height: 96,
+                                          color: Colors.black26,
+                                          child: Center(
+                                              child: Text("Tutup",
+                                                  style: TextStyle(
+                                                    fontFamily: "roboto",
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                  textAlign: TextAlign.left)),
                                         ),
                                       )
                                     : Container(),
