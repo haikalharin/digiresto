@@ -1,9 +1,8 @@
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
-import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/order/home_order_view_argument.dart';
+import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // ignore: implementation_imports
@@ -17,11 +16,22 @@ class SearchBox extends StatelessWidget {
       padding: EdgeInsets.all(Dimens.defaultMargin),
       child: GestureDetector(
         onTap: () {
-          Get.toNamed(
-            Routers.homeNearbyOutlet,
-            arguments: HomeOrderViewArgument(
-              title: I10n.current.home_nearby_outlet,
-              param: Strings.titleNearby,
+          Get.to(
+            ListOutletPage(
+              MenuCategory(
+                title: Description(en: 'Search', id: 'Cari'),
+                description: Description(en: 'Search', id: 'Cari'),
+                endpoint: 'forward?r=v2/getoutletbylocation',
+                id: 'search',
+                filter: [],
+                icon: '',
+                isEnable: true,
+                isHideViewAll: false,
+                isSearchable: true,
+                model: '',
+                param: {},
+                withLocation: true,
+              ),
             ),
           )?.then((value) {
             Get.context!.read<BottomTabCubit>().checkAllCounter();

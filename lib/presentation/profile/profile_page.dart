@@ -1,7 +1,5 @@
 import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
-import 'package:digiresto/application/home/home_navigation_view_controller.dart';
-import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/application/profile/profile_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
