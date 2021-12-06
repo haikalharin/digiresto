@@ -179,25 +179,32 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                       )),
                                 ),
                                 !widget.data[index].isOpen
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8.0)),
-                                        child: Container(
-                                          width: 96,
-                                          color: Colors.black54,
-                                          child: Center(
-                                              child: Text("Tutup",
-                                                  style: TextStyle(
-                                                    fontFamily: "roboto",
-                                                    color: Colors.white,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                  textAlign: TextAlign.left)),
+                                    ? Positioned.fill(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8.0)),
+                                          child: Container(
+                                            width: 96,
+                                            height: 96,
+                                            color: Colors.black26,
+                                            child: Center(
+                                                child: Text("Tutup",
+                                                    style: TextStyle(
+                                                      fontFamily: "roboto",
+                                                      color: Colors.white,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                    textAlign: TextAlign.left)),
+                                          ),
                                         ),
                                       )
                                     : Container(),
                               ]),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,

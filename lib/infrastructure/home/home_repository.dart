@@ -235,7 +235,7 @@ class HomeRepository implements IHomeRepository {
         "filter": search ?? "",
         "location": location,
         "excludeMerchantIds": [],
-        "isHideOpen": false,
+        "isHideOpen": true,
         ...menuCategory.param
       };
       final apiResult = await _networkService.postHttp(
