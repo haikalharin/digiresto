@@ -94,7 +94,7 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getDriveThruIDMethod() = _GetDriveThruIDMethod;
 
   const factory OrderEvent.setVoucherMethodID(
-      GetListVoucherOutletDataResponse data) = _SetVoucherMethodID;
+      GetListVoucherOutletDataResponse? data) = _SetVoucherMethodID;
 
   const factory OrderEvent.getVoucherMethodID() = _GetVoucherMethodID;
 

@@ -116,8 +116,9 @@ class HomeRepository implements IHomeRepository {
     try {
       final _box = await _storage.openBox(StorageConstants.address);
       final data = await _storage.getJson(_box, key: "address");
+
       await _storage.close(_box);
-      if (data == null) {
+      if (data == null || data.isEmpty) {
         final _currentLocation = await _locationService.determinePosition();
         final apiUrl = Endpoints.urlForward;
         final queryParameter = Endpoints.urlGetGeocode;
@@ -147,6 +148,7 @@ class HomeRepository implements IHomeRepository {
         return right(userAddress);
       }
       final model = UserAddress.fromJson(data);
+      print('object');
       return right(model);
     } on LocationPermissionDenied catch (_) {
       ErrorDialog().showLocationError(onClose: askPermission);

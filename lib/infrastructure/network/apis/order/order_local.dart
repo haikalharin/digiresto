@@ -148,13 +148,19 @@ class OrderLocal {
   }
 
   Future<GetListVoucherOutletDataResponse?> setVoucherMethod(
-      GetListVoucherOutletDataResponse data) async {
+      GetListVoucherOutletDataResponse? data) async {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
+      if (data == null) {
+        await _storage.setJson(_box, key: _voucherMethodKey, object: {});
+        await _storage.close(_box);
+        return null;
+      }
       await _storage.setJson(_box,
           key: _voucherMethodKey, object: data.toJson());
       final object = _storage.getJson(_box, key: _voucherMethodKey);
       final model = GetListVoucherOutletDataResponse.fromJson(object);
+
       await _storage.close(_box);
       return model;
     } catch (e) {
@@ -166,6 +172,9 @@ class OrderLocal {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
       final object = _storage.getJson(_box, key: _voucherMethodKey);
+      if (object.isEmpty) {
+        return null;
+      }
       final model = GetListVoucherOutletDataResponse.fromJson(object);
       await _storage.close(_box);
       return model;

@@ -169,7 +169,12 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : EmptyOutletWidget(onRefresh: onRefresh);
+                      : state.maybeMap(
+                          orElse: () => false,
+                          loadInProgress: (_) => true,
+                        )
+                          ? Container()
+                          : EmptyOutletWidget(onRefresh: onRefresh);
                 })
               ],
             ),

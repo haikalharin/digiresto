@@ -307,7 +307,7 @@ class ProfileAddressWidget extends StatelessWidget {
   }
 
   void getAddress() async {
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode());
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(null));
   }
 
   Future<void> _showDialogAddress(UserAddress userAddress) async {

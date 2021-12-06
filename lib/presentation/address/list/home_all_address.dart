@@ -66,7 +66,8 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 longitude: response.longitute));
           },
           setActiveAddressSuccess: (content) {
-            controller.setActiveAddress(content.response.address!);
+            if (content.response.address == null) {}
+            controller.setActiveAddress(content.response.address ?? '');
           },
           setDefaultFail: (content) {
             print(content);
@@ -90,12 +91,12 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 .read<AddressListBloc>()
                 .add(AddressListEvent.getAllAddress());
             context.read<HomeBloc>().add(HomeEvent.getUserAddress());
-            final address = value.response;
-            controller.setLocalActiveAddress(UserAddress(
-                name: address.name,
-                address: address.address,
-                latitude: address.latitude.toString(),
-                longitude: address.longitude.toString()));
+            // final address = value.response;
+            // controller.setLocalActiveAddress(UserAddress(
+            //     name: address.name,
+            //     address: address.address,
+            //     latitude: address.latitude.toString(),
+            //     longitude: address.longitude.toString()));
             Get.back(closeOverlays: true);
             Get.back();
           },
@@ -465,6 +466,6 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
 
   void getAddress() async {
     Get.context!.read<AddressListBloc>().add(AddressListEvent.getAllAddress());
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode());
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(null));
   }
 }

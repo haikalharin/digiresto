@@ -54,7 +54,9 @@ class OrderState with _$OrderState {
     bool isBuyNow,
   ) = _AddCartSuccess;
 
-  const factory OrderState.updateCart() = _UpdateCartSuccess;
+  const factory OrderState.updateCartSuccess(
+    CartSessionResponse response,
+  ) = _UpdateCartSuccess;
 
   const factory OrderState.removeCartSuccess(CartSessionResponse response) =
       _RemoveCartSuccess;

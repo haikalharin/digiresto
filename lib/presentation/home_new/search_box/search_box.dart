@@ -1,3 +1,4 @@
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
@@ -5,6 +6,8 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+// ignore: implementation_imports
+import 'package:provider/src/provider.dart';
 
 class SearchBox extends StatelessWidget {
   SearchBox({Key? key}) : super(key: key);
@@ -20,7 +23,9 @@ class SearchBox extends StatelessWidget {
               title: I10n.current.home_nearby_outlet,
               param: Strings.titleNearby,
             ),
-          );
+          )?.then((value) {
+            Get.context!.read<BottomTabCubit>().checkAllCounter();
+          });
         },
         child: Container(
           height: 35,

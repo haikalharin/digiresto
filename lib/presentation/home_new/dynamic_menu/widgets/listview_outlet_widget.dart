@@ -253,11 +253,13 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                           child: ElevatedButton(
                                             onPressed: () {
                                               Get.toNamed(
-                                                  Routers.homeSeeAllOutlet,
-                                                  arguments:
-                                                      HomeSeeAllOutletViewArgument(
-                                                          data: widget
-                                                              .data[index]));
+                                                      Routers.homeSeeAllOutlet,
+                                                      arguments:
+                                                          HomeSeeAllOutletViewArgument(
+                                                              data: widget
+                                                                  .data[index]))
+                                                  ?.then((value) =>
+                                                      widget.onRefresh());
                                             },
                                             child: Row(
                                               mainAxisAlignment:

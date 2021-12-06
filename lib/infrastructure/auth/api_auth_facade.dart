@@ -206,6 +206,9 @@ class ApiAuthFacade implements IAuthFacade {
     final _box4 = await _storage.openBox(StorageConstants.orderProduct);
     await _storage.deleteData(_box4);
     await _storage.close(_box4);
+    final _box5 = await _storage.openBox(StorageConstants.security);
+    await _storage.deleteData(_box5);
+    await _storage.close(_box5);
     try {
       await _networkService.getHttp(
         path: Endpoints.urlLogout,

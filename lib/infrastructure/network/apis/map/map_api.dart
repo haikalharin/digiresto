@@ -7,6 +7,7 @@ import 'package:digiresto/domain/core/exceptions/location_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
+import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -24,17 +25,27 @@ class MapApi {
     this.logger,
   );
 
-  Future<Either<Exception, Geocode>> geocode() async {
+  Future<Either<Exception, Geocode>> geocode(GetGeoCodeParam? param) async {
     try {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetGeocode;
-      final _currentLocation = await _locationService.determinePosition();
+      late String latitude;
+      late String longitude;
+      if (param == null) {
+        final _currentLocation = await _locationService.determinePosition();
+        latitude = _currentLocation.latitude.toString();
+        longitude = _currentLocation.longitude.toString();
+      } else {
+        latitude = param.latitude;
+        longitude = param.longitude;
+      }
+
       final apiResult = await _networkService.postHttp(
         path: apiUrl,
         content: {
           "query_string": {
-            "lat": _currentLocation.latitude.toString(),
-            "lng": _currentLocation.longitude.toString(),
+            "lat": latitude,
+            "lng": longitude,
           },
           "body": {}
         },
@@ -42,8 +53,8 @@ class MapApi {
       );
       var userData = (apiResult as Map<String, dynamic>)[
           'data']; //mengambil data data didalam jsonObject
-      userData["latitude"] = _currentLocation.latitude.toString();
-      userData["longitude"] = _currentLocation.longitude.toString();
+      userData["latitude"] = latitude;
+      userData["longitude"] = longitude;
       return right(Geocode.createGeocode(userData));
     } on LocationPermissionDenied catch (e) {
       ErrorDialog().showLocationError(onClose: askPermission);

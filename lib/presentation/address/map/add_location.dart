@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:digiresto/application/address/address_location_screen_controller.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 
@@ -257,6 +259,7 @@ class AddLocationScreen extends GetView<AddressLocationScreenController> {
                     controller.geocode.value!.formattedAddress!;
               },
               setActiveAddressSuccess: (_) {
+                getIt<HomeBloc>().add(HomeEvent.getUserAddress());
                 controller.dispose();
                 Get.back(closeOverlays: true);
                 int count = 0;

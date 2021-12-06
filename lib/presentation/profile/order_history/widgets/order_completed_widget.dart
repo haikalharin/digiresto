@@ -1,6 +1,7 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/common_util.dart';
 import 'package:digiresto/domain/profile/order_history.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_page.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class OrderCompletedWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Kode Struk'),
+                        Text(I10n.current.cart_receipt_code),
                         Text(orderCompleted.receiptCode),
                       ],
                     ),
@@ -92,7 +93,7 @@ class OrderCompletedWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Tipe Order'),
+                        Text(I10n.current.cart_order_type),
                         Text(orderCompleted.salesType),
                       ],
                     ),
@@ -102,7 +103,7 @@ class OrderCompletedWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Status Transaksi'),
+                        Text(I10n.current.nota_title),
                         Text(orderCompleted.status),
                       ],
                     ),
@@ -112,7 +113,7 @@ class OrderCompletedWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Total'),
+                        Text(I10n.current.history_total_payment),
                         Text(CommonUtils.currencyFormat(
                             double.parse(orderCompleted.finalAmount))),
                       ],

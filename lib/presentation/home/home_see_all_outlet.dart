@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_see_all_outlet_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/listview_outlet_widget.dart';
@@ -119,36 +120,43 @@ class _BodyCategoryWidget extends GetView<HomeSeeAllOutletViewController> {
             orElse: () {});
       },
       builder: (context, state) {
-        return Column(
+        return StackWithProgress(
+          isLoading:
+              state.maybeWhen(orElse: () => false, loadInProgress: () => true),
           children: [
-            Container(
-              height: 10,
-              decoration: BoxDecoration(
-                color: AppColors.grey[50],
-                borderRadius: BorderRadius.circular(0),
-                border: Border.all(
-                  color: Colors.black12,
-                  width: 0.5,
+            Column(
+              children: [
+                Container(
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: AppColors.grey[50],
+                    borderRadius: BorderRadius.circular(0),
+                    border: Border.all(
+                      color: Colors.black12,
+                      width: 0.5,
+                    ),
+                  ),
                 ),
-              ),
+                //_search(),
+                Obx(() {
+                  return (controller.listOutlet.length > 0)
+                      ? ListviewOutletWidget(
+                          loadMoreAction: loadMoreOutletByLocation,
+                          onRefresh: onRefresh,
+                          runAction: (param) {
+                            Get.toNamed(Routers.orderDetailOutlet,
+                                    arguments: OrderDetailViewArgument(
+                                        param.id, param.merchantId))
+                                ?.then((value) => onRefresh());
+                          },
+                          height: MediaQuery.of(context).size.height / 1.3,
+                          data: controller.listOutlet,
+                          scrollDirection: Axis.vertical,
+                        )
+                      : Container();
+                })
+              ],
             ),
-            //_search(),
-            Obx(() {
-              return (controller.listOutlet.length > 0)
-                  ? ListviewOutletWidget(
-                      loadMoreAction: loadMoreOutletByLocation,
-                      onRefresh: onRefresh,
-                      runAction: (param) {
-                        Get.toNamed(Routers.orderDetailOutlet,
-                            arguments: OrderDetailViewArgument(
-                                param.id, param.merchantId));
-                      },
-                      height: MediaQuery.of(context).size.height / 1.3,
-                      data: controller.listOutlet,
-                      scrollDirection: Axis.vertical,
-                    )
-                  : Container();
-            })
           ],
         );
       },

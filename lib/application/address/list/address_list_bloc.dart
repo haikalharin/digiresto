@@ -47,7 +47,7 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
       },
       getGeoCode: (request) async* {
         yield AddressListState.loadInProgress();
-        final getGeoCode = await _mapRepository.geocode();
+        final getGeoCode = await _mapRepository.geocode(request.param);
         yield getGeoCode.fold(
             (error) => AddressListState.getGeoCodeFail(error.toString()),
             (data) => AddressListState.getGeoCodeSuccess(data));

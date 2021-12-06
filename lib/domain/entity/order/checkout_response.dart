@@ -29,7 +29,7 @@ class CheckoutDataResponse with _$CheckoutDataResponse {
     required String orderId,
     required dynamic qr,
     required String receiptCode,
-    required String sessionId,
+    required String parentSessionId,
     required CheckoutDataPaymentResponse payment,
   }) = _CheckoutDataResponse;
 
