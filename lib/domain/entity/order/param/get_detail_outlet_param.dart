@@ -11,7 +11,7 @@ GetDetailOutletParam emptyFromJson(String str) =>
 String emptyToJson(GetDetailOutletParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class GetDetailOutletParam with _$GetDetailOutletParam {
+class GetDetailOutletParam with _$GetDetailOutletParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetDetailOutletParam({
     required GetDetailOutletQueryParam queryString,
@@ -23,7 +23,7 @@ abstract class GetDetailOutletParam with _$GetDetailOutletParam {
 }
 
 @freezed
-abstract class GetDetailOutletBodyParam with _$GetDetailOutletBodyParam {
+class GetDetailOutletBodyParam with _$GetDetailOutletBodyParam {
   const factory GetDetailOutletBodyParam() = _GetDetailOutletBodyParam;
 
   factory GetDetailOutletBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -31,7 +31,7 @@ abstract class GetDetailOutletBodyParam with _$GetDetailOutletBodyParam {
 }
 
 @freezed
-abstract class GetDetailOutletQueryParam with _$GetDetailOutletQueryParam {
+class GetDetailOutletQueryParam with _$GetDetailOutletQueryParam {
   const factory GetDetailOutletQueryParam({
     required String outletId,
   }) = _GetDetailOutletQueryParam;

@@ -13,10 +13,14 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    await _storage.openBox(StorageConstants.user);
-    final _userInStorage = await _storage.getData();
+    final _box = await _storage.openBox(StorageConstants.user);
+    final _userInStorage = await _storage.getData(
+      _box,
+    );
     final _userAuth = UserAuth.fromJson(_userInStorage);
     final String? security = _userAuth.token;
+    await _storage.close(_box);
+
     Map<String, dynamic> headers = options.headers;
 
     if (security != null) {
@@ -29,7 +33,6 @@ class AuthInterceptor extends Interceptor {
     //   headers.addAll({"Authorization": "Bearer $_token"});
     // }
     options.headers = headers;
-    await _storage.close();
 
     super.onRequest(options, handler);
   }

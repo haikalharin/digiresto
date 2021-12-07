@@ -1,6 +1,23 @@
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
+  static String formatSalesType(String type) {
+    switch (type) {
+      case "dineIn":
+        return I10n.current.landing_dine_in;
+      case "takeAway":
+        return I10n.current.landing_take_away;
+      case "onlineDriver":
+        return I10n.current.landing_delivery;
+      case "driveThru":
+        return I10n.current.landing_drive_thru;
+      default:
+        return "";
+    }
+  }
+
   static String formatRupiah(String? balance) {
     if (balance == "0" ||
         balance == null ||

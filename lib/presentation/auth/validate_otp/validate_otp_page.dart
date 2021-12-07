@@ -1,17 +1,20 @@
 import 'dart:async';
 
+import 'package:digiresto/application/auth/auth_bloc.dart';
 import 'package:digiresto/application/auth/validate_otp/validate_otp_bloc.dart';
+import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
+import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/register/register_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class ValidateOtpPage extends StatelessWidget {
@@ -44,17 +47,52 @@ class ValidateOtpForm extends StatefulWidget {
 }
 
 class _ValidateOtpFormState extends State<ValidateOtpForm> {
+  late final _authBloc = BlocProvider.of<AuthBloc>(context);
   late final _validateBloc = BlocProvider.of<ValidateOtpBloc>(context);
   late final errorController = StreamController<ErrorAnimationType>();
+  late Timer _timer;
+  int _start = 60;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    setState(() {
+      _start = 60;
+    });
+    _timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      startTimer();
+    });
+  }
 
   @override
   void dispose() {
+    _timer.cancel();
+
     errorController.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return BlocConsumer<ValidateOtpBloc, ValidateOtpState>(
       bloc: _validateBloc
         ..add(
@@ -66,123 +104,139 @@ class _ValidateOtpFormState extends State<ValidateOtpForm> {
         state.validateFailureOrSuccess.fold(
           () => null,
           (success) => success.fold(
-            (l) => Get.defaultDialog(
-                title: 'Error',
-                middleText: l.maybeMap(
-                  orElse: () => 'unknown',
-                  invalidOtp: (_) => 'Invalid Otp',
-                )),
-            // (isMember) => Get.to(RegisterPage(widget.phoneNumber)),
-            (login) => login.isMember
-                ? Get.offAllNamed(Routers.auth)
-                : Get.to(RegisterPage(widget.phoneNumber)),
+            (l) {},
+            (login) async {
+              _authBloc.add(AuthEvent.authCheckRequested());
+              login.isMember
+                  ? Get.offAllNamed(Routers.auth)
+                  : Get.to(RegisterPage(widget.phoneNumber));
+            },
           ),
         );
       },
       builder: (context, state) {
-        return StackWithProgress(
-          isLoading: state.isSubmitting,
-          children: [
-            AuthScafold(
-              headerCurvedHeight: 250,
-              title: 'Verify phone',
-              suffixWidget: GestureDetector(
-                child: Icon(
-                  Icons.help_outline,
-                  color: Colors.white,
-                  size: 30,
-                ),
+        return WillPopScope(
+          onWillPop: () async {
+            Get.offAll(
+              LoginPage(
+                phoneNumber: widget.phoneNumber,
               ),
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: Styles.loginDescStyle.copyWith(height: 1.7),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: """Silakan masukkan 6 digit kode verifikasi
-yang kami kirim ke WhatsApp/SMS Anda
-di nomor """,
-                        ),
-                        TextSpan(
-                          text: widget.phoneNumber,
-                          style: Styles.loginDescStyle.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.yellow,
-                          ),
-                        ),
-                        TextSpan(
-                          text:
-                              """. Harap masukkan kode terbaru untuk melanjutkan.
-
-Jika Anda tidak menerima kode,
-klik kirim ulang kode. """,
-                        ),
-                      ],
+            );
+            return true;
+          },
+          child: StackWithProgress(
+            isLoading: state.isSubmitting,
+            children: [
+              AuthScafold(
+                onBackTap: () {
+                  Get.offAll(
+                    LoginPage(
+                      phoneNumber: widget.phoneNumber,
                     ),
+                  );
+                },
+                headerCurvedHeight: 250,
+                title: i10n.verify_phone,
+                suffixWidget: GestureDetector(
+                  child: Icon(
+                    Icons.help_outline,
+                    color: Colors.white,
+                    size: 30,
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  PinCodeTextField(
-                    errorAnimationController: errorController,
-                    autovalidateMode: state.showErrorMessages
-                        ? AutovalidateMode.always
-                        : AutovalidateMode.disabled,
-                    validator: (_) => state.validateFailureOrSuccess.fold(
-                      () => null,
-                      (a) => a.fold(
-                        (failure) => failure.maybeMap(
-                          orElse: () => 'Unknown Error',
-                          invalidOtp: (e) => e.message,
-                        ),
-                        (r) => null,
+                ),
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  children: [
+                    SizedBox(
+                      height: 30,
+                    ),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: Styles.loginDescStyle.copyWith(height: 1.7),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: i10n.input_otp_desc,
+                          ),
+                          TextSpan(
+                            text: ' ${widget.phoneNumber}',
+                            style: Styles.loginDescStyle.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.yellow,
+                            ),
+                          ),
+                          TextSpan(
+                            text: """. ${i10n.input_otp_desc2}
+
+${i10n.text_kirim_ulang}. """,
+                          ),
+                        ],
                       ),
                     ),
-                    enableActiveFill: true,
-                    keyboardType: TextInputType.number,
-                    pinTheme: PinTheme(
-                      borderWidth: 0,
-                      shape: PinCodeFieldShape.box,
-                      borderRadius: BorderRadius.circular(6),
-                      fieldHeight: 55,
-                      fieldWidth: 45,
-                      activeFillColor: Colors.white,
-                      inactiveFillColor: Colors.white,
-                      selectedFillColor: Colors.white,
+                    SizedBox(
+                      height: 40,
                     ),
-                    hintCharacter: '●',
-                    hintStyle: Styles.hintStyle.copyWith(
-                      fontSize: 42,
-                      color: AppColors.greyColor,
-                      height: 1,
+                    PinCodeTextField(
+                      errorAnimationController: errorController,
+                      autovalidateMode: state.showErrorMessages
+                          ? AutovalidateMode.always
+                          : AutovalidateMode.disabled,
+                      validator: (_) => state.validateFailureOrSuccess.fold(
+                        () => null,
+                        (a) => a.fold(
+                          (failure) => failure.maybeMap(
+                            orElse: () => 'Unknown Error',
+                            invalidOtp: (e) => i10n.errorInvalidOtp,
+                          ),
+                          (r) => null,
+                        ),
+                      ),
+                      enableActiveFill: true,
+                      keyboardType: TextInputType.number,
+                      pinTheme: PinTheme(
+                        borderWidth: 0,
+                        shape: PinCodeFieldShape.box,
+                        borderRadius: BorderRadius.circular(6),
+                        fieldHeight: 55,
+                        fieldWidth: 45,
+                        activeFillColor: Colors.white,
+                        inactiveFillColor: Colors.white,
+                        selectedFillColor: Colors.white,
+                      ),
+                      hintCharacter: '●',
+                      hintStyle: Styles.hintStyle.copyWith(
+                        fontSize: 42,
+                        color: AppColors.greyColor,
+                        height: 1,
+                      ),
+                      appContext: context,
+                      length: 6,
+                      onChanged: (text) {},
+                      onCompleted: (otp) => _validateBloc.add(
+                        ValidateOtpEvent.inputSubmitting(
+                            widget.phoneNumber, otp),
+                      ),
                     ),
-                    appContext: context,
-                    length: 6,
-                    onChanged: (text) {},
-                    onCompleted: (otp) => _validateBloc.add(
-                      ValidateOtpEvent.inputSubmitting(widget.phoneNumber, otp),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomButton(
-                    onPressed: () => _validateBloc.add(
-                      ValidateOtpEvent.resendOtp(widget.phoneNumber),
+                    CustomButton(
+                      onPressed: _start == 0
+                          ? () {
+                              startTimer();
+                              _validateBloc.add(
+                                ValidateOtpEvent.resendOtp(widget.phoneNumber),
+                              );
+                            }
+                          : () {},
+                      margin: EdgeInsets.zero,
+                      label: i10n.input_otp_resend_code('$_start'),
                     ),
-                    margin: EdgeInsets.zero,
-                    label: 'Kirim Ulang',
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

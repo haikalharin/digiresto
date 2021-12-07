@@ -1,8 +1,10 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
+import 'package:get/get.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_webservice/places.dart';
 
@@ -40,11 +42,11 @@ class AutoCompleteAddress {
       },
       strictbounds: false,
       mode: Mode.overlay,
-      language: "en",
+      language: I10n.current.lang,
       inputDecoration: InputDecoration(
         contentPadding:
             EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-        hintText: '        Masukkan alamat',
+        hintText: '        ${I10n.current.address_edit_title}',
         hintStyle: AppFont.textGreyField12Regular.copyWith(),
         focusedBorder: InputBorder.none,
         enabledBorder: InputBorder.none,

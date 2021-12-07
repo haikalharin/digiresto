@@ -1,59 +1,40 @@
 import 'dart:async';
 
+import 'package:digiresto/application/address/address_location_screen_controller.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/address/map/autocomplete_address.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomeAddLocationScreenController extends GetxController {}
-
-class HomeAddLocationScreen extends StatefulWidget {
-  @override
-  State<HomeAddLocationScreen> createState() => HomeAddLocationScreenState();
-}
-
-class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
-  final profileCancel = 'Cancel';
-  GoogleMapController? mapController;
-  LatLng? _lastMapPosition;
-  ImageIcon marker = ImageIcon(AssetImage(AppAssets.iconMarker),
-      size: 36, color: AppColors.red);
-  ImageIcon markerMove = ImageIcon(AssetImage(AppAssets.iconMarkerMove),
-      size: 36, color: AppColors.red);
-  bool isMarkerMove = false;
-  bool isMarkerClicked = false;
-  Geocode? _geocode;
-
+class AddLocationScreen extends GetView<AddressLocationScreenController> {
   final LatLng _center = const LatLng(-6.175483, 106.826852);
   final _addressController = TextEditingController();
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  void _onMapCreated(GoogleMapController mapController) {
+    controller.mapController.value = mapController;
   }
 
   void _onCameraMove(CameraPosition position) {
-    setState(() {
-      _lastMapPosition = position.target;
-      isMarkerMove = true;
-      isMarkerClicked = false;
-    });
+    controller.lastMapPosition.value = position.target;
+    controller.isMarkerMove.value = true;
+    controller.isMarkerClicked.value = false;
   }
 
   void _onCameraMoveEnd() {
-    setState(() {
-      isMarkerMove = false;
-    });
+    controller.isMarkerMove.value = false;
   }
 
   void _onClickSetDestination() {
@@ -61,63 +42,66 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
   }
 
   _getCurrentLocation() {
-    Loading.show();
     print("get current location deefault gps");
     Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.best,
             forceAndroidLocationManager: true)
         .then((Position position) {
-      Loading.dismiss();
-      mapController!.animateCamera(
+      controller.mapController.value!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
               target: LatLng(position.latitude, position.longitude), zoom: 15),
         ),
       );
     }).catchError((e) {
-      Loading.dismiss();
       print(e);
     });
   }
 
-  @override
-  void setState(fn) {
-    // TODO: implement setState
-    super.setState(fn);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _getCurrentLocation();
-  }
-
   void getGeocode() {
-    Loading.show();
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.getGeoCode(
         GetGeoCodeParam(
-            latitude: _lastMapPosition!.latitude.toString(),
-            longitude: _lastMapPosition!.longitude.toString())));
+            latitude: controller.lastMapPosition.value!.latitude.toString(),
+            longitude:
+                controller.lastMapPosition.value!.longitude.toString())));
   }
 
   void addAddress() {
     Get.context!.read<AddressMapBloc>().add(AddressMapEvent.setActiveAddress(
         UserAddress(
             address: _addressController.text.toString(),
-            latitude: _lastMapPosition!.latitude.toString(),
-            longitude: _lastMapPosition!.longitude.toString())));
+            latitude: controller.lastMapPosition.value!.latitude.toString(),
+            longitude:
+                controller.lastMapPosition.value!.longitude.toString())));
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding:
               EdgeInsets.only(top: 10, bottom: 10, right: 18, left: 18),
-          title: Text("Detail Location",
-              textAlign: TextAlign.center, style: AppFont.textBlack17Bold),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Text(I10n.current.address_location_detail,
+                    textAlign: TextAlign.center,
+                    style: AppFont.textBlack17Bold),
+              ),
+              GestureDetector(
+                  onTap: () {
+                    Get.back(closeOverlays: true);
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: 24,
+                    color: AppColors.black,
+                  ))
+            ],
+          ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(14.0))),
           content: SingleChildScrollView(
@@ -131,7 +115,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                     decoration: new InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: "address",
+                      hintText: I10n.current.address_name,
                       border: new OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: BorderSide(
@@ -159,7 +143,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                     // Only numbers can be entered
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter your address';
+                        return I10n.current.error_input_address;
                       }
                       return null;
                     },
@@ -170,47 +154,54 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 120,
-                        height: 40,
-                        child: RaisedButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          color: Colors.white,
-                          child: Text(profileCancel,
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.red)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
+                      // SizedBox(
+                      //   width: 120,
+                      //   height: 40,
+                      //   child: ElevatedButton(
+                      //     onPressed: () {
+                      //       Get.back();
+                      //     },
+                      //     style: ElevatedButton.styleFrom(
+                      //       primary: AppColors.white,
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: new BorderRadius.circular(10.0),
+                      //         side: BorderSide(
+                      //           width: 1,
+                      //           color: AppColors.red,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     child: Text(controller.cancelText,
+                      //         style: TextStyle(
+                      //             fontSize: 14,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: AppColors.red)),
+                      //   ),
+                      // ),
+                      Expanded(
+                        child: SizedBox(
+                          //width: 120,
+                          height: 49,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              addAddress();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size.infinite,
+                              primary: AppColors.red,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: AppColors.red,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 120,
-                        height: 40,
-                        child: RaisedButton(
-                          onPressed: () {
-                            addAddress();
-                          },
-                          color: AppColors.red,
-                          child: Text("Save",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                            side: BorderSide(
-                              width: 1,
-                              color: AppColors.red,
-                            ),
+                            child: Text(I10n.current.address_add,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
                           ),
                         ),
                       ),
@@ -228,13 +219,17 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(AddressLocationScreenController());
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back_outlined,
                 color: Colors.black, size: 28.0),
-            onPressed: () => Get.back(),
+            onPressed: () {
+              controller.dispose();
+              Get.back();
+            },
           ),
           title: Container(
             transform: Matrix4.translationValues(-24, 0, 0),
@@ -246,7 +241,8 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                   child: ImageIcon(AssetImage(AppAssets.iconGps),
                       size: 20, color: AppColors.red),
                 ),
-                Text('Lokasi Sekarang', style: AppFont.textBlack15Bold),
+                Text(I10n.current.address_use_current_location,
+                    style: AppFont.textBlack15Bold),
               ],
             ),
           )),
@@ -255,18 +251,19 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
           state.maybeMap(
               getGeoCodeFail: (value) {
                 Ctoast.show("failed get addrress");
-                Loading.dismiss();
               },
               getGeoCodeSuccess: (response) {
-                Loading.dismiss();
-                setState(() {
-                  _geocode = response.response;
-                  isMarkerClicked = true;
-                });
-                _addressController.text = _geocode!.formattedAddress!;
+                controller.geocode.value = response.response;
+                controller.isMarkerClicked.value = true;
+                _addressController.text =
+                    controller.geocode.value!.formattedAddress!;
               },
               setActiveAddressSuccess: (_) {
-                Get.until((route) => route.isFirst);
+                getIt<HomeBloc>().add(HomeEvent.getUserAddress());
+                controller.dispose();
+                Get.back(closeOverlays: true);
+                int count = 0;
+                Get.until((route) => count++ == 2);
               },
               orElse: () {});
         },
@@ -286,38 +283,20 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
             Center(
               child: Container(
                 padding: EdgeInsets.only(bottom: 50),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    isMarkerMove || isMarkerClicked == true
-                        ? Container(
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.transparent,
-                                border:
-                                    Border.all(color: AppColors.greyStroke)),
-                            child: Text("",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                textAlign: TextAlign.center),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              _onClickSetDestination();
-                            },
-                            child: Container(
+                child: Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      controller.isMarkerMove.value ||
+                              controller.isMarkerClicked.value == true
+                          ? Container(
                               padding: EdgeInsets.all(7),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: AppColors.red,
+                                  color: Colors.transparent,
                                   border:
                                       Border.all(color: AppColors.greyStroke)),
-                              child: Text("Click To Set Destination",
+                              child: Text("",
                                   style: TextStyle(
                                     fontFamily: "roboto",
                                     color: Colors.white,
@@ -325,10 +304,30 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                                     fontWeight: FontWeight.normal,
                                   ),
                                   textAlign: TextAlign.center),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                _onClickSetDestination();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(14),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(37),
+                                    color: AppColors.red,
+                                    border: Border.all(
+                                        color: AppColors.greyStroke)),
+                                child: Text(
+                                    I10n.current.address_set_destionation,
+                                    style: AppFont.textBlack14Bold
+                                        .copyWith(color: AppColors.white),
+                                    textAlign: TextAlign.center),
+                              ),
                             ),
-                          ),
-                    isMarkerMove ? markerMove : marker,
-                  ],
+                      controller.isMarkerMove.value
+                          ? controller.markerMove
+                          : controller.marker,
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -365,7 +364,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                     ),
                   ),
                 ),
-                isMarkerClicked
+                controller.isMarkerClicked.value
                     ? Container(
                         alignment: Alignment.bottomCenter,
                         height: 180,
@@ -377,13 +376,8 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                               padding: EdgeInsets.all(20),
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "Set Destination Location",
-                                style: TextStyle(
-                                  fontFamily: "roboto",
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                I10n.current.address_set_destionation_location,
+                                style: AppFont.textBlack15Bold,
                                 textAlign: TextAlign.start,
                               ),
                             ),
@@ -394,8 +388,10 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                               ),
                               alignment: Alignment.topLeft,
                               child: Text(
-                                _geocode?.formattedAddress != null
-                                    ? _geocode!.formattedAddress.toString()
+                                controller.geocode.value?.formattedAddress !=
+                                        null
+                                    ? controller.geocode.value!.formattedAddress
+                                        .toString()
                                     : "-",
                                 style: TextStyle(
                                   fontFamily: "roboto",
@@ -413,20 +409,27 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                               child: SizedBox(
                                 width: double.infinity,
                                 height: 44,
-                                child: RaisedButton(
-                                    onPressed: () {
-                                      print("i use this location");
-                                      _showMyDialog(Get.context!);
-                                    },
-                                    color: AppColors.red,
-                                    child: Text("Use This Location",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    print("i use this location");
+                                    _showMyDialog(Get.context!);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: AppColors.red,
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(30.0))),
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text(
+                                      I10n.current.address_use_this_location,
+                                      style: AppFont.textBlack14Bold
+                                          .copyWith(color: AppColors.white)),
+                                ),
                               ),
                             ),
                           ],
@@ -453,7 +456,7 @@ class HomeAddLocationScreenState extends State<HomeAddLocationScreen> {
                       width: MediaQuery.of(Get.context!).size.width * 0.8,
                       child: AutoCompleteAddress().defaultWidget(
                           onSuccess: (place) {
-                        mapController!.animateCamera(
+                        controller.mapController.value!.animateCamera(
                           CameraUpdate.newCameraPosition(
                             CameraPosition(
                                 target: LatLng(place.geometry!.location.lat,

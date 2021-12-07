@@ -22,4 +22,12 @@ class HomeUserState with _$HomeUserState {
       _GetActiveAddressSuccess;
   const factory HomeUserState.getActiveAddressFail(String message) =
       _GetActiveAddressFail;
+  const factory HomeUserState.getCartSessionIDSuccess(String? sessionID) =
+      _GetCartSessionIDSuccess;
+  const factory HomeUserState.getCartSessionIDFail(String message) =
+      _GetCartSessionIDFail;
+  const factory HomeUserState.getCreditCountSuccess(int count) =
+      _GetCreditCountSuccess;
+  const factory HomeUserState.getCreditCountFail(String message) =
+      _GetCreditCountFail;
 }

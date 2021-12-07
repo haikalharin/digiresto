@@ -7,10 +7,14 @@ import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -32,6 +36,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
         ),
         tag: "home");
     Get.put(HomeContentViewController());
+    controller.getRefresh();
     showTutorial(context);
     return BlocConsumer<HomeUserBloc, HomeUserState>(
       listener: (context, state) {
@@ -61,6 +66,8 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     controller.setActiveAddress(data.list[0].address!);
                   }
                 }
+              } else {
+                controller.getAddress();
               }
               controller.setListAddress(data.list);
             },
@@ -91,48 +98,55 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     ],
                   ),
                   Expanded(
-                      child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _StaticBanner(key: GuideKeys.banner),
-                        _trackOrder(),
-                        Container(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _FoodRowItem(
-                                key: GuideKeys.terdekat,
-                                imageAsset: AppAssets.iconHomeNearby,
-                                label: Strings.titleNearby,
-                              ),
-                              _FoodRowItem(
-                                  key: GuideKeys.digidiscount,
-                                  imageAsset: AppAssets.iconHomeDiscount,
-                                  label: Strings.titleDigidiscount),
-                            ],
+                      child: RefreshIndicator(
+                    onRefresh: () async {
+                      controller.getRefresh();
+                    },
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          StaticBannerWidget(
+                            key: GuideKeys.banner,
+                            controller: controller,
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _FoodRowItem(
-                                key: GuideKeys.frozenfood,
-                                imageAsset: AppAssets.iconFrozenFood,
-                                label: Strings.titleFrozenFood,
-                              ),
-                              _FoodRowItem(
-                                key: GuideKeys.indonesiapastibisa,
-                                imageAsset: AppAssets.iconIndPastiBisa,
-                                label: Strings.titleIndonesiaPastiBisa,
-                              ),
-                            ],
+                          _trackOrder(),
+                          Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                _FoodRowItem(
+                                  key: GuideKeys.terdekat,
+                                  imageAsset: AppAssets.iconHomeNearby,
+                                  label: I10n.current.home_nearby_outlet,
+                                ),
+                                _FoodRowItem(
+                                    key: GuideKeys.digidiscount,
+                                    imageAsset: AppAssets.iconHomeDiscount,
+                                    label: I10n.current.home_digidiskon),
+                              ],
+                            ),
                           ),
-                        ),
-                        _singleAdvertisement(),
-                      ],
+                          Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                _FoodRowItem(
+                                    key: GuideKeys.frozenfood,
+                                    imageAsset: AppAssets.iconFrozenFood,
+                                    label: I10n.current.home_frozen_food),
+                                _FoodRowItem(
+                                  key: GuideKeys.indonesiapastibisa,
+                                  imageAsset: AppAssets.iconIndPastiBisa,
+                                  label: Strings.titleIndonesiaPastiBisa,
+                                ),
+                              ],
+                            ),
+                          ),
+                          _singleAdvertisement(),
+                        ],
+                      ),
                     ),
                   )),
                 ],
@@ -147,53 +161,50 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
   Widget _hotPromo() {
     var _loadingHotPromo =
         Get.find<HomeContentViewController>().loadingHotPromo;
-    return //_orderStore?.listHotPromo != null || _loSadingHotPromo == true
-        true
-            ? Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(left: 10),
-                                child: GestureDetector(
-                                    child: Text(
-                                      "Hot promo",
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                    ),
-                                    onTap: () {}),
-                              ),
-                              _loadingHotPromo.value == true
-                                  ? CustomProgressIndicatorWidget(size: 20)
-                                  : Container(),
-                            ],
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(right: 10),
-                            child: GestureDetector(
-                                child: Text(
-                                  "See all",
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.red),
-                                ),
-                                onTap: () {
-                                  Get.toNamed(Routers.homeAllHotPromo);
-                                }),
-                          )
-                        ]),
-                  ],
-                ))
-            : Container();
+    return Container(
+        padding: EdgeInsets.only(top: 10),
+        child: Column(
+          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: GestureDetector(
+                            child: Text(
+                              I10n.current.home_hot_promo,
+                              style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            onTap: () {}),
+                      ),
+                      _loadingHotPromo.value == true
+                          ? CustomProgressIndicatorWidget(size: 20)
+                          : Container(),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                        child: Text(
+                          I10n.current.home_see_all,
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.red),
+                        ),
+                        onTap: () {
+                          Get.toNamed(Routers.homeAllHotPromo);
+                        }),
+                  )
+                ]),
+          ],
+        ));
   }
 
   Widget _historyOrder() {
@@ -211,7 +222,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                             padding: EdgeInsets.only(left: 10),
                             child: GestureDetector(
                                 child: Text(
-                                  "Pesan Lagi ",
+                                  I10n.current.beranda_recent_order,
                                   style: TextStyle(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.bold,
@@ -246,7 +257,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                         padding: EdgeInsets.only(left: 10),
                         child: GestureDetector(
                           child: Text(
-                            "Lacak orderan anda",
+                            I10n.current.tv_track_your_order,
                             style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold,
@@ -291,12 +302,13 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding: const EdgeInsets.only(top: 5, left: 10),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Bergabung menjadi Mitra",
+                      I10n.current.home_join_digimitra,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -311,7 +323,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                     width: MediaQuery.of(Get.context!).size.width / 2,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Terima pembayaran nontunai dan melakukan pengiriman instant menjadi lebih mudah",
+                      I10n.current.home_join_digimitra_desc,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
@@ -331,18 +343,21 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
                   child: SizedBox(
                     width: MediaQuery.of(Get.context!).size.width / 2 - 40,
                     height: 45,
-                    child: RaisedButton(
-                        onPressed: () {
-                          LaunchUrl.run("https://www.digiresto.co.id/");
-                        },
-                        color: AppColors.redYoung,
-                        child: Text("Selengkapnya",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(25.0))),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        LaunchUrl.run("https://www.digiresto.co.id/",
+                            onError: () {}, onSuccess: () {});
+                      },
+                      style: ElevatedButton.styleFrom(
+                          primary: AppColors.redYoung,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(25.0))),
+                      child: Text(I10n.current.home_join_digimitra_action,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white)),
+                    ),
                   ),
                 ),
               ),
@@ -354,10 +369,6 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
         ],
       ),
     );
-  }
-
-  void goToAddLocation() {
-    Get.toNamed(Routers.homeAllAddress);
   }
 
   _getCurrentLocation() async {
@@ -375,8 +386,7 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
       Get.find<HomeContentViewController>().setLoadingListAddress(false);
     }).catchError((e) {
       Get.find<HomeContentViewController>().setLoadingListAddress(false);
-      ErrorPopupWidget.show(Get.context!, "Digiresto",
-          "Lokasi saat ini tidak dapat terdeteksi,tentukan titik lokasi sekarang",
+      ErrorPopupWidget.show("Digiresto", I10n.current.cart_address_not_valid,
           () {
         {
           Get.back();
@@ -413,8 +423,13 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
   }
 }
 
-class _StaticBanner extends GetView<HomeContentViewController> {
-  _StaticBanner({Key? key}) : super(key: key);
+class StaticBannerWidget extends StatelessWidget {
+  final HomeContentViewController controller;
+
+  const StaticBannerWidget({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
   _showDetailImage(String imageUrl) {
     Navigator.of(Get.context!).push(TransparentRoute(
         builder: (BuildContext context) =>
@@ -452,10 +467,11 @@ class _StaticBanner extends GetView<HomeContentViewController> {
                     child: Image(
                       image: data.promoBanner?.substring(1, 4) == 'data:'
                           ? MemoryImage(
-                              Base64Decoder().convert(data.promoBanner!))
-                          : NetworkImage(data.promoBanner!) as ImageProvider,
+                              Base64Decoder().convert(data.promoBanner!),
+                              scale: 0.5)
+                          : NetworkImage(data.promoBanner!, scale: 0.5)
+                              as ImageProvider,
                       fit: BoxFit.fill,
-                      height: 150,
                       alignment: Alignment.topCenter,
                     ),
                   )
@@ -471,7 +487,7 @@ class _StaticBanner extends GetView<HomeContentViewController> {
           padding: EdgeInsets.only(
             bottom: 10,
           ),
-          height: MediaQuery.of(Get.context!).size.height / 3 - 20,
+          height: Get.height * 0.25,
           width: double.infinity,
           child: PageView(
             scrollDirection: Axis.horizontal,
@@ -485,39 +501,41 @@ class _StaticBanner extends GetView<HomeContentViewController> {
             ],
           ),
         ),
-        Container(
-          padding: EdgeInsets.only(left: 10, top: 5, right: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+        Obx(() => Container(
+              padding: EdgeInsets.only(left: 10, top: 5, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  for (int i = 0; i < controller.listStaticBanner.length; i++)
-                    i == controller.slideIndex.value
-                        ? _buildPageIndicator(true)
-                        : _buildPageIndicator(false),
+                  Row(
+                    children: [
+                      for (int i = 0;
+                          i < controller.listStaticBanner.length;
+                          i++)
+                        i == controller.slideIndex.value
+                            ? _buildPageIndicator(true)
+                            : _buildPageIndicator(false),
+                    ],
+                  ),
+                  //hidden see all promo request by user
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         "Lihat semua promo",
+                  //         style: AppFont.textRed14Bold,
+                  //       ),
+                  //       SizedBox(width: 9),
+                  //       Image(
+                  //         image: new AssetImage(AppAssets.iconForwardRed),
+                  //         height: 12,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                 ],
               ),
-              //hidden see all promo request by user
-              // GestureDetector(
-              //   onTap: () {},
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         "Lihat semua promo",
-              //         style: AppFont.textRed14Bold,
-              //       ),
-              //       SizedBox(width: 9),
-              //       Image(
-              //         image: new AssetImage(AppAssets.iconForwardRed),
-              //         height: 12,
-              //       ),
-              //     ],
-              //   ),
-              // )
-            ],
-          ),
-        )
+            ))
       ],
     );
   }
@@ -527,57 +545,75 @@ class _YourLocation extends GetView<HomeContentViewController> {
   _YourLocation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.toNamed(Routers.homeAllAddress);
+    return BlocListener<AddressListBloc, AddressListState>(
+      listener: (context, state) {
+        state.maybeMap(
+            orElse: () {},
+            getGeoCodeSuccess: (_state) {
+              var response = _state.response;
+              final userAddress = UserAddress(
+                  address: response.formattedAddress,
+                  latitude: response.latitude,
+                  longitude: response.longitute);
+              controller.setCurrentLocation(userAddress);
+              controller.setActiveAddress(userAddress.address ?? '');
+              controller.setLocalActiveAddress(userAddress);
+            },
+            getGeoCodeFail: (_state) {
+              ErrorDialog().showError(
+                error: StatusMessageDisplayResponse(
+                  id: I10n.current.cart_address_not_valid,
+                  en: I10n.current.cart_address_not_valid,
+                ),
+              );
+            });
       },
-      child: Container(
-        padding: EdgeInsets.only(left: 10, right: 10),
-        child: Row(
-          children: [
-            ImageIcon(AssetImage(AppAssets.iconMarkerMove),
-                size: 24, color: AppColors.red),
-            Container(
-              width: MediaQuery.of(Get.context!).size.width - 50,
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Text("Lokasi Kamu",
-                            style: TextStyle(
-                              fontFamily: "roboto",
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                            )),
-                        new Icon(Icons.keyboard_arrow_down,
-                            color: AppColors.red, size: 28.0),
-                        controller.loadingListAddress.value == true
-                            ? CustomProgressIndicatorWidget(size: 15)
-                            : Container(),
-                      ],
-                    ),
-                  ),
-                  Obx(() {
-                    return Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        controller.activeAddress.value,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: "roboto",
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed(Routers.homeAllAddress)!.then((value) {
+            controller.getActiveAddress();
+          });
+        },
+        child: Container(
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconMarkerMove),
+                  size: 28, color: AppColors.red),
+              Container(
+                width: MediaQuery.of(Get.context!).size.width - 50,
+                padding: EdgeInsets.only(left: 10),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          Text(I10n.current.home_address,
+                              style: AppFont.textBlack13Regular),
+                          new Icon(Icons.keyboard_arrow_down,
+                              color: AppColors.red, size: 28.0),
+                          controller.loadingListAddress.value == true
+                              ? CustomProgressIndicatorWidget(size: 15)
+                              : Container(),
+                        ],
                       ),
-                    );
-                  })
-                ],
+                    ),
+                    Obx(() {
+                      return Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          controller.activeAddress.value,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppFont.textBlack14Bold,
+                        ),
+                      );
+                    })
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -591,7 +627,9 @@ class _SearchBox extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.toNamed(Routers.homeNearbyOutlet,
-            arguments: HomeOrderViewArgument(title: Strings.titleNearby));
+            arguments: HomeOrderViewArgument(
+                title: I10n.current.home_nearby_outlet,
+                param: Strings.titleNearby));
       },
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
@@ -609,12 +647,9 @@ class _SearchBox extends StatelessWidget {
                   color: AppColors.grey[100],
                   size: 18,
                 )),
-            Text("Temukan makanan favorit anda",
-                style: TextStyle(
-                  fontFamily: "roboto",
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                )),
+            Text(I10n.current.home_search_food_hint,
+                style: AppFont.textBlack12Regular
+                    .copyWith(color: AppColors.greyField)),
           ],
         ),
       ),
@@ -633,44 +668,49 @@ class _FoodRowItem extends GetView<HomeContentViewController> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         if (label == Strings.titleDigidiscount) {
           Get.toNamed(Routers.homeDigiDiscount,
-              arguments: HomeOrderViewArgument(title: label));
+              arguments: HomeOrderViewArgument(title: label, param: label));
         } else if (label == Strings.titleFrozenFood ||
             label == Strings.titleIndonesiaPastiBisa) {
           Get.toNamed(Routers.homeOutletCategory,
-              arguments: HomeOrderViewArgument(title: label));
+              arguments: HomeOrderViewArgument(title: label, param: label));
         } else {
           Get.toNamed(Routers.homeNearbyOutlet,
-              arguments: HomeOrderViewArgument(title: label));
+              arguments: HomeOrderViewArgument(title: label, param: label));
         }
       },
-      child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image(
-                image: new AssetImage(imageAsset),
-                height: 60,
-              ),
-              Text(
-                label,
-                style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.red),
-              )
-            ],
-          ),
-          margin: EdgeInsets.only(left: 10, right: 5),
-          height: 100,
-          width: MediaQuery.of(Get.context!).size.width / 2 - 20,
-          decoration: BoxDecoration(
-            //color: Colors.white,
-            borderRadius: BorderRadius.circular(7.0),
-          )),
+      child: Ink(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image(
+              image: new AssetImage(imageAsset),
+              height: 72,
+              width: 72,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.red),
+            )
+          ],
+        ),
+        width: MediaQuery.of(Get.context!).size.width / 2 - 20,
+        decoration: BoxDecoration(
+          // color: Colors.amber,
+          borderRadius: BorderRadius.circular(7.0),
+        ),
+      ),
     );
   }
 }

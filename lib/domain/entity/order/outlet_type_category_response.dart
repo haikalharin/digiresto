@@ -13,7 +13,7 @@ String emptyToJson(OutletTypeCategoryResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class OutletTypeCategoryResponse with _$OutletTypeCategoryResponse {
+class OutletTypeCategoryResponse with _$OutletTypeCategoryResponse {
   const factory OutletTypeCategoryResponse({
     required StatusResponse response,
     required OutletTypeCategoryDataResponse data,
@@ -25,8 +25,7 @@ abstract class OutletTypeCategoryResponse with _$OutletTypeCategoryResponse {
 }
 
 @freezed
-abstract class OutletTypeCategoryDataResponse
-    with _$OutletTypeCategoryDataResponse {
+class OutletTypeCategoryDataResponse with _$OutletTypeCategoryDataResponse {
   const factory OutletTypeCategoryDataResponse({
     required List<PromoOutletDataMenuCategoryResponse> menuCategory,
   }) = _OutletTypeCategoryDataResponse;
@@ -36,7 +35,7 @@ abstract class OutletTypeCategoryDataResponse
 }
 
 @freezed
-abstract class PromoOutletDataMenuCategoryResponse
+class PromoOutletDataMenuCategoryResponse
     with _$PromoOutletDataMenuCategoryResponse {
   const factory PromoOutletDataMenuCategoryResponse({
     required String id,
@@ -53,7 +52,7 @@ abstract class PromoOutletDataMenuCategoryResponse
 }
 
 @freezed
-abstract class PromoOutletDataMenuCategoryParamResponse
+class PromoOutletDataMenuCategoryParamResponse
     with _$PromoOutletDataMenuCategoryParamResponse {
   const factory PromoOutletDataMenuCategoryParamResponse({
     required String category,

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:digiresto/application/auth/login/login_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/core/widgets/header_curved.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -66,7 +65,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
               title: 'Invalid',
               middleText: failure.maybeMap(
                 orElse: () => 'Error',
-                invalidPin: (e) => e.message ?? 'Invalid Pin',
+                invalidPin: (e) => 'Invalid Pin',
               ),
             ),
             (user) {
@@ -126,7 +125,7 @@ class _LoginPinFormState extends State<LoginPinForm> {
                         (a) => a.fold(
                           (failure) => failure.maybeMap(
                             orElse: () => 'Unknown Error',
-                            invalidPin: (e) => e.message,
+                            invalidPin: (e) => 'Invalid Pin',
                           ),
                           (r) => null,
                         ),

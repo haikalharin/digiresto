@@ -3,16 +3,15 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
+import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
-import 'package:digiresto/main.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:shake/shake.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -30,43 +29,54 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    yield* event.map(started: (_) async* {
-      if (env == Environment.dev) {
-        detector = ShakeDetector.autoStart(
-          onPhoneShake: () {
-            add(LoginEvent.onShake());
-          },
+    yield* event.map(
+      started: (_) async* {
+        if (Globals.env == Environment.dev) {
+          detector = ShakeDetector.autoStart(
+            onPhoneShake: () {
+              add(LoginEvent.onShake());
+            },
+          );
+        }
+      },
+      phoneNumberChanged: (_event) async* {
+        yield state.copyWith(
+          isShowDialogShake: false,
+          phoneNumber: PhoneNumber(_event.phoneNumberStr),
+          loginFailureOrSuccessOption: none(),
+          otpFailureOrSuccessOption: none(),
         );
-      }
-    }, phoneNumberChanged: (_event) async* {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        phoneNumber: PhoneNumber(_event.phoneNumberStr),
-        loginFailureOrSuccessOption: none(),
-      );
-    }, pinChanged: (_event) async* {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        pin: Pin(_event.pinStr),
-        loginFailureOrSuccessOption: none(),
-      );
-    }, verifOtpPressed: (_event) async* {
-      yield* _performActionOnAuthFacadeVerifOtp();
-    }, otpVerified: (_event) async* {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        onInvalidPin: optionOf(_event.onInvalidPin),
-      );
-    }, pinSubmitted: (_event) async* {
-      yield* _performActionOnAuthFacadeLoginPin();
-    }, onChangeUrl: (e) async* {
-      yield state.copyWith(isShowDialogShake: false);
-      _authFacade.changeUrl(url: e.url);
-    }, onShake: (e) async* {
-      yield state.copyWith(isShowDialogShake: false);
+      },
+      pinChanged: (_event) async* {
+        yield state.copyWith(
+          isShowDialogShake: false,
+          pin: Pin(_event.pinStr),
+          loginFailureOrSuccessOption: none(),
+          otpFailureOrSuccessOption: none(),
+        );
+      },
+      verifOtpPressed: (_event) async* {
+        yield* _performActionOnAuthFacadeVerifOtp();
+      },
+      otpVerified: (_event) async* {
+        yield state.copyWith(
+          isShowDialogShake: false,
+          onInvalidPin: optionOf(_event.onInvalidPin),
+        );
+      },
+      pinSubmitted: (_event) async* {
+        yield* _performActionOnAuthFacadeLoginPin();
+      },
+      onChangeUrl: (e) async* {
+        yield state.copyWith(isShowDialogShake: false);
+        _authFacade.changeUrl(url: e.url);
+      },
+      onShake: (e) async* {
+        yield state.copyWith(isShowDialogShake: false);
 
-      yield state.copyWith(isShowDialogShake: true);
-    });
+        yield state.copyWith(isShowDialogShake: true);
+      },
+    );
   }
 
   Stream<LoginState> _performActionOnAuthFacadeVerifOtp() async* {
@@ -84,33 +94,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       failureOrSuccess = await _authFacade.getOtp(
         phoneNumber: state.phoneNumber,
       );
-
-      String? url = failureOrSuccess.fold(
-        (f) => null,
-        (url) => url,
-      );
-      if (url != null) {
-        List<String> encodedUrl = url.split("?text=");
-        // url
-        String encode =
-            encodedUrl[0] + "?text=" + Uri.encodeComponent(encodedUrl[1]);
-        if (await canLaunch(encode)) {
-          await launch(
-            encode,
-          );
-        }
-      }
     }
 
     yield state.copyWith(
       isSubmitting: false,
       showErrorMessages: true,
       otpFailureOrSuccessOption: optionOf(failureOrSuccess),
-    );
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      otpFailureOrSuccessOption: none(),
     );
   }
 
@@ -139,11 +128,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     yield state.copyWith(
       loginFailureOrSuccessOption: none(),
     );
-  }
-
-  @override
-  Future<void> close() {
-    detector?.stopListening();
-    return super.close();
   }
 }

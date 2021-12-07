@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:digiresto/domain/credit/i_credit_repository.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
@@ -14,32 +15,50 @@ part 'home_user_state.dart';
 class HomeUserBloc extends Bloc<HomeUserEvent, HomeUserState> {
   final UserRepository _userRepository;
   final OrderRepository _orderRepository;
+  final ICreditRepository _creditRepository;
   HomeUserBloc(
     this._userRepository,
     this._orderRepository,
+    this._creditRepository,
   ) : super(_Initial());
 
   @override
   Stream<HomeUserState> mapEventToState(HomeUserEvent gEvent) async* {
     yield const HomeUserState.loadInProgress();
 
-    yield* gEvent.map(getStaticBanner: (e) async* {
-      final staticBanner = await _orderRepository.getStaticBanner({});
-      yield staticBanner.fold(
-        (error) => HomeUserState.bannerLoadFailed(error.toString()),
-        (list) => HomeUserState.bannerLoadSuccess(list),
-      );
-    }, getListAddress: (_GetListAddress value) async* {
-      final listAddress = await _userRepository.getAddress("085782031633");
-      yield listAddress.fold(
-        (error) => HomeUserState.addressListFailed(error.toString()),
-        (list) => HomeUserState.addressListSuccess(list),
-      );
-    }, getActiveAddress: (value) async* {
-      final setActiveAddress = await _userRepository.getActiveAddress();
-      yield setActiveAddress.fold(
-          (error) => HomeUserState.getActiveAddressFail(error.toString()),
-          (data) => HomeUserState.getActiveAddressSuccess(data));
-    });
+    yield* gEvent.map(
+      getStaticBanner: (e) async* {
+        final staticBanner = await _orderRepository.getStaticBanner({});
+        yield staticBanner.fold(
+          (error) => HomeUserState.bannerLoadFailed(error.toString()),
+          (list) => HomeUserState.bannerLoadSuccess(list),
+        );
+      },
+      getListAddress: (_GetListAddress value) async* {
+        final listAddress = await _userRepository.getAddress();
+        yield listAddress.fold(
+          (error) => HomeUserState.addressListFailed(error.toString()),
+          (list) => HomeUserState.addressListSuccess(list),
+        );
+      },
+      getActiveAddress: (value) async* {
+        final setActiveAddress = await _userRepository.getActiveAddress();
+        yield setActiveAddress.fold(
+            (error) => HomeUserState.getActiveAddressFail(error.toString()),
+            (data) => HomeUserState.getActiveAddressSuccess(data));
+      },
+      getCartSessionID: (r) async* {
+        final setActiveAddress = await _orderRepository.getSessionId();
+        yield setActiveAddress.fold(
+            (error) => HomeUserState.getCartSessionIDFail(error.toString()),
+            (data) => HomeUserState.getCartSessionIDSuccess(data));
+      },
+      getCountCredit: (_event) async* {
+        final getCountCredit = await _creditRepository.getCountTopupPending();
+        yield getCountCredit.fold(
+            (error) => HomeUserState.getCreditCountFail(error.toString()),
+            (data) => HomeUserState.getCreditCountSuccess(data));
+      },
+    );
   }
 }

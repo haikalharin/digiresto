@@ -11,7 +11,7 @@ CreateCartSessionParam emptyFromJson(String str) =>
 String emptyToJson(CreateCartSessionParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class CreateCartSessionParam with _$CreateCartSessionParam {
+class CreateCartSessionParam with _$CreateCartSessionParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory CreateCartSessionParam({
     required CreateCartSessionQueryParam queryString,
@@ -23,7 +23,7 @@ abstract class CreateCartSessionParam with _$CreateCartSessionParam {
 }
 
 @freezed
-abstract class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
+class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
   const factory CreateCartSessionBodyParam({
     required String outletName,
     required String customerName,
@@ -38,7 +38,7 @@ abstract class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
     required String eta,
     required String salesType,
     required String receiptCode,
-    required List<CreateCartSessionItemParam> items,
+    required List<CreateUpdateCartSessionItemParam> items,
   }) = _CreateCartSessionBodyParam;
 
   factory CreateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -46,20 +46,21 @@ abstract class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
 }
 
 @freezed
-abstract class CreateCartSessionItemParam with _$CreateCartSessionItemParam {
-  const factory CreateCartSessionItemParam({
+class CreateUpdateCartSessionItemParam with _$CreateUpdateCartSessionItemParam {
+  const factory CreateUpdateCartSessionItemParam({
     required int productId,
     required List<CreateCartSessionItemModifierParam> modifiers,
     required String note,
     required int qty,
-  }) = _CreateCartSessionItemParam;
+  }) = _CreateUpdateCartSessionItemParam;
 
-  factory CreateCartSessionItemParam.fromJson(Map<String, dynamic> json) =>
-      _$CreateCartSessionItemParamFromJson(json);
+  factory CreateUpdateCartSessionItemParam.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateUpdateCartSessionItemParamFromJson(json);
 }
 
 @freezed
-abstract class CreateCartSessionItemModifierParam
+class CreateCartSessionItemModifierParam
     with _$CreateCartSessionItemModifierParam {
   const factory CreateCartSessionItemModifierParam({
     required int modifierId,
@@ -73,7 +74,7 @@ abstract class CreateCartSessionItemModifierParam
 }
 
 @freezed
-abstract class CreateCartSessionQueryParam with _$CreateCartSessionQueryParam {
+class CreateCartSessionQueryParam with _$CreateCartSessionQueryParam {
   const factory CreateCartSessionQueryParam() = _CreateCartSessionQueryParam;
 
   factory CreateCartSessionQueryParam.fromJson(Map<String, dynamic> json) =>

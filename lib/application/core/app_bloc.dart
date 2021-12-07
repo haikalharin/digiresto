@@ -22,29 +22,29 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   ) async* {
     yield* event.map(
       started: (_event) async* {
-        await _storage.openBox(StorageConstants.base);
-        final preInstalled = await _storage.getBool(key: 'preInstalled');
-        final guideShown = await _storage.getBool(key: 'guideShown');
-        await _storage.close();
+        final _box = await _storage.openBox(StorageConstants.base);
+        final preInstalled = await _storage.getBool(_box, key: 'preInstalled');
+        final guideShown = await _storage.getBool(_box, key: 'guideShown');
+        await _storage.close(_box);
         yield state.copyWith(
           preInstalled: optionOf(preInstalled),
           guideShown: optionOf(guideShown),
         );
       },
       skipIntro: (_event) async* {
-        await _storage.openBox(StorageConstants.base);
-        await _storage.putBool(key: 'preInstalled', value: true);
-        final preInstalled = await _storage.getBool(key: 'preInstalled');
-        await _storage.close();
+        final _box = await _storage.openBox(StorageConstants.base);
+        await _storage.putBool(_box, key: 'preInstalled', value: true);
+        final preInstalled = await _storage.getBool(_box, key: 'preInstalled');
+        await _storage.close(_box);
         yield state.copyWith(
           preInstalled: optionOf(preInstalled),
         );
       },
       skipGuide: (_event) async* {
-        await _storage.openBox(StorageConstants.base);
-        await _storage.putBool(key: 'guideShown', value: true);
-        final guideShown = await _storage.getBool(key: 'guideShown');
-        await _storage.close();
+        final _box = await _storage.openBox(StorageConstants.base);
+        await _storage.putBool(_box, key: 'guideShown', value: true);
+        final guideShown = await _storage.getBool(_box, key: 'guideShown');
+        await _storage.close(_box);
         yield state.copyWith(
           guideShown: optionOf(guideShown),
         );

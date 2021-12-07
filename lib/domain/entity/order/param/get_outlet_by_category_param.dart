@@ -11,7 +11,7 @@ GetOutletByCategoryParam emptyFromJson(String str) =>
 String emptyToJson(GetOutletByCategoryParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class GetOutletByCategoryParam with _$GetOutletByCategoryParam {
+class GetOutletByCategoryParam with _$GetOutletByCategoryParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletByCategoryParam({
     required GetOutletByCategoryQueryParam queryString,
@@ -23,8 +23,7 @@ abstract class GetOutletByCategoryParam with _$GetOutletByCategoryParam {
 }
 
 @freezed
-abstract class GetOutletByCategoryBodyParam
-    with _$GetOutletByCategoryBodyParam {
+class GetOutletByCategoryBodyParam with _$GetOutletByCategoryBodyParam {
   const factory GetOutletByCategoryBodyParam() = _GetOutletByCategoryBodyParam;
 
   factory GetOutletByCategoryBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -32,8 +31,7 @@ abstract class GetOutletByCategoryBodyParam
 }
 
 @freezed
-abstract class GetOutletByCategoryQueryParam
-    with _$GetOutletByCategoryQueryParam {
+class GetOutletByCategoryQueryParam with _$GetOutletByCategoryQueryParam {
   const factory GetOutletByCategoryQueryParam({
     required String location,
     required int page,

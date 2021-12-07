@@ -1,6 +1,8 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/credit/top_up_bank_details.dart';
 import 'package:digiresto/domain/credit/top_up_va_details.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/credit/widgets/bank_details_widget.dart';
 import 'package:digiresto/presentation/credit/widgets/va_details_widget.dart';
@@ -25,18 +27,19 @@ class TopUpDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return CustomScafold(
-      suffixWidget: GestureDetector(
-        onTap: () {
-          Get.back();
-          Get.back();
-        },
-        child: Text(
-          'Selesai',
-          style: Styles.creditLabelStyle,
-        ),
-      ),
-      title: 'Isi saldo',
+      // suffixWidget: GestureDetector(
+      //   onTap: () {
+      //     Get.back();
+      //     Get.back();
+      //   },
+      //   child: Text(
+      //     i10n.cart_done,
+      //     style: Styles.creditLabelStyle,
+      //   ),
+      // ),
+      title: i10n.topup_title,
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -49,26 +52,27 @@ class TopUpDetailsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Informasi Transfer',
-                  style: Styles.creditTopupTitleStyle,
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  'Silahkan lanjutkan proses Top Up dengan detail sebagai berikut:',
-                  style: Styles.creditMenuSubtitleStyle,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
                 if (type == TopUpDetailsType.TOP_UP_BANK)
                   BankDetailWidget(topUpBankDetails!),
                 if (type == TopUpDetailsType.TOP_UP_VA)
                   VADetailsWidget(topUpVADetails!),
               ],
             ),
+          ),
+          Divider(
+            thickness: 12,
+            color: AppColors.dividerColor,
+          ),
+          CustomButton(
+            margin: EdgeInsets.all(Dimens.defaultMargin),
+            borderRadius: BorderRadius.circular(30),
+            onPressed: () {
+              Get.back();
+              Get.back();
+            },
+            color: AppColors.mainColor,
+            fontColor: Colors.white,
+            label: i10n.billing_action_done,
           )
         ],
       ),

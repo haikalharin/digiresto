@@ -28,35 +28,60 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
 
   @override
   Stream<AddressListState> mapEventToState(AddressListEvent gEvent) async* {
-    yield* gEvent.map(setDefault: (request) async* {
-      final setDefault =
-          await _userRepository.setDefaultAddress(request.request.toMap());
-      yield setDefault.fold(
-          (error) => AddressListState.setDefaultFail(error.toString()),
-          (data) => AddressListState.setDefaultSuccess(data));
-    }, removeAddress: (request) async* {
-      final removeAddress =
-          await _userRepository.removeAddress(request.request.toMap());
-      yield removeAddress.fold(
-          (error) => AddressListState.loadFailure(error.toString()),
-          (data) => AddressListState.removeAddressSuccess(data));
-    }, getGeoCode: (request) async* {
-      final getGeoCode = await _mapRepository.geocode(request.request.toMap());
-      yield getGeoCode.fold(
-          (error) => AddressListState.getGeoCodeFail(error.toString()),
-          (data) => AddressListState.getGeoCodeSuccess(data));
-    }, setActiveAddress: (value) async* {
-      final setActiveAddress =
-          await _userRepository.setActiveAddress(value.model);
-      yield setActiveAddress.fold(
-          (error) => AddressListState.setActiveAddressFail(error.toString()),
-          (data) => AddressListState.setActiveAddressSuccess(data));
-    }, addAddress: (request) async* {
-      final addAddress =
-          await _userRepository.addAddress(request.request.toMap());
-      yield addAddress.fold(
-          (error) => AddressListState.loadFailure(error.toString()),
-          (data) => AddressListState.addAddressSuccess(data));
-    });
+    yield* gEvent.map(
+      setDefault: (request) async* {
+        yield AddressListState.loadInProgress();
+        final setDefault =
+            await _userRepository.setDefaultAddress(request.request.toMap());
+        yield setDefault.fold(
+            (error) => AddressListState.setDefaultFail(error.toString()),
+            (data) => AddressListState.setDefaultSuccess(data));
+      },
+      removeAddress: (request) async* {
+        yield AddressListState.loadInProgress();
+        final removeAddress =
+            await _userRepository.removeAddress(request.request.toMap());
+        yield removeAddress.fold(
+            (error) => AddressListState.loadFailure(error.toString()),
+            (data) => AddressListState.removeAddressSuccess(data));
+      },
+      getGeoCode: (request) async* {
+        yield AddressListState.loadInProgress();
+        final getGeoCode = await _mapRepository.geocode(request.param);
+        yield getGeoCode.fold(
+            (error) => AddressListState.getGeoCodeFail(error.toString()),
+            (data) => AddressListState.getGeoCodeSuccess(data));
+      },
+      setActiveAddress: (value) async* {
+        yield AddressListState.loadInProgress();
+        final setActiveAddress =
+            await _userRepository.setActiveAddress(value.model);
+        yield setActiveAddress.fold(
+            (error) => AddressListState.setActiveAddressFail(error.toString()),
+            (data) => AddressListState.setActiveAddressSuccess(data));
+      },
+      addAddress: (request) async* {
+        yield AddressListState.loadInProgress();
+        final addAddress =
+            await _userRepository.addAddress(request.request.toMap());
+        yield addAddress.fold(
+            (error) => AddressListState.loadFailure(error.toString()),
+            (data) => AddressListState.addAddressSuccess(data));
+      },
+      getActiveAddress: (value) async* {
+        yield AddressListState.loadInProgress();
+        final setActiveAddress = await _userRepository.getActiveAddress();
+        yield setActiveAddress.fold(
+            (error) => AddressListState.loadFailure(error.toString()),
+            (data) => AddressListState.getActiveAddressSuccess(data));
+      },
+      getAllAddress: (value) async* {
+        yield AddressListState.loadInProgress();
+        final listAddress = await _userRepository.getAddress();
+        yield listAddress.fold(
+            (error) => AddressListState.loadFailure(error.toString()),
+            (data) => AddressListState.getAllAddressSuccess(data));
+      },
+    );
   }
 }

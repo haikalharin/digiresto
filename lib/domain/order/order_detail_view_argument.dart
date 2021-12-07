@@ -1,6 +1,6 @@
 class OrderDetailViewArgument {
-  final outletId;
-  final merchantId;
+  final String outletId;
+  final String merchantId;
 
   OrderDetailViewArgument(this.outletId, this.merchantId);
 }

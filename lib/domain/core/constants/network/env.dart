@@ -1,9 +1,6 @@
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
-import 'package:digiresto/infrastructure/core/storage.dart';
-import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 
 abstract class Env {
   Future<String> get getBaseUrl;
@@ -19,11 +16,12 @@ class EnvProd extends Env {
 @Injectable(as: Env)
 @Environment(Environment.dev)
 class EnvDev extends Env {
+  final IStorage _storage;
+  EnvDev(this._storage);
   @override
   Future<String> get getBaseUrl async {
-    Storage _storage = Storage(Hive, Logger());
-    await _storage.openBox(StorageConstants.base);
-    String? devUrl = _storage.getString(key: 'devUrl');
+    final _box = await _storage.openBox(StorageConstants.base);
+    String? devUrl = _storage.getString(_box, key: 'devUrl');
     if (devUrl == null) {
       return Endpoints.baseUrlDigiresto;
     } else {

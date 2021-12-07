@@ -4,7 +4,6 @@ import 'package:digiresto/domain/auth/entity/login_otp.dart';
 import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
-import 'package:digiresto/domain/auth/entity/user_profile.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 
 abstract class IAuthFacade {
@@ -12,7 +11,6 @@ abstract class IAuthFacade {
     required PhoneNumber phoneNumber,
   });
   Future<Either<AuthFailure, Option<UserAuth>>> getSignedInUser();
-  Future<Either<AuthFailure, UserProfile>> getProfile(String token);
   Future<Either<AuthFailure, UserAuth>> loginPin({
     required PhoneNumber phoneNumber,
     required Pin pin,

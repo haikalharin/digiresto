@@ -1,6 +1,6 @@
 class ServerException implements Exception {
   String? message;
-  String? code;
+  int? code;
   ServerException({
     this.message,
     this.code,

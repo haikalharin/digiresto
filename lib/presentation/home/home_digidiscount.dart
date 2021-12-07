@@ -2,9 +2,14 @@ import 'package:digiresto/application/home/home_digidiscount_oulet_view_controll
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/param/get_promo_outlet_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
+
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/router/router.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,32 +20,6 @@ class HomeDigidiscountScreen
     extends GetView<HomeDigidiscountOutletViewController> {
   goBack(BuildContext context) {
     Get.back();
-  }
-
-  final searchController = TextEditingController();
-
-  void getPromoOutlet(String search, int pageParam) {
-    Loading.show();
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
-        GetPromoOutletParam(
-            body: GetPromoOutletBodyParam(),
-            queryString: GetPromoOutletQueryParam(
-                filter: '', location: '', page: controller.page.value))));
-    // _orderStore?.getPromoOutlet({
-    //   "location":
-    //       _userStore!.activeAddressLat! + "," + _userStore!.activeAddresslng!,
-    //   "page": pageParam.toString(),
-    //   "filter": search
-    // }).then((res) {
-    //   Loading.dismiss();
-    //   setState(() {
-    //     listPromoOutlet = res;
-    //   });
-    // }).catchError((err) {
-    //   Loading.dismiss();
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
   }
 
   Widget _search() {
@@ -54,9 +33,11 @@ class HomeDigidiscountScreen
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
-              getPromoOutlet(searchController.text, 1);
+              controller.listPromoOutlet.clear();
+              controller.page.value = 1;
+              controller.getPromoOutlet(controller.searchController.text, 1);
             },
-            controller: searchController,
+            controller: controller.searchController,
             readOnly: false,
             onTap: () {
               print("open popup");
@@ -69,7 +50,7 @@ class HomeDigidiscountScreen
               fillColor: AppColors.greyInput,
               contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
               prefixIcon: Icon(Icons.search),
-              hintText: "Temukan resto favorit anda",
+              hintText: I10n.current.preorder_filter_hint,
               border: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: AppColors.greyInput, width: 32.0),
@@ -90,70 +71,81 @@ class HomeDigidiscountScreen
   @override
   Widget build(BuildContext context) {
     Get.put(HomeDigidiscountOutletViewController());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPromoOutlet(
-        GetPromoOutletParam(
-            body: GetPromoOutletBodyParam(),
-            queryString: GetPromoOutletQueryParam(
-                filter: '', location: '', page: controller.page.value))));
+    controller.getPromoOutlet("", 1);
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: new Icon(Icons.arrow_back_outlined,
-                color: Colors.black, size: 28.0),
-            onPressed: () {
-              //getOutletByLocation();
-              Get.back();
-            }),
-        title: Text(
-          args.title,
-          style: AppFont.textBlack15Bold,
-          textAlign: TextAlign.center,
-        ),
-      ),
+    return CustomScafold(
+      title: args.title,
+      showBackButton: true,
+      resizeToAvoidBottomInset: false,
+      appBarColor: Colors.white,
+      iconBackColor: Colors.black,
       body: BlocConsumer<OrderBloc, OrderState>(
         listener: (context, state) {
           state.maybeMap(
-              getPromoOutletSuccess: (r) {
-                controller.listPromoOutlet.value = r.response;
+              getDigiDiscountOutletSuccess: (r) {
+                if (r.response.isNotEmpty) {
+                  controller.listPromoOutlet.value = r.response;
+                }
               },
-              loadFailure: (e) {
-                print(e.message);
-              },
+              loadFailure: (e) {},
               orElse: () {});
         },
         builder: (context, state) {
-          return Container(
-            color: Colors.white,
-            //padding: EdgeInsets.only(top:25),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey[50],
-                    borderRadius: BorderRadius.circular(0),
-                    border: Border.all(
-                      color: Colors.black12,
-                      width: 0.5,
-                    ),
-                  ),
-                ),
-                //_search(),
-                Expanded(
-                  child: ListDigidiscountWidget(
-                    runAction: (param) {
-                      "_orderStore!.setOrderParameter";
-                    },
-                    height: MediaQuery.of(context).size.height / 1.2,
-                    data: controller.listPromoOutlet,
-                    scrollDirection: Axis.vertical,
-                  ),
-                ),
-              ],
+          return StackWithProgress(
+            isLoading: state.maybeMap(
+              orElse: () => false,
+              loadInProgress: (_) => true,
             ),
+            children: [
+              Container(
+                color: Colors.white,
+                //padding: EdgeInsets.only(top:25),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey[50],
+                        borderRadius: BorderRadius.circular(0),
+                        border: Border.all(
+                          color: Colors.black12,
+                          width: 0.5,
+                        ),
+                      ),
+                    ),
+                    //_search(),
+                    Obx(
+                      () {
+                        return (controller.listPromoOutlet.length > 0)
+                            ? Expanded(
+                                child: ListDigidiscountWidget(
+                                  runAction: (param) {
+                                    //merchant id set to empty, cause in response api not have valid merchant id
+                                    Get.toNamed(Routers.orderDetailOutlet,
+                                            arguments: OrderDetailViewArgument(
+                                                param.outletId, ""))
+                                        ?.then((value) {
+                                      controller.page.value = 1;
+                                      controller.listPromoOutlet.clear();
+                                      controller.getPromoOutlet("", 1);
+                                    });
+                                  },
+                                  height:
+                                      MediaQuery.of(context).size.height / 1.2,
+                                  data: controller.listPromoOutlet,
+                                  scrollDirection: Axis.vertical,
+                                  loadMoreAction: () {},
+                                ),
+                              )
+                            : Container();
+                        // : EmptyOutletWidget(onRefresh: onRefresh);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
           );
         },
       ),

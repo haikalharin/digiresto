@@ -22,7 +22,7 @@ class Styles {
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
   static TextStyle buttonLabelStyle = GoogleFonts.poppins(
-      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
+      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600);
 
   static TextStyle loginTitleStyle = GoogleFonts.poppins(
       color: Colors.white, fontSize: 24, fontWeight: FontWeight.w700);
@@ -48,6 +48,9 @@ class Styles {
   static TextStyle whiteFontStyle = GoogleFonts.poppins(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
+  static TextStyle blackFontStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
   static TextStyle guideTitleStyle = GoogleFonts.poppins(
       color: Colors.black, fontSize: 15, fontWeight: FontWeight.w600);
 
@@ -58,10 +61,10 @@ class Styles {
       color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w700);
 
   static TextStyle creditLabelStyle = GoogleFonts.poppins(
-      color: AppColors.mainColor, fontSize: 14, fontWeight: FontWeight.w600);
+      color: AppColors.mainColor, fontSize: 15, fontWeight: FontWeight.w600);
 
   static TextStyle creditNominalStyle = GoogleFonts.poppins(
-      color: AppColors.mainColor, fontSize: 40, fontWeight: FontWeight.w700);
+      color: AppColors.mainColor, fontSize: 42, fontWeight: FontWeight.w700);
 
   static TextStyle creditNominalSmallStyle = GoogleFonts.poppins(
       color: AppColors.mainColor, fontSize: 25, fontWeight: FontWeight.w700);
@@ -106,5 +109,44 @@ class Styles {
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold);
 
   static TextStyle dialogSubtitleStyle = GoogleFonts.poppins(
-      color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle profileNameStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+
+  static TextStyle profileDetailStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static TextStyle profileMenuLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w700);
+
+  static TextStyle outletNameStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 16, fontWeight: FontWeight.w700);
+
+  static TextStyle receiptCodeStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemTitleStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w700);
+
+  static TextStyle menuItemLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemQtyStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemNoteStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400);
+
+  static TextStyle menuItemPriceStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w700);
+
+  static TextStyle ratingLabelStyle = GoogleFonts.poppins(
+      color: Colors.black, fontSize: 13, fontWeight: FontWeight.w600);
+
+  static TextStyle badgeContentStyle = GoogleFonts.openSans(
+      color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600);
+
+  static TextStyle errorStyle = GoogleFonts.poppins(
+      color: AppColors.red, fontSize: 12, fontWeight: FontWeight.w400);
 }

@@ -72,8 +72,8 @@ class UserRepository {
   }
 
 // Profile Address: ---------------------------------------------------------------------
-  Future<Either<Exception, List<UserAddress>>> getAddress(String waId) async {
-    return await _userApi.getAddress(waId).then((value) {
+  Future<Either<Exception, List<UserAddress>>> getAddress() async {
+    return await _userApi.getAddress().then((value) {
       return value;
     });
   }

@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -90,7 +91,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
               fillColor: AppColors.greyInput,
               contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
               prefixIcon: Icon(Icons.search),
-              hintText: "Temukan promo anda",
+              hintText: I10n.current.home_hot_promo_hint,
               border: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: AppColors.greyInput, width: 32.0),
@@ -127,7 +128,7 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
                       //getOutletByLocation();
                       Get.back();
                     }),
-                Text("Hot Promo",
+                Text(I10n.current.home_hot_promo,
                     style: TextStyle(
                       fontFamily: "roboto",
                       color: Colors.black,

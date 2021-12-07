@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'create_cart_session_param.dart';
+
 part 'update_cart_session_param.freezed.dart';
 part 'update_cart_session_param.g.dart';
 
@@ -11,7 +13,7 @@ UpdateCartSessionParam emptyFromJson(String str) =>
 String emptyToJson(UpdateCartSessionParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
+class UpdateCartSessionParam with _$UpdateCartSessionParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory UpdateCartSessionParam({
     required UpdateCartSessionQueryParam queryString,
@@ -23,11 +25,20 @@ abstract class UpdateCartSessionParam with _$UpdateCartSessionParam {
 }
 
 @freezed
-abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
+class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
   const factory UpdateCartSessionBodyParam({
-    required String paymentType,
-    required String customerNote,
-    required List<UpdateCartSessionBodyItemParam> items,
+    required String? paymentType,
+    required String? customerNote,
+    required String? customerPax,
+    required bool? customerSmoking,
+    required String? customerCarColor,
+    required String? customerCarNumber,
+    required String? customerCarType,
+    required UpdateCartSessionBodyDeliveryParam? delivery,
+    required String? eta,
+    required List<String>? promos,
+    required String? salesType,
+    required List<CreateUpdateCartSessionItemParam>? items,
   }) = _UpdateCartSessionBodyParam;
 
   factory UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -35,35 +46,23 @@ abstract class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
 }
 
 @freezed
-abstract class UpdateCartSessionBodyItemParam
-    with _$UpdateCartSessionBodyItemParam {
-  const factory UpdateCartSessionBodyItemParam({
-    required int productId,
-    required List<UpdateCartSessionBodyItemModifierParam> modifiers,
-    required String note,
-    required int qty,
-  }) = _UpdateCartSessionBodyItemParam;
+class UpdateCartSessionBodyDeliveryParam
+    with _$UpdateCartSessionBodyDeliveryParam {
+  const factory UpdateCartSessionBodyDeliveryParam({
+    required String provider,
+    required int price,
+    required String address,
+    required String shipmentMethod,
+    required List<String> location,
+  }) = _UpdateCartSessionBodyDeliveryParam;
 
-  factory UpdateCartSessionBodyItemParam.fromJson(Map<String, dynamic> json) =>
-      _$UpdateCartSessionBodyItemParamFromJson(json);
-}
-
-@freezed
-abstract class UpdateCartSessionBodyItemModifierParam
-    with _$UpdateCartSessionBodyItemModifierParam {
-  const factory UpdateCartSessionBodyItemModifierParam({
-    required int modifierId,
-    required String modifierGroupId,
-    required int qty,
-  }) = _UpdateCartSessionBodyItemModifierParam;
-
-  factory UpdateCartSessionBodyItemModifierParam.fromJson(
+  factory UpdateCartSessionBodyDeliveryParam.fromJson(
           Map<String, dynamic> json) =>
-      _$UpdateCartSessionBodyItemModifierParamFromJson(json);
+      _$UpdateCartSessionBodyDeliveryParamFromJson(json);
 }
 
 @freezed
-abstract class UpdateCartSessionQueryParam with _$UpdateCartSessionQueryParam {
+class UpdateCartSessionQueryParam with _$UpdateCartSessionQueryParam {
   const factory UpdateCartSessionQueryParam({
     required String sessionId,
   }) = _UpdateCartSessionQueryParam;

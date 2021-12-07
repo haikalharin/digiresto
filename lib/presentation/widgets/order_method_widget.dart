@@ -1,5 +1,7 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OrderMethodPopup {
   Future<void> showMyDialog(BuildContext context, Map<String, dynamic> param,
@@ -82,28 +84,28 @@ class OrderMethodWidget extends StatelessWidget {
     switch (orderMethod) {
       case "dineIn":
         {
-          textOrderMethod = "Makan di Tempat";
+          textOrderMethod = I10n.current.landing_dine_in;
           break;
           // statements;
         }
 
       case "takeAway":
         {
-          textOrderMethod = "Bawa Pulang";
+          textOrderMethod = I10n.current.landing_take_away;
           break;
           //statements;
         }
 
       case "onlineDriver":
         {
-          textOrderMethod = "Pesan Antar";
+          textOrderMethod = I10n.current.landing_delivery;
           break;
           //statements;
         }
 
       case "driveThru":
         {
-          textOrderMethod = "Drive Thru";
+          textOrderMethod = I10n.current.landing_drive_thru;
           break;
           //statements;
         }

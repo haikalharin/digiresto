@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:digiresto/application/auth/register/register_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/auth/login_pin/login_pin_page.dart';
+import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/widgets/auth_scafold.dart';
-import 'package:digiresto/presentation/auth/widgets/draw_circle.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_checkbox.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
@@ -49,7 +49,7 @@ class _RegisterFormState extends State<RegisterForm> {
   late final _retypePinErrorController =
       StreamController<ErrorAnimationType>.broadcast();
 
-  int _page = 0;
+  // int _page = 0;
 
   Future<bool> backHandler() async {
     if (_pageController.page!.floor() > 0) {
@@ -67,9 +67,9 @@ class _RegisterFormState extends State<RegisterForm> {
   initState() {
     super.initState();
     _pageController.addListener(() {
-      setState(() {
-        _page = _pageController.page!.floor();
-      });
+      // setState(() {
+      //   _page = _pageController.page!.floor();
+      // });
     });
     _nameController.addListener(_onNameChange);
     _emailController.addListener(_onEmailChange);
@@ -103,6 +103,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return WillPopScope(
       onWillPop: backHandler,
       child: BlocConsumer<RegisterBloc, RegisterState>(
@@ -114,9 +115,10 @@ class _RegisterFormState extends State<RegisterForm> {
                 CustomDialog(
                   backgroundColor: Colors.white,
                   content: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Error',
+                        i10n.error_message_title,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
@@ -124,7 +126,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       ),
                       Text(
                         failure.maybeMap(
-                          orElse: () => 'Unknown Error',
+                          orElse: () => i10n.error_message_failed_get_response,
                           noInternet: (_) => 'No Internet',
                         ),
                         textAlign: TextAlign.center,
@@ -148,7 +150,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         height: 35,
                       ),
                       Text(
-                        'Selamat',
+                        i10n.register_success_title,
                         style: Styles.titleStyle,
                         textAlign: TextAlign.center,
                       ),
@@ -156,9 +158,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         height: 15,
                       ),
                       Text(
-                        """Account DigiApp Anda sudah aktif.
-Selamat menikmati kemudahan
-memesan makan dengan Digiresto.""",
+                        i10n.register_success_desc,
                         style: Styles.whiteFontStyle,
                         textAlign: TextAlign.center,
                       ),
@@ -167,9 +167,9 @@ memesan makan dengan Digiresto.""",
                       ),
                       CustomButton(
                         onPressed: () => Get.offAll(
-                          LoginPinPage(widget.phoneNumber),
+                          LoginPage(),
                         ),
-                        label: 'Ok',
+                        label: i10n.register_success_ok,
                       ),
                     ],
                   ),
@@ -182,102 +182,103 @@ memesan makan dengan Digiresto.""",
         builder: (context, state) {
           return AuthScafold(
             onBackTap: backHandler,
-            title: 'Daftar',
-            onNext: () => _registerBloc.add(
-              RegisterEvent.onNext(
-                phoneNumber: widget.phoneNumber,
-                pageController: _pageController,
-                onPinError: () =>
-                    _pinErrorController.add(ErrorAnimationType.shake),
-                onRetypePinError: () =>
-                    _retypePinErrorController.add(ErrorAnimationType.shake),
-              ),
-            ),
+            title: i10n.register_title,
+            // onNext: () => _registerBloc.add(
+            //   RegisterEvent.onNext(
+            //     phoneNumber: widget.phoneNumber,
+            //     pageController: _pageController,
+            //     onPinError: () =>
+            //         _pinErrorController.add(ErrorAnimationType.shake),
+            //     onRetypePinError: () =>
+            //         _retypePinErrorController.add(ErrorAnimationType.shake),
+            //   ),
+            // ),
+            suffixWidget: SizedBox(),
             child: StackWithProgress(
               isLoading: state.isSubmitting,
               children: [
                 Column(
                   children: [
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: Dimens.defaultMargin,
-                        vertical: 30,
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Info Profil',
-                                style: Styles.loginDescStyle.copyWith(
-                                  color: AppColors.mainColor,
-                                ),
-                              ),
-                              Text(
-                                'Buat Pin Login',
-                                style: Styles.loginDescStyle.copyWith(
-                                  color: _page > 0
-                                      ? AppColors.mainColor
-                                      : AppColors.greyColor2,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      right: 8,
-                                    ),
-                                    child: DrawCircle(),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 3,
-                                  color: _page > 0
-                                      ? AppColors.mainColor
-                                      : AppColors.greyColor2,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 8,
-                                  ),
-                                  child: DrawCircle(
-                                    color: _page > 0
-                                        ? AppColors.mainColor
-                                        : AppColors.greyColor2,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          )
-                        ],
-                      ),
-                    ),
+                    // AnimatedContainer(
+                    //   duration: Duration(milliseconds: 500),
+                    //   curve: Curves.easeInOut,
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //   ),
+                    //   padding: EdgeInsets.symmetric(
+                    //     horizontal: Dimens.defaultMargin,
+                    //     vertical: 30,
+                    //   ),
+                    //   child: Column(
+                    //     children: [
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //         children: [
+                    //           Text(
+                    //             'Info Profil',
+                    //             style: Styles.loginDescStyle.copyWith(
+                    //               color: AppColors.mainColor,
+                    //             ),
+                    //           ),
+                    //           Text(
+                    //             'Buat Pin Login',
+                    //             style: Styles.loginDescStyle.copyWith(
+                    //               color: _page > 0
+                    //                   ? AppColors.mainColor
+                    //                   : AppColors.greyColor2,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       SizedBox(
+                    //         height: 10,
+                    //       ),
+                    //       Row(
+                    //         children: [
+                    //           Expanded(
+                    //             flex: 1,
+                    //             child: Container(
+                    //               alignment: Alignment.centerRight,
+                    //               child: Padding(
+                    //                 padding: EdgeInsets.only(
+                    //                   right: 8,
+                    //                 ),
+                    //                 child: DrawCircle(),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             flex: 2,
+                    //             child: Container(
+                    //               width: double.infinity,
+                    //               height: 3,
+                    //               color: _page > 0
+                    //                   ? AppColors.mainColor
+                    //                   : AppColors.greyColor2,
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             flex: 1,
+                    //             child: Padding(
+                    //               padding: EdgeInsets.only(
+                    //                 left: 8,
+                    //               ),
+                    //               child: DrawCircle(
+                    //                 color: _page > 0
+                    //                     ? AppColors.mainColor
+                    //                     : AppColors.greyColor2,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       SizedBox(
+                    //         height: 15,
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     Expanded(
                       child: PageView(
                         controller: _pageController,
@@ -300,12 +301,13 @@ memesan makan dengan Digiresto.""",
                                   validator: (_) => state.fullName.value.fold(
                                     (failure) => failure.maybeMap(
                                       orElse: () => '',
-                                      lengthTooShort: (_) => 'Invalid Name',
+                                      lengthTooShort: (_) =>
+                                          i10n.errorInvalidName,
                                     ),
                                     (_) => null,
                                   ),
                                   controller: _nameController,
-                                  hintText: 'Nama Pengguna',
+                                  hintText: i10n.register_username,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -317,12 +319,13 @@ memesan makan dengan Digiresto.""",
                                   validator: (_) => state.email.value.fold(
                                     (failure) => failure.maybeMap(
                                       orElse: () => '',
-                                      invalidEmail: (_) => 'Invalid Email',
+                                      invalidEmail: (_) =>
+                                          i10n.errorInvalidEmail,
                                     ),
                                     (_) => null,
                                   ),
                                   controller: _emailController,
-                                  hintText: 'Email',
+                                  hintText: i10n.register_email,
                                   keyboardType: TextInputType.emailAddress,
                                 ),
                                 SizedBox(
@@ -332,9 +335,15 @@ memesan makan dengan Digiresto.""",
                                   value: state.agreeTerms,
                                   onChanged: (value) => _registerBloc
                                       .add(RegisterEvent.toggleAgree()),
-                                  label:
-                                      'Dengan mengklik lanjutkan, Saya setuju dengan syarat dan ketentuan Digiresto.',
+                                  label: i10n.register_approval,
                                 ),
+                                SizedBox(height: 30),
+                                CustomButton(
+                                  onPressed: () => _registerBloc.add(
+                                      RegisterEvent.buttonSubmitted(
+                                          phoneNumberStr: widget.phoneNumber)),
+                                  label: i10n.register_action,
+                                )
                               ],
                             ),
                           ),

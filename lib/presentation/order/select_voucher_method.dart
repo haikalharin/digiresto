@@ -1,0 +1,180 @@
+import 'package:digiresto/application/order/bloc/order_bloc.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
+import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+
+class SelectVouchertMethodScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    OrderSelectVoucherMethodViewArgument args =
+        Get.arguments as OrderSelectVoucherMethodViewArgument;
+    Get.context!.read<OrderBloc>().add(OrderEvent.getListVoucherOutlet(
+        GetListVoucherOutletParam(
+            body: GetListVoucherOutletBodyParam(),
+            queryString: GetListVoucherOutletQueryParam(
+                merchantId: args.outlet.merchantId!,
+                outletId: args.outlet.id))));
+    return BlocConsumer<OrderBloc, OrderState>(
+      listener: (context, state) {
+        state.maybeMap(
+            getPaymentMethodSuccess: (r) {
+              print(r.response);
+            },
+            orElse: () {});
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            ),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              ImageIcon(
+                AssetImage(
+                  AppAssets.iconVoucher,
+                ),
+                size: 24,
+                color: AppColors.redD12B34,
+              ),
+              SizedBox(
+                width: 12,
+              ),
+              Text(I10n.current.cart_my_voucher,
+                  style: AppFont.textBlack15Bold),
+              SizedBox(
+                width: 48,
+              ),
+            ]),
+            centerTitle: true,
+            backgroundColor: Colors.white,
+          ),
+          body: StackWithProgress(
+            isLoading: state.maybeMap(
+              orElse: () => false,
+              loadInProgress: (_) => true,
+            ),
+            children: [
+              Column(
+                children: [
+                  Container(
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: AppColors.grey[50],
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(
+                        color: Colors.black12,
+                        width: 0.5,
+                      ),
+                    ),
+                  ),
+                  state.maybeMap(
+                    getListVoucherOutletSuccess: (r) {
+                      return r.response.isEmpty
+                          ? EmptyWidget(
+                              onRefresh: () {},
+                              imageAsset: AppAssets.emptyVoucher,
+                              isSvg: true,
+                            )
+                          : ListView.separated(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: r.response.length,
+                              itemBuilder: (context, index) =>
+                                  _buildItemList(r.response[index]),
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: 5),
+                            );
+                    },
+                    orElse: () {
+                      return Container();
+                    },
+                  ),
+                ],
+              )
+            ],
+          ),
+          // body: state.maybeMap(
+          //   getListVoucherOutletSuccess: (r) {
+          //     return ListView.separated(
+          //       shrinkWrap: true,
+          //       physics: NeverScrollableScrollPhysics(),
+          //       itemCount: r.response.length,
+          //       itemBuilder: (context, index) =>
+          //           _buildItemList(r.response[index]),
+          //       separatorBuilder: (context, index) => SizedBox(height: 5),
+          //     );
+          //   },
+          //   orElse: () {
+          //     return Container();
+          //   },
+          // ),
+        );
+      },
+    );
+  }
+
+  Widget _buildItemList(GetListVoucherOutletDataResponse response) {
+    String title = response.name;
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.all(20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Text(response.code,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14))
+              ],
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                //check voucher
+                Get.context!
+                    .read<OrderBloc>()
+                    .add(OrderEvent.checkVoucherOutlet(response.code));
+                Get.back();
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(5.0),
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.red,
+                  ),
+                ),
+              ),
+              child: Text(I10n.current.cart_choose,
+                  style: TextStyle(
+                    color: AppColors.red,
+                    fontWeight: FontWeight.bold,
+                  )))
+        ],
+      ),
+    );
+  }
+}

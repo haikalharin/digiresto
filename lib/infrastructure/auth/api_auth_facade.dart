@@ -6,7 +6,6 @@ import 'package:digiresto/domain/auth/entity/login_otp.dart';
 import 'package:digiresto/domain/auth/entity/register_input.dart';
 import 'package:digiresto/domain/auth/entity/register_status.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
-import 'package:digiresto/domain/auth/entity/user_profile.dart';
 import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
@@ -14,6 +13,8 @@ import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/exceptions/server_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/domain/profile/i_profile_repository.dart';
+import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
@@ -22,19 +23,36 @@ class ApiAuthFacade implements IAuthFacade {
   final Logger logger;
   final INetworkService _networkService;
   final IStorage _storage;
+  final IProfileRepository _profileRepository;
   const ApiAuthFacade(
     this._networkService,
     this.logger,
     this._storage,
+    this._profileRepository,
   );
   @override
   Future<Either<AuthFailure, String>> getOtp(
       {required PhoneNumber phoneNumber}) async {
-    String apiUrl = Endpoints.urlGetOtp + phoneNumber.getOrCrash();
-    final apiResult = await _networkService.getHttp(path: apiUrl);
-    var userData = (apiResult as Map<String, dynamic>)['data'];
-    final _data = HashMap.from(userData);
-    return right(_data.values.first);
+    try {
+      String apiUrl = Endpoints.urlGetOtp + phoneNumber.getOrCrash();
+      final apiResult = await _networkService.getHttp(path: apiUrl);
+      var userData = (apiResult as Map<String, dynamic>)['data'];
+      final _data = HashMap.from(userData);
+      return right(_data.values.first);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.unknownError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(AuthFailure.serverError());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(AuthFailure.noInternet());
+    } catch (e) {
+      return left(AuthFailure.unknownError());
+    }
   }
 
   @override
@@ -57,16 +75,19 @@ class ApiAuthFacade implements IAuthFacade {
       var userData = (apiResult as Map<String, dynamic>)['data'];
 
       return right(userData['isMember']);
-    } on ServerException catch (e) {
-      logger.d(e.code);
-      if (e.code == '22') {
-        return left(AuthFailure.invalidOtp(e.message));
-      }
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.unknownError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.unknownError());
     }
   }
 
@@ -85,13 +106,19 @@ class ApiAuthFacade implements IAuthFacade {
       final registerStatus = RegisterStatus.fromJson(data);
 
       return right(registerStatus);
-    } on ServerException catch (e) {
-      logger.d(e.code);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(AuthFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.unknownError());
     }
   }
 
@@ -113,20 +140,27 @@ class ApiAuthFacade implements IAuthFacade {
       final userData = Map<String, dynamic>.from(data);
       logger.d(userData);
       final _user = UserAuth.fromJson(userData);
-      await _storage.openBox(StorageConstants.user);
-      await _storage.putData(json: _user.toJson());
-      final _userInStorage = await _storage.getData();
+      final _box = await _storage.openBox(StorageConstants.user);
+      await _storage.putData(_box, json: _user.toJson());
+      final _userInStorage = await _storage.getData(
+        _box,
+      );
       logger.d('user in storage :' + _userInStorage.toString());
-      await _storage.close();
-
+      await _storage.close(_box);
       return right(_user);
-    } on ServerException catch (e) {
-      logger.d(e.code);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
       if (e.code == '999') {
-        return left(AuthFailure.invalidPin(e.message));
+        return left(AuthFailure.invalidPin());
       }
+      return left(AuthFailure.generalError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -136,16 +170,16 @@ class ApiAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Option<UserAuth>>> getSignedInUser() async {
-    await _storage.openBox(StorageConstants.user);
     Either<AuthFailure, Option<UserAuth>> failureOrSuccess = right(none());
-    final _userInStorage = await _storage.getData();
+    final _box = await _storage.openBox(StorageConstants.user);
+    final _userInStorage = await _storage.getData(
+      _box,
+    );
     if (_userInStorage.isNotEmpty) {
       final _user = UserAuth.fromJson(_userInStorage);
-      await _storage.openBox(StorageConstants.user);
-      await _storage.putData(json: _user.toJson());
-      await _storage.close();
+      await _storage.putData(_box, json: _user.toJson());
       final _userAuth = UserAuth.fromJson(_userInStorage);
-      final _userProfile = await getProfile(_userAuth.token!);
+      final _userProfile = await _profileRepository.getProfile();
       logger.d(_userProfile);
       failureOrSuccess = _userProfile.fold(
         (l) => left(l),
@@ -154,50 +188,41 @@ class ApiAuthFacade implements IAuthFacade {
         ),
       );
     }
-    await _storage.close();
+    await _storage.close(_box);
     return failureOrSuccess;
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signOut() async {
+    final _box1 = await _storage.openBox(StorageConstants.user);
+    await _storage.deleteData(_box1);
+    await _storage.close(_box1);
+    final _box2 = await _storage.openBox(StorageConstants.cart);
+    await _storage.deleteData(_box2);
+    await _storage.close(_box2);
+    final _box3 = await _storage.openBox(StorageConstants.address);
+    await _storage.deleteData(_box3);
+    await _storage.close(_box3);
+    final _box4 = await _storage.openBox(StorageConstants.orderProduct);
+    await _storage.deleteData(_box4);
+    await _storage.close(_box4);
+    final _box5 = await _storage.openBox(StorageConstants.security);
+    await _storage.deleteData(_box5);
+    await _storage.close(_box5);
     try {
       await _networkService.getHttp(
         path: Endpoints.urlLogout,
         useAuth: true,
       );
     } catch (e) {}
-    await _storage.openBox(StorageConstants.user);
-    await _storage.deleteData();
-    await _storage.close();
     return right(unit);
   }
 
   @override
-  Future<Either<AuthFailure, UserProfile>> getProfile(String token) async {
-    try {
-      final apiResult = await _networkService.getHttp(
-        path: Endpoints.urlProfile,
-        useAuth: true,
-      );
-      logger.d(apiResult);
-      final data = (apiResult as Map<String, dynamic>)['data'];
-      final userData = Map<String, dynamic>.from(data);
-      logger.d(data);
-      return right(UserProfile.fromJson(userData));
-    } on ServerException catch (e) {
-      return left(AuthFailure.invalidToken(e.message));
-    } on NoInternetException catch (_) {
-      return left(AuthFailure.noInternet());
-    } catch (e, stactrace) {
-      logger.d('coba ' + stactrace.toString());
-      return left(AuthFailure.unknownError());
-    }
-  }
-
-  @override
   Future<void> changeUrl({required String url}) async {
-    await _storage.openBox(StorageConstants.base);
-    await _storage.putString(key: 'devUrl', value: url);
+    final _box = await _storage.openBox(StorageConstants.base);
+    await _storage.putString(_box, key: 'devUrl', value: url);
+    await _storage.close(_box);
   }
 
   @override
@@ -223,23 +248,31 @@ class ApiAuthFacade implements IAuthFacade {
 
       if (_login.isMember) {
         final _user = UserAuth.fromJson(userData);
-        await _storage.openBox(StorageConstants.user);
-        await _storage.putData(json: _user.toJson());
-        final _userInStorage = await _storage.getData();
+        final _box = await _storage.openBox(StorageConstants.user);
+        await _storage.putData(_box, json: _user.toJson());
+        final _userInStorage = await _storage.getData(
+          _box,
+        );
         logger.d('user in storage :' + _userInStorage.toString());
-        await _storage.close();
+        await _storage.close(_box);
       }
       return right(_login);
-    } on ServerException catch (e) {
-      logger.d(e.code);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
       if (e.code == '22') {
-        return left(AuthFailure.invalidOtp(e.message));
+        return left(AuthFailure.invalidOtp());
       }
+      return left(AuthFailure.unknownError());
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthFailure.sessionExpired());
+    } on ServerException catch (_) {
       return left(AuthFailure.serverError());
     } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
       return left(AuthFailure.noInternet());
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.unknownError());
     }
   }
 }

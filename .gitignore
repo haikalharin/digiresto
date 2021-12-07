@@ -16,8 +16,6 @@
 *.iws
 .idea/
 
-# Visual Studio Code related
-.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -72,7 +70,9 @@ build/
 .flutter-plugins-dependencies
 ios/Flutter/flutter_export_environment.sh
 
-# Exceptions Generated Files
-**/*.inject.summary
-**/*.inject.dart
-**/*.g.dart
+# Generated File
+*.freezed.dart
+*.g.dart
+*.freezed.dart
+*.g.dart
+lib/injection.config.dart

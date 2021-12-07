@@ -13,7 +13,7 @@ String emptyToJson(OutletListProductResponse data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class OutletListProductResponse with _$OutletListProductResponse {
+class OutletListProductResponse with _$OutletListProductResponse {
   const factory OutletListProductResponse({
     required StatusResponse response,
     required List<OutletListProductDataResponse> data,
@@ -25,7 +25,7 @@ abstract class OutletListProductResponse with _$OutletListProductResponse {
 }
 
 @freezed
-abstract class OutletListProductDataModifierGroupResponse
+class OutletListProductDataModifierGroupResponse
     with _$OutletListProductDataModifierGroupResponse {
   const factory OutletListProductDataModifierGroupResponse({
     required String name,
@@ -44,11 +44,11 @@ abstract class OutletListProductDataModifierGroupResponse
 }
 
 @freezed
-abstract class OutletListProductDataSubModifierGroupResponse
+class OutletListProductDataSubModifierGroupResponse
     with _$OutletListProductDataSubModifierGroupResponse {
   const factory OutletListProductDataSubModifierGroupResponse({
     required String code,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int? preorderPeriod,
     required int? crossoutPrice,
@@ -56,10 +56,10 @@ abstract class OutletListProductDataSubModifierGroupResponse
     required int? limit,
     required String id,
     required String name,
-    required int price,
+    required num price,
     required int weight,
-    required String description,
-    required String image,
+    required String? description,
+    required String? image,
     required String categoryId,
     required String categoryCode,
     required String categoryName,
@@ -71,11 +71,10 @@ abstract class OutletListProductDataSubModifierGroupResponse
 }
 
 @freezed
-abstract class OutletListProductDataResponse
-    with _$OutletListProductDataResponse {
+class OutletListProductDataResponse with _$OutletListProductDataResponse {
   const factory OutletListProductDataResponse({
     required String code,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int? preorderPeriod,
     required int? crossoutPrice,
@@ -83,10 +82,10 @@ abstract class OutletListProductDataResponse
     required int? limit,
     required String id,
     required String name,
-    required int price,
+    required num price,
     required int weight,
-    required String description,
-    required String image,
+    required String? description,
+    required String? image,
     required String categoryId,
     required String categoryCode,
     required String categoryName,
@@ -99,11 +98,11 @@ abstract class OutletListProductDataResponse
 }
 
 @freezed
-abstract class OutletListProductDataVariantResponse
+class OutletListProductDataVariantResponse
     with _$OutletListProductDataVariantResponse {
   const factory OutletListProductDataVariantResponse({
     required String code,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int? preorderPeriod,
     required int? crossoutPrice,
@@ -111,10 +110,10 @@ abstract class OutletListProductDataVariantResponse
     required int? limit,
     required String id,
     required String name,
-    required int price,
+    required num price,
     required int weight,
-    required String description,
-    required String image,
+    required String? description,
+    required String? image,
     required String categoryId,
     required String categoryCode,
     required String categoryName,

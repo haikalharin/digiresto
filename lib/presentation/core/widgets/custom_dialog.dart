@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 class CustomDialog extends StatelessWidget {
   final Color backgroundColor;
   final Widget content;
+  final BorderRadius borderRadius;
 
   const CustomDialog({
     Key? key,
     required this.content,
     this.backgroundColor = AppColors.mainColor,
+    this.borderRadius =
+        const BorderRadius.all(Radius.circular(Dimens.dialogBorderRadius)),
   }) : super(key: key);
 
   @override
@@ -18,7 +21,7 @@ class CustomDialog extends StatelessWidget {
       child: Center(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimens.dialogBorderRadius),
+            borderRadius: borderRadius,
             color: backgroundColor,
           ),
           padding: EdgeInsets.all(Dimens.dialogPadding),

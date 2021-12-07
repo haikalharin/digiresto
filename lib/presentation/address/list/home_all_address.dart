@@ -1,66 +1,53 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
-import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
+import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_remove_address_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_set_default_address_param.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/app_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomeAllAddressScreen extends GetView<HomeContentViewController> {
-  goBack(BuildContext context) {
-    Get.back();
-  }
-
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeContentViewController());
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: new Icon(Icons.arrow_back_outlined,
-                color: Colors.black, size: 28.0),
-            onPressed: () {
-              //getOutletByLocation();
-              Get.back();
-            }),
-        title: Text(
-          "Pilih Alamat",
-          style: AppFont.textBlack15Bold,
-          textAlign: TextAlign.center,
-        ),
-        actions: [
-          IconButton(
-              icon: ImageIcon(
-                AssetImage(AppAssets.iconMapRed),
-                color: AppColors.redYoung,
-              ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+              icon: new Icon(Icons.arrow_back_outlined,
+                  color: Colors.black, size: 28.0),
               onPressed: () {
-                Get.toNamed(Routers.homeAddLocation);
-              })
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: AppColors.greyFill,
-            width: double.infinity,
-            height: 12,
+                //getOutletByLocation();
+                Get.back();
+              }),
+          title: Text(
+            I10n.current.address_select_location,
+            style: AppFont.textBlack15Bold,
+            textAlign: TextAlign.center,
           ),
-          _AllAddressViewBody()
-        ],
-      ),
-    );
+          actions: [
+            IconButton(
+                icon: ImageIcon(
+                  AssetImage(AppAssets.iconMapRed),
+                  color: AppColors.redYoung,
+                ),
+                onPressed: () {
+                  Get.toNamed(Routers.homeAddLocation);
+                })
+          ],
+        ),
+        body: _AllAddressViewBody());
   }
 }
 
@@ -79,87 +66,113 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 longitude: response.longitute));
           },
           setActiveAddressSuccess: (content) {
-            controller.setActiveAddress(content.response.address!);
-            Get.back();
+            if (content.response.address == null) {}
+            controller.setActiveAddress(content.response.address ?? '');
           },
           setDefaultFail: (content) {
             print(content);
+          },
+          getAllAddressSuccess: (value) {
+            controller.setListAddress(value.response);
           },
           setDefaultSuccess: (value) {
             controller.setListAddress(value.response);
             Get.back(closeOverlays: true);
           },
           removeAddressSuccess: (value) {
-            context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            Get.context!
+                .read<AddressListBloc>()
+                .add(AddressListEvent.getAllAddress());
+            context.read<HomeBloc>().add(HomeEvent.getUserAddress());
             Get.back(closeOverlays: true);
           },
           addAddressSuccess: (value) {
-            context.read<HomeUserBloc>().add(HomeUserEvent.getListAddress());
+            Get.context!
+                .read<AddressListBloc>()
+                .add(AddressListEvent.getAllAddress());
+            context.read<HomeBloc>().add(HomeEvent.getUserAddress());
+            // final address = value.response;
+            // controller.setLocalActiveAddress(UserAddress(
+            //     name: address.name,
+            //     address: address.address,
+            //     latitude: address.latitude.toString(),
+            //     longitude: address.longitude.toString()));
             Get.back(closeOverlays: true);
             Get.back();
           },
           orElse: () {});
     }, builder: (context, state) {
       return Obx(() {
-        return Expanded(
-          child: Column(
-            children: [
-              _locationActive(),
-              Container(
-                color: AppColors.greyFill,
-                width: double.infinity,
-                height: 12,
-              ),
-              // _userStore?.skipAndContinue ?? false
-              false
-                  ? Container()
-                  : Expanded(
-                      child: Container(
-                        color: AppColors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, top: 16, right: 20),
-                          child: Column(
-                            children: [
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text("Alamat Tersimpan",
-                                          style: AppFont.textBlack15Bold,
-                                          textAlign: TextAlign.center),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true, // new line
-                                    padding: const EdgeInsets.all(8),
-                                    itemCount:
-                                        controller.listAddress.length + 1,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      if (index ==
-                                          controller.listAddress.length) {
-                                        return _btnNewAddress();
-                                      } else {
-                                        return _listAddress(
-                                            controller.listAddress[index]);
-                                      }
-                                    }),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-            ],
+        return StackWithProgress(
+          isLoading: state.maybeMap(
+            orElse: () => false,
+            loadInProgress: (_) => true,
           ),
+          children: [
+            Column(
+              children: [
+                Container(
+                  color: AppColors.greyFill,
+                  width: double.infinity,
+                  height: 12,
+                ),
+                _locationActive(),
+                Container(
+                  color: AppColors.greyFill,
+                  width: double.infinity,
+                  height: 12,
+                ),
+                Expanded(
+                  child: Container(
+                    color: AppColors.white,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, top: 16, right: 20),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(I10n.current.address_saved,
+                                      style: AppFont.textBlack15Bold,
+                                      textAlign: TextAlign.center),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: RefreshIndicator(
+                              onRefresh: () async => Get.context!
+                                  .read<AddressListBloc>()
+                                  .add(AddressListEvent.getAllAddress()),
+                              child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true, // new line
+                                  padding: const EdgeInsets.all(8),
+                                  itemCount: controller.listAddress.length + 1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (index ==
+                                        controller.listAddress.length) {
+                                      return _btnNewAddress();
+                                    } else {
+                                      return _listAddress(
+                                          controller.listAddress[index]);
+                                    }
+                                  }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
         );
       });
     });
@@ -194,7 +207,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                   transform: Matrix4.translationValues(-24, 0, 0),
                   child: Center(
                     child: new Text(
-                      'Pilihan Alamat',
+                      I10n.current.address_search_address,
                       style: AppFont.textBlack17Bold,
                     ),
                   ),
@@ -203,7 +216,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
               ),
               AppDivider.normal,
               ListTile(
-                title: new Text('Jadikan alamat utama',
+                title: new Text(I10n.current.address_set_main,
                     style: AppFont.textBlack14Regular),
                 onTap: () {
                   Get.context!.read<AddressListBloc>().add(
@@ -214,15 +227,15 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                 },
               ),
               AppDivider.normal,
+              // ListTile(
+              //   title:
+              //       new Text('Ubah Alamat', style: AppFont.textBlack14Regular),
+              //   onTap: () {},
+              // ),
+              // AppDivider.normal,
               ListTile(
-                title:
-                    new Text('Ubah Alamat', style: AppFont.textBlack14Regular),
-                onTap: () {},
-              ),
-              AppDivider.normal,
-              ListTile(
-                title:
-                    new Text('Hapus Alamat', style: AppFont.textBlack14Regular),
+                title: new Text(I10n.current.address_delete_action,
+                    style: AppFont.textBlack14Regular),
                 onTap: () {
                   Get.context!.read<AddressListBloc>().add(
                       AddressListEvent.removeAddress(UserRemoveAddressParam(
@@ -254,13 +267,13 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
               borderRadius: BorderRadius.circular(10)),
           child: GestureDetector(
             onTap: () {
-              Get.toNamed(Routers.setAddressAdd);
+              Get.toNamed(Routers.homeAddAddress);
             },
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("+ Tambah Alamat Tersimpan",
+                  Text("+ ${I10n.current.address_add}",
                       style: AppFont.textRed14Bold,
                       textAlign: TextAlign.center),
                 ],
@@ -283,8 +296,8 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
       ),
       child: GestureDetector(
         onTap: () {
-          print("set default");
-          setActiveAddress(controller.currentLocation.value);
+          controller.setLocalActiveAddress(controller.currentLocation.value);
+          Get.back();
         },
         child: Container(
           //height: 70,
@@ -316,7 +329,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
                       child: Text(
-                        "Lokasi sekarang",
+                        I10n.current.address_use_current_location,
                         style: AppFont.textRed14SemiBold,
                       ),
                     ),
@@ -361,8 +374,8 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
         ),
         child: GestureDetector(
           onTap: () {
-            print("set default");
-            setActiveAddress(data);
+            controller.setLocalActiveAddress(data);
+            Get.back();
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 8),
@@ -408,7 +421,7 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
                                     padding: const EdgeInsets.only(
                                         left: 16.0, right: 16.0),
                                     child: Text(
-                                      "Utama",
+                                      I10n.current.address_default,
                                       style: AppFont.textRed10Regular,
                                     ),
                                   ),
@@ -451,21 +464,8 @@ class _AllAddressViewBody extends GetView<HomeContentViewController> {
     }
   }
 
-  void setActiveAddress(UserAddress userAddress) {
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.setActiveAddress(
-        UserAddress(
-            address: userAddress.address.toString(),
-            latitude: userAddress.latitude.toString(),
-            longitude: userAddress.longitude.toString())));
-  }
-
   void getAddress() async {
-    Loading.show();
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(
-        GetGeoCodeParam(
-            latitude: position.latitude.toString(),
-            longitude: position.longitude.toString())));
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getAllAddress());
+    Get.context!.read<AddressListBloc>().add(AddressListEvent.getGeoCode(null));
   }
 }

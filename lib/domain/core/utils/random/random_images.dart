@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/flutter_image.dart';
 
 /*get random images from local asset
 This feature is used when no image is available on API*/
@@ -17,14 +18,14 @@ class RandomImages {
       return getImage();
     } else {
       if (img.contains('http') || img.contains('https')) {
-        return NetworkImage(img);
+        return NetworkImageWithRetry(img);
       } else {
-        return NetworkImage("http://" + img);
+        return NetworkImageWithRetry("http://" + img);
       }
     }
   }
 
-  static dynamic getImageUrlDefault(String? img, String? defaultImg) {
+  static ImageProvider getImageUrlDefault(String? img, String? defaultImg) {
     if (img == null || img == "") {
       if (defaultImg == null || defaultImg == "") {
         return getImage();
@@ -33,9 +34,9 @@ class RandomImages {
       }
     } else {
       if (img.contains('http') || img.contains('https')) {
-        return NetworkImage(img);
+        return NetworkImageWithRetry(img);
       } else {
-        return NetworkImage("http://" + img);
+        return NetworkImageWithRetry("http://" + img);
       }
     }
   }

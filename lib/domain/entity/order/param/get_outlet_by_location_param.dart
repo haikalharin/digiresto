@@ -11,7 +11,7 @@ GetOutletByLocationParam emptyFromJson(String str) =>
 String emptyToJson(GetOutletByLocationParam data) => json.encode(data.toJson());
 
 @freezed
-abstract class GetOutletByLocationParam with _$GetOutletByLocationParam {
+class GetOutletByLocationParam with _$GetOutletByLocationParam {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory GetOutletByLocationParam({
     required GetOutletByLocationQueryParam queryString,
@@ -23,8 +23,7 @@ abstract class GetOutletByLocationParam with _$GetOutletByLocationParam {
 }
 
 @freezed
-abstract class GetOutletByLocationBodyParam
-    with _$GetOutletByLocationBodyParam {
+class GetOutletByLocationBodyParam with _$GetOutletByLocationBodyParam {
   const factory GetOutletByLocationBodyParam() = _GetOutletByLocationBodyParam;
 
   factory GetOutletByLocationBodyParam.fromJson(Map<String, dynamic> json) =>
@@ -32,8 +31,7 @@ abstract class GetOutletByLocationBodyParam
 }
 
 @freezed
-abstract class GetOutletByLocationQueryParam
-    with _$GetOutletByLocationQueryParam {
+class GetOutletByLocationQueryParam with _$GetOutletByLocationQueryParam {
   const factory GetOutletByLocationQueryParam({
     required String location,
     required int page,

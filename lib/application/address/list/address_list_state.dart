@@ -27,4 +27,8 @@ class AddressListState with _$AddressListState {
 
   const factory AddressListState.addAddressSuccess(UserAddAddress response) =
       _AddAddressSuccess;
+  const factory AddressListState.getActiveAddressSuccess(UserAddress response) =
+      _GetActiveAddressSuccess;
+  const factory AddressListState.getAllAddressSuccess(
+      List<UserAddress> response) = _GetAllAddressSuccess;
 }

@@ -2,14 +2,18 @@ import 'package:digiresto/application/home/home_nearby_oulet_view_controller.dar
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/domain/core/utils/loading/loading.dart';
-import 'package:digiresto/domain/entity/order/param/get_outlet_by_location_param.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
+
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/list/nearby_outlet_widget.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
+import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/listview_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeNearbyOutletScreen extends StatelessWidget {
@@ -17,27 +21,35 @@ class HomeNearbyOutletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeOrderViewArgument args = Get.arguments as HomeOrderViewArgument;
     Get.put(HomeNearbyOutletViewController());
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: new Icon(Icons.arrow_back_outlined,
-                color: Colors.black, size: 28.0),
-            onPressed: () {
-              //getOutletByLocation();
-              Get.back();
-            }),
-        title: Text(args.title,
-            style: AppFont.textBlack15Bold, textAlign: TextAlign.center),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [Expanded(child: _BodyNearbyWidget(args: args))],
-        ),
-      ),
+    return CustomScafold(
+      title: args.title,
+      showBackButton: true,
+      resizeToAvoidBottomInset: false,
+      appBarColor: Colors.white,
+      iconBackColor: Colors.black,
+      body: _BodyNearbyWidget(args: args),
     );
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     backgroundColor: Colors.white,
+    //     leading: IconButton(
+    //         icon: new Icon(Icons.arrow_back_outlined,
+    //             color: Colors.black, size: 28.0),
+    //         onPressed: () {
+    //           //getOutletByLocation();
+    //           Get.back();
+    //         }),
+    //     title: Text(args.title,
+    //         style: AppFont.textBlack15Bold, textAlign: TextAlign.center),
+    //   ),
+    //   body: Container(
+    //     color: Colors.white,
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.start,
+    //       children: [Expanded(child: _BodyNearbyWidget(args: args))],
+    //     ),
+    //   ),
+    // );
   }
 }
 
@@ -47,41 +59,15 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
 
   final searchController = TextEditingController();
 
-  void getOutletByLocation(String search, int pageParam) {
-    Loading.show();
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
-        GetOutletByLocationParam(
-            queryString: GetOutletByLocationQueryParam(
-                filter: search, location: "", page: controller.page.value),
-            body: GetOutletByLocationBodyParam())));
-    // _orderStore?.getOutletByLocation({
-    //   "location":
-    //       _userStore!.activeAddressLat! + "," + _userStore!.activeAddresslng!,
-    //   "page": pageParam,
-    //   "filter": search,
-    // }).then((res) {
-    //   print("sukses get outlet");
-    //   if (pageParam > page) {
-    //     setState(() {
-    //       page += 1;
-    //       listOutlet.addAll(res);
-    //     });
-    //   } else {
-    //     setState(() {
-    //       page = 1;
-    //       listOutlet = res;
-    //     });
-    //   }
-    //   Loading.dismiss();
-    // }).catchError((err) {
-    //   Loading.dismiss();
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
+  void loadMoreOutletByLocation() {
+    controller.getOutletByLocation(
+        searchController.text, controller.page.value + 1);
   }
 
-  void loadMoreOutletByLocation() {
-    getOutletByLocation(searchController.text, controller.page.value + 1);
+  void onRefresh() {
+    controller.page.value = 1;
+    controller.listOutlet.clear();
+    controller.getOutletByLocation(searchController.text, 1);
   }
 
   Widget _search() {
@@ -94,8 +80,11 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
         child: TextField(
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
-              getOutletByLocation(searchController.text, 1);
+              controller.listOutlet.clear();
+              controller.page.value = 1;
+              controller.getOutletByLocation(searchController.text, 1);
             },
+            autocorrect: false,
             controller: searchController,
             onTap: () {
               print("open popup");
@@ -108,7 +97,7 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
               fillColor: AppColors.greyInput,
               contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
               prefixIcon: Icon(Icons.search),
-              hintText: "Temukan resto favorit anda",
+              hintText: I10n.current.home_nearby_outlet_hint,
               border: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: AppColors.greyInput, width: 32.0),
@@ -128,52 +117,71 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletByLocation(
-        GetOutletByLocationParam(
-            queryString: GetOutletByLocationQueryParam(
-                filter: "", location: "", page: controller.page.value),
-            body: GetOutletByLocationBodyParam())));
+    controller.getOutletByLocation("", 1);
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         state.maybeMap(
             getOutletByLocationSuccess: (r) {
-              controller.listOutlet.value = r.response;
+              if (r.response.isNotEmpty) {
+                controller.listOutlet.addAll(r.response);
+              }
             },
-            loadFailure: (e) {
-              print(e.message);
-            },
+            loadFailure: (e) {},
             orElse: () {});
       },
       builder: (context, state) {
-        return Column(
+        return StackWithProgress(
+          isLoading: state.maybeMap(
+            orElse: () => false,
+            loadInProgress: (_) => true,
+          ),
           children: [
-            Container(
-              height: 10,
-              decoration: BoxDecoration(
-                color: AppColors.grey[50],
-                borderRadius: BorderRadius.circular(0),
-                border: Border.all(
-                  color: Colors.black12,
-                  width: 0.5,
+            Column(
+              children: [
+                Container(
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: AppColors.grey[50],
+                    borderRadius: BorderRadius.circular(0),
+                    border: Border.all(
+                      color: Colors.black12,
+                      width: 0.5,
+                    ),
+                  ),
                 ),
-              ),
+                _search(),
+                Obx(() {
+                  return (controller.listOutlet.length > 0)
+                      ? ListviewOutletWidget(
+                          loadMoreAction: loadMoreOutletByLocation,
+                          onRefresh: onRefresh,
+                          runAction: (param) {
+                            Get.toNamed(Routers.orderDetailOutlet,
+                                    arguments: OrderDetailViewArgument(
+                                        param.id, param.merchantId))
+                                ?.then((value) {
+                              controller.page.value = 1;
+                              controller.listOutlet.clear();
+                              controller.getOutletByLocation(
+                                  searchController.text, 1);
+                            });
+                          },
+                          height: MediaQuery.of(context).size.height / 1.3,
+                          data: controller.listOutlet,
+                          scrollDirection: Axis.vertical,
+                        )
+                      : state.maybeMap(
+                          orElse: () => false,
+                          loadInProgress: (_) => true,
+                        )
+                          ? Container()
+                          : EmptyWidget(
+                              onRefresh: onRefresh,
+                              imageAsset: AppAssets.emptyOutlet,
+                            );
+                })
+              ],
             ),
-            _search(),
-            Obx(() {
-              return (controller.listOutlet.length > 0)
-                  ? ListCategoryOutletWidget(
-                      loadMoreAction: loadMoreOutletByLocation,
-                      runAction: (param) {
-                        Get.toNamed(Routers.orderDetailOutlet,
-                            arguments: OrderDetailViewArgument(
-                                param.id, param.merchantId));
-                      },
-                      height: MediaQuery.of(context).size.height / 1.3,
-                      data: controller.listOutlet,
-                      scrollDirection: Axis.vertical,
-                    )
-                  : Container();
-            })
           ],
         );
       },

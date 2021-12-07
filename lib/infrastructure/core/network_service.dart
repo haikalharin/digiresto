@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/constants/network/env.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
@@ -30,9 +31,9 @@ class NetworkService implements INetworkService {
       bool useAuth = true}) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
-      await baseStorage.openBox(StorageConstants.user);
-
       try {
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
         logger.d('get Http : $path');
 
         final Map<String, dynamic> headers = _dio.options.headers;
@@ -41,12 +42,18 @@ class NetworkService implements INetworkService {
           'accept': ContentType.json.mimeType
         });
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
 
         if (header != null) {
@@ -56,14 +63,21 @@ class NetworkService implements INetworkService {
         _dio.options.headers = headers;
         logger.d(_dio.options.headers);
 
-        await baseStorage.close();
-        String baseUrl = await _env.getBaseUrl;
-        logger.d('dio base url : $baseUrl');
-
         final Response response = await _dio.get(
             '$baseUrl$path${parameter ?? ""}',
             queryParameters: queryParameter);
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -71,14 +85,20 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
-      } catch (e) {
-        print(e.toString());
-        throw e;
       }
     } else {
       throw NoInternetException();
@@ -86,18 +106,20 @@ class NetworkService implements INetworkService {
   }
 
   @override
-  Future<dynamic> postHttp(
-      {required String path,
-      String? parameter,
-      Map<String, dynamic>? queryParameter,
-      dynamic content,
-      String? contentType,
-      Map<String, dynamic>? header,
-      bool useAuth = true}) async {
+  Future<dynamic> postHttp({
+    required String path,
+    String? parameter,
+    Map<String, dynamic>? queryParameter,
+    dynamic content,
+    String? contentType,
+    Map<String, dynamic>? header,
+    bool useAuth = true,
+  }) async {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.user);
+        String baseUrl = await _env.getBaseUrl;
+        logger.d('dio base url : $baseUrl');
         final Map<String, dynamic> headers = {
           'content-type': ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -106,23 +128,38 @@ class NetworkService implements INetworkService {
           headers.addAll(header);
         }
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
-
-        String baseUrl = await _env.getBaseUrl;
-        logger.d('dio base url : $baseUrl');
 
         final Response response = await _dio.post(
           '$baseUrl$path${parameter ?? ""}',
           queryParameters: queryParameter,
           data: content,
         );
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -130,10 +167,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       }
     } else {
@@ -154,7 +200,6 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'content-type': contentType ?? ContentType.json.mimeType,
           'Accept': ContentType.json.mimeType,
@@ -164,22 +209,39 @@ class NetworkService implements INetworkService {
         }
 
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
 
         _dio.options.headers = headers;
-        await baseStorage.close();
+
         final Response response = await _dio.put(
           '$path${parameter ?? ""}',
           queryParameters: queryParameter,
           data: content,
         );
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -187,10 +249,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       }
     } else {
@@ -208,17 +279,22 @@ class NetworkService implements INetworkService {
     final connectivityResult = await _connectivity.checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        await baseStorage.openBox(StorageConstants.user);
         final Map<String, dynamic> headers = {
           'Accept': ContentType.binary.mimeType,
         };
         if (useAuth) {
-          final _userInStorage = await baseStorage.getData();
+          final _box = await baseStorage.openBox(StorageConstants.user);
+          final _userInStorage = await baseStorage.getData(
+            _box,
+          );
           final _userAuth = UserAuth.fromJson(_userInStorage);
           final String? security = _userAuth.token;
           if (security != null) {
             headers.addAll({'Authorization': 'Bearer $security'});
           }
+          await baseStorage.close(
+            _box,
+          );
         }
         final savedDir = Directory(downloadPath);
         final bool hasExisted = await savedDir.exists();
@@ -228,9 +304,19 @@ class NetworkService implements INetworkService {
           logger.d('directory created');
         }
         _dio.options.headers = headers;
-        await baseStorage.close();
         final Response response = await _dio.download(url, downloadPath);
-        return response.data;
+        final responseCode = response.data['response']['code'] as String;
+        if (responseCode == '00' || responseCode == '000') {
+          return response.data;
+        } else {
+          throw FailureException(
+            code: response.data['response']['code'],
+            message: StatusMessageDisplayResponse.fromJson(
+              Map<String, dynamic>.from(
+                  response.data['response']['messageDisplay']),
+            ),
+          );
+        }
       } on DioError catch (e) {
         switch (e.type) {
           case DioErrorType.connectTimeout:
@@ -238,10 +324,19 @@ class NetworkService implements INetworkService {
           case DioErrorType.other:
             throw NetworkException(message: e.response!.data);
           default:
-            throw ServerException(
-              code: e.response?.data['response']['code'],
-              message: e.response?.data['response']['message'],
-            );
+            if (e.response?.statusCode == 401) {
+              throw AuthException(
+                message: StatusMessageDisplayResponse.fromJson(
+                  Map<String, dynamic>.from(
+                      e.response?.data['response']['messageDisplay']),
+                ),
+              );
+            } else {
+              throw ServerException(
+                code: e.response?.statusCode,
+                message: e.response?.statusMessage,
+              );
+            }
         }
       }
     } else {

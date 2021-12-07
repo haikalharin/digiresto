@@ -1,6 +1,7 @@
 import 'package:digiresto/application/credit/waiting_payment/waiting_payment_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
@@ -36,12 +37,13 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
   late final _bloc = BlocProvider.of<WaitingPaymentBloc>(context);
   @override
   Widget build(BuildContext context) {
+    I10n i10n = I10n.of(context);
     return BlocConsumer<WaitingPaymentBloc, WaitingPaymentState>(
       listener: (context, state) {},
       builder: (context, state) {
         return CustomScafold(
           showBackButton: true,
-          title: 'Menunggu Pembayaran',
+          title: i10n.credit_pending_topup,
           body: StackWithProgress(
             isLoading: state.maybeMap(
               orElse: () => false,
@@ -57,78 +59,100 @@ class _WaitingPaymentWidgetState extends State<WaitingPaymentWidget> {
                   child: Text(
                     data.failure.map(
                       noInternet: (_) => 'No Internet',
-                      serverException: (e) => e.message ?? 'Server Error',
-                      noData: (_) => 'Belum ada transaksi',
+                      serverError: (e) => 'Server Error',
+                      noData: (_) => i10n.history_pending_payment_empty,
                       unexpected: (_) => 'Unknown Error',
+                      generalError: (_) =>
+                          i10n.error_message_failed_get_response,
+                      sessionExpired: (_) => 'Session Expired',
                     ),
                   ),
                 ),
                 loadSuccess: (data) => data.listTopUpPending.isEmpty
                     ? Center(
-                        child: Text('Belum ada transaksi'),
+                        child: Text(
+                          i10n.history_pending_payment_empty,
+                        ),
                       )
-                    : ListView(
-                        padding: EdgeInsets.zero,
-                        children: [
-                          Divider(
-                            thickness: 12,
-                            color: AppColors.dividerColor,
-                          ),
-                          ...data.listTopUpPending
-                              .map(
-                                (pending) => TopUpPendingItem(
-                                  pending,
-                                  onTapDelete: (billingId) => Get.dialog(
-                                    CustomDialog(
-                                      backgroundColor: Colors.white,
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            'Digiresto',
-                                            style: Styles.dialogTitleStyle,
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            'Apakah anda yakin untuk membatalkan Top Up ini?',
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: CustomButton(
-                                                  onPressed: () => Get.back(),
-                                                  label: 'Cancel',
-                                                  borderColor:
-                                                      AppColors.mainColor,
-                                                  color: Colors.white,
+                    : RefreshIndicator(
+                        onRefresh: () async {
+                          context
+                              .read<WaitingPaymentBloc>()
+                              .add(WaitingPaymentEvent.started());
+                          return;
+                        },
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          children: [
+                            Divider(
+                              thickness: 12,
+                              color: AppColors.dividerColor,
+                            ),
+                            ...data.listTopUpPending
+                                .map(
+                                  (pending) => TopUpPendingItem(
+                                    pending,
+                                    onTapDelete: (billingId) => Get.dialog(
+                                      CustomDialog(
+                                        backgroundColor: Colors.white,
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Digiresto',
+                                              style: Styles.dialogTitleStyle,
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Text(
+                                              i10n.history_topup_cancel_alert,
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: CustomButton(
+                                                    onPressed: () => Get.back(),
+                                                    label: i10n.alert_cancel,
+                                                    borderColor:
+                                                        AppColors.mainColor,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
-                                              Expanded(
-                                                child: CustomButton(
-                                                  width: 100,
-                                                  onPressed: () => Get.back(),
-                                                  label: 'Ok',
-                                                  fontColor: Colors.white,
-                                                  borderColor:
-                                                      AppColors.mainColor,
-                                                  color: AppColors.mainColor,
+                                                SizedBox(
+                                                  width: 15,
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                                Expanded(
+                                                  child: CustomButton(
+                                                    width: 100,
+                                                    onPressed: () {
+                                                      _bloc.add(
+                                                          WaitingPaymentEvent
+                                                              .cancelTopup(
+                                                                  billingId));
+                                                      Get.back();
+                                                    },
+                                                    label: i10n.alert_ok,
+                                                    fontColor: Colors.white,
+                                                    borderColor:
+                                                        AppColors.mainColor,
+                                                    color: AppColors.mainColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              )
-                              .toList()
-                        ],
+                                )
+                                .toList()
+                          ],
+                        ),
                       ),
               ),
             ],

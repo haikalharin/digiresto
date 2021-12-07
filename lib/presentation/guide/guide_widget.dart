@@ -70,84 +70,84 @@ disekitar Anda.""",
         )
       ],
     ),
-    TargetFocus(
-      identify: "Terdeket",
-      keyTarget: terdekat,
-      shape: ShapeLightFocus.RRect,
-      radius: 8,
-      contents: [
-        TargetContent(
-          align: ContentAlign.bottom,
-          builder: (context, controller) {
-            return GuideContentBuild(
-              arrowPosition: ArrowPosition.topLeft,
-              controller: controller,
-              title: 'Terdekat',
-              description: 'Temukan resto terdekat dari lokasi Anda.',
-            );
-          },
-        )
-      ],
-    ),
-    TargetFocus(
-      identify: "Digidiskon",
-      keyTarget: digidiscount,
-      shape: ShapeLightFocus.RRect,
-      radius: 8,
-      contents: [
-        TargetContent(
-          align: ContentAlign.bottom,
-          builder: (context, controller) {
-            return GuideContentBuild(
-              arrowPosition: ArrowPosition.topRight,
-              controller: controller,
-              title: 'DigiDiskon',
-              description: 'Temukan berbagai diskon spesial di sekitar Anda.',
-            );
-          },
-        )
-      ],
-    ),
-    TargetFocus(
-      identify: "Frozenfood",
-      keyTarget: frozenfood,
-      shape: ShapeLightFocus.RRect,
-      radius: 8,
-      contents: [
-        TargetContent(
-          align: ContentAlign.top,
-          builder: (context, controller) {
-            return GuideContentBuild(
-              arrowPosition: ArrowPosition.bottomLeft,
-              controller: controller,
-              title: 'Frozen Food',
-              description: """Temukan berbagai jenis makanan beku yang mudah
-dan cepat untuk di sajikan.""",
-            );
-          },
-        )
-      ],
-    ),
-    TargetFocus(
-      identify: "Indonesia",
-      keyTarget: indonesiapastibisa,
-      shape: ShapeLightFocus.RRect,
-      radius: 8,
-      contents: [
-        TargetContent(
-          align: ContentAlign.top,
-          builder: (context, controller) {
-            return GuideContentBuild(
-              arrowPosition: ArrowPosition.bottomRight,
-              isLast: true,
-              controller: controller,
-              title: 'Indonesia Pasti Bisa',
-              description: 'Paket makanan untuk kamu yang sedang Isoman.',
-            );
-          },
-        )
-      ],
-    ),
+    // TargetFocus(
+    //   identify: "Terdekat",
+    //   keyTarget: terdekat,
+    //   shape: ShapeLightFocus.RRect,
+    //   radius: 8,
+    //   contents: [
+    //     TargetContent(
+    //       align: ContentAlign.bottom,
+    //       builder: (context, controller) {
+    //         return GuideContentBuild(
+    //           arrowPosition: ArrowPosition.topLeft,
+    //           controller: controller,
+    //           title: 'Terdekat',
+    //           description: 'Temukan resto terdekat dari lokasi Anda.',
+    //         );
+    //       },
+    //     )
+    //   ],
+    // ),
+//     TargetFocus(
+//       identify: "Digidiskon",
+//       keyTarget: digidiscount,
+//       shape: ShapeLightFocus.RRect,
+//       radius: 8,
+//       contents: [
+//         TargetContent(
+//           align: ContentAlign.bottom,
+//           builder: (context, controller) {
+//             return GuideContentBuild(
+//               arrowPosition: ArrowPosition.topRight,
+//               controller: controller,
+//               title: 'DigiDiskon',
+//               description: 'Temukan berbagai diskon spesial di sekitar Anda.',
+//             );
+//           },
+//         )
+//       ],
+//     ),
+//     TargetFocus(
+//       identify: "Frozenfood",
+//       keyTarget: frozenfood,
+//       shape: ShapeLightFocus.RRect,
+//       radius: 8,
+//       contents: [
+//         TargetContent(
+//           align: ContentAlign.top,
+//           builder: (context, controller) {
+//             return GuideContentBuild(
+//               arrowPosition: ArrowPosition.bottomLeft,
+//               controller: controller,
+//               title: 'Frozen Food',
+//               description: """Temukan berbagai jenis makanan beku yang mudah
+// dan cepat untuk di sajikan.""",
+//             );
+//           },
+//         )
+//       ],
+//     ),
+//     TargetFocus(
+//       identify: "Indonesia",
+//       keyTarget: indonesiapastibisa,
+//       shape: ShapeLightFocus.RRect,
+//       radius: 8,
+//       contents: [
+//         TargetContent(
+//           align: ContentAlign.top,
+//           builder: (context, controller) {
+//             return GuideContentBuild(
+//               arrowPosition: ArrowPosition.bottomRight,
+//               isLast: true,
+//               controller: controller,
+//               title: 'Indonesia Pasti Bisa',
+//               description: 'Paket makanan untuk kamu yang sedang Isoman.',
+//             );
+//           },
+//         )
+//       ],
+//     ),
   ];
 }
 
@@ -207,11 +207,14 @@ class GuideContentBuild extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (arrowPosition == ArrowPosition.topLeft ||
-            arrowPosition == ArrowPosition.topRight)
+            arrowPosition == ArrowPosition.topRight ||
+            arrowPosition == ArrowPosition.topCenter)
           Container(
-            alignment: arrowPosition == ArrowPosition.topLeft
-                ? Alignment.centerLeft
-                : Alignment.centerRight,
+            alignment: arrowPosition == ArrowPosition.topCenter
+                ? Alignment.center
+                : arrowPosition == ArrowPosition.topLeft
+                    ? Alignment.centerLeft
+                    : Alignment.centerRight,
             margin: EdgeInsets.symmetric(
               horizontal: 50,
             ),
@@ -309,11 +312,14 @@ class GuideContentBuild extends StatelessWidget {
           ),
         ),
         if (arrowPosition == ArrowPosition.bottomLeft ||
-            arrowPosition == ArrowPosition.bottomRight)
+            arrowPosition == ArrowPosition.bottomRight ||
+            arrowPosition == ArrowPosition.bottomCenter)
           Container(
-            alignment: arrowPosition == ArrowPosition.bottomLeft
-                ? Alignment.centerLeft
-                : Alignment.centerRight,
+            alignment: arrowPosition == ArrowPosition.bottomCenter
+                ? Alignment.center
+                : arrowPosition == ArrowPosition.bottomLeft
+                    ? Alignment.centerLeft
+                    : Alignment.centerRight,
             margin: EdgeInsets.symmetric(
               horizontal: 50,
             ),
@@ -334,6 +340,8 @@ class GuideContentBuild extends StatelessWidget {
 enum ArrowPosition {
   topLeft,
   topRight,
+  topCenter,
   bottomLeft,
   bottomRight,
+  bottomCenter,
 }

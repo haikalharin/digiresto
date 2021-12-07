@@ -45,7 +45,7 @@ class HomePromoUrlScreen extends StatelessWidget {
                             textAlign: TextAlign.center),
                       ),
                       Container(
-                        width: 10,
+                        width: 28,
                       )
                     ],
                   ),
@@ -54,6 +54,7 @@ class HomePromoUrlScreen extends StatelessWidget {
                         maxHeight: MediaQuery.of(context).size.height,
                       ),
                       child: WebView(
+                        javascriptMode: JavascriptMode.unrestricted,
                         initialUrl: routes['url']!.startsWith('http')
                             ? routes['url']!
                             : "http://" + routes['url']!,

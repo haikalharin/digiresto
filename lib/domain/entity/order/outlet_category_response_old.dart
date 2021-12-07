@@ -13,7 +13,7 @@ String emptyToJson(OutletCategoryResponseOld data) =>
     json.encode(data.toJson());
 
 @freezed
-abstract class OutletCategoryResponseOld with _$OutletCategoryResponseOld {
+class OutletCategoryResponseOld with _$OutletCategoryResponseOld {
   const factory OutletCategoryResponseOld({
     required StatusResponse response,
     required List<OutletCategoryDataResponse> data,
@@ -25,7 +25,7 @@ abstract class OutletCategoryResponseOld with _$OutletCategoryResponseOld {
 }
 
 @freezed
-abstract class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
+class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
   const factory OutletCategoryDataResponse({
     required String? id,
     required String name,
@@ -56,14 +56,14 @@ abstract class OutletCategoryDataResponse with _$OutletCategoryDataResponse {
 }
 
 @freezed
-abstract class Detail with _$Detail {
+class Detail with _$Detail {
   const factory Detail({
     required String name,
     required String address,
     required List<dynamic> taxesAndServices,
     required List<dynamic> location,
     required String phone,
-    required String kurirPrice,
+    required dynamic kurirPrice,
     required String deliveryType,
     required String maxRadius,
     required String driverPhone,
@@ -77,7 +77,7 @@ abstract class Detail with _$Detail {
 }
 
 @freezed
-abstract class Distance with _$Distance {
+class Distance with _$Distance {
   const factory Distance({
     required String text,
     required double value,
@@ -88,7 +88,7 @@ abstract class Distance with _$Distance {
 }
 
 @freezed
-abstract class OrderMethod with _$OrderMethod {
+class OrderMethod with _$OrderMethod {
   const factory OrderMethod({
     required bool forceSelect,
     required List<DefaultList> defaultList,
