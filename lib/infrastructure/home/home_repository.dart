@@ -1,3 +1,4 @@
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/constants/network/env.dart';
@@ -144,10 +145,16 @@ class HomeRepository implements IHomeRepository {
         for (int i = 0; i < listUserData.length; i++) {
           address.add(UserAddress.createAddress(listUserData[i]));
         }
+        final userAddress =
+            address.firstWhereOrNull((element) => element.isDefault ?? false);
 
-        if (address.any((element) => element.isDefault ?? false)) {
-          return right(
-              address.firstWhere((element) => element.isDefault ?? false));
+        if (userAddress != null) {
+          final _box = await _storage.openBox(StorageConstants.address);
+          print("Create Active Address");
+          await _storage.setJson(_box,
+              key: "address", object: userAddress.toJson());
+          await _storage.close(_box);
+          return right(userAddress);
         } else {
           final _currentLocation = await _locationService.determinePosition();
           final apiUrl = Endpoints.urlForward;

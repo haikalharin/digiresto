@@ -102,15 +102,15 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
               color: AppColors.red,
             ),
           ),
-        Text(
-          '*max ${modifierGroup.maxQuantity} item',
-          style: AppFont.textBlack12Regular.copyWith(
-            color: AppColors.red,
+        if (_maxQuantity > 0)
+          Text(
+            '*max ${modifierGroup.maxQuantity} item',
+            style: AppFont.textBlack12Regular.copyWith(
+              color: AppColors.red,
+            ),
           ),
-        ),
         ...modifierGroup.modifiers.map((modifier) {
-          if (modifierGroup.allowMultiple == 1 ||
-              modifierGroup.allowMultiple == 1) {
+          if (_allowMultiple == 1 && _allowQuantity != 0) {
             return ModifierItemRadioWidget(
               modifier: modifier,
               toggleable: _minQuantity <= 0,
@@ -146,11 +146,13 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
             onChanged: (value) {
               print('value : ${value!}');
               setState(() {
+                final maxQty = _maxQuantity == 0 ? 999 : _maxQuantity;
+                final allowQty = _allowQuantity == 0 ? 999 : _allowQuantity;
                 if (value &&
                     (_allowMultiple == 0
                         ? true
-                        : (_selectedModifier.length < _maxQuantity &&
-                            _groupQuantity < _allowMultiple))) {
+                        : (_selectedModifier.length < maxQty &&
+                            _groupQuantity < allowQty))) {
                   print('kondisi 1');
                   _groupQuantity++;
                   _mapQuantity.addAll({modifier.id: 1});
@@ -171,7 +173,8 @@ class _ModifierGroupWidgetState extends State<ModifierGroupWidget> {
             itemQty: _mapQuantity[modifier.id] ?? 1,
             onPlus: () {
               final qty = _mapQuantity[modifier.id] ?? 1;
-              if (qty <= _maxQuantity && _groupQuantity < _maxQuantity) {
+              final maxQty = _maxQuantity == 0 ? 999 : _maxQuantity;
+              if (qty <= maxQty && _groupQuantity < maxQty) {
                 setState(() {
                   _groupQuantity++;
                   _mapQuantity[modifier.id] = qty + 1;

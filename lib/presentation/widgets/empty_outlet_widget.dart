@@ -1,6 +1,5 @@
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/theme.dart';
-import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:flutter/material.dart';
 
 class EmptyOutletWidget extends StatelessWidget {
@@ -16,7 +15,8 @@ class EmptyOutletWidget extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          RefreshIndicator(child: ListView(), onRefresh: () async => onRefresh),
+          RefreshIndicator(
+              child: ListView(), onRefresh: () async => onRefresh()),
           Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,

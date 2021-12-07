@@ -1,3 +1,4 @@
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
@@ -92,7 +93,17 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
       itemBuilder: (BuildContext context, int index) {
         num? price;
         final productCart = widget.productCart[index];
-        final productItem = widget.product.firstWhere(
+        List<OutletListProductDataResponse> products = [];
+        widget.product.forEach((p) {
+          products.add(p);
+          if (p.variants.isNotEmpty) {
+            p.variants.forEach((element) {
+              products.add(OutletListProductDataVariantResponse
+                  .variantToDetailProductResponse(element));
+            });
+          }
+        });
+        final productItem = products.firstWhere(
             (element) => element.id == productCart.productId.toString());
 
         // void minus() {
