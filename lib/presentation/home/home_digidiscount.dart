@@ -9,7 +9,7 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

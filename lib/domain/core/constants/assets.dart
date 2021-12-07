@@ -77,4 +77,5 @@ class AppAssets {
 
   static const String emptyOutlet =
       "assets/images/empty_outlet.png";
+  static const String emptyVoucher  = 'assets/images/empty_voucher.svg';
 }

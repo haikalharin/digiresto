@@ -9,7 +9,7 @@ import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/empty_outlet_widget.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:digiresto/presentation/home_new/dynamic_menu/widgets/listview_outlet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -170,7 +170,15 @@ class _BodyNearbyWidget extends GetView<HomeNearbyOutletViewController> {
                           data: controller.listOutlet,
                           scrollDirection: Axis.vertical,
                         )
-                      : EmptyOutletWidget(onRefresh: onRefresh);
+                      : state.maybeMap(
+                          orElse: () => false,
+                          loadInProgress: (_) => true,
+                        )
+                          ? Container()
+                          : EmptyWidget(
+                              onRefresh: onRefresh,
+                              imageAsset: AppAssets.emptyOutlet,
+                            );
                 })
               ],
             ),

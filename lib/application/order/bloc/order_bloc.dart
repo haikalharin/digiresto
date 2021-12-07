@@ -67,8 +67,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             request.request.copyWith(queryString: queryString).toJson());
         yield getOutletByLocation.fold(
           (error) => OrderState.loadFailure(
-              OrderFailure.getOutletByLocationFail(error)),
-          (list) => OrderState.getOutletByLocationSuccess(list.data),
+            OrderFailure.getOutletByLocationFail(
+              error,
+            ),
+          ),
+          (list) => OrderState.getOutletByLocationSuccess(
+            list.data,
+          ),
         );
       },
       getOutletByCategory: (request) async* {

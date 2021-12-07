@@ -1,3 +1,4 @@
+// import 'package:alice/alice.dart';
 import 'package:code_id_flutter/code_services/alice/alice.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
