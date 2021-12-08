@@ -1,5 +1,4 @@
 // import 'package:alice/alice.dart';
-import 'package:code_id_flutter/code_services/alice/alice.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
+import 'package:alice/alice.dart';
 
 @injectable
 class AppWidget extends HookWidget {

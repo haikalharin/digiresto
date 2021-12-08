@@ -16,6 +16,7 @@ import 'package:digiresto/presentation/home/home_digidiscount.dart';
 import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
 import 'package:digiresto/presentation/home/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
+import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/landing/landing_page.dart';
 import 'package:digiresto/presentation/order/detail_outlet.dart';
@@ -75,6 +76,7 @@ class Routers {
   static const String paymentTopupCreditBT = '/payment_topup_credit_bt';
   static const String paymentTopupCreditVA = '/payment_topup_credit_va';
   static const String historyCredit = '/history_credit';
+  static const String listCateringPage = '/list_catering_page';
 
   final List<GetPage> routers = [
     GetPage(
@@ -161,5 +163,6 @@ class Routers {
     GetPage(name: Routers.paymentReceipt, page: () => PaymentReceiptScreen()),
     GetPage(name: Routers.paymentVa, page: () => PaymentVAScreen()),
     GetPage(name: Routers.paymentWebView, page: () => PaymentWebViewScreen()),
+    GetPage(name: Routers.listCateringPage, page: () => ListCateringPage()),
   ];
 }

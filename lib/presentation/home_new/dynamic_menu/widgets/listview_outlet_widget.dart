@@ -158,7 +158,10 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                       padding: EdgeInsets.only(right: 5),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(8.0)),
+                                          Radius.circular(
+                                            8.0,
+                                          ),
+                                        ),
                                         child: Image(
                                           errorBuilder:
                                               (context, obj, stacktrace) {
