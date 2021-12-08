@@ -195,6 +195,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                 widget.detailOutlet,
                 widget.orderType,
                 isBuyNow,
+                widget.detailOutlet.merchantName!,
               ),
             );
         Get.back();
@@ -221,6 +222,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             widget.detailOutlet,
             widget.orderType,
             isBuyNow,
+            widget.detailOutlet.merchantName!,
           ),
         );
   }
@@ -854,7 +856,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 textAlign: TextAlign.left),
                           ),
                           GestureDetector(
-                            onTap: ((variantProductSelected.limit ?? 999) >=
+                            onTap: ((variantProductSelected.limit ?? 999) <=
                                     totalqty)
                                 ? () => setState(() {
                                       isLimitReached = true;
@@ -873,7 +875,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       )
                     ],
                   ),
-                  if ((variantProductSelected.limit ?? 999) >= totalqty &&
+                  if ((variantProductSelected.limit ?? 999) <= totalqty &&
                       isLimitReached)
                     Container(
                       width: double.infinity,

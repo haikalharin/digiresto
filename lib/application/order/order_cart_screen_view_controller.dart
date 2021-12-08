@@ -89,9 +89,10 @@ class OrderCartScreenViewController extends GetxController {
   }
 
   void updateCartParam() async {
-    Get.context!
-        .read<OrderBloc>()
-        .add(OrderEvent.updateCart(notesController.text));
+    Get.context!.read<OrderBloc>().add(OrderEvent.updateCart(
+          notesController.text,
+          detailOutlet.value!.merchantName!,
+        ));
     update();
   }
 
@@ -259,6 +260,7 @@ class OrderCartScreenViewController extends GetxController {
           detailOutlet.value!,
           salesType.value!,
           isBuyNow,
+          detailOutlet.value!.merchantName!,
         ));
     update();
   }

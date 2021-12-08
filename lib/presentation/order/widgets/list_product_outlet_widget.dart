@@ -188,8 +188,8 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 5,
-                        horizontal: 10,
+                        // vertical: 5,
+                        horizontal: 5,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,7 +216,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                               Text(
                                 item.description ?? '',
                                 softWrap: false,
-                                maxLines: 3,
+                                maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: Styles.blackFontStyle.copyWith(
                                   fontSize: 12,

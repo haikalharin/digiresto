@@ -24,9 +24,14 @@ class OrderLocal {
   OrderLocal(this._storage);
 
   Future<PaymentMethodDataResponse?> setPaymentMethod(
-      PaymentMethodDataResponse data) async {
+      PaymentMethodDataResponse? data) async {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
+      if (data == null) {
+        await _storage.setJson(_box, key: _paymentMethodKey, object: {});
+        await _storage.close(_box);
+        return null;
+      }
       await _storage.setJson(_box,
           key: _paymentMethodKey, object: data.toJson());
       final object = _storage.getJson(_box, key: _paymentMethodKey);
@@ -42,6 +47,10 @@ class OrderLocal {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
       final object = _storage.getJson(_box, key: _paymentMethodKey);
+      if (object.isEmpty) {
+        await _storage.close(_box);
+        return null;
+      }
       final model = PaymentMethodDataResponse.fromJson(object);
       await _storage.close(_box);
       return model;
@@ -51,9 +60,14 @@ class OrderLocal {
   }
 
   Future<DeliveryMethodDataResponse?> setDeliveryMethod(
-      DeliveryMethodDataResponse data) async {
+      DeliveryMethodDataResponse? data) async {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
+      if (data == null) {
+        await _storage.setJson(_box, key: _deliveryMethodKey, object: {});
+        await _storage.close(_box);
+        return null;
+      }
       await _storage.setJson(_box,
           key: _deliveryMethodKey, object: data.toJson());
       final object = _storage.getJson(_box, key: _deliveryMethodKey);
@@ -69,6 +83,10 @@ class OrderLocal {
     try {
       final _box = await _storage.openBox(StorageConstants.cart);
       final object = _storage.getJson(_box, key: _deliveryMethodKey);
+      if (object.isEmpty) {
+        await _storage.close(_box);
+        return null;
+      }
       final model = DeliveryMethodDataResponse.fromJson(object);
       await _storage.close(_box);
       return model;

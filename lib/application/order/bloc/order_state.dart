@@ -52,10 +52,12 @@ class OrderState with _$OrderState {
   const factory OrderState.addCartSuccess(
     CartSessionResponse response,
     bool isBuyNow,
+    String outletName,
   ) = _AddCartSuccess;
 
   const factory OrderState.updateCartSuccess(
     CartSessionResponse response,
+    String outletName,
   ) = _UpdateCartSuccess;
 
   const factory OrderState.removeCartSuccess(CartSessionResponse response) =
@@ -67,8 +69,10 @@ class OrderState with _$OrderState {
   const factory OrderState.reorderCartSuccess(CartSessionResponse response) =
       _ReorderCartSuccess;
 
-  const factory OrderState.getCartSessionSuccess(CartSessionResponse response) =
-      _GetCartSessionSuccess;
+  const factory OrderState.getCartSessionSuccess(
+    CartSessionResponse response,
+    String outletName,
+  ) = _GetCartSessionSuccess;
 
   const factory OrderState.removeCartSessionSuccess() =
       _RemoveCartSessionSuccess;
