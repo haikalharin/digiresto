@@ -9,7 +9,9 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class ListCateringPage extends StatelessWidget {
   final MenuCategory? menuCategory;
@@ -31,6 +33,10 @@ class ListCateringPage extends StatelessWidget {
 
 class ListCateringWidget extends StatelessWidget {
   final TextEditingController searchController = TextEditingController();
+
+  DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day + 1);
+
+  final date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -73,50 +79,54 @@ class ListCateringWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 37,
-                            margin: EdgeInsets.only(
-                              top: 1,
-                              bottom: 1
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: AppColors.redD12B34,
-                                width: 0.5,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(8),
-                                bottomLeft: Radius.circular(8),
-                              ),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  Assets.iconsFoodIcon,
-                                  height: 15,
-                                  width: 15,
-                                  fit: BoxFit.fill,
+                          child: GestureDetector(
+                            onTap: () {
+                              _showDialogEatingType(
+                                context: context,
+                              );
+                            },
+                            child: Container(
+                              height: 37,
+                              margin: EdgeInsets.only(top: 1, bottom: 1),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColors.redD12B34,
+                                  width: 0.5,
                                 ),
-                                SizedBox(width: 7),
-                                Text(
-                                  "Makan Siang",
-                                  softWrap: false,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppFont.textRed14SemiBold.copyWith(
-                                    color: AppColors.mainColor,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8),
+                                ),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    Assets.iconsFoodIcon,
+                                    height: 15,
+                                    width: 15,
+                                    fit: BoxFit.fill,
                                   ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                SizedBox(width: 16),
-                                SvgPicture.asset(
-                                  Assets.iconsIcArrowDown,
-                                  height: 7,
-                                  width: 7,
-                                  fit: BoxFit.fill,
-                                )
-                              ],
+                                  SizedBox(width: 7),
+                                  Text(
+                                    "Makan Siang",
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppFont.textRed14SemiBold.copyWith(
+                                      color: AppColors.mainColor,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  SizedBox(width: 16),
+                                  SvgPicture.asset(
+                                    Assets.iconsIcArrowDown,
+                                    height: 7,
+                                    width: 7,
+                                    fit: BoxFit.fill,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -252,7 +262,13 @@ class ListCateringWidget extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Sen",
+                                      DateFormat('EE').format(
+                                        getDate(
+                                          date.subtract(
+                                            Duration(days: index),
+                                          ),
+                                        ),
+                                      ),
                                       softWrap: false,
                                       overflow: TextOverflow.ellipsis,
                                       style:
@@ -263,7 +279,13 @@ class ListCateringWidget extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                     Text(
-                                      "7",
+                                      DateFormat('dd').format(
+                                        getDate(
+                                          date.subtract(
+                                            Duration(days: index),
+                                          ),
+                                        ),
+                                      ),
                                       softWrap: false,
                                       overflow: TextOverflow.ellipsis,
                                       style:
@@ -470,6 +492,96 @@ class ListCateringWidget extends StatelessWidget {
           ],
         )
       ],
+    );
+  }
+
+  Future<void> _showDialogEatingType({
+    required BuildContext context,
+  }) async {
+    return showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+      ),
+      backgroundColor: Colors.white,
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 8,
+            ),
+            ListTile(
+              // leading: GestureDetector(
+              //   onTap: () {
+              //     Get.back();
+              //   },
+              //   child: ImageIcon(
+              //     AssetImage(AppAssets.iconBackBlack),
+              //     color: Colors.black,
+              //   ),
+              // ),
+              title: Container(
+                child: Center(
+                  child: new Text(
+                    I10n.current.select_menu_type,
+                    style: AppFont.textBlack17Bold,
+                  ),
+                ),
+              ),
+              enabled: false,
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Makan Siang',
+                            style:
+                                AppFont.textBlack17Bold.copyWith(fontSize: 15),
+                          ),
+                          Text(
+                            'Diantar pukul 09.00 - 12.00',
+                            style: AppFont.textBlack13Light.copyWith(
+                              fontSize: 12,
+                              color: AppColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(child: Container()),
+                      ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            I10n.current.cart_choose,
+                            style: AppFont.textBlack12Bold
+                                .copyWith(color: AppColors.redD12B34),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              elevation: 0,
+                              side: BorderSide(
+                                width: 1.0,
+                                color: AppColors.redD12B34,
+                              ))),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 16,
+            ),
+          ],
+        );
+      },
     );
   }
 }
