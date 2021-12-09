@@ -24,6 +24,7 @@ import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'detail_product_dialog.dart';
@@ -247,10 +248,16 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               controller.checkAllLoaded();
             },
             getCartSessionSuccess: (r) {
+              controller.outletCart.value = r.outletName;
               controller.cartSession.value = r.response;
               controller.checkAllLoaded();
             },
             addCartSuccess: (r) {
+              controller.outletCart.value = r.outletName;
+              controller.cartSession.value = r.response;
+            },
+            updateCartSuccess: (r) {
+              controller.outletCart.value = r.outletName;
               controller.cartSession.value = r.response;
             },
             setSalesTypeCartSuccess: (r) {
@@ -752,40 +759,69 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                children: [
-                                  controller.cartSession.value!.transactionData!
-                                              .items.length >
-                                          0
-                                      ? Text(
-                                          controller.cartSession.value!
-                                                  .transactionData!.items.length
-                                                  .toString() +
-                                              " items",
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        )
-                                      : Container(),
-                                  Container(
-                                    margin: EdgeInsets.all(5),
-                                    height: 30,
-                                    width: 1.5,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    I10n.current.beranda_view_cart,
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
                                     ),
-                                  ),
-                                ],
+                                    SvgPicture.asset('assets/cart_icon.svg'),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    // controller.cartSession.value!.transactionData!
+                                    //             .items.length >
+                                    //         0
+                                    //     ? Text(
+                                    //         controller.cartSession.value!
+                                    //                 .transactionData!.items.length
+                                    //                 .toString() +
+                                    //             " items",
+                                    //         style: TextStyle(
+                                    //           fontFamily: "roboto",
+                                    //           color: Colors.white,
+                                    //           fontSize: 12,
+                                    //           fontWeight: FontWeight.normal,
+                                    //         ),
+                                    //       )
+                                    //     : Container(),
+
+                                    // Container(
+                                    //   margin: EdgeInsets.all(5),
+                                    //   height: 30,
+                                    //   width: 1.5,
+                                    //   color: Colors.white,
+                                    // ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            controller
+                                                    .cartSession
+                                                    .value!
+                                                    .transactionData!
+                                                    .items
+                                                    .length
+                                                    .toString() +
+                                                " items",
+                                            style: AppFont.textBlack12SemiBold
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          Text(
+                                            controller.outletCart.value!,
+                                            maxLines: 1,
+                                            style: AppFont.textBlack12Regular
+                                                .copyWith(color: Colors.white),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               controller.detailOutlet.value != null
                                   ? Text(

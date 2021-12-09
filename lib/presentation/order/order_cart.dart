@@ -1879,6 +1879,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   controller.cartSession.value = r.response;
                   controller.voucherMethod.value = null;
                   controller.cartFailMessage.value = null;
+                  controller.paymentMethod.value = null;
+                  controller.deliveryMethod.value = null;
                   controller.checkAllLoaded();
                 },
                 updateCartSuccess: (r) {
@@ -1924,7 +1926,15 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   controller.paymentMethod.value = r.data;
                   controller.updateCartParam();
                 },
+                setPaymentMethodIDSuccess: (r) {
+                  controller.paymentMethod.value = r.data;
+                  controller.updateCartParam();
+                },
                 getDeliveryMethodIDSuccess: (r) {
+                  controller.deliveryMethod.value = r.data;
+                  controller.updateCartParam();
+                },
+                setDeliveryMethodIDSuccess: (r) {
                   controller.deliveryMethod.value = r.data;
                   controller.updateCartParam();
                 },

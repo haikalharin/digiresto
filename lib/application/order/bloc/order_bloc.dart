@@ -337,6 +337,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
           (list) => OrderState.updateCartSuccess(
             list!.data,
+            request.outletName,
           ),
         );
       },
@@ -350,10 +351,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         final getOutletDetailID =
             await _orderRepository.getCartOutletDetailID();
         final outletID = getOutletDetailID?.id ?? "";
-        final paymentType = await _orderRepository.getPaymentMethodID();
+        final paymentType = await _orderRepository.setPaymentMethodID(null);
         final address = await _userRepository.getActiveAddress();
         final activeAddr = address.getOrElse(() => UserAddress());
-        final deliveryInq = await _orderRepository.getDeliveryMethodID();
+        final deliveryInq = await _orderRepository.setDeliveryMethodID(null);
         final getVoucherMethodID =
             await _orderRepository.setVoucherMethodID(null);
         final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
@@ -413,7 +414,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           }
           yield createCartSession.fold(
             (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
-            (list) => OrderState.addCartSuccess(list!.data, request.isBuyNow),
+            (list) => OrderState.addCartSuccess(
+              list!.data,
+              request.isBuyNow,
+              request.outletName,
+            ),
           );
         } else {
           final createCartSession = await _orderRepository.updateCartSession(
@@ -440,7 +445,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
           yield createCartSession.fold(
             (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
-            (list) => OrderState.addCartSuccess(list!.data, request.isBuyNow),
+            (list) => OrderState.addCartSuccess(
+              list!.data,
+              request.isBuyNow,
+              request.outletName,
+            ),
           );
         }
       },
@@ -547,11 +556,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             (await _orderRepository.getSessionId()).getOrElse(() => null);
         final getCartSession = await _orderRepository
             .getCartSession(GetCartSessionParam(sessionId: sessionId ?? ""));
-
+        final getOutletDetailID =
+            await _orderRepository.getCartOutletDetailID();
         yield getCartSession.fold(
           (error) =>
               OrderState.loadFailure(OrderFailure.getCartSessionFail(error)),
-          (list) => OrderState.getCartSessionSuccess(list!.data),
+          (list) => OrderState.getCartSessionSuccess(
+            list!.data,
+            getOutletDetailID!.merchantName!,
+          ),
         );
       },
       removeCartSession: (value) async* {

@@ -52,6 +52,7 @@ class OrderViewController extends GetxController {
   Rxn<List<PromoOutletDataResponse>> listPromo =
       Rxn<List<PromoOutletDataResponse>>();
   Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
+  RxnString outletCart = RxnString();
 
   void getDetailOutlet() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(

@@ -42,7 +42,7 @@ class OrderRepository {
   }
 
   Future<PaymentMethodDataResponse?> setPaymentMethodID(
-      PaymentMethodDataResponse data) async {
+      PaymentMethodDataResponse? data) async {
     return _orderLocal.setPaymentMethod(data);
   }
 
@@ -51,7 +51,7 @@ class OrderRepository {
   }
 
   Future<DeliveryMethodDataResponse?> setDeliveryMethodID(
-      DeliveryMethodDataResponse data) async {
+      DeliveryMethodDataResponse? data) async {
     return _orderLocal.setDeliveryMethod(data);
   }
 

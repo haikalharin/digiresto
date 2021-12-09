@@ -53,9 +53,10 @@ class OrderEvent with _$OrderEvent {
     DetailOutletDataResponse outlet,
     String salesType,
     bool isBuyNow,
+    String outletName,
   ) = _AddCart;
 
-  const factory OrderEvent.updateCart(String note) = _UpdateCart;
+  const factory OrderEvent.updateCart(String note, String outletName,) = _UpdateCart;
 
   const factory OrderEvent.removeCart(
       CreateUpdateCartSessionItemParam request) = _RemoveCart;
