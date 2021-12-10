@@ -734,119 +734,112 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   Widget _cartTotal() {
-    return Obx(
-        () => controller.cartSession.value != null && controller.isSameOutlet()
-            ? GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routers.orderCart);
-                },
-                child: SafeArea(
+    return Obx(() => controller.cartSession.value != null
+        ? Container(
+            // color: Colors.white,
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 20,
+              bottom: 40,
+            ),
+            alignment: Alignment.bottomCenter,
+            decoration: BoxDecoration(
+                color: Colors.white, boxShadow: [CustomShadow.justTop]),
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed(Routers.orderCart);
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.red,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  height: 50,
+                  width: MediaQuery.of(Get.context!).size.width - 50,
                   child: Container(
-                    height: 70,
-                    //color: Colors.white,
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                        color: Colors.white, boxShadow: [CustomShadow.justTop]),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.red,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        height: 50,
-                        width: MediaQuery.of(Get.context!).size.width - 50,
-                        child: Container(
-                          padding: EdgeInsets.only(left: 15, right: 15),
+                    padding: EdgeInsets.only(left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    SvgPicture.asset('assets/cart_icon.svg'),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    // controller.cartSession.value!.transactionData!
-                                    //             .items.length >
-                                    //         0
-                                    //     ? Text(
-                                    //         controller.cartSession.value!
-                                    //                 .transactionData!.items.length
-                                    //                 .toString() +
-                                    //             " items",
-                                    //         style: TextStyle(
-                                    //           fontFamily: "roboto",
-                                    //           color: Colors.white,
-                                    //           fontSize: 12,
-                                    //           fontWeight: FontWeight.normal,
-                                    //         ),
-                                    //       )
-                                    //     : Container(),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              SvgPicture.asset('assets/cart_icon.svg'),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              // controller.cartSession.value!.transactionData!
+                              //             .items.length >
+                              //         0
+                              //     ? Text(
+                              //         controller.cartSession.value!
+                              //                 .transactionData!.items.length
+                              //                 .toString() +
+                              //             " items",
+                              //         style: TextStyle(
+                              //           fontFamily: "roboto",
+                              //           color: Colors.white,
+                              //           fontSize: 12,
+                              //           fontWeight: FontWeight.normal,
+                              //         ),
+                              //       )
+                              //     : Container(),
 
-                                    // Container(
-                                    //   margin: EdgeInsets.all(5),
-                                    //   height: 30,
-                                    //   width: 1.5,
-                                    //   color: Colors.white,
-                                    // ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            controller
-                                                    .cartSession
-                                                    .value!
-                                                    .transactionData!
-                                                    .items
-                                                    .length
-                                                    .toString() +
-                                                " items",
-                                            style: AppFont.textBlack12SemiBold
-                                                .copyWith(color: Colors.white),
-                                          ),
-                                          Text(
-                                            controller.outletCart.value!,
-                                            maxLines: 1,
-                                            style: AppFont.textBlack12Regular
-                                                .copyWith(color: Colors.white),
-                                          )
-                                        ],
-                                      ),
+                              // Container(
+                              //   margin: EdgeInsets.all(5),
+                              //   height: 30,
+                              //   width: 1.5,
+                              //   color: Colors.white,
+                              // ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      controller.cartSession.value!
+                                              .transactionData!.items.length
+                                              .toString() +
+                                          " items",
+                                      style: AppFont.textBlack12SemiBold
+                                          .copyWith(color: Colors.white),
                                     ),
+                                    Text(
+                                      controller.outletCart.value!,
+                                      maxLines: 1,
+                                      style: AppFont.textBlack12Regular
+                                          .copyWith(color: Colors.white),
+                                    )
                                   ],
                                 ),
                               ),
-                              controller.detailOutlet.value != null
-                                  ? Text(
-                                      "Rp. " +
-                                          Utils.formatRupiah(controller
-                                              .cartSession
-                                              .value!
-                                              .transactionData!
-                                              .totalPayment
-                                              .toString()),
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  : Container()
                             ],
                           ),
-                        )),
-                  ),
-                ),
-              )
-            : Container());
+                        ),
+                        controller.detailOutlet.value != null
+                            ? Text(
+                                "Rp. " +
+                                    Utils.formatRupiah(controller.cartSession
+                                        .value!.transactionData!.totalPayment
+                                        .toString()),
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            : Container()
+                      ],
+                    ),
+                  )),
+            ),
+          )
+        : Container());
   }
 
   @override
@@ -868,11 +861,11 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 children: [
                   controller.listPromo.value != null
                       ? _promo(controller.listPromo.value!)
-                      : Container(),
+                      : SizedBox(),
                   controller.listProduct.value != null &&
                           controller.salesType.value != null
                       ? _product(controller.listProduct.value!)
-                      : Container(),
+                      : SizedBox(),
                 ],
               ),
             ),
