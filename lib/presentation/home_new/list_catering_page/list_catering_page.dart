@@ -7,6 +7,7 @@ import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
+import 'package:digiresto/presentation/home_new/list_catering_page/list_menu_catering_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -320,178 +321,183 @@ class ListCateringWidget extends StatelessWidget {
               child: ListView(
                 children: List.generate(
                   50,
-                  (index) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        color: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 15,
-                        ),
-                        // height: 96,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(
-                                    8.0,
+                  (index) => InkWell(
+                    onTap: () => Get.to(ListMenuCateringPage()),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 15,
+                          ),
+                          // height: 96,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
                                   ),
-                                ),
-                                child: Image(
-                                  errorBuilder: (context, obj, stacktrace) {
-                                    return Image(
-                                      height: 96,
-                                      width: 96,
-                                      image: RandomImages.getImage(),
-                                    );
-                                  },
-                                  image:
-                                      RandomImages.getImageUrlDefault("", ""),
-                                  fit: BoxFit.cover,
-                                  height: 96,
-                                  width: 96,
-                                  alignment: Alignment.center,
+                                  child: Image(
+                                    errorBuilder: (context, obj, stacktrace) {
+                                      return Image(
+                                        height: 96,
+                                        width: 96,
+                                        image: RandomImages.getImage(),
+                                      );
+                                    },
+                                    image:
+                                        RandomImages.getImageUrlDefault("", ""),
+                                    fit: BoxFit.cover,
+                                    height: 96,
+                                    width: 96,
+                                    alignment: Alignment.center,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Ichiban Sushi BXC",
-                                  softWrap: false,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppFont.textRed14SemiBold.copyWith(
-                                    color: AppColors.black,
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Ichiban Sushi BXC",
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppFont.textRed14SemiBold.copyWith(
+                                      color: AppColors.black,
+                                    ),
+                                    textAlign: TextAlign.left,
                                   ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '1.9 km',
-                                      style:
-                                          AppFont.textBlack12Regular.copyWith(
-                                        color: AppColors.black,
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    SizedBox(width: 11),
-                                    Icon(
-                                      Icons.star,
-                                      size: 12,
-                                      color: AppColors.yellowStar,
-                                    ),
-                                    SizedBox(width: 3),
-                                    Text(
-                                      '1.9',
-                                      style:
-                                          AppFont.textBlack12Regular.copyWith(
-                                        color: AppColors.black,
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    SizedBox(width: 11),
-                                    Row(
-                                      children: List.generate(
-                                        5,
-                                        (index) => Text(
-                                          "\$",
-                                          style: AppFont.textBlack12Regular
-                                              .copyWith(
-                                            color: index % 1 == 0
-                                                ? AppColors.greyCACACA
-                                                : AppColors.black,
-                                          ),
-                                          textAlign: TextAlign.left,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '1.9 km',
+                                        style:
+                                            AppFont.textBlack12Regular.copyWith(
+                                          color: AppColors.black,
                                         ),
+                                        textAlign: TextAlign.left,
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 16,
-                                    bottom: 16,
-                                  ),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.32,
-                                    child: Row(
-                                      children: [
-                                        ImageIcon(
-                                            AssetImage(AppAssets
-                                                .iconOutletOrderDelivery),
-                                            size: 14,
-                                            color: AppColors.redTabBar),
-                                        SizedBox(
-                                          width: 4,
+                                      SizedBox(width: 11),
+                                      Icon(
+                                        Icons.star,
+                                        size: 12,
+                                        color: AppColors.yellowStar,
+                                      ),
+                                      SizedBox(width: 3),
+                                      Text(
+                                        '1.9',
+                                        style:
+                                            AppFont.textBlack12Regular.copyWith(
+                                          color: AppColors.black,
                                         ),
-                                        Text(
-                                          I10n.current.landing_delivery,
-                                          style: AppFont.textBlack11Light,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 34,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.62,
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            'Lihat Semua Outlet',
-                                            style: AppFont.textBlack10SemiBold
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      SizedBox(width: 11),
+                                      Row(
+                                        children: List.generate(
+                                          5,
+                                          (index) => Text(
+                                            "\$",
+                                            style: AppFont.textBlack12Regular
                                                 .copyWith(
-                                              color: AppColors.red,
+                                              color: index % 1 == 0
+                                                  ? AppColors.greyCACACA
+                                                  : AppColors.black,
                                             ),
-                                            textAlign: TextAlign.center,
+                                            textAlign: TextAlign.left,
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                    style: ButtonStyle(
-                                        shadowColor: MaterialStateProperty.all(
-                                            Colors.transparent),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(4.0),
-                                                side: BorderSide(
-                                                    color:
-                                                        AppColors.greyDEDEDE))),
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                AppColors.white)),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                          ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 16,
+                                      bottom: 16,
+                                    ),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.32,
+                                      child: Row(
+                                        children: [
+                                          ImageIcon(
+                                              AssetImage(AppAssets
+                                                  .iconOutletOrderDelivery),
+                                              size: 14,
+                                              color: AppColors.redTabBar),
+                                          SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            I10n.current.landing_delivery,
+                                            style: AppFont.textBlack11Light,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 34,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.62,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              'Lihat Semua Outlet',
+                                              style: AppFont.textBlack10SemiBold
+                                                  .copyWith(
+                                                color: AppColors.red,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      style: ButtonStyle(
+                                          shadowColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.transparent),
+                                          shape: MaterialStateProperty.all(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                  side: BorderSide(
+                                                      color: AppColors
+                                                          .greyDEDEDE))),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  AppColors.white)),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: 1,
-                        width: double.infinity,
-                        color: AppColors.greyE7E7E7,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                      ),
-                    ],
+                        Container(
+                          height: 1,
+                          width: double.infinity,
+                          color: AppColors.greyE7E7E7,
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

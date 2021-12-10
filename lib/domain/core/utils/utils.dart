@@ -52,4 +52,11 @@ class Utils {
         DateFormat('EEEE,dd MMMM yyyy, HH:mm', "ID").format(now);
     return formattedDate;
   }
+
+  static String formatIndonesiaWithoutHour(String date) {
+    DateTime now = DateTime.parse(date);
+    String formattedDate =
+        DateFormat('EEEE,dd MMMM yyyy', "ID").format(now);
+    return formattedDate;
+  }
 }
