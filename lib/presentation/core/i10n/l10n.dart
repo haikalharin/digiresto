@@ -5612,7 +5612,7 @@ class I10n {
     );
   }
 
-  /// `%d year`
+  /// `%d year
   String get time_ago_years {
     return Intl.message(
       '%d year',
@@ -5630,7 +5630,6 @@ class I10n {
       args: [],
     );
   }
-
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<I10n> {

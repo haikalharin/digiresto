@@ -48,16 +48,10 @@ class OrderApi {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetOutletByLocation;
       final apiResult = await _networkService.postHttp(
-          path: apiUrl, queryParameter: queryParameter, content: object
-          // {
-          //   "query_string": {
-          //     "location": object["location"].toString(),
-          //     "page": object["page"],
-          //     "filter": object["filter"].toString(),
-          //     "body": {}
-          //   }
-          // }
-          );
+        path: apiUrl,
+        queryParameter: queryParameter,
+        content: object,
+      );
       return right(OutletCategoryResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);

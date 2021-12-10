@@ -26,15 +26,21 @@ class ListCateringPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBarColor: Colors.white,
       iconBackColor: Colors.black,
-      body: ListCateringWidget(),
+      body: ListCateringWidget(
+        menuCategory: menuCategory,
+      ),
     );
   }
 }
 
 class ListCateringWidget extends StatelessWidget {
+  final MenuCategory? menuCategory;
+
+  ListCateringWidget({this.menuCategory});
+
   final TextEditingController searchController = TextEditingController();
 
-  DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day + 1);
+  DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
 
   final date = DateTime.now();
 
@@ -83,6 +89,7 @@ class ListCateringWidget extends StatelessWidget {
                             onTap: () {
                               _showDialogEatingType(
                                 context: context,
+                                category: menuCategory!,
                               );
                             },
                             child: Container(
@@ -265,7 +272,7 @@ class ListCateringWidget extends StatelessWidget {
                                       DateFormat('EE').format(
                                         getDate(
                                           date.subtract(
-                                            Duration(days: index),
+                                            Duration(days: -index),
                                           ),
                                         ),
                                       ),
@@ -282,7 +289,7 @@ class ListCateringWidget extends StatelessWidget {
                                       DateFormat('dd').format(
                                         getDate(
                                           date.subtract(
-                                            Duration(days: index),
+                                            Duration(days: -index),
                                           ),
                                         ),
                                       ),
@@ -497,6 +504,7 @@ class ListCateringWidget extends StatelessWidget {
 
   Future<void> _showDialogEatingType({
     required BuildContext context,
+    required MenuCategory category,
   }) async {
     return showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -532,50 +540,102 @@ class ListCateringWidget extends StatelessWidget {
               enabled: false,
             ),
             Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              children:
+                  List.generate(menuCategory?.filter?.length ?? 0, (index) {
+                var _data = menuCategory?.filter?[index].options;
+                return Column(
+                  children: List.generate(
+                    _data?.length ?? 0,
+                    (index) => Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16, bottom: 16),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            'Makan Siang',
-                            style:
-                                AppFont.textBlack17Bold.copyWith(fontSize: 15),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                _data?[index].getTitle ?? "-",
+                                style: AppFont.textBlack17Bold
+                                    .copyWith(fontSize: 15),
+                              ),
+                              Text(
+                                _data?[index].getDescription ?? "-",
+                                style: AppFont.textBlack13Light.copyWith(
+                                  fontSize: 12,
+                                  color: AppColors.black,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            'Diantar pukul 09.00 - 12.00',
-                            style: AppFont.textBlack13Light.copyWith(
-                              fontSize: 12,
-                              color: AppColors.black,
-                            ),
-                          ),
+                          Expanded(child: Container()),
+                          ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                I10n.current.cart_choose,
+                                style: AppFont.textBlack12Bold
+                                    .copyWith(color: AppColors.redD12B34),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  elevation: 0,
+                                  side: BorderSide(
+                                    width: 1.0,
+                                    color: AppColors.redD12B34,
+                                  ))),
                         ],
                       ),
-                      Expanded(child: Container()),
-                      ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            I10n.current.cart_choose,
-                            style: AppFont.textBlack12Bold
-                                .copyWith(color: AppColors.redD12B34),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              elevation: 0,
-                              side: BorderSide(
-                                width: 1.0,
-                                color: AppColors.redD12B34,
-                              ))),
-                    ],
+                    ),
                   ),
-                ),
-              ],
+                );
+              }),
             ),
+            // Column(
+            //   children: [
+            //     Padding(
+            //       padding:
+            //           const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+            //       child: Row(
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: [
+            //           Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 'Makan Siang',
+            //                 style:
+            //                     AppFont.textBlack17Bold.copyWith(fontSize: 15),
+            //               ),
+            //               Text(
+            //                 'Diantar pukul 09.00 - 12.00',
+            //                 style: AppFont.textBlack13Light.copyWith(
+            //                   fontSize: 12,
+            //                   color: AppColors.black,
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //           Expanded(child: Container()),
+            //           ElevatedButton(
+            //               onPressed: () {},
+            //               child: Text(
+            //                 I10n.current.cart_choose,
+            //                 style: AppFont.textBlack12Bold
+            //                     .copyWith(color: AppColors.redD12B34),
+            //               ),
+            //               style: ElevatedButton.styleFrom(
+            //                   primary: Colors.white,
+            //                   elevation: 0,
+            //                   side: BorderSide(
+            //                     width: 1.0,
+            //                     color: AppColors.redD12B34,
+            //                   ))),
+            //         ],
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: 16,
             ),
