@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/catering/catering_failure.dart';
 import 'package:digiresto/domain/catering/i_catering_repository.dart';
 import 'package:digiresto/domain/catering/outlet_category_catering_response.dart';
@@ -32,10 +31,11 @@ class CateringBloc extends Bloc<CateringEvent, CateringState> {
   Stream<CateringState> mapEventToState(CateringEvent event) async* {
     yield* event.map(
       getOutletCategoryCatering: (_event) async* {
-        yield state.copyWith(isLoading: true);
+        yield CateringState.loadInProgress();
         final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final location = "${activeAddr.latitude}, ${activeAddr.longitude}";
+        final activeAddress = address.getOrElse(() => UserAddress());
+        final location =
+            "${activeAddress.latitude}, ${activeAddress.longitude}";
 
         final failureOrSuccess =
             await _cateringRepository.getOutletCategoryCatering(
@@ -49,17 +49,18 @@ class CateringBloc extends Bloc<CateringEvent, CateringState> {
           search: _event.search,
         );
 
-        yield failureOrSuccess.fold((failure) {
-          return state.copyWith(
-            isLoading: false,
-            failureOption: optionOf(failure),
-          );
-        }, (data) {
-          return state.copyWith(
-            isLoading: false,
-            outletCatering: data,
-          );
-        });
+        yield failureOrSuccess.fold(
+          (failure) {
+            return CateringState.getListOutletCateringFailure(
+              failure,
+            );
+          },
+          (data) {
+            return CateringState.getListOutletCateringSuccess(
+              data,
+            );
+          },
+        );
       },
       getOutletCategoryNextCatering: (_request) async* {},
     );
