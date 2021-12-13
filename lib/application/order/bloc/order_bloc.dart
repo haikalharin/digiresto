@@ -51,716 +51,728 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     this._orderRepository,
     this._userRepository,
     this._profileRepository,
-  ) : super(_Initial());
+  ) : super(_Initial()) {
+    on<OrderEvent>((event, emit) async {
+      await event.map(
+        getOutletByLocation: (request) async {
+          emit(OrderState.loadInProgress());
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final queryString = request.request.queryString.copyWith(
+              location: "${activeAddr.latitude}, ${activeAddr.longitude}");
 
-  @override
-  Stream<OrderState> mapEventToState(OrderEvent gEvent) async* {
-    yield* gEvent.map(
-      getOutletByLocation: (request) async* {
-        yield OrderState.loadInProgress();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final queryString = request.request.queryString.copyWith(
-            location: "${activeAddr.latitude}, ${activeAddr.longitude}");
-
-        final getOutletByLocation = await _orderRepository.getOutletByLocation(
-            request.request.copyWith(queryString: queryString).toJson());
-        yield getOutletByLocation.fold(
-          (error) => OrderState.loadFailure(
-            OrderFailure.getOutletByLocationFail(
-              error,
+          final getOutletByLocation =
+              await _orderRepository.getOutletByLocation(
+                  request.request.copyWith(queryString: queryString).toJson());
+          emit(getOutletByLocation.fold(
+            (error) => OrderState.loadFailure(
+              OrderFailure.getOutletByLocationFail(
+                error,
+              ),
             ),
-          ),
-          (list) => OrderState.getOutletByLocationSuccess(
-            list.data,
-          ),
-        );
-      },
-      getOutletByCategory: (request) async* {
-        yield OrderState.loadInProgress();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final queryString = request.request.queryString.copyWith(
-            location: "${activeAddr.latitude}, ${activeAddr.longitude}");
+            (list) => OrderState.getOutletByLocationSuccess(
+              list.data,
+            ),
+          ));
+        },
+        getOutletByCategory: (request) async {
+          emit(OrderState.loadInProgress());
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final queryString = request.request.queryString.copyWith(
+              location: "${activeAddr.latitude}, ${activeAddr.longitude}");
 
-        final getOutletByCategory = await _orderRepository.getOutletByCategory(
-            request.request.copyWith(queryString: queryString).toJson());
-        yield getOutletByCategory.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.getOutletByCategoryFail(error)),
-          (list) => OrderState.getOutletByCategorySuccess(list.data),
-        );
-      },
-      getOutletByMerchant: (r) async* {
-        yield OrderState.loadInProgress();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final queryString = r.request.queryString.copyWith(
-            location: "${activeAddr.latitude}, ${activeAddr.longitude}");
+          final getOutletByCategory =
+              await _orderRepository.getOutletByCategory(
+                  request.request.copyWith(queryString: queryString).toJson());
+          emit(getOutletByCategory.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getOutletByCategoryFail(error)),
+            (list) => OrderState.getOutletByCategorySuccess(list.data),
+          ));
+        },
+        getOutletByMerchant: (r) async {
+          emit(OrderState.loadInProgress());
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final queryString = r.request.queryString.copyWith(
+              location: "${activeAddr.latitude}, ${activeAddr.longitude}");
 
-        final getOutletByMerchant = await _orderRepository
-            .getOutletByMerchant(r.request.copyWith(queryString: queryString));
-        yield getOutletByMerchant.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.getOutletByMerchantFail(error)),
-          (list) => OrderState.getOutletByMerchantSuccess(list.data),
-        );
-      },
-      getListPromoOutlet: (request) async* {
-        yield OrderState.loadInProgress();
-        final getListPromoOutlet =
-            await _orderRepository.getListPromoOutlet(request.request);
-        yield getListPromoOutlet.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.getListPromoOutletFail(error)),
-          (list) => OrderState.getListPromoOutletSuccess(list.data),
-        );
-      },
-      getListVoucherOutlet: (request) async* {
-        yield OrderState.loadInProgress();
-        final getListVoucherOutlet =
-            await _orderRepository.getListVoucherOutlet(request.request);
-        yield getListVoucherOutlet.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.getListVoucherOutletFail(error)),
-          (list) => OrderState.getListVoucherOutletSuccess(list.data),
-        );
-      },
-      getOutletListProduct: (request) async* {
-        yield OrderState.loadInProgress();
-        final getOutletListProduct =
-            await _orderRepository.getOutletListProduct(request.request);
-        yield getOutletListProduct.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.getOutletListProductFail(error)),
-          (list) => OrderState.getOutletListProductSuccess(list.data),
-        );
-      },
-      getOutletProductCategory: (request) async* {
-        yield OrderState.loadInProgress();
-        final getOutletProductCategory =
-            await _orderRepository.getOutletProductCategory(request.request);
-        yield getOutletProductCategory.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.getOutletProductCategoryFail(error)),
-          (list) => OrderState.getOutletProductCategorySuccess(list.data),
-        );
-      },
-      getDigiDiscountOutlet: (request) async* {
-        yield OrderState.loadInProgress();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final queryString = request.request.queryString.copyWith(
-            location: "${activeAddr.latitude}, ${activeAddr.longitude}");
+          final getOutletByMerchant =
+              await _orderRepository.getOutletByMerchant(
+                  r.request.copyWith(queryString: queryString));
+          emit(getOutletByMerchant.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getOutletByMerchantFail(error)),
+            (list) => OrderState.getOutletByMerchantSuccess(list.data),
+          ));
+        },
+        getListPromoOutlet: (request) async {
+          emit(OrderState.loadInProgress());
+          final getListPromoOutlet =
+              await _orderRepository.getListPromoOutlet(request.request);
+          emit(getListPromoOutlet.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getListPromoOutletFail(error)),
+            (list) => OrderState.getListPromoOutletSuccess(list.data),
+          ));
+        },
+        getListVoucherOutlet: (request) async {
+          emit(OrderState.loadInProgress());
+          final getListVoucherOutlet =
+              await _orderRepository.getListVoucherOutlet(request.request);
+          emit(getListVoucherOutlet.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getListVoucherOutletFail(error)),
+            (list) => OrderState.getListVoucherOutletSuccess(list.data),
+          ));
+        },
+        getOutletListProduct: (request) async {
+          emit(OrderState.loadInProgress());
+          final getOutletListProduct =
+              await _orderRepository.getOutletListProduct(request.request);
+          emit(getOutletListProduct.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getOutletListProductFail(error)),
+            (list) => OrderState.getOutletListProductSuccess(list.data),
+          ));
+        },
+        getOutletProductCategory: (request) async {
+          emit(OrderState.loadInProgress());
+          final getOutletProductCategory =
+              await _orderRepository.getOutletProductCategory(request.request);
+          emit(getOutletProductCategory.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getOutletProductCategoryFail(error)),
+            (list) => OrderState.getOutletProductCategorySuccess(list.data),
+          ));
+        },
+        getDigiDiscountOutlet: (request) async {
+          emit(OrderState.loadInProgress());
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final queryString = request.request.queryString.copyWith(
+              location: "${activeAddr.latitude}, ${activeAddr.longitude}");
 
-        final getPromoOutlet = await _orderRepository.getPromoOutlet(
-            request.request.copyWith(queryString: queryString).toJson());
-        yield getPromoOutlet.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.getPromoOutletFail(error)),
-          (list) => OrderState.getDigiDiscountOutletSuccess(list),
-        );
-      },
-      getHotPromo: (request) async* {
-        yield OrderState.loadInProgress();
-        final getHotPromo = await _orderRepository.getHotPromo(request.request);
-        yield getHotPromo.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.getHotPromoFail(error)),
-          (list) => OrderState.getHotPromoSuccess(list),
-        );
-      },
-      getDetailOutlet: (request) async* {
-        yield OrderState.loadInProgress();
-        final getDetailOutlet =
-            await _orderRepository.getDetailOutlet(request.request);
-        yield getDetailOutlet.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.getDetailOutletFail(error)),
-          (list) => OrderState.getDetailOutletSuccess(list.data),
-        );
-      },
-      getPaymentMethod: (request) async* {
-        yield OrderState.loadInProgress();
-        final getPaymentMethod =
-            await _orderRepository.getPaymentMethod(request.request.toJson());
-        yield getPaymentMethod.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.getPaymentMethodFail(error)),
-          (list) => OrderState.getPaymentMethodSuccess(list),
-        );
-      },
-      deliveryInquiry: (r) async* {
-        yield OrderState.loadInProgress();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final customerParam = r.request.body.copyWith(
-            customer: DeliveryInquiryBodyCustomerParam(
-                location: [activeAddr.latitude!, activeAddr.longitude!]));
-        final deliveryInquiry = await _orderRepository
-            .deliveryInquiry(r.request.copyWith(body: customerParam).toJson());
-        yield deliveryInquiry.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.deliveryInquiryFail(error)),
-          (list) => OrderState.deliveryInquirySuccess(list),
-        );
-      },
-      checkVoucherOutlet: (request) async* {
-        yield OrderState.loadInProgress();
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
-        final getProduct = await _orderRepository.getProduct();
-        final paymentType = await _orderRepository.getPaymentMethodID();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final deliveryInq = await _orderRepository.getDeliveryMethodID();
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
-        final getDineInID = await _orderRepository.getDineInIDMethod();
-        final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
+          final getPromoOutlet = await _orderRepository.getPromoOutlet(
+              request.request.copyWith(queryString: queryString).toJson());
+          emit(getPromoOutlet.fold(
+            (error) =>
+                OrderState.loadFailure(OrderFailure.getPromoOutletFail(error)),
+            (list) => OrderState.getDigiDiscountOutletSuccess(list),
+          ));
+        },
+        getHotPromo: (request) async {
+          emit(OrderState.loadInProgress());
+          final getHotPromo =
+              await _orderRepository.getHotPromo(request.request);
+          emit(getHotPromo.fold(
+            (error) =>
+                OrderState.loadFailure(OrderFailure.getHotPromoFail(error)),
+            (list) => OrderState.getHotPromoSuccess(list),
+          ));
+        },
+        getDetailOutlet: (request) async {
+          emit(OrderState.loadInProgress());
+          final getDetailOutlet =
+              await _orderRepository.getDetailOutlet(request.request);
+          emit(getDetailOutlet.fold(
+            (error) =>
+                OrderState.loadFailure(OrderFailure.getDetailOutletFail(error)),
+            (list) => OrderState.getDetailOutletSuccess(list.data),
+          ));
+        },
+        getPaymentMethod: (request) async {
+          emit(OrderState.loadInProgress());
+          final getPaymentMethod =
+              await _orderRepository.getPaymentMethod(request.request.toJson());
+          emit(getPaymentMethod.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getPaymentMethodFail(error)),
+            (list) => OrderState.getPaymentMethodSuccess(list),
+          ));
+        },
+        deliveryInquiry: (r) async {
+          emit(OrderState.loadInProgress());
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final customerParam = r.request.body.copyWith(
+              customer: DeliveryInquiryBodyCustomerParam(
+                  location: [activeAddr.latitude!, activeAddr.longitude!]));
+          final deliveryInquiry = await _orderRepository.deliveryInquiry(
+              r.request.copyWith(body: customerParam).toJson());
+          emit(deliveryInquiry.fold(
+            (error) =>
+                OrderState.loadFailure(OrderFailure.deliveryInquiryFail(error)),
+            (list) => OrderState.deliveryInquirySuccess(list),
+          ));
+        },
+        checkVoucherOutlet: (request) async {
+          emit(OrderState.loadInProgress());
+          final sessionId =
+              (await _orderRepository.getSessionId()).getOrElse(() => null);
+          final getProduct = await _orderRepository.getProduct();
+          final paymentType = await _orderRepository.getPaymentMethodID();
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final deliveryInq = await _orderRepository.getDeliveryMethodID();
+          final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+          final getDineInID = await _orderRepository.getDineInIDMethod();
+          final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
 
-        String etaOrder = "now";
+          String etaOrder = "now";
 
-        if (getDineInID?.useSchedule ?? false) {
-          etaOrder = OrderCartDineInModel.getEtaOrder(
-              selectedDate: getDineInID?.selectedDate,
-              selectedKeyClock: getDineInID?.selectedKeyClock);
-        } else if (getDriveThruID?.useSchedule ?? false) {
-          etaOrder = OrderCartDineInModel.getEtaOrder(
-              selectedDate: getDriveThruID?.selectedDate,
-              selectedKeyClock: getDriveThruID?.selectedKeyClock);
-        }
+          if (getDineInID?.useSchedule ?? false) {
+            etaOrder = OrderCartDineInModel.getEtaOrder(
+                selectedDate: getDineInID?.selectedDate,
+                selectedKeyClock: getDineInID?.selectedKeyClock);
+          } else if (getDriveThruID?.useSchedule ?? false) {
+            etaOrder = OrderCartDineInModel.getEtaOrder(
+                selectedDate: getDriveThruID?.selectedDate,
+                selectedKeyClock: getDriveThruID?.selectedKeyClock);
+          }
 
-        UpdateCartSessionBodyDeliveryParam? deliveryParam;
-        if (deliveryInq != null) {
-          deliveryParam = UpdateCartSessionBodyDeliveryParam(
-              address: activeAddr.address!,
-              location: [activeAddr.latitude!, activeAddr.longitude!],
-              price: deliveryInq.shipmentMethods.first.price,
-              provider: deliveryInq.provider,
-              shipmentMethod: deliveryInq.shipmentMethods.first.name);
-        }
-        final createCartSession = await _orderRepository.checkVoucherOutlet(
-            UpdateCartSessionParam(
-                body: UpdateCartSessionBodyParam(
-                    items: getProduct?.items ?? [],
-                    customerNote: "",
-                    paymentType: paymentType?.id ?? "",
-                    customerPax: (getDineInID?.pax ?? 1).toString(),
-                    customerCarType: "",
-                    customerCarColor: "",
-                    customerCarNumber: "",
-                    customerSmoking: false,
-                    delivery: deliveryParam,
-                    eta: etaOrder,
-                    promos: [request.code],
-                    salesType: getSalesTypeCart ?? ""),
-                queryString:
-                    UpdateCartSessionQueryParam(sessionId: sessionId!)));
-
-        yield createCartSession.fold(
-          (error) => OrderState.loadFailure(
-              OrderFailure.checkVoucherOutletFail(error)),
-          (list) => OrderState.checkVoucherOutletSuccess(request.code),
-        );
-      },
-      createCartSession: (request) async* {
-        yield OrderState.loadInProgress();
-        final createCartSession =
-            await _orderRepository.createCartSession(request.request);
-        var dataCart = createCartSession.getOrElse(() => null);
-        if (dataCart != null) {
-          await _orderRepository.setSessionId(dataCart.data.sessionId!);
-        }
-
-        yield createCartSession.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.createCartSessionFail(error)),
-          (list) => OrderState.createCartSessionSuccess(list!.data),
-        );
-      },
-      updateCart: (request) async* {
-        yield OrderState.loadInProgress();
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
-        final getProduct = await _orderRepository.getProduct();
-        final paymentType = await _orderRepository.getPaymentMethodID();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final deliveryInq = await _orderRepository.getDeliveryMethodID();
-        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
-        final getDineInID = await _orderRepository.getDineInIDMethod();
-        final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
-
-        String etaOrder = "now";
-
-        if (getDineInID?.useSchedule ?? false) {
-          etaOrder = OrderCartDineInModel.getEtaOrder(
-              selectedDate: getDineInID?.selectedDate,
-              selectedKeyClock: getDineInID?.selectedKeyClock);
-        } else if (getDriveThruID?.useSchedule ?? false) {
-          etaOrder = OrderCartDineInModel.getEtaOrder(
-              selectedDate: getDriveThruID?.selectedDate,
-              selectedKeyClock: getDriveThruID?.selectedKeyClock);
-        }
-
-        UpdateCartSessionBodyDeliveryParam? deliveryParam;
-        if (deliveryInq != null) {
-          deliveryParam = UpdateCartSessionBodyDeliveryParam(
-              address: activeAddr.address!,
-              location: [activeAddr.latitude!, activeAddr.longitude!],
-              price: deliveryInq.shipmentMethods.first.price,
-              provider: deliveryInq.provider,
-              shipmentMethod: deliveryInq.shipmentMethods.first.name);
-        }
-        final createCartSession = await _orderRepository.updateCartSession(
-            UpdateCartSessionParam(
-                body: UpdateCartSessionBodyParam(
-                    items: getProduct?.items ?? [],
-                    customerNote: request.note,
-                    paymentType: paymentType?.id ?? "",
-                    customerPax: (getDineInID?.pax ?? 1).toString(),
-                    customerCarType: getDriveThruID?.customerCarType ?? "",
-                    customerCarColor: getDriveThruID?.customerCarColor ?? "",
-                    customerCarNumber: getDriveThruID?.customerCarNumber ?? "",
-                    customerSmoking: false,
-                    delivery: deliveryParam,
-                    eta: etaOrder,
-                    promos: getVoucherMethodID == null
-                        ? []
-                        : [getVoucherMethodID.code],
-                    salesType: getSalesTypeCart ?? ""),
-                queryString:
-                    UpdateCartSessionQueryParam(sessionId: sessionId!)));
-
-        yield createCartSession.fold(
-          (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
-          (list) => OrderState.updateCartSuccess(
-            list!.data,
-            request.outletName,
-          ),
-        );
-      },
-      addCart: (request) async* {
-        yield OrderState.loadInProgress();
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
-        final userProfile = (await _orderRepository.getLocalUserProfile())!;
-        final setProduct =
-            await _orderRepository.setProduct(request.request, request.outlet);
-        final getOutletDetailID =
-            await _orderRepository.getCartOutletDetailID();
-        final outletID = getOutletDetailID?.id ?? "";
-        final paymentType = await _orderRepository.setPaymentMethodID(null);
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final deliveryInq = await _orderRepository.setDeliveryMethodID(null);
-        final getVoucherMethodID =
-            await _orderRepository.setVoucherMethodID(null);
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
-        final getDineInID = await _orderRepository.setDineInIDMethod(null);
-        final getDriveThruID =
-            await _orderRepository.setDriveThruIDMethod(null);
-
-        String etaOrder = "now";
-
-        if (getDineInID?.useSchedule ?? false) {
-          etaOrder = OrderCartDineInModel.getEtaOrder(
-              selectedDate: getDineInID?.selectedDate,
-              selectedKeyClock: getDineInID?.selectedKeyClock);
-        } else if (getDriveThruID?.useSchedule ?? false) {
-          etaOrder = OrderCartDineInModel.getEtaOrder(
-              selectedDate: getDriveThruID?.selectedDate,
-              selectedKeyClock: getDriveThruID?.selectedKeyClock);
-        }
-        UpdateCartSessionBodyDeliveryParam? deliveryParam;
-        if (deliveryInq != null) {
-          deliveryParam = UpdateCartSessionBodyDeliveryParam(
-              address: activeAddr.address!,
-              location: [activeAddr.latitude!, activeAddr.longitude!],
-              price: deliveryInq.shipmentMethods.first.price,
-              provider: deliveryInq.provider,
-              shipmentMethod: deliveryInq.shipmentMethods.first.name);
-        }
-
-        //create new cart session, if add cart in the different outlet
-        if (sessionId == null || outletID != request.outlet.id) {
-          final createCartSession = await _orderRepository.createCartSession(
-              CreateCartSessionParam(
-                  body: CreateCartSessionBodyParam(
-                      outletName: request.outlet.endpointName,
-                      customerName: userProfile.name!,
-                      customerPhone: userProfile.mobilePhone!,
-                      customerTableNumber: "",
-                      customerSmoking: false,
-                      customerPax: "1",
+          UpdateCartSessionBodyDeliveryParam? deliveryParam;
+          if (deliveryInq != null) {
+            deliveryParam = UpdateCartSessionBodyDeliveryParam(
+                address: activeAddr.address!,
+                location: [activeAddr.latitude!, activeAddr.longitude!],
+                price: deliveryInq.shipmentMethods.first.price,
+                provider: deliveryInq.provider,
+                shipmentMethod: deliveryInq.shipmentMethods.first.name);
+          }
+          final createCartSession = await _orderRepository.checkVoucherOutlet(
+              UpdateCartSessionParam(
+                  body: UpdateCartSessionBodyParam(
+                      items: getProduct?.items ?? [],
                       customerNote: "",
+                      paymentType: paymentType?.id ?? "",
+                      customerPax: (getDineInID?.pax ?? 1).toString(),
                       customerCarType: "",
                       customerCarColor: "",
                       customerCarNumber: "",
+                      customerSmoking: false,
+                      delivery: deliveryParam,
                       eta: etaOrder,
-                      salesType: getSalesTypeCart != null
-                          ? getSalesTypeCart
-                          : request.salesType,
-                      receiptCode: "",
-                      items: setProduct?.items ?? []),
-                  queryString: CreateCartSessionQueryParam()));
+                      promos: [request.code],
+                      salesType: getSalesTypeCart ?? ""),
+                  queryString:
+                      UpdateCartSessionQueryParam(sessionId: sessionId!)));
 
+          emit(createCartSession.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.checkVoucherOutletFail(error)),
+            (list) => OrderState.checkVoucherOutletSuccess(request.code),
+          ));
+        },
+        createCartSession: (request) async {
+          emit(OrderState.loadInProgress());
+          final createCartSession =
+              await _orderRepository.createCartSession(request.request);
           var dataCart = createCartSession.getOrElse(() => null);
           if (dataCart != null) {
-            await _orderRepository.setSalesTypeCartID(request.salesType);
-            await _orderRepository.setCartOutletDetailID(request.outlet);
             await _orderRepository.setSessionId(dataCart.data.sessionId!);
           }
-          yield createCartSession.fold(
-            (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
-            (list) => OrderState.addCartSuccess(
-              list!.data,
-              request.isBuyNow,
-              request.outletName,
-            ),
-          );
-        } else {
+
+          emit(createCartSession.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.createCartSessionFail(error)),
+            (list) => OrderState.createCartSessionSuccess(list!.data),
+          ));
+        },
+        updateCart: (request) async {
+          emit(OrderState.loadInProgress());
+          final sessionId =
+              (await _orderRepository.getSessionId()).getOrElse(() => null);
+          final getProduct = await _orderRepository.getProduct();
+          final paymentType = await _orderRepository.getPaymentMethodID();
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final deliveryInq = await _orderRepository.getDeliveryMethodID();
+          final getVoucherMethodID =
+              await _orderRepository.getVoucherMethodID();
+          final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+          final getDineInID = await _orderRepository.getDineInIDMethod();
+          final getDriveThruID = await _orderRepository.getDriveThruIDMethod();
+
+          String etaOrder = "now";
+
+          if (getDineInID?.useSchedule ?? false) {
+            etaOrder = OrderCartDineInModel.getEtaOrder(
+                selectedDate: getDineInID?.selectedDate,
+                selectedKeyClock: getDineInID?.selectedKeyClock);
+          } else if (getDriveThruID?.useSchedule ?? false) {
+            etaOrder = OrderCartDineInModel.getEtaOrder(
+                selectedDate: getDriveThruID?.selectedDate,
+                selectedKeyClock: getDriveThruID?.selectedKeyClock);
+          }
+
+          UpdateCartSessionBodyDeliveryParam? deliveryParam;
+          if (deliveryInq != null) {
+            deliveryParam = UpdateCartSessionBodyDeliveryParam(
+                address: activeAddr.address!,
+                location: [activeAddr.latitude!, activeAddr.longitude!],
+                price: deliveryInq.shipmentMethods.first.price,
+                provider: deliveryInq.provider,
+                shipmentMethod: deliveryInq.shipmentMethods.first.name);
+          }
           final createCartSession = await _orderRepository.updateCartSession(
               UpdateCartSessionParam(
                   body: UpdateCartSessionBodyParam(
-                    items: setProduct?.items ?? [],
-                    customerNote: null,
-                    paymentType: paymentType?.id ?? "",
-                    customerPax: (getDineInID?.pax ?? 1).toString(),
-                    customerCarType: getDriveThruID?.customerCarType ?? "",
-                    customerCarColor: getDriveThruID?.customerCarColor ?? "",
-                    customerCarNumber: getDriveThruID?.customerCarNumber ?? "",
-                    customerSmoking: OrderCartDineInModel.isSmoking(
-                        getDineInID?.selectedKeySmoking ?? "2"),
-                    delivery: deliveryParam,
-                    eta: etaOrder,
-                    promos: getVoucherMethodID == null
-                        ? []
-                        : [getVoucherMethodID.code],
-                    salesType: getSalesTypeCart ?? "",
-                  ),
+                      items: getProduct?.items ?? [],
+                      customerNote: request.note,
+                      paymentType: paymentType?.id ?? "",
+                      customerPax: (getDineInID?.pax ?? 1).toString(),
+                      customerCarType: getDriveThruID?.customerCarType ?? "",
+                      customerCarColor: getDriveThruID?.customerCarColor ?? "",
+                      customerCarNumber:
+                          getDriveThruID?.customerCarNumber ?? "",
+                      customerSmoking: false,
+                      delivery: deliveryParam,
+                      eta: etaOrder,
+                      promos: getVoucherMethodID == null
+                          ? []
+                          : [getVoucherMethodID.code],
+                      salesType: getSalesTypeCart ?? ""),
                   queryString:
-                      UpdateCartSessionQueryParam(sessionId: sessionId)));
+                      UpdateCartSessionQueryParam(sessionId: sessionId!)));
 
-          yield createCartSession.fold(
+          emit(createCartSession.fold(
             (error) => OrderState.loadFailure(OrderFailure.addCartFail(error)),
-            (list) => OrderState.addCartSuccess(
+            (list) => OrderState.updateCartSuccess(
               list!.data,
-              request.isBuyNow,
               request.outletName,
             ),
-          );
-        }
-      },
-      reorderCart: (r) async* {
-        yield OrderState.loadInProgress();
-        final userProfile = (await _orderRepository.getLocalUserProfile())!;
-        final setProduct =
-            await _orderRepository.reorderCart(r.request, r.outletId);
+          ));
+        },
+        addCart: (request) async {
+          emit(OrderState.loadInProgress());
+          final sessionId =
+              (await _orderRepository.getSessionId()).getOrElse(() => null);
+          final userProfile = (await _orderRepository.getLocalUserProfile())!;
+          final setProduct = await _orderRepository.setProduct(
+              request.request, request.outlet);
+          final getOutletDetailID =
+              await _orderRepository.getCartOutletDetailID();
+          final outletID = getOutletDetailID?.id ?? "";
+          final paymentType = await _orderRepository.setPaymentMethodID(null);
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final deliveryInq = await _orderRepository.setDeliveryMethodID(null);
+          final getVoucherMethodID =
+              await _orderRepository.setVoucherMethodID(null);
+          final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+          final getDineInID = await _orderRepository.setDineInIDMethod(null);
+          final getDriveThruID =
+              await _orderRepository.setDriveThruIDMethod(null);
 
-        String etaOrder = "now";
+          String etaOrder = "now";
 
-        //create new cart session, if add cart in the different outlet
-        final createCartSession = await _orderRepository.createCartSession(
-          CreateCartSessionParam(
-            body: CreateCartSessionBodyParam(
-                outletName: r.request.body.outletName,
-                customerName: userProfile.name!,
-                customerPhone: userProfile.mobilePhone!,
-                customerTableNumber: "",
-                customerSmoking: false,
-                customerPax: "1",
-                customerNote: "",
-                customerCarType: "",
-                customerCarColor: "",
-                customerCarNumber: "",
-                eta: etaOrder,
-                salesType: r.request.body.salesType,
-                receiptCode: "",
-                items: setProduct?.items ?? []),
-            queryString: CreateCartSessionQueryParam(),
-          ),
-        );
+          if (getDineInID?.useSchedule ?? false) {
+            etaOrder = OrderCartDineInModel.getEtaOrder(
+                selectedDate: getDineInID?.selectedDate,
+                selectedKeyClock: getDineInID?.selectedKeyClock);
+          } else if (getDriveThruID?.useSchedule ?? false) {
+            etaOrder = OrderCartDineInModel.getEtaOrder(
+                selectedDate: getDriveThruID?.selectedDate,
+                selectedKeyClock: getDriveThruID?.selectedKeyClock);
+          }
+          UpdateCartSessionBodyDeliveryParam? deliveryParam;
+          if (deliveryInq != null) {
+            deliveryParam = UpdateCartSessionBodyDeliveryParam(
+                address: activeAddr.address!,
+                location: [activeAddr.latitude!, activeAddr.longitude!],
+                price: deliveryInq.shipmentMethods.first.price,
+                provider: deliveryInq.provider,
+                shipmentMethod: deliveryInq.shipmentMethods.first.name);
+          }
 
-        var dataCart = createCartSession.getOrElse(() => null);
-        if (dataCart != null) {
-          await _orderRepository.setSalesTypeCartID(r.request.body.salesType);
-          await _orderRepository.setCartOutletDetailID(
-              DetailOutletDataResponse.emptyWithID(r.outletId.toString()));
-          await _orderRepository.setSessionId(dataCart.data.sessionId!);
-        }
-        yield createCartSession.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.reorderCartFail(error)),
-          (list) => OrderState.reorderCartSuccess(list!.data),
-        );
-      },
-      removeCart: (r) async* {
-        yield OrderState.loadInProgress();
-        final removeCart = await _orderRepository.removeProduct(r.request);
-        final paymentType = await _orderRepository.getPaymentMethodID();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddr = address.getOrElse(() => UserAddress());
-        final deliveryInq = await _orderRepository.getDeliveryMethodID();
-        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+          //create new cart session, if add cart in the different outlet
+          if (sessionId == null || outletID != request.outlet.id) {
+            final createCartSession = await _orderRepository.createCartSession(
+                CreateCartSessionParam(
+                    body: CreateCartSessionBodyParam(
+                        outletName: request.outlet.endpointName,
+                        customerName: userProfile.name!,
+                        customerPhone: userProfile.mobilePhone!,
+                        customerTableNumber: "",
+                        customerSmoking: false,
+                        customerPax: "1",
+                        customerNote: "",
+                        customerCarType: "",
+                        customerCarColor: "",
+                        customerCarNumber: "",
+                        eta: etaOrder,
+                        salesType: getSalesTypeCart != null
+                            ? getSalesTypeCart
+                            : request.salesType,
+                        receiptCode: "",
+                        items: setProduct?.items ?? []),
+                    queryString: CreateCartSessionQueryParam()));
 
-        UpdateCartSessionBodyDeliveryParam? deliveryParam;
-        if (deliveryInq != null) {
-          deliveryParam = UpdateCartSessionBodyDeliveryParam(
-              address: activeAddr.address!,
-              location: [activeAddr.latitude!, activeAddr.longitude!],
-              price: deliveryInq.shipmentMethods.first.price,
-              provider: deliveryInq.provider,
-              shipmentMethod: deliveryInq.shipmentMethods.first.name);
-        }
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
-        if (removeCart == null || sessionId == null) {
-          yield OrderState.loadFailure(OrderFailure.removeCartFail(null));
-        } else {
-          final createCartSession = await _orderRepository.updateCartSession(
-            UpdateCartSessionParam(
-              body: UpdateCartSessionBodyParam(
-                items: removeCart.items ?? [],
-                customerNote: null,
-                paymentType: paymentType?.id ?? "",
-                customerPax: '1',
-                customerSmoking: false,
-                customerCarColor: '',
-                customerCarNumber: '',
-                customerCarType: '',
-                delivery: deliveryParam,
-                eta: 'now',
-                promos:
-                    getVoucherMethodID == null ? [] : [getVoucherMethodID.code],
-                salesType: getSalesTypeCart ?? "",
+            var dataCart = createCartSession.getOrElse(() => null);
+            if (dataCart != null) {
+              await _orderRepository.setSalesTypeCartID(request.salesType);
+              await _orderRepository.setCartOutletDetailID(request.outlet);
+              await _orderRepository.setSessionId(dataCart.data.sessionId!);
+            }
+            emit(createCartSession.fold(
+              (error) =>
+                  OrderState.loadFailure(OrderFailure.addCartFail(error)),
+              (list) => OrderState.addCartSuccess(
+                list!.data,
+                request.isBuyNow,
+                request.outletName,
               ),
-              queryString: UpdateCartSessionQueryParam(
-                sessionId: sessionId,
+            ));
+          } else {
+            final createCartSession = await _orderRepository.updateCartSession(
+                UpdateCartSessionParam(
+                    body: UpdateCartSessionBodyParam(
+                      items: setProduct?.items ?? [],
+                      customerNote: null,
+                      paymentType: paymentType?.id ?? "",
+                      customerPax: (getDineInID?.pax ?? 1).toString(),
+                      customerCarType: getDriveThruID?.customerCarType ?? "",
+                      customerCarColor: getDriveThruID?.customerCarColor ?? "",
+                      customerCarNumber:
+                          getDriveThruID?.customerCarNumber ?? "",
+                      customerSmoking: OrderCartDineInModel.isSmoking(
+                          getDineInID?.selectedKeySmoking ?? "2"),
+                      delivery: deliveryParam,
+                      eta: etaOrder,
+                      promos: getVoucherMethodID == null
+                          ? []
+                          : [getVoucherMethodID.code],
+                      salesType: getSalesTypeCart ?? "",
+                    ),
+                    queryString:
+                        UpdateCartSessionQueryParam(sessionId: sessionId)));
+
+            emit(createCartSession.fold(
+              (error) =>
+                  OrderState.loadFailure(OrderFailure.addCartFail(error)),
+              (list) => OrderState.addCartSuccess(
+                list!.data,
+                request.isBuyNow,
+                request.outletName,
               ),
+            ));
+          }
+        },
+        reorderCart: (r) async {
+          emit(OrderState.loadInProgress());
+          final userProfile = (await _orderRepository.getLocalUserProfile())!;
+          final setProduct =
+              await _orderRepository.reorderCart(r.request, r.outletId);
+
+          String etaOrder = "now";
+
+          //create new cart session, if add cart in the different outlet
+          final createCartSession = await _orderRepository.createCartSession(
+            CreateCartSessionParam(
+              body: CreateCartSessionBodyParam(
+                  outletName: r.request.body.outletName,
+                  customerName: userProfile.name!,
+                  customerPhone: userProfile.mobilePhone!,
+                  customerTableNumber: "",
+                  customerSmoking: false,
+                  customerPax: "1",
+                  customerNote: "",
+                  customerCarType: "",
+                  customerCarColor: "",
+                  customerCarNumber: "",
+                  eta: etaOrder,
+                  salesType: r.request.body.salesType,
+                  receiptCode: "",
+                  items: setProduct?.items ?? []),
+              queryString: CreateCartSessionQueryParam(),
             ),
           );
 
-          yield createCartSession.fold(
+          var dataCart = createCartSession.getOrElse(() => null);
+          if (dataCart != null) {
+            await _orderRepository.setSalesTypeCartID(r.request.body.salesType);
+            await _orderRepository.setCartOutletDetailID(
+                DetailOutletDataResponse.emptyWithID(r.outletId.toString()));
+            await _orderRepository.setSessionId(dataCart.data.sessionId!);
+          }
+          emit(createCartSession.fold(
             (error) =>
-                OrderState.loadFailure(OrderFailure.removeCartFail(error)),
-            (list) => OrderState.removeCartSuccess(list!.data),
-          );
-        }
-      },
-      getCartSession: (_) async* {
-        yield OrderState.loadInProgress();
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
-        final getCartSession = await _orderRepository
-            .getCartSession(GetCartSessionParam(sessionId: sessionId ?? ""));
-        final getOutletDetailID =
-            await _orderRepository.getCartOutletDetailID();
-        yield getCartSession.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.getCartSessionFail(error)),
-          (list) => OrderState.getCartSessionSuccess(
-            list!.data,
-            getOutletDetailID!.merchantName!,
-          ),
-        );
-      },
-      removeCartSession: (value) async* {
-        yield OrderState.loadInProgress();
-        final cartSession = (await _orderRepository.removeCartSesion());
-        if (cartSession != null) {
-          yield OrderState.removeCartSessionSuccess();
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.removeCartSessionFail(null));
-        }
-      },
-      getSalesTypeCart: (_) async* {
-        yield OrderState.loadInProgress();
-        final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
-        if (getSalesTypeCart != null) {
-          yield OrderState.getSalesTypeCartSuccess(getSalesTypeCart);
-        } else {
-          yield OrderState.loadFailure(OrderFailure.salesTypeNull());
-        }
-      },
-      setSalesTypeCart: (r) async* {
-        yield OrderState.loadInProgress();
-        final setSalesTypeCart =
-            await _orderRepository.setSalesTypeCartID(r.value);
-        if (setSalesTypeCart != null) {
-          yield OrderState.setSalesTypeCartSuccess(setSalesTypeCart);
-        } else {
-          yield OrderState.loadFailure(OrderFailure.salesTypeNull());
-        }
-      },
-      updateCartSession: (request) async* {
-        yield OrderState.loadInProgress();
-        final sessionId =
-            (await _orderRepository.getSessionId()).getOrElse(() => null);
-        final param = request.request.copyWith(
-            queryString: UpdateCartSessionQueryParam(sessionId: sessionId!));
-        final updateCartSession =
-            await _orderRepository.updateCartSession(param);
-        var dataCart = updateCartSession.getOrElse(() => null);
-        if (dataCart != null) {
-          await _orderRepository.setSessionId(dataCart.data.sessionId!);
-        }
-        yield updateCartSession.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.updateCartSessionFail(error)),
-          (list) => OrderState.updateCartSessionSuccess(list!.data),
-        );
-      },
-      checkoutCart: (request) async* {
-        yield OrderState.loadInProgress();
-        final sessionId = (await _orderRepository.getSessionId())
-            .getOrElse(() => request.sessionId);
-        if (sessionId != null) {
-          final checkoutCart = await _orderRepository.checkout(sessionId);
-          yield checkoutCart.fold(
-            (error) {
-              return OrderState.loadFailure(
-                OrderFailure.checkoutCartFail(error),
-              );
-            },
-            (list) => OrderState.checkoutCartSuccess(list),
-          );
-        } else {
-          yield OrderState.loadFailure(OrderFailure.checkoutCartFail(null));
-        }
-      },
-      getDeliveryMethodID: (r) async* {
-        yield OrderState.loadInProgress();
-        final getDeliveryMethodID =
-            await _orderRepository.getDeliveryMethodID();
-        if (getDeliveryMethodID != null) {
-          yield OrderState.getDeliveryMethodIDSuccess(getDeliveryMethodID);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.getDeliveryMethodIDFail(null));
-        }
-      },
-      setDeliveryMethodID: (r) async* {
-        yield OrderState.loadInProgress();
-        final setDeliveryMethodID =
-            await _orderRepository.setDeliveryMethodID(r.data);
-        if (setDeliveryMethodID != null) {
-          yield OrderState.setDeliveryMethodIDSuccess(setDeliveryMethodID);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.setDeliveryMethodIDFail(null));
-        }
-      },
-      getPaymentMethodID: (r) async* {
-        yield OrderState.loadInProgress();
-        final getPaymentMethodID = await _orderRepository.getPaymentMethodID();
-        if (getPaymentMethodID != null) {
-          yield OrderState.getPaymentMethodIDSuccess(getPaymentMethodID);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.getPaymentMethodIDFail(null));
-        }
-      },
-      setPaymentMethodID: (r) async* {
-        yield OrderState.loadInProgress();
-        final setPaymentMethodID =
-            await _orderRepository.setPaymentMethodID(r.data);
-        if (setPaymentMethodID != null) {
-          yield OrderState.setPaymentMethodIDSuccess(setPaymentMethodID);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.setPaymentMethodIDFail(null));
-        }
-      },
-      getVoucherMethodID: (r) async* {
-        yield OrderState.loadInProgress();
-        final getVoucherMethodID = await _orderRepository.getVoucherMethodID();
-        if (getVoucherMethodID != null) {
-          yield OrderState.getVoucherMethodIDSuccess(getVoucherMethodID);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.getVoucherMethodIDFail(null));
-        }
-      },
-      setVoucherMethodID: (r) async* {
-        yield OrderState.loadInProgress();
-        final setVoucherMethodID =
-            await _orderRepository.setVoucherMethodID(r.data);
-        if (setVoucherMethodID != null) {
-          yield OrderState.setVoucherMethodIDSuccess(setVoucherMethodID);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.setVoucherMethodIDFail(null));
-        }
-      },
-      getDineInIDMethod: (r) async* {
-        yield OrderState.loadInProgress();
-        final getDineInIDMethod = await _orderRepository.getDineInIDMethod();
-        if (getDineInIDMethod != null) {
-          yield OrderState.getDineInIDMethodSuccess(getDineInIDMethod);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.getDineInIDMethodFail(null));
-        }
-      },
-      setDineInIDMethod: (r) async* {
-        yield OrderState.loadInProgress();
-        final setDineInIDMethod =
-            await _orderRepository.setDineInIDMethod(r.data);
-        if (setDineInIDMethod != null) {
-          yield OrderState.setDineInIDMethodSuccess(setDineInIDMethod);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.setDineInIDMethodFail(null));
-        }
-      },
-      setDriveThruIDMethod: (r) async* {
-        yield OrderState.loadInProgress();
-        final setDriveThruIDMethod =
-            await _orderRepository.setDriveThruIDMethod(r.data);
-        if (setDriveThruIDMethod != null) {
-          yield OrderState.setDriveThruIDMethodSuccess(setDriveThruIDMethod);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.setDriveThruIDMethodFail(null));
-        }
-      },
-      getDriveThruIDMethod: (r) async* {
-        yield OrderState.loadInProgress();
-        final getDriveThru = await _orderRepository.getDriveThruIDMethod();
-        if (getDriveThru != null) {
-          yield OrderState.getDriveThruIDMethodSucess(getDriveThru);
-        } else {
-          yield OrderState.loadFailure(
-              OrderFailure.getDriveThruIDMethodFail(null));
-        }
-      },
-      getTransactionPending: (_event) async* {
-        yield OrderState.loadInProgress();
-        final getTransactionPending =
-            await _profileRepository.getOrderPending();
+                OrderState.loadFailure(OrderFailure.reorderCartFail(error)),
+            (list) => OrderState.reorderCartSuccess(list!.data),
+          ));
+        },
+        removeCart: (r) async {
+          emit(OrderState.loadInProgress());
+          final removeCart = await _orderRepository.removeProduct(r.request);
+          final paymentType = await _orderRepository.getPaymentMethodID();
+          final address = await _userRepository.getActiveAddress();
+          final activeAddr = address.getOrElse(() => UserAddress());
+          final deliveryInq = await _orderRepository.getDeliveryMethodID();
+          final getVoucherMethodID =
+              await _orderRepository.getVoucherMethodID();
+          final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
 
-        yield getTransactionPending.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.getTransactionPendingFail()),
-          (list) => OrderState.getTransactionPendingSuccess(list),
-        );
-      },
-      cancelTransaction: (r) async* {
-        yield OrderState.loadInProgress();
-        final cancelTransaction = await _profileRepository.cancelTransaction(
-          reason: 'Cancel payment method',
-          receiptCode: r.receiptCode,
-        );
-        yield cancelTransaction.fold(
-          (error) =>
-              OrderState.loadFailure(OrderFailure.cancelTransactionFail()),
-          (unit) => OrderState.cancelTransactionSuccess(),
-        );
-      },
-    );
+          UpdateCartSessionBodyDeliveryParam? deliveryParam;
+          if (deliveryInq != null) {
+            deliveryParam = UpdateCartSessionBodyDeliveryParam(
+                address: activeAddr.address!,
+                location: [activeAddr.latitude!, activeAddr.longitude!],
+                price: deliveryInq.shipmentMethods.first.price,
+                provider: deliveryInq.provider,
+                shipmentMethod: deliveryInq.shipmentMethods.first.name);
+          }
+          final sessionId =
+              (await _orderRepository.getSessionId()).getOrElse(() => null);
+          if (removeCart == null || sessionId == null) {
+            emit(OrderState.loadFailure(OrderFailure.removeCartFail(null)));
+          } else {
+            final createCartSession = await _orderRepository.updateCartSession(
+              UpdateCartSessionParam(
+                body: UpdateCartSessionBodyParam(
+                  items: removeCart.items ?? [],
+                  customerNote: null,
+                  paymentType: paymentType?.id ?? "",
+                  customerPax: '1',
+                  customerSmoking: false,
+                  customerCarColor: '',
+                  customerCarNumber: '',
+                  customerCarType: '',
+                  delivery: deliveryParam,
+                  eta: 'now',
+                  promos: getVoucherMethodID == null
+                      ? []
+                      : [getVoucherMethodID.code],
+                  salesType: getSalesTypeCart ?? "",
+                ),
+                queryString: UpdateCartSessionQueryParam(
+                  sessionId: sessionId,
+                ),
+              ),
+            );
+
+            emit(createCartSession.fold(
+              (error) =>
+                  OrderState.loadFailure(OrderFailure.removeCartFail(error)),
+              (list) => OrderState.removeCartSuccess(list!.data),
+            ));
+          }
+        },
+        getCartSession: (_) async {
+          emit(OrderState.loadInProgress());
+          final sessionId =
+              (await _orderRepository.getSessionId()).getOrElse(() => null);
+          final getCartSession = await _orderRepository
+              .getCartSession(GetCartSessionParam(sessionId: sessionId ?? ""));
+          final getOutletDetailID =
+              await _orderRepository.getCartOutletDetailID();
+          emit(getCartSession.fold(
+            (error) =>
+                OrderState.loadFailure(OrderFailure.getCartSessionFail(error)),
+            (list) => OrderState.getCartSessionSuccess(
+              list!.data,
+              getOutletDetailID!.merchantName!,
+            ),
+          ));
+        },
+        removeCartSession: (value) async {
+          emit(OrderState.loadInProgress());
+          final cartSession = (await _orderRepository.removeCartSesion());
+          if (cartSession != null) {
+            emit(OrderState.removeCartSessionSuccess());
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.removeCartSessionFail(null)));
+          }
+        },
+        getSalesTypeCart: (_) async {
+          emit(OrderState.loadInProgress());
+          final getSalesTypeCart = await _orderRepository.getSalesTypeCartID();
+          if (getSalesTypeCart != null) {
+            emit(OrderState.getSalesTypeCartSuccess(getSalesTypeCart));
+          } else {
+            emit(OrderState.loadFailure(OrderFailure.salesTypeNull()));
+          }
+        },
+        setSalesTypeCart: (r) async {
+          emit(OrderState.loadInProgress());
+          final setSalesTypeCart =
+              await _orderRepository.setSalesTypeCartID(r.value);
+          if (setSalesTypeCart != null) {
+            emit(OrderState.setSalesTypeCartSuccess(setSalesTypeCart));
+          } else {
+            emit(OrderState.loadFailure(OrderFailure.salesTypeNull()));
+          }
+        },
+        updateCartSession: (request) async {
+          emit(OrderState.loadInProgress());
+          final sessionId =
+              (await _orderRepository.getSessionId()).getOrElse(() => null);
+          final param = request.request.copyWith(
+              queryString: UpdateCartSessionQueryParam(sessionId: sessionId!));
+          final updateCartSession =
+              await _orderRepository.updateCartSession(param);
+          var dataCart = updateCartSession.getOrElse(() => null);
+          if (dataCart != null) {
+            await _orderRepository.setSessionId(dataCart.data.sessionId!);
+          }
+          emit(updateCartSession.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.updateCartSessionFail(error)),
+            (list) => OrderState.updateCartSessionSuccess(list!.data),
+          ));
+        },
+        checkoutCart: (request) async {
+          emit(OrderState.loadInProgress());
+          final sessionId = (await _orderRepository.getSessionId())
+              .getOrElse(() => request.sessionId);
+          if (sessionId != null) {
+            final checkoutCart = await _orderRepository.checkout(sessionId);
+            emit(checkoutCart.fold(
+              (error) {
+                return OrderState.loadFailure(
+                  OrderFailure.checkoutCartFail(error),
+                );
+              },
+              (list) => OrderState.checkoutCartSuccess(list),
+            ));
+          } else {
+            emit(OrderState.loadFailure(OrderFailure.checkoutCartFail(null)));
+          }
+        },
+        getDeliveryMethodID: (r) async {
+          emit(OrderState.loadInProgress());
+          final getDeliveryMethodID =
+              await _orderRepository.getDeliveryMethodID();
+          if (getDeliveryMethodID != null) {
+            emit(OrderState.getDeliveryMethodIDSuccess(getDeliveryMethodID));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.getDeliveryMethodIDFail(null)));
+          }
+        },
+        setDeliveryMethodID: (r) async {
+          emit(OrderState.loadInProgress());
+          final setDeliveryMethodID =
+              await _orderRepository.setDeliveryMethodID(r.data);
+          if (setDeliveryMethodID != null) {
+            emit(OrderState.setDeliveryMethodIDSuccess(setDeliveryMethodID));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.setDeliveryMethodIDFail(null)));
+          }
+        },
+        getPaymentMethodID: (r) async {
+          emit(OrderState.loadInProgress());
+          final getPaymentMethodID =
+              await _orderRepository.getPaymentMethodID();
+          if (getPaymentMethodID != null) {
+            emit(OrderState.getPaymentMethodIDSuccess(getPaymentMethodID));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.getPaymentMethodIDFail(null)));
+          }
+        },
+        setPaymentMethodID: (r) async {
+          emit(OrderState.loadInProgress());
+          final setPaymentMethodID =
+              await _orderRepository.setPaymentMethodID(r.data);
+          if (setPaymentMethodID != null) {
+            emit(OrderState.setPaymentMethodIDSuccess(setPaymentMethodID));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.setPaymentMethodIDFail(null)));
+          }
+        },
+        getVoucherMethodID: (r) async {
+          emit(OrderState.loadInProgress());
+          final getVoucherMethodID =
+              await _orderRepository.getVoucherMethodID();
+          if (getVoucherMethodID != null) {
+            emit(OrderState.getVoucherMethodIDSuccess(getVoucherMethodID));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.getVoucherMethodIDFail(null)));
+          }
+        },
+        setVoucherMethodID: (r) async {
+          emit(OrderState.loadInProgress());
+          final setVoucherMethodID =
+              await _orderRepository.setVoucherMethodID(r.data);
+          if (setVoucherMethodID != null) {
+            emit(OrderState.setVoucherMethodIDSuccess(setVoucherMethodID));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.setVoucherMethodIDFail(null)));
+          }
+        },
+        getDineInIDMethod: (r) async {
+          emit(OrderState.loadInProgress());
+          final getDineInIDMethod = await _orderRepository.getDineInIDMethod();
+          if (getDineInIDMethod != null) {
+            emit(OrderState.getDineInIDMethodSuccess(getDineInIDMethod));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.getDineInIDMethodFail(null)));
+          }
+        },
+        setDineInIDMethod: (r) async {
+          emit(OrderState.loadInProgress());
+          final setDineInIDMethod =
+              await _orderRepository.setDineInIDMethod(r.data);
+          if (setDineInIDMethod != null) {
+            emit(OrderState.setDineInIDMethodSuccess(setDineInIDMethod));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.setDineInIDMethodFail(null)));
+          }
+        },
+        setDriveThruIDMethod: (r) async {
+          emit(OrderState.loadInProgress());
+          final setDriveThruIDMethod =
+              await _orderRepository.setDriveThruIDMethod(r.data);
+          if (setDriveThruIDMethod != null) {
+            emit(OrderState.setDriveThruIDMethodSuccess(setDriveThruIDMethod));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.setDriveThruIDMethodFail(null)));
+          }
+        },
+        getDriveThruIDMethod: (r) async {
+          emit(OrderState.loadInProgress());
+          final getDriveThru = await _orderRepository.getDriveThruIDMethod();
+          if (getDriveThru != null) {
+            emit(OrderState.getDriveThruIDMethodSucess(getDriveThru));
+          } else {
+            emit(OrderState.loadFailure(
+                OrderFailure.getDriveThruIDMethodFail(null)));
+          }
+        },
+        getTransactionPending: (_event) async {
+          emit(OrderState.loadInProgress());
+          final getTransactionPending =
+              await _profileRepository.getOrderPending();
+
+          emit(getTransactionPending.fold(
+            (error) => OrderState.loadFailure(
+                OrderFailure.getTransactionPendingFail()),
+            (list) => OrderState.getTransactionPendingSuccess(list),
+          ));
+        },
+        cancelTransaction: (r) async {
+          emit(OrderState.loadInProgress());
+          final cancelTransaction = await _profileRepository.cancelTransaction(
+            reason: 'Cancel payment method',
+            receiptCode: r.receiptCode,
+          );
+          emit(cancelTransaction.fold(
+            (error) =>
+                OrderState.loadFailure(OrderFailure.cancelTransactionFail()),
+            (unit) => OrderState.cancelTransactionSuccess(),
+          ));
+        },
+      );
+    });
   }
 }

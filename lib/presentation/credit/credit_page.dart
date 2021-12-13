@@ -98,8 +98,7 @@ class CreditWidget extends StatelessWidget {
             (count) => count,
           ),
         );
-        return ListView(
-          padding: EdgeInsets.zero,
+        return Column(
           children: [
             Stack(
               children: [
@@ -193,87 +192,93 @@ class CreditWidget extends StatelessWidget {
                 )
               ],
             ),
-            Column(
-              children: [
-                TabBar(
-                  indicatorPadding: EdgeInsets.symmetric(
-                    horizontal: 20,
+            Expanded(
+              child: Column(
+                children: [
+                  TabBar(
+                    indicatorPadding: EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    labelPadding: EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    controller: _tabx.controller,
+                    labelColor: AppColors.mainColor,
+                    unselectedLabelColor: AppColors.greyColor,
+                    labelStyle: Styles.creditTabStyle,
+                    tabs: myTabs,
                   ),
-                  labelPadding: EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  controller: _tabx.controller,
-                  labelColor: AppColors.mainColor,
-                  unselectedLabelColor: AppColors.greyColor,
-                  labelStyle: Styles.creditTabStyle,
-                  tabs: myTabs,
-                ),
-                Obx(
-                  () => SizedBox(
-                    width: double.infinity,
-                    child: [
-                      state.listTopUpMethod.fold(
-                        () => _widgetLoading(),
-                        (data) => data.fold(
-                          (failure) => _widgetError(),
-                          (list) => CreditTabView(
-                            title: i10n.credit_title_1,
-                            subtitle: i10n.credit_desc_1,
-                            menus: list.unlock
-                                .map(
-                                  (topupMethod) => topupMethod.isEnable
-                                      ? CreditMenu(
-                                          assetSvgIcon: CreditByDestination(
-                                                  topupMethod.destination)
-                                              .asset,
-                                          label: CreditByDestination(
-                                                  topupMethod.destination)
-                                              .title,
-                                          onTap: () => Get.to(
-                                                  CreditSubCategoryPage(
-                                                      topupMethod))
-                                              ?.then(
-                                            (value) => _bloc.add(
-                                              CreditEvent
-                                                  .getCountTopupPending(),
-                                            ),
-                                          ),
-                                        )
-                                      : SizedBox(),
-                                )
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      CreditTabView(
-                        title: i10n.credit_title_2,
-                        subtitle: i10n.credit_desc_2,
-                        menus: [
-                          CreditMenu(
-                            assetSvgIcon: 'assets/credit_waiting_payment.svg',
-                            label: i10n.credit_pending_topup,
-                            badgeCount: count,
-                            onTap: () => Get.to(WaitingPaymentPage())?.then(
-                              (value) => _bloc.add(
-                                CreditEvent.getCountTopupPending(),
+                  Expanded(
+                    child: Obx(
+                      () => SizedBox(
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: [
+                          state.listTopUpMethod.fold(
+                            () => _widgetLoading(),
+                            (data) => data.fold(
+                              (failure) => _widgetError(),
+                              (list) => CreditTabView(
+                                title: i10n.credit_title_1,
+                                subtitle: i10n.credit_desc_1,
+                                menus: list.unlock
+                                    .map(
+                                      (topupMethod) => topupMethod.isEnable
+                                          ? CreditMenu(
+                                              assetSvgIcon: CreditByDestination(
+                                                      topupMethod.destination)
+                                                  .asset,
+                                              label: CreditByDestination(
+                                                      topupMethod.destination)
+                                                  .title,
+                                              onTap: () => Get.to(
+                                                      CreditSubCategoryPage(
+                                                          topupMethod))
+                                                  ?.then(
+                                                (value) => _bloc.add(
+                                                  CreditEvent
+                                                      .getCountTopupPending(),
+                                                ),
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                    )
+                                    .toList(),
                               ),
                             ),
                           ),
-                          CreditMenu(
-                            assetSvgIcon: 'assets/credit_history.svg',
-                            label: i10n.credit_recent_history,
-                            onTap: () => Get.to(RecentHistoryPage())?.then(
-                              (value) => _bloc.add(
-                                CreditEvent.getCountTopupPending(),
+                          CreditTabView(
+                            title: i10n.credit_title_2,
+                            subtitle: i10n.credit_desc_2,
+                            menus: [
+                              CreditMenu(
+                                assetSvgIcon:
+                                    'assets/credit_waiting_payment.svg',
+                                label: i10n.credit_pending_topup,
+                                badgeCount: count,
+                                onTap: () => Get.to(WaitingPaymentPage())?.then(
+                                  (value) => _bloc.add(
+                                    CreditEvent.getCountTopupPending(),
+                                  ),
+                                ),
                               ),
-                            ),
+                              CreditMenu(
+                                assetSvgIcon: 'assets/credit_history.svg',
+                                label: i10n.credit_recent_history,
+                                onTap: () => Get.to(RecentHistoryPage())?.then(
+                                  (value) => _bloc.add(
+                                    CreditEvent.getCountTopupPending(),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ][_tabx.tabIndex.value],
                       ),
-                    ][_tabx.tabIndex.value],
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ],
         );

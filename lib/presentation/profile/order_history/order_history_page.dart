@@ -10,7 +10,6 @@ import 'package:digiresto/presentation/profile/order_history/widgets/order_pendi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class OrderHistoryPage extends StatelessWidget {
   const OrderHistoryPage({Key? key}) : super(key: key);

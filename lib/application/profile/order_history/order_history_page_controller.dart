@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderHistoryPageController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   final void Function(int tabIndex) tabListener;
   final I10n i10n;
   OrderHistoryPageController({

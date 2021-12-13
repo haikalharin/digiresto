@@ -1,5 +1,6 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,7 +38,7 @@ class PaymentInfoCopy extends StatelessWidget {
                 padding: EdgeInsets.all(5),
                 height: 50,
                 width: MediaQuery.of(context).size.width / 3,
-                child: RaisedButton(
+                child: CustomButton(
                   onPressed: () {
                     print("copy");
                     Clipboard.setData(new ClipboardData(text: value)).then((_) {
@@ -50,13 +51,6 @@ class PaymentInfoCopy extends StatelessWidget {
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: AppColors.red)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(8.0),
-                    side: BorderSide(
-                      width: 1.5,
-                      color: AppColors.red,
-                    ),
-                  ),
                 ),
               ),
             ],

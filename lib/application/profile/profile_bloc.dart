@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/auth/auth_failure.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
@@ -14,24 +12,21 @@ part 'profile_bloc.freezed.dart';
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final IAuthFacade _authFacade;
-  ProfileBloc(this._authFacade) : super(_Initial());
-
-  @override
-  Stream<ProfileState> mapEventToState(
-    ProfileEvent event,
-  ) async* {
-    yield* event.map(
-      started: (_event) async* {
-        yield ProfileState.loading();
-        final failureOrSuccess = await _authFacade.getSignedInUser();
-        yield failureOrSuccess.fold(
-          (failure) => ProfileState.loadFailure(failure),
-          (optionUser) => optionUser.fold(
-            () => ProfileState.loadFailure(AuthFailure.sessionExpired()),
-            (user) => ProfileState.loadSuccess(user),
-          ),
-        );
-      },
-    );
+  ProfileBloc(this._authFacade) : super(_Initial()) {
+    on<ProfileEvent>((event, emit) async {
+      await event.map(
+        started: (_event) async {
+          emit(ProfileState.loading());
+          final failureOrSuccess = await _authFacade.getSignedInUser();
+          emit(failureOrSuccess.fold(
+            (failure) => ProfileState.loadFailure(failure),
+            (optionUser) => optionUser.fold(
+              () => ProfileState.loadFailure(AuthFailure.sessionExpired()),
+              (user) => ProfileState.loadSuccess(user),
+            ),
+          ));
+        },
+      );
+    });
   }
 }

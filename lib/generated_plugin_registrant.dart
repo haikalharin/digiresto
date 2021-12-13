@@ -7,9 +7,11 @@
 
 import 'package:connectivity_plus_web/connectivity_plus_web.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone_web.dart';
+import 'package:flutter_secure_storage_web/flutter_secure_storage_web.dart';
 import 'package:fluttertoast/fluttertoast_web.dart';
 import 'package:geolocator_web/geolocator_web.dart';
 import 'package:package_info_plus_web/package_info_plus_web.dart';
+import 'package:sensors_plus_web/sensors_plus_web.dart';
 import 'package:share_plus_web/share_plus_web.dart';
 import 'package:url_launcher_web/url_launcher_web.dart';
 import 'package:wakelock_web/wakelock_web.dart';
@@ -20,9 +22,11 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 void registerPlugins(Registrar registrar) {
   ConnectivityPlusPlugin.registerWith(registrar);
   FlutterNativeTimezonePlugin.registerWith(registrar);
+  FlutterSecureStorageWeb.registerWith(registrar);
   FluttertoastWebPlugin.registerWith(registrar);
   GeolocatorPlugin.registerWith(registrar);
   PackageInfoPlugin.registerWith(registrar);
+  SensorsPlugin.registerWith(registrar);
   SharePlusPlugin.registerWith(registrar);
   UrlLauncherPlugin.registerWith(registrar);
   WakelockWeb.registerWith(registrar);

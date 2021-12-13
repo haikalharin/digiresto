@@ -4,7 +4,6 @@ import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/cart/cart.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/credit/credit_page.dart';
 import 'package:digiresto/presentation/home_new/home_page.dart';

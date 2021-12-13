@@ -4,7 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:code_id_flutter/code_services/alice/alice.dart' as _i3;
+import 'package:code_id_alice/alice.dart' as _i3;
 import 'package:connectivity_plus/connectivity_plus.dart' as _i6;
 import 'package:dio/dio.dart' as _i22;
 import 'package:geolocator/geolocator.dart' as _i8;

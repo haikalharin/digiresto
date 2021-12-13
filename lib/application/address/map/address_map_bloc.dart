@@ -20,31 +20,31 @@ class AddressMapBloc extends Bloc<AddressMapEvent, AddressMapState> {
   AddressMapBloc(
     this._userRepository,
     this._mapRepository,
-  ) : super(_Initial());
-
-  @override
-  Stream<AddressMapState> mapEventToState(AddressMapEvent gEvent) async* {
-    yield* gEvent.map(
-        saveAddress: (request) async* {
-          final saveAddress =
-              await _userRepository.addAddress(request.request.toMap());
-          yield saveAddress.fold(
-              (error) => AddressMapState.saveAddressFail(error.toString()),
-              (data) => AddressMapState.saveAddressSuccess(data));
-        },
-        getGeoCode: (request) async* {
-          final getGeoCode = await _mapRepository.geocode(request.request);
-          yield getGeoCode.fold(
-              (error) => AddressMapState.getGeoCodeFail(error.toString()),
-              (data) => AddressMapState.getGeoCodeSuccess(data));
-        },
-        changeAddress: (_) async* {},
-        setActiveAddress: (value) async* {
-          final setActiveAddress =
-              await _userRepository.setActiveAddress(value.model);
-          yield setActiveAddress.fold(
-              (error) => AddressMapState.setActiveAddressFail(error.toString()),
-              (data) => AddressMapState.setActiveAddressSuccess(data));
-        });
+  ) : super(_Initial()) {
+    on<AddressMapEvent>((event, emit) async {
+      await event.map(
+          saveAddress: (request) async {
+            final saveAddress =
+                await _userRepository.addAddress(request.request.toMap());
+            emit(saveAddress.fold(
+                (error) => AddressMapState.saveAddressFail(error.toString()),
+                (data) => AddressMapState.saveAddressSuccess(data)));
+          },
+          getGeoCode: (request) async {
+            final getGeoCode = await _mapRepository.geocode(request.request);
+            emit(getGeoCode.fold(
+                (error) => AddressMapState.getGeoCodeFail(error.toString()),
+                (data) => AddressMapState.getGeoCodeSuccess(data)));
+          },
+          changeAddress: (_) async {},
+          setActiveAddress: (value) async {
+            final setActiveAddress =
+                await _userRepository.setActiveAddress(value.model);
+            emit(setActiveAddress.fold(
+                (error) =>
+                    AddressMapState.setActiveAddressFail(error.toString()),
+                (data) => AddressMapState.setActiveAddressSuccess(data)));
+          });
+    });
   }
 }

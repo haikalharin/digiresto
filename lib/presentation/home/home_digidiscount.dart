@@ -4,15 +4,12 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/order/home_order_view_argument.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
-import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:digiresto/presentation/widgets/list/digidiscount_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -22,51 +19,51 @@ class HomeDigidiscountScreen
     Get.back();
   }
 
-  Widget _search() {
-    return Theme(
-      data: Theme.of(Get.context!).copyWith(
-        primaryColor: Colors.grey,
-      ),
-      child: Container(
-        padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
-        child: TextField(
-            textInputAction: TextInputAction.search,
-            onSubmitted: (value) {
-              controller.listPromoOutlet.clear();
-              controller.page.value = 1;
-              controller.getPromoOutlet(controller.searchController.text, 1);
-            },
-            controller: controller.searchController,
-            readOnly: false,
-            onTap: () {
-              print("open popup");
-            },
-            style: TextStyle(
-              fontSize: 14.0,
-            ),
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.greyInput,
-              contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-              prefixIcon: Icon(Icons.search),
-              hintText: I10n.current.preorder_filter_hint,
-              border: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.greyInput, width: 32.0),
-                  borderRadius: BorderRadius.circular(10)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.greyInput, width: 32.0),
-                  borderRadius: BorderRadius.circular(10)),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(width: 1, color: Colors.white),
-              ),
-            )),
-      ),
-    );
-  }
+  // Widget _search() {
+  //   return Theme(
+  //     data: Theme.of(Get.context!).copyWith(
+  //       primaryColor: Colors.grey,
+  //     ),
+  //     child: Container(
+  //       padding:
+  //           const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
+  //       child: TextField(
+  //           textInputAction: TextInputAction.search,
+  //           onSubmitted: (value) {
+  //             controller.listPromoOutlet.clear();
+  //             controller.page.value = 1;
+  //             controller.getPromoOutlet(controller.searchController.text, 1);
+  //           },
+  //           controller: controller.searchController,
+  //           readOnly: false,
+  //           onTap: () {
+  //             print("open popup");
+  //           },
+  //           style: TextStyle(
+  //             fontSize: 14.0,
+  //           ),
+  //           decoration: InputDecoration(
+  //             filled: true,
+  //             fillColor: AppColors.greyInput,
+  //             contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+  //             prefixIcon: Icon(Icons.search),
+  //             hintText: I10n.current.preorder_filter_hint,
+  //             border: OutlineInputBorder(
+  //                 borderSide:
+  //                     BorderSide(color: AppColors.greyInput, width: 32.0),
+  //                 borderRadius: BorderRadius.circular(10)),
+  //             focusedBorder: OutlineInputBorder(
+  //                 borderSide:
+  //                     BorderSide(color: AppColors.greyInput, width: 32.0),
+  //                 borderRadius: BorderRadius.circular(10)),
+  //             enabledBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.all(Radius.circular(10)),
+  //               borderSide: BorderSide(width: 1, color: Colors.white),
+  //             ),
+  //           )),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -25,7 +25,12 @@ export 'package:digiresto/presentation/core/app_widget.dart';
 Future<void> mainProgram() async {
   await Hive.initFlutter();
   await configureInjection(Globals.env);
-  Bloc.observer = getIt<SimpleBlocObserver>();
+  BlocOverrides.runZoned(
+    () {
+      // ...
+    },
+    blocObserver: getIt<SimpleBlocObserver>(),
+  );
   runApp(
     InitiateProvider(),
   );

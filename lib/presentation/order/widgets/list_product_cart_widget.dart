@@ -1,4 +1,3 @@
-import 'package:collection/src/iterable_extensions.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
@@ -9,7 +8,6 @@ import 'package:digiresto/domain/entity/order/param/create_cart_session_param.da
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
 
 class ListProductCartWidget extends StatefulWidget {
   final List<TransactionDataItemResponse> productCart;
