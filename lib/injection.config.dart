@@ -81,8 +81,8 @@ import 'presentation/landing/bottom_tab_view.dart' as _i5;
 import 'presentation/profile/address/address_page.dart' as _i14;
 import 'simple_bloc_delegate.dart' as _i15;
 
-const String _dev = 'dev';
 const String _prod = 'prod';
+const String _dev = 'dev';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -90,9 +90,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
+  gh.lazySingleton<_i3.Alice>(() => registerModule.alice, registerFor: {_prod});
   gh.lazySingleton<_i3.Alice>(() => registerModule.aliceDev,
       registerFor: {_dev});
-  gh.lazySingleton<_i3.Alice>(() => registerModule.alice, registerFor: {_prod});
   gh.factory<_i4.AppWidget>(() => _i4.AppWidget(alice: get<_i3.Alice>()));
   gh.lazySingleton<_i5.BottomTabView>(() => _i5.BottomTabView());
   gh.lazySingleton<_i6.Connectivity>(() => registerModule.connectivity);
@@ -115,12 +115,12 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i21.AuthInterceptor>(
       () => _i21.AuthInterceptor(get<_i16.IStorage>()));
   await gh.lazySingletonAsync<_i22.Dio>(
-      () => registerModule.dio(get<_i16.IStorage>()),
-      registerFor: {_prod},
-      preResolve: true);
-  await gh.lazySingletonAsync<_i22.Dio>(
       () => registerModule.dioDev(get<_i3.Alice>(), get<_i16.IStorage>()),
       registerFor: {_dev},
+      preResolve: true);
+  await gh.lazySingletonAsync<_i22.Dio>(
+      () => registerModule.dio(get<_i16.IStorage>()),
+      registerFor: {_prod},
       preResolve: true);
   gh.factory<_i7.Env>(() => _i7.EnvDev(get<_i16.IStorage>()),
       registerFor: {_dev});

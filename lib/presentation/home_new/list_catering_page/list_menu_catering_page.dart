@@ -4,12 +4,14 @@ import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/dimens.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
+import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +33,9 @@ class ListMenuCateringPage extends StatelessWidget {
               children: [
                 TopBackgound(backgroundColor: AppColors.red),
                 _header(),
-                TabBar(onTap: (index) {}, tabs: [
+                TabBar(onTap: (index) {
+                  
+                }, tabs: [
                   Tab(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +70,7 @@ class ListMenuCateringPage extends StatelessWidget {
                   ),
                 ]),
                 Expanded(
-                  child: TabBarView(children: [_menuOverview(), _menuTab()]),
+                  child: TabBarView(children: [_menuOverview(), _menuTab(),]),
                 ),
               ],
             ),
@@ -160,7 +164,9 @@ class ListMenuCateringPage extends StatelessWidget {
                                 width: 9,
                               ),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _showDialogSalesType();
+                                },
                                 child: Container(
                                   width: Get.width * 0.55,
                                   child: Row(
@@ -171,14 +177,14 @@ class ListMenuCateringPage extends StatelessWidget {
                                           children: [
                                             ImageIcon(
                                                 AssetImage(AppAssets
-                                                    .iconOutletOrderDineIn),
+                                                    .iconOutletOrderDelivery),
                                                 size: 16,
                                                 color: AppColors.white),
                                             SizedBox(
                                               width: 8,
                                             ),
                                             Text(
-                                              Utils.formatSalesType('takeAway'),
+                                              Utils.formatSalesType('onlineDriver'),
                                               style: AppFont.textBlack14Bold
                                                   .copyWith(
                                                       color: AppColors.white),
@@ -210,6 +216,93 @@ class ListMenuCateringPage extends StatelessWidget {
     ]);
   }
 
+  Future<void> _showDialogSalesType() async {
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+        ),
+        backgroundColor: Colors.white,
+        context: Get.context!,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              SizedBox(
+                height: 8,
+              ),
+              ListTile(
+                // leading: GestureDetector(
+                //   onTap: () {
+                //     Get.back();
+                //   },
+                //   child: ImageIcon(
+                //     AssetImage(AppAssets.iconBackBlack),
+                //     color: Colors.black,
+                //   ),
+                // ),
+                title: Container(
+                  //make title to center
+                  //transform: Matrix4.translationValues(-24, 0, 0),
+                  child: Center(
+                    child: new Text(
+                      'Silahkan pilih tipe order',
+                      style: AppFont.textBlack17Bold,
+                    ),
+                  ),
+                ),
+                enabled: false,
+              ),
+              Column(
+                children: [
+                  Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+          child: Row(
+            children: [
+              Container(
+                child: ImageIcon(
+                  AssetImage(AppAssets.iconOutletOrderDelivery),
+                  color: AppColors.white,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: AppColors.redD12B34, shape: BoxShape.circle),
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              Text(I10n.current.landing_delivery,
+                  style: AppFont.textBlack14Bold),
+              Expanded(child: Container()),
+              ElevatedButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    I10n.current.cart_choose,
+                    style: AppFont.textBlack12Bold
+                        .copyWith(color: AppColors.redD12B34),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      elevation: 0,
+                      side: BorderSide(
+                        width: 1.0,
+                        color: AppColors.redD12B34,
+                      ))),
+            ],
+          ),
+        )
+                ],
+              ),
+              SizedBox(
+                height: 16,
+              )
+            ],
+          );
+        });
+  }
+
   Widget _menuOverview(){
     return  Padding(
             padding: const EdgeInsets.all(16.0),
@@ -225,14 +318,14 @@ class ListMenuCateringPage extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    'Somethink deskripsi yang cukup panjang ',
+                    'Something deskripsi yang cukup panjang ',
                     style: AppFont.textBlack12Regular,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'Daerah khusus ibu kota',
+                    'Jln. Sudirman, Daerah khusus ibu kota',
                     style: AppFont.textBlack12Regular,
                   ),
                   SizedBox(
@@ -326,101 +419,116 @@ class ListMenuCateringPage extends StatelessWidget {
                   SizedBox(
                     height: 18,
                   ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //       border: Border.all(color: AppColors.greyBorder),
-                  //       borderRadius: BorderRadius.circular(6)),
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.all(16.0),
-                  //     child: Wrap(children: controller.generateListSalesType()),
-                  //   ),
-                  // ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.greyBorder),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Wrap(children: [Container(
+          // width: MediaQuery.of(Get.context!).size.width * 0.32,
+          child: Row(
+            children: [
+              ImageIcon(AssetImage(AppAssets.iconOutletOrderDelivery),
+                  size: 14, color: AppColors.redTabBar),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                I10n.current.landing_delivery,
+                style: AppFont.textBlack11Light,
+              ),
+            ],
+          ),
+        )]),
+                    ),
+                  ),
                   SizedBox(
                     height: 18,
                   ),
-                  // Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       SizedBox(
-                  //         height: 43,
-                  //         width: MediaQuery.of(context).size.width * 0.45,
-                  //         child: ElevatedButton(
-                  //           onPressed: () {
-                  //             // String phone =
-                  //             //     controller.detailOutlet.value!.ownerPhone;
-                  //             //                           String url =
-                  //             // "https://api.whatsapp.com/send/?phone=" +
-                  //             //     phone +
-                  //             //     "&text=hi%20Digiresto";
-                  //             String callBackUrl =
-                  //                 controller.detailOutlet.value!.callbackUrl!;
-                  //             String url = callBackUrl;
-                  //             LaunchUrl.run(
-                  //               url,
-                  //               onError: () {},
-                  //               onSuccess: () {},
-                  //             );
-                  //           },
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             children: [
-                  //               ImageIcon(AssetImage(AppAssets.iconSendMessage),
-                  //                   color: AppColors.white),
-                  //               SizedBox(width: 8),
-                  //               Text(I10n.current.outlet_message,
-                  //                   style: AppFont.textBlack12SemiBold
-                  //                       .copyWith(color: Colors.white)),
-                  //             ],
-                  //           ),
-                  //           style: ButtonStyle(
-                  //               shape: MaterialStateProperty.all(
-                  //                   RoundedRectangleBorder(
-                  //                       borderRadius:
-                  //                           BorderRadius.circular(6.0),
-                  //                       side: BorderSide(
-                  //                           color: AppColors.redTabBar))),
-                  //               backgroundColor: MaterialStateProperty.all(
-                  //                   AppColors.redTabBar)),
-                  //         ),
-                  //       ),
-                  //       // SizedBox(
-                  //       //   height: 43,
-                  //       //   width: MediaQuery.of(context).size.width * 0.45,
-                  //       //   child: ElevatedButton(
-                  //       //     onPressed: () async {
-                  //       //       final location =
-                  //       //           controller.detailOutlet.value!.location;
-                  //       //       await LaunchUrl.openMap(double.parse(location[0]),
-                  //       //           double.parse(location[1]), onError: () {
-                  //       //         ErrorPopupWidget.show(
-                  //       //             "Error", "error membuka aplikasi map", () {
-                  //       //           Get.back(closeOverlays: true);
-                  //       //         });
-                  //       //       });
-                  //       //     },
-                  //       //     child: Row(
-                  //       //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       //       children: [
-                  //       //         ImageIcon(AssetImage(AppAssets.iconMapRed),
-                  //       //             color: AppColors.white),
-                  //       //         SizedBox(width: 8),
-                  //       //         Text(I10n.current.outlet_location,
-                  //       //             style: AppFont.textBlack12SemiBold
-                  //       //                 .copyWith(color: Colors.white)),
-                  //       //       ],
-                  //       //     ),
-                  //       //     style: ButtonStyle(
-                  //       //         shape: MaterialStateProperty.all(
-                  //       //             RoundedRectangleBorder(
-                  //       //                 borderRadius:
-                  //       //                     BorderRadius.circular(6.0),
-                  //       //                 side: BorderSide(
-                  //       //                     color: AppColors.redTabBar))),
-                  //       //         backgroundColor: MaterialStateProperty.all(
-                  //       //             AppColors.redTabBar)),
-                  //       //   ),
-                  //       // ),
-                  //     ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          height: 43,
+                          width: MediaQuery.of(Get.context!).size.width * 0.45,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // String phone =
+                              //     controller.detailOutlet.value!.ownerPhone;
+                              //                           String url =
+                              // "https://api.whatsapp.com/send/?phone=" +
+                              //     phone +
+                              //     "&text=hi%20Digiresto";
+                              String callBackUrl =
+                                 '';
+                              String url = callBackUrl;
+                              LaunchUrl.run(
+                                url,
+                                onError: () {},
+                                onSuccess: () {},
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ImageIcon(AssetImage(AppAssets.iconSendMessage),
+                                    color: AppColors.white),
+                                SizedBox(width: 8),
+                                Text(I10n.current.outlet_message,
+                                    style: AppFont.textBlack12SemiBold
+                                        .copyWith(color: Colors.white)),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        side: BorderSide(
+                                            color: AppColors.redTabBar))),
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.redTabBar)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 43,
+                          width: MediaQuery.of(Get.context!).size.width * 0.45,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              final location =
+                                  '';
+                              await LaunchUrl.openMap(double.parse(location[0]),
+                                  double.parse(location[1]), onError: () {
+                                ErrorPopupWidget.show(
+                                    "Error", "error membuka aplikasi map", () {
+                                  Get.back(closeOverlays: true);
+                                });
+                              });
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ImageIcon(AssetImage(AppAssets.iconMapRed),
+                                    color: AppColors.white),
+                                SizedBox(width: 8),
+                                Text(I10n.current.outlet_location,
+                                    style: AppFont.textBlack12SemiBold
+                                        .copyWith(color: Colors.white)),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        side: BorderSide(
+                                            color: AppColors.redTabBar))),
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.redTabBar)),
+                          ),
+                        ),
+                      ]),
                 ],
               ),
             ),
@@ -485,7 +593,7 @@ class ListMenuCateringPage extends StatelessWidget {
           ]),
         ),
         Container(
-          color: AppColors.greyColor,
+          color: AppColors.greyBorder,
           height: 10,
           width: double.infinity,
         ),
@@ -494,51 +602,63 @@ class ListMenuCateringPage extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
             child: ListView.separated(
-                itemBuilder: (_, __) => Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(
-                              8.0,
+                itemBuilder: (_, __) => Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                8.0,
+                              ),
+                            ),
+                            child: Image(
+                              errorBuilder: (context, obj, stacktrace) {
+                                return Image(
+                                  height: 96,
+                                  width: 96,
+                                  image: RandomImages.getImage(),
+                                );
+                              },
+                              image: RandomImages.getImageUrlDefault("", ""),
+                              fit: BoxFit.cover,
+                              height: 96,
+                              width: 96,
+                              alignment: Alignment.center,
                             ),
                           ),
-                          child: Image(
-                            errorBuilder: (context, obj, stacktrace) {
-                              return Image(
-                                height: 96,
-                                width: 96,
-                                image: RandomImages.getImage(),
-                              );
-                            },
-                            image: RandomImages.getImageUrlDefault("", ""),
-                            fit: BoxFit.cover,
-                            height: 96,
-                            width: 96,
-                            alignment: Alignment.center,
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(
-                              'Ayam Bakar Bumbu Bali',
-                              style: AppFont.textBlack14Bold,
+                          Expanded(
+                            
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Ayam Bakar Bumbu Bali',
+                                    style: AppFont.textBlack14Bold,
+                                  ),
+                                  Text(
+                                    'Deskripsi singkat Ayam Bakar Bumbu Bali',
+                                    style: AppFont.textBlack11Light,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Text(
-                          Utils.formatRupiah('20000'),
-                          style: AppFont.textBlack14Bold
-                              .copyWith(fontWeight: FontWeight.w800),
-                        )
-                      ],
-                    ),
+                          Text(
+                            'Rp ${Utils.formatRupiah('20000')}',
+                            style: AppFont.textBlack14Bold
+                                .copyWith(fontWeight: FontWeight.w800),
+                          )
+                        ],
+                      ),
+                ),
                 separatorBuilder: (_, __) => Container(
                       height: 8,
-                      color: AppColors.white,
+                      
                     ),
-                itemCount: 50),
+                itemCount: 20),
           ),
         )
       ],
