@@ -17,4 +17,5 @@ abstract class IHomeRepository {
     String? search,
     required bool isHideOpen,
   });
+
 }

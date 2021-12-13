@@ -161,7 +161,17 @@ class ListCateringWidget extends StatelessWidget {
                                   height: 37,
                                   child: TextField(
                                     textInputAction: TextInputAction.search,
-                                    onSubmitted: (value) {},
+                                    onSubmitted: (value) {
+                                      context.read<CateringBloc>().add(
+                                            CateringEvent
+                                                .getOutletCategoryCatering(
+                                              isHideOpen: true,
+                                              mealsTypes: "lunch",
+                                              preOrderDate: "2021-12-11",
+                                              search: searchController.text,
+                                            ),
+                                          );
+                                    },
                                     autocorrect: false,
                                     controller: searchController,
                                     onTap: () {
@@ -254,7 +264,7 @@ class ListCateringWidget extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
                               child: Text(
-                                DateFormat('MMMM-yyyy').format(date),
+                                DateFormat('MMMM yyyy').format(date),
                                 softWrap: false,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppFont.textRed14SemiBold.copyWith(
@@ -338,7 +348,7 @@ class ListCateringWidget extends StatelessWidget {
 
                   /// LIST CATERING
                   Expanded(
-                    child: ListView(
+                    child:  ListView(
                       children: List.generate(
                         state.outletCatering.length,
                         (index) {
