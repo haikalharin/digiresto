@@ -1,5 +1,6 @@
 import 'package:code_id_flutter/code_widgets/progress_bar/stack_with_progress.dart';
 import 'package:digiresto/application/catering/catering_bloc.dart';
+import 'package:digiresto/domain/catering/outlet_category_catering_response.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
@@ -9,11 +10,14 @@ import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
+import 'package:digiresto/presentation/widgets/empty_widget.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:dartz/dartz.dart' hide IList;
 
 class ListCateringPage extends StatelessWidget {
   final MenuCategory? menuCategory;
@@ -46,6 +50,8 @@ class ListCateringWidget extends StatelessWidget {
 
   final date = DateTime.now();
 
+  final IList<OutletCategoryCateringResponse> listOutlets = IList();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CateringBloc>(
@@ -58,12 +64,13 @@ class ListCateringWidget extends StatelessWidget {
           ),
         ),
       child: BlocConsumer<CateringBloc, CateringState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return StackWithProgress(
-            isLoading: state.isLoading,
+            isLoading: state.maybeMap(
+              orElse: () => false,
+              loadInProgress: (_) => true,
+            ),
             children: [
               Column(
                 children: [
@@ -347,230 +354,263 @@ class ListCateringWidget extends StatelessWidget {
                   ),
 
                   /// LIST CATERING
-                  Expanded(
-                    child:  ListView(
-                      children: List.generate(
-                        state.outletCatering.length,
-                        (index) {
-                          var _data = state.outletCatering[index];
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: Colors.white,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 15,
-                                ),
-                                // height: 96,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(
-                                            8.0,
-                                          ),
+                  state.maybeMap(
+                    orElse: () => Container(),
+                    getListOutletCateringSuccess: (r) => r.outlets.length > 0
+                        ? Expanded(
+                            child: ListView(
+                              children: List.generate(
+                                r.outlets.length,
+                                (index) {
+                                  var _data = r.outlets[index];
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        color: Colors.white,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 20,
+                                          vertical: 15,
                                         ),
-                                        child: Image(
-                                          errorBuilder:
-                                              (context, obj, stacktrace) {
-                                            return Image(
-                                              height: 96,
-                                              width: 96,
-                                              image: RandomImages.getImage(),
-                                            );
-                                          },
-                                          image:
-                                              RandomImages.getImageUrlDefault(
-                                            _data.logo,
-                                            "",
-                                          ),
-                                          fit: BoxFit.cover,
-                                          height: 96,
-                                          width: 96,
-                                          alignment: Alignment.center,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          _data.name,
-                                          softWrap: false,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: AppFont.textRed14SemiBold
-                                              .copyWith(
-                                            color: AppColors.black,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                        // height: 96,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              _data.distance.distance,
-                                              style: AppFont.textBlack12Regular
-                                                  .copyWith(
-                                                color: AppColors.black,
-                                              ),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                            SizedBox(width: 11),
-                                            Icon(
-                                              Icons.star,
-                                              size: 12,
-                                              color: AppColors.yellowStar,
-                                            ),
-                                            SizedBox(width: 3),
-                                            Text(
-                                              "${_data.rating?.toDouble() ?? "0"}",
-                                              style: AppFont.textBlack12Regular
-                                                  .copyWith(
-                                                color: AppColors.black,
-                                              ),
-                                              textAlign: TextAlign.left,
-                                            ),
                                             Container(
-                                              width: 100,
-                                              height: 14,
-                                              padding: EdgeInsets.only(
-                                                left: 11,
-                                              ),
-                                              child: RatingBarIndicator(
-                                                direction: Axis.horizontal,
-                                                itemCount: 5,
-                                                itemSize: 14,
-                                                rating:
-                                                    _data.priceRange.toDouble(),
-                                                itemPadding:
-                                                    EdgeInsets.symmetric(
-                                                  horizontal: 0,
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(
+                                                    8.0,
+                                                  ),
                                                 ),
-                                                itemBuilder: (context, _) =>
-                                                    Text(
-                                                  "\$",
+                                                child: Image(
+                                                  errorBuilder: (context, obj,
+                                                      stacktrace) {
+                                                    return Image(
+                                                      height: 96,
+                                                      width: 96,
+                                                      image: RandomImages
+                                                          .getImage(),
+                                                    );
+                                                  },
+                                                  image: RandomImages
+                                                      .getImageUrlDefault(
+                                                    _data.logo,
+                                                    "",
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                  height: 96,
+                                                  width: 96,
+                                                  alignment: Alignment.center,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  _data.name,
+                                                  softWrap: false,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: AppFont
-                                                      .textBlack12Regular
+                                                      .textRed14SemiBold
                                                       .copyWith(
                                                     color: AppColors.black,
                                                   ),
-                                                  textAlign: TextAlign.center,
+                                                  textAlign: TextAlign.left,
                                                 ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 16,
-                                            bottom: 16,
-                                          ),
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.32,
-                                            child: Row(
-                                              children: [
-                                                ImageIcon(
-                                                    AssetImage(AppAssets
-                                                        .iconOutletOrderDelivery),
-                                                    size: 14,
-                                                    color: AppColors.redTabBar),
-                                                SizedBox(
-                                                  width: 4,
-                                                ),
-                                                Text(
-                                                  I10n.current.landing_delivery,
-                                                  style:
-                                                      AppFont.textBlack11Light,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        (_data.countOutlet ?? 0) > 1
-                                            ? SizedBox(
-                                                height: 34,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.62,
-                                                child: ElevatedButton(
-                                                  onPressed: () {},
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          I10n.current
-                                                              .outlet_list_see_all_outlet(
-                                                                  ""),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      _data.distance.distance,
+                                                      style: AppFont
+                                                          .textBlack12Regular
+                                                          .copyWith(
+                                                        color: AppColors.black,
+                                                      ),
+                                                      textAlign: TextAlign.left,
+                                                    ),
+                                                    SizedBox(width: 11),
+                                                    Icon(
+                                                      Icons.star,
+                                                      size: 12,
+                                                      color:
+                                                          AppColors.yellowStar,
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      "${_data.rating?.toDouble() ?? "0"}",
+                                                      style: AppFont
+                                                          .textBlack12Regular
+                                                          .copyWith(
+                                                        color: AppColors.black,
+                                                      ),
+                                                      textAlign: TextAlign.left,
+                                                    ),
+                                                    Container(
+                                                      width: 100,
+                                                      height: 14,
+                                                      padding: EdgeInsets.only(
+                                                        left: 11,
+                                                      ),
+                                                      child: RatingBarIndicator(
+                                                        direction:
+                                                            Axis.horizontal,
+                                                        itemCount: 5,
+                                                        itemSize: 14,
+                                                        rating: _data.priceRange
+                                                            .toDouble(),
+                                                        itemPadding: EdgeInsets
+                                                            .symmetric(
+                                                          horizontal: 0,
+                                                        ),
+                                                        itemBuilder:
+                                                            (context, _) =>
+                                                                Text(
+                                                          "\$",
                                                           style: AppFont
-                                                              .textBlack10SemiBold
+                                                              .textBlack12Regular
                                                               .copyWith(
                                                             color:
-                                                                AppColors.red,
+                                                                AppColors.black,
                                                           ),
                                                           textAlign:
                                                               TextAlign.center,
                                                         ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  style: ButtonStyle(
-                                                      shadowColor:
-                                                          MaterialStateProperty
-                                                              .all(Colors
-                                                                  .transparent),
-                                                      shape: MaterialStateProperty.all(
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      4.0),
-                                                              side: BorderSide(
-                                                                  color: AppColors
-                                                                      .greyDEDEDE))),
-                                                      backgroundColor:
-                                                          MaterialStateProperty.all(
-                                                              AppColors.white)),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              )
-                                            : Container(),
-                                        SizedBox(
-                                          height: 8,
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    top: 16,
+                                                    bottom: 16,
+                                                  ),
+                                                  child: Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.32,
+                                                    child: Row(
+                                                      children: [
+                                                        ImageIcon(
+                                                            AssetImage(AppAssets
+                                                                .iconOutletOrderDelivery),
+                                                            size: 14,
+                                                            color: AppColors
+                                                                .redTabBar),
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text(
+                                                          I10n.current
+                                                              .landing_delivery,
+                                                          style: AppFont
+                                                              .textBlack11Light,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                (_data.countOutlet ?? 0) > 1
+                                                    ? SizedBox(
+                                                        height: 34,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.62,
+                                                        child: ElevatedButton(
+                                                          onPressed: () {},
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Text(
+                                                                  I10n.current
+                                                                      .outlet_list_see_all_outlet(
+                                                                          ""),
+                                                                  style: AppFont
+                                                                      .textBlack10SemiBold
+                                                                      .copyWith(
+                                                                    color:
+                                                                        AppColors
+                                                                            .red,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                          style: ButtonStyle(
+                                                              shadowColor:
+                                                                  MaterialStateProperty.all(
+                                                                      Colors
+                                                                          .transparent),
+                                                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                          4.0),
+                                                                  side: BorderSide(
+                                                                      color: AppColors
+                                                                          .greyDEDEDE))),
+                                                              backgroundColor:
+                                                                  MaterialStateProperty.all(
+                                                                      AppColors
+                                                                          .white)),
+                                                        ),
+                                                      )
+                                                    : Container(),
+                                                SizedBox(
+                                                  height: 8,
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 1,
+                                        width: double.infinity,
+                                        color: AppColors.greyE7E7E7,
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
-                              Container(
-                                height: 1,
-                                width: double.infinity,
-                                color: AppColors.greyE7E7E7,
-                                margin: EdgeInsets.symmetric(horizontal: 20),
+                            ),
+                          )
+                        : state.maybeMap(
+                            orElse: () => false,
+                            loadInProgress: (_) => true,
+                          )
+                            ? Container()
+                            : EmptyWidget(
+                                onRefresh: () {},
+                                imageAsset: AppAssets.emptyOutlet,
                               ),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           );
         },
