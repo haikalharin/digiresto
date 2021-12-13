@@ -1,6 +1,5 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

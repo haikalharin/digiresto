@@ -4,8 +4,6 @@ import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
-import 'package:digiresto/domain/core/constants/assets.dart';
-import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';

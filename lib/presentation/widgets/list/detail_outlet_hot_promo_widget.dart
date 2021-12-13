@@ -3,7 +3,6 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class DetailOutletHotPromoWidget extends StatefulWidget {
   final List<PromoOutletDataResponse>
