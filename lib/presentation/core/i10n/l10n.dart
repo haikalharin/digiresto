@@ -5612,7 +5612,7 @@ class I10n {
     );
   }
 
-  /// `%d year
+  /// `%d year`
   String get time_ago_years {
     return Intl.message(
       '%d year',
@@ -5622,6 +5622,9 @@ class I10n {
     );
   }
 
+
+
+  /// `%d year`
   String get select_menu_type {
     return Intl.message(
       'Select Menu Type',
