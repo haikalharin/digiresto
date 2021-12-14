@@ -16,13 +16,13 @@ import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
-import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -38,7 +38,7 @@ import 'bloc/order_bloc.dart';
 
 @injectable
 class OrderCartScreenViewController extends GetxController {
-  final OrderRepository _orderRepository;
+  final IOrderRepository _orderRepository;
   OrderCartScreenViewController(this._orderRepository);
   var isLoading = true.obs;
   var useSchedule = Rxn<bool>();
@@ -67,9 +67,11 @@ class OrderCartScreenViewController extends GetxController {
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
 
-  void getTransactionPending() async {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getTransactionPending());
+  Future<void> getTransactionPending() async {
+    await Get.context!.read<OrderBloc>()
+      ..add(OrderEvent.getTransactionPending());
     update();
+    return;
   }
 
   void setTransactionPending(IList<OrderPending> list) {
@@ -80,11 +82,6 @@ class OrderCartScreenViewController extends GetxController {
 
   void removeCartSession() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCartSession());
-    update();
-  }
-
-  void getCartSession() async {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
     update();
   }
 
@@ -413,21 +410,24 @@ class OrderCartScreenViewController extends GetxController {
     update();
   }
 
-  void getCartCache() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDeliveryMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDineInIDMethod());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDriveThruIDMethod());
+  Future<void> getCartCache() async {
+    await Get.context!.read<OrderBloc>()
+      ..add(OrderEvent.getPaymentMethodID())
+      ..add(OrderEvent.getDeliveryMethodID())
+      ..add(OrderEvent.getVoucherMethodID())
+      ..add(OrderEvent.getSalesTypeCart())
+      ..add(OrderEvent.getDineInIDMethod())
+      ..add(OrderEvent.getDriveThruIDMethod())
+      ..add(OrderEvent.getCartSession());
     update();
+    return;
   }
 
-  void getActiveAddress() {
-    Get.context!
-        .read<AddressListBloc>()
-        .add(AddressListEvent.getActiveAddress());
+  Future<void> getActiveAddress() async {
+    await Get.context!.read<AddressListBloc>()
+      ..add(AddressListEvent.getActiveAddress());
     update();
+    return;
   }
 
   void getVoucherMethod() {

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:alice/alice.dart';
+import 'package:code_id_alice/alice.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:dio/adapter.dart';
@@ -50,8 +50,6 @@ abstract class RegisterModule {
       return client;
     };
 
-    // _dio.interceptors.add(AuthInterceptor(_storage));
-
     _dio.interceptors.add(LoggerInterceptor(
         requestBody: true,
         request: true,
@@ -84,10 +82,6 @@ abstract class RegisterModule {
       };
       return client;
     };
-    // options.
-    // Storage _storage = Storage(Hive, Logger());
-
-    // _dio.interceptors.add(AuthInterceptor(_storage));
 
     return _dio;
   }

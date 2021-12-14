@@ -23,6 +23,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:injectable/injectable.dart';
@@ -30,8 +31,8 @@ import 'package:injectable/injectable.dart';
 import 'order_api.dart';
 import 'order_local.dart';
 
-@injectable
-class OrderRepository {
+@LazySingleton(as: IOrderRepository)
+class OrderRepository implements IOrderRepository {
   final OrderApi _orderApi;
   final OrderLocal _orderLocal;
 
@@ -127,10 +128,8 @@ class OrderRepository {
     return _orderLocal.getLocalUserProfile();
   }
 
-  Future<Either<Exception, String?>> getSessionId() async {
-    return await _orderLocal.getSessionId().then((value) {
-      return value;
-    });
+  Future<Either<Exception, String>> getSessionId() async {
+    return _orderLocal.getSessionId();
   }
 
   Future<Either<Exception, String?>> setSessionId(String value) async {

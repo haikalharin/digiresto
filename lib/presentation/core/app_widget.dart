@@ -1,4 +1,4 @@
-import 'package:alice/alice.dart';
+import 'package:code_id_alice/alice.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';

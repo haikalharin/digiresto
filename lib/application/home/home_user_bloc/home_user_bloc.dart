@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/credit/i_credit_repository.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
-import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
+import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/infrastructure/network/apis/user/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,7 +14,7 @@ part 'home_user_state.dart';
 @injectable
 class HomeUserBloc extends Bloc<HomeUserEvent, HomeUserState> {
   final UserRepository _userRepository;
-  final OrderRepository _orderRepository;
+  final IOrderRepository _orderRepository;
   final ICreditRepository _creditRepository;
   HomeUserBloc(
     this._userRepository,

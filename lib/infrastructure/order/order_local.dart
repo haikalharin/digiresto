@@ -10,9 +10,11 @@ import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 @injectable
 class OrderLocal {
+  final Logger logger;
   final IStorage _storage;
   final String _sessionIdKey = "sessionId";
   final String _salesTypeIdKey = "salesTypeId";
@@ -21,7 +23,7 @@ class OrderLocal {
   final String _voucherMethodKey = "voucherMethodKey";
   final String _dineInIdKey = "_dineInIdKey";
   final String _driveThru = "_driveThru";
-  OrderLocal(this._storage);
+  OrderLocal(this._storage, this.logger);
 
   Future<PaymentMethodDataResponse?> setPaymentMethod(
       PaymentMethodDataResponse? data) async {
@@ -414,15 +416,17 @@ class OrderLocal {
     return _userAuth;
   }
 
-  Future<Either<Exception, String?>> getSessionId() async {
+  Future<Either<Exception, String>> getSessionId() async {
     try {
       final _boxCart = await _storage.openBox(StorageConstants.cart);
       final sessionId = _storage.getString(_boxCart, key: _sessionIdKey);
       await _storage.close(_boxCart);
+      print('repo sessionId: $sessionId');
       return sessionId == null
           ? left(Exception("session is null"))
           : right(sessionId);
     } catch (e, stackTrace) {
+      print('sessionId error: $stackTrace');
       return left(Exception(stackTrace.toString()));
     }
   }
