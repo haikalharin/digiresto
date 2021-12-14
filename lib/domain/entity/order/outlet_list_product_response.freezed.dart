@@ -193,15 +193,17 @@ class _$_OutletListProductResponse implements _OutletListProductResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OutletListProductResponse &&
-            (identical(other.response, response) ||
-                other.response == response) &&
+            const DeepCollectionEquality().equals(other.response, response) &&
             const DeepCollectionEquality().equals(other.data, data) &&
-            (identical(other.meta, meta) || other.meta == meta));
+            const DeepCollectionEquality().equals(other.meta, meta));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, response, const DeepCollectionEquality().hash(data), meta);
+      runtimeType,
+      const DeepCollectionEquality().hash(response),
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(meta));
 
   @JsonKey(ignore: true)
   @override
@@ -498,30 +500,30 @@ class _$_OutletListProductDataModifierGroupResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OutletListProductDataModifierGroupResponse &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.allowMultiple, allowMultiple) ||
-                other.allowMultiple == allowMultiple) &&
-            (identical(other.allowQuantity, allowQuantity) ||
-                other.allowQuantity == allowQuantity) &&
-            (identical(other.minQuantity, minQuantity) ||
-                other.minQuantity == minQuantity) &&
-            (identical(other.maxQuantity, maxQuantity) ||
-                other.maxQuantity == maxQuantity) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality()
+                .equals(other.allowMultiple, allowMultiple) &&
+            const DeepCollectionEquality()
+                .equals(other.allowQuantity, allowQuantity) &&
+            const DeepCollectionEquality()
+                .equals(other.minQuantity, minQuantity) &&
+            const DeepCollectionEquality()
+                .equals(other.maxQuantity, maxQuantity) &&
             const DeepCollectionEquality().equals(other.modifiers, modifiers));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      name,
-      id,
-      code,
-      allowMultiple,
-      allowQuantity,
-      minQuantity,
-      maxQuantity,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(allowMultiple),
+      const DeepCollectionEquality().hash(allowQuantity),
+      const DeepCollectionEquality().hash(minQuantity),
+      const DeepCollectionEquality().hash(maxQuantity),
       const DeepCollectionEquality().hash(modifiers));
 
   @JsonKey(ignore: true)
@@ -981,50 +983,50 @@ class _$_OutletListProductDataSubModifierGroupResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OutletListProductDataSubModifierGroupResponse &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.sku, sku) || other.sku == sku) &&
-            (identical(other.isPreorder, isPreorder) ||
-                other.isPreorder == isPreorder) &&
-            (identical(other.preorderPeriod, preorderPeriod) ||
-                other.preorderPeriod == preorderPeriod) &&
-            (identical(other.crossoutPrice, crossoutPrice) ||
-                other.crossoutPrice == crossoutPrice) &&
-            (identical(other.stock, stock) || other.stock == stock) &&
-            (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.weight, weight) || other.weight == weight) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            (identical(other.categoryCode, categoryCode) ||
-                other.categoryCode == categoryCode) &&
-            (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName));
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.sku, sku) &&
+            const DeepCollectionEquality()
+                .equals(other.isPreorder, isPreorder) &&
+            const DeepCollectionEquality()
+                .equals(other.preorderPeriod, preorderPeriod) &&
+            const DeepCollectionEquality()
+                .equals(other.crossoutPrice, crossoutPrice) &&
+            const DeepCollectionEquality().equals(other.stock, stock) &&
+            const DeepCollectionEquality().equals(other.limit, limit) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryCode, categoryCode) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryName, categoryName));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      code,
-      sku,
-      isPreorder,
-      preorderPeriod,
-      crossoutPrice,
-      stock,
-      limit,
-      id,
-      name,
-      price,
-      weight,
-      description,
-      image,
-      categoryId,
-      categoryCode,
-      categoryName);
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(sku),
+      const DeepCollectionEquality().hash(isPreorder),
+      const DeepCollectionEquality().hash(preorderPeriod),
+      const DeepCollectionEquality().hash(crossoutPrice),
+      const DeepCollectionEquality().hash(stock),
+      const DeepCollectionEquality().hash(limit),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(categoryId),
+      const DeepCollectionEquality().hash(categoryCode),
+      const DeepCollectionEquality().hash(categoryName));
 
   @JsonKey(ignore: true)
   @override
@@ -1541,29 +1543,29 @@ class _$_OutletListProductDataResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OutletListProductDataResponse &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.sku, sku) || other.sku == sku) &&
-            (identical(other.isPreorder, isPreorder) ||
-                other.isPreorder == isPreorder) &&
-            (identical(other.preorderPeriod, preorderPeriod) ||
-                other.preorderPeriod == preorderPeriod) &&
-            (identical(other.crossoutPrice, crossoutPrice) ||
-                other.crossoutPrice == crossoutPrice) &&
-            (identical(other.stock, stock) || other.stock == stock) &&
-            (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.weight, weight) || other.weight == weight) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            (identical(other.categoryCode, categoryCode) ||
-                other.categoryCode == categoryCode) &&
-            (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.sku, sku) &&
+            const DeepCollectionEquality()
+                .equals(other.isPreorder, isPreorder) &&
+            const DeepCollectionEquality()
+                .equals(other.preorderPeriod, preorderPeriod) &&
+            const DeepCollectionEquality()
+                .equals(other.crossoutPrice, crossoutPrice) &&
+            const DeepCollectionEquality().equals(other.stock, stock) &&
+            const DeepCollectionEquality().equals(other.limit, limit) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryCode, categoryCode) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryName, categoryName) &&
             const DeepCollectionEquality().equals(other.variants, variants) &&
             const DeepCollectionEquality()
                 .equals(other.modifierGroups, modifierGroups));
@@ -1572,22 +1574,22 @@ class _$_OutletListProductDataResponse
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      code,
-      sku,
-      isPreorder,
-      preorderPeriod,
-      crossoutPrice,
-      stock,
-      limit,
-      id,
-      name,
-      price,
-      weight,
-      description,
-      image,
-      categoryId,
-      categoryCode,
-      categoryName,
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(sku),
+      const DeepCollectionEquality().hash(isPreorder),
+      const DeepCollectionEquality().hash(preorderPeriod),
+      const DeepCollectionEquality().hash(crossoutPrice),
+      const DeepCollectionEquality().hash(stock),
+      const DeepCollectionEquality().hash(limit),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(categoryId),
+      const DeepCollectionEquality().hash(categoryCode),
+      const DeepCollectionEquality().hash(categoryName),
       const DeepCollectionEquality().hash(variants),
       const DeepCollectionEquality().hash(modifierGroups));
 
@@ -2091,29 +2093,29 @@ class _$_OutletListProductDataVariantResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OutletListProductDataVariantResponse &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.sku, sku) || other.sku == sku) &&
-            (identical(other.isPreorder, isPreorder) ||
-                other.isPreorder == isPreorder) &&
-            (identical(other.preorderPeriod, preorderPeriod) ||
-                other.preorderPeriod == preorderPeriod) &&
-            (identical(other.crossoutPrice, crossoutPrice) ||
-                other.crossoutPrice == crossoutPrice) &&
-            (identical(other.stock, stock) || other.stock == stock) &&
-            (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.weight, weight) || other.weight == weight) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            (identical(other.categoryCode, categoryCode) ||
-                other.categoryCode == categoryCode) &&
-            (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.sku, sku) &&
+            const DeepCollectionEquality()
+                .equals(other.isPreorder, isPreorder) &&
+            const DeepCollectionEquality()
+                .equals(other.preorderPeriod, preorderPeriod) &&
+            const DeepCollectionEquality()
+                .equals(other.crossoutPrice, crossoutPrice) &&
+            const DeepCollectionEquality().equals(other.stock, stock) &&
+            const DeepCollectionEquality().equals(other.limit, limit) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryCode, categoryCode) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryName, categoryName) &&
             const DeepCollectionEquality()
                 .equals(other.modifierGroups, modifierGroups));
   }
@@ -2121,22 +2123,22 @@ class _$_OutletListProductDataVariantResponse
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      code,
-      sku,
-      isPreorder,
-      preorderPeriod,
-      crossoutPrice,
-      stock,
-      limit,
-      id,
-      name,
-      price,
-      weight,
-      description,
-      image,
-      categoryId,
-      categoryCode,
-      categoryName,
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(sku),
+      const DeepCollectionEquality().hash(isPreorder),
+      const DeepCollectionEquality().hash(preorderPeriod),
+      const DeepCollectionEquality().hash(crossoutPrice),
+      const DeepCollectionEquality().hash(stock),
+      const DeepCollectionEquality().hash(limit),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(categoryId),
+      const DeepCollectionEquality().hash(categoryCode),
+      const DeepCollectionEquality().hash(categoryName),
       const DeepCollectionEquality().hash(modifierGroups));
 
   @JsonKey(ignore: true)

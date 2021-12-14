@@ -2,7 +2,6 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ListFoodCategory extends StatelessWidget {
   final List<OutletProductCategoryDataResponse> data;

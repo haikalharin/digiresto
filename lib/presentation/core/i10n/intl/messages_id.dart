@@ -135,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "_voucher": MessageLookupByLibrary.simpleMessage(""),
         "add_favorite_success": MessageLookupByLibrary.simpleMessage(
             "Favorit berhasil ditambahkan"),
-        "add_to_cart": MessageLookupByLibrary.simpleMessage("+ keranjang"),
+        "add_to_cart": MessageLookupByLibrary.simpleMessage("+ Keranjang"),
         "add_to_cart_success": MessageLookupByLibrary.simpleMessage(
             "Product telah ditambahkan ke keranjang."),
         "address_add": MessageLookupByLibrary.simpleMessage("Tambah"),

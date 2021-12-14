@@ -160,13 +160,17 @@ class _$_PostTokenResponse implements _PostTokenResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PostTokenResponse &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, code, status, message);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override

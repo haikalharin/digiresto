@@ -4,7 +4,6 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ListProductOutletWidget extends StatefulWidget {
   final List<OutletListProductDataResponse> data;

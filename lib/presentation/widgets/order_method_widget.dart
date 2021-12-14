@@ -1,7 +1,7 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OrderMethodPopup {
   Future<void> showMyDialog(BuildContext context, Map<String, dynamic> param,
@@ -119,7 +119,7 @@ class OrderMethodWidget extends StatelessWidget {
       padding: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width - 100,
       height: 50,
-      child: RaisedButton(
+      child: CustomButton(
         onPressed: () {
           runAction({
             "orderOutletName": param["name"],
@@ -135,13 +135,6 @@ class OrderMethodWidget extends StatelessWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
-        shape: RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(5.0),
-          side: BorderSide(
-            width: 1,
-            color: AppColors.red,
-          ),
-        ),
       ),
     );
   }

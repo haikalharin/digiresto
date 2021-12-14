@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreditTabController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   RxInt tabIndex = 0.obs;
   final List<Widget> tabs;
   CreditTabController(this.tabs);

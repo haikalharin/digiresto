@@ -10,7 +10,6 @@ import 'package:digiresto/domain/auth/i_auth_facade.dart';
 import 'package:digiresto/domain/auth/value_objects.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
-import 'package:digiresto/domain/core/exceptions/server_exception.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/profile/i_profile_repository.dart';

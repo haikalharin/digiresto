@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:digiresto/application/address/address_location_screen_controller.dart';
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
-import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/ctoast/ctoast.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
@@ -15,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 
 import 'autocomplete_address.dart';
 

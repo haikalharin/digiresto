@@ -33,7 +33,7 @@ import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable()
+@injectable
 class OrderApi {
   final INetworkService _networkService;
   final IStorage _storage;
@@ -418,7 +418,7 @@ class OrderApi {
 //         "outletId": "822",
 //         "categoryId": "1409",
 //         "page": 1,
-//         "limit": 5
+//         "limit": 5,
 // 	},
 // 	"body": {
 
@@ -622,6 +622,7 @@ class OrderApi {
     try {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetCartSession;
+      print('object.sessionId: ${object.sessionId}');
       final apiResult = await _networkService
           .postHttp(path: apiUrl, queryParameter: queryParameter, content: {
         "query_string": {

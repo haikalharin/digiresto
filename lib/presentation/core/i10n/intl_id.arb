@@ -310,7 +310,7 @@
     "product_detail_alert_transaction_limit":"Jumlah menu yang Anda pesan telah mencapai batas {param} dalam 1x transaksi.",
     "product_detail_alert_min_max_quantity":"Pemilihan produk belum sesuai ketentuan",
 
-    "add_to_cart":"+ keranjang",
+    "add_to_cart":"+ Keranjang",
     "buy_now":"Beli sekarang",
     "update_to_cart":"Perbaharui keranjang",
     "add_to_cart_success":"Product telah ditambahkan ke keranjang.",

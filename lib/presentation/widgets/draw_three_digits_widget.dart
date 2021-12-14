@@ -2,7 +2,6 @@ import 'dart:core';
 
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DrawThreeDigits extends StatelessWidget {

@@ -1,11 +1,8 @@
-import 'package:digiresto/domain/core/constants/assets.dart';
-import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class ListDigidiscountWidget extends StatefulWidget {

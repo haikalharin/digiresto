@@ -21,74 +21,80 @@ part 'login_bloc.freezed.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final IAuthFacade _authFacade;
 
-  LoginBloc(this._authFacade) : super(LoginState.initial());
+  LoginBloc(this._authFacade) : super(LoginState.initial()) {
+    on<LoginEvent>((event, emit) async {
+      await event.map(
+        started: (_) async {
+          if (Globals.env == Environment.dev) {
+            detector = ShakeDetector.autoStart(
+              onPhoneShake: () {
+                add(LoginEvent.onShake());
+              },
+            );
+          }
+        },
+        phoneNumberChanged: (_event) async {
+          emit(
+            state.copyWith(
+              isShowDialogShake: false,
+              phoneNumber: PhoneNumber(_event.phoneNumberStr),
+              loginFailureOrSuccessOption: none(),
+              otpFailureOrSuccessOption: none(),
+            ),
+          );
+        },
+        pinChanged: (_event) async {
+          emit(
+            state.copyWith(
+              isShowDialogShake: false,
+              pin: Pin(_event.pinStr),
+              loginFailureOrSuccessOption: none(),
+              otpFailureOrSuccessOption: none(),
+            ),
+          );
+        },
+        verifOtpPressed: (_event) async {
+          await _performActionOnAuthFacadeVerifOtp(event, emit);
+        },
+        otpVerified: (_event) async {
+          emit(
+            state.copyWith(
+              isShowDialogShake: false,
+              onInvalidPin: optionOf(_event.onInvalidPin),
+            ),
+          );
+        },
+        pinSubmitted: (_event) async {
+          await _performActionOnAuthFacadeLoginPin(event, emit);
+        },
+        onChangeUrl: (e) async {
+          emit(state.copyWith(isShowDialogShake: false));
+          _authFacade.changeUrl(url: e.url);
+        },
+        onShake: (e) async {
+          emit(state.copyWith(isShowDialogShake: false));
+
+          emit(state.copyWith(isShowDialogShake: true));
+        },
+      );
+    });
+  }
 
   ShakeDetector? detector;
 
-  @override
-  Stream<LoginState> mapEventToState(
-    LoginEvent event,
-  ) async* {
-    yield* event.map(
-      started: (_) async* {
-        if (Globals.env == Environment.dev) {
-          detector = ShakeDetector.autoStart(
-            onPhoneShake: () {
-              add(LoginEvent.onShake());
-            },
-          );
-        }
-      },
-      phoneNumberChanged: (_event) async* {
-        yield state.copyWith(
-          isShowDialogShake: false,
-          phoneNumber: PhoneNumber(_event.phoneNumberStr),
-          loginFailureOrSuccessOption: none(),
-          otpFailureOrSuccessOption: none(),
-        );
-      },
-      pinChanged: (_event) async* {
-        yield state.copyWith(
-          isShowDialogShake: false,
-          pin: Pin(_event.pinStr),
-          loginFailureOrSuccessOption: none(),
-          otpFailureOrSuccessOption: none(),
-        );
-      },
-      verifOtpPressed: (_event) async* {
-        yield* _performActionOnAuthFacadeVerifOtp();
-      },
-      otpVerified: (_event) async* {
-        yield state.copyWith(
-          isShowDialogShake: false,
-          onInvalidPin: optionOf(_event.onInvalidPin),
-        );
-      },
-      pinSubmitted: (_event) async* {
-        yield* _performActionOnAuthFacadeLoginPin();
-      },
-      onChangeUrl: (e) async* {
-        yield state.copyWith(isShowDialogShake: false);
-        _authFacade.changeUrl(url: e.url);
-      },
-      onShake: (e) async* {
-        yield state.copyWith(isShowDialogShake: false);
-
-        yield state.copyWith(isShowDialogShake: true);
-      },
-    );
-  }
-
-  Stream<LoginState> _performActionOnAuthFacadeVerifOtp() async* {
+  Future _performActionOnAuthFacadeVerifOtp(
+      LoginEvent event, Emitter<LoginState> emit) async {
     Either<AuthFailure, String>? failureOrSuccess;
 
     final isPhoneNumberValid = state.phoneNumber.isValid();
     // final _phoneNumber = state.phoneNumber.getOrNull();
     if (isPhoneNumberValid) {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        isSubmitting: true,
-        loginFailureOrSuccessOption: none(),
+      emit(
+        state.copyWith(
+          isShowDialogShake: false,
+          isSubmitting: true,
+          loginFailureOrSuccessOption: none(),
+        ),
       );
 
       failureOrSuccess = await _authFacade.getOtp(
@@ -96,22 +102,27 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     }
 
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      otpFailureOrSuccessOption: optionOf(failureOrSuccess),
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        showErrorMessages: true,
+        otpFailureOrSuccessOption: optionOf(failureOrSuccess),
+      ),
     );
   }
 
-  Stream<LoginState> _performActionOnAuthFacadeLoginPin() async* {
+  Future _performActionOnAuthFacadeLoginPin(
+      LoginEvent event, Emitter<LoginState> emit) async {
     Either<AuthFailure, UserAuth>? failureOrSuccess;
 
     final isPinValid = state.pin.isValid();
     if (isPinValid) {
-      yield state.copyWith(
-        isShowDialogShake: false,
-        isSubmitting: true,
-        loginFailureOrSuccessOption: none(),
+      emit(
+        state.copyWith(
+          isShowDialogShake: false,
+          isSubmitting: true,
+          loginFailureOrSuccessOption: none(),
+        ),
       );
 
       failureOrSuccess = await _authFacade.loginPin(
@@ -120,13 +131,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     }
 
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      loginFailureOrSuccessOption: optionOf(failureOrSuccess),
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        showErrorMessages: true,
+        loginFailureOrSuccessOption: optionOf(failureOrSuccess),
+      ),
     );
-    yield state.copyWith(
-      loginFailureOrSuccessOption: none(),
+    emit(
+      state.copyWith(
+        loginFailureOrSuccessOption: none(),
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
-import 'package:digiresto/application/home_new/static_banner_controller.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';

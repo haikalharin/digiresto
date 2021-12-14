@@ -1,6 +1,5 @@
 import 'dart:core';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';

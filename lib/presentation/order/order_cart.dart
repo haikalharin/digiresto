@@ -28,7 +28,6 @@ import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/order/widgets/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -1866,10 +1865,11 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   Widget build(BuildContext context) {
     final i10n = I10n.of(context);
     Get.put(getIt<OrderCartScreenViewController>());
-    controller.getCartCache();
-    controller.getActiveAddress();
-    controller.getCartSession();
-    controller.getTransactionPending();
+    controller.getCartCache().then(
+          (value) => controller.getActiveAddress().then(
+                (value) => controller.getTransactionPending(),
+              ),
+        );
     return MultiBlocListener(
         listeners: [
           BlocListener<OrderBloc, OrderState>(

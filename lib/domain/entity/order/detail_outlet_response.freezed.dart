@@ -200,14 +200,17 @@ class _$_DetailOutletResponse implements _DetailOutletResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DetailOutletResponse &&
-            (identical(other.response, response) ||
-                other.response == response) &&
-            (identical(other.data, data) || other.data == data) &&
-            (identical(other.meta, meta) || other.meta == meta));
+            const DeepCollectionEquality().equals(other.response, response) &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality().equals(other.meta, meta));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response, data, meta);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(response),
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(meta));
 
   @JsonKey(ignore: true)
   @override
@@ -721,63 +724,62 @@ class _$_DetailOutletDataResponse implements _DetailOutletDataResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DetailOutletDataResponse &&
-            (identical(other.endpointName, endpointName) ||
-                other.endpointName == endpointName) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.city, city) || other.city == city) &&
+            const DeepCollectionEquality()
+                .equals(other.endpointName, endpointName) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
             const DeepCollectionEquality()
                 .equals(other.salesTypes, salesTypes) &&
-            (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
+            const DeepCollectionEquality().equals(other.isOpen, isOpen) &&
             const DeepCollectionEquality().equals(other.logo, logo) &&
-            (identical(other.merchantId, merchantId) ||
-                other.merchantId == merchantId) &&
-            (identical(other.merchantName, merchantName) ||
-                other.merchantName == merchantName) &&
+            const DeepCollectionEquality()
+                .equals(other.merchantId, merchantId) &&
+            const DeepCollectionEquality()
+                .equals(other.merchantName, merchantName) &&
             const DeepCollectionEquality()
                 .equals(other.merchantLogo, merchantLogo) &&
-            (identical(other.callbackUrl, callbackUrl) ||
-                other.callbackUrl == callbackUrl) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.address, address) || other.address == address) &&
+            const DeepCollectionEquality()
+                .equals(other.callbackUrl, callbackUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.location, location) &&
-            (identical(other.ownerPhone, ownerPhone) ||
-                other.ownerPhone == ownerPhone) &&
-            (identical(other.poCutoff, poCutoff) ||
-                other.poCutoff == poCutoff) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.totalReview, totalReview) ||
-                other.totalReview == totalReview) &&
-            (identical(other.lastUpdate, lastUpdate) ||
-                other.lastUpdate == lastUpdate) &&
-            (identical(other.merchantCategory, merchantCategory) ||
-                other.merchantCategory == merchantCategory));
+            const DeepCollectionEquality()
+                .equals(other.ownerPhone, ownerPhone) &&
+            const DeepCollectionEquality().equals(other.poCutoff, poCutoff) &&
+            const DeepCollectionEquality().equals(other.rating, rating) &&
+            const DeepCollectionEquality()
+                .equals(other.totalReview, totalReview) &&
+            const DeepCollectionEquality()
+                .equals(other.lastUpdate, lastUpdate) &&
+            const DeepCollectionEquality()
+                .equals(other.merchantCategory, merchantCategory));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        endpointName,
-        id,
-        name,
-        city,
+        const DeepCollectionEquality().hash(endpointName),
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(city),
         const DeepCollectionEquality().hash(salesTypes),
-        isOpen,
+        const DeepCollectionEquality().hash(isOpen),
         const DeepCollectionEquality().hash(logo),
-        merchantId,
-        merchantName,
+        const DeepCollectionEquality().hash(merchantId),
+        const DeepCollectionEquality().hash(merchantName),
         const DeepCollectionEquality().hash(merchantLogo),
-        callbackUrl,
-        description,
-        address,
+        const DeepCollectionEquality().hash(callbackUrl),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(address),
         const DeepCollectionEquality().hash(location),
-        ownerPhone,
-        poCutoff,
-        rating,
-        totalReview,
-        lastUpdate,
-        merchantCategory
+        const DeepCollectionEquality().hash(ownerPhone),
+        const DeepCollectionEquality().hash(poCutoff),
+        const DeepCollectionEquality().hash(rating),
+        const DeepCollectionEquality().hash(totalReview),
+        const DeepCollectionEquality().hash(lastUpdate),
+        const DeepCollectionEquality().hash(merchantCategory)
       ]);
 
   @JsonKey(ignore: true)
@@ -1006,12 +1008,15 @@ class _$_DetailOutletDataLastUpdateResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DetailOutletDataLastUpdateResponse &&
-            (identical(other.time, time) || other.time == time) &&
-            (identical(other.literal, literal) || other.literal == literal));
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality().equals(other.literal, literal));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, time, literal);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(literal));
 
   @JsonKey(ignore: true)
   @override

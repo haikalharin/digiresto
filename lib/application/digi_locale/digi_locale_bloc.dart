@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/digi_locale/i_digi_locale_repository.dart';
 import 'package:flutter/material.dart';
@@ -12,25 +10,20 @@ part 'digi_locale_bloc.freezed.dart';
 
 @injectable
 class DigiLocaleBloc extends Bloc<DigiLocaleEvent, DigiLocaleState> {
-  DigiLocaleBloc(this._repo) : super(DigiLocaleState.initial());
-
   final IDigiLocaleRepository _repo;
-
-  @override
-  Stream<DigiLocaleState> mapEventToState(
-    DigiLocaleEvent event,
-  ) async* {
-    // yield DigiLocaleState.initial();
-    yield* event.map(
-      started: (_) async* {
-        String locale = await _repo.getAppLocale();
-        yield DigiLocaleState.loadLocale(locale: Locale(locale));
-      },
-      updateLocale: (event) async* {
-        print('update Locale');
-        await _repo.setNewLocale(newLocale: event.locale.languageCode);
-        yield DigiLocaleState.loadLocale(locale: event.locale);
-      },
-    );
+  DigiLocaleBloc(this._repo) : super(DigiLocaleState.initial()) {
+    on<DigiLocaleEvent>((event, emit) async {
+      await event.map(
+        started: (_) async {
+          String locale = await _repo.getAppLocale();
+          emit(DigiLocaleState.loadLocale(locale: Locale(locale)));
+        },
+        updateLocale: (event) async {
+          print('update Locale');
+          await _repo.setNewLocale(newLocale: event.locale.languageCode);
+          emit(DigiLocaleState.loadLocale(locale: event.locale));
+        },
+      );
+    });
   }
 }

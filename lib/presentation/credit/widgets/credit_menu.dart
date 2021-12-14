@@ -4,7 +4,6 @@ import 'package:digiresto/domain/core/constants/styles.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class CreditByDestination {
   final String destination;
@@ -42,16 +41,15 @@ class CreditMenu extends StatelessWidget {
     return Column(
       children: [
         Divider(
-          thickness: 12,
+          thickness: 8,
           color: AppColors.dividerColor,
         ),
         InkWell(
           onTap: onTap,
           child: Ink(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(
-              horizontal: Dimens.defaultMargin,
-              vertical: 30,
+            padding: EdgeInsets.all(
+              Dimens.defaultMargin,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
