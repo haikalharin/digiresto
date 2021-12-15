@@ -18,7 +18,7 @@ class CateringRepository implements ICateringRepository {
   const CateringRepository(this._networkService, this.logger);
 
   @override
-  Future<Either<CateringFailure, IList<OutletCategoryCateringResponse>>>
+  Future<Either<CateringFailure, List<OutletCategoryCateringResponse>>>
       getOutletCategoryCatering({
     required int page,
     String? search,
@@ -57,7 +57,7 @@ class CateringRepository implements ICateringRepository {
       final listData = List.from(data);
       final listCatering = listData
           .map((json) => OutletCategoryCateringResponse.fromJson(json))
-          .toIList();
+          .toList();
 
       logger.d(listCatering);
 

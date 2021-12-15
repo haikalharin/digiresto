@@ -25,7 +25,6 @@ class CateringBloc extends Bloc<CateringEvent, CateringState> {
     this._userRepository,
   ) : super(CateringState.initial());
 
-  int initialPage = 1;
 
   @override
   Stream<CateringState> mapEventToState(CateringEvent event) async* {
@@ -39,7 +38,7 @@ class CateringBloc extends Bloc<CateringEvent, CateringState> {
 
         final failureOrSuccess =
             await _cateringRepository.getOutletCategoryCatering(
-          page: initialPage,
+          page: _event.page,
           isHideOpen: _event.isHideOpen,
           location: location,
           isCatering: true,
@@ -62,7 +61,6 @@ class CateringBloc extends Bloc<CateringEvent, CateringState> {
           },
         );
       },
-      getOutletCategoryNextCatering: (_request) async* {},
     );
   }
 }
