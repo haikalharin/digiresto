@@ -66,6 +66,24 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
           orderOnProccessCountFailureOrSuccess: optionOf(failureOrSuccess),
         );
       },
+      orderUpcomingOpen: (_event) async* {
+        yield state.copyWith(
+          orderOnProccessFailureOrSuccess: none(),
+        );
+        final failureOrSuccess =
+            await _profileRepository.getOrderUpcoming(page: 1);
+        yield state.copyWith(
+          orderupComingFailureOrSuccess: optionOf(failureOrSuccess),
+        );
+      },
+      getorderUpcomingCount: (value) async* {
+        final failureOrSuccess =
+            await _profileRepository.getOrderUpcomingCount();
+
+        yield state.copyWith(
+          orderUpomingCountOption: optionOf(failureOrSuccess),
+        );
+      },
     );
   }
 }

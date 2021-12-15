@@ -7,4 +7,7 @@ class OrderHistoryEvent with _$OrderHistoryEvent {
   const factory OrderHistoryEvent.getOrderOnProcessCount() =
       _GetOrderOnProcessCount;
   const factory OrderHistoryEvent.orderCompletedOpen() = _OrderCompletedOpen;
+  const factory OrderHistoryEvent.orderUpcomingOpen() = _OrderUpcomingOpen;
+  const factory OrderHistoryEvent.getorderUpcomingCount() =
+      _GetOrderUpcomingCount;
 }

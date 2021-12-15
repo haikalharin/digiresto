@@ -3622,6 +3622,16 @@ class I10n {
     );
   }
 
+  /// `upcoming\nOrder`
+  String get upcoming_order {
+    return Intl.message(
+      'Upcoming\nOrder',
+      name: 'upcoming_order',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Waiting\nfor payment`
   String get history_pending_payment {
     return Intl.message(
@@ -5621,8 +5631,6 @@ class I10n {
       args: [],
     );
   }
-
-
 
   /// `%d year`
   String get select_menu_type {

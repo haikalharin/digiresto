@@ -103,6 +103,102 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
+  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderUpcoming({
+    required int page,
+  }) async {
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetTransactionHistory;
+    try {
+      final apiResult = await _networkService.postHttp(
+        path: _apiUrl,
+        useAuth: true,
+        content: {
+          "query_string": {
+            "outletName": "",
+            "page": page,
+            "limit": 10,
+            "status": "waiting",
+          },
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
+      logger.d(apiResult);
+      final data = (apiResult as Map<String, dynamic>)['data'];
+      final list = List.from(data);
+      if (list.isEmpty) {
+        logger.d('kosong boss');
+        return left(ProfileFailure.noData());
+      }
+      final orderPendingList = list
+          .map((item) => OrderHistory.fromJson(Map<String, dynamic>.from(item)))
+          .toIList();
+      return right(orderPendingList);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(ProfileFailure.serverError());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(ProfileFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(ProfileFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<ProfileFailure, int>> getOrderUpcomingCount() async {
+    final _apiUrl = Endpoints.urlForward;
+    final queryParameter = Endpoints.urlGetOrderProcessCount;
+    try {
+      final _box = await _storage.openBox(StorageConstants.user);
+
+      final _userInStorage = await _storage.getData(
+        _box,
+      );
+      await _storage.close(_box);
+
+      final user = UserAuth.fromJson(_userInStorage);
+      final apiResult = await _networkService.postHttp(
+        path: _apiUrl,
+        useAuth: true,
+        content: {
+          "query_string": {
+            "outletName": "",
+            "customerPhone": user.mobilePhone,
+            "status": "waiting"
+          },
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
+      logger.d(apiResult);
+      final data = (apiResult as Map<String, dynamic>)['data'] as int;
+
+      return right(data);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(ProfileFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(ProfileFailure.sessionExpired());
+    } on ServerException catch (_) {
+      return left(ProfileFailure.serverError());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(ProfileFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(ProfileFailure.unexpected());
+    }
+  }
+
+  @override
   Future<Either<ProfileFailure, int>> getOrderOnProcessCount() async {
     final _apiUrl = Endpoints.urlForward;
     final queryParameter = Endpoints.urlGetOrderProcessCount;
