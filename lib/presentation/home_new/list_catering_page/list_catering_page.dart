@@ -11,13 +11,12 @@ import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
 import 'package:digiresto/presentation/widgets/empty_widget.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:dartz/dartz.dart' hide IList;
 
 class ListCateringPage extends StatelessWidget {
   final MenuCategory? menuCategory;
@@ -39,42 +38,77 @@ class ListCateringPage extends StatelessWidget {
   }
 }
 
-class ListCateringWidget extends StatelessWidget {
+class ListCateringWidget extends HookWidget {
   final MenuCategory? menuCategory;
 
   ListCateringWidget({this.menuCategory});
 
+  final date = DateTime.now();
+  static DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
+
   final TextEditingController searchController = TextEditingController();
 
-  DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
+  static String? _initialMealsTypesParam;
+  static int _initialDateIndexParam = -1;
 
-  final date = DateTime.now();
-
-  final IList<OutletCategoryCateringResponse> listOutlets = IList();
-
-  void onRefresh(BuildContext context) async {
+  void onRefresh(
+    BuildContext context,
+    String? mealsTypesParam,
+    int initialDateIndex,
+  ) async {
     context.read<CateringBloc>().add(
           CateringEvent.getOutletCategoryCatering(
-            isHideOpen: true,
-            mealsTypes: "lunch",
-            preOrderDate: "2021-12-11",
+            isHideOpen: false,
+            mealsTypes: mealsTypesParam ?? "breakfast",
+            preOrderDate: _getDateCatering(initialDateIndex),
             search: searchController.text,
           ),
         );
-
     return;
+  }
+
+  String _getDateCatering(int indexDate) {
+    final date = DateTime.now();
+
+    String dateCatering = DateFormat('yyyy-MM-dd').format(getDate(
+      date.subtract(
+        Duration(days: indexDate),
+      ),
+    ));
+    return dateCatering;
+  }
+
+  String getTitleMealsType(MenuCategory menuCategory) {
+    String? mealsType;
+
+    menuCategory.filter?.forEach(
+      (element) {
+        element.options?.forEach((element) {
+          if (element.value == "breakfast") {
+            mealsType = element.getTitle;
+          }
+        });
+      },
+    );
+
+    return mealsType ?? "-";
   }
 
   @override
   Widget build(BuildContext context) {
+    final _selectMealsType = useState(getTitleMealsType(menuCategory!));
+    final _selectMealsParamType = useState(_initialMealsTypesParam);
+    final _selectDateParam = useState(_initialDateIndexParam);
+
     return BlocProvider<CateringBloc>(
       create: (context) => getIt<CateringBloc>()
         ..add(
           CateringEvent.getOutletCategoryCatering(
-              isHideOpen: true,
-              mealsTypes: "lunch",
-              preOrderDate: "2021-12-11",
-              search: searchController.text),
+            isHideOpen: false,
+            mealsTypes: _initialMealsTypesParam ?? "breakfast",
+            preOrderDate: _getDateCatering(_selectDateParam.value),
+            search: searchController.text,
+          ),
         ),
       child: BlocConsumer<CateringBloc, CateringState>(
         listener: (context, state) {},
@@ -124,9 +158,29 @@ class ListCateringWidget extends StatelessWidget {
                                 child: GestureDetector(
                                   onTap: () {
                                     _showDialogEatingType(
-                                      context: context,
-                                      category: menuCategory!,
-                                    );
+                                        context: context,
+                                        category: menuCategory!,
+                                        onTap: (valueTitle, valueParam) {
+                                          _selectMealsType.value = valueTitle;
+                                          _selectMealsParamType.value =
+                                              valueParam;
+
+                                          context.read<CateringBloc>().add(
+                                                CateringEvent
+                                                    .getOutletCategoryCatering(
+                                                  isHideOpen: false,
+                                                  mealsTypes:
+                                                      _selectMealsParamType
+                                                              .value ??
+                                                          "breakfast",
+                                                  preOrderDate:
+                                                      _getDateCatering(
+                                                          _selectDateParam
+                                                              .value),
+                                                  search: searchController.text,
+                                                ),
+                                              );
+                                        });
                                   },
                                   child: Container(
                                     height: 37,
@@ -155,7 +209,7 @@ class ListCateringWidget extends StatelessWidget {
                                         ),
                                         SizedBox(width: 7),
                                         Text(
-                                          "Makan Siang",
+                                          _selectMealsType.value,
                                           softWrap: false,
                                           overflow: TextOverflow.ellipsis,
                                           style: AppFont.textRed14SemiBold
@@ -185,9 +239,13 @@ class ListCateringWidget extends StatelessWidget {
                                       context.read<CateringBloc>().add(
                                             CateringEvent
                                                 .getOutletCategoryCatering(
-                                              isHideOpen: true,
-                                              mealsTypes: "lunch",
-                                              preOrderDate: "2021-12-11",
+                                              isHideOpen: false,
+                                              mealsTypes:
+                                                  _selectMealsParamType.value ??
+                                                      "breakfast",
+                                              preOrderDate: _getDateCatering(
+                                                _selectDateParam.value,
+                                              ),
                                               search: searchController.text,
                                             ),
                                           );
@@ -300,9 +358,8 @@ class ListCateringWidget extends StatelessWidget {
                                 shrinkWrap: true,
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 scrollDirection: Axis.horizontal,
-                                children: List.generate(
-                                  7,
-                                  (index) => Padding(
+                                children: [
+                                  Padding(
                                     padding: const EdgeInsets.only(right: 10),
                                     child: Container(
                                       height: 46,
@@ -323,7 +380,9 @@ class ListCateringWidget extends StatelessWidget {
                                             DateFormat('EE').format(
                                               getDate(
                                                 date.subtract(
-                                                  Duration(days: -index),
+                                                  Duration(
+                                                    days: 0,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -340,7 +399,7 @@ class ListCateringWidget extends StatelessWidget {
                                             DateFormat('dd').format(
                                               getDate(
                                                 date.subtract(
-                                                  Duration(days: -index),
+                                                  Duration(days: 0),
                                                 ),
                                               ),
                                             ),
@@ -357,7 +416,111 @@ class ListCateringWidget extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ),
+                                  ListView(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    children: List.generate(
+                                      6,
+                                      (index) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            _selectDateParam.value =
+                                                (-index - 1);
+
+                                            context.read<CateringBloc>().add(
+                                                  CateringEvent
+                                                      .getOutletCategoryCatering(
+                                                    isHideOpen: false,
+                                                    mealsTypes:
+                                                        _selectMealsParamType
+                                                                .value ??
+                                                            "breakfast",
+                                                    preOrderDate:
+                                                        _getDateCatering(
+                                                      _selectDateParam.value,
+                                                    ),
+                                                    search:
+                                                        searchController.text,
+                                                  ),
+                                                );
+                                          },
+                                          child: Container(
+                                            height: 46,
+                                            width: 51,
+                                            decoration: BoxDecoration(
+                                              color: _selectDateParam.value ==
+                                                      (-index - 1)
+                                                  ? AppColors.redD12B34
+                                                  : AppColors.greyF6F6F6,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(4),
+                                              ),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  DateFormat('EE').format(
+                                                    getDate(
+                                                      date.subtract(
+                                                        Duration(
+                                                            days: -index - 1),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  softWrap: false,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: AppFont
+                                                      .textBlack10Regular
+                                                      .copyWith(
+                                                    color: _selectDateParam
+                                                                .value ==
+                                                            (-index - 1)
+                                                        ? AppColors.white
+                                                        : AppColors.black1F1F1F,
+                                                    fontSize: 11,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                Text(
+                                                  DateFormat('dd').format(
+                                                    getDate(
+                                                      date.subtract(
+                                                        Duration(
+                                                            days: -index - 1),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  softWrap: false,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: AppFont
+                                                      .textBlack10Regular
+                                                      .copyWith(
+                                                    color: _selectDateParam
+                                                                .value ==
+                                                            (-index - 1)
+                                                        ? AppColors.white
+                                                        : AppColors.black1F1F1F,
+                                                    fontSize: 11,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             )
                           ],
@@ -372,7 +535,11 @@ class ListCateringWidget extends StatelessWidget {
                     getListOutletCateringSuccess: (r) => r.outlets.length > 0
                         ? Expanded(
                             child: RefreshIndicator(
-                              onRefresh: () async => onRefresh(context),
+                              onRefresh: () async => onRefresh(
+                                context,
+                                _selectMealsParamType.value,
+                                _selectDateParam.value,
+                              ),
                               child: ListView(
                                 children: List.generate(
                                   r.outlets.length,
@@ -549,58 +716,6 @@ class ListCateringWidget extends StatelessWidget {
                                                       ),
                                                     ),
                                                   ),
-                                                  (_data.countOutlet ?? 0) > 1
-                                                      ? SizedBox(
-                                                          height: 34,
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.62,
-                                                          child: ElevatedButton(
-                                                            onPressed: () {},
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Text(
-                                                                    I10n.current
-                                                                        .outlet_list_see_all_outlet(
-                                                                            ""),
-                                                                    style: AppFont
-                                                                        .textBlack10SemiBold
-                                                                        .copyWith(
-                                                                      color: AppColors
-                                                                          .red,
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                            style: ButtonStyle(
-                                                                shadowColor:
-                                                                    MaterialStateProperty.all(
-                                                                        Colors
-                                                                            .transparent),
-                                                                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4.0),
-                                                                    side: BorderSide(
-                                                                        color: AppColors
-                                                                            .greyDEDEDE))),
-                                                                backgroundColor:
-                                                                    MaterialStateProperty.all(
-                                                                        AppColors
-                                                                            .white)),
-                                                          ),
-                                                        )
-                                                      : Container(),
                                                   SizedBox(
                                                     height: 8,
                                                   )
@@ -614,7 +729,8 @@ class ListCateringWidget extends StatelessWidget {
                                           width: double.infinity,
                                           color: AppColors.greyE7E7E7,
                                           margin: EdgeInsets.symmetric(
-                                              horizontal: 20),
+                                            horizontal: 20,
+                                          ),
                                         ),
                                       ],
                                     );
@@ -629,7 +745,11 @@ class ListCateringWidget extends StatelessWidget {
                           )
                             ? Container()
                             : EmptyWidget(
-                                onRefresh: () {},
+                                onRefresh: () async => onRefresh(
+                                  context,
+                                  _selectMealsParamType.value,
+                                  _selectDateParam.value,
+                                ),
                                 imageAsset: AppAssets.emptyOutlet,
                               ),
                   ),
@@ -645,6 +765,7 @@ class ListCateringWidget extends StatelessWidget {
   Future<void> _showDialogEatingType({
     required BuildContext context,
     required MenuCategory category,
+    required Function(String, String) onTap,
   }) async {
     return showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -680,102 +801,64 @@ class ListCateringWidget extends StatelessWidget {
               enabled: false,
             ),
             Column(
-              children:
-                  List.generate(menuCategory?.filter?.length ?? 0, (index) {
-                var _data = menuCategory?.filter?[index].options;
-                return Column(
-                  children: List.generate(
-                    _data?.length ?? 0,
-                    (index) => Padding(
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16, bottom: 16),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _data?[index].getTitle ?? "-",
-                                style: AppFont.textBlack17Bold
-                                    .copyWith(fontSize: 15),
-                              ),
-                              Text(
-                                _data?[index].getDescription ?? "-",
-                                style: AppFont.textBlack13Light.copyWith(
-                                  fontSize: 12,
-                                  color: AppColors.black,
+              children: List.generate(
+                menuCategory?.filter?.length ?? 0,
+                (index) {
+                  var _data = menuCategory?.filter?[index].options;
+                  return Column(
+                    children: List.generate(_data?.length ?? 0, (index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 16.0, right: 16, bottom: 16),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _data?[index].getTitle ?? "-",
+                                  style: AppFont.textBlack17Bold
+                                      .copyWith(fontSize: 15),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Expanded(child: Container()),
-                          ElevatedButton(
-                              onPressed: () {},
+                                Text(
+                                  _data?[index].getDescription ?? "-",
+                                  style: AppFont.textBlack13Light.copyWith(
+                                    fontSize: 12,
+                                    color: AppColors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Expanded(child: Container()),
+                            ElevatedButton(
+                              onPressed: () {
+                                onTap(_data?[index].getTitle ?? "-",
+                                    _data?[index].value ?? "-");
+                                Navigator.pop(context);
+                              },
                               child: Text(
                                 I10n.current.cart_choose,
                                 style: AppFont.textBlack12Bold
                                     .copyWith(color: AppColors.redD12B34),
                               ),
                               style: ElevatedButton.styleFrom(
-                                  primary: Colors.white,
-                                  elevation: 0,
-                                  side: BorderSide(
-                                    width: 1.0,
-                                    color: AppColors.redD12B34,
-                                  ))),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              }),
+                                primary: Colors.white,
+                                elevation: 0,
+                                side: BorderSide(
+                                  width: 1.0,
+                                  color: AppColors.redD12B34,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                  );
+                },
+              ),
             ),
-            // Column(
-            //   children: [
-            //     Padding(
-            //       padding:
-            //           const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
-            //       child: Row(
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               Text(
-            //                 'Makan Siang',
-            //                 style:
-            //                     AppFont.textBlack17Bold.copyWith(fontSize: 15),
-            //               ),
-            //               Text(
-            //                 'Diantar pukul 09.00 - 12.00',
-            //                 style: AppFont.textBlack13Light.copyWith(
-            //                   fontSize: 12,
-            //                   color: AppColors.black,
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //           Expanded(child: Container()),
-            //           ElevatedButton(
-            //               onPressed: () {},
-            //               child: Text(
-            //                 I10n.current.cart_choose,
-            //                 style: AppFont.textBlack12Bold
-            //                     .copyWith(color: AppColors.redD12B34),
-            //               ),
-            //               style: ElevatedButton.styleFrom(
-            //                   primary: Colors.white,
-            //                   elevation: 0,
-            //                   side: BorderSide(
-            //                     width: 1.0,
-            //                     color: AppColors.redD12B34,
-            //                   ))),
-            //         ],
-            //       ),
-            //     ),
-            //   ],
-            // ),
             SizedBox(
               height: 16,
             ),

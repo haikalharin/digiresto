@@ -5622,9 +5622,7 @@ class I10n {
     );
   }
 
-
-
-  /// `%d year`
+  /// `Select Menu Type`
   String get select_menu_type {
     return Intl.message(
       'Select Menu Type',

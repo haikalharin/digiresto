@@ -907,6 +907,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Rating dan ulasan Anda telah diterima. Terima kasih."),
         "review_title":
             MessageLookupByLibrary.simpleMessage("Tulis ulasan kamu"),
+        "select_menu_type":
+            MessageLookupByLibrary.simpleMessage("Pilih Jenis Menu"),
         "sign_up_email": MessageLookupByLibrary.simpleMessage("Email"),
         "sign_up_password": MessageLookupByLibrary.simpleMessage("Passcode"),
         "sign_up_phone":

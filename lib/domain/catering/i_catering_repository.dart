@@ -15,8 +15,4 @@ abstract class ICateringRepository {
     required String mealsTypes,
     required String preOrderDate,
   });
-
-
-
-
 }

@@ -28,13 +28,13 @@ abstract class OutletCategoryCateringResponse
     required bool isOpen,
     required String? logo,
     required int? countOutlet,
-    required int? rating,
+    required double? rating,
     required int priceRange,
     required String priceRangeDesc,
     required String merchantId,
     required String merchantName,
     required String? merchantLogo,
-    required String callbackUrl,
+    required String? callbackUrl,
     required Distance distance,
   }) = _OutletCategoryCateringResponse;
 
