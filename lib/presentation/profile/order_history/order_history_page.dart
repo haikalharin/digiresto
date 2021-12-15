@@ -60,7 +60,8 @@ class OrderHistoryWidget extends StatelessWidget {
       body: BlocConsumer<OrderHistoryBloc, OrderHistoryState>(
         bloc: _bloc
           ..add(OrderHistoryEvent.orderPendingOpen())
-          ..add(OrderHistoryEvent.getOrderOnProcessCount()),
+          ..add(OrderHistoryEvent.getOrderOnProcessCount())
+          ..add(OrderHistoryEvent.getorderUpcomingCount()),
         listener: (context, state) {
           state.orderOnProccessCountFailureOrSuccess.fold(
             () {},
@@ -77,7 +78,7 @@ class OrderHistoryWidget extends StatelessWidget {
               _controller.waitingPaymentCount.value = count;
             },
           );
-          state.orderOnProccessCountFailureOrSuccess.fold(
+          state.orderUpomingCountOption.fold(
             () {},
             (failureOrSuccess) => failureOrSuccess.fold(
               (failure) {},
