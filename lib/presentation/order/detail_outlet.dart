@@ -11,6 +11,7 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
@@ -24,6 +25,7 @@ import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'detail_product_dialog.dart';
@@ -619,15 +621,23 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   void getListProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletListProduct(
+            GetOutletProductParam(
+              body: GetOutletProductBodyParam(),
+              queryString: GetOutletProductQueryParam(
                 categoryId: controller.categoryId.value,
                 filter: controller.search.value,
                 limit: 15,
                 outletId: controller.outlet.value!.outletId,
-                page: controller.page.value))));
+                page: controller.page.value,
+                preOrderDate: controller.outlet.value!.preOrderDate,
+                mealsTypes: controller.outlet.value!.mealsTypes,
+                isCatering: controller.outlet.value!.isCatering,
+              ),
+            ),
+          ),
+        );
   }
 
   Widget _search() {
@@ -818,6 +828,72 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Padding(
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.iconsIcCalendar,
+                          height: 12,
+                          width: 12,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          controller.outlet.value!.dayDate ?? "",
+                          style: AppFont.textBlack12Medium.copyWith(
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.iconsFoodIcon,
+                          height: 12,
+                          width: 12,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          controller.outlet.value!.mealsTitle ?? "",
+                          style: AppFont.textBlack12Medium.copyWith(
+                            fontSize: 11,
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Container(
+                          height: 4,
+                          width: 4,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.greyColor2,
+                          ),
+                        ),
+                        SizedBox(width: 12),
+                        Text(
+                          controller.outlet.value!.deliveryTime ?? "",
+                          style: AppFont.textBlack12Regular.copyWith(
+                            fontSize: 11,
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : Container(),
         controller.detailOutlet.value != null ? _search() : Container(),
         controller.listCategory.value != null
             ? _category(

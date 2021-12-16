@@ -6,10 +6,12 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
@@ -100,6 +102,17 @@ class ListCateringWidget extends HookWidget {
     return dateCatering;
   }
 
+  String _getDayDateCatering(int indexDate) {
+    final date = DateTime.now();
+
+    String dateCatering = DateFormat('EEEE, dd MMMM yyyy').format(getDate(
+      date.subtract(
+        Duration(days: indexDate),
+      ),
+    ));
+    return dateCatering;
+  }
+
   String getTitleMealsType(MenuCategory menuCategory) {
     String? mealsType;
 
@@ -116,10 +129,27 @@ class ListCateringWidget extends HookWidget {
     return mealsType ?? "-";
   }
 
+  String _getDeliveryTime(MenuCategory menuCategory) {
+    String? deliveryTime;
+
+    menuCategory.filter?.forEach(
+      (element) {
+        element.options?.forEach((element) {
+          if (element.value == "breakfast") {
+            deliveryTime = element.getDescription;
+          }
+        });
+      },
+    );
+
+    return deliveryTime ?? "-";
+  }
+
   @override
   Widget build(BuildContext context) {
     final _selectMealsType = useState(getTitleMealsType(menuCategory!));
     final _selectMealsParamType = useState(_initialMealsTypesParam);
+    final _selectDevliveryTime = useState(_getDeliveryTime(menuCategory!));
     final _selectDateParam = useState(_initialDateIndexParam);
     final _scrollController = useScrollController();
     final _scorllPageIndex = useState(_initialPageIndex);
@@ -206,10 +236,14 @@ class ListCateringWidget extends HookWidget {
                                   _showDialogEatingType(
                                       context: context,
                                       category: menuCategory!,
-                                      onTap: (valueTitle, valueParam) {
+                                      onTap: (valueTitle, valueParam,
+                                          valueDeliveryTime) {
                                         _selectMealsType.value = valueTitle;
                                         _selectMealsParamType.value =
                                             valueParam;
+
+                                        _selectDevliveryTime.value =
+                                            valueDeliveryTime;
 
                                         context.read<CateringBloc>().add(
                                               CateringEvent
@@ -221,7 +255,8 @@ class ListCateringWidget extends HookWidget {
                                                             .value ??
                                                         "breakfast",
                                                 preOrderDate: _getDateCatering(
-                                                    _selectDateParam.value),
+                                                  _selectDateParam.value,
+                                                ),
                                                 search: searchController.text,
                                               ),
                                             );
@@ -590,162 +625,187 @@ class ListCateringWidget extends HookWidget {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    color: Colors.white,
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 15,
-                                    ),
-                                    // height: 96,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(
-                                                8.0,
-                                              ),
-                                            ),
-                                            child: Image(
-                                              errorBuilder:
-                                                  (context, obj, stacktrace) {
-                                                return Image(
-                                                  height: 96,
-                                                  width: 96,
-                                                  image:
-                                                      RandomImages.getImage(),
-                                                );
-                                              },
-                                              image: RandomImages
-                                                  .getImageUrlDefault(
-                                                _data.logo,
-                                                "",
-                                              ),
-                                              fit: BoxFit.cover,
-                                              height: 96,
-                                              width: 96,
-                                              alignment: Alignment.center,
-                                            ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(
+                                        Routers.orderDetailOutlet,
+                                        arguments: OrderDetailViewArgument(
+                                          _data.id,
+                                          _data.merchantId,
+                                          mealsTypes:
+                                              _selectMealsParamType.value,
+                                          mealsTitle: _selectMealsType.value,
+                                          preOrderDate: _getDateCatering(
+                                            _selectDateParam.value,
+                                          ),
+                                          deliveryTime:
+                                              _selectDevliveryTime.value,
+                                          isCatering: true,
+                                          dayDate: _getDayDateCatering(
+                                            _selectDateParam.value,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              _data.name,
-                                              softWrap: false,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: AppFont.textRed14SemiBold
-                                                  .copyWith(
-                                                color: AppColors.black,
+                                      );
+                                    },
+                                    child: Container(
+                                      color: Colors.white,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                        vertical: 15,
+                                      ),
+                                      // height: 96,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(
+                                                  8.0,
+                                                ),
                                               ),
-                                              textAlign: TextAlign.left,
+                                              child: Image(
+                                                errorBuilder:
+                                                    (context, obj, stacktrace) {
+                                                  return Image(
+                                                    height: 96,
+                                                    width: 96,
+                                                    image:
+                                                        RandomImages.getImage(),
+                                                  );
+                                                },
+                                                image: RandomImages
+                                                    .getImageUrlDefault(
+                                                  _data.logo,
+                                                  "",
+                                                ),
+                                                fit: BoxFit.cover,
+                                                height: 96,
+                                                width: 96,
+                                                alignment: Alignment.center,
+                                              ),
                                             ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  _data.distance.distance,
-                                                  style: AppFont
-                                                      .textBlack12Regular
-                                                      .copyWith(
-                                                    color: AppColors.black,
-                                                  ),
-                                                  textAlign: TextAlign.left,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                _data.name,
+                                                softWrap: false,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: AppFont.textRed14SemiBold
+                                                    .copyWith(
+                                                  color: AppColors.black,
                                                 ),
-                                                SizedBox(width: 11),
-                                                Icon(
-                                                  Icons.star,
-                                                  size: 12,
-                                                  color: AppColors.yellowStar,
-                                                ),
-                                                SizedBox(width: 3),
-                                                Text(
-                                                  "${_data.rating?.toDouble() ?? "0"}",
-                                                  style: AppFont
-                                                      .textBlack12Regular
-                                                      .copyWith(
-                                                    color: AppColors.black,
-                                                  ),
-                                                  textAlign: TextAlign.left,
-                                                ),
-                                                Container(
-                                                  width: 100,
-                                                  height: 14,
-                                                  padding: EdgeInsets.only(
-                                                    left: 11,
-                                                  ),
-                                                  child: RatingBarIndicator(
-                                                    direction: Axis.horizontal,
-                                                    itemCount: 5,
-                                                    itemSize: 14,
-                                                    rating: _data.priceRange
-                                                        .toDouble(),
-                                                    itemPadding:
-                                                        EdgeInsets.symmetric(
-                                                      horizontal: 0,
+                                                textAlign: TextAlign.left,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    _data.distance.distance,
+                                                    style: AppFont
+                                                        .textBlack12Regular
+                                                        .copyWith(
+                                                      color: AppColors.black,
                                                     ),
-                                                    itemBuilder: (context, _) =>
-                                                        Text(
-                                                      "\$",
-                                                      style: AppFont
-                                                          .textBlack12Regular
-                                                          .copyWith(
-                                                        color: AppColors.black,
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                  SizedBox(width: 11),
+                                                  Icon(
+                                                    Icons.star,
+                                                    size: 12,
+                                                    color: AppColors.yellowStar,
+                                                  ),
+                                                  SizedBox(width: 3),
+                                                  Text(
+                                                    "${_data.rating?.toDouble() ?? "0"}",
+                                                    style: AppFont
+                                                        .textBlack12Regular
+                                                        .copyWith(
+                                                      color: AppColors.black,
+                                                    ),
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                  Container(
+                                                    width: 100,
+                                                    height: 14,
+                                                    padding: EdgeInsets.only(
+                                                      left: 11,
+                                                    ),
+                                                    child: RatingBarIndicator(
+                                                      direction:
+                                                          Axis.horizontal,
+                                                      itemCount: 5,
+                                                      itemSize: 14,
+                                                      rating: _data.priceRange
+                                                          .toDouble(),
+                                                      itemPadding:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: 0,
                                                       ),
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                      itemBuilder:
+                                                          (context, _) => Text(
+                                                        "\$",
+                                                        style: AppFont
+                                                            .textBlack12Regular
+                                                            .copyWith(
+                                                          color:
+                                                              AppColors.black,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                top: 16,
-                                                bottom: 16,
+                                                ],
                                               ),
-                                              child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.32,
-                                                child: Row(
-                                                  children: [
-                                                    ImageIcon(
-                                                        AssetImage(AppAssets
-                                                            .iconOutletOrderDelivery),
-                                                        size: 14,
-                                                        color: AppColors
-                                                            .redTabBar),
-                                                    SizedBox(
-                                                      width: 4,
-                                                    ),
-                                                    Text(
-                                                      I10n.current
-                                                          .landing_delivery,
-                                                      style: AppFont
-                                                          .textBlack11Light,
-                                                    ),
-                                                  ],
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 16,
+                                                  bottom: 16,
+                                                ),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.32,
+                                                  child: Row(
+                                                    children: [
+                                                      ImageIcon(
+                                                          AssetImage(AppAssets
+                                                              .iconOutletOrderDelivery),
+                                                          size: 14,
+                                                          color: AppColors
+                                                              .redTabBar),
+                                                      SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Text(
+                                                        I10n.current
+                                                            .landing_delivery,
+                                                        style: AppFont
+                                                            .textBlack11Light,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 8,
-                                            )
-                                          ],
-                                        ),
-                                      ],
+                                              SizedBox(
+                                                height: 8,
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -760,15 +820,6 @@ class ListCateringWidget extends HookWidget {
                               );
                             },
                           ),
-                          // child: ListView(
-                          //   controller: _scrollController,
-                          //   children: List.generate(
-                          //     r.outlets.length,
-                          //     (index) {
-                          //
-                          //     },
-                          //   ),
-                          // ),
                         ),
                       )
                     : state.maybeMap(
@@ -1013,7 +1064,7 @@ class ListCateringWidget extends HookWidget {
   Future<void> _showDialogEatingType({
     required BuildContext context,
     required MenuCategory category,
-    required Function(String, String) onTap,
+    required Function(String, String, String) onTap,
   }) async {
     return showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -1081,8 +1132,11 @@ class ListCateringWidget extends HookWidget {
                             Expanded(child: Container()),
                             ElevatedButton(
                               onPressed: () {
-                                onTap(_data?[index].getTitle ?? "-",
-                                    _data?[index].value ?? "-");
+                                onTap(
+                                  _data?[index].getTitle ?? "-",
+                                  _data?[index].value ?? "-",
+                                  _data?[index].getDescription ?? "-",
+                                );
                                 Navigator.pop(context);
                               },
                               child: Text(

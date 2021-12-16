@@ -30,6 +30,10 @@ class OrderViewController extends GetxController {
   var detailOutletLoading = false.obs;
   var indexTabBar = 1.obs;
   var salesType = Rxn<String>();
+  // var mealsTypes = "".obs;
+  // var preOrderDate = "".obs;
+  // var isCatering = false.obs;
+
   bool isSameOutlet() {
     return (cartSession.value?.transactionData!.outletName ==
             detailOutlet.value?.endpointName ||
@@ -98,12 +102,17 @@ class OrderViewController extends GetxController {
   }
 
   void getListVoucher() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getListVoucherOutlet(
-        GetListVoucherOutletParam(
-            body: GetListVoucherOutletBodyParam(),
-            queryString: GetListVoucherOutletQueryParam(
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getListVoucherOutlet(
+            GetListVoucherOutletParam(
+              body: GetListVoucherOutletBodyParam(),
+              queryString: GetListVoucherOutletQueryParam(
                 merchantId: detailOutlet.value!.merchantId!,
-                outletId: detailOutlet.value!.id))));
+                outletId: detailOutlet.value!.id,
+              ),
+            ),
+          ),
+        );
   }
 
   void setSalesType(value) {
@@ -111,23 +120,36 @@ class OrderViewController extends GetxController {
   }
 
   void getListProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletListProduct(
+            GetOutletProductParam(
+              body: GetOutletProductBodyParam(),
+              queryString: GetOutletProductQueryParam(
                 categoryId: categoryId.value,
                 filter: search.value,
                 limit: 15,
                 outletId: outlet.value!.outletId,
-                page: page.value))));
+                page: page.value,
+                isCatering: outlet.value!.isCatering,
+                mealsTypes: outlet.value!.mealsTypes,
+                preOrderDate: outlet.value!.preOrderDate,
+              ),
+            ),
+          ),
+        );
   }
 
   void getCategoryProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletProductCategory(
-        GetOutletProductCategoryParam(
-            body: GetOutletProductCategoryBodyParam(),
-            queryString: GetOutletProductCategoryQueryParam(
-                outletId: outlet.value!.outletId))));
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletProductCategory(
+            GetOutletProductCategoryParam(
+              body: GetOutletProductCategoryBodyParam(),
+              queryString: GetOutletProductCategoryQueryParam(
+                outletId: outlet.value!.outletId,
+              ),
+            ),
+          ),
+        );
   }
 
   void getPromoProduct() {
