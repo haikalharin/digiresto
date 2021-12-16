@@ -706,23 +706,26 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   Widget _product(List<OutletListProductDataResponse> data) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.only(
-            left: 10,
-          ),
-          alignment: Alignment.topLeft,
-          child: Text(
-            controller.categoryName.value == ""
-                ? I10n.current.preorder_filter_all
-                : controller.categoryName.value,
-            style: TextStyle(
-              fontFamily: "roboto",
-              color: Colors.black,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Container()
+            : Container(
+                padding: EdgeInsets.only(
+                  left: 10,
+                ),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  controller.categoryName.value == ""
+                      ? I10n.current.preorder_filter_all
+                      : controller.categoryName.value,
+                  style: TextStyle(
+                    fontFamily: "roboto",
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         ListProductOutletWidget(
           orderType: controller.salesType.value!,
           data: data,
@@ -887,18 +890,25 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                             fontSize: 11,
                           ),
                         ),
-
                       ],
                     ),
                   ],
                 ),
               )
             : Container(),
-        controller.detailOutlet.value != null ? _search() : Container(),
-        controller.listCategory.value != null
-            ? _category(
-                controller.listCategory.value!, controller.categoryId.value)
-            : Container(),
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Container()
+            : controller.detailOutlet.value != null
+                ? _search()
+                : Container(),
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Container()
+            : controller.listCategory.value != null
+                ? _category(
+                    controller.listCategory.value!, controller.categoryId.value)
+                : Container(),
         Expanded(
           child: Container(
             //height: MediaQuery.of(context).size.height - 30,
