@@ -605,6 +605,10 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                     orderType: orderType,
                     detailOutlet: controller.detailOutlet.value!,
                     note: '',
+                    dayDate: controller.outlet.value!.dayDate,
+                    mealsTitle: controller.outlet.value!.mealsTitle,
+                    deliveryTime: controller.outlet.value!.deliveryTime,
+                    isCatering: controller.outlet.value!.isCatering,
                   );
                 },
                 fullscreenDialog: true))

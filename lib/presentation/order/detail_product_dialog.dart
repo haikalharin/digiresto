@@ -12,6 +12,7 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
@@ -37,6 +38,13 @@ class DetailProductDialog extends StatefulWidget {
   final bool isDifferentOutlet;
   final DetailOutletDataResponse detailOutlet;
   final List<CreateCartSessionItemModifierParam> listSelectedModifier;
+
+  /// Catering
+  final String? dayDate;
+  final String? mealsTitle;
+  final String? deliveryTime;
+  final bool? isCatering;
+
   @override
   DetailProductDialog({
     Key? key,
@@ -49,6 +57,10 @@ class DetailProductDialog extends StatefulWidget {
     this.mode = "new",
     this.qtyProduct = 1,
     this.listSelectedModifier = const [],
+    this.dayDate,
+    this.mealsTitle,
+    this.deliveryTime,
+    this.isCatering = false,
   }) : super(key: key);
 
   @override
@@ -585,6 +597,86 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                     ),
                                   ],
                                 ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      if (widget.isCatering == true)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Divider(
+                              thickness: 12,
+                              color: AppColors.dividerColor,
+                            ),
+                            Container(
+                              color: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Dimens.defaultMargin,
+                                vertical: 15,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        Assets.iconsIcCalendar,
+                                        height: 12,
+                                        width: 12,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        widget.dayDate ?? "",
+                                        style:
+                                            AppFont.textBlack12Medium.copyWith(
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 12),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        Assets.iconsFoodIcon,
+                                        height: 12,
+                                        width: 12,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        widget.mealsTitle ?? "",
+                                        style:
+                                            AppFont.textBlack12Medium.copyWith(
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Container(
+                                        height: 4,
+                                        width: 4,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.greyColor2,
+                                        ),
+                                      ),
+                                      SizedBox(width: 12),
+                                      Text(
+                                        widget.deliveryTime ?? "",
+                                        style:
+                                            AppFont.textBlack12Regular.copyWith(
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ],
