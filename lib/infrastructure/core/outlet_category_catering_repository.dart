@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
+import 'package:dio/dio.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -17,7 +18,7 @@ class CateringRepository implements ICateringRepository {
   const CateringRepository(this._networkService, this.logger);
 
   @override
-  Future<Either<CateringFailure, IList<OutletCategoryCateringResponse>>>
+  Future<Either<CateringFailure, List<OutletCategoryCateringResponse>>>
       getOutletCategoryCatering({
     required int page,
     String? search,
@@ -56,7 +57,7 @@ class CateringRepository implements ICateringRepository {
       final listData = List.from(data);
       final listCatering = listData
           .map((json) => OutletCategoryCateringResponse.fromJson(json))
-          .toIList();
+          .toList();
 
       logger.d(listCatering);
 

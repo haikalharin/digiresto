@@ -5641,6 +5641,16 @@ class I10n {
       args: [],
     );
   }
+
+  /// `Select Menu Type`
+  String get select_menu_type {
+    return Intl.message(
+      'Select Menu Type',
+      name: 'select_menu_type',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<I10n> {

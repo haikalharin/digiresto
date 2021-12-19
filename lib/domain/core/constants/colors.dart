@@ -43,6 +43,7 @@ class AppColors {
   static final Color green54C30F = Color(0xFF54C30F);
 
   static final Color black = Color(0xFF000000);
+  static final Color black1F1F1F = Color(0xFF1F1F1F);
   static final Color white = Color(0xFFFFFFFF);
 
   static const Map<int, Color> grey = const <int, Color>{

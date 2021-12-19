@@ -5,7 +5,7 @@ class CateringState with _$CateringState {
   const factory CateringState.initial() = _Initial;
   const factory CateringState.loadInProgress() = _LoadInProgress;
   const factory CateringState.getListOutletCateringSuccess(
-          IList<OutletCategoryCateringResponse> outlets) =
+          List<OutletCategoryCateringResponse> outlets) =
       _GetListOutletCateringSuccess;
   const factory CateringState.getListOutletCateringFailure(
       CateringFailure failure) = _GetListOutletCateringFailure;
