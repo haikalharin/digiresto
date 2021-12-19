@@ -609,5 +609,6 @@
     "time_ago_month":"a month",
     "time_ago_months":"%d month",
     "time_ago_year":"a year",
-    "time_ago_years":"%d year"
+    "time_ago_years":"%d year",
+    "select_menu_type" : "Select Menu Type"
 }

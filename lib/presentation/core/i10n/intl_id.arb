@@ -605,5 +605,7 @@
     "time_ago_month":"1 bulan",
     "time_ago_months":"%d bulan",
     "time_ago_year":"1 tahun",
-    "time_ago_years":"%d tahun"
+    "time_ago_years":"%d tahun",
+    "select_menu_type" : "Pilih Jenis Menu"
+
 }

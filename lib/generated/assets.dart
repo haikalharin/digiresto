@@ -38,6 +38,7 @@ class Assets {
   static const String iconsIcAtm = 'assets/icons/ic_atm.png';
   static const String iconsIcAtmBlack = 'assets/icons/ic_atm_black.png';
   static const String iconsIcBackBlack = 'assets/icons/ic_back_black.png';
+  static const String iconsIcCalendar = 'assets/icons/ic_calendar.svg';
   static const String iconsIcCartRed = 'assets/icons/ic_cart_red.png';
   static const String iconsIcCashback = 'assets/icons/ic_cashback.png';
   static const String iconsIcCredit = 'assets/icons/ic_credit.png';

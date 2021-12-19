@@ -28,6 +28,10 @@ class MenuCategoryWidget extends StatelessWidget {
               ListCateringPage(
                 menuCategory: menuCategory,
               ),
+            )?.then(
+              (value) {
+                Get.context!.read<BottomTabCubit>().checkAllCounter();
+              },
             );
           }
           // // Get.to(ListOutletPage(menuCategory));
