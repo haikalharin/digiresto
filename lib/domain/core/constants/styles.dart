@@ -149,4 +149,13 @@ class Styles {
 
   static TextStyle errorStyle = GoogleFonts.poppins(
       color: AppColors.red, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static TextStyle reportStyle = GoogleFonts.poppins(
+      color: AppColors.red,
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+      textStyle: TextStyle(decoration: TextDecoration.underline));
+
+  static TextStyle boldRedStyle = GoogleFonts.poppins(
+      color: AppColors.red, fontSize: 14, fontWeight: FontWeight.w600);
 }

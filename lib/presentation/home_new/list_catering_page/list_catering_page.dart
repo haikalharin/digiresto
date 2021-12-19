@@ -672,7 +672,7 @@ class ListCateringWidget extends StatelessWidget {
               title: Container(
                 child: Center(
                   child: new Text(
-                    I10n.current.select_menu_type,
+                    "",
                     style: AppFont.textBlack17Bold,
                   ),
                 ),

@@ -86,7 +86,8 @@ class OrderHistoryPageController extends GetxController
             style: Styles.badgeContentStyle,
           ),
           child: Text(
-            i10n.upcoming_order,
+            // i10n.upcoming_order,
+            '',
             textAlign: TextAlign.center,
           ),
         ),

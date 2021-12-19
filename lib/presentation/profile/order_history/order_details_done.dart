@@ -11,6 +11,7 @@ import 'package:digiresto/presentation/core/widgets/custom_textfield.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/delivery_status_widget.dart';
 import 'package:digiresto/presentation/profile/order_history/widgets/menu_item.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -63,6 +64,22 @@ class OrderDetailsDone extends StatelessWidget {
                               ? null
                               : Colors.grey,
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                 Padding(
+                  padding: EdgeInsets.all(8),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: InkWell(
+                      onTap: (){
+                        Get.toNamed(Routers.complainPage);
+                      },
+                      child: Text(
+                        I10n.current.history_detail_complain,
+                        style: Styles.reportStyle,
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

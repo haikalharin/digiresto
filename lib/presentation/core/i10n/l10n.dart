@@ -3622,16 +3622,6 @@ class I10n {
     );
   }
 
-  /// `upcoming\nOrder`
-  String get upcoming_order {
-    return Intl.message(
-      'Upcoming\nOrder',
-      name: 'upcoming_order',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Waiting\nfor payment`
   String get history_pending_payment {
     return Intl.message(
@@ -3887,6 +3877,16 @@ class I10n {
     return Intl.message(
       'Shipping address',
       name: 'history_detail_delivery_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report problem food`
+  String get history_detail_complain {
+    return Intl.message(
+      'Report problem food',
+      name: 'history_detail_complain',
       desc: '',
       args: [],
     );
@@ -5420,6 +5420,16 @@ class I10n {
     );
   }
 
+  /// `Order Complaint`
+  String get komplain_title {
+    return Intl.message(
+      'Order Complaint',
+      name: 'komplain_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Time:`
   String get nota_transaction_date {
     return Intl.message(
@@ -5627,16 +5637,6 @@ class I10n {
     return Intl.message(
       '%d year',
       name: 'time_ago_years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `%d year`
-  String get select_menu_type {
-    return Intl.message(
-      'Select Menu Type',
-      name: 'select_menu_type',
       desc: '',
       args: [],
     );

@@ -7,6 +7,7 @@ import 'package:digiresto/presentation/address/map/add_location.dart';
 import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
+import 'package:digiresto/presentation/complain/complain_page.dart';
 // import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
@@ -77,6 +78,7 @@ class Routers {
   static const String paymentTopupCreditVA = '/payment_topup_credit_va';
   static const String historyCredit = '/history_credit';
   static const String listCateringPage = '/list_catering_page';
+  static const String complainPage = '/complain_page';
 
   final List<GetPage> routers = [
     GetPage(
@@ -164,5 +166,6 @@ class Routers {
     GetPage(name: Routers.paymentVa, page: () => PaymentVAScreen()),
     GetPage(name: Routers.paymentWebView, page: () => PaymentWebViewScreen()),
     GetPage(name: Routers.listCateringPage, page: () => ListCateringPage()),
+    GetPage(name: Routers.complainPage, page: () => ComplainPage()),
   ];
 }

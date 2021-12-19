@@ -454,6 +454,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Use the latest verification code"),
         "history_datetransaction":
             MessageLookupByLibrary.simpleMessage("18 Nov 2020, 10:45:33"),
+        "history_detail_complain":
+            MessageLookupByLibrary.simpleMessage("Report problem food"),
         "history_detail_delivery_address":
             MessageLookupByLibrary.simpleMessage("Shipping address"),
         "history_detail_tracking_url":
@@ -607,6 +609,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Insert again the new 6 digit PIN "),
         "input_pin_success_change": MessageLookupByLibrary.simpleMessage(
             "Your PIN was successfully changed."),
+        "komplain_title":
+            MessageLookupByLibrary.simpleMessage("Order Complaint"),
         "label_email": MessageLookupByLibrary.simpleMessage("Email"),
         "label_phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "label_whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),

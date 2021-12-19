@@ -16,51 +16,54 @@ import 'package:onesignal_flutter/onesignal_flutter.dart' as _i13;
 
 import 'application/address/list/address_list_bloc.dart' as _i42;
 import 'application/address/map/address_map_bloc.dart' as _i43;
-import 'application/auth/auth_bloc.dart' as _i67;
-import 'application/auth/login/login_bloc.dart' as _i56;
-import 'application/auth/register/register_bloc.dart' as _i62;
-import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i65;
-import 'application/catering/catering_bloc.dart' as _i69;
+import 'application/auth/auth_bloc.dart' as _i69;
+import 'application/auth/login/login_bloc.dart' as _i58;
+import 'application/auth/register/register_bloc.dart' as _i64;
+import 'application/auth/validate_otp/validate_otp_bloc.dart' as _i67;
+import 'application/catering/catering_bloc.dart' as _i71;
+import 'application/complain/complain_bloc.dart' as _i72;
 import 'application/core/app_bloc.dart' as _i20;
-import 'application/credit/credit_bloc.dart' as _i70;
-import 'application/credit/recent_history/recent_history_bloc.dart' as _i61;
-import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i63;
-import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i66;
+import 'application/credit/credit_bloc.dart' as _i73;
+import 'application/credit/recent_history/recent_history_bloc.dart' as _i63;
+import 'application/credit/topup_credit/top_up_credit_bloc.dart' as _i65;
+import 'application/credit/waiting_payment/waiting_payment_bloc.dart' as _i68;
 import 'application/digi_locale/digi_locale_bloc.dart' as _i46;
-import 'application/home/home_user_bloc/home_user_bloc.dart' as _i72;
-import 'application/home_new/bloc/home_bloc.dart' as _i71;
-import 'application/home_new/outlet/outlet_bloc.dart' as _i59;
-import 'application/landing/bottom_tab_cubit.dart' as _i68;
+import 'application/home/home_user_bloc/home_user_bloc.dart' as _i75;
+import 'application/home_new/bloc/home_bloc.dart' as _i74;
+import 'application/home_new/outlet/outlet_bloc.dart' as _i61;
+import 'application/landing/bottom_tab_cubit.dart' as _i70;
 import 'application/notification/notification_bloc.dart' as _i33;
-import 'application/order/bloc/order_bloc.dart' as _i57;
-import 'application/order/order_cart_screen_view_controller.dart' as _i58;
+import 'application/order/bloc/order_bloc.dart' as _i59;
+import 'application/order/order_cart_screen_view_controller.dart' as _i60;
 import 'application/profile/edit_profile/edit_profile_bloc.dart' as _i47;
 import 'application/profile/order_details/order_details_bloc.dart' as _i35;
 import 'application/profile/order_history/order_history_bloc.dart' as _i36;
-import 'application/profile/profile_bloc.dart' as _i60;
+import 'application/profile/profile_bloc.dart' as _i62;
 import 'application/transaction/bloc/transaction_bloc/transaction_bloc.dart'
-    as _i64;
+    as _i66;
 import 'domain/auth/i_auth_facade.dart' as _i48;
 import 'domain/catering/i_catering_repository.dart' as _i50;
 import 'domain/core/constants/network/env.dart' as _i7;
 import 'domain/core/interfaces/i_location_service.dart' as _i10;
 import 'domain/core/interfaces/i_network_service.dart' as _i25;
 import 'domain/core/interfaces/i_storage.dart' as _i16;
-import 'domain/credit/i_credit_repository.dart' as _i52;
+import 'domain/credit/i_credit_repository.dart' as _i54;
 import 'domain/digi_locale/i_digi_locale_repository.dart' as _i23;
-import 'domain/home/i_home_repository.dart' as _i54;
+import 'domain/home/i_home_repository.dart' as _i56;
 import 'domain/notification/i_notification_repository.dart' as _i27;
 import 'domain/profile/i_profile_repository.dart' as _i29;
 import 'infrastructure/auth/api_auth_facade.dart' as _i49;
+import 'infrastructure/complain/complain_repository.dart' as _i53;
+import 'infrastructure/complain/i_complain_repository.dart' as _i52;
 import 'infrastructure/core/auth_interceptor.dart' as _i21;
 import 'infrastructure/core/location_service.dart' as _i11;
 import 'infrastructure/core/network_service.dart' as _i26;
 import 'infrastructure/core/outlet_category_catering_repository.dart' as _i51;
-import 'infrastructure/core/register_module.dart' as _i73;
+import 'infrastructure/core/register_module.dart' as _i76;
 import 'infrastructure/core/storage.dart' as _i17;
-import 'infrastructure/credit/credit_repository.dart' as _i53;
+import 'infrastructure/credit/credit_repository.dart' as _i55;
 import 'infrastructure/digi_locale/digi_locale_repository.dart' as _i24;
-import 'infrastructure/home/home_repository.dart' as _i55;
+import 'infrastructure/home/home_repository.dart' as _i57;
 import 'infrastructure/network/apis/auth/auth_api.dart' as _i44;
 import 'infrastructure/network/apis/auth/auth_repository.dart' as _i45;
 import 'infrastructure/network/apis/map/map_api.dart' as _i31;
@@ -115,12 +118,12 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i21.AuthInterceptor>(
       () => _i21.AuthInterceptor(get<_i16.IStorage>()));
   await gh.lazySingletonAsync<_i22.Dio>(
-      () => registerModule.dioDev(get<_i3.Alice>(), get<_i16.IStorage>()),
-      registerFor: {_dev},
-      preResolve: true);
-  await gh.lazySingletonAsync<_i22.Dio>(
       () => registerModule.dio(get<_i16.IStorage>()),
       registerFor: {_prod},
+      preResolve: true);
+  await gh.lazySingletonAsync<_i22.Dio>(
+      () => registerModule.dioDev(get<_i3.Alice>(), get<_i16.IStorage>()),
+      registerFor: {_dev},
       preResolve: true);
   gh.factory<_i7.Env>(() => _i7.EnvDev(get<_i16.IStorage>()),
       registerFor: {_dev});
@@ -179,49 +182,53 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i29.IProfileRepository>()));
   gh.lazySingleton<_i50.ICateringRepository>(() =>
       _i51.CateringRepository(get<_i25.INetworkService>(), get<_i12.Logger>()));
-  gh.lazySingleton<_i52.ICreditRepository>(() =>
-      _i53.CreditRepository(get<_i25.INetworkService>(), get<_i12.Logger>()));
-  gh.lazySingleton<_i54.IHomeRepository>(() => _i55.HomeRepository(
+  gh.lazySingleton<_i52.IComplainRepository>(() =>
+      _i53.ComplainRepository(get<_i25.INetworkService>(), get<_i12.Logger>()));
+  gh.lazySingleton<_i54.ICreditRepository>(() =>
+      _i55.CreditRepository(get<_i25.INetworkService>(), get<_i12.Logger>()));
+  gh.lazySingleton<_i56.IHomeRepository>(() => _i57.HomeRepository(
       get<_i12.Logger>(),
       get<_i25.INetworkService>(),
       get<_i16.IStorage>(),
       get<_i10.ILocationService>(),
       get<_i7.Env>()));
-  gh.factory<_i56.LoginBloc>(() => _i56.LoginBloc(get<_i48.IAuthFacade>()));
-  gh.factory<_i57.OrderBloc>(() => _i57.OrderBloc(get<_i37.OrderRepository>(),
+  gh.factory<_i58.LoginBloc>(() => _i58.LoginBloc(get<_i48.IAuthFacade>()));
+  gh.factory<_i59.OrderBloc>(() => _i59.OrderBloc(get<_i37.OrderRepository>(),
       get<_i41.UserRepository>(), get<_i29.IProfileRepository>()));
-  gh.factory<_i58.OrderCartScreenViewController>(
-      () => _i58.OrderCartScreenViewController(get<_i37.OrderRepository>()));
-  gh.lazySingleton<_i59.OutletBloc>(
-      () => _i59.OutletBloc(get<_i54.IHomeRepository>()));
-  gh.factory<_i60.ProfileBloc>(() => _i60.ProfileBloc(get<_i48.IAuthFacade>()));
-  gh.factory<_i61.RecentHistoryBloc>(
-      () => _i61.RecentHistoryBloc(get<_i52.ICreditRepository>()));
-  gh.factory<_i62.RegisterBloc>(
-      () => _i62.RegisterBloc(get<_i48.IAuthFacade>()));
-  gh.factory<_i63.TopUpCreditBloc>(() => _i63.TopUpCreditBloc(
-      get<_i52.ICreditRepository>(), get<_i16.IStorage>()));
-  gh.factory<_i64.TransactionBloc>(
-      () => _i64.TransactionBloc(get<_i39.TransactionRepository>()));
-  gh.factory<_i65.ValidateOtpBloc>(
-      () => _i65.ValidateOtpBloc(get<_i48.IAuthFacade>(), get<_i12.Logger>()));
-  gh.factory<_i66.WaitingPaymentBloc>(
-      () => _i66.WaitingPaymentBloc(get<_i52.ICreditRepository>()));
-  gh.factory<_i67.AuthBloc>(() => _i67.AuthBloc(
+  gh.factory<_i60.OrderCartScreenViewController>(
+      () => _i60.OrderCartScreenViewController(get<_i37.OrderRepository>()));
+  gh.lazySingleton<_i61.OutletBloc>(
+      () => _i61.OutletBloc(get<_i56.IHomeRepository>()));
+  gh.factory<_i62.ProfileBloc>(() => _i62.ProfileBloc(get<_i48.IAuthFacade>()));
+  gh.factory<_i63.RecentHistoryBloc>(
+      () => _i63.RecentHistoryBloc(get<_i54.ICreditRepository>()));
+  gh.factory<_i64.RegisterBloc>(
+      () => _i64.RegisterBloc(get<_i48.IAuthFacade>()));
+  gh.factory<_i65.TopUpCreditBloc>(() => _i65.TopUpCreditBloc(
+      get<_i54.ICreditRepository>(), get<_i16.IStorage>()));
+  gh.factory<_i66.TransactionBloc>(
+      () => _i66.TransactionBloc(get<_i39.TransactionRepository>()));
+  gh.factory<_i67.ValidateOtpBloc>(
+      () => _i67.ValidateOtpBloc(get<_i48.IAuthFacade>(), get<_i12.Logger>()));
+  gh.factory<_i68.WaitingPaymentBloc>(
+      () => _i68.WaitingPaymentBloc(get<_i54.ICreditRepository>()));
+  gh.factory<_i69.AuthBloc>(() => _i69.AuthBloc(
       get<_i48.IAuthFacade>(), get<_i27.INotificationRepository>()));
-  gh.lazySingleton<_i68.BottomTabCubit>(() => _i68.BottomTabCubit(
-      get<_i37.OrderRepository>(), get<_i52.ICreditRepository>()));
-  gh.factory<_i69.CateringBloc>(() => _i69.CateringBloc(
+  gh.lazySingleton<_i70.BottomTabCubit>(() => _i70.BottomTabCubit(
+      get<_i37.OrderRepository>(), get<_i54.ICreditRepository>()));
+  gh.factory<_i71.CateringBloc>(() => _i71.CateringBloc(
       get<_i50.ICateringRepository>(), get<_i41.UserRepository>()));
-  gh.factory<_i70.CreditBloc>(
-      () => _i70.CreditBloc(get<_i52.ICreditRepository>()));
-  gh.lazySingleton<_i71.HomeBloc>(
-      () => _i71.HomeBloc(get<_i54.IHomeRepository>()));
-  gh.factory<_i72.HomeUserBloc>(() => _i72.HomeUserBloc(
+  gh.factory<_i72.ComplainBloc>(
+      () => _i72.ComplainBloc(get<_i52.IComplainRepository>()));
+  gh.factory<_i73.CreditBloc>(
+      () => _i73.CreditBloc(get<_i54.ICreditRepository>()));
+  gh.lazySingleton<_i74.HomeBloc>(
+      () => _i74.HomeBloc(get<_i56.IHomeRepository>()));
+  gh.factory<_i75.HomeUserBloc>(() => _i75.HomeUserBloc(
       get<_i41.UserRepository>(),
       get<_i37.OrderRepository>(),
-      get<_i52.ICreditRepository>()));
+      get<_i54.ICreditRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i73.RegisterModule {}
+class _$RegisterModule extends _i76.RegisterModule {}
