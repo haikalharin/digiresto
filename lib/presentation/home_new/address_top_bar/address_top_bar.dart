@@ -55,7 +55,7 @@ class AddressTopBar extends StatelessWidget {
                             children: [
                               Text(I10n.current.home_address,
                                   style: AppFont.textBlack13Regular),
-                              new Icon(Icons.keyboard_arrow_down,
+                               Icon(Icons.keyboard_arrow_down,
                                   color: AppColors.red, size: 28.0),
                             ],
                           ),

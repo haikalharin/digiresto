@@ -31,7 +31,7 @@ class Endpoints {
   static const String urlGetCancelReasons = "/user/cancel/reasons?lang=";
   static const String urlPostPushToken = '/user/notification/register';
 
-  static const String urlMenuCategory = '/menu/category';
+  static const String urlMenuCategory = '/menu/category?version=1.5.8';
 
   static String get devUrl {
     Box box = Hive.box('settings');
@@ -55,6 +55,7 @@ class Endpoints {
   static const Map<String, dynamic> urlTopupPending = {"r": "topuppending"};
   static const Map<String, dynamic> urlCancelBilling = {"r": "cancelbilling"};
   //home
+  static const String urlNewNearbyOutlet = '/outlet/highlights';
   static const Map<String, dynamic> urlGetPromo = {"r": "getpromo"};
   static const Map<String, dynamic> urlGetHotPromo = {"r": "gethotpromo"};
   static const Map<String, dynamic> urlGetStaticBanner = {

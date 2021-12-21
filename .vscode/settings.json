@@ -1,0 +1,8 @@
+{
+    "dart.allowAnalytics": false,
+    "editor.defaultFormatter": "Dart-Code.flutter",
+    "editor.formatOnSave": true,
+    "[dart]": {
+        "editor.defaultFormatter": "Dart-Code.dart-code"
+    }
+}

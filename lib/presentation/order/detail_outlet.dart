@@ -11,6 +11,7 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
@@ -23,7 +24,7 @@ import 'package:digiresto/presentation/widgets/list/list_food_category_widget.da
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'detail_product_dialog.dart';
@@ -228,6 +229,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               }
               controller.detailOutlet.value = r.response;
               controller.getPromoProduct();
+              controller.getListVoucher();
               controller.checkAllLoaded();
             },
             getOutletListProductSuccess: (r) {
@@ -588,6 +590,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
 
   final searchController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
+
   void searchActionText(String keyword) {
     controller.page.value = 1;
     controller.search.value = keyword;
@@ -609,6 +612,10 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                     orderType: orderType,
                     detailOutlet: controller.detailOutlet.value!,
                     note: '',
+                    dayDate: controller.outlet.value!.dayDate,
+                    mealsTitle: controller.outlet.value!.mealsTitle,
+                    deliveryTime: controller.outlet.value!.deliveryTime,
+                    isCatering: controller.outlet.value!.isCatering,
                   );
                 },
                 fullscreenDialog: true))
@@ -625,15 +632,23 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   void getListProduct() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletListProduct(
+            GetOutletProductParam(
+              body: GetOutletProductBodyParam(),
+              queryString: GetOutletProductQueryParam(
                 categoryId: controller.categoryId.value,
                 filter: controller.search.value,
                 limit: 15,
                 outletId: controller.outlet.value!.outletId,
-                page: controller.page.value))));
+                page: controller.page.value,
+                preOrderDate: controller.outlet.value!.preOrderDate,
+                mealsTypes: controller.outlet.value!.mealsTypes,
+                isCatering: controller.outlet.value!.isCatering,
+              ),
+            ),
+          ),
+        );
   }
 
   Widget _search() {
@@ -702,23 +717,26 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   Widget _product(List<OutletListProductDataResponse> data) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.only(
-            left: 10,
-          ),
-          alignment: Alignment.topLeft,
-          child: Text(
-            controller.categoryName.value == ""
-                ? I10n.current.preorder_filter_all
-                : controller.categoryName.value,
-            style: TextStyle(
-              fontFamily: "roboto",
-              color: Colors.black,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Container()
+            : Container(
+                padding: EdgeInsets.only(
+                  left: 10,
+                ),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  controller.categoryName.value == ""
+                      ? I10n.current.preorder_filter_all
+                      : controller.categoryName.value,
+                  style: TextStyle(
+                    fontFamily: "roboto",
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         ListProductOutletWidget(
           orderType: controller.salesType.value!,
           data: data,
@@ -846,11 +864,85 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        controller.detailOutlet.value != null ? _search() : Container(),
-        controller.listCategory.value != null
-            ? _category(
-                controller.listCategory.value!, controller.categoryId.value)
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Padding(
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.iconsIcCalendar,
+                          height: 12,
+                          width: 12,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          controller.outlet.value!.dayDate ?? "",
+                          style: AppFont.textBlack12Medium.copyWith(
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.iconsFoodIcon,
+                          height: 12,
+                          width: 12,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          controller.outlet.value!.mealsTitle ?? "",
+                          style: AppFont.textBlack12Medium.copyWith(
+                            fontSize: 11,
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Container(
+                          height: 4,
+                          width: 4,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.greyColor2,
+                          ),
+                        ),
+                        SizedBox(width: 12),
+                        Text(
+                          controller.outlet.value!.deliveryTime ?? "",
+                          style: AppFont.textBlack12Regular.copyWith(
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
             : Container(),
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Container()
+            : controller.detailOutlet.value != null
+                ? _search()
+                : Container(),
+        controller.outlet.value!.isCatering == true &&
+                controller.outlet.value!.isCatering != null
+            ? Container()
+            : controller.listCategory.value != null
+                ? _category(
+                    controller.listCategory.value!, controller.categoryId.value)
+                : Container(),
+        _promoAndVoucher(),
         Expanded(
           child: Container(
             //height: MediaQuery.of(context).size.height - 30,
@@ -861,6 +953,9 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                   controller.listPromo.value != null
                       ? _promo(controller.listPromo.value!)
                       : SizedBox(),
+                  // controller.listPromo.value != null
+                  //     ? _promo(controller.listPromo.value!)
+                  //     : Container(),
                   controller.listProduct.value != null &&
                           controller.salesType.value != null
                       ? _product(controller.listProduct.value!)
@@ -872,6 +967,85 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
         ),
         _cartTotal()
       ],
+    );
+  }
+
+  Widget _promoAndVoucher() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: InkWell(
+        onTap: () {
+          if ((controller.voucherCode.value?.isUseVoucher ?? false) == false) {
+            Get.toNamed(Routers.promoVoucherPage,
+                    arguments: controller.outlet.value!)
+                ?.then(
+              (value) => controller.voucherCode.value = value,
+            );
+          } else {
+            Get.toNamed(Routers.voucherDetailPage,
+                    arguments: controller.voucherCode.value)
+                ?.then((value) => controller.voucherCode.value = value);
+          }
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.greyColor),
+            color: AppColors.greyColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: SvgPicture.asset(
+                    AppAssets.imagePromoVoucher,
+                    height: 18,
+                    width: 18,
+                  ),
+                ),
+                Expanded(
+                  child: Obx(() {
+                    late String text;
+                    final bool vouchersEmpty =
+                        controller.listVoucher.value?.isEmpty ?? true;
+                    final bool promoEmpty =
+                        controller.listPromo.value?.isEmpty ?? true;
+
+                    if (controller.voucherCode.value?.isUseVoucher == true &&
+                        controller.voucherCode.value?.voucher.code.isNotEmpty ==
+                            true) {
+                      text = controller.voucherCode.value?.voucher.code != null
+                          ? '${I10n.current.voucher_discount} ${controller.voucherCode.value?.voucher.code}'
+                          : '';
+                    } else if (vouchersEmpty || promoEmpty) {
+                      if (promoEmpty && vouchersEmpty) {
+                        text = I10n.current.promo_voucher_unavailable;
+                      } else if (vouchersEmpty) {
+                        text = I10n.current.promo_available;
+                      } else if (promoEmpty) {
+                        text = I10n.current.voucher_available;
+                      }
+                    } else {
+                      text = I10n.current.promo_voucher_available;
+                    }
+
+                    return Text(
+                      text,
+                      style: AppFont.textBlack14Bold,
+                    );
+                  }),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 14,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

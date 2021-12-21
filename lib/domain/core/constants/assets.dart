@@ -47,6 +47,9 @@ class AppAssets {
   static const String iconPayment = "assets/icons/ic_payment.png";
   static const String iconReturn = "assets/icons/ic_return.png";
   static const String iconTransfeer = "assets/icons/ic_transfer.png";
+  static const String iconCalendar = "assets/icons/ic_calendar.png";
+  static const String iconEdit = "assets/icons/ic_edit_red.png";
+  static const String iconFood = "assets/icons/ic_food.png";
   static const String iconVirtualAccount =
       "assets/icons/ic_virtual_account.png";
   static const String iconCashback = "assets/icons/ic_cashback.png";
@@ -71,11 +74,18 @@ class AppAssets {
   static const String iconWeb = "assets/icons/ic_web.png";
   static const String iconInstagram = "assets/icons/ic_instagram.png";
   static const String iconSendMessage = "assets/icons/ic_send_message.png";
+  static const String iconVouchers = "assets/ic_voucher.svg";
+  static const String iconTimeLimited = "assets/ic_time_limited.svg";
+  static const String iconInformation = "assets/icons/ic_information.svg";
 
   static const String imageTransactionReceipt =
       "assets/images/transaction_receipt.png";
+  static const String imageBackgroundPromo = "assets/promo_background.png";
+  static const String imagePromoVoucher = "assets/ic_promo_voucher.svg";
 
-  static const String emptyOutlet =
-      "assets/images/empty_outlet.png";
-  static const String emptyVoucher  = 'assets/images/empty_voucher.svg';
+  static const String emptyOutlet = "assets/images/empty_outlet.png";
+  static const String emptyVoucher = 'assets/images/empty_voucher.svg';
+
+  static const String emptyStateVoucher = 'assets/empty_state_voucher.svg';
+  static const String emptyStatePromo = 'assets/empty_state_voucher.svg';
 }

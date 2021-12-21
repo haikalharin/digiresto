@@ -1,6 +1,7 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/auth/auth_bloc.dart';
+import 'package:digiresto/application/catering/catering_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
@@ -67,6 +68,7 @@ class InitiateProvider extends StatelessWidget {
       BlocProvider<OutletBloc>(
         create: (context) => getIt<OutletBloc>(),
       ),
+      BlocProvider<CateringBloc>(create: (context) => getIt<CateringBloc>()),
     ], child: getIt<AppWidget>());
   }
 }

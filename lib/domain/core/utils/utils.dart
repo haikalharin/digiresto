@@ -51,4 +51,32 @@ class Utils {
         DateFormat('EEEE,dd MMMM yyyy, HH:mm', "ID").format(now);
     return formattedDate;
   }
+
+  static String validUntil(DateTime date,
+      {String? time, bool? useFullFormat = false}) {
+    DateTime now = date;
+    if (time != null) {
+      DateTime newTime = DateFormat('HH:mm:ss').parse(time);
+      now = DateTime(
+          date.year, date.month, date.day, newTime.hour, newTime.minute);
+    }
+
+    String formattedDate =
+        DateFormat('dd ${useFullFormat! ? 'MMMM' : 'MMM'} yyyy, HH:mm', "ID")
+            .format(now);
+    return formattedDate;
+  }
+
+  static String createBulletPoint(String text) {
+    String bulletPoint = ' \u2022 ';
+    bulletPoint += text.replaceAll('\n', '\n \u2022 ');
+    return bulletPoint;
+  }
+
+  static String formatIndonesiaWithoutHour(String date) {
+    DateTime now = DateTime.parse(date);
+    String formattedDate =
+        DateFormat('EEEE,dd MMMM yyyy', "ID").format(now);
+    return formattedDate;
+  }
 }

@@ -25,9 +25,11 @@ import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
-import 'package:digiresto/presentation/order/widgets/list_product_cart_widget.dart';
+import 'package:digiresto/presentation/order/widgets/catering_list_product_cart_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
+import 'package:digiresto/presentation/widgets/dialog_additional_detail_address.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -2057,6 +2059,60 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         ],
         child: BlocBuilder<OrderBloc, OrderState>(
           builder: (context, state) {
+            // TO DO: using below method for normally outlet
+            // return CollapsedScafold(
+            //   showBackButton: !(hideBackButton ?? false),
+            //   title: i10n.cart_title,
+            //   body: Obx(
+            //     () => StackWithProgress(
+            //       isLoading: controller.isLoading.value ||
+            //           state.maybeMap(
+            //             orElse: () => false,
+            //             loadInProgress: (_) => true,
+            //           ),
+            //       children: [
+            //         ListView(
+            //           children: [
+            //             controller.detailOutlet.value != null
+            //                 ? titleDetailOutlet()
+            //                 : Container(),
+            //             controller.salesType.value != null &&
+            //                     controller.detailOutlet.value != null
+            //                 ? _selectSalesTypeMethod()
+            //                 : Container(),
+            //             new _AddressOrderCart(),
+            //             controller.detailOutlet.value != null &&
+            //                     controller.listProduct.value != null
+            //                 ? _ProductOrderCart()
+            //                 : Container(),
+            //             _notes(),
+            //             controller.detailOutlet.value != null
+            //                 ? _useVoucherCode()
+            //                 : Container(),
+            //             controller.detailOutlet.value != null
+            //                 ? _paymentMethod()
+            //                 : Container(),
+            //             controller.detailOutlet.value != null
+            //                 ? _voucherMethod()
+            //                 : Container(),
+            //             controller.detailOutlet.value != null &&
+            //                     controller.salesType.value == "onlineDriver"
+            //                 ? _deliveryMethod()
+            //                 : Container(),
+            //             controller.cartSession.value != null
+            //                 ? _detailPayment()
+            //                 : Container()
+            //             // Observer(builder: (context) => _paymentMethod()),
+            //             // if (_orderStore.orderSalesTypes == 'onlineDriver')
+            //             //   Observer(builder: (context) => _deliveryMethod()),
+            //             // Observer(builder: (context) => _detailPayment()),
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // );
+
             return CollapsedScafold(
               showBackButton: !(hideBackButton ?? false),
               title: i10n.cart_title,
@@ -2070,28 +2126,31 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                   children: [
                     ListView(
                       children: [
-                        controller.detailOutlet.value != null
-                            ? titleDetailOutlet()
-                            : Container(),
-                        controller.salesType.value != null &&
-                                controller.detailOutlet.value != null
-                            ? _selectSalesTypeMethod()
-                            : Container(),
                         new _AddressOrderCart(),
+                        // controller.detailOutlet.value != null
+                        //     ? titleDetailOutlet()
+                        //     : Container(),
                         controller.detailOutlet.value != null &&
                                 controller.listProduct.value != null
                             ? _ProductOrderCart()
                             : Container(),
-                        _notes(),
+                        // _notes(),
+
                         controller.detailOutlet.value != null
                             ? _useVoucherCode()
                             : Container(),
+
                         controller.detailOutlet.value != null
                             ? _paymentMethod()
                             : Container(),
                         controller.detailOutlet.value != null
                             ? _voucherMethod()
                             : Container(),
+                        // controller.salesType.value != null &&
+                        //         controller.detailOutlet.value != null
+                        //     ? _selectSalesTypeMethod()
+                        //     : Container(),
+
                         controller.detailOutlet.value != null &&
                                 controller.salesType.value == "onlineDriver"
                             ? _deliveryMethod()
@@ -2278,16 +2337,47 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
-          child: Text(I10n.current.cart_order_title,
-              style: AppFont.textBlack14Regular),
+        //TO DO : order normal from outlet
+        // Container(
+        //   padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
+        //   child: Text(I10n.current.cart_order_title,
+        //       style: AppFont.textBlack14Regular),
+        // ),
+        Padding(
+          padding: EdgeInsets.only(left: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  ImageIcon(
+                    AssetImage(AppAssets.iconCalendar),
+                    color: AppColors.redD42C35,
+                    size: 16,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Thursday, 09 December 2021',
+                    style: AppFont.textBlack10SemiBold,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: Text(
+                  "Delivery Time 09.00 - 13.00",
+                  style: AppFont.textGreyField10Regular,
+                ),
+              )
+            ],
+          ),
         ),
+
         SizedBox(height: 15),
         Container(
           padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
           width: double.infinity,
-          child: ListProductCartWidget(
+          child: CateringListProductCartWidget(
               addOrRemove: _plusProduct,
               orderType:
                   controller.cartSession.value!.transactionData!.salesType,
@@ -2316,6 +2406,23 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
 }
 
 class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
+  _showMessageAlertDialog(BuildContext _context, address) async {
+    UpdateDetailLocation? receivedData = await showDialog(
+        barrierDismissible: false,
+        context: Get.context!,
+        builder: (BuildContext context) =>
+            DialogAdditionalAddress(_context, address));
+    if (receivedData == null) {
+      return;
+    } else {
+      controller.refreshlocation.value = receivedData.locationDetail.toString();
+    }
+
+    print("UpdateDetailLocation : " +
+        receivedData.locationDetail.toString() +
+        receivedData.notes.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => Theme(
@@ -2338,7 +2445,8 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(I10n.current.cart_address,
+                          /// TODO : Add I10n
+                          Text('I10n.current.delivery_location',
                               style: AppFont.textBlack14Regular),
                           Row(
                             children: [
@@ -2363,6 +2471,7 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                               });
                             },
                             style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.only(left: 30, right: 30),
                               primary: Colors.white,
                               shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(5.0),
@@ -2379,27 +2488,29 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                                 )))
                       else
                         ElevatedButton(
-                            onPressed: () {
-                              Get.toNamed(Routers.homeAllAddress)!
-                                  .then((value) {
-                                controller.getActiveAddress();
-                              });
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                side: BorderSide(
-                                  width: 1,
-                                  color: AppColors.red,
-                                ),
+                          onPressed: () {
+                            Get.toNamed(Routers.homeAllAddress)!.then((value) {
+                              controller.getActiveAddress();
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              side: BorderSide(
+                                width: 1,
+                                color: AppColors.red,
                               ),
                             ),
-                            child: Text(I10n.current.cart_choose,
-                                style: TextStyle(
-                                  color: AppColors.red,
-                                  fontWeight: FontWeight.bold,
-                                )))
+                          ),
+                          child: Text(
+                            I10n.current.cart_choose,
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -2408,16 +2519,28 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           padding: EdgeInsets.all(4),
                           width: Get.width * 0.85,
                           child: Obx(() => Text(
-                                controller.activeAddress.value?.address ?? "",
+                                '${controller.refreshlocation.value} ${controller.activeAddress.value?.address ?? ""}',
                                 style: AppFont.textBlack12Regular
                                     .copyWith(color: AppColors.grey747474),
                               )),
-                        )
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _showMessageAlertDialog(context,
+                                controller.activeAddress.value?.address!);
+                          },
+                          child: ImageIcon(
+                            AssetImage(AppAssets.iconEdit),
+                            color: AppColors.redD42C35,
+                            size: 16,
+                          ),
+                        ),
                       ],
                     ),
                     decoration: BoxDecoration(

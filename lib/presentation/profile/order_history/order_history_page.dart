@@ -35,6 +35,7 @@ class OrderHistoryWidget extends StatelessWidget {
         0: OrderHistoryEvent.orderPendingOpen(),
         1: OrderHistoryEvent.orderOnProcessOpen(),
         2: OrderHistoryEvent.orderCompletedOpen(),
+        3: OrderHistoryEvent.orderUpcomingOpen(),
       };
       _bloc.add(map[index]!);
     };
@@ -46,6 +47,7 @@ class OrderHistoryWidget extends StatelessWidget {
       showBackButton: true,
       title: i10n.profile_history,
       tabbar: TabBar(
+        isScrollable: true,
         controller: _controller.controller,
         labelColor: AppColors.mainColor,
         unselectedLabelColor: AppColors.greyColor,
@@ -57,7 +59,8 @@ class OrderHistoryWidget extends StatelessWidget {
       body: BlocConsumer<OrderHistoryBloc, OrderHistoryState>(
         bloc: _bloc
           ..add(OrderHistoryEvent.orderPendingOpen())
-          ..add(OrderHistoryEvent.getOrderOnProcessCount()),
+          ..add(OrderHistoryEvent.getOrderOnProcessCount())
+          ..add(OrderHistoryEvent.getorderUpcomingCount()),
         listener: (context, state) {
           state.orderOnProccessCountFailureOrSuccess.fold(
             () {},
@@ -74,9 +77,19 @@ class OrderHistoryWidget extends StatelessWidget {
               _controller.waitingPaymentCount.value = count;
             },
           );
+          state.orderUpomingCountOption.fold(
+            () {},
+            (failureOrSuccess) => failureOrSuccess.fold(
+              (failure) {},
+              (count) {
+                _controller.orderUpcomingCount.value = count;
+              },
+            ),
+          );
         },
         builder: (context, state) => TabBarView(
           controller: _controller.controller,
+          physics: PageScrollPhysics(),
           children: [
             //waiting payment
             RefreshIndicator(
@@ -175,6 +188,42 @@ class OrderHistoryWidget extends StatelessWidget {
                           return OrderCompletedWidget(orderCompleted[index],
                               refresh: () => _bloc
                                   .add(OrderHistoryEvent.orderCompletedOpen()));
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            RefreshIndicator(
+              onRefresh: () async {
+                _bloc.add(OrderHistoryEvent.orderUpcomingOpen());
+              },
+              child: Stack(
+                children: <Widget>[
+                  ListView(),
+                  state.orderupComingFailureOrSuccess.fold(
+                    () {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                    (data) => data.fold(
+                      (failure) => Center(
+                        child: Text(
+                          failure.maybeMap(
+                            orElse: () => 'Error',
+                            serverError: (_) => 'Server Error',
+                            noData: (_) => i10n.history_empty_title,
+                          ),
+                        ),
+                      ),
+                      (orderUpcoming) => ListView.builder(
+                        itemCount: orderUpcoming.length,
+                        itemBuilder: (context, index) {
+                          return OrderOnProcessWidget(orderUpcoming[index],
+                              refresh: () => _bloc
+                                  .add(OrderHistoryEvent.orderUpcomingOpen()));
                         },
                       ),
                     ),

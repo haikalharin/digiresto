@@ -16,6 +16,7 @@ class OrderHistoryPageController extends GetxController
 
   RxInt waitingPaymentCount = 0.obs;
   RxInt orderProcessedCount = 0.obs;
+  RxInt orderUpcomingCount = 0.obs;
 
   setOrderProcessCount(int count) {
     orderProcessedCount.value = count;
@@ -72,6 +73,28 @@ class OrderHistoryPageController extends GetxController
       iconMargin: EdgeInsets.all(8),
       child: SizedBox(
         height: 5,
+      ),
+    ),
+    Obx(
+      () => Tab(
+        icon: Badge(
+          showBadge: orderUpcomingCount.value > 0,
+          padding: EdgeInsets.all(6),
+          position: BadgePosition.topEnd(end: -20),
+          badgeContent: Text(
+            '$orderUpcomingCount',
+            style: Styles.badgeContentStyle,
+          ),
+          child: Text(
+            /// TODO : add I10n
+            'i10n.upcoming_order',
+            textAlign: TextAlign.center,
+          ),
+        ),
+        iconMargin: EdgeInsets.all(8),
+        child: SizedBox(
+          height: 5,
+        ),
       ),
     ),
   ];

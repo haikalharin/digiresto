@@ -73,6 +73,7 @@
     "home_search_food_hint":"Find the favorite food you want.",
     "home_banner":"Home Banner",
     "home_banner_hint":"Find interesting and latest info.",
+    "home_banner_more":"More",
     "home_nearby_outlet":"Nearby",
     "home_nearby_outlet_hint":"Find the nearest restaurant from your location.",
     "home_digidiskon":"DigiDiskon",
@@ -609,5 +610,27 @@
     "time_ago_month":"a month",
     "time_ago_months":"%d month",
     "time_ago_year":"a year",
-    "time_ago_years":"%d year"
+    "time_ago_years":"%d year",
+
+    "promo_voucher" : "",
+    "my_voucher" : "My Voucher",
+    "promo_available" : "Promo Available",
+    "promo_code" : "Promo Code",
+    "promo_for_you" : "Promo For You",
+    "promo_info" : "The most suitable discount will be automatically selected for your order at checkout",
+    "promo_merchant" : "Promo Merchant",
+    "promo_not_available" : "Promo is empty",
+    "promo_not_available_info" : "there are no promos that can be claimed at this time. Come and check again later, OK!",
+    "promo_voucher_available" : "Promo And Voucher Available",
+    "promo_voucher_unavailable" : "Promo And Voucher not available",
+    "voucher_available" : "Voucher Available",
+    "voucher_discount" : "Voucher Discount",
+    "voucher_not_available" : "Voucher is empty",
+    "voucher_not_available_info" : "there are no vouchers that can be claimed at this time. Come and check again later, OK!",
+    "voucher_period" : "Period",
+    "voucher_valid_until" : "Valid until",
+    "use_voucher" : "Use",
+    "use_voucher_later" : "Use Later",
+
+    "select_menu_type" : "Select Menu Type"
 }

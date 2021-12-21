@@ -1,4 +1,4 @@
-{   
+{
     "lang": "id",
 
     "onboarding_skip":"Lanjutkan",
@@ -69,6 +69,7 @@
     "home_search_food_hint":"Temukan makanan favorit yang Anda inginkan.",
     "home_banner":"Home Banner",
     "home_banner_hint":"Temukan info menarik dan terbaru.",
+    "home_banner_more":"Selengkapnya",
     "home_nearby_outlet":"Terdekat",
     "home_nearby_outlet_hint":"Temukan resto terdekat dari lokasi Anda.",
     "home_digidiskon":"DigiDiskon",
@@ -605,5 +606,27 @@
     "time_ago_month":"1 bulan",
     "time_ago_months":"%d bulan",
     "time_ago_year":"1 tahun",
-    "time_ago_years":"%d tahun"
+    "time_ago_years":"%d tahun",
+    "select_menu_type" : "Pilih Jenis Menu",
+     "promo_voucher" : "",
+     "my_voucher" : "Voucher Saya",
+     "promo_available" : "Promo Tersedia",
+     "promo_code" : "Kode Promo",
+     "promo_for_you" : "Promo Untuk Kamu",
+     "promo_info" : "Discount paling sesuai akan dipilih secara otomatis untuk pesanan Anda padaa saat checkout",
+     "promo_merchant"  : "Promo Merchant",
+     "promo_not_available" : "Promo tidak tersedia",
+     "promo_not_available_info" : "belum ada promo yang bisa diklaim saat ini. Datang dan cek lagi nanti, ya!",
+     "promo_voucher_available" : "Promo And Voucher Tersedia",
+     "promo_voucher_unavailable" : "Promo And Voucher tidak tersedia",
+     "voucher_available" : "Voucher Tersedia",
+     "voucher_discount" : "Voucher Diskon",
+     "voucher_not_available" : "Voucher tidak tersedia",
+     "voucher_not_available_info" : "belum ada voucher yang bisa diklaim saat ini. Datang dan cek lagi nanti, ya!",
+     "voucher_period" : "Periode",
+     "voucher_valid_until" : "Berlaku sampai",
+     "use_voucher" : "Gunakan",
+     "use_voucher_later" : "Gunakan Nanti",
+
+    "select_menu_type" : "Pilih Tipe Menu"
 }

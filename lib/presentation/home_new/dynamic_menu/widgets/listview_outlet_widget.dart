@@ -5,6 +5,7 @@ import 'package:digiresto/domain/order/home_see_all_outlet_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ListviewOutletWidget extends StatefulWidget {
@@ -14,6 +15,7 @@ class ListviewOutletWidget extends StatefulWidget {
   final void Function(OutletCategoryDataResponse data) runAction;
   final void Function() loadMoreAction;
   final void Function() onRefresh;
+
   const ListviewOutletWidget({
     Key? key,
     required this.data,
@@ -120,6 +122,8 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle distanceTextStyle = AppFont.textBlack10Regular;
+
     return Expanded(
       child: RefreshIndicator(
           onRefresh: () async => widget.onRefresh(),
@@ -158,7 +162,10 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                       padding: EdgeInsets.only(right: 5),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(8.0)),
+                                          Radius.circular(
+                                            8.0,
+                                          ),
+                                        ),
                                         child: Image(
                                           errorBuilder:
                                               (context, obj, stacktrace) {
@@ -227,15 +234,49 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                                     // ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5),
-                                      child: Text(
-                                          widget.data[index].distance.distance,
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  widget.data[index].distance
+                                                      .distance,
+                                                  style: distanceTextStyle,
+                                                  textAlign: TextAlign.left),
+                                              Text(' | ',
+                                                  style: distanceTextStyle),
+                                              Row(
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'assets/star.svg',
+                                                    width: 10,
+                                                    height: 10,
+                                                    color: (widget.data[index]
+                                                                    .rating ??
+                                                                0) >
+                                                            0
+                                                        ? null
+                                                        : AppColors.greyColor,
+                                                  ),
+                                                  Text(
+                                                      (widget.data[index]
+                                                                  .rating ??
+                                                              ' -')
+                                                          .toString(),
+                                                      style: distanceTextStyle),
+                                                ],
+                                              )
+                                            ],
                                           ),
-                                          textAlign: TextAlign.left),
+                                          Text(
+                                              widget.data[index]
+                                                      .priceRangeDesc ??
+                                                  '',
+                                              style: distanceTextStyle)
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       width: MediaQuery.of(Get.context!)
