@@ -42,6 +42,7 @@ class OrderCartScreenViewController extends GetxController {
   OrderCartScreenViewController(this._orderRepository);
   var isLoading = true.obs;
   var useSchedule = Rxn<bool>();
+
   var reloadCounter = 0.obs;
   var selectedDate = Rxn<DateTime>();
   var notesSubmited = true.obs;
@@ -61,6 +62,10 @@ class OrderCartScreenViewController extends GetxController {
   var checkoutResponse = Rxn<CheckoutDataResponse>();
   var listOrderPending = RxList<OrderPending>();
   var cartFailMessage = Rxn<StatusMessageDisplayResponse>();
+  var mealsTypes = "".obs;
+  var preOrderDate = "".obs;
+  var isCatering = false.obs;
+  var refreshlocation = ''.obs;
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
@@ -191,6 +196,7 @@ class OrderCartScreenViewController extends GetxController {
 
   final ScrollController scrollController = new ScrollController();
   final notesController = TextEditingController();
+  final locationDetailCOntroller = TextEditingController();
   final infoControllerDineIn = TextEditingController();
   final infoControllerDriveThru = TextEditingController();
   final voucherCodeController = TextEditingController();
@@ -397,16 +403,24 @@ class OrderCartScreenViewController extends GetxController {
   }
 
   void getListProduct() async {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getOutletListProduct(
-        GetOutletProductParam(
-            body: GetOutletProductBodyParam(),
-            queryString: GetOutletProductQueryParam(
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletListProduct(
+            GetOutletProductParam(
+              body: GetOutletProductBodyParam(),
+              queryString: GetOutletProductQueryParam(
                 categoryId: "",
                 filter: "",
                 limit: 15,
                 outletId:
                     cartSession.value!.transactionData!.outletId.toString(),
-                page: 1))));
+                page: 1,
+                isCatering: isCatering.value,
+                mealsTypes: mealsTypes.value,
+                preOrderDate: preOrderDate.value,
+              ),
+            ),
+          ),
+        );
     update();
   }
 

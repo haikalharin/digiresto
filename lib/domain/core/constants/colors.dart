@@ -24,6 +24,9 @@ class AppColors {
   static final Color redD12B34 = Color(0xFFD12B34);
   static final Color redD42C35 = Color(0xFFD42C35);
   static final Color greyStroke = Color(0xFFEDEDED);
+  static final Color greyE7E7E7 = Color(0xFFE7E7E7);
+  static final Color greyCACACA = Color(0xFFCACACA);
+  static final Color greyC2C2C2 = Color(0xFFC2C2C2);
   static final Color greyDivider = Color(0xFFEAEAEA);
   static final Color greyFill = Color(0xFFFAFAFA);
   static final Color greyInput = Color(0xFFF3F3F3);
@@ -38,8 +41,10 @@ class AppColors {
   static final Color backgroundPink = Color(0xFFFFE2E4);
   static final Color borderPink = Color(0xFFFFA5AA);
   static final Color green54C30F = Color(0xFF54C30F);
+  static final Color green = Color.fromRGBO(80, 133, 56, 1);
 
   static final Color black = Color(0xFF000000);
+  static final Color black1F1F1F = Color(0xFF1F1F1F);
   static final Color white = Color(0xFFFFFFFF);
 
   static const Map<int, Color> grey = const <int, Color>{

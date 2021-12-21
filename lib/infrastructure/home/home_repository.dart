@@ -8,6 +8,7 @@ import 'package:digiresto/domain/core/interfaces/i_location_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
+import 'package:digiresto/domain/home/entity/new_nearby_outlet.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
@@ -35,6 +36,7 @@ class HomeRepository implements IHomeRepository {
     this._locationService,
     this._env,
   );
+
   @override
   Future<Either<HomeFailure, IList<MenuCategory>>> getMenuCategory() async {
     try {
@@ -290,6 +292,47 @@ class HomeRepository implements IHomeRepository {
       openAppSettings();
     } else {
       Permission.location.request();
+    }
+  }
+
+  @override
+  Future<Either<HomeFailure, IList<OutletsHighight>>>
+      getNewNearbyOutlet() async {
+    try {
+      final userAddress = await getUserAddress();
+      final address = userAddress.getOrElse(() => UserAddress());
+      final apiUrl = Endpoints.urlNewNearbyOutlet;
+      final Map<String, dynamic> queryParam = {
+        'location': '${address.latitude}, ${address.longitude}'
+      };
+
+      final apiResult = await _networkService.getHttp(
+          useAuth: true, path: apiUrl, queryParameter: queryParam);
+
+      final listUserData = List.from(
+          (apiResult as Map<String, dynamic>)['data']['outletsHighight']);
+
+      final listNewNearbyOutlet =
+          listUserData.map((e) => OutletsHighight.fromJson(e)).toIList();
+      return right(listNewNearbyOutlet);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(HomeFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(HomeFailure.sessionExpired());
+    } on ServerException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.serverError());
+    } on TimeOutException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.unableToUpdate());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(HomeFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(HomeFailure.unexpected());
     }
   }
 }

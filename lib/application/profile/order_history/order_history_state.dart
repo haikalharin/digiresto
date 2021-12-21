@@ -12,6 +12,9 @@ class OrderHistoryState with _$OrderHistoryState {
     required Option<Either<ProfileFailure, int>>
         orderOnProccessCountFailureOrSuccess,
     required Option<int> orderPendingCountOption,
+    required Option<Either<ProfileFailure, IList<OrderHistory>>>
+        orderupComingFailureOrSuccess,
+    required Option<Either<ProfileFailure, int>> orderUpomingCountOption,
   }) = _OrderHistoryState;
 
   factory OrderHistoryState.initial() => OrderHistoryState(
@@ -20,5 +23,7 @@ class OrderHistoryState with _$OrderHistoryState {
         orderCompletedFailureOrSuccess: none(),
         orderOnProccessCountFailureOrSuccess: none(),
         orderPendingCountOption: none(),
+        orderupComingFailureOrSuccess: none(),
+        orderUpomingCountOption: none(),
       );
 }

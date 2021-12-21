@@ -8,6 +8,8 @@ class HomeState with _$HomeState {
     required Option<Either<HomeFailure, IList<StaticBanner>>> optionBanners,
     required Option<Either<HomeFailure, IList<MenuCategory>>>
         optionMenuCategory,
+    required Option<Either<HomeFailure, IList<OutletsHighight>>>
+        optionOutletHighlight,
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(
@@ -15,5 +17,6 @@ class HomeState with _$HomeState {
         optionUserAddress: none(),
         optionBanners: none(),
         optionMenuCategory: none(),
+        optionOutletHighlight: none()
       );
 }

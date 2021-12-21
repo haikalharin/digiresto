@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
 import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,11 +17,23 @@ class MenuCategoryWidget extends StatelessWidget {
     return Ink(
       child: InkWell(
         onTap: () {
-          Get.to(
-            ListOutletPage(menuCategory),
-          )?.then((value) {
-            Get.context!.read<BottomTabCubit>().checkAllCounter();
-          });
+          if (menuCategory.id != "catering") {
+            Get.to(
+              ListOutletPage(menuCategory),
+            )?.then((value) {
+              Get.context!.read<BottomTabCubit>().checkAllCounter();
+            });
+          } else {
+            Get.to(
+              ListCateringPage(
+                menuCategory: menuCategory,
+              ),
+            )?.then(
+              (value) {
+                Get.context!.read<BottomTabCubit>().checkAllCounter();
+              },
+            );
+          }
           // // Get.to(ListOutletPage(menuCategory));
           // final label = menuCategory.getTitle;
           // // if (label == Strings.titleDigidiscount) {

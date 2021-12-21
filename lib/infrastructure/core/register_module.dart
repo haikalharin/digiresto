@@ -1,8 +1,10 @@
 import 'dart:io';
 
-import 'package:code_id_alice/alice.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+// import 'package:digiresto/infrastructure/core/alice_interceptor.dart';
+// import 'package:digiresto/infrastructure/core/auth_interceptor.dart';
+import 'package:code_id_alice/alice.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';

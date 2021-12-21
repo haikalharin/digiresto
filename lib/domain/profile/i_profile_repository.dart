@@ -20,8 +20,12 @@ abstract class IProfileRepository {
   Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderCompleted({
     required int page,
   });
+  Future<Either<ProfileFailure, IList<OrderHistory>>> getOrderUpcoming({
+    required int page,
+  });
   Future<Either<ProfileFailure, IList<OrderPending>>> getOrderPending();
   Future<Either<ProfileFailure, int>> getOrderOnProcessCount();
+  Future<Either<ProfileFailure, int>> getOrderUpcomingCount();
   Future<Either<ProfileFailure, OrderHistoryDetails>> getOrderHistoryDetails({
     required String receiptCode,
   });

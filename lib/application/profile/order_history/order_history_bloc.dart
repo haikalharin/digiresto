@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/profile/i_profile_repository.dart';
@@ -19,10 +21,13 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
       : super(OrderHistoryState.initial()) {
     on<OrderHistoryEvent>((event, emit) async {
       await event.map(
-        orderPendingOpen: (_event) async {
-          emit(state.copyWith(
-            orderPendingFailureOrSuccess: none(),
-          ));
+        orderPendingOpen: (_event) async* {
+          emit(
+            state.copyWith(
+              orderPendingFailureOrSuccess: none(),
+            ),
+          );
+
           final failureOrSuccess = await _profileRepository.getOrderPending();
           final count = failureOrSuccess.fold((l) => 0, (r) => r.length);
           emit(state.copyWith(
@@ -30,7 +35,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             orderPendingCountOption: optionOf(count),
           ));
         },
-        orderOnProcessOpen: (_event) async {
+        orderOnProcessOpen: (_event) async* {
           emit(state.copyWith(
             orderOnProccessFailureOrSuccess: none(),
           ));
@@ -44,7 +49,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
                 optionOf(countFailureOrSuccess),
           ));
         },
-        orderCompletedOpen: (_event) async {
+        orderCompletedOpen: (_event) async* {
           emit(state.copyWith(
             orderCompletedFailureOrSuccess: none(),
           ));
@@ -54,11 +59,30 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             orderCompletedFailureOrSuccess: optionOf(failureOrSuccess),
           ));
         },
-        getOrderOnProcessCount: (value) async {
+        getOrderOnProcessCount: (value) async* {
           final failureOrSuccess =
               await _profileRepository.getOrderOnProcessCount();
+
           emit(state.copyWith(
             orderOnProccessCountFailureOrSuccess: optionOf(failureOrSuccess),
+          ));
+        },
+        orderUpcomingOpen: (_event) async* {
+          emit(state.copyWith(
+            orderOnProccessFailureOrSuccess: none(),
+          ));
+          final failureOrSuccess =
+              await _profileRepository.getOrderUpcoming(page: 1);
+          emit(state.copyWith(
+            orderupComingFailureOrSuccess: optionOf(failureOrSuccess),
+          ));
+        },
+        getorderUpcomingCount: (value) async* {
+          final failureOrSuccess =
+              await _profileRepository.getOrderUpcomingCount();
+
+          emit(state.copyWith(
+            orderUpomingCountOption: optionOf(failureOrSuccess),
           ));
         },
       );

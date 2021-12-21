@@ -545,6 +545,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_banner": MessageLookupByLibrary.simpleMessage("Home Banner"),
         "home_banner_hint": MessageLookupByLibrary.simpleMessage(
             "Temukan info menarik dan terbaru."),
+        "home_banner_more":
+            MessageLookupByLibrary.simpleMessage("Selengkapnya"),
         "home_beranda": MessageLookupByLibrary.simpleMessage("Beranda"),
         "home_cart": MessageLookupByLibrary.simpleMessage("Keranjang"),
         "home_category_hint": m20,
@@ -650,6 +652,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout_alert": MessageLookupByLibrary.simpleMessage(
             "Apakah Anda yakin ingin keluar?"),
         "menu_next": MessageLookupByLibrary.simpleMessage("Lanjut"),
+        "my_voucher": MessageLookupByLibrary.simpleMessage("Voucher Saya"),
         "nama": MessageLookupByLibrary.simpleMessage("Nama"),
         "ninety_nine": MessageLookupByLibrary.simpleMessage("Ninety-Nine"),
         "no_promo_found":
@@ -865,7 +868,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Persyaratan Layanan"),
         "profile_version": MessageLookupByLibrary.simpleMessage("Versi App"),
         "profile_voucher": MessageLookupByLibrary.simpleMessage("Voucher Saya"),
+        "promo_available":
+            MessageLookupByLibrary.simpleMessage("Promo Tersedia"),
         "promo_banner": MessageLookupByLibrary.simpleMessage("Promo"),
+        "promo_code": MessageLookupByLibrary.simpleMessage("Kode Promo"),
+        "promo_for_you":
+            MessageLookupByLibrary.simpleMessage("Promo Untuk Kamu"),
+        "promo_info": MessageLookupByLibrary.simpleMessage(
+            "Discount paling sesuai akan dipilih secara otomatis untuk pesanan Anda padaa saat checkout"),
+        "promo_merchant":
+            MessageLookupByLibrary.simpleMessage("Promo Merchant"),
+        "promo_not_available":
+            MessageLookupByLibrary.simpleMessage("Promo tidak tersedia"),
+        "promo_not_available_info": MessageLookupByLibrary.simpleMessage(
+            "belum ada promo yang bisa diklaim saat ini. Datang dan cek lagi nanti, ya!"),
+        "promo_voucher": MessageLookupByLibrary.simpleMessage(""),
+        "promo_voucher_available":
+            MessageLookupByLibrary.simpleMessage("Promo And Voucher Tersedia"),
+        "promo_voucher_unavailable": MessageLookupByLibrary.simpleMessage(
+            "Promo And Voucher tidak tersedia"),
         "rating_desc": MessageLookupByLibrary.simpleMessage(
             "Beri rating untuk pesananmu!"),
         "rating_title":
@@ -907,6 +928,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Rating dan ulasan Anda telah diterima. Terima kasih."),
         "review_title":
             MessageLookupByLibrary.simpleMessage("Tulis ulasan kamu"),
+        "select_menu_type":
+            MessageLookupByLibrary.simpleMessage("Pilih Tipe Menu"),
         "sign_up_email": MessageLookupByLibrary.simpleMessage("Email"),
         "sign_up_password": MessageLookupByLibrary.simpleMessage("Passcode"),
         "sign_up_phone":
@@ -983,6 +1006,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "txt_search_food": MessageLookupByLibrary.simpleMessage("Cari Makanan"),
         "update_to_cart":
             MessageLookupByLibrary.simpleMessage("Perbaharui keranjang"),
+        "use_voucher": MessageLookupByLibrary.simpleMessage("Gunakan"),
+        "use_voucher_later":
+            MessageLookupByLibrary.simpleMessage("Gunakan Nanti"),
         "user_not_choose_delivery": MessageLookupByLibrary.simpleMessage(
             "Anda belum memilih metode pengiriman, silahkan pilih metode pengiriman terlebih dahulu untuk melanjutkan pemesanan."),
         "user_not_choose_payment": MessageLookupByLibrary.simpleMessage(
@@ -992,11 +1018,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "verify_phone": MessageLookupByLibrary.simpleMessage("Verify Phone"),
         "voucher_already_used": MessageLookupByLibrary.simpleMessage(
             "Voucher code telah berhasil digunakan sebelumnya!"),
+        "voucher_available":
+            MessageLookupByLibrary.simpleMessage("Voucher Tersedia"),
+        "voucher_discount":
+            MessageLookupByLibrary.simpleMessage("Voucher Diskon"),
         "voucher_empty":
             MessageLookupByLibrary.simpleMessage("Voucher tidak tersedia."),
+        "voucher_not_available":
+            MessageLookupByLibrary.simpleMessage("Voucher tidak tersedia"),
+        "voucher_not_available_info": MessageLookupByLibrary.simpleMessage(
+            "belum ada voucher yang bisa diklaim saat ini. Datang dan cek lagi nanti, ya!"),
         "voucher_not_valid_with_payment_method":
             MessageLookupByLibrary.simpleMessage(
                 "Voucher tidak sesuai dengan metode pembayaran yang telah dipilih."),
+        "voucher_period": MessageLookupByLibrary.simpleMessage("Periode"),
+        "voucher_valid_until":
+            MessageLookupByLibrary.simpleMessage("Berlaku sampai"),
         "webview_close": MessageLookupByLibrary.simpleMessage("Tutup"),
         "webview_exit": MessageLookupByLibrary.simpleMessage("Keluar"),
         "webview_next": MessageLookupByLibrary.simpleMessage("Lanjut"),

@@ -6,6 +6,8 @@ import 'package:digiresto/domain/home/entity/static_banner.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
+import 'entity/new_nearby_outlet.dart';
+
 abstract class IHomeRepository {
   Future<Either<HomeFailure, UserAddress>> getUserAddress();
   Future<Either<HomeFailure, IList<StaticBanner>>> getStaticBanner();
@@ -17,4 +19,5 @@ abstract class IHomeRepository {
     String? search,
     required bool isHideOpen,
   });
+  Future<Either<HomeFailure, IList<OutletsHighight>>> getNewNearbyOutlet();
 }

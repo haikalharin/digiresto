@@ -71,6 +71,7 @@ class Filter with _$Filter {
 
 @freezed
 class OptionItem with _$OptionItem {
+  const OptionItem._();
   const factory OptionItem({
     required Description? text,
     required OptionItemParam? param,
@@ -78,6 +79,12 @@ class OptionItem with _$OptionItem {
     required Description? description,
     required String? value,
   }) = _OptionItem;
+
+  String get getTitle =>
+      I10n.current.lang == 'en' ? text?.en ?? "-" : text?.id ?? "-";
+  String get getDescription => I10n.current.lang == 'en'
+      ? description?.en ?? "-"
+      : description?.id ?? "-";
 
   factory OptionItem.fromJson(Map<String, dynamic> json) =>
       _$OptionItemFromJson(json);
