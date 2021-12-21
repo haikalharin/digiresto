@@ -83,6 +83,9 @@ class Endpoints {
   static const Map<String, dynamic> urlGetListVoucherOutlet = {
     "r": "v2/getvoucheroutlet"
   };
+  static const Map<String, dynamic> urlGetComplainCategory = {
+    "r": "v2/categorycomplaints"
+  };
   static const Map<String, dynamic> urlGetProduct = {"r": "v2/getproduct"};
   static const Map<String, dynamic> urlGetCartSession = {"r": "getcartsession"};
   static const Map<String, dynamic> urlCreateCartSession = {
@@ -127,8 +130,5 @@ class Endpoints {
   };
   static const Map<String, dynamic> urlGetOrderProcessCount = {
     "r": "transactionhistorycount"
-  };
-  static const Map<String, dynamic> urlGetComplainCategory = {
-    "r": "categorycomplaints"
   };
 }

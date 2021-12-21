@@ -13,7 +13,7 @@ String complainCategoryToJson(ComplainCategory data) =>
 @freezed
 abstract class ComplainCategory with _$ComplainCategory {
   const factory ComplainCategory({
-    required List<Complain> data,
+    List<Complain>? data,
   }) = _ComplainCategory;
 
   factory ComplainCategory.fromJson(Map<String, dynamic> json) =>
@@ -25,8 +25,8 @@ abstract class Complain with _$Complain {
   const factory Complain({
     required int id,
     required String description,
-    required bool imageRequired,
-    required bool consumedDate,
+    required bool? imageRequired,
+    required bool? consumedDate,
   }) = _Complain;
 
   factory Complain.fromJson(Map<String, dynamic> json) =>

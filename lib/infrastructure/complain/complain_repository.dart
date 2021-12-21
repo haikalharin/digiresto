@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:digiresto/domain/complain/complain_failure.dart';
 import 'package:digiresto/domain/complain/complain_category.dart';
 import 'package:dartz/dartz.dart';
@@ -17,19 +19,24 @@ class ComplainRepository implements IComplainRepository {
   const ComplainRepository(this._networkService, this.logger) : super();
 
   @override
-  Future<Either<ComplainFailure, ComplainCategory>>
-      getComplainCategory() async {
+  Future<Either<ComplainFailure, List<Complain>>> getComplainCategory() async {
     try {
       final _apiUrl = Endpoints.urlForward;
-      final apiResult = await _networkService.getHttp(path: _apiUrl);
-      final data = (apiResult as Map<String, dynamic>)['data'] as Map;
-      if (data.isEmpty) {
+      final queryParameter = Endpoints.urlGetComplainCategory;
+
+      final apiResult = await _networkService.postHttp(
+          path: _apiUrl, queryParameter: queryParameter);
+      final data = (apiResult as Map<String, dynamic>)['data'];
+
+      final list = List.from(data);
+      if (list.isEmpty) {
         logger.d('data kosong');
         return left(ComplainFailure.noData());
       }
-      final complainCategoryList =
-          ComplainCategory.fromJson(Map<String, dynamic>.from(data));
-      return right(complainCategoryList);
+      final complainList = list
+          .map((item) => Complain.fromJson(Map<String, dynamic>.from(item)))
+          .toList();
+      return right(complainList);
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
       return left(ComplainFailure.generalError(e.message));

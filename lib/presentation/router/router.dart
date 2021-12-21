@@ -166,6 +166,8 @@ class Routers {
     GetPage(name: Routers.paymentVa, page: () => PaymentVAScreen()),
     GetPage(name: Routers.paymentWebView, page: () => PaymentWebViewScreen()),
     GetPage(name: Routers.listCateringPage, page: () => ListCateringPage()),
-    GetPage(name: Routers.complainPage, page: () => ComplainPage()),
+    GetPage(
+        name: Routers.complainPage,
+        page: () => ComplainPage(Get.arguments as String)),
   ];
 }

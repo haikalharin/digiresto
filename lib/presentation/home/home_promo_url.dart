@@ -124,9 +124,9 @@ class HomePromoUrlScreen extends StatelessWidget {
                                             'data:'
                                         ? MemoryImage(
                                             Base64Decoder()
-                                                .convert(promoBanner!),
+                                                .convert(promoBanner),
                                             scale: 0.5)
-                                        : NetworkImage(promoBanner!, scale: 0.5)
+                                        : NetworkImage(promoBanner, scale: 0.5)
                                             as ImageProvider,
                                     fit: BoxFit.fill,
                                     alignment: Alignment.topCenter,

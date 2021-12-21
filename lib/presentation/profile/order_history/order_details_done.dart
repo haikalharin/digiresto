@@ -68,13 +68,14 @@ class OrderDetailsDone extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8),
                   child: SizedBox(
                     width: double.infinity,
                     child: InkWell(
-                      onTap: (){
-                        Get.toNamed(Routers.complainPage);
+                      onTap: () {
+                        Get.toNamed(Routers.complainPage,
+                            arguments: orderDetails.receiptCode);
                       },
                       child: Text(
                         I10n.current.history_detail_complain,

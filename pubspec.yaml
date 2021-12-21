@@ -37,6 +37,7 @@ dependencies:
   flutter_google_places_hoc081098: ^1.0.0-nullsafety.5
   flutter_hooks: ^0.18.0
   flutter_image: ^4.1.0
+  image_picker: ^0.8.4+4
   flutter_localizations:
     sdk: flutter
   flutter_native_timezone: ^2.0.0
