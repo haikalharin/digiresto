@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:digiresto/application/complain/complain_bloc.dart';
@@ -107,22 +106,13 @@ class ComplainPage extends StatelessWidget {
   }
 
   Widget imageAttachmen(String imagePath, BuildContext context) {
-    final ImagePicker _picker = ImagePicker();
     File file = File('');
     return BlocConsumer<ComplainBloc, ComplainState>(
       listener: (context, state) {},
       builder: (context, state) {
         return GestureDetector(
           onTap: () async {
-            print('image_log : d');
-            XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-            file = File(image!.path);
-            print('image_log : ${file.path}');
-            BlocProvider.of<ComplainBloc>(context)
-              ..add(
-                ComplainEvent.complainCategoriSelected(file: file),
-              );
-            // bottomSheet();
+            bottomSheet();
           },
           child: Row(
             children: [
@@ -166,6 +156,7 @@ class ComplainPage extends StatelessWidget {
   }
 
   Future<void> bottomSheet() async {
+    final _picker = ImagePicker();
     return showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
@@ -198,10 +189,9 @@ class ComplainPage extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          child: ImageIcon(
-                            AssetImage(AppAssets.iconOutletOrderDelivery),
+                          child: Icon(
+                            Icons.photo_camera,
                             color: AppColors.white,
-                            size: 24,
                           ),
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
@@ -211,12 +201,12 @@ class ComplainPage extends StatelessWidget {
                         SizedBox(
                           width: 16,
                         ),
-                        Text(I10n.current.landing_delivery,
-                            style: AppFont.textBlack14Bold),
+                        Text('Camera', style: AppFont.textBlack14Bold),
                         Expanded(child: Container()),
                         ElevatedButton(
-                            onPressed: () {
-                              Get.back();
+                            onPressed: () async {
+                              XFile? image = await _picker.pickImage(
+                                  source: ImageSource.gallery);
                             },
                             child: Text(
                               I10n.current.cart_choose,
@@ -239,10 +229,9 @@ class ComplainPage extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          child: ImageIcon(
-                            AssetImage(AppAssets.iconOutletOrderDelivery),
+                          child: Icon(
+                            Icons.photo_library,
                             color: AppColors.white,
-                            size: 24,
                           ),
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
@@ -252,13 +241,10 @@ class ComplainPage extends StatelessWidget {
                         SizedBox(
                           width: 16,
                         ),
-                        Text(I10n.current.landing_delivery,
-                            style: AppFont.textBlack14Bold),
+                        Text('Photo Library', style: AppFont.textBlack14Bold),
                         Expanded(child: Container()),
                         ElevatedButton(
-                            onPressed: () {
-                              Get.back();
-                            },
+                            onPressed: () {},
                             child: Text(
                               I10n.current.cart_choose,
                               style: AppFont.textBlack12Bold
