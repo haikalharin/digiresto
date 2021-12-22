@@ -12,6 +12,7 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
@@ -19,6 +20,7 @@ import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/order/modifier_group_widget.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/order/widgets/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
@@ -44,23 +46,27 @@ class DetailProductDialog extends StatefulWidget {
   final String? deliveryTime;
   final bool? isCatering;
 
+  /// Voucher
+  final VoucherDetailArguments? voucher;
+
   @override
-  DetailProductDialog({
-    Key? key,
-    required this.dataProduct,
-    required this.orderType,
-    required this.cartSession,
-    this.isDifferentOutlet = false,
-    required this.detailOutlet,
-    required this.note,
-    this.mode = "new",
-    this.qtyProduct = 1,
-    this.listSelectedModifier = const [],
-    this.dayDate,
-    this.mealsTitle,
-    this.deliveryTime,
-    this.isCatering = false,
-  }) : super(key: key);
+  DetailProductDialog(
+      {Key? key,
+      required this.dataProduct,
+      required this.orderType,
+      required this.cartSession,
+      this.isDifferentOutlet = false,
+      required this.detailOutlet,
+      required this.note,
+      this.mode = "new",
+      this.qtyProduct = 1,
+      this.listSelectedModifier = const [],
+      this.dayDate,
+      this.mealsTitle,
+      this.deliveryTime,
+      this.isCatering = false,
+      this.voucher})
+      : super(key: key);
 
   @override
   _DetailProductDialogState createState() => _DetailProductDialogState();
@@ -68,6 +74,7 @@ class DetailProductDialog extends StatefulWidget {
 
 class _DetailProductDialogState extends State<DetailProductDialog> {
   int totalqty = 1;
+
   // OrderStore _orderStore;
   // UserStore _userStore;
   late OutletListProductDataResponse dataProductState;
@@ -357,7 +364,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
           controller.cartSession.value = r.response;
           Get.back();
           if (r.isBuyNow) {
-            Get.to(OrderCartScreen());
+            Get.toNamed(Routers.orderCart, arguments: widget.voucher);
           }
         },
         orElse: () {
@@ -934,7 +941,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         child: Text(
                             "Rp " +
                                 Utils.formatRupiah(
-                                    (((variantProductSelected.price) + subtotalModifiers) *
+                                    (((variantProductSelected.price) +
+                                                subtotalModifiers) *
                                             totalqty)
                                         .toString()),
                             softWrap: false,

@@ -20,6 +20,7 @@ import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
@@ -39,7 +40,9 @@ import 'bloc/order_bloc.dart';
 @injectable
 class OrderCartScreenViewController extends GetxController {
   final IOrderRepository _orderRepository;
+
   OrderCartScreenViewController(this._orderRepository);
+
   var isLoading = true.obs;
   var useSchedule = Rxn<bool>();
 
@@ -209,6 +212,7 @@ class OrderCartScreenViewController extends GetxController {
   @override
   onInit() {
     super.onInit();
+    normalizeVoucherArgument(Get.arguments);
     initDialogPlace();
     initDialogDriveThruPlace();
   }
@@ -292,7 +296,8 @@ class OrderCartScreenViewController extends GetxController {
     final now = DateTime.now();
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate.value!, // Refer step 1
+      initialDate: selectedDate.value!,
+      // Refer step 1
       firstDate: now,
       lastDate: now.add(Duration(days: 365)),
       builder: (BuildContext context, Widget? child) {
@@ -667,4 +672,16 @@ class OrderCartScreenViewController extends GetxController {
     KeyValueModel(key: "23:00", value: "23:00"),
     KeyValueModel(key: "24:00", value: "24:00"),
   ].obs;
+
+  void normalizeVoucherArgument(VoucherDetailArguments? arguments) {
+    if (arguments != null &&
+        arguments.isUseVoucher) {
+      GetListVoucherOutletDataResponse? newVoucherModel =
+          GetListVoucherOutletDataResponse(
+              code: arguments.voucher.code, name: arguments.voucher.name);
+      Get.context!.read<OrderBloc>().add(
+            OrderEvent.setVoucherMethodID(newVoucherModel),
+          );
+    }
+  }
 }

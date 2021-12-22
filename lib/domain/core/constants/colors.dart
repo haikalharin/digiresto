@@ -67,6 +67,7 @@ class AppColors {
   static const Color dividerColor = Color(0xFFEEEEEE);
   static const Color inputFillColor = Color(0xFFF7F5F7);
   static const Color yellowButtonColor = Color(0xFFFFC800);
+  static const Color transparent = Colors.transparent;
 
   static Map<int, Color> mainColorSwatch = {
     50: mainColor.withOpacity(.1),
