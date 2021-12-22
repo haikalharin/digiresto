@@ -403,19 +403,38 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Text(variantProductSelected.name,
-                                      softWrap: true,
-                                      maxLines: 3,
-                                      //overflow: TextOverflow.ellipsis,
-                                      style: AppFont.textBlack16Bold,
-                                      textAlign: TextAlign.left),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        variantProductSelected.name,
+                                        softWrap: true,
+                                        maxLines: 3,
+                                        //overflow: TextOverflow.ellipsis,
+                                        style: AppFont.textBlack16Bold,
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      Container(
+                                        color: AppColors.white,
+                                        child: Text(
+                                          '${widget.detailOutlet.name} - ${widget.detailOutlet.city}',
+                                          style: AppFont.textBlack14Regular,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Container(
                                       alignment: Alignment.topLeft,
@@ -424,14 +443,15 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                       child: Text(
                                           "Rp " +
                                               Utils.formatRupiah(
-                                                  price.toString()),
+                                                  variantProductSelected.price
+                                                      .toString()),
                                           softWrap: false,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           style: AppFont.textBlack16Bold,
                                           textAlign: TextAlign.left),
                                     ),
-                                    beforePrice != null
+                                    variantProductSelected.crossoutPrice != null
                                         ? Container(
                                             alignment: Alignment.topLeft,
                                             padding:
@@ -440,15 +460,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                             child: Text(
                                                 "Rp " +
                                                     Utils.formatRupiah(
-                                                        beforePrice.toString()),
+                                                        variantProductSelected
+                                                            .crossoutPrice
+                                                            .toString()),
                                                 softWrap: false,
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: AppFont.textBlack16Bold
                                                     .copyWith(
-                                                        decoration:
-                                                            TextDecoration
-                                                                .lineThrough),
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                  color: Colors.black38,
+                                                ),
                                                 textAlign: TextAlign.left),
                                           )
                                         : Container(),
@@ -458,13 +481,6 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             ),
                             SizedBox(
                               height: 10,
-                            ),
-                            Container(
-                              color: AppColors.white,
-                              child: Text(
-                                '${widget.detailOutlet.name} - ${widget.detailOutlet.city}',
-                                style: AppFont.textBlack14Regular,
-                              ),
                             ),
                             if (variantProductSelected.isPreorder)
                               Container(
@@ -918,7 +934,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         child: Text(
                             "Rp " +
                                 Utils.formatRupiah(
-                                    (((price ?? 0) + subtotalModifiers) *
+                                    (((variantProductSelected.price) + subtotalModifiers) *
                                             totalqty)
                                         .toString()),
                             softWrap: false,

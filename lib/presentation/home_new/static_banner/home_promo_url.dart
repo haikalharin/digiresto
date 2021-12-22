@@ -8,7 +8,7 @@ import 'package:digiresto/presentation/home_new/list_catering_page/list_catering
 import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+// import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
@@ -161,7 +161,7 @@ class HomePromoUrlScreen extends StatelessWidget {
                                 )
                               : Container(),
                         ),
-                        Html(data: routes['desc'] ?? "")
+                        // Html(data: routes['desc'] ?? "")
                       ],
                     ),
                   ),
