@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:digiresto/application/complain/complain_bloc.dart';
 import 'package:digiresto/domain/complain/complain_category.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -7,11 +6,13 @@ import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/complain/text_formfield_custom.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
+import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../injection.dart';
 import 'custome_complain_button.dart';
@@ -22,10 +23,12 @@ class ComplainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Complain>? list = [];
-    int? idCategory = 0;
+    List<Complain>? listData = [];
+    String? idCategory = '0';
     TextEditingController problemEditText = TextEditingController();
-    String imagePath = '';
+    TextEditingController timeEditText = TextEditingController();
+    File file = File('');
+    GlobalKey<FormState> formState = GlobalKey<FormState>();
 
     return CollapsedScafold(
       showBackButton: true,
@@ -35,41 +38,106 @@ class ComplainPage extends StatelessWidget {
           ..add(
             ComplainEvent.getComplainCategory(),
           ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _chooseCategory(list, idCategory),
-              Divider(
-                color: AppColors.dividerColor,
-                thickness: 2,
+        child: BlocConsumer<ComplainBloc, ComplainState>(
+          listener: (context, state) {
+            state.maybeWhen(
+                orElse: () => [],
+                getComplaintCategorySuccess: (list) => listData = list,
+                complaintSelect: (id, complainCategory, file, imageUrl,
+                    eatTimeIsActive, sendButtonIsActive) {
+                  idCategory = id;
+                  listData = complainCategory;
+                });
+          },
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () => SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // _chooseCategory(list, idCategory),
+
+                    Container(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Dimens.defaultMargin,
+                          vertical: Dimens.defaultMargin,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Pilih Category Complain',
+                              style: Styles.ratingLabelStyle,
+                              textAlign: TextAlign.left,
+                            ),
+                            SizedBox(
+                              height: 12,
+                            ),
+                            Wrap(
+                              children: listData!.map((item) {
+                                return GestureDetector(
+                                    onTap: () {
+                                      BlocProvider.of<ComplainBloc>(context)
+                                        ..add(
+                                          ComplainEvent
+                                              .complainCategoriSelected(
+                                            id: item.id,
+                                            list: listData,
+                                          ),
+                                        );
+                                    },
+                                    child: tabItem(item, idCategory));
+                              }).toList(),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Divider(
+                      color: AppColors.dividerColor,
+                      thickness: 2,
+                    ),
+                    _formInputComplain(
+                        problemEditText, timeEditText, context, formState),
+                    customerServiceCTA(),
+                    buttonSend(formState),
+                  ],
+                ),
               ),
-              _formInputComplain(problemEditText, imagePath, context),
-              customerServiceCTA(),
-              buttonSend(),
-            ],
-          ),
+              laodInProgress: () => Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget tabItem(Complain complaint, int? idCategory) {
-    return Container(
-      margin: EdgeInsets.only(right: 8, bottom: 8, top: 4),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: complaint.id == idCategory ? AppColors.red : AppColors.white,
-          border: Border.all(color: AppColors.redYoung),
-        ),
-        child: Text(
-          complaint.description,
-          style: complaint.id == idCategory
-              ? Styles.whiteFontStyle
-              : Styles.boldRedStyle,
-        ),
-      ),
+  Widget tabItem(Complain complaint, String? idCategory) {
+    return BlocBuilder<ComplainBloc, ComplainState>(
+      builder: (context, state) {
+        return Container(
+          margin: EdgeInsets.only(right: 8, bottom: 8, top: 4),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color:
+                  complaint.id == idCategory ? AppColors.red : AppColors.white,
+              border: Border.all(color: AppColors.redYoung),
+            ),
+            child: Text(
+              complaint.description,
+              style: complaint.id == idCategory
+                  ? Styles.whiteFontStyle
+                  : Styles.boldRedStyle,
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -92,27 +160,47 @@ class ComplainPage extends StatelessWidget {
     );
   }
 
-  Widget buttonSend() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-      child: CustomButtonComplain(
-        onPressed: () {},
-        label: 'Kirim',
-        fontColor: AppColors.white,
-        color: AppColors.redYoung,
-        borderRadius: BorderRadius.circular(20),
-      ),
+  Widget buttonSend(GlobalKey<FormState> formState) {
+    return BlocBuilder<ComplainBloc, ComplainState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+          child: CustomButtonComplain(
+            onPressed: () {
+              if (formState.currentState!.validate()) {
+                ErrorPopupWidget.show(
+                    "Digiresto", I10n.current.add_favorite_success, () {
+                  Get.back();
+                });
+                //send
+              } else {
+                ErrorPopupWidget.show(
+                    "Digiresto", 'Detail Masalah minimal 30 Karakter', () {
+                  Get.back();
+                });
+              }
+            },
+            label: 'Kirim',
+            fontColor: AppColors.white,
+            color: state.maybeMap(
+                orElse: () => AppColors.greyDEDEDE,
+                complaintSelect: (e) => e.sendButtonIsActive
+                    ? AppColors.redYoung
+                    : AppColors.greyDEDEDE),
+            borderRadius: BorderRadius.circular(20),
+          ),
+        );
+      },
     );
   }
 
-  Widget imageAttachmen(String imagePath, BuildContext context) {
+  Widget imageAttachmen(BuildContext maincontext) {
     File file = File('');
-    return BlocConsumer<ComplainBloc, ComplainState>(
-      listener: (context, state) {},
+    return BlocBuilder<ComplainBloc, ComplainState>(
       builder: (context, state) {
         return GestureDetector(
           onTap: () async {
-            bottomSheet();
+            bottomSheet(context);
           },
           child: Row(
             children: [
@@ -123,31 +211,29 @@ class ComplainPage extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: AppColors.greyCACACA),
-                child: state.maybeMap(
-                    orElse: () => SizedBox(),
-                    complaintSelect: (e) {
-                      if (e.file == null) {
-                        print('image_log : a');
-                        SizedBox();
-                      } else {
-                        print('image_log : b');
-                        Image.file(file);
-                      }
-                    }),
+                child: state.maybeWhen(
+                  orElse: () => SizedBox(),
+                  complaintSelect: (id, complainCategory, file, imageUrl,
+                          eatTimeIsActive, sendButtonIsActive) =>
+                      imageUrl!.isEmpty
+                          ? SizedBox()
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.network(
+                                imageUrl.toString(),
+                              ),
+                            ),
+                ),
               ),
-              BlocBuilder<ComplainBloc, ComplainState>(
-                builder: (context, state) {
-                  return Flexible(
-                    child: Text(
-                      'Lampirkan bukti pendukung agar kami paham masalahmu (maks. 1 foto format .jpg, .jpeg, dan .png ukurang maks 10MB)',
-                      style: TextStyle(
-                        color: AppColors.greyRating,
-                        fontSize: 14,
-                      ),
-                    ),
-                  );
-                },
-              )
+              Flexible(
+                child: Text(
+                  'Lampirkan bukti pendukung agar kami paham masalahmu (maks. 1 foto format .jpg, .jpeg, dan .png ukurang maks 10MB)',
+                  style: TextStyle(
+                    color: AppColors.greyRating,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
             ],
           ),
         );
@@ -155,7 +241,169 @@ class ComplainPage extends StatelessWidget {
     );
   }
 
-  Future<void> bottomSheet() async {
+  Widget _formInputComplain(
+    TextEditingController problemController,
+    TextEditingController timeController,
+    BuildContext context,
+    GlobalKey formState,
+  ) {
+    return BlocBuilder<ComplainBloc, ComplainState>(
+      builder: (context, state) {
+        return Container(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: Dimens.defaultMargin,
+              vertical: 8,
+            ),
+            child: Form(
+              key: formState,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Nomor Pesanan',
+                    style: Styles.ratingLabelStyle,
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  CustomTextFieldComplain(
+                    borderColor: AppColors.greyBorder,
+                    hintText: '$receiptCode',
+                    fillColor: AppColors.white,
+                    enabled: false,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  state.maybeWhen(
+                    orElse: () => SizedBox(),
+                    complaintSelect: (id, complainCategory, file, imageUrl,
+                            eatTimeIsActive, sendButtonIsActive) =>
+                        eatTimeIsActive
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Dimakan jam berapa ?',
+                                    style: Styles.ratingLabelStyle,
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  CustomTextFieldComplain(
+                                    controller: timeController,
+                                    maxLength: 100,
+                                    maxLines: 1,
+                                    onTap: () async {
+                                      print('Time Click');
+                                      TimeOfDay? newTime = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.now());
+
+                                      if (newTime != null) {
+                                        DateTime parseTime = DateFormat.jm()
+                                            .parse(newTime
+                                                .format(context)
+                                                .toString());
+                                        String formattedTime =
+                                            DateFormat('HH:mm')
+                                                .format(parseTime);
+                                        timeController.text = formattedTime;
+                                      }
+                                    },
+                                    borderColor: AppColors.greyBorder,
+                                    hintText: 'Waktu Makan',
+                                    fillColor: AppColors.white,
+                                    onChange: (value) {
+                                      timeController.text = value;
+                                    },
+                                    focusBorderColor: AppColors.redYoung,
+                                  ),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    'max. 100 karakter',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: AppColors.greyField,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              )
+                            : SizedBox(),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Ceritakan Masalahmu',
+                    style: Styles.ratingLabelStyle,
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  CustomTextFieldComplain(
+                    maxLength: 100,
+                    maxLines: 5,
+                    borderColor: AppColors.greyBorder,
+                    hintText: 'Detail Masalah',
+                    fillColor: AppColors.white,
+                    onChange: (value) {
+                      problemController.text = value;
+                    },
+                    validator: (value) {
+                      if (value!.length < 30) {
+                        return 'min. 30 karakter';
+                      }
+                    },
+                    focusBorderColor: AppColors.redYoung,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'max. 100 karakter',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.greyField,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Lampirkan',
+                    style: Styles.ratingLabelStyle,
+                    textAlign: TextAlign.left,
+                  ),
+                  imageAttachmen(context),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Butuh bantuan lain? ',
+                    style: Styles.ratingLabelStyle,
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> bottomSheet(BuildContext maincontext) async {
     final _picker = ImagePicker();
     return showModalBottomSheet(
         shape: RoundedRectangleBorder(
@@ -206,7 +454,15 @@ class ComplainPage extends StatelessWidget {
                         ElevatedButton(
                             onPressed: () async {
                               XFile? image = await _picker.pickImage(
-                                  source: ImageSource.gallery);
+                                source: ImageSource.camera,
+                              );
+
+                              Get.back();
+                              try {
+                                print('${image!.path}');
+                              } catch (e) {
+                                print('${e.hashCode}');
+                              }
                             },
                             child: Text(
                               I10n.current.cart_choose,
@@ -244,7 +500,25 @@ class ComplainPage extends StatelessWidget {
                         Text('Photo Library', style: AppFont.textBlack14Bold),
                         Expanded(child: Container()),
                         ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              // XFile? image = await _picker.pickImage(
+                              //     source: ImageSource.gallery);
+                              // Get.back();
+                              // try {
+
+                              // } catch (e) {
+
+                              // }
+                              String imageUrl =
+                                  'https://www.mainmain.id/uploads/post/2020/10/22/Mattel_UNO_Nothing_But_Paper_Full_Kertas_Tanpa_Plastik_Go_Green_Hijau_Desain_Natural.jpg';
+
+                              print('image_log : aaa');
+                              BlocProvider.of<ComplainBloc>(maincontext)
+                                ..add(
+                                  ComplainEvent.attachmentSubmit(
+                                      image: imageUrl),
+                                );
+                            },
                             child: Text(
                               I10n.current.cart_choose,
                               style: AppFont.textBlack12Bold
@@ -270,100 +544,19 @@ class ComplainPage extends StatelessWidget {
         });
   }
 
-  Widget _formInputComplain(TextEditingController problemController,
-      String imagePath, BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Dimens.defaultMargin,
-          vertical: 8,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Nomor Pesanan',
-              style: Styles.ratingLabelStyle,
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            CustomTextFieldComplain(
-              borderColor: AppColors.greyBorder,
-              hintText: '$receiptCode',
-              fillColor: AppColors.white,
-              enabled: false,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              'Ceritakan Masalahmu',
-              style: Styles.ratingLabelStyle,
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            CustomTextFieldComplain(
-              maxLength: 100,
-              maxLines: 5,
-              borderColor: AppColors.greyBorder,
-              hintText: 'Detail Masalah',
-              fillColor: AppColors.white,
-              onChange: (value) {
-                problemController.text = value;
-              },
-              focusBorderColor: AppColors.redYoung,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              'max. 100 karakter',
-              style: TextStyle(
-                fontSize: 12,
-                color: AppColors.greyField,
-              ),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              'Lampirkan',
-              style: Styles.ratingLabelStyle,
-              textAlign: TextAlign.left,
-            ),
-            imageAttachmen(imagePath, context),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              'Butuh bantuan lain? ',
-              style: Styles.ratingLabelStyle,
-              textAlign: TextAlign.left,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _chooseCategory(List<Complain>? list, int? idCategory) {
+  Widget _chooseCategory(List<Complain>? listdata, String? idCategory) {
     return BlocConsumer<ComplainBloc, ComplainState>(
       listener: (context, state) {
-        state.maybeMap(
+        state.maybeWhen(
             orElse: () => [],
-            getComplaintCategorySuccess: (dataList) {
-              list = dataList.complainCategory;
-            },
-            complaintSelect: (data) {
-              idCategory = data.id;
-              list = data.complainCategory;
+            // getComplaintCategorySuccess: (dataList) {
+            //   list = dataList.complainCategory;
+            // },
+            getComplaintCategorySuccess: (list) => listdata = list,
+            complaintSelect: (id, complainCategory, file, imageUrl,
+                eatTimeIsActive, sendButtonIsActive) {
+              idCategory = id;
+              listdata = complainCategory;
             });
       },
       builder: (context, state) {
@@ -379,7 +572,7 @@ class ComplainPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  I10n.current.review_title,
+                  'Pilih Category Complain',
                   style: Styles.ratingLabelStyle,
                   textAlign: TextAlign.left,
                 ),
@@ -387,14 +580,14 @@ class ComplainPage extends StatelessWidget {
                   height: 12,
                 ),
                 Wrap(
-                  children: list!.map((item) {
+                  children: listdata!.map((item) {
                     return GestureDetector(
                         onTap: () {
                           BlocProvider.of<ComplainBloc>(context)
                             ..add(
                               ComplainEvent.complainCategoriSelected(
                                 id: item.id,
-                                list: list,
+                                list: listdata,
                               ),
                             );
                         },

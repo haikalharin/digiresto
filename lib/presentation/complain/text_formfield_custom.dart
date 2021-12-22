@@ -22,6 +22,7 @@ class CustomTextFieldComplain extends StatelessWidget {
   final Function(String)? onChange;
   final List<TextInputFormatter>? inputFormatters;
   final int? maxLength;
+  final Function()? onTap;
   const CustomTextFieldComplain({
     Key? key,
     this.controller,
@@ -43,11 +44,13 @@ class CustomTextFieldComplain extends StatelessWidget {
     this.maxLines,
     this.focusNode,
     this.maxLength,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
       enabled: enabled,
       inputFormatters: inputFormatters,
       autovalidateMode: autovalidateMode,

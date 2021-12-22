@@ -4,6 +4,7 @@ import 'package:digiresto/domain/profile/order_history.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_card.dart';
 import 'package:digiresto/presentation/profile/order_history/order_details_page.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/route_manager.dart';
@@ -66,6 +67,34 @@ class OrderCompletedWidget extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Spacer(),
+                    PopupMenuButton(
+                      onSelected: (e) {
+                        print('TAPTAP 1');
+                        if (e == 'detail') {
+                          Get.to(
+                            OrderDetailsPage(orderCompleted.receiptCode),
+                          );
+                        } else {
+                          Get.toNamed(Routers.complainPage,
+                              arguments: orderCompleted.receiptCode.toString());
+                          print('TAPTAP 2');
+                        }
+                      },
+                      itemBuilder: (BuildContext context) {
+                        final itemMenu = [
+                          'detail',
+                          'complain',
+                        ];
+                        return itemMenu
+                            .map((e) => PopupMenuItem(
+                                  value: e,
+                                  child: Text('$e'),
+                                ))
+                            .toList();
+                      },
+                      child: Icon(Icons.more_horiz),
+                    )
                   ],
                 ),
               ),

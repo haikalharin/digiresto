@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 
@@ -19,20 +18,40 @@ class ComplainBloc extends Bloc<ComplainEvent, ComplainState> {
 
   ComplainBloc(this._iComplainRepository) : super(_Initial()) {
     on<ComplainEvent>((event, emit) async {
-      await event.map(getComplainCategory: (e) async {
-        emit(_LoadInProgress());
-        final categorySuccessOrFailure =
-            await _iComplainRepository.getComplainCategory();
-        emit(categorySuccessOrFailure.fold((failure) {
-          return ComplainState.getComplaintCategoryFailure(failure);
-        }, (data) {
-          return ComplainState.getComplaintCategorySuccess(data);
-        }));
-      }, complainCategoriSelected: (e) async {
-        emit(ComplainState.complaintSelect(e.id, e.list, e.file));
-      }, postComplain: (e) async {
-        emit(_LoadInProgress());
-      });
+      await event.map(
+          getComplainCategory: (e) async {
+            emit(_LoadInProgress());
+            final categorySuccessOrFailure =
+                await _iComplainRepository.getComplainCategory();
+            emit(categorySuccessOrFailure.fold((failure) {
+              return ComplainState.getComplaintCategoryFailure(failure);
+            }, (data) {
+              state.maybeMap(
+                  orElse: () {},
+                  complaintSelect: (e) {
+                    emit(e.copyWith(complainCategory: data));
+                  });
+              return ComplainState.getComplaintCategorySuccess(data);
+            }));
+          },
+          complainCategoriSelected: (e) async {
+            if (int.parse(e.id.toString()) == 4) {
+              emit(ComplainState.complaintSelect(
+                  e.id, e.list, e.file, '', true, false));
+            } else {
+              emit(ComplainState.complaintSelect(
+                  e.id, e.list, e.file, '', false, false));
+            }
+          },
+          attachmentSubmit: (event) async {
+            state.maybeMap(
+                orElse: () {},
+                complaintSelect: (e) {
+                  emit(e.copyWith(
+                      imageUrl: event.image, sendButtonIsActive: true));
+                });
+          },
+          postComplain: (e) async {});
     });
   }
 }

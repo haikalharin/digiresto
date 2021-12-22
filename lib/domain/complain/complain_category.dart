@@ -23,7 +23,7 @@ abstract class ComplainCategory with _$ComplainCategory {
 @freezed
 abstract class Complain with _$Complain {
   const factory Complain({
-    required int id,
+    required String id,
     required String description,
     required bool? imageRequired,
     required bool? consumedDate,
