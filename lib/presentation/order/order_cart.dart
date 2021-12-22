@@ -2445,8 +2445,7 @@ class _AddressOrderCart extends GetView<OrderCartScreenViewController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          /// TODO : Add I10n
-                          Text('I10n.current.delivery_location',
+                          Text(I10n.current.delivery_location,
                               style: AppFont.textBlack14Regular),
                           Row(
                             children: [

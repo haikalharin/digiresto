@@ -1,6 +1,6 @@
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
-import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "Detail Location",
+                        I10n.current.address_location_detail,
                         style: AppFont.textBlack19Bold,
                       ),
                       SizedBox(
@@ -66,7 +66,7 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                     height: 20,
                   ),
                   Text(
-                    "Address",
+                    I10n.current.address_name,
                     style: AppFont.textBlack13SemiBold,
                   ),
                   SizedBox(
@@ -91,7 +91,7 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                     height: 10,
                   ),
                   Text(
-                    "Location Detail",
+                    I10n.current.location_details,
                     style: AppFont.textBlack13SemiBold,
                   ),
                   SizedBox(
@@ -114,7 +114,7 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                     height: 10,
                   ),
                   Text(
-                    "Notes",
+                    I10n.current.cart_notes,
                     style: AppFont.textBlack13SemiBold,
                   ),
                   SizedBox(
@@ -138,7 +138,7 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                   ),
                   CustomButton(
                     child: Text(
-                      "Update Address",
+                      I10n.current.update_address,
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: "Roboto",

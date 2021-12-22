@@ -202,6 +202,7 @@
 
     "_cart":"",
     "cart_title":"Order Details",
+    "update_address":"Use Address",
     "cart_address":"Delivery Address",
     "cart_input_address":"Enter address",
     "cart_voucher_code":"Voucher Code",
@@ -392,6 +393,9 @@
     "history_order_asking_cancel":"Do you want to cancel order?",
     "history_order_cancel":"Cancel Order",
     "history_order_sending":"The order is being sent by the outlet courier",
+    "history_upcoming":"Upcoming\nOrder",
+    "delivery_location":"Delivery location",
+    "location_details":"Location details",
     "history_process":"Purchase\nProcessed",
     "history_done":"Purchase\nComplete",
     "history_pending_payment":"Waiting\nfor payment",

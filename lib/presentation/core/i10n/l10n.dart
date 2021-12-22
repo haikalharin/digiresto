@@ -1830,6 +1830,16 @@ class I10n {
     );
   }
 
+  /// `Use Address`
+  String get update_address {
+    return Intl.message(
+      'Use Address',
+      name: 'update_address',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Delivery Address`
   String get cart_address {
     return Intl.message(
@@ -3607,6 +3617,36 @@ class I10n {
     return Intl.message(
       'The order is being sent by the outlet courier',
       name: 'history_order_sending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming\nOrder`
+  String get history_upcoming {
+    return Intl.message(
+      'Upcoming\nOrder',
+      name: 'history_upcoming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery location`
+  String get delivery_location {
+    return Intl.message(
+      'Delivery location',
+      name: 'delivery_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location details`
+  String get location_details {
+    return Intl.message(
+      'Location details',
+      name: 'location_details',
       desc: '',
       args: [],
     );
