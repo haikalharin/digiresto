@@ -536,6 +536,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_topup_cancel_alert": MessageLookupByLibrary.simpleMessage(
             "Apakah Anda yakin ingin membatalkan isi saldo ini ?"),
         "history_total_payment": MessageLookupByLibrary.simpleMessage("Total"),
+        "history_upcoming":
+            MessageLookupByLibrary.simpleMessage("Pesanan\nMendatang"),
         "home_address":
             MessageLookupByLibrary.simpleMessage("Alamat pengiriman"),
         "home_address_hint": MessageLookupByLibrary.simpleMessage(
@@ -636,6 +638,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang_en": MessageLookupByLibrary.simpleMessage("Bahasa Inggris"),
         "lang_in": MessageLookupByLibrary.simpleMessage("Bahasa Indonesia"),
         "lbl_login": MessageLookupByLibrary.simpleMessage("Masuk"),
+        "location_details":
+            MessageLookupByLibrary.simpleMessage("Detail lokasi"),
         "login_btn": MessageLookupByLibrary.simpleMessage("Lanjut Verifikasi"),
         "login_check_your_mobile_number": MessageLookupByLibrary.simpleMessage(
             "Periksa kembali nomor handphone Anda!"),
@@ -1004,6 +1008,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Silahkan pilih bahasa yang ingin digunakan"),
         "txt_search": MessageLookupByLibrary.simpleMessage("Cari"),
         "txt_search_food": MessageLookupByLibrary.simpleMessage("Cari Makanan"),
+        "update_address":
+            MessageLookupByLibrary.simpleMessage("Gunakan Alamat"),
         "update_to_cart":
             MessageLookupByLibrary.simpleMessage("Perbaharui keranjang"),
         "use_voucher": MessageLookupByLibrary.simpleMessage("Gunakan"),

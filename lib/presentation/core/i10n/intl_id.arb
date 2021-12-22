@@ -277,6 +277,7 @@
     "voucher_already_used":"Voucher code telah berhasil digunakan sebelumnya!",
 
     "_address":"",
+    "update_address":"Gunakan Alamat",
     "address_set_main": "Jadikan alamat utama",
     "address_search_address":"Pilih Alamat",
     "address_use_current_location":"Lokasi sekarang",
@@ -390,6 +391,10 @@
     "history_order_sending":"kiriman sedang dikirim kurir toko",
     "history_process":"Pembelian\nDiproses",
     "history_done":"Pembelian\nSelesai",
+    "upcoming_order":"Pesanan\nMendatang",
+    "history_upcoming":"Pesanan\nMendatang",
+    "delivery location":"Alamat Pengiriman",
+    "location_details":"Detail lokasi",
     "history_pending_payment":"Menunggu\nPembayaran",
     "history_pending_payment_empty":"Tidak ada pembayaran tertunda",
     "history_pending_expired":"Bayar sebelum {param}",

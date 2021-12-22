@@ -391,6 +391,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "credit_topup": MessageLookupByLibrary.simpleMessage("Top Up Credit"),
         "credit_topup_method":
             MessageLookupByLibrary.simpleMessage("Choose Payment Method"),
+        "delivery_location":
+            MessageLookupByLibrary.simpleMessage("Delivery location"),
         "delivery_status":
             MessageLookupByLibrary.simpleMessage("Delivery Status"),
         "detail_history":
@@ -531,6 +533,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_topup_cancel_alert": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to cancel this Top Up ?"),
         "history_total_payment": MessageLookupByLibrary.simpleMessage("Total"),
+        "history_upcoming":
+            MessageLookupByLibrary.simpleMessage("Upcoming\nOrder"),
         "home_address":
             MessageLookupByLibrary.simpleMessage("Shipping address"),
         "home_address_hint": MessageLookupByLibrary.simpleMessage(
@@ -626,6 +630,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang_en": MessageLookupByLibrary.simpleMessage("English"),
         "lang_in": MessageLookupByLibrary.simpleMessage("Indonesia"),
         "lbl_login": MessageLookupByLibrary.simpleMessage("Login"),
+        "location_details":
+            MessageLookupByLibrary.simpleMessage("Location details"),
         "login_body_base": MessageLookupByLibrary.simpleMessage(
             "Please select Base Url for the testing, or enter the base url you want to use"),
         "login_btn":
@@ -998,6 +1004,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please choose your language for the app"),
         "txt_search": MessageLookupByLibrary.simpleMessage("Search"),
         "txt_search_food": MessageLookupByLibrary.simpleMessage("Search Food"),
+        "update_address": MessageLookupByLibrary.simpleMessage("Use Address"),
         "update_to_cart": MessageLookupByLibrary.simpleMessage("Update cart"),
         "use_voucher": MessageLookupByLibrary.simpleMessage("Use"),
         "use_voucher_later": MessageLookupByLibrary.simpleMessage("Use Later"),
