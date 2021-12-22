@@ -1,4 +1,6 @@
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
+import 'package:digiresto/domain/core/constants/font.dart';
+import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';

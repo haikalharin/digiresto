@@ -238,13 +238,16 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                   ),
                   (item.variants.length == 0)
                       ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
                               alignment: Alignment.topLeft,
                               padding: const EdgeInsets.only(top: 5),
                               //width: 10,
                               child: Text(
-                                  "Rp " + Utils.formatRupiah(price.toString()),
+                                  "Rp " +
+                                      Utils.formatRupiah(item.price.toString()),
                                   softWrap: false,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -253,12 +256,13 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                                   ),
                                   textAlign: TextAlign.left),
                             ),
-                            beforePrice != null
+                            item.crossoutPrice != null
                                 ? Container(
                                     alignment: Alignment.topLeft,
                                     padding: const EdgeInsets.only(top: 5),
                                     //width: 10,
-                                    child: Text("Rp." + beforePrice.toString(),
+                                    child: Text(
+                                        "Rp." + item.crossoutPrice.toString(),
                                         softWrap: false,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
