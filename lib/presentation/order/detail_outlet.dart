@@ -616,6 +616,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                     mealsTitle: controller.outlet.value!.mealsTitle,
                     deliveryTime: controller.outlet.value!.deliveryTime,
                     isCatering: controller.outlet.value!.isCatering,
+                    voucher: controller.voucherCode.value,
                   );
                 },
                 fullscreenDialog: true))
@@ -765,7 +766,8 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 color: Colors.white, boxShadow: [CustomShadow.justTop]),
             child: GestureDetector(
               onTap: () {
-                Get.toNamed(Routers.orderCart);
+                Get.toNamed(Routers.orderCart,
+                    arguments: controller.voucherCode.value);
               },
               child: Container(
                   decoration: BoxDecoration(
@@ -978,13 +980,48 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
           if ((controller.voucherCode.value?.isUseVoucher ?? false) == false) {
             Get.toNamed(Routers.promoVoucherPage,
                     arguments: controller.outlet.value!)
-                ?.then(
-              (value) => controller.voucherCode.value = value,
-            );
+                ?.then((value) {
+              if (value != null) {
+                Get.showSnackbar(
+                  GetSnackBar(
+                    backgroundColor: AppColors.transparent,
+                    duration: Duration(seconds: 2),
+                    snackPosition: SnackPosition.TOP,
+                    animationDuration: Duration.zero,
+                    messageText: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.green54C30F,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(AppAssets.iconInformation),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text('Promo berhasil digunakan'),
+                            ),
+                          ),
+                          Icon(Icons.close)
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+                controller.voucherCode.value = value;
+              }
+            });
           } else {
             Get.toNamed(Routers.voucherDetailPage,
                     arguments: controller.voucherCode.value)
-                ?.then((value) => controller.voucherCode.value = value);
+                ?.then((value) {
+              if (value != null) {
+                controller.voucherCode.value = value;
+              }
+            });
           }
         },
         child: Container(

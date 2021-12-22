@@ -18,6 +18,7 @@ import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_delivery_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_payment_method_view_argument.dart';
 import 'package:digiresto/domain/order/order_select_voucher_method_view_argument.dart';
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
@@ -38,8 +39,9 @@ import 'package:get/get.dart';
 import 'detail_product_dialog.dart';
 
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
+  final VoucherDetailArguments? voucher;
   final bool? hideBackButton;
-  OrderCartScreen({this.hideBackButton});
+  OrderCartScreen({this.hideBackButton, this.voucher});
 
   Widget _notes() {
     return Theme(
