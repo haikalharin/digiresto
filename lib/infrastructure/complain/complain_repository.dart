@@ -10,7 +10,6 @@ import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:http/http.dart' as http;
 
 @LazySingleton(as: IComplainRepository)
 class ComplainRepository implements IComplainRepository {
@@ -65,7 +64,7 @@ class ComplainRepository implements IComplainRepository {
           '${Endpoints.urlForward}?r=v2/transactioncomplaints&&receiptCode=$receiptCode';
       final multipartFile;
       if (image!.path.isNotEmpty) {
-        multipartFile = MultipartFile.fromFile(image.path ?? '');
+        multipartFile = MultipartFile.fromFile(image.path);
       } else {
         multipartFile = '';
       }

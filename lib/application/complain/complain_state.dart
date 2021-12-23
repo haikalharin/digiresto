@@ -13,6 +13,8 @@ class ComplainState with _$ComplainState {
     List<Complain>? complainCategory,
     File? file,
     String? imageUrl,
+    String? detail,
+    String? eatTime,
     bool eatTimeIsActive,
     bool sendButtonIsActive,
   ) = _ComplaintSelect;

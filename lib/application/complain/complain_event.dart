@@ -10,6 +10,8 @@ class ComplainEvent with _$ComplainEvent {
   }) = _ComplainCategoriSelected;
   const factory ComplainEvent.attachmentSubmit({String? image, File? file}) =
       _AttachmentSubmit;
+  const factory ComplainEvent.detailSubmit({String? detail}) = _DetailSubmit;
+  const factory ComplainEvent.eatTimeSubmit({String? eatTime}) = _EatTimeSubmit;
 
   const factory ComplainEvent.postComplain({
     required String complainId,

@@ -46,20 +46,30 @@ class ComplainPage extends StatelessWidget {
             state.maybeWhen(
               orElse: () => [],
               getComplaintCategorySuccess: (list) => listData = list,
-              complaintSelect: (complain, complainCategory, file, imageUrl,
-                  eatTimeIsActive, sendButtonIsActive) {
-                imageRequired = complain!.imageRequired;
-                idCategory = complain.id;
-                image = imageUrl;
-                fileImage = file ?? File('');
-                listData = complainCategory;
-              },
               sendingSuccesss: () => ComplaintPopupWidget.show("Pesan Terkirim",
                   'Kami segera memproses keluhan Anda. Selanjutnya, tim CS kami akan segera menghubungi Anda.',
                   () {
                 Get.back();
                 Get.back();
               }),
+              complaintSelect: (
+                complain,
+                complainCategory,
+                file,
+                imageUrl,
+                detail,
+                eatTime,
+                eatTimeIsActive,
+                sendButtonIsActive,
+              ) {
+                problemEditText.text = detail.toString();
+                timeEditText.text = eatTime.toString();
+                imageRequired = complain!.imageRequired;
+                idCategory = complain.id;
+                image = imageUrl;
+                fileImage = file ?? File('');
+                listData = complainCategory;
+              },
             );
           },
           builder: (context, state) {
@@ -254,20 +264,21 @@ class ComplainPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     color: AppColors.greyCACACA),
                 child: state.maybeWhen(
-                    orElse: () => SizedBox(),
-                    complaintSelect: (id, complainCategory, file, imageUrl,
-                        eatTimeIsActive, sendButtonIsActive) {
-                      if (file?.isBlank ?? false) {
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.file(
-                            file!,
-                          ),
-                        );
-                      } else {
-                        SizedBox();
-                      }
-                    }),
+                  orElse: () => SizedBox(),
+                  complaintSelect: (complain, complainCategory, file, imageUrl,
+                      detail, eatTime, eatTimeIsActive, sendButtonIsActive) {
+                    if (file?.isBlank ?? false) {
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.file(
+                          file!,
+                        ),
+                      );
+                    } else {
+                      SizedBox();
+                    }
+                  },
+                ),
               ),
               Flexible(
                 child: Text(
@@ -325,8 +336,14 @@ class ComplainPage extends StatelessWidget {
                   ),
                   state.maybeWhen(
                     orElse: () => SizedBox(),
-                    complaintSelect: (id, complainCategory, file, imageUrl,
-                            eatTimeIsActive, sendButtonIsActive) =>
+                    complaintSelect: (complain,
+                            complainCategory,
+                            file,
+                            imageUrl,
+                            detail,
+                            eatTime,
+                            eatTimeIsActive,
+                            sendButtonIsActive) =>
                         eatTimeIsActive
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -364,8 +381,11 @@ class ComplainPage extends StatelessWidget {
                                     hintText: 'Waktu Makan',
                                     fillColor: AppColors.white,
                                     onChange: (value) {
-                                      timeController.text = value;
-                                      state.maybeMap(orElse: () {});
+                                      BlocProvider.of<ComplainBloc>(context)
+                                        ..add(
+                                          ComplainEvent.eatTimeSubmit(
+                                              eatTime: value),
+                                        );
                                     },
                                     focusBorderColor: AppColors.redYoung,
                                   ),
@@ -402,8 +422,10 @@ class ComplainPage extends StatelessWidget {
                     hintText: 'Detail Masalah',
                     fillColor: AppColors.white,
                     onChange: (value) {
-                      problemController.text = value;
-                      state.maybeMap(orElse: () {});
+                      BlocProvider.of<ComplainBloc>(context)
+                        ..add(
+                          ComplainEvent.detailSubmit(detail: value),
+                        );
                     },
                     validator: (value) {
                       if (value!.length < 30) {

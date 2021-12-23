@@ -18,51 +18,71 @@ class ComplainBloc extends Bloc<ComplainEvent, ComplainState> {
 
   ComplainBloc(this._iComplainRepository) : super(_Initial()) {
     on<ComplainEvent>((event, emit) async {
-      await event.map(getComplainCategory: (e) async {
-        emit(_LoadInProgress());
-        final categorySuccessOrFailure =
-            await _iComplainRepository.getComplainCategory();
-        emit(categorySuccessOrFailure.fold((failure) {
-          return ComplainState.getComplaintCategoryFailure(failure);
-        }, (data) {
-          print('data json : $data');
+      await event.map(
+        getComplainCategory: (e) async {
+          emit(_LoadInProgress());
+          final categorySuccessOrFailure =
+              await _iComplainRepository.getComplainCategory();
+          emit(categorySuccessOrFailure.fold((failure) {
+            return ComplainState.getComplaintCategoryFailure(failure);
+          }, (data) {
+            print('data json : $data');
+            state.maybeMap(
+                orElse: () {},
+                complaintSelect: (e) {
+                  emit(e.copyWith(complainCategory: data));
+                });
+            return ComplainState.getComplaintCategorySuccess(data);
+          }));
+        },
+        complainCategoriSelected: (e) async {
+          if (e.complain!.imageRequired) {
+            emit(ComplainState.complaintSelect(e.complain, e.list, e.file, '',
+                '', '', e.complain?.consumedDate ?? false, false));
+          } else {
+            emit(ComplainState.complaintSelect(e.complain, e.list, e.file, '',
+                '', '', e.complain?.consumedDate ?? false, true));
+          }
+        },
+        attachmentSubmit: (event) async {
           state.maybeMap(
               orElse: () {},
               complaintSelect: (e) {
-                emit(e.copyWith(complainCategory: data));
+                emit(e.copyWith(
+                    imageUrl: event.image, sendButtonIsActive: true));
               });
-          return ComplainState.getComplaintCategorySuccess(data);
-        }));
-      }, complainCategoriSelected: (e) async {
-        if (e.complain!.imageRequired) {
-          emit(ComplainState.complaintSelect(e.complain, e.list, e.file, '',
-              e.complain?.consumedDate ?? false, false));
-        } else {
-          emit(ComplainState.complaintSelect(e.complain, e.list, e.file, '',
-              e.complain?.consumedDate ?? false, true));
-        }
-      }, attachmentSubmit: (event) async {
-        state.maybeMap(
-            orElse: () {},
-            complaintSelect: (e) {
-              emit(e.copyWith(imageUrl: event.image, sendButtonIsActive: true));
-            });
-      }, postComplain: (e) async {
-        emit(_LoadInProgress());
-        final sendSuccessOrFailure = await _iComplainRepository.postComplain(
-          complaintCategory: e.complainId,
-          details: e.details,
-          receiptCode: e.receiptCode,
-          consumedDate: e.consumeDate ?? '',
-          image: e.image ?? File(''),
-        );
-        emit(sendSuccessOrFailure.fold(
-          (failure) {
-            return ComplainState.getComplaintCategoryFailure(failure);
-          },
-          (data) => ComplainState.sendingSuccesss(),
-        ));
-      });
+        },
+        postComplain: (e) async {
+          emit(_LoadInProgress());
+          final sendSuccessOrFailure = await _iComplainRepository.postComplain(
+            complaintCategory: e.complainId,
+            details: e.details,
+            receiptCode: e.receiptCode,
+            consumedDate: e.consumeDate ?? '',
+            image: e.image ?? File(''),
+          );
+          emit(sendSuccessOrFailure.fold(
+            (failure) {
+              return ComplainState.getComplaintCategoryFailure(failure);
+            },
+            (data) => ComplainState.sendingSuccesss(),
+          ));
+        },
+        detailSubmit: (value) async {
+          state.maybeMap(
+              orElse: () {},
+              complaintSelect: (e) {
+                emit(e.copyWith(detail: value.detail));
+              });
+        },
+        eatTimeSubmit: (value) async {
+          state.maybeMap(
+              orElse: () {},
+              complaintSelect: (e) {
+                emit(e.copyWith(eatTime: value.eatTime));
+              });
+        },
+      );
     });
   }
 }
