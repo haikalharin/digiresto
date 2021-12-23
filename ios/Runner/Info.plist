@@ -57,9 +57,9 @@
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Needed to access speech recognition</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Needed to access library</string>
+	<string>Needed to access speech photo library</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Needed to access Camera</string>
+	<string>Needed to access speech camera</string>
 	<key>OneSignal_app_groups_key</key>
 	<string>$(ONE_SIGNAL_GROUP_ID)</string>
 	<key>UILaunchStoryboardName</key>

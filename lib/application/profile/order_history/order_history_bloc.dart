@@ -21,7 +21,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
       : super(OrderHistoryState.initial()) {
     on<OrderHistoryEvent>((event, emit) async {
       await event.map(
-        orderPendingOpen: (_event) async* {
+        orderPendingOpen: (_event) async {
           emit(
             state.copyWith(
               orderPendingFailureOrSuccess: none(),
@@ -35,7 +35,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             orderPendingCountOption: optionOf(count),
           ));
         },
-        orderOnProcessOpen: (_event) async* {
+        orderOnProcessOpen: (_event) async {
           emit(state.copyWith(
             orderOnProccessFailureOrSuccess: none(),
           ));
@@ -49,7 +49,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
                 optionOf(countFailureOrSuccess),
           ));
         },
-        orderCompletedOpen: (_event) async* {
+        orderCompletedOpen: (_event) async {
           emit(state.copyWith(
             orderCompletedFailureOrSuccess: none(),
           ));
@@ -59,7 +59,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             orderCompletedFailureOrSuccess: optionOf(failureOrSuccess),
           ));
         },
-        getOrderOnProcessCount: (value) async* {
+        getOrderOnProcessCount: (value) async {
           final failureOrSuccess =
               await _profileRepository.getOrderOnProcessCount();
 
@@ -67,7 +67,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             orderOnProccessCountFailureOrSuccess: optionOf(failureOrSuccess),
           ));
         },
-        orderUpcomingOpen: (_event) async* {
+        orderUpcomingOpen: (_event) async {
           emit(state.copyWith(
             orderOnProccessFailureOrSuccess: none(),
           ));
@@ -77,7 +77,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
             orderupComingFailureOrSuccess: optionOf(failureOrSuccess),
           ));
         },
-        getorderUpcomingCount: (value) async* {
+        getorderUpcomingCount: (value) async {
           final failureOrSuccess =
               await _profileRepository.getOrderUpcomingCount();
 
