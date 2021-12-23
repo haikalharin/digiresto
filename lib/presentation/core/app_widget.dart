@@ -11,7 +11,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
-import 'package:alice/alice.dart';
 
 @injectable
 class AppWidget extends HookWidget {

@@ -12,10 +12,7 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
-<<<<<<< HEAD
-=======
 import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
->>>>>>> origin/development-dig
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
@@ -49,25 +46,6 @@ class DetailProductDialog extends StatefulWidget {
   final String? deliveryTime;
   final bool? isCatering;
 
-<<<<<<< HEAD
-  @override
-  DetailProductDialog({
-    Key? key,
-    required this.dataProduct,
-    required this.orderType,
-    required this.cartSession,
-    this.isDifferentOutlet = false,
-    required this.detailOutlet,
-    required this.note,
-    this.mode = "new",
-    this.qtyProduct = 1,
-    this.listSelectedModifier = const [],
-    this.dayDate,
-    this.mealsTitle,
-    this.deliveryTime,
-    this.isCatering = false,
-  }) : super(key: key);
-=======
   /// Voucher
   final VoucherDetailArguments? voucher;
 
@@ -89,7 +67,6 @@ class DetailProductDialog extends StatefulWidget {
       this.isCatering = false,
       this.voucher})
       : super(key: key);
->>>>>>> origin/development-dig
 
   @override
   _DetailProductDialogState createState() => _DetailProductDialogState();

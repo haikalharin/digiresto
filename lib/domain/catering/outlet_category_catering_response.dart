@@ -50,18 +50,11 @@ abstract class OutletCategoryDataCateringResponse
     required String? merchantLogo,
     required String? callbackUrl,
     required Distance distance,
-<<<<<<< HEAD
-  }) = _OutletCategoryCateringResponse;
-
-  factory OutletCategoryCateringResponse.fromJson(Map<String, dynamic> json) =>
-      _$OutletCategoryCateringResponseFromJson(json);
-=======
   }) = _OutletCategoryDataCateringResponse;
 
   factory OutletCategoryDataCateringResponse.fromJson(
           Map<String, dynamic> json) =>
       _$OutletCategoryDataCateringResponseFromJson(json);
->>>>>>> origin/development-dig
 }
 
 @freezed

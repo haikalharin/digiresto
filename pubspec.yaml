@@ -71,11 +71,13 @@ dependencies:
   url_launcher: ^6.0.12
   uuid: ^3.0.5
   flutter_rating_bar: ^4.0.0
+  image_picker: ^0.8.4+4
 
 dependency_overrides:
   flutter_html: ^2.2.1
   webview_flutter: ^3.0.0
   flutter_svg: ^1.0.0
+  
 
 dev_dependencies:
   bloc_test: ^9.0.1
