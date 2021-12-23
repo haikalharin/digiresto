@@ -86,6 +86,7 @@ class Endpoints {
   static const Map<String, dynamic> urlGetComplainCategory = {
     "r": "v2/categorycomplaints"
   };
+  // static const Map<String, dynamic> urlComplaint = {"r": "v2/complaint"};
   static const Map<String, dynamic> urlGetProduct = {"r": "v2/getproduct"};
   static const Map<String, dynamic> urlGetCartSession = {"r": "getcartsession"};
   static const Map<String, dynamic> urlCreateCartSession = {
