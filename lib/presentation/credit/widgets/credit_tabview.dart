@@ -15,8 +15,8 @@ class CreditTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
+      padding: EdgeInsets.zero,
       children: [
         Padding(
           padding: EdgeInsets.all(
@@ -39,7 +39,11 @@ class CreditTabView extends StatelessWidget {
             ],
           ),
         ),
-        ...menus
+        ...menus,
+        Divider(
+          thickness: 8,
+          color: AppColors.dividerColor,
+        ),
       ],
     );
   }

@@ -12,6 +12,10 @@ import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
+<<<<<<< HEAD
+=======
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
+>>>>>>> origin/development-dig
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
@@ -19,10 +23,10 @@ import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/order/modifier_group_widget.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/order/widgets/list_product_variant_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,6 +49,7 @@ class DetailProductDialog extends StatefulWidget {
   final String? deliveryTime;
   final bool? isCatering;
 
+<<<<<<< HEAD
   @override
   DetailProductDialog({
     Key? key,
@@ -62,6 +67,29 @@ class DetailProductDialog extends StatefulWidget {
     this.deliveryTime,
     this.isCatering = false,
   }) : super(key: key);
+=======
+  /// Voucher
+  final VoucherDetailArguments? voucher;
+
+  @override
+  DetailProductDialog(
+      {Key? key,
+      required this.dataProduct,
+      required this.orderType,
+      required this.cartSession,
+      this.isDifferentOutlet = false,
+      required this.detailOutlet,
+      required this.note,
+      this.mode = "new",
+      this.qtyProduct = 1,
+      this.listSelectedModifier = const [],
+      this.dayDate,
+      this.mealsTitle,
+      this.deliveryTime,
+      this.isCatering = false,
+      this.voucher})
+      : super(key: key);
+>>>>>>> origin/development-dig
 
   @override
   _DetailProductDialogState createState() => _DetailProductDialogState();
@@ -69,6 +97,7 @@ class DetailProductDialog extends StatefulWidget {
 
 class _DetailProductDialogState extends State<DetailProductDialog> {
   int totalqty = 1;
+
   // OrderStore _orderStore;
   // UserStore _userStore;
   late OutletListProductDataResponse dataProductState;
@@ -207,6 +236,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                 widget.detailOutlet,
                 widget.orderType,
                 isBuyNow,
+                widget.detailOutlet.merchantName!,
               ),
             );
         Get.back();
@@ -233,6 +263,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
             widget.detailOutlet,
             widget.orderType,
             isBuyNow,
+            widget.detailOutlet.merchantName!,
           ),
         );
   }
@@ -356,7 +387,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
           controller.cartSession.value = r.response;
           Get.back();
           if (r.isBuyNow) {
-            Get.to(OrderCartScreen());
+            Get.toNamed(Routers.orderCart, arguments: widget.voucher);
           }
         },
         orElse: () {
@@ -402,19 +433,38 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Text(variantProductSelected.name,
-                                      softWrap: true,
-                                      maxLines: 3,
-                                      //overflow: TextOverflow.ellipsis,
-                                      style: AppFont.textBlack16Bold,
-                                      textAlign: TextAlign.left),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        variantProductSelected.name,
+                                        softWrap: true,
+                                        maxLines: 3,
+                                        //overflow: TextOverflow.ellipsis,
+                                        style: AppFont.textBlack16Bold,
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      Container(
+                                        color: AppColors.white,
+                                        child: Text(
+                                          '${widget.detailOutlet.name} - ${widget.detailOutlet.city}',
+                                          style: AppFont.textBlack14Regular,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Container(
                                       alignment: Alignment.topLeft,
@@ -423,14 +473,15 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                       child: Text(
                                           "Rp " +
                                               Utils.formatRupiah(
-                                                  price.toString()),
+                                                  variantProductSelected.price
+                                                      .toString()),
                                           softWrap: false,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           style: AppFont.textBlack16Bold,
                                           textAlign: TextAlign.left),
                                     ),
-                                    beforePrice != null
+                                    variantProductSelected.crossoutPrice != null
                                         ? Container(
                                             alignment: Alignment.topLeft,
                                             padding:
@@ -439,15 +490,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                             child: Text(
                                                 "Rp " +
                                                     Utils.formatRupiah(
-                                                        beforePrice.toString()),
+                                                        variantProductSelected
+                                                            .crossoutPrice
+                                                            .toString()),
                                                 softWrap: false,
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: AppFont.textBlack16Bold
                                                     .copyWith(
-                                                        decoration:
-                                                            TextDecoration
-                                                                .lineThrough),
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                  color: Colors.black38,
+                                                ),
                                                 textAlign: TextAlign.left),
                                           )
                                         : Container(),
@@ -457,13 +511,6 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                             ),
                             SizedBox(
                               height: 10,
-                            ),
-                            Container(
-                              color: AppColors.white,
-                              child: Text(
-                                '${widget.detailOutlet.name} - ${widget.detailOutlet.city}',
-                                style: AppFont.textBlack14Regular,
-                              ),
                             ),
                             if (variantProductSelected.isPreorder)
                               Container(
@@ -917,7 +964,8 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                         child: Text(
                             "Rp " +
                                 Utils.formatRupiah(
-                                    (((price ?? 0) + subtotalModifiers) *
+                                    (((variantProductSelected.price) +
+                                                subtotalModifiers) *
                                             totalqty)
                                         .toString()),
                             softWrap: false,
@@ -946,7 +994,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                                 textAlign: TextAlign.left),
                           ),
                           GestureDetector(
-                            onTap: ((variantProductSelected.limit ?? 999) >=
+                            onTap: ((variantProductSelected.limit ?? 999) <=
                                     totalqty)
                                 ? () => setState(() {
                                       isLimitReached = true;
@@ -965,7 +1013,7 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
                       )
                     ],
                   ),
-                  if ((variantProductSelected.limit ?? 999) >= totalqty &&
+                  if ((variantProductSelected.limit ?? 999) <= totalqty &&
                       isLimitReached)
                     Container(
                       width: double.infinity,

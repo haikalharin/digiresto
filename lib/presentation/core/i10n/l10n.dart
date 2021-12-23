@@ -646,6 +646,16 @@ class I10n {
     );
   }
 
+  /// `More`
+  String get home_banner_more {
+    return Intl.message(
+      'More',
+      name: 'home_banner_more',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nearby`
   String get home_nearby_outlet {
     return Intl.message(
@@ -1815,6 +1825,16 @@ class I10n {
     return Intl.message(
       'Order Details',
       name: 'cart_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Address`
+  String get update_address {
+    return Intl.message(
+      'Use Address',
+      name: 'update_address',
       desc: '',
       args: [],
     );
@@ -3597,6 +3617,36 @@ class I10n {
     return Intl.message(
       'The order is being sent by the outlet courier',
       name: 'history_order_sending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming\nOrder`
+  String get history_upcoming {
+    return Intl.message(
+      'Upcoming\nOrder',
+      name: 'history_upcoming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery location`
+  String get delivery_location {
+    return Intl.message(
+      'Delivery location',
+      name: 'delivery_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location details`
+  String get location_details {
+    return Intl.message(
+      'Location details',
+      name: 'location_details',
       desc: '',
       args: [],
     );
@@ -5637,6 +5687,196 @@ class I10n {
     return Intl.message(
       '%d year',
       name: 'time_ago_years',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get promo_voucher {
+    return Intl.message(
+      '',
+      name: 'promo_voucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Voucher`
+  String get my_voucher {
+    return Intl.message(
+      'My Voucher',
+      name: 'my_voucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo Available`
+  String get promo_available {
+    return Intl.message(
+      'Promo Available',
+      name: 'promo_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo Code`
+  String get promo_code {
+    return Intl.message(
+      'Promo Code',
+      name: 'promo_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo For You`
+  String get promo_for_you {
+    return Intl.message(
+      'Promo For You',
+      name: 'promo_for_you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The most suitable discount will be automatically selected for your order at checkout`
+  String get promo_info {
+    return Intl.message(
+      'The most suitable discount will be automatically selected for your order at checkout',
+      name: 'promo_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo Merchant`
+  String get promo_merchant {
+    return Intl.message(
+      'Promo Merchant',
+      name: 'promo_merchant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo is empty`
+  String get promo_not_available {
+    return Intl.message(
+      'Promo is empty',
+      name: 'promo_not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `there are no promos that can be claimed at this time. Come and check again later, OK!`
+  String get promo_not_available_info {
+    return Intl.message(
+      'there are no promos that can be claimed at this time. Come and check again later, OK!',
+      name: 'promo_not_available_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo And Voucher Available`
+  String get promo_voucher_available {
+    return Intl.message(
+      'Promo And Voucher Available',
+      name: 'promo_voucher_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo And Voucher not available`
+  String get promo_voucher_unavailable {
+    return Intl.message(
+      'Promo And Voucher not available',
+      name: 'promo_voucher_unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voucher Available`
+  String get voucher_available {
+    return Intl.message(
+      'Voucher Available',
+      name: 'voucher_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voucher Discount`
+  String get voucher_discount {
+    return Intl.message(
+      'Voucher Discount',
+      name: 'voucher_discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voucher is empty`
+  String get voucher_not_available {
+    return Intl.message(
+      'Voucher is empty',
+      name: 'voucher_not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `there are no vouchers that can be claimed at this time. Come and check again later, OK!`
+  String get voucher_not_available_info {
+    return Intl.message(
+      'there are no vouchers that can be claimed at this time. Come and check again later, OK!',
+      name: 'voucher_not_available_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Period`
+  String get voucher_period {
+    return Intl.message(
+      'Period',
+      name: 'voucher_period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid until`
+  String get voucher_valid_until {
+    return Intl.message(
+      'Valid until',
+      name: 'voucher_valid_until',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use`
+  String get use_voucher {
+    return Intl.message(
+      'Use',
+      name: 'use_voucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Later`
+  String get use_voucher_later {
+    return Intl.message(
+      'Use Later',
+      name: 'use_voucher_later',
       desc: '',
       args: [],
     );

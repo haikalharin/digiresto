@@ -22,7 +22,6 @@ import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/list/detail_outlet_hot_promo_widget.dart';
 import 'package:digiresto/presentation/widgets/list/list_food_category_widget.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -230,6 +229,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               }
               controller.detailOutlet.value = r.response;
               controller.getPromoProduct();
+              controller.getListVoucher();
               controller.checkAllLoaded();
             },
             getOutletListProductSuccess: (r) {
@@ -249,10 +249,16 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               controller.checkAllLoaded();
             },
             getCartSessionSuccess: (r) {
+              controller.outletCart.value = r.outletName;
               controller.cartSession.value = r.response;
               controller.checkAllLoaded();
             },
             addCartSuccess: (r) {
+              controller.outletCart.value = r.outletName;
+              controller.cartSession.value = r.response;
+            },
+            updateCartSuccess: (r) {
+              controller.outletCart.value = r.outletName;
               controller.cartSession.value = r.response;
             },
             setSalesTypeCartSuccess: (r) {
@@ -584,6 +590,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
 
   final searchController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
+
   void searchActionText(String keyword) {
     controller.page.value = 1;
     controller.search.value = keyword;
@@ -609,6 +616,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                     mealsTitle: controller.outlet.value!.mealsTitle,
                     deliveryTime: controller.outlet.value!.deliveryTime,
                     isCatering: controller.outlet.value!.isCatering,
+                    voucher: controller.voucherCode.value,
                   );
                 },
                 fullscreenDialog: true))
@@ -744,90 +752,113 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
   }
 
   Widget _cartTotal() {
-    return Obx(
-        () => controller.cartSession.value != null && controller.isSameOutlet()
-            ? GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routers.orderCart);
-                },
-                child: SafeArea(
+    return Obx(() => controller.cartSession.value != null
+        ? Container(
+            // color: Colors.white,
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 20,
+              bottom: 40,
+            ),
+            alignment: Alignment.bottomCenter,
+            decoration: BoxDecoration(
+                color: Colors.white, boxShadow: [CustomShadow.justTop]),
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed(Routers.orderCart,
+                    arguments: controller.voucherCode.value);
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.red,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  height: 50,
+                  width: MediaQuery.of(Get.context!).size.width - 50,
                   child: Container(
-                    height: 70,
-                    //color: Colors.white,
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                        color: Colors.white, boxShadow: [CustomShadow.justTop]),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.red,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        height: 50,
-                        width: MediaQuery.of(Get.context!).size.width - 50,
-                        child: Container(
-                          padding: EdgeInsets.only(left: 15, right: 15),
+                    padding: EdgeInsets.only(left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                children: [
-                                  controller.cartSession.value!.transactionData!
-                                              .items.length >
-                                          0
-                                      ? Text(
-                                          controller.cartSession.value!
-                                                  .transactionData!.items.length
-                                                  .toString() +
-                                              " items",
-                                          style: TextStyle(
-                                            fontFamily: "roboto",
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        )
-                                      : Container(),
-                                  Container(
-                                    margin: EdgeInsets.all(5),
-                                    height: 30,
-                                    width: 1.5,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    I10n.current.beranda_view_cart,
-                                    style: TextStyle(
-                                      fontFamily: "roboto",
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                              SizedBox(
+                                width: 5,
                               ),
-                              controller.detailOutlet.value != null
-                                  ? Text(
-                                      "Rp. " +
-                                          Utils.formatRupiah(controller
-                                              .cartSession
-                                              .value!
-                                              .transactionData!
-                                              .totalPayment
-                                              .toString()),
-                                      style: TextStyle(
-                                        fontFamily: "roboto",
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              SvgPicture.asset('assets/cart_icon.svg'),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              // controller.cartSession.value!.transactionData!
+                              //             .items.length >
+                              //         0
+                              //     ? Text(
+                              //         controller.cartSession.value!
+                              //                 .transactionData!.items.length
+                              //                 .toString() +
+                              //             " items",
+                              //         style: TextStyle(
+                              //           fontFamily: "roboto",
+                              //           color: Colors.white,
+                              //           fontSize: 12,
+                              //           fontWeight: FontWeight.normal,
+                              //         ),
+                              //       )
+                              //     : Container(),
+
+                              // Container(
+                              //   margin: EdgeInsets.all(5),
+                              //   height: 30,
+                              //   width: 1.5,
+                              //   color: Colors.white,
+                              // ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      controller.cartSession.value!
+                                              .transactionData!.items.length
+                                              .toString() +
+                                          " items",
+                                      style: AppFont.textBlack12SemiBold
+                                          .copyWith(color: Colors.white),
+                                    ),
+                                    Text(
+                                      controller.outletCart.value!,
+                                      maxLines: 1,
+                                      style: AppFont.textBlack12Regular
+                                          .copyWith(color: Colors.white),
                                     )
-                                  : Container()
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        )),
-                  ),
-                ),
-              )
-            : Container());
+                        ),
+                        controller.detailOutlet.value != null
+                            ? Text(
+                                "Rp. " +
+                                    Utils.formatRupiah(controller.cartSession
+                                        .value!.transactionData!.totalPayment
+                                        .toString()),
+                                style: TextStyle(
+                                  fontFamily: "roboto",
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            : Container()
+                      ],
+                    ),
+                  )),
+            ),
+          )
+        : Container());
   }
 
   @override
@@ -913,6 +944,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 ? _category(
                     controller.listCategory.value!, controller.categoryId.value)
                 : Container(),
+        _promoAndVoucher(),
         Expanded(
           child: Container(
             //height: MediaQuery.of(context).size.height - 30,
@@ -922,11 +954,14 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 children: [
                   controller.listPromo.value != null
                       ? _promo(controller.listPromo.value!)
-                      : Container(),
+                      : SizedBox(),
+                  // controller.listPromo.value != null
+                  //     ? _promo(controller.listPromo.value!)
+                  //     : Container(),
                   controller.listProduct.value != null &&
                           controller.salesType.value != null
                       ? _product(controller.listProduct.value!)
-                      : Container(),
+                      : SizedBox(),
                 ],
               ),
             ),
@@ -934,6 +969,120 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
         ),
         _cartTotal()
       ],
+    );
+  }
+
+  Widget _promoAndVoucher() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: InkWell(
+        onTap: () {
+          if ((controller.voucherCode.value?.isUseVoucher ?? false) == false) {
+            Get.toNamed(Routers.promoVoucherPage,
+                    arguments: controller.outlet.value!)
+                ?.then((value) {
+              if (value != null) {
+                Get.showSnackbar(
+                  GetSnackBar(
+                    backgroundColor: AppColors.transparent,
+                    duration: Duration(seconds: 2),
+                    snackPosition: SnackPosition.TOP,
+                    animationDuration: Duration.zero,
+                    messageText: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.green54C30F,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(AppAssets.iconInformation),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text('Promo berhasil digunakan'),
+                            ),
+                          ),
+                          Icon(Icons.close)
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+                controller.voucherCode.value = value;
+              }
+            });
+          } else {
+            Get.toNamed(Routers.voucherDetailPage,
+                    arguments: controller.voucherCode.value)
+                ?.then((value) {
+              if (value != null) {
+                controller.voucherCode.value = value;
+              }
+            });
+          }
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.greyColor),
+            color: AppColors.greyColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: SvgPicture.asset(
+                    AppAssets.imagePromoVoucher,
+                    height: 18,
+                    width: 18,
+                  ),
+                ),
+                Expanded(
+                  child: Obx(() {
+                    late String text;
+                    final bool vouchersEmpty =
+                        controller.listVoucher.value?.isEmpty ?? true;
+                    final bool promoEmpty =
+                        controller.listPromo.value?.isEmpty ?? true;
+
+                    if (controller.voucherCode.value?.isUseVoucher == true &&
+                        controller.voucherCode.value?.voucher.code.isNotEmpty ==
+                            true) {
+                      text = controller.voucherCode.value?.voucher.code != null
+                          ? '${I10n.current.voucher_discount} ${controller.voucherCode.value?.voucher.code}'
+                          : '';
+                    } else if (vouchersEmpty || promoEmpty) {
+                      if (promoEmpty && vouchersEmpty) {
+                        text = I10n.current.promo_voucher_unavailable;
+                      } else if (vouchersEmpty) {
+                        text = I10n.current.promo_available;
+                      } else if (promoEmpty) {
+                        text = I10n.current.voucher_available;
+                      }
+                    } else {
+                      text = I10n.current.promo_voucher_available;
+                    }
+
+                    return Text(
+                      text,
+                      style: AppFont.textBlack14Bold,
+                    );
+                  }),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 14,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/theme.dart';
 // import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:flutter/material.dart';

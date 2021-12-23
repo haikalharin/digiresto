@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/credit/i_credit_repository.dart';
-import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
+import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ part 'bottom_tab_cubit.freezed.dart';
 
 @lazySingleton
 class BottomTabCubit extends Cubit<BottomTabState> {
-  final OrderRepository _orderRepository;
+  final IOrderRepository _orderRepository;
   final ICreditRepository _creditRepository;
 
   BottomTabCubit(
@@ -28,7 +28,7 @@ class BottomTabCubit extends Cubit<BottomTabState> {
 
     final cartCount = getCartSessionID.fold(
       (failure) => 0,
-      (sessionID) => sessionID == null || sessionID == '' ? 0 : 1,
+      (sessionID) => sessionID == '' ? 0 : 1,
     );
 
     final getCountCredit = await _creditRepository.getCountTopupPending();
@@ -86,7 +86,7 @@ class BottomTabCubit extends Cubit<BottomTabState> {
 
     final cartCount = getCartSessionID.fold(
       (failure) => 0,
-      (sessionID) => sessionID == null || sessionID == '' ? 0 : 1,
+      (sessionID) => sessionID == '' ? 0 : 1,
     );
 
     if (cartCount == 0) {
@@ -111,7 +111,7 @@ class BottomTabCubit extends Cubit<BottomTabState> {
 
     final cartCount = getCartSessionID.fold(
       (failure) => 0,
-      (sessionID) => sessionID == null || sessionID == '' ? 0 : 1,
+      (sessionID) => sessionID == '' ? 0 : 1,
     );
 
     emit(state.copyWith(

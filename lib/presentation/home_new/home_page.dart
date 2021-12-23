@@ -1,16 +1,17 @@
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
-import 'package:digiresto/application/home_new/static_banner_controller.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:digiresto/domain/home/entity/new_nearby_outlet.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/home_new/address_top_bar/address_top_bar.dart';
 import 'package:digiresto/presentation/home_new/dynamic_menu/dynamic_menu.dart';
+import 'package:digiresto/presentation/home_new/new_nearby/new_nearby.dart';
 import 'package:digiresto/presentation/home_new/search_box/search_box.dart';
 import 'package:digiresto/presentation/home_new/static_banner/static_banner.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -123,10 +124,25 @@ class HomePage extends StatelessWidget {
                 )
                 .where((element) => element.isEnable)
                 .toList();
+
+            final newNearbyOutlets = state.optionOutletHighlight
+                .fold(
+                    () => <OutletsHighight>[],
+                    (data) =>
+                        data.fold((l) => <OutletsHighight>[], (r) => r.unlock))
+                .toList();
+
+            final allmenuCategoryList = state.optionMenuCategory
+                .fold(
+                  () => <MenuCategory>[],
+                  (data) => data.fold((l) => <MenuCategory>[], (r) => r.unlock),
+                )
+                .toList();
             return StackWithProgress(
               isLoading: (state.optionBanners.isNone() ||
                   state.optionUserAddress.isNone() ||
-                  state.optionMenuCategory.isNone()),
+                  state.optionMenuCategory.isNone() ||
+                  state.optionOutletHighlight.isNone()),
               children: [
                 RefreshIndicator(
                   onRefresh: () async {
@@ -138,11 +154,21 @@ class HomePage extends StatelessWidget {
                     children: [
                       AddressTopBar(key: GuideKeys.location),
                       SearchBox(key: GuideKeys.search),
-                      StaticBannerWidget(key: GuideKeys.banner),
+                      StaticBannerWidget(
+                        menuCategory: allmenuCategoryList,
+                        key: GuideKeys.banner,
+                      ),
                       DynamicMenu(
                         menuCategories: menuCategoryList,
                         menuCategoryKeys: _menuKeys,
                       ),
+                      if (newNearbyOutlets.isNotEmpty)
+                        NewNearby(
+                          outlets: newNearbyOutlets,
+                          navigation: menuCategoryList.firstWhereOrNull(
+                              (element) =>
+                                  element.id == newNearbyOutlets.first.id),
+                        ),
                       _singleAdvertisement(),
                     ],
                   ),

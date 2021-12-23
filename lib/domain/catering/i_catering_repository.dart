@@ -4,7 +4,7 @@ import 'package:digiresto/domain/catering/outlet_category_catering_response.dart
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 abstract class ICateringRepository {
-  Future<Either<CateringFailure, List<OutletCategoryCateringResponse>>>
+  Future<Either<CateringFailure, IList<OutletCategoryDataCateringResponse>>>
       getOutletCategoryCatering({
     required int page,
     String? search,

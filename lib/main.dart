@@ -1,6 +1,7 @@
 import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/address/map/address_map_bloc.dart';
 import 'package:digiresto/application/auth/auth_bloc.dart';
+import 'package:digiresto/application/catering/catering_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/digi_locale/digi_locale_bloc.dart';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
@@ -15,7 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-// import 'application/home/home_user_bloc/home_user_bloc.dart';
 import 'application/landing/bottom_tab_cubit.dart';
 import 'application/order/bloc/order_bloc.dart';
 import 'injection.dart';
@@ -25,9 +25,13 @@ export 'package:digiresto/presentation/core/app_widget.dart';
 Future<void> mainProgram() async {
   await Hive.initFlutter();
   await configureInjection(Globals.env);
-  Bloc.observer = getIt<SimpleBlocObserver>();
-  runApp(
-    InitiateProvider(),
+  BlocOverrides.runZoned(
+    () {
+      runApp(
+        InitiateProvider(),
+      );
+    },
+    blocObserver: getIt<SimpleBlocObserver>(),
   );
 }
 
@@ -36,12 +40,6 @@ class InitiateProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut(() => getIt<BottomTabCubit>());
     return MultiBlocProvider(providers: [
-      // BlocProvider<HomeUserBloc>(
-      //   create: (context) => getIt<HomeUserBloc>()
-      //     ..add(HomeUserEvent.getActiveAddress())
-      //     ..add(HomeUserEvent.getStaticBanner())
-      //     ..add(HomeUserEvent.getCartSessionID()),
-      // ),
       BlocProvider<HomeBloc>(
         create: (context) => getIt<HomeBloc>(),
       ),
@@ -70,6 +68,7 @@ class InitiateProvider extends StatelessWidget {
       BlocProvider<OutletBloc>(
         create: (context) => getIt<OutletBloc>(),
       ),
+      BlocProvider<CateringBloc>(create: (context) => getIt<CateringBloc>()),
     ], child: getIt<AppWidget>());
   }
 }

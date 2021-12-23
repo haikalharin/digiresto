@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/credit/credit_failure.dart';
@@ -17,43 +15,40 @@ part 'credit_bloc.freezed.dart';
 @injectable
 class CreditBloc extends Bloc<CreditEvent, CreditState> {
   ICreditRepository _creditRepository;
-  CreditBloc(this._creditRepository) : super(CreditState.initial());
+  CreditBloc(this._creditRepository) : super(CreditState.initial()) {
+    on<CreditEvent>((event, emit) async {
+      await event.map(
+        started: (_event) async {
+          final listTopUpMethod = await _creditRepository.getTopUpMethod();
+          final userBalance = await _creditRepository.getUserBalance();
+          final countTopupPending =
+              await _creditRepository.getCountTopupPending();
+          emit(state.copyWith(
+            userBalance: optionOf(userBalance),
+            listTopUpMethod: optionOf(listTopUpMethod),
+            countTopupPending: optionOf(countTopupPending),
+          ));
+        },
+        refreshBalance: (_event) async {
+          emit(state.copyWith(
+            userBalance: none(),
+          ));
+          final listTopUpMethod = await _creditRepository.getTopUpMethod();
+          final userBalance = await _creditRepository.getUserBalance();
 
-  @override
-  Stream<CreditState> mapEventToState(
-    CreditEvent event,
-  ) async* {
-    yield* event.map(
-      started: (_event) async* {
-        final listTopUpMethod = await _creditRepository.getTopUpMethod();
-        final userBalance = await _creditRepository.getUserBalance();
-        final countTopupPending =
-            await _creditRepository.getCountTopupPending();
-        yield state.copyWith(
-          userBalance: optionOf(userBalance),
-          listTopUpMethod: optionOf(listTopUpMethod),
-          countTopupPending: optionOf(countTopupPending),
-        );
-      },
-      refreshBalance: (_event) async* {
-        yield state.copyWith(
-          userBalance: none(),
-        );
-        final listTopUpMethod = await _creditRepository.getTopUpMethod();
-        final userBalance = await _creditRepository.getUserBalance();
-
-        yield state.copyWith(
-          userBalance: optionOf(userBalance),
-          listTopUpMethod: optionOf(listTopUpMethod),
-        );
-      },
-      getCountTopupPending: (_event) async* {
-        final countTopupPending =
-            await _creditRepository.getCountTopupPending();
-        yield state.copyWith(
-          countTopupPending: optionOf(countTopupPending),
-        );
-      },
-    );
+          emit(state.copyWith(
+            userBalance: optionOf(userBalance),
+            listTopUpMethod: optionOf(listTopUpMethod),
+          ));
+        },
+        getCountTopupPending: (_event) async {
+          final countTopupPending =
+              await _creditRepository.getCountTopupPending();
+          emit(state.copyWith(
+            countTopupPending: optionOf(countTopupPending),
+          ));
+        },
+      );
+    });
   }
 }

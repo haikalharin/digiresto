@@ -1,4 +1,3 @@
-import 'package:code_id_flutter/code_widgets/progress_bar/stack_with_progress.dart';
 import 'package:digiresto/application/catering/catering_bloc.dart';
 import 'package:digiresto/domain/catering/outlet_category_catering_response.dart';
 import 'package:digiresto/domain/core/constants/assets.dart';
@@ -11,6 +10,7 @@ import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_scafold.dart';
+import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/empty_widget.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -72,16 +72,19 @@ class ListCateringWidget extends HookWidget {
   static int _initialDateIndexParam = -1;
   static int _initialPageIndex = 1;
 
-  static List<OutletCategoryCateringResponse> outlets = [];
+  static List<OutletCategoryDataCateringResponse> outlets =
+      List<OutletCategoryDataCateringResponse>.empty().obs;
 
   void onRefresh(
     BuildContext context,
     String? mealsTypesParam,
     int initialDateIndex,
   ) async {
+    outlets.clear();
+    int page = 1;
     context.read<CateringBloc>().add(
           CateringEvent.getOutletCategoryCatering(
-            page: _initialPageIndex,
+            page: page,
             isHideOpen: false,
             mealsTypes: mealsTypesParam ?? "breakfast",
             preOrderDate: _getDateCatering(initialDateIndex),
@@ -159,18 +162,19 @@ class ListCateringWidget extends HookWidget {
         _scrollController.addListener(() {
           if (_scrollController.position.pixels ==
               _scrollController.position.maxScrollExtent) {
-            print(_scorllPageIndex.value + 1);
-            // context.read<CateringBloc>().add(
-            //       CateringEvent.getOutletCategoryCatering(
-            //         page: _scorllPageIndex.value + 1,
-            //         isHideOpen: false,
-            //         mealsTypes: _selectMealsParamType.value ?? "breakfast",
-            //         preOrderDate: _getDateCatering(
-            //           _selectDateParam.value,
-            //         ),
-            //         search: searchController.text,
-            //       ),
-            //     );
+            _scorllPageIndex.value = _scorllPageIndex.value + 1;
+            context.read<CateringBloc>().add(
+                  CateringEvent.getOutletCategoryCatering(
+                    page: _scorllPageIndex.value,
+                    isHideOpen: false,
+                    mealsTypes: _selectMealsParamType.value ?? "breakfast",
+                    preOrderDate: _getDateCatering(
+                      _selectDateParam.value,
+                    ),
+                    search: searchController.text,
+                  ),
+                );
+            print(_scorllPageIndex.value);
           }
         });
       },
@@ -181,7 +185,6 @@ class ListCateringWidget extends HookWidget {
         state.maybeMap(
           orElse: () {},
           getListOutletCateringSuccess: (r) {
-            print('Raka ${r.outlets.length}');
             if (r.outlets.isNotEmpty) {
               outlets.addAll(r.outlets);
             }
@@ -245,10 +248,12 @@ class ListCateringWidget extends HookWidget {
                                         _selectDevliveryTime.value =
                                             valueDeliveryTime;
 
+                                        outlets.clear();
+
                                         context.read<CateringBloc>().add(
                                               CateringEvent
                                                   .getOutletCategoryCatering(
-                                                page: _initialPageIndex,
+                                                page: 1,
                                                 isHideOpen: false,
                                                 mealsTypes:
                                                     _selectMealsParamType
@@ -315,10 +320,12 @@ class ListCateringWidget extends HookWidget {
                                 child: TextField(
                                   textInputAction: TextInputAction.search,
                                   onSubmitted: (value) {
+                                    outlets.clear();
+
                                     context.read<CateringBloc>().add(
                                           CateringEvent
                                               .getOutletCategoryCatering(
-                                            page: _initialPageIndex,
+                                            page: 1,
                                             isHideOpen: false,
                                             mealsTypes:
                                                 _selectMealsParamType.value ??
@@ -506,12 +513,14 @@ class ListCateringWidget extends HookWidget {
                                       padding: const EdgeInsets.only(right: 10),
                                       child: GestureDetector(
                                         onTap: () {
+                                          outlets.clear();
+
                                           _selectDateParam.value = (-index - 1);
 
                                           context.read<CateringBloc>().add(
                                                 CateringEvent
                                                     .getOutletCategoryCatering(
-                                                  page: _initialPageIndex,
+                                                  page: 1,
                                                   isHideOpen: false,
                                                   mealsTypes:
                                                       _selectMealsParamType
@@ -727,7 +736,7 @@ class ListCateringWidget extends HookWidget {
                                                   ),
                                                   SizedBox(width: 3),
                                                   Text(
-                                                    "${_data.rating?.toDouble() ?? "0"}",
+                                                    "${_data.rating}",
                                                     style: AppFont
                                                         .textBlack12Regular
                                                         .copyWith(

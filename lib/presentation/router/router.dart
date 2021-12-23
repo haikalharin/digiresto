@@ -1,6 +1,7 @@
-// import 'package:digiresto/presentation/home/add_location.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/profile/user_profile.dart';
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
 import 'package:digiresto/presentation/address/map/add_location.dart';
@@ -8,6 +9,7 @@ import 'package:digiresto/presentation/auth/auth_listener.dart';
 import 'package:digiresto/presentation/auth/login/login_page.dart';
 import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart';
 import 'package:digiresto/presentation/complain/complain_page.dart';
+
 // import 'package:digiresto/presentation/auth/auth_page.dart';
 import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
@@ -15,7 +17,7 @@ import 'package:digiresto/presentation/home/home_all_promo.dart';
 import 'package:digiresto/presentation/home/home_category_outlet.dart';
 import 'package:digiresto/presentation/home/home_digidiscount.dart';
 import 'package:digiresto/presentation/home/home_nearby_outlet.dart';
-import 'package:digiresto/presentation/home/home_promo_url.dart';
+import 'package:digiresto/presentation/home_new/static_banner/home_promo_url.dart';
 import 'package:digiresto/presentation/home/home_see_all_outlet.dart';
 import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
 import 'package:digiresto/presentation/intro/intro_page.dart';
@@ -31,6 +33,8 @@ import 'package:digiresto/presentation/order/select_voucher_method.dart';
 import 'package:digiresto/presentation/profile/edit_profile/edit_profile_page.dart';
 import 'package:digiresto/presentation/profile/order_history/order_history_page.dart';
 import 'package:digiresto/presentation/profile/profile_page.dart';
+import 'package:digiresto/presentation/promo_voucher/promo_voucher_page.dart';
+import 'package:digiresto/presentation/promo_voucher/voucher_detail_page.dart';
 import 'package:digiresto/presentation/splash/splash_page.dart';
 import 'package:get/route_manager.dart';
 
@@ -79,6 +83,8 @@ class Routers {
   static const String historyCredit = '/history_credit';
   static const String listCateringPage = '/list_catering_page';
   static const String complainPage = '/complain_page';
+  static const String promoVoucherPage = '/promo_voucher_page';
+  static const String voucherDetailPage = '/voucher_detail';
 
   final List<GetPage> routers = [
     GetPage(
@@ -151,7 +157,10 @@ class Routers {
     GetPage(
         name: Routers.homeOutletCategory,
         page: () => HomeCategoryOutletScreen()),
-    GetPage(name: Routers.orderCart, page: () => OrderCartScreen()),
+    GetPage(
+        name: Routers.orderCart,
+        page: () => OrderCartScreen(),
+        arguments: Get.arguments as VoucherDetailArguments?),
     GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet()),
     GetPage(
         name: Routers.selectPaymentMethod,
@@ -169,5 +178,15 @@ class Routers {
     GetPage(
         name: Routers.complainPage,
         page: () => ComplainPage(Get.arguments as String)),
+    GetPage(
+      name: Routers.promoVoucherPage,
+      page: () =>
+          PromoVoucherPage(args: Get.arguments as OrderDetailViewArgument),
+    ),
+    GetPage(
+      name: Routers.voucherDetailPage,
+      page: () =>
+          VoucherDetailPage(args: Get.arguments as VoucherDetailArguments),
+    )
   ];
 }

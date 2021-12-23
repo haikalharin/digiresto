@@ -16,13 +16,14 @@ import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:digiresto/domain/profile/order_pending.dart';
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/domain/transaction/payment_receipt_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_va_view_argument.dart';
 import 'package:digiresto/domain/transaction/payment_web_view_argument.dart';
-import 'package:digiresto/infrastructure/network/apis/order/order_repository.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
@@ -38,10 +39,13 @@ import 'bloc/order_bloc.dart';
 
 @injectable
 class OrderCartScreenViewController extends GetxController {
-  final OrderRepository _orderRepository;
+  final IOrderRepository _orderRepository;
+
   OrderCartScreenViewController(this._orderRepository);
+
   var isLoading = true.obs;
   var useSchedule = Rxn<bool>();
+
   var reloadCounter = 0.obs;
   var selectedDate = Rxn<DateTime>();
   var notesSubmited = true.obs;
@@ -64,15 +68,18 @@ class OrderCartScreenViewController extends GetxController {
   var mealsTypes = "".obs;
   var preOrderDate = "".obs;
   var isCatering = false.obs;
+  var refreshlocation = ''.obs;
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
     KeyValueModel(key: "2", value: "Non Smoking"),
   ].obs;
 
-  void getTransactionPending() async {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getTransactionPending());
+  Future<void> getTransactionPending() async {
+    await Get.context!.read<OrderBloc>()
+      ..add(OrderEvent.getTransactionPending());
     update();
+    return;
   }
 
   void setTransactionPending(IList<OrderPending> list) {
@@ -86,15 +93,11 @@ class OrderCartScreenViewController extends GetxController {
     update();
   }
 
-  void getCartSession() async {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getCartSession());
-    update();
-  }
-
   void updateCartParam() async {
-    Get.context!
-        .read<OrderBloc>()
-        .add(OrderEvent.updateCart(notesController.text));
+    Get.context!.read<OrderBloc>().add(OrderEvent.updateCart(
+          notesController.text,
+          detailOutlet.value!.merchantName!,
+        ));
     update();
   }
 
@@ -196,6 +199,7 @@ class OrderCartScreenViewController extends GetxController {
 
   final ScrollController scrollController = new ScrollController();
   final notesController = TextEditingController();
+  final locationDetailCOntroller = TextEditingController();
   final infoControllerDineIn = TextEditingController();
   final infoControllerDriveThru = TextEditingController();
   final voucherCodeController = TextEditingController();
@@ -208,6 +212,7 @@ class OrderCartScreenViewController extends GetxController {
   @override
   onInit() {
     super.onInit();
+    normalizeVoucherArgument(Get.arguments);
     initDialogPlace();
     initDialogDriveThruPlace();
   }
@@ -262,6 +267,7 @@ class OrderCartScreenViewController extends GetxController {
           detailOutlet.value!,
           salesType.value!,
           isBuyNow,
+          detailOutlet.value!.merchantName!,
         ));
     update();
   }
@@ -290,7 +296,8 @@ class OrderCartScreenViewController extends GetxController {
     final now = DateTime.now();
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate.value!, // Refer step 1
+      initialDate: selectedDate.value!,
+      // Refer step 1
       firstDate: now,
       lastDate: now.add(Duration(days: 365)),
       builder: (BuildContext context, Widget? child) {
@@ -422,21 +429,24 @@ class OrderCartScreenViewController extends GetxController {
     update();
   }
 
-  void getCartCache() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDeliveryMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getVoucherMethodID());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getSalesTypeCart());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDineInIDMethod());
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDriveThruIDMethod());
+  Future<void> getCartCache() async {
+    await Get.context!.read<OrderBloc>()
+      ..add(OrderEvent.getPaymentMethodID())
+      ..add(OrderEvent.getDeliveryMethodID())
+      ..add(OrderEvent.getVoucherMethodID())
+      ..add(OrderEvent.getSalesTypeCart())
+      ..add(OrderEvent.getDineInIDMethod())
+      ..add(OrderEvent.getDriveThruIDMethod())
+      ..add(OrderEvent.getCartSession());
     update();
+    return;
   }
 
-  void getActiveAddress() {
-    Get.context!
-        .read<AddressListBloc>()
-        .add(AddressListEvent.getActiveAddress());
+  Future<void> getActiveAddress() async {
+    await Get.context!.read<AddressListBloc>()
+      ..add(AddressListEvent.getActiveAddress());
     update();
+    return;
   }
 
   void getVoucherMethod() {
@@ -662,4 +672,15 @@ class OrderCartScreenViewController extends GetxController {
     KeyValueModel(key: "23:00", value: "23:00"),
     KeyValueModel(key: "24:00", value: "24:00"),
   ].obs;
+
+  void normalizeVoucherArgument(VoucherDetailArguments? arguments) {
+    if (arguments != null && arguments.isUseVoucher) {
+      GetListVoucherOutletDataResponse? newVoucherModel =
+          GetListVoucherOutletDataResponse(
+              code: arguments.voucher.code, name: arguments.voucher.name);
+      Get.context!.read<OrderBloc>().add(
+            OrderEvent.setVoucherMethodID(newVoucherModel),
+          );
+    }
+  }
 }

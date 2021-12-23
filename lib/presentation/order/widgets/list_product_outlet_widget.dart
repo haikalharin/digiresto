@@ -4,7 +4,6 @@ import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ListProductOutletWidget extends StatefulWidget {
   final List<OutletListProductDataResponse> data;
@@ -188,8 +187,8 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 5,
-                        horizontal: 10,
+                        // vertical: 5,
+                        horizontal: 5,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,7 +215,7 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                               Text(
                                 item.description ?? '',
                                 softWrap: false,
-                                maxLines: 3,
+                                maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: Styles.blackFontStyle.copyWith(
                                   fontSize: 12,
@@ -239,13 +238,16 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                   ),
                   (item.variants.length == 0)
                       ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
                               alignment: Alignment.topLeft,
                               padding: const EdgeInsets.only(top: 5),
                               //width: 10,
                               child: Text(
-                                  "Rp " + Utils.formatRupiah(price.toString()),
+                                  "Rp " +
+                                      Utils.formatRupiah(item.price.toString()),
                                   softWrap: false,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -254,12 +256,13 @@ class _ListProductOutletWidgetState extends State<ListProductOutletWidget> {
                                   ),
                                   textAlign: TextAlign.left),
                             ),
-                            beforePrice != null
+                            item.crossoutPrice != null
                                 ? Container(
                                     alignment: Alignment.topLeft,
                                     padding: const EdgeInsets.only(top: 5),
                                     //width: 10,
-                                    child: Text("Rp." + beforePrice.toString(),
+                                    child: Text(
+                                        "Rp." + item.crossoutPrice.toString(),
                                         softWrap: false,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,

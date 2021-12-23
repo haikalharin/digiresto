@@ -5,6 +5,7 @@ import 'package:digiresto/domain/order/home_see_all_outlet_view_argument.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ListviewOutletWidget extends StatefulWidget {
@@ -14,6 +15,7 @@ class ListviewOutletWidget extends StatefulWidget {
   final void Function(OutletCategoryDataResponse data) runAction;
   final void Function() loadMoreAction;
   final void Function() onRefresh;
+
   const ListviewOutletWidget({
     Key? key,
     required this.data,
@@ -120,6 +122,8 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle distanceTextStyle = AppFont.textBlack10Regular;
+
     return Expanded(
       child: RefreshIndicator(
           onRefresh: () async => widget.onRefresh(),
@@ -206,111 +210,146 @@ class _ListNearbyOutletWidgetState extends State<ListviewOutletWidget> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Container(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    width:
-                                        MediaQuery.of(context).size.width - 160,
-                                    child:
-                                        Text(widget.data[index].name.toString(),
-                                            softWrap: false,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              fontFamily: "roboto",
-                                              color: Colors.black,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            textAlign: TextAlign.left),
-                                  ),
-                                  // ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Text(
-                                        widget.data[index].distance.distance,
-                                        style: TextStyle(
-                                          fontFamily: "roboto",
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                        textAlign: TextAlign.left),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(Get.context!).size.width *
-                                            0.65,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 16, bottom: 16),
-                                      child: Wrap(
-                                          children: generateListSalesType(
-                                              widget.data[index])),
-                                    ),
-                                  ),
-                                  (widget.data[index].countOutlet ?? 0) > 1
-                                      ? SizedBox(
-                                          height: 32,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.68,
-                                          child: ElevatedButton(
-                                            onPressed: () {
-                                              Get.toNamed(
-                                                      Routers.homeSeeAllOutlet,
-                                                      arguments:
-                                                          HomeSeeAllOutletViewArgument(
-                                                              data: widget
-                                                                  .data[index]))
-                                                  ?.then((value) =>
-                                                      widget.onRefresh());
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    I10n.current
-                                                        .outlet_list_see_all_outlet(
-                                                            widget.data[index]
-                                                                .name),
-                                                    style: AppFont
-                                                        .textBlack10SemiBold
-                                                        .copyWith(
-                                                      color: AppColors.red,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            style: ButtonStyle(
-                                                shadowColor:
-                                                    MaterialStateProperty.all(
-                                                        Colors.transparent),
-                                                shape: MaterialStateProperty
-                                                    .all(RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4.0),
-                                                        side: BorderSide(
-                                                            color: AppColors
-                                                                .greyDEDEDE))),
-                                                backgroundColor:
-                                                    MaterialStateProperty.all(
-                                                        AppColors.white)),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      width: MediaQuery.of(context).size.width -
+                                          160,
+                                      child: Text(
+                                          widget.data[index].name.toString(),
+                                          softWrap: false,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontFamily: "roboto",
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                        )
-                                      : Container(),
-                                  SizedBox(
-                                    height: 8,
-                                  )
-                                ],
+                                          textAlign: TextAlign.left),
+                                    ),
+                                    // ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  widget.data[index].distance
+                                                      .distance,
+                                                  style: distanceTextStyle,
+                                                  textAlign: TextAlign.left),
+                                              Text(' | ',
+                                                  style: distanceTextStyle),
+                                              Row(
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'assets/star.svg',
+                                                    width: 10,
+                                                    height: 10,
+                                                    color: (widget.data[index]
+                                                                    .rating ??
+                                                                0) >
+                                                            0
+                                                        ? null
+                                                        : AppColors.greyColor,
+                                                  ),
+                                                  Text(
+                                                      (widget.data[index]
+                                                                  .rating ??
+                                                              ' -')
+                                                          .toString(),
+                                                      style: distanceTextStyle),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          Text(
+                                              widget.data[index]
+                                                      .priceRangeDesc ??
+                                                  '',
+                                              style: distanceTextStyle)
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(Get.context!)
+                                              .size
+                                              .width *
+                                          0.65,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 16, bottom: 16),
+                                        child: Wrap(
+                                            children: generateListSalesType(
+                                                widget.data[index])),
+                                      ),
+                                    ),
+                                    (widget.data[index].countOutlet ?? 0) > 1
+                                        ? Container(
+                                            width: double.infinity,
+                                            padding: EdgeInsets.only(right: 10),
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Get.toNamed(
+                                                        Routers
+                                                            .homeSeeAllOutlet,
+                                                        arguments:
+                                                            HomeSeeAllOutletViewArgument(
+                                                                data:
+                                                                    widget.data[
+                                                                        index]))
+                                                    ?.then((value) =>
+                                                        widget.onRefresh());
+                                              },
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${I10n.current.outlet_list_see_all_outlet(widget.data[index].name)}',
+                                                      style: AppFont
+                                                          .textBlack10SemiBold
+                                                          .copyWith(
+                                                        color: AppColors.red,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              style: ButtonStyle(
+                                                  shadowColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.transparent),
+                                                  shape: MaterialStateProperty.all(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      4.0),
+                                                          side: BorderSide(
+                                                              color: AppColors
+                                                                  .greyDEDEDE))),
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          AppColors.white)),
+                                            ),
+                                          )
+                                        : Container(),
+                                    SizedBox(
+                                      height: 8,
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),

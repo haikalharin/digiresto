@@ -1,14 +1,12 @@
 import 'package:badges/badges.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
-import 'package:digiresto/domain/core/constants/assets.dart';
-import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/injection.dart';
-import 'package:digiresto/presentation/cart/cart.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/credit/credit_page.dart';
 import 'package:digiresto/presentation/home_new/home_page.dart';
 import 'package:digiresto/presentation/profile/profile_page.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -110,15 +108,24 @@ class BottomTabView extends StatelessWidget {
 
   final _listPage = <Widget>[
     HomePage(),
-    CartScreen(),
+    Center(
+      child: CircularProgressIndicator(),
+    ),
     CreditPage(),
     ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BottomTabCubit, BottomTabState>(
+    return BlocConsumer<BottomTabCubit, BottomTabState>(
       bloc: getIt<BottomTabCubit>()..checkAllCounter(),
+      listener: (context, state) {
+        if (state.currentIndex == 1) {
+          Get.toNamed(Routers.orderCart)?.then((value) {
+            context.read<BottomTabCubit>().changeTab(0);
+          });
+        }
+      },
       builder: (context, state) {
         void _onNavBarTapped(int index) {
           context.read<BottomTabCubit>().changeTab(index);

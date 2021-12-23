@@ -3,24 +3,27 @@ import 'dart:convert';
 import 'package:digiresto/application/home_new/bloc/home_bloc.dart';
 import 'package:digiresto/application/home_new/static_banner_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
-import 'package:digiresto/presentation/widgets/transparent_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class StaticBannerWidget extends GetView<StaticBannerController> {
+  final List<MenuCategory> menuCategory;
+
   const StaticBannerWidget({
+    required this.menuCategory,
     Key? key,
   }) : super(key: key);
-  _showDetailImage(String imageUrl) {
-    Navigator.of(Get.context!).push(TransparentRoute(
-        builder: (BuildContext context) =>
-            DetailImageDialog(dataImage: imageUrl)));
-  }
+
+  // _showDetailImage(String imageUrl) {
+  //   Navigator.of(Get.context!).push(TransparentRoute(
+  //       builder: (BuildContext context) =>
+  //           DetailImageDialog(dataImage: imageUrl)));
+  // }
 
   Widget _buildPageIndicator(bool isCurrentPage) {
     return Container(
@@ -37,13 +40,16 @@ class StaticBannerWidget extends GetView<StaticBannerController> {
   Widget _promoList(StaticBanner data) {
     return GestureDetector(
         onTap: () {
-          if (data.promoUrl == null || data.promoUrl == "") {
-            _showDetailImage(data.promoBanner ?? "");
-          } else {
-            print("goto home promo url " + data.promoUrl.toString());
-            Get.toNamed(Routers.homePromoUrl,
-                arguments: {"url": data.promoUrl, "title": data.promoName});
-          }
+          Get.toNamed(Routers.homePromoUrl, arguments: {
+            "url": data.promoUrl,
+            "title": data.promoName,
+            "image_url": data.promoBanner,
+            "desc": data.promoDescription,
+            "callId": data.promoCallMenuId,
+            "menu": menuCategory.firstWhere(
+              (element) => element.id == data.promoCallMenuId,
+            )
+          });
         },
         child: Container(
             padding: EdgeInsets.only(right: 20, left: 20),

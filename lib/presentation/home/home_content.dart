@@ -4,8 +4,6 @@ import 'package:digiresto/application/address/list/address_list_bloc.dart';
 import 'package:digiresto/application/core/app_bloc.dart';
 import 'package:digiresto/application/home/home_content_view_controller.dart';
 import 'package:digiresto/application/home/home_user_bloc/home_user_bloc.dart';
-import 'package:digiresto/domain/core/constants/assets.dart';
-import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/strings.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -17,13 +15,11 @@ import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:digiresto/presentation/guide/guide_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
-import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/detail_image_widget.dart';
 import 'package:digiresto/presentation/widgets/progress_indicator_widget.dart';
 import 'package:digiresto/presentation/widgets/transparent_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -158,88 +154,88 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
     );
   }
 
-  Widget _hotPromo() {
-    var _loadingHotPromo =
-        Get.find<HomeContentViewController>().loadingHotPromo;
-    return Container(
-        padding: EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        child: GestureDetector(
-                            child: Text(
-                              I10n.current.home_hot_promo,
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                            onTap: () {}),
-                      ),
-                      _loadingHotPromo.value == true
-                          ? CustomProgressIndicatorWidget(size: 20)
-                          : Container(),
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: GestureDetector(
-                        child: Text(
-                          I10n.current.home_see_all,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.red),
-                        ),
-                        onTap: () {
-                          Get.toNamed(Routers.homeAllHotPromo);
-                        }),
-                  )
-                ]),
-          ],
-        ));
-  }
+  // Widget _hotPromo() {
+  //   var _loadingHotPromo =
+  //       Get.find<HomeContentViewController>().loadingHotPromo;
+  //   return Container(
+  //       padding: EdgeInsets.only(top: 10),
+  //       child: Column(
+  //         children: [
+  //           Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //               children: <Widget>[
+  //                 Row(
+  //                   mainAxisAlignment: MainAxisAlignment.start,
+  //                   children: [
+  //                     Container(
+  //                       padding: EdgeInsets.only(left: 10),
+  //                       child: GestureDetector(
+  //                           child: Text(
+  //                             I10n.current.home_hot_promo,
+  //                             style: TextStyle(
+  //                                 fontSize: 14.0,
+  //                                 fontWeight: FontWeight.bold,
+  //                                 color: Colors.black),
+  //                           ),
+  //                           onTap: () {}),
+  //                     ),
+  //                     _loadingHotPromo.value == true
+  //                         ? CustomProgressIndicatorWidget(size: 20)
+  //                         : Container(),
+  //                   ],
+  //                 ),
+  //                 Container(
+  //                   padding: EdgeInsets.only(right: 10),
+  //                   child: GestureDetector(
+  //                       child: Text(
+  //                         I10n.current.home_see_all,
+  //                         style: TextStyle(
+  //                             fontSize: 14.0,
+  //                             fontWeight: FontWeight.bold,
+  //                             color: AppColors.red),
+  //                       ),
+  //                       onTap: () {
+  //                         Get.toNamed(Routers.homeAllHotPromo);
+  //                       }),
+  //                 )
+  //               ]),
+  //         ],
+  //       ));
+  // }
 
-  Widget _historyOrder() {
-    var _loadingHistory = Get.find<HomeContentViewController>().loadingHistory;
-    return //_transactionStore?.listTransactionHistory != null ||
-        _loadingHistory.value == true
-            ? Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: GestureDetector(
-                                child: Text(
-                                  I10n.current.beranda_recent_order,
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                onTap: () {}),
-                          ),
-                          _loadingHistory.value == true
-                              ? CustomProgressIndicatorWidget(
-                                  size: 20,
-                                )
-                              : Container()
-                        ]),
-                  ],
-                ))
-            : Container();
-  }
+  // Widget _historyOrder() {
+  //   var _loadingHistory = Get.find<HomeContentViewController>().loadingHistory;
+  //   return //_transactionStore?.listTransactionHistory != null ||
+  //       _loadingHistory.value == true
+  //           ? Container(
+  //               padding: EdgeInsets.only(top: 10),
+  //               child: Column(
+  //                 children: [
+  //                   Row(
+  //                       mainAxisAlignment: MainAxisAlignment.start,
+  //                       children: <Widget>[
+  //                         Container(
+  //                           padding: EdgeInsets.only(left: 10),
+  //                           child: GestureDetector(
+  //                               child: Text(
+  //                                 I10n.current.beranda_recent_order,
+  //                                 style: TextStyle(
+  //                                     fontSize: 14.0,
+  //                                     fontWeight: FontWeight.bold,
+  //                                     color: Colors.black),
+  //                               ),
+  //                               onTap: () {}),
+  //                         ),
+  //                         _loadingHistory.value == true
+  //                             ? CustomProgressIndicatorWidget(
+  //                                 size: 20,
+  //                               )
+  //                             : Container()
+  //                       ]),
+  //                 ],
+  //               ))
+  //           : Container();
+  // }
 
   Widget _trackOrder() {
     var _loadingTraceOrder =
@@ -371,31 +367,31 @@ class HomeContentScreen extends GetView<HomeContentViewController> {
     );
   }
 
-  _getCurrentLocation() async {
-    Get.find<HomeContentViewController>().setLoadingListAddress(true);
-    print("get current location");
-    await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.best,
-      forceAndroidLocationManager: true,
-    ).then((Position position) {
-      print("lat: " + position.latitude.toString());
-      print("lng:" + position.longitude.toString());
+  // _getCurrentLocation() async {
+  //   Get.find<HomeContentViewController>().setLoadingListAddress(true);
+  //   print("get current location");
+  //   await Geolocator.getCurrentPosition(
+  //     desiredAccuracy: LocationAccuracy.best,
+  //     forceAndroidLocationManager: true,
+  //   ).then((Position position) {
+  //     print("lat: " + position.latitude.toString());
+  //     print("lng:" + position.longitude.toString());
 
-      Get.find<HomeContentViewController>().setCurrentPosition(position);
+  //     Get.find<HomeContentViewController>().setCurrentPosition(position);
 
-      Get.find<HomeContentViewController>().setLoadingListAddress(false);
-    }).catchError((e) {
-      Get.find<HomeContentViewController>().setLoadingListAddress(false);
-      ErrorPopupWidget.show("Digiresto", I10n.current.cart_address_not_valid,
-          () {
-        {
-          Get.back();
-          Get.toNamed(Routers.homeAddLocation);
-        }
-      });
-      print(e);
-    });
-  }
+  //     Get.find<HomeContentViewController>().setLoadingListAddress(false);
+  //   }).catchError((e) {
+  //     Get.find<HomeContentViewController>().setLoadingListAddress(false);
+  //     ErrorPopupWidget.show("Digiresto", I10n.current.cart_address_not_valid,
+  //         () {
+  //       {
+  //         Get.back();
+  //         Get.toNamed(Routers.homeAddLocation);
+  //       }
+  //     });
+  //     print(e);
+  //   });
+  // }
 
   void showTutorial(BuildContext context) {
     final _appBloc = BlocProvider.of<AppBloc>(context);

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderHistoryPageController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   final void Function(int tabIndex) tabListener;
   final I10n i10n;
   OrderHistoryPageController({
@@ -86,8 +86,7 @@ class OrderHistoryPageController extends GetxController
             style: Styles.badgeContentStyle,
           ),
           child: Text(
-            // i10n.upcoming_order,
-            '',
+            i10n.history_upcoming,
             textAlign: TextAlign.center,
           ),
         ),

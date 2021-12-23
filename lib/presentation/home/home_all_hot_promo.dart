@@ -21,7 +21,6 @@ class _HomeAllHotPromoScreenState extends State<HomeAllHotPromoScreen> {
 
   @override
   void setState(fn) {
-    // TODO: implement setState
     super.setState(fn);
   }
 

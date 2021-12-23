@@ -6,7 +6,6 @@ import 'package:digiresto/domain/catering/i_catering_repository.dart';
 import 'package:digiresto/domain/catering/outlet_category_catering_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/infrastructure/network/apis/user/user_repository.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -23,40 +22,34 @@ class CateringBloc extends Bloc<CateringEvent, CateringState> {
   CateringBloc(
     this._cateringRepository,
     this._userRepository,
-  ) : super(CateringState.initial());
+  ) : super(_Initial()) {
+    on<CateringEvent>(
+      (event, emit) async {
+        await event.map(
+          getOutletCategoryCatering: (_event) async {
+            emit(CateringState.loadInProgress());
+            final address = await _userRepository.getActiveAddress();
+            final activeAddress = address.getOrElse(() => UserAddress());
+            final location =
+                "${activeAddress.latitude}, ${activeAddress.longitude}";
 
-
-  @override
-  Stream<CateringState> mapEventToState(CateringEvent event) async* {
-    yield* event.map(
-      getOutletCategoryCatering: (_event) async* {
-        yield CateringState.loadInProgress();
-        final address = await _userRepository.getActiveAddress();
-        final activeAddress = address.getOrElse(() => UserAddress());
-        final location =
-            "${activeAddress.latitude}, ${activeAddress.longitude}";
-
-        final failureOrSuccess =
-            await _cateringRepository.getOutletCategoryCatering(
-          page: _event.page,
-          isHideOpen: _event.isHideOpen,
-          location: location,
-          isCatering: true,
-          mealsTypes: _event.mealsTypes,
-          preOrderDate: _event.preOrderDate,
-          excludeMerchantIds: _event.excludeMerchantIds,
-          search: _event.search,
-        );
-
-        yield failureOrSuccess.fold(
-          (failure) {
-            return CateringState.getListOutletCateringFailure(
-              failure,
+            final failureOrSuccess =
+                await _cateringRepository.getOutletCategoryCatering(
+              page: _event.page,
+              isHideOpen: _event.isHideOpen,
+              location: location,
+              isCatering: true,
+              mealsTypes: _event.mealsTypes,
+              preOrderDate: _event.preOrderDate,
+              excludeMerchantIds: _event.excludeMerchantIds,
+              search: _event.search,
             );
-          },
-          (data) {
-            return CateringState.getListOutletCateringSuccess(
-              data,
+
+            failureOrSuccess.fold(
+              (failure) =>
+                  emit(CateringState.getListOutletCateringFailure(failure)),
+              (outlets) => emit(
+                  CateringState.getListOutletCateringSuccess(outlets.unlock)),
             );
           },
         );

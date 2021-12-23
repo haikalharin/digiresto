@@ -55,6 +55,7 @@ class Endpoints {
   static const Map<String, dynamic> urlTopupPending = {"r": "topuppending"};
   static const Map<String, dynamic> urlCancelBilling = {"r": "cancelbilling"};
   //home
+  static const String urlNewNearbyOutlet = '/outlet/highlights';
   static const Map<String, dynamic> urlGetPromo = {"r": "getpromo"};
   static const Map<String, dynamic> urlGetHotPromo = {"r": "gethotpromo"};
   static const Map<String, dynamic> urlGetStaticBanner = {

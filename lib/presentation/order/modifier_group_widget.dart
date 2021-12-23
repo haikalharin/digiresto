@@ -263,59 +263,68 @@ class ModifierItemCheckboxWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      onChanged: onChanged,
-      controlAffinity: ListTileControlAffinity.leading,
-      value: isSelected,
-      dense: true,
-      contentPadding: EdgeInsets.zero,
-      secondary: isSelected
-          ? Row(
+    return Row(
+      children: [
+        Expanded(
+          child: CheckboxListTile(
+            onChanged: onChanged,
+            controlAffinity: ListTileControlAffinity.leading,
+            value: isSelected,
+            dense: true,
+            contentPadding: EdgeInsets.zero,
+            title: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: onMinus,
-                  child: CircleAvatar(
-                    radius: 14,
-                    backgroundColor: AppColors.greyStroke,
-                    child: new Icon(Icons.remove,
-                        color: AppColors.redYoung, size: 20.0),
-                  ),
+                Text(
+                  modifier.name,
+                  style: AppFont.textBlack14Regular,
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 8, right: 8),
-                  child: Text(itemQty.toString(),
-                      style: AppFont.textBlack16Bold,
-                      textAlign: TextAlign.left),
+                Text(
+                  '+ ${CommonUtils.currencyFormat(modifier.price.toDouble())}',
+                  style: AppFont.textBlack14Regular,
                 ),
-                GestureDetector(
-                  onTap: onPlus,
-                  child: CircleAvatar(
-                    radius: 14,
-                    backgroundColor: AppColors.greyStroke,
-                    child: new Icon(Icons.add,
-                        color: AppColors.redYoung, size: 20.0),
-                  ),
-                )
               ],
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
             ),
-      title: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            modifier.name,
-            style: AppFont.textBlack14Regular,
           ),
-          Text(
-            '+ ${CommonUtils.currencyFormat(modifier.price.toDouble())}',
-            style: AppFont.textBlack14Regular,
-          ),
-        ],
-      ),
+        ),
+        Expanded(
+          child: isSelected
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: onMinus,
+                      child: CircleAvatar(
+                        radius: 14,
+                        backgroundColor: AppColors.greyStroke,
+                        child: new Icon(Icons.remove,
+                            color: AppColors.redYoung, size: 20.0),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 8, right: 8),
+                      child: Text(itemQty.toString(),
+                          style: AppFont.textBlack16Bold,
+                          textAlign: TextAlign.left),
+                    ),
+                    GestureDetector(
+                      onTap: onPlus,
+                      child: CircleAvatar(
+                        radius: 14,
+                        backgroundColor: AppColors.greyStroke,
+                        child: new Icon(Icons.add,
+                            color: AppColors.redYoung, size: 20.0),
+                      ),
+                    )
+                  ],
+                )
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                ),
+        ),
+      ],
     );
   }
 }

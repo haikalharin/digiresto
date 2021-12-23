@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 // import 'package:digiresto/infrastructure/core/alice_interceptor.dart';
 // import 'package:digiresto/infrastructure/core/auth_interceptor.dart';
-import 'package:alice/alice.dart';
+import 'package:code_id_alice/alice.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
@@ -14,17 +14,9 @@ import 'package:logger/logger.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'logger_interceptor.dart';
-// import 'package:alice/alice.dart';
 
 @module
 abstract class RegisterModule {
-  // @Environment(Environment.dev)
-  // @Named('baseUrl')
-  // String get devUrl => Endpoints.devUrl;
-
-  // @preResolve
-  // await Hive.initFlutter();
-
   @Environment(Environment.prod)
   @lazySingleton
   Alice get alice => Alice(showNotification: false);
@@ -38,9 +30,6 @@ abstract class RegisterModule {
 
   @lazySingleton
   Logger get logger => Logger();
-
-  // @lazySingleton
-  // Storage get storage =>
 
   @Environment(Environment.dev)
   @preResolve
@@ -62,8 +51,6 @@ abstract class RegisterModule {
       };
       return client;
     };
-
-    // _dio.interceptors.add(AuthInterceptor(_storage));
 
     _dio.interceptors.add(LoggerInterceptor(
         requestBody: true,
@@ -97,10 +84,6 @@ abstract class RegisterModule {
       };
       return client;
     };
-    // options.
-    // Storage _storage = Storage(Hive, Logger());
-
-    // _dio.interceptors.add(AuthInterceptor(_storage));
 
     return _dio;
   }

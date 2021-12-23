@@ -13,6 +13,7 @@ import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dar
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
+import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,6 +35,7 @@ class OrderViewController extends GetxController {
   // var preOrderDate = "".obs;
   // var isCatering = false.obs;
 
+  var voucherCode = Rxn<VoucherDetailArguments>();
   bool isSameOutlet() {
     return (cartSession.value?.transactionData!.outletName ==
             detailOutlet.value?.endpointName ||
@@ -56,6 +58,7 @@ class OrderViewController extends GetxController {
   Rxn<List<PromoOutletDataResponse>> listPromo =
       Rxn<List<PromoOutletDataResponse>>();
   Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
+  RxnString outletCart = RxnString();
 
   void getDetailOutlet() {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(

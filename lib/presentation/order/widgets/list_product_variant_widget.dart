@@ -3,7 +3,6 @@ import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ListProductVariant extends StatefulWidget {
   final List<OutletListProductDataVariantResponse> data;

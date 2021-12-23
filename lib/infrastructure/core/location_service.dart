@@ -44,8 +44,10 @@ class LocationService implements ILocationService {
     return geolocator.getCurrentPosition().timeout(const Duration(seconds: 10),
         onTimeout: () async {
       return geolocator.getCurrentPosition(
-          forceAndroidLocationManager: true,
-          timeLimit: const Duration(seconds: 300));
+        locationSettings: LocationSettings(
+          timeLimit: const Duration(seconds: 300),
+        ),
+      );
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:digiresto/domain/entity/map/geocode.dart';
 import 'package:digiresto/domain/entity/map/param/get_geocode_param.dart';
 import 'package:digiresto/domain/entity/user/param/user_add_address_param.dart';
@@ -24,64 +25,67 @@ class AddressListBloc extends Bloc<AddressListEvent, AddressListState> {
   AddressListBloc(
     this._userRepository,
     this._mapRepository,
-  ) : super(_Initial());
-
-  @override
-  Stream<AddressListState> mapEventToState(AddressListEvent gEvent) async* {
-    yield* gEvent.map(
-      setDefault: (request) async* {
-        yield AddressListState.loadInProgress();
-        final setDefault =
-            await _userRepository.setDefaultAddress(request.request.toMap());
-        yield setDefault.fold(
-            (error) => AddressListState.setDefaultFail(error.toString()),
-            (data) => AddressListState.setDefaultSuccess(data));
+  ) : super(_Initial()) {
+    on<AddressListEvent>(
+      (event, emit) async {
+        await event.map(
+          setDefault: (request) async {
+            emit(AddressListState.loadInProgress());
+            final setDefault = await _userRepository
+                .setDefaultAddress(request.request.toMap());
+            emit(setDefault.fold(
+                (error) => AddressListState.setDefaultFail(error.toString()),
+                (data) => AddressListState.setDefaultSuccess(data)));
+          },
+          removeAddress: (request) async {
+            emit(AddressListState.loadInProgress());
+            final removeAddress =
+                await _userRepository.removeAddress(request.request.toMap());
+            emit(removeAddress.fold(
+                (error) => AddressListState.loadFailure(error.toString()),
+                (data) => AddressListState.removeAddressSuccess(data)));
+          },
+          getGeoCode: (request) async {
+            emit(AddressListState.loadInProgress());
+            final getGeoCode = await _mapRepository.geocode(request.param);
+            emit(getGeoCode.fold(
+                (error) => AddressListState.getGeoCodeFail(error.toString()),
+                (data) => AddressListState.getGeoCodeSuccess(data)));
+          },
+          setActiveAddress: (value) async {
+            emit(AddressListState.loadInProgress());
+            final setActiveAddress =
+                await _userRepository.setActiveAddress(value.model);
+            emit(setActiveAddress.fold(
+                (error) =>
+                    AddressListState.setActiveAddressFail(error.toString()),
+                (data) => AddressListState.setActiveAddressSuccess(data)));
+          },
+          addAddress: (request) async {
+            emit(AddressListState.loadInProgress());
+            final addAddress =
+                await _userRepository.addAddress(request.request.toMap());
+            emit(addAddress.fold(
+                (error) => AddressListState.loadFailure(error.toString()),
+                (data) => AddressListState.addAddressSuccess(data)));
+          },
+          getActiveAddress: (value) async {
+            emit(AddressListState.loadInProgress());
+            final setActiveAddress = await _userRepository.getActiveAddress();
+            emit(setActiveAddress.fold(
+                (error) => AddressListState.loadFailure(error.toString()),
+                (data) => AddressListState.getActiveAddressSuccess(data)));
+          },
+          getAllAddress: (value) async {
+            emit(AddressListState.loadInProgress());
+            final listAddress = await _userRepository.getAddress();
+            emit(listAddress.fold(
+                (error) => AddressListState.loadFailure(error.toString()),
+                (data) => AddressListState.getAllAddressSuccess(data)));
+          },
+        );
       },
-      removeAddress: (request) async* {
-        yield AddressListState.loadInProgress();
-        final removeAddress =
-            await _userRepository.removeAddress(request.request.toMap());
-        yield removeAddress.fold(
-            (error) => AddressListState.loadFailure(error.toString()),
-            (data) => AddressListState.removeAddressSuccess(data));
-      },
-      getGeoCode: (request) async* {
-        yield AddressListState.loadInProgress();
-        final getGeoCode = await _mapRepository.geocode(request.param);
-        yield getGeoCode.fold(
-            (error) => AddressListState.getGeoCodeFail(error.toString()),
-            (data) => AddressListState.getGeoCodeSuccess(data));
-      },
-      setActiveAddress: (value) async* {
-        yield AddressListState.loadInProgress();
-        final setActiveAddress =
-            await _userRepository.setActiveAddress(value.model);
-        yield setActiveAddress.fold(
-            (error) => AddressListState.setActiveAddressFail(error.toString()),
-            (data) => AddressListState.setActiveAddressSuccess(data));
-      },
-      addAddress: (request) async* {
-        yield AddressListState.loadInProgress();
-        final addAddress =
-            await _userRepository.addAddress(request.request.toMap());
-        yield addAddress.fold(
-            (error) => AddressListState.loadFailure(error.toString()),
-            (data) => AddressListState.addAddressSuccess(data));
-      },
-      getActiveAddress: (value) async* {
-        yield AddressListState.loadInProgress();
-        final setActiveAddress = await _userRepository.getActiveAddress();
-        yield setActiveAddress.fold(
-            (error) => AddressListState.loadFailure(error.toString()),
-            (data) => AddressListState.getActiveAddressSuccess(data));
-      },
-      getAllAddress: (value) async* {
-        yield AddressListState.loadInProgress();
-        final listAddress = await _userRepository.getAddress();
-        yield listAddress.fold(
-            (error) => AddressListState.loadFailure(error.toString()),
-            (data) => AddressListState.getAllAddressSuccess(data));
-      },
+      transformer: sequential(),
     );
   }
 }

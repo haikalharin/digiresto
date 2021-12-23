@@ -285,12 +285,13 @@ class _$_NewNotification implements _NewNotification {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NewNotification &&
-            (identical(other.notification, notification) ||
-                other.notification == notification));
+            const DeepCollectionEquality()
+                .equals(other.notification, notification));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, notification);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(notification));
 
   @JsonKey(ignore: true)
   @override
@@ -436,12 +437,13 @@ class _$_NotificationOpened implements _NotificationOpened {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NotificationOpened &&
-            (identical(other.notification, notification) ||
-                other.notification == notification));
+            const DeepCollectionEquality()
+                .equals(other.notification, notification));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, notification);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(notification));
 
   @JsonKey(ignore: true)
   @override
@@ -826,21 +828,22 @@ class _$_NotificationState extends _NotificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NotificationState &&
-            (identical(other.notifications, notifications) ||
-                other.notifications == notifications) &&
-            (identical(
-                    other.notificationOpenedOption, notificationOpenedOption) ||
-                other.notificationOpenedOption == notificationOpenedOption) &&
-            (identical(
-                    other.fetchFailureOrUnitOption, fetchFailureOrUnitOption) ||
-                other.fetchFailureOrUnitOption == fetchFailureOrUnitOption) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+            const DeepCollectionEquality()
+                .equals(other.notifications, notifications) &&
+            const DeepCollectionEquality().equals(
+                other.notificationOpenedOption, notificationOpenedOption) &&
+            const DeepCollectionEquality().equals(
+                other.fetchFailureOrUnitOption, fetchFailureOrUnitOption) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, notifications,
-      notificationOpenedOption, fetchFailureOrUnitOption, isLoading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(notifications),
+      const DeepCollectionEquality().hash(notificationOpenedOption),
+      const DeepCollectionEquality().hash(fetchFailureOrUnitOption),
+      const DeepCollectionEquality().hash(isLoading));
 
   @JsonKey(ignore: true)
   @override

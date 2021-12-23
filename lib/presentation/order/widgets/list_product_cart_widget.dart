@@ -1,5 +1,3 @@
-import 'package:collection/src/iterable_extensions.dart';
-import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/core/utils/utils.dart';
@@ -8,8 +6,6 @@ import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart'
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
 
 class ListProductCartWidget extends StatefulWidget {
   final List<TransactionDataItemResponse> productCart;
@@ -152,240 +148,232 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
 
         return productCart.categoryCode == "HIDDEN"
             ? Container()
-            : GestureDetector(
-                onTap: () =>
-                    widget.runEditAction(productCart, widget.orderType),
-                child: Container(
-                  decoration: BoxDecoration(
-                    //color: Colors.amber[100],
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  padding: EdgeInsets.only(bottom: 15),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(right: 5, left: 5),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          child: Image(
-                            errorBuilder: (context, obj, stacktrace) {
-                              return Image(
-                                height: 64,
-                                width: 64,
-                                image: RandomImages.getImage(),
-                              );
-                            },
-                            //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
-                            image: RandomImages.getImageUrlDefault(
-                                getImageUrl(index), ""),
-                            fit: BoxFit.fill,
-                            height: 64,
-                            width: 64,
-                            alignment: Alignment.center,
-                          ),
+            : Container(
+                decoration: BoxDecoration(
+                  //color: Colors.amber[100],
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                padding: EdgeInsets.only(bottom: 15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(right: 5, left: 5),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        child: Image(
+                          errorBuilder: (context, obj, stacktrace) {
+                            return Image(
+                              height: 64,
+                              width: 64,
+                              image: RandomImages.getImage(),
+                            );
+                          },
+                          //image: (data[index]["detail"]["img"].length > 1) ? NetworkImage(data[index]["detail"]["img"]) : RandomImages.getImage(),
+                          image: RandomImages.getImageUrlDefault(
+                              getImageUrl(index), ""),
+                          fit: BoxFit.fill,
+                          height: 64,
+                          width: 64,
+                          alignment: Alignment.center,
                         ),
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    productCart.title,
-                                    softWrap: false,
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: AppFont.textBlack14SemiBold,
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  // padding: const EdgeInsets.only(top: 5),
-                                  //width: 10,
-                                  child: Text(
-                                      "Rp." +
-                                          Utils.formatRupiah(price.toString()),
-                                      softWrap: false,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: AppFont.textBlack16Bold,
-                                      textAlign: TextAlign.left),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      if (productCart.modifiers?.isNotEmpty ??
-                                          false)
-                                        Text(
-                                            productCart.modifiers
-                                                    ?.map((e) =>
-                                                        '${e.title} (${e.qty})')
-                                                    .toList()
-                                                    .join(', ') ??
-                                                '',
-                                            softWrap: false,
-                                            maxLines: 3,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: AppFont.textBlack12Regular
-                                                .copyWith(
-                                                    color:
-                                                        AppColors.grey747474),
-                                            textAlign: TextAlign.left),
-                                      if (widget.productCart[index].desc
-                                              ?.isNotEmpty ??
-                                          false)
-                                        Text(
-                                          widget.productCart[index].desc ?? '',
-                                          style: AppFont.textBlack10Regular
-                                              .copyWith(
-                                                  color: AppColors.grey7B7B7B),
-                                        ),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 5),
-                                        padding: EdgeInsets.all(5),
-                                        height: 35,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            print(productCart);
-                                            print(widget.orderType);
-                                            print(
-                                                'productCart.modifiers : ${productCart.modifiers}');
-                                            widget.runDetailAction(
-                                              productCart,
-                                              getMetaProduct(index)!,
-                                              widget.orderType,
-                                              [
-                                                ...productCart.modifiers
-                                                        ?.map(
-                                                          (e) =>
-                                                              CreateCartSessionItemModifierParam(
-                                                            modifierGroupId: e
-                                                                .modifierGroupId,
-                                                            modifierId:
-                                                                e.modifierId,
-                                                            qty: e.qty,
-                                                          ),
-                                                        )
-                                                        .toList() ??
-                                                    [],
-                                              ],
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: AppColors.redD12B34,
-                                            shape: new RoundedRectangleBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      17.0),
-                                              side: BorderSide(
-                                                width: 1,
-                                                color: AppColors.red,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(I10n.current.cart_edit,
-                                              style: AppFont.textBlack10SemiBold
-                                                  .copyWith(
-                                                      color: AppColors.white)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          widget.addOrRemove(
-                                              productCart.productId,
-                                              productCart.qty - 1,
-                                              price!,
-                                              productCart);
-                                          //minus();
-                                        },
-                                        child: CircleAvatar(
-                                          radius: 14,
-                                          backgroundColor: AppColors.greyStroke,
-                                          child: new Icon(Icons.remove,
-                                              color: AppColors.redYoung,
-                                              size: 20.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        padding:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                        child: Text(productCart.qty.toString(),
-                                            style: AppFont.textBlack16Bold,
-                                            textAlign: TextAlign.left),
-                                      ),
-                                      GestureDetector(
-                                        onTap: (productItem.limit ?? 999) >=
-                                                productCart.qty
-                                            ? null
-                                            : () {
-                                                widget.addOrRemove(
-                                                    productCart.productId,
-                                                    productCart.qty + 1,
-                                                    price!,
-                                                    productCart);
-                                                //plus();
-                                              },
-                                        child: CircleAvatar(
-                                          radius: 14,
-                                          backgroundColor: AppColors.greyStroke,
-                                          child: new Icon(Icons.add,
-                                              color: AppColors.redYoung,
-                                              size: 20.0),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            if (productItem.limit == productCart.qty)
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.all(5),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
                                 child: Text(
-                                  I10n.current.product_detail_max_item,
-                                  style: AppFont.textBlack10Regular.copyWith(
-                                    color: AppColors.mainColor,
-                                  ),
-                                  textAlign: TextAlign.right,
+                                  productCart.title,
+                                  softWrap: false,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppFont.textBlack14SemiBold,
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
-                          ],
-                        ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                // padding: const EdgeInsets.only(top: 5),
+                                //width: 10,
+                                child: Text(
+                                    "Rp." +
+                                        Utils.formatRupiah(price.toString()),
+                                    softWrap: false,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppFont.textBlack16Bold,
+                                    textAlign: TextAlign.left),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    if (productCart.modifiers?.isNotEmpty ??
+                                        false)
+                                      Text(
+                                          productCart.modifiers
+                                                  ?.map((e) =>
+                                                      '${e.title} (${e.qty})')
+                                                  .toList()
+                                                  .join(', ') ??
+                                              '',
+                                          softWrap: false,
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: AppFont.textBlack12Regular
+                                              .copyWith(
+                                                  color: AppColors.grey747474),
+                                          textAlign: TextAlign.left),
+                                    if (widget.productCart[index].desc
+                                            ?.isNotEmpty ??
+                                        false)
+                                      Text(
+                                        widget.productCart[index].desc ?? '',
+                                        style: AppFont.textBlack10Regular
+                                            .copyWith(
+                                                color: AppColors.grey7B7B7B),
+                                      ),
+                                    Container(
+                                      margin: EdgeInsets.only(top: 5),
+                                      padding: EdgeInsets.all(5),
+                                      height: 35,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          print(productCart);
+                                          print(widget.orderType);
+                                          print(
+                                              'productCart.modifiers : ${productCart.modifiers}');
+                                          widget.runDetailAction(
+                                            productCart,
+                                            getMetaProduct(index)!,
+                                            widget.orderType,
+                                            [
+                                              ...productCart.modifiers
+                                                      ?.map(
+                                                        (e) =>
+                                                            CreateCartSessionItemModifierParam(
+                                                          modifierGroupId:
+                                                              e.modifierGroupId,
+                                                          modifierId:
+                                                              e.modifierId,
+                                                          qty: e.qty,
+                                                        ),
+                                                      )
+                                                      .toList() ??
+                                                  [],
+                                            ],
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          primary: AppColors.redD12B34,
+                                          shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(17.0),
+                                            side: BorderSide(
+                                              width: 1,
+                                              color: AppColors.red,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Text(I10n.current.cart_edit,
+                                            style: AppFont.textBlack10SemiBold
+                                                .copyWith(
+                                                    color: AppColors.white)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        widget.addOrRemove(
+                                            productCart.productId,
+                                            productCart.qty - 1,
+                                            price!,
+                                            productCart);
+                                        //minus();
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 14,
+                                        backgroundColor: AppColors.greyStroke,
+                                        child: new Icon(Icons.remove,
+                                            color: AppColors.redYoung,
+                                            size: 20.0),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.only(left: 5, right: 5),
+                                      child: Text(productCart.qty.toString(),
+                                          style: AppFont.textBlack16Bold,
+                                          textAlign: TextAlign.left),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (productItem.limit ?? 999) <=
+                                              productCart.qty
+                                          ? null
+                                          : () {
+                                              widget.addOrRemove(
+                                                  productCart.productId,
+                                                  productCart.qty + 1,
+                                                  price!,
+                                                  productCart);
+                                              //plus();
+                                            },
+                                      child: CircleAvatar(
+                                        radius: 14,
+                                        backgroundColor: AppColors.greyStroke,
+                                        child: new Icon(Icons.add,
+                                            color: AppColors.redYoung,
+                                            size: 20.0),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          if (productItem.limit == productCart.qty)
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.all(5),
+                              child: Text(
+                                I10n.current.product_detail_max_item,
+                                style: AppFont.textBlack10Regular.copyWith(
+                                  color: AppColors.mainColor,
+                                ),
+                                textAlign: TextAlign.right,
+                              ),
+                            ),
+                        ],
                       ),
-                    ],
-                  ),
-                  //child: Center(child: Text('Entry ${data[index].id.toString()}')),
+                    ),
+                  ],
                 ),
+                //child: Center(child: Text('Entry ${data[index].id.toString()}')),
               );
       },
     );

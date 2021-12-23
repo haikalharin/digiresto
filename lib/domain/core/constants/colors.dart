@@ -41,6 +41,7 @@ class AppColors {
   static final Color backgroundPink = Color(0xFFFFE2E4);
   static final Color borderPink = Color(0xFFFFA5AA);
   static final Color green54C30F = Color(0xFF54C30F);
+  static final Color green = Color.fromRGBO(80, 133, 56, 1);
 
   static final Color black = Color(0xFF000000);
   static final Color black1F1F1F = Color(0xFF1F1F1F);
@@ -66,6 +67,7 @@ class AppColors {
   static const Color dividerColor = Color(0xFFEEEEEE);
   static const Color inputFillColor = Color(0xFFF7F5F7);
   static const Color yellowButtonColor = Color(0xFFFFC800);
+  static const Color transparent = Colors.transparent;
 
   static Map<int, Color> mainColorSwatch = {
     50: mainColor.withOpacity(.1),

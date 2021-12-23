@@ -18,72 +18,74 @@ part 'order_history_bloc.freezed.dart';
 class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
   final IProfileRepository _profileRepository;
   OrderHistoryBloc(this._profileRepository)
-      : super(OrderHistoryState.initial());
+      : super(OrderHistoryState.initial()) {
+    on<OrderHistoryEvent>((event, emit) async {
+      await event.map(
+        orderPendingOpen: (_event) async* {
+          emit(
+            state.copyWith(
+              orderPendingFailureOrSuccess: none(),
+            ),
+          );
 
-  @override
-  Stream<OrderHistoryState> mapEventToState(
-    OrderHistoryEvent event,
-  ) async* {
-    yield* event.map(
-      orderPendingOpen: (_event) async* {
-        yield state.copyWith(
-          orderPendingFailureOrSuccess: none(),
-        );
-        final failureOrSuccess = await _profileRepository.getOrderPending();
-        final count = failureOrSuccess.fold((l) => 0, (r) => r.length);
-        yield state.copyWith(
-          orderPendingFailureOrSuccess: optionOf(failureOrSuccess),
-          orderPendingCountOption: optionOf(count),
-        );
-      },
-      orderOnProcessOpen: (_event) async* {
-        yield state.copyWith(
-          orderOnProccessFailureOrSuccess: none(),
-        );
-        final countFailureOrSuccess =
-            await _profileRepository.getOrderOnProcessCount();
-        final failureOrSuccess =
-            await _profileRepository.getOrderOnProcess(page: 1);
-        yield state.copyWith(
-          orderOnProccessFailureOrSuccess: optionOf(failureOrSuccess),
-          orderOnProccessCountFailureOrSuccess: optionOf(countFailureOrSuccess),
-        );
-      },
-      orderCompletedOpen: (_event) async* {
-        yield state.copyWith(
-          orderCompletedFailureOrSuccess: none(),
-        );
-        final failureOrSuccess =
-            await _profileRepository.getOrderCompleted(page: 1);
-        yield state.copyWith(
-          orderCompletedFailureOrSuccess: optionOf(failureOrSuccess),
-        );
-      },
-      getOrderOnProcessCount: (value) async* {
-        final failureOrSuccess =
-            await _profileRepository.getOrderOnProcessCount();
-        yield state.copyWith(
-          orderOnProccessCountFailureOrSuccess: optionOf(failureOrSuccess),
-        );
-      },
-      orderUpcomingOpen: (_event) async* {
-        yield state.copyWith(
-          orderOnProccessFailureOrSuccess: none(),
-        );
-        final failureOrSuccess =
-            await _profileRepository.getOrderUpcoming(page: 1);
-        yield state.copyWith(
-          orderupComingFailureOrSuccess: optionOf(failureOrSuccess),
-        );
-      },
-      getorderUpcomingCount: (value) async* {
-        final failureOrSuccess =
-            await _profileRepository.getOrderUpcomingCount();
+          final failureOrSuccess = await _profileRepository.getOrderPending();
+          final count = failureOrSuccess.fold((l) => 0, (r) => r.length);
+          emit(state.copyWith(
+            orderPendingFailureOrSuccess: optionOf(failureOrSuccess),
+            orderPendingCountOption: optionOf(count),
+          ));
+        },
+        orderOnProcessOpen: (_event) async* {
+          emit(state.copyWith(
+            orderOnProccessFailureOrSuccess: none(),
+          ));
+          final countFailureOrSuccess =
+              await _profileRepository.getOrderOnProcessCount();
+          final failureOrSuccess =
+              await _profileRepository.getOrderOnProcess(page: 1);
+          emit(state.copyWith(
+            orderOnProccessFailureOrSuccess: optionOf(failureOrSuccess),
+            orderOnProccessCountFailureOrSuccess:
+                optionOf(countFailureOrSuccess),
+          ));
+        },
+        orderCompletedOpen: (_event) async* {
+          emit(state.copyWith(
+            orderCompletedFailureOrSuccess: none(),
+          ));
+          final failureOrSuccess =
+              await _profileRepository.getOrderCompleted(page: 1);
+          emit(state.copyWith(
+            orderCompletedFailureOrSuccess: optionOf(failureOrSuccess),
+          ));
+        },
+        getOrderOnProcessCount: (value) async* {
+          final failureOrSuccess =
+              await _profileRepository.getOrderOnProcessCount();
 
-        yield state.copyWith(
-          orderUpomingCountOption: optionOf(failureOrSuccess),
-        );
-      },
-    );
+          emit(state.copyWith(
+            orderOnProccessCountFailureOrSuccess: optionOf(failureOrSuccess),
+          ));
+        },
+        orderUpcomingOpen: (_event) async* {
+          emit(state.copyWith(
+            orderOnProccessFailureOrSuccess: none(),
+          ));
+          final failureOrSuccess =
+              await _profileRepository.getOrderUpcoming(page: 1);
+          emit(state.copyWith(
+            orderupComingFailureOrSuccess: optionOf(failureOrSuccess),
+          ));
+        },
+        getorderUpcomingCount: (value) async* {
+          final failureOrSuccess =
+              await _profileRepository.getOrderUpcomingCount();
+
+          emit(state.copyWith(
+            orderUpomingCountOption: optionOf(failureOrSuccess),
+          ));
+        },
+      );
+    });
   }
 }

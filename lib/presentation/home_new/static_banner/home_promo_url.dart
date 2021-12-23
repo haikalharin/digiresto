@@ -2,9 +2,13 @@ import 'dart:convert';
 
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/dimens.dart';
+import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
+import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+// import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
@@ -13,20 +17,18 @@ class HomePromoUrlScreen extends StatelessWidget {
     Get.back();
   }
 
+  const HomePromoUrlScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print(ModalRoute.of(context)!.settings.arguments);
     final routes =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
-    final promoBanner =
-        'https://dev-digimitra.nos.wjv-1.neo.id/admin/Banners/Promo%20Banner%20Nearby_1638251117631.jpeg';
+    final MenuCategory menuCategory = routes['menu'];
 
-    final dec = 'kalau bukan htlm gimana ya';
-
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      bottomNavigationBar: Container(
+    Widget _bottomNavBar() {
+      return Container(
         height: MediaQuery.of(context).size.height * 0.15,
         width: double.infinity,
         child: Column(
@@ -38,32 +40,56 @@ class HomePromoUrlScreen extends StatelessWidget {
               padding: const EdgeInsets.all(
                 Dimens.defaulCardPadding,
               ),
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.07,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.redYoung,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(
-                      Dimens.defaultBorderRadius,
+              child: GestureDetector(
+                onTap: () {
+                  if (menuCategory.isEnable) {
+                    if (routes['callId'] != "catering") {
+                      Get.to(
+                        ListOutletPage(routes['menu']),
+                      );
+                    } else {
+                      Get.to(
+                        ListCateringPage(
+                          menuCategory: routes['menu'],
+                        ),
+                      );
+                    }
+                  } else {
+                    goBack(context);
+                  }
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: AppColors.redYoung,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        Dimens.defaultBorderRadius,
+                      ),
                     ),
                   ),
-                ),
-                child: Center(
-                  child: Text("Selengkapnya",
-                      style: TextStyle(
-                        fontFamily: "roboto",
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center),
+                  child: Center(
+                    child: Text(I10n.current.home_banner_more,
+                        style: TextStyle(
+                          fontFamily: "roboto",
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center),
+                  ),
                 ),
               ),
             ),
           ],
         ),
-      ),
+      );
+    }
+
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      bottomNavigationBar: _bottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -89,7 +115,7 @@ class HomePromoUrlScreen extends StatelessWidget {
                       ),
                       Expanded(
                         flex: 5,
-                        child: Text("Promo sad asda a asda asd asdsa sasdasda",
+                        child: Text(routes['title'] ?? "",
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
@@ -116,25 +142,26 @@ class HomePromoUrlScreen extends StatelessWidget {
                       children: [
                         Container(
                           padding: const EdgeInsets.only(bottom: 12),
-                          child: promoBanner != null
+                          child: routes['image_url'] != null
                               ? ClipRRect(
                                   borderRadius: BorderRadius.circular(10.0),
                                   child: Image(
-                                    image: promoBanner.substring(1, 4) ==
+                                    image: routes['image_url']
+                                                .substring(1, 4) ==
                                             'data:'
                                         ? MemoryImage(
                                             Base64Decoder()
-                                                .convert(promoBanner),
+                                                .convert(routes['image_url']!),
                                             scale: 0.5)
-                                        : NetworkImage(promoBanner, scale: 0.5)
-                                            as ImageProvider,
+                                        : NetworkImage(routes['image_url']!,
+                                            scale: 0.5) as ImageProvider,
                                     fit: BoxFit.fill,
                                     alignment: Alignment.topCenter,
                                   ),
                                 )
                               : Container(),
                         ),
-                        Html(data: dec)
+                        // Html(data: routes['desc'] ?? "")
                       ],
                     ),
                   ),

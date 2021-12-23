@@ -16,6 +16,7 @@ class StaticBanner with _$StaticBanner {
     required String? promoDescription,
     required String? promoBanner,
     required String? promoUrl,
+    required String? promoCallMenuId,
   }) = _StaticBanner;
 
   factory StaticBanner.fromJson(Map<String, dynamic> json) =>

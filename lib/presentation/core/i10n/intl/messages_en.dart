@@ -391,6 +391,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "credit_topup": MessageLookupByLibrary.simpleMessage("Top Up Credit"),
         "credit_topup_method":
             MessageLookupByLibrary.simpleMessage("Choose Payment Method"),
+        "delivery_location":
+            MessageLookupByLibrary.simpleMessage("Delivery location"),
         "delivery_status":
             MessageLookupByLibrary.simpleMessage("Delivery Status"),
         "detail_history":
@@ -533,6 +535,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_topup_cancel_alert": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to cancel this Top Up ?"),
         "history_total_payment": MessageLookupByLibrary.simpleMessage("Total"),
+        "history_upcoming":
+            MessageLookupByLibrary.simpleMessage("Upcoming\nOrder"),
         "home_address":
             MessageLookupByLibrary.simpleMessage("Shipping address"),
         "home_address_hint": MessageLookupByLibrary.simpleMessage(
@@ -542,6 +546,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_banner": MessageLookupByLibrary.simpleMessage("Home Banner"),
         "home_banner_hint": MessageLookupByLibrary.simpleMessage(
             "Find interesting and latest info."),
+        "home_banner_more": MessageLookupByLibrary.simpleMessage("More"),
         "home_beranda": MessageLookupByLibrary.simpleMessage("Home"),
         "home_cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "home_category_hint": m20,
@@ -629,6 +634,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang_en": MessageLookupByLibrary.simpleMessage("English"),
         "lang_in": MessageLookupByLibrary.simpleMessage("Indonesia"),
         "lbl_login": MessageLookupByLibrary.simpleMessage("Login"),
+        "location_details":
+            MessageLookupByLibrary.simpleMessage("Location details"),
         "login_body_base": MessageLookupByLibrary.simpleMessage(
             "Please select Base Url for the testing, or enter the base url you want to use"),
         "login_btn":
@@ -652,6 +659,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout_alert":
             MessageLookupByLibrary.simpleMessage("Are you sure want to quit?"),
         "menu_next": MessageLookupByLibrary.simpleMessage("Next"),
+        "my_voucher": MessageLookupByLibrary.simpleMessage("My Voucher"),
         "nama": MessageLookupByLibrary.simpleMessage("Name"),
         "ninety_nine": MessageLookupByLibrary.simpleMessage("Ninety-Nine"),
         "no_promo_found":
@@ -870,7 +878,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_tos": MessageLookupByLibrary.simpleMessage("Term of Service"),
         "profile_version": MessageLookupByLibrary.simpleMessage("App Version"),
         "profile_voucher": MessageLookupByLibrary.simpleMessage("My Voucher"),
+        "promo_available":
+            MessageLookupByLibrary.simpleMessage("Promo Available"),
         "promo_banner": MessageLookupByLibrary.simpleMessage("Promo"),
+        "promo_code": MessageLookupByLibrary.simpleMessage("Promo Code"),
+        "promo_for_you": MessageLookupByLibrary.simpleMessage("Promo For You"),
+        "promo_info": MessageLookupByLibrary.simpleMessage(
+            "The most suitable discount will be automatically selected for your order at checkout"),
+        "promo_merchant":
+            MessageLookupByLibrary.simpleMessage("Promo Merchant"),
+        "promo_not_available":
+            MessageLookupByLibrary.simpleMessage("Promo is empty"),
+        "promo_not_available_info": MessageLookupByLibrary.simpleMessage(
+            "there are no promos that can be claimed at this time. Come and check again later, OK!"),
+        "promo_voucher": MessageLookupByLibrary.simpleMessage(""),
+        "promo_voucher_available":
+            MessageLookupByLibrary.simpleMessage("Promo And Voucher Available"),
+        "promo_voucher_unavailable": MessageLookupByLibrary.simpleMessage(
+            "Promo And Voucher not available"),
         "rating_desc": MessageLookupByLibrary.simpleMessage("Rate your order!"),
         "rating_title": MessageLookupByLibrary.simpleMessage("Give rating"),
         "register_action": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -983,7 +1008,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please choose your language for the app"),
         "txt_search": MessageLookupByLibrary.simpleMessage("Search"),
         "txt_search_food": MessageLookupByLibrary.simpleMessage("Search Food"),
+        "update_address": MessageLookupByLibrary.simpleMessage("Use Address"),
         "update_to_cart": MessageLookupByLibrary.simpleMessage("Update cart"),
+        "use_voucher": MessageLookupByLibrary.simpleMessage("Use"),
+        "use_voucher_later": MessageLookupByLibrary.simpleMessage("Use Later"),
         "user_not_choose_delivery": MessageLookupByLibrary.simpleMessage(
             "You have not choose delivery method, please choose delivery method first to continue placing the order."),
         "user_not_choose_payment": MessageLookupByLibrary.simpleMessage(
@@ -993,11 +1021,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "verify_phone": MessageLookupByLibrary.simpleMessage("Verify Phone"),
         "voucher_already_used": MessageLookupByLibrary.simpleMessage(
             "Voucher code is already used"),
+        "voucher_available":
+            MessageLookupByLibrary.simpleMessage("Voucher Available"),
+        "voucher_discount":
+            MessageLookupByLibrary.simpleMessage("Voucher Discount"),
         "voucher_empty":
             MessageLookupByLibrary.simpleMessage("Voucher is unavailable"),
+        "voucher_not_available":
+            MessageLookupByLibrary.simpleMessage("Voucher is empty"),
+        "voucher_not_available_info": MessageLookupByLibrary.simpleMessage(
+            "there are no vouchers that can be claimed at this time. Come and check again later, OK!"),
         "voucher_not_valid_with_payment_method":
             MessageLookupByLibrary.simpleMessage(
                 "Voucher is invalid to the payment method"),
+        "voucher_period": MessageLookupByLibrary.simpleMessage("Period"),
+        "voucher_valid_until":
+            MessageLookupByLibrary.simpleMessage("Valid until"),
         "webview_close": MessageLookupByLibrary.simpleMessage("Close"),
         "webview_exit": MessageLookupByLibrary.simpleMessage("Exit"),
         "webview_next": MessageLookupByLibrary.simpleMessage("Next"),

@@ -1,7 +1,6 @@
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class DialogOrder {

@@ -2,6 +2,7 @@
 //
 //     final outletCategoryCateringResponse = outletCategoryCateringResponseFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -20,6 +21,19 @@ String outletCategoryCateringResponseToJson(
 abstract class OutletCategoryCateringResponse
     with _$OutletCategoryCateringResponse {
   const factory OutletCategoryCateringResponse({
+    required Response response,
+    required List<OutletCategoryDataCateringResponse> data,
+    required Meta meta,
+  }) = _OutletCategoryCateringResponse;
+
+  factory OutletCategoryCateringResponse.fromJson(Map<String, dynamic> json) =>
+      _$OutletCategoryCateringResponseFromJson(json);
+}
+
+@freezed
+abstract class OutletCategoryDataCateringResponse
+    with _$OutletCategoryDataCateringResponse {
+  const factory OutletCategoryDataCateringResponse({
     required String endpointName,
     required String id,
     required String name,
@@ -36,10 +50,18 @@ abstract class OutletCategoryCateringResponse
     required String? merchantLogo,
     required String? callbackUrl,
     required Distance distance,
+<<<<<<< HEAD
   }) = _OutletCategoryCateringResponse;
 
   factory OutletCategoryCateringResponse.fromJson(Map<String, dynamic> json) =>
       _$OutletCategoryCateringResponseFromJson(json);
+=======
+  }) = _OutletCategoryDataCateringResponse;
+
+  factory OutletCategoryDataCateringResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$OutletCategoryDataCateringResponseFromJson(json);
+>>>>>>> origin/development-dig
 }
 
 @freezed
@@ -52,4 +74,26 @@ abstract class Distance with _$Distance {
 
   factory Distance.fromJson(Map<String, dynamic> json) =>
       _$DistanceFromJson(json);
+}
+
+@freezed
+abstract class Meta with _$Meta {
+  const factory Meta({
+    required String version,
+    required int page,
+  }) = _Meta;
+
+  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
+}
+
+@freezed
+abstract class Response with _$Response {
+  const factory Response({
+    required String code,
+    required String status,
+    required String message,
+  }) = _Response;
+
+  factory Response.fromJson(Map<String, dynamic> json) =>
+      _$ResponseFromJson(json);
 }
