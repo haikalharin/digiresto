@@ -10,6 +10,7 @@ import 'package:flutter_native_timezone/flutter_native_timezone_web.dart';
 import 'package:flutter_secure_storage_web/flutter_secure_storage_web.dart';
 import 'package:fluttertoast/fluttertoast_web.dart';
 import 'package:geolocator_web/geolocator_web.dart';
+import 'package:image_picker_for_web/image_picker_for_web.dart';
 import 'package:package_info_plus_web/package_info_plus_web.dart';
 import 'package:sensors_plus_web/sensors_plus_web.dart';
 import 'package:share_plus_web/share_plus_web.dart';
@@ -26,6 +27,7 @@ void registerPlugins(Registrar registrar) {
   FlutterSecureStorageWeb.registerWith(registrar);
   FluttertoastWebPlugin.registerWith(registrar);
   GeolocatorPlugin.registerWith(registrar);
+  ImagePickerPlugin.registerWith(registrar);
   PackageInfoPlugin.registerWith(registrar);
   SensorsPlugin.registerWith(registrar);
   SharePlusPlugin.registerWith(registrar);

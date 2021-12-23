@@ -103,4 +103,6 @@ class OrderEvent with _$OrderEvent {
 
   const factory OrderEvent.cancelTransaction(String receiptCode) =
       _CancelTransaction;
+
+  const factory OrderEvent.mustAddPaymentMethod() = _MustAddPaymentMethod;
 }

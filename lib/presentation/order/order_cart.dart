@@ -30,6 +30,7 @@ import 'package:digiresto/presentation/order/widgets/catering_list_product_cart_
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/dialog_additional_detail_address.dart';
+import 'package:digiresto/presentation/widgets/digiresto_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,6 +42,7 @@ import 'detail_product_dialog.dart';
 class OrderCartScreen extends GetView<OrderCartScreenViewController> {
   final VoucherDetailArguments? voucher;
   final bool? hideBackButton;
+
   OrderCartScreen({this.hideBackButton, this.voucher});
 
   Widget _notes() {
@@ -520,29 +522,31 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ImageIcon(
-                        AssetImage(
-                          AppAssets.iconVoucher,
+                  Obx(() {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ImageIcon(
+                          AssetImage(
+                            AppAssets.iconVoucher,
+                          ),
+                          size: 24,
+                          color: AppColors.redD12B34,
                         ),
-                        size: 24,
-                        color: AppColors.redD12B34,
-                      ),
-                      SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(I10n.current.cart_my_voucher,
-                              style: AppFont.textBlack14Bold),
-                          if (controller.voucherMethod.value != null)
-                            Text(controller.voucherMethod.value?.name ?? "",
-                                style: AppFont.textBlack12Light),
-                        ],
-                      ),
-                    ],
-                  ),
+                        SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(I10n.current.cart_my_voucher,
+                                style: AppFont.textBlack14Bold),
+                            if (controller.voucherMethod.value != null)
+                              Text(controller.voucherMethod.value?.name ?? "",
+                                  style: AppFont.textBlack12Light),
+                          ],
+                        ),
+                      ],
+                    );
+                  }),
                   if (controller.voucherMethod.value != null)
                     SizedBox(
                       height: 20,
@@ -1242,7 +1246,8 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
-                            ], // Only numbers can be entered,
+                            ],
+                            // Only numbers can be entered,
                             readOnly: false,
                             onTap: () {},
                             style: TextStyle(
@@ -1755,105 +1760,109 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimens.defaultMargin,
-                  vertical: Dimens.defaultMargin / 2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(I10n.current.cart_voucher_code,
-                      style: AppFont.textBlack14Bold),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(top: 15, bottom: 10),
-                          child: TextField(
-                              textInputAction: TextInputAction.search,
-                              onSubmitted: (value) {},
-                              controller: controller.voucherCodeController,
-                              readOnly: false,
-                              autocorrect: false,
-                              enabled: (controller.voucherMethod.value == null),
-                              onTap: () {},
-                              style: TextStyle(
-                                fontSize: 14.0,
-                              ),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                filled: true,
-                                fillColor: AppColors.greyFill,
-                                contentPadding: EdgeInsets.only(
-                                    top: 12, bottom: 12, left: 10, right: 10),
-                                hintText: I10n.current.cart_voucher_code_hint,
-                                border: OutlineInputBorder(
+            Obx(() {
+              return Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimens.defaultMargin,
+                    vertical: Dimens.defaultMargin / 2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(I10n.current.cart_voucher_code,
+                        style: AppFont.textBlack14Bold),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.only(top: 15, bottom: 10),
+                            child: TextField(
+                                textInputAction: TextInputAction.search,
+                                onSubmitted: (value) {},
+                                controller: controller.voucherCodeController,
+                                readOnly: false,
+                                autocorrect: false,
+                                enabled:
+                                    (controller.voucherMethod.value == null),
+                                onTap: () {},
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                ),
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  filled: true,
+                                  fillColor: AppColors.greyFill,
+                                  contentPadding: EdgeInsets.only(
+                                      top: 12, bottom: 12, left: 10, right: 10),
+                                  hintText: I10n.current.cart_voucher_code_hint,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.black, width: 32.0),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
                                     borderSide: BorderSide(
-                                        color: Colors.black, width: 32.0),
-                                    borderRadius: BorderRadius.circular(5)),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                  borderSide:
-                                      BorderSide(width: 1, color: Colors.black),
-                                ),
-                              )),
+                                        width: 1, color: Colors.black),
+                                  ),
+                                )),
+                          ),
                         ),
-                      ),
-                      Container(
-                        alignment: Alignment.topCenter,
-                        padding: const EdgeInsets.only(top: 5, left: 10),
-                        //width: MediaQuery. of(context). size. width-200,
-                        child: Container(
-                          padding: EdgeInsets.all(5),
-                          height: 50,
-                          child: ElevatedButton(
-                              onPressed:
-                                  (controller.voucherMethod.value == null)
-                                      ? () {
-                                          controller.isLoading.value = true;
-                                          Get.context!.read<OrderBloc>().add(
-                                              OrderEvent.checkVoucherOutlet(
-                                                  controller
-                                                      .voucherCodeController
-                                                      .text));
-                                        }
-                                      : null,
-                              style: ElevatedButton.styleFrom(
-                                primary: AppColors.red,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(5.0),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          padding: const EdgeInsets.only(top: 5, left: 10),
+                          //width: MediaQuery. of(context). size. width-200,
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed:
+                                    (controller.voucherMethod.value == null)
+                                        ? () {
+                                            controller.isLoading.value = true;
+                                            Get.context!.read<OrderBloc>().add(
+                                                OrderEvent.checkVoucherOutlet(
+                                                    controller
+                                                        .voucherCodeController
+                                                        .text));
+                                          }
+                                        : null,
+                                style: ElevatedButton.styleFrom(
+                                  primary: AppColors.red,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(5.0),
+                                  ),
                                 ),
-                              ),
-                              child: Text(I10n.current.cart_voucher_code_use,
-                                  style: AppFont.textBlack12Bold
-                                      .copyWith(color: AppColors.white))),
+                                child: Text(I10n.current.cart_voucher_code_use,
+                                    style: AppFont.textBlack12Bold
+                                        .copyWith(color: AppColors.white))),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  if (controller.voucherMethod.value != null)
-                    InputChip(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      backgroundColor: AppColors.mainColor.withOpacity(0.5),
-                      label: Text(
-                        controller.voucherMethod.value?.name ?? "",
-                        style: AppFont.textBlack12Light,
-                      ),
-                      onPressed: () {},
-                      onDeleted: () {
-                        Get.context!
-                            .read<OrderBloc>()
-                            .add(OrderEvent.setVoucherMethodID(null));
-                        controller.voucherMethod.value = null;
-                        controller.updateCartParam();
-                      },
+                      ],
                     ),
-                ],
-              ),
-            ),
+                    if (controller.voucherMethod.value != null)
+                      InputChip(
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        backgroundColor: AppColors.mainColor.withOpacity(0.5),
+                        label: Text(
+                          controller.voucherMethod.value?.name ?? "",
+                          style: AppFont.textBlack12Light,
+                        ),
+                        onPressed: () {},
+                        onDeleted: () {
+                          Get.context!
+                              .read<OrderBloc>()
+                              .add(OrderEvent.setVoucherMethodID(null));
+                          controller.voucherMethod.value = null;
+                          controller.updateCartParam();
+                        },
+                      ),
+                  ],
+                ),
+              );
+            }),
             Container(
               color: AppColors.greyStroke,
               height: 10,
@@ -1928,6 +1937,7 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                 },
                 getPaymentMethodIDSuccess: (r) {
                   controller.paymentMethod.value = r.data;
+                  controller.normalizeVoucherArgument(Get.arguments);
                   controller.updateCartParam();
                 },
                 setPaymentMethodIDSuccess: (r) {
@@ -2024,6 +2034,14 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
                       controller.isLoading.value = false;
                     },
                   );
+                },
+                mustAddPaymentMethods: (_) {
+                  _dialogAddPaymentMethod();
+                },
+                setVoucherMethodIDSuccess: (r) {
+                  controller.voucherMethod.value = r.data;
+                  controller.updateCartParam();
+                  controller.checkAllLoaded();
                 },
                 orElse: () {
                   controller.isLoading.value = false;
@@ -2193,6 +2211,62 @@ class OrderCartScreen extends GetView<OrderCartScreenViewController> {
         ),
       ],
     );
+  }
+
+  void _dialogAddPaymentMethod() {
+    showDialog(
+        context: Get.context!,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              I10n.current.app_name,
+              style: AppFont.textBlack16Bold,
+              textAlign: TextAlign.center,
+            ),
+            content: Text(
+              I10n.current.alert_payment_not_selected,
+              style: AppFont.textBlack14Regular,
+              textAlign: TextAlign.center,
+            ),
+            // content: Text(
+            //     'Anda belum memilih pembayaran, silahkan pilih metode pembayaran terlebih dahulu untuk mengakses halaman ini.'),
+            actions: [
+              Row(
+                children: [
+                  Expanded(
+                      child: DigirestoButtonOutline(
+                    onPressed: () => Navigator.pop(context),
+                    text: I10n.current.alert_cancel,
+                  )),
+                  Expanded(
+                      child: DigirestoButtonNormal(
+                    onPressed: () => _navigateToPaymentMethod(),
+                    text: I10n.current.alert_ok,
+                  )),
+                ],
+              )
+            ],
+          );
+        }).then((value) {
+      if (value == null) {
+        controller.voucherMethod.value = null;
+        Get.context!
+            .read<OrderBloc>()
+            .add(OrderEvent.setVoucherMethodID(controller.voucherMethod.value));
+        controller.getVoucherMethod();
+      }
+    });
+  }
+
+  void _navigateToPaymentMethod() {
+    Get.toNamed(Routers.selectPaymentMethod,
+            arguments: OrderSelectPaymentMethodViewArgument(
+                outlet: controller.detailOutlet.value!,
+                salestype: controller.salesType.value!))!
+        .then((value) {
+      Navigator.pop(Get.context!);
+      Get.context!.read<OrderBloc>().add(OrderEvent.getPaymentMethodID());
+    });
   }
 }
 

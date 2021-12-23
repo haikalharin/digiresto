@@ -179,7 +179,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "alert_ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "alert_out_of_session": MessageLookupByLibrary.simpleMessage(
             "Your login session has ended, please login again."),
+        "alert_payment_not_selected": MessageLookupByLibrary.simpleMessage(
+            "untuk mengaktifkan voucher yang anda gunakan, mohon untuk memilih metode pembayaran terlebih dahulu"),
         "alert_save": MessageLookupByLibrary.simpleMessage("Save"),
+        "app_name": MessageLookupByLibrary.simpleMessage("Digiresto"),
         "bank_transfer_cannot_process": MessageLookupByLibrary.simpleMessage(
             "Unable to proceed transaction"),
         "bank_transfer_topup": MessageLookupByLibrary.simpleMessage("Top Up"),
@@ -457,7 +460,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_datetransaction":
             MessageLookupByLibrary.simpleMessage("18 Nov 2020, 10:45:33"),
         "history_detail_complain":
-            MessageLookupByLibrary.simpleMessage("Report problem food"),
+            MessageLookupByLibrary.simpleMessage("Report Order Complaint"),
         "history_detail_delivery_address":
             MessageLookupByLibrary.simpleMessage("Shipping address"),
         "history_detail_tracking_url":
@@ -615,7 +618,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "input_pin_success_change": MessageLookupByLibrary.simpleMessage(
             "Your PIN was successfully changed."),
         "komplain_title":
-            MessageLookupByLibrary.simpleMessage("Order Complaint"),
+            MessageLookupByLibrary.simpleMessage("Complain Order"),
         "label_email": MessageLookupByLibrary.simpleMessage("Email"),
         "label_phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "label_whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),

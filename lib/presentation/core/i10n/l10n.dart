@@ -3932,16 +3932,6 @@ class I10n {
     );
   }
 
-  /// `Report problem food`
-  String get history_detail_complain {
-    return Intl.message(
-      'Report problem food',
-      name: 'history_detail_complain',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `APLIKASI Digiresto [Android] - DAMCORP`
   String get contact_email_subject {
     return Intl.message(
@@ -5470,16 +5460,6 @@ class I10n {
     );
   }
 
-  /// `Order Complaint`
-  String get komplain_title {
-    return Intl.message(
-      'Order Complaint',
-      name: 'komplain_title',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Time:`
   String get nota_transaction_date {
     return Intl.message(
@@ -5887,6 +5867,46 @@ class I10n {
     return Intl.message(
       'Select Menu Type',
       name: 'select_menu_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complain Order`
+  String get komplain_title {
+    return Intl.message(
+      'Complain Order',
+      name: 'komplain_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report Order Complaint`
+  String get history_detail_complain {
+    return Intl.message(
+      'Report Order Complaint',
+      name: 'history_detail_complain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digiresto`
+  String get app_name {
+    return Intl.message(
+      'Digiresto',
+      name: 'app_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `untuk mengaktifkan voucher yang anda gunakan, mohon untuk memilih metode pembayaran terlebih dahulu`
+  String get alert_payment_not_selected {
+    return Intl.message(
+      'untuk mengaktifkan voucher yang anda gunakan, mohon untuk memilih metode pembayaran terlebih dahulu',
+      name: 'alert_payment_not_selected',
       desc: '',
       args: [],
     );

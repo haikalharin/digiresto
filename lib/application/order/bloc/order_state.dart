@@ -124,4 +124,6 @@ class OrderState with _$OrderState {
 
   const factory OrderState.cancelTransactionSuccess() =
       _CancelTransactionSuccess;
+
+  const factory OrderState.mustAddPaymentMethods() = _MustAddPaymentMethods;
 }
