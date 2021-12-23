@@ -22,21 +22,21 @@ abstract class PromoOutletResponse with _$PromoOutletResponse {
 @freezed
 abstract class PromoOutlet with _$PromoOutlet {
   const factory PromoOutlet({
-    required String id,
-    required String description,
-    required String banner,
+    required dynamic id,
+    required dynamic description,
+    required dynamic banner,
     required dynamic icon,
     required dynamic outletId,
-    required String productId,
+    required dynamic productId,
     required dynamic voucher,
     required bool isFreeDelivery,
     required bool isHotPromo,
     required dynamic url,
-    required String name,
+    required dynamic name,
     required DateTime startDate,
     required DateTime endDate,
-    required String startTime,
-    required String endTime,
+    required dynamic startTime,
+    required dynamic endTime,
   }) = _PromoOutlet;
 
   factory PromoOutlet.fromJson(Map<String, dynamic> json) => _$PromoOutletFromJson(json);

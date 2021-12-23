@@ -212,7 +212,6 @@ class OrderCartScreenViewController extends GetxController {
   @override
   onInit() {
     super.onInit();
-    normalizeVoucherArgument(Get.arguments);
     initDialogPlace();
     initDialogDriveThruPlace();
   }
@@ -430,6 +429,7 @@ class OrderCartScreenViewController extends GetxController {
   }
 
   Future<void> getCartCache() async {
+    normalizeVoucherArgument(Get.arguments);
     await Get.context!.read<OrderBloc>()
       ..add(OrderEvent.getPaymentMethodID())
       ..add(OrderEvent.getDeliveryMethodID())
@@ -459,6 +459,11 @@ class OrderCartScreenViewController extends GetxController {
         detailOutlet.value != null &&
         listProduct.value != null) {
       isLoading.value = false;
+      if (paymentMethod.value == null && voucherMethod.value != null) {
+        Get.context!.read<OrderBloc>().add(
+              OrderEvent.mustAddPaymentMethod(),
+            );
+      }
     }
     update();
   }
