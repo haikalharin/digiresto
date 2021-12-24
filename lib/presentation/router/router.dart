@@ -159,8 +159,7 @@ class Routers {
         page: () => HomeCategoryOutletScreen()),
     GetPage(
         name: Routers.orderCart,
-        page: () => OrderCartScreen(),
-        arguments: Get.arguments as VoucherDetailArguments?),
+        page: () => OrderCartScreen(voucher: Get.arguments as VoucherDetailArguments?)),
     GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet()),
     GetPage(
         name: Routers.selectPaymentMethod,
