@@ -64,7 +64,7 @@ class ComplainPage extends StatelessWidget {
               ) {
                 problemEditText.text = detail.toString();
                 timeEditText.text = eatTime.toString();
-                imageRequired = complain!.imageRequired;
+                imageRequired = complain!.image_required;
                 idCategory = complain.id;
                 image = imageUrl;
                 fileImage = file ?? File('');
