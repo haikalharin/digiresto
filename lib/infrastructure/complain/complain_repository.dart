@@ -57,26 +57,27 @@ class ComplainRepository implements IComplainRepository {
     required String details,
     required String receiptCode,
     String? consumedDate,
-    File? image,
+    String? imagePath,
   }) async {
     try {
       final _apiUrl =
           '${Endpoints.urlForward}?r=v2/transactioncomplaints&&receiptCode=$receiptCode';
-      final multipartFile;
-      if (image!.path.isNotEmpty) {
-        multipartFile = MultipartFile.fromFile(image.path);
-      } else {
-        multipartFile = '';
-      }
-
       final FormData formData = FormData.fromMap(
         {
           "complaint_category": complaintCategory,
           "details": details,
           "consumed_date": '$consumedDate',
-          "image": multipartFile,
         },
       );
+
+      if (imagePath != '') {
+        var file = await MultipartFile.fromFile(
+          imagePath!,
+        );
+
+        formData.files.add(MapEntry('images', file));
+        print('image_path  a: $file');
+      }
 
       final apiResult =
           await _networkService.postHttp(path: _apiUrl, content: formData);

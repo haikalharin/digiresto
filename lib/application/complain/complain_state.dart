@@ -9,14 +9,14 @@ class ComplainState with _$ComplainState {
   const factory ComplainState.getComplaintCategoryFailure(
       ComplainFailure failure) = _GetComplaintCategoryFailure;
   const factory ComplainState.complaintSelect(
+    bool eatTimeIsActive,
+    bool sendButtonIsActive, {
     Complain? complain,
     List<Complain>? complainCategory,
     File? file,
     String? imageUrl,
     String? detail,
     String? eatTime,
-    bool eatTimeIsActive,
-    bool sendButtonIsActive,
-  ) = _ComplaintSelect;
+  }) = _ComplaintSelect;
   const factory ComplainState.sendingSuccesss() = _SendingSuccesss;
 }
