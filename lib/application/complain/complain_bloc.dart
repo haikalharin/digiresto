@@ -36,12 +36,12 @@ class ComplainBloc extends Bloc<ComplainEvent, ComplainState> {
           }));
         },
         complainCategoriSelected: (e) async {
-          if (e.complain!.imageRequired) {
+          if (e.complain!.image_required) {
             emit(ComplainState.complaintSelect(e.complain, e.list, e.file, '',
-                '', '', e.complain?.consumedDate ?? false, false));
+                '', '', e.complain?.consumed_date ?? false, false));
           } else {
             emit(ComplainState.complaintSelect(e.complain, e.list, e.file, '',
-                '', '', e.complain?.consumedDate ?? false, true));
+                '', '', e.complain?.consumed_date ?? false, true));
           }
         },
         attachmentSubmit: (event) async {

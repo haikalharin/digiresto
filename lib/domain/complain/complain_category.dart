@@ -25,8 +25,8 @@ abstract class Complain with _$Complain {
   const factory Complain({
     required String id,
     required String description,
-    required bool imageRequired,
-    required bool consumedDate,
+    required bool image_required,
+    required bool consumed_date,
   }) = _Complain;
 
   factory Complain.fromJson(Map<String, dynamic> json) =>

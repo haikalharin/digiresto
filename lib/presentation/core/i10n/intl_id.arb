@@ -921,10 +921,6 @@
     "time_ago_months":"%d bulan",
     "time_ago_year":"1 tahun",
     "time_ago_years":"%d tahun",
-<<<<<<< HEAD
-    "select_menu_type" : "Pilih Jenis Menu"
-
-=======
     "select_menu_type" : "Pilih Jenis Menu",
      "promo_voucher" : "",
      "my_voucher" : "Voucher Saya",
@@ -946,6 +942,21 @@
      "use_voucher" : "Gunakan",
      "use_voucher_later" : "Gunakan Nanti",
 
+     "tab_complain_menu" : "komplain",
+     "tab_detail_menu" : "detail",
+     "complaint_category" : "Pilih Kategori Komplain",
+     "complaint_recipt_number" : "Nomor Pesanan",
+     "complaint_detail" : "Ceritakan Masalahmu",
+     "complaint_attachment" : "Lampiran",
+     "complaint_help" : "Butuh bantuan lain?",
+     "complaint_send_success" : "Pesan Terkirim",
+     "complaint_detail_success" : "Kami segera memproses keluhan Anda. Selanjutnya, tim CS kami akan segera menghubungi Anda.",
+     "complaint_cd" : "Hubungi Customer Service",
+     "complaint_image_required" : "Anda belum melampirkan bukti pendukung",
+     "complaint_detail_image_required" : "Lampirakan bukti pendukung agar kami paham masalahmu",
+     "complaint_problem_required" : "Ceritakan dengan detail masalah yang anda alami",
+     "complaint_detail_problem_required" : "Ceritakan detail secara rinci agar kami paham masalahmu ",
+     
+
     "select_menu_type" : "Pilih Tipe Menu"
->>>>>>> origin/development-dig
 }

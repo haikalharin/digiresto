@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:digiresto/domain/catering/catering_failure.dart';
 import 'package:digiresto/domain/catering/i_catering_repository.dart';
@@ -8,7 +6,6 @@ import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/infrastructure/network/apis/user/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
 part 'catering_event.dart';
 part 'catering_state.dart';

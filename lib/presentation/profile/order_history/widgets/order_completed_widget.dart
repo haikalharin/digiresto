@@ -70,21 +70,19 @@ class OrderCompletedWidget extends StatelessWidget {
                     Spacer(),
                     PopupMenuButton(
                       onSelected: (e) {
-                        print('TAPTAP 1');
-                        if (e == 'detail') {
+                        if (e == '${I10n.current.tab_detail_menu}') {
                           Get.to(
                             OrderDetailsPage(orderCompleted.receiptCode),
                           );
                         } else {
                           Get.toNamed(Routers.complainPage,
                               arguments: orderCompleted.receiptCode.toString());
-                          print('TAPTAP 2');
                         }
                       },
                       itemBuilder: (BuildContext context) {
                         final itemMenu = [
-                          'detail',
-                          'complain',
+                          '${I10n.current.tab_detail_menu}',
+                          '${I10n.current.tab_complain_menu}',
                         ];
                         return itemMenu
                             .map((e) => PopupMenuItem(

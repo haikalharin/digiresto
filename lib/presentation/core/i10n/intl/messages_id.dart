@@ -368,6 +368,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart_voucher_invalid": m13,
         "chat_driver": MessageLookupByLibrary.simpleMessage("Chat Kurir"),
         "chat_outlet": MessageLookupByLibrary.simpleMessage("Kirim Pesan"),
+        "complaint_attachment":
+            MessageLookupByLibrary.simpleMessage("Lampiran"),
+        "complaint_category":
+            MessageLookupByLibrary.simpleMessage("Pilih Kategori Komplain"),
+        "complaint_cd":
+            MessageLookupByLibrary.simpleMessage("Hubungi Customer Service"),
+        "complaint_detail":
+            MessageLookupByLibrary.simpleMessage("Ceritakan Masalahmu"),
+        "complaint_detail_image_required": MessageLookupByLibrary.simpleMessage(
+            "Lampirakan bukti pendukung agar kami paham masalahmu"),
+        "complaint_detail_problem_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Ceritakan detail secara rinci agar kami paham masalahmu "),
+        "complaint_detail_success": MessageLookupByLibrary.simpleMessage(
+            "Kami segera memproses keluhan Anda. Selanjutnya, tim CS kami akan segera menghubungi Anda."),
+        "complaint_help":
+            MessageLookupByLibrary.simpleMessage("Butuh bantuan lain?"),
+        "complaint_image_required": MessageLookupByLibrary.simpleMessage(
+            "Anda belum melampirkan bukti pendukung"),
+        "complaint_problem_required": MessageLookupByLibrary.simpleMessage(
+            "Ceritakan dengan detail masalah yang anda alami"),
+        "complaint_recipt_number":
+            MessageLookupByLibrary.simpleMessage("Nomor Pesanan"),
+        "complaint_send_success":
+            MessageLookupByLibrary.simpleMessage("Pesan Terkirim"),
         "contact_email_subject": MessageLookupByLibrary.simpleMessage(
             "APLIKASI Digiresto [Android] - DAMCORP"),
         "contact_share_email_title":
@@ -948,6 +973,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Lanjut Verifikasi"),
         "sign_up_username":
             MessageLookupByLibrary.simpleMessage("Nama pengguna"),
+        "tab_complain_menu": MessageLookupByLibrary.simpleMessage("komplain"),
+        "tab_detail_menu": MessageLookupByLibrary.simpleMessage("detail"),
         "text_kirim_ulang": MessageLookupByLibrary.simpleMessage(
             "Jika Anda tidak menerima kode, klik kirim ulang kode."),
         "text_list_order": MessageLookupByLibrary.simpleMessage("Daftar Order"),
