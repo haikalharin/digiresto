@@ -3622,6 +3622,36 @@ class I10n {
     );
   }
 
+  /// `Upcoming\nOrder`
+  String get history_upcoming {
+    return Intl.message(
+      'Upcoming\nOrder',
+      name: 'history_upcoming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery location`
+  String get delivery_location {
+    return Intl.message(
+      'Delivery location',
+      name: 'delivery_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location details`
+  String get location_details {
+    return Intl.message(
+      'Location details',
+      name: 'location_details',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Purchase\nProcessed`
   String get history_process {
     return Intl.message(
@@ -5637,36 +5667,6 @@ class I10n {
     return Intl.message(
       '%d year',
       name: 'time_ago_years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Upcoming\nOrder`
-  String get history_upcoming {
-    return Intl.message(
-      'Upcoming\nOrder',
-      name: 'history_upcoming',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Delivery location`
-  String get delivery_location {
-    return Intl.message(
-      'Delivery location',
-      name: 'delivery_location',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Location details`
-  String get location_details {
-    return Intl.message(
-      'Location details',
-      name: 'location_details',
       desc: '',
       args: [],
     );
