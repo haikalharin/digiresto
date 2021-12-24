@@ -27,6 +27,7 @@ import 'package:digiresto/presentation/core/widgets/custom_button.dart';
 import 'package:digiresto/presentation/core/widgets/custom_dialog.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
 import 'package:digiresto/presentation/order/widgets/catering_list_product_cart_widget.dart';
+import 'package:digiresto/presentation/order/widgets/list_product_cart_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:digiresto/presentation/widgets/dialog_additional_detail_address.dart';
@@ -2453,16 +2454,30 @@ class _ProductOrderCart extends GetView<OrderCartScreenViewController> {
         Container(
           padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
           width: double.infinity,
-          child: CateringListProductCartWidget(
-              addOrRemove: _plusProduct,
-              orderType:
-                  controller.cartSession.value!.transactionData!.salesType,
-              productCart: controller.cartSession.value!.transactionData!.items,
-              runDetailAction: _showDetailProduct,
-              runEditAction: _editCart,
-              scrollDirection: Axis.vertical,
-              product: controller.listProduct.value!),
+          child: ListProductCartWidget(
+            addOrRemove: _plusProduct,
+            orderType: controller.cartSession.value!.transactionData!.salesType,
+            productCart: controller.cartSession.value!.transactionData!.items,
+            runDetailAction: _showDetailProduct,
+            runEditAction: _editCart,
+            scrollDirection: Axis.vertical,
+            product: controller.listProduct.value!,
+          ),
         ),
+
+        // Container(
+        //   padding: EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
+        //   width: double.infinity,
+        //   child: CateringListProductCartWidget(
+        //       addOrRemove: _plusProduct,
+        //       orderType:
+        //           controller.cartSession.value!.transactionData!.salesType,
+        //       productCart: controller.cartSession.value!.transactionData!.items,
+        //       runDetailAction: _showDetailProduct,
+        //       runEditAction: _editCart,
+        //       scrollDirection: Axis.vertical,
+        //       product: controller.listProduct.value!),
+        // ),
         // Container(
         //   color: Colors.white,
         //   width: double.infinity,

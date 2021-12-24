@@ -33,9 +33,7 @@ class ListMenuCateringPage extends StatelessWidget {
               children: [
                 TopBackgound(backgroundColor: AppColors.red),
                 _header(),
-                TabBar(onTap: (index) {
-                  
-                }, tabs: [
+                TabBar(onTap: (index) {}, tabs: [
                   Tab(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +68,10 @@ class ListMenuCateringPage extends StatelessWidget {
                   ),
                 ]),
                 Expanded(
-                  child: TabBarView(children: [_menuOverview(), _menuTab(),]),
+                  child: TabBarView(children: [
+                    _menuOverview(),
+                    _menuTab(),
+                  ]),
                 ),
               ],
             ),
@@ -79,8 +80,6 @@ class ListMenuCateringPage extends StatelessWidget {
       ],
     );
   }
-
-  
 
   Widget _header() {
     return Stack(children: [
@@ -142,7 +141,7 @@ class ListMenuCateringPage extends StatelessWidget {
                               child: Text(
                                 'Powered By Digiresto',
                                 style: TextStyle(
-                                  fontFamily : "roboto",
+                                  fontFamily: "roboto",
                                   color: Colors.white,
                                   fontSize: 12,
                                 ),
@@ -151,7 +150,6 @@ class ListMenuCateringPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        
                         Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -184,7 +182,8 @@ class ListMenuCateringPage extends StatelessWidget {
                                               width: 8,
                                             ),
                                             Text(
-                                              Utils.formatSalesType('onlineDriver'),
+                                              Utils.formatSalesType(
+                                                  'onlineDriver'),
                                               style: AppFont.textBlack14Bold
                                                   .copyWith(
                                                       color: AppColors.white),
@@ -255,44 +254,46 @@ class ListMenuCateringPage extends StatelessWidget {
               Column(
                 children: [
                   Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
-          child: Row(
-            children: [
-              Container(
-                child: ImageIcon(
-                  AssetImage(AppAssets.iconOutletOrderDelivery),
-                  color: AppColors.white,
-                  size: 24,
-                ),
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: AppColors.redD12B34, shape: BoxShape.circle),
-              ),
-              SizedBox(
-                width: 16,
-              ),
-              Text(I10n.current.landing_delivery,
-                  style: AppFont.textBlack14Bold),
-              Expanded(child: Container()),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    I10n.current.cart_choose,
-                    style: AppFont.textBlack12Bold
-                        .copyWith(color: AppColors.redD12B34),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      elevation: 0,
-                      side: BorderSide(
-                        width: 1.0,
-                        color: AppColors.redD12B34,
-                      ))),
-            ],
-          ),
-        )
+                    padding: const EdgeInsets.only(
+                        left: 16.0, right: 16, bottom: 16),
+                    child: Row(
+                      children: [
+                        Container(
+                          child: ImageIcon(
+                            AssetImage(AppAssets.iconOutletOrderDelivery),
+                            color: AppColors.white,
+                            size: 24,
+                          ),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              color: AppColors.redD12B34,
+                              shape: BoxShape.circle),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Text(I10n.current.landing_delivery,
+                            style: AppFont.textBlack14Bold),
+                        Expanded(child: Container()),
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              I10n.current.cart_choose,
+                              style: AppFont.textBlack12Bold
+                                  .copyWith(color: AppColors.redD12B34),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                elevation: 0,
+                                side: BorderSide(
+                                  width: 1.0,
+                                  color: AppColors.redD12B34,
+                                ))),
+                      ],
+                    ),
+                  )
                 ],
               ),
               SizedBox(
@@ -303,236 +304,222 @@ class ListMenuCateringPage extends StatelessWidget {
         });
   }
 
-  Widget _menuOverview(){
-    return  Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    I10n.current.outlet_information,
-                    style: AppFont.textBlack14Bold,
+  Widget _menuOverview() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              I10n.current.outlet_information,
+              style: AppFont.textBlack14Bold,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              'Something deskripsi yang cukup panjang ',
+              style: AppFont.textBlack12Regular,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Jln. Sudirman, Daerah khusus ibu kota',
+              style: AppFont.textBlack12Regular,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                CustomRating(
+                  currentRating: 4.6.floor(),
+                  onRatingSelected: (int) {},
+                  isEnable: false,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "200 review",
+                  style: AppFont.textBlack12Regular
+                      .copyWith(color: AppColors.greyRating),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  height: 28,
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Text(I10n.current.outlet_open,
+                        style: AppFont.textBlack12Bold
+                            .copyWith(color: Colors.white)),
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: AppColors.green54C30F))),
+                        backgroundColor:
+                            MaterialStateProperty.all(AppColors.green54C30F)),
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Something deskripsi yang cukup panjang ',
-                    style: AppFont.textBlack12Regular,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Jln. Sudirman, Daerah khusus ibu kota',
-                    style: AppFont.textBlack12Regular,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      CustomRating(
-                        currentRating:
-                            4.6.floor(),
-                        onRatingSelected: (int) {},
-                        isEnable: false,
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "200 review",
-                        style: AppFont.textBlack12Regular
-                            .copyWith(color: AppColors.greyRating),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 28,
-                        child: ElevatedButton(
-                          onPressed: null,
-                          child: Text(
-                              
-                                  I10n.current.outlet_open
-                                  ,
-                              style: AppFont.textBlack12Bold
-                                  .copyWith(color: Colors.white)),
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: BorderSide(
-                                          color: AppColors.green54C30F))),
-                              backgroundColor: MaterialStateProperty.all(
-                                  AppColors.green54C30F)),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                      "Pembaruan terahkir 3 hari yang lalu",
-                      style: AppFont.textBlack12Regular),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      ImageIcon(AssetImage(AppAssets.iconInstagram),
-                          size: 18, color: AppColors.redTabBar),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "@instagram",
-                        style: AppFont.textBlack12SemiBold
-                            .copyWith(color: AppColors.redTabBar),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Row(
-                    children: [
-                      ImageIcon(AssetImage(AppAssets.iconWeb),
-                          size: 18, color: AppColors.redTabBar),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "www.website.com",
-                        style: AppFont.textBlack12SemiBold
-                            .copyWith(color: AppColors.redTabBar),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Text("Pembaruan terahkir 3 hari yang lalu",
+                style: AppFont.textBlack12Regular),
+            SizedBox(
+              height: 8,
+            ),
+            Row(
+              children: [
+                ImageIcon(AssetImage(AppAssets.iconInstagram),
+                    size: 18, color: AppColors.redTabBar),
+                SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  "@instagram",
+                  style: AppFont.textBlack12SemiBold
+                      .copyWith(color: AppColors.redTabBar),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Row(
+              children: [
+                ImageIcon(AssetImage(AppAssets.iconWeb),
+                    size: 18, color: AppColors.redTabBar),
+                SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  "www.website.com",
+                  style: AppFont.textBlack12SemiBold
+                      .copyWith(color: AppColors.redTabBar),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 18,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.greyBorder),
+                  borderRadius: BorderRadius.circular(6)),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Wrap(children: [
                   Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.greyBorder),
-                        borderRadius: BorderRadius.circular(6)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Wrap(children: [Container(
-          // width: MediaQuery.of(Get.context!).size.width * 0.32,
-          child: Row(
-            children: [
-              ImageIcon(AssetImage(AppAssets.iconOutletOrderDelivery),
-                  size: 14, color: AppColors.redTabBar),
-              SizedBox(
-                width: 4,
-              ),
-              Text(
-                I10n.current.landing_delivery,
-                style: AppFont.textBlack11Light,
-              ),
-            ],
-          ),
-        )]),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // width: MediaQuery.of(Get.context!).size.width * 0.32,
+                    child: Row(
                       children: [
+                        ImageIcon(AssetImage(AppAssets.iconOutletOrderDelivery),
+                            size: 14, color: AppColors.redTabBar),
                         SizedBox(
-                          height: 43,
-                          width: MediaQuery.of(Get.context!).size.width * 0.45,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // String phone =
-                              //     controller.detailOutlet.value!.ownerPhone;
-                              //                           String url =
-                              // "https://api.whatsapp.com/send/?phone=" +
-                              //     phone +
-                              //     "&text=hi%20Digiresto";
-                              String callBackUrl =
-                                 '';
-                              String url = callBackUrl;
-                              LaunchUrl.run(
-                                url,
-                                onError: () {},
-                                onSuccess: () {},
-                              );
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(AssetImage(AppAssets.iconSendMessage),
-                                    color: AppColors.white),
-                                SizedBox(width: 8),
-                                Text(I10n.current.outlet_message,
-                                    style: AppFont.textBlack12SemiBold
-                                        .copyWith(color: Colors.white)),
-                              ],
-                            ),
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        side: BorderSide(
-                                            color: AppColors.redTabBar))),
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.redTabBar)),
-                          ),
+                          width: 4,
                         ),
-                        SizedBox(
-                          height: 43,
-                          width: MediaQuery.of(Get.context!).size.width * 0.45,
-                          child: ElevatedButton(
-                            onPressed: () async {
-                              final location =
-                                  '';
-                              await LaunchUrl.openMap(double.parse(location[0]),
-                                  double.parse(location[1]), onError: () {
-                                ErrorPopupWidget.show(
-                                    "Error", "error membuka aplikasi map", () {
-                                  Get.back(closeOverlays: true);
-                                });
-                              });
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(AssetImage(AppAssets.iconMapRed),
-                                    color: AppColors.white),
-                                SizedBox(width: 8),
-                                Text(I10n.current.outlet_location,
-                                    style: AppFont.textBlack12SemiBold
-                                        .copyWith(color: Colors.white)),
-                              ],
-                            ),
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        side: BorderSide(
-                                            color: AppColors.redTabBar))),
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.redTabBar)),
-                          ),
+                        Text(
+                          I10n.current.landing_delivery,
+                          style: AppFont.textBlack11Light,
                         ),
-                      ]),
-                ],
+                      ],
+                    ),
+                  )
+                ]),
               ),
             ),
-          );
+            SizedBox(
+              height: 18,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              SizedBox(
+                height: 43,
+                width: MediaQuery.of(Get.context!).size.width * 0.45,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // String phone =
+                    //     controller.detailOutlet.value!.ownerPhone;
+                    //                           String url =
+                    // "https://api.whatsapp.com/send/?phone=" +
+                    //     phone +
+                    //     "&text=hi%20Digiresto";
+                    String callBackUrl = '';
+                    String url = callBackUrl;
+                    LaunchUrl.run(
+                      url,
+                      onError: () {},
+                      onSuccess: () {},
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ImageIcon(AssetImage(AppAssets.iconSendMessage),
+                          color: AppColors.white),
+                      SizedBox(width: 8),
+                      Text(I10n.current.outlet_message,
+                          style: AppFont.textBlack12SemiBold
+                              .copyWith(color: Colors.white)),
+                    ],
+                  ),
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                          side: BorderSide(color: AppColors.redTabBar))),
+                      backgroundColor:
+                          MaterialStateProperty.all(AppColors.redTabBar)),
+                ),
+              ),
+              SizedBox(
+                height: 43,
+                width: MediaQuery.of(Get.context!).size.width * 0.45,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final location = '';
+                    await LaunchUrl.openMap(
+                        double.parse(location[0]), double.parse(location[1]),
+                        onError: () {
+                      ErrorPopupWidget.show(
+                          "Error", "error membuka aplikasi map", () {
+                        Get.back(closeOverlays: true);
+                      });
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ImageIcon(AssetImage(AppAssets.iconMapRed),
+                          color: AppColors.white),
+                      SizedBox(width: 8),
+                      Text(I10n.current.outlet_location,
+                          style: AppFont.textBlack12SemiBold
+                              .copyWith(color: Colors.white)),
+                    ],
+                  ),
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                          side: BorderSide(color: AppColors.redTabBar))),
+                      backgroundColor:
+                          MaterialStateProperty.all(AppColors.redTabBar)),
+                ),
+              ),
+            ]),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _menuTab() {
@@ -603,8 +590,8 @@ class ListMenuCateringPage extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
             child: ListView.separated(
                 itemBuilder: (_, __) => Container(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.all(
@@ -628,9 +615,9 @@ class ListMenuCateringPage extends StatelessWidget {
                             ),
                           ),
                           Expanded(
-                            
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -653,10 +640,9 @@ class ListMenuCateringPage extends StatelessWidget {
                           )
                         ],
                       ),
-                ),
+                    ),
                 separatorBuilder: (_, __) => Container(
                       height: 8,
-                      
                     ),
                 itemCount: 20),
           ),

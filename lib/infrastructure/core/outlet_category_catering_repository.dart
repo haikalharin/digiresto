@@ -4,6 +4,8 @@ import 'package:digiresto/domain/catering/outlet_category_catering_response.dart
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
+import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
@@ -17,7 +19,7 @@ class CateringRepository implements ICateringRepository {
   const CateringRepository(this._networkService, this.logger);
 
   @override
-  Future<Either<CateringFailure, IList<OutletCategoryDataCateringResponse>>>
+  Future<Either<CateringFailure, IList<OutletCategoryDataResponse>>>
       getOutletCategoryCatering({
     required int page,
     String? search,
@@ -51,8 +53,7 @@ class CateringRepository implements ICateringRepository {
           "body": {},
         },
       );
-      return right(
-          OutletCategoryCateringResponse.fromJson(apiResult).data.toIList());
+      return right(OutletCategoryResponse.fromJson(apiResult).data.toIList());
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
       return left(CateringFailure.sessionExpired());
