@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../injection.dart';
 import 'widget/custome_complain_button.dart';
@@ -149,20 +150,23 @@ class ComplainPage extends StatelessWidget {
   }
 
   Widget customerServiceCTA() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: 8, horizontal: Dimens.defaultMargin),
-      child: Row(
-        children: [
-          SvgPicture.asset(Assets.assetsProfileCustomerService),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              '${I10n.current.complaint_cd}',
-              style: Styles.boldRedStyle,
-            ),
-          )
-        ],
+    return GestureDetector(
+      onTap: () => launch('https://wa.me/6281110652777'),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            vertical: 8, horizontal: Dimens.defaultMargin),
+        child: Row(
+          children: [
+            SvgPicture.asset(Assets.assetsProfileCustomerService),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                '${I10n.current.complaint_cd}',
+                style: Styles.boldRedStyle,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
