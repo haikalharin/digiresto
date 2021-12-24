@@ -63,7 +63,6 @@ class PromoVoucherPage extends HookWidget {
               promoState.value = [];
               voucherState.value = [];
             },
-            loadFailure: (s) => print('print => loadFailure $s'),
             getPromoOutletSuccess: (s) => promoState.value = s.promos.toList(),
             getVoucherOutletSuccess: (s) =>
                 voucherState.value = s.vouchers.toList(),

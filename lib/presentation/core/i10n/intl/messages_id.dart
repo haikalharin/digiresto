@@ -177,7 +177,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "alert_ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "alert_out_of_session": MessageLookupByLibrary.simpleMessage(
             "Session login Anda telah selesai silakan login kembali!"),
+        "alert_payment_not_selected": MessageLookupByLibrary.simpleMessage(
+            "untuk mengaktifkan voucher yang anda gunakan, mohon untuk memilih metode pembayaran terlebih dahulu"),
         "alert_save": MessageLookupByLibrary.simpleMessage("Simpan"),
+        "app_name": MessageLookupByLibrary.simpleMessage("Digiresto"),
         "bank_transfer_cannot_process": MessageLookupByLibrary.simpleMessage(
             "Transaksi tidak dapat diproses"),
         "bank_transfer_topup":
