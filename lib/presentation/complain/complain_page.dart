@@ -5,7 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/complain/widget/complaint_popup_widget.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/complain/text_formfield_custom.dart';
+import 'package:digiresto/presentation/complain/widget/text_formfield_custom.dart';
 import 'package:digiresto/presentation/core/widgets/collapsed_scafold.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import '../../injection.dart';
-import 'custome_complain_button.dart';
+import 'widget/custome_complain_button.dart';
 
 class ComplainPage extends StatelessWidget {
   final String receiptCode;
@@ -53,14 +52,14 @@ class ComplainPage extends StatelessWidget {
                 Get.back();
               }),
               complaintSelect: (
+                eatTimeIsActive,
+                sendButtonIsActive,
                 complain,
                 complainCategory,
                 file,
                 imageUrl,
                 detail,
                 eatTime,
-                eatTimeIsActive,
-                sendButtonIsActive,
               ) {
                 problemEditText.text = detail.toString();
                 timeEditText.text = eatTime.toString();
@@ -69,6 +68,8 @@ class ComplainPage extends StatelessWidget {
                 image = imageUrl;
                 fileImage = file ?? File('');
                 listData = complainCategory;
+
+                print('image_path : $image');
               },
             );
           },
@@ -78,7 +79,6 @@ class ComplainPage extends StatelessWidget {
                 child: Column(
                   children: [
                     // _chooseCategory(list, idCategory),
-
                     Container(
                       width: double.infinity,
                       child: Padding(
@@ -102,6 +102,7 @@ class ComplainPage extends StatelessWidget {
                               children: listData!.map((item) {
                                 return GestureDetector(
                                     onTap: () {
+                                      problemEditText.clear();
                                       BlocProvider.of<ComplainBloc>(context)
                                         ..add(
                                           ComplainEvent
@@ -122,8 +123,8 @@ class ComplainPage extends StatelessWidget {
                       color: AppColors.dividerColor,
                       thickness: 2,
                     ),
-                    _formInputComplain(
-                        problemEditText, timeEditText, context, formState),
+                    _formInputComplain(problemEditText, timeEditText, context,
+                        formState, image!),
                     customerServiceCTA(),
                     buttonSend(
                       formState,
@@ -147,31 +148,6 @@ class ComplainPage extends StatelessWidget {
     );
   }
 
-  Widget tabItem(Complain complaint, String? idCategory) {
-    return BlocBuilder<ComplainBloc, ComplainState>(
-      builder: (context, state) {
-        return Container(
-          margin: EdgeInsets.only(right: 8, bottom: 8, top: 4),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color:
-                  complaint.id == idCategory ? AppColors.red : AppColors.white,
-              border: Border.all(color: AppColors.redYoung),
-            ),
-            child: Text(
-              complaint.description,
-              style: complaint.id == idCategory
-                  ? Styles.whiteFontStyle
-                  : Styles.boldRedStyle,
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget customerServiceCTA() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -191,116 +167,12 @@ class ComplainPage extends StatelessWidget {
     );
   }
 
-  Widget buttonSend(
-    GlobalKey<FormState> formState,
-    bool imageRequired,
-    String? image,
-    File? file,
-    String? complainId,
-    String? details,
-    String? consumeDate,
-  ) {
-    return BlocBuilder<ComplainBloc, ComplainState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-          child: CustomButtonComplain(
-            onPressed: () {
-              if (formState.currentState!.validate()) {
-                if (imageRequired && image!.isEmpty) {
-                  ErrorPopupWidget.show(I10n.current.complaint_image_required,
-                      I10n.current.complaint_detail_image_required, () {
-                    Get.back();
-                  });
-                } else {
-                  BlocProvider.of<ComplainBloc>(context)
-                    ..add(
-                      ComplainEvent.postComplain(
-                        complainId: complainId!,
-                        details: details!,
-                        receiptCode: receiptCode,
-                        image: file ?? File(''),
-                        consumeDate: consumeDate ?? '',
-                      ),
-                    );
-                }
-
-                //send
-              } else {
-                ErrorPopupWidget.show(I10n.current.complaint_problem_required,
-                    I10n.current.complaint_detail_problem_required, () {
-                  Get.back();
-                });
-              }
-            },
-            label: I10n.current.review_send,
-            fontColor: AppColors.white,
-            color: state.maybeMap(
-                orElse: () => AppColors.greyDEDEDE,
-                complaintSelect: (e) => e.sendButtonIsActive
-                    ? AppColors.redYoung
-                    : AppColors.greyDEDEDE),
-            borderRadius: BorderRadius.circular(20),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget imageAttachmen(BuildContext maincontext) {
-    return BlocBuilder<ComplainBloc, ComplainState>(
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () async {
-            bottomSheet(context);
-          },
-          child: Row(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 8, right: 8),
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: AppColors.greyCACACA),
-                child: state.maybeWhen(
-                  orElse: () => SizedBox(),
-                  complaintSelect: (complain, complainCategory, file, imageUrl,
-                      detail, eatTime, eatTimeIsActive, sendButtonIsActive) {
-                    if (file?.isBlank ?? false) {
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(
-                          file!,
-                        ),
-                      );
-                    } else {
-                      SizedBox();
-                    }
-                  },
-                ),
-              ),
-              Flexible(
-                child: Text(
-                  'Lampirkan bukti pendukung agar kami paham masalahmu (maks. 1 foto format .jpg, .jpeg, dan .png ukurang maks 10MB)',
-                  style: TextStyle(
-                    color: AppColors.greyRating,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   Widget _formInputComplain(
     TextEditingController problemController,
     TextEditingController timeController,
-    BuildContext context,
+    BuildContext maincontext,
     GlobalKey formState,
+    String image,
   ) {
     return BlocBuilder<ComplainBloc, ComplainState>(
       builder: (context, state) {
@@ -337,14 +209,14 @@ class ComplainPage extends StatelessWidget {
                   state.maybeWhen(
                     orElse: () => SizedBox(),
                     complaintSelect: (
+                      eatTimeIsActive,
+                      sendButtonIsActive,
                       complain,
                       complainCategory,
                       file,
                       imageUrl,
                       detail,
                       eatTime,
-                      eatTimeIsActive,
-                      sendButtonIsActive,
                     ) =>
                         eatTimeIsActive
                             ? Column(
@@ -365,40 +237,33 @@ class ComplainPage extends StatelessWidget {
                                     onTap: () async {
                                       print('Time Click');
                                       TimeOfDay? newTime = await showTimePicker(
-                                          context: context,
+                                          context: maincontext,
                                           initialTime: TimeOfDay.now());
+                                      final date = DateTime.now();
 
-                                      if (newTime != null) {
-                                        DateTime parseTime = DateFormat.jm()
-                                            .parse(newTime
-                                                .format(context)
-                                                .toString());
-                                        String formattedTime =
-                                            DateFormat('HH:mm')
-                                                .format(parseTime);
-                                        timeController.text = formattedTime;
-                                      }
+                                      BlocProvider.of<ComplainBloc>(maincontext)
+                                        ..add(
+                                          ComplainEvent.eatTimeSubmit(
+                                            eatTime:
+                                                '${date.year}-${date.month}-${date.day} ${newTime!.hour}:${newTime.minute}',
+                                          ),
+                                        );
                                     },
                                     borderColor: AppColors.greyBorder,
                                     hintText: state.maybeWhen(
                                         orElse: () => 'Waktu Makan',
-                                        complaintSelect: (complain,
-                                                complainCategory,
-                                                file,
-                                                imageUrl,
-                                                detail,
-                                                eatTime,
-                                                eatTimeIsActive,
-                                                sendButtonIsActive) =>
+                                        complaintSelect: (
+                                          eatTimeIsActive,
+                                          sendButtonIsActive,
+                                          complain,
+                                          complainCategory,
+                                          file,
+                                          imageUrl,
+                                          detail,
+                                          eatTime,
+                                        ) =>
                                             eatTime!.toString()),
                                     fillColor: AppColors.white,
-                                    onChange: (value) {
-                                      BlocProvider.of<ComplainBloc>(context)
-                                        ..add(
-                                          ComplainEvent.eatTimeSubmit(
-                                              eatTime: value),
-                                        );
-                                    },
                                     focusBorderColor: AppColors.redYoung,
                                   ),
                                   SizedBox(
@@ -434,7 +299,7 @@ class ComplainPage extends StatelessWidget {
                     hintText: 'Detail Masalah',
                     fillColor: AppColors.white,
                     onChange: (value) {
-                      BlocProvider.of<ComplainBloc>(context)
+                      BlocProvider.of<ComplainBloc>(maincontext)
                         ..add(
                           ComplainEvent.detailSubmit(detail: value),
                         );
@@ -465,7 +330,61 @@ class ComplainPage extends StatelessWidget {
                     style: Styles.ratingLabelStyle,
                     textAlign: TextAlign.left,
                   ),
-                  imageAttachmen(context),
+                  // imageAttachmen(context),
+                  InkWell(
+                    onTap: () {
+                      bottomSheet(context);
+                      // BlocProvider.of<ComplainBloc>(maincontext)
+                      //   ..add(
+                      //     ComplainEvent.attachmentSubmit(
+                      //       imagePath: imageUrl,
+                      //     ),
+                      //   );
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 8, right: 8),
+                          height: 70,
+                          width: 70,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: AppColors.greyCACACA),
+                          child: state.maybeWhen(
+                            orElse: () => SizedBox(),
+                            complaintSelect: (
+                              eatTimeIsActive,
+                              sendButtonIsActive,
+                              complain,
+                              complainCategory,
+                              file,
+                              imageUrl,
+                              detail,
+                              eatTime,
+                            ) {
+                              if (imageUrl != '') {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.file(File(imageUrl!)),
+                                );
+                              } else {
+                                return SizedBox();
+                              }
+                            },
+                          ),
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Lampirkan bukti pendukung agar kami paham masalahmu (maks. 1 foto format .jpg, .jpeg, dan .png ukurang maks 10MB)',
+                            style: TextStyle(
+                              color: AppColors.greyRating,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     height: 12,
                   ),
@@ -476,6 +395,90 @@ class ComplainPage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buttonSend(
+    GlobalKey<FormState> formState,
+    bool imageRequired,
+    String? image,
+    File? file,
+    String? complainId,
+    String? details,
+    String? consumeDate,
+  ) {
+    return BlocBuilder<ComplainBloc, ComplainState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+          child: CustomButtonComplain(
+            onPressed: () {
+              if (formState.currentState!.validate()) {
+                if (imageRequired && image == '') {
+                  ErrorPopupWidget.show(I10n.current.complaint_image_required,
+                      I10n.current.complaint_detail_image_required, () {
+                    Get.back();
+                  });
+                } else {
+                  BlocProvider.of<ComplainBloc>(context)
+                    ..add(
+                      ComplainEvent.postComplain(
+                        complainId: complainId!,
+                        details: details!,
+                        receiptCode: receiptCode,
+                        imagePath: image,
+                        consumeDate: consumeDate ?? '',
+                      ),
+                    );
+                }
+
+                //send
+              } else {
+                ErrorPopupWidget.show(
+                  I10n.current.complaint_problem_required,
+                  I10n.current.complaint_detail_problem_required,
+                  () {
+                    Get.back();
+                  },
+                );
+              }
+            },
+            label: I10n.current.review_send,
+            fontColor: AppColors.white,
+            color: state.maybeMap(
+                orElse: () => AppColors.greyDEDEDE,
+                complaintSelect: (e) => e.sendButtonIsActive
+                    ? AppColors.redYoung
+                    : AppColors.greyDEDEDE),
+            borderRadius: BorderRadius.circular(20),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget tabItem(Complain complaint, String? idCategory) {
+    return BlocBuilder<ComplainBloc, ComplainState>(
+      builder: (context, state) {
+        return Container(
+          margin: EdgeInsets.only(right: 8, bottom: 8, top: 4),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color:
+                  complaint.id == idCategory ? AppColors.red : AppColors.white,
+              border: Border.all(color: AppColors.redYoung),
+            ),
+            child: Text(
+              complaint.description,
+              style: complaint.id == idCategory
+                  ? Styles.whiteFontStyle
+                  : Styles.boldRedStyle,
             ),
           ),
         );
@@ -533,16 +536,19 @@ class ComplainPage extends StatelessWidget {
                         Expanded(child: Container()),
                         ElevatedButton(
                             onPressed: () async {
-                              XFile? file = await _picker.pickImage(
+                              await _picker
+                                  .pickImage(
                                 source: ImageSource.camera,
-                              );
-                              Get.back();
-                              BlocProvider.of<ComplainBloc>(maincontext)
-                                ..add(
-                                  ComplainEvent.attachmentSubmit(
-                                    file: File(file!.path),
-                                  ),
-                                );
+                              )
+                                  .then((value) {
+                                BlocProvider.of<ComplainBloc>(maincontext)
+                                  ..add(
+                                    ComplainEvent.attachmentSubmit(
+                                      imagePath: value!.path,
+                                    ),
+                                  );
+                                Get.back();
+                              });
                             },
                             child: Text(
                               I10n.current.cart_choose,
@@ -581,16 +587,19 @@ class ComplainPage extends StatelessWidget {
                         Expanded(child: Container()),
                         ElevatedButton(
                             onPressed: () async {
-                              XFile? file = await _picker.pickImage(
+                              await _picker
+                                  .pickImage(
                                 source: ImageSource.gallery,
-                              );
-                              Get.back();
-                              BlocProvider.of<ComplainBloc>(maincontext)
-                                ..add(
-                                  ComplainEvent.attachmentSubmit(
-                                    file: File(file!.path),
-                                  ),
-                                );
+                              )
+                                  .then((value) {
+                                BlocProvider.of<ComplainBloc>(maincontext)
+                                  ..add(
+                                    ComplainEvent.attachmentSubmit(
+                                      imagePath: value!.path,
+                                    ),
+                                  );
+                                Get.back();
+                              });
                             },
                             child: Text(
                               I10n.current.cart_choose,
