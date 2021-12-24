@@ -46,9 +46,9 @@ class ComplainPage extends StatelessWidget {
             state.maybeWhen(
               orElse: () => [],
               getComplaintCategorySuccess: (list) => listData = list,
-              sendingSuccesss: () => ComplaintPopupWidget.show("Pesan Terkirim",
-                  'Kami segera memproses keluhan Anda. Selanjutnya, tim CS kami akan segera menghubungi Anda.',
-                  () {
+              sendingSuccesss: () => ComplaintPopupWidget.show(
+                  "${I10n.current.complaint_send_success}",
+                  '${I10n.current.complaint_detail_success}', () {
                 Get.back();
                 Get.back();
               }),
@@ -91,7 +91,7 @@ class ComplainPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Pilih Category Complain',
+                              '${I10n.current.complaint_category}',
                               style: Styles.ratingLabelStyle,
                               textAlign: TextAlign.left,
                             ),
@@ -182,7 +182,7 @@ class ComplainPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              'Hubungi Customer Service',
+              '${I10n.current.complaint_cd}',
               style: Styles.boldRedStyle,
             ),
           )
@@ -208,8 +208,8 @@ class ComplainPage extends StatelessWidget {
             onPressed: () {
               if (formState.currentState!.validate()) {
                 if (imageRequired && image!.isEmpty) {
-                  ErrorPopupWidget.show(
-                      "Image Required", I10n.current.add_favorite_success, () {
+                  ErrorPopupWidget.show(I10n.current.complaint_image_required,
+                      I10n.current.complaint_detail_image_required, () {
                     Get.back();
                   });
                 } else {
@@ -227,13 +227,13 @@ class ComplainPage extends StatelessWidget {
 
                 //send
               } else {
-                ErrorPopupWidget.show(
-                    "Digiresto", 'Detail Masalah minimal 30 Karakter', () {
+                ErrorPopupWidget.show(I10n.current.complaint_problem_required,
+                    I10n.current.complaint_detail_problem_required, () {
                   Get.back();
                 });
               }
             },
-            label: 'Kirim',
+            label: I10n.current.review_send,
             fontColor: AppColors.white,
             color: state.maybeMap(
                 orElse: () => AppColors.greyDEDEDE,
@@ -318,7 +318,7 @@ class ComplainPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Nomor Pesanan',
+                    '${I10n.current.complaint_recipt_number}',
                     style: Styles.ratingLabelStyle,
                     textAlign: TextAlign.left,
                   ),
@@ -336,14 +336,16 @@ class ComplainPage extends StatelessWidget {
                   ),
                   state.maybeWhen(
                     orElse: () => SizedBox(),
-                    complaintSelect: (complain,
-                            complainCategory,
-                            file,
-                            imageUrl,
-                            detail,
-                            eatTime,
-                            eatTimeIsActive,
-                            sendButtonIsActive) =>
+                    complaintSelect: (
+                      complain,
+                      complainCategory,
+                      file,
+                      imageUrl,
+                      detail,
+                      eatTime,
+                      eatTimeIsActive,
+                      sendButtonIsActive,
+                    ) =>
                         eatTimeIsActive
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,7 +380,17 @@ class ComplainPage extends StatelessWidget {
                                       }
                                     },
                                     borderColor: AppColors.greyBorder,
-                                    hintText: 'Waktu Makan',
+                                    hintText: state.maybeWhen(
+                                        orElse: () => 'Waktu Makan',
+                                        complaintSelect: (complain,
+                                                complainCategory,
+                                                file,
+                                                imageUrl,
+                                                detail,
+                                                eatTime,
+                                                eatTimeIsActive,
+                                                sendButtonIsActive) =>
+                                            eatTime!.toString()),
                                     fillColor: AppColors.white,
                                     onChange: (value) {
                                       BlocProvider.of<ComplainBloc>(context)
@@ -408,7 +420,7 @@ class ComplainPage extends StatelessWidget {
                     height: 12,
                   ),
                   Text(
-                    'Ceritakan Masalahmu',
+                    '${I10n.current.complaint_detail}',
                     style: Styles.ratingLabelStyle,
                     textAlign: TextAlign.left,
                   ),
@@ -449,7 +461,7 @@ class ComplainPage extends StatelessWidget {
                     height: 12,
                   ),
                   Text(
-                    'Lampirkan',
+                    '${I10n.current.complaint_attachment}',
                     style: Styles.ratingLabelStyle,
                     textAlign: TextAlign.left,
                   ),
@@ -458,7 +470,7 @@ class ComplainPage extends StatelessWidget {
                     height: 12,
                   ),
                   Text(
-                    'Butuh bantuan lain? ',
+                    '${I10n.current.complaint_help}',
                     style: Styles.ratingLabelStyle,
                     textAlign: TextAlign.left,
                   ),

@@ -636,7 +636,22 @@
     "use_voucher" : "Use",
     "use_voucher_later" : "Use Later",
 
-    "select_menu_type" : "Select Menu Type"
+    "tab_complain_menu" : "complaint",
+    "tab_detail_menu" : "detail",
+    "complaint_category" : "Choose Complaint Category",
+    "complaint_recipt_number" : "Nomor Pesanan",
+    "complaint_detail" : "Order Number",
+    "complaint_attachment" : "Attachment",
+    "complaint_help" : "Need help?",
+    "complaint_send_success" : "Message sent",
+    "complaint_detail_success" : "We will immediately process your complaint. Furthermore, our CS team will contact you shortly.",
+    "complaint_cd" : "Contact Customer Service",
+    "complaint_image_required" : "You have not attached supporting evidence",
+    "complaint_detail_image_required" : "Attach supporting evidence so that we understand your problem",
+    "complaint_problem_required" : "Tell me in detail the problem you are experiencing",
+    "complaint_detail_problem_required" : "Tell us in detail so we understand your problem",
+
+    "select_menu_type" : "Select Menu Type",
   "lang": "en",
   "onboarding_skip": "Next",
   "onboarding_get_started": "Get Started",

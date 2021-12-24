@@ -5862,6 +5862,146 @@ class I10n {
     );
   }
 
+  /// `complaint`
+  String get tab_complain_menu {
+    return Intl.message(
+      'complaint',
+      name: 'tab_complain_menu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `detail`
+  String get tab_detail_menu {
+    return Intl.message(
+      'detail',
+      name: 'tab_detail_menu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Complaint Category`
+  String get complaint_category {
+    return Intl.message(
+      'Choose Complaint Category',
+      name: 'complaint_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nomor Pesanan`
+  String get complaint_recipt_number {
+    return Intl.message(
+      'Nomor Pesanan',
+      name: 'complaint_recipt_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Number`
+  String get complaint_detail {
+    return Intl.message(
+      'Order Number',
+      name: 'complaint_detail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attachment`
+  String get complaint_attachment {
+    return Intl.message(
+      'Attachment',
+      name: 'complaint_attachment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Need help?`
+  String get complaint_help {
+    return Intl.message(
+      'Need help?',
+      name: 'complaint_help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message sent`
+  String get complaint_send_success {
+    return Intl.message(
+      'Message sent',
+      name: 'complaint_send_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will immediately process your complaint. Furthermore, our CS team will contact you shortly.`
+  String get complaint_detail_success {
+    return Intl.message(
+      'We will immediately process your complaint. Furthermore, our CS team will contact you shortly.',
+      name: 'complaint_detail_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Customer Service`
+  String get complaint_cd {
+    return Intl.message(
+      'Contact Customer Service',
+      name: 'complaint_cd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not attached supporting evidence`
+  String get complaint_image_required {
+    return Intl.message(
+      'You have not attached supporting evidence',
+      name: 'complaint_image_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attach supporting evidence so that we understand your problem`
+  String get complaint_detail_image_required {
+    return Intl.message(
+      'Attach supporting evidence so that we understand your problem',
+      name: 'complaint_detail_image_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell me in detail the problem you are experiencing`
+  String get complaint_problem_required {
+    return Intl.message(
+      'Tell me in detail the problem you are experiencing',
+      name: 'complaint_problem_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell us in detail so we understand your problem`
+  String get complaint_detail_problem_required {
+    return Intl.message(
+      'Tell us in detail so we understand your problem',
+      name: 'complaint_detail_problem_required',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Menu Type`
   String get select_menu_type {
     return Intl.message(
