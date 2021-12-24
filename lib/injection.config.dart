@@ -124,12 +124,12 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i22.AuthInterceptor>(
       () => _i22.AuthInterceptor(get<_i17.IStorage>()));
   await gh.lazySingletonAsync<_i23.Dio>(
-      () => registerModule.dio(get<_i17.IStorage>()),
-      registerFor: {_prod},
-      preResolve: true);
-  await gh.lazySingletonAsync<_i23.Dio>(
       () => registerModule.dioDev(get<_i3.Alice>(), get<_i17.IStorage>()),
       registerFor: {_dev},
+      preResolve: true);
+  await gh.lazySingletonAsync<_i23.Dio>(
+      () => registerModule.dio(get<_i17.IStorage>()),
+      registerFor: {_prod},
       preResolve: true);
   gh.factory<_i8.Env>(() => _i8.EnvDev(get<_i17.IStorage>()),
       registerFor: {_dev});

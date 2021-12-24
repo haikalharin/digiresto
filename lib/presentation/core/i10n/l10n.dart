@@ -5892,20 +5892,20 @@ class I10n {
     );
   }
 
-  /// `Nomor Pesanan`
+  /// `Order Number`
   String get complaint_recipt_number {
     return Intl.message(
-      'Nomor Pesanan',
+      'Order Number',
       name: 'complaint_recipt_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Order Number`
+  /// `Tell your problem `
   String get complaint_detail {
     return Intl.message(
-      'Order Number',
+      'Tell your problem ',
       name: 'complaint_detail',
       desc: '',
       args: [],
