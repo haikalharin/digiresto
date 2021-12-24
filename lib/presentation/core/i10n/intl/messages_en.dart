@@ -368,6 +368,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart_voucher_invalid": m13,
         "chat_driver": MessageLookupByLibrary.simpleMessage("Chat Driver"),
         "chat_outlet": MessageLookupByLibrary.simpleMessage("Send Message"),
+        "complaint_attachment":
+            MessageLookupByLibrary.simpleMessage("Attachment"),
+        "complaint_category":
+            MessageLookupByLibrary.simpleMessage("Choose Complaint Category"),
+        "complaint_cd":
+            MessageLookupByLibrary.simpleMessage("Contact Customer Service"),
+        "complaint_detail":
+            MessageLookupByLibrary.simpleMessage("Order Number"),
+        "complaint_detail_image_required": MessageLookupByLibrary.simpleMessage(
+            "Attach supporting evidence so that we understand your problem"),
+        "complaint_detail_problem_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Tell us in detail so we understand your problem"),
+        "complaint_detail_success": MessageLookupByLibrary.simpleMessage(
+            "We will immediately process your complaint. Furthermore, our CS team will contact you shortly."),
+        "complaint_help": MessageLookupByLibrary.simpleMessage("Need help?"),
+        "complaint_image_required": MessageLookupByLibrary.simpleMessage(
+            "You have not attached supporting evidence"),
+        "complaint_problem_required": MessageLookupByLibrary.simpleMessage(
+            "Tell me in detail the problem you are experiencing"),
+        "complaint_recipt_number":
+            MessageLookupByLibrary.simpleMessage("Nomor Pesanan"),
+        "complaint_send_success":
+            MessageLookupByLibrary.simpleMessage("Message sent"),
         "contact_email_subject": MessageLookupByLibrary.simpleMessage(
             "APLIKASI Digiresto [Android] - DAMCORP"),
         "contact_share_email_title":
@@ -947,6 +971,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up_title":
             MessageLookupByLibrary.simpleMessage("Continue verification"),
         "sign_up_username": MessageLookupByLibrary.simpleMessage("Username"),
+        "tab_complain_menu": MessageLookupByLibrary.simpleMessage("complaint"),
+        "tab_detail_menu": MessageLookupByLibrary.simpleMessage("detail"),
         "text_kirim_ulang": MessageLookupByLibrary.simpleMessage(
             "If you are not receiving the code, click Resend."),
         "text_list_order": MessageLookupByLibrary.simpleMessage("List Order"),
