@@ -651,7 +651,7 @@
     "complaint_problem_required" : "Tell me in detail the problem you are experiencing",
     "complaint_detail_problem_required" : "Tell us in detail so we understand your problem",
 
-    "select_menu_type" : "Select Menu Type"
+    "select_menu_type" : "Select Menu Type",
   "lang": "en",
   "onboarding_skip": "Next",
   "onboarding_get_started": "Get Started",
