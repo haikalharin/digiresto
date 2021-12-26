@@ -375,7 +375,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "complaint_cd":
             MessageLookupByLibrary.simpleMessage("Contact Customer Service"),
         "complaint_detail":
-            MessageLookupByLibrary.simpleMessage("Order Number"),
+            MessageLookupByLibrary.simpleMessage("Tell your problem "),
         "complaint_detail_image_required": MessageLookupByLibrary.simpleMessage(
             "Attach supporting evidence so that we understand your problem"),
         "complaint_detail_problem_required":
@@ -389,7 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "complaint_problem_required": MessageLookupByLibrary.simpleMessage(
             "Tell me in detail the problem you are experiencing"),
         "complaint_recipt_number":
-            MessageLookupByLibrary.simpleMessage("Nomor Pesanan"),
+            MessageLookupByLibrary.simpleMessage("Order Number"),
         "complaint_send_success":
             MessageLookupByLibrary.simpleMessage("Message sent"),
         "contact_email_subject": MessageLookupByLibrary.simpleMessage(
