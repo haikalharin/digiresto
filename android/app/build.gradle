@@ -64,8 +64,8 @@ android {
 
     defaultConfig {
         applicationId "id.damcorp.digiresto"
-        minSdkVersion 20
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
