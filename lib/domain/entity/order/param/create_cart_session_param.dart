@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_cart_session_param.freezed.dart';
+
 part 'create_cart_session_param.g.dart';
 
 CreateCartSessionParam emptyFromJson(String str) =>
@@ -24,22 +25,26 @@ class CreateCartSessionParam with _$CreateCartSessionParam {
 
 @freezed
 class CreateCartSessionBodyParam with _$CreateCartSessionBodyParam {
-  const factory CreateCartSessionBodyParam({
-    required String outletName,
-    required String customerName,
-    required String customerPhone,
-    required String customerTableNumber,
-    required bool customerSmoking,
-    required String customerPax,
-    required String customerNote,
-    required String customerCarType,
-    required String customerCarColor,
-    required String customerCarNumber,
-    required String eta,
-    required String salesType,
-    required String receiptCode,
-    required List<CreateUpdateCartSessionItemParam> items,
-  }) = _CreateCartSessionBodyParam;
+  const factory CreateCartSessionBodyParam(
+          {required String outletName,
+          required String customerName,
+          required String customerPhone,
+          required String customerTableNumber,
+          required bool customerSmoking,
+          required String customerPax,
+          required String customerNote,
+          required String customerCarType,
+          required String customerCarColor,
+          required String customerCarNumber,
+          required String eta,
+          required String salesType,
+          required String receiptCode,
+          required List<CreateUpdateCartSessionItemParam> items,
+          @JsonKey(includeIfNull: false) String? mealsTypes,
+          @JsonKey(includeIfNull: false) String? preOrderDate,
+          @JsonKey(includeIfNull: false) bool? isCatering,
+          @JsonKey(includeIfNull: false) String? excludeMerchantCategories}) =
+      _CreateCartSessionBodyParam;
 
   factory CreateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>
       _$CreateCartSessionBodyParamFromJson(json);

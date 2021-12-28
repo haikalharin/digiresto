@@ -20,6 +20,7 @@ class ListProductCartWidget extends StatefulWidget {
       OutletListProductDataResponse,
       String,
       List<CreateCartSessionItemModifierParam>) runDetailAction;
+
   const ListProductCartWidget(
       {Key? key,
       required this.productCart,
@@ -83,7 +84,8 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       scrollDirection: widget.scrollDirection,
-      shrinkWrap: true, // new line
+      shrinkWrap: true,
+      // new line
       padding: EdgeInsets.zero,
       itemCount: widget.productCart.length,
       itemBuilder: (BuildContext context, int index) {
@@ -130,7 +132,7 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
 
         num modifierTotalPrice = 0;
 
-        productCart.modifiers?.forEach((modifier) {
+        productCart.modifiers.forEach((modifier) {
           modifierTotalPrice += modifier.price * modifier.qty;
         });
 
@@ -226,15 +228,13 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    if (productCart.modifiers?.isNotEmpty ??
-                                        false)
+                                    if (productCart.modifiers.isNotEmpty)
                                       Text(
                                           productCart.modifiers
-                                                  ?.map((e) =>
-                                                      '${e.title} (${e.qty})')
-                                                  .toList()
-                                                  .join(', ') ??
-                                              '',
+                                              .map((e) =>
+                                                  '${e.title} (${e.qty})')
+                                              .toList()
+                                              .join(', '),
                                           softWrap: false,
                                           maxLines: 3,
                                           overflow: TextOverflow.ellipsis,
@@ -242,11 +242,10 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                               .copyWith(
                                                   color: AppColors.grey747474),
                                           textAlign: TextAlign.left),
-                                    if (widget.productCart[index].desc
-                                            ?.isNotEmpty ??
-                                        false)
+                                    if (widget
+                                        .productCart[index].desc.isNotEmpty)
                                       Text(
-                                        widget.productCart[index].desc ?? '',
+                                        widget.productCart[index].desc,
                                         style: AppFont.textBlack10Regular
                                             .copyWith(
                                                 color: AppColors.grey7B7B7B),
@@ -267,18 +266,16 @@ class _ListProductCartWidgetState extends State<ListProductCartWidget> {
                                             widget.orderType,
                                             [
                                               ...productCart.modifiers
-                                                      ?.map(
-                                                        (e) =>
-                                                            CreateCartSessionItemModifierParam(
-                                                          modifierGroupId:
-                                                              e.modifierGroupId,
-                                                          modifierId:
-                                                              e.modifierId,
-                                                          qty: e.qty,
-                                                        ),
-                                                      )
-                                                      .toList() ??
-                                                  [],
+                                                  .map(
+                                                    (e) =>
+                                                        CreateCartSessionItemModifierParam(
+                                                      modifierGroupId:
+                                                          e.modifierGroupId,
+                                                      modifierId: e.modifierId,
+                                                      qty: e.qty,
+                                                    ),
+                                                  )
+                                                  .toList(),
                                             ],
                                           );
                                         },

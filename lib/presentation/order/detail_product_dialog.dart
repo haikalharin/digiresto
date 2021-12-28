@@ -45,6 +45,8 @@ class DetailProductDialog extends StatefulWidget {
   final String? mealsTitle;
   final String? deliveryTime;
   final bool? isCatering;
+  final String? mealTypes;
+  final String? preOrderDate;
 
   /// Voucher
   final VoucherDetailArguments? voucher;
@@ -65,7 +67,9 @@ class DetailProductDialog extends StatefulWidget {
       this.mealsTitle,
       this.deliveryTime,
       this.isCatering = false,
-      this.voucher})
+      this.voucher,
+      this.mealTypes,
+      this.preOrderDate})
       : super(key: key);
 
   @override
@@ -204,17 +208,19 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
           () {
         Get.context!.read<OrderBloc>().add(
               OrderEvent.addCart(
-                CreateUpdateCartSessionItemParam(
-                  modifiers: listModifier,
-                  note: notes,
-                  productId: int.parse(variantProductSelected.id),
-                  qty: totalqty,
-                ),
-                widget.detailOutlet,
-                widget.orderType,
-                isBuyNow,
-                widget.detailOutlet.merchantName!,
-              ),
+                  CreateUpdateCartSessionItemParam(
+                    modifiers: listModifier,
+                    note: notes,
+                    productId: int.parse(variantProductSelected.id),
+                    qty: totalqty,
+                  ),
+                  widget.detailOutlet,
+                  widget.orderType,
+                  isBuyNow,
+                  widget.detailOutlet.merchantName!,
+                  isCatering: widget.isCatering,
+                  preOrderDate: widget.preOrderDate,
+                  mealsType: widget.mealTypes),
             );
         Get.back();
       });
@@ -232,16 +238,18 @@ class _DetailProductDialogState extends State<DetailProductDialog> {
     getIt<BottomTabCubit>().checkCartFromOutside();
     Get.context!.read<OrderBloc>().add(
           OrderEvent.addCart(
-            CreateUpdateCartSessionItemParam(
-                modifiers: listModifier,
-                note: notes,
-                productId: int.parse(variantProductSelected.id),
-                qty: totalqty),
-            widget.detailOutlet,
-            widget.orderType,
-            isBuyNow,
-            widget.detailOutlet.merchantName!,
-          ),
+              CreateUpdateCartSessionItemParam(
+                  modifiers: listModifier,
+                  note: notes,
+                  productId: int.parse(variantProductSelected.id),
+                  qty: totalqty),
+              widget.detailOutlet,
+              widget.orderType,
+              isBuyNow,
+              widget.detailOutlet.merchantName!,
+              isCatering: widget.isCatering,
+              preOrderDate: widget.preOrderDate,
+              mealsType: widget.mealTypes),
         );
   }
 

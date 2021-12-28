@@ -4,6 +4,7 @@ import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
+import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/key_value_model.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
@@ -65,9 +66,6 @@ class OrderCartScreenViewController extends GetxController {
   var checkoutResponse = Rxn<CheckoutDataResponse>();
   var listOrderPending = RxList<OrderPending>();
   var cartFailMessage = Rxn<StatusMessageDisplayResponse>();
-  var mealsTypes = "".obs;
-  var preOrderDate = "".obs;
-  var isCatering = false.obs;
   var refreshlocation = ''.obs;
   bool noteIsSubmite = false;
   bool detailLocationIsSubmited = false;
@@ -254,15 +252,14 @@ class OrderCartScreenViewController extends GetxController {
     var productParam = CreateUpdateCartSessionItemParam(
       modifiers: [
         ...detailProduct.modifiers
-                ?.map(
-                  (e) => CreateCartSessionItemModifierParam(
-                    modifierGroupId: e.modifierGroupId,
-                    qty: e.qty,
-                    modifierId: e.modifierId,
-                  ),
-                )
-                .toList() ??
-            [],
+            .map(
+              (e) => CreateCartSessionItemModifierParam(
+                modifierGroupId: e.modifierGroupId,
+                qty: e.qty,
+                modifierId: e.modifierId,
+              ),
+            )
+            .toList(),
       ],
       note: '',
       productId: productId,
@@ -284,15 +281,14 @@ class OrderCartScreenViewController extends GetxController {
   ) async {
     var productParam = CreateUpdateCartSessionItemParam(modifiers: [
       ...detailProduct.modifiers
-              ?.map(
-                (e) => CreateCartSessionItemModifierParam(
-                  modifierGroupId: e.modifierGroupId,
-                  qty: e.qty,
-                  modifierId: e.modifierId,
-                ),
-              )
-              .toList() ??
-          [],
+          .map(
+            (e) => CreateCartSessionItemModifierParam(
+              modifierGroupId: e.modifierGroupId,
+              qty: e.qty,
+              modifierId: e.modifierId,
+            ),
+          )
+          .toList(),
     ], note: '', productId: productId, qty: 0);
     Get.context!.read<OrderBloc>().add(OrderEvent.removeCart(productParam));
     update();
@@ -425,9 +421,10 @@ class OrderCartScreenViewController extends GetxController {
                 outletId:
                     cartSession.value!.transactionData!.outletId.toString(),
                 page: 1,
-                isCatering: isCatering.value,
-                mealsTypes: mealsTypes.value,
-                preOrderDate: preOrderDate.value,
+                isCatering: cartSession.value?.transactionData?.isCatering,
+                mealsTypes: cartSession.value?.transactionData?.mealsType,
+                preOrderDate: Utils.formatDate(
+                    cartSession.value?.transactionData?.preorderDate),
               ),
             ),
           ),
