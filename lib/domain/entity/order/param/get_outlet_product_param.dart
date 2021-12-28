@@ -38,9 +38,9 @@ class GetOutletProductQueryParam with _$GetOutletProductQueryParam {
     required String filter,
     required int page,
     required int limit,
-    String? mealsTypes,
-    String? preOrderDate,
-    bool? isCatering,
+    @JsonKey(includeIfNull: false) String? mealsTypes,
+    @JsonKey(includeIfNull: false) String? preOrderDate,
+    @JsonKey(includeIfNull: false) bool? isCatering,
   }) = _GetOutletProductQueryParam;
 
   factory GetOutletProductQueryParam.fromJson(Map<String, dynamic> json) =>

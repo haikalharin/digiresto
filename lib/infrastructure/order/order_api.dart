@@ -407,7 +407,10 @@ class OrderApi {
       final apiResult = await _networkService.postHttp(
           path: apiUrl,
           queryParameter: queryParameter,
-          content: object.toJson());
+          content: {
+            "body": object.body.toJson(),
+            "query_string": object.queryString.toJson()
+          });
 //           {
 // 	"query_string": {
 //         "outletId": "822",
@@ -589,6 +592,9 @@ class OrderApi {
             "query_string": object.queryString.toJson(),
             "body": object.body.toJson()
           });
+      print('print => $apiUrl');
+      print('print => $queryParameter');
+      print('print => $s');
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       if (e.code == '12') {
@@ -616,6 +622,8 @@ class OrderApi {
       ErrorDialog().showNoInternetError();
       return left(NoInternetException());
     } catch (e, stactrace) {
+      print('print => ${e}');
+      print('print => ${stactrace}');
       return left(NetworkException(message: stactrace));
     }
   }
@@ -647,6 +655,8 @@ class OrderApi {
       ErrorDialog().showNoInternetError();
       return left(NoInternetException());
     } catch (e, stactrace) {
+      print('print => ${e}');
+      print('print => ${stactrace}');
       return left(NetworkException(message: stactrace));
     }
   }
