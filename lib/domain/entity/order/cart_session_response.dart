@@ -80,9 +80,9 @@ class TransactionData with _$TransactionData {
     required List<dynamic> paymentList,
     required List<TaxesAndService> taxesAndServices,
     required int itemTotalAmount,
-    bool? isCatering,
-    String? mealsType,
-    DateTime? preorderDate,
+    @JsonKey(includeIfNull: false) bool? isCatering,
+    @JsonKey(includeIfNull: false) String? mealsType,
+    @JsonKey(includeIfNull: false) DateTime? preorderDate,
   }) = _TransactionData;
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
@@ -104,7 +104,7 @@ class TransactionDataItemResponse with _$TransactionDataItemResponse {
     required String category,
     required int categoryId,
     required String categoryCode,
-    required String sku,
+    required String? sku,
     required bool isPreorder,
     required int preorderPeriod,
     required int amount,
