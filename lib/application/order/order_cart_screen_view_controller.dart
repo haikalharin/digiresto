@@ -69,6 +69,8 @@ class OrderCartScreenViewController extends GetxController {
   var preOrderDate = "".obs;
   var isCatering = false.obs;
   var refreshlocation = ''.obs;
+  bool noteIsSubmite = false;
+  bool detailLocationIsSubmited = false;
 
   RxList<KeyValueModel> dataSmoking = [
     KeyValueModel(key: "1", value: "Smoking"),
@@ -78,6 +80,11 @@ class OrderCartScreenViewController extends GetxController {
   Future<void> getTransactionPending() async {
     await Get.context!.read<OrderBloc>()
       ..add(OrderEvent.getTransactionPending());
+    update();
+    return;
+  }
+
+  Future<void> updateState() async {
     update();
     return;
   }

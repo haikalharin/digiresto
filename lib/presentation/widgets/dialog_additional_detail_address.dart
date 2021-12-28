@@ -1,6 +1,4 @@
 import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
-import 'package:digiresto/domain/core/constants/font.dart';
-import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_button.dart';
@@ -46,6 +44,8 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                       InkWell(
                         onTap: () {
                           Navigator.pop(context);
+                          controller.detailLocationIsSubmited = false;
+                          controller.noteIsSubmite = false;
                         },
                         child: Container(
                           width: 35,
@@ -108,6 +108,11 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                       ),
                     ),
                     child: TextField(
+                      onChanged: (value) {
+                        controller.detailLocationIsSubmited = true;
+                        controller.update();
+                        controller.onClose();
+                      },
                       controller: controller.locationDetailCOntroller,
                       decoration: InputDecoration(border: InputBorder.none),
                     ),
@@ -131,6 +136,11 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                       ),
                     ),
                     child: TextField(
+                      onChanged: (value) {
+                        controller.noteIsSubmite = true;
+                        print("Value : " + value);
+                        controller.update();
+                      },
                       controller: controller.notesController,
                       decoration: InputDecoration(border: InputBorder.none),
                     ),
@@ -138,24 +148,49 @@ class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
                   SizedBox(
                     height: 20,
                   ),
-                  CustomButton(
-                    child: Text(
-                      I10n.current.update_address,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold),
-                    ),
-                    color: AppColors.mainColor,
-                    onPressed: () {
-                      var updateValue = UpdateDetailLocation(
-                          locationDetail:
-                              controller.locationDetailCOntroller.text,
-                          notes: controller.notesController.text);
-                      Navigator.pop(context, updateValue);
-                    },
-                    fontColor: AppColors.white,
-                  )
+                  GetBuilder(
+                      builder: (OrderCartScreenViewController _controller) {
+                    return controller.detailLocationIsSubmited ||
+                            controller.noteIsSubmite
+                        ? CustomButton(
+                            child: Text(
+                              I10n.current.update_address,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            color: AppColors.mainColor,
+                            onPressed: () {
+                              var updateValue = UpdateDetailLocation(
+                                  locationDetail:
+                                      controller.locationDetailCOntroller.text,
+                                  notes: controller.notesController.text);
+                              Navigator.pop(context, updateValue);
+                              controller.noteIsSubmite = false;
+                              controller.detailLocationIsSubmited = false;
+                            },
+                            fontColor: AppColors.white,
+                          )
+                        : CustomButton(
+                            child: Text(
+                              I10n.current.update_address,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            color: AppColors.greyC2C2C2,
+                            onPressed: () {
+                              // var updateValue = UpdateDetailLocation(
+                              //     locationDetail:
+                              //         controller.locationDetailCOntroller.text,
+                              //     notes: controller.notesController.text);
+                              // Navigator.pop(context, updateValue);
+                            },
+                            fontColor: AppColors.white,
+                          );
+                  })
                 ],
               ),
             ),

@@ -63,9 +63,15 @@ class MenuItemWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      menuItem.title,
-                      style: Styles.menuItemTitleStyle,
+                    Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: Text(
+                        menuItem.title,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: false,
+                        style: Styles.menuItemTitleStyle,
+                      ),
                     ),
                     Text(
                       CommonUtils.currencyFormat(price.toDouble()),
