@@ -616,6 +616,8 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                     mealsTitle: controller.outlet.value!.mealsTitle,
                     deliveryTime: controller.outlet.value!.deliveryTime,
                     isCatering: controller.outlet.value!.isCatering,
+                    mealTypes: controller.outlet.value!.mealsTypes,
+                    preOrderDate: controller.outlet.value!.preOrderDate,
                     voucher: controller.voucherCode.value,
                   );
                 },

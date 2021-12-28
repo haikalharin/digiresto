@@ -78,4 +78,9 @@ class Utils {
     String formattedDate = DateFormat('EEEE,dd MMMM yyyy', "ID").format(now);
     return formattedDate;
   }
+
+  static String? formatDate(DateTime? date, {String format = 'yyyy-MM-dd'}) {
+    if (date == null) return null;
+    return DateFormat(format, 'ID').format(date);
+  }
 }

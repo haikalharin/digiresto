@@ -396,7 +396,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
                             ? getSalesTypeCart
                             : request.salesType,
                         receiptCode: "",
-                        items: setProduct?.items ?? []),
+                        items: setProduct?.items ?? [],
+                        mealsTypes: request.mealsType,
+                        isCatering: request.isCatering,
+                        preOrderDate: request.preOrderDate,
+                        excludeMerchantCategories: null),
                     queryString: CreateCartSessionQueryParam()));
 
             var dataCart = createCartSession.getOrElse(() => null);

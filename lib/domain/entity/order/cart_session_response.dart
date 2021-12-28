@@ -5,6 +5,7 @@ import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_session_response.freezed.dart';
+
 part 'cart_session_response.g.dart';
 
 CartSessionResponseApi emptyFromJson(String str) =>
@@ -79,6 +80,9 @@ class TransactionData with _$TransactionData {
     required List<dynamic> paymentList,
     required List<TaxesAndService> taxesAndServices,
     required int itemTotalAmount,
+    bool? isCatering,
+    String? mealsType,
+    DateTime? preorderDate,
   }) = _TransactionData;
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
@@ -87,33 +91,34 @@ class TransactionData with _$TransactionData {
 
 @freezed
 class TransactionDataItemResponse with _$TransactionDataItemResponse {
-  const factory TransactionDataItemResponse(
-      {required int productId,
-      required String title,
-      required num price,
-      required String? code,
-      required int cost,
-      required int qty,
-      required int basicWeight,
-      required int weight,
-      required String category,
-      required int categoryId,
-      required String categoryCode,
-      required String? sku,
-      required String note,
-      required bool isPreorder,
-      required int preorderPeriod,
-      required num amount,
-      required List<Modifier>? modifiers,
-      required num? modifiersAmount,
-      required num? modifiersCost,
-      required num? modifiersDiscount,
-      required num? singleModifiersAmount,
-      required num subtotal,
-      required num serviceAmount,
-      required num taxAmount,
-      required String? desc,
-      required String? img}) = _TransactionDataItemResponse;
+  const factory TransactionDataItemResponse({
+    required int productId,
+    required String title,
+    required String img,
+    required int price,
+    required String code,
+    required int cost,
+    required int qty,
+    required int basicWeight,
+    required int weight,
+    required String category,
+    required int categoryId,
+    required String categoryCode,
+    required String sku,
+    required bool isPreorder,
+    required int preorderPeriod,
+    required int amount,
+    required List<dynamic> modifiers,
+    required int modifiersAmount,
+    required int modifiersCost,
+    required int modifiersDiscount,
+    required int singleModifiersAmount,
+    required int subtotal,
+    required int serviceAmount,
+    required int taxAmount,
+    required String desc,
+    required String note,
+  }) = _TransactionDataItemResponse;
 
   factory TransactionDataItemResponse.fromJson(Map<String, dynamic> json) =>
       _$TransactionDataItemResponseFromJson(json);

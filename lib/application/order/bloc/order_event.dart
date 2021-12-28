@@ -49,14 +49,19 @@ class OrderEvent with _$OrderEvent {
   ) = _ReorderCart;
 
   const factory OrderEvent.addCart(
-    CreateUpdateCartSessionItemParam request,
-    DetailOutletDataResponse outlet,
-    String salesType,
-    bool isBuyNow,
-    String outletName,
-  ) = _AddCart;
+      CreateUpdateCartSessionItemParam request,
+      DetailOutletDataResponse outlet,
+      String salesType,
+      bool isBuyNow,
+      String outletName,
+      {String? mealsType,
+      String? preOrderDate,
+      bool? isCatering}) = _AddCart;
 
-  const factory OrderEvent.updateCart(String note, String outletName,) = _UpdateCart;
+  const factory OrderEvent.updateCart(
+    String note,
+    String outletName,
+  ) = _UpdateCart;
 
   const factory OrderEvent.removeCart(
       CreateUpdateCartSessionItemParam request) = _RemoveCart;

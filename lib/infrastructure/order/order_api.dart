@@ -37,6 +37,7 @@ import 'package:injectable/injectable.dart';
 class OrderApi {
   final INetworkService _networkService;
   final IStorage _storage;
+
   OrderApi(
     this._networkService,
     this._storage,
@@ -574,12 +575,20 @@ class OrderApi {
   Future<Either<Exception, CartSessionResponseApi?>> createCartSession(
       CreateCartSessionParam object) async {
     try {
+      var s = {
+        "query_string": object.queryString.toJson(),
+        "body": object.body.toJson()
+      };
+      print(s);
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlCreateCartSession;
       final apiResult = await _networkService.postHttp(
           path: apiUrl,
           queryParameter: queryParameter,
-          content: object.toJson());
+          content: {
+            "query_string": object.queryString.toJson(),
+            "body": object.body.toJson()
+          });
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       if (e.code == '12') {
@@ -616,7 +625,6 @@ class OrderApi {
     try {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetCartSession;
-      print('object.sessionId: ${object.sessionId}');
       final apiResult = await _networkService
           .postHttp(path: apiUrl, queryParameter: queryParameter, content: {
         "query_string": {
