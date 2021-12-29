@@ -686,7 +686,7 @@ class OrderCartScreenViewController extends GetxController {
     if (arguments != null && arguments.isUseVoucher) {
       GetListVoucherOutletDataResponse? newVoucherModel =
           GetListVoucherOutletDataResponse(
-              code: arguments.voucher.code, name: arguments.voucher.name);
+              code: arguments.voucher.code ?? '', name: arguments.voucher.name ?? '');
       Get.context!.read<OrderBloc>().add(
             OrderEvent.setVoucherMethodID(newVoucherModel),
           );
