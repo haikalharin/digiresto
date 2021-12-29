@@ -12,6 +12,7 @@ import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart'
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
@@ -259,6 +260,15 @@ class OrderRepository implements IOrderRepository {
 
   Future<Either<Exception, CheckoutResponse>> checkout(String sessionId) async {
     return await _orderApi.checkout(sessionId).then((value) {
+      return value;
+    });
+  }
+
+  Future<Either<Exception, DetailOutletResponse>> getDetailOutletByMerchant(
+    String location,
+    String merchantId,
+  ) async {
+    return _orderApi.getDetailOutletByMerchant(location, merchantId).then((value) {
       return value;
     });
   }
