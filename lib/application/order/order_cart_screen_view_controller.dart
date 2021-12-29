@@ -401,11 +401,13 @@ class OrderCartScreenViewController extends GetxController {
 
   void getDetailOutlet() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
+          GetDetailOutletParam(
             body: GetDetailOutletBodyParam(),
             queryString: GetDetailOutletQueryParam(
-                outletId:
-                    cartSession.value!.transactionData!.outletId.toString()))));
+              outletId: cartSession.value!.transactionData!.outletId.toString(),
+            ),
+          ),
+        ));
     update();
   }
 

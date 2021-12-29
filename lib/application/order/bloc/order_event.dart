@@ -34,6 +34,10 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getDetailOutlet(GetDetailOutletParam request) =
       _GetDetailOutlet;
 
+  const factory OrderEvent.getDetailOutletByMerchant(
+    String merchantId,
+  ) = _GetDetailOutletByMerchant;
+
   const factory OrderEvent.getPaymentMethod(GetPaymentMethodParam request) =
       _GetPaymentMethod;
 
