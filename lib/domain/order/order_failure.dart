@@ -24,6 +24,8 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.getHotPromoFail(Exception? e) = _GetHotPromoFail;
   const factory OrderFailure.getDetailOutletFail(Exception? e) =
       _GetDetailOutletFail;
+  const factory OrderFailure.getDetailOutletByMerchantFail(Exception? e) =
+      _GetDetailOutletByMerchantFail;
   const factory OrderFailure.getPaymentMethodFail(Exception? e) =
       _GetPaymentMethodFail;
   const factory OrderFailure.deliveryInquiryFail(Exception? e) =
@@ -54,9 +56,9 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.getDineInIDMethodFail(Exception? e) =
       _GetDineInIDMethodFail;
   const factory OrderFailure.setDriveThruIDMethodFail(Exception? e) =
-  _SetDriveThruIDMethodFail;
+      _SetDriveThruIDMethodFail;
   const factory OrderFailure.getDriveThruIDMethodFail(Exception? e) =
-  _GetDriveThruIDMethodFail;
+      _GetDriveThruIDMethodFail;
   const factory OrderFailure.setVoucherMethodIDFail(Exception? e) =
       _SetVoucherMethodIDFail;
   const factory OrderFailure.getVoucherMethodIDFail(Exception? e) =

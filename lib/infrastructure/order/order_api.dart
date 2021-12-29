@@ -17,6 +17,7 @@ import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart'
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
@@ -808,6 +809,46 @@ class OrderApi {
       var methods = (apiResult as Map<String, dynamic>)['data'];
       return right(List<DeliveryMethodDataResponse>.from(
           methods.map((data) => DeliveryMethodDataResponse.fromJson(data))));
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(FailureException(code: e.code, message: e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
+    } on ServerException catch (e) {
+      ErrorDialog().showError(
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, DetailOutletResponse>> getDetailOutletByMerchant(
+    String location,
+    String merchantId,
+  ) async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetDetailOutletByMerchant;
+      final apiResult = await _networkService
+          .postHttp(path: apiUrl, queryParameter: queryParameter, content: {
+        "query_string": {
+          "merchantId": merchantId,
+          "location": location
+        },
+        "body": {}
+      },);
+      return right(DetailOutletResponse.fromJson(apiResult));
     } on FailureException catch (e) {
       ErrorDialog().showError(error: e.message!);
       return left(FailureException(code: e.code, message: e.message));

@@ -1,5 +1,3 @@
-import 'dart:core';
-
 import 'package:digiresto/application/order/bloc/order_bloc.dart';
 import 'package:digiresto/application/order/order_view_controller.dart';
 import 'package:digiresto/domain/core/theme.dart';
@@ -11,11 +9,10 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
-import 'package:digiresto/generated/assets.dart';
-import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
+import 'package:digiresto/presentation/order/detail_product_dialog.dart';
 import 'package:digiresto/presentation/order/widgets/list_product_outlet_widget.dart';
 import 'package:digiresto/presentation/router/router.dart';
 import 'package:digiresto/presentation/widgets/Error_popup_widget.dart';
@@ -24,14 +21,16 @@ import 'package:digiresto/presentation/widgets/list/list_food_category_widget.da
 import 'package:digiresto/presentation/widgets/top_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import 'detail_product_dialog.dart';
+class DetailOutletByMerchant extends GetView<OrderViewController> {
+  final String? merchantId;
 
-class DetailOutletScreen extends GetView<OrderViewController> {
-  final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
-
+  DetailOutletByMerchant({
+    this.merchantId,
+  });
   void goBack() {
     Get.delete<OrderViewController>();
     Get.back();
@@ -39,52 +38,42 @@ class DetailOutletScreen extends GetView<OrderViewController> {
 
   Future<void> _showDialogSalesType() async {
     return showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
-        ),
-        backgroundColor: Colors.white,
-        context: Get.context!,
-        builder: (context) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              SizedBox(
-                height: 8,
-              ),
-              ListTile(
-                // leading: GestureDetector(
-                //   onTap: () {
-                //     Get.back();
-                //   },
-                //   child: ImageIcon(
-                //     AssetImage(AppAssets.iconBackBlack),
-                //     color: Colors.black,
-                //   ),
-                // ),
-                title: Container(
-                  //make title to center
-                  //transform: Matrix4.translationValues(-24, 0, 0),
-                  child: Center(
-                    child: new Text(
-                      'Silahkan pilih tipe order',
-                      style: AppFont.textBlack17Bold,
-                    ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+      ),
+      backgroundColor: Colors.white,
+      context: Get.context!,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            SizedBox(
+              height: 8,
+            ),
+            ListTile(
+              title: Container(
+                child: Center(
+                  child: new Text(
+                    'Silahkan pilih tipe order',
+                    style: AppFont.textBlack17Bold,
                   ),
                 ),
-                enabled: false,
               ),
-              Column(
-                children: controller.generateListSalesTypeOption((element) {
-                  controller.setSalesType(element);
-                  Get.back(closeOverlays: true);
-                }),
-              ),
-              SizedBox(
-                height: 16,
-              )
-            ],
-          );
-        });
+              enabled: false,
+            ),
+            Column(
+              children: controller.generateListSalesTypeOption((element) {
+                controller.setSalesType(element);
+                Get.back(closeOverlays: true);
+              }),
+            ),
+            SizedBox(
+              height: 16,
+            )
+          ],
+        );
+      },
+    );
   }
 
   Widget _header(DetailOutletDataResponse data) {
@@ -139,7 +128,8 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                               icon: new Icon(Icons.refresh,
                                   color: Colors.white, size: 24.0),
                               onPressed: () {
-                                controller.getRefresh();
+                                controller
+                                    .getRefreshDetailMerchant(merchantId!);
                               },
                             ),
                           ],
@@ -210,20 +200,16 @@ class DetailOutletScreen extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
     Get.put(OrderViewController());
-    controller.outlet.value = args;
-    // controller.getSalesTypeOrder();
+    // controller.outlet.value = args;
     controller.setSalesType("onlineDriver");
-    controller.getDetailOutlet();
-    controller.getListProduct();
-    controller.getCategoryProduct();
+    controller.getDetailOutletByMerchant(merchantId!);
+    // controller.getCategoryProduct();
     controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         state.maybeMap(
-            getDetailOutletSuccess: (r) {
+            getDetailOutletByMerchantSuccess: (r) {
               if (controller.salesType.value == null) {
-                //controller.setSalesType(r.response.salesTypes[0]);
-                //set default delivery
                 controller.setSalesType("onlineDriver");
               }
               controller.detailOutlet.value = r.response;
@@ -295,33 +281,33 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                         ? _header(controller.detailOutlet.value!)
                         : Container(),
                     TabBar(
-                        onTap: (index) {
-                          controller.indexTabBar.value = index;
-                        },
-                        tabs: [
-                          Obx((() => Tab(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ImageIcon(
-                                        AssetImage(
-                                            AppAssets.iconOutletOverview),
-                                        color: controller.indexTabBar.value == 0
-                                            ? AppColors.redTabBar
-                                            : AppColors.greyCOC0C0),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      I10n.current.outlet_overview,
-                                      style: controller.indexTabBar.value == 0
-                                          ? AppFont.textRed14Bold
-                                          : AppFont.textGrey14Bold,
-                                    )
-                                  ],
-                                ),
-                              ))),
-                          Obx((() => Tab(
+                      onTap: (index) {
+                        controller.indexTabBar.value = index;
+                      },
+                      tabs: [
+                        Obx((() => Tab(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageIcon(
+                                      AssetImage(AppAssets.iconOutletOverview),
+                                      color: controller.indexTabBar.value == 0
+                                          ? AppColors.redTabBar
+                                          : AppColors.greyCOC0C0),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    I10n.current.outlet_overview,
+                                    style: controller.indexTabBar.value == 0
+                                        ? AppFont.textRed14Bold
+                                        : AppFont.textGrey14Bold,
+                                  )
+                                ],
+                              ),
+                            ))),
+                        Obx(
+                          (() => Tab(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -342,12 +328,14 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                                     )
                                   ],
                                 ),
-                              ))),
-                        ]),
+                              )),
+                        ),
+                      ],
+                    ),
                     Expanded(
                       child: TabBarView(children: [
-                        _BodyOutletOverview(),
-                        _BodyOutletMenu(),
+                        _BodyOutletByMerchantOverView(),
+                        _BodyOutletByMerchantMenu(),
                       ]),
                     ),
                   ],
@@ -361,7 +349,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
   }
 }
 
-class _BodyOutletOverview extends GetView<OrderViewController> {
+class _BodyOutletByMerchantOverView extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
     return controller.detailOutlet.value != null
@@ -576,7 +564,7 @@ class _BodyOutletOverview extends GetView<OrderViewController> {
   }
 }
 
-class _BodyOutletMenu extends GetView<OrderViewController> {
+class _BodyOutletByMerchantMenu extends GetView<OrderViewController> {
   void initState() {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -867,84 +855,13 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Padding(
-                padding: const EdgeInsets.only(
-                    left: 10, right: 10, top: 10, bottom: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.iconsIcCalendar,
-                          height: 12,
-                          width: 12,
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          controller.outlet.value!.dayDate ?? "",
-                          style: AppFont.textBlack12Medium.copyWith(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 12),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.iconsFoodIcon,
-                          height: 12,
-                          width: 12,
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          controller.outlet.value!.mealsTitle ?? "",
-                          style: AppFont.textBlack12Medium.copyWith(
-                            fontSize: 11,
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Container(
-                          height: 4,
-                          width: 4,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.greyColor2,
-                          ),
-                        ),
-                        SizedBox(width: 12),
-                        Text(
-                          controller.outlet.value!.deliveryTime ?? "",
-                          style: AppFont.textBlack12Regular.copyWith(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+        controller.detailOutlet.value != null ? _search() : Container(),
+        controller.listCategory.value != null
+            ? _category(
+                controller.listCategory.value!,
+                controller.categoryId.value,
               )
             : Container(),
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Container()
-            : controller.detailOutlet.value != null
-                ? _search()
-                : Container(),
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Container()
-            : controller.listCategory.value != null
-                ? _category(
-                    controller.listCategory.value!, controller.categoryId.value)
-                : Container(),
         _promoAndVoucher(),
         Expanded(
           child: Container(
@@ -1052,7 +969,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                         controller.listPromo.value?.isEmpty ?? true;
 
                     if (controller.voucherCode.value?.isUseVoucher == true &&
-                        controller.voucherCode.value?.voucher.code?.isNotEmpty ==
+                        controller.voucherCode.value?.voucher.code.isNotEmpty ==
                             true) {
                       text = controller.voucherCode.value?.voucher.code != null
                           ? '${I10n.current.voucher_discount} ${controller.voucherCode.value?.voucher.code}'

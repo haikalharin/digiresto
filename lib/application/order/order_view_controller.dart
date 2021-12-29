@@ -5,6 +5,7 @@ import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
+import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
@@ -31,9 +32,6 @@ class OrderViewController extends GetxController {
   var detailOutletLoading = false.obs;
   var indexTabBar = 1.obs;
   var salesType = Rxn<String>();
-  // var mealsTypes = "".obs;
-  // var preOrderDate = "".obs;
-  // var isCatering = false.obs;
 
   var voucherCode = Rxn<VoucherDetailArguments>();
   bool isSameOutlet() {
@@ -61,39 +59,31 @@ class OrderViewController extends GetxController {
   RxnString outletCart = RxnString();
 
   void getDetailOutlet() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
-            body: GetDetailOutletBodyParam(),
-            queryString:
-                GetDetailOutletQueryParam(outletId: outlet.value!.outletId))));
-    // setState(() {
-    //   detailOutletLoading = true;
-    // });
-    // _orderStore.getDetailOutlet({
-    //   "outletName": outletName,
-    //   "page": pageParam,
-    //   "limit": 0,
-    //   "produclds": [],
-    //   "filter": filter,
-    //   "category": category
-    // }).then((res) {
-    //   if (pageParam > page) {
-    //     setState(() {
-    //       page += 1;
-    //       detailOutlet.product.addAll(res.product);
-    //     });
-    //   } else {
-    //     setState(() {
-    //       page = 1;
-    //       detailOutlet = res;
-    //     });
-    //   }
-    //   detailOutletLoading = false;
-    // }).catchError((err) {
-    //   detailOutletLoading = false;
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getDetailOutlet(
+            GetDetailOutletParam(
+              body: GetDetailOutletBodyParam(),
+              queryString: GetDetailOutletQueryParam(
+                outletId: outlet.value!.outletId,
+              ),
+            ),
+          ),
+        );
+  }
+
+  void getDetailOutletByMerchant(String merchantId) {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getDetailOutletByMerchant(
+            merchantId,
+          ),
+        );
+  }
+
+  void getRefreshDetailMerchant(String merchantId) {
+    isLoading.value = true;
+    getCartSession();
+    getDetailOutlet();
+    getDetailOutletByMerchant(merchantId);
   }
 
   void getRefresh() {

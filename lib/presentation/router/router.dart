@@ -23,6 +23,7 @@ import 'package:digiresto/presentation/home_new/list_catering_page/list_catering
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/landing/landing_page.dart';
 import 'package:digiresto/presentation/order/detail_outlet.dart';
+import 'package:digiresto/presentation/order/detail_outlet_by_merchant.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/order/payment_receipt.dart';
 import 'package:digiresto/presentation/order/payment_va.dart';
@@ -67,6 +68,8 @@ class Routers {
   static const String historyDetail = '/history_detail';
   static const String register = '/register';
   static const String orderDetailOutlet = '/order_detail_outlet';
+  static const String orderDetailOutletByMerchant =
+      '/order_detail_outlet_by_merchant';
   static const String orderCart = '/order_cart';
   static const String selectPaymentMethod = '/select_payment_method';
   static const String selectVoucherVoucher = '/select_payment_voucher';
@@ -155,11 +158,16 @@ class Routers {
     GetPage(name: Routers.homeAddAddress, page: () => AddAddressScreen()),
     GetPage(name: Routers.orderDetailOutlet, page: () => DetailOutletScreen()),
     GetPage(
+      name: Routers.orderDetailOutletByMerchant,
+      page: () => DetailOutletByMerchant(),
+    ),
+    GetPage(
         name: Routers.homeOutletCategory,
         page: () => HomeCategoryOutletScreen()),
     GetPage(
         name: Routers.orderCart,
-        page: () => OrderCartScreen(voucher: Get.arguments as VoucherDetailArguments?)),
+        page: () =>
+            OrderCartScreen(voucher: Get.arguments as VoucherDetailArguments?)),
     GetPage(name: Routers.homeSeeAllOutlet, page: () => HomeSeeAllOutlet()),
     GetPage(
         name: Routers.selectPaymentMethod,
