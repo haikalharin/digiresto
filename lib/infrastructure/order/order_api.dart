@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/entity/status_api_response.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/core/interfaces/i_storage.dart';
+import 'package:digiresto/domain/core/utils/utils.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
@@ -578,11 +579,13 @@ class OrderApi {
   Future<Either<Exception, CartSessionResponseApi?>> createCartSession(
       CreateCartSessionParam object) async {
     try {
-      var s = {
-        "query_string": object.queryString.toJson(),
-        "body": object.body.toJson()
-      };
-      print(s);
+      if (object.body.isCatering == true) {
+        final String _cateringPreOrderDateKey = "cateringPreOrderDateKey";
+        final _box = await _storage.openBox(StorageConstants.cart);
+        await _storage.putString(_box,
+            key: _cateringPreOrderDateKey, value: object.body.preOrderDate!);
+        await _storage.close(_box);
+      }
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlCreateCartSession;
       final apiResult = await _networkService.postHttp(
@@ -592,9 +595,6 @@ class OrderApi {
             "query_string": object.queryString.toJson(),
             "body": object.body.toJson()
           });
-      print('print => $apiUrl');
-      print('print => $queryParameter');
-      print('print => $s');
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       if (e.code == '12') {
@@ -602,6 +602,21 @@ class OrderApi {
         final _box = await _storage.openBox(StorageConstants.cart);
         await _storage.setJson(_box, key: _voucherMethodKey, object: {});
         await _storage.close(_box);
+      } else if (e.code == '19') {
+        final String _cateringPreOrderDateKey = "cateringPreOrderDateKey";
+        final _box = await _storage.openBox(StorageConstants.cart);
+        String? date =
+            await _storage.getString(_box, key: _cateringPreOrderDateKey);
+        date = Utils.formatIndonesiaWithoutHour(date!);
+        await _storage.close(_box);
+        ErrorDialog().showError(
+          onClose: () => Get.back(),
+          error: e.message!.copyWith(
+            en: e.message!.en.replaceAll('{date}', date),
+            id: e.message!.id.replaceAll('{date}', date),
+          ),
+        );
+        return left(FailureException(code: e.code, message: e.message));
       }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException(code: e.code, message: e.message));
@@ -622,8 +637,6 @@ class OrderApi {
       ErrorDialog().showNoInternetError();
       return left(NoInternetException());
     } catch (e, stactrace) {
-      print('print => ${e}');
-      print('print => ${stactrace}');
       return left(NetworkException(message: stactrace));
     }
   }
@@ -642,6 +655,22 @@ class OrderApi {
       });
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
+      if (e.code == '19') {
+        final String _cateringPreOrderDateKey = "cateringPreOrderDateKey";
+        final _box = await _storage.openBox(StorageConstants.cart);
+        String? date =
+        await _storage.getString(_box, key: _cateringPreOrderDateKey);
+        date = Utils.formatIndonesiaWithoutHour(date!);
+        await _storage.close(_box);
+        ErrorDialog().showError(
+          onClose: () => Get.back(),
+          error: e.message!.copyWith(
+            en: e.message!.en.replaceAll('{date}', date),
+            id: e.message!.id.replaceAll('{date}', date),
+          ),
+        );
+        return left(FailureException(code: e.code, message: e.message));
+      }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
@@ -655,8 +684,6 @@ class OrderApi {
       ErrorDialog().showNoInternetError();
       return left(NoInternetException());
     } catch (e, stactrace) {
-      print('print => ${e}');
-      print('print => ${stactrace}');
       return left(NetworkException(message: stactrace));
     }
   }
@@ -669,7 +696,10 @@ class OrderApi {
       final apiResult = await _networkService.postHttp(
           path: apiUrl,
           queryParameter: queryParameter,
-          content: object.toJson());
+          content:  {
+            "query_string": object.queryString.toJson(),
+            "body": object.body.toJson()
+          });
       return right(CartSessionResponseApi.fromJson(apiResult));
     } on FailureException catch (e) {
       if (e.code == '12') {
@@ -677,6 +707,21 @@ class OrderApi {
         final _box = await _storage.openBox(StorageConstants.cart);
         await _storage.setJson(_box, key: _voucherMethodKey, object: {});
         await _storage.close(_box);
+      } else if (e.code == '19') {
+        final String _cateringPreOrderDateKey = "cateringPreOrderDateKey";
+        final _box = await _storage.openBox(StorageConstants.cart);
+        String? date =
+        await _storage.getString(_box, key: _cateringPreOrderDateKey);
+        date = Utils.formatIndonesiaWithoutHour(date!);
+        await _storage.close(_box);
+        ErrorDialog().showError(
+          onClose: () => Get.back(),
+          error: e.message!.copyWith(
+            en: e.message!.en.replaceAll('{date}', date),
+            id: e.message!.id.replaceAll('{date}', date),
+          ),
+        );
+        return left(FailureException(code: e.code, message: e.message));
       }
       ErrorDialog().showError(error: e.message!);
       return left(FailureException(code: e.code, message: e.message));

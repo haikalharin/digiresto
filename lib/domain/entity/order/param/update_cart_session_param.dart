@@ -39,6 +39,10 @@ class UpdateCartSessionBodyParam with _$UpdateCartSessionBodyParam {
     required List<String>? promos,
     required String? salesType,
     required List<CreateUpdateCartSessionItemParam>? items,
+    @JsonKey(includeIfNull: false) String? mealsTypes,
+    @JsonKey(includeIfNull: false) String? preOrderDate,
+    @JsonKey(includeIfNull: false) bool? isCatering,
+    @JsonKey(includeIfNull: false) String? excludeMerchantCategories
   }) = _UpdateCartSessionBodyParam;
 
   factory UpdateCartSessionBodyParam.fromJson(Map<String, dynamic> json) =>

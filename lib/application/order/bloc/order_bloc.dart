@@ -422,23 +422,27 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             final createCartSession = await _orderRepository.updateCartSession(
                 UpdateCartSessionParam(
                     body: UpdateCartSessionBodyParam(
-                      items: setProduct?.items ?? [],
-                      customerNote: null,
-                      paymentType: paymentType?.id ?? "",
-                      customerPax: (getDineInID?.pax ?? 1).toString(),
-                      customerCarType: getDriveThruID?.customerCarType ?? "",
-                      customerCarColor: getDriveThruID?.customerCarColor ?? "",
-                      customerCarNumber:
-                          getDriveThruID?.customerCarNumber ?? "",
-                      customerSmoking: OrderCartDineInModel.isSmoking(
-                          getDineInID?.selectedKeySmoking ?? "2"),
-                      delivery: deliveryParam,
-                      eta: etaOrder,
-                      promos: getVoucherMethodID == null
-                          ? []
-                          : [getVoucherMethodID.code],
-                      salesType: getSalesTypeCart ?? "",
-                    ),
+                        items: setProduct?.items ?? [],
+                        customerNote: null,
+                        paymentType: paymentType?.id ?? "",
+                        customerPax: (getDineInID?.pax ?? 1).toString(),
+                        customerCarType: getDriveThruID?.customerCarType ?? "",
+                        customerCarColor:
+                            getDriveThruID?.customerCarColor ?? "",
+                        customerCarNumber:
+                            getDriveThruID?.customerCarNumber ?? "",
+                        customerSmoking: OrderCartDineInModel.isSmoking(
+                            getDineInID?.selectedKeySmoking ?? "2"),
+                        delivery: deliveryParam,
+                        eta: etaOrder,
+                        promos: getVoucherMethodID == null
+                            ? []
+                            : [getVoucherMethodID.code],
+                        salesType: getSalesTypeCart ?? "",
+                        mealsTypes: request.mealsType,
+                        isCatering: request.isCatering,
+                        preOrderDate: request.preOrderDate,
+                        excludeMerchantCategories: null),
                     queryString:
                         UpdateCartSessionQueryParam(sessionId: sessionId)));
 
