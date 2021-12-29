@@ -26,14 +26,14 @@ abstract class VoucherOutletResponse with _$VoucherOutletResponse {
 @freezed
 abstract class Datum with _$Datum {
   const factory Datum({
-    required String name,
-    required String code,
-    required String description,
-    required String url,
-    required DateTime startDate,
-    required DateTime endDate,
-    required String startTime,
-    required String endTime,
+    required String? name,
+    required String? code,
+    required String? description,
+    required String? url,
+    required DateTime? startDate,
+    required DateTime? endDate,
+    required String? startTime,
+    required String? endTime,
   }) = _Datum;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);

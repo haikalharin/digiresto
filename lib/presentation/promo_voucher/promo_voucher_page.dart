@@ -256,7 +256,7 @@ class PromoVoucherPage extends HookWidget {
               ),
               child: FadeInImage.assetNetwork(
                 placeholder: RandomImages.getImage().assetName,
-                image: item.url,
+                image: item.url ??'',
                 imageErrorBuilder: (context, obj, stacktrace) => Image(
                   image: RandomImages.getImage(),
                   height: 200,
@@ -277,7 +277,7 @@ class PromoVoucherPage extends HookWidget {
                       SvgPicture.asset(AppAssets.iconVouchers),
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
-                        child: Text(item.code, style: AppFont.textBlack14Bold),
+                        child: Text(item.code ?? '', style: AppFont.textBlack14Bold),
                       )
                     ],
                   ),

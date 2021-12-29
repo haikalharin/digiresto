@@ -1053,7 +1053,7 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                         controller.listPromo.value?.isEmpty ?? true;
 
                     if (controller.voucherCode.value?.isUseVoucher == true &&
-                        controller.voucherCode.value?.voucher.code.isNotEmpty ==
+                        controller.voucherCode.value?.voucher.code?.isNotEmpty ==
                             true) {
                       text = controller.voucherCode.value?.voucher.code != null
                           ? '${I10n.current.voucher_discount} ${controller.voucherCode.value?.voucher.code}'
