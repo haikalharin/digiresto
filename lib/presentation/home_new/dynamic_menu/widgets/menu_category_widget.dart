@@ -5,7 +5,7 @@ import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
 import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
-import 'package:digiresto/presentation/order/detail_outlet_by_merchant.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
@@ -30,9 +30,13 @@ class MenuCategoryWidget extends StatelessWidget {
               },
             );
           } else if (menuCategory.id == "snack") {
-            Get.to(
-              DetailOutletByMerchant(
-                merchantId: menuCategory.param['merchantId'],
+            Get.toNamed(
+              Routers.orderDetailOutlet,
+              arguments: OrderDetailViewArgument(
+                "",
+                menuCategory.param['merchantId'],
+                isCatering: false,
+                isSnack: true,
               ),
             )?.then(
               (value) {
@@ -46,24 +50,6 @@ class MenuCategoryWidget extends StatelessWidget {
               Get.context!.read<BottomTabCubit>().checkAllCounter();
             });
           }
-          // // Get.to(ListOutletPage(menuCategory));
-          // final label = menuCategory.getTitle;
-          // // if (label == Strings.titleDigidiscount) {
-          // //   Get.toNamed(Routers.homeDigiDiscount,
-          // //       arguments: HomeOrderViewArgument(title: label, param: label));
-          // // } else
-          // if (label == Strings.titleFrozenFood ||
-          //     label == Strings.titleIndonesiaPastiBisa) {
-          //   Get.toNamed(Routers.homeOutletCategory,
-          //       arguments: HomeOrderViewArgument(title: label, param: label));
-          // } else if (label == Strings.titleNearby) {
-          //   Get.toNamed(Routers.homeNearbyOutlet,
-          //       arguments: HomeOrderViewArgument(title: label, param: label));
-          // } else {
-          //   Get.to(
-          //     ListOutletPage(menuCategory),
-          //   );
-          // }
         },
         child: Column(
           children: <Widget>[
