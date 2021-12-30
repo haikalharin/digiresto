@@ -200,10 +200,10 @@ class DetailOutletByMerchant extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
     Get.put(OrderViewController());
-    // controller.outlet.value = args;
     controller.setSalesType("onlineDriver");
     controller.getDetailOutletByMerchant(merchantId!);
-    // controller.getCategoryProduct();
+    controller.getListProductMerchant();
+    controller.getCategoryProductByMerchant();
     controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
@@ -214,7 +214,7 @@ class DetailOutletByMerchant extends GetView<OrderViewController> {
               }
               controller.detailOutlet.value = r.response;
               controller.getPromoProduct();
-              controller.getListVoucher();
+              controller.getListVoucherByMerchant(merchantId!);
               controller.checkAllLoaded();
             },
             getOutletListProductSuccess: (r) {
@@ -707,26 +707,23 @@ class _BodyOutletByMerchantMenu extends GetView<OrderViewController> {
   Widget _product(List<OutletListProductDataResponse> data) {
     return Column(
       children: [
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Container()
-            : Container(
-                padding: EdgeInsets.only(
-                  left: 10,
-                ),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  controller.categoryName.value == ""
-                      ? I10n.current.preorder_filter_all
-                      : controller.categoryName.value,
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+        Container(
+          padding: EdgeInsets.only(
+            left: 10,
+          ),
+          alignment: Alignment.topLeft,
+          child: Text(
+            controller.categoryName.value == ""
+                ? I10n.current.preorder_filter_all
+                : controller.categoryName.value,
+            style: TextStyle(
+              fontFamily: "roboto",
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         ListProductOutletWidget(
           orderType: controller.salesType.value!,
           data: data,

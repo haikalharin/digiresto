@@ -65,25 +65,11 @@ class OrderViewController extends GetxController {
               body: GetDetailOutletBodyParam(),
               queryString: GetDetailOutletQueryParam(
                 outletId: outlet.value!.outletId,
+                location: '',
               ),
             ),
           ),
         );
-  }
-
-  void getDetailOutletByMerchant(String merchantId) {
-    Get.context!.read<OrderBloc>().add(
-          OrderEvent.getDetailOutletByMerchant(
-            merchantId,
-          ),
-        );
-  }
-
-  void getRefreshDetailMerchant(String merchantId) {
-    isLoading.value = true;
-    getCartSession();
-    getDetailOutlet();
-    getDetailOutletByMerchant(merchantId);
   }
 
   void getRefresh() {
@@ -92,6 +78,7 @@ class OrderViewController extends GetxController {
     getCartSession();
     getDetailOutlet();
     getCategoryProduct();
+    getListVoucher();
   }
 
   void getListVoucher() {
@@ -439,4 +426,70 @@ class OrderViewController extends GetxController {
     });
     return listWidget;
   }
+
+  /// SNACK IMPORT BY MERCHANT
+
+  void getRefreshDetailMerchant(String merchantId) {
+    isLoading.value = true;
+    getCartSession();
+    getDetailOutletByMerchant(merchantId);
+    getListProductMerchant();
+    getCategoryProductByMerchant();
+    getListVoucherByMerchant(merchantId);
+  }
+
+  void getListProductMerchant() {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletListProduct(
+            GetOutletProductParam(
+              body: GetOutletProductBodyParam(),
+              queryString: GetOutletProductQueryParam(
+                categoryId: "",
+                filter: search.value,
+                limit: 15,
+                outletId: "1148",
+                page: page.value,
+              ),
+            ),
+          ),
+        );
+  }
+
+  void getDetailOutletByMerchant(String merchantId) {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getDetailOutletByMerchant(
+            merchantId,
+          ),
+        );
+  }
+
+  void getCategoryProductByMerchant() {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getOutletProductCategory(
+            GetOutletProductCategoryParam(
+              body: GetOutletProductCategoryBodyParam(),
+              queryString: GetOutletProductCategoryQueryParam(
+                outletId: "1148",
+              ),
+            ),
+          ),
+        );
+  }
+
+  void getListVoucherByMerchant(String merchantId) {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getListVoucherOutlet(
+            GetListVoucherOutletParam(
+              body: GetListVoucherOutletBodyParam(),
+              queryString: GetListVoucherOutletQueryParam(
+                merchantId: merchantId,
+                outletId: "1148",
+              ),
+            ),
+          ),
+        );
+  }
+
+  /// END SNACK IMPORT BY MERCHANT
+
 }

@@ -185,8 +185,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           },
           getDetailOutlet: (request) async {
             emit(OrderState.loadInProgress());
-            final getDetailOutlet =
-                await _orderRepository.getDetailOutlet(request.request);
+            final address = await _homeRepository.getUserAddress();
+            final activeAddr = address.getOrElse(() => UserAddress());
+            final location = "${activeAddr.latitude}, ${activeAddr.longitude}";
+            final getDetailOutlet = await _orderRepository.getDetailOutlet(
+              request.request.copyWith(
+                  queryString: request.request.queryString.copyWith(
+                location: location,
+              )),
+            );
             emit(getDetailOutlet.fold(
               (error) => OrderState.loadFailure(
                   OrderFailure.getDetailOutletFail(error)),

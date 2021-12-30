@@ -32,7 +32,8 @@ import 'detail_product_dialog.dart';
 class DetailOutletScreen extends GetView<OrderViewController> {
   final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
 
-  void goBack() {
+  void goBack
+      () {
     Get.delete<OrderViewController>();
     Get.back();
   }
