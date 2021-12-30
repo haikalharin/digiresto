@@ -136,7 +136,7 @@ class _ListCateringOutletWidgetState extends State<ListCateringOutletWidget> {
                                     ),
                                     SizedBox(width: 3),
                                     Text(
-                                      "${_data.rating}",
+                                      "${_data.rating ?? "-"}",
                                       style:
                                           AppFont.textBlack12Regular.copyWith(
                                         color: AppColors.black,
