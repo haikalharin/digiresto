@@ -3,6 +3,7 @@ import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
@@ -20,4 +21,5 @@ abstract class IHomeRepository {
     required bool isHideOpen,
   });
   Future<Either<HomeFailure, IList<OutletsHighight>>> getNewNearbyOutlet();
+  Future<Either<HomeFailure, TopBrandResponse>> getTopBrand();
 }

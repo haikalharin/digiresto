@@ -10,13 +10,15 @@ class HomeState with _$HomeState {
         optionMenuCategory,
     required Option<Either<HomeFailure, IList<OutletsHighight>>>
         optionOutletHighlight,
+    required Option<Either<HomeFailure, TopBrandResponse>>
+        optionremoteConfigtopBrand,
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(
-        isLoading: true,
-        optionUserAddress: none(),
-        optionBanners: none(),
-        optionMenuCategory: none(),
-        optionOutletHighlight: none()
-      );
+      isLoading: true,
+      optionUserAddress: none(),
+      optionBanners: none(),
+      optionMenuCategory: none(),
+      optionOutletHighlight: none(),
+      optionremoteConfigtopBrand: none());
 }

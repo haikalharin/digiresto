@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:collection/src/iterable_extensions.dart';
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
@@ -10,13 +12,17 @@ import 'package:digiresto/domain/core/interfaces/i_storage.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/home/entity/new_nearby_outlet.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/home/i_home_repository.dart';
+import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -292,6 +298,60 @@ class HomeRepository implements IHomeRepository {
       openAppSettings();
     } else {
       Permission.location.request();
+    }
+  }
+
+  Future<Either<HomeFailure, TopBrandResponse>> getTopBrand() async {
+    try {
+      final RemoteConfig remoteConfig = await RemoteConfig.instance;
+      await remoteConfig.setConfigSettings(
+        RemoteConfigSettings(
+          fetchTimeout: Globals.env == Environment.dev
+              ? const Duration(seconds: 10)
+              : const Duration(minutes: 1),
+          minimumFetchInterval: Globals.env == Environment.dev
+              ? const Duration(seconds: 1)
+              : const Duration(seconds: 5),
+        ),
+      );
+      await remoteConfig.fetchAndActivate();
+      final topBrand = remoteConfig
+          .getValue(Globals.env == Environment.dev
+              ? 'outlet_highlight_dev'
+              : 'outlet_highlight')
+          .asString();
+
+      final topBrandList = json.decode(topBrand);
+      final List listData = topBrandList['data'];
+
+      print("remote Config : ${listData.first}");
+
+      // final List<Map<String, dynamic>> listopBrand =
+      //     List.from((topBrand as Map<String, dynamic>)['data']);
+
+      final listStatictopBrand = TopBrandResponse.fromJson(topBrandList);
+
+      print("list static : ${listStatictopBrand}");
+
+      return right(listStatictopBrand);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
+      return left(HomeFailure.generalError(e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(HomeFailure.sessionExpired());
+    } on ServerException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.serverError());
+    } on TimeOutException catch (_) {
+      ErrorDialog().showServerError();
+      return left(HomeFailure.unableToUpdate());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(HomeFailure.noInternet());
+    } catch (e, stactrace) {
+      logger.d(stactrace);
+      return left(HomeFailure.unexpected());
     }
   }
 
