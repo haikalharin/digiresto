@@ -44,7 +44,9 @@ class NewNearby extends StatelessWidget {
         SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 21).copyWith(bottom: 8),
           scrollDirection: Axis.horizontal,
-          child: Row(children: _newNearbyOutlets(outlets?.first.outlets ?? [])),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: _newNearbyOutlets(outlets?.first.outlets ?? [])),
         )
       ],
     );
@@ -93,6 +95,8 @@ class NewNearby extends StatelessWidget {
                 image: outlet.merchantLogo ?? "",
                 imageErrorBuilder: (context, obj, stacktrace) => Image(
                   image: RandomImages.getImage(),
+                  height: imgSize,
+                  width: imgSize,
                 ),
                 fit: BoxFit.cover,
                 height: imgSize,
@@ -107,10 +111,13 @@ class NewNearby extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Text(
-                      outlet.name!,
-                      maxLines: 2,
-                      style: AppFont.textBlack14Bold,
+                    child: Container(
+                      constraints: BoxConstraints(minHeight: 45),
+                      child: Text(
+                        outlet.name!,
+                        maxLines: 2,
+                        style: AppFont.textBlack14Bold,
+                      ),
                     ),
                   ),
                   Row(

@@ -11,7 +11,6 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/get_outlet_product_param.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
-import 'package:digiresto/generated/assets.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/custom_review.dart';
 import 'package:digiresto/presentation/core/widgets/custom_shadow.dart';
@@ -1073,7 +1072,8 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                         controller.listPromo.value?.isEmpty ?? true;
 
                     if (controller.voucherCode.value?.isUseVoucher == true &&
-                        controller.voucherCode.value?.voucher.code.isNotEmpty ==
+                        controller
+                                .voucherCode.value?.voucher.code?.isNotEmpty ==
                             true) {
                       text = controller.voucherCode.value?.voucher.code != null
                           ? '${I10n.current.voucher_discount} ${controller.voucherCode.value?.voucher.code}'

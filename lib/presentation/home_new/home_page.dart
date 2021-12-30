@@ -5,6 +5,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/launch_url/launch_url.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/new_nearby_outlet.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/injection.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/stack_with_progress.dart';
@@ -14,10 +15,12 @@ import 'package:digiresto/presentation/home_new/dynamic_menu/dynamic_menu.dart';
 import 'package:digiresto/presentation/home_new/new_nearby/new_nearby.dart';
 import 'package:digiresto/presentation/home_new/search_box/search_box.dart';
 import 'package:digiresto/presentation/home_new/static_banner/static_banner.dart';
+import 'package:digiresto/presentation/home_new/top_brand/top_brand.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class HomePage extends StatelessWidget {
@@ -138,11 +141,23 @@ class HomePage extends StatelessWidget {
                   (data) => data.fold((l) => <MenuCategory>[], (r) => r.unlock),
                 )
                 .toList();
+
+            final TopBrandResponData? remoteConfigList =
+                state.optionremoteConfigtopBrand.fold(
+              () => null,
+              (data) {
+                return data.fold((l) => null, (r) {
+                  return r.data.first;
+                });
+              },
+            );
+
             return StackWithProgress(
               isLoading: (state.optionBanners.isNone() ||
                   state.optionUserAddress.isNone() ||
                   state.optionMenuCategory.isNone() ||
-                  state.optionOutletHighlight.isNone()),
+                  state.optionOutletHighlight.isNone() ||
+                  state.optionremoteConfigtopBrand.isNone()),
               children: [
                 RefreshIndicator(
                   onRefresh: () async {
@@ -162,6 +177,31 @@ class HomePage extends StatelessWidget {
                         menuCategories: menuCategoryList,
                         menuCategoryKeys: _menuKeys,
                       ),
+                      remoteConfigList?.listOutlet == null
+                          ? Container()
+                          : Container(
+                              margin: EdgeInsets.all(Dimens.defaultMargin),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                          '${I10n.current.lang == 'id' ? remoteConfigList?.title.id : remoteConfigList?.title.en}',
+                                          style: AppFont.textBlack14Bold),
+                                      Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          child: SvgPicture.asset(
+                                              'assets/arrow_right.svg')),
+                                    ],
+                                  ),
+                                  TopBrandOutlet(
+                                    topBrand: remoteConfigList,
+                                  )
+                                ],
+                              ),
+                            ),
                       if (newNearbyOutlets.isNotEmpty)
                         NewNearby(
                           outlets: newNearbyOutlets,

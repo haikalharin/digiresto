@@ -5,7 +5,6 @@ import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
-import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
@@ -433,59 +432,12 @@ class OrderViewController extends GetxController {
     isLoading.value = true;
     getCartSession();
     getDetailOutletByMerchant(merchantId);
-    getListProductMerchant();
-    getCategoryProductByMerchant();
-    getListVoucherByMerchant(merchantId);
-  }
-
-  void getListProductMerchant() {
-    Get.context!.read<OrderBloc>().add(
-          OrderEvent.getOutletListProduct(
-            GetOutletProductParam(
-              body: GetOutletProductBodyParam(),
-              queryString: GetOutletProductQueryParam(
-                categoryId: "",
-                filter: search.value,
-                limit: 15,
-                outletId: "1148",
-                page: page.value,
-              ),
-            ),
-          ),
-        );
   }
 
   void getDetailOutletByMerchant(String merchantId) {
     Get.context!.read<OrderBloc>().add(
           OrderEvent.getDetailOutletByMerchant(
             merchantId,
-          ),
-        );
-  }
-
-  void getCategoryProductByMerchant() {
-    Get.context!.read<OrderBloc>().add(
-          OrderEvent.getOutletProductCategory(
-            GetOutletProductCategoryParam(
-              body: GetOutletProductCategoryBodyParam(),
-              queryString: GetOutletProductCategoryQueryParam(
-                outletId: "1148",
-              ),
-            ),
-          ),
-        );
-  }
-
-  void getListVoucherByMerchant(String merchantId) {
-    Get.context!.read<OrderBloc>().add(
-          OrderEvent.getListVoucherOutlet(
-            GetListVoucherOutletParam(
-              body: GetListVoucherOutletBodyParam(),
-              queryString: GetListVoucherOutletQueryParam(
-                merchantId: merchantId,
-                outletId: "1148",
-              ),
-            ),
           ),
         );
   }

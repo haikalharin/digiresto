@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
-import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/promo_voucher/entity/promo_outlet_response.dart';
 import 'package:digiresto/domain/promo_voucher/entity/voucher_outlet_response.dart';
 import 'package:digiresto/domain/promo_voucher/i_promo_voucher_repository.dart';

@@ -38,7 +38,7 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 or watch command in order to keep the source code synced automatically:
 
 ```
-flutter packages pub run build_runner watch
+flutter packages pub run build_runner watch --delete-conflicting-outputs
 ```
 
 ## Hide Generated Files

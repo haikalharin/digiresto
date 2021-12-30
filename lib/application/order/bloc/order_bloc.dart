@@ -13,7 +13,6 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_digi_discount_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
@@ -185,15 +184,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           },
           getDetailOutlet: (request) async {
             emit(OrderState.loadInProgress());
-            final address = await _homeRepository.getUserAddress();
-            final activeAddr = address.getOrElse(() => UserAddress());
-            final location = "${activeAddr.latitude}, ${activeAddr.longitude}";
-            final getDetailOutlet = await _orderRepository.getDetailOutlet(
-              request.request.copyWith(
-                  queryString: request.request.queryString.copyWith(
-                location: location,
-              )),
-            );
+            final getDetailOutlet =
+                await _orderRepository.getDetailOutlet(request.request);
             emit(getDetailOutlet.fold(
               (error) => OrderState.loadFailure(
                   OrderFailure.getDetailOutletFail(error)),

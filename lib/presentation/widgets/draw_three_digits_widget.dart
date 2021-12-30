@@ -9,7 +9,7 @@ class DrawThreeDigits extends StatelessWidget {
   @override
   DrawThreeDigits({
     Key? key,
-    @required this.number,
+    required this.number,
   }) : super(key: key);
 
   @override

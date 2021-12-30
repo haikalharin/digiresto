@@ -1,6 +1,5 @@
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
-import 'package:digiresto/domain/profile/user_profile.dart';
 import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
 import 'package:digiresto/presentation/address/map/add_address.dart';
@@ -11,7 +10,6 @@ import 'package:digiresto/presentation/auth/validate_otp/validate_otp_page.dart'
 import 'package:digiresto/presentation/complain/complain_page.dart';
 
 // import 'package:digiresto/presentation/auth/auth_page.dart';
-import 'package:digiresto/presentation/home/home.dart';
 import 'package:digiresto/presentation/home/home_all_hot_promo.dart';
 import 'package:digiresto/presentation/home/home_all_promo.dart';
 import 'package:digiresto/presentation/home/home_category_outlet.dart';
@@ -23,7 +21,6 @@ import 'package:digiresto/presentation/home_new/list_catering_page/list_catering
 import 'package:digiresto/presentation/intro/intro_page.dart';
 import 'package:digiresto/presentation/landing/landing_page.dart';
 import 'package:digiresto/presentation/order/detail_outlet.dart';
-import 'package:digiresto/presentation/order/detail_outlet_by_merchant.dart';
 import 'package:digiresto/presentation/order/order_cart.dart';
 import 'package:digiresto/presentation/order/payment_receipt.dart';
 import 'package:digiresto/presentation/order/payment_va.dart';
@@ -68,8 +65,6 @@ class Routers {
   static const String historyDetail = '/history_detail';
   static const String register = '/register';
   static const String orderDetailOutlet = '/order_detail_outlet';
-  static const String orderDetailOutletByMerchant =
-      '/order_detail_outlet_by_merchant';
   static const String orderCart = '/order_cart';
   static const String selectPaymentMethod = '/select_payment_method';
   static const String selectVoucherVoucher = '/select_payment_voucher';
@@ -157,10 +152,6 @@ class Routers {
     ),
     GetPage(name: Routers.homeAddAddress, page: () => AddAddressScreen()),
     GetPage(name: Routers.orderDetailOutlet, page: () => DetailOutletScreen()),
-    GetPage(
-      name: Routers.orderDetailOutletByMerchant,
-      page: () => DetailOutletByMerchant(),
-    ),
     GetPage(
         name: Routers.homeOutletCategory,
         page: () => HomeCategoryOutletScreen()),

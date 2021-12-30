@@ -2,7 +2,6 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 
 class ListCateringOutletWidget extends StatefulWidget {
