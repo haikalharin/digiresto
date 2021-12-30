@@ -36,6 +36,8 @@ class MenuCategoryWidget extends StatelessWidget {
               arguments: OrderDetailViewArgument(
                 "",
                 menuCategory.param['merchantId'],
+                isCatering: false,
+                isSnack: true,
               ),
             )?.then(
               (value) {

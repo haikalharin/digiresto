@@ -32,6 +32,7 @@ class OrderViewController extends GetxController {
   var detailOutletLoading = false.obs;
   var indexTabBar = 1.obs;
   var salesType = Rxn<String>();
+  var outletId = Rxn<String>();
 
   var voucherCode = Rxn<VoucherDetailArguments>();
   bool isSameOutlet() {
@@ -65,7 +66,6 @@ class OrderViewController extends GetxController {
               body: GetDetailOutletBodyParam(),
               queryString: GetDetailOutletQueryParam(
                 outletId: outlet.value!.outletId,
-                location: '',
               ),
             ),
           ),
@@ -88,7 +88,7 @@ class OrderViewController extends GetxController {
               body: GetListVoucherOutletBodyParam(),
               queryString: GetListVoucherOutletQueryParam(
                 merchantId: detailOutlet.value!.merchantId!,
-                outletId: detailOutlet.value!.id,
+                outletId: outletId.value ?? detailOutlet.value!.id,
               ),
             ),
           ),
@@ -108,7 +108,7 @@ class OrderViewController extends GetxController {
                 categoryId: categoryId.value,
                 filter: search.value,
                 limit: 15,
-                outletId: outlet.value!.outletId,
+                outletId: outletId.value ?? outlet.value!.outletId,
                 page: page.value,
                 isCatering: outlet.value!.isCatering,
                 mealsTypes: outlet.value!.mealsTypes,
@@ -125,7 +125,7 @@ class OrderViewController extends GetxController {
             GetOutletProductCategoryParam(
               body: GetOutletProductCategoryBodyParam(),
               queryString: GetOutletProductCategoryQueryParam(
-                outletId: outlet.value!.outletId,
+                outletId: outletId.value ?? outlet.value!.outletId,
               ),
             ),
           ),
@@ -140,7 +140,7 @@ class OrderViewController extends GetxController {
                 merchantId: outlet.value!.merchantId == ""
                     ? (detailOutlet.value?.merchantId ?? "")
                     : outlet.value!.merchantId,
-                outletId: outlet.value!.outletId))));
+                outletId: outletId.value ?? outlet.value!.outletId))));
   }
 
   void getCartSession() {

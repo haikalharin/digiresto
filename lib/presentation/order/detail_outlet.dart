@@ -32,8 +32,7 @@ import 'detail_product_dialog.dart';
 class DetailOutletScreen extends GetView<OrderViewController> {
   final OrderDetailViewArgument args = Get.arguments as OrderDetailViewArgument;
 
-  void goBack
-      () {
+  void goBack() {
     Get.delete<OrderViewController>();
     Get.back();
   }
@@ -210,17 +209,35 @@ class DetailOutletScreen extends GetView<OrderViewController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OrderViewController());
+    final controller = Get.put(OrderViewController());
     controller.outlet.value = args;
     // controller.getSalesTypeOrder();
     controller.setSalesType("onlineDriver");
-    controller.getDetailOutlet();
-    controller.getListProduct();
-    controller.getCategoryProduct();
+    args.isSnack == true
+        ? controller.getDetailOutletByMerchant(
+            args.merchantId,
+          )
+        : controller.getDetailOutlet();
+    args.isSnack == true ? null : controller.getListProduct();
+    args.isSnack == true ? null : controller.getCategoryProduct();
     controller.getCartSession();
     return BlocConsumer<OrderBloc, OrderState>(
       listener: (context, state) {
         state.maybeMap(
+            getDetailOutletByMerchantSuccess: (r) {
+              if (controller.salesType.value == null) {
+                //controller.setSalesType(r.response.salesTypes[0]);
+                //set default delivery
+                controller.setSalesType("onlineDriver");
+              }
+              controller.detailOutlet.value = r.response;
+              controller.outletId.value = controller.detailOutlet.value!.id;
+              controller.getPromoProduct();
+              controller.getListProduct();
+              controller.getCategoryProduct();
+              controller.getListVoucher();
+              controller.checkAllLoaded();
+            },
             getDetailOutletSuccess: (r) {
               if (controller.salesType.value == null) {
                 //controller.setSalesType(r.response.salesTypes[0]);
@@ -365,6 +382,8 @@ class DetailOutletScreen extends GetView<OrderViewController> {
 class _BodyOutletOverview extends GetView<OrderViewController> {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OrderViewController());
+
     return controller.detailOutlet.value != null
         ? Padding(
             padding: const EdgeInsets.all(16.0),
@@ -865,87 +884,88 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OrderViewController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Padding(
-                padding: const EdgeInsets.only(
-                    left: 10, right: 10, top: 10, bottom: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.iconsIcCalendar,
-                          height: 12,
-                          width: 12,
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          controller.outlet.value!.dayDate ?? "",
-                          style: AppFont.textBlack12Medium.copyWith(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 12),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.iconsFoodIcon,
-                          height: 12,
-                          width: 12,
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          controller.outlet.value!.mealsTitle ?? "",
-                          style: AppFont.textBlack12Medium.copyWith(
-                            fontSize: 11,
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Container(
-                          height: 4,
-                          width: 4,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.greyColor2,
-                          ),
-                        ),
-                        SizedBox(width: 12),
-                        Text(
-                          controller.outlet.value!.deliveryTime ?? "",
-                          style: AppFont.textBlack12Regular.copyWith(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
+        // controller.outlet.value!.isCatering == true &&
+        //         controller.outlet.value!.isCatering != null
+        //     ? Padding(
+        //         padding: const EdgeInsets.only(
+        //             left: 10, right: 10, top: 10, bottom: 10),
+        //         child: Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             Row(
+        //               crossAxisAlignment: CrossAxisAlignment.center,
+        //               children: [
+        //                 SvgPicture.asset(
+        //                   Assets.iconsIcCalendar,
+        //                   height: 12,
+        //                   width: 12,
+        //                   fit: BoxFit.fill,
+        //                 ),
+        //                 SizedBox(width: 8),
+        //                 Text(
+        //                   controller.outlet.value!.dayDate ?? "",
+        //                   style: AppFont.textBlack12Medium.copyWith(
+        //                     fontSize: 11,
+        //                   ),
+        //                 ),
+        //               ],
+        //             ),
+        //             SizedBox(height: 12),
+        //             Row(
+        //               crossAxisAlignment: CrossAxisAlignment.center,
+        //               children: [
+        //                 SvgPicture.asset(
+        //                   Assets.iconsFoodIcon,
+        //                   height: 12,
+        //                   width: 12,
+        //                   fit: BoxFit.fill,
+        //                 ),
+        //                 SizedBox(width: 8),
+        //                 Text(
+        //                   controller.outlet.value!.mealsTitle ?? "",
+        //                   style: AppFont.textBlack12Medium.copyWith(
+        //                     fontSize: 11,
+        //                   ),
+        //                 ),
+        //                 SizedBox(width: 8),
+        //                 Container(
+        //                   height: 4,
+        //                   width: 4,
+        //                   decoration: BoxDecoration(
+        //                     shape: BoxShape.circle,
+        //                     color: AppColors.greyColor2,
+        //                   ),
+        //                 ),
+        //                 SizedBox(width: 12),
+        //                 Text(
+        //                   controller.outlet.value!.deliveryTime ?? "",
+        //                   style: AppFont.textBlack12Regular.copyWith(
+        //                     fontSize: 11,
+        //                   ),
+        //                 ),
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       )
+        //     : Container(),
+        // controller.outlet.value!.isCatering == true &&
+        //         controller.outlet.value!.isCatering != null
+        //     ? Container()
+        //     :
+        controller.detailOutlet.value != null ? _search() : Container(),
+        // controller.outlet.value!.isCatering == true &&
+        //         controller.outlet.value!.isCatering != null
+        //     ? Container()
+        //     :
+        controller.listCategory.value != null
+            ? _category(
+                controller.listCategory.value!, controller.categoryId.value)
             : Container(),
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Container()
-            : controller.detailOutlet.value != null
-                ? _search()
-                : Container(),
-        controller.outlet.value!.isCatering == true &&
-                controller.outlet.value!.isCatering != null
-            ? Container()
-            : controller.listCategory.value != null
-                ? _category(
-                    controller.listCategory.value!, controller.categoryId.value)
-                : Container(),
         _promoAndVoucher(),
         Expanded(
           child: Container(
