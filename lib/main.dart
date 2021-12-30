@@ -11,11 +11,11 @@ import 'package:digiresto/application/transaction/bloc/transaction_bloc/transact
 import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:digiresto/presentation/core/app_widget.dart';
 import 'package:digiresto/simple_bloc_delegate.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'application/landing/bottom_tab_cubit.dart';
 import 'application/order/bloc/order_bloc.dart';
 import 'injection.dart';
@@ -25,6 +25,7 @@ export 'package:digiresto/presentation/core/app_widget.dart';
 Future<void> mainProgram() async {
   await Hive.initFlutter();
   await configureInjection(Globals.env);
+  await Firebase.initializeApp();
   BlocOverrides.runZoned(
     () {
       runApp(

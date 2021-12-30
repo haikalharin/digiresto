@@ -1,11 +1,9 @@
 import 'package:digiresto/domain/catering/i_catering_repository.dart';
 import 'package:digiresto/domain/catering/catering_failure.dart';
-import 'package:digiresto/domain/catering/outlet_category_catering_response.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/exceptions/exceptions.dart';
 import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
-import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:injectable/injectable.dart';
