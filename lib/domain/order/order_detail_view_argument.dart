@@ -7,6 +7,7 @@ class OrderDetailViewArgument {
   final String? preOrderDate;
   final bool? isCatering;
   final String? dayDate;
+  final bool? isSnack;
 
   OrderDetailViewArgument(
     this.outletId,
@@ -17,5 +18,6 @@ class OrderDetailViewArgument {
     this.isCatering,
     this.deliveryTime,
     this.dayDate,
+    this.isSnack = false,
   });
 }

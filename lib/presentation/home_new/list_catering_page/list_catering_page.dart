@@ -3,7 +3,6 @@ import 'package:digiresto/application/home_new/outlet/list_outlet_page_controlle
 import 'package:digiresto/domain/core/constants/assets.dart';
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
-import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/generated/assets.dart';
@@ -16,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 
 import 'list_catering_outlet_widget.dart';

@@ -2,7 +2,6 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 
 class ListCateringOutletWidget extends StatefulWidget {
@@ -136,44 +135,25 @@ class _ListCateringOutletWidgetState extends State<ListCateringOutletWidget> {
                                     ),
                                     SizedBox(width: 3),
                                     Text(
-                                      "${_data.rating}",
+                                      "${_data.rating ?? "-"}",
                                       style:
                                           AppFont.textBlack12Regular.copyWith(
                                         color: AppColors.black,
                                       ),
                                       textAlign: TextAlign.left,
                                     ),
-                                    Container(
-                                      width: 100,
-                                      height: 14,
-                                      padding: EdgeInsets.only(
-                                        left: 11,
-                                      ),
-                                      child: RatingBarIndicator(
-                                        direction: Axis.horizontal,
-                                        itemCount: 5,
-                                        itemSize: 14,
-                                        rating:
-                                            _data.priceRange?.toDouble() ?? 0.0,
-                                        itemPadding: EdgeInsets.symmetric(
-                                          horizontal: 0,
-                                        ),
-                                        itemBuilder: (context, _) => Text(
-                                          "\$",
-                                          style: AppFont.textBlack12Regular
-                                              .copyWith(
-                                            color: AppColors.black,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
                                   ],
+                                ),
+                                Text(
+                                  "${_data.priceRangeDesc ?? "-"}",
+                                  style: AppFont.textBlack12Regular.copyWith(
+                                    color: AppColors.black,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     top: 16,
-                                    bottom: 16,
                                   ),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *

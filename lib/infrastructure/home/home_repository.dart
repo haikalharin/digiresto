@@ -22,7 +22,6 @@ import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';

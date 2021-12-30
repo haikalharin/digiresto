@@ -5,7 +5,6 @@ import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
-import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_promo_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_list_voucher_outlet_param.dart';
@@ -32,6 +31,7 @@ class OrderViewController extends GetxController {
   var detailOutletLoading = false.obs;
   var indexTabBar = 1.obs;
   var salesType = Rxn<String>();
+  var outletId = Rxn<String>();
 
   var voucherCode = Rxn<VoucherDetailArguments>();
   bool isSameOutlet() {
@@ -71,27 +71,13 @@ class OrderViewController extends GetxController {
         );
   }
 
-  void getDetailOutletByMerchant(String merchantId) {
-    Get.context!.read<OrderBloc>().add(
-          OrderEvent.getDetailOutletByMerchant(
-            merchantId,
-          ),
-        );
-  }
-
-  void getRefreshDetailMerchant(String merchantId) {
-    isLoading.value = true;
-    getCartSession();
-    getDetailOutlet();
-    getDetailOutletByMerchant(merchantId);
-  }
-
   void getRefresh() {
     isLoading.value = true;
     getListProduct();
     getCartSession();
     getDetailOutlet();
     getCategoryProduct();
+    getListVoucher();
   }
 
   void getListVoucher() {
@@ -101,7 +87,7 @@ class OrderViewController extends GetxController {
               body: GetListVoucherOutletBodyParam(),
               queryString: GetListVoucherOutletQueryParam(
                 merchantId: detailOutlet.value!.merchantId!,
-                outletId: detailOutlet.value!.id,
+                outletId: outletId.value ?? detailOutlet.value!.id,
               ),
             ),
           ),
@@ -121,7 +107,7 @@ class OrderViewController extends GetxController {
                 categoryId: categoryId.value,
                 filter: search.value,
                 limit: 15,
-                outletId: outlet.value!.outletId,
+                outletId: outletId.value ?? outlet.value!.outletId,
                 page: page.value,
                 isCatering: outlet.value!.isCatering,
                 mealsTypes: outlet.value!.mealsTypes,
@@ -138,7 +124,7 @@ class OrderViewController extends GetxController {
             GetOutletProductCategoryParam(
               body: GetOutletProductCategoryBodyParam(),
               queryString: GetOutletProductCategoryQueryParam(
-                outletId: outlet.value!.outletId,
+                outletId: outletId.value ?? outlet.value!.outletId,
               ),
             ),
           ),
@@ -153,7 +139,7 @@ class OrderViewController extends GetxController {
                 merchantId: outlet.value!.merchantId == ""
                     ? (detailOutlet.value?.merchantId ?? "")
                     : outlet.value!.merchantId,
-                outletId: outlet.value!.outletId))));
+                outletId: outletId.value ?? outlet.value!.outletId))));
   }
 
   void getCartSession() {
@@ -439,4 +425,23 @@ class OrderViewController extends GetxController {
     });
     return listWidget;
   }
+
+  /// SNACK IMPORT BY MERCHANT
+
+  void getRefreshDetailMerchant(String merchantId) {
+    isLoading.value = true;
+    getCartSession();
+    getDetailOutletByMerchant(merchantId);
+  }
+
+  void getDetailOutletByMerchant(String merchantId) {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getDetailOutletByMerchant(
+            merchantId,
+          ),
+        );
+  }
+
+  /// END SNACK IMPORT BY MERCHANT
+
 }

@@ -12,7 +12,7 @@ class ListOutletPageController extends GetxController {
       List<OutletCategoryDataResponse>.empty().obs;
   var page = 1.obs;
   RxBool isHideOpen = false.obs;
-  var indexDay = 6.obs;
+  var indexDay = 7.obs;
   var initialDateIndexParam = -1.obs;
   var mealsTypesTitle = 'Breakfast'.obs;
   var mealsTypeParams = 'breakfast'.obs;

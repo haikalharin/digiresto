@@ -2,12 +2,7 @@ import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
 import 'package:digiresto/domain/home/entity/top_brand_response.dart';
-import 'package:digiresto/domain/order/order_detail_view_argument.dart';
-import 'package:digiresto/presentation/core/i10n/l10n.dart';
-import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class TopBrandOutlet extends StatelessWidget {
   final TopBrandResponData? topBrand;
@@ -79,7 +74,7 @@ class TopBrandOutlet extends StatelessWidget {
                   ),
                   child: FadeInImage.assetNetwork(
                     placeholder: RandomImages.getImage().assetName,
-                    image: outlet.listOutlet[index].logo ?? "",
+                    image: outlet.listOutlet[index].logo,
                     imageErrorBuilder: (context, obj, stacktrace) => Image(
                       image: RandomImages.getImage(),
                     ),

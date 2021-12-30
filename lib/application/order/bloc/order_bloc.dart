@@ -13,7 +13,6 @@ import 'package:digiresto/domain/entity/order/outlet_product_category_response.d
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/delivery_inquiry_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_cart_session_param.dart';
-import 'package:digiresto/domain/entity/order/param/get_detail_outlet_by_catering_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_detail_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_digi_discount_outlet_param.dart';
 import 'package:digiresto/domain/entity/order/param/get_hot_promo_param.dart';
