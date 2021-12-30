@@ -143,37 +143,18 @@ class _ListCateringOutletWidgetState extends State<ListCateringOutletWidget> {
                                       ),
                                       textAlign: TextAlign.left,
                                     ),
-                                    Container(
-                                      width: 100,
-                                      height: 14,
-                                      padding: EdgeInsets.only(
-                                        left: 11,
-                                      ),
-                                      child: RatingBarIndicator(
-                                        direction: Axis.horizontal,
-                                        itemCount: 5,
-                                        itemSize: 14,
-                                        rating:
-                                            _data.priceRange?.toDouble() ?? 0.0,
-                                        itemPadding: EdgeInsets.symmetric(
-                                          horizontal: 0,
-                                        ),
-                                        itemBuilder: (context, _) => Text(
-                                          "\$",
-                                          style: AppFont.textBlack12Regular
-                                              .copyWith(
-                                            color: AppColors.black,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
                                   ],
+                                ),
+                                Text(
+                                  "${_data.priceRangeDesc ?? "-"}",
+                                  style: AppFont.textBlack12Regular.copyWith(
+                                    color: AppColors.black,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     top: 16,
-                                    bottom: 16,
                                   ),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
