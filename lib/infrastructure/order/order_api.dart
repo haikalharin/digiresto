@@ -29,6 +29,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/infrastructure/order/order_local.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
 import 'package:get/get.dart';
@@ -38,10 +39,12 @@ import 'package:injectable/injectable.dart';
 class OrderApi {
   final INetworkService _networkService;
   final IStorage _storage;
+  final OrderLocal _orderLocal;
 
   OrderApi(
     this._networkService,
     this._storage,
+    this._orderLocal,
   );
 
   Future<Either<Exception, OutletCategoryResponse>> getOutletByLocation(
@@ -610,10 +613,8 @@ class OrderApi {
         date = Utils.formatIndonesiaWithoutHour(date!);
         await _storage.close(_box);
         ErrorDialog().showError(
-          onClose: () {
-
-            Get.back();
-          },
+          onClose: () =>
+              _orderLocal.removeCartSesion().then((value) => Get.back()),
           error: e.message!.copyWith(
             en: e.message!.en.replaceAll('{date}', date),
             id: e.message!.id.replaceAll('{date}', date),
@@ -662,7 +663,7 @@ class OrderApi {
         final String _cateringPreOrderDateKey = "cateringPreOrderDateKey";
         final _box = await _storage.openBox(StorageConstants.cart);
         String? date =
-        await _storage.getString(_box, key: _cateringPreOrderDateKey);
+            await _storage.getString(_box, key: _cateringPreOrderDateKey);
         date = Utils.formatIndonesiaWithoutHour(date!);
         await _storage.close(_box);
         ErrorDialog().showError(
@@ -699,7 +700,7 @@ class OrderApi {
       final apiResult = await _networkService.postHttp(
           path: apiUrl,
           queryParameter: queryParameter,
-          content:  {
+          content: {
             "query_string": object.queryString.toJson(),
             "body": object.body.toJson()
           });
@@ -714,7 +715,7 @@ class OrderApi {
         final String _cateringPreOrderDateKey = "cateringPreOrderDateKey";
         final _box = await _storage.openBox(StorageConstants.cart);
         String? date =
-        await _storage.getString(_box, key: _cateringPreOrderDateKey);
+            await _storage.getString(_box, key: _cateringPreOrderDateKey);
         date = Utils.formatIndonesiaWithoutHour(date!);
         await _storage.close(_box);
         ErrorDialog().showError(

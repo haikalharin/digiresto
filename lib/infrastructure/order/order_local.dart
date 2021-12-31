@@ -491,6 +491,5 @@ class OrderLocal {
     } catch (e) {
       return null;
     }
-
   }
 }

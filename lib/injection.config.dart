@@ -157,8 +157,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i35.MapRepository>(() => _i35.MapRepository(get<_i34.MapApi>()));
   gh.factory<_i36.NotificationBloc>(
       () => _i36.NotificationBloc(get<_i28.INotificationRepository>()));
-  gh.factory<_i37.OrderApi>(
-      () => _i37.OrderApi(get<_i26.INetworkService>(), get<_i17.IStorage>()));
+  gh.factory<_i37.OrderApi>(() => _i37.OrderApi(get<_i26.INetworkService>(),
+      get<_i17.IStorage>(), get<_i19.OrderLocal>()));
   gh.factory<_i38.OrderDetailsBloc>(
       () => _i38.OrderDetailsBloc(get<_i30.IProfileRepository>()));
   gh.factory<_i39.OrderHistoryBloc>(
