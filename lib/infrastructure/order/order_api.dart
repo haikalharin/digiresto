@@ -610,7 +610,10 @@ class OrderApi {
         date = Utils.formatIndonesiaWithoutHour(date!);
         await _storage.close(_box);
         ErrorDialog().showError(
-          onClose: () => Get.back(),
+          onClose: () {
+
+            Get.back();
+          },
           error: e.message!.copyWith(
             en: e.message!.en.replaceAll('{date}', date),
             id: e.message!.id.replaceAll('{date}', date),

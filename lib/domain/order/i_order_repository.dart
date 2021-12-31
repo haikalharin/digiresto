@@ -54,11 +54,12 @@ abstract class IOrderRepository {
   Future<GetListVoucherOutletDataResponse?> getVoucherMethodID();
 
   Future<UpdateCartSessionBodyParam?> getProduct();
+
   Future<UpdateCartSessionBodyParam?> setProduct(
       CreateUpdateCartSessionItemParam object, DetailOutletDataResponse outlet);
 
-  Future<UpdateCartSessionBodyParam?> reorderCart(
-      CreateCartSessionParam object, int outletId);
+  Future<UpdateCartSessionBodyParam?> reorderCart(CreateCartSessionParam object,
+      int outletId);
 
   Future<UpdateCartSessionBodyParam?> removeProduct(
       CreateUpdateCartSessionItemParam object);
@@ -75,6 +76,7 @@ abstract class IOrderRepository {
   Future<UserAuth?> getLocalUserProfile();
 
   Future<Either<Exception, String>> getSessionId();
+
   Future<Either<Exception, String?>> setSessionId(String value);
 
   Future<Either<Exception, OutletCategoryResponse>> getOutletByLocation(
@@ -87,7 +89,7 @@ abstract class IOrderRepository {
       GetOutletByMerchantParam object);
 
   Future<Either<Exception, OutletProductCategoryResponse>>
-      getOutletProductCategory(GetOutletProductCategoryParam object);
+  getOutletProductCategory(GetOutletProductCategoryParam object);
 
   Future<Either<Exception, OutletListProductResponse>> getOutletListProduct(
       GetOutletProductParam object);
@@ -102,7 +104,7 @@ abstract class IOrderRepository {
       UpdateCartSessionParam object);
 
   Future<Either<Exception, List<DigiDiscountOutletDataResponse>>>
-      getPromoOutlet(Map<String, dynamic> object);
+  getPromoOutlet(Map<String, dynamic> object);
 
   Future<Either<Exception, List<HotPromo>>> getHotPromo(
       GetHotPromoParam object);
@@ -129,4 +131,9 @@ abstract class IOrderRepository {
       UpdateCartSessionParam object);
 
   Future<Either<Exception, CheckoutResponse>> checkout(String sessionId);
+
+  Future<bool> setOrderCart(
+      {UpdateCartSessionParam? update, CreateCartSessionParam? create});
+
+  Future<CreateCartSessionParam?> getOrderCart();
 }

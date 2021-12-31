@@ -555,24 +555,29 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           }
         }, getCartSession: (_) async {
           emit(OrderState.loadInProgress());
-          final sessionIdEither = await _orderRepository.getSessionId();
-          final sessionId = sessionIdEither.fold(
-            (l) => 'kon',
-            (r) => r,
-          );
-          print("kon sessionId: $sessionId");
-          final getCartSession = await _orderRepository
-              .getCartSession(GetCartSessionParam(sessionId: sessionId));
-          final getOutletDetailID =
-              await _orderRepository.getCartOutletDetailID();
-          emit(getCartSession.fold(
-            (error) =>
-                OrderState.loadFailure(OrderFailure.getCartSessionFail(error)),
-            (list) => OrderState.getCartSessionSuccess(
-              list!.data,
-              getOutletDetailID!.merchantName!,
-            ),
-          ));
+          var createCart = await _orderRepository.getOrderCart();
+          if (createCart == null) {
+            emit(
+              OrderState.loadFailure(
+                OrderFailure.getCartSessionFail(
+                  Exception('No Local Data'),
+                ),
+              ),
+            );
+          } else {
+            final getCartSession =
+                await _orderRepository.createCartSession(createCart);
+            final getOutletDetailID =
+                await _orderRepository.getCartOutletDetailID();
+            emit(getCartSession.fold(
+              (error) => OrderState.loadFailure(
+                  OrderFailure.getCartSessionFail(error)),
+              (list) => OrderState.getCartSessionSuccess(
+                list!.data,
+                getOutletDetailID!.merchantName!,
+              ),
+            ));
+          }
         }, removeCartSession: (value) async {
           emit(OrderState.loadInProgress());
           final cartSession = (await _orderRepository.removeCartSesion());
