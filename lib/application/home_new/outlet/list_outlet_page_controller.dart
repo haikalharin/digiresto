@@ -2,6 +2,7 @@ import 'package:digiresto/application/catering/catering_bloc.dart';
 import 'package:digiresto/application/home_new/outlet/outlet_bloc.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 // ignore: implementation_imports
@@ -18,6 +19,7 @@ class ListOutletPageController extends GetxController {
   var mealsTypeParams = 'breakfast'.obs;
   var deliveryTime = "".obs;
   var isCatering = true.obs;
+  var searchController = TextEditingController().obs;
   Rx<DateTime> date = DateTime.now().obs;
   Rx<DateTime> getDate(DateTime d) => DateTime(d.year, d.month, d.day).obs;
 
@@ -28,21 +30,6 @@ class ListOutletPageController extends GetxController {
         ),
       )
       .obs;
-
-  // String getDeliveryTime(MenuCategory menuCategory, String deliveryTime) {
-  //   menuCategory.filter?.forEach(
-  //     (element) {
-  //       element.options?.forEach((element) {
-  //         if (element.value == mealsTypeParams) {
-  //           deliveryTime = element.getDescription;
-  //         }
-  //       });
-  //     },
-  //   );
-  //   print("berhasil $deliveryTime");
-  //   update();
-  //   return deliveryTime;
-  // }
 
   RxString dayDate = DateFormat('EEEE, dd MMMM yyyy')
       .format(
@@ -101,4 +88,8 @@ class ListOutletPageController extends GetxController {
         );
     update();
   }
+
+ /// pencarian search di topbrand
+
+
 }
