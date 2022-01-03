@@ -7,8 +7,33 @@ import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ErrorDialog {
+  showErrorOutlet({
+    String title = "Digiresto",
+    required StatusMessageDisplayResponse error,
+    Function? onClose,
+    bool twoButtons = false,
+    bool twoBack = false,
+    bool barrierDismissible = true,
+    bool isIcon = false,
+  }) async {
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    Get.dialog(
+        BaseDialogError(
+          title: title,
+          error: error,
+          onClose: onClose,
+          twoButtons: twoButtons,
+          twoBack: twoBack,
+          isIcon: isIcon,
+        ),
+        barrierDismissible: barrierDismissible);
+  }
+
   showError({
     String title = "Digiresto",
     required StatusMessageDisplayResponse error,
@@ -109,12 +134,16 @@ class BaseDialogError extends StatelessWidget {
   final String title;
   final Function? onClose;
   final bool twoButtons;
+  final bool twoBack;
+  final bool isIcon;
   const BaseDialogError({
     Key? key,
     required this.error,
     this.title = 'Digiresto',
     this.onClose,
     this.twoButtons = false,
+    this.twoBack = false,
+    this.isIcon = false,
   }) : super(key: key);
 
   @override
@@ -150,8 +179,21 @@ class BaseDialogError extends StatelessWidget {
                   title,
                   style: Styles.dialogTitleStyle,
                 ),
+                isIcon == true
+                    ? SizedBox(
+                        height: 20,
+                      )
+                    : Container(),
+                isIcon == true
+                    ? SizedBox(
+                        height: 200,
+                        child: SvgPicture.asset(
+                          "assets/no_outlet_snack_import.svg",
+                        ),
+                      )
+                    : Container(),
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 Text(
                   errorMessages[i10n.lang] ??
@@ -200,6 +242,9 @@ class BaseDialogError extends StatelessWidget {
                         fontColor: Colors.white,
                         onPressed: () async {
                           Get.back();
+                          if (twoBack == true) {
+                            Get.back();
+                          }
                           if (onClose != null) {
                             onClose!();
                           }

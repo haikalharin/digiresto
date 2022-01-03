@@ -3,6 +3,8 @@ class Assets {
   Assets._();
 
   static const String assetsArrowBackIcon = 'assets/arrow_back_icon.svg';
+  static const String assetsArrowRight = 'assets/arrow_right.svg';
+  static const String assetsCartIcon = 'assets/cart_icon.svg';
   static const String assetsChecklist = 'assets/checklist.svg';
   static const String assetsChecklistSelected = 'assets/checklist_selected.svg';
   static const String assetsCreditHistory = 'assets/credit_history.svg';
@@ -11,14 +13,22 @@ class Assets {
   static const String assetsCreditWaitingPayment = 'assets/credit_waiting_payment.svg';
   static const String assetsEditProfileBanner = 'assets/edit_profile_banner.svg';
   static const String assetsEmptyListOutlet = 'assets/empty_list_outlet.svg';
+  static const String assetsEmptyStatePromo = 'assets/empty_state_promo.svg';
+  static const String assetsEmptyStateVoucher = 'assets/empty_state_voucher.svg';
   static const String assetsHeader = 'assets/header.svg';
   static const String assetsHeaderCredit = 'assets/header_credit.svg';
+  static const String assetsIcPromoVoucher = 'assets/ic_promo_voucher.svg';
+  static const String assetsIcTimeLimited = 'assets/ic_time_limited.svg';
+  static const String assetsIcVoucher = 'assets/ic_voucher.svg';
+  static const String assetsIconsIcCalendar = 'assets/icons/ic_calendar.svg';
   static const String assetsImagesHomeDiscount = 'assets/images/home_discount.svg';
   static const String assetsImagesHomeNearby = 'assets/images/home_nearby.svg';
   static const String assetsIntro1 = 'assets/intro_1.svg';
   static const String assetsIntro2 = 'assets/intro_2.svg';
   static const String assetsIntro3 = 'assets/intro_3.svg';
   static const String assetsLogoDigiresto = 'assets/logo_digiresto.png';
+  static const String assetsMessageSendIcon = 'assets/message_send_icon.svg';
+  static const String assetsNoOutletSnackImport = 'assets/no_outlet_snack_import.svg';
   static const String assetsOrderIcon = 'assets/order_icon.svg';
   static const String assetsPreorderEstimate = 'assets/preorder_estimate.svg';
   static const String assetsPreorderShip = 'assets/preorder_ship.svg';
@@ -29,8 +39,10 @@ class Assets {
   static const String assetsProfileJoinUs = 'assets/profile_join_us.svg';
   static const String assetsProfileLanguage = 'assets/profile_language.svg';
   static const String assetsProfilePrivacyPolicy = 'assets/profile_privacy_policy.svg';
+  static const String assetsPromoBackground = 'assets/promo_background.png';
   static const String assetsRefresh = 'assets/refresh.svg';
   static const String assetsStar = 'assets/star.svg';
+  static const String assetsTicketPromo = 'assets/ticket_promo.svg';
   static const String assetsTopUpIcon = 'assets/top_up_icon.svg';
   static const String iconsFoodIcon = 'assets/icons/food_icon.svg';
   static const String iconsIcAppicon = 'assets/icons/ic_appicon.png';
@@ -38,7 +50,7 @@ class Assets {
   static const String iconsIcAtm = 'assets/icons/ic_atm.png';
   static const String iconsIcAtmBlack = 'assets/icons/ic_atm_black.png';
   static const String iconsIcBackBlack = 'assets/icons/ic_back_black.png';
-  static const String iconsIcCalendar = 'assets/icons/ic_calendar.svg';
+  static const String iconsIcCalendar = 'assets/icons/ic_calendar.png';
   static const String iconsIcCartRed = 'assets/icons/ic_cart_red.png';
   static const String iconsIcCashback = 'assets/icons/ic_cashback.png';
   static const String iconsIcCredit = 'assets/icons/ic_credit.png';
@@ -50,10 +62,13 @@ class Assets {
   static const String iconsIcDigiresto = 'assets/icons/ic_digiresto.png';
   static const String iconsIcDigirestoCredit = 'assets/icons/ic_digiresto_credit.png';
   static const String iconsIcDiscountPercent = 'assets/icons/ic_discount_percent.png';
+  static const String iconsIcEditRed = 'assets/icons/ic_edit_red.png';
+  static const String iconsIcFood = 'assets/icons/ic_food.png';
   static const String iconsIcForwardRed = 'assets/icons/ic_forward_red.png';
   static const String iconsIcHistory = 'assets/icons/ic_history.png';
   static const String iconsIcHome = 'assets/icons/ic_home.png';
   static const String iconsIcHomeRed = 'assets/icons/ic_home_red.png';
+  static const String iconsIcInformation = 'assets/icons/ic_information.svg';
   static const String iconsIcInstagram = 'assets/icons/ic_instagram.png';
   static const String iconsIcLauncher = 'assets/icons/ic_launcher.png';
   static const String iconsIcLocationCircleRed = 'assets/icons/ic_location_circle_red.png';

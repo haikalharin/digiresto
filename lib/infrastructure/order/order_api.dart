@@ -888,17 +888,22 @@ class OrderApi {
     try {
       final apiUrl = Endpoints.urlForward;
       final queryParameter = Endpoints.urlGetDetailOutletByMerchant;
-      final apiResult = await _networkService
-          .postHttp(path: apiUrl, queryParameter: queryParameter, content: {
-        "query_string": {
-          "merchantId": merchantId,
-          "location": location
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        queryParameter: queryParameter,
+        content: {
+          "query_string": {"merchantId": merchantId, "location": location},
+          "body": {}
         },
-        "body": {}
-      },);
+      );
       return right(DetailOutletResponse.fromJson(apiResult));
     } on FailureException catch (e) {
-      ErrorDialog().showError(error: e.message!);
+      ErrorDialog().showErrorOutlet(
+        error: e.message!,
+        twoBack: true,
+        barrierDismissible: false,
+        isIcon: true,
+      );
       return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();
