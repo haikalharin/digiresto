@@ -1,19 +1,22 @@
 import 'package:digiresto/domain/core/constants/colors.dart';
 import 'package:digiresto/domain/core/constants/font.dart';
 import 'package:digiresto/domain/core/utils/random/random_images.dart';
+import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/top_brand_response.dart';
+import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TopBrandOutlet extends StatelessWidget {
   final TopBrandResponData? topBrand;
-  // final MenuCategory? navigation;
+  final MenuCategory? menuCategory;
 
   const TopBrandOutlet({
     Key? key,
     this.topBrand,
-  })
-  // this.navigation})
-  : super(key: key);
+    this.menuCategory,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,9 @@ class TopBrandOutlet extends StatelessWidget {
         SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 0).copyWith(top: 5),
           scrollDirection: Axis.horizontal,
-          child: Row(children: _topBrandOutlets(topBrand!)),
+          child: Row(
+            children: _topBrandOutlets(topBrand!),
+          ),
         )
       ],
     );
@@ -46,8 +51,12 @@ class TopBrandOutlet extends StatelessWidget {
         AppFont.textBlack10Regular.copyWith(color: AppColors.greyColor);
 
     return InkWell(
-      // onTap: () => Get.toNamed(Routers.orderDetailOutlet,
-      //     arguments: OrderDetailViewArgument(outlet.id, outletslist.merchantId!)),
+      onTap: () => Get.to(
+        ListCateringPage(
+          menuCategory: menuCategory,
+          nameMerchant: outlet.listOutlet[index].name,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

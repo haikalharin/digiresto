@@ -1,4 +1,5 @@
 import 'package:digiresto/domain/auth/entity/user_auth.dart';
+import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/domain/promo_voucher/voucher_detail_arguments.dart';
 import 'package:digiresto/presentation/address/list/home_all_address.dart';
@@ -172,7 +173,13 @@ class Routers {
     GetPage(name: Routers.paymentReceipt, page: () => PaymentReceiptScreen()),
     GetPage(name: Routers.paymentVa, page: () => PaymentVAScreen()),
     GetPage(name: Routers.paymentWebView, page: () => PaymentWebViewScreen()),
-    GetPage(name: Routers.listCateringPage, page: () => ListCateringPage()),
+    GetPage(
+      name: Routers.listCateringPage,
+      page: () => ListCateringPage(
+        nameMerchant: Get.arguments as String,
+        menuCategory: Get.arguments as MenuCategory,
+      ),
+    ),
     GetPage(
         name: Routers.complainPage,
         page: () => ComplainPage(Get.arguments as String)),
