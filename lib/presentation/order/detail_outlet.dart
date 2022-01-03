@@ -287,6 +287,7 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               e.e.maybeMap(
                   salesTypeNull: (e) {},
                   getDetailOutletFail: (e) {
+                    print("raka 123 $e");
                     goBack();
                   },
                   orElse: () {});
@@ -295,81 +296,77 @@ class DetailOutletScreen extends GetView<OrderViewController> {
       },
       builder: (context, state) {
         return StackWithProgress(
-          isLoading: controller.isLoading.value ||
-              state.maybeMap(
-                orElse: () => false,
-                loadInProgress: (_) => true,
-              ),
+          isLoading: state.maybeMap(
+            orElse: () => false,
+            loadInProgress: (_) => true,
+          ),
           children: [
             DefaultTabController(
               length: 2,
               initialIndex: 1,
               child: Scaffold(
-                body: Column(
-                  children: [
-                    TopBackgound(backgroundColor: AppColors.red),
-                    controller.detailOutlet.value != null
-                        ? _header(controller.detailOutlet.value!)
-                        : Container(),
-                    TabBar(
-                        onTap: (index) {
-                          controller.indexTabBar.value = index;
-                        },
-                        tabs: [
-                          Obx((() => Tab(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ImageIcon(
-                                        AssetImage(
-                                            AppAssets.iconOutletOverview),
-                                        color: controller.indexTabBar.value == 0
-                                            ? AppColors.redTabBar
-                                            : AppColors.greyCOC0C0),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      I10n.current.outlet_overview,
-                                      style: controller.indexTabBar.value == 0
-                                          ? AppFont.textRed14Bold
-                                          : AppFont.textGrey14Bold,
-                                    )
-                                  ],
-                                ),
-                              ))),
-                          Obx((() => Tab(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ImageIcon(
-                                        AssetImage(
-                                            AppAssets.iconOutletOverview),
-                                        color: controller.indexTabBar.value == 1
-                                            ? AppColors.redTabBar
-                                            : AppColors.greyCOC0C0),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      I10n.current.outlet_menu,
-                                      style: controller.indexTabBar.value == 1
-                                          ? AppFont.textRed14Bold
-                                          : AppFont.textGrey14Bold,
-                                    )
-                                  ],
-                                ),
-                              ))),
-                        ]),
-                    Expanded(
-                      child: TabBarView(children: [
-                        _BodyOutletOverview(),
-                        _BodyOutletMenu(),
+                  body: Column(
+                children: [
+                  TopBackgound(backgroundColor: AppColors.red),
+                  controller.detailOutlet.value != null
+                      ? _header(controller.detailOutlet.value!)
+                      : Container(),
+                  TabBar(
+                      onTap: (index) {
+                        controller.indexTabBar.value = index;
+                      },
+                      tabs: [
+                        Obx((() => Tab(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageIcon(
+                                      AssetImage(AppAssets.iconOutletOverview),
+                                      color: controller.indexTabBar.value == 0
+                                          ? AppColors.redTabBar
+                                          : AppColors.greyCOC0C0),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    I10n.current.outlet_overview,
+                                    style: controller.indexTabBar.value == 0
+                                        ? AppFont.textRed14Bold
+                                        : AppFont.textGrey14Bold,
+                                  )
+                                ],
+                              ),
+                            ))),
+                        Obx((() => Tab(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageIcon(
+                                      AssetImage(AppAssets.iconOutletOverview),
+                                      color: controller.indexTabBar.value == 1
+                                          ? AppColors.redTabBar
+                                          : AppColors.greyCOC0C0),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    I10n.current.outlet_menu,
+                                    style: controller.indexTabBar.value == 1
+                                        ? AppFont.textRed14Bold
+                                        : AppFont.textGrey14Bold,
+                                  )
+                                ],
+                              ),
+                            ))),
                       ]),
-                    ),
-                  ],
-                ),
-              ),
+                  Expanded(
+                    child: TabBarView(children: [
+                      _BodyOutletOverview(),
+                      _BodyOutletMenu(),
+                    ]),
+                  ),
+                ],
+              )),
             )
           ],
         );
