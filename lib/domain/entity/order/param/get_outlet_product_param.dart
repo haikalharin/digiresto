@@ -1,0 +1,48 @@
+import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'get_outlet_product_param.freezed.dart';
+part 'get_outlet_product_param.g.dart';
+
+GetOutletProductParam emptyFromJson(String str) =>
+    GetOutletProductParam.fromJson(json.decode(str));
+
+String emptyToJson(GetOutletProductParam data) => json.encode(data.toJson());
+
+@freezed
+class GetOutletProductParam with _$GetOutletProductParam {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory GetOutletProductParam({
+    required GetOutletProductQueryParam queryString,
+    required GetOutletProductBodyParam body,
+  }) = _GetOutletProductParam;
+
+  factory GetOutletProductParam.fromJson(Map<String, dynamic> json) =>
+      _$GetOutletProductParamFromJson(json);
+}
+
+@freezed
+class GetOutletProductBodyParam with _$GetOutletProductBodyParam {
+  const factory GetOutletProductBodyParam() = _GetOutletProductBodyParam;
+
+  factory GetOutletProductBodyParam.fromJson(Map<String, dynamic> json) =>
+      _$GetOutletProductBodyParamFromJson(json);
+}
+
+@freezed
+class GetOutletProductQueryParam with _$GetOutletProductQueryParam {
+  const factory GetOutletProductQueryParam({
+    required String outletId,
+    required String categoryId,
+    required String filter,
+    required int page,
+    required int limit,
+    @JsonKey(includeIfNull: false) String? mealsTypes,
+    @JsonKey(includeIfNull: false) String? preOrderDate,
+    @JsonKey(includeIfNull: false) bool? isCatering,
+  }) = _GetOutletProductQueryParam;
+
+  factory GetOutletProductQueryParam.fromJson(Map<String, dynamic> json) =>
+      _$GetOutletProductQueryParamFromJson(json);
+}

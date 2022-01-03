@@ -1,0 +1,208 @@
+import 'package:digiresto/application/order/order_cart_screen_view_controller.dart';
+import 'package:digiresto/domain/core/theme.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+
+import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+
+class DialogAdditionalAddress extends GetView<OrderCartScreenViewController> {
+  final locationDetailController = TextEditingController();
+  final notesController = TextEditingController();
+  final String currentAddress;
+  final BuildContext context;
+  DialogAdditionalAddress(this.context, this.currentAddress);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Container(
+        height: 480,
+        width: 380,
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding:
+                  EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        I10n.current.address_location_detail,
+                        style: AppFont.textBlack19Bold,
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                          controller.detailLocationIsSubmited = false;
+                          controller.noteIsSubmite = false;
+                        },
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[850],
+                              borderRadius: BorderRadius.circular(25)),
+                          child: Center(
+                            child: Text(
+                              "X",
+                              style:
+                                  TextStyle(fontSize: 25, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    I10n.current.address_name,
+                    style: AppFont.textBlack13SemiBold,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 10),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppColors.mainColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: Text(
+                      controller.activeAddress.value!.address.toString(),
+                      maxLines: 4,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    I10n.current.location_details,
+                    style: AppFont.textBlack13SemiBold,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppColors.mainColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: TextField(
+                      onChanged: (value) {
+                        controller.detailLocationIsSubmited = true;
+                        controller.update();
+                        controller.onClose();
+                      },
+                      controller: controller.locationDetailCOntroller,
+                      decoration: InputDecoration(border: InputBorder.none),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    I10n.current.cart_notes,
+                    style: AppFont.textBlack13SemiBold,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppColors.mainColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: TextField(
+                      onChanged: (value) {
+                        controller.noteIsSubmite = true;
+                        print("Value : " + value);
+                        controller.update();
+                      },
+                      controller: controller.notesController,
+                      decoration: InputDecoration(border: InputBorder.none),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GetBuilder(
+                      builder: (OrderCartScreenViewController _controller) {
+                    return controller.detailLocationIsSubmited ||
+                            controller.noteIsSubmite
+                        ? CustomButton(
+                            child: Text(
+                              I10n.current.update_address,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            color: AppColors.mainColor,
+                            onPressed: () {
+                              var updateValue = UpdateDetailLocation(
+                                  locationDetail:
+                                      controller.locationDetailCOntroller.text,
+                                  notes: controller.notesController.text);
+                              Navigator.pop(context, updateValue);
+                              controller.noteIsSubmite = false;
+                              controller.detailLocationIsSubmited = false;
+                            },
+                            fontColor: AppColors.white,
+                          )
+                        : CustomButton(
+                            child: Text(
+                              I10n.current.update_address,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            color: AppColors.greyC2C2C2,
+                            onPressed: () {
+                              // var updateValue = UpdateDetailLocation(
+                              //     locationDetail:
+                              //         controller.locationDetailCOntroller.text,
+                              //     notes: controller.notesController.text);
+                              // Navigator.pop(context, updateValue);
+                            },
+                            fontColor: AppColors.white,
+                          );
+                  })
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UpdateDetailLocation {
+  String? locationDetail;
+  String? notes;
+  UpdateDetailLocation({this.locationDetail, this.notes});
+}

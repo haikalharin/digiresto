@@ -1,0 +1,151 @@
+import 'dart:async';
+
+import 'package:digiresto/domain/core/constants/network/endpoints.dart';
+import 'package:digiresto/domain/core/entity/status_api_response.dart';
+import 'package:digiresto/domain/core/interfaces/i_network_service.dart';
+import 'package:digiresto/domain/entity/order/transaction_mobile_response.dart';
+import 'package:digiresto/domain/entity/transaction/param/add_favorite_transaction_param.dart';
+import 'package:digiresto/domain/entity/transaction/transaction_history.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable()
+class TransactionApi {
+  final INetworkService _networkService;
+
+  // injecting dio instance
+  TransactionApi(this._networkService);
+
+  Future<List<TransactionHistory>?> getTransactionHistory() async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetTransactionHistory;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"outletName": ""},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
+
+      var transactionHistory = (apiResult as Map<String, dynamic>)[
+          'data']; //mengambil data data didalam jsonObject
+      List<TransactionHistory> listTransactionHistory = [];
+      for (int i = 0; i < transactionHistory.length; i++) {
+        listTransactionHistory.add(
+            TransactionHistory.createTransactionHistory(transactionHistory[i]));
+      }
+      return listTransactionHistory;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future<TransactionMobileResponse?> getTransaction(String receiptCode) async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlGetTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"receiptCode": receiptCode},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
+
+      return TransactionMobileResponse.fromJson(apiResult);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future<TransactionMobileResponse?> cancelTransaction(
+      String receiptCode) async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlCancelTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"receiptCode": receiptCode},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
+      return TransactionMobileResponse.fromJson(apiResult);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future<StatusResponse?> acceptTransaction(String receiptCode) async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlAcceptTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {
+          "query_string": {"receiptCode": receiptCode},
+          "body": {}
+        },
+        queryParameter: queryParameter,
+      );
+
+      var data = (apiResult
+          as Map<String, dynamic>)['response']; //mengambil data data didalam
+      return StatusResponse.fromJson(data);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future<List<TransactionHistory>?> getOngoingTransaction() async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlOngoingTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: {"query_string": {}, "body": {}},
+        queryParameter: queryParameter,
+      );
+
+      var ongoingTransaction = (apiResult as Map<String, dynamic>)['data'];
+      List<TransactionHistory> listTransactionHistory = [];
+      for (int i = 0; i < ongoingTransaction.length; i++) {
+        listTransactionHistory.add(
+            TransactionHistory.createTransactionHistory(ongoingTransaction[i]));
+      }
+      return listTransactionHistory;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future<bool> addFavoriteTransaction(
+      AddFavoriteTransactionParam request) async {
+    try {
+      final apiUrl = Endpoints.urlForward;
+      final queryParameter = Endpoints.urlAddFavoriteTransaction;
+      final apiResult = await _networkService.postHttp(
+        path: apiUrl,
+        content: request.toJson(),
+        queryParameter: queryParameter,
+      );
+      var favoriteTransaction =
+          (apiResult as Map<String, dynamic>)['response']['code'] as String;
+      if (favoriteTransaction != "00") {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+}

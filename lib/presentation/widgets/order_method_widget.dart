@@ -1,0 +1,141 @@
+import 'package:digiresto/domain/core/constants/colors.dart';
+import 'package:digiresto/presentation/core/i10n/l10n.dart';
+import 'package:digiresto/presentation/core/widgets/custom_button.dart';
+import 'package:flutter/material.dart';
+
+class OrderMethodPopup {
+  Future<void> showMyDialog(BuildContext context, Map<String, dynamic> param,
+      void Function(Map<String, dynamic>) runAction) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          //title: Text(param.detail["name"]),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      param["detailName"],
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                // Container(
+                //      alignment: Alignment.center,
+                //      padding: EdgeInsets.all(5),
+                //      child: Text(param["merchantName"].toString(),textAlign: TextAlign.justify,style: TextStyle(
+                //        fontFamily: "roboto",
+                //        fontSize: 14,
+                //        fontWeight: FontWeight.bold,
+                //      ),)),
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      "Silahkan pilih tipe order",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontFamily: "roboto",
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    )),
+                for (int i = 0; i < param["orderMethod"].length; i++)
+                  OrderMethodWidget(
+                    orderMethod: param["orderMethod"][i],
+                    param: param,
+                    runAction: runAction,
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class OrderMethodWidget extends StatelessWidget {
+  final String orderMethod;
+  final Map<String, dynamic> param;
+  final void Function(Map<String, dynamic>) runAction;
+
+  const OrderMethodWidget({
+    Key? key,
+    required this.orderMethod,
+    required this.param,
+    required this.runAction,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    //  UserStore _userStore;
+//    _userStore = Provider.of<UserStore>(context);
+    String textOrderMethod = "";
+    switch (orderMethod) {
+      case "dineIn":
+        {
+          textOrderMethod = I10n.current.landing_dine_in;
+          break;
+          // statements;
+        }
+
+      case "takeAway":
+        {
+          textOrderMethod = I10n.current.landing_take_away;
+          break;
+          //statements;
+        }
+
+      case "onlineDriver":
+        {
+          textOrderMethod = I10n.current.landing_delivery;
+          break;
+          //statements;
+        }
+
+      case "driveThru":
+        {
+          textOrderMethod = I10n.current.landing_drive_thru;
+          break;
+          //statements;
+        }
+
+      default:
+        {
+          break;
+        }
+    }
+    return Container(
+      padding: EdgeInsets.all(5),
+      width: MediaQuery.of(context).size.width - 100,
+      height: 50,
+      child: CustomButton(
+        onPressed: () {
+          runAction({
+            "orderOutletName": param["name"],
+            "orderSalesTypes": orderMethod,
+            "orderMerchantName": param["merchantName"],
+            "orderOutletDetailName": param["detailName"],
+            //   "userProfile": _userStore.profile
+          });
+        },
+        color: AppColors.red,
+        child: Text(textOrderMethod,
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
+      ),
+    );
+  }
+}

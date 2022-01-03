@@ -1,0 +1,63 @@
+import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'outlet_product_category_response.freezed.dart';
+part 'outlet_product_category_response.g.dart';
+
+OutletProductCategoryResponse emptyFromJson(String str) =>
+    OutletProductCategoryResponse.fromJson(json.decode(str));
+
+String emptyToJson(OutletProductCategoryResponse data) =>
+    json.encode(data.toJson());
+
+@freezed
+class OutletProductCategoryResponse with _$OutletProductCategoryResponse {
+  const factory OutletProductCategoryResponse({
+    required OutletProductCategoryStatusResponse response,
+    required List<OutletProductCategoryDataResponse> data,
+    required OutletProductMetaResponse meta,
+  }) = _OutletProductCategoryResponse;
+
+  factory OutletProductCategoryResponse.fromJson(Map<String, dynamic> json) =>
+      _$OutletProductCategoryResponseFromJson(json);
+}
+
+@freezed
+class OutletProductCategoryDataResponse
+    with _$OutletProductCategoryDataResponse {
+  const factory OutletProductCategoryDataResponse({
+    required int id,
+    required String code,
+    required String name,
+    required dynamic order,
+  }) = _OutletProductCategoryDataResponse;
+
+  factory OutletProductCategoryDataResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$OutletProductCategoryDataResponseFromJson(json);
+}
+
+@freezed
+class OutletProductMetaResponse with _$OutletProductMetaResponse {
+  const factory OutletProductMetaResponse({
+    required String version,
+  }) = _OutletProductMetaResponse;
+
+  factory OutletProductMetaResponse.fromJson(Map<String, dynamic> json) =>
+      _$OutletProductMetaResponseFromJson(json);
+}
+
+@freezed
+class OutletProductCategoryStatusResponse
+    with _$OutletProductCategoryStatusResponse {
+  const factory OutletProductCategoryStatusResponse({
+    required String code,
+    required String status,
+    required String message,
+  }) = _OutletProductCategoryStatusResponse;
+
+  factory OutletProductCategoryStatusResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$OutletProductCategoryStatusResponseFromJson(json);
+}

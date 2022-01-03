@@ -1,0 +1,7 @@
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - lib/presentation/core/i10n/
+  errors:
+    invalid_annotation_target: ignore
