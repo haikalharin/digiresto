@@ -23,6 +23,8 @@ class OrderLocal {
   final String _voucherMethodKey = "voucherMethodKey";
   final String _dineInIdKey = "_dineInIdKey";
   final String _driveThru = "_driveThru";
+  final String _orderCart = "orderCart";
+
   OrderLocal(this._storage, this.logger);
 
   Future<PaymentMethodDataResponse?> setPaymentMethod(
@@ -421,12 +423,10 @@ class OrderLocal {
       final _boxCart = await _storage.openBox(StorageConstants.cart);
       final sessionId = _storage.getString(_boxCart, key: _sessionIdKey);
       await _storage.close(_boxCart);
-      print('repo sessionId: $sessionId');
       return sessionId == null
           ? left(Exception("session is null"))
           : right(sessionId);
     } catch (e, stackTrace) {
-      print('sessionId error: $stackTrace');
       return left(Exception(stackTrace.toString()));
     }
   }
@@ -458,6 +458,36 @@ class OrderLocal {
       );
       await _storage.close(_boxCart);
       return "";
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> setOrderCart(
+      {UpdateCartSessionParam? update, CreateCartSessionParam? create}) async {
+    try {
+      final _box = await _storage.openBox(StorageConstants.cart);
+      late Map<String, dynamic> json;
+      if (create != null) {
+        json = {
+          "query_string": create.queryString.toJson(),
+          "body": create.body.toJson()
+        };
+      } else if (update != null) {}
+      await _storage.setJson(_box, key: _orderCart, object: json);
+      await _storage.close(_box);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<CreateCartSessionParam?> getOrderCart() async {
+    try{
+      final _box = await _storage.openBox(StorageConstants.cart);
+      final data = _storage.getJson(_box, key: _orderCart);
+      final result = CreateCartSessionParam.fromJson(data);
+      return result;
     } catch (e) {
       return null;
     }
