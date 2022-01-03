@@ -402,11 +402,13 @@ class OrderCartScreenViewController extends GetxController {
 
   void getDetailOutlet() async {
     Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
+          GetDetailOutletParam(
             body: GetDetailOutletBodyParam(),
             queryString: GetDetailOutletQueryParam(
-                outletId:
-                    cartSession.value!.transactionData!.outletId.toString()))));
+              outletId: cartSession.value!.transactionData!.outletId.toString(),
+            ),
+          ),
+        ));
     update();
   }
 
@@ -687,7 +689,7 @@ class OrderCartScreenViewController extends GetxController {
     if (arguments != null && arguments.isUseVoucher) {
       GetListVoucherOutletDataResponse? newVoucherModel =
           GetListVoucherOutletDataResponse(
-              code: arguments.voucher.code, name: arguments.voucher.name);
+              code: arguments.voucher.code ?? '', name: arguments.voucher.name ?? '');
       Get.context!.read<OrderBloc>().add(
             OrderEvent.setVoucherMethodID(newVoucherModel),
           );

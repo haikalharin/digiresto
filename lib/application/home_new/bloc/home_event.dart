@@ -7,4 +7,5 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.getUserAddress() = _GetUserAddress;
   const factory HomeEvent.getStaticBanner() = _GetStaticBanner;
   const factory HomeEvent.getNewNearbyOutlet() = _GetNewNearbyOutlet;
+  const factory HomeEvent.getTopBrand() = _GetTopBrand;
 }

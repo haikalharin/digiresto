@@ -274,4 +274,15 @@ class OrderRepository implements IOrderRepository {
   Future<CreateCartSessionParam?> getOrderCart() async {
     return await _orderLocal.getOrderCart();
   }
+
+  Future<Either<Exception, DetailOutletResponse>> getDetailOutletByMerchant(
+    String location,
+    String merchantId,
+  ) async {
+    return _orderApi
+        .getDetailOutletByMerchant(location, merchantId)
+        .then((value) {
+      return value;
+    });
+  }
 }

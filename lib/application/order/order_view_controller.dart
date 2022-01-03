@@ -31,9 +31,7 @@ class OrderViewController extends GetxController {
   var detailOutletLoading = false.obs;
   var indexTabBar = 1.obs;
   var salesType = Rxn<String>();
-  // var mealsTypes = "".obs;
-  // var preOrderDate = "".obs;
-  // var isCatering = false.obs;
+  var outletId = Rxn<String>();
 
   var voucherCode = Rxn<VoucherDetailArguments>();
   bool isSameOutlet() {
@@ -61,39 +59,16 @@ class OrderViewController extends GetxController {
   RxnString outletCart = RxnString();
 
   void getDetailOutlet() {
-    Get.context!.read<OrderBloc>().add(OrderEvent.getDetailOutlet(
-        GetDetailOutletParam(
-            body: GetDetailOutletBodyParam(),
-            queryString:
-                GetDetailOutletQueryParam(outletId: outlet.value!.outletId))));
-    // setState(() {
-    //   detailOutletLoading = true;
-    // });
-    // _orderStore.getDetailOutlet({
-    //   "outletName": outletName,
-    //   "page": pageParam,
-    //   "limit": 0,
-    //   "produclds": [],
-    //   "filter": filter,
-    //   "category": category
-    // }).then((res) {
-    //   if (pageParam > page) {
-    //     setState(() {
-    //       page += 1;
-    //       detailOutlet.product.addAll(res.product);
-    //     });
-    //   } else {
-    //     setState(() {
-    //       page = 1;
-    //       detailOutlet = res;
-    //     });
-    //   }
-    //   detailOutletLoading = false;
-    // }).catchError((err) {
-    //   detailOutletLoading = false;
-    //   print(err.toString());
-    //   ErrorPopupWidget.showDioError(context, err, null);
-    // });
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getDetailOutlet(
+            GetDetailOutletParam(
+              body: GetDetailOutletBodyParam(),
+              queryString: GetDetailOutletQueryParam(
+                outletId: outlet.value!.outletId,
+              ),
+            ),
+          ),
+        );
   }
 
   void getRefresh() {
@@ -102,6 +77,7 @@ class OrderViewController extends GetxController {
     getCartSession();
     getDetailOutlet();
     getCategoryProduct();
+    getListVoucher();
   }
 
   void getListVoucher() {
@@ -111,7 +87,7 @@ class OrderViewController extends GetxController {
               body: GetListVoucherOutletBodyParam(),
               queryString: GetListVoucherOutletQueryParam(
                 merchantId: detailOutlet.value!.merchantId!,
-                outletId: detailOutlet.value!.id,
+                outletId: outletId.value ?? detailOutlet.value!.id,
               ),
             ),
           ),
@@ -131,7 +107,7 @@ class OrderViewController extends GetxController {
                 categoryId: categoryId.value,
                 filter: search.value,
                 limit: 15,
-                outletId: outlet.value!.outletId,
+                outletId: outletId.value ?? outlet.value!.outletId,
                 page: page.value,
                 isCatering: outlet.value!.isCatering,
                 mealsTypes: outlet.value!.mealsTypes,
@@ -148,7 +124,7 @@ class OrderViewController extends GetxController {
             GetOutletProductCategoryParam(
               body: GetOutletProductCategoryBodyParam(),
               queryString: GetOutletProductCategoryQueryParam(
-                outletId: outlet.value!.outletId,
+                outletId: outletId.value ?? outlet.value!.outletId,
               ),
             ),
           ),
@@ -163,7 +139,7 @@ class OrderViewController extends GetxController {
                 merchantId: outlet.value!.merchantId == ""
                     ? (detailOutlet.value?.merchantId ?? "")
                     : outlet.value!.merchantId,
-                outletId: outlet.value!.outletId))));
+                outletId: outletId.value ?? outlet.value!.outletId))));
   }
 
   void getCartSession() {
@@ -449,4 +425,23 @@ class OrderViewController extends GetxController {
     });
     return listWidget;
   }
+
+  /// SNACK IMPORT BY MERCHANT
+
+  void getRefreshDetailMerchant(String merchantId) {
+    isLoading.value = true;
+    getCartSession();
+    getDetailOutletByMerchant(merchantId);
+  }
+
+  void getDetailOutletByMerchant(String merchantId) {
+    Get.context!.read<OrderBloc>().add(
+          OrderEvent.getDetailOutletByMerchant(
+            merchantId,
+          ),
+        );
+  }
+
+  /// END SNACK IMPORT BY MERCHANT
+
 }

@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digiresto/application/landing/bottom_tab_cubit.dart';
 import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
+import 'package:digiresto/domain/order/order_detail_view_argument.dart';
 import 'package:digiresto/presentation/home_new/list_catering_page/list_catering_page.dart';
 import 'package:digiresto/presentation/home_new/list_outlet_page/list_outlet_page.dart';
+import 'package:digiresto/presentation/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
@@ -17,13 +19,7 @@ class MenuCategoryWidget extends StatelessWidget {
     return Ink(
       child: InkWell(
         onTap: () {
-          if (menuCategory.id != "catering") {
-            Get.to(
-              ListOutletPage(menuCategory),
-            )?.then((value) {
-              Get.context!.read<BottomTabCubit>().checkAllCounter();
-            });
-          } else {
+          if (menuCategory.id == "catering") {
             Get.to(
               ListCateringPage(
                 menuCategory: menuCategory,
@@ -33,25 +29,27 @@ class MenuCategoryWidget extends StatelessWidget {
                 Get.context!.read<BottomTabCubit>().checkAllCounter();
               },
             );
+          } else if (menuCategory.id == "snack") {
+            Get.toNamed(
+              Routers.orderDetailOutlet,
+              arguments: OrderDetailViewArgument(
+                "",
+                menuCategory.param['merchantId'],
+                isCatering: false,
+                isSnack: true,
+              ),
+            )?.then(
+              (value) {
+                Get.context!.read<BottomTabCubit>().checkAllCounter();
+              },
+            );
+          } else {
+            Get.to(
+              ListOutletPage(menuCategory),
+            )?.then((value) {
+              Get.context!.read<BottomTabCubit>().checkAllCounter();
+            });
           }
-          // // Get.to(ListOutletPage(menuCategory));
-          // final label = menuCategory.getTitle;
-          // // if (label == Strings.titleDigidiscount) {
-          // //   Get.toNamed(Routers.homeDigiDiscount,
-          // //       arguments: HomeOrderViewArgument(title: label, param: label));
-          // // } else
-          // if (label == Strings.titleFrozenFood ||
-          //     label == Strings.titleIndonesiaPastiBisa) {
-          //   Get.toNamed(Routers.homeOutletCategory,
-          //       arguments: HomeOrderViewArgument(title: label, param: label));
-          // } else if (label == Strings.titleNearby) {
-          //   Get.toNamed(Routers.homeNearbyOutlet,
-          //       arguments: HomeOrderViewArgument(title: label, param: label));
-          // } else {
-          //   Get.to(
-          //     ListOutletPage(menuCategory),
-          //   );
-          // }
         },
         child: Column(
           children: <Widget>[

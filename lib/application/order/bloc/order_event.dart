@@ -34,6 +34,10 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.getDetailOutlet(GetDetailOutletParam request) =
       _GetDetailOutlet;
 
+  const factory OrderEvent.getDetailOutletByMerchant(
+    String merchantId,
+  ) = _GetDetailOutletByMerchant;
+
   const factory OrderEvent.getPaymentMethod(GetPaymentMethodParam request) =
       _GetPaymentMethod;
 
@@ -58,10 +62,10 @@ class OrderEvent with _$OrderEvent {
       String? preOrderDate,
       bool? isCatering}) = _AddCart;
 
-  const factory OrderEvent.updateCart(
-    String note,
-    String outletName,
-  ) = _UpdateCart;
+  const factory OrderEvent.updateCart(String note, String outletName,
+      {String? mealsType,
+      String? preOrderDate,
+      bool? isCatering}) = _UpdateCart;
 
   const factory OrderEvent.removeCart(
       CreateUpdateCartSessionItemParam request) = _RemoveCart;

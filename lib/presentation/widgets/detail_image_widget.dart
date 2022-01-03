@@ -9,7 +9,7 @@ class DetailImageDialog extends StatelessWidget {
   @override
   DetailImageDialog({
     Key? key,
-    @required this.dataImage,
+    required this.dataImage,
   }) : super(key: key);
 
   @override

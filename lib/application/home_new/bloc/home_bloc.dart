@@ -4,6 +4,7 @@ import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
 import 'package:digiresto/domain/home/entity/menu_category.dart';
 import 'package:digiresto/domain/home/entity/new_nearby_outlet.dart';
 import 'package:digiresto/domain/home/entity/static_banner.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/domain/home/home_failure.dart';
 import 'package:digiresto/domain/home/i_home_repository.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -28,6 +29,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             await _homeRepository.getMenuCategory();
         final newNearbyFailureOrSuccess =
             await _homeRepository.getNewNearbyOutlet();
+        final remoteConfigFailureOrSuccess =
+            await _homeRepository.getTopBrand();
+
+        print("Blocnya home : " + remoteConfigFailureOrSuccess.toString());
 
         emit(
           state.copyWith(
@@ -35,6 +40,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             optionUserAddress: optionOf(addressFailureOrSuccess),
             optionMenuCategory: optionOf(categoryFailureOrSuccess),
             optionOutletHighlight: optionOf(newNearbyFailureOrSuccess),
+            optionremoteConfigtopBrand: optionOf(remoteConfigFailureOrSuccess),
           ),
         );
       }, refresh: (e) async {
@@ -45,6 +51,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final bannerFailureOrSuccess = await _homeRepository.getStaticBanner();
         final newNearbyFailureOrSuccess =
             await _homeRepository.getNewNearbyOutlet();
+        final remoteConfigFailureOrSuccess =
+            await _homeRepository.getTopBrand();
 
         emit(
           state.copyWith(
@@ -53,6 +61,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             optionMenuCategory: optionOf(categoryFailureOrSuccess),
             optionBanners: optionOf(bannerFailureOrSuccess),
             optionOutletHighlight: optionOf(newNearbyFailureOrSuccess),
+            optionremoteConfigtopBrand: optionOf(remoteConfigFailureOrSuccess),
           ),
         );
       }, getUserAddress: (e) async {
@@ -79,6 +88,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             optionOutletHighlight: optionOf(newNearbyFailureOrSuccess),
           ),
         );
+      }, getTopBrand: (e) async {
+        final remoteConfigFailureOrSuccess =
+            await _homeRepository.getTopBrand();
+        emit(state.copyWith(
+            optionremoteConfigtopBrand:
+                optionOf(remoteConfigFailureOrSuccess)));
       });
     });
   }

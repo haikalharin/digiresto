@@ -52,8 +52,9 @@ class Utils {
     return formattedDate;
   }
 
-  static String validUntil(DateTime date,
+  static String validUntil(DateTime? date,
       {String? time, bool? useFullFormat = false}) {
+    if (date == null) return '';
     DateTime now = date;
     if (time != null) {
       DateTime newTime = DateFormat('HH:mm:ss').parse(time);

@@ -33,7 +33,8 @@ class GetDetailOutletBodyParam with _$GetDetailOutletBodyParam {
 @freezed
 class GetDetailOutletQueryParam with _$GetDetailOutletQueryParam {
   const factory GetDetailOutletQueryParam({
-    required String outletId,
+    String? outletId,
+    String? location,
   }) = _GetDetailOutletQueryParam;
 
   factory GetDetailOutletQueryParam.fromJson(Map<String, dynamic> json) =>

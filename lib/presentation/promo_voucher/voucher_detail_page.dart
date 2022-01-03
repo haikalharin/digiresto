@@ -42,7 +42,7 @@ class VoucherDetailPage extends HookWidget {
                           borderRadius: BorderRadius.circular(8),
                           child: FadeInImage.assetNetwork(
                             placeholder: RandomImages.getImage().assetName,
-                            image: args.voucher.url,
+                            image: args.voucher.url ?? '',
                             imageErrorBuilder: (context, obj, stacktrace) =>
                                 Image(
                               image: RandomImages.getImage(),
@@ -60,7 +60,7 @@ class VoucherDetailPage extends HookWidget {
                             title: I10n.current.voucher_period,
                             subtitle:
                                 '${Utils.validUntil(args.voucher.startDate, time: args.voucher.startTime, useFullFormat: true)} - ${Utils.validUntil(args.voucher.endDate, time: args.voucher.endTime, useFullFormat: true)}'),
-                        _titleAndSubtitle(title: args.voucher.description),
+                        _titleAndSubtitle(title: args.voucher.description?? ''),
                         _titleAndSubtitle(
                             title:
                                 '${I10n.current.promo_code}: ${args.voucher.code}'),

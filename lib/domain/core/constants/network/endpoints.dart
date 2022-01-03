@@ -133,4 +133,7 @@ class Endpoints {
   static const Map<String, dynamic> urlGetOrderProcessCount = {
     "r": "transactionhistorycount"
   };
+  static const Map<String, dynamic> urlGetDetailOutletByMerchant = {
+    "r": "v2/getdetailoutletbymerchant"
+  };
 }

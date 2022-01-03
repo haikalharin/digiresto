@@ -136,4 +136,9 @@ abstract class IOrderRepository {
       {UpdateCartSessionParam? update, CreateCartSessionParam? create});
 
   Future<CreateCartSessionParam?> getOrderCart();
+
+  Future<Either<Exception, DetailOutletResponse>> getDetailOutletByMerchant(
+    String location,
+    String merchantId,
+  );
 }

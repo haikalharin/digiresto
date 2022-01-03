@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart' hide IList;
 import 'package:digiresto/domain/catering/catering_failure.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
-import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 abstract class ICateringRepository {

@@ -49,6 +49,10 @@ class HomeContentViewController extends GetxController {
     Get.context!.read<HomeUserBloc>().add(HomeUserEvent.getActiveAddress());
   }
 
+  // void getRemoteConfigTopBrand() {
+  //   Get.context!.read<HomeUserBloc>().add(HomeUserEvent.);
+  // }
+
   void getRefresh() {
     getStaticBanner();
     getActiveAddress();

@@ -43,6 +43,9 @@ class OrderState with _$OrderState {
   const factory OrderState.getDetailOutletSuccess(
       DetailOutletDataResponse response) = _GetDetailOutletSuccess;
 
+  const factory OrderState.getDetailOutletByMerchantSuccess(
+      DetailOutletDataResponse response) = _GetDetailOutletByMerchantSuccess;
+
   const factory OrderState.getPaymentMethodSuccess(
       List<PaymentMethodDataResponse> response) = _GetPaymentMethodSuccess;
 
