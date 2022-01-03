@@ -238,6 +238,7 @@ class OrderRepository implements IOrderRepository {
 
   Future<Either<Exception, CartSessionResponseApi?>> createCartSession(
       CreateCartSessionParam object) async {
+    await setOrderCart(create: object);
     return await _orderApi.createCartSession(object).then((value) {
       return value;
     });
@@ -263,11 +264,24 @@ class OrderRepository implements IOrderRepository {
     });
   }
 
+  @override
+  Future<bool> setOrderCart(
+      {UpdateCartSessionParam? update, CreateCartSessionParam? create}) async {
+    return await _orderLocal.setOrderCart(update: update, create: create);
+  }
+
+  @override
+  Future<CreateCartSessionParam?> getOrderCart() async {
+    return await _orderLocal.getOrderCart();
+  }
+
   Future<Either<Exception, DetailOutletResponse>> getDetailOutletByMerchant(
     String location,
     String merchantId,
   ) async {
-    return _orderApi.getDetailOutletByMerchant(location, merchantId).then((value) {
+    return _orderApi
+        .getDetailOutletByMerchant(location, merchantId)
+        .then((value) {
       return value;
     });
   }

@@ -62,10 +62,10 @@ class OrderEvent with _$OrderEvent {
       String? preOrderDate,
       bool? isCatering}) = _AddCart;
 
-  const factory OrderEvent.updateCart(
-    String note,
-    String outletName,
-  ) = _UpdateCart;
+  const factory OrderEvent.updateCart(String note, String outletName,
+      {String? mealsType,
+      String? preOrderDate,
+      bool? isCatering}) = _UpdateCart;
 
   const factory OrderEvent.removeCart(
       CreateUpdateCartSessionItemParam request) = _RemoveCart;

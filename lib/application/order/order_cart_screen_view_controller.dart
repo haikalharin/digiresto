@@ -249,6 +249,7 @@ class OrderCartScreenViewController extends GetxController {
     bool isBuyNow,
     TransactionDataItemResponse detailProduct,
   ) async {
+    // TODO: potensi cart bisa berubah
     var productParam = CreateUpdateCartSessionItemParam(
       modifiers: [
         ...detailProduct.modifiers
