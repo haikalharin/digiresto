@@ -963,6 +963,24 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 controller.listCategory.value!, controller.categoryId.value)
             : Container(),
         _promoAndVoucher(),
+        Container(
+          margin: EdgeInsets.only(left: 10,right: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+          decoration: BoxDecoration(
+            color: Colors.amberAccent,
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: AssetImage(AppAssets.bgShopee),
+              fit: BoxFit.fill,
+            ),
+            shape: BoxShape.rectangle,
+          ),
+          // child: Image.asset(
+          //   AppAssets.iconMenuCart,
+          //   width: 30,
+          //   height: 30,
+          // ),
+        ),
         Expanded(
           child: Container(
             //height: MediaQuery.of(context).size.height - 30,
