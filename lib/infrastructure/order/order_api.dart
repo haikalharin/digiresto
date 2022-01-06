@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:digiresto/domain/core/constants/network/endpoints.dart';
 import 'package:digiresto/domain/core/entity/status_api_response.dart';
@@ -11,6 +12,7 @@ import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/get_banner_shopee_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
@@ -29,9 +31,12 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
+import 'package:digiresto/infrastructure/core/globals.dart';
 import 'package:digiresto/infrastructure/order/order_local.dart';
 import 'package:digiresto/presentation/core/i10n/l10n.dart';
 import 'package:digiresto/presentation/core/widgets/base_dialog_error.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 
@@ -904,6 +909,63 @@ class OrderApi {
         barrierDismissible: false,
         isIcon: true,
       );
+      return left(FailureException(code: e.code, message: e.message));
+    } on AuthException catch (_) {
+      ErrorDialog().showAuthError();
+      return left(AuthException());
+    } on ServerException catch (e) {
+      ErrorDialog().showError(
+        error: StatusMessageDisplayResponse(
+          en: I10n.current.error_message_failed_get_response,
+          id: I10n.current.error_message_failed_get_response,
+        ),
+      );
+      return left(e);
+    } on TimeOutException catch (_) {
+      return left(TimeOutException());
+    } on NoInternetException catch (_) {
+      ErrorDialog().showNoInternetError();
+      return left(NoInternetException());
+    } catch (e, stactrace) {
+      return left(NetworkException(message: stactrace));
+    }
+  }
+
+  Future<Either<Exception, GetBannerShopeeResponse>> getBannerShopee() async {
+    try {
+      final RemoteConfig remoteConfig = await RemoteConfig.instance;
+      await remoteConfig.setConfigSettings(
+        RemoteConfigSettings(
+          fetchTimeout: Globals.env == Environment.dev
+              ? const Duration(seconds: 10)
+              : const Duration(minutes: 1),
+          minimumFetchInterval: Globals.env == Environment.dev
+              ? const Duration(seconds: 1)
+              : const Duration(seconds: 5),
+        ),
+      );
+      await remoteConfig.fetchAndActivate();
+      final bannerShopee = remoteConfig
+          .getValue(Globals.env == Environment.dev
+          ? 'outlet_special_voucher_dev'
+          : 'outlet_special_voucher')
+          .asString();
+
+      final bannerShopeeDecode = json.decode(bannerShopee);
+      // final GetBannerShopeeResponse response = bannerShopeeDecode;
+
+      print("remote Config : ${bannerShopeeDecode}");
+
+      // final List<Map<String, dynamic>> listopBrand =
+      //     List.from((topBrand as Map<String, dynamic>)['data']);
+
+      final staticBannerShopee = GetBannerShopeeResponse.fromJson(bannerShopeeDecode);
+
+      print("list static : ${staticBannerShopee}");
+
+      return right(staticBannerShopee);
+    } on FailureException catch (e) {
+      ErrorDialog().showError(error: e.message!);
       return left(FailureException(code: e.code, message: e.message));
     } on AuthException catch (_) {
       ErrorDialog().showAuthError();

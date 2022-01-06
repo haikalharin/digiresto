@@ -7,6 +7,7 @@ import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.d
 import 'package:digiresto/domain/entity/order/param/create_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/param/update_cart_session_param.dart';
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
 import 'package:injectable/injectable.dart';
@@ -492,4 +493,5 @@ class OrderLocal {
       return null;
     }
   }
+  
 }

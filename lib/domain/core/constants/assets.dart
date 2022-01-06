@@ -14,7 +14,8 @@ class AppAssets {
   static const String bgHomeMitra = "assets/images/home_mitra.png";
   static const String bgUpdateProfile = "assets/images/bg_update_profile.png";
 
-  static const String iconShopee = "assets/images/logo_shopee_pay.png";
+  static const String iconShopee = "assets/images/logo_shopee_pay2.png";
+  static const String iconRight = "assets/icons/ic_right.png";
 
   // custome food images not found
   static const String food = "assets/images/";

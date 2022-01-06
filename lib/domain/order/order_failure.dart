@@ -69,4 +69,7 @@ class OrderFailure with _$OrderFailure implements Exception {
   const factory OrderFailure.getTransactionPendingFail() =
       _GetTransactionPendingFail;
   const factory OrderFailure.cancelTransactionFail() = _CancelTransactionFail;
+  const factory OrderFailure.getBannerShopeeFail(Exception? e) =
+  _GetBannerShopeeFail;
 }
+

@@ -5,6 +5,7 @@ import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/get_banner_shopee_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
@@ -23,6 +24,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/static_banner_model.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
 import 'package:digiresto/domain/order/order_cart_drive_thru_model.dart';
@@ -285,4 +287,10 @@ class OrderRepository implements IOrderRepository {
       return value;
     });
   }
+  Future<Either<Exception, GetBannerShopeeResponse>> getBannerShopee() async {
+    return await _orderApi.getBannerShopee().then((value) {
+      return value;
+    });
+  }
+
 }
