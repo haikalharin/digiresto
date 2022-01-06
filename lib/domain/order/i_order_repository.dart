@@ -141,4 +141,6 @@ abstract class IOrderRepository {
     String location,
     String merchantId,
   );
+
+  Future<Either<Exception, GetListVoucherOutletResponse>> getBannerShopee();
 }

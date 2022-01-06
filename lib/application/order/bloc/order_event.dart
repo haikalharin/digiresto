@@ -2,6 +2,10 @@ part of 'order_bloc.dart';
 
 @freezed
 class OrderEvent with _$OrderEvent {
+
+  const factory OrderEvent.getShoppeRemoteConfig() =
+  _getShoppeRemoteConfig;
+
   const factory OrderEvent.getOutletByLocation(
       GetOutletByLocationParam request) = _GetOutletByLocation;
 
@@ -43,6 +47,7 @@ class OrderEvent with _$OrderEvent {
 
   const factory OrderEvent.deliveryInquiry(DeliveryInquiryParam request) =
       _GeliveryInquiry;
+
 
   const factory OrderEvent.createCartSession(CreateCartSessionParam request) =
       _CreateCartSession;

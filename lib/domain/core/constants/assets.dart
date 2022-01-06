@@ -14,6 +14,8 @@ class AppAssets {
   static const String bgHomeMitra = "assets/images/home_mitra.png";
   static const String bgUpdateProfile = "assets/images/bg_update_profile.png";
 
+  static const String iconShopee = "assets/images/logo_shopee_pay.png";
+
   // custome food images not found
   static const String food = "assets/images/";
 
@@ -78,6 +80,8 @@ class AppAssets {
   static const String iconVouchers = "assets/ic_voucher.svg";
   static const String iconTimeLimited = "assets/ic_time_limited.svg";
   static const String iconInformation = "assets/icons/ic_information.svg";
+
+
 
   static const String imageTransactionReceipt =
       "assets/images/transaction_receipt.png";

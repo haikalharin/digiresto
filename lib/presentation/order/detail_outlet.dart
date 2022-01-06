@@ -975,6 +975,13 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
             ),
             shape: BoxShape.rectangle,
           ),
+          child: Row(children: [
+            Container(
+              height: 20,
+             child: Image.asset(AppAssets.iconShopee),
+
+            )
+          ],),
           // child: Image.asset(
           //   AppAssets.iconMenuCart,
           //   width: 30,

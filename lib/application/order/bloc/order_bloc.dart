@@ -61,7 +61,16 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   ) : super(_Initial()) {
     on<OrderEvent>(
       (event, emit) async {
-        await event.map(getOutletByLocation: (request) async {
+        await event.map(getShoppeRemoteConfig:(request) async {
+          emit(OrderState.loadInProgress());
+          final getBannerShopee =
+          await _orderRepository.getBannerShopee();
+          emit(getBannerShopee.fold(
+                (error) => OrderState.loadFailure(
+                OrderFailure.getListVoucherOutletFail(error)),
+                (list) => OrderState.getListVoucherOutletSuccess(list.data),
+          ));
+        },getOutletByLocation: (request) async {
           emit(OrderState.loadInProgress());
           final address = await _userRepository.getActiveAddress();
           final activeAddr = address.getOrElse(() => UserAddress());
@@ -81,7 +90,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               list.data,
             ),
           ));
-        }, getOutletByCategory: (request) async {
+        },getOutletByCategory: (request) async {
           emit(OrderState.loadInProgress());
           final address = await _userRepository.getActiveAddress();
           final activeAddr = address.getOrElse(() => UserAddress());
