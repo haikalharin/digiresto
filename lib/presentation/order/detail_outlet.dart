@@ -75,10 +75,10 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                 enabled: false,
               ),
               Column(
-                children: controller.generateListSalesTypeOption((element) {
+                children: controller.generateListSalesTypeOption((element,) {
                   controller.setSalesType(element);
                   Get.back(closeOverlays: true);
-                }),
+                }, isCatering:controller.outlet.value != null ? controller.outlet.value!.isCatering! : false),
               ),
               SizedBox(
                 height: 16,
