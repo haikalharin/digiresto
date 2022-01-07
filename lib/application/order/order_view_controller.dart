@@ -2,6 +2,7 @@ import 'package:digiresto/domain/core/theme.dart';
 import 'package:digiresto/domain/entity/order/cart_session_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/get_banner_shopee_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_list_product_response.dart';
 import 'package:digiresto/domain/entity/order/outlet_product_category_response.dart';
@@ -56,6 +57,7 @@ class OrderViewController extends GetxController {
   Rxn<List<PromoOutletDataResponse>> listPromo =
       Rxn<List<PromoOutletDataResponse>>();
   Rxn<CartSessionResponse> cartSession = Rxn<CartSessionResponse>();
+  Rxn<GetBannerShopeeResponse> bannerShopee = Rxn<GetBannerShopeeResponse>();
   RxnString outletCart = RxnString();
 
   void getDetailOutlet() {
@@ -71,6 +73,12 @@ class OrderViewController extends GetxController {
         );
   }
 
+  void getShoppeRemoteConfig() {
+    Get.context!.read<OrderBloc>().add(
+      OrderEvent.getShoppeRemoteConfig(),
+    );
+  }
+
   void getRefresh() {
     isLoading.value = true;
     getListProduct();
@@ -78,6 +86,7 @@ class OrderViewController extends GetxController {
     getDetailOutlet();
     getCategoryProduct();
     getListVoucher();
+    getShoppeRemoteConfig();
   }
 
   void getListVoucher() {
@@ -182,10 +191,10 @@ class OrderViewController extends GetxController {
     return listWidget;
   }
 
-  List<Widget> generateListSalesTypeOption(onTap(String element)) {
+  List<Widget> generateListSalesTypeOption(onTap(String element),  {bool isCatering = false}) {
     List<Widget> listWidget = [];
     detailOutlet.value!.salesTypes.forEach((element) {
-      if (element == "dineIn") {
+      if (element == "dineIn" && isCatering == false) {
         listWidget.add(Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
           child: Row(
@@ -225,7 +234,7 @@ class OrderViewController extends GetxController {
             ],
           ),
         ));
-      } else if (element == "takeAway") {
+      } else if (element == "takeAway" && isCatering == false) {
         listWidget.add(Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
           child: Row(

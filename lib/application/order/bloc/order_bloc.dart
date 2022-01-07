@@ -5,6 +5,7 @@ import 'package:digiresto/domain/entity/order/checkout_response.dart';
 import 'package:digiresto/domain/entity/order/delivery_method_response.dart';
 import 'package:digiresto/domain/entity/order/detail_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/digi_discount_outlet_response.dart';
+import 'package:digiresto/domain/entity/order/get_banner_shopee_response.dart';
 import 'package:digiresto/domain/entity/order/get_list_voucher_outlet_response.dart';
 import 'package:digiresto/domain/entity/order/hot_promo_model.dart';
 import 'package:digiresto/domain/entity/order/outlet_category_response.dart';
@@ -28,6 +29,7 @@ import 'package:digiresto/domain/entity/order/param/update_cart_session_param.da
 import 'package:digiresto/domain/entity/order/payment_method_response.dart';
 import 'package:digiresto/domain/entity/order/promo_outlet_response.dart';
 import 'package:digiresto/domain/entity/user/user_get_address_model.dart';
+import 'package:digiresto/domain/home/entity/top_brand_response.dart';
 import 'package:digiresto/domain/home/i_home_repository.dart';
 import 'package:digiresto/domain/order/i_order_repository.dart';
 import 'package:digiresto/domain/order/order_cart_dine_in_model.dart';
@@ -61,7 +63,16 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   ) : super(_Initial()) {
     on<OrderEvent>(
       (event, emit) async {
-        await event.map(getOutletByLocation: (request) async {
+        await event.map(getShoppeRemoteConfig:(request) async {
+          emit(OrderState.loadInProgress());
+          final getBannerShopee =
+          await _orderRepository.getBannerShopee();
+          emit(getBannerShopee.fold(
+                (error) => OrderState.loadFailure(
+                OrderFailure.getBannerShopeeFail(error)),
+                (data) => OrderState.getBannerShopeeSuccess(data),
+          ));
+        },getOutletByLocation: (request) async {
           emit(OrderState.loadInProgress());
           final address = await _userRepository.getActiveAddress();
           final activeAddr = address.getOrElse(() => UserAddress());
@@ -81,7 +92,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               list.data,
             ),
           ));
-        }, getOutletByCategory: (request) async {
+        },getOutletByCategory: (request) async {
           emit(OrderState.loadInProgress());
           final address = await _userRepository.getActiveAddress();
           final activeAddr = address.getOrElse(() => UserAddress());

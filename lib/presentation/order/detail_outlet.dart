@@ -25,6 +25,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'detail_product_dialog.dart';
 
@@ -73,10 +75,10 @@ class DetailOutletScreen extends GetView<OrderViewController> {
                 enabled: false,
               ),
               Column(
-                children: controller.generateListSalesTypeOption((element) {
+                children: controller.generateListSalesTypeOption((element,) {
                   controller.setSalesType(element);
                   Get.back(closeOverlays: true);
-                }),
+                }, isCatering:controller.outlet.value != null ? controller.outlet.value!.isCatering! : false),
               ),
               SizedBox(
                 height: 16,
@@ -247,6 +249,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
               controller.getPromoProduct();
               controller.getListVoucher();
               controller.checkAllLoaded();
+              if (controller.outlet.value?.isCatering == true) {
+                controller.getShoppeRemoteConfig();
+              }
             },
             getOutletListProductSuccess: (r) {
               controller.listProduct.value = r.response;
@@ -282,6 +287,9 @@ class DetailOutletScreen extends GetView<OrderViewController> {
             },
             getSalesTypeCartSuccess: (r) {
               controller.salesType.value = r.value;
+            },
+            getBannerShopeeSuccess: (r) {
+              controller.bannerShopee.value = r.response;
             },
             loadFailure: (e) {
               e.e.maybeMap(
@@ -963,6 +971,81 @@ class _BodyOutletMenu extends GetView<OrderViewController> {
                 controller.listCategory.value!, controller.categoryId.value)
             : Container(),
         _promoAndVoucher(),
+        controller.bannerShopee.value != null &&
+                controller.outlet.value?.isCatering == true &&
+                controller.bannerShopee.value?.isEnable == true
+            ? InkWell(
+          onTap: (){
+            var url = controller.bannerShopee.value?.deeplink;
+              launch(url!);
+          },
+              child: Container(
+                  margin: EdgeInsets.only(left: 10, right: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.amberAccent,
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: AssetImage(AppAssets.bgShopee),
+                      fit: BoxFit.fill,
+                    ),
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                          child: Image.asset(AppAssets.iconShopee)),
+                      Expanded(
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(
+                                  controller.bannerShopee.value != null
+                                      ? controller.bannerShopee.value!.title!.id!
+                                      : "",
+                                  style: GoogleFonts.poppins(
+                                    textStyle:
+                                        Theme.of(context).textTheme.headline4,
+                                    color: AppColors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                child: Text(
+                                  controller.bannerShopee.value != null
+                                      ? controller.bannerShopee.value!
+                                          .shortDescription!.id!
+                                      : "",
+                                  style: GoogleFonts.poppins(
+                                    textStyle:
+                                        Theme.of(context).textTheme.headline4,
+                                    color: AppColors.white,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 10),
+                          child: Image.asset(AppAssets.iconRight)),
+                    ],
+                  ),
+                  // child: Image.asset(
+                  //   AppAssets.iconMenuCart,
+                  //   width: 30,
+                  //   height: 30,
+                  // ),
+                ),
+            )
+            : Container(),
         Expanded(
           child: Container(
             //height: MediaQuery.of(context).size.height - 30,

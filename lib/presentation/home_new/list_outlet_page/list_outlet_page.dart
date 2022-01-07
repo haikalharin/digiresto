@@ -161,7 +161,7 @@ class ListOutletWidget extends GetView<ListOutletPageController> {
                           runAction: (param) {
                             Get.toNamed(Routers.orderDetailOutlet,
                                     arguments: OrderDetailViewArgument(
-                                        param.id, param.merchantId))
+                                        param.id, param.merchantId, isCatering: false))
                                 ?.then((value) {
                               controller.page.value = 1;
                               controller.isHideOpen.value = false;

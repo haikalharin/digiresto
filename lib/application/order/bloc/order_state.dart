@@ -129,4 +129,8 @@ class OrderState with _$OrderState {
       _CancelTransactionSuccess;
 
   const factory OrderState.mustAddPaymentMethods() = _MustAddPaymentMethods;
+
+  const factory OrderState.getBannerShopeeSuccess(
+      GetBannerShopeeResponse response) = _GetBannerShopeeSuccess;
+
 }

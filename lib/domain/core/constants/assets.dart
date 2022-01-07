@@ -10,8 +10,12 @@ class AppAssets {
   static const String bgOnbooarding2 = "assets/images/image_onboarding_2.png";
   static const String bgOnbooarding3 = "assets/images/image_onboarding_3.png";
   static const String bgHome = "assets/images/background_header_home.png";
+  static const String bgShopee = "assets/images/banner_shopee_diskon.png";
   static const String bgHomeMitra = "assets/images/home_mitra.png";
   static const String bgUpdateProfile = "assets/images/bg_update_profile.png";
+
+  static const String iconShopee = "assets/images/logo_shopee_pay2.png";
+  static const String iconRight = "assets/icons/ic_right.png";
 
   // custome food images not found
   static const String food = "assets/images/";
@@ -77,6 +81,8 @@ class AppAssets {
   static const String iconVouchers = "assets/ic_voucher.svg";
   static const String iconTimeLimited = "assets/ic_time_limited.svg";
   static const String iconInformation = "assets/icons/ic_information.svg";
+
+
 
   static const String imageTransactionReceipt =
       "assets/images/transaction_receipt.png";

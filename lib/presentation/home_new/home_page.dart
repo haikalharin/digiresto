@@ -128,6 +128,13 @@ class HomePage extends StatelessWidget {
                 .where((element) => element.isEnable)
                 .toList();
 
+            final catering = state.optionMenuCategory
+                .fold(
+                  () => <MenuCategory>[],
+                  (data) => data.fold((l) => <MenuCategory>[], (r) => r.unlock),
+            )
+                .where((element) => element.id == 'catering');
+
             final newNearbyOutlets = state.optionOutletHighlight
                 .fold(
                     () => <OutletsHighight>[],
@@ -190,14 +197,17 @@ class HomePage extends StatelessWidget {
                                           '${I10n.current.lang == 'id' ? remoteConfigList?.title.id : remoteConfigList?.title.en}',
                                           style: AppFont.textBlack14Bold),
                                       Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          child: SvgPicture.asset(
-                                              'assets/arrow_right.svg')),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15),
+                                        child: SvgPicture.asset(
+                                          'assets/arrow_right.svg',
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   TopBrandOutlet(
                                     topBrand: remoteConfigList,
+                                    menuCategory: catering.first,
                                   )
                                 ],
                               ),

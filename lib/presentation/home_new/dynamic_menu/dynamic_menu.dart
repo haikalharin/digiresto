@@ -30,16 +30,6 @@ class DynamicMenu extends StatelessWidget {
             );
           }),
         ],
-
-        // gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        //     maxCrossAxisExtent: 200,
-        //     childAspectRatio: 3 / 2,
-        //     crossAxisSpacing: 20,
-        //     mainAxisSpacing: 20),
-        // itemCount: menuCategoryList.length,
-        // itemBuilder: (BuildContext ctx, index) {
-        //   return
-        // },
       ),
     );
   }
